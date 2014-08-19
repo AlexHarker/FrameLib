@@ -35,9 +35,10 @@ typedef short FL_SInt16;
 typedef unsigned char FL_UInt8;
 typedef char FL_SInt8;
 
-// Bytes pointer
+// Raw Bytes
 
-typedef char *BytePointer;
+typedef unsigned char Byte;
+typedef unsigned char *BytePointer;
 
 // Time formats
 

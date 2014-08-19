@@ -143,10 +143,9 @@ typedef struct _framelib
 
 // Function prototypes
 
-t_max_err framelib_fixed_size_set(t_framelib *x, t_object *attr, long argc, t_atom *argv);
-t_atom_long framelib_arg_check(t_framelib *x, char *name, t_atom_long val, t_atom_long min, t_atom_long max);
+FrameLib_Attributes::Serial *framelib_parse_attributes(t_framelib *x, long argc, t_atom *argv);
 
-void *framelib_new (t_symbol *s, short argc, t_atom *argv);
+void *framelib_new (t_symbol *s, long argc, t_atom *argv);
 void framelib_free (t_framelib *x);
 void framelib_assist (t_framelib *x, void *b, long m, long a, char *s);
 
@@ -155,6 +154,145 @@ void framelib_dsp (t_framelib *x, t_object *dsp64, short *count, double samplera
 
 void framelib_connections(t_framelib *x);
 void framelib_frame(t_framelib *x);
+
+//////////////////////////////////////////////////////////////////////////
+/////////////////////////// Attribute Parsing ////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+// FIX - error check arguments
+
+bool is_attribute_tag(t_symbol *sym)
+{
+    return (sym && sym->s_name[0] == '#' && strlen(sym->s_name) > 1);
+}
+
+FrameLib_Attributes::Serial *framelib_parse_attributes(t_framelib *x, long argc, t_atom *argv)
+{
+    t_symbol *sym;
+    char argNames[64];
+    double array[4096];
+    bool is_string;
+    long i, j;
+    size_t size = 0;
+    
+    // Get required size
+    
+    // Arguments
+    
+    for (i = 0; i < argc; i++)
+    {
+        sprintf(argNames, "%ld", i);
+        
+        if (is_attribute_tag(sym = atom_getsym(argv + i)))
+            break;
+
+        if (sym != gensym(""))
+            size += FrameLib_Attributes::Serial::calcSize(argNames, sym->s_name);
+        else
+            size += FrameLib_Attributes::Serial::calcSize(argNames, 1);
+    }
+    
+    // Attributes
+
+    for (; i < argc; i++)
+    {
+        // Strip stray items following strings
+        
+        for (j = 0; i < argc; i++, j++)
+        {
+            if (is_attribute_tag(sym = atom_getsym(argv + i)))
+                break;
+        }
+        
+        if (j)
+            object_error((t_object *)x, "stray items in attribute list");
+        
+        if (i >= argc)
+            break;
+        
+        // Count items (do strings here)
+        
+        for (i++, j = 0, is_string = FALSE; i < argc; i++, j++)
+        {
+            if (is_attribute_tag(atom_getsym(argv + i)))
+                break;
+            
+            if (atom_getsym(argv + i) != gensym("") && j == 0)
+            {
+                is_string = TRUE;
+                size += FrameLib_Attributes::Serial::calcSize(sym->s_name + 1, atom_getsym(argv + i)->s_name);
+                break;
+            }
+            
+            if (atom_getsym(argv + i) != gensym(""))
+                object_error((t_object *)x, "string %s in attribute list where value expected", atom_getsym(argv + i)->s_name);
+        }
+        
+        if (j && !is_string)
+            size += FrameLib_Attributes::Serial::calcSize(sym->s_name + 1, j);
+        else if (!j && !is_string)
+        {
+            object_error((t_object *) x, "attribute %s given with no values", sym->s_name + 1);
+        }
+    }
+    
+    // Allocate
+    
+    FrameLib_Attributes::Serial *serialisedAttributes = new FrameLib_Attributes::Serial(size);
+    
+    // Parse arguments
+    
+    for (i = 0; i < argc; i++)
+    {
+        sprintf(argNames, "%ld", i);
+        
+        if (is_attribute_tag(sym = atom_getsym(argv + i)))
+            break;
+        
+        if (sym != gensym(""))
+            serialisedAttributes->write(argNames, sym->s_name);
+        else
+        {
+            array[0] = atom_getfloat(argv + i);
+            serialisedAttributes->write(argNames, array, 1);
+        }
+    }
+    
+    // Parse attributes
+    
+    for (; i < argc; i++)
+    {
+        // Strip stray items following strings
+        
+        for (j = 0; i < argc; i++, j++)
+        {
+            if (is_attribute_tag(sym = atom_getsym(argv + i)))
+                break;
+        }
+
+        // Collect items (do strings here)
+        
+        for (i++, j = 0, is_string = FALSE; i < argc; i++, j++)
+        {
+            if (is_attribute_tag(atom_getsym(argv + i)))
+                break;
+            
+            if (atom_getsym(argv + i) != gensym("") && j == 0)
+            {
+                is_string = TRUE;
+                serialisedAttributes->write(sym->s_name + 1, atom_getsym(argv + i)->s_name);
+                break;
+            }
+            
+            array[j] = atom_getfloat(argv + i);
+        }
+        
+        if (j && !is_string)
+            serialisedAttributes->write(sym->s_name + 1, array, j);
+    }
+
+    return serialisedAttributes;
+}
 
 //////////////////////////////////////////////////////////////////////////
 /////////////////////// Main / New / Free / Assist ///////////////////////
@@ -186,19 +324,17 @@ extern "C" int C74_EXPORT main (void)
 }
 
 
-void *framelib_new (t_symbol *s, short argc, t_atom *argv)
+void *framelib_new (t_symbol *s, long argc, t_atom *argv)
 {
     t_framelib *x = (t_framelib *)object_alloc (this_class);
     
-    double schedspeed = 16.0;
-    long numIO = 1;
+    // Object creation with attributes and arguments
     
-    if (argc)
-        numIO = atom_getlong(argv);
-    if (argc)
-        schedspeed = atom_getfloat(argv);
-    
+    FrameLib_Attributes::Serial *serialisedAttributes = framelib_parse_attributes(x, argc, argv);
+
     x->object = OBJECT_CREATE;
+    
+    delete serialisedAttributes;
     
     // Setup for audio, even if the object doesn't handle it, so that dsp recompile works correctly
     

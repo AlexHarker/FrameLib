@@ -17,21 +17,31 @@ public:
     
     // Constructor
     
-    FrameLib_Block(unsigned long numAudioIns, unsigned long numAudioOuts)
+    FrameLib_Block(unsigned long nAudioIns, unsigned long nAudioOuts)
     {
-        mNumAudioIns = numAudioIns;
-        mNumAudioOuts = numAudioOuts;
+        setIO(nAudioIns, nAudioOuts);
+    }
+    
+    FrameLib_Block()
+    {
+        setIO(0, 0);
     }
     
     // Destructor (virtual)
     
     virtual ~FrameLib_Block() = 0;
-    
-    // Block copying
-    
-     virtual FrameLib_Block *copy() = 0;
-    
+   
     // IO Utilities
+    
+protected:
+    
+    void setIO(unsigned long nAudioIns, unsigned long nAudioOuts)
+    {
+        mNumAudioIns = nAudioIns;
+        mNumAudioOuts = nAudioOuts;
+    }
+    
+public:
     
     virtual unsigned long getNumIns() = 0;
     virtual unsigned long getNumOuts() = 0;

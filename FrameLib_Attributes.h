@@ -13,10 +13,10 @@
 
 // This class deals with attributes of an object
 
-// FIX - instantion only attributes (with error checking)?
-// FIX - check alignment assumptions
-// FIX - add checks for memory overwrite to the Serial subclass ??
+// FIX - allow attribute copying - consider going back to objects...
+// FIX - add checks for memory overwrite to the Serial subclass AND/OR auto size for owned Serial??
 // FIX - add error reporting
+// FIX - instantiation only attributes (with error checking - simply a marker)?
 // FIx - consider adding descriptions (using const char * strings)
 
 class FrameLib_Attributes
@@ -41,7 +41,7 @@ public:
         
     public:
         
-        Serial(BytePointer ptr) : mPtr(ptr), mSize(0)
+        Serial(BytePointer ptr) : mPtr(ptr), mSize(0), mOwner(FALSE)
         {
             // Assume that alignment of a double is fine for all natural alignment needs (including this class)
             
@@ -52,9 +52,26 @@ public:
             assert(Serial::alignment >= FrameLib_Memory::getAlignment() && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
         }
         
+        Serial(size_t size) : mPtr(new Byte[size]), mSize(0), mOwner(TRUE)
+        {
+            // Assume that alignment of a double is fine for all natural alignment needs (including this class)
+            
+            assert(Serial::alignment >= sizeof(DataType) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial::DataType");
+            assert(Serial::alignment >= sizeof(size_t) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
+            assert(Serial::alignment >= sizeof(char) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
+            assert(Serial::alignment >= sizeof(char *) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
+            assert(Serial::alignment >= FrameLib_Memory::getAlignment() && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
+        }
+        
+        ~Serial()
+        {
+            if (mOwner)
+                delete mPtr;
+        }
+        
     private:
         
-        size_t align(size_t size)
+        static size_t align(size_t size)
         {
             return (size + (alignment - 1)) & ~(alignment - 1);
         }
@@ -86,42 +103,42 @@ public:
             size_t size = N * sizeof(double);
             writeSize(N);
             memcpy(mPtr + mSize, ptr, size);
-            mSize += size;
+            mSize += align(size);
         }
         
         static size_t sizeType()
         {
-            return sizeof(DataType);
+            return align(sizeof(DataType));
         }
         
         static size_t sizeString(char *str)
         {
-            return sizeof(size_t) + strlen(str) + 1;
+            return align(sizeof(size_t)) + align(strlen(str) + 1);
         }
         
         static size_t sizeArray(size_t N)
         {
-            return sizeof(size_t) + (N * sizeof(double));
+            return align(sizeof(size_t)) + align((N * sizeof(double)));
         }
         
         DataType readType(BytePointer *readPtr)
         {
             DataType type = *((DataType *) *readPtr);
-            *readPtr += sizeof(DataType);
+            *readPtr += align(sizeof(DataType));
             return type;
         }
         
         void readSize(BytePointer *readPtr, size_t *size)
         {
             *size = *((size_t *) *readPtr);
-            *readPtr += sizeof(size_t);
+            *readPtr += align(sizeof(size_t));
         }
         
         void readDoubles(BytePointer *readPtr, double **values, size_t *N)
         {
             readSize(readPtr, N);
             *values = ((double *) *readPtr);
-            readPtr += *N * sizeof(double);
+            *readPtr += align(*N * sizeof(double));
         }
         
         void readString(BytePointer *readPtr, char **str)
@@ -129,7 +146,7 @@ public:
             size_t size;
             readSize(readPtr, &size);
             *str = ((char *) *readPtr);
-            readPtr += size;
+            *readPtr += align(size);
         }
         
     public:
@@ -209,11 +226,16 @@ public:
         
         BytePointer mPtr;
         size_t mSize;
+        bool mOwner;
     };
+
+    // ************************************************************************************** //
 
     class Attribute
     {
         
+        // ************************************************************************************** //
+
     private:
         
         class Enum
@@ -229,7 +251,7 @@ public:
                     free(mItems[i]);
             }
             
-            void addItem(char *str)
+            void addItem(const char *str)
             {
                 mItems.push_back(strdup(str));
             }
@@ -277,6 +299,8 @@ public:
             unsigned long mValue;
         };
         
+        // ************************************************************************************** //
+
         template <class T> class Array
         {
             enum clipMode {kNone, kMin, kMax, kClip};
@@ -377,6 +401,8 @@ public:
             const bool mVariableSize;
         };
         
+        // ************************************************************************************** //
+
         class String
         {
             const static size_t maxLen = 128;
@@ -409,9 +435,11 @@ public:
             char mCString[maxLen + 1];
         };
         
+        // ************************************************************************************** //
+
     public:
         
-        Attribute(Type type, char *name, double defaultValue = 0.0, size_t maxSize = 1, size_t size = 1)
+        Attribute(Type type, const char *name, double defaultValue = 0.0, size_t maxSize = 1, size_t size = 1)
         {
             mType = type;
             mName = strdup(name);
@@ -421,6 +449,11 @@ public:
             
             switch(type)
             {
+                case kBool:
+                case kDouble:
+                    assert(maxSize == 1 && "non-array attributes do not support sizes greater than 1");
+                    mValue = defaultValue;
+                    break;
                 case kString:
                     assert(maxSize == 1 && "non-array attributes do not support sizes greater than 1");
                     mString = new String();
@@ -435,8 +468,6 @@ public:
                 case kVariableArray:
                     mArray = new Array <double> (defaultValue, maxSize, size, TRUE);
                     break;
-                default:
-                    assert(maxSize == 1 && "non-array attributes do not support sizes greater than 1");
             }
             
             mMin = -std::numeric_limits<double>::infinity();
@@ -465,7 +496,7 @@ public:
             return mName;
         }
         
-        void addEnumItem(char *str)
+        void addEnumItem(const char *str)
         {
             assert(mType == kEnum() && "cannot add enum items to non-enum attribute");
             mEnum->addItem(str);
@@ -674,44 +705,60 @@ public:
         double mMax;
     };
     
-    /////////////////////////////////////////////////////////////////////////////
+    // ************************************************************************************** //
 
 public:
     
-    void addBool(char *name, bool value = FALSE)
+    ~FrameLib_Attributes()
     {
-        mAttributes.push_back(Attribute(kBool, name, value));
+        for (std::vector <Attribute *>::iterator it = mAttributes.begin(); it != mAttributes.end(); it++)
+            delete *it;
     }
     
-    void addDouble(char *name, double value = 0.0)
+private:
+    
+    void addAttribute(unsigned long index, Attribute *attr)
     {
-        mAttributes.push_back(Attribute(kDouble, name, value));
+        assert((index == mAttributes.size() + 1) && "attributes must be added in order");
+        mAttributes.push_back(attr);
     }
     
-    void addString(char *name, char *str)
+public:
+    
+    void addBool(unsigned long index, const char *name, bool value = FALSE)
     {
-        mAttributes.push_back(Attribute(kString, name, 0.0));
-        mAttributes.back().set(str);
+        addAttribute(index, new Attribute(kBool, name, value));
     }
     
-    void addEnum(char *name)
+    void addDouble(unsigned long index, const char *name, double value = 0.0)
     {
-        mAttributes.push_back(Attribute(kEnum, name));
+        addAttribute(index, new Attribute(kDouble, name, value));
     }
     
-    void addEnumItem(char *str)
+    void addString(unsigned long index, const char *name, char *str)
     {
-        mAttributes.back().addEnumItem(str);
+        addAttribute(index, new Attribute(kString, name, 0.0));
+        mAttributes.back()->set(str);
     }
     
-    void addArray(char *name, double defaultValue, size_t maxSize)
+    void addEnum(unsigned long index, const char *name)
     {
-        mAttributes.push_back(Attribute(kArray, name, defaultValue, maxSize));
+       addAttribute(index, new Attribute(kEnum, name));
     }
     
-    void addVariableArray(char *name, double defaultValue, size_t maxSize, size_t size)
+    void addEnumItem(unsigned long index, const char *str)
     {
-        mAttributes.push_back(Attribute(kVariableArray, name, defaultValue, maxSize, size));
+        mAttributes.back()->addEnumItem(str);
+    }
+    
+    void addArray(unsigned long index, const char *name, double defaultValue, size_t maxSize)
+    {
+        addAttribute(index, new Attribute(kArray, name, defaultValue, maxSize));
+    }
+    
+    void addVariableArray(unsigned long index, const char *name, double defaultValue, size_t maxSize, size_t size)
+    {
+        addAttribute(index, new Attribute(kVariableArray, name, defaultValue, maxSize, size));
     }
     
     /////////////////////////////////////////////////////////////////////////////
@@ -720,17 +767,17 @@ public:
     
     void setMin(double min)
     {
-        mAttributes.back().setMin(min);
+        mAttributes.back()->setMin(min);
     }
     
     void setMax(double max)
     {
-         mAttributes.back().setMax(max);
+         mAttributes.back()->setMax(max);
     }
     
     void setClip(double min, double max)
     {
-         mAttributes.back().setClip(min, max);
+         mAttributes.back()->setClip(min, max);
     }
     
     /////////////////////////////////////////////////////////////////////////////
@@ -745,7 +792,7 @@ public:
     long getIdx(const char *name)
     {
         for (unsigned long i = 0; i < mAttributes.size(); i++)
-            if (strcmp(name, mAttributes[i].name()) == 0)
+            if (strcmp(name, mAttributes[i]->name()) == 0)
                 return i;
         
         return -1;
@@ -753,7 +800,7 @@ public:
     
     Type getType(unsigned long idx)
     {
-        return mAttributes[idx].type();
+        return mAttributes[idx]->type();
     }
     
     Type getType(const char *name)
@@ -763,7 +810,7 @@ public:
 
     void getRange(unsigned long idx, double *min, double *max)
     {
-        return mAttributes[idx].getRange(min, max);
+        return mAttributes[idx]->getRange(min, max);
     }
     
     void getRange(const char *name, double *min, double *max)
@@ -773,7 +820,7 @@ public:
     
     const char *getEnumItemString(unsigned long idx, unsigned long item)
     {
-        return mAttributes[idx].getEnumItemString(item);
+        return mAttributes[idx]->getEnumItemString(item);
     }
     
     const char *getEnumItemString(const char *name, unsigned long item)
@@ -828,7 +875,7 @@ public:
 
     void set(unsigned long idx, char *str)
     {
-        mAttributes[idx].set(str);
+        mAttributes[idx]->set(str);
     }
     
     void set(const char *name, char *str)
@@ -841,7 +888,7 @@ public:
     
     void set(unsigned long idx, double *values, size_t size)
     {
-        mAttributes[idx].set(values, size);
+        mAttributes[idx]->set(values, size);
     }
     
     void set(const char *name, double *values, size_t size)
@@ -860,7 +907,7 @@ public:
     
     double getValue(unsigned long idx)
     {
-        return mAttributes[idx].getValue();
+        return mAttributes[idx]->getValue();
     }
     
     double getValue(const char *name)
@@ -880,7 +927,7 @@ public:
     
     const char *getString(unsigned long idx)
     {
-        return mAttributes[idx].getString();
+        return mAttributes[idx]->getString();
     }
     
     const char *getString(const char *name)
@@ -890,7 +937,7 @@ public:
     
     double *getArray(unsigned long idx)
     {
-        return mAttributes[idx].getArray();
+        return mAttributes[idx]->getArray();
     }
     
     double *getArray(const char *name)
@@ -900,7 +947,7 @@ public:
     
     size_t getArraySize(unsigned long idx)
     {
-        return mAttributes[idx].getArraySize();
+        return mAttributes[idx]->getArraySize();
     }
     
     size_t getArraySize(const char *name)
@@ -910,7 +957,7 @@ public:
     
     bool changed(unsigned long idx)
     {
-        return mAttributes[idx].changed();
+        return mAttributes[idx]->changed();
     }
     
     bool changed(const char *name)
@@ -922,7 +969,7 @@ public:
 
 private:
     
-    std::vector <Attribute> mAttributes;
+    std::vector <Attribute *> mAttributes;
 };
 
 #endif

@@ -3,6 +3,7 @@
 #define FRAMELIB_MULTICHANNEL_H
 
 #include "FrameLib_Block.h"
+#include "FrameLib_DSP.h"
 #include <vector>
 
 // FrameLib_MultiChannel
@@ -90,14 +91,17 @@ private:
     
     // ************************************************************************************** //
 
-    // Constructor
+    // Constructors
     
 public:
     
     FrameLib_MultiChannel (ConnectionQueue *queue, unsigned long nIns, unsigned long nOuts) : mQueue(queue)
     {
-        mInputs.resize(nIns);
-        mOutputs.resize(nOuts);
+        setIO(nIns, nOuts);
+    }
+    
+    FrameLib_MultiChannel (ConnectionQueue *queue) : mQueue(queue)
+    {
     }
     
     // Destructor (virtual) - this MUST call clearConnections() in the inheriting class
@@ -107,6 +111,18 @@ public:
     // ************************************************************************************** //
 
     // IO Utilities
+    
+protected:
+    
+    // Call this in derived class constructors only if the IO size is not fixed
+    
+    void setIO(unsigned long nIns, unsigned long nOuts)
+    {
+        mInputs.resize(nIns);
+        mOutputs.resize(nOuts);
+    }
+    
+public:
     
     unsigned long getNumIns()
     {
@@ -360,10 +376,20 @@ FrameLib_MultiChannel::~FrameLib_MultiChannel()
 
 class FrameLib_Pack : public FrameLib_MultiChannel
 {
-    
+    enum AtrributeList {kArg0, kInputs};
+
 public:
     
-    FrameLib_Pack(ConnectionQueue *queue, unsigned long nIns) : FrameLib_MultiChannel(queue, nIns, 1) {}
+    FrameLib_Pack(ConnectionQueue *queue, FrameLib_Attributes::Serial *serialAttributes) : FrameLib_MultiChannel(queue)
+    {
+        mAttributes.addDouble(kArg0, "0", 2);
+        mAttributes.addDouble(0, "inputs", 2);
+        mAttributes.set(serialAttributes);
+        if (!mAttributes.changed(kInputs))
+            mAttributes.set(kInputs, mAttributes.getValue(kArg0));
+        
+        setIO(mAttributes.getValue(kInputs), 1);
+    }
     
     ~FrameLib_Pack()
     {
@@ -396,10 +422,20 @@ private:
 
 class FrameLib_Unpack : public FrameLib_MultiChannel
 {
+    enum AtrributeList {kArg0, kOutputs};
     
 public:
 
-    FrameLib_Unpack(ConnectionQueue *queue, unsigned long nOuts) : FrameLib_MultiChannel(queue, 1, nOuts) {}
+    FrameLib_Unpack(ConnectionQueue *queue, FrameLib_Attributes::Serial *serialAttributes) : FrameLib_MultiChannel(queue)
+    {
+        mAttributes.addDouble(kArg0, "0", 2);
+        mAttributes.addDouble(kOutputs, "outputs", 2);
+        mAttributes.set(serialAttributes);
+        if (!mAttributes.changed(kOutputs))
+            mAttributes.set(kOutputs, mAttributes.getValue(kArg0));
+        
+        setIO(1, mAttributes.getValue(kOutputs));
+    }
    
     ~FrameLib_Unpack()
     {
@@ -430,14 +466,34 @@ private:
 
 // FrameLib_Expand - MultiChannel expansion for FrameLib_Block objects
 
-class FrameLib_Expand : public FrameLib_MultiChannel
+template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
 {
-    
+    /*
 public:
     
-    FrameLib_Expand(ConnectionQueue *queue, FrameLib_Block *block) : FrameLib_MultiChannel(queue, block->getNumIns(), block->getNumOuts())
+    static FrameLib_Expand *create (ConnectionQueue *connectQueue, FrameLib_DSP::DSPQueue *dspQueue, FrameLib_Memory *allocator, FrameLib_Attributes::Serial *serialisedAttributes)
     {
-        mBlocks.push_back(block);
+        //FrameLib_Block *block = new T(dspQueue, allocator, serialisedAttributes);
+        return new FrameLib_Expand(connectQueue, dspQueue, allocator, serialisedAttributes);
+    }
+    */
+public:
+    
+    FrameLib_Expand(ConnectionQueue *connectQueue, FrameLib_DSP::DSPQueue *dspQueue, FrameLib_Memory *allocator, FrameLib_Attributes::Serial *serialisedAttributes)
+    : FrameLib_MultiChannel(connectQueue), mDSPQueue(dspQueue), mAllocator(allocator)
+    {
+        // Make first block
+        
+        mBlocks.push_back(new T(dspQueue, allocator, serialisedAttributes));
+        
+        // Copy serialised attributes for later instantiations
+        
+        mSerialisedAttributes = new FrameLib_Attributes::Serial(serialisedAttributes->size());
+        mSerialisedAttributes->write(serialisedAttributes);
+        
+        // Set up IO
+        
+        setIO(mBlocks[0]->getNumIns(), mBlocks[0]->getNumOuts());
         
         // Make initial output connections
         
@@ -455,6 +511,8 @@ public:
         
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
             delete (*it);
+        
+        delete mSerialisedAttributes;
     }
     
     // Reset
@@ -547,7 +605,7 @@ private:
                 mBlocks.resize(nChannels);
                 
                 for (unsigned long i = cChannels; i < nChannels; i++)
-                    mBlocks[i] = mBlocks[0]->copy();
+                    mBlocks[i] = new T (mDSPQueue, mAllocator, mSerialisedAttributes);
             }
             else
             {
@@ -591,7 +649,12 @@ private:
         }
     }
 
+    FrameLib_DSP::DSPQueue *mDSPQueue;
+    FrameLib_Memory *mAllocator;
+    FrameLib_Attributes::Serial *mSerialisedAttributes;
+
     std::vector <FrameLib_Block *> mBlocks;
+
 };
 
 #endif

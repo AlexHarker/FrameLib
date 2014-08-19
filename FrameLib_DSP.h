@@ -124,7 +124,7 @@ private:
     
     // ************************************************************************************** //
 
-    // Constructor
+    // Constructors
     
 public:
     
@@ -146,6 +146,20 @@ public:
         
         reset();
     }
+    /*
+    FrameLib_DSP (ObjectType type, DSPQueue *queue, FrameLib_Memory *allocator)
+    : FrameLib_Block(), mType(type)
+    {
+        // Store Queue and Allocator
+        
+        mQueue = queue;
+        mNext = NULL;
+        mAllocator = allocator;
+        
+        // Reset for audio
+        
+        reset();
+    }*/
     
     // Destructor
     
@@ -159,14 +173,9 @@ public:
     // ************************************************************************************** //
 
     // Copy Constructor
-
-    FrameLib_DSP (FrameLib_DSP &object) : FrameLib_Block(object.getNumAudioIns(), object.getNumAudioIns()), mType(object.mType)
+/*
+    FrameLib_DSP (FrameLib_DSP &object) : FrameLib_Block(), mType(object.mType)
     {
-        // Resize inputs and outputs
-        
-        mInputs.resize(object.getNumIns());
-        mOutputs.resize(object.getNumOuts());
-        
         // N.B. - copying of input modes must be done by inheriting objects
         
         // Store Queue and Allocator
@@ -174,12 +183,12 @@ public:
         mQueue = object.mQueue;
         mNext = NULL;
         mAllocator = object.mAllocator;
+
+        // Set IO
         
-        // Reset for audio
-        
-        reset();
+        setIO(object.getNumIns(), object.getNumOuts(), object.getNumAudioIns(), object.getNumAudioIns());
     }
-    
+    */
     // ************************************************************************************** //
     
     // Object Type
@@ -194,6 +203,24 @@ protected:
     // ************************************************************************************** //
     
     // IO Utilities
+    
+protected:
+    
+    // Call this in derived class constructors only if the IO size is not fixed
+   
+    void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
+    {
+        // Resize inputs and outputs
+    
+        mInputs.resize((mType != kScheduler || nIns > 0) ? nIns : 1);
+        mOutputs.resize(nOuts);
+    
+        FrameLib_Block::setIO(nAudioIns, nAudioOuts);
+        
+        // Reset for audio
+        
+        reset();
+    }
     
 public:
     
@@ -846,16 +873,10 @@ class FrameLib_Processor : public FrameLib_DSP
     
 public:
     
-    FrameLib_Processor(DSPQueue *queue, FrameLib_Memory *allocator, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
+    FrameLib_Processor(DSPQueue *queue, FrameLib_Memory *allocator, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
     : FrameLib_DSP(kProcessor, queue, allocator, nIns, nOuts, nAudioIns, nAudioOuts) {}
-    
-    FrameLib_Processor(FrameLib_Processor &object) : FrameLib_DSP(object) {}
-    
+        
 protected:
-    
-    // Forces requirement to override
-    
-    virtual void process() = 0;
     
     // This prevents the user from needing to implement this method - doing so will do nothing
     
@@ -874,17 +895,11 @@ class FrameLib_Output : public FrameLib_DSP
     
 public:
 
-    FrameLib_Output(DSPQueue *queue, FrameLib_Memory *allocator, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
+    FrameLib_Output(DSPQueue *queue, FrameLib_Memory *allocator, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
     : FrameLib_DSP(kOutput, queue, allocator, nIns, nOuts, nAudioIns, nAudioOuts) {}
     
-    FrameLib_Output(FrameLib_Output &object) : FrameLib_DSP(object) {}
-
 protected:
 
-    // Forces requirement to override
-    
-    virtual void process() = 0;
-    
     // This prevents the user from needing to implement this method - doing so will do nothing
     
     virtual SchedulerInfo schedule(bool newFrame, bool noOutput)
@@ -902,20 +917,14 @@ class FrameLib_Scheduler : public FrameLib_DSP
 
 public:
     
-    FrameLib_Scheduler(DSPQueue *queue, FrameLib_Memory *allocator, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
+    FrameLib_Scheduler(DSPQueue *queue, FrameLib_Memory *allocator, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
     : FrameLib_DSP(kScheduler, queue, allocator, nIns, nOuts, nAudioIns, nAudioOuts) {}
     
-    FrameLib_Scheduler(FrameLib_Scheduler &object) : FrameLib_DSP(object) {}
-
 protected:
 
     // This prevents the user from needing to implement this method - doing so will do nothing
     
     virtual void process(){}
-    
-    // Forces requirement to override
-    
-    virtual SchedulerInfo schedule(bool newFrame, bool noOutput) = 0;
 };
 
 #endif
