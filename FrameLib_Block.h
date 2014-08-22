@@ -39,6 +39,8 @@ protected:
     {
         mNumAudioIns = nAudioIns;
         mNumAudioOuts = nAudioOuts;
+        
+        updateHandlesAudio();
     }
     
 public:
@@ -63,11 +65,14 @@ public:
         // Override to handle audio at the block level (objects with block-based audio must overload this)
     }
     
-    virtual bool handlesAudio()
+    bool handlesAudio()
     {
-        // This function allows you to tell the outside world (whatever that is) whether or not it should call the audio brocessing block
-        
-        return FALSE;
+        return mHandlesAudio;
+    }
+    
+    virtual void updateHandlesAudio()
+    {
+        // This function should set the mHandlesAudio member variable and be called whenver this might change
     }
     
     virtual void reset() = 0;
@@ -94,6 +99,10 @@ private:
     
     unsigned long mNumAudioIns;
     unsigned long mNumAudioOuts;
+    
+protected:
+    
+    bool mHandlesAudio;
 };
 
 // Virtual Destructor

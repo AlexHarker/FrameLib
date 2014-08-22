@@ -10,7 +10,7 @@
 
 // This abstract class allows mulitchannel connnections and the means to update the network according to the number of channels
 
-// FIX - improve audio handling temp memory code (could use realtime allocator?)
+// FIX - improve audio handling temp memory code (could use realtime allocator?) - and memory alignment!
 
 class FrameLib_MultiChannel
 {
@@ -380,7 +380,7 @@ class FrameLib_Pack : public FrameLib_MultiChannel
 
 public:
     
-    FrameLib_Pack(ConnectionQueue *queue, FrameLib_Attributes::Serial *serialAttributes) : FrameLib_MultiChannel(queue)
+    FrameLib_Pack(ConnectionQueue *queue, FrameLib_DSP::DSPQueue *dspQueue, FrameLib_Attributes::Serial *serialAttributes) : FrameLib_MultiChannel(queue)
     {
         mAttributes.addDouble(kArg0, "0", 2);
         mAttributes.addDouble(0, "inputs", 2);
@@ -426,7 +426,7 @@ class FrameLib_Unpack : public FrameLib_MultiChannel
     
 public:
 
-    FrameLib_Unpack(ConnectionQueue *queue, FrameLib_Attributes::Serial *serialAttributes) : FrameLib_MultiChannel(queue)
+    FrameLib_Unpack(ConnectionQueue *queue, FrameLib_DSP::DSPQueue *dspQueue, FrameLib_Attributes::Serial *serialAttributes) : FrameLib_MultiChannel(queue)
     {
         mAttributes.addDouble(kArg0, "0", 2);
         mAttributes.addDouble(kOutputs, "outputs", 2);
@@ -468,23 +468,15 @@ private:
 
 template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
 {
-    /*
+
 public:
     
-    static FrameLib_Expand *create (ConnectionQueue *connectQueue, FrameLib_DSP::DSPQueue *dspQueue, FrameLib_Memory *allocator, FrameLib_Attributes::Serial *serialisedAttributes)
-    {
-        //FrameLib_Block *block = new T(dspQueue, allocator, serialisedAttributes);
-        return new FrameLib_Expand(connectQueue, dspQueue, allocator, serialisedAttributes);
-    }
-    */
-public:
-    
-    FrameLib_Expand(ConnectionQueue *connectQueue, FrameLib_DSP::DSPQueue *dspQueue, FrameLib_Memory *allocator, FrameLib_Attributes::Serial *serialisedAttributes)
-    : FrameLib_MultiChannel(connectQueue), mDSPQueue(dspQueue), mAllocator(allocator)
+    FrameLib_Expand(ConnectionQueue *connectQueue, FrameLib_DSP::DSPQueue *dspQueue, FrameLib_Attributes::Serial *serialisedAttributes)
+    : FrameLib_MultiChannel(connectQueue), mDSPQueue(dspQueue), mAllocator(dspQueue->getAllocator())
     {
         // Make first block
         
-        mBlocks.push_back(new T(dspQueue, allocator, serialisedAttributes));
+        mBlocks.push_back(new T(dspQueue, serialisedAttributes));
         
         // Copy serialised attributes for later instantiations
         
@@ -552,7 +544,10 @@ public:
         
         for (unsigned long i = 0; i < getNumAudioOuts(); i++)
         {
-            temps[i] = new double[vecSize];
+            if (i == 0)
+                temps[0] = (double *) mAllocator->alloc(sizeof(double) * vecSize * getNumAudioOuts());
+            else
+                temps[i] = temps[0] + (i * vecSize);
 
             for (unsigned long j = 0; j < vecSize; j++)
                 outs[i][j] += 0.0;
@@ -571,8 +566,10 @@ public:
                     outs[i][j] += temps[i][j];
         }
 
-        for (unsigned long i = 0; i < getNumAudioOuts(); i++)
-            delete temps[i];
+        if (getNumAudioOuts())
+            mAllocator->dealloc(temps[0]);
+        
+        mAllocator->clearLocal();
     }
     
     // ************************************************************************************** //
@@ -605,7 +602,7 @@ private:
                 mBlocks.resize(nChannels);
                 
                 for (unsigned long i = cChannels; i < nChannels; i++)
-                    mBlocks[i] = new T (mDSPQueue, mAllocator, mSerialisedAttributes);
+                    mBlocks[i] = new T (mDSPQueue, mSerialisedAttributes);
             }
             else
             {
@@ -650,7 +647,7 @@ private:
     }
 
     FrameLib_DSP::DSPQueue *mDSPQueue;
-    FrameLib_Memory *mAllocator;
+    FrameLib_Local_Allocator *mAllocator;
     FrameLib_Attributes::Serial *mSerialisedAttributes;
 
     std::vector <FrameLib_Block *> mBlocks;

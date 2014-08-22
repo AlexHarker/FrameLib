@@ -7,7 +7,7 @@ class FrameLib_T2 : public FrameLib_Processor
         
 public:
     
-    FrameLib_T2(DSPQueue *queue, FrameLib_Memory *allocator, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, allocator)
+    FrameLib_T2(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue)
     {
         mAttributes.addDouble(kArg0, "0", 1);
         mAttributes.addDouble(kOutputs, "outputs", 1);
@@ -33,7 +33,7 @@ protected:
     }
 };
 
-#define OBJECT_CREATE new FrameLib_Expand<FrameLib_T2>(getConnectionQueue(), getDSPQueue(), getAllocator(), serialisedAttributes)
+#define OBJECT_CLASS FrameLib_Expand <FrameLib_T2>
 #define OBJECT_NAME "fl.t2~"
 
 #include "Framelib_Max.h"

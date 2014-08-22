@@ -4,7 +4,6 @@
 
 #include "FrameLib_Types.h"
 #include "FrameLib_Block.h"
-#include "FrameLib_Memory.h"
 #include <limits>
 #include <vector>
 
@@ -30,7 +29,7 @@ public:
         
     public:
         
-        DSPQueue() : mTop(NULL), mTail(NULL) {}
+        DSPQueue(FrameLib_Local_Allocator *allocator) : mAllocator(allocator), mTop(NULL), mTail(NULL) {}
         
         void add(FrameLib_DSP *object)
         {
@@ -61,8 +60,15 @@ public:
             }
         }
         
+        FrameLib_Local_Allocator *getAllocator()
+        {
+            return mAllocator;
+        }
+        
     private:
 
+        FrameLib_Local_Allocator *mAllocator;
+        
         FrameLib_DSP *mTop;
         FrameLib_DSP *mTail;
     };
@@ -128,38 +134,17 @@ private:
     
 public:
     
-    FrameLib_DSP (ObjectType type, DSPQueue *queue, FrameLib_Memory *allocator, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
-    : FrameLib_Block(nAudioIns, nAudioOuts), mType(type)
+    FrameLib_DSP (ObjectType type, DSPQueue *queue, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
+    : FrameLib_Block(nAudioIns, nAudioOuts), mQueue(queue), mNext(NULL), mAllocator(mQueue->getAllocator()), mType(type)
     {
-        // Resize inputs and outputs
+        // Check if this object handles audio
         
-        mInputs.resize((mType != kScheduler || nIns > 0) ? nIns : 1);
-        mOutputs.resize(nOuts);
+        updateHandlesAudio();
+
+        // Set IO
         
-        // Store Queue and Allocator
-        
-        mQueue = queue;
-        mNext = NULL;
-        mAllocator = allocator;
-        
-        // Reset for audio
-        
-        reset();
+        setIO(nIns, nOuts);
     }
-    /*
-    FrameLib_DSP (ObjectType type, DSPQueue *queue, FrameLib_Memory *allocator)
-    : FrameLib_Block(), mType(type)
-    {
-        // Store Queue and Allocator
-        
-        mQueue = queue;
-        mNext = NULL;
-        mAllocator = allocator;
-        
-        // Reset for audio
-        
-        reset();
-    }*/
     
     // Destructor
     
@@ -170,25 +155,6 @@ public:
         clearConnections();
     }
     
-    // ************************************************************************************** //
-
-    // Copy Constructor
-/*
-    FrameLib_DSP (FrameLib_DSP &object) : FrameLib_Block(), mType(object.mType)
-    {
-        // N.B. - copying of input modes must be done by inheriting objects
-        
-        // Store Queue and Allocator
-        
-        mQueue = object.mQueue;
-        mNext = NULL;
-        mAllocator = object.mAllocator;
-
-        // Set IO
-        
-        setIO(object.getNumIns(), object.getNumOuts(), object.getNumAudioIns(), object.getNumAudioIns());
-    }
-    */
     // ************************************************************************************** //
     
     // Object Type
@@ -214,7 +180,7 @@ protected:
     
         mInputs.resize((mType != kScheduler || nIns > 0) ? nIns : 1);
         mOutputs.resize(nOuts);
-    
+        
         FrameLib_Block::setIO(nAudioIns, nAudioOuts);
         
         // Reset for audio
@@ -281,7 +247,7 @@ private:
     
     bool requiresAudioNotification()
     {
-        return handlesAudio() && mType != kOutput;
+        return mRequiresAudioNotification;
     }
     
     // Block updates for objects with audio IO
@@ -322,11 +288,8 @@ private:
         {
             mAllocator->dealloc(mOutputs[0].mMemory);
 
-            for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
-            {
-                outs->mMemory = NULL;
-                outs->mCurrentSize = 0;
-            }
+            if (getNumOuts())
+                mOutputs[0].mMemory = NULL;
         }
     }
     
@@ -445,7 +408,7 @@ private:
                 }
             }
             
-            // Check for block completion with objects requiring audio notification
+            // Check for block completion for objects requiring audio notification
             
             if (requiresAudioNotification() && mInputTime >= mBlockTime)
                 mDependencyCount++;
@@ -548,7 +511,7 @@ protected:
             // Calculate allocation size, including necessary alignmnet padding and assuming success
             
             size_t unalignedSize = outs->mMode == kOutputNormal ? outs->mRequestedSize * sizeof(double) : outs->mRequestedSize + taggedOutputAlignment;
-            size_t alignedSize = FrameLib_Memory::alignSize(unalignedSize);
+            size_t alignedSize = FrameLib_Local_Allocator::alignSize(unalignedSize);
             
             outs->mCurrentSize = outs->mRequestedSize;
             outs->mPointerOffset = allocationSize;
@@ -572,7 +535,7 @@ protected:
                 outs->mMemory = pointer + outs->mPointerOffset;
                 
                 if (outs->mMode == kOutputTagged)
-                    new (outs->mMemory) FrameLib_Attributes::Serial(((BytePointer) outs->mMemory) + taggedOutputAlignment);
+                    new (outs->mMemory) FrameLib_Attributes::Serial(((BytePointer) outs->mMemory) + taggedOutputAlignment, outs->mCurrentSize);
             }
             
             // Set dependency count
@@ -599,7 +562,7 @@ protected:
     
     double *getOutput(unsigned long idx, size_t *size)
     {
-        if (mOutputs[idx].mMode == kOutputNormal)
+        if (mOutputs[0].mMemory && mOutputs[idx].mMode == kOutputNormal)
         {
             *size = mOutputs[idx].mCurrentSize;
             return (double *) mOutputs[idx].mMemory;
@@ -611,7 +574,7 @@ protected:
     
     FrameLib_Attributes::Serial *getOutput(unsigned long idx)
     {
-        if (mOutputs[idx].mMode == kOutputTagged)
+        if (mOutputs[0].mMemory && mOutputs[idx].mMode == kOutputTagged)
             return (FrameLib_Attributes::Serial *) mOutputs[idx].mMemory;
         
         return NULL;
@@ -638,9 +601,10 @@ protected:
     
     // Audio handling reporting
     
-    bool handlesAudio()
+    void updateHandlesAudio()
     {
-        return (mType == kScheduler || getNumAudioIns() || getNumAudioOuts());
+        mHandlesAudio = (mType == kScheduler || getNumAudioIns() || getNumAudioOuts());
+        mRequiresAudioNotification = handlesAudio() && mType != kOutput;
     }
     
     // ************************************************************************************** //
@@ -835,7 +799,7 @@ private:
     
     // Memory Allocator
     
-    FrameLib_Memory *mAllocator;
+    FrameLib_Local_Allocator *mAllocator;
     
     // Object Type
     
@@ -862,6 +826,10 @@ private:
     FrameLib_TimeFormat mBlockTime;
     
     bool mOutputDone;
+    
+    // Cached Flag for Audio Notification
+    
+    bool mRequiresAudioNotification;
 };
 
 // ************************************************************************************** //
@@ -873,8 +841,8 @@ class FrameLib_Processor : public FrameLib_DSP
     
 public:
     
-    FrameLib_Processor(DSPQueue *queue, FrameLib_Memory *allocator, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
-    : FrameLib_DSP(kProcessor, queue, allocator, nIns, nOuts, nAudioIns, nAudioOuts) {}
+    FrameLib_Processor(DSPQueue *queue, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
+    : FrameLib_DSP(kProcessor, queue, nIns, nOuts, nAudioIns, nAudioOuts) {}
         
 protected:
     
@@ -895,8 +863,8 @@ class FrameLib_Output : public FrameLib_DSP
     
 public:
 
-    FrameLib_Output(DSPQueue *queue, FrameLib_Memory *allocator, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
-    : FrameLib_DSP(kOutput, queue, allocator, nIns, nOuts, nAudioIns, nAudioOuts) {}
+    FrameLib_Output(DSPQueue *queue, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
+    : FrameLib_DSP(kOutput, queue, nIns, nOuts, nAudioIns, nAudioOuts) {}
     
 protected:
 
@@ -917,8 +885,8 @@ class FrameLib_Scheduler : public FrameLib_DSP
 
 public:
     
-    FrameLib_Scheduler(DSPQueue *queue, FrameLib_Memory *allocator, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
-    : FrameLib_DSP(kScheduler, queue, allocator, nIns, nOuts, nAudioIns, nAudioOuts) {}
+    FrameLib_Scheduler(DSPQueue *queue, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
+    : FrameLib_DSP(kScheduler, queue, nIns, nOuts, nAudioIns, nAudioOuts) {}
     
 protected:
 

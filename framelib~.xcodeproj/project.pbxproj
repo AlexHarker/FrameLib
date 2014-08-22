@@ -32,23 +32,15 @@
 		B8F6E4CD199D247C0073E06D /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
 		B8F6E4CE199D247C0073E06D /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
 		B8F6E4CF199D247C0073E06D /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
-		B8F6E4D0199D247C0073E06D /* tlsf.h in Headers */ = {isa = PBXBuildFile; fileRef = B8F6E4C9199D247C0073E06D /* tlsf.h */; };
-		B8F6E4D1199D247C0073E06D /* tlsf.h in Headers */ = {isa = PBXBuildFile; fileRef = B8F6E4C9199D247C0073E06D /* tlsf.h */; };
-		B8F6E4D2199D247C0073E06D /* tlsf.h in Headers */ = {isa = PBXBuildFile; fileRef = B8F6E4C9199D247C0073E06D /* tlsf.h */; };
-		B8F6E4D3199D247C0073E06D /* tlsf.h in Headers */ = {isa = PBXBuildFile; fileRef = B8F6E4C9199D247C0073E06D /* tlsf.h */; };
-		B8F6E4D4199D247C0073E06D /* tlsf.h in Headers */ = {isa = PBXBuildFile; fileRef = B8F6E4C9199D247C0073E06D /* tlsf.h */; };
-		B8F6E4D5199D247C0073E06D /* tlsfbits.h in Headers */ = {isa = PBXBuildFile; fileRef = B8F6E4CA199D247C0073E06D /* tlsfbits.h */; };
-		B8F6E4D6199D247C0073E06D /* tlsfbits.h in Headers */ = {isa = PBXBuildFile; fileRef = B8F6E4CA199D247C0073E06D /* tlsfbits.h */; };
-		B8F6E4D7199D247C0073E06D /* tlsfbits.h in Headers */ = {isa = PBXBuildFile; fileRef = B8F6E4CA199D247C0073E06D /* tlsfbits.h */; };
-		B8F6E4D8199D247C0073E06D /* tlsfbits.h in Headers */ = {isa = PBXBuildFile; fileRef = B8F6E4CA199D247C0073E06D /* tlsfbits.h */; };
-		B8F6E4D9199D247C0073E06D /* tlsfbits.h in Headers */ = {isa = PBXBuildFile; fileRef = B8F6E4CA199D247C0073E06D /* tlsfbits.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		B8075B131979173E00EB3A35 /* FrameLib_DSP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_DSP.h; sourceTree = "<group>"; };
+		B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_FrameLib.xcconfig; sourceTree = "<group>"; };
 		B81F571D0D2422E0000D5E50 /* fl.unpack~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.unpack~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B82E31F319990B17008D70D8 /* AH_MaxMSP6.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = AH_MaxMSP6.xcconfig; path = ../../AH_MaxMSP6.xcconfig; sourceTree = "<group>"; };
+		B835F31019A61128003CD5E7 /* FrameLib_Threading.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Threading.h; sourceTree = "<group>"; };
+		B835F31519A65122003CD5E7 /* FrameLib_Globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Globals.h; sourceTree = "<group>"; };
 		B85B20E619938415004FFF22 /* FrameLib_Multichannel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Multichannel.h; sourceTree = "<group>"; };
 		B87B6E9C1979185000806624 /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = "../../Max4_support/c74support/msp-includes/MaxAudioAPI.framework"; sourceTree = "<group>"; };
 		B87B6E9E1979185B00806624 /* MaxAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAPI.framework; path = "../../Max4_support/c74support/max-includes/MaxAPI.framework"; sourceTree = "<group>"; };
@@ -129,7 +121,7 @@
 		089C166AFE841209C02AAC07 /* plus~ */ = {
 			isa = PBXGroup;
 			children = (
-				B82E31F319990B17008D70D8 /* AH_MaxMSP6.xcconfig */,
+				B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */,
 				08FB77ADFE841716C02AAC07 /* Source */,
 				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
@@ -167,11 +159,13 @@
 				B8DE14DC0EB46B030050BDFE /* Framelib_Max.h */,
 				B8FD919E197F40B200437EB5 /* FrameLib_Types.h */,
 				B8FD919D197F0F6C00437EB5 /* FrameLib_FixedPoint.h */,
+				B835F31019A61128003CD5E7 /* FrameLib_Threading.h */,
+				B8BCCF46199CEF230038259B /* FrameLib_Memory.h */,
+				B835F31519A65122003CD5E7 /* FrameLib_Globals.h */,
 				B8DF3FA2198AABAD00CA8BB6 /* FrameLib_Attributes.h */,
 				B8E058AE198DA34D00721359 /* FrameLib_Block.h */,
 				B8075B131979173E00EB3A35 /* FrameLib_DSP.h */,
 				B85B20E619938415004FFF22 /* FrameLib_Multichannel.h */,
-				B8BCCF46199CEF230038259B /* FrameLib_Memory.h */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -205,8 +199,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8F6E4D1199D247C0073E06D /* tlsf.h in Headers */,
-				B8F6E4D6199D247C0073E06D /* tlsfbits.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,8 +206,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8F6E4D0199D247C0073E06D /* tlsf.h in Headers */,
-				B8F6E4D5199D247C0073E06D /* tlsfbits.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,8 +213,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8F6E4D2199D247C0073E06D /* tlsf.h in Headers */,
-				B8F6E4D7199D247C0073E06D /* tlsfbits.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,8 +220,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8F6E4D3199D247C0073E06D /* tlsf.h in Headers */,
-				B8F6E4D8199D247C0073E06D /* tlsfbits.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,8 +227,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8F6E4D4199D247C0073E06D /* tlsf.h in Headers */,
-				B8F6E4D9199D247C0073E06D /* tlsfbits.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,7 +488,6 @@
 /* Begin XCBuildConfiguration section */
 		0FFBC541097463A900D78707 /* Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B82E31F319990B17008D70D8 /* AH_MaxMSP6.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUGGING_SYMBOLS = YES;
@@ -537,7 +520,6 @@
 		};
 		0FFBC542097463A900D78707 /* Deployment */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B82E31F319990B17008D70D8 /* AH_MaxMSP6.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -569,7 +551,6 @@
 		};
 		0FFBC543097463A900D78707 /* Default */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B82E31F319990B17008D70D8 /* AH_MaxMSP6.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -597,6 +578,7 @@
 		};
 		0FFBC545097463A900D78707 /* Development */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */;
 			buildSettings = {
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -605,6 +587,7 @@
 		};
 		0FFBC546097463A900D78707 /* Deployment */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */;
 			buildSettings = {
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -613,6 +596,7 @@
 		};
 		0FFBC547097463A900D78707 /* Default */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */;
 			buildSettings = {
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -621,7 +605,6 @@
 		};
 		B8CA31E9199A20BE005F30A1 /* Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B82E31F319990B17008D70D8 /* AH_MaxMSP6.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUGGING_SYMBOLS = YES;
@@ -654,7 +637,6 @@
 		};
 		B8CA31EA199A20BE005F30A1 /* Deployment */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B82E31F319990B17008D70D8 /* AH_MaxMSP6.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -686,7 +668,6 @@
 		};
 		B8CA31EB199A20BE005F30A1 /* Default */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B82E31F319990B17008D70D8 /* AH_MaxMSP6.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -714,7 +695,6 @@
 		};
 		B8CA31FB199A23F9005F30A1 /* Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B82E31F319990B17008D70D8 /* AH_MaxMSP6.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUGGING_SYMBOLS = YES;
@@ -747,7 +727,6 @@
 		};
 		B8CA31FC199A23F9005F30A1 /* Deployment */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B82E31F319990B17008D70D8 /* AH_MaxMSP6.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -779,7 +758,6 @@
 		};
 		B8CA31FD199A23F9005F30A1 /* Default */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B82E31F319990B17008D70D8 /* AH_MaxMSP6.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -807,7 +785,6 @@
 		};
 		B8CA320B199A23FC005F30A1 /* Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B82E31F319990B17008D70D8 /* AH_MaxMSP6.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUGGING_SYMBOLS = YES;
@@ -840,7 +817,6 @@
 		};
 		B8CA320C199A23FC005F30A1 /* Deployment */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B82E31F319990B17008D70D8 /* AH_MaxMSP6.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -872,7 +848,6 @@
 		};
 		B8CA320D199A23FC005F30A1 /* Default */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B82E31F319990B17008D70D8 /* AH_MaxMSP6.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -900,7 +875,6 @@
 		};
 		B8CA3220199A29C8005F30A1 /* Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B82E31F319990B17008D70D8 /* AH_MaxMSP6.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUGGING_SYMBOLS = YES;
@@ -933,7 +907,6 @@
 		};
 		B8CA3221199A29C8005F30A1 /* Deployment */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B82E31F319990B17008D70D8 /* AH_MaxMSP6.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -965,7 +938,6 @@
 		};
 		B8CA3222199A29C8005F30A1 /* Default */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B82E31F319990B17008D70D8 /* AH_MaxMSP6.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";

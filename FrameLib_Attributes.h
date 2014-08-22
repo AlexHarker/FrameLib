@@ -13,8 +13,9 @@
 
 // This class deals with attributes of an object
 
+// FIX - Better auto argument handling??
+// FIX - consider various formatting possibilities for attribs
 // FIX - allow attribute copying - consider going back to objects...
-// FIX - add checks for memory overwrite to the Serial subclass AND/OR auto size for owned Serial??
 // FIX - add error reporting
 // FIX - instantiation only attributes (with error checking - simply a marker)?
 // FIx - consider adding descriptions (using const char * strings)
@@ -34,6 +35,7 @@ public:
     public:
         
         static const size_t alignment = sizeof(double);
+        static const size_t minGrowSize = 512;
         
     private:
         
@@ -41,26 +43,19 @@ public:
         
     public:
         
-        Serial(BytePointer ptr) : mPtr(ptr), mSize(0), mOwner(FALSE)
+        Serial(BytePointer ptr, size_t size) : mPtr(ptr), mSize(0), mMaxSize(size), mOwner(FALSE)
         {
-            // Assume that alignment of a double is fine for all natural alignment needs (including this class)
-            
-            assert(Serial::alignment >= sizeof(DataType) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial::DataType");
-            assert(Serial::alignment >= sizeof(size_t) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
-            assert(Serial::alignment >= sizeof(char) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
-            assert(Serial::alignment >= sizeof(char *) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
-            assert(Serial::alignment >= FrameLib_Memory::getAlignment() && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
+            alignmentChecks();
         }
         
-        Serial(size_t size) : mPtr(new Byte[size]), mSize(0), mOwner(TRUE)
+        Serial(size_t size) : mPtr(new Byte[size]), mSize(0), mMaxSize(size), mOwner(TRUE)
         {
-            // Assume that alignment of a double is fine for all natural alignment needs (including this class)
-            
-            assert(Serial::alignment >= sizeof(DataType) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial::DataType");
-            assert(Serial::alignment >= sizeof(size_t) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
-            assert(Serial::alignment >= sizeof(char) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
-            assert(Serial::alignment >= sizeof(char *) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
-            assert(Serial::alignment >= FrameLib_Memory::getAlignment() && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
+            alignmentChecks();
+        }
+        
+        Serial() : mPtr(NULL), mSize(0), mMaxSize(0), mOwner(TRUE)
+        {
+            alignmentChecks();
         }
         
         ~Serial()
@@ -70,6 +65,18 @@ public:
         }
         
     private:
+        
+        void alignmentChecks()
+        {
+            // Assume that alignment of a double is fine for all natural alignment needs (including this class)
+            
+            assert(Serial::alignment >= sizeof(DataType) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial::DataType");
+            assert(Serial::alignment >= sizeof(size_t) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
+            assert(Serial::alignment >= sizeof(char) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
+            assert(Serial::alignment >= sizeof(char *) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
+            assert(Serial::alignment >= FrameLib_Memory::getAlignment() && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
+
+        }
         
         static size_t align(size_t size)
         {
@@ -149,16 +156,51 @@ public:
             *readPtr += align(size);
         }
         
+        bool checkSize(size_t writeSize)
+        {
+            size_t growSize;
+            
+            if (mSize + writeSize <= mMaxSize)
+                return TRUE;
+            
+            if (!mOwner)
+                return FALSE;
+            
+            // Calculate grow size
+            
+            growSize = (mSize + writeSize) - mMaxSize;
+            growSize = growSize < minGrowSize ? minGrowSize : growSize;
+            
+            // Allocate new memory and copy old data before deleting
+            
+            BytePointer newPtr = new Byte[mMaxSize + growSize];
+            memcpy(newPtr, mPtr, mSize);
+            delete mPtr;
+            
+            // Update
+            
+            mPtr = newPtr;
+            mMaxSize += writeSize;
+            
+            return TRUE;
+        }
+        
     public:
         
         void write(Serial *serialised)
         {
+            if (!checkSize(serialised->mSize))
+                return;
+            
             memcpy(mPtr + mSize, serialised->mPtr, serialised->mSize);
             mSize += serialised->mSize;
         }
         
         void write(char *tag, char *str)
         {
+            if (!checkSize(calcSize(tag, str)))
+                return;
+            
             writeType(kString);
             writeString(tag);
             writeString(str);
@@ -166,6 +208,9 @@ public:
         
         void write(char *tag, double *values, size_t N)
         {
+            if (!checkSize(calcSize(tag, N)))
+                return;
+            
             writeType(kDoubleArray);
             writeString(tag);
             writeDoubles(values, N);
@@ -226,6 +271,7 @@ public:
         
         BytePointer mPtr;
         size_t mSize;
+        size_t mMaxSize;
         bool mOwner;
     };
 

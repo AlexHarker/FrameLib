@@ -6,83 +6,12 @@
 
 #include "FrameLib_Multichannel.h"
 #include "FrameLib_DSP.h"
+#include "FrameLib_Globals.h"
 
-// FIX - sort out formatting style
-// FIX - reporting of invalid connections (doubles and wrong dsp_object) - also deletion with double connections
-// FIX - naming
-// FIX - object creation
-// FIX - arguments / attributes etc.
-// FIX - patcher local queues please
-// FIX - better dsp validity fix (parent patcher?)
-// FIX - think about adding name helpers for this later...
-
-//////////////////////////////////////////////////////////////////////////
-////////////////////////// Max Framelib Globals //////////////////////////
-//////////////////////////////////////////////////////////////////////////
-
-void framelib_init();
-void framelib_global_free();
-
-FrameLib_MultiChannel::ConnectionQueue *getConnectionQueue();
-FrameLib_DSP::DSPQueue *getDSPQueue();
-
-
-typedef struct _framelib_global
-{
-    FrameLib_MultiChannel::ConnectionQueue *connectionQueue;
-    FrameLib_DSP::DSPQueue *dspQueue;
-    FrameLib_Memory *allocator;
-    
-} t_framelib_global;
-
-
-t_framelib_global *global;
-t_symbol *ps_framelib_global;
-
-
-void framelib_init()
-{
-	ps_framelib_global = gensym ("__FrameLib__Global__");
-    global = (t_framelib_global *) ps_framelib_global->s_thing;
-	
-	if (!global)
-	{
-		global  = new t_framelib_global;
-        global->connectionQueue = new FrameLib_MultiChannel::ConnectionQueue;
-        global->dspQueue = new FrameLib_DSP::DSPQueue;
-        global->allocator = new FrameLib_Memory;
-        
-        ps_framelib_global->s_thing = (t_object *) global;
-        
-        quittask_install((method)framelib_global_free, 0);
-	}
-}
-
-void framelib_global_free()
-{
-    ps_framelib_global->s_thing = NULL;
-
-    delete global->connectionQueue;
-    delete global->dspQueue;
-    delete global;
-    
-    global = NULL;
-}
-
-FrameLib_MultiChannel::ConnectionQueue *getConnectionQueue()
-{
-    return global->connectionQueue;
-}
-
-FrameLib_DSP::DSPQueue *getDSPQueue()
-{
-    return global->dspQueue;
-}
-
-FrameLib_Memory *getAllocator()
-{
-    return global->allocator;
-}
+// FIX - sort out formatting style / template class style / naming?
+// FIX - improve reporting of extra connections + look ino feedback detection...
+// FIX - think about adding assist helpers for this later...
+// FIX - threadsafety??
 
 //////////////////////////////////////////////////////////////////////////
 ///////////////////////////// Structures Etc. ////////////////////////////
@@ -90,7 +19,7 @@ FrameLib_Memory *getAllocator()
 
 // Connection Mode Enum
 
-enum ConnectMode { kConnect, kConfirm };
+enum ConnectMode { kConnect, kConfirm, kDoubleCheck };
 
 
 // Object class and structures
@@ -104,9 +33,10 @@ t_symbol *ps_frame_connection_info;
 typedef struct _framelib_connection_info
 {
     struct _framelib *object;
-    t_object *dsp_object;
+    t_object *top_level_patcher;
     unsigned long index;
     ConnectMode mode;
+    bool doubled_connection;
     
 } t_framelib_connection_info;
 
@@ -118,6 +48,7 @@ typedef struct _framelib_input
     struct _framelib *object;
     unsigned long index;
     bool valid;
+    bool report_error;
     
 } t_framelib_input;
 
@@ -127,21 +58,93 @@ typedef struct _framelib
     t_pxobject x_obj;
     
     FrameLib_MultiChannel *object;
-		
-    t_object *dsp_object;
     
-    void **outputs;
     t_framelib_input *inputs;
+    void **outputs;
     
     long proxy_num;
     long confirm_index;
-    
     bool confirm;
+    
+    t_object *top_level_patcher;
     
 } t_framelib;
 
+//////////////////////////////////////////////////////////////////////////
+//////////////// Max Framelib Global and Common Functions ////////////////
+//////////////////////////////////////////////////////////////////////////
 
-// Function prototypes
+FrameLib_Global *framelib_get_global()
+{
+    return (FrameLib_Global *) gensym("__FrameLib__Global__")->s_thing;
+}
+
+void framelib_set_global(FrameLib_Global *global)
+{
+   gensym("__FrameLib__Global__")->s_thing = (t_object *) global;
+}
+
+FrameLib_Common *framelib_get_common(t_framelib *x)
+{
+    char str[256];
+    sprintf(str, "__FrameLib__Common__%llx", (unsigned long long) x->top_level_patcher);
+    return (FrameLib_Common *) gensym(str)->s_thing;
+}
+
+void framelib_set_common(t_framelib *x, FrameLib_Common *common)
+{
+    char str[256];
+    sprintf(str, "__FrameLib__Common__%llx", (unsigned long long) x->top_level_patcher);
+    gensym(str)->s_thing = (t_object *) common;
+}
+
+FrameLib_MultiChannel::ConnectionQueue *getConnectionQueue(t_framelib *x)
+{
+    return framelib_get_common(x)->mConnectionQueue;
+}
+
+FrameLib_DSP::DSPQueue *getDSPQueue(t_framelib *x)
+{
+    return framelib_get_common(x)->mDSPQueue;
+}
+
+FrameLib_Global_Allocator *getGlobalAllocator()
+{
+    return framelib_get_global()->mAllocator;
+}
+
+FrameLib_Local_Allocator *getLocalAllocator(t_framelib *x)
+{
+    return framelib_get_common(x)->mAllocator;
+}
+
+void framelib_common_init(t_framelib *x)
+{
+    FrameLib_Global *global;
+    FrameLib_Common *common;
+    
+    x->top_level_patcher = jpatcher_get_toppatcher(gensym("#P")->s_thing);
+    
+	if (!(global = framelib_get_global()))
+        framelib_set_global(new FrameLib_Global);
+    else
+        framelib_get_global()->increment();
+    
+    if (!(common = framelib_get_common(x)))
+        framelib_set_common(x, new FrameLib_Common(getGlobalAllocator()));
+    else
+        common->increment();
+}
+
+void framelib_common_free(t_framelib *x)
+{
+    framelib_set_global(framelib_get_global()->decrement());
+    framelib_set_common(x, framelib_get_common(x)->decrement());
+}
+
+//////////////////////////////////////////////////////////////////////////
+//////////////////////// Object Function Protypes ////////////////////////
+//////////////////////////////////////////////////////////////////////////
 
 FrameLib_Attributes::Serial *framelib_parse_attributes(t_framelib *x, long argc, t_atom *argv);
 
@@ -159,8 +162,6 @@ void framelib_frame(t_framelib *x);
 /////////////////////////// Attribute Parsing ////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-// FIX - error check arguments
-
 bool is_attribute_tag(t_symbol *sym)
 {
     return (sym && sym->s_name[0] == '#' && strlen(sym->s_name) > 1);
@@ -169,76 +170,13 @@ bool is_attribute_tag(t_symbol *sym)
 FrameLib_Attributes::Serial *framelib_parse_attributes(t_framelib *x, long argc, t_atom *argv)
 {
     t_symbol *sym;
-    char argNames[64];
     double array[4096];
-    bool is_string;
+    char argNames[64];
     long i, j;
-    size_t size = 0;
-    
-    // Get required size
-    
-    // Arguments
-    
-    for (i = 0; i < argc; i++)
-    {
-        sprintf(argNames, "%ld", i);
-        
-        if (is_attribute_tag(sym = atom_getsym(argv + i)))
-            break;
-
-        if (sym != gensym(""))
-            size += FrameLib_Attributes::Serial::calcSize(argNames, sym->s_name);
-        else
-            size += FrameLib_Attributes::Serial::calcSize(argNames, 1);
-    }
-    
-    // Attributes
-
-    for (; i < argc; i++)
-    {
-        // Strip stray items following strings
-        
-        for (j = 0; i < argc; i++, j++)
-        {
-            if (is_attribute_tag(sym = atom_getsym(argv + i)))
-                break;
-        }
-        
-        if (j)
-            object_error((t_object *)x, "stray items in attribute list");
-        
-        if (i >= argc)
-            break;
-        
-        // Count items (do strings here)
-        
-        for (i++, j = 0, is_string = FALSE; i < argc; i++, j++)
-        {
-            if (is_attribute_tag(atom_getsym(argv + i)))
-                break;
-            
-            if (atom_getsym(argv + i) != gensym("") && j == 0)
-            {
-                is_string = TRUE;
-                size += FrameLib_Attributes::Serial::calcSize(sym->s_name + 1, atom_getsym(argv + i)->s_name);
-                break;
-            }
-            
-            if (atom_getsym(argv + i) != gensym(""))
-                object_error((t_object *)x, "string %s in attribute list where value expected", atom_getsym(argv + i)->s_name);
-        }
-        
-        if (j && !is_string)
-            size += FrameLib_Attributes::Serial::calcSize(sym->s_name + 1, j);
-        else if (!j && !is_string)
-        {
-            object_error((t_object *) x, "attribute %s given with no values", sym->s_name + 1);
-        }
-    }
-    
+   
     // Allocate
     
-    FrameLib_Attributes::Serial *serialisedAttributes = new FrameLib_Attributes::Serial(size);
+    FrameLib_Attributes::Serial *serialisedAttributes = new FrameLib_Attributes::Serial();
     
     // Parse arguments
     
@@ -260,35 +198,50 @@ FrameLib_Attributes::Serial *framelib_parse_attributes(t_framelib *x, long argc,
     
     // Parse attributes
     
-    for (; i < argc; i++)
+    while (i < argc)
     {
-        // Strip stray items following strings
+        // Strip stray items
         
         for (j = 0; i < argc; i++, j++)
         {
+            if (j == 0)
+                object_error((t_object *)x, "stray items after attribute %s", sym->s_name);
+
             if (is_attribute_tag(sym = atom_getsym(argv + i)))
                 break;
         }
-
-        // Collect items (do strings here)
         
-        for (i++, j = 0, is_string = FALSE; i < argc; i++, j++)
+        // Check for lack of values or end of list
+        
+        if ((++i >= argc) || is_attribute_tag(atom_getsym(argv + i)))
+        {
+            if (i < (argc + 1))
+                object_error((t_object *) x, "no values given for attribute %s", sym->s_name);
+            continue;
+        }
+        
+        // Do strings
+        
+        if (atom_getsym(argv + i) != gensym(""))
+        {
+            serialisedAttributes->write(sym->s_name + 1, atom_getsym(argv + i++)->s_name);
+            continue;
+        }
+        
+        // Collect doubles
+        
+        for (j = 0; i < argc; i++, j++)
         {
             if (is_attribute_tag(atom_getsym(argv + i)))
                 break;
-            
-            if (atom_getsym(argv + i) != gensym("") && j == 0)
-            {
-                is_string = TRUE;
-                serialisedAttributes->write(sym->s_name + 1, atom_getsym(argv + i)->s_name);
-                break;
-            }
+                
+            if (atom_getsym(argv + i) != gensym(""))
+                object_error((t_object *)x, "string %s in attribute list where value expected", atom_getsym(argv + i)->s_name);
             
             array[j] = atom_getfloat(argv + i);
         }
         
-        if (j && !is_string)
-            serialisedAttributes->write(sym->s_name + 1, array, j);
+        serialisedAttributes->write(sym->s_name + 1, array, j);
     }
 
     return serialisedAttributes;
@@ -319,7 +272,6 @@ extern "C" int C74_EXPORT main (void)
 		
     ps_frame_connection_info = gensym("__frame__connection__info__");
     
-    framelib_init();
     return 0;
 }
 
@@ -328,11 +280,15 @@ void *framelib_new (t_symbol *s, long argc, t_atom *argv)
 {
     t_framelib *x = (t_framelib *)object_alloc (this_class);
     
+    // Init
+    
+    framelib_common_init(x);
+
     // Object creation with attributes and arguments
     
     FrameLib_Attributes::Serial *serialisedAttributes = framelib_parse_attributes(x, argc, argv);
 
-    x->object = OBJECT_CREATE;
+    x->object = new OBJECT_CLASS(getConnectionQueue(x), getDSPQueue(x), serialisedAttributes);
     
     delete serialisedAttributes;
     
@@ -350,16 +306,16 @@ void *framelib_new (t_symbol *s, long argc, t_atom *argv)
     
     for (unsigned long i = 0; i < x->object->getNumIns(); i++)
     {
-        x->inputs[i].proxy = (i != 0 || x->object->getNumAudioIns()) ? proxy_new(x, i, &x->proxy_num) : NULL;
+        x->inputs[i].proxy = (i != 0 || x->object->getNumAudioIns()) ? proxy_new(x, x->object->getNumIns() - i, &x->proxy_num) : NULL;
         x->inputs[i].object = NULL;
         x->inputs[i].valid = NULL;
         x->inputs[i].index = 0;
+        x->inputs[i].report_error = TRUE;
     }
     
     for (unsigned long i = 0; i < x->object->getNumOuts(); i++)
         x->outputs[i] = outlet_new(x, NULL);
     
-    x->dsp_object = NULL;
     x->confirm_index = -1;
     x->confirm = FALSE;
     
@@ -379,6 +335,8 @@ void framelib_free(t_framelib *x)
     free(x->outputs);
     
     delete x->object;
+    
+    framelib_common_free(x);
 }
 
 
@@ -408,16 +366,10 @@ void framelib_perform (t_framelib *x, t_object *dsp64, double **ins, long numins
 
 void framelib_dsp (t_framelib *x, t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
 {
-    // Make / check connections
-    
-    x->dsp_object = dsp64;
+    // Check / make connections
     
     framelib_connections(x);
-    
-    // Reset DSP
-    
-    x->object->reset();
-    
+
     // Add a perform routine to the chain if the object handles audio
     
 	if (x->object->handlesAudio())
@@ -442,7 +394,7 @@ void framelib_connect(t_framelib *x, unsigned long index, ConnectMode mode)
     info.object = x;
     info.index = index;
     info.mode = mode;
-    info.dsp_object = x->dsp_object;
+    info.top_level_patcher = x->top_level_patcher;
     
     ps_frame_connection_info->s_thing = (t_object *) &info;
     outlet_anything(x->outputs[index], gensym("frame"), 0, NULL);
@@ -456,6 +408,8 @@ void framelib_connections(t_framelib *x)
     
     for (unsigned long i = 0; i < x->object->getNumIns(); i++)
     {
+        x->inputs[i].report_error = TRUE;
+
         if (x->inputs[i].object != NULL)
         {
             x->confirm = FALSE;
@@ -484,6 +438,10 @@ void framelib_connections(t_framelib *x)
     
      for (unsigned long i = x->object->getNumOuts(); i > 0; i--)
          framelib_connect(x, i - 1, kConnect);
+    
+    // Reset DSP
+    
+    x->object->reset();
 }
 
 
@@ -498,15 +456,33 @@ void framelib_frame(t_framelib *x)
     long index = proxy_getinlet((t_object *) x);
    
     bool connection_change = FALSE;
-    bool valid = (info->dsp_object == x->dsp_object) && x->dsp_object && info->dsp_object;
+    bool valid = (info->top_level_patcher == x->top_level_patcher || info->object == x);
 
-    //if (!valid && x->dsp_object && info->dsp_object)
-    //object_error((t_object *) x, "cannot connect objects from different patches");
+    if (!valid && info->mode == kConnect)
+    {
+        if (info->object == x)
+            object_error((t_object *) x, "direct feedback loop detected");
+        else
+            object_error((t_object *) x, "cannot connect objects from different top level patchers");
+    }
     
     switch (info->mode)
     {
         case kConnect:
-            connection_change = (x->inputs[index].object != info->object || x->inputs[index].index != info->index || x->inputs[index].valid != valid);
+            connection_change = (x->inputs[index].object != info->object || x->inputs[index].index != info->index);
+
+            // Check for double connection
+            
+            if (x->inputs[index].object && x->inputs[index].report_error && connection_change)
+            {
+                x->confirm_index = index;
+                framelib_connect(x->inputs[index].object, x->inputs[index].index, kDoubleCheck);
+                x->confirm_index = -1;
+                x->inputs[index].report_error = FALSE;
+            }
+            
+            // Just in case...
+            
             connection_change = (valid && !x->object->isConnected(index)) ? TRUE : connection_change;
             break;
             
@@ -517,6 +493,11 @@ void framelib_frame(t_framelib *x)
                 connection_change = (valid != x->inputs[index].valid) || (valid && !x->object->isConnected(index));
             }
             break;
+            
+        case kDoubleCheck:
+            if (index == confirm_index && x->inputs[index].object == info->object && x->inputs[index].index == info->index)
+                object_error((t_object *) x, "extra connection to input %ld", index + 1);
+            break;
     }
 
     if (connection_change)
@@ -524,7 +505,7 @@ void framelib_frame(t_framelib *x)
         x->inputs[index].object = info->object;
         x->inputs[index].index = info->index;
         x->inputs[index].valid = valid;
-
+        
         if (valid)
             x->object->addConnection(info->object->object, info->index, index);
         else

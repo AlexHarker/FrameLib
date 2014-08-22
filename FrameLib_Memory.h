@@ -1,26 +1,92 @@
 
-#ifndef FRAMELIB_MEMORY_H
-#define FRAMELIB_MEMORY_H
+#ifndef FrameLib_Local_Allocator_H
+#define FrameLib_Local_Allocator_H
 
 #include "tlsf.h"
+#include "FrameLib_Threading.h"
 
 // FIX - do alignment improvements ?? (be better as part of allocator directly)
 // FIX - threadsafety?
 // FIX - expand the block and do free heuristics differently/for malloc (always free large blocks for instance)
 
-class FrameLib_Memory
+
+class FrameLib_Global_Allocator
 {
- 
+    
 public:
     
-    // N.B. - alignment must be a power of two
+    static size_t const initialSize = 1024 * 1024 * 128;
+
+    FrameLib_Global_Allocator()
+    {
+        mLock.acquire();
+        mMemory = malloc(initialSize);
+        mTLSF = tlsf_create_with_pool(mMemory, initialSize);
+        mLock.release();
+    }
     
-    static const size_t alignment = 16;
+    ~FrameLib_Global_Allocator()
+    {
+        tlsf_destroy(mTLSF);
+        free(mMemory);
+    }
+
+    void acquireLock()
+    {
+        mLock.acquire();
+    }
+    
+    void releaseLock()
+    {
+        mLock.release();
+    }
+    
+    void *allocWithoutLock(size_t size, size_t alignment)
+    {
+        return tlsf_memalign(mTLSF, alignment, size);
+    }
+    
+    void deallocWithoutLock(void *ptr)
+    {
+        tlsf_free(mTLSF, ptr);
+    }
+    
+    void *allocWithLock(size_t size, size_t alignment)
+    {
+        mLock.acquire();
+        void *ptr = allocWithoutLock(size, alignment);
+        mLock.release();
+        
+        return ptr;
+    }
+    
+    void deallocWithLock(void *ptr)
+    {
+        mLock.acquire();
+        deallocWithoutLock(ptr);
+        mLock.release();
+    }
     
 private:
     
-   
-    static const int numLocalFreeBlocks = 8;
+    FrameLib_SpinLock mLock;
+    void *mMemory;
+    tlsf_t mTLSF;
+};
+
+
+class FrameLib_Local_Allocator
+{
+ 
+public:
+
+    // N.B. - alignment must be a power of two
+
+    static const size_t alignment = 16;
+
+private:
+
+    static const int numLocalFreeBlocks = 16;
     
     struct FreeBlock
     {
@@ -35,12 +101,8 @@ private:
     
 public:
 
-    FrameLib_Memory()
+    FrameLib_Local_Allocator(FrameLib_Global_Allocator *allocator) : mGlobalAllocator(allocator)
     {
-        size_t initialSize = 1024 * 1024 * 128;
-        mMemory = malloc(initialSize);
-        mTLSF = tlsf_create_with_pool(mMemory, initialSize);
-        
         for (unsigned long i = 0; i < (numLocalFreeBlocks - 1); i++)
         {
             mFreeLists[i + 1].mPrev = mFreeLists + i;
@@ -51,12 +113,6 @@ public:
         mTail = mFreeLists + (numLocalFreeBlocks - 1);
         mTop->mPrev = NULL;
         mTail->mNext = NULL;
-    }
-    
-    ~FrameLib_Memory()
-    {
-        tlsf_destroy(mTLSF);
-        free(mMemory);
     }
     
     void *alloc(size_t size)
@@ -73,24 +129,48 @@ public:
         
         // FIX - free memory if there is an error...
         
-        return tlsf_memalign(mTLSF, alignment, size);
-        //return tlsf_malloc(mTLSF, size);
+        return mGlobalAllocator->allocWithLock(size, alignment);
+    }
+
+    // FIX - THIS IS SLOW - cache mishit?
+    
+    size_t blockSize(void* ptr)
+    {
+        return (*(size_t *) (((unsigned char*) ptr) - sizeof(size_t))) & ~(0x3);
     }
     
     void dealloc(void *ptr)
     {
         if (mTail->mMemory)
-            tlsf_free(mTLSF, mTail->mMemory);
+            mGlobalAllocator->deallocWithLock(mTail->mMemory);
         
         mTail->mPrev->mNext = NULL;
         mTail->mNext = mTop;
         mTail->mMemory = ptr;
-        mTail->mSize = tlsf_block_size(ptr);
+        mTail->mSize = blockSize(ptr);
         mTop->mPrev = mTail;
         mTail->mNext = mTop;
         mTop = mTail;
         mTail = mTop->mPrev;
         mTop->mPrev = NULL;
+    }
+    
+    void clearLocal()
+    {
+        // FIX - this could be made cheaper by locking once only
+        
+        mGlobalAllocator->acquireLock();
+        
+        for (unsigned long i = 0; i < numLocalFreeBlocks; i++)
+        {
+            if (mFreeLists[i].mMemory)
+            {
+                mGlobalAllocator->deallocWithoutLock(mFreeLists[i].mMemory);
+                mFreeLists[i].mMemory = NULL;
+            }
+        }
+        
+        mGlobalAllocator->releaseLock();
     }
     
     static size_t alignSize(size_t x)
@@ -126,8 +206,7 @@ private:
         return ptr;
     }
     
-    tlsf_t mTLSF;
-    void *mMemory;
+    FrameLib_Global_Allocator *mGlobalAllocator;
     
     FreeBlock mFreeLists[numLocalFreeBlocks];
     FreeBlock *mTop;
