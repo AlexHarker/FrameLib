@@ -7,12 +7,12 @@ PRODUCT_NAME = $(TARGET_NAME)
 
 C74SUPPORT = $(SRCROOT)/../Max6_Support/c74support
 HEADER_SEARCH_PATHS = /Developer/Headers/FlatCarbon "$(SRCROOT)/../../AH_MaxMSP_Headers" "$(C74SUPPORT)/max-includes" "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-includes"
-FRAMEWORK_SEARCH_PATHS = "$(C74SUPPORT)/max-includes" "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-includes"
+FRAMEWORK_SEARCH_PATHS = "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-includes"
 
 // Special Files
 
 GCC_PREFIX_HEADER = $(C74SUPPORT)/max-includes/macho-prefix.pch
-INFOPLIST_FILE = Info.plist
+INFOPLIST_FILE = FrameLib_Max_Objects/Common/Info.plist
 
 // Per architecture and deployment settings
 
