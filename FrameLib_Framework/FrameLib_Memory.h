@@ -4,11 +4,12 @@
 
 #include "tlsf.h"
 #include "FrameLib_Threading.h"
+#include <vector>
 
 // FIX - do alignment improvements ?? (be better as part of allocator directly)
 // FIX - threadsafety?
 // FIX - expand the block and do free heuristics differently/for malloc (always free large blocks for instance)
-
+// FIX - cleanup and checks
 
 class FrameLib_Global_Allocator
 {
@@ -79,10 +80,84 @@ class FrameLib_Local_Allocator
 {
  
 public:
-
+    
     // N.B. - alignment must be a power of two
-
+    
     static const size_t alignment = 16;
+
+    struct Storage
+    {
+        
+    public:
+        
+        Storage(const char *name, FrameLib_Local_Allocator *allocator) : mData(NULL), mSize(0), mMaxSize(0), mCount(1), mAllocator(allocator)
+        {
+            mName = strdup(name);
+        }
+        
+        ~Storage()
+        {
+            mAllocator->dealloc(mData);
+            free(mName);
+        }
+        
+        double *getData()
+        {
+            return mData;
+        }
+        
+        unsigned long getSize()
+        {
+            return mSize;
+        }
+        
+        const char *getName()
+        {
+            return mName;
+        }
+        
+        void resize(unsigned long size)
+        {
+            double *data;
+            
+            if (mMaxSize >= size && (size >= (mMaxSize >> 1)))
+            {
+                mSize = size;
+                return;
+            }
+            
+            data = (double *) mAllocator->alloc(size * sizeof(double));
+            
+            if (data)
+            {
+                mAllocator->dealloc(mData);
+                mData = data;
+                mMaxSize = size;
+                mSize = size;
+            }
+        }
+                
+        void increment()
+        {
+            mCount++;
+        }
+        
+        unsigned long decrement()
+        {
+            return --mCount;
+        }
+
+        
+    private:
+        
+        double *mData;
+        unsigned long mSize;
+        unsigned long mMaxSize;
+        unsigned long mCount;
+        char *mName;
+        
+        FrameLib_Local_Allocator *mAllocator;
+    };
 
 private:
 
@@ -115,12 +190,20 @@ public:
         mTail->mNext = NULL;
     }
     
+    ~FrameLib_Local_Allocator()
+    {
+        // FIX - this crashes, but should it??
+        
+        //clearLocal();
+    }
+    
     void *alloc(size_t size)
     {
         // N.B. - all memory should be aligned to alignment
         
         //size_t maxSize = (size * 5) >> 2;
         //size_t maxSize = (size * 3) >> 1;
+        
         size_t maxSize = size << 1;
         
         for (FreeBlock *block = mTop; block && block->mMemory; block = block->mNext)
@@ -141,24 +224,25 @@ public:
     
     void dealloc(void *ptr)
     {
-        if (mTail->mMemory)
-            mGlobalAllocator->deallocWithLock(mTail->mMemory);
+        if (ptr)
+        {
+            if (mTail->mMemory)
+                mGlobalAllocator->deallocWithLock(mTail->mMemory);
         
-        mTail->mPrev->mNext = NULL;
-        mTail->mNext = mTop;
-        mTail->mMemory = ptr;
-        mTail->mSize = blockSize(ptr);
-        mTop->mPrev = mTail;
-        mTail->mNext = mTop;
-        mTop = mTail;
-        mTail = mTop->mPrev;
-        mTop->mPrev = NULL;
+            mTail->mPrev->mNext = NULL;
+            mTail->mNext = mTop;
+            mTail->mMemory = ptr;
+            mTail->mSize = blockSize(ptr);
+            mTop->mPrev = mTail;
+            mTail->mNext = mTop;
+            mTop = mTail;
+            mTail = mTop->mPrev;
+            mTop->mPrev = NULL;
+        }
     }
     
     void clearLocal()
     {
-        // FIX - this could be made cheaper by locking once only
-        
         mGlobalAllocator->acquireLock();
         
         for (unsigned long i = 0; i < numLocalFreeBlocks; i++)
@@ -176,6 +260,47 @@ public:
     static size_t alignSize(size_t x)
     {
         return (x + (alignment - 1)) & ~(alignment - 1);
+    }
+    
+private:
+    
+    std::vector<Storage *>::iterator findStorage(const char *name)
+    {
+        std::vector<Storage *>::iterator it;
+        
+        for (it = mStorage.begin(); it != mStorage.end(); it++)
+        {
+            if (!strcmp((*it)->getName(), name))
+                return it;
+        }
+        
+        return it;
+    }
+
+public:
+    
+    Storage *registerStorage(const char *name)
+    {
+        std::vector<Storage *>::iterator it = findStorage(name);
+        
+        if (it != mStorage.end())
+        {
+            (*it)->increment();
+            return *it;
+        }
+        
+        Storage *createdStorage = new Storage(name, this);
+        mStorage.push_back(createdStorage);
+
+        return createdStorage;
+    }
+
+    void releaseStorage(const char *name)
+    {
+        std::vector<Storage *>::iterator it = findStorage(name);
+        
+        if ((*it)->decrement() <= 0)
+            mStorage.erase(it);
     }
     
 private:
@@ -211,6 +336,8 @@ private:
     FreeBlock mFreeLists[numLocalFreeBlocks];
     FreeBlock *mTop;
     FreeBlock *mTail;
+    
+    std::vector <Storage *> mStorage;
 };
 
 #endif

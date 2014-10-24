@@ -357,6 +357,7 @@ public:
             Array(T defaultValue, size_t maxSize, size_t size, bool variableSize) : mItems(new T[maxSize]), mMaxSize(maxSize), mVariableSize(variableSize)
             {
                 mSize = size < mMaxSize ? size : mMaxSize;
+                size = variableSize ? size : maxSize;
                 mMode = kNone;
                 
                 for (size_t i = 0; i < mSize; i++)
@@ -466,11 +467,14 @@ public:
             
             void set(const char *str)
             {
-                size_t i;
+                size_t i = 0;
                 
-                for (i = 0; i < maxLen; i++)
-                    if ((mCString[i] = str[i]) == 0)
-                        break;
+                if (str != NULL)
+                {
+                    for (i = 0; i < maxLen; i++)
+                        if ((mCString[i] = str[i]) == 0)
+                            break;                    
+                }
                 
                 mCString[i] = 0;
             }
@@ -514,7 +518,7 @@ public:
                     mEnum = new Enum();
                     break;
                 case kArray:
-                    mArray = new Array <double> (defaultValue, maxSize, size, FALSE);
+                    mArray = new Array <double> (defaultValue, maxSize, maxSize, FALSE);
                     break;
                 case kVariableArray:
                     mArray = new Array <double> (defaultValue, maxSize, size, TRUE);
@@ -814,9 +818,9 @@ public:
         mAttributes.back()->addEnumItem(str);
     }
     
-    void addArray(unsigned long index, const char *name, double defaultValue, size_t maxSize, long argumentIdx = -1)
+    void addArray(unsigned long index, const char *name, double defaultValue, size_t size, long argumentIdx = -1)
     {
-        addAttribute(index, new Attribute(kArray, name, argumentIdx, defaultValue, maxSize));
+        addAttribute(index, new Attribute(kArray, name, argumentIdx, defaultValue, size));
     }
     
     void addVariableArray(unsigned long index, const char *name, double defaultValue, size_t maxSize, size_t size, long argumentIdx = -1)
@@ -1013,6 +1017,16 @@ public:
     long getInt(const char *name)
     {
         return getInt(getIdx(name));
+    }
+    
+    long getBool(unsigned long idx)
+    {
+        return (bool) getValue(idx);
+    }
+    
+    bool getBool(const char *name)
+    {
+        return (bool) getValue(getIdx(name));
     }
     
     const char *getString(unsigned long idx)

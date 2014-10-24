@@ -3,38 +3,51 @@
 #include "ibuffer/ibuffer_access.h"
 #include "FrameLib_DSP.h"
 
-// FIX - ibuffer init
-// FIX - input units
-// FIX - sample rate of buffer
 // FIX - abstract out max buffer interaction (buffer name / channel)
+// FIX - consider adding anti-alising later....
 
 class FrameLib_MaxRead : public FrameLib_Processor
 {
-    enum AttributeList {kBuffer, kChannel, kMode};
+    enum AttributeList {kBuffer, kChannel, kMode, kUnits};
     enum Modes {kHermite, kBSpline, kLagrange, kLinear};
+    enum Units {kMS, kSeconds, kSamples};
+
+    static bool sInit;
     
 public:
     
     FrameLib_MaxRead (DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1)
     {
         mAttributes.addString(kBuffer, "buffer", "", 0);
+        
         mAttributes.addDouble(kChannel, "chan", 0.0, 1);
         mAttributes.setClip(1.0, 4.0);
+        
         mAttributes.addEnum(kMode, "mode");
         mAttributes.addEnumItem(kHermite, "hermite");
         mAttributes.addEnumItem(kBSpline, "bspline");
         mAttributes.addEnumItem(kLagrange, "lagrange");
         mAttributes.addEnumItem(kLinear, "linear");
         
+        mAttributes.addEnum(kUnits, "unit");
+        mAttributes.addEnumItem(kMS, "ms");
+        mAttributes.addEnumItem(kSeconds, "seconds");
+        mAttributes.addEnumItem(kSamples, "samples");
+        
         mAttributes.set(serialisedAttributes);
 
         mBufferName = gensym(mAttributes.getString(kBuffer));
         mChan = mAttributes.getInt(kChannel);
         mMode = (Modes) mAttributes.getInt(kMode);
+        mUnits = (Units) mAttributes.getInt(kUnits);
         
         assert(FALSE == 0 && "False does not equal zero");
         
-        ibuffer_init();
+        if (!sInit)
+        {
+            ibuffer_init();
+            sInit = TRUE;
+        }
     }
     
 protected:
@@ -92,10 +105,27 @@ protected:
             fracts = (double *) (offsets + paddedSize);
 
             double lengthM1 = length - 1.0;
+            double conversionFactor = 1.0;
+            double samplingRate = ibuffer_sample_rate(buffer);
+            
+            switch (mUnits)
+            {
+                case kMS:
+                    conversionFactor = samplingRate / 1000.0;
+                    break;
+                    
+                case kSeconds:
+                    conversionFactor = samplingRate;
+                    break;
+                    
+                case kSamples:
+                    conversionFactor = 1.0;
+                    break;
+            }
             
             for (unsigned int i = 0; i < size; i++)
             {
-                double position = input[i];
+                double position = input[i] * conversionFactor;
                 
                 position = position > lengthM1 ? lengthM1 : position;
                 position = position < 0.0 ? 0.0 : position;
@@ -159,8 +189,10 @@ private:
     t_symbol *mBufferName;
     long mChan;
     Modes mMode;
+    Units mUnits;
 };
 
+bool FrameLib_MaxRead::sInit = FALSE;
 
 #define OBJECT_CLASS FrameLib_Expand<FrameLib_MaxRead>
 #define OBJECT_NAME "fl.read~"

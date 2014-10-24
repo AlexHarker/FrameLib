@@ -185,6 +185,10 @@ protected:
    
     void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
     {
+        // Free output memory
+        
+        freeOutputMemory();
+
         // Resize inputs and outputs
     
         mInputs.resize((mType != kScheduler || nIns > 0) ? nIns : 1);
@@ -298,12 +302,7 @@ private:
     inline void releaseOutputMemory()
     {
         if (mOutputMemoryCount && (--mOutputMemoryCount == 0))
-        {
-            mAllocator->dealloc(mOutputs[0].mMemory);
-
-            if (getNumOuts())
-                mOutputs[0].mMemory = NULL;
-        }
+            freeOutputMemory();
     }
     
     // Main code to control time flow (called when all input/output dependencies are ready)
@@ -453,12 +452,25 @@ private:
 
     // Resets
     
+private:
+    
+    inline void freeOutputMemory()
+    {
+        if (getNumOuts())
+        {
+            mAllocator->dealloc(mOutputs[0].mMemory);
+            mOutputs[0].mMemory = NULL;
+        }
+    }
+    
 public:
 
     void resetDependencyCount()
     {
         mOutputMemoryCount = 0;
         mDependencyCount = mInputDependencies.size() + ((requiresAudioNotification()) ? 1 : 0);
+        
+        freeOutputMemory();
     }
     
     void reset()

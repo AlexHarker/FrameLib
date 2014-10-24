@@ -13,7 +13,7 @@
 
 class FrameLib_Sink : public FrameLib_Output
 {
-    enum AttributeList {kLength, kUnit};
+    enum AttributeList {kLength, kUnits};
     enum Units {kMS, kSeconds, kSamples};
     
 public:
@@ -22,7 +22,7 @@ public:
     {
         mAttributes.addDouble(kLength, "length", 8000, 0);
         mAttributes.setMin(0.0);
-        mAttributes.addEnum(kUnit, "unit", 1);
+        mAttributes.addEnum(kUnits, "units", 1);
         mAttributes.addEnumItem(kMS, "ms");
         mAttributes.addEnumItem(kSeconds, "seconds");
         mAttributes.addEnumItem(kSamples, "samples");
@@ -38,14 +38,14 @@ public:
     {
         FrameLib_DSP::reset();
 
-        long unit = mAttributes.getInt(kUnit);
+        long units = mAttributes.getInt(kUnits);
         double size = mAttributes.getValue(kLength);
 
-        if (unit != kSamples)
+        if (units != kSamples)
         {
             size *= mSamplingRate;
             
-            if (unit != kSeconds)
+            if (units != kSeconds)
                 size /= 1000.0;
         }
        

@@ -3,7 +3,7 @@
 #define FRAMELIB_IFFT_H
 
 #include "FrameLib_DSP.h"
-#include "../FrameLib_Dependencies/HISSTools_FFT/HISSTools_FFT.h"
+#include "../../FrameLib_Dependencies/HISSTools_FFT/HISSTools_FFT.h"
 
 // FIX - review FFTSetup
 
@@ -48,7 +48,7 @@ private:
 			return bitCount - 1U;
 		else
 			return bitCount;
-	};
+	}
 	
 protected:
 	

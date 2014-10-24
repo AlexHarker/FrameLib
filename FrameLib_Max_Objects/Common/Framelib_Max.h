@@ -393,7 +393,7 @@ void framelib_connect(t_framelib *x, unsigned long index, ConnectMode mode)
 {
     // FIX - make this safer when we keep track in both directions of where connections are made
     
-    if (NOGOOD(x))
+    if (NOGOOD(x) || !x->outputs)
         return;
     
     t_framelib_connection_info info;

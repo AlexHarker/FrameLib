@@ -15,20 +15,20 @@
 
 class FrameLib_Source : public FrameLib_Processor
 {
-    enum AttributeList {kMaxLength, kLength, kUnit};
+    enum AttributeList {kMaxLength, kLength, kUnits};
     enum Units {kSamples, kMS, kSeconds};
     
 private:
     
     unsigned long convertTimeToSamples(double time)
     {
-        long unit = mAttributes.getInt(kUnit);
+        long units = mAttributes.getInt(kUnits);
         
-        if (unit != kSamples)
+        if (units != kSamples)
         {
             time *= mSamplingRate;
             
-            if (unit != kSeconds)
+            if (units != kSeconds)
                 time /= 1000.0;
         }
         
@@ -43,7 +43,7 @@ public:
         mAttributes.setMin(0.0);
         mAttributes.addDouble(kLength, "size", 4096, 1);
         mAttributes.setMin(0.0);
-        mAttributes.addEnum(kUnit, "unit", 2);
+        mAttributes.addEnum(kUnits, "unit", 2);
         mAttributes.addEnumItem(kSamples, "samples");
         mAttributes.addEnumItem(kMS, "ms");
         mAttributes.addEnumItem(kSeconds, "seconds");

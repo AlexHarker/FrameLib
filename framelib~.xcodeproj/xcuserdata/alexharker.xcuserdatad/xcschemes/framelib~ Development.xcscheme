@@ -812,6 +812,48 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B85B68D219F2628C002D6F1D"
+               BuildableName = "fl.register~.mxo"
+               BlueprintName = "fl.register~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B861EBB419CA3E9500B89477"
+               BuildableName = "fl.percentile~.mxo"
+               BlueprintName = "fl.percentile~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B861EBA219CA3E8700B89477"
+               BuildableName = "fl.sort~.mxo"
+               BlueprintName = "fl.sort~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8F83EAB19C79CC900230CD4"
                BuildableName = "fl.count~.mxo"
                BlueprintName = "fl.count~"
@@ -882,9 +924,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B861EBB419CA3E9500B89477"
-               BuildableName = "fl.percentile~.mxo"
-               BlueprintName = "fl.percentile~"
+               BlueprintIdentifier = "B846E61219F15A25005E9718"
+               BuildableName = "fl.window~.mxo"
+               BlueprintName = "fl.window~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -896,9 +938,163 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B861EBA219CA3E8700B89477"
-               BuildableName = "fl.sort~.mxo"
-               BlueprintName = "fl.sort~"
+               BlueprintIdentifier = "B85BDDBE19F1C21400A349C5"
+               BuildableName = "fl.0dfsvf~.mxo"
+               BlueprintName = "fl.0dfsvf~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B8F3797A19F1C8B400EC7FDA"
+               BuildableName = "fl.onepole~.mxo"
+               BlueprintName = "fl.onepole~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B85B68AA19F1D38F002D6F1D"
+               BuildableName = "fl.onepolezero~.mxo"
+               BlueprintName = "fl.onepolezero~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B85B68BD19F1D5F0002D6F1D"
+               BuildableName = "fl.resonant~.mxo"
+               BlueprintName = "fl.resonant~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B85B689619F1CEDC002D6F1D"
+               BuildableName = "fl.sallenkey~.mxo"
+               BlueprintName = "fl.sallenkey~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B8C8568319F2A97A006358DA"
+               BuildableName = "fl.join~.mxo"
+               BlueprintName = "fl.join~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B8C8563F19F2A96C006358DA"
+               BuildableName = "fl.pad~.mxo"
+               BlueprintName = "fl.pad~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B8C8566D19F2A978006358DA"
+               BuildableName = "fl.split~.mxo"
+               BlueprintName = "fl.split~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B8C8565619F2A96E006358DA"
+               BuildableName = "fl.subframe~.mxo"
+               BlueprintName = "fl.subframe~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B8AE693019F45A380040B4EE"
+               BuildableName = "fl.shift~.mxo"
+               BlueprintName = "fl.shift~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B812463E19F476D3009833F1"
+               BuildableName = "fl.store~.mxo"
+               BlueprintName = "fl.store~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B812462819F476CB009833F1"
+               BuildableName = "fl.recall~.mxo"
+               BlueprintName = "fl.recall~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -911,6 +1107,15 @@
       buildConfiguration = "Development">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8D01CCC60486CAD60068D4B7"
+            BuildableName = "fl.unpack~.mxo"
+            BlueprintName = "fl.unpack~"
+            ReferencedContainer = "container:framelib~.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -922,8 +1127,17 @@
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
       <PathRunnable
-         FilePath = "/Applications/Max 6.1/Max Runtime.app">
+         FilePath = "/Applications/Max 7/Max.app">
       </PathRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8D01CCC60486CAD60068D4B7"
+            BuildableName = "fl.unpack~.mxo"
+            BlueprintName = "fl.unpack~"
+            ReferencedContainer = "container:framelib~.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -933,6 +1147,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Deployment"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8D01CCC60486CAD60068D4B7"
+            BuildableName = "fl.unpack~.mxo"
+            BlueprintName = "fl.unpack~"
+            ReferencedContainer = "container:framelib~.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Development">

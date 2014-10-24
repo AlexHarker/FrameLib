@@ -10,8 +10,6 @@
 
 // This abstract class allows mulitchannel connnections and the means to update the network according to the number of channels
 
-// FIX - improve audio handling temp memory code (could use realtime allocator?) - and memory alignment!
-
 class FrameLib_MultiChannel
 {
     // ************************************************************************************** //

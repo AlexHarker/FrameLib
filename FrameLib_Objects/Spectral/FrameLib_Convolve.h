@@ -3,7 +3,7 @@
 #define FRAMELIB_CONVOLVE_H
 
 #include "FrameLib_DSP.h"
-#include "../FrameLib_Dependencies/HISSTools_FFT/HISSTools_FFT.h"
+#include "../../FrameLib_Dependencies/HISSTools_FFT/HISSTools_FFT.h"
 
 
 class FrameLib_Convolve : public FrameLib_Processor

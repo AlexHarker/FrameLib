@@ -8,4 +8,4 @@ CeReNeM - The University of Huddersfield
 
 **Contact:**
 
-* ajharker@gmail.com / p.a.tremblay@hud.ac.uk
+* ajharker@gmail.com
