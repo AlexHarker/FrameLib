@@ -36,7 +36,7 @@ protected:
         
         if (sizeOut && temp)
         {
-            sort_ascending(temp, input, sizeIn);
+            sortAscending(temp, input, sizeIn);
             
             // Copy last value
             

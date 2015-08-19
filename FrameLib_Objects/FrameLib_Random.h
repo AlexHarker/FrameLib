@@ -1,17 +1,18 @@
 
-#ifndef FRAMELIB_COUNT_H
-#define FRAMELIB_COUNT_H
+#ifndef FRAMELIB_RANDOM_H
+#define FRAMELIB_RANDOM_H
 
 #include "FrameLib_DSP.h"
+#include "FrameLib_RandGen.h"
 
-class FrameLib_Count : public FrameLib_Processor
+class FrameLib_Random : public FrameLib_Processor
 {
     enum AttributeList {kLength, kMode};
     enum Modes {kInLength, kRequestedLength};
 
 public:
     
-    FrameLib_Count (DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 2, 1)
+    FrameLib_Random (DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1)
     {
         mAttributes.addDouble(kLength, "length", 64.0, 0);
         mAttributes.setMin(0.0);
@@ -20,19 +21,9 @@ public:
         mAttributes.addEnumItem(kRequestedLength, "requested");
         
         mAttributes.set(serialisedAttributes);
-        
-        inputMode(1, TRUE, FALSE, FALSE);
     }
     
 protected:
-    
-    void update()
-    {
-        FrameLib_Attributes::Serial *serialised = getInput(1);
-        
-        if (serialised)
-            mAttributes.set(serialised);
-    }
     
     void process()
     {
@@ -47,8 +38,12 @@ protected:
         double *output = getOutput(0, &sizeOut);
         
         for (unsigned int i = 0; i < sizeOut; i++)
-            output[i] = (double) i;
+            output[i] = mRandom.randDouble();
     }
+    
+private:
+    
+    FrameLib_RandGen mRandom;
 };
 
 #endif

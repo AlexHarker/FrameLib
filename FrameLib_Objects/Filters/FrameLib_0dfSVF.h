@@ -49,7 +49,8 @@ class FrameLib_0dfSVF : public FrameLib_Processor
             r = 1.0 - resonance;
             r = r < 0.005 ? 0.005 : r;
             r = r > 1.0 ? 1.0 : r;
-            g = ((2.0 * samplingRate) * tan((freq * FILTER_TWO_PI) * 2.0 / samplingRate) * 2.0 / samplingRate);
+            double srConst = 0.5 / samplingRate;
+            g = ((2.0 * samplingRate) * tan((freq * FILTER_TWO_PI) * srConst) * srConst);
         }
         
     private:
@@ -77,7 +78,7 @@ class FrameLib_0dfSVF : public FrameLib_Processor
 
 public:
 	
-    FrameLib_0dfSVF(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1, 0, 0)
+    FrameLib_0dfSVF(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 2, 1, 0, 0)
     {
         mAttributes.addDouble(kFreq, "freq", 0.0, 0);
         mAttributes.setMin(0.0);
@@ -91,9 +92,19 @@ public:
         mAttributes.addEnumItem(kHPF, "hpf");
         
         mAttributes.set(serialisedAttributes);
+        
+        inputMode(1, TRUE, FALSE, FALSE);
     }
     
 protected:
+    
+    void update()
+    {
+        FrameLib_Attributes::Serial *serialised = getInput(1);
+        
+        if (serialised)
+            mAttributes.set(serialised);
+    }
     
     void process ()
 	{

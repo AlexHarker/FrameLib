@@ -7,6 +7,8 @@
 #include <limits>
 #include <vector>
 
+// FIX - Processor and Output look identical - could it be that only one is needed now?
+
 // FrameLib_DSP
 
 // This abstract class is the core of the DSP processing system and handles low level single channel connections and timing
@@ -294,7 +296,7 @@ private:
         if (--mDependencyCount == 0)
             mQueue->add(this);
         
-        // N.B. For multithreading re-entrancy needs to be avoided by increasing the dependency count before adding ot the queue (with match notification)
+        // N.B. For multithreading re-entrancy needs to be avoided by increasing the dependency count before adding to the queue (with matching notification)
     }
 
     // Release output memory
@@ -308,8 +310,8 @@ private:
     // Main code to control time flow (called when all input/output dependencies are ready)
     
     void dependenciesReady()
-    {
-        bool timeUpdated = TRUE;
+    {        
+        bool timeUpdated = FALSE;
         
         if (mType == kScheduler)
         {
@@ -323,17 +325,17 @@ private:
             
             scheduleInfo.mTimeAdvance = clipToPositive(scheduleInfo.mTimeAdvance);
             
-            if (!scheduleInfo.mTimeAdvance || upToDate)
-                timeUpdated = FALSE;
-            else
+            if (scheduleInfo.mTimeAdvance && !upToDate)
             {
                 mFrameTime = (scheduleInfo.mNewFrame || mOutputDone) ? mValidTime : mFrameTime;
                 mValidTime += scheduleInfo.mTimeAdvance;
                 mOutputDone = scheduleInfo.mOutputDone;
                 upToDate = mValidTime >= mBlockTime;
+                timeUpdated = TRUE;
             }
             
             // Find the new input time (the min valid time of all inputs)
+            // FIX - move above (to make scheduling easier?) - although currently inputtime is inaccessible - make function?
             
             mInputTime = FL_Limits<FrameLib_TimeFormat>::largest();
             
@@ -463,8 +465,6 @@ private:
         }
     }
     
-public:
-
     void resetDependencyCount()
     {
         mOutputMemoryCount = 0;
@@ -473,6 +473,8 @@ public:
         freeOutputMemory();
     }
     
+public:
+
     void reset()
     {
         // Note that the first sample will be at time == 1 so that we can start the frames *before* this with non-negative values
@@ -533,9 +535,11 @@ protected:
         
         for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
         {
-            // Calculate allocation size, including necessary alignmnet padding and assuming success
+            // Calculate allocation size, including necessary alignment padding and assuming success
             
-            size_t unalignedSize = outs->mMode == kOutputNormal ? outs->mRequestedSize * sizeof(double) : outs->mRequestedSize + taggedOutputAlignment;
+            // FIX - check serial alignment safety - move this into the class to be on the safe side??
+            
+            size_t unalignedSize = outs->mMode == kOutputNormal ? outs->mRequestedSize * sizeof(double) : outs->mRequestedSize + sizeof(FrameLib_Attributes::Serial) + taggedOutputAlignment;
             size_t alignedSize = FrameLib_Local_Allocator::alignSize(unalignedSize);
             
             outs->mCurrentSize = outs->mRequestedSize;
@@ -560,7 +564,7 @@ protected:
                 outs->mMemory = pointer + outs->mPointerOffset;
                 
                 if (outs->mMode == kOutputTagged)
-                    new (outs->mMemory) FrameLib_Attributes::Serial(((BytePointer) outs->mMemory) + taggedOutputAlignment, outs->mCurrentSize);
+                    new (outs->mMemory) FrameLib_Attributes::Serial(((BytePointer) outs->mMemory) + sizeof(FrameLib_Attributes::Serial), outs->mCurrentSize);
             }
             
             // Set dependency count
@@ -614,7 +618,7 @@ protected:
     
     FrameLib_Attributes::Serial *getInput(unsigned long idx)
     {
-        if (mOutputs[idx].mMode == kOutputTagged)
+        if (mInputs[idx].mObject)
             return mInputs[idx].mObject->getOutput(mInputs[idx].mIndex);
         
         return NULL;

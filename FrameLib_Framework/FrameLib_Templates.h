@@ -67,7 +67,7 @@ public:
     FrameLib_BinaryOp(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 2, 1)
     {
         mAttributes.addVariableArray(kVals, "vals", 0.0, 4096, 1, 0);
-        
+
         mAttributes.addEnum(kMode, "mode");
         mAttributes.addEnumItem(kWrap, "wrap");
         mAttributes.addEnumItem(kShrink, "shrink");

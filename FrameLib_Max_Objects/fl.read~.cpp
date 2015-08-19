@@ -29,7 +29,7 @@ public:
         mAttributes.addEnumItem(kLagrange, "lagrange");
         mAttributes.addEnumItem(kLinear, "linear");
         
-        mAttributes.addEnum(kUnits, "unit");
+        mAttributes.addEnum(kUnits, "units");
         mAttributes.addEnumItem(kMS, "ms");
         mAttributes.addEnumItem(kSeconds, "seconds");
         mAttributes.addEnumItem(kSamples, "samples");
@@ -85,7 +85,7 @@ protected:
             ibuffer_info(buffer, &bufferSamples, &length, &nChans, &format);
             chan = (mChan - 1) % nChans;
             
-            paddedSize = (size + (size & 0x1));
+            paddedSize = (size + 0x3) & ~0x3;
             
             tempMemSize = (mMode == kLinear) ? paddedSize * (2 * sizeof(float) + sizeof(double) + sizeof(AH_SIntPtr)) : paddedSize * (4 * sizeof(float) + sizeof(double) + sizeof(AH_SIntPtr));
             tempMem = mAllocator->alloc(tempMemSize);
@@ -141,7 +141,7 @@ protected:
                 interp |= (fract != 0.0);
             }
             
-            ibuffer_preprocess_offsets (offsets, size, nChans, format);
+            ibuffer_preprocess_offsets (offsets, vecSize, nChans, format);
             
             if (interp)
             {

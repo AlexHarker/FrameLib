@@ -1,25 +1,27 @@
 
 
-#ifndef FRAMELIB_SINK_H
-#define FRAMELIB_SINK_H
+#ifndef FRAMELIB_TRACE_H
+#define FRAMELIB_TRACE_H
 
 #include "FrameLib_DSP.h"
 #include <cstring>
 
+
 // FIX - MAX_VECTOR_SIZE hack
-// FIX - sink is only sample accurate (not subsample) - double the buffer and add a function to interpolate if neceesary
-// FIX - add multichannel later (including multichannel output from one cable - is it possible?)
+// FIX - trace is only sample accurate (not subsample) - double the buffer and add a function to interpolate if neceesary
+// FIX - add multichannel later (including multichannel output from one cable - is it possible?)???
+// FIX - trace writes whole vectors then traces, would it be better to specify which index to use?
 
 #define MAX_VECTOR_SIZE 8192
 
-class FrameLib_Sink : public FrameLib_Output
+class FrameLib_Trace : public FrameLib_Output
 {
     enum AttributeList {kLength, kUnits};
     enum Units {kMS, kSeconds, kSamples};
     
 public:
     
-    FrameLib_Sink(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Output(queue, 1, 0, 1, 1)
+    FrameLib_Trace(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Output(queue, 1, 0, 1, 1)
     {
         mAttributes.addDouble(kLength, "length", 8000, 0);
         mAttributes.setMin(0.0);
@@ -31,6 +33,7 @@ public:
         mAttributes.set(serialisedAttributes);
         
         mBuffer = NULL;
+        mFlags = NULL;
         mSize = 0;
         reset();
     }
@@ -57,23 +60,35 @@ public:
         {
             mSize = size;
             delete mBuffer;
+            delete mFlags;
             mBuffer = new double[mSize];
+            mFlags = new bool[mSize];
         }
         
         memset(mBuffer, 0, mSize * sizeof(double));
-        
+        for (unsigned long i = 0; i < size; i++)
+            mFlags[i] = FALSE;
+
+        mLastValue = 0.0;
         mCounter = 0;
     }
     
 private:
     
-    void copyAndZero (double *output, unsigned long offset, unsigned long size)
+    void copyAndZero(double *output, unsigned long offset, unsigned long size)
     {
+        double trace = mLastValue;
+        
         if (size)
         {
-            memcpy(output, mBuffer + offset, size * sizeof(double));
-            memset(mBuffer + offset, 0, size * sizeof(double));
-        
+            for (unsigned long i = 0; i < size; i++)
+                output[i] = trace = mFlags[offset + i] ? mBuffer[offset + i] : trace;
+            
+            
+            for (unsigned long i = 0; i < size; i++)
+                mFlags[offset + i] = FALSE;
+            
+            mLastValue = trace;
             mCounter = offset + size;
         }
     }
@@ -95,10 +110,13 @@ private:
         copyAndZero(output + size, 0, vecSize - size);
     }
     
-    void AddToBuffer (double *input, unsigned long offset, unsigned long size)
+    void WriteToBuffer (double *input, unsigned long offset, unsigned long size)
     {
         for (unsigned long i = 0; i < size; i++)
-            mBuffer[i + offset] += input[i];
+        {
+            mBuffer[i + offset] = input[i];
+            mFlags[i + offset] = TRUE;
+        }
     }
     
     void process ()
@@ -121,19 +139,21 @@ private:
         
         offset += mCounter;
         offset = (offset < mSize) ? offset : offset - mSize;
-
+        
         // Calculate first segment size and copy segments
         
         unsigned long size = ((offset + sizeIn) > mSize) ? mSize - offset : sizeIn;
         
-        AddToBuffer(input, offset, size);
-        AddToBuffer(input + size, 0, sizeIn - size);
+        WriteToBuffer(input, offset, size);
+        WriteToBuffer(input + size, 0, sizeIn - size);
     }
 
     
 private:
     
     double *mBuffer;
+    bool *mFlags;
+    double mLastValue;
     unsigned long mSize;
     unsigned long mCounter;
 };

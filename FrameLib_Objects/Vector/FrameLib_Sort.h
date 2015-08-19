@@ -38,11 +38,11 @@ protected:
         switch (mOrder)
         {
             case kUp:
-                sort_ascending(output, input, size);
+                sortAscending(output, input, size);
                 break;
                 
             case kDown:
-                sort_descending(output, input, size);
+                sortDescending(output, input, size);
                 break;
         }
     }

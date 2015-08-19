@@ -9,6 +9,7 @@
 // FIX - MAX_VECTOR_SIZE hack
 // FIX - source is only sample accurate (not subsample) - add a function to interpolate if neceesary
 // FIX - allow attributes to change (and check naming and behaviour...
+// FIX - check add delay for alignment purposes
 // FIX - check DSP ordering
 
 #define MAX_VECTOR_SIZE 8192
@@ -39,11 +40,13 @@ public:
     
     FrameLib_Source(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 2, 1, 1, 0)
     {
+        // FIX - unit or units???
+        
         mAttributes.addDouble(kMaxLength, "length", 16384, 0);
         mAttributes.setMin(0.0);
         mAttributes.addDouble(kLength, "size", 4096, 1);
         mAttributes.setMin(0.0);
-        mAttributes.addEnum(kUnits, "unit", 2);
+        mAttributes.addEnum(kUnits, "units", 2);
         mAttributes.addEnumItem(kSamples, "samples");
         mAttributes.addEnumItem(kMS, "ms");
         mAttributes.addEnumItem(kSeconds, "seconds");

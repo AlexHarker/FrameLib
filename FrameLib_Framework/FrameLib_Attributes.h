@@ -76,7 +76,6 @@ public:
             assert(Serial::alignment >= sizeof(char) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
             assert(Serial::alignment >= sizeof(char *) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
             assert(Serial::alignment >= FrameLib_Memory::getAlignment() && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
-
         }
         
         static size_t align(size_t size)
@@ -86,7 +85,7 @@ public:
         
         void writeType(DataType type)
         {
-            * ((DataType *) (mPtr + mSize)) = type;
+            *((DataType *) (mPtr + mSize)) = type;
             mSize += align(sizeof(DataType));
         }
         
@@ -96,7 +95,7 @@ public:
             mSize += align(sizeof(size_t));
         }
         
-        void writeString(char *str)
+        void writeString(const char *str)
         {
             size_t N = strlen(str) + 1;
             writeSize(N);
@@ -119,7 +118,7 @@ public:
             return align(sizeof(DataType));
         }
         
-        static size_t sizeString(char *str)
+        static size_t sizeString(const char *str)
         {
             return align(sizeof(size_t)) + align(strlen(str) + 1);
         }
@@ -197,7 +196,7 @@ public:
             mSize += serialised->mSize;
         }
         
-        void write(char *tag, char *str)
+        void write(const char *tag, char *str)
         {
             if (!checkSize(calcSize(tag, str)))
                 return;
@@ -207,9 +206,9 @@ public:
             writeString(str);
         }
         
-        void write(char *tag, double *values, size_t N)
+        void write(const char *tag, double *values, size_t N)
         {
-            if (!checkSize(calcSize(tag, N)))
+            if (!N || !checkSize(calcSize(tag, N)))
                 return;
             
             writeType(kDoubleArray);
@@ -222,12 +221,12 @@ public:
             return serialised->mSize;
         }
         
-        static size_t calcSize(char *tag, char *str)
+        static size_t calcSize(const char *tag, char *str)
         {
             return sizeType() + sizeString(tag) + sizeString(str);
         }
         
-        static size_t calcSize(char *tag, size_t N)
+        static size_t calcSize(const char *tag, size_t N)
         {
             return sizeType() + sizeString(tag) + sizeArray(N);
         }

@@ -69,7 +69,7 @@ protected:
         
 		// Check size
 		
-		if (FFTSize > mMaxFFTSize)
+		if (FFTSize > mMaxFFTSize || !sizeIn)
             sizeOut = 0;
         
 		// Calculate output size

@@ -4,12 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>framelib~ Deployment.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
-		<key>framelib~ Development.xcscheme</key>
+		<key>framelib~ All.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -347,6 +342,21 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B84943B51B834AD00037DFF1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B84943CB1B837DB70037DFF1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B84943DD1B8385BC0037DFF1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B85B689619F1CEDC002D6F1D</key>
 		<dict>
 			<key>primary</key>
@@ -407,6 +417,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B8C680381B80F62300B74B90</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B8C8563F19F2A96C006358DA</key>
 		<dict>
 			<key>primary</key>
@@ -448,6 +463,31 @@
 			<true/>
 		</dict>
 		<key>B8CACC7919C0F4A9007434C9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B8D679CD1B83E51A00519310</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B8D679E31B847A3300519310</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B8D679F51B84996800519310</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B8D67A091B84A00500519310</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B8D67A1C1B84D88F00519310</key>
 		<dict>
 			<key>primary</key>
 			<true/>

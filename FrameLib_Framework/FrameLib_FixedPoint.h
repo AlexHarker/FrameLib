@@ -290,7 +290,7 @@ public:
     /*
     friend FrameLib_FixedPoint operator * (const FrameLib_FixedPoint& lhs, const FrameLib_FixedPoint& rhs)
     {
-        // N.B. Overflow behaviour is undefined for multiplication (it is assumned you are using values well within range for the purpose)
+        // N.B. Overflow behaviour is undefined for multiplication (it is assumed you are using values well within range for the purpose)
         
         FL_UInt64 hi, lo;
         FL_UInt64 w, x, y, z;
