@@ -22,7 +22,7 @@ class FrameLib_Window : public FrameLib_Processor
 
 public:
 	
-    FrameLib_Window(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1, 0, 0)
+    FrameLib_Window(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 2, 1, 0, 0)
     {
         mAttributes.addEnum(kWindowType, "window", 0);
         mAttributes.addEnumItem(kHann, "hann");
@@ -63,6 +63,8 @@ public:
         mSqrtWindow = FALSE;
         mLinearGain = 0.0;
         mPowerGain = 0.0;
+        
+        inputMode(1, TRUE, FALSE, FALSE);
     }
     
 	~FrameLib_Window()
@@ -199,6 +201,14 @@ private:
     }
 	
 protected:
+    
+    void update()
+    {
+        FrameLib_Attributes::Serial *serialised = getInput(1);
+        
+        if (serialised)
+            mAttributes.set(serialised);
+    }
     
     void process ()
 	{

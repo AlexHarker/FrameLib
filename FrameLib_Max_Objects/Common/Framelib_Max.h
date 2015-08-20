@@ -17,11 +17,6 @@
 ///////////////////////////// Structures Etc. ////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-// Connection Mode Enum
-
-enum ConnectMode { kConnect, kConfirm, kDoubleCheck };
-
-
 // Object class and structures
 
 t_class *this_class;
@@ -29,25 +24,12 @@ t_class *this_class;
 
 t_symbol *ps_frame_connection_info;
 
-
-typedef struct _framelib_connection_info
-{
-    struct _framelib *object;
-    t_object *top_level_patcher;
-    unsigned long index;
-    ConnectMode mode;
-    bool doubled_connection;
-    
-} t_framelib_connection_info;
-
-
 typedef struct _framelib_input
 {
     void *proxy;
     
     struct _framelib *object;
     unsigned long index;
-    bool valid;
     bool report_error;
     
 } t_framelib_input;
@@ -254,6 +236,12 @@ FrameLib_Attributes::Serial *framelib_parse_attributes(t_framelib *x, long argc,
 /////////////////////// Main / New / Free / Assist ///////////////////////
 //////////////////////////////////////////////////////////////////////////
 
+// FIX - experimental
+/*
+t_max_err framelib_notify(t_framelib *x, t_symbol *s, t_symbol *msg, void *sender, void *data)
+{
+    post ("notify %x, %s, %s, %x %x", x, s->s_name, msg->s_name, sender, data);
+}*/
 
 extern "C" int C74_EXPORT main (void)
 {
@@ -265,10 +253,14 @@ extern "C" int C74_EXPORT main (void)
 							A_GIMME,
 							0);
     
+    // FIX - experimental
+
+    //class_addmethod (this_class, (method)framelib_notify, "notify", A_CANT, 0L);
+    
 	class_addmethod (this_class, (method)framelib_assist, "assist", A_CANT, 0L);
 	class_addmethod (this_class, (method)framelib_dsp, "dsp64", A_CANT, 0L);
 	class_addmethod (this_class, (method)framelib_frame, "frame", 0L);
-	
+    
 	class_dspinit(this_class);
 	
 	class_register(CLASS_BOX, this_class);
@@ -282,6 +274,21 @@ extern "C" int C74_EXPORT main (void)
 void *framelib_new (t_symbol *s, long argc, t_atom *argv)
 {
     t_framelib *x = (t_framelib *)object_alloc (this_class);
+    
+    // FIX - experimental
+    
+    /*
+     t_patcher *p = gensym("#P")->s_thing;
+    t_class *c = object_class(p);
+    unsigned long numMess = c->c_messcount;
+    for (unsigned long i = 0; i < numMess; i++)
+    {
+        if (c->c_messlist[i].m_sym && c->c_messlist[i].m_sym->s_name)
+            post ("message %s", c->c_messlist[i].m_sym->s_name);
+    }
+    
+    object_attach_byptr(x, p);
+    */
     
     // Init
     
@@ -302,7 +309,6 @@ void *framelib_new (t_symbol *s, long argc, t_atom *argv)
     {
         x->inputs[i].proxy = (i != 0 || x->object->getNumAudioIns()) ? proxy_new(x, x->object->getNumIns() - i, &x->proxy_num) : NULL;
         x->inputs[i].object = NULL;
-        x->inputs[i].valid = NULL;
         x->inputs[i].index = 0;
         x->inputs[i].report_error = TRUE;
     }
@@ -388,20 +394,34 @@ void framelib_dsp (t_framelib *x, t_object *dsp64, short *count, double samplera
 ////////////////////////// Connection Routines ///////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
+// Connection Mode Enum
+
+enum ConnectMode { kConnect, kConfirm, kDoubleCheck };
+
+
+typedef struct _framelib_connection_info
+{
+    struct _framelib *object;
+    unsigned long index;
+    t_object *top_level_patcher;
+    ConnectMode mode;
+    
+} t_framelib_connection_info;
+
 
 void framelib_connect(t_framelib *x, unsigned long index, ConnectMode mode)
 {
-    // FIX - make this safer when we keep track in both directions of where connections are made
+    // FIX - check safety - this now seems good, as long as we make a reasonable check that the object exists before calling this on another object
     
-    if (NOGOOD(x) || !x->outputs)
+    if (!x->outputs)
         return;
     
     t_framelib_connection_info info;
     
     info.object = x;
     info.index = index;
-    info.mode = mode;
     info.top_level_patcher = x->top_level_patcher;
+    info.mode = mode;
     
     ps_frame_connection_info->s_thing = (t_object *) &info;
     outlet_anything(x->outputs[index], gensym("frame"), 0, NULL);
@@ -416,13 +436,14 @@ void framelib_connections(t_framelib *x)
     for (unsigned long i = 0; i < x->object->getNumIns(); i++)
     {
         x->inputs[i].report_error = TRUE;
-
+        
         if (x->inputs[i].object != NULL)
         {
             x->confirm = FALSE;
             x->confirm_index = i;
-
-            framelib_connect(x->inputs[i].object, x->inputs[i].index, kConfirm);
+            
+            if (x->object->isConnected(i))
+                framelib_connect(x->inputs[i].object, x->inputs[i].index, kConfirm);
             
             if (!x->confirm)
             {
@@ -430,7 +451,6 @@ void framelib_connections(t_framelib *x)
                 
                 x->inputs[i].object = NULL;
                 x->inputs[i].index = 0;
-                x->inputs[i].valid = FALSE;
                 
                 if (x->object->isConnected(i))
                     x->object->deleteConnection(i);
@@ -443,8 +463,8 @@ void framelib_connections(t_framelib *x)
     
     // Make output connections
     
-     for (unsigned long i = x->object->getNumOuts(); i > 0; i--)
-         framelib_connect(x, i - 1, kConnect);
+    for (unsigned long i = x->object->getNumOuts(); i > 0; i--)
+        framelib_connect(x, i - 1, kConnect);
     
     // Reset DSP
     
@@ -454,36 +474,37 @@ void framelib_connections(t_framelib *x)
 
 void framelib_frame(t_framelib *x)
 {
-    if (ps_frame_connection_info->s_thing == NULL)
-        return;
-        
     t_framelib_connection_info *info = (t_framelib_connection_info *) ps_frame_connection_info->s_thing;
     
     long confirm_index = x->confirm_index;
     long index = proxy_getinlet((t_object *) x) - x->object->getNumAudioIns();
     
-    if (index < 0)
-        return;
+    bool connection_change;
+    bool valid;
     
-    bool connection_change = FALSE;
-    bool valid = (info->top_level_patcher == x->top_level_patcher || info->object == x);
-
-    if (!valid && info->mode == kConnect)
-    {
-        if (info->object == x)
-            object_error((t_object *) x, "direct feedback loop detected");
-        else
-            object_error((t_object *) x, "cannot connect objects from different top level patchers");
-    }
+    if (!info || index < 0)
+        return;
     
     switch (info->mode)
     {
         case kConnect:
-            connection_change = (x->inputs[index].object != info->object || x->inputs[index].index != info->index);
 
-            // Check for double connection
+            connection_change = (x->inputs[index].object != info->object || x->inputs[index].index != info->index);
+            valid = (info->top_level_patcher == x->top_level_patcher && info->object != x);
             
-            if (x->inputs[index].object && x->inputs[index].report_error && connection_change)
+            // Confirm that the object is valid
+            
+            if (!valid)
+            {
+                if (info->object == x)
+                    object_error((t_object *) x, "direct feedback loop detected");
+                else
+                    object_error((t_object *) x, "cannot connect objects from different top level patchers");
+            }
+
+            // Check for double connection *only* if the internal object is connected (otherwise the previously connected object has been deleted)
+            
+            if (x->inputs[index].object && x->inputs[index].report_error && connection_change && x->object->isConnected(index))
             {
                 x->confirm_index = index;
                 framelib_connect(x->inputs[index].object, x->inputs[index].index, kDoubleCheck);
@@ -491,17 +512,20 @@ void framelib_frame(t_framelib *x)
                 x->inputs[index].report_error = FALSE;
             }
             
-            // Just in case...
+            // Only change the connection if the new object is valid and there is no established connection
             
-            connection_change = (valid && !x->object->isConnected(index)) ? TRUE : connection_change;
+            if (connection_change && valid && !x->object->isConnected(index))
+            {
+                x->inputs[index].object = info->object;
+                x->inputs[index].index = info->index;
+                
+                x->object->addConnection(info->object->object, info->index, index);
+            }
             break;
             
         case kConfirm:
             if (index == confirm_index && x->inputs[index].object == info->object && x->inputs[index].index == info->index)
-            {
                 x->confirm = TRUE;
-                connection_change = (valid != x->inputs[index].valid) || (valid && !x->object->isConnected(index));
-            }
             break;
             
         case kDoubleCheck:
@@ -509,20 +533,4 @@ void framelib_frame(t_framelib *x)
                 object_error((t_object *) x, "extra connection to input %ld", index + 1);
             break;
     }
-
-    if (connection_change)
-    {
-        x->inputs[index].object = info->object;
-        x->inputs[index].index = info->index;
-        x->inputs[index].valid = valid;
-        
-        if (valid)
-            x->object->addConnection(info->object->object, info->index, index);
-        else
-        {
-            if(x->object->isConnected(index))
-                x->object->deleteConnection(index);
-        }
-    }
 }
-
