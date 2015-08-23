@@ -100,16 +100,16 @@ protected:
     {
         Modes mode = mMode;
         
-        unsigned long sizeIn1, size_in2, sizeCommon, sizeOut;
+        unsigned long sizeIn1, sizeIn2, sizeCommon, sizeOut;
         
         double *input1 = isConnected(0) ? getInput(0, &sizeIn1) : mAttributes.getArray(kVals, &sizeIn1);
-        double *input2 = isConnected(1) ? getInput(1, &size_in2) : mAttributes.getArray(kVals, &size_in2);
+        double *input2 = isConnected(1) ? getInput(1, &sizeIn2) : mAttributes.getArray(kVals, &sizeIn2);
         double defaultValue = mPadValue;
         double *output;
         
         // Get common size
         
-        sizeCommon = sizeIn1 < size_in2 ? sizeIn1 : size_in2;
+        sizeCommon = sizeIn1 < sizeIn2 ? sizeIn1 : sizeIn2;
         
         // Calculate output size by mode
         
@@ -119,9 +119,9 @@ protected:
                 sizeOut = sizeCommon;
                 break;
             default:
-                sizeOut = sizeIn1 > size_in2 ? sizeIn1 : size_in2;
+                sizeOut = sizeIn1 > sizeIn2 ? sizeIn1 : sizeIn2;
                 if (mode == kWrap)
-                    sizeOut = sizeIn1 && size_in2 ? sizeOut : 0;
+                    sizeOut = sizeIn1 && sizeIn2 ? sizeOut : 0;
                 break;
         }
         
@@ -139,7 +139,7 @@ protected:
         
         // Clean up if sizes don't match
         
-        if (sizeIn1 != size_in2)
+        if (sizeIn1 != sizeIn2)
         {
             if (mode == kWrap)
             {
@@ -160,23 +160,41 @@ protected:
                 
                 case kWrap:
                 
-                    if (sizeIn1 > size_in2)
+                    if (sizeIn1 > sizeIn2)
                     {
-                       for (unsigned int i = sizeCommon; i < sizeOut;)
-                            for (unsigned int j = 0; j < size_in2; i++, j++)
+                       if (sizeIn2 == 1)
+                       {
+                           double value = input2[0];
+                           for (unsigned int i = 1; i < sizeOut; i++)
+                               output[i] = Op()(input1[i], value);
+                       }
+                       else
+                       {
+                           for (unsigned int i = sizeCommon; i < sizeOut;)
+                               for (unsigned int j = 0; j < sizeIn2; i++, j++)
                                 output[i] = Op()(input1[i], input2[j]);
+                       }
                     }
                     else
                     {
-                        for (unsigned int i = sizeCommon; i < sizeOut;)
-                            for (unsigned int j = 0; j < sizeIn1; i++, j++)
-                                output[i] = Op()(input1[j], input2[i]);
+                        if (sizeIn1 == 1)
+                        {
+                            double value = input1[0];
+                            for (unsigned int i = 1; i < sizeOut; i++)
+                                output[i] = Op()(value, input2[i]);
+                        }
+                        else
+                        {
+                            for (unsigned int i = sizeCommon; i < sizeOut;)
+                                for (unsigned int j = 0; j < sizeIn1; i++, j++)
+                                    output[i] = Op()(input1[j], input2[i]);
+                        }
                     }
                     break;
                     
                 case kPadIn:
                     
-                    if (sizeIn1 > size_in2)
+                    if (sizeIn1 > sizeIn2)
                     {
                         for (unsigned int i = sizeCommon; i < sizeOut; i++)
                             output[i] = Op()(input1[i], defaultValue);

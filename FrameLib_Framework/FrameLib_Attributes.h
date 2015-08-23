@@ -189,7 +189,7 @@ public:
         
         void write(Serial *serialised)
         {
-            if (!checkSize(serialised->mSize))
+            if (!serialised || !checkSize(serialised->mSize))
                 return;
             
             memcpy(mPtr + mSize, serialised->mPtr, serialised->mSize);
@@ -218,7 +218,7 @@ public:
         
         static size_t calcSize(Serial *serialised)
         {
-            return serialised->mSize;
+            return serialised != NULL ? serialised->mSize : 0;
         }
         
         static size_t calcSize(const char *tag, char *str)

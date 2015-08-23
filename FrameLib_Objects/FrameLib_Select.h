@@ -34,7 +34,7 @@ protected:
     
     void update()
     {
-        FrameLib_Attributes::Serial *serialised = getInput(1);
+        FrameLib_Attributes::Serial *serialised = getInput(mNumIns);
         
         if (serialised)
             mAttributes.set(serialised);

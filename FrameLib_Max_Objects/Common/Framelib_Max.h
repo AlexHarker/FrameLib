@@ -479,18 +479,15 @@ void framelib_frame(t_framelib *x)
     long confirm_index = x->confirm_index;
     long index = proxy_getinlet((t_object *) x) - x->object->getNumAudioIns();
     
-    bool connection_change;
-    bool valid;
-    
     if (!info || index < 0)
         return;
     
     switch (info->mode)
     {
         case kConnect:
-
-            connection_change = (x->inputs[index].object != info->object || x->inputs[index].index != info->index);
-            valid = (info->top_level_patcher == x->top_level_patcher && info->object != x);
+        {
+            bool connection_change = (x->inputs[index].object != info->object || x->inputs[index].index != info->index);
+            bool valid = (info->top_level_patcher == x->top_level_patcher && info->object != x);
             
             // Confirm that the object is valid
             
@@ -501,7 +498,7 @@ void framelib_frame(t_framelib *x)
                 else
                     object_error((t_object *) x, "cannot connect objects from different top level patchers");
             }
-
+            
             // Check for double connection *only* if the internal object is connected (otherwise the previously connected object has been deleted)
             
             if (x->inputs[index].object && x->inputs[index].report_error && connection_change && x->object->isConnected(index))
@@ -512,15 +509,16 @@ void framelib_frame(t_framelib *x)
                 x->inputs[index].report_error = FALSE;
             }
             
-            // Only change the connection if the new object is valid and there is no established connection
+            // Always change the connection if the new object is valid (only way to ensure new connections work)
             
-            if (connection_change && valid && !x->object->isConnected(index))
+            if (connection_change && valid)
             {
                 x->inputs[index].object = info->object;
                 x->inputs[index].index = info->index;
                 
                 x->object->addConnection(info->object->object, info->index, index);
             }
+        }
             break;
             
         case kConfirm:

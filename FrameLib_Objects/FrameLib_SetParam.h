@@ -29,7 +29,7 @@ public:
         mAttributes.set(serialisedAttributes);
         mNumIns = mAttributes.getInt(kNumIns);
 
-        setIO(mNumIns, 1);
+        setIO(mNumIns + 1, 1);
         
         outputMode(0, kOutputTagged);
     }
@@ -50,6 +50,9 @@ protected:
             sizeOut += FrameLib_Attributes::Serial::calcSize(mAttributes.getString(kNames + i), sizeIn);
         }
         
+        FrameLib_Attributes::Serial *preTagged = getInput(mNumIns);
+        sizeOut += FrameLib_Attributes::Serial::calcSize(preTagged);
+        
         requestOutputSize(0, sizeOut);
         allocateOutputs();
         
@@ -60,6 +63,8 @@ protected:
             double *input = getInput(i, &sizeIn);
             output->write(mAttributes.getString(kNames + i), input, sizeIn);
         }
+        
+        output->write(preTagged);
     }
     
 private:
