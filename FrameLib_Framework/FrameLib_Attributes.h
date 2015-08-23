@@ -180,7 +180,7 @@ public:
             // Update
             
             mPtr = newPtr;
-            mMaxSize += writeSize;
+            mMaxSize += growSize;
             
             return TRUE;
         }

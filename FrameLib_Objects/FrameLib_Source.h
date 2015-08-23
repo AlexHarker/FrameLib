@@ -60,6 +60,11 @@ public:
         reset();
     }
     
+    ~FrameLib_Source()
+    {
+        delete mBuffer;
+    }
+    
     void reset()
     {
         FrameLib_DSP::reset();

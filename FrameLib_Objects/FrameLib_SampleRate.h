@@ -26,8 +26,6 @@ public:
         mAttributes.addEnumItem(kFreqToHalfNorm, "freq->halfnorm");
         
         mAttributes.set(serialisedAttributes);
-        
-        inputMode(1, TRUE, FALSE, FALSE);
     }
     
 protected:

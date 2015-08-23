@@ -38,6 +38,12 @@ public:
         reset();
     }
     
+    ~FrameLib_Trace()
+    {
+        delete mBuffer;
+        delete mFlags;
+    }
+    
     void reset()
     {
         FrameLib_DSP::reset();
