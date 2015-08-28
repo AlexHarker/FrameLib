@@ -9,8 +9,10 @@
 // FIX - MAX_VECTOR_SIZE hack
 // FIX - source is only sample accurate (not subsample) - add a function to interpolate if neceesary
 // FIX - allow attributes to change (and check naming and behaviour...
-// FIX - check add delay for alignment purposes
+// FIX - add delay for alignment purposes
 // FIX - check DSP ordering
+
+// FIX - SOURCE IS VERY BROKEN - do testing with fast schedulers etc etc etc.
 
 #define MAX_VECTOR_SIZE 8192
 

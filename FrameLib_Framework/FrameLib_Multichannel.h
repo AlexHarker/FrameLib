@@ -5,6 +5,7 @@
 #include "FrameLib_Block.h"
 #include "FrameLib_DSP.h"
 #include <vector>
+#include <queue>
 
 // FrameLib_MultiChannel
 
@@ -15,10 +16,10 @@ class FrameLib_MultiChannel
     // ************************************************************************************** //
 
     // Connection Queue - this allows the network to update itself without deep recursive stack calls
-    
+
 public:
     
-    class ConnectionQueue
+    class ConnectionQueue 
     {
     
     public:
@@ -27,7 +28,10 @@ public:
         
         void add(FrameLib_MultiChannel *object)
         {
-            object->mNext = NULL;
+            // Do not re-add if already in queue
+            
+            if (object->mNext != NULL)
+                return;
             
             if (!mTop)
             {
@@ -36,7 +40,7 @@ public:
                 mTop = mTail = object;
 
                 while (mTop)
-                {                    
+                {
                     object = mTop;
                     object->inputUpdate();
                     mTop = object->mNext;
@@ -48,7 +52,7 @@ public:
             else
             {
                 // Add to the queue (which is already processing)
-
+                
                 mTail->mNext = object;
                 mTail = object;
             }
@@ -93,12 +97,12 @@ private:
     
 public:
     
-    FrameLib_MultiChannel (ConnectionQueue *queue, unsigned long nIns, unsigned long nOuts) : mQueue(queue)
+    FrameLib_MultiChannel (ConnectionQueue *queue, unsigned long nIns, unsigned long nOuts) : mQueue(queue), mNext(NULL)
     {
         setIO(nIns, nOuts);
     }
     
-    FrameLib_MultiChannel (ConnectionQueue *queue) : mQueue(queue)
+    FrameLib_MultiChannel (ConnectionQueue *queue) : mQueue(queue), mNext(NULL)
     {
     }
     
@@ -112,7 +116,7 @@ public:
     
 protected:
     
-    // Call this in derived class constructors only if the IO size is not fixed
+    // Call this in derived class constructors if the IO size is not static
     
     void setIO(unsigned long nIns, unsigned long nOuts)
     {
@@ -199,6 +203,13 @@ protected:
     
     ConnectionInfo getChan(unsigned long inIdx, unsigned long chan)
     {
+        if (mInputs[inIdx].mObject == NULL)
+        {
+            unsigned long *ptr = NULL;
+            *ptr = 0;
+            
+        }
+        
         return mInputs[inIdx].mObject->mOutputs[mInputs[inIdx].mIndex].mConnections[chan];
     }
     

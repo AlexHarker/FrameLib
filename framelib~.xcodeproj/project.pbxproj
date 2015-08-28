@@ -56,6 +56,7 @@
 		B805E34D19C3AFCB007D8D8B /* fl.copysign~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B805E33019C3AF69007D8D8B /* fl.copysign~.cpp */; };
 		B805E34E19C3AFCF007D8D8B /* fl.min~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B805E33A19C3AF69007D8D8B /* fl.min~.cpp */; };
 		B805E34F19C3AFD3007D8D8B /* fl.max~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B805E33919C3AF69007D8D8B /* fl.max~.cpp */; };
+		B8061D511B8C0C00002C8BD2 /* FrameLib_Interval.h in Headers */ = {isa = PBXBuildFile; fileRef = B8061D501B8C0C00002C8BD2 /* FrameLib_Interval.h */; };
 		B809BDE419C42CDA00BA41F4 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
 		B809BDE819C42CDA00BA41F4 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B809BDF519C42CEB00BA41F4 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
@@ -427,6 +428,7 @@
 		B805E33D19C3AF69007D8D8B /* fl.plus~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.plus~.cpp"; sourceTree = "<group>"; };
 		B805E33E19C3AF69007D8D8B /* fl.pow~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.pow~.cpp"; sourceTree = "<group>"; };
 		B805E33F19C3AF69007D8D8B /* fl.times~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.times~.cpp"; sourceTree = "<group>"; };
+		B8061D501B8C0C00002C8BD2 /* FrameLib_Interval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Interval.h; sourceTree = "<group>"; };
 		B8075B131979173E00EB3A35 /* FrameLib_DSP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_DSP.h; sourceTree = "<group>"; };
 		B809BDC619C42CC500BA41F4 /* fl.abs~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "fl.abs~.cpp"; path = "fl.unary/fl.abs~.cpp"; sourceTree = "<group>"; };
 		B809BDC719C42CC500BA41F4 /* fl.acos~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "fl.acos~.cpp"; path = "fl.unary/fl.acos~.cpp"; sourceTree = "<group>"; };
@@ -1800,6 +1802,7 @@
 				B8F83EAA19C79C8900230CD4 /* FrameLib_Count.h */,
 				B8D8DB7D1B89D664000203E5 /* FrameLib_Select.h */,
 				B8CACC8C19C0F62C007434C9 /* FrameLib_Source.h */,
+				B8061D501B8C0C00002C8BD2 /* FrameLib_Interval.h */,
 				B843AAA219C05435000D3476 /* FrameLib_Sink.h */,
 				B8D679CC1B83E39E00519310 /* FrameLib_Trace.h */,
 				B8D679E01B84798100519310 /* FrameLib_Map.h */,
@@ -2405,6 +2408,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8061D511B8C0C00002C8BD2 /* FrameLib_Interval.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

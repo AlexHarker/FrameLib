@@ -236,12 +236,6 @@ FrameLib_Attributes::Serial *framelib_parse_attributes(t_framelib *x, long argc,
 /////////////////////// Main / New / Free / Assist ///////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-// FIX - experimental
-/*
-t_max_err framelib_notify(t_framelib *x, t_symbol *s, t_symbol *msg, void *sender, void *data)
-{
-    post ("notify %x, %s, %s, %x %x", x, s->s_name, msg->s_name, sender, data);
-}*/
 
 extern "C" int C74_EXPORT main (void)
 {
@@ -252,10 +246,6 @@ extern "C" int C74_EXPORT main (void)
 							0L,
 							A_GIMME,
 							0);
-    
-    // FIX - experimental
-
-    //class_addmethod (this_class, (method)framelib_notify, "notify", A_CANT, 0L);
     
 	class_addmethod (this_class, (method)framelib_assist, "assist", A_CANT, 0L);
 	class_addmethod (this_class, (method)framelib_dsp, "dsp64", A_CANT, 0L);
@@ -275,21 +265,6 @@ void *framelib_new (t_symbol *s, long argc, t_atom *argv)
 {
     t_framelib *x = (t_framelib *)object_alloc (this_class);
     
-    // FIX - experimental
-    
-    /*
-     t_patcher *p = gensym("#P")->s_thing;
-    t_class *c = object_class(p);
-    unsigned long numMess = c->c_messcount;
-    for (unsigned long i = 0; i < numMess; i++)
-    {
-        if (c->c_messlist[i].m_sym && c->c_messlist[i].m_sym->s_name)
-            post ("message %s", c->c_messlist[i].m_sym->s_name);
-    }
-    
-    object_attach_byptr(x, p);
-    */
-    
     // Init
     
     framelib_common_init(x);
@@ -304,6 +279,8 @@ void *framelib_new (t_symbol *s, long argc, t_atom *argv)
     
     x->inputs = (t_framelib_input *) malloc(sizeof(t_framelib_input) * x->object->getNumIns());
     x->outputs = (void **) malloc(sizeof(void *) * x->object->getNumOuts());
+    
+    // FIX - proxy storage ordering/position
     
     for (unsigned long i = 0; i < x->object->getNumIns(); i++)
     {
@@ -485,7 +462,7 @@ void framelib_frame(t_framelib *x)
     switch (info->mode)
     {
         case kConnect:
-        {
+        {            
             bool connection_change = (x->inputs[index].object != info->object || x->inputs[index].index != info->index);
             bool valid = (info->top_level_patcher == x->top_level_patcher && info->object != x);
             

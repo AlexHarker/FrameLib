@@ -33,6 +33,8 @@ public:
         
         DSPQueue(FrameLib_Local_Allocator *allocator) : mAllocator(allocator), mTop(NULL), mTail(NULL) {}
         
+        // FIX - check assumption that an object can only be in the queue once at a time!
+        
         void add(FrameLib_DSP *object)
         {
             object->mNext = NULL;
@@ -513,6 +515,8 @@ protected:
     {
         return mBlockTime;
     }
+    
+    // FIX - you can't just pretend these will all be fine to access - these times need safety checks...!!!!!!!!!!!
     
     FrameLib_TimeFormat getInputFrameTime(unsigned long idx)
     {
