@@ -37,12 +37,17 @@ protected:
         FrameLib_Attributes::Serial *serialised = getInput(mNumIns);
         
         if (serialised)
+        {
             mAttributes.set(serialised);
         
-        mActiveIn = mAttributes.getValue(kActiveIn);
+            mActiveIn = mAttributes.getValue(kActiveIn);
         
-        for (unsigned long i = 0; i < mNumIns; i++)
-            updateTrigger(i, i == mActiveIn);
+            for (unsigned long i = 0; i < mNumIns; i++)
+                updateTrigger(i, i == mActiveIn);
+            
+            // FIx - negative values trucated etc. - make sure this is safe
+            
+        }
     }
     
     void process()

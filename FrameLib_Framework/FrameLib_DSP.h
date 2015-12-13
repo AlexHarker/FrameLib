@@ -353,25 +353,28 @@ private:
         else
         {
             bool trigger = FALSE;
-            bool inputUpdate = FALSE;
-            
-            // Check for inputs at the current frame time that trigger or update
+
+            // Check for inputs at the current frame time that update
             
             for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
             {
-                if ((ins->mObject && mValidTime == ins->mObject->mFrameTime))
+                if (ins->mUpdate && ins->mObject && mValidTime == ins->mObject->mFrameTime)
                 {
-                    if (ins->mTrigger)
-                        trigger = TRUE;
-                    if (ins->mUpdate)
-                        inputUpdate = TRUE;
+                    update();
+                    break;
                 }
             }
             
-            // Check for updates to be done before processing or scheduling
+            // Check for inputs at the current frame time that trigger (after any update)
             
-            if (inputUpdate)
-                update();
+            for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
+            {
+                if (ins->mTrigger && ins->mObject && mValidTime == ins->mObject->mFrameTime)
+                {
+                    trigger = TRUE;
+                    break;
+                }
+            }
 
             // Store previous valid till time to determine later if there has been any change
             
@@ -401,6 +404,7 @@ private:
             }
             
             // Determine if time has updated
+            // FIX - is it possible in a process object for time not to update???
             
             timeUpdated = mValidTime != prevValidTillTime;
 
@@ -412,6 +416,8 @@ private:
                 
                 for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
                 {
+                    // FIX - I don't get the second of these tests
+                    
                     if (ins->mObject && ((ins->mTrigger && !ins->mSwitchable) || (!ins->mObject->mOutputDone || ins->mSwitchable)) && (mValidTime == ins->mObject->mValidTime))
                     {
                         if (ins->mObject->mOutputDone)
