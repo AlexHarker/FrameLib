@@ -62,7 +62,7 @@ void FFT_FUNC_NAME(pass_real_trig_table) (FFT_SPLIT_TYPE *input, FFT_SETUP_TYPE 
 	if (ifft)
 		flip = -1.;
 	
-	// Do DC and Nyquist (note the the complex values can be considerd periodic)
+	// Do DC and Nyquist (note that the complex values can be considered periodic)
 	
 	tr1_ptr++;
 	ti1_ptr++;

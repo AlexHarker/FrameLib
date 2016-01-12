@@ -82,13 +82,16 @@ protected:
         if (buffer && size)
         {
             ibuffer_increment_inuse(buffer);
-            ibuffer_info(buffer, &bufferSamples, &length, &nChans, &format);
-            chan = (mChan - 1) % nChans;
             
-            paddedSize = (size + 0x3) & ~0x3;
+            if (ibuffer_info(buffer, &bufferSamples, &length, &nChans, &format))
+            {
+                chan = (mChan - 1) % nChans;
             
-            tempMemSize = (mMode == kLinear) ? paddedSize * (2 * sizeof(float) + sizeof(double) + sizeof(AH_SIntPtr)) : paddedSize * (4 * sizeof(float) + sizeof(double) + sizeof(AH_SIntPtr));
-            tempMem = mAllocator->alloc(tempMemSize);
+                paddedSize = (size + 0x3) & ~0x3;
+            
+                tempMemSize = (mMode == kLinear) ? paddedSize * (2 * sizeof(float) + sizeof(double) + sizeof(AH_SIntPtr)) : paddedSize * (4 * sizeof(float) + sizeof(double) + sizeof(AH_SIntPtr));
+                tempMem = mAllocator->alloc(tempMemSize);
+            }
             
             if (!tempMem)
                 ibuffer_decrement_inuse(buffer);
@@ -178,11 +181,10 @@ protected:
         }
         else
         {
-            // Zero output if no buffer
+            // Zero output if no buffer or memory
             
             for (unsigned int i = 0; i < size; i++)
                 output[i] = 0.0;
-
         }
     }
     

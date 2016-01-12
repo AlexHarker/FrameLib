@@ -1,0 +1,196 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww30000\viewh14820\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 wSORT ISSUES WITH TRIGGERS/UPDATE INPUTS/FILTERING\
+	\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\b \cf0 LOSS OF FUNCTIONALITY	Trig/Update Solution 1:
+\b0  as is (triggers must be pre-updated, which sucks for filtering type apps)\
+
+\b WINNER!					Trig/Update Solution 2:
+\b0  implement update inputs (increases virtual function calls and possibly basic DSP cost, need new check for output completeness? - does give nice way in to attribute updates)\
+
+\b PITA						Trig/Update Solution 3:
+\b0  always call process function and hand over all trigger handling / updating (more pita for when coding objects and possible speed implications (good or bad) - how to handle completeness?)\
+\
+
+\b NO FUNCTIONALITY LOSS	Filtering Solution 1:
+\b0  as is with blocks (makes one input to many *expensive* by N where N is the block cost, but this should be a minimal use case across the whole system)\
+
+\b PITA 					Filtering Solution 2: 
+\b0 outputs share end times, but can start at different times and have independent completeness status (increases input/output dependencies for double links / outputs times + completeness cannot be fully handled by the dsp code)\
+
+\b PIFTA					Filtering Solution 3: 
+\b0 outputs do not share times, but can start at different times and have different end / times / completeness status (total pita when coding objects - how to handle completeness?)\
+\
+Output completeness is a pita in all situations\
+\
+Modes an input may have:\
+\
+[2 states]\
+It updates triggers / it doesn\'92t\
+\
+[4 states]\
+it cannot create output / it is a trigger (always/sometime) / it is not a trigger, but can become one  \
+\
+Full Enumerations:\
+\
+\
+May Trigger Updates		/	Other\
+\
+True  / Cannot Create Output\
+True  / Always Triggers\
+True  / Is a trigger (but can not be one)\
+True  / Not a trigger (but can become one)\
+False / Cannot Create Output\
+False /  Always Triggers\
+False / Is a trigger (but can not be one)\
+False / Not a trigger (but can become one)\
+\
+\
+
+\b Triggers
+\b0  will be examined for new frames (and possibly completeness)\
+
+\b Inputs that never trigger
+\b0  can be ignored in making time updates, but then we need to check for output updates differently and deal with input timing somewhat differently.\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\tx13139\pardirnatural
+\cf0 We need to know if an input is a trigger right now for the purposes of triggering and completeness\
+Do we care about changing state in the dsp routine or only for allowing changes? 	(if it can change we can\'92t depend on it for completeness, but if it can\'92t then we can) - SO YES\
+Do we care that it will never change state in the trigger case (we do care if it never creates output)?	SEE ABOVE\
+Can we link trigger updates to not creating outputs or should they be separate?	MAX FUNCTIONALITY COMES FROM NO LINK (examine content to allow filtering)\
+\
+In theory other updates (like attributes can be branched in the process code), but perhaps it is nice to have them here?	OK - so it is up to the user how they use updates (although an attribute update input is possible)\
+How does this affect schedulers for attribute updates?\
+\
+\
+
+\b Completeness test:\
+
+\b0 \
+0 - doesn\'92t affect it\
+1 - is complete\
+2 - not complete unless 1 is true\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\tx7384\tx7938\tx8503\tx9049\tx9603\tx10148\tx10752\tx13139\pardirnatural
+
+\b \cf0 Connected	0	x	1	1	1	1	1	1	1	1\
+TimeTest		x	0	1	1	1	1	1	1	1	1\
+
+\b0 \
+Complete (c)	x	x	0	1	
+\b 0
+\b0 	1	
+\b 0
+\b0 	1	
+\b 0
+\b0 	1\
+Trigger (t)		x	x	0	0	
+\b 1
+\b0 	1	
+\b 0
+\b0 	0	
+\b 1
+\b0 	1\
+Switchable (s)	x	x	0	0	
+\b 0
+\b0 	0	
+\b 1
+\b0 	1	
+\b 1
+\b0 	1\
+\
+t && s				0	0	0	0	0	0	1	1\
+t || s					0	0	1	1	1	1	1	1\
+t ^ s					0	0	1	1	1	1	0	0\
+\
+c && s				0	0	0	1	0	0	0	1\
+c || s					0	1	1	1	0	1	1	1\
+c ^ s					0	1	1	0	0	1	1	0\
+\
+c && s				0	0	0	0	0	1	0	1\
+c || s					0	1	0	1	1	1	1	1\
+c ^ s					0	1	0	1	1	0	1	0\
+\
+Output		0	0	0	0	2	1	2	0	2	0\
+\
+c (differentiate 1 and 2)	\
+\
+(t1&&s0) || (s1 && c0)\
+\
+cnt && tt && ((t1&&s0) || (s1 && c0))\
+\
+if (c1 && t1)\
+\
+\
+\
+\
+
+\b ATTRIBUTES\
+\
+
+\b0 Serialisation:\
+\
+Block Size (in bytes)\
+\
+N * Attributes\
+\
+End Tag (Type)\
+\
+
+\b Attribute\
+\
+
+\b0 Type	(doubles / string / end tag)\
+String Length (+term) \
+String (with end termination)\
+Data Length (in items / chars (+term) or doubles)\
+Raw Data\
+
+\b \
+\
+
+\b0 put (string / doubles / n)\
+put (string, string)\
+
+\b \
+getType()\
+getSize()\
+getString()\
+\
+read()\
+\{\
+	if (getType()\
+getSize()\
+getString()\
+GetDoubles()\
+\
+ATTR Features\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\tx7384\tx7938\tx8503\tx9049\tx9603\tx10148\tx10752\tx14158\pardirnatural
+\cf0 \
+
+\b0 1 	- error reporting (attrib doesn\'92t exist / types wrong for writing / string too long / can\'92t be written to now)	
+\b LOW PRIORITY
+\b0 \
+2 	- support reporting to host system (type / period valid for / range / enum strings					
+\b DONE\
+
+\b0 3	- support for instantiation only attributes\'85												
+\b DO LATER
+\b0 \
+4 	- support arguments without tags (as separate items) - (predefined attribute names that you subscribe to / other method)	
+\b DONE (IN CLASS)
+\b0 \
+		- N.B. - to allow aliasing you should read the arguments into attributes named differently 0 rather than building it in)	
+\b SUPPORT IN WRAPPER
+\b0 \
+5	- support for checking what has changed to reduced expensive calculations					
+\b DONE
+\b0 \
+	}

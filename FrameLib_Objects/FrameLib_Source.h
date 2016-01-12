@@ -127,7 +127,7 @@ private:
         
         // Calculate time offset
         
-        unsigned long offset = round(getBlockTime() - inputTime);
+        long offset = round(getBlockTime() - inputTime);
         
         // Safety
         

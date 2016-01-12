@@ -172,6 +172,10 @@
 		B84943E41B8385BC0037DFF1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B84943E51B8385BC0037DFF1 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B84943EE1B8386100037DFF1 /* fl.spatial~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84943ED1B8386100037DFF1 /* fl.spatial~.cpp */; };
+		B84BE87D1C1F63E500A55F8C /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
+		B84BE8801C1F63E500A55F8C /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
+		B84BE8811C1F63E500A55F8C /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		B84BE88A1C1F641500A55F8C /* fl.medianfilter~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84BE8891C1F641500A55F8C /* fl.medianfilter~.cpp */; };
 		B85B689B19F1CEDC002D6F1D /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
 		B85B689D19F1CEDC002D6F1D /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B85B689E19F1CEDC002D6F1D /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
@@ -507,6 +511,9 @@
 		B84943DC1B8385320037DFF1 /* FrameLib_Spatial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Spatial.h; sourceTree = "<group>"; };
 		B84943EB1B8385BC0037DFF1 /* fl.spatial~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.spatial~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B84943ED1B8386100037DFF1 /* fl.spatial~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.spatial~.cpp"; sourceTree = "<group>"; };
+		B84BE8781C1F592400A55F8C /* FrameLib_MedianFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_MedianFilter.h; sourceTree = "<group>"; };
+		B84BE8871C1F63E500A55F8C /* fl.medianfilter~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.medianfilter~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B84BE8891C1F641500A55F8C /* fl.medianfilter~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.medianfilter~.cpp"; sourceTree = "<group>"; };
 		B85B20E619938415004FFF22 /* FrameLib_Multichannel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Multichannel.h; sourceTree = "<group>"; };
 		B85B689419F1CDA3002D6F1D /* FrameLib_SallenAndKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FrameLib_SallenAndKey.h; path = Filters/FrameLib_SallenAndKey.h; sourceTree = "<group>"; };
 		B85B689519F1CEB7002D6F1D /* fl.sallenkey~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.sallenkey~.cpp"; sourceTree = "<group>"; };
@@ -1105,6 +1112,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B84BE87F1C1F63E500A55F8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B84BE8801C1F63E500A55F8C /* Carbon.framework in Frameworks */,
+				B84BE8811C1F63E500A55F8C /* MaxAudioAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B85B689C19F1CEDC002D6F1D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1575,6 +1591,7 @@
 				B8D67A171B84A00500519310 /* fl.frommax~.mxo */,
 				B8D67A2A1B84D88F00519310 /* fl.coordinatesystem~.mxo */,
 				B8D8DB8D1B89D74B000203E5 /* fl.select~.mxo */,
+				B84BE8871C1F63E500A55F8C /* fl.medianfilter~.mxo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1680,6 +1697,7 @@
 				B85B68E819F29470002D6F1D /* FrameLib_Subframe.h */,
 				B85B68E619F29470002D6F1D /* FrameLib_Join.h */,
 				B8AE692D19F45A1D0040B4EE /* FrameLib_Shift.h */,
+				B84BE8781C1F592400A55F8C /* FrameLib_MedianFilter.h */,
 			);
 			path = Vector;
 			sourceTree = "<group>";
@@ -1866,6 +1884,7 @@
 				B8F83E2E19C78E0000230CD4 /* fl.sum~.cpp */,
 				B8F83E2F19C78E0000230CD4 /* fl.product~.cpp */,
 				B8F83E2C19C78E0000230CD4 /* fl.mean~.cpp */,
+				B84BE8891C1F641500A55F8C /* fl.medianfilter~.cpp */,
 				B861EBC519CA3EF100B89477 /* fl.percentile~.cpp */,
 				B861EBC619CA3EF100B89477 /* fl.sort~.cpp */,
 				B8F83E2D19C78E0000230CD4 /* fl.gmean~.cpp */,
@@ -2240,6 +2259,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B84943DE1B8385BC0037DFF1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B84BE87A1C1F63E500A55F8C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3547,6 +3573,26 @@
 			productReference = B84943EB1B8385BC0037DFF1 /* fl.spatial~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
+		B84BE8791C1F63E500A55F8C /* fl.medianfilter~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B84BE8831C1F63E500A55F8C /* Build configuration list for PBXNativeTarget "fl.medianfilter~" */;
+			buildPhases = (
+				B84BE87A1C1F63E500A55F8C /* Headers */,
+				B84BE87B1C1F63E500A55F8C /* Resources */,
+				B84BE87C1C1F63E500A55F8C /* Sources */,
+				B84BE87F1C1F63E500A55F8C /* Frameworks */,
+				B84BE8821C1F63E500A55F8C /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "fl.medianfilter~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = B84BE8871C1F63E500A55F8C /* fl.medianfilter~.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
 		B85B689619F1CEDC002D6F1D /* fl.sallenkey~ */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B85B68A019F1CEDC002D6F1D /* Build configuration list for PBXNativeTarget "fl.sallenkey~" */;
@@ -4394,6 +4440,7 @@
 				B8D67A091B84A00500519310 /* fl.frommax~ */,
 				B8D67A1C1B84D88F00519310 /* fl.coordinatesystem~ */,
 				B8D8DB7F1B89D74B000203E5 /* fl.select~ */,
+				B84BE8791C1F63E500A55F8C /* fl.medianfilter~ */,
 			);
 		};
 /* End PBXProject section */
@@ -4750,6 +4797,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B84943DF1B8385BC0037DFF1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B84BE87B1C1F63E500A55F8C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -5369,6 +5423,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B84943E61B8385BC0037DFF1 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B84BE8821C1F63E500A55F8C /* Rez */ = {
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -6093,6 +6154,15 @@
 			files = (
 				B84943EE1B8386100037DFF1 /* fl.spatial~.cpp in Sources */,
 				B84943E11B8385BC0037DFF1 /* tlsf.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B84BE87C1C1F63E500A55F8C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B84BE88A1C1F641500A55F8C /* fl.medianfilter~.cpp in Sources */,
+				B84BE87D1C1F63E500A55F8C /* tlsf.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10900,6 +10970,93 @@
 			};
 			name = Default;
 		};
+		B84BE8841C1F63E500A55F8C /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_CFLAGS = "";
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		B84BE8851C1F63E500A55F8C /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_CFLAGS = "";
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		B84BE8861C1F63E500A55F8C /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_PPC64 = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_CFLAGS = "";
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
 		B85B68A119F1CEDC002D6F1D /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -14638,6 +14795,16 @@
 				B84943E81B8385BC0037DFF1 /* Development */,
 				B84943E91B8385BC0037DFF1 /* Deployment */,
 				B84943EA1B8385BC0037DFF1 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		B84BE8831C1F63E500A55F8C /* Build configuration list for PBXNativeTarget "fl.medianfilter~" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B84BE8841C1F63E500A55F8C /* Development */,
+				B84BE8851C1F63E500A55F8C /* Deployment */,
+				B84BE8861C1F63E500A55F8C /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;

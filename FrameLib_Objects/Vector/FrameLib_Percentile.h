@@ -50,6 +50,8 @@ protected:
             
             output[0] = input[idx] + fract * (input[idx + 1] - input[idx]);
         }
+        
+        mAllocator->dealloc(temp);
     }
     
 private:
