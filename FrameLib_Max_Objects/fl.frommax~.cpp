@@ -64,7 +64,7 @@ struct MaxMessage
         FL_UIntPtr offset = 0;
         while (*string)
         {
-            ptr |= ((*string++ & 0x1F) - 1) << offset;
+            ptr |= (((FL_UIntPtr) (*string++ & 0x1F) - 1) << offset);
             offset += 0x04;
         }
         
