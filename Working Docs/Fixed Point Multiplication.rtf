@@ -1,0 +1,270 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red255\green0\blue0;\red255\green128\blue0;\red255\green128\blue0;
+\red0\green0\blue0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww15840\viewh19920\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\tx7354\tx7927\tx8514\tqr\tx9047\tqr\tx9047\tqr\tx9047\tx9057\tx9057\tx9057\tx9057\tqc\tx9089\pardirnatural
+
+\f0\fs24 \cf0 \
+				A		*		B\
+\
+				AM		AL		BM		BL\
+				AM1 AM2 AL1 AL2 	BM1 BM2 BL1 BL2  \
+\
+				OM				OL\
+\
+dashes are 32bits wide\
+\
+AM*BM	-		-		-|\
+				AM*BL	-		-		-|\
+				AL*BM	-		-		-|\
+								AL*BL	-		-		-|\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\tx7354\tx7927\tx8514\tqr\tx9047\tqr\tx9047\tqr\tx9047\tx9057\tx9057\tx9057\tx9057\tqc\tx9089\pardirnatural
+\cf2 AM*BM	-\cf0 		-		-|\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\tx7354\tx7927\tx8514\tqr\tx9047\tqr\tx9047\tqr\tx9047\tx9057\tx9057\tx9057\tx9057\tqc\tx9089\pardirnatural
+\cf0 				AM1*BL1	-|\
+						\cf3 AM1*BL2	-|\
+						AM2*BL1	-|\cf0 \
+								AM2*BL2	-|\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\tx7354\tx7927\tx8514\tqr\tx9047\tqr\tx9047\tqr\tx9047\tx9057\tx9057\tx9057\tx9057\tqc\tx9089\pardirnatural
+\cf0 				AL1*BM1	-|\
+				(carry)	\cf3 AL1*BM2	-|\
+						AL2*BM1	-|\cf0 \
+						carry	AL2*BM2	-|\
+\
+								AL1*BL1	-|\
+										\cf3 AL1*BL2\cf0 	\cf2 -|\cf0 \
+										\cf3 AL2*BL1\cf0 	\cf2 -|\cf0 \
+												\cf2 AL2*BL2	-|\
+\
+\
+AM*BM	-\cf0 		-		-|\
+				AM1*BL1	-|\
+				AL1*BM1	-|\
+				carry	\cf4 AM1*BL2	-|\
+						AM2*BL1	-|\cf0 \
+						\cf4 AL1*BM2	-|\
+						AL2*BM1	-|\cf0 \
+						carry	AM2*BL2	-|\
+								AL2*BM2	-|\
+								AL1*BL1	-|\
+								carry	\cf4 AL1*BL2\cf0 	\cf2 -|\cf0 \
+										\cf4 AL2*BL1\cf0 	\cf2 -|\cf0 \
+										carry?	\cf2 AL2*BL2	-|\
+\
+\
+\cf5 13 multiplications\
+\
+DIVIDE AND CONQUER\
+\
+Do as four 64 * 64 bit (one in a single int)\
+\
+a-b * c-d\
+\
+e = a*c -\
+f = 	a*d	-\
+g =		c*b	-\
+h = 		d*d	-\
+\
+\
+[\cf0 lo_split = &]\
+[hi_split = >>]\
+\cf5 \
+Either	(5 adds, 1 ands, 2 shifts, 2 carry checks) * 3 (15 adds, 3 ands, 6 shifts, 6 carry checks)\
+\
+w = f + g (with carry - x)\
+\cf0 lo = h + lo_split(w) (with carry - y)\cf5 \
+hi = e + hi_split(w) + y + (x << 32)\
+\
+Or (5 adds, 2 ands, 2 shifts, 2 carry checks) * 3 (15 adds, 6 ands, 6 shifts, 6 carry checks)\
+\
+lo = h + \cf0 lo_split(f) (with carry x)\
+lo += lo_split(g) (with carry update x)\
+\cf5 hi = e + x + hi_split(f) + hi_split(g)\
+\
+Then we have\
+\
+w		-		-		-\
+				x		-		-		-	\
+				y		-		-		-\
+								z		-		-		-\
+\
+Either (6 adds, 2 ands, 2 shifts, 4 carry checks)\
+\
+\cf0 carry check on ls(z - c1)\cf5 \
+lo = z + ls(x) + ls(z) + c1 (3 carry checks - c2)\
+hi = w + hs(x) + hi(y) + c2\
+\
+[TOTAL 21 adds, 5 ands, 8 shifts, 10 carry checks)]\
+\
+Or (7 adds, 1 and, 1 shift, 6 carry checks)\
+\
+\cf0 carry check on ls(z - c1)\
+t = \{x + y\} (this is - 3 adds and 3 carry checks - c2)\
+lo = z + ls(t) + c1 (2 carry checks - c3)\
+hi = w + hs(t) + c3\cf5 \
+\
+TOTAL (22 adds, 4 ands, 7 shifts, 12 carry checks)\
+\
+DIRECT\
+\
+\
+\cf2 AM*BM	-\cf0 		-		-|\
+				AM1*BL1	-|\
+				AL1*BM1	-|\
+						\cf4 AM1*BL2	-|\
+						AM2*BL1	-|\cf0 \
+						\cf4 AL1*BM2	-|\
+						AL2*BM1	-|\cf0 \
+								AM2*BL2	-|\
+								AL2*BM2	-|\
+								AL1*BL1	-|\
+										\cf4 AL1*BL2\cf0 	\cf2 -|\cf0 \
+										\cf4 AL2*BL1\cf0 	\cf2 -|\cf0 \
+												\cf2 AL2*BL2	-|\
+\
+e			\
+				f\
+				g\
+						h\
+						i	\
+						j\
+						k\
+								l\
+								m\
+								n\
+										o\
+										p\
+												q\
+\
+8 adds, 6 carry checks\
+w = o + p (1 carry check - c1)\
+x = l + m + n (2 carry checks - c2)\
+y = h + i + j + k (3 carry checks - c3)\
+z = e + f + g (none of this can carry usefully) - all as 64bit\
+\
+\
+z		-		\cf5 -		-				\
+						\cf3 y		-\cf5 	\
+								x		-\
+										\cf3 w\cf2 		-\
+												q		-\
+\
+\
+8/9 adds, 5 shifts, 6 carry checks \
+\
+ls(w) + q (2 carry checks - c4)\
+lo = x + hs(w) + lsh(y) + c4 + (c1 << 32) (4 carry checks - c5)\
+hi = z + hs(y) + (c2 + c5) + (c3 << 32)\
+\
+TOTAL FOR DIRECT = 17/18 adds, 5 shifts, 12 carry checks \
+\
+\
+// CODE ATTEMPT V1\
+\
+mul		-		\cf0 -		-				\
+						\cf4 z		-\cf0 	\
+								y		-\
+										\cf4 x\cf2 		-\
+												c		-\
+\
+\
+// Two numbers as 2 64bit ints\
+\
+a_hi a_lo\
+b_hi b_lo\
+\
+// Split into two lots of 4 x 32bits\
+ \
+a1 = a_hi >> 0x20;\
+a2 = a_hi & 0xFFFFFFFF;\
+a3 = a_lo >> 0x20;\
+a4 = a_lo & 0xFFFFFFFF;\
+b1 = b_hi >> 0x20;\
+b2 = b_hi & 0xFFFFFFFF;\
+b3 = b_lo >> 0x20;\
+b4 = b_lo & 0xFFFFFFFF;\
+\
+\
+c = a4 * b4;\
+\
+d = a3 * b4;\
+e = a4 * b3;\
+\
+f = a3 * b3;\
+g = a2 * b4;\
+h = a4 * b2;\
+\
+i = a2 * b3;\
+j = a3 * b2;\
+k = a1 * b4;\
+l = a4 * b1;\
+\
+m = a1 * b3;\
+n = a3 * b1;\
+\
+t = c + (x & 0xFFFFFFFF); \
+c1 = (c > t) ? 1ULL : 0LL;\
+c1 = (t & 0x8000000000000000) ? c1++ : c1;\
+\
+x = d + e (do carry checks - c2)\
+y = f + g + h (do carry checks - c3)\
+z = i + j + k + l (do carry checks - c4)\
+\
+lo = y + (x >> 0x20) + (z & 0xFFFFFFFF) + c1 + (c2 << 0x20); (do 4 or less carry checks - add to c3)\
+hi = (a_hi * b_hi) + m + n + (z >> 0x20) + c3 + (c4 << 0x20);\
+\
+\
+\
+// CODE ATTEMPT V2\
+\
+bool add_with_carry(*o, a, b)\
+\{\
+	*o = a + b;\
+	\
+	return (*o < a) ? TRUE : FALSE;\
+\}\
+\
+// Two numbers as 2 64bit ints\
+\
+a_hi a_lo\
+b_hi b_lo\
+\
+// Split into two lots of 4 x 32bits\
+ \
+a1 = a_hi >> 0x20;\
+a2 = a_hi & 0xFFFFFFFF;\
+a3 = a_lo >> 0x20;\
+a4 = a_lo & 0xFFFFFFFF;\
+\
+b1 = b_hi >> 0x20;\
+b2 = b_hi & 0xFFFFFFFF;\
+b3 = b_lo >> 0x20;\
+b4 = b_lo & 0xFFFFFFFF;\
+\
+\
+c1 = add_with_carry(&x, a3 * b4, a4 * b3) ? 0x20ULL : 0LL; \
+c1 = add_with_carry(&t, a4 * b4, x << 0x20) ? c1++ : c1;\
+c1 = (t & 0x8000000000000000) ? c1++ : c1;\
+\
+c2 = add_with_carry(&y, a3 * b3, a2 * b4) ? 0x1ULL : 0LL; \
+c2 = add_with_carry(&y, y, a4 * b2) ? c2++ : c2;\
+\
+c3 = add_with_carry(&z, a2 * b3, a3 * b2) ? 0x1ULL : 0LL; \
+c3 = add_with_carry(&z, y, a1 * b4) ? c3++ : c3;\
+c3 = add_with_carry(&z, y, a4 * b1) ? c3++ : c3;\
+\
+c2 = add_with_carry(&lo, y, ((z << 0x20) & (x >> 0x20))) ? c2++ : c2;\
+c2 = add_with_carry(&lo, lo, c1) ? c2++ : c2;\
+\
+hi = (a_hi * b_hi) + (a1 * b3) + (a3 * b1) + c2 + ((c3 << 0x20) & (z >> 0x20));\
+\
+13 mul\
+13 adds\
+2 ands\
+5 shifts\
+9/10 carry checks}

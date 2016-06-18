@@ -626,7 +626,7 @@ private:
                 
                 for (unsigned long i = cChannels; i < nChannels; i++)
                 {
-                    mBlocks[i] = new T (mDSPQueue, mSerialisedAttributes);
+                    mBlocks[i] = new T(mDSPQueue, mSerialisedAttributes);
                     mBlocks[i]->setSamplingRate(mSamplingRate);
                 }
             }

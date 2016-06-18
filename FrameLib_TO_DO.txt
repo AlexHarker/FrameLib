@@ -2,9 +2,10 @@
 1 - Fixed Point Division / Fixed Point Time Format
 2 - Finalise Memory Management
 3 - Finalise Max Wrapper
-4 - Multi threading work (Memory / DSP / Attributes / DSP Queue / Connection)
-5 - Methods of dealing with fixed input values (and modes related to this)
-6 - Methods of dealing with data storage and retrieval (a la coll etc.) and also buffers (abstract out?)
+4 - Methods of dealing with fixed input values (and modes related to this)
+5 - Methods of dealing with data storage and retrieval (a la coll etc.) and also buffers (abstract out?)
+6 - Multi threading work (Memory / DSP / Attributes / DSP Queue / Connection)
+
 
 Examine https://www.threadingbuildingblocks.org/
 

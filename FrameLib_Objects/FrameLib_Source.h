@@ -64,7 +64,7 @@ public:
     
     ~FrameLib_Source()
     {
-        delete mBuffer;
+        delete[] mBuffer;
     }
     
     void reset()
@@ -76,7 +76,7 @@ public:
         if (size != mSize)
         {
             mSize = round(size);
-            delete mBuffer;
+            delete[] mBuffer;
             mBuffer = new double[mSize];
         }
         

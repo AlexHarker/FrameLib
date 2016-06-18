@@ -40,8 +40,8 @@ public:
     
     ~FrameLib_Trace()
     {
-        delete mBuffer;
-        delete mFlags;
+        delete[] mBuffer;
+        delete[] mFlags;
     }
     
     void reset()
@@ -65,8 +65,8 @@ public:
         if (size != mSize)
         {
             mSize = size;
-            delete mBuffer;
-            delete mFlags;
+            delete[] mBuffer;
+            delete[] mFlags;
             mBuffer = new double[mSize];
             mFlags = new bool[mSize];
         }

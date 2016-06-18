@@ -36,6 +36,11 @@ public:
         reset();
     }
     
+    ~FrameLib_Sink()
+    {
+        delete[] mBuffer;
+    }
+    
     void reset()
     {
         FrameLib_DSP::reset();
@@ -57,7 +62,7 @@ public:
         if (size != mSize)
         {
             mSize = size;
-            delete mBuffer;
+            delete[] mBuffer;
             mBuffer = new double[mSize];
         }
         
