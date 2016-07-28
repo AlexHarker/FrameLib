@@ -561,7 +561,7 @@ public:
     
     // Audio Processing
     
-    virtual void blockProcess (double **ins, double **outs, unsigned long vecSize)
+    virtual void blockProcess(double **ins, double **outs, unsigned long vecSize)
     {
         double *temps[getNumAudioOuts()];
         

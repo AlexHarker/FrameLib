@@ -273,7 +273,7 @@ private:
     
     // Block updates for objects with audio IO
     
-    void blockUpdate (double **ins, double **outs, unsigned long vecSize)
+    void blockUpdate(double **ins, double **outs, unsigned long vecSize)
     {
         // Update block time and process the block
         
