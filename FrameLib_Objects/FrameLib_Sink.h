@@ -73,7 +73,7 @@ public:
     
 private:
     
-    void copyAndZero (double *output, unsigned long offset, unsigned long size)
+    void copyAndZero(double *output, unsigned long offset, unsigned long size)
     {
         if (size)
         {
@@ -84,7 +84,7 @@ private:
         }
     }
     
-    void blockProcess (double **ins, double **outs, unsigned long vecSize)
+    void blockProcess(double **ins, double **outs, unsigned long vecSize)
     {
         double *output = outs[0];
         
@@ -101,13 +101,13 @@ private:
         copyAndZero(output + size, 0, vecSize - size);
     }
     
-    void AddToBuffer (double *input, unsigned long offset, unsigned long size)
+    void AddToBuffer(double *input, unsigned long offset, unsigned long size)
     {
         for (unsigned long i = 0; i < size; i++)
             mBuffer[i + offset] += input[i];
     }
     
-    void process ()
+    void process()
     {
         unsigned long sizeIn;
 
