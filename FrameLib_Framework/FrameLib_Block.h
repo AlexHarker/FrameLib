@@ -66,14 +66,14 @@ public:
         // Override to handle audio at the block level (objects with block-based audio must overload this)
     }
     
-    bool handlesAudio()
+    static bool handlesAudio()
     {
-        return mHandlesAudio;
+        return false;
     }
     
     virtual void updateHandlesAudio()
     {
-        // This function should set the mHandlesAudio member variable and be called whenver this might change
+        // This function should set the mHandlesAudio member variable and be called whenever this might change
     }
     
     virtual void reset() = 0;
@@ -100,10 +100,6 @@ private:
     
     unsigned long mNumAudioIns;
     unsigned long mNumAudioOuts;
-    
-protected:
-    
-    bool mHandlesAudio;
 };
 
 // Virtual Destructor

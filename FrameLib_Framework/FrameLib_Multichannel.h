@@ -161,11 +161,12 @@ public:
         // Override to handle audio at the block level (objects with block-based audio must overload this)
     }
     
-    virtual bool handlesAudio()
+    static bool handlesAudio()
     {
         // This function allows you to tell the outside world (whatever that is) whether or not it should call the audio brocessing block
+        // By default this is false, but it can be overridden to be true
         
-        return FALSE;
+        return false;
     }
     
     virtual void reset()
@@ -540,9 +541,9 @@ public:
     
     // Handles Audio
     
-    bool handlesAudio()
+    static bool handlesAudio()
     {
-        return mBlocks[0]->handlesAudio();
+        return T::handlesAudio();
     }
     
     // IO

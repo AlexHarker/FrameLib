@@ -8,10 +8,73 @@
 #include "FrameLib_DSP.h"
 #include "FrameLib_Globals.h"
 
+#include <vector>
+
 // FIX - sort out formatting style / template class style / naming?
 // FIX - improve reporting of extra connections + look into feedback detection...
 // FIX - think about adding assist helpers for this later...
 // FIX - threadsafety??
+
+void wrapper_main(const char *name);
+
+//////////////////////////////////////////////////////////////////////////
+///////////////////////////// Sync Check Class ///////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+typedef struct _syncinfo
+{
+    void *object;
+    long time;
+    
+} t_syncinfo;
+
+t_syncinfo sync_info;
+
+void sync_set_info(void *object, long time)
+{
+    sync_info.object = object;
+    sync_info.time = time;
+    gensym("__FrameLib__SYNC__")->s_thing = (t_object *) (object ? &sync_info : NULL);
+}
+
+t_syncinfo *sync_get_info()
+{
+    return (t_syncinfo *) gensym("__FrameLib__SYNC__")->s_thing;
+}
+
+struct SyncCheck
+{
+    bool validSync()
+    {
+        t_syncinfo *info = sync_get_info();
+        
+        if (!info)
+            return false;
+        
+        void *object = info->object;
+        long time = info->time;
+        
+        if (time == mTime)
+        {
+            for (std::vector<void *>::iterator it = mObjects.begin(); it != mObjects.end(); it++)
+                if (*it == object)
+                    return false;
+        }
+        else
+        {
+            mTime = time;
+            mObjects.clear();
+        }
+        
+        mObjects.push_back(object);
+        return true;
+    }
+    
+private:
+    
+    long mTime;
+    std::vector<void *> mObjects;
+};
 
 //////////////////////////////////////////////////////////////////////////
 ///////////////////////////// Structures Etc. ////////////////////////////
@@ -19,7 +82,7 @@
 
 // Object class and structures
 
-t_class *this_class;
+t_class *framelib_class;
 
 
 t_symbol *ps_frame_connection_info;
@@ -49,6 +112,8 @@ typedef struct _framelib
     bool confirm;
     
     t_object *top_level_patcher;
+    
+    SyncCheck *sync_check;
     
 } t_framelib;
 
@@ -120,6 +185,8 @@ void framelib_common_init(t_framelib *x)
 
 void framelib_common_free(t_framelib *x)
 {
+    // FIX - does this ever delete the tie to the symbol?
+    
     framelib_set_global(framelib_get_global()->decrement());
     framelib_set_common(x, framelib_get_common(x)->decrement());
 }
@@ -130,15 +197,16 @@ void framelib_common_free(t_framelib *x)
 
 FrameLib_Attributes::Serial *framelib_parse_attributes(t_framelib *x, long argc, t_atom *argv);
 
-void *framelib_new (t_symbol *s, long argc, t_atom *argv);
-void framelib_free (t_framelib *x);
-void framelib_assist (t_framelib *x, void *b, long m, long a, char *s);
+void *framelib_new(t_symbol *s, long argc, t_atom *argv);
+void framelib_free(t_framelib *x);
+void framelib_assist(t_framelib *x, void *b, long m, long a, char *s);
 
 void framelib_perform(t_framelib *x, t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam);
-void framelib_dsp (t_framelib *x, t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags);
+void framelib_dsp(t_framelib *x, t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags);
 
 void framelib_connections(t_framelib *x);
 void framelib_frame(t_framelib *x);
+void framelib_sync(t_framelib *x);
 
 //////////////////////////////////////////////////////////////////////////
 /////////////////////////// Attribute Parsing ////////////////////////////
@@ -237,9 +305,21 @@ FrameLib_Attributes::Serial *framelib_parse_attributes(t_framelib *x, long argc,
 //////////////////////////////////////////////////////////////////////////
 
 
-extern "C" int C74_EXPORT main (void)
+extern "C" int C74_EXPORT main(void)
 {
-	this_class = class_new (OBJECT_NAME,
+    // If handles audio/scheduler then make wrapper class and name the inner object differently..
+    
+    char main_name[256];
+
+    if (OBJECT_CLASS::handlesAudio())
+    {
+        wrapper_main(OBJECT_NAME);
+        sprintf(main_name, "unsynced.%s", OBJECT_NAME);
+    }
+    else
+        strcpy(main_name, OBJECT_NAME);
+    
+	framelib_class = class_new(main_name,
 							(method)framelib_new,
 							(method)framelib_free,
 							sizeof(t_framelib),
@@ -247,23 +327,43 @@ extern "C" int C74_EXPORT main (void)
 							A_GIMME,
 							0);
     
-	class_addmethod (this_class, (method)framelib_assist, "assist", A_CANT, 0L);
-	class_addmethod (this_class, (method)framelib_dsp, "dsp64", A_CANT, 0L);
-	class_addmethod (this_class, (method)framelib_frame, "frame", 0L);
+	class_addmethod(framelib_class, (method)framelib_assist, "assist", A_CANT, 0L);
+	class_addmethod(framelib_class, (method)framelib_dsp, "dsp64", A_CANT, 0L);
+	class_addmethod(framelib_class, (method)framelib_frame, "frame", 0L);
+    class_addmethod(framelib_class, (method)framelib_sync, "sync", 0L);
     
-	class_dspinit(this_class);
+	class_dspinit(framelib_class);
 	
-	class_register(CLASS_BOX, this_class);
+	class_register(CLASS_BOX, framelib_class);
 		
     ps_frame_connection_info = gensym("__frame__connection__info__");
     
     return 0;
 }
 
-
-void *framelib_new (t_symbol *s, long argc, t_atom *argv)
+long get_num_audio_ins(t_framelib *x)
 {
-    t_framelib *x = (t_framelib *)object_alloc (this_class);
+    return (long) x->object->getNumAudioIns() + (OBJECT_CLASS::handlesAudio() ? 1 : 0);
+}
+
+long get_num_audio_outs(t_framelib *x)
+{
+    return (long) x->object->getNumAudioOuts() + (OBJECT_CLASS::handlesAudio() ? 1 : 0);
+}
+
+long get_num_ins(t_framelib *x)
+{
+    return (long) x->object->getNumIns();
+}
+
+long get_num_outs(t_framelib *x)
+{
+    return (long) x->object->getNumOuts();
+}
+
+void *framelib_new(t_symbol *s, long argc, t_atom *argv)
+{
+    t_framelib *x = (t_framelib *)object_alloc (framelib_class);
     
     // Init
     
@@ -277,35 +377,37 @@ void *framelib_new (t_symbol *s, long argc, t_atom *argv)
     
     delete serialisedAttributes;
     
-    x->inputs = (t_framelib_input *) malloc(sizeof(t_framelib_input) * x->object->getNumIns());
-    x->outputs = (void **) malloc(sizeof(void *) * x->object->getNumOuts());
+    x->inputs = (t_framelib_input *) malloc(sizeof(t_framelib_input) * get_num_ins(x));
+    x->outputs = (void **) malloc(sizeof(void *) * get_num_outs(x));
     
-    // FIX - proxy storage ordering/position
-    
-    for (unsigned long i = 0; i < x->object->getNumIns(); i++)
+    for (long i = get_num_ins(x) - 1; i >= 0; i--)
     {
-        x->inputs[i].proxy = (i != 0 || x->object->getNumAudioIns()) ? proxy_new(x, x->object->getNumIns() - i, &x->proxy_num) : NULL;
+        // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles audio)
+        
+        x->inputs[i].proxy = (i || OBJECT_CLASS::handlesAudio()) ? proxy_new(x, get_num_audio_ins(x) + i, &x->proxy_num) : NULL;
         x->inputs[i].object = NULL;
         x->inputs[i].index = 0;
         x->inputs[i].report_error = TRUE;
     }
     
-    for (unsigned long i = x->object->getNumOuts(); i > 0; i--)
+    for (unsigned long i = get_num_outs(x); i > 0; i--)
         x->outputs[i - 1] = outlet_new(x, NULL);
     
     // Setup for audio, even if the object doesn't handle it, so that dsp recompile works correctly
     
-    dsp_setup((t_pxobject *)x, (long) x->object->getNumAudioIns());
+    dsp_setup((t_pxobject *)x, get_num_audio_ins(x));
     
     x->x_obj.z_misc = Z_NO_INPLACE;
     
-    for (unsigned long i = 0; i < x->object->getNumAudioOuts(); i++)
+    for (unsigned long i = 0; i < get_num_audio_outs(x); i++)
         outlet_new(x, "signal");
     
     x->confirm_index = -1;
     x->confirm = FALSE;
     
-	return(x);
+    x->sync_check = new SyncCheck();
+    
+	return x;
 }
 
 
@@ -313,7 +415,7 @@ void framelib_free(t_framelib *x)
 {
 	dsp_free((t_pxobject *)x);
 
-    for (unsigned long i = 0; i < x->object->getNumIns(); i++)
+    for (unsigned long i = 0; i < get_num_ins(x); i++)
         if (x->inputs[i].proxy != NULL)
             object_free((t_object *) x->inputs[i].proxy);
     
@@ -323,6 +425,8 @@ void framelib_free(t_framelib *x)
     delete x->object;
     
     framelib_common_free(x);
+    
+    delete x->sync_check;
 }
 
 
@@ -344,13 +448,15 @@ void framelib_assist (t_framelib *x, void *b, long m, long a, char *s)
 //////////////////////////////////////////////////////////////////////////
 
 
-void framelib_perform (t_framelib *x, t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam)
+void framelib_perform(t_framelib *x, t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam)
 {
-	x->object->blockProcess(ins, outs, vec_size);
+    // N.B. Plus one due to sync inputs
+    
+	x->object->blockProcess(ins + 1, outs + 1, vec_size);
 }
 
 
-void framelib_dsp (t_framelib *x, t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
+void framelib_dsp(t_framelib *x, t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
 {
     // Check / make connections
     
@@ -362,7 +468,7 @@ void framelib_dsp (t_framelib *x, t_object *dsp64, short *count, double samplera
     
     // Add a perform routine to the chain if the object handles audio
     
-	if (x->object->handlesAudio())
+	if (OBJECT_CLASS::handlesAudio())
 		object_method(dsp64, gensym("dsp_add64"), x, framelib_perform, 0, NULL);
 }
 
@@ -410,7 +516,7 @@ void framelib_connections(t_framelib *x)
 {
     // Check input connections
     
-    for (unsigned long i = 0; i < x->object->getNumIns(); i++)
+    for (unsigned long i = 0; i < get_num_ins(x); i++)
     {
         x->inputs[i].report_error = TRUE;
         
@@ -440,7 +546,7 @@ void framelib_connections(t_framelib *x)
     
     // Make output connections
     
-    for (unsigned long i = x->object->getNumOuts(); i > 0; i--)
+    for (unsigned long i = get_num_outs(x); i > 0; i--)
         framelib_connect(x, i - 1, kConnect);
     
     // Reset DSP
@@ -448,13 +554,12 @@ void framelib_connections(t_framelib *x)
     x->object->reset();
 }
 
-
 void framelib_frame(t_framelib *x)
 {
     t_framelib_connection_info *info = (t_framelib_connection_info *) ps_frame_connection_info->s_thing;
     
     long confirm_index = x->confirm_index;
-    long index = proxy_getinlet((t_object *) x) - x->object->getNumAudioIns();
+    long index = proxy_getinlet((t_object *) x) - get_num_audio_ins(x);
     
     if (!info || index < 0)
         return;
@@ -508,4 +613,273 @@ void framelib_frame(t_framelib *x)
                 object_error((t_object *) x, "extra connection to input %ld", index + 1);
             break;
     }
+}
+
+void framelib_sync(t_framelib *x)
+{
+    if (x->sync_check->validSync())
+        for (unsigned long i = get_num_outs(x); i > 0; i--)
+            outlet_anything(x->outputs[i - 1], gensym("sync"), 0, NULL);
+}
+
+//////////////////////////////////////////////////////////////////////////
+////////////////////// Mutator for Synchronisation ///////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+t_class *mutator_class;
+
+typedef struct _mutator
+{
+    t_pxobject x_obj;
+    void *out;
+    
+} t_mutator;
+
+void signal_mutate(t_mutator *x, t_symbol *sym, long ac, t_atom *av)
+{
+    post("MUTATE TIME %ld", gettime());
+    sync_set_info(x, gettime());
+    outlet_anything(x->out, gensym("sync"), 0, 0);
+    sync_set_info(NULL, gettime());
+}
+
+void *create_mutator()
+{
+    t_mutator *x = (t_mutator *)object_alloc(mutator_class);
+    x->out = outlet_new((t_object *)x, "sync");
+    return x;
+}
+
+void mutator_main()
+{    
+    if (!(mutator_class = class_findbyname(CLASS_NOBOX, gensym("__fl.signal.mutator"))))
+    {
+        mutator_class = class_new("__fl.signal.mutator", (method)create_mutator, NULL, sizeof(t_mutator), NULL, 0);
+        class_addmethod(mutator_class, (method)signal_mutate, "signal", A_GIMME, 0);
+        class_register(CLASS_NOBOX, mutator_class);
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////
+////////////////////// Wrapper for Synchronisation ///////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+t_class *wrapper_class;
+
+typedef struct _wrapper
+{
+    t_pxobject x_obj;
+    
+    // FIX - object types
+    
+    // Objects
+    
+    t_object *patch_internal;
+    t_jbox *obj_internal;
+    t_mutator *obj_mutator;
+    
+    // Inlets (must be freed)
+    
+    void **in_outlets;
+    void **proxy_ins;
+    void *sync_in;
+    
+    // Outlets (don't need to free - only the arrays need freeing)
+    
+    void **audio_outs;
+    void **outs;
+
+    // Sync Check
+    
+    SyncCheck *sync_check;
+
+    // Dummy for stuffloc on proxies
+    
+    long unused;
+    
+} t_wrapper;
+
+void *wrapper_new(t_symbol *s, long argc, t_atom *argv)
+{
+    t_wrapper *x = (t_wrapper *)object_alloc(wrapper_class);
+    
+    // Create Patcher (you must report this as a subpatcher to get audio working)
+    
+    t_dictionary *d = dictionary_new();
+    t_atom a;
+    t_atom *av = NULL;
+    long ac = 0;
+    
+    atom_setparse(&ac, &av, "@defrect 0 0 300 300");
+    attr_args_dictionary(d, ac, av);
+    atom_setobj(&a, d);
+    x->patch_internal = (t_object *)object_new_typed(CLASS_NOBOX,gensym("jpatcher"),1, &a);
+    
+    // Create Objects
+    
+    char name[256];
+    sprintf(name, "unsynced.%s", OBJECT_NAME);
+
+    // FIX - make me better
+    
+    char *text = NULL;
+    long textsize = 0;
+    
+    atom_gettext(argc, argv, &textsize, &text, 0);
+    x->obj_internal = (t_jbox *) newobject_sprintf(x->patch_internal, "@maxclass newobj @text \"%s %s\" @patching_rect 0 0 30 10", name, text);
+    x->obj_mutator = (t_mutator *) object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 0, NULL);
+    
+    // Free resources we no longer need
+    
+    sysmem_freeptr(av);
+    freeobject((t_object *)d);
+    sysmem_freeptr(text);
+    
+    // Get the object itself
+    
+    t_framelib *internal = (t_framelib *) jbox_get_object((t_object *)x->obj_internal);
+    
+    long num_ins = get_num_ins(internal);
+    long num_outs = get_num_outs(internal);
+    long num_audio_ins = get_num_audio_ins(internal);
+    long num_audio_outs = get_num_audio_outs(internal);
+    
+    // Create I/O
+    
+    x->in_outlets = (void **) malloc(sizeof(void *) * (num_ins + num_audio_ins - 1));
+    x->proxy_ins = (void **) malloc(sizeof(void *) * (num_ins + num_audio_ins - 1));
+    x->audio_outs = (void **) malloc(sizeof(void *) * (num_audio_outs - 1));
+    x->outs = (void **) malloc(sizeof(void *) * num_outs);
+    
+    // Inlets for messages/signals
+    
+    x->sync_in = outlet_new(NULL, NULL);
+    
+    for (long i = num_ins + num_audio_ins - 2; i >= 0 ; i--)
+    {
+        x->in_outlets[i] = outlet_new(NULL, NULL);
+        x->proxy_ins[i] = i ? proxy_new(x, i, &x->unused) : NULL;
+    }
+    
+    // Outlets for messages/signals
+    
+    for (long i = num_outs - 1; i >= 0 ; i--)
+        x->outs[i] = outlet_new((t_object *)x, NULL);
+    for (long i = num_audio_outs - 2; i >= 0 ; i--)
+        x->audio_outs[i] = outlet_new((t_object *)x, "signal");
+    
+    // Create Connections
+    
+    // Connect the audio sync in to the object and through to the mutator
+    
+    outlet_add(x->sync_in, inlet_nth((t_object *)internal, 0));
+    outlet_add(outlet_nth((t_object *)internal, 0), inlet_nth((t_object *)x->obj_mutator, 0));
+    
+    // Connect inlets (all types)
+    
+    for (long i = 0; i < num_audio_ins + num_ins - 1; i++)
+        outlet_add(x->in_outlets[i], inlet_nth((t_object *)internal, i + 1));
+    
+    // Connect outlets (audio then frame and sync message outlets)
+    
+    for (long i = 0; i < num_audio_outs - 1; i++)
+        outlet_add(outlet_nth((t_object *)internal, i + 1), x->audio_outs[i]);
+    
+    for (long i = 0; i < num_outs; i++)
+    {
+        outlet_add(outlet_nth((t_object *)internal, i + num_audio_outs), x->outs[i]);
+        outlet_add(outlet_nth((t_object *)x->obj_mutator, 0), x->outs[i]);
+    }
+    
+    x->sync_check = new SyncCheck();
+    
+    return x;
+}
+
+void wrapper_free(t_wrapper *x)
+{
+    // Delete ins and proxys
+    
+    t_framelib *internal = (t_framelib *) jbox_get_object((t_object *) x->obj_internal);
+    
+    long num_ins = get_num_ins(internal);
+    long num_audio_ins = get_num_audio_ins(internal);
+    
+    for (long i = num_ins + num_audio_ins - 2; i >= 0 ; i--)
+    {
+        if (x->proxy_ins[i])
+            freeobject((t_object *)x->proxy_ins[i]);
+        freeobject((t_object *)x->in_outlets[i]);
+    }
+    
+    // Free arrays
+    
+    free(x->in_outlets);
+    free(x->proxy_ins);
+    free(x->audio_outs);
+    free(x->outs);
+    
+    // Can I just delete the patch and not the internal object?
+    
+    freeobject((t_object *)x->obj_internal);
+    freeobject((t_object *)x->obj_mutator);
+    freeobject((t_object *)x->sync_in);
+    freeobject(x->patch_internal);
+    
+    delete x->sync_check;
+}
+
+void wrapper_assist(t_wrapper *x, void *b, long m, long a, char *s)
+{
+    framelib_assist((t_framelib *) jbox_get_object((t_object *) x->obj_internal), b, m, a + 1, s);
+}
+
+void *wrapper_subpatcher(t_wrapper *x, long index, void *arg)
+{
+    if ((t_ptr_uint) arg <= 1 || NOGOOD(arg))
+        return NULL;
+    
+    return (index == 0) ? (void *) x->patch_internal : NULL;
+}
+
+void wrapper_sync(t_wrapper *x, t_symbol *sym, long ac, t_atom *av)
+{
+    if (x->sync_check->validSync())
+    {
+        // FIX - the below looks unnecessary as chained dependencies are already dependencies
+        //object_method_typed(jbox_get_object((t_object *)x->obj_internal), gensym("sync"), ac, av, NULL);
+        outlet_anything(x->sync_in, gensym("signal"), ac, av);
+    }
+}
+
+void wrapper_anything(t_wrapper *x, t_symbol *sym, long ac, t_atom *av)
+{
+    long inlet = proxy_getinlet((t_object *) x);
+    
+    outlet_anything(x->in_outlets[inlet], sym, ac, av);
+}
+
+void wrapper_main(const char *name)
+{
+    wrapper_class = class_new(name,
+                            (method)wrapper_new,
+                            (method)wrapper_free,
+                            sizeof(t_wrapper),
+                            NULL,
+                            A_GIMME,
+                            0);
+    
+    class_addmethod(wrapper_class, (method)wrapper_sync, "sync", A_GIMME, 0);
+    class_addmethod(wrapper_class, (method)wrapper_anything, "anything", A_GIMME, 0);
+    class_addmethod(wrapper_class, (method)wrapper_subpatcher, "subpatcher", A_CANT, 0);
+    class_addmethod(wrapper_class, (method)wrapper_assist, "assist", A_CANT, 0);
+    
+    // N.B. MUST add signal handling after dspinit to override the builtin responses
+    
+    class_dspinit(wrapper_class);
+    class_addmethod(wrapper_class, (method)wrapper_anything, "signal", A_GIMME, 0);
+    
+    class_register(CLASS_BOX, wrapper_class);
+    
+    mutator_main();
 }

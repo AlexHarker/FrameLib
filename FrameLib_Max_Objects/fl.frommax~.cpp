@@ -10,7 +10,7 @@
 
 // FIX - THE MAX STUFF NEEDS TO BE EXTENSIBLE SO I DON'T HAVE TO DO THIS
 // FIX - SOOOOOOO MANY HACKX - THIS NEEDS A MUCH SAFER APPROACH!
-// FIX - memory management is horrible - don't memory manage use st::vector in the audio thread - replace this also
+// FIX - memory management is horrible - don't memory manage use std::vector in the audio thread - replace this also
 
 // TO DO
 
@@ -358,6 +358,7 @@ void framelib_dsp (t_framelib *x, t_object *dsp64, short *count, double samplera
 
 void framelib_connections(t_framelib *x);
 void framelib_frame(t_framelib *x);
+void framelib_sync(t_framelib *x);
 
 //////////////////////////////////////////////////////////////////////////
 /////////////////////////// Attribute Parsing ////////////////////////////
@@ -468,14 +469,15 @@ extern "C" int C74_EXPORT main (void)
 							A_GIMME,
 							0);
     
-    class_addmethod (this_class, (method)framelib_int, "int", A_DEFLONG, 0L);
-    class_addmethod (this_class, (method)framelib_float, "float", A_DEFFLOAT, 0L);
-    class_addmethod (this_class, (method)framelib_list, "list", A_GIMME, 0L);
-    class_addmethod (this_class, (method)framelib_anything, "anything", A_GIMME, 0L);
+    class_addmethod(this_class, (method)framelib_int, "int", A_DEFLONG, 0L);
+    class_addmethod(this_class, (method)framelib_float, "float", A_DEFFLOAT, 0L);
+    class_addmethod(this_class, (method)framelib_list, "list", A_GIMME, 0L);
+    class_addmethod(this_class, (method)framelib_anything, "anything", A_GIMME, 0L);
 
-	class_addmethod (this_class, (method)framelib_assist, "assist", A_CANT, 0L);
-	class_addmethod (this_class, (method)framelib_dsp, "dsp64", A_CANT, 0L);
-	class_addmethod (this_class, (method)framelib_frame, "frame", 0L);
+	class_addmethod(this_class, (method)framelib_assist, "assist", A_CANT, 0L);
+	class_addmethod(this_class, (method)framelib_dsp, "dsp64", A_CANT, 0L);
+	class_addmethod(this_class, (method)framelib_frame, "frame", 0L);
+    class_addmethod(this_class, (method)framelib_frame, "sync", 0L);
 	
 	class_dspinit(this_class);
 	
@@ -489,7 +491,7 @@ extern "C" int C74_EXPORT main (void)
 
 void *framelib_new (t_symbol *s, long argc, t_atom *argv)
 {
-    t_framelib *x = (t_framelib *)object_alloc (this_class);
+    t_framelib *x = (t_framelib *)object_alloc(this_class);
     
     // Init
     
@@ -576,13 +578,13 @@ void framelib_assist (t_framelib *x, void *b, long m, long a, char *s)
 //////////////////////////////////////////////////////////////////////////
 
 
-void framelib_perform (t_framelib *x, t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam)
+void framelib_perform(t_framelib *x, t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam)
 {
 	x->object->blockProcess(ins, outs, vec_size);
 }
 
 
-void framelib_dsp (t_framelib *x, t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
+void framelib_dsp(t_framelib *x, t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
 {
     // Check / make connections
     
@@ -594,7 +596,7 @@ void framelib_dsp (t_framelib *x, t_object *dsp64, short *count, double samplera
     
     // Add a perform routine to the chain if the object handles audio
     
-	if (x->object->handlesAudio())
+    if (FrameLib_Expand<FrameLib_FromMax>::handlesAudio())
 		object_method(dsp64, gensym("dsp_add64"), x, framelib_perform, 0, NULL);
 }
 
@@ -740,4 +742,10 @@ void framelib_frame(t_framelib *x)
                 object_error((t_object *) x, "extra connection to input %ld", index + 1);
             break;
     }
+}
+
+void framelib_sync(t_framelib *x)
+{
+    for (unsigned long i = x->object->getNumOuts(); i > 0; i--)
+        outlet_anything(x->outputs[i - 1], gensym("sync"), 0, NULL);
 }

@@ -202,7 +202,7 @@ protected:
 
         // Check if the object handles audio
         
-        updateHandlesAudio();
+        //updateHandlesAudio();
 
         // Reset for audio
         
@@ -268,7 +268,9 @@ private:
     
     bool requiresAudioNotification()
     {
-        return mRequiresAudioNotification;
+        // FIX- review this...
+        
+        return mType == kScheduler || (mType == kProcessor && (getNumAudioIns() || getNumAudioOuts()));
     }
     
     // Block updates for objects with audio IO
@@ -637,12 +639,12 @@ protected:
     // ************************************************************************************** //
     
     // Audio handling reporting
-    
+    /*
     void updateHandlesAudio()
     {
         mHandlesAudio = (mType == kScheduler || getNumAudioIns() || getNumAudioOuts());
         mRequiresAudioNotification = handlesAudio() && mType != kOutput;
-    }
+    }*/
     
     // ************************************************************************************** //
     
@@ -877,16 +879,47 @@ private:
 
 // ************************************************************************************** //
 
-// FrameLib_Processor - Simple class for process type objects
+// FrameLib_Processor - Simple class for process type objects (can't handle audio)
 
 class FrameLib_Processor : public FrameLib_DSP
 {
     
 public:
     
-    FrameLib_Processor(DSPQueue *queue, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
+    FrameLib_Processor(DSPQueue *queue, unsigned long nIns = 0, unsigned long nOuts = 0)
+    : FrameLib_DSP(kProcessor, queue, nIns, nOuts, 0, 0) {}
+    
+    static bool handlesAudio() { return false; }
+
+protected:
+    
+    // This prevents the user from needing to implement this method - doing so will do nothing
+    
+    virtual SchedulerInfo schedule(bool newFrame, bool noOutput)
+    {
+        return SchedulerInfo();
+    }
+    
+    void setIO(unsigned long nIns, unsigned long nOuts)
+    {
+        FrameLib_DSP::setIO(nIns, nOuts);
+    }
+};
+
+// ************************************************************************************** //
+
+// FrameLib_AudioProcessor - Simple class for process type objects (can handle audio)
+
+class FrameLib_AudioProcessor : public FrameLib_DSP
+{
+    
+public:
+    
+    FrameLib_AudioProcessor(DSPQueue *queue, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
     : FrameLib_DSP(kProcessor, queue, nIns, nOuts, nAudioIns, nAudioOuts) {}
-        
+    
+    static bool handlesAudio() { return true; }
+    
 protected:
     
     // This prevents the user from needing to implement this method - doing so will do nothing
@@ -909,6 +942,8 @@ public:
     FrameLib_Output(DSPQueue *queue, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
     : FrameLib_DSP(kOutput, queue, nIns, nOuts, nAudioIns, nAudioOuts) {}
     
+    static bool handlesAudio() { return true; }
+
 protected:
 
     // This prevents the user from needing to implement this method - doing so will do nothing
@@ -930,6 +965,8 @@ public:
     
     FrameLib_Scheduler(DSPQueue *queue, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
     : FrameLib_DSP(kScheduler, queue, nIns, nOuts, nAudioIns, nAudioOuts) {}
+    
+    static bool handlesAudio() { return true; }
     
 protected:
 
