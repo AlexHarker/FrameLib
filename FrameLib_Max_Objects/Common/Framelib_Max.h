@@ -112,6 +112,7 @@ typedef struct _framelib
     bool confirm;
     
     t_object *top_level_patcher;
+    t_object *user_object;
     
     SyncCheck *sync_check;
     
@@ -261,7 +262,7 @@ FrameLib_Attributes::Serial *framelib_parse_attributes(t_framelib *x, long argc,
             }
         
             if (j == 0)
-                object_error((t_object *)x, "stray items after attribute %s", sym->s_name);
+                object_error(x->user_object, "stray items after attribute %s", sym->s_name);
         }
         
         // Check for lack of values or end of list
@@ -269,7 +270,7 @@ FrameLib_Attributes::Serial *framelib_parse_attributes(t_framelib *x, long argc,
         if ((++i >= argc) || is_attribute_tag(atom_getsym(argv + i)))
         {
             if (i < (argc + 1))
-                object_error((t_object *) x, "no values given for attribute %s", sym->s_name);
+                object_error(x->user_object, "no values given for attribute %s", sym->s_name);
             continue;
         }
         
@@ -289,7 +290,7 @@ FrameLib_Attributes::Serial *framelib_parse_attributes(t_framelib *x, long argc,
                 break;
                 
             if (atom_getsym(argv + i) != gensym(""))
-                object_error((t_object *)x, "string %s in attribute list where value expected", atom_getsym(argv + i)->s_name);
+                object_error(x->user_object, "string %s in attribute list where value expected", atom_getsym(argv + i)->s_name);
             
             array[j] = atom_getfloat(argv + i);
         }
@@ -368,6 +369,7 @@ void *framelib_new(t_symbol *s, long argc, t_atom *argv)
     // Init
     
     framelib_common_init(x);
+    x->user_object = (t_object *)x;
 
     // Object creation with attributes and arguments
     
@@ -576,9 +578,9 @@ void framelib_frame(t_framelib *x)
             if (!valid)
             {
                 if (info->object == x)
-                    object_error((t_object *) x, "direct feedback loop detected");
+                    object_error(x->user_object, "direct feedback loop detected");
                 else
-                    object_error((t_object *) x, "cannot connect objects from different top level patchers");
+                    object_error(x->user_object, "cannot connect objects from different top level patchers");
             }
             
             // Check for double connection *only* if the internal object is connected (otherwise the previously connected object has been deleted)
@@ -610,7 +612,7 @@ void framelib_frame(t_framelib *x)
             
         case kDoubleCheck:
             if (index == confirm_index && x->inputs[index].object == info->object && x->inputs[index].index == info->index)
-                object_error((t_object *) x, "extra connection to input %ld", index + 1);
+                object_error(x->user_object, "extra connection to input %ld", index + 1);
             break;
     }
 }
@@ -743,6 +745,8 @@ void *wrapper_new(t_symbol *s, long argc, t_atom *argv)
     long num_outs = get_num_outs(internal);
     long num_audio_ins = get_num_audio_ins(internal);
     long num_audio_outs = get_num_audio_outs(internal);
+    
+    internal->user_object = (t_object *)x;
     
     // Create I/O
     

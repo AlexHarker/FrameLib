@@ -7,8 +7,6 @@
 #include <limits>
 #include <vector>
 
-// FIX - Processor and Output look identical - could it be that only one is needed now?
-
 // FrameLib_DSP
 
 // This abstract class is the core of the DSP processing system and handles low level single channel connections and timing
@@ -284,7 +282,6 @@ private:
         
         // If the object is not an output then notify
         
-        // FIX - Only notify if time has been updated enough!!
         if (mValidTime < mBlockTime && requiresAudioNotification())
             notify(false);
     }
@@ -434,7 +431,7 @@ private:
             }
             
             // Check for block completion for objects requiring audio notification
-            // FIX - is this better?
+
             if (requiresAudioNotification() && mValidTime >= mBlockTime)
                 mDependencyCount++;
         }
