@@ -16,7 +16,7 @@
 
 #define MAX_VECTOR_SIZE 8192
 
-class FrameLib_Source : public FrameLib_Processor
+class FrameLib_Source : public FrameLib_AudioProcessor
 {
     enum AttributeList {kMaxLength, kLength, kUnits};
     enum Units {kSamples, kMS, kSeconds};
@@ -40,7 +40,7 @@ private:
     
 public:
     
-    FrameLib_Source(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 2, 1, 1, 0)
+    FrameLib_Source(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_AudioProcessor(queue, 2, 1, 1, 0)
     {
         // FIX - unit or units???
         
@@ -87,7 +87,7 @@ public:
     
 private:
     
-    void copy (double *input, unsigned long offset, unsigned long size)
+    void copy(double *input, unsigned long offset, unsigned long size)
     {
         if (size)
         {
@@ -96,7 +96,7 @@ private:
         }
     }
     
-    void blockProcess (double **ins, double **outs, unsigned long vecSize)
+    void blockProcess(double **ins, double **outs, unsigned long vecSize)
     {
         double *input = ins[0];
         
@@ -113,7 +113,7 @@ private:
         copy(input + size, 0, vecSize - size);
     }
     
-    void process ()
+    void process()
     {
         unsigned long sizeOut = mLength;
 

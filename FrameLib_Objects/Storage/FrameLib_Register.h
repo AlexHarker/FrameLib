@@ -12,7 +12,7 @@ class FrameLib_Register : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Register(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 2, 1, 0, 0)
+    FrameLib_Register(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 2, 1)
     {
         mAttributes.addEnum(kMode, "mode", 0);
         mAttributes.addEnumItem(kStore, "store");

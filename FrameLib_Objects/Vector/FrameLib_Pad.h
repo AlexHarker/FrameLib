@@ -12,7 +12,7 @@ class FrameLib_Pad : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Pad(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1, 0, 0)
+    FrameLib_Pad(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1)
     {
         mAttributes.addDouble(kPadding, "padding", 0.0, 0);
         

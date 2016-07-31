@@ -76,7 +76,7 @@ class FrameLib_SallenAndKey : public FrameLib_Processor
 
 public:
 	
-    FrameLib_SallenAndKey(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1, 0, 0)
+    FrameLib_SallenAndKey(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1)
     {
         mAttributes.addDouble(kFreq, "freq", 0.0, 0);
         mAttributes.setMin(0.0);

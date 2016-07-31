@@ -13,7 +13,7 @@ class FrameLib_iFFT : public FrameLib_Processor
     
 public:
 	
-    FrameLib_iFFT(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 2, 1, 0, 0)
+    FrameLib_iFFT(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 2, 1)
     {
         mAttributes.addDouble(kMaxLength, "maxlength", 16384, 0);
         mAttributes.setMin(0.0);

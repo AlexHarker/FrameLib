@@ -14,7 +14,7 @@ class FrameLib_MedianFilter : public FrameLib_Processor
     
 public:
     
-    FrameLib_MedianFilter(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 2, 1, 0, 0)
+    FrameLib_MedianFilter(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 2, 1)
     {
         mAttributes.addDouble(kWidth, "width", 1.0, 0);
         mAttributes.setMin(0.0);

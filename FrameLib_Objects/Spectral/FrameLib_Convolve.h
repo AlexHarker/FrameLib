@@ -12,7 +12,7 @@ class FrameLib_Convolve : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Convolve(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 2, 1, 0, 0)
+    FrameLib_Convolve(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 2, 1)
     {
         mAttributes.addDouble(kMaxLength, "maxlength", 16384, 0);
         mAttributes.setMin(0.0);

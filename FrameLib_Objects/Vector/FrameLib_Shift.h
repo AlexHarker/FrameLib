@@ -13,7 +13,7 @@ class FrameLib_Shift : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Shift(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1, 0, 0)
+    FrameLib_Shift(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1)
     {
         mAttributes.addDouble(kShift, "shift", 0.0, 0);
         

@@ -12,7 +12,7 @@ class FrameLib_Store : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Store(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1, 0, 0)
+    FrameLib_Store(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1)
     {
         mAttributes.addString(kName, "name", "", 0);
         

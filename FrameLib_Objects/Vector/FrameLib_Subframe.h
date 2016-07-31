@@ -12,7 +12,7 @@ class FrameLib_Subframe : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Subframe(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1, 0, 0)
+    FrameLib_Subframe(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1)
     {
         mAttributes.addDouble(kStart, "start", 0.0, 0);
         mAttributes.setMin(0.0);
