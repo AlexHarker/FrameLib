@@ -52,7 +52,7 @@ protected:
                 break;
         }
 
-        return SchedulerInfo(interval, TRUE, TRUE);
+        return SchedulerInfo(interval, true, true);
     }
 };
 

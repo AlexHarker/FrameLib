@@ -105,7 +105,7 @@ private:
     
     struct Input
     {
-        Input() : mObject(NULL), mIndex(0), mUpdate(FALSE), mTrigger(TRUE), mSwitchable(FALSE) {}
+        Input() : mObject(NULL), mIndex(0), mUpdate(false), mTrigger(true), mSwitchable(false) {}
         
         // Connection Info
         
@@ -284,8 +284,9 @@ private:
         
         // If the object is not an output then notify
         
-        if (requiresAudioNotification())
-            notify(FALSE);
+        // FIX - Only notify if time has been updated enough!!
+        if (mValidTime < mBlockTime && requiresAudioNotification())
+            notify(false);
     }
     
     // Dependency notification
@@ -315,7 +316,7 @@ private:
     
     void dependenciesReady()
     {        
-        bool timeUpdated = FALSE;
+        bool timeUpdated = false;
         
         if (mType == kScheduler)
         {
@@ -335,7 +336,7 @@ private:
                 mValidTime += scheduleInfo.mTimeAdvance;
                 mOutputDone = scheduleInfo.mOutputDone;
                 upToDate = mValidTime >= mBlockTime;
-                timeUpdated = TRUE;
+                timeUpdated = true;
             }
             
             // Find the new input time (the min valid time of all inputs)
@@ -354,7 +355,7 @@ private:
         }
         else
         {
-            bool trigger = FALSE;
+            bool trigger = false;
 
             // Check for inputs at the current frame time that update
             
@@ -373,7 +374,7 @@ private:
             {
                 if (ins->mTrigger && ins->mObject && mValidTime == ins->mObject->mFrameTime)
                 {
-                    trigger = TRUE;
+                    trigger = true;
                     break;
                 }
             }
@@ -414,7 +415,7 @@ private:
             
             if (timeUpdated)
             {
-                mOutputDone = TRUE;
+                mOutputDone = true;
                 
                 for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
                 {
@@ -424,17 +425,17 @@ private:
                     {
                         if (ins->mObject->mOutputDone)
                         {
-                            mOutputDone = TRUE;
+                            mOutputDone = true;
                             break;
                         }
-                        mOutputDone = FALSE;
+                        mOutputDone = false;
                     }
                 }
             }
             
             // Check for block completion for objects requiring audio notification
-            
-            if (requiresAudioNotification() && mInputTime >= mBlockTime)
+            // FIX - is this better?
+            if (requiresAudioNotification() && mValidTime >= mBlockTime)
                 mDependencyCount++;
         }
             
@@ -457,7 +458,7 @@ private:
         
         if (timeUpdated)
             for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-                (*it)->notify(FALSE);
+                (*it)->notify(false);
     }
     
     // ************************************************************************************** //
@@ -493,7 +494,7 @@ public:
         mInputTime = 0.0;
         mValidTime = 1.0;
         mBlockTime = 1.0;
-        mOutputDone = TRUE;
+        mOutputDone = true;
         
         resetDependencyCount();
     }
@@ -583,7 +584,7 @@ protected:
             
             mOutputMemoryCount = mOutputDependencies.size();
         
-            return TRUE;
+            return true;
         }
         
         // Reset outputs on failure of zero size
@@ -596,7 +597,7 @@ protected:
         
         mOutputMemoryCount = 0;
         
-        return FALSE;
+        return false;
     }
     
     double *getOutput(unsigned long idx, size_t *size)
@@ -654,7 +655,7 @@ private:
     
     // Override to handle audio at the block level (objects with block-based audio must overload this)
     
-    virtual void blockProcess (double **ins, double **outs, unsigned long vecSize) {}
+    virtual void blockProcess(double **ins, double **outs, unsigned long vecSize) {}
     
     // Override for updates prior to schedule / process (e.g. adjusting triggers)
     
