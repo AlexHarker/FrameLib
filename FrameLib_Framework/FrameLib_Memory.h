@@ -1,6 +1,6 @@
 
-#ifndef FrameLib_Local_Allocator_H
-#define FrameLib_Local_Allocator_H
+#ifndef FRAMELIB_MEMORY_H
+#define FRAMELIB_MEMORY_H
 
 #include "tlsf.h"
 #include "FrameLib_Threading.h"
@@ -10,6 +10,7 @@
 // FIX - threadsafety?
 // FIX - expand the block and do free heuristics differently/for malloc (always free large blocks for instance)
 // FIX - cleanup and checks
+// FIX - free storage?
 
 class FrameLib_Global_Allocator
 {
@@ -192,17 +193,14 @@ public:
     
     ~FrameLib_Local_Allocator()
     {
-        // FIX - this crashes, but should it??
+        // FIX (now fixed) N.B. - local must be freed before global (look at memory mangement and pointers in general)
         
-        //clearLocal();
+        clearLocal();
     }
     
     void *alloc(size_t size)
     {
         // N.B. - all memory should be aligned to alignment
-        
-        //size_t maxSize = (size * 5) >> 2;
-        //size_t maxSize = (size * 3) >> 1;
         
         size_t maxSize = size << 1;
         

@@ -81,7 +81,7 @@ public:
     
 public:
 
-    enum ObjectType { kProcessor, kOutput, kScheduler };
+    enum ObjectType { kProcessor, kScheduler };
     enum OutputMode { kOutputNormal, kOutputTagged };
     
 protected:
@@ -268,7 +268,7 @@ private:
     {
         // FIX- review this...
         
-        return mType == kScheduler || (mType == kProcessor && (getNumAudioIns() || getNumAudioOuts()));
+        return mType == kScheduler || getNumAudioIns() || getNumAudioOuts();
     }
     
     // Block updates for objects with audio IO
@@ -277,13 +277,16 @@ private:
     {
         // Update block time and process the block
         
-        mBlockTime += vecSize;
-        blockProcess(ins, outs, vecSize);
+        mBlockEndTime += vecSize;
+        blockProcessPre(ins, outs, vecSize);
         
         // If the object is not an output then notify
         
-        if (mValidTime < mBlockTime && requiresAudioNotification())
+        if (mValidTime < mBlockEndTime && requiresAudioNotification())
             notify(false);
+        
+        blockProcessPost(ins, outs, vecSize);
+        mBlockStartTime = mBlockEndTime;
     }
     
     // Dependency notification
@@ -319,7 +322,7 @@ private:
         {
             // It is disallowed to advance if the output already stretches beyond the current block time
             
-            bool upToDate = mValidTime >= mBlockTime;
+            bool upToDate = mValidTime >= mBlockEndTime;
             
             SchedulerInfo scheduleInfo = schedule(mOutputDone, upToDate);
             
@@ -332,7 +335,7 @@ private:
                 mFrameTime = (scheduleInfo.mNewFrame || mOutputDone) ? mValidTime : mFrameTime;
                 mValidTime += scheduleInfo.mTimeAdvance;
                 mOutputDone = scheduleInfo.mOutputDone;
-                upToDate = mValidTime >= mBlockTime;
+                upToDate = mValidTime >= mBlockEndTime;
                 timeUpdated = true;
             }
             
@@ -347,7 +350,7 @@ private:
             
             // If we are up to date with the block time (output and all inputs) add the dependency on the block update
             
-            if (upToDate && mInputTime >= mBlockTime)
+            if (upToDate && mInputTime >= mBlockEndTime)
                 mDependencyCount++;
         }
         else
@@ -432,7 +435,7 @@ private:
             
             // Check for block completion for objects requiring audio notification
 
-            if (requiresAudioNotification() && mValidTime >= mBlockTime)
+            if (requiresAudioNotification() && mValidTime >= mBlockEndTime)
                 mDependencyCount++;
         }
             
@@ -490,7 +493,8 @@ public:
         mFrameTime = 0.0;
         mInputTime = 0.0;
         mValidTime = 1.0;
-        mBlockTime = 1.0;
+        mBlockStartTime = 1.0;
+        mBlockEndTime = 1.0;
         mOutputDone = true;
         
         resetDependencyCount();
@@ -517,9 +521,14 @@ protected:
         return mValidTime;
     }
     
-    FrameLib_TimeFormat getBlockTime()
+    FrameLib_TimeFormat getBlockStartTime()
     {
-        return mBlockTime;
+        return mBlockStartTime;
+    }
+    
+    FrameLib_TimeFormat getBlockEndTime()
+    {
+        return mBlockEndTime;
     }
     
     // FIX - you can't just pretend these will all be fine to access - these times need safety checks...!!!!!!!!!!!
@@ -652,11 +661,12 @@ private:
     
     // Override to handle audio at the block level (objects with block-based audio must overload this)
     
-    virtual void blockProcess(double **ins, double **outs, unsigned long vecSize) {}
+    virtual void blockProcessPre(double **ins, double **outs, unsigned long vecSize) {}
+    virtual void blockProcessPost(double **ins, double **outs, unsigned long vecSize) {}
     
     // Override for updates prior to schedule / process (e.g. adjusting triggers)
     
-    virtual void update() {}
+    virtual void update(){}
     
     // Override for scheduling code (scheduler objects must override this)
 
@@ -866,13 +876,10 @@ private:
     FrameLib_TimeFormat mFrameTime;
     FrameLib_TimeFormat mValidTime;
     FrameLib_TimeFormat mInputTime;
-    FrameLib_TimeFormat mBlockTime;
+    FrameLib_TimeFormat mBlockStartTime;
+    FrameLib_TimeFormat mBlockEndTime;
     
     bool mOutputDone;
-    
-    // Cached Flag for Audio Notification
-    
-    bool mRequiresAudioNotification;
 };
 
 // ************************************************************************************** //
@@ -920,30 +927,6 @@ public:
     
 protected:
     
-    // This prevents the user from needing to implement this method - doing so will do nothing
-    
-    virtual SchedulerInfo schedule(bool newFrame, bool noOutput)
-    {
-        return SchedulerInfo();
-    }
-};
-
-// ************************************************************************************** //
-
-// FrameLib_Output - Simple class for output type objects
-
-class FrameLib_Output : public FrameLib_DSP
-{
-    
-public:
-
-    FrameLib_Output(DSPQueue *queue, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
-    : FrameLib_DSP(kOutput, queue, nIns, nOuts, nAudioIns, nAudioOuts) {}
-    
-    static bool handlesAudio() { return true; }
-
-protected:
-
     // This prevents the user from needing to implement this method - doing so will do nothing
     
     virtual SchedulerInfo schedule(bool newFrame, bool noOutput)

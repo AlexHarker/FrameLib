@@ -8,7 +8,7 @@
 #include "FrameLib_DSP.h"
 #include "FrameLib_Globals.h"
 
-// FIX - THE MAX STUFF NEEDS TO BE EXTENSIBLE SO I DON'T HAVE TO DO THIS
+// FIX - THE MAX STUFF NEEDS TO BE EXTENSIBLE SO I DON'T HAVE TO DO THIS in this way (see also max wrapper fixes)
 // FIX - SOOOOOOO MANY HACKX - THIS NEEDS A MUCH SAFER APPROACH!
 // FIX - memory management is horrible - don't memory manage use std::vector in the audio thread - replace this also
 
@@ -149,16 +149,6 @@ private:
     Modes mMode;
 };
 
-
-
-//////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-
-// FIX - sort out formatting style / template class style / naming?
-// FIX - improve reporting of extra connections + look into feedback detection...
-// FIX - think about adding assist helpers for this later...
-// FIX - threadsafety??
-
 //////////////////////////////////////////////////////////////////////////
 ///////////////////////////// Structures Etc. ////////////////////////////
 //////////////////////////////////////////////////////////////////////////
@@ -196,7 +186,6 @@ typedef struct _framelib
     
     t_object *top_level_patcher;
     
-    // FIX - object specific stuff here... - must go last and this is NOT NICE
     MaxMessage *messages;
     
 } t_framelib;
@@ -339,8 +328,8 @@ void framelib_common_init(t_framelib *x)
 
 void framelib_common_free(t_framelib *x)
 {
-    framelib_set_global(framelib_get_global()->decrement());
     framelib_set_common(x, framelib_get_common(x)->decrement());
+framelib_set_global(framelib_get_global()->decrement());
 }
 
 //////////////////////////////////////////////////////////////////////////

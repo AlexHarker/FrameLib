@@ -14,14 +14,14 @@
 
 #define MAX_VECTOR_SIZE 8192
 
-class FrameLib_Trace : public FrameLib_Output
+class FrameLib_Trace : public FrameLib_AudioProcessor
 {
     enum AttributeList {kLength, kUnits};
     enum Units {kMS, kSeconds, kSamples};
     
 public:
     
-    FrameLib_Trace(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Output(queue, 1, 0, 1, 1)
+    FrameLib_Trace(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_AudioProcessor(queue, 1, 0, 1, 1)
     {
         mAttributes.addDouble(kLength, "length", 8000, 0);
         mAttributes.setMin(0.0);
@@ -125,20 +125,20 @@ private:
         }
     }
     
-    void process ()
+    void process()
     {
         unsigned long sizeIn;
-
+        
         FrameLib_TimeFormat inputTime = getInputFrameTime(0);
         double *input = getInput(0, &sizeIn);
         
         // Calculate time offset
         
-        unsigned long offset = round(inputTime - getBlockTime());
+        unsigned long offset = round(inputTime - getBlockStartTime());
         
         // Safety
         
-        if (!sizeIn || inputTime < getBlockTime() || (offset + sizeIn) > mSize)
+        if (!sizeIn || inputTime < getBlockStartTime() || (offset + sizeIn) > mSize)
             return;
         
         // Calculate actual offset into buffer

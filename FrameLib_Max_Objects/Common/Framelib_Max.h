@@ -42,39 +42,31 @@ t_syncinfo *sync_get_info()
     return (t_syncinfo *) gensym("__FrameLib__SYNC__")->s_thing;
 }
 
-struct SyncCheck
+typedef struct _sync_check
 {
-    bool validSync()
-    {
-        t_syncinfo *info = sync_get_info();
-        
-        if (!info)
-            return false;
-        
-        void *object = info->object;
-        long time = info->time;
-        
-        if (time == mTime)
-        {
-            for (std::vector<void *>::iterator it = mObjects.begin(); it != mObjects.end(); it++)
-                if (*it == object)
-                    return false;
-        }
-        else
-        {
-            mTime = time;
-            mObjects.clear();
-        }
-        
-        mObjects.push_back(object);
-        return true;
-    }
+    long time;
+    void *object;
     
-private:
+} t_sync_check;
+
+bool sync_valid(t_sync_check *x)
+{
+    t_syncinfo *info = sync_get_info();
     
-    long mTime;
-    std::vector<void *> mObjects;
-};
+    if (!info)
+        return false;
+    
+    void *object = info->object;
+    long time = info->time;
+    
+    if (time == x->time && object == x->object)
+        return false;
+    
+    x->time = time;
+    x->object = object;
+    return true;
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 ///////////////////////////// Structures Etc. ////////////////////////////
@@ -114,7 +106,7 @@ typedef struct _framelib
     t_object *top_level_patcher;
     t_object *user_object;
     
-    SyncCheck *sync_check;
+    t_sync_check sync_check;
     
 } t_framelib;
 
@@ -186,10 +178,8 @@ void framelib_common_init(t_framelib *x)
 
 void framelib_common_free(t_framelib *x)
 {
-    // FIX - does this ever delete the tie to the symbol?
-    
-    framelib_set_global(framelib_get_global()->decrement());
     framelib_set_common(x, framelib_get_common(x)->decrement());
+    framelib_set_global(framelib_get_global()->decrement());
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -407,7 +397,8 @@ void *framelib_new(t_symbol *s, long argc, t_atom *argv)
     x->confirm_index = -1;
     x->confirm = FALSE;
     
-    x->sync_check = new SyncCheck();
+    x->sync_check.object = NULL;
+    x->sync_check.time = 0;
     
 	return x;
 }
@@ -427,8 +418,6 @@ void framelib_free(t_framelib *x)
     delete x->object;
     
     framelib_common_free(x);
-    
-    delete x->sync_check;
 }
 
 
@@ -619,7 +608,7 @@ void framelib_frame(t_framelib *x)
 
 void framelib_sync(t_framelib *x)
 {
-    if (x->sync_check->validSync())
+    if (sync_valid(&x->sync_check))
         for (unsigned long i = get_num_outs(x); i > 0; i--)
             outlet_anything(x->outputs[i - 1], gensym("sync"), 0, NULL);
 }
@@ -639,7 +628,6 @@ typedef struct _mutator
 
 void signal_mutate(t_mutator *x, t_symbol *sym, long ac, t_atom *av)
 {
-    post("MUTATE TIME %ld", gettime());
     sync_set_info(x, gettime());
     outlet_anything(x->out, gensym("sync"), 0, 0);
     sync_set_info(NULL, gettime());
@@ -693,7 +681,7 @@ typedef struct _wrapper
 
     // Sync Check
     
-    SyncCheck *sync_check;
+    t_sync_check sync_check;
 
     // Dummy for stuffloc on proxies
     
@@ -795,7 +783,8 @@ void *wrapper_new(t_symbol *s, long argc, t_atom *argv)
         outlet_add(outlet_nth((t_object *)x->obj_mutator, 0), x->outs[i]);
     }
     
-    x->sync_check = new SyncCheck();
+    x->sync_check.object = NULL;
+    x->sync_check.time = 0;
     
     return x;
 }
@@ -829,8 +818,6 @@ void wrapper_free(t_wrapper *x)
     freeobject((t_object *)x->obj_mutator);
     freeobject((t_object *)x->sync_in);
     freeobject(x->patch_internal);
-    
-    delete x->sync_check;
 }
 
 void wrapper_assist(t_wrapper *x, void *b, long m, long a, char *s)
@@ -848,12 +835,8 @@ void *wrapper_subpatcher(t_wrapper *x, long index, void *arg)
 
 void wrapper_sync(t_wrapper *x, t_symbol *sym, long ac, t_atom *av)
 {
-    if (x->sync_check->validSync())
-    {
-        // FIX - the below looks unnecessary as chained dependencies are already dependencies
-        //object_method_typed(jbox_get_object((t_object *)x->obj_internal), gensym("sync"), ac, av, NULL);
+    if (sync_valid(&x->sync_check))
         outlet_anything(x->sync_in, gensym("signal"), ac, av);
-    }
 }
 
 void wrapper_anything(t_wrapper *x, t_symbol *sym, long ac, t_atom *av)

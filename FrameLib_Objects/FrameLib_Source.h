@@ -8,11 +8,8 @@
 
 // FIX - MAX_VECTOR_SIZE hack
 // FIX - source is only sample accurate (not subsample) - add a function to interpolate if neceesary
-// FIX - allow attributes to change (and check naming and behaviour...
+// FIX - allow attributes to change (and check naming and behaviour...)
 // FIX - add delay for alignment purposes
-// FIX - check DSP ordering
-
-// FIX - SOURCE IS VERY BROKEN - do testing with fast schedulers etc etc etc.
 
 #define MAX_VECTOR_SIZE 8192
 
@@ -40,10 +37,8 @@ private:
     
 public:
     
-    FrameLib_Source(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_AudioProcessor(queue, 2, 1, 1, 0)
-    {
-        // FIX - unit or units???
-        
+    FrameLib_Source(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_AudioProcessor(queue, 1, 1, 1, 0)
+    {        
         mAttributes.addDouble(kMaxLength, "length", 16384, 0);
         mAttributes.setMin(0.0);
         mAttributes.addDouble(kLength, "size", 4096, 1);
@@ -96,7 +91,7 @@ private:
         }
     }
     
-    void blockProcess(double **ins, double **outs, unsigned long vecSize)
+    void blockProcessPre(double **ins, double **outs, unsigned long vecSize)
     {
         double *input = ins[0];
         
@@ -127,7 +122,7 @@ private:
         
         // Calculate time offset
         
-        long offset = round(getBlockTime() - inputTime);
+        long offset = round(getBlockEndTime() - inputTime);
         
         // Safety
         

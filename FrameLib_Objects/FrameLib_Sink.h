@@ -9,18 +9,17 @@
 // FIX - MAX_VECTOR_SIZE hack
 // FIX - sink is only sample accurate (not subsample) - double the buffer and add a function to interpolate if neceesary
 // FIX - add multichannel later (including multichannel output from one cable - is it possible?)
-// FIX - audio in is temporary
 
 #define MAX_VECTOR_SIZE 8192
 
-class FrameLib_Sink : public FrameLib_Output
+class FrameLib_Sink : public FrameLib_AudioProcessor
 {
     enum AttributeList {kLength, kUnits};
     enum Units {kMS, kSeconds, kSamples};
     
 public:
     
-    FrameLib_Sink(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Output(queue, 1, 0, 1, 1)
+    FrameLib_Sink(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_AudioProcessor(queue, 1, 0, 0, 1)
     {
         mAttributes.addDouble(kLength, "length", 8000, 0);
         mAttributes.setMin(0.0);
@@ -83,8 +82,8 @@ private:
             mCounter = offset + size;
         }
     }
-    
-    void blockProcess(double **ins, double **outs, unsigned long vecSize)
+
+    void blockProcessPost(double **ins, double **outs, unsigned long vecSize)
     {
         double *output = outs[0];
         
@@ -116,11 +115,11 @@ private:
         
         // Calculate time offset
         
-        unsigned long offset = round(inputTime - getBlockTime());
+        unsigned long offset = round(inputTime - getBlockStartTime());
         
         // Safety
         
-        if (!sizeIn || inputTime < getBlockTime() || (offset + sizeIn) > mSize)
+        if (!sizeIn || inputTime < getBlockStartTime() || (offset + sizeIn) > mSize)
             return;
         
         // Calculate actual offset into buffer
