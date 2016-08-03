@@ -52,7 +52,7 @@ protected:
     
     void process()
     {
-        // FIX - this calls into question the valdity of the DSP - it needs checking - I think it will keep memory around...
+        // FIX - this calls into question the validity of the DSP - it needs checking - I think it will keep memory around...
         
         unsigned long size;
         

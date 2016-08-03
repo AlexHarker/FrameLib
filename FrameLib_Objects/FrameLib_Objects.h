@@ -5,8 +5,6 @@
 #include "FrameLib_Templates.h"
 #include "FrameLib_Vector_Functions.h"
 
-// FIX - vectorise where appropriate
-
 // Unary
 
 typedef FrameLib_Unary <acos>   FrameLib_Acos;

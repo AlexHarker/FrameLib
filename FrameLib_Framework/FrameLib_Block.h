@@ -29,7 +29,7 @@ public:
     
     // Destructor (virtual)
     
-    virtual ~FrameLib_Block() = 0;
+    virtual ~FrameLib_Block(){}
    
     // IO Utilities
     
@@ -101,9 +101,5 @@ private:
     unsigned long mNumAudioIns;
     unsigned long mNumAudioOuts;
 };
-
-// Virtual Destructor
-
-FrameLib_Block::~FrameLib_Block(){}
 
 #endif

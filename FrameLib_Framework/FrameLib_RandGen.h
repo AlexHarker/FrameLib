@@ -65,7 +65,7 @@ public:
 
     // FIX - below is not quite true
     
-    // Routines that are generator agnositic
+    // Routines that are generator agnostic
     
     // Seed the random number generator randomly using OS specific routines
     
