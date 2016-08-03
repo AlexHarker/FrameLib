@@ -1,10 +1,34 @@
 
-1 - Fixed Point Division / Fixed Point Time Format
-2 - Finalise Memory Management
-3 - Finalise Max Wrapper
-4 - Methods of dealing with fixed input values (and modes related to this)
-5 - Methods of dealing with data storage and retrieval (a la coll etc.) and also buffers (abstract out?)
-6 - Multi threading work (Memory / DSP / Attributes / DSP Queue / Connection)
+
+1 - Methods of dealing with fixed input values (and modes related to this)
+
+2 - Finalise Max Wrapper
+	- Review entry of inputs and attributes
+	- Make C++ class extensible
+	- Make safe (avoid direct access of other objects / thread safety / avoid symbol bindings)
+	- Better issue reporting (realtime and connection)
+
+3 - Methods of dealing with data storage and retrieval (a la coll etc.) and also buffers (abstract out?)
+
+
+4 - Finalise Memory Management
+	- Do variable memory management (underlying engine
+	- Review memory management
+
+5 - Revise and refactor
+	- Block / DSP
+	- Attribute
+	- Memory
+	- Global / Common
+	- Multichannel
+
+6 - Assist/Help Info
+
+7 - Error Reporting
+
+8 - Fixed Point Division / Fixed Point Time Format
+
+9 - Multi threading work (Memory / DSP / Attributes / DSP Queue / Connection)
 
 
 Examine https://www.threadingbuildingblocks.org/
