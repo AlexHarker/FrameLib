@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>NumericTesting.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>framelib~ All.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -403,6 +408,11 @@
 			<true/>
 		</dict>
 		<key>B87E877919C8F4AA00B1D0CD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B8A1F5BA1D5370DE00FA5FFC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

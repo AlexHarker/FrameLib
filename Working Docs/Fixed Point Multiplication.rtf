@@ -1,8 +1,7 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
-{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
-{\colortbl;\red255\green255\blue255;\red255\green0\blue0;\red255\green128\blue0;\red255\green128\blue0;
-\red0\green0\blue0;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww15840\viewh19920\viewkind0
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 Menlo-Italic;}
+{\colortbl;\red255\green255\blue255;\red255\green0\blue0;\red255\green128\blue0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww15840\viewh18560\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\tx7354\tx7927\tx8514\tqr\tx9047\tqr\tx9047\tqr\tx9047\tx9057\tx9057\tx9057\tx9057\tqc\tx9089\pardirnatural
 
 \f0\fs24 \cf0 \
@@ -24,14 +23,12 @@ AM*BM	-		-		-|\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\tx7354\tx7927\tx8514\tqr\tx9047\tqr\tx9047\tqr\tx9047\tx9057\tx9057\tx9057\tx9057\tqc\tx9089\pardirnatural
 \cf2 AM*BM	-\cf0 		-		-|\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\tx7354\tx7927\tx8514\tqr\tx9047\tqr\tx9047\tqr\tx9047\tx9057\tx9057\tx9057\tx9057\tqc\tx9089\pardirnatural
-\cf0 				AM1*BL1	-|\
+				AM1*BL1	-|\
 						\cf3 AM1*BL2	-|\
 						AM2*BL1	-|\cf0 \
 								AM2*BL2	-|\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\tx7354\tx7927\tx8514\tqr\tx9047\tqr\tx9047\tqr\tx9047\tx9057\tx9057\tx9057\tx9057\tqc\tx9089\pardirnatural
-\cf0 				AL1*BM1	-|\
+				AL1*BM1	-|\
 				(carry)	\cf3 AL1*BM2	-|\
 						AL2*BM1	-|\cf0 \
 						carry	AL2*BM2	-|\
@@ -45,20 +42,63 @@ AM*BM	-		-		-|\
 AM*BM	-\cf0 		-		-|\
 				AM1*BL1	-|\
 				AL1*BM1	-|\
-				carry	\cf4 AM1*BL2	-|\
+				carry	\cf3 AM1*BL2	-|\
 						AM2*BL1	-|\cf0 \
-						\cf4 AL1*BM2	-|\
+						\cf3 AL1*BM2	-|\
 						AL2*BM1	-|\cf0 \
 						carry	AM2*BL2	-|\
 								AL2*BM2	-|\
 								AL1*BL1	-|\
-								carry	\cf4 AL1*BL2\cf0 	\cf2 -|\cf0 \
-										\cf4 AL2*BL1\cf0 	\cf2 -|\cf0 \
+								carry	\cf3 AL1*BL2\cf0 	\cf2 -|\cf0 \
+										\cf3 AL2*BL1\cf0 	\cf2 -|\cf0 \
 										carry?	\cf2 AL2*BL2	-|\
 \
 \
-\cf5 13 multiplications\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\tx7354\tx7927\tx8514\tqr\tx9047\tqr\tx9047\tqr\tx9047\tx9057\tx9057\tx9057\tx9057\tqc\tx9089\pardirnatural
+\cf0 13 multiplications\
 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\tx7354\tx7927\tx8514\tqr\tx9047\tqr\tx9047\tqr\tx9047\tx9057\tx9057\tx9057\tx9057\tqc\tx9089\pardirnatural
+\cf2 AM1*BM1\cf0 	\cf2 -|\cf0 \
+		\cf2 AM1*BM2\cf0 	-|\cf2 \
+		AM2*BM1	\cf0 -|\
+		carry	AM2*BM2\
+				AM1*BL1	-|\
+				AL1*BM1	-|\
+				carry	\cf3 AM1*BL2	-|\
+						AM2*BL1	-|\cf0 \
+						\cf3 AL1*BM2	-|\
+						AL2*BM1	-|\cf0 \
+						carry	AM2*BL2	-|\
+								AL2*BM2	-|\
+								AL1*BL1	-|\
+								carry	\cf3 AL1*BL2\cf0 	\cf2 -|\cf0 \
+										\cf3 AL2*BL1\cf0 	\cf2 -|\cf0 \
+										carry?	\cf2 AL2*BL2	-|\
+\
+A1*B1\cf0 	\cf2 -|\cf0 \
+		\cf2 A1*B2\cf0 	-|\cf2 \
+		A2*B1	\cf0 -|\
+		
+\f1\i carry
+\f0\i0 	A2*B2\
+				A1*B3	-|\
+				A3*B1	-|\
+				carry	\cf3 A1*B4	-|\
+						A2*B3	-|\cf0 \
+						\cf3 A3*B2	-|\
+						A4*B1	-|\cf0 \
+						
+\f1\i carry
+\f0\i0 	A2*B4	-|\
+								A4*B2	-|\
+								A3*B3	-|\
+								carry	\cf3 A3*B4\cf0 	\cf2 -|\cf0 \
+										\cf3 A4*B3\cf0 	\cf2 -|\cf0 \
+										
+\f1\i carry
+\f0\i0 ?	\cf2 A4*B4	-|\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\tx7354\tx7927\tx8514\tqr\tx9047\tqr\tx9047\tqr\tx9047\tx9057\tx9057\tx9057\tx9057\tqc\tx9089\pardirnatural
+\cf0 \
 DIVIDE AND CONQUER\
 \
 Do as four 64 * 64 bit (one in a single int)\
@@ -71,20 +111,20 @@ g =		c*b	-\
 h = 		d*d	-\
 \
 \
-[\cf0 lo_split = &]\
+[lo_split = &]\
 [hi_split = >>]\
-\cf5 \
+\
 Either	(5 adds, 1 ands, 2 shifts, 2 carry checks) * 3 (15 adds, 3 ands, 6 shifts, 6 carry checks)\
 \
 w = f + g (with carry - x)\
-\cf0 lo = h + lo_split(w) (with carry - y)\cf5 \
+lo = h + lo_split(w) (with carry - y)\
 hi = e + hi_split(w) + y + (x << 32)\
 \
 Or (5 adds, 2 ands, 2 shifts, 2 carry checks) * 3 (15 adds, 6 ands, 6 shifts, 6 carry checks)\
 \
-lo = h + \cf0 lo_split(f) (with carry x)\
+lo = h + lo_split(f) (with carry x)\
 lo += lo_split(g) (with carry update x)\
-\cf5 hi = e + x + hi_split(f) + hi_split(g)\
+hi = e + x + hi_split(f) + hi_split(g)\
 \
 Then we have\
 \
@@ -95,7 +135,7 @@ w		-		-		-\
 \
 Either (6 adds, 2 ands, 2 shifts, 4 carry checks)\
 \
-\cf0 carry check on ls(z - c1)\cf5 \
+carry check on ls(z - c1)\
 lo = z + ls(x) + ls(z) + c1 (3 carry checks - c2)\
 hi = w + hs(x) + hi(y) + c2\
 \
@@ -103,28 +143,29 @@ hi = w + hs(x) + hi(y) + c2\
 \
 Or (7 adds, 1 and, 1 shift, 6 carry checks)\
 \
-\cf0 carry check on ls(z - c1)\
+carry check on ls(z - c1)\
 t = \{x + y\} (this is - 3 adds and 3 carry checks - c2)\
 lo = z + ls(t) + c1 (2 carry checks - c3)\
-hi = w + hs(t) + c3\cf5 \
+hi = w + hs(t) + c3\
 \
 TOTAL (22 adds, 4 ands, 7 shifts, 12 carry checks)\
 \
 DIRECT\
 \
 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\tx7354\tx7927\tx8514\tqr\tx9047\tqr\tx9047\tqr\tx9047\tx9057\tx9057\tx9057\tx9057\tqc\tx9089\pardirnatural
 \cf2 AM*BM	-\cf0 		-		-|\
 				AM1*BL1	-|\
 				AL1*BM1	-|\
-						\cf4 AM1*BL2	-|\
+						\cf3 AM1*BL2	-|\
 						AM2*BL1	-|\cf0 \
-						\cf4 AL1*BM2	-|\
+						\cf3 AL1*BM2	-|\
 						AL2*BM1	-|\cf0 \
 								AM2*BL2	-|\
 								AL2*BM2	-|\
 								AL1*BL1	-|\
-										\cf4 AL1*BL2\cf0 	\cf2 -|\cf0 \
-										\cf4 AL2*BL1\cf0 	\cf2 -|\cf0 \
+										\cf3 AL1*BL2\cf0 	\cf2 -|\cf0 \
+										\cf3 AL2*BL1\cf0 	\cf2 -|\cf0 \
 												\cf2 AL2*BL2	-|\
 \
 e			\
@@ -148,8 +189,8 @@ y = h + i + j + k (3 carry checks - c3)\
 z = e + f + g (none of this can carry usefully) - all as 64bit\
 \
 \
-z		-		\cf5 -		-				\
-						\cf3 y		-\cf5 	\
+z		-		\cf0 -		-				\
+						\cf3 y		-\cf0 	\
 								x		-\
 										\cf3 w\cf2 		-\
 												q		-\
@@ -167,9 +208,9 @@ TOTAL FOR DIRECT = 17/18 adds, 5 shifts, 12 carry checks \
 // CODE ATTEMPT V1\
 \
 mul		-		\cf0 -		-				\
-						\cf4 z		-\cf0 	\
+						\cf3 z		-\cf0 	\
 								y		-\
-										\cf4 x\cf2 		-\
+										\cf3 x\cf2 		-\
 												c		-\
 \
 \
