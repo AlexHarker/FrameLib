@@ -3,7 +3,7 @@
 #ifndef _FRAMELIB_RANDGEN_
 #define _FRAMELIB_RANDGEN_
 
-#include <FrameLib_Types.h>
+#include "FrameLib_Types.h"
 
 
 #define CMWC_LAG_SIZE 32
@@ -17,14 +17,14 @@ public:
     
     FrameLib_RandGen()
     {
-        rand_seed();
+        randSeed();
     }
     
 private:
     
     // Routines that are speciifc to the generator
     
-    inline FL_UInt32 CMWC ()
+    inline FL_UInt32 CMWC()
     {
         FL_UInt32 i = mIncrement;
         FL_UInt32 c = mCarry;
@@ -35,7 +35,8 @@ private:
         i = (i + 1) & (CMWC_LAG_SIZE - 1);
         t = (FL_UInt64) CMWC_A_VALUE * mSTATE[i] + c;
         c = (t >> 32);
-        x = t + c;
+        //FIX - check this line and look elsewhere also...
+        x = (FL_UInt32) ((t + c) & 0xFFFFFFFF);
         
         if (x < c)
         {
@@ -52,7 +53,7 @@ private:
     
     // Initialise with seed values
     
-    void initCMWC (FL_UInt32 *init)
+    void initCMWC(FL_UInt32 *init)
     {
         mIncrement = (CMWC_LAG_SIZE - 1);
         mCarry = 123;
@@ -69,7 +70,7 @@ public:
     
     // Seed the random number generator randomly using OS specific routines
     
-    void rand_seed()
+    void randSeed()
     {
         FL_UInt32 seeds[CMWC_LAG_SIZE];
         
@@ -93,7 +94,7 @@ public:
     
     // Initialise with seed values
     
-    void init (FL_UInt32 *init)
+    void init(FL_UInt32 *init)
     {
         initCMWC(init);
     }
@@ -109,7 +110,7 @@ public:
     
     // Return an unsigned 32 bit integer
     
-    inline FL_UInt32 randInt (FL_UInt32 n)
+    inline FL_UInt32 randInt(FL_UInt32 n)
     {
         FL_UInt32 used = n;
         FL_UInt32 i;
@@ -129,7 +130,7 @@ public:
     
     // Return an signed 32 bit integer in the range [lo, hi]
     
-    inline FL_SInt32 randInt (FL_SInt32 lo, FL_SInt32 hi)
+    inline FL_SInt32 randInt(FL_SInt32 lo, FL_SInt32 hi)
     {
         return lo + randInt(hi - lo);
     }

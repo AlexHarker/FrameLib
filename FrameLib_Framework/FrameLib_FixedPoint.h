@@ -198,17 +198,107 @@ struct SuperPrecision
         return (hi << 0x20) | highBits(lo);
     }
     
+    friend SuperPrecision qMul (const SuperPrecision& lhs, const FL_UInt64 &intPart, const FL_UInt64 &fracPart)
+    {
+        // Split both into 4 x 32 bits stored within 64 bit integers
+        
+        FL_UInt64 a1 = highBits(lhs.mInt);
+        FL_UInt64 a2 = lowBits(lhs.mInt);
+        FL_UInt64 a3 = highBits(lhs.mFracHi);
+        FL_UInt64 a4 = lowBits(lhs.mFracHi);
+        FL_UInt64 a5 = highBits(lhs.mFracLo);
+        FL_UInt64 a6 = lowBits(lhs.mFracLo);
+        
+        FL_UInt64 b1 = highBits(intPart);
+        FL_UInt64 b2 = lowBits(intPart);
+        FL_UInt64 b3 = highBits(fracPart);
+        FL_UInt64 b4 = lowBits(fracPart);
+        
+        FL_UInt64 a1b1 = a1 * b1;
+        FL_UInt64 a1b2 = a1 * b2;
+        FL_UInt64 a1b3 = a1 * b3;
+        FL_UInt64 a1b4 = a1 * b4;
+        
+        FL_UInt64 a2b1 = a2 * b1;
+        FL_UInt64 a2b2 = a2 * b2;
+        FL_UInt64 a2b3 = a2 * b3;
+        FL_UInt64 a2b4 = a2 * b4;
+        
+        FL_UInt64 a3b1 = a3 * b1;
+        FL_UInt64 a3b2 = a3 * b2;
+        FL_UInt64 a3b3 = a3 * b3;
+        FL_UInt64 a3b4 = a3 * b4;
+        
+        FL_UInt64 a4b1 = a4 * b1;
+        FL_UInt64 a4b2 = a4 * b2;
+        FL_UInt64 a4b3 = a4 * b3;
+        FL_UInt64 a4b4 = a4 * b4;
+        
+        FL_UInt64 a5b1 = a5 * b1;
+        FL_UInt64 a5b2 = a5 * b2;
+        FL_UInt64 a5b3 = a5 * b3;
+        FL_UInt64 a5b4 = a5 * b4;
+        
+        FL_UInt64 a6b1 = a6 * b1;
+        FL_UInt64 a6b2 = a6 * b2;
+        FL_UInt64 a6b3 = a6 * b3;
+        FL_UInt64 a6b4 = a6 * b4;
+        
+        // Lowest carry bits
+        
+        FL_UInt64 c1 = 0;
+        FL_UInt64 t1 = a6b4;
+        sumWithCarry(t1, c1, (a6b3 << 0x20));
+        sumWithCarry(t1, c1, (a5b4 << 0x20));
+        
+        // Round
+        
+        c1 = (t1 & 0x8000000000000000ULL) ? ++c1 : c1;
+        
+        // Sum the lo fractional part
+        
+        FL_UInt64 c2 = 0;
+        FL_UInt64 lo = a6b2;
+        sumWithCarry(lo, c2, a5b3);
+        sumWithCarry(lo, c2, a4b4);
+        sumWithCarry(lo, c2, combineBits(a6b1, a6b3));
+        sumWithCarry(lo, c2, combineBits(a5b2, a5b4));
+        sumWithCarry(lo, c2, combineBits(a4b3, 0));
+        sumWithCarry(lo, c2, (a3b4 << 0x20) | c1);
+        
+        // Sum the hi fractional part
+        
+        FL_UInt64 c3 = 0;
+        FL_UInt64 md = a2b4;
+        sumWithCarry(md, c3, a4b2);
+        sumWithCarry(md, c3, a3b3);
+        sumWithCarry(md, c3, a5b1);
+        sumWithCarry(md, c3, combineBits(a1b4, a4b3));
+        sumWithCarry(md, c3, combineBits(a4b1, a3b4));
+        sumWithCarry(md, c3, combineBits(a2b3, a6b1));
+        sumWithCarry(md, c3, combineBits(a3b2, a5b2));
+        sumWithCarry(md, c3, c2);
+        
+        // Sum the integer part
+        
+        FL_UInt64 c4 = 0;
+        FL_UInt64 hi = a2b2;
+        sumWithCarry(hi, c4, a1b3);
+        sumWithCarry(hi, c4, a3b1);
+        sumWithCarry(hi, c4, combineBits(a1b2, a1b4));
+        sumWithCarry(hi, c4, combineBits(a2b1, a4b1));
+        sumWithCarry(hi, c4, highBits(a2b3) + highBits(a3b2));
+        sumWithCarry(hi, c4, c3);
+        
+        // Do overflow
+        
+        t1 = (a1b1 | highBits(a1b2) | highBits(a2b1) | c4) ? 0xFFFFFFFFFFFFFFFFULL : 0ULL;
+        
+        return SuperPrecision(hi | t1, md | t1, lo | t1);
+    }
+    
     friend SuperPrecision operator * (const SuperPrecision& lhs, const SuperPrecision& rhs)
     {
-        // N.B. Overflow behaviour is undefined for multiplication (it is assumed you are using values well within range for the purpose)
-        
-        FL_UInt64 c0 = 0;
-        FL_UInt64 c1 = 0;
-        FL_UInt64 c2 = 0;
-        FL_UInt64 c3 = 0;
-        FL_UInt64 c4 = 0;
-        FL_UInt64 t1, hi, md, lo;
-        
         // Split both into 4 x 32 bits stored within 64 bit integers
         
         FL_UInt64 a1 = highBits(lhs.mInt);
@@ -269,12 +359,14 @@ struct SuperPrecision
 
         // Sub carry bits
 
-        t1 = a6b6;
+        FL_UInt64 c0 = 0;
+        FL_UInt64 t1 = a6b6;
         sumWithCarry(t1, c0, (a5b6 << 0x20));
         sumWithCarry(t1, c0, (a6b5 << 0x20));
 
         // Lowest carry bits
         
+        FL_UInt64 c1 = 0;
         t1 = a4b6;
         sumWithCarry(t1, c1, a6b4);
         sumWithCarry(t1, c1, a5b5);
@@ -289,7 +381,8 @@ struct SuperPrecision
         
         // Sum the lo fractional part
         
-        lo = a2b6;
+        FL_UInt64 c2 = 0;
+        FL_UInt64 lo = a2b6;
         sumWithCarry(lo, c2, a6b2);
         sumWithCarry(lo, c2, a3b5);
         sumWithCarry(lo, c2, a5b3);
@@ -303,7 +396,8 @@ struct SuperPrecision
         
         // Sum the hi fractional part
         
-        md = a2b4;
+        FL_UInt64 c3 = 0;
+        FL_UInt64 md = a2b4;
         sumWithCarry(md, c3, a4b2);
         sumWithCarry(md, c3, a3b3);
         sumWithCarry(md, c3, a1b5);
@@ -317,7 +411,8 @@ struct SuperPrecision
 
         // Sum the integer part
         
-        hi = a2b2;
+        FL_UInt64 c4 = 0;
+        FL_UInt64 hi = a2b2;
         sumWithCarry(hi, c4, a1b3);
         sumWithCarry(hi, c4, a3b1);
         sumWithCarry(hi, c4, combineBits(a1b2, a1b4));
@@ -327,10 +422,9 @@ struct SuperPrecision
         
         // Do overflow
         
-        if (a1b1 | highBits(a1b2) | highBits(a2b1) | c4)
-            lo = md = hi = 0xFFFFFFFFULL;
+        t1 = (a1b1 | highBits(a1b2) | highBits(a2b1) | c4) ? 0xFFFFFFFFFFFFFFFFULL : 0ULL;
         
-        return SuperPrecision(hi, md, lo);
+        return SuperPrecision(hi | t1, md | t1, lo | t1);
     }
 
     SuperPrecision& operator *= (const SuperPrecision& rhs)
@@ -345,17 +439,45 @@ struct SuperPrecision
         
         hi = lhs.mInt - rhs.mInt;
         hi = subWithCarry(&md, lhs.mFracHi, rhs.mFracHi) ? --hi : hi;
-        md = subWithCarry(&lo, lhs.mFracLo, rhs.mFracLo) ? --md : md;
         
+        // FIX - needs more checking!!
+        // Must be able to double carry!
+        
+        if (subWithCarry(&lo, lhs.mFracLo, rhs.mFracLo))
+        {
+            hi = md ? hi : --hi;
+            --md;
+        }
+
         return SuperPrecision(hi, md, lo);
     }
+    
+    friend SuperPrecision twoMinus(const SuperPrecision& rhs)
+    {
+        // FIX - needs more checking!!
+        
+        FL_Internal_UInt64 hi =  2 - rhs.mInt;
+        FL_Internal_UInt64 md = -rhs.mFracHi;
+        FL_Internal_UInt64 lo = -rhs.mFracLo;
+        
+        // Double carry!
+        
+        if ((rhs.mFracHi | rhs.mFracLo))
+            --hi;
+        
+        if (rhs.mFracLo)
+            --md;
+    
+        return SuperPrecision(hi, md, lo);
+    }
+
 
     
 private:
     
     // Single 64 bit add/subtract with carry bit
     
-    static inline void sumWithCarry(FL_Internal_UInt64& sum, FL_Internal_UInt64& carry, const FL_Internal_UInt64& add)
+    static void sumWithCarry(FL_Internal_UInt64& sum, FL_Internal_UInt64& carry, const FL_Internal_UInt64& add)
     {
         sum += add;
         
@@ -403,8 +525,13 @@ public:
     {
         double absVal = fabs(val);
         
-        mInt = absVal;
-        mFrac = ((absVal - floor(absVal)) * 18446744073709551616.0);
+        if (18446744073709551616.0 <= absVal)
+            mInt = mFrac = 0xFFFFFFFFFFFFFFFFULL;
+        else
+        {
+            mInt = absVal;
+            mFrac = ((absVal - floor(absVal)) * 18446744073709551616.0);
+        }
     }
     
     // Int and Fract
@@ -471,7 +598,7 @@ private:
 
     // Single 64 bit add/subtract with carry bit
 
-    static inline bool addWithCarry(FL_Internal_UInt64 *result, const FL_Internal_UInt64& a, const FL_Internal_UInt64& b)
+    static bool addWithCarry(FL_Internal_UInt64 *result, const FL_Internal_UInt64& a, const FL_Internal_UInt64& b)
     {
         *result = a + b;
         return (*result < b);
@@ -549,35 +676,35 @@ public:
         
         // Split both into 4 x 32 bits stored within 64 bit integers
         
-        FL_UInt64 a1 = highBits(lhs.mInt);
-        FL_UInt64 a2 = lowBits(lhs.mInt);
-        FL_UInt64 a3 = highBits(lhs.mFrac);
-        FL_UInt64 a4 = lowBits(lhs.mFrac);
+        const FL_UInt64 a1 = highBits(lhs.mInt);
+        const FL_UInt64 a2 = lowBits(lhs.mInt);
+        const FL_UInt64 a3 = highBits(lhs.mFrac);
+        const FL_UInt64 a4 = lowBits(lhs.mFrac);
         
-        FL_UInt64 b1 = highBits(rhs.mInt);
-        FL_UInt64 b2 = lowBits(rhs.mInt);
-        FL_UInt64 b3 = highBits(rhs.mFrac);
-        FL_UInt64 b4 = lowBits(rhs.mFrac);
+        const FL_UInt64 b1 = highBits(rhs.mInt);
+        const FL_UInt64 b2 = lowBits(rhs.mInt);
+        const FL_UInt64 b3 = highBits(rhs.mFrac);
+        const FL_UInt64 b4 = lowBits(rhs.mFrac);
         
-        FL_UInt64 a1b1 = a1 * b1;
-        FL_UInt64 a1b2 = a1 * b2;
-        FL_UInt64 a1b3 = a1 * b3;
-        FL_UInt64 a1b4 = a1 * b4;
+        const FL_UInt64 a1b1 = a1 * b1;
+        const FL_UInt64 a1b2 = a1 * b2;
+        const FL_UInt64 a1b3 = a1 * b3;
+        const FL_UInt64 a1b4 = a1 * b4;
         
-        FL_UInt64 a2b1 = a2 * b1;
-        FL_UInt64 a2b2 = a2 * b2;
-        FL_UInt64 a2b3 = a2 * b3;
-        FL_UInt64 a2b4 = a2 * b4;
+        const FL_UInt64 a2b1 = a2 * b1;
+        const FL_UInt64 a2b2 = a2 * b2;
+        const FL_UInt64 a2b3 = a2 * b3;
+        const FL_UInt64 a2b4 = a2 * b4;
         
-        FL_UInt64 a3b1 = a3 * b1;
-        FL_UInt64 a3b2 = a3 * b2;
-        FL_UInt64 a3b3 = a3 * b3;
-        FL_UInt64 a3b4 = a3 * b4;
+        const FL_UInt64 a3b1 = a3 * b1;
+        const FL_UInt64 a3b2 = a3 * b2;
+        const FL_UInt64 a3b3 = a3 * b3;
+        const FL_UInt64 a3b4 = a3 * b4;
         
-        FL_UInt64 a4b1 = a4 * b1;
-        FL_UInt64 a4b2 = a4 * b2;
-        FL_UInt64 a4b3 = a4 * b3;
-        FL_UInt64 a4b4 = a4 * b4;
+        const FL_UInt64 a4b1 = a4 * b1;
+        const FL_UInt64 a4b2 = a4 * b2;
+        const FL_UInt64 a4b3 = a4 * b3;
+        const FL_UInt64 a4b4 = a4 * b4;
         
         // Lowest carry bits
         
@@ -605,10 +732,9 @@ public:
         
         // Do overflow
     
-        if (a1b1 | highBits(a1b2) | highBits(a2b1) | c3)
-            lo = hi = 0xFFFFFFFFULL;
+        t1 = (a1b1 | highBits(a1b2) | highBits(a2b1) | c3) ? 0xFFFFFFFFFFFFFFFFULL : 0ULL;
         
-        return FrameLib_FixedPoint(hi, lo);
+        return FrameLib_FixedPoint(hi | t1, lo | t1);
     }
     
     FrameLib_FixedPoint& operator *= (const FrameLib_FixedPoint& rhs)
@@ -627,27 +753,50 @@ public:
         //FrameLib_FixedPoint test1 = rhs * recip;
         //FrameLib_FixedPoint test2 = (double) rhs * thing;
 
-        FrameLib_FixedPoint recipEst = 1.0 / (double) rhs;
+        double recipD = 1.0 / (double) rhs;
+        FrameLib_FixedPoint recipEst = recipD;
         SuperPrecision recip = SuperPrecision(recipEst.mInt, recipEst.mFrac, 0);
         SuperPrecision rhsSP = SuperPrecision(rhs.mInt, rhs.mFrac, 0);
         
         // Newton-Raphson
+        // FIX - maybe 2 is enough iterations?
         
-        for (int i = 0; i < 3; i++)
-            recip *= (SuperPrecision(2, 0, 0) - (rhsSP * recip));
+        //for (int i = 0; i < 2; i++)
+        //recip *= (SuperPrecision(2, 0, 0) - (recip * rhsSP));
         
-        SuperPrecision result = SuperPrecision(lhs.mInt, lhs.mFrac, 0) * recip;
+        recip = qMul(twoMinus(qMul(recip, rhs.mInt, rhs.mFrac)), recipEst.mInt, recipEst.mFrac);
+        recip *= twoMinus(qMul(recip, rhs.mInt, rhs.mFrac));
+        recip *= twoMinus(qMul(recip, rhs.mInt, rhs.mFrac));
+
+        SuperPrecision recip2 = SuperPrecision(recipEst.mInt, recipEst.mFrac, 0) * (SuperPrecision(2, 0, 0) - (rhsSP * SuperPrecision(recipEst.mInt, recipEst.mFrac, 0)));
+        recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
+        recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
+        recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
+        //SuperPrecision recip2 = recip;
+        //recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
+
+        if (recip2.intPart() != recip.intPart() || recip2.fracHiPart() != recip.fracHiPart() || recip2.fracLoPart() != recip.fracLoPart())
+            std::cout << "not the same \n";
+        
+        //SuperPrecision recip2 = recip;
+        //recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
+        
+        //SuperPrecision result = SuperPrecision(lhs.mInt, lhs.mFrac, 0) * recip;
+        SuperPrecision result = qMul(recip, lhs.mInt, lhs.mFrac);
+
         FrameLib_FixedPoint resultLP = FrameLib_FixedPoint(result.intPart(), result.fracHiPart());
         resultLP = (result.fracLoPart() & 0x8000000000000000ULL) ? resultLP + FrameLib_FixedPoint(0, 1) : resultLP;
         
-        SuperPrecision test3 = rhsSP * result;
+        //result2 = SuperPrecision();
+        //SuperPrecision test3 = rhsSP * result;
         
-        test3 = SuperPrecision(result.intPart(), result.fracHiPart(), 0) * rhsSP;
-
-        FrameLib_FixedPoint test2 = resultLP * rhs;
+        //SuperPrecision test3 = SuperPrecision(result.intPart(), result.fracHiPart(), 0) * rhsSP;
+        //SuperPrecision test4 = SuperPrecision(result2.intPart(), result2.fracHiPart(), 0) * rhsSP;
         
-        test2 = (resultLP - FrameLib_FixedPoint(0, 1)) * rhs;
+        //FrameLib_FixedPoint test2 = resultLP * rhs;
         
+        //test2 = (resultLP - FrameLib_FixedPoint(0, 1)) * rhs;
+        //test3 = test4 = SuperPrecision();
         return resultLP;
     }
 
