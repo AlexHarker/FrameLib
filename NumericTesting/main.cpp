@@ -43,7 +43,7 @@ FL_UInt64 randu32()
 
 FrameLib_FixedPoint randSmallFixed()
 {
-    FL_UInt64 hi = 0;//randu32() & 0xF;
+    FL_UInt64 hi = randu32() & 0xF;
     FL_UInt64 lo = randu64();
     
     return FrameLib_FixedPoint(hi, lo);
@@ -176,10 +176,21 @@ int main(int argc, const char * argv[]) {
     
     for (FL_UInt64 i=0; i <= 0xFFFFFF; i++)
     {
-        FrameLib_FixedPoint result = FrameLib_FixedPoint(1, 0) / randSmallFixed();
+        FrameLib_FixedPoint a = randSmallFixed();
+        FrameLib_FixedPoint b = randSmallFixed();
+        FrameLib_FixedPoint result = a / b;
         
-        if (result == FrameLib_FixedPoint(0,1))
-            std::cout << "mini " << i << "\n";
+        FrameLib_FixedPoint check1 = result * b;
+        FrameLib_FixedPoint check2 = (result + FrameLib_FixedPoint(0,1)) * b;
+        FrameLib_FixedPoint check3 = (result - FrameLib_FixedPoint(0,1)) * b;
+        
+        if (check1 == a)
+            continue;
+        
+        if (check2 > a && check3 < a)
+            continue;
+        
+        std::cout << "failed \n";
     }
 
     std::cout << "done\n";

@@ -756,7 +756,7 @@ public:
         double recipD = 1.0 / (double) rhs;
         FrameLib_FixedPoint recipEst = recipD;
         SuperPrecision recip = SuperPrecision(recipEst.mInt, recipEst.mFrac, 0);
-        SuperPrecision rhsSP = SuperPrecision(rhs.mInt, rhs.mFrac, 0);
+        //SuperPrecision rhsSP = SuperPrecision(rhs.mInt, rhs.mFrac, 0);
         
         // Newton-Raphson
         // FIX - maybe 2 is enough iterations?
@@ -766,17 +766,17 @@ public:
         
         recip = qMul(twoMinus(qMul(recip, rhs.mInt, rhs.mFrac)), recipEst.mInt, recipEst.mFrac);
         recip *= twoMinus(qMul(recip, rhs.mInt, rhs.mFrac));
-        recip *= twoMinus(qMul(recip, rhs.mInt, rhs.mFrac));
+        //recip *= twoMinus(qMul(recip, rhs.mInt, rhs.mFrac));
 
-        SuperPrecision recip2 = SuperPrecision(recipEst.mInt, recipEst.mFrac, 0) * (SuperPrecision(2, 0, 0) - (rhsSP * SuperPrecision(recipEst.mInt, recipEst.mFrac, 0)));
-        recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
-        recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
-        recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
+        //SuperPrecision recip2 = SuperPrecision(recipEst.mInt, recipEst.mFrac, 0) * (SuperPrecision(2, 0, 0) - (rhsSP * SuperPrecision(recipEst.mInt, recipEst.mFrac, 0)));
+        //recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
+        //recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
+        //recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
         //SuperPrecision recip2 = recip;
         //recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
 
-        if (recip2.intPart() != recip.intPart() || recip2.fracHiPart() != recip.fracHiPart() || recip2.fracLoPart() != recip.fracLoPart())
-            std::cout << "not the same \n";
+        //if (recip2.intPart() != recip.intPart() || recip2.fracHiPart() != recip.fracHiPart() || recip2.fracLoPart() != recip.fracLoPart())
+        //    std::cout << "not the same \n";
         
         //SuperPrecision recip2 = recip;
         //recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
