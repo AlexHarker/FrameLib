@@ -15088,6 +15088,7 @@
 				B8A1F5C11D5370DE00FA5FFC /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
 		};
 		B8A4757F19C9DDCD0043DC65 /* Build configuration list for PBXNativeTarget "fl.convolve~" */ = {
 			isa = XCConfigurationList;
