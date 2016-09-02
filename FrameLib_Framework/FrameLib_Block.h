@@ -59,6 +59,10 @@ public:
         return mNumAudioOuts;
     }
     
+    // Set Fixed Inputs
+    
+    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) = 0;
+
     // Audio Processing
     
     virtual void blockUpdate (double **ins, double **outs, unsigned long vecSize)

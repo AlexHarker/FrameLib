@@ -125,7 +125,8 @@ protected:
     }
     
 public:
-    
+   
+    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) = 0;
     virtual void setSamplingRate(double samplingRate) = 0;
     
     unsigned long getNumIns()
@@ -406,9 +407,8 @@ public:
         clearConnections();
     }
     
-    void setSamplingRate(double samplingRate)
-    {
-    }
+    virtual void setSamplingRate(double samplingRate){}
+    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size){}
     
 private:
     
@@ -452,9 +452,8 @@ public:
         clearConnections();
     }
     
-    void setSamplingRate(double samplingRate)
-    {
-    }
+    virtual void setSamplingRate(double samplingRate){}
+    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size){}
         
 private:
 
@@ -499,6 +498,10 @@ public:
         
         setIO(mBlocks[0]->getNumIns(), mBlocks[0]->getNumOuts());
         
+        // Set up Fixed Inputs
+        
+        mFixedInputs.resize(getNumIns());
+        
         // Make initial output connections
         
         for (unsigned long i = 0; i < getNumOuts(); i++)
@@ -521,9 +524,17 @@ public:
         delete mSerialisedAttributes;
     }
     
+    // Fixed Inputs
+    
+    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size)
+    {
+        mFixedInputs[idx].assign(input, input+ size);
+        updateFixedInput(idx);
+    }
+    
     // Sampling Rate
 
-    void setSamplingRate(double samplingRate)
+    virtual void setSamplingRate(double samplingRate)
     {
         mSamplingRate = samplingRate;
         
@@ -600,6 +611,14 @@ public:
 
 private:
 
+    // Update Fixed Inputs
+    
+    void updateFixedInput(unsigned long idx)
+    {
+        for (unsigned long i = 0; i < mBlocks.size(); i++)
+            mBlocks[i]->setFixedInput(idx, &mFixedInputs[idx][0], mFixedInputs[idx].size());
+    }
+    
     // Update (expand)
     
     void inputUpdate()
@@ -648,6 +667,11 @@ private:
                 for (unsigned long j = 0; j < nChannels; j++)
                     mOutputs[i].mConnections.push_back(ConnectionInfo(mBlocks[j], i));
             
+            // Update Fixed Inputs
+            
+            for (unsigned long i = 0; i < getNumIns(); i++)
+                updateFixedInput(i);
+            
             // Update output dependencies
             
             outputUpdate();
@@ -678,6 +702,7 @@ private:
     FrameLib_Attributes::Serial *mSerialisedAttributes;
 
     std::vector <FrameLib_Block *> mBlocks;
+    std::vector <std::vector <double> > mFixedInputs;
     
     double mSamplingRate;
 };

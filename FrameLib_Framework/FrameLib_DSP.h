@@ -103,13 +103,18 @@ private:
     
     struct Input
     {
-        Input() : mObject(NULL), mIndex(0), mUpdate(false), mTrigger(true), mSwitchable(false) {}
+        Input() : mObject(NULL), mIndex(0), mSize(0), mFixedInput(NULL), mUpdate(false), mTrigger(true), mSwitchable(false) {}
         
         // Connection Info
         
         FrameLib_DSP *mObject;
         unsigned long mIndex;
      
+        // Fixed Input
+        
+        unsigned long mSize;
+        double *mFixedInput;
+        
         // Flags
         
         bool mUpdate;
@@ -153,6 +158,11 @@ public:
         // Clear connections before deleting
         
         clearConnections();
+        
+        // Delete Fixed Inputs
+        
+        for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
+            mAllocator->dealloc(ins->mFixedInput);
     }
     
     // ************************************************************************************** //
@@ -500,6 +510,26 @@ public:
         resetDependencyCount();
     }
     
+    void setFixedInput(unsigned long idx, double *input, unsigned long size)
+    {
+        // This is not threadsafe with the processing thread and should not be called concurrently...
+        
+        mInputs[idx].mSize = 0;
+        
+        if (mInputs[idx].mFixedInput)
+            mAllocator->dealloc(mInputs[idx].mFixedInput);
+        
+        mInputs[idx].mFixedInput = (double *) mAllocator->alloc(size * sizeof(double));
+        
+        if (mInputs[idx].mFixedInput)
+        {
+            for (unsigned long i = 0; i < size; i++)
+                mInputs[idx].mFixedInput[i] = input[i];
+            
+            mInputs[idx].mSize = size;
+        }
+    }
+    
     // ************************************************************************************** //
     
     // Processing utilities
@@ -508,7 +538,7 @@ protected:
     
     bool isTrigger(unsigned long idx)
     {
-        return mInputs[idx].mTrigger && (mInputs[idx].mObject->mFrameTime == mFrameTime);
+        return mInputs[idx].mTrigger && mInputs[idx].mObject && (mInputs[idx].mObject->mFrameTime == mFrameTime);
     }
     
     FrameLib_TimeFormat getFrameTime()
@@ -631,8 +661,8 @@ protected:
         if (mInputs[idx].mObject)
             return mInputs[idx].mObject->getOutput(mInputs[idx].mIndex, size);
         
-        *size = 0;
-        return NULL;
+        *size = mInputs[idx].mSize;
+        return mInputs[idx].mFixedInput;
     }
     
     FrameLib_Attributes::Serial *getInput(unsigned long idx)
