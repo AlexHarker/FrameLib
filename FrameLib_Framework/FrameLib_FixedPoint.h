@@ -471,9 +471,14 @@ struct SuperPrecision
         return SuperPrecision(hi, md, lo);
     }
 
-
+    friend bool operator > (const SuperPrecision& lhs, const SuperPrecision& rhs)
+    {
+        return ((lhs.mInt > rhs.mInt) || (lhs.mInt == rhs.mInt && lhs.mFracHi > rhs.mFracHi) || (lhs.mInt == rhs.mInt && lhs.mFracHi == rhs.mFracHi && lhs.mFracLo > rhs.mFracLo));
+    }
     
 private:
+    
+    
     
     // Single 64 bit add/subtract with carry bit
     
@@ -747,56 +752,25 @@ public:
     
     friend FrameLib_FixedPoint operator / (const FrameLib_FixedPoint& lhs, const FrameLib_FixedPoint& rhs)
     {
-        // Get a decent reciprocal estimate
-        //double thing = 1.0 / (double) rhs;
-        //FrameLib_FixedPoint recip = 1.0 / (double) rhs;
-        //FrameLib_FixedPoint test1 = rhs * recip;
-        //FrameLib_FixedPoint test2 = (double) rhs * thing;
-
         double recipD = 1.0 / (double) rhs;
         FrameLib_FixedPoint recipEst = recipD;
         SuperPrecision recip = SuperPrecision(recipEst.mInt, recipEst.mFrac, 0);
-        //SuperPrecision rhsSP = SuperPrecision(rhs.mInt, rhs.mFrac, 0);
         
         // Newton-Raphson
-        // FIX - maybe 2 is enough iterations?
         
-        //for (int i = 0; i < 2; i++)
-        //recip *= (SuperPrecision(2, 0, 0) - (recip * rhsSP));
+        // FIX - maybe 2 is enough iterations?
         
         recip = qMul(twoMinus(qMul(recip, rhs.mInt, rhs.mFrac)), recipEst.mInt, recipEst.mFrac);
         recip *= twoMinus(qMul(recip, rhs.mInt, rhs.mFrac));
         //recip *= twoMinus(qMul(recip, rhs.mInt, rhs.mFrac));
 
-        //SuperPrecision recip2 = SuperPrecision(recipEst.mInt, recipEst.mFrac, 0) * (SuperPrecision(2, 0, 0) - (rhsSP * SuperPrecision(recipEst.mInt, recipEst.mFrac, 0)));
-        //recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
-        //recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
-        //recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
-        //SuperPrecision recip2 = recip;
-        //recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
-
-        //if (recip2.intPart() != recip.intPart() || recip2.fracHiPart() != recip.fracHiPart() || recip2.fracLoPart() != recip.fracLoPart())
-        //    std::cout << "not the same \n";
+        // Multiply reciprocal to get final result and then round
         
-        //SuperPrecision recip2 = recip;
-        //recip2 *= (SuperPrecision(2, 0, 0) - (rhsSP * recip2));
-        
-        //SuperPrecision result = SuperPrecision(lhs.mInt, lhs.mFrac, 0) * recip;
         SuperPrecision result = qMul(recip, lhs.mInt, lhs.mFrac);
 
         FrameLib_FixedPoint resultLP = FrameLib_FixedPoint(result.intPart(), result.fracHiPart());
         resultLP = (result.fracLoPart() & 0x8000000000000000ULL) ? resultLP + FrameLib_FixedPoint(0, 1) : resultLP;
-        
-        //result2 = SuperPrecision();
-        //SuperPrecision test3 = rhsSP * result;
-        
-        //SuperPrecision test3 = SuperPrecision(result.intPart(), result.fracHiPart(), 0) * rhsSP;
-        //SuperPrecision test4 = SuperPrecision(result2.intPart(), result2.fracHiPart(), 0) * rhsSP;
-        
-        //FrameLib_FixedPoint test2 = resultLP * rhs;
-        
-        //test2 = (resultLP - FrameLib_FixedPoint(0, 1)) * rhs;
-        //test3 = test4 = SuperPrecision();
+
         return resultLP;
     }
 

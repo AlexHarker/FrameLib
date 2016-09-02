@@ -44,7 +44,7 @@ FL_UInt64 randu32()
 FrameLib_FixedPoint randSmallFixed()
 {
     FL_UInt64 hi = randu32() & 0xF;
-    FL_UInt64 lo = randu64();
+    FL_UInt64 lo = randu32();
     
     return FrameLib_FixedPoint(hi, lo);
 }
@@ -64,6 +64,14 @@ SuperPrecision randSP()
     FL_UInt64 lo = randu64();
     
     return SuperPrecision(hi, md, lo);
+}
+
+SuperPrecision diff(SuperPrecision a, SuperPrecision b)
+{
+    if (a > b)
+        return a - b;
+    else
+        return b - a;
 }
 
 bool equal(FrameLib_FixedPoint a, double b)
@@ -110,7 +118,7 @@ int main(int argc, const char * argv[]) {
         FrameLib_FixedPoint rand1 = rand1D;
         FrameLib_FixedPoint rand2 = rand2D;
         FrameLib_FixedPoint result1 = (rand1 * rand2);
-        //FrameLib_FixedPoint result3 = (double)result1;
+
         double result2 = rand2D * rand1D;
         
         if (!equal(result1, result2))
@@ -172,7 +180,7 @@ int main(int argc, const char * argv[]) {
             std::cout << "fixed mul not equal to qMul " << i << "\n";
     }*/
     
-    // Divide Check
+    // Simple Divide Check
     
     for (FL_UInt64 i=0; i <= 0xFFFFFF; i++)
     {
@@ -191,9 +199,39 @@ int main(int argc, const char * argv[]) {
             continue;
         
         std::cout << "failed \n";
+        break;
     }
 
-    std::cout << "done\n";
+    std::cout << "done simple\n";
+    
+    // Hard Divide Check
+    
+    for (FL_UInt64 i=0; i <= 0xFFFFFF; i++)
+    {
+        FrameLib_FixedPoint a = randSmallFixed();
+        FrameLib_FixedPoint b = randSmallFixed();
+        FrameLib_FixedPoint result = a / b;
+        FrameLib_FixedPoint resultP1 = result + FrameLib_FixedPoint(0,1);
+        FrameLib_FixedPoint resultM1 = result - FrameLib_FixedPoint(0,1);
+
+        SuperPrecision a1(a.intPart(), a.fracPart(), 0);
+        SuperPrecision b1(b.intPart(), b.fracPart(), 0);
+        SuperPrecision r1(result.intPart(), result.fracPart(), 0);
+        SuperPrecision rP1(resultP1.intPart(), resultP1.fracPart(), 0);
+        SuperPrecision rM1(resultM1.intPart(), resultM1.fracPart(), 0);
+        
+        SuperPrecision check1 = diff(a1, r1 * b1);
+        SuperPrecision check2 = diff(a1, rP1 * b1);
+        SuperPrecision check3 = diff(a1, rM1 * b1);
+        
+        if ((check3 > check1) && (check2 > check1))
+            continue;
+        
+        std::cout << "failed \n";
+        break;
+    }
+    
+    std::cout << "done hard\n";
     
     /* Get the timebase info */
     mach_timebase_info_data_t info;
@@ -205,12 +243,14 @@ int main(int argc, const char * argv[]) {
 
     start = mach_absolute_time();
     
-    for (FL_UInt64 i=0; i <= 0xFFFFFFF; i++)
     {
-        double result = 2.5 * i;
+        double result = 1.0;
+
+        for (FL_UInt64 i=0; i <= 0xFFFFFFF; i++)
+            result *= 2.5;
         
-        if (result == i)
-            std::cout << "failed " << i << "\n";
+        if (result == 0.0)
+            std::cout << "equals zero\n";
     }
     
     end = mach_absolute_time();
@@ -222,12 +262,14 @@ int main(int argc, const char * argv[]) {
 
     start = mach_absolute_time();
 
-    for (FL_UInt64 i=0; i <= 0xFFFFFFF; i++)
     {
-        FrameLib_FixedPoint result = FrameLib_FixedPoint(2,0x8000000000000000ULL) * FrameLib_FixedPoint(i,0);
+        FrameLib_FixedPoint result = FrameLib_FixedPoint(1.0);
+    
+        for (FL_UInt64 i=0; i <= 0xFFFFFFF; i++)
+            result *= FrameLib_FixedPoint(2,0x8000000000000000ULL);
         
-        if (result == FrameLib_FixedPoint(i,0))
-            std::cout << "failed " << i << "\n";
+            if (result == FrameLib_FixedPoint(0,0))
+                std::cout << "equals zero\n";
     }
 
     end = mach_absolute_time();
@@ -245,7 +287,7 @@ int main(int argc, const char * argv[]) {
     ///                      
     for (FL_UInt64 i=0; i <= 0x8FFFFFF; i++)
     {
-        double result = 1.0 / i;
+        double result = 1.0 / (i + 2);
         
         if (result == i)
             std::cout << "failed " << i << "\n";
