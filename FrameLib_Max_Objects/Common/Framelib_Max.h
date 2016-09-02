@@ -660,13 +660,11 @@ typedef struct _wrapper
 {
     t_pxobject x_obj;
     
-    // FIX - object types
-    
     // Objects
     
     t_object *patch_internal;
-    t_jbox *obj_internal;
-    t_mutator *obj_mutator;
+    t_object *obj_internal;
+    t_object *obj_mutator;
     
     // Inlets (must be freed)
     
@@ -716,8 +714,8 @@ void *wrapper_new(t_symbol *s, long argc, t_atom *argv)
     long textsize = 0;
     
     atom_gettext(argc, argv, &textsize, &text, 0);
-    x->obj_internal = (t_jbox *) newobject_sprintf(x->patch_internal, "@maxclass newobj @text \"%s %s\" @patching_rect 0 0 30 10", name, text);
-    x->obj_mutator = (t_mutator *) object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 0, NULL);
+    x->obj_internal = jbox_get_object((t_object *) newobject_sprintf(x->patch_internal, "@maxclass newobj @text \"%s %s\" @patching_rect 0 0 30 10", name, text));
+    x->obj_mutator = (t_object *) object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 0, NULL);
     
     // Free resources we no longer need
     
@@ -725,9 +723,9 @@ void *wrapper_new(t_symbol *s, long argc, t_atom *argv)
     freeobject((t_object *)d);
     sysmem_freeptr(text);
     
-    // Get the object itself
+    // Get the object itself (typed)
     
-    t_framelib *internal = (t_framelib *) jbox_get_object((t_object *)x->obj_internal);
+    t_framelib *internal = (t_framelib *) x->obj_internal;
     
     long num_ins = get_num_ins(internal);
     long num_outs = get_num_outs(internal);
@@ -760,27 +758,29 @@ void *wrapper_new(t_symbol *s, long argc, t_atom *argv)
     for (long i = num_audio_outs - 2; i >= 0 ; i--)
         x->audio_outs[i] = outlet_new((t_object *)x, "signal");
     
+    // Object pointer types for internal object and mutator
+    
     // Create Connections
     
     // Connect the audio sync in to the object and through to the mutator
     
-    outlet_add(x->sync_in, inlet_nth((t_object *)internal, 0));
-    outlet_add(outlet_nth((t_object *)internal, 0), inlet_nth((t_object *)x->obj_mutator, 0));
+    outlet_add(x->sync_in, inlet_nth(x->obj_internal, 0));
+    outlet_add(outlet_nth(x->obj_internal, 0), inlet_nth(x->obj_mutator, 0));
     
     // Connect inlets (all types)
     
     for (long i = 0; i < num_audio_ins + num_ins - 1; i++)
-        outlet_add(x->in_outlets[i], inlet_nth((t_object *)internal, i + 1));
+        outlet_add(x->in_outlets[i], inlet_nth(x->obj_internal, i + 1));
     
     // Connect outlets (audio then frame and sync message outlets)
     
     for (long i = 0; i < num_audio_outs - 1; i++)
-        outlet_add(outlet_nth((t_object *)internal, i + 1), x->audio_outs[i]);
+        outlet_add(outlet_nth(x->obj_internal, i + 1), x->audio_outs[i]);
     
     for (long i = 0; i < num_outs; i++)
     {
-        outlet_add(outlet_nth((t_object *)internal, i + num_audio_outs), x->outs[i]);
-        outlet_add(outlet_nth((t_object *)x->obj_mutator, 0), x->outs[i]);
+        outlet_add(outlet_nth(x->obj_internal, i + num_audio_outs), x->outs[i]);
+        outlet_add(outlet_nth(x->obj_mutator, 0), x->outs[i]);
     }
     
     x->sync_check.object = NULL;
@@ -791,9 +791,9 @@ void *wrapper_new(t_symbol *s, long argc, t_atom *argv)
 
 void wrapper_free(t_wrapper *x)
 {
-    // Delete ins and proxys
+    // Delete ins and proxies
     
-    t_framelib *internal = (t_framelib *) jbox_get_object((t_object *) x->obj_internal);
+    t_framelib *internal = (t_framelib *) x->obj_internal;
     
     long num_ins = get_num_ins(internal);
     long num_audio_ins = get_num_audio_ins(internal);
@@ -812,9 +812,8 @@ void wrapper_free(t_wrapper *x)
     free(x->audio_outs);
     free(x->outs);
     
-    // Can I just delete the patch and not the internal object?
+    // N.B. - delete the patch, but not the object within it (which will be freed by deleting the patch)
     
-    freeobject((t_object *)x->obj_internal);
     freeobject((t_object *)x->obj_mutator);
     freeobject((t_object *)x->sync_in);
     freeobject(x->patch_internal);
@@ -822,7 +821,7 @@ void wrapper_free(t_wrapper *x)
 
 void wrapper_assist(t_wrapper *x, void *b, long m, long a, char *s)
 {
-    framelib_assist((t_framelib *) jbox_get_object((t_object *) x->obj_internal), b, m, a + 1, s);
+    framelib_assist((t_framelib *) x->obj_internal, b, m, a + 1, s);
 }
 
 void *wrapper_subpatcher(t_wrapper *x, long index, void *arg)
