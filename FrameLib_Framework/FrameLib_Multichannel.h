@@ -528,8 +528,11 @@ public:
     
     virtual void setFixedInput(unsigned long idx, double *input, unsigned long size)
     {
-        mFixedInputs[idx].assign(input, input+ size);
-        updateFixedInput(idx);
+        if (idx < mFixedInputs.size())
+        {
+            mFixedInputs[idx].assign(input, input + size);
+            updateFixedInput(idx);
+        }
     }
     
     // Sampling Rate

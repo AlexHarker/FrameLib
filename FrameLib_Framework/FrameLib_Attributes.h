@@ -62,7 +62,7 @@ public:
         ~Serial()
         {
             if (mOwner)
-                delete mPtr;
+                delete[] mPtr;
         }
         
     private:
@@ -175,7 +175,7 @@ public:
             
             BytePointer newPtr = new Byte[mMaxSize + growSize];
             memcpy(newPtr, mPtr, mSize);
-            delete mPtr;
+            delete[] mPtr;
             
             // Update
             
@@ -367,7 +367,7 @@ public:
             
             ~Array()
             {
-                delete mItems;
+                delete[] mItems;
             }
 
             size_t size()
@@ -733,7 +733,7 @@ public:
             return getArray();
         }
         
-        size_t getArraySize()
+        size_t getArraySize() const
         {
             switch (mType)
             {
@@ -850,7 +850,7 @@ public:
 
 private:
     
-    long convertToNumber(const char *name)
+    static long convertToNumber(const char *name)
     {
         long result = 0;
         
@@ -870,12 +870,12 @@ private:
     
 public:
     
-    unsigned long size()
+    unsigned long size() const
     {
         return mAttributes.size();
     }
     
-    long getIdx(const char *name)
+    long getIdx(const char *name) const
     {
         for (unsigned long i = 0; i < mAttributes.size(); i++)
             if (strcmp(name, mAttributes[i]->name()) == 0)
@@ -891,32 +891,32 @@ public:
         return -1;
     }
     
-    Type getType(unsigned long idx)
+    Type getType(unsigned long idx) const
     {
         return mAttributes[idx]->type();
     }
     
-    Type getType(const char *name)
+    Type getType(const char *name) const
     {
         return getType(getIdx(name));
     }
 
-    void getRange(unsigned long idx, double *min, double *max)
+    void getRange(unsigned long idx, double *min, double *max) const
     {
         return mAttributes[idx]->getRange(min, max);
     }
     
-    void getRange(const char *name, double *min, double *max)
+    void getRange(const char *name, double *min, double *max) const
     {
         return getRange(getIdx(name), min, max);
     }
     
-    const char *getEnumItemString(unsigned long idx, unsigned long item)
+    const char *getEnumItemString(unsigned long idx, unsigned long item) const
     {
         return mAttributes[idx]->getEnumItemString(item);
     }
     
-    const char *getEnumItemString(const char *name, unsigned long item)
+    const char *getEnumItemString(const char *name, unsigned long item) const
     {
         return getEnumItemString(getIdx(name), item);
     }
@@ -998,73 +998,72 @@ public:
     
 public:
     
-    double getValue(unsigned long idx)
+    double getValue(unsigned long idx) const
     {
         return mAttributes[idx]->getValue();
     }
     
-    double getValue(const char *name)
+    double getValue(const char *name) const
     {
         return getValue(getIdx(name));
     }
     
-    long getInt(unsigned long idx)
+    long getInt(unsigned long idx) const
     {
         return (long) getValue(idx);
     }
     
-    long getInt(const char *name)
+    long getInt(const char *name) const
     {
         return getInt(getIdx(name));
     }
     
-    long getBool(unsigned long idx)
+    long getBool(unsigned long idx) const
     {
         return (bool) getValue(idx);
     }
     
-    bool getBool(const char *name)
+    bool getBool(const char *name) const
     {
         return (bool) getValue(getIdx(name));
     }
     
-    const char *getString(unsigned long idx)
+    const char *getString(unsigned long idx) const
     {
         return mAttributes[idx]->getString();
     }
     
-    const char *getString(const char *name)
+    const char *getString(const char *name) const
     {
         return getString(getIdx(name));
     }
     
-    double *getArray(unsigned long idx)
+    double *getArray(unsigned long idx) const
     {
         return mAttributes[idx]->getArray();
     }
     
-    double *getArray(const char *name)
+    double *getArray(const char *name) const
     {
         return getArray(getIdx(name));
     }
     
-    double *getArray(unsigned long idx, size_t *size)
+    double *getArray(unsigned long idx, size_t *size) const
     {
-        *size = getArraySize(idx);
-        return mAttributes[idx]->getArray();
+        return mAttributes[idx]->getArray(size);
     }
     
-    double *getArray(const char *name, size_t *size)
+    double *getArray(const char *name, size_t *size) const
     {
         return getArray(getIdx(name), size);
     }
     
-    size_t getArraySize(unsigned long idx)
+    size_t getArraySize(unsigned long idx) const
     {
         return mAttributes[idx]->getArraySize();
     }
     
-    size_t getArraySize(const char *name)
+    size_t getArraySize(const char *name) const
     {
         return getArraySize(getIdx(name));
     }

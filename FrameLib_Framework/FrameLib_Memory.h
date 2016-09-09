@@ -200,6 +200,9 @@ public:
     
     void *alloc(size_t size)
     {
+        if (!size)
+            return NULL;
+        
         // N.B. - all memory should be aligned to alignment
         
         size_t maxSize = size << 1;
@@ -249,6 +252,7 @@ public:
             {
                 mGlobalAllocator->deallocWithoutLock(mFreeLists[i].mMemory);
                 mFreeLists[i].mMemory = NULL;
+                mFreeLists[i].mSize = 0;
             }
         }
         

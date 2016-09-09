@@ -58,7 +58,7 @@ public:
 
 template <typename Op> class FrameLib_BinaryOp : public FrameLib_Processor
 {
-    enum AttributeList {kVals, kMode, kTriggers, kPadding};
+    enum AttributeList {kMode, kTriggers, kPadding};
     enum Modes {kWrap, kShrink, kPadIn, kPadOut};
     enum TriggerModes {kBoth, kLeft, kRight};
     
@@ -66,8 +66,6 @@ public:
     
     FrameLib_BinaryOp(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 2, 1)
     {
-        mAttributes.addVariableArray(kVals, "vals", 0.0, 4096, 1, 0);
-
         mAttributes.addEnum(kMode, "mode");
         mAttributes.addEnumItem(kWrap, "wrap");
         mAttributes.addEnumItem(kShrink, "shrink");
@@ -102,8 +100,8 @@ protected:
         
         unsigned long sizeIn1, sizeIn2, sizeCommon, sizeOut;
         
-        double *input1 = isConnected(0) ? getInput(0, &sizeIn1) : mAttributes.getArray(kVals, &sizeIn1);
-        double *input2 = isConnected(1) ? getInput(1, &sizeIn2) : mAttributes.getArray(kVals, &sizeIn2);
+        double *input1 = getInput(0, &sizeIn1);
+        double *input2 = getInput(1, &sizeIn2);
         double defaultValue = mPadValue;
         double *output;
         
