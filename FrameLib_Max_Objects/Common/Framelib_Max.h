@@ -17,6 +17,34 @@ t_class *wrapperClass = NULL;
 t_class *mutatorClass = NULL;
 
 //////////////////////////////////////////////////////////////////////////
+////////////// Convenience Class For Owned t_object Pointers /////////////
+//////////////////////////////////////////////////////////////////////////
+
+struct OwnedObject
+{
+    OwnedObject() : mObject(NULL) {}
+    OwnedObject(t_object *object) : mObject(object) {}
+    OwnedObject(const OwnedObject& rhs) { *this = rhs; }
+    ~OwnedObject() { release(); }
+
+    OwnedObject &operator= (t_object *rhs) { return (*this = OwnedObject(rhs)); }
+    OwnedObject &operator= (const OwnedObject& rhs)
+    {
+        release();
+        mObject = rhs.mObject;
+        return *this;
+    }
+    
+    operator t_object *() { return mObject; }
+    
+    void release() { if (mObject) freeobject(mObject); }
+    
+private:
+    
+    t_object *mObject;
+};
+
+//////////////////////////////////////////////////////////////////////////
 ///////////////////////////// Sync Check Class ///////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
@@ -182,26 +210,6 @@ public:
         }
     }
     
-    ~Wrapper()
-    {
-        // Delete ins and proxies
-        
-        for (std::vector <t_object *>::iterator it = mProxyIns.begin(); it != mProxyIns.end(); it++)
-        {
-            if (*it)
-                freeobject(*it);
-        }
-        
-        for (std::vector <t_object *>::iterator it = mInOutlets.begin(); it != mInOutlets.end(); it++)
-            freeobject(*it);
-        
-        // Free objects - N.B. - free the patch, but not the object within it (which will be freed by deleting the patch)
-        
-        freeobject(mSyncIn);
-        freeobject(mMutator);
-        freeobject(mPatch);
-    }
-    
     void assist(void *b, long m, long a, char *s)
     {
         ((T *)mObject)->assist(b, m, a + 1, s);
@@ -254,15 +262,15 @@ private:
     
     // Objects (need freeing except the internal object which is owned by the patch)
     
-    t_object *mPatch;
     t_object *mObject;
-    t_object *mMutator;
+    OwnedObject mPatch;
+    OwnedObject mMutator;
     
     // Inlets (must be freed)
     
-    std::vector <t_object *> mInOutlets;
-    std::vector <t_object *> mProxyIns;
-    t_object *mSyncIn;
+    std::vector <OwnedObject> mInOutlets;
+    std::vector <OwnedObject> mProxyIns;
+    OwnedObject mSyncIn;
     
     // Outlets (don't need to free - only the arrays need freeing)
     
@@ -308,7 +316,7 @@ template <class T> class FrameLib_MaxObj : public MaxBase
         Input(t_object *proxy, FrameLib_MaxObj *object, unsigned long index, bool reportError) :
         mProxy(proxy), mObject(object), mIndex(index), mReportError(reportError) {}
         
-        t_object *mProxy;
+        OwnedObject mProxy;
         FrameLib_MaxObj *mObject;
         unsigned long mIndex;
         bool mReportError;
@@ -634,14 +642,8 @@ public:
     ~FrameLib_MaxObj()
     {
         dspFree();
-
-        for (typename std::vector <Input>::iterator it = mInputs.begin(); it != mInputs.end(); it++)
-            if (it->mProxy)
-                object_free(it->mProxy);
-        
-        delete mObject;
-        
         commonFree();
+        delete mObject;
     }
 
     void assist (void *b, long m, long a, char *s)

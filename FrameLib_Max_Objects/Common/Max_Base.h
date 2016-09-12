@@ -8,7 +8,7 @@
 #include <z_dsp.h>
 
 // This is a very lightweight C++ template wrapper for writing max objects as C++ classes
-// This work is loosely based on the approach taken in https://github.com/grrrwaaa/maxcpp by Graham Wakefield
+// This work is loosely based on https://github.com/grrrwaaa/maxcpp by Graham Wakefield
 
 class MaxBase
 {
@@ -35,17 +35,17 @@ public:
     template<class T, typename Float<T>::MethodFloat F> static void call(T *x, double v) { ((x)->*F)(v); }
     template<class T, typename Float<T>::MethodFloat F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (method) call<T, F>, name, A_FLOAT, 0); }
     
-    template<class T> struct Sym { typedef void (T::*MethodDefSym)(t_symbol *s); };
-    template<class T, typename Sym<T>::MethodDefSym F> static void call(T *x, t_symbol *s) { ((x)->*F)(s); }
-    template<class T, typename Sym<T>::MethodDefSym F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (method) call<T, F>, name, A_DEFSYM, 0); }
+    template<class T> struct Sym { typedef void (T::*MethodSym)(t_symbol *s); };
+    template<class T, typename Sym<T>::MethodSym F> static void call(T *x, t_symbol *s) { ((x)->*F)(s); }
+    template<class T, typename Sym<T>::MethodSym F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (method) call<T, F>, name, A_DEFSYM, 0); }
     
     template<class T> struct Assist { typedef void (T::*MethodAssist)(void *b, long msg, long a, char *dst); };
     template<class T, typename Assist<T>::MethodAssist F> static void call(T *x, void *b, long msg, long a, char *dst) { ((x)->*F)(b, msg, a, dst); }
     template<class T, typename Assist<T>::MethodAssist F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (method) call<T, F>, name, A_CANT, 0); }
     
-    template<class T> struct Subpatch { typedef void *(T::*MethodSubPatcher)(long index, void *arg); };
-    template<class T, typename Subpatch<T>::MethodSubPatcher F> static void *call(T *x, long index, void *arg) { return ((x)->*F)(index, arg); }
-    template<class T, typename Subpatch<T>::MethodSubPatcher F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (method) call<T, F>, name, A_CANT, 0); }
+    template<class T> struct Subpatch { typedef void *(T::*MethodSubPatch)(long index, void *arg); };
+    template<class T, typename Subpatch<T>::MethodSubPatch F> static void *call(T *x, long index, void *arg) { return ((x)->*F)(index, arg); }
+    template<class T, typename Subpatch<T>::MethodSubPatch F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (method) call<T, F>, name, A_CANT, 0); }
 
     template<class T> struct DSP { typedef void (T::*MethodDSP)(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags); };
     template<class T, typename DSP<T>::MethodDSP F> static void call(T *x, t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags) { ((x)->*F)(dsp64, count, samplerate, maxvectorsize, flags); }
@@ -77,9 +77,9 @@ public:
         ((T *)x)->~T();
     }
     
-    // Stub for an object with no additional methods (N.B. - for inheriting classes this should call through to the inhertied class version first)
+    // Stub for an object with no additional methods (N.B. - inheriting classes should first call through to the inherited class version)
     
-    static void classInit(t_symbol *nameSpace, const char *classname) {}
+    static void classInit(t_class *c, t_symbol *nameSpace, const char *classname) {}
     
     static void dspInit(t_class *c) { class_dspinit(c); }
     
@@ -95,15 +95,13 @@ public:
     
     // Allows type conversion to a t_object
     
-    operator t_object& () { return mObject.z_ob; }
+    operator t_object&() { return mObject.z_ob; }
     
     // Allows type conversion to a t_object pointer
     
     operator t_object* () { return (t_object *) this; }
     
 private:
-    
-    // Data
     
     // The object structure
     
