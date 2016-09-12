@@ -56,6 +56,7 @@ public:
     template <class T, typename Perform<T>::MethodPerform F> void addPerform(t_object *dsp64) { object_method(dsp64, gensym("dsp_add64"), this, ((method) call<T, F>), 0, NULL); }
     
     // Static Methods for class initialisation, object creation and deletion
+    // FIX - can the class pointer be handled automagically?
     
     template <class T, static t_class **C> static void makeClass(t_symbol *nameSpace, const char *classname)
     {

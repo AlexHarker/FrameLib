@@ -7,11 +7,10 @@
 
 #include <vector>
 
-// FIX - sort out formatting style/ naming?
 // FIX - improve reporting of extra connections + look into feedback detection...
 // FIX - think about adding assist helpers for this later...
 // FIX - threadsafety??
-// FIX - look at static class definitions
+// FIX - look at static class pointers
 
 t_class *objectClass = NULL;
 t_class *wrapperClass = NULL;
@@ -27,31 +26,18 @@ struct SyncCheck
     
     bool operator()()
     {
-        SyncCheck *info = syncGet();
+        SyncCheck *info = (SyncCheck *) gensym("__FrameLib__SYNC__")->s_thing;
         
-        if (!info)
+        if (!info || (info->mTime == mTime && info->mObject == mObject))
             return false;
         
-        void *object = info->mObject;
-        long time = info->mTime;
-        
-        if (time == mTime && object == mObject)
-            return false;
-        
-        mTime = time;
-        mObject = object;
+        *this = *info;
         
         return true;
     }
     
-    static SyncCheck *syncGet()
-    {
-        return (SyncCheck *) gensym("__FrameLib__SYNC__")->s_thing;
-    }
-    
     long mTime;
     void *mObject;
-    
 };
 
 SyncCheck syncInfo;
@@ -119,7 +105,7 @@ public:
         
         // Create Objects
         
-        // FIX - this should not be a macor for the name (needs to be stored somehow?? with the class...
+        // FIX - this should not be a macro for the name (needs to be stored somehow?? with the class...
         
         char name[256];
         sprintf(name, "unsynced.%s", OBJECT_NAME);
@@ -174,21 +160,17 @@ public:
         for (long i = numAudioOuts - 2; i >= 0 ; i--)
             mAudioOuts[i] = (t_object *) outlet_new(this, "signal");
         
-        // Object pointer types for internal object and mutator
-        
-        // Create Connections
-        
         // Connect the audio sync in to the object and through to the mutator
         
         outlet_add(mSyncIn, inlet_nth(mObject, 0));
         outlet_add(outlet_nth(mObject, 0), inlet_nth(mMutator, 0));
         
-        // Connect inlets (all types)
+        // Connect other inlets (all types)
         
         for (long i = 0; i < numAudioIns + numIns - 1; i++)
             outlet_add(mInOutlets[i], inlet_nth(mObject, i + 1));
         
-        // Connect outlets (audio then frame and sync message outlets)
+        // Connect other outlets (audio then frame and sync message outlets)
         
         for (long i = 0; i < numAudioOuts - 1; i++)
             outlet_add(outlet_nth(mObject, i + 1), mAudioOuts[i]);
@@ -308,23 +290,28 @@ template <class T> class FrameLib_MaxObj : public MaxBase
     
     struct ConnectionInfo
     {
-        ConnectionInfo(FrameLib_MaxObj *obj, unsigned long idx, t_object *topPatch, ConnectMode type) :
-        object(obj), index(idx), topLevelPatch(topPatch), mode(type) {}
+        ConnectionInfo(FrameLib_MaxObj *object, unsigned long index, t_object *topLevelPatch, ConnectMode mode) :
+        mObject(object), mIndex(index), mTopLevelPatch(topLevelPatch), mMode(mode) {}
         
-        FrameLib_MaxObj *object;
-        unsigned long index;
-        t_object *topLevelPatch;
-        ConnectMode mode;
+        FrameLib_MaxObj *mObject;
+        unsigned long mIndex;
+        t_object *mTopLevelPatch;
+        ConnectMode mMode;
         
     };
 
     struct Input
     {
-        t_object *proxy;
+        Input() :
+        mProxy(NULL), mObject(NULL), mIndex(0), mReportError(false) {}
         
-        FrameLib_MaxObj *object;
-        unsigned long index;
-        bool reportError;
+        Input(t_object *proxy, FrameLib_MaxObj *object, unsigned long index, bool reportError) :
+        mProxy(proxy), mObject(object), mIndex(index), mReportError(reportError) {}
+        
+        t_object *mProxy;
+        FrameLib_MaxObj *mObject;
+        unsigned long mIndex;
+        bool mReportError;
     };
 
     t_symbol *ps_frame_connection_info() { return gensym("__frame__connection__info__"); }
@@ -628,10 +615,9 @@ public:
         {
             // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles audio)
             
-            mInputs[i].proxy = (t_object *) ((i || T::handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : NULL);
-            mInputs[i].object = NULL;
-            mInputs[i].index = 0;
-            mInputs[i].reportError = TRUE;
+            t_object *proxy = (t_object *) ((i || T::handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : NULL);
+            
+            mInputs[i] = Input(proxy, NULL, 0, true);
         }
         
         for (unsigned long i = getNumOuts(); i > 0; i--)
@@ -650,8 +636,8 @@ public:
         dspFree();
 
         for (typename std::vector <Input>::iterator it = mInputs.begin(); it != mInputs.end(); it++)
-            if (it->proxy)
-                object_free(it->proxy);
+            if (it->mProxy)
+                object_free(it->mProxy);
         
         delete mObject;
         
@@ -697,6 +683,16 @@ public:
 
     // Connection Routines
     
+    ConnectionInfo* getConnectionInfo()
+    {
+        return (ConnectionInfo *) ps_frame_connection_info()->s_thing;
+    }
+    
+    void setConnectionInfo(ConnectionInfo *info = NULL)
+    {
+        ps_frame_connection_info()->s_thing = (t_object *) info;
+    }
+
     static void connectionCall(FrameLib_MaxObj *x, unsigned long index, ConnectMode mode)
     {
         x->connect(index, mode);
@@ -707,23 +703,13 @@ public:
         object_method(x, gensym("internal_connect"), index, mode);
     }
     
-    ConnectionInfo* getConnectionInfo()
-    {
-        return (ConnectionInfo *) ps_frame_connection_info()->s_thing;
-    }
-    
-    void setConnectionInfo(ConnectionInfo *info)
-    {
-        ps_frame_connection_info()->s_thing = (t_object *) info;
-    }
-    
     void connect(unsigned long index, ConnectMode mode)
     {
         ConnectionInfo info(this, index, mTopLevelPatch, mode);
         
         setConnectionInfo(&info);
         outlet_anything(mOutputs[index], gensym("frame"), 0, NULL);
-        setConnectionInfo(NULL);
+        setConnectionInfo();
     }
 
     void connections()
@@ -732,22 +718,22 @@ public:
         
         for (unsigned long i = 0; i < getNumIns(); i++)
         {
-            mInputs[i].reportError = true;
+            mInputs[i].mReportError = true;
             
-            if (mInputs[i].object)
+            if (mInputs[i].mObject)
             {
                 mConfirm = false;
                 mConfirmIndex = i;
                 
                 if (mObject->isConnected(i))
-                    connectExternal(mInputs[i].object, mInputs[i].index, kConfirm);
+                    connectExternal(mInputs[i].mObject, mInputs[i].mIndex, kConfirm);
                 
                 if (!mConfirm)
                 {
                     // Object is no longer connected as before
                     
-                    mInputs[i].object = NULL;
-                    mInputs[i].index = 0;
+                    mInputs[i].mObject = NULL;
+                    mInputs[i].mIndex = 0;
                     
                     if (mObject->isConnected(i))
                         mObject->deleteConnection(i);
@@ -771,24 +757,23 @@ public:
     void frame()
     {
         ConnectionInfo *info = getConnectionInfo();
-        
         long index = getInlet() - getNumAudioIns();
         
         if (!info || index < 0)
             return;
         
-        switch (info->mode)
+        switch (info->mMode)
         {
             case kConnect:
             {
-                bool connectionChange = (mInputs[index].object != info->object || mInputs[index].index != info->index);
-                bool valid = (info->topLevelPatch == mTopLevelPatch && info->object != this);
+                bool connectionChange = (mInputs[index].mObject != info->mObject || mInputs[index].mIndex != info->mIndex);
+                bool valid = (info->mTopLevelPatch == mTopLevelPatch && info->mObject != this);
                 
                 // Confirm that the object is valid
                 
                 if (!valid)
                 {
-                    if (info->object == this)
+                    if (info->mObject == this)
                         object_error(mUserObject, "direct feedback loop detected");
                     else
                         object_error(mUserObject, "cannot connect objects from different top level patchers");
@@ -796,33 +781,33 @@ public:
                 
                 // Check for double connection *only* if the internal object is connected (otherwise the previously connected object has been deleted)
                 
-                if (mInputs[index].object && mInputs[index].reportError && connectionChange && mObject->isConnected(index))
+                if (mInputs[index].mObject && mInputs[index].mReportError && connectionChange && mObject->isConnected(index))
                 {
                     mConfirmIndex = index;
-                    connectExternal(mInputs[index].object, mInputs[index].index, kDoubleCheck);
+                    connectExternal(mInputs[index].mObject, mInputs[index].mIndex, kDoubleCheck);
                     mConfirmIndex = -1;
-                    mInputs[index].reportError = false;
+                    mInputs[index].mReportError = false;
                 }
                 
                 // Always change the connection if the new object is valid (only way to ensure new connections work)
                 
                 if (connectionChange && valid)
                 {
-                    mInputs[index].object = info->object;
-                    mInputs[index].index = info->index;
+                    mInputs[index].mObject = info->mObject;
+                    mInputs[index].mIndex = info->mIndex;
                     
-                    mObject->addConnection(info->object->mObject, info->index, index);
+                    mObject->addConnection(info->mObject->mObject, info->mIndex, index);
                 }
             }
                 break;
                 
             case kConfirm:
-                if (index == mConfirmIndex && mInputs[index].object == info->object && mInputs[index].index == info->index)
+                if (index == mConfirmIndex && mInputs[index].mObject == info->mObject && mInputs[index].mIndex == info->mIndex)
                     mConfirm = true;
                 break;
                 
             case kDoubleCheck:
-                if (index == mConfirmIndex && mInputs[index].object == info->object && mInputs[index].index == info->index)
+                if (index == mConfirmIndex && mInputs[index].mObject == info->mObject && mInputs[index].mIndex == info->mIndex)
                     object_error(mUserObject, "extra connection to input %ld", index + 1);
                 break;
         }
