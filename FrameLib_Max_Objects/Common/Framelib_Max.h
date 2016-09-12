@@ -24,7 +24,7 @@ struct OwnedObject
 {
     OwnedObject() : mObject(NULL) {}
     OwnedObject(t_object *object) : mObject(object) {}
-    OwnedObject(const OwnedObject& rhs) { *this = rhs; }
+    OwnedObject(const OwnedObject& rhs) : mObject(rhs.mObject) {}
     ~OwnedObject() { release(); }
 
     OwnedObject &operator= (t_object *rhs) { return (*this = OwnedObject(rhs)); }
