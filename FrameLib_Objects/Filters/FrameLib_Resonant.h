@@ -65,7 +65,7 @@ class FrameLib_Resonant : public FrameLib_Processor
 
 public:
 	
-    FrameLib_Resonant(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1)
+    FrameLib_Resonant(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue, 1, 1)
     {
         mAttributes.addDouble(kFreq, "freq", 0.0, 0);
         mAttributes.setMin(0.0);

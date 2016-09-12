@@ -555,6 +555,7 @@
 		B861EBC419CA3E9500B89477 /* fl.percentile~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.percentile~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B861EBC519CA3EF100B89477 /* fl.percentile~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.percentile~.cpp"; sourceTree = "<group>"; };
 		B861EBC619CA3EF100B89477 /* fl.sort~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.sort~.cpp"; sourceTree = "<group>"; };
+		B878DB731D819C15001A5151 /* Max_Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Max_Base.h; sourceTree = "<group>"; };
 		B87E875319C8EA4900B1D0CD /* FrameLib_FFT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_FFT.h; sourceTree = "<group>"; };
 		B87E876419C8EE9600B1D0CD /* fl.fft~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.fft~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B87E876719C8EEB900B1D0CD /* FFT_Calls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFT_Calls.h; sourceTree = "<group>"; };
@@ -1870,6 +1871,7 @@
 		B8A70CE119C11303005BA4E3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B878DB731D819C15001A5151 /* Max_Base.h */,
 				B8DE14DC0EB46B030050BDFE /* Framelib_Max.h */,
 			);
 			path = Common;

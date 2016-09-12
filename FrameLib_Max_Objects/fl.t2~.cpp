@@ -7,7 +7,7 @@ class FrameLib_T2 : public FrameLib_Processor
         
 public:
     
-    FrameLib_T2(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue)
+    FrameLib_T2(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue)
     {
         mAttributes.addDouble(kOutputs, "outputs", 1, 0);
         

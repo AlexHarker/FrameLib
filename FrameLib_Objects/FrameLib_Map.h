@@ -12,7 +12,7 @@ class FrameLib_Map : public FrameLib_Processor
 
 public:
     
-    FrameLib_Map (DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 2, 1)
+    FrameLib_Map (DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue, 2, 1)
     {
         mAttributes.addEnum(kMode, "mode", 0);
         mAttributes.addEnumItem(kLinear, "linear");

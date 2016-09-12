@@ -393,7 +393,7 @@ class FrameLib_Pack : public FrameLib_MultiChannel
 
 public:
     
-    FrameLib_Pack(ConnectionQueue *queue, FrameLib_DSP::DSPQueue *dspQueue, FrameLib_Attributes::Serial *serialAttributes) : FrameLib_MultiChannel(queue)
+    FrameLib_Pack(ConnectionQueue *queue, FrameLib_DSP::DSPQueue *dspQueue, FrameLib_Attributes::Serial *serialAttributes, void *owner) : FrameLib_MultiChannel(queue)
     {
         mAttributes.addDouble(0, "inputs", 2, 0 );
         mAttributes.set(serialAttributes);
@@ -438,7 +438,7 @@ class FrameLib_Unpack : public FrameLib_MultiChannel
     
 public:
 
-    FrameLib_Unpack(ConnectionQueue *queue, FrameLib_DSP::DSPQueue *dspQueue, FrameLib_Attributes::Serial *serialAttributes) : FrameLib_MultiChannel(queue)
+    FrameLib_Unpack(ConnectionQueue *queue, FrameLib_DSP::DSPQueue *dspQueue, FrameLib_Attributes::Serial *serialAttributes, void *owner) : FrameLib_MultiChannel(queue)
     {
         mAttributes.addDouble(kOutputs, "outputs", 2, 0);
         mAttributes.set(serialAttributes);
@@ -482,12 +482,12 @@ template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
 
 public:
     
-    FrameLib_Expand(ConnectionQueue *connectQueue, FrameLib_DSP::DSPQueue *dspQueue, FrameLib_Attributes::Serial *serialisedAttributes)
-    : FrameLib_MultiChannel(connectQueue), mDSPQueue(dspQueue), mAllocator(dspQueue->getAllocator())
+    FrameLib_Expand(ConnectionQueue *connectQueue, FrameLib_DSP::DSPQueue *dspQueue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner)
+    : FrameLib_MultiChannel(connectQueue), mDSPQueue(dspQueue), mAllocator(dspQueue->getAllocator()), mOwner(owner)
     {
         // Make first block
         
-        mBlocks.push_back(new T(dspQueue, serialisedAttributes));
+        mBlocks.push_back(new T(dspQueue, serialisedAttributes, owner));
         
         // Copy serialised attributes for later instantiations
         
@@ -649,7 +649,7 @@ private:
                 
                 for (unsigned long i = cChannels; i < nChannels; i++)
                 {
-                    mBlocks[i] = new T(mDSPQueue, mSerialisedAttributes);
+                    mBlocks[i] = new T(mDSPQueue, mSerialisedAttributes, mOwner);
                     mBlocks[i]->setSamplingRate(mSamplingRate);
                 }
             }
@@ -706,6 +706,8 @@ private:
 
     std::vector <FrameLib_Block *> mBlocks;
     std::vector <std::vector <double> > mFixedInputs;
+    
+    void *mOwner;
     
     double mSamplingRate;
 };

@@ -11,7 +11,7 @@ class FrameLib_Percentile : public FrameLib_Processor
     
 public:
     
-    FrameLib_Percentile (DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1)
+    FrameLib_Percentile (DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue, 1, 1)
     {
         mAttributes.addDouble(kPercentile, "percentile", 50.0, 0);
         mAttributes.setClip(0.0, 100.0);

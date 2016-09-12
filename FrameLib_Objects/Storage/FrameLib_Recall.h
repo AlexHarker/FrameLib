@@ -12,7 +12,7 @@ class FrameLib_Recall : public FrameLib_Processor
     
 public:
     
-    FrameLib_Recall(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1)
+    FrameLib_Recall(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue, 1, 1)
     {
         mAttributes.addString(kName, "name", "", 0);
         

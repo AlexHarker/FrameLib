@@ -48,7 +48,7 @@ class FrameLib_CoordinateSystem : public FrameLib_Processor
 
 public:
     
-    FrameLib_CoordinateSystem (DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 1, 1)
+    FrameLib_CoordinateSystem (DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue, 1, 1)
     {
         mAttributes.addEnum(kMode, "mode");
         mAttributes.addEnumItem(kPolarToCartesian, "polar->cartesian");

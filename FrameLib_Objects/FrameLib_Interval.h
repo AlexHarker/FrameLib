@@ -12,7 +12,7 @@ class FrameLib_Interval : public FrameLib_Scheduler
 
 public:
     
-    FrameLib_Interval(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Scheduler(queue, 1, 1)
+    FrameLib_Interval(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Scheduler(queue, 1, 1)
     {
         // FIX - safety on minimum time?
         

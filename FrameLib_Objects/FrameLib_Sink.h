@@ -19,7 +19,7 @@ class FrameLib_Sink : public FrameLib_AudioProcessor
     
 public:
     
-    FrameLib_Sink(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_AudioProcessor(queue, 1, 0, 0, 1)
+    FrameLib_Sink(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_AudioProcessor(queue, 1, 0, 0, 1)
     {
         mAttributes.addDouble(kLength, "length", 8000, 0);
         mAttributes.setMin(0.0);

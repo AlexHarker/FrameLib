@@ -22,7 +22,7 @@ class FrameLib_Window : public FrameLib_Processor
 
 public:
 	
-    FrameLib_Window(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue, 2, 1)
+    FrameLib_Window(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue, 2, 1)
     {
         mAttributes.addEnum(kWindowType, "window", 0);
         mAttributes.addEnumItem(kHann, "hann");

@@ -12,7 +12,7 @@ class FrameLib_Join : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Join(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes) : FrameLib_Processor(queue)
+    FrameLib_Join(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue)
     {
         mAttributes.addDouble(kNumIns, "numins", 2.0, 0);
         mAttributes.setClip(2.0, 32.0);
