@@ -1,11 +1,9 @@
 
 #include "FrameLib_DSP.h"
-#include "FrameLib_Globals.h"
 
 // FIX - memory management is horrible - don't memory manage use std::vector in the audio thread - replace this also
 // TO DO - redo memory management and structs so they are less horrible and ugly
 
-//////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
 // Specific to this object
@@ -29,6 +27,8 @@ struct MaxMessage
     unsigned long mCount;
     std::vector<TaggedMessages> mTagged;
 };
+
+// FIX - slightly nasty forward declarations...
 
 class FrameLib_MaxObj_From;
 MaxMessage *getMessages(FrameLib_MaxObj_From *obj);
@@ -118,20 +118,9 @@ class FrameLib_MaxObj_From : public FrameLib_MaxObj<FrameLib_Expand<FrameLib_Fro
 
 public:
     
-    FrameLib_MaxObj_From(t_symbol *s, long argc, t_atom *argv) : FrameLib_MaxObj(s, argc, argv)
-    {}
+    FrameLib_MaxObj_From(t_symbol *s, long argc, t_atom *argv) : FrameLib_MaxObj(s, argc, argv){}
     
-    MaxMessage messages;
-    
-    static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
-    {
-        FrameLib_MaxObj::classInit(c, nameSpace, classname);
-        
-        addMethod<FrameLib_MaxObj_From, &FrameLib_MaxObj_From::intHandler>(c, "int");
-        addMethod<FrameLib_MaxObj_From, &FrameLib_MaxObj_From::floatHandler>(c, "float");
-        addMethod<FrameLib_MaxObj_From, &FrameLib_MaxObj_From::list>(c, "list");
-        addMethod<FrameLib_MaxObj_From, &FrameLib_MaxObj_From::anything>(c, "anything");
-    }
+    // Additional handlers
     
     void intHandler(t_atom_long in)
     {
@@ -185,7 +174,7 @@ public:
         if (atom_gettype(argv) == A_SYM)
         {
             if (argc > 1)
-                object_error(user_object, "too many arguments for string value");
+                object_error(mUserObject, "too many arguments for string value");
             
             copyString(messages.mTagged.back().mString, atom_getsym(argv)->s_name);
             messages.mTagged.back().mStringFlag = TRUE;
@@ -199,6 +188,22 @@ public:
         }
         messages.mLock.release();
     }
+    
+    // Class Initisation
+    
+    static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
+    {
+        FrameLib_MaxObj::classInit(c, nameSpace, classname);
+        
+        addMethod<FrameLib_MaxObj_From, &FrameLib_MaxObj_From::intHandler>(c, "int");
+        addMethod<FrameLib_MaxObj_From, &FrameLib_MaxObj_From::floatHandler>(c, "float");
+        addMethod<FrameLib_MaxObj_From, &FrameLib_MaxObj_From::list>(c, "list");
+        addMethod<FrameLib_MaxObj_From, &FrameLib_MaxObj_From::anything>(c, "anything");
+    }
+    
+    // Data (public so we can take the address)
+    
+    MaxMessage messages;
 };
 
 MaxMessage *getMessages(FrameLib_MaxObj_From *obj)

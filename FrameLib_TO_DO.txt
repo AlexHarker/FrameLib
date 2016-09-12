@@ -1,12 +1,12 @@
 
 
-DONE 		1 - Methods of dealing with fixed input values (and modes related to this)
+DONE 	1 - Methods of dealing with fixed input values (and modes related to this)
 
 2 - Finalise Max Wrapper
-PROGRESS (needs tidy)		- Make C++ class extensible
+DONE	- Make C++ class extensible
 	- Review entry of inputs and attributes
 	- Make safe (avoid direct access of other objects / thread safety / avoid symbol bindings)
-	- Better issue reporting (realtime and connection)
+	- Better connection issue reporting
 
 3 - Review parameter inputs (how to handle, including max wrapper)
 
@@ -14,19 +14,19 @@ PROGRESS (needs tidy)		- Make C++ class extensible
 	- Do variable memory management (underlying engine)
 	- Review memory management
 
-5 - Methods of dealing with data storage and retrieval (a la coll etc.) and also buffers (abstract out?)
-
-
-6 - Revise and refactor
+5 - Revise, refactor and cleanup
+	- Max Object Work
 	- Block / DSP
 	- Attribute
 	- Memory
 	- Global / Common
 	- Multichannel
 
-7 - Assist/Help Info
+6 - Assist/Help Info (Inputs and Parameters)
 
-8 - Error Reporting
+7 - Error Reporting (Realtime and push to wrapper)
+
+8 - Methods of dealing with data storage and retrieval (a la coll etc.) and also buffers (abstract out?)
 
 PROGRESS	9 - Fixed Point Division / Fixed Point Time Format
 
