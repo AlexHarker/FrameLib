@@ -43,7 +43,6 @@ public:
 private:
 	
 	Atomic32 mValue;
-	
 };
 
 // ************************************************************************************** //
@@ -72,9 +71,7 @@ public:
 private:
 	
 	FrameLib_Atomic32 mAtomicLock;
-	
 };
-
 
 
 #endif

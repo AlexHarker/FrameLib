@@ -28,7 +28,7 @@ FrameLib_Global *FrameLib_Global::decrement()
     return this;
 }
 
-FrameLib_Local_Allocator *FrameLib_Global::getLocalAllocator(void *ref)
+FrameLib_Local_Allocator *FrameLib_Global::getAllocator(void *ref)
 {
     FrameLib_Local_Allocator *allocator = mLocalAllocators.find(ref);
     
@@ -67,7 +67,7 @@ FrameLib_DSP::DSPQueue *FrameLib_Global::getDSPQueue(void *ref)
     return queue;
 }
 
-void FrameLib_Global::releaseLocalAllocator(void *ref) { mLocalAllocators.release(ref); }
+void FrameLib_Global::releaseAllocator(void *ref) { mLocalAllocators.release(ref); }
 
 void FrameLib_Global::releaseConnectionQueue(void *ref) { mConnectionQueues.release(ref); }
 

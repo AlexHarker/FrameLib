@@ -136,7 +136,7 @@ private:
 public:
     
     FrameLib_DSP (ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
-    : FrameLib_Block(nAudioIns, nAudioOuts), mContext(context), mAllocator(context.getLocalAllocator()), mQueue((DSPQueue *)context.getDSPQueue()), mNext(NULL), mType(type)
+    : FrameLib_Block(nAudioIns, nAudioOuts), mContext(context), mAllocator(context.getAllocator()), mQueue((DSPQueue *)context.getDSPQueue()), mNext(NULL), mType(type)
     {
         // Set IO
         
@@ -159,7 +159,7 @@ public:
             mAllocator->dealloc(ins->mFixedInput);
         
         mContext.releaseDSPQueue();
-        mContext.releaseLocalAllocator();
+        mContext.releaseAllocator();
     }
     
     // ************************************************************************************** //

@@ -488,7 +488,7 @@ template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
 public:
     
     FrameLib_Expand(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner)
-    : FrameLib_MultiChannel(context), mAllocator(context.getLocalAllocator()), mOwner(owner)
+    : FrameLib_MultiChannel(context), mAllocator(context.getAllocator()), mOwner(owner)
     {
         // Make first block
         
@@ -528,7 +528,7 @@ public:
         
         delete mSerialisedAttributes;
         
-        mContext.releaseLocalAllocator();
+        mContext.releaseAllocator();
     }
     
     // Fixed Inputs

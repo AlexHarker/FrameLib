@@ -22,7 +22,7 @@ public:
     
 private:
     
-    // Routines that are speciifc to the generator
+    // Routines that are specific to the generator
     
     inline FL_UInt32 CMWC()
     {

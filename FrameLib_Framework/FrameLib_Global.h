@@ -9,13 +9,12 @@
 
 template<class T> struct FrameLib_CountedPointer
 {
-    FrameLib_CountedPointer() : mObj(NULL), mRef(NULL), mCount(0) {}
     FrameLib_CountedPointer(T* obj, void *ref) : mObj(obj), mRef(ref), mCount(1) {}
     
-    T *getObj() { return mObj; }
-    void *getRef() { return mRef; }
-    void increment() { ++mCount; }
+    T *getObj()     { return mObj; }
+    void *getRef()  { return mRef; }
     
+    void increment() { ++mCount; }
     bool decrement()
     {
         if (--mCount < 1)
@@ -85,14 +84,12 @@ public:
     
     void increment();
     FrameLib_Global *decrement();
-
-    FrameLib_Global_Allocator *getGlobalAllocator() { return mAllocator; }
     
-    FrameLib_Local_Allocator *getLocalAllocator(void *ref);
+    FrameLib_Local_Allocator *getAllocator(void *ref);
     FrameLib_MultiChannel::ConnectionQueue *getConnectionQueue(void *ref);
     FrameLib_DSP::DSPQueue *getDSPQueue(void *ref);
     
-    void releaseLocalAllocator(void *ref);
+    void releaseAllocator(void *ref);
     void releaseConnectionQueue(void *ref);
     void releaseDSPQueue(void *ref);
     
