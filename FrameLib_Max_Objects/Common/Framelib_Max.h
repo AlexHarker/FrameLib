@@ -396,11 +396,37 @@ private:
     {
         return (sym && sym->s_name[0] == '/' && strlen(sym->s_name) > 1);
     }
-                
+    
+    bool isTag(t_atom *a)
+    {
+        t_symbol *sym = atom_getsym(a);
+        return isAttributeTag(sym) || isInputTag(sym);
+    }
+    
+    long parseNumericalList(std::vector<double> &values, t_atom *argv, long argc, long idx)
+    {
+        values.resize(0);
+        
+        // Collect doubles
+        
+        for ( ; idx < argc; idx++)
+        {
+            if (isTag(argv + idx))
+                break;
+            
+            if (atom_gettype(argv + idx) == A_SYM)
+                object_error(mUserObject, "string %s in entry list where value expected", atom_getsym(argv + idx)->s_name);
+            
+            values.push_back(atom_getfloat(argv + idx));
+        }
+        
+        return idx;
+    }
+    
     FrameLib_Attributes::Serial *parseAttributes(long argc, t_atom *argv)
     {
         t_symbol *sym;
-        double array[4096];
+        std::vector<double> values;
         char argNames[64];
         long i, j;
        
@@ -416,18 +442,18 @@ private:
             
             sym = atom_getsym(argv + i);
             
-            if (isAttributeTag(sym) || isInputTag(sym))
+            if (isTag(argv + i))
                 break;
             
-    #ifndef OBJECT_ARGS_SET_ALL_INPUTS
+#ifndef OBJECT_ARGS_SET_ALL_INPUTS
             if (sym != gensym(""))
                 serialisedAttributes->write(argNames, sym->s_name);
             else
             {
-                array[0] = atom_getfloat(argv + i);
-                serialisedAttributes->write(argNames, array, 1);
+                double value = atom_getfloat(argv + i);
+                serialisedAttributes->write(argNames, &value, 1);
             }
-    #endif
+#endif
         }
         
         // Parse attributes
@@ -438,7 +464,7 @@ private:
             
             for (j = 0; i < argc; i++, j++)
             {
-                if (isAttributeTag(atom_getsym(argv + i)) || isInputTag(atom_getsym(argv + i)))
+                if (isTag(argv + i))
                 {
                     sym = atom_getsym(argv + i);
                     break;
@@ -450,36 +476,25 @@ private:
             
             // Check for lack of values or end of list
             
-            if ((++i >= argc) || isAttributeTag(atom_getsym(argv + i)) || isInputTag(atom_getsym(argv + i)))
+            if ((++i >= argc) || isTag(argv + i))
             {
                 if (i < (argc + 1))
                     object_error(mUserObject, "no values given for entry %s", sym->s_name);
                 continue;
             }
             
-            // Do strings (if not an input)
-            
-            if (!isInputTag(sym) && atom_getsym(argv + i) != gensym(""))
+            if (isAttributeTag(sym))
             {
-                serialisedAttributes->write(sym->s_name + 1, atom_getsym(argv + i++)->s_name);
-                continue;
-            }
-            
-            // Collect doubles
-            
-            for (j = 0; i < argc; i++, j++)
-            {
-                if (isAttributeTag(atom_getsym(argv + i)) || isInputTag(atom_getsym(argv + i)))
-                    break;
-                    
-                if (atom_getsym(argv + i) != gensym(""))
-                    object_error(mUserObject, "string %s in entry list where value expected", atom_getsym(argv + i)->s_name);
+                // Do strings or values
                 
-                array[j] = atom_getfloat(argv + i);
+                if (atom_getsym(argv + i) != gensym(""))
+                    serialisedAttributes->write(sym->s_name + 1, atom_getsym(argv + i++)->s_name);
+                else
+                {
+                    i = parseNumericalList(values, argv, argc, i);
+                    serialisedAttributes->write(sym->s_name + 1, &values[0], values.size());
+                }
             }
-            
-            if (!isInputTag(sym))
-                serialisedAttributes->write(sym->s_name + 1, array, j);
         }
 
         return serialisedAttributes;
@@ -494,69 +509,37 @@ private:
 
     void parseInputs(long argc, t_atom *argv)
     {
-        t_symbol *sym;
-        double array[4096];
-        long i, j;
+        std::vector<double> values;
         
-        // Parse arguments
+        // Parse arguments if used to set inputs
         
-        for (i = 0; i < argc; i++)
-        {
-            sym = atom_getsym(argv + i);
-            
-            if (isAttributeTag(sym) || isInputTag(sym))
-                break;
-            
-    #ifdef OBJECT_ARGS_SET_ALL_INPUTS
-            array[i] = atom_getfloat(argv + i);
-    #endif
-        }
+#ifdef OBJECT_ARGS_SET_ALL_INPUTS
+        long i = parseNumericalList(values, argv, argc, i);
+        
+        for (unsigned long j = 0; i && j < mObject->getNumIns(); j++)
+            mObject->setFixedInput(j, &values[0], values.size());
+#else 
+        long i = 0;
+#endif
 
-    #ifdef OBJECT_ARGS_SET_ALL_INPUTS
-        if (i)
-        {
-            for (j = 0; j < mObject->getNumIns(); j++)
-                mObject->setFixedInput(j, array, i);
-        }
-    #endif
-
-        // Parse attributes
+        // Parse tags
         
         while (i < argc)
         {
-            // Strip stray items
+            // Advance to next tag
             
-            for (j = 0; i < argc; i++, j++)
+            if (isTag(argv + i))
             {
-                if (isAttributeTag(atom_getsym(argv + i)) || isInputTag(atom_getsym(argv + i)))
+                t_symbol *sym = atom_getsym(argv + i);
+                    
+                // If there are values to read then do so
+                    
+                if ((++i < argc) && !isTag(argv + i) && isInputTag(sym))
                 {
-                    sym = atom_getsym(argv + i);
-                    break;
+                    i = parseNumericalList(values, argv, argc, i);
+                    mObject->setFixedInput(inputNumber(sym), &values[0], values.size());
                 }
             }
-            
-            // Check for lack of values or end of list
-            
-            if ((++i >= argc) || isAttributeTag(atom_getsym(argv + i)) || isInputTag(atom_getsym(argv + i)))
-                continue;
-            
-            // Do strings (if not an input)
-            
-            if (!isInputTag(sym) && atom_getsym(argv + i) != gensym(""))
-                continue;
-            
-            // Collect doubles
-            
-            for (j = 0; i < argc; i++, j++)
-            {
-                if (isAttributeTag(atom_getsym(argv + i)) || isInputTag(atom_getsym(argv + i)))
-                    break;
-        
-                array[j] = atom_getfloat(argv + i);
-            }
-            
-            if (isInputTag(sym))
-                mObject->setFixedInput(inputNumber(sym), array, j);
         }
     }
     
