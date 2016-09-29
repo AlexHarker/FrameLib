@@ -3,7 +3,8 @@
 
 #include "FrameLib_Multichannel.h"
 #include "FrameLib_DSP.h"
-#include "FrameLib_Globals.h"
+#include "FrameLib_Global.h"
+#include "FrameLib_Context.h"
 
 #include <vector>
 
@@ -315,7 +316,7 @@ template <class T> class FrameLib_MaxObj : public MaxBase
     
 private:
     
-    // Global and Common Items
+    // Globals
     
     FrameLib_Global *getGlobal()
     {
@@ -327,61 +328,20 @@ private:
        gensym("__FrameLib__Global__")->s_thing = (t_object *) global;
     }
 
-    FrameLib_Common *getCommon()
+    FrameLib_Context getContext()
     {
-        char str[256];
-        sprintf(str, "__FrameLib__Common__%llx", (unsigned long long) mTopLevelPatch);
-        return (FrameLib_Common *) gensym(str)->s_thing;
-    }
-
-    void setCommon(FrameLib_Common *common)
-    {
-        char str[256];
-        sprintf(str, "__FrameLib__Common__%llx", (unsigned long long) mTopLevelPatch);
-        gensym(str)->s_thing = (t_object *) common;
-    }
-
-    FrameLib_MultiChannel::ConnectionQueue *getConnectionQueue()
-    {
-        return getCommon()->mConnectionQueue;
-    }
-
-    FrameLib_DSP::DSPQueue *getDSPQueue()
-    {
-        return getCommon()->mDSPQueue;
-    }
-
-    FrameLib_Global_Allocator *getGlobalAllocator()
-    {
-        return getGlobal()->mAllocator;
-    }
-
-    FrameLib_Local_Allocator *getLocalAllocator()
-    {
-        return getCommon()->mAllocator;
-    }
-
-    void commonInit()
-    {
-        FrameLib_Global *global;
-        FrameLib_Common *common;
-        
         mTopLevelPatch = jpatcher_get_toppatcher(gensym("#P")->s_thing);
         
-        if (!(global = getGlobal()))
+        if (!getGlobal())
             setGlobal(new FrameLib_Global);
         else
             getGlobal()->increment();
         
-        if (!(common = getCommon()))
-            setCommon(new FrameLib_Common(getGlobalAllocator()));
-        else
-            common->increment();
+        return FrameLib_Context(getGlobal(), mTopLevelPatch);
     }
 
-    void commonFree()
+    void releaseGlobal()
     {
-        setCommon(getCommon()->decrement());
         setGlobal(getGlobal()->decrement());
     }
 
@@ -514,7 +474,7 @@ private:
         // Parse arguments if used to set inputs
         
 #ifdef OBJECT_ARGS_SET_ALL_INPUTS
-        long i = parseNumericalList(values, argv, argc, i);
+        long i = parseNumericalList(values, argv, argc, 0);
         
         for (unsigned long j = 0; i && j < mObject->getNumIns(); j++)
             mObject->setFixedInput(j, &values[0], values.size());
@@ -575,14 +535,14 @@ public:
     {
         // Init
         
-        commonInit();
+        FrameLib_Context context = getContext();
         mUserObject = (t_object *)this;
 
         // Object creation with attributes and arguments
         
         FrameLib_Attributes::Serial *serialisedAttributes = parseAttributes(argc, argv);
 
-        mObject = new T(getConnectionQueue(), getDSPQueue(), serialisedAttributes, this);
+        mObject = new T(context, serialisedAttributes, this);
         
         delete serialisedAttributes;
         
@@ -620,7 +580,7 @@ public:
 
         delete mObject;
         
-        commonFree();
+        releaseGlobal();
     }
 
     void assist (void *b, long m, long a, char *s)

@@ -150,6 +150,362 @@
 		B812464B19F476D3009833F1 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B812464C19F476D3009833F1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B812465319F4781E009833F1 /* fl.join~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C8563919F2957F006358DA /* fl.join~.cpp */; };
+		B84120101D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120111D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120121D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120131D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120141D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120151D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120161D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120171D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120181D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120191D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841201A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841201B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841201C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841201D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841201E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841201F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120201D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120211D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120221D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120231D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120241D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120251D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120261D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120271D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120281D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120291D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841202A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841202B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841202C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841202D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841202E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841202F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120301D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120311D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120321D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120331D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120341D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120351D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120361D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120371D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120381D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120391D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841203A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841203B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841203C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841203D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841203E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841203F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120401D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120411D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120421D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120431D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120441D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120451D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120461D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120471D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120481D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120491D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841204A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841204B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841204C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841204D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841204E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841204F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120501D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120511D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120521D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120531D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120541D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120551D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120561D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120571D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120581D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120591D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841205A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841205B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841205C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841205D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841205E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B841205F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120601D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120611D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120621D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120631D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120641D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120651D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120661D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120671D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120681D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B84120691D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841206A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841206B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841206C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841206D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841206E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841206F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120701D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120711D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120721D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120731D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120741D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120751D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120761D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120771D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120781D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120791D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841207A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841207B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841207C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841207D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841207E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841207F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120801D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120811D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120821D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120831D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120841D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120851D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120861D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120871D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120881D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120891D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841208A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841208B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841208C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841208D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841208E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841208F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120901D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120911D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120921D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120931D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120941D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120951D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120961D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120971D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120981D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120991D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841209A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841209B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841209C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841209D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841209E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B841209F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120A01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120A11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120A21D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120A31D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120A41D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120A51D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120A61D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120A71D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120A81D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120A91D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120AA1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120AB1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120AC1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120AD1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120AE1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120AF1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120B01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120B11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120B21D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120B31D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120B41D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120B51D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120B61D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120B71D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120B81D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120B91D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120BA1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120BB1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120BC1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120BD1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120BE1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120BF1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120C01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120C11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B84120C41D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120C51D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120C61D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120C71D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120C81D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120C91D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120CA1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120CB1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120CC1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120CD1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120CE1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120CF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120D01D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120D11D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120D21D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120D31D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120D41D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120D51D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120D61D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120D71D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120D81D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120D91D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120DA1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120DB1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120DC1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120DD1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120DE1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120DF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120E01D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120E11D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120E21D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120E31D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120E41D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120E51D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120E61D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120E71D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120E81D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120E91D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120EA1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120EB1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120EC1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120ED1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120EE1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120EF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120F01D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120F11D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120F21D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120F31D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120F41D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120F51D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120F61D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120F71D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120F81D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120F91D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120FA1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120FB1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120FC1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120FD1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120FE1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84120FF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121001D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121011D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121021D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121031D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121041D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121051D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121061D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121071D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121081D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121091D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B841210A1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B841210B1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B841210C1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B841210D1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B841210E1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B841210F1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121101D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121111D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121121D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121131D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121141D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121151D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121161D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121171D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121181D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B84121191D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B841211A1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B841211B1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B841211C1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B841211D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841211E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841211F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121201D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121211D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121221D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121231D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121241D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121251D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121261D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121271D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121281D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121291D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841212A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841212B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841212C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841212D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841212E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841212F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121301D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121311D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121321D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121331D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121341D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121351D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121361D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121371D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121381D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121391D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841213A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841213B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841213C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841213D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841213E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841213F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121401D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121411D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121421D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121431D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121441D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121451D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121461D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121471D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121481D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121491D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841214A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841214B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841214C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841214D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841214E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841214F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121501D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121511D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121521D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121531D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121541D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121551D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121561D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121571D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121581D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121591D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841215A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841215B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841215C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841215D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841215E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841215F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121601D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121611D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121621D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121631D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121641D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121651D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121661D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121671D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121681D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121691D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841216A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841216B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841216C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841216D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841216E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B841216F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121701D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121711D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121721D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121731D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121741D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B84121751D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B843AAA719C07046000D3476 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
 		B843AAAB19C07046000D3476 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B843AAB519C070A1000D3476 /* fl.sink~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B843AAB419C070A1000D3476 /* fl.sink~.cpp */; };
@@ -505,7 +861,10 @@
 		B812465219F476D3009833F1 /* fl.store~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.store~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B81F571D0D2422E0000D5E50 /* fl.unpack~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.unpack~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B835F31019A61128003CD5E7 /* FrameLib_Threading.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Threading.h; sourceTree = "<group>"; };
-		B835F31519A65122003CD5E7 /* FrameLib_Globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Globals.h; sourceTree = "<group>"; };
+		B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Context.cpp; sourceTree = "<group>"; };
+		B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Context.h; sourceTree = "<group>"; };
+		B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Global.cpp; sourceTree = "<group>"; };
+		B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Global.h; sourceTree = "<group>"; };
 		B843AAA019BF3358000D3476 /* FrameLib_Templates.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Templates.h; sourceTree = "<group>"; };
 		B843AAA119BFB180000D3476 /* FrameLib_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Objects.h; sourceTree = "<group>"; };
 		B843AAA219C05435000D3476 /* FrameLib_Sink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Sink.h; sourceTree = "<group>"; };
@@ -1826,7 +2185,10 @@
 			children = (
 				B8FD919E197F40B200437EB5 /* FrameLib_Types.h */,
 				B8DF3FA2198AABAD00CA8BB6 /* FrameLib_Attributes.h */,
-				B835F31519A65122003CD5E7 /* FrameLib_Globals.h */,
+				B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */,
+				B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */,
+				B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */,
+				B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */,
 				B8FD919D197F0F6C00437EB5 /* FrameLib_FixedPoint.h */,
 				B835F31019A61128003CD5E7 /* FrameLib_Threading.h */,
 				B8BCCF46199CEF230038259B /* FrameLib_Memory.h */,
@@ -1940,6 +2302,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841206A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841211E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1947,6 +2311,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120711D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121251D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1954,6 +2320,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120721D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121261D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1961,6 +2329,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120731D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121271D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1968,6 +2338,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120741D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121281D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1975,6 +2347,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120751D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121291D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1982,6 +2356,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120761D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841212A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1989,6 +2365,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120771D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841212B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1996,6 +2374,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120781D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841212C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2003,6 +2383,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120791D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841212D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2010,6 +2392,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841207A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841212E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2017,6 +2401,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841207B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841212F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2024,6 +2410,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841207C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121301D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2031,6 +2419,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841207D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121311D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2038,6 +2428,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841207E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121321D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2045,6 +2437,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841207F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121331D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2052,6 +2446,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120801D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121341D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2059,6 +2455,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120811D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121351D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2066,6 +2464,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120821D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121361D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2073,6 +2473,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841208B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841213F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2080,6 +2482,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120841D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121381D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2087,6 +2491,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120961D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841214A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2094,6 +2500,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120861D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841213A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2101,6 +2509,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120871D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841213B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2108,6 +2518,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120881D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841213C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2115,6 +2527,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120891D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841213D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2122,6 +2536,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841208A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841213E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2129,6 +2545,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120831D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121371D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2136,6 +2554,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841208C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121401D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2143,6 +2563,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841208D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121411D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2150,6 +2572,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841208E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121421D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2157,6 +2581,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841208F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121431D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2164,6 +2590,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120901D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121441D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2171,6 +2599,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120911D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121451D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2178,6 +2608,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120921D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121461D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2185,6 +2617,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120931D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121471D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2192,6 +2626,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120941D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121481D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2199,6 +2635,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120951D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121491D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2206,6 +2644,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120851D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121391D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2213,6 +2653,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120971D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841214B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2220,6 +2662,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120981D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841214C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2227,6 +2671,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120991D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841214D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2234,6 +2680,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841209A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841214E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2241,6 +2689,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84121691D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B84120B51D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B812462A19F476CB009833F1 /* FrameLib_Subframe.h in Headers */,
 				B812462B19F476CB009833F1 /* FrameLib_Join.h in Headers */,
 				B812462C19F476CB009833F1 /* FrameLib_Split.h in Headers */,
@@ -2251,6 +2701,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841216A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B84120B61D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B812464019F476D3009833F1 /* FrameLib_Subframe.h in Headers */,
 				B812464119F476D3009833F1 /* FrameLib_Join.h in Headers */,
 				B812464219F476D3009833F1 /* FrameLib_Split.h in Headers */,
@@ -2261,6 +2713,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841206E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121221D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2268,6 +2722,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120701D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121241D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2275,6 +2731,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120A81D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841215C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2282,6 +2740,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120B81D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841216C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2289,6 +2749,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120B91D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841216D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2296,6 +2758,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120BA1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841216E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2303,6 +2767,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120C11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121751D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2310,6 +2776,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84121631D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B84120AF1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B85B68EB19F29470002D6F1D /* FrameLib_Subframe.h in Headers */,
 				B85B68E919F29470002D6F1D /* FrameLib_Join.h in Headers */,
 				B85B68EA19F29470002D6F1D /* FrameLib_Split.h in Headers */,
@@ -2320,6 +2788,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120AD1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121611D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2327,6 +2797,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120AE1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121621D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2334,6 +2806,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120A21D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121561D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2341,6 +2815,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120AB1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841215F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2348,6 +2824,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120A91D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841215D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2355,6 +2833,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120AA1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841215E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2362,6 +2842,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120A51D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121591D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2369,6 +2851,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120A61D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841215A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2376,6 +2860,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120A71D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841215B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2383,6 +2869,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120A41D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121581D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2390,6 +2878,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84121681D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B84120B41D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B8AE693219F45A380040B4EE /* FrameLib_Subframe.h in Headers */,
 				B8AE693319F45A380040B4EE /* FrameLib_Join.h in Headers */,
 				B8AE693419F45A380040B4EE /* FrameLib_Split.h in Headers */,
@@ -2400,6 +2890,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120B71D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841216B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2407,6 +2899,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84121641D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B84120B01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B8C8564119F2A96C006358DA /* FrameLib_Subframe.h in Headers */,
 				B8C8564219F2A96C006358DA /* FrameLib_Join.h in Headers */,
 				B8C8564319F2A96C006358DA /* FrameLib_Split.h in Headers */,
@@ -2417,6 +2911,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84121651D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B84120B11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B8C8565819F2A96E006358DA /* FrameLib_Subframe.h in Headers */,
 				B8C8565919F2A96E006358DA /* FrameLib_Join.h in Headers */,
 				B8C8565A19F2A96E006358DA /* FrameLib_Split.h in Headers */,
@@ -2427,6 +2923,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84121661D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B84120B21D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B8C8566F19F2A978006358DA /* FrameLib_Subframe.h in Headers */,
 				B8C8567019F2A978006358DA /* FrameLib_Join.h in Headers */,
 				B8C8567119F2A978006358DA /* FrameLib_Split.h in Headers */,
@@ -2437,6 +2935,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84121671D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B84120B31D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B8C8568519F2A97A006358DA /* FrameLib_Subframe.h in Headers */,
 				B8C8568619F2A97A006358DA /* FrameLib_Join.h in Headers */,
 				B8C8568719F2A97A006358DA /* FrameLib_Split.h in Headers */,
@@ -2447,6 +2947,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120691D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841211D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2454,6 +2956,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841206B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841211F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2461,6 +2965,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841206C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121201D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2468,7 +2974,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841206D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B8061D511B8C0C00002C8BD2 /* FrameLib_Interval.h in Headers */,
+				B84121211D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2476,6 +2984,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841206F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121231D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2483,6 +2993,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120BB1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841216F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2490,6 +3002,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120BC1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121701D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2497,6 +3011,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120BD1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121711D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2504,6 +3020,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120BE1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121721D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2511,6 +3029,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120BF1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121731D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2518,6 +3038,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120C01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121741D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2525,6 +3047,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120AC1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121601D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2532,6 +3056,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841209B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B841214F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2539,6 +3065,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841209C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121501D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2546,6 +3074,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841209D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121511D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2553,6 +3083,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841209E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121521D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2560,6 +3092,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B841209F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121531D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2567,6 +3101,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120A01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121541D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2574,6 +3110,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120A11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121551D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2581,6 +3119,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120A31D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B84121571D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5761,6 +6301,8 @@
 			files = (
 				B8F6E4CC199D247C0073E06D /* tlsf.c in Sources */,
 				B8CA31DC199A1F5F005F30A1 /* fl.unpack~.cpp in Sources */,
+				B84120C51D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120111D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5770,6 +6312,8 @@
 			files = (
 				B805E22919C3AD0A007D8D8B /* tlsf.c in Sources */,
 				B805E34119C3AF77007D8D8B /* fl.minus~.cpp in Sources */,
+				B84120CC1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120181D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5779,6 +6323,8 @@
 			files = (
 				B805E23A19C3AD0C007D8D8B /* tlsf.c in Sources */,
 				B805E34219C3AF7A007D8D8B /* fl.times~.cpp in Sources */,
+				B84120CD1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120191D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5788,6 +6334,8 @@
 			files = (
 				B805E24B19C3AD11007D8D8B /* tlsf.c in Sources */,
 				B805E34319C3AF84007D8D8B /* fl.divide~.cpp in Sources */,
+				B84120CE1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841201A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5797,6 +6345,8 @@
 			files = (
 				B805E25C19C3AD14007D8D8B /* tlsf.c in Sources */,
 				B805E34419C3AFA6007D8D8B /* fl.equals~.cpp in Sources */,
+				B84120CF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841201B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5806,6 +6356,8 @@
 			files = (
 				B805E26D19C3AD16007D8D8B /* tlsf.c in Sources */,
 				B805E34519C3AFAA007D8D8B /* fl.notequals~.cpp in Sources */,
+				B84120D01D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841201C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5815,6 +6367,8 @@
 			files = (
 				B805E27E19C3AD18007D8D8B /* tlsf.c in Sources */,
 				B805E34619C3AFAD007D8D8B /* fl.greaterthan~.cpp in Sources */,
+				B84120D11D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841201D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5824,6 +6378,8 @@
 			files = (
 				B805E28F19C3AD20007D8D8B /* tlsf.c in Sources */,
 				B805E34719C3AFB1007D8D8B /* fl.greaterthaneq~.cpp in Sources */,
+				B84120D21D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841201E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5833,6 +6389,8 @@
 			files = (
 				B805E2A019C3AD22007D8D8B /* tlsf.c in Sources */,
 				B805E34819C3AFB7007D8D8B /* fl.lessthan~.cpp in Sources */,
+				B84120D31D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841201F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5842,6 +6400,8 @@
 			files = (
 				B805E2B119C3AD23007D8D8B /* tlsf.c in Sources */,
 				B805E34919C3AFBA007D8D8B /* fl.lessthaneq~.cpp in Sources */,
+				B84120D41D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120201D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5851,6 +6411,8 @@
 			files = (
 				B805E2C219C3AD25007D8D8B /* tlsf.c in Sources */,
 				B805E34A19C3AFBD007D8D8B /* fl.pow~.cpp in Sources */,
+				B84120D51D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120211D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5860,6 +6422,8 @@
 			files = (
 				B805E2D319C3ADF5007D8D8B /* tlsf.c in Sources */,
 				B805E34B19C3AFC2007D8D8B /* fl.atan2~.cpp in Sources */,
+				B84120D61D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120221D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5869,6 +6433,8 @@
 			files = (
 				B805E2E319C3ADF7007D8D8B /* tlsf.c in Sources */,
 				B805E34C19C3AFC6007D8D8B /* fl.hypot~.cpp in Sources */,
+				B84120D71D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120231D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5878,6 +6444,8 @@
 			files = (
 				B805E2F319C3ADF9007D8D8B /* tlsf.c in Sources */,
 				B805E34D19C3AFCB007D8D8B /* fl.copysign~.cpp in Sources */,
+				B84120D81D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120241D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5887,6 +6455,8 @@
 			files = (
 				B805E30319C3ADFC007D8D8B /* tlsf.c in Sources */,
 				B805E34E19C3AFCF007D8D8B /* fl.min~.cpp in Sources */,
+				B84120D91D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120251D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5896,6 +6466,8 @@
 			files = (
 				B805E31319C3ADFE007D8D8B /* tlsf.c in Sources */,
 				B805E34F19C3AFD3007D8D8B /* fl.max~.cpp in Sources */,
+				B84120DA1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120261D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5905,6 +6477,8 @@
 			files = (
 				B805E32319C3AE00007D8D8B /* tlsf.c in Sources */,
 				B809BF3119C42D3600BA41F4 /* fl.diff~.cpp in Sources */,
+				B84120DB1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120271D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5914,6 +6488,8 @@
 			files = (
 				B809BDE419C42CDA00BA41F4 /* tlsf.c in Sources */,
 				B809C08B19C42FFB00BA41F4 /* fl.abs~.cpp in Sources */,
+				B84120DC1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120281D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5923,6 +6499,8 @@
 			files = (
 				B809BDF519C42CEB00BA41F4 /* tlsf.c in Sources */,
 				B809C08C19C42FFE00BA41F4 /* fl.acos~.cpp in Sources */,
+				B84120DD1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120291D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5932,6 +6510,8 @@
 			files = (
 				B809BE0519C42CEF00BA41F4 /* tlsf.c in Sources */,
 				B809C09519C4302400BA41F4 /* fl.cosh~.cpp in Sources */,
+				B84120E61D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120321D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5941,6 +6521,8 @@
 			files = (
 				B809BF3619C42D5100BA41F4 /* tlsf.c in Sources */,
 				B809C08E19C4300A00BA41F4 /* fl.asin~.cpp in Sources */,
+				B84120DF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841202B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5950,6 +6532,8 @@
 			files = (
 				B809BF4519C42D5400BA41F4 /* tlsf.c in Sources */,
 				B809C0A019C4305800BA41F4 /* fl.sinh~.cpp in Sources */,
+				B84120F11D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841203D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5959,6 +6543,8 @@
 			files = (
 				B809BF5419C42D5800BA41F4 /* tlsf.c in Sources */,
 				B809C09019C4301300BA41F4 /* fl.atan~.cpp in Sources */,
+				B84120E11D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841202D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5968,6 +6554,8 @@
 			files = (
 				B809BF6319C42D5A00BA41F4 /* tlsf.c in Sources */,
 				B809C09119C4301600BA41F4 /* fl.atanh~.cpp in Sources */,
+				B84120E21D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841202E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5977,6 +6565,8 @@
 			files = (
 				B809BF7219C42D5C00BA41F4 /* tlsf.c in Sources */,
 				B809C09219C4301900BA41F4 /* fl.cbrt~.cpp in Sources */,
+				B84120E31D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841202F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5986,6 +6576,8 @@
 			files = (
 				B809BF8119C42D6400BA41F4 /* tlsf.c in Sources */,
 				B809C09319C4301C00BA41F4 /* fl.ceil~.cpp in Sources */,
+				B84120E41D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120301D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5995,6 +6587,8 @@
 			files = (
 				B809BF9019C42D6400BA41F4 /* tlsf.c in Sources */,
 				B809C09419C4302000BA41F4 /* fl.cos~.cpp in Sources */,
+				B84120E51D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120311D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6004,6 +6598,8 @@
 			files = (
 				B809BF9F19C42D6500BA41F4 /* tlsf.c in Sources */,
 				B809C08D19C4300600BA41F4 /* fl.acosh~.cpp in Sources */,
+				B84120DE1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841202A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6013,6 +6609,8 @@
 			files = (
 				B809BFAE19C42D6600BA41F4 /* tlsf.c in Sources */,
 				B809C09619C4302700BA41F4 /* fl.erf~.cpp in Sources */,
+				B84120E71D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120331D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6022,6 +6620,8 @@
 			files = (
 				B809BFBD19C42D6800BA41F4 /* tlsf.c in Sources */,
 				B809C09719C4302C00BA41F4 /* fl.erfc~.cpp in Sources */,
+				B84120E81D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120341D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6031,6 +6631,8 @@
 			files = (
 				B809BFCC19C42D6800BA41F4 /* tlsf.c in Sources */,
 				B809C09819C4303000BA41F4 /* fl.exp~.cpp in Sources */,
+				B84120E91D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120351D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6040,6 +6642,8 @@
 			files = (
 				B809BFDB19C42D6900BA41F4 /* tlsf.c in Sources */,
 				B809C09919C4303B00BA41F4 /* fl.exp2~.cpp in Sources */,
+				B84120EA1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120361D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6049,6 +6653,8 @@
 			files = (
 				B809BFEA19C42D7000BA41F4 /* tlsf.c in Sources */,
 				B809C09A19C4304100BA41F4 /* fl.floor~.cpp in Sources */,
+				B84120EB1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120371D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6058,6 +6664,8 @@
 			files = (
 				B809BFF919C42D7100BA41F4 /* tlsf.c in Sources */,
 				B809C09B19C4304500BA41F4 /* fl.log~.cpp in Sources */,
+				B84120EC1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120381D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6067,6 +6675,8 @@
 			files = (
 				B809C00819C42D7100BA41F4 /* tlsf.c in Sources */,
 				B809C09C19C4304A00BA41F4 /* fl.log2~.cpp in Sources */,
+				B84120ED1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120391D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6076,6 +6686,8 @@
 			files = (
 				B809C01719C42D7200BA41F4 /* tlsf.c in Sources */,
 				B809C09D19C4304E00BA41F4 /* fl.log10~.cpp in Sources */,
+				B84120EE1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841203A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6085,6 +6697,8 @@
 			files = (
 				B809C02619C42D7200BA41F4 /* tlsf.c in Sources */,
 				B809C09E19C4305200BA41F4 /* fl.round~.cpp in Sources */,
+				B84120EF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841203B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6094,6 +6708,8 @@
 			files = (
 				B809C03519C42D7300BA41F4 /* tlsf.c in Sources */,
 				B809C09F19C4305500BA41F4 /* fl.sin~.cpp in Sources */,
+				B84120F01D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841203C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6103,6 +6719,8 @@
 			files = (
 				B809C04419C42D7300BA41F4 /* tlsf.c in Sources */,
 				B809C08F19C4300E00BA41F4 /* fl.asinh~.cpp in Sources */,
+				B84120E01D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841202C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6112,6 +6730,8 @@
 			files = (
 				B809C05319C42D7300BA41F4 /* tlsf.c in Sources */,
 				B809C0A119C4305D00BA41F4 /* fl.sqrt~.cpp in Sources */,
+				B84120F21D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841203E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6121,6 +6741,8 @@
 			files = (
 				B809C06219C42D7400BA41F4 /* tlsf.c in Sources */,
 				B809C0A219C4306000BA41F4 /* fl.tan~.cpp in Sources */,
+				B84120F31D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841203F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6130,6 +6752,8 @@
 			files = (
 				B809C07119C42D7400BA41F4 /* tlsf.c in Sources */,
 				B809C0A319C4306400BA41F4 /* fl.tanh~.cpp in Sources */,
+				B84120F41D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120401D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6139,6 +6763,8 @@
 			files = (
 				B8F83E2919C78DBC00230CD4 /* fl.trunc~.cpp in Sources */,
 				B809C08019C42D7500BA41F4 /* tlsf.c in Sources */,
+				B84120F51D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120411D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6148,6 +6774,8 @@
 			files = (
 				B812463219F476CB009833F1 /* fl.recall~.cpp in Sources */,
 				B812463319F476CB009833F1 /* tlsf.c in Sources */,
+				B84121101D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841205C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6157,6 +6785,8 @@
 			files = (
 				B812464719F476D3009833F1 /* fl.store~.cpp in Sources */,
 				B812464919F476D3009833F1 /* tlsf.c in Sources */,
+				B84121111D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841205D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6166,6 +6796,8 @@
 			files = (
 				B843AAA719C07046000D3476 /* tlsf.c in Sources */,
 				B843AAB519C070A1000D3476 /* fl.sink~.cpp in Sources */,
+				B84120C91D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120151D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6175,6 +6807,8 @@
 			files = (
 				B843AABA19C08452000D3476 /* tlsf.c in Sources */,
 				B805E34019C3AF73007D8D8B /* fl.plus~.cpp in Sources */,
+				B84120CB1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120171D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6184,6 +6818,8 @@
 			files = (
 				B846E62319F15A57005E9718 /* fl.window~.cpp in Sources */,
 				B846E61719F15A25005E9718 /* tlsf.c in Sources */,
+				B84121031D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841204F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6193,6 +6829,8 @@
 			files = (
 				B84943B91B834AD00037DFF1 /* tlsf.c in Sources */,
 				B84943C71B834B4A0037DFF1 /* fl.setparam~.cpp in Sources */,
+				B84121131D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841205F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6202,6 +6840,8 @@
 			files = (
 				B84943D01B837DB70037DFF1 /* tlsf.c in Sources */,
 				B84943DB1B837DDC0037DFF1 /* fl.chop~.cpp in Sources */,
+				B84121141D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120601D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6211,6 +6851,8 @@
 			files = (
 				B84943EE1B8386100037DFF1 /* fl.spatial~.cpp in Sources */,
 				B84943E11B8385BC0037DFF1 /* tlsf.c in Sources */,
+				B84121151D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120611D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6220,6 +6862,8 @@
 			files = (
 				B84BE88A1C1F641500A55F8C /* fl.medianfilter~.cpp in Sources */,
 				B84BE87D1C1F63E500A55F8C /* tlsf.c in Sources */,
+				B841211C1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120681D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6229,6 +6873,8 @@
 			files = (
 				B85B68A719F1CF56002D6F1D /* fl.sallenkey~.cpp in Sources */,
 				B85B689B19F1CEDC002D6F1D /* tlsf.c in Sources */,
+				B841210A1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120561D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6238,6 +6884,8 @@
 			files = (
 				B85B68BA19F1D39F002D6F1D /* fl.onepolezero~.cpp in Sources */,
 				B85B68AF19F1D38F002D6F1D /* tlsf.c in Sources */,
+				B84121081D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120541D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6247,6 +6895,8 @@
 			files = (
 				B85B68CE19F1D6A9002D6F1D /* fl.resonant~.cpp in Sources */,
 				B85B68C219F1D5F0002D6F1D /* tlsf.c in Sources */,
+				B84121091D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120551D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6256,6 +6906,8 @@
 			files = (
 				B85B68E219F262A3002D6F1D /* fl.register~.cpp in Sources */,
 				B85B68D719F2628C002D6F1D /* tlsf.c in Sources */,
+				B84120FD1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120491D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6265,6 +6917,8 @@
 			files = (
 				B85BDDCE19F1C22400A349C5 /* fl.0dfsvf~.cpp in Sources */,
 				B85BDDC319F1C21400A349C5 /* tlsf.c in Sources */,
+				B84121061D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120521D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6274,6 +6928,8 @@
 			files = (
 				B861EBC819CA3F2900B89477 /* fl.sort~.cpp in Sources */,
 				B861EBA819CA3E8700B89477 /* tlsf.c in Sources */,
+				B84121041D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120501D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6283,6 +6939,8 @@
 			files = (
 				B861EBC719CA3F2400B89477 /* fl.percentile~.cpp in Sources */,
 				B861EBBA19CA3E9500B89477 /* tlsf.c in Sources */,
+				B84121051D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120511D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6290,9 +6948,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84121001D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B87E877319C8EEBF00B1D0CD /* HISSTools_FFT.c in Sources */,
 				B87E877519C8EEEB00B1D0CD /* fl.fft~.cpp in Sources */,
 				B87E875A19C8EE9600B1D0CD /* tlsf.c in Sources */,
+				B841204C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6300,9 +6960,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84121011D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B87E877D19C8F4AA00B1D0CD /* HISSTools_FFT.c in Sources */,
 				B87E878B19C8F4BC00B1D0CD /* fl.ifft~.cpp in Sources */,
 				B87E877F19C8F4AA00B1D0CD /* tlsf.c in Sources */,
+				B841204D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6318,9 +6980,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84121021D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B8A4757719C9DDCD0043DC65 /* HISSTools_FFT.c in Sources */,
 				B8A4758519C9DDEA0043DC65 /* fl.convolve~.cpp in Sources */,
 				B8A4757919C9DDCD0043DC65 /* tlsf.c in Sources */,
+				B841204E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6328,9 +6992,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84120FF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B8AD887019C7C4AC00FFA238 /* fl.read~.cpp in Sources */,
 				B8AD887119C7C4B400FFA238 /* ibuffer_access.c in Sources */,
 				B8AD886319C7C46B00FFA238 /* tlsf.c in Sources */,
+				B841204B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6340,6 +7006,8 @@
 			files = (
 				B8AE693819F45A380040B4EE /* fl.shift~.cpp in Sources */,
 				B8AE693919F45A380040B4EE /* tlsf.c in Sources */,
+				B841210F1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841205B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6349,6 +7017,8 @@
 			files = (
 				B84943C81B834B740037DFF1 /* fl.random~.cpp in Sources */,
 				B8C6803C1B80F62300B74B90 /* tlsf.c in Sources */,
+				B84121121D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841205E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6358,6 +7028,8 @@
 			files = (
 				B8C8564619F2A96C006358DA /* fl.pad~.cpp in Sources */,
 				B8C8564919F2A96C006358DA /* tlsf.c in Sources */,
+				B841210B1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120571D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6367,6 +7039,8 @@
 			files = (
 				B8C8566119F2A96E006358DA /* fl.subframe~.cpp in Sources */,
 				B8C8566019F2A96E006358DA /* tlsf.c in Sources */,
+				B841210C1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120581D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6376,6 +7050,8 @@
 			files = (
 				B8C8567619F2A978006358DA /* fl.split~.cpp in Sources */,
 				B8C8567719F2A978006358DA /* tlsf.c in Sources */,
+				B841210D1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120591D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6385,6 +7061,8 @@
 			files = (
 				B812465319F4781E009833F1 /* fl.join~.cpp in Sources */,
 				B8C8568D19F2A97A006358DA /* tlsf.c in Sources */,
+				B841210E1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841205A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6394,6 +7072,8 @@
 			files = (
 				B8F6E4CB199D247C0073E06D /* tlsf.c in Sources */,
 				B8CA31EF199A20FF005F30A1 /* fl.pack~.cpp in Sources */,
+				B84120C41D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120101D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6403,6 +7083,8 @@
 			files = (
 				B8F6E4CD199D247C0073E06D /* tlsf.c in Sources */,
 				B8CA3211199A2454005F30A1 /* fl.t1~.cpp in Sources */,
+				B84120C61D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120121D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6412,6 +7094,8 @@
 			files = (
 				B8F6E4CE199D247C0073E06D /* tlsf.c in Sources */,
 				B8CA3213199A2464005F30A1 /* fl.t2~.cpp in Sources */,
+				B84120C71D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120131D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6421,6 +7105,8 @@
 			files = (
 				B8F6E4CF199D247C0073E06D /* tlsf.c in Sources */,
 				B8CA3225199A29D5005F30A1 /* fl.interval~.cpp in Sources */,
+				B84120C81D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120141D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6430,6 +7116,8 @@
 			files = (
 				B8CACC7D19C0F4A9007434C9 /* tlsf.c in Sources */,
 				B8CACC8B19C0F5D1007434C9 /* fl.source~.cpp in Sources */,
+				B84120CA1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120161D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6439,6 +7127,8 @@
 			files = (
 				B8D679DF1B83E5A600519310 /* fl.trace~.cpp in Sources */,
 				B8D679D21B83E51A00519310 /* tlsf.c in Sources */,
+				B84121161D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120621D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6448,6 +7138,8 @@
 			files = (
 				B8D679E71B847A3300519310 /* fl.map~.cpp in Sources */,
 				B8D679E91B847A3300519310 /* tlsf.c in Sources */,
+				B84121171D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120631D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6457,6 +7149,8 @@
 			files = (
 				B8D679FA1B84996800519310 /* tlsf.c in Sources */,
 				B8D67A071B8499D900519310 /* fl.samplerate~.cpp in Sources */,
+				B84121181D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120641D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6466,6 +7160,8 @@
 			files = (
 				B8D67A0D1B84A00500519310 /* tlsf.c in Sources */,
 				B8D67A191B84A04D00519310 /* fl.frommax~.cpp in Sources */,
+				B84121191D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120651D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6475,6 +7171,8 @@
 			files = (
 				B8D67A201B84D88F00519310 /* tlsf.c in Sources */,
 				B8D67A2C1B84D8B200519310 /* fl.coordinatesystem.cpp in Sources */,
+				B841211A1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120661D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6484,6 +7182,8 @@
 			files = (
 				B8D8DB831B89D74B000203E5 /* tlsf.c in Sources */,
 				B8D8DB8F1B89D76A000203E5 /* fl.select~.cpp in Sources */,
+				B841211B1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120671D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6493,6 +7193,8 @@
 			files = (
 				B8F3798B19F1C8E600EC7FDA /* fl.onepole~.cpp in Sources */,
 				B8F3797F19F1C8B400EC7FDA /* tlsf.c in Sources */,
+				B84121071D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120531D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6502,6 +7204,8 @@
 			files = (
 				B8F83EA819C78F9800230CD4 /* fl.vmin~.cpp in Sources */,
 				B8F83E3619C78E9A00230CD4 /* tlsf.c in Sources */,
+				B84120F61D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120421D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6511,6 +7215,8 @@
 			files = (
 				B8F83EA719C78F9400230CD4 /* fl.vmax~.cpp in Sources */,
 				B8F83E4719C78EA700230CD4 /* tlsf.c in Sources */,
+				B84120F71D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120431D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6520,6 +7226,8 @@
 			files = (
 				B8F83EA619C78F9100230CD4 /* fl.sum~.cpp in Sources */,
 				B8F83E5719C78EA900230CD4 /* tlsf.c in Sources */,
+				B84120F81D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120441D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6529,6 +7237,8 @@
 			files = (
 				B8F83EA519C78F8800230CD4 /* fl.product~.cpp in Sources */,
 				B8F83E6719C78EAB00230CD4 /* tlsf.c in Sources */,
+				B84120F91D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120451D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6538,6 +7248,8 @@
 			files = (
 				B8F83EA419C78F8000230CD4 /* fl.mean~.cpp in Sources */,
 				B8F83E7719C78EAE00230CD4 /* tlsf.c in Sources */,
+				B84120FA1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120461D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6547,6 +7259,8 @@
 			files = (
 				B8F83EA319C78F7B00230CD4 /* fl.gmean~.cpp in Sources */,
 				B8F83E8719C78EAF00230CD4 /* tlsf.c in Sources */,
+				B84120FB1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120471D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6556,6 +7270,8 @@
 			files = (
 				B8F83EA219C78F7700230CD4 /* fl.length~.cpp in Sources */,
 				B8F83E9719C78EB100230CD4 /* tlsf.c in Sources */,
+				B84120FC1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B84120481D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6565,6 +7281,8 @@
 			files = (
 				B8F83EB019C79CC900230CD4 /* tlsf.c in Sources */,
 				B8F83EBD19C79D0200230CD4 /* fl.count~.cpp in Sources */,
+				B84120FE1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
+				B841204A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

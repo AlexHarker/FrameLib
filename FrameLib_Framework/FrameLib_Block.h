@@ -6,7 +6,7 @@
 
 // FrameLib_Block
 
-// This abstract class provides connectivity to FrameLib_DSP objects or blocks (groups of FrameLib_DSP objects).
+// This abstract class provides a connectivity interface to FrameLib_DSP objects or blocks (groups of FrameLib_DSP objects).
 // Standard objects inherit this in the FrameLib_DSP class.
 // Objects that have asynchronous outputs can use this class to host multiple FrameLib_DSP objects and connect them correctly.
 

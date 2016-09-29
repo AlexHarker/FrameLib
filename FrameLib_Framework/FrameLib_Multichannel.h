@@ -2,6 +2,7 @@
 #ifndef FRAMELIB_MULTICHANNEL_H
 #define FRAMELIB_MULTICHANNEL_H
 
+#include "FrameLib_Context.h"
 #include "FrameLib_Block.h"
 #include "FrameLib_DSP.h"
 #include <vector>
@@ -63,7 +64,7 @@ public:
         FrameLib_MultiChannel *mTop;
         FrameLib_MultiChannel *mTail;
     };
-
+    
     // ************************************************************************************** //
 
     // Connection Structures
@@ -97,18 +98,23 @@ private:
     
 public:
     
-    FrameLib_MultiChannel (ConnectionQueue *queue, unsigned long nIns, unsigned long nOuts) : mQueue(queue), mNext(NULL)
+    FrameLib_MultiChannel (FrameLib_Context context, unsigned long nIns, unsigned long nOuts) : mContext(context), mQueue((ConnectionQueue *)context.getConnectionQueue()), mNext(NULL)
     {
         setIO(nIns, nOuts);
     }
     
-    FrameLib_MultiChannel (ConnectionQueue *queue) : mQueue(queue), mNext(NULL)
+    FrameLib_MultiChannel (FrameLib_Context context) : mContext(context), mQueue((ConnectionQueue *)context.getConnectionQueue()), mNext(NULL)
     {
     }
     
-    // Destructor (virtual) - this MUST call clearConnections() in the inheriting class
+    // FIX - is this true?
     
-    virtual ~FrameLib_MultiChannel() = 0;
+    // Destructor (virtual) - this MUST call clearConnections() in the inheriting class, before deleting objects
+    
+    virtual ~FrameLib_MultiChannel()
+    {
+        mContext.releaseConnectionQueue();
+    }
 
     // ************************************************************************************** //
 
@@ -359,6 +365,10 @@ public:
 
     // Member variables
     
+protected:
+    
+    FrameLib_Context mContext;
+    
 private:
     
     // Queue
@@ -377,11 +387,6 @@ protected:
     
 };
 
-// Virtual Destructor
-
-FrameLib_MultiChannel::~FrameLib_MultiChannel()
-{
-}
 
 // ************************************************************************************** //
 
@@ -393,7 +398,7 @@ class FrameLib_Pack : public FrameLib_MultiChannel
 
 public:
     
-    FrameLib_Pack(ConnectionQueue *queue, FrameLib_DSP::DSPQueue *dspQueue, FrameLib_Attributes::Serial *serialAttributes, void *owner) : FrameLib_MultiChannel(queue)
+    FrameLib_Pack(FrameLib_Context context, FrameLib_Attributes::Serial *serialAttributes, void *owner) : FrameLib_MultiChannel(context)
     {
         mAttributes.addDouble(0, "inputs", 2, 0 );
         mAttributes.set(serialAttributes);
@@ -438,7 +443,7 @@ class FrameLib_Unpack : public FrameLib_MultiChannel
     
 public:
 
-    FrameLib_Unpack(ConnectionQueue *queue, FrameLib_DSP::DSPQueue *dspQueue, FrameLib_Attributes::Serial *serialAttributes, void *owner) : FrameLib_MultiChannel(queue)
+    FrameLib_Unpack(FrameLib_Context context, FrameLib_Attributes::Serial *serialAttributes, void *owner) : FrameLib_MultiChannel(context)
     {
         mAttributes.addDouble(kOutputs, "outputs", 2, 0);
         mAttributes.set(serialAttributes);
@@ -482,12 +487,12 @@ template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
 
 public:
     
-    FrameLib_Expand(ConnectionQueue *connectQueue, FrameLib_DSP::DSPQueue *dspQueue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner)
-    : FrameLib_MultiChannel(connectQueue), mDSPQueue(dspQueue), mAllocator(dspQueue->getAllocator()), mOwner(owner)
+    FrameLib_Expand(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner)
+    : FrameLib_MultiChannel(context), mAllocator(context.getLocalAllocator()), mOwner(owner)
     {
         // Make first block
         
-        mBlocks.push_back(new T(dspQueue, serialisedAttributes, owner));
+        mBlocks.push_back(new T(context, serialisedAttributes, owner));
         
         // Copy serialised attributes for later instantiations
         
@@ -522,6 +527,8 @@ public:
             delete (*it);
         
         delete mSerialisedAttributes;
+        
+        mContext.releaseLocalAllocator();
     }
     
     // Fixed Inputs
@@ -649,7 +656,7 @@ private:
                 
                 for (unsigned long i = cChannels; i < nChannels; i++)
                 {
-                    mBlocks[i] = new T(mDSPQueue, mSerialisedAttributes, mOwner);
+                    mBlocks[i] = new T(mContext, mSerialisedAttributes, mOwner);
                     mBlocks[i]->setSamplingRate(mSamplingRate);
                 }
             }
@@ -700,7 +707,6 @@ private:
         }
     }
 
-    FrameLib_DSP::DSPQueue *mDSPQueue;
     FrameLib_Local_Allocator *mAllocator;
     FrameLib_Attributes::Serial *mSerialisedAttributes;
 

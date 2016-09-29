@@ -13,7 +13,7 @@ class FrameLib_FFT : public FrameLib_Processor
     
 public:
 	
-    FrameLib_FFT(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue, 1, 2)
+    FrameLib_FFT(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 2)
     {
         mAttributes.addDouble(kMaxLength, "maxlength", 16384, 0);
         mAttributes.setMin(0.0);

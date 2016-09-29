@@ -3,6 +3,7 @@
 #define FRAMELIB_DSP_H
 
 #include "FrameLib_Types.h"
+#include "FrameLib_Context.h"
 #include "FrameLib_Block.h"
 #include <limits>
 #include <vector>
@@ -29,7 +30,7 @@ public:
         
     public:
         
-        DSPQueue(FrameLib_Local_Allocator *allocator) : mAllocator(allocator), mTop(NULL), mTail(NULL) {}
+        DSPQueue() : mTop(NULL), mTail(NULL) {}
         
         // FIX - check assumption that an object can only be in the queue once at a time!
         
@@ -62,14 +63,7 @@ public:
             }
         }
         
-        FrameLib_Local_Allocator *getAllocator()
-        {
-            return mAllocator;
-        }
-        
     private:
-
-        FrameLib_Local_Allocator *mAllocator;
         
         FrameLib_DSP *mTop;
         FrameLib_DSP *mTail;
@@ -141,8 +135,8 @@ private:
     
 public:
     
-    FrameLib_DSP (ObjectType type, DSPQueue *queue, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
-    : FrameLib_Block(nAudioIns, nAudioOuts), mAllocator(queue->getAllocator()), mQueue(queue), mNext(NULL), mType(type)
+    FrameLib_DSP (ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
+    : FrameLib_Block(nAudioIns, nAudioOuts), mContext(context), mAllocator(context.getLocalAllocator()), mQueue((DSPQueue *)context.getDSPQueue()), mNext(NULL), mType(type)
     {
         // Set IO
         
@@ -163,6 +157,9 @@ public:
         
         for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
             mAllocator->dealloc(ins->mFixedInput);
+        
+        mContext.releaseDSPQueue();
+        mContext.releaseLocalAllocator();
     }
     
     // ************************************************************************************** //
@@ -869,6 +866,10 @@ protected:
    
 protected:
     
+    // Context
+    
+    FrameLib_Context mContext;
+    
     // Sampling Rate
     
     double mSamplingRate;
@@ -921,8 +922,8 @@ class FrameLib_Processor : public FrameLib_DSP
     
 public:
     
-    FrameLib_Processor(DSPQueue *queue, unsigned long nIns = 0, unsigned long nOuts = 0)
-    : FrameLib_DSP(kProcessor, queue, nIns, nOuts, 0, 0) {}
+    FrameLib_Processor(FrameLib_Context context, unsigned long nIns = 0, unsigned long nOuts = 0)
+    : FrameLib_DSP(kProcessor, context, nIns, nOuts, 0, 0) {}
     
     static bool handlesAudio() { return false; }
 
@@ -950,8 +951,8 @@ class FrameLib_AudioProcessor : public FrameLib_DSP
     
 public:
     
-    FrameLib_AudioProcessor(DSPQueue *queue, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
-    : FrameLib_DSP(kProcessor, queue, nIns, nOuts, nAudioIns, nAudioOuts) {}
+    FrameLib_AudioProcessor(FrameLib_Context context, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
+    : FrameLib_DSP(kProcessor, context, nIns, nOuts, nAudioIns, nAudioOuts) {}
     
     static bool handlesAudio() { return true; }
     
@@ -974,8 +975,8 @@ class FrameLib_Scheduler : public FrameLib_DSP
 
 public:
     
-    FrameLib_Scheduler(DSPQueue *queue, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
-    : FrameLib_DSP(kScheduler, queue, nIns, nOuts, nAudioIns, nAudioOuts) {}
+    FrameLib_Scheduler(FrameLib_Context context, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
+    : FrameLib_DSP(kScheduler, context, nIns, nOuts, nAudioIns, nAudioOuts) {}
     
     static bool handlesAudio() { return true; }
     

@@ -16,7 +16,7 @@ class FrameLib_MaxRead : public FrameLib_Processor
     
 public:
     
-    FrameLib_MaxRead (DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue, 1, 1)
+    FrameLib_MaxRead (FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
     {
         mAttributes.addString(kBuffer, "buffer", "", 0);
         

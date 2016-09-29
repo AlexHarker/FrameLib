@@ -10,7 +10,7 @@ class FrameLib_SetParam : public FrameLib_Processor
     
 public:
     
-    FrameLib_SetParam (DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue)
+    FrameLib_SetParam (FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context)
     {
         mAttributes.addDouble(kNumIns, "numins", 1, 0);
         mAttributes.setClip(1.0, 32.0);

@@ -21,7 +21,7 @@ class FrameLib_Trace : public FrameLib_AudioProcessor
     
 public:
     
-    FrameLib_Trace(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_AudioProcessor(queue, 1, 0, 1, 1)
+    FrameLib_Trace(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_AudioProcessor(context, 1, 0, 1, 1)
     {
         mAttributes.addDouble(kLength, "length", 8000, 0);
         mAttributes.setMin(0.0);

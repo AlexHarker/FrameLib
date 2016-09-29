@@ -14,7 +14,7 @@ class FrameLib_Split : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Split(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue, 1, 2)
+    FrameLib_Split(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 2)
     {
         mAttributes.addDouble(kSplit, "split", 0.0, 0);
         mAttributes.setMin(0.0);

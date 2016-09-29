@@ -12,7 +12,7 @@ class FrameLib_Chop : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Chop(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue)
+    FrameLib_Chop(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context)
     {
         mAttributes.addDouble(kNumOuts, "numouts", 1.0, 0);
         mAttributes.setClip(2.0, 32.0);

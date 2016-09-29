@@ -59,7 +59,7 @@ class FrameLib_OnePole : public FrameLib_Processor
 
 public:
 	
-    FrameLib_OnePole(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue, 1, 1)
+    FrameLib_OnePole(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
     {
         mAttributes.addDouble(kFreq, "freq", 0.0, 0);
         mAttributes.setMin(0.0);

@@ -37,7 +37,7 @@ private:
     
 public:
     
-    FrameLib_Source(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_AudioProcessor(queue, 1, 1, 1, 0)
+    FrameLib_Source(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_AudioProcessor(context, 1, 1, 1, 0)
     {        
         mAttributes.addDouble(kMaxLength, "length", 16384, 0);
         mAttributes.setMin(0.0);

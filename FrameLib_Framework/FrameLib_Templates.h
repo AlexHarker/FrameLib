@@ -18,7 +18,7 @@ template <typename Op> class FrameLib_UnaryOp : public FrameLib_Processor
     
 public:
     
-    FrameLib_UnaryOp(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue, 1, 1)
+    FrameLib_UnaryOp(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
     {}
     
 protected:
@@ -49,8 +49,8 @@ public:
 template <double func(double)> class FrameLib_Unary : public FrameLib_UnaryOp < Unary_Functor<func> >
 {
 public:
-    FrameLib_Unary(FrameLib_Processor::DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner)
-    : FrameLib_UnaryOp < Unary_Functor<func> > (queue, serialisedAttributes, owner) {}
+    FrameLib_Unary(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner)
+    : FrameLib_UnaryOp < Unary_Functor<func> > (context, serialisedAttributes, owner) {}
 };
 
 // Binary Operator
@@ -63,7 +63,7 @@ template <typename Op> class FrameLib_BinaryOp : public FrameLib_Processor
     
 public:
     
-    FrameLib_BinaryOp(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue, 2, 1)
+    FrameLib_BinaryOp(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 2, 1)
     {
         mAttributes.addEnum(kMode, "mode");
         mAttributes.addEnumItem(kWrap, "wrap");
@@ -230,8 +230,8 @@ public:
 template <double func(double, double)> class FrameLib_Binary : public FrameLib_BinaryOp < Binary_Functor<func> >
 {
 public:
-    FrameLib_Binary(FrameLib_Processor::DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner)
-    : FrameLib_BinaryOp < Binary_Functor<func> > (queue, serialisedAttributes, owner) {}
+    FrameLib_Binary(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner)
+    : FrameLib_BinaryOp < Binary_Functor<func> > (context, serialisedAttributes, owner) {}
 };
 
 // Vector
@@ -241,7 +241,7 @@ template <double func(double *, unsigned long) > class FrameLib_Vector : public 
     
 public:
     
-    FrameLib_Vector (DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue, 1, 1)
+    FrameLib_Vector (FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
     {
     }
     

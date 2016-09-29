@@ -40,7 +40,7 @@ class FrameLib_FromMax : public FrameLib_Processor
     
 public:
     
-    FrameLib_FromMax(DSPQueue *queue, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(queue, 1, 1)
+    FrameLib_FromMax(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
     {
         mAttributes.addEnum(kMode, "mode", 0);
         mAttributes.addEnumItem(kValues, "values");
