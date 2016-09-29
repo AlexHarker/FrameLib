@@ -115,7 +115,7 @@ private:
     
     double getFold(double *input, long index, long sizeIn, long width)
     {
-        index = abs(index) % ((sizeIn - 1) * 2);
+        index = std::abs(index) % ((sizeIn - 1) * 2);
         index = index > (sizeIn - 1) ? ((sizeIn - 1) * 2) - sizeIn : index;
         
         return input[index];

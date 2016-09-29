@@ -54,7 +54,7 @@ protected:
         else
             shift = round(mAttributes.getValue(kShift) * sizeIn);
         
-        unsigned long absShift = abs(shift);
+        unsigned long absShift = std::abs(shift);
         
         // Copy to output (with padding if necessary)
         
