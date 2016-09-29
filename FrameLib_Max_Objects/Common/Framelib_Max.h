@@ -387,7 +387,6 @@ private:
     {
         t_symbol *sym;
         std::vector<double> values;
-        char argNames[64];
         long i, j;
        
         // Allocate
@@ -398,14 +397,16 @@ private:
         
         for (i = 0; i < argc; i++)
         {
-            sprintf(argNames, "%ld", i);
-            
-            sym = atom_getsym(argv + i);
-            
             if (isTag(argv + i))
                 break;
             
 #ifndef OBJECT_ARGS_SET_ALL_INPUTS
+            
+            char argNames[64];
+            
+            sprintf(argNames, "%ld", i);
+            sym = atom_getsym(argv + i);
+
             if (sym != gensym(""))
                 serialisedAttributes->write(argNames, sym->s_name);
             else
@@ -486,19 +487,17 @@ private:
         
         while (i < argc)
         {
-            // Advance to next tag
+            // Advance to next input tag
             
-            if (isTag(argv + i))
+            for ( ; i < argc && !isInputTag(atom_getsym(argv + i)); i++);
+            
+            // If there are values to read then do so
+                
+            if ((i + 1) < argc && !isTag(argv + i + 1))
             {
                 t_symbol *sym = atom_getsym(argv + i);
-                    
-                // If there are values to read then do so
-                    
-                if ((++i < argc) && !isTag(argv + i) && isInputTag(sym))
-                {
-                    i = parseNumericalList(values, argv, argc, i);
-                    mObject->setFixedInput(inputNumber(sym), &values[0], values.size());
-                }
+                i = parseNumericalList(values, argv, argc, i + 1);
+                mObject->setFixedInput(inputNumber(sym), &values[0], values.size());
             }
         }
     }
