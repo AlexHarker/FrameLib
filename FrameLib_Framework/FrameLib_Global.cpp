@@ -1,16 +1,7 @@
 
 #include "FrameLib_Global.h"
 
-FrameLib_Global::FrameLib_Global()
-{
-    mAllocator = new FrameLib_Global_Allocator;
-    mCount = 1;
-}
-
-FrameLib_Global::~FrameLib_Global()
-{
-    delete mAllocator;
-}
+FrameLib_Global::FrameLib_Global() : mCount(1) {}
 
 void FrameLib_Global::increment()
 {
@@ -34,7 +25,7 @@ FrameLib_Local_Allocator *FrameLib_Global::getAllocator(void *ref)
     
     if (!allocator)
     {
-        allocator = new FrameLib_Local_Allocator(mAllocator);
+        allocator = new FrameLib_Local_Allocator(&mAllocator);
         mLocalAllocators.add(allocator, ref);
     }
     

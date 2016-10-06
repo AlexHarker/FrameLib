@@ -95,7 +95,7 @@ public:
     
 private:
     
-    FrameLib_Global_Allocator *mAllocator;
+    FrameLib_Global_Allocator mAllocator;
     
     FrameLib_PointerSet<FrameLib_Local_Allocator> mLocalAllocators;
     FrameLib_PointerSet<FrameLib_MultiChannel::ConnectionQueue> mConnectionQueues;
