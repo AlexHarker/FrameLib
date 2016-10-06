@@ -614,7 +614,7 @@ public:
         if (getNumAudioOuts())
             mAllocator->dealloc(temps[0]);
         
-        mAllocator->clearLocal();
+        mAllocator->clear();
     }
     
     // ************************************************************************************** //
@@ -707,7 +707,7 @@ private:
         }
     }
 
-    FrameLib_Local_Allocator *mAllocator;
+    FrameLib_LocalAllocator *mAllocator;
     FrameLib_Attributes::Serial *mSerialisedAttributes;
 
     std::vector <FrameLib_Block *> mBlocks;

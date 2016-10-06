@@ -53,7 +53,7 @@ protected:
     
 private:
     
-    FrameLib_Local_Allocator::Storage *mStorage;
+    FrameLib_LocalAllocator::Storage *mStorage;
 };
 
 #endif

@@ -12,156 +12,72 @@
 // FIX - cleanup and checks
 // FIX - free storage?
 
-class FrameLib_Global_Allocator
+// The Main Allocator (has no threadsafety)
+
+class FrameLib_MainAllocator
 {
+    static size_t const initialSize = 1024 * 1024 * 2;
+    static size_t const growSize = 1024 * 1024 * 2;
+    
+    struct Pool
+    {
+        Pool(tlsf_t tlsf, size_t size);
+        ~Pool();
+    
+        Pool *mNext;
+
+    private:
+        
+        tlsf_t mTLSF;
+        pool_t mTSLFPool;
+        void *mMemory;
+    };
     
 public:
     
-    static size_t const initialSize = 1024 * 1024 * 128;
+    FrameLib_MainAllocator();
+    ~FrameLib_MainAllocator();
+    
+    void *alloc(size_t size);
+    void dealloc(void *ptr);
+    
+private:
+    
+    void addPool(size_t size);
+    
+    tlsf_t mTLSF;
+    Pool *mFirstPool;
+    Pool *mLastPool;
+    
+    size_t mOSAllocated;
+    size_t mAllocated;
+};
 
-    FrameLib_Global_Allocator()
-    {
-        mLock.acquire();
-        mMemory = malloc(initialSize);
-        mTLSF = tlsf_create_with_pool(mMemory, initialSize);
-        mLock.release();
-    }
-    
-    ~FrameLib_Global_Allocator()
-    {
-        tlsf_destroy(mTLSF);
-        free(mMemory);
-    }
 
-    void acquireLock()
-    {
-        mLock.acquire();
-    }
-    
-    void releaseLock()
-    {
-        mLock.release();
-    }
-    
-    void *allocWithoutLock(size_t size, size_t alignment)
-    {
-        return tlsf_memalign(mTLSF, alignment, size);
-    }
-    
-    void deallocWithoutLock(void *ptr)
-    {
-        tlsf_free(mTLSF, ptr);
-    }
-    
-    void *allocWithLock(size_t size, size_t alignment)
-    {
-        mLock.acquire();
-        void *ptr = allocWithoutLock(size, alignment);
-        mLock.release();
-        
-        return ptr;
-    }
-    
-    void deallocWithLock(void *ptr)
-    {
-        mLock.acquire();
-        deallocWithoutLock(ptr);
-        mLock.release();
-    }
+// The Global Allocator (adds threadsaftey to the main allocator)
+
+class FrameLib_GlobalAllocator
+{
+
+public:
+
+    FrameLib_MainAllocator *acquire();
+    bool release(FrameLib_MainAllocator **allocator);
+
+    void *alloc(size_t size);
+    void dealloc(void *ptr);
     
 private:
     
     FrameLib_SpinLock mLock;
-    void *mMemory;
-    tlsf_t mTLSF;
+    FrameLib_MainAllocator mAllocator;
+
 };
 
+// The Local Allocator
 
-class FrameLib_Local_Allocator
+class FrameLib_LocalAllocator
 {
- 
-public:
-    
-    // N.B. - alignment must be a power of two
-    
-    static const size_t alignment = 16;
-
-    struct Storage
-    {
-        
-    public:
-        
-        Storage(const char *name, FrameLib_Local_Allocator *allocator) : mData(NULL), mSize(0), mMaxSize(0), mCount(1), mAllocator(allocator)
-        {
-            mName = strdup(name);
-        }
-        
-        ~Storage()
-        {
-            mAllocator->dealloc(mData);
-            free(mName);
-        }
-        
-        double *getData()
-        {
-            return mData;
-        }
-        
-        unsigned long getSize()
-        {
-            return mSize;
-        }
-        
-        const char *getName()
-        {
-            return mName;
-        }
-        
-        void resize(unsigned long size)
-        {
-            double *data;
-            
-            if (mMaxSize >= size && (size >= (mMaxSize >> 1)))
-            {
-                mSize = size;
-                return;
-            }
-            
-            data = (double *) mAllocator->alloc(size * sizeof(double));
-            
-            if (data)
-            {
-                mAllocator->dealloc(mData);
-                mData = data;
-                mMaxSize = size;
-                mSize = size;
-            }
-        }
-                
-        void increment()
-        {
-            mCount++;
-        }
-        
-        unsigned long decrement()
-        {
-            return --mCount;
-        }
-
-        
-    private:
-        
-        double *mData;
-        unsigned long mSize;
-        unsigned long mMaxSize;
-        unsigned long mCount;
-        char *mName;
-        
-        FrameLib_Local_Allocator *mAllocator;
-    };
-
-private:
-
     static const int numLocalFreeBlocks = 16;
     
     struct FreeBlock
@@ -174,169 +90,64 @@ private:
         FreeBlock *mPrev;
         FreeBlock *mNext;
     };
-    
-public:
-
-    FrameLib_Local_Allocator(FrameLib_Global_Allocator *allocator) : mGlobalAllocator(allocator)
-    {
-        for (unsigned long i = 0; i < (numLocalFreeBlocks - 1); i++)
-        {
-            mFreeLists[i + 1].mPrev = mFreeLists + i;
-            mFreeLists[i].mNext = mFreeLists + i + 1;
-        }
-        
-        mTop = mFreeLists;
-        mTail = mFreeLists + (numLocalFreeBlocks - 1);
-        mTop->mPrev = NULL;
-        mTail->mNext = NULL;
-    }
-    
-    ~FrameLib_Local_Allocator()
-    {
-        // FIX (now fixed) N.B. - local must be freed before global (look at memory mangement and pointers in general)
-        
-        clearLocal();
-    }
-    
-    void *alloc(size_t size)
-    {
-        if (!size)
-            return NULL;
-        
-        // N.B. - all memory should be aligned to alignment
-        
-        size_t maxSize = size << 1;
-        
-        for (FreeBlock *block = mTop; block && block->mMemory; block = block->mNext)
-            if (block->mSize >= size && block->mSize <= maxSize)
-                return removeBlock(block);
-        
-        // FIX - free memory if there is an error...
-        
-        return mGlobalAllocator->allocWithLock(size, alignment);
-    }
-
-    // FIX - THIS IS SLOW - cache mishit?
-    
-    size_t blockSize(void* ptr)
-    {
-        return (*(size_t *) (((unsigned char*) ptr) - sizeof(size_t))) & ~(0x3);
-    }
-    
-    void dealloc(void *ptr)
-    {
-        if (ptr)
-        {
-            if (mTail->mMemory)
-                mGlobalAllocator->deallocWithLock(mTail->mMemory);
-        
-            mTail->mPrev->mNext = NULL;
-            mTail->mNext = mTop;
-            mTail->mMemory = ptr;
-            mTail->mSize = blockSize(ptr);
-            mTop->mPrev = mTail;
-            mTail->mNext = mTop;
-            mTop = mTail;
-            mTail = mTop->mPrev;
-            mTop->mPrev = NULL;
-        }
-    }
-    
-    void clearLocal()
-    {
-        mGlobalAllocator->acquireLock();
-        
-        for (unsigned long i = 0; i < numLocalFreeBlocks; i++)
-        {
-            if (mFreeLists[i].mMemory)
-            {
-                mGlobalAllocator->deallocWithoutLock(mFreeLists[i].mMemory);
-                mFreeLists[i].mMemory = NULL;
-                mFreeLists[i].mSize = 0;
-            }
-        }
-        
-        mGlobalAllocator->releaseLock();
-    }
-    
-    static size_t alignSize(size_t x)
-    {
-        return (x + (alignment - 1)) & ~(alignment - 1);
-    }
-    
-private:
-    
-    std::vector<Storage *>::iterator findStorage(const char *name)
-    {
-        std::vector<Storage *>::iterator it;
-        
-        for (it = mStorage.begin(); it != mStorage.end(); it++)
-        {
-            if (!strcmp((*it)->getName(), name))
-                return it;
-        }
-        
-        return it;
-    }
 
 public:
     
-    Storage *registerStorage(const char *name)
+    struct Storage
     {
-        std::vector<Storage *>::iterator it = findStorage(name);
-        
-        if (it != mStorage.end())
-        {
-            (*it)->increment();
-            return *it;
-        }
-        
-        Storage *createdStorage = new Storage(name, this);
-        mStorage.push_back(createdStorage);
+        friend FrameLib_LocalAllocator;
 
-        return createdStorage;
-    }
-
-    void releaseStorage(const char *name)
-    {
-        std::vector<Storage *>::iterator it = findStorage(name);
+    protected:
         
-        if ((*it)->decrement() <= 0)
-            mStorage.erase(it);
-    }
+        Storage(const char *name, FrameLib_LocalAllocator *allocator);
+        ~Storage();
+        
+        void increment()            { mCount++; }
+        unsigned long decrement()   { return --mCount; }
+        
+    public:
+        
+        double *getData() const           { return mData; }
+        unsigned long getSize() const     { return mSize; }
+        const char *getName() const       { return mName; }
+        
+        void resize(unsigned long size);
+        
+    private:
+        
+        double *mData;
+        unsigned long mSize;
+        unsigned long mMaxSize;
+        unsigned long mCount;
+        char *mName;
+        
+        FrameLib_LocalAllocator *mAllocator;
+    };
+    
+public:
+
+    FrameLib_LocalAllocator(FrameLib_GlobalAllocator *allocator);
+    ~FrameLib_LocalAllocator();
+    
+    void *alloc(size_t size);
+    void dealloc(void *ptr);
+    
+    void clear();
+    
+    static size_t alignSize(size_t x);
+    
+    Storage *registerStorage(const char *name);
+    void releaseStorage(const char *name);
     
 private:
     
-    void *removeBlock(FreeBlock *block)
-    {
-        void *ptr = block->mMemory;
-        block->mMemory = NULL;
-        
-        if (block == mTail)
-            return ptr;
-        
-        if (block == mTop)
-        {
-            block->mNext->mPrev = NULL;
-            mTop = block->mNext;
-        }
-        else
-        {
-            block->mNext->mPrev = block->mPrev;
-            block->mPrev->mNext = block->mNext;
-        }
-        
-        mTail->mNext = block;
-        block->mPrev = mTail;
-        mTail = block;
-        
-        return ptr;
-    }
+    std::vector<Storage *>::iterator findStorage(const char *name);
     
-    FrameLib_Global_Allocator *mGlobalAllocator;
+    void *removeBlock(FreeBlock *block);
+    
+    FrameLib_GlobalAllocator *mGlobalAllocator;
     
     FreeBlock mFreeLists[numLocalFreeBlocks];
-    FreeBlock *mTop;
     FreeBlock *mTail;
     
     std::vector <Storage *> mStorage;

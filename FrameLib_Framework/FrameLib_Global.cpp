@@ -19,13 +19,13 @@ FrameLib_Global *FrameLib_Global::decrement()
     return this;
 }
 
-FrameLib_Local_Allocator *FrameLib_Global::getAllocator(void *ref)
+FrameLib_LocalAllocator *FrameLib_Global::getAllocator(void *ref)
 {
-    FrameLib_Local_Allocator *allocator = mLocalAllocators.find(ref);
+    FrameLib_LocalAllocator *allocator = mLocalAllocators.find(ref);
     
     if (!allocator)
     {
-        allocator = new FrameLib_Local_Allocator(&mAllocator);
+        allocator = new FrameLib_LocalAllocator(&mAllocator);
         mLocalAllocators.add(allocator, ref);
     }
     

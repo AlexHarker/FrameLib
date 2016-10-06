@@ -80,12 +80,11 @@ class FrameLib_Global
 public:
     
     FrameLib_Global();
-    ~FrameLib_Global();
-    
+
     void increment();
     FrameLib_Global *decrement();
     
-    FrameLib_Local_Allocator *getAllocator(void *ref);
+    FrameLib_LocalAllocator *getAllocator(void *ref);
     FrameLib_MultiChannel::ConnectionQueue *getConnectionQueue(void *ref);
     FrameLib_DSP::DSPQueue *getDSPQueue(void *ref);
     
@@ -95,9 +94,9 @@ public:
     
 private:
     
-    FrameLib_Global_Allocator mAllocator;
+    FrameLib_GlobalAllocator mAllocator;
     
-    FrameLib_PointerSet<FrameLib_Local_Allocator> mLocalAllocators;
+    FrameLib_PointerSet<FrameLib_LocalAllocator> mLocalAllocators;
     FrameLib_PointerSet<FrameLib_MultiChannel::ConnectionQueue> mConnectionQueues;
     FrameLib_PointerSet<FrameLib_DSP::DSPQueue> mDSPQueues;
     

@@ -586,7 +586,7 @@ protected:
             // FIX - check serial alignment safety - move this into the class to be on the safe side??
             
             size_t unalignedSize = outs->mMode == kOutputNormal ? outs->mRequestedSize * sizeof(double) : outs->mRequestedSize + sizeof(FrameLib_Attributes::Serial) + taggedOutputAlignment;
-            size_t alignedSize = FrameLib_Local_Allocator::alignSize(unalignedSize);
+            size_t alignedSize = FrameLib_LocalAllocator::alignSize(unalignedSize);
             
             outs->mCurrentSize = outs->mRequestedSize;
             outs->mPointerOffset = allocationSize;
@@ -876,7 +876,7 @@ protected:
     
     // Memory Allocator
     
-    FrameLib_Local_Allocator *mAllocator;
+    FrameLib_LocalAllocator *mAllocator;
     
 private:
     
