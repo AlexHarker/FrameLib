@@ -19,7 +19,7 @@ FrameLib_MainAllocator::Pool::Pool(tlsf_t tlsf, size_t size) : mNext(NULL), mTLS
 {
     // FIX - pool alignment
 
-    size_t actualSize = alignedSize(size) + alignedSize(tlsf_pool_overhead()) + alignedSize(tlsf_alloc_overhead());
+    size_t actualSize = alignedSize(size) + alignedSize(tlsf_pool_overhead());
                                                                                             
     mMemory = malloc(actualSize);
     
@@ -255,15 +255,11 @@ FrameLib_LocalAllocator::Storage *FrameLib_LocalAllocator::registerStorage(const
 {
     std::vector<Storage *>::iterator it = findStorage(name);
     
-    if (it == mStorage.end())
-    {
-        mStorage.push_back(new Storage(name, this));
-        it = mStorage.end();
-    }
-    else
-        (*it)->increment();
+    if (it != mStorage.end())
+        return *it;
     
-    return *it;
+    mStorage.push_back(new Storage(name, this));
+    return mStorage.back();
 }
 
 void FrameLib_LocalAllocator::releaseStorage(const char *name)
@@ -271,7 +267,10 @@ void FrameLib_LocalAllocator::releaseStorage(const char *name)
     std::vector<Storage *>::iterator it = findStorage(name);
     
     if (it != mStorage.end() && (*it)->decrement() <= 0)
+    {
+        delete *it;
         mStorage.erase(it);
+    }
 }
 
 std::vector<FrameLib_LocalAllocator::Storage *>::iterator FrameLib_LocalAllocator::findStorage(const char *name)

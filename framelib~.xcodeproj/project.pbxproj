@@ -1092,7 +1092,6 @@
 		B8F3798A19F1C8E600EC7FDA /* fl.onepole~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.onepole~.cpp"; sourceTree = "<group>"; };
 		B8F6E4C8199D247C0073E06D /* tlsf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tlsf.c; sourceTree = "<group>"; };
 		B8F6E4C9199D247C0073E06D /* tlsf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tlsf.h; sourceTree = "<group>"; };
-		B8F6E4CA199D247C0073E06D /* tlsfbits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tlsfbits.h; sourceTree = "<group>"; };
 		B8F83E2619C78B5A00230CD4 /* FrameLib_Vector_Functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Vector_Functions.h; sourceTree = "<group>"; };
 		B8F83E2819C78DBC00230CD4 /* fl.trunc~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "fl.trunc~.cpp"; path = "fl.unary/fl.trunc~.cpp"; sourceTree = "<group>"; };
 		B8F83E2A19C78DF600230CD4 /* fl.vmin~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.vmin~.cpp"; sourceTree = "<group>"; };
@@ -2358,7 +2357,6 @@
 			children = (
 				B8F6E4C8199D247C0073E06D /* tlsf.c */,
 				B8F6E4C9199D247C0073E06D /* tlsf.h */,
-				B8F6E4CA199D247C0073E06D /* tlsfbits.h */,
 			);
 			path = tlsf;
 			sourceTree = "<group>";
