@@ -75,7 +75,8 @@ public:
             assert(Serial::alignment >= sizeof(size_t) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
             assert(Serial::alignment >= sizeof(char) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
             assert(Serial::alignment >= sizeof(char *) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
-            assert(Serial::alignment >= FrameLib_Memory::getAlignment() && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
+            // FIX - what?
+            //assert(Serial::alignment >= FrameLib_Memory::getAlignment() && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
         }
         
         static size_t align(size_t size)
@@ -557,13 +558,13 @@ public:
         
         void addEnumItem(const char *str)
         {
-            assert(mType == kEnum() && "cannot add enum items to non-enum attribute");
+            assert(mType == kEnum && "cannot add enum items to non-enum attribute");
             mEnum->addItem(str);
         }
         
         const char *getEnumItemString(unsigned long item)
         {
-            assert(mType == kEnum() && "cannot get enum string for non-enum attribute");
+            assert(mType == kEnum && "cannot get enum string for non-enum attribute");
             return mEnum->getItemString(item);
         }
         
@@ -785,7 +786,7 @@ private:
     
     void addAttribute(unsigned long index, Attribute *attr)
     {
-        assert((index == mAttributes.size() + 1) && "attributes must be added in order");
+        assert((index == mAttributes.size()) && "attributes must be added in order");
         mAttributes.push_back(attr);
     }
     
