@@ -614,6 +614,8 @@ public:
         if (getNumAudioOuts())
             mAllocator->dealloc(temps[0]);
         
+        // FIX - would this get called less in the DSPQueue?
+        
         mAllocator->clear();
     }
     

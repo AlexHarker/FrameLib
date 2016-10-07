@@ -44,17 +44,17 @@ public:
         
     public:
         
-        Serial(BytePointer ptr, size_t size) : mPtr(ptr), mSize(0), mMaxSize(size), mOwner(FALSE)
+        Serial(BytePointer ptr, size_t size) : mPtr(ptr), mSize(0), mMaxSize(size), mOwner(false)
         {
             alignmentChecks();
         }
         
-        Serial(size_t size) : mPtr(new Byte[size]), mSize(0), mMaxSize(size), mOwner(TRUE)
+        Serial(size_t size) : mPtr(new Byte[size]), mSize(0), mMaxSize(size), mOwner(true)
         {
             alignmentChecks();
         }
         
-        Serial() : mPtr(NULL), mSize(0), mMaxSize(0), mOwner(TRUE)
+        Serial() : mPtr(NULL), mSize(0), mMaxSize(0), mOwner(true)
         {
             alignmentChecks();
         }
@@ -162,10 +162,10 @@ public:
             size_t growSize;
             
             if (mSize + writeSize <= mMaxSize)
-                return TRUE;
+                return true;
             
             if (!mOwner)
-                return FALSE;
+                return false;
             
             // Calculate grow size
             
@@ -183,7 +183,7 @@ public:
             mPtr = newPtr;
             mMaxSize += growSize;
             
-            return TRUE;
+            return true;
         }
         
     public:

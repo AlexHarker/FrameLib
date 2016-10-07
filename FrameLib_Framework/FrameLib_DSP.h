@@ -609,6 +609,8 @@ protected:
             {
                 outs->mMemory = pointer + outs->mPointerOffset;
                 
+                // FIX - where does the destructor get called (I know it shouldn't do anything)
+                
                 if (outs->mMode == kOutputTagged)
                     new (outs->mMemory) FrameLib_Attributes::Serial(((BytePointer) outs->mMemory) + sizeof(FrameLib_Attributes::Serial), outs->mCurrentSize);
             }
