@@ -4,7 +4,9 @@
 
 #include "tlsf.h"
 #include "FrameLib_Threading.h"
+
 #include <vector>
+#include <ctime>
 
 // FIX - do alignment improvements ?? (be better as part of allocator directly)
 // FIX - threadsafety?
@@ -21,16 +23,23 @@ class FrameLib_MainAllocator
     
     struct Pool
     {
-        Pool(tlsf_t tlsf, size_t size);
+        Pool(tlsf_t tlsf, void *mem, size_t size);
         ~Pool();
     
-        Pool *mNext;
-
+        bool isFree();
+        
     private:
         
         tlsf_t mTLSF;
-        pool_t mTSLFPool;
-        void *mMemory;
+        pool_t mTLSFPool;
+        
+    public:
+        
+        bool mUsedRecently;
+        time_t mTime;
+        size_t mSize;
+        Pool *mPrev;
+        Pool *mNext;
     };
     
 public:
@@ -41,13 +50,18 @@ public:
     void *alloc(size_t size);
     void dealloc(void *ptr);
     
+    void prune();
+    
 private:
     
-    void addPool(size_t size);
-    
+    Pool *getPool(pool_t pool);
+    void addPool(Pool *pool);
+    void removePool(Pool *pool);
+    void newPool(size_t size);
+    void deletePool(Pool *pool);
+
     tlsf_t mTLSF;
-    Pool *mFirstPool;
-    Pool *mLastPool;
+    Pool *mPools;
     
     size_t mOSAllocated;
     size_t mAllocated;
@@ -66,6 +80,8 @@ public:
 
     void *alloc(size_t size);
     void dealloc(void *ptr);
+    
+    void prune();
     
 private:
     
