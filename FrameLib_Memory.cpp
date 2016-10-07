@@ -9,6 +9,7 @@
 // N.B. - alignment must be a power of two
 
 static const size_t alignment = 16;
+static const int pruneInterval = 20;
 
 size_t alignedSize(size_t x)    { return (x + (alignment - 1)) & ~(alignment - 1); }
 size_t blockSize(void* ptr)     { return (*(size_t *) (((unsigned char*) ptr) - sizeof(size_t))) & ~(0x3); }
@@ -105,7 +106,7 @@ void FrameLib_MainAllocator::prune()
         return;
     }
     
-    if (difftime(now, pool->mTime) > 30.0)
+    if (difftime(now, pool->mTime) > pruneInterval)
         deletePool(pool);
 }
 
