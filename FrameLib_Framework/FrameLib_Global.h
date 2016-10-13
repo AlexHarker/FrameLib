@@ -7,71 +7,74 @@
 #include "FrameLib_MultiChannel.h"
 #include <vector>
 
-template<class T> struct FrameLib_CountedPointer
+// A template class for storing reference counted pointers against reference addresses (representing contexts)
+
+template<class T> struct FrameLib_PointerSet
 {
-    FrameLib_CountedPointer(T* obj, void *ref) : mObj(obj), mRef(ref), mCount(1) {}
+    // A simple countable pointer with a reference address
     
-    T *getObj()     { return mObj; }
-    void *getRef()  { return mRef; }
-    
-    void increment() { ++mCount; }
-    bool decrement()
+    template<class U> struct CountablePointer
     {
-        if (--mCount < 1)
-        {
-            delete mObj;
-            mObj = NULL;
-            return true;
-        }
+        CountablePointer(T* object, void *reference) : mObject(object), mReference(reference), mCount(1) {}
         
-        return false;
-    }
+        T *mObject;
+        void *mReference;
+        long mCount;
+    };
     
-private:
+    // Type definition for concision
     
-    T *mObj;
-    void *mRef;
-    long mCount;
-};
-
-
-template<class T> struct FrameLib_PointerSet : private std::vector<FrameLib_CountedPointer<T> >
-{
-    typedef std::vector<FrameLib_CountedPointer<T> > VectorType;
+    typedef std::vector<CountablePointer<T> > VectorType;
     
-    T *find(void *ref)
+    // Find a pre-exisitng object by reference address
+    
+    T *find(void *reference)
     {
-        for (typename VectorType::iterator it = VectorType::begin(); it != VectorType::end(); it++)
+        for (typename VectorType::iterator it = mPointers.begin(); it != mPointers.end(); it++)
         {
-            if (it->getRef() == ref)
+            if (it->mReference == reference)
             {
-                it->increment();
-                return it->getObj();
+                it->mCount++;
+                return it->mObject;
             }
         }
         
         return NULL;
     }
     
-    void release(void *ref)
+    // Release a pre-existing object by reference address
+    
+    void release(void *reference)
     {
-        for (typename VectorType::iterator it = VectorType::begin(); it != VectorType::end(); it++)
+        for (typename VectorType::iterator it = mPointers.begin(); it != mPointers.end(); it++)
         {
-            if (it->getRef() == ref)
+            if (it->mReference == reference)
             {
-                if (it->decrement())
-                    VectorType::erase(it);
+                if (--it->mCount < 1)
+                {
+                    delete it->mObject;
+                    mPointers.erase(it);
+                }
                 
                 return;
             }
         }
     }
     
-    void add(T *obj, void *ref)
+    // Add a new object given a pointer (transferring ownership) and a reference address
+    
+    void add(T *object, void *reference)
     {
-        VectorType::push_back(FrameLib_CountedPointer<T>(obj, ref));
+        mPointers.push_back(CountablePointer<T>(object, reference));
     }
+    
+private:
+    
+    // Internal set of pointers
+    
+    std::vector<CountablePointer<T> > mPointers;
 };
+
 
 // The global object
 
@@ -96,15 +99,15 @@ public:
     
     // Methods to retrieve common objects
 
-    FrameLib_LocalAllocator *getAllocator(void *ref);
-    FrameLib_MultiChannel::ConnectionQueue *getConnectionQueue(void *ref);
-    FrameLib_DSP::DSPQueue *getDSPQueue(void *ref);
+    FrameLib_LocalAllocator *getAllocator(void *reference);
+    FrameLib_MultiChannel::ConnectionQueue *getConnectionQueue(void *reference);
+    FrameLib_DSP::DSPQueue *getDSPQueue(void *reference);
     
     // Methods to release common objects
 
-    void releaseAllocator(void *ref);
-    void releaseConnectionQueue(void *ref);
-    void releaseDSPQueue(void *ref);
+    void releaseAllocator(void *reference);
+    void releaseConnectionQueue(void *reference);
+    void releaseDSPQueue(void *reference);
     
 private:
     
