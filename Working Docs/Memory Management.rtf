@@ -29,11 +29,15 @@ Global Level\
 \b ON INDIVIDUAL MEMORY CALL\
 
 \b0 \
-1 - Check local
+
+\b DONE	
+\b0 1 - Check local
 \b  level free pools
 \b0  (all other operations must be thread safe - this is currently thread local)\
 \
-2 - If local pools fail check 
+
+\b DONE	
+\b0 2 - If local pools fail check 
 \b pre-allocated pools
 \b0  with proper allocation (removing freed pools from scheduled deletion if necessary)\
 \
@@ -41,10 +45,14 @@ Global Level\
 	a - check if 
 \b previously scheduled (and sufficient) allocation
 \b0  has completed (only join if both conditions true)\
-	b - if not, 
+
+\b DONE	
+\b0 	b - if not, 
 \b call to main memory
 \b0  - if large allocate block of nearby size, otherwise add fixed size block\
-	c - 
+
+\b DONE	
+\b0 	c - 
 \b add new pool
 \b0  to pre-allocated pools 
 \b allocating from there

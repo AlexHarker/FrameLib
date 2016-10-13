@@ -8,7 +8,6 @@
 
 // FIX - vectorise where appropriate
 // FIX - default modes (situation dependent)
-// FIX - reconsider fixed values across framework
 // FIX - fix function versions (how are they broken??)
 
 // Unary (Operator Version)

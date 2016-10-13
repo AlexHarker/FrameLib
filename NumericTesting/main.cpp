@@ -1,10 +1,3 @@
-//
-//  main.cpp
-//  NumericTesting
-//
-//  Created by Alex Harker on 04/08/2016.
-//
-//
 
 #include <mach/mach.h>
 #include <mach/mach_time.h>
