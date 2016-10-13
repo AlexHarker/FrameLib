@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8D01CCCE0486CAD60068D4B7 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
+		B80059BE1DAF96340073A866 /* FrameLib_RandGen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */; };
+		B80059BF1DAF96340073A866 /* FrameLib_RandGen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */; };
 		B805E22919C3AD0A007D8D8B /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
 		B805E22D19C3AD0A007D8D8B /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B805E23A19C3AD0C007D8D8B /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
@@ -857,6 +859,7 @@
 
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_RandGen.cpp; sourceTree = "<group>"; };
 		B805E23419C3AD0A007D8D8B /* fl.minus~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.minus~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B805E24519C3AD0C007D8D8B /* fl.times~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.times~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B805E25619C3AD11007D8D8B /* fl.divide~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.divide~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2282,6 +2285,7 @@
 				B8BCCF46199CEF230038259B /* FrameLib_Memory.h */,
 				B8D272F11DA6629A00E0E566 /* FrameLib_Memory.cpp */,
 				B835F31019A61128003CD5E7 /* FrameLib_Threading.h */,
+				B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */,
 				B8C680371B80F2B800B74B90 /* FrameLib_RandGen.h */,
 				B8E058AE198DA34D00721359 /* FrameLib_Block.h */,
 				B8075B131979173E00EB3A35 /* FrameLib_DSP.h */,
@@ -7123,6 +7127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8A1F5BE1D5370DE00FA5FFC /* main.cpp in Sources */,
+				B80059BF1DAF96340073A866 /* FrameLib_RandGen.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7169,6 +7174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84943C81B834B740037DFF1 /* fl.random~.cpp in Sources */,
+				B80059BE1DAF96340073A866 /* FrameLib_RandGen.cpp in Sources */,
 				B8C6803C1B80F62300B74B90 /* tlsf.c in Sources */,
 				B8D273401DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121121D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
