@@ -19,18 +19,18 @@ struct FrameLib_Context
     
     // Methods to retrieve common objects
 
-    FrameLib_LocalAllocator *getAllocator();
+    FrameLib_LocalAllocator *getAllocator() const;
     
     // FIX - hack for now...
     
-    void *getConnectionQueue();
-    void *getDSPQueue();
+    void *getConnectionQueue() const;
+    void *getDSPQueue() const;
     
     // Methods to release common objects
 
-    void releaseAllocator();
-    void releaseConnectionQueue();
-    void releaseDSPQueue();
+    void releaseAllocator() const;
+    void releaseConnectionQueue() const;
+    void releaseDSPQueue() const;
     
 private:
     
