@@ -1,7 +1,37 @@
 
 #include "FrameLib_RandGen.h"
-    
-// Routines that are specific to the generator
+
+// Return an signed 32 bit integer in the range [lo, hi]
+
+int32_t FrameLib_RandGen::randInt(int32_t lo, int32_t hi)
+{
+    return lo + randInt(hi - lo);
+}
+
+// Return a 32 bit random double in the range [0,1]
+
+double FrameLib_RandGen::randDouble()
+{
+    return randInt() * 2.32830643653869628906e-10;
+}
+
+// Return a 32 bit random double in the range [0, n]
+
+double FrameLib_RandGen::randDouble (double n)
+{
+    return randDouble() * n;
+}
+
+// Return a 32 bit random double in the range [lo, hi]
+
+double FrameLib_RandGen::randDouble(double lo, double hi)
+{
+    return lo + randDouble() * (hi - lo);
+}
+
+// Methods that are specific to the algorithm used
+
+// Basic generator
 
 inline uint32_t FrameLib_RandGen::CMWC()
 {
@@ -87,32 +117,4 @@ inline uint32_t FrameLib_RandGen::randInt(uint32_t n)
     while (i > n);
     
     return i;
-}
-
-// Return an signed 32 bit integer in the range [lo, hi]
-
-int32_t FrameLib_RandGen::randInt(int32_t lo, int32_t hi)
-{
-    return lo + randInt(hi - lo);
-}
-
-// Return a 32 bit random double in the range [0,1]
-
-double FrameLib_RandGen::randDouble()
-{
-    return randInt() * 2.32830643653869628906e-10;
-}
-
-// Return a 32 bit random double in the range [0, n]
-
-double FrameLib_RandGen::randDouble (double n)
-{
-    return randDouble() * n;
-}
-
-// Return a 32 bit random double in the range [lo, hi]
-
-double FrameLib_RandGen::randDouble(double lo, double hi)
-{
-    return lo + randDouble() * (hi - lo);
 }

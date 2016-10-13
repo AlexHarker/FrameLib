@@ -9,23 +9,11 @@ class FrameLib_RandGen
     static const uint32_t CMWC_LAG_SIZE = 32;
     static const uint64_t CMWC_A_VALUE = 987655670LL;
     
-    // Routines that are specific to the generator
-    
-    inline uint32_t CMWC();
-    
-    // Initialise with seed values
-    
-    void initCMWC(uint32_t *init);
-    
-    // Seed the random number generator randomly using OS specific routines
-    
-    void randSeedCMWC();
-    
 public:
     
-    // Methods that are generator agnostic
-    
     FrameLib_RandGen() { randSeed(); }
+    
+    // Randomly seed
     
     void randSeed() { randSeedCMWC(); }
     
@@ -58,6 +46,22 @@ public:
     double randDouble(double lo, double hi);
 
 private:
+    
+    // Methods that are specific to the algorithm used
+    
+    // Basic generator
+
+    inline uint32_t CMWC();
+    
+    // Initialise with seed values
+    
+    void initCMWC(uint32_t *init);
+    
+    // Seed the random number generator randomly using OS specific routines
+    
+    void randSeedCMWC();
+    
+    // State
     
     uint32_t mIncrement;
 	uint32_t mCarry;

@@ -2277,7 +2277,6 @@
 			children = (
 				B8FD919E197F40B200437EB5 /* FrameLib_Types.h */,
 				B8FD919D197F0F6C00437EB5 /* FrameLib_FixedPoint.h */,
-				B8DF3FA2198AABAD00CA8BB6 /* FrameLib_Attributes.h */,
 				B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */,
 				B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */,
 				B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */,
@@ -2287,6 +2286,7 @@
 				B835F31019A61128003CD5E7 /* FrameLib_Threading.h */,
 				B8C680371B80F2B800B74B90 /* FrameLib_RandGen.h */,
 				B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */,
+				B8DF3FA2198AABAD00CA8BB6 /* FrameLib_Attributes.h */,
 				B8E058AE198DA34D00721359 /* FrameLib_Block.h */,
 				B8075B131979173E00EB3A35 /* FrameLib_DSP.h */,
 				B85B20E619938415004FFF22 /* FrameLib_Multichannel.h */,
