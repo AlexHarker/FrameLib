@@ -1,6 +1,8 @@
 
 #include "FrameLib_Global.h"
 
+// Constructor and reference counting
+
 FrameLib_Global::FrameLib_Global() : mCount(1) {}
 
 void FrameLib_Global::increment()
@@ -18,6 +20,26 @@ FrameLib_Global *FrameLib_Global::decrement()
     
     return this;
 }
+
+// Retrieve and release the global object
+
+FrameLib_Global *FrameLib_Global::get(FrameLib_Global **global)
+{
+    if (*global)
+    {
+        (*global)->increment();
+        return *global;
+    }
+    
+    return new FrameLib_Global();
+}
+
+void FrameLib_Global::release(FrameLib_Global **global)
+{
+    *global = (*global)->decrement();
+}
+
+// Methods to retrieve common objects
 
 FrameLib_LocalAllocator *FrameLib_Global::getAllocator(void *ref)
 {
@@ -58,8 +80,19 @@ FrameLib_DSP::DSPQueue *FrameLib_Global::getDSPQueue(void *ref)
     return queue;
 }
 
-void FrameLib_Global::releaseAllocator(void *ref) { mLocalAllocators.release(ref); }
+// Methods to release common objects
 
-void FrameLib_Global::releaseConnectionQueue(void *ref) { mConnectionQueues.release(ref); }
+void FrameLib_Global::releaseAllocator(void *ref)
+{
+    mLocalAllocators.release(ref);
+}
 
-void FrameLib_Global::releaseDSPQueue(void *ref) { mDSPQueues.release(ref); }
+void FrameLib_Global::releaseConnectionQueue(void *ref)
+{
+    mConnectionQueues.release(ref);
+}
+
+void FrameLib_Global::releaseDSPQueue(void *ref)
+{
+    mDSPQueues.release(ref);
+}

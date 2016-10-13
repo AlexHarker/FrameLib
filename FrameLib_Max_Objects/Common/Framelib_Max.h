@@ -318,31 +318,23 @@ private:
     
     // Globals
     
-    FrameLib_Global *getGlobal()
+    FrameLib_Global **globalHandle()
     {
-        return (FrameLib_Global *) gensym("__FrameLib__Global__")->s_thing;
+        return (FrameLib_Global **) &gensym("__FrameLib__Global__")->s_thing;
     }
-
-    void setGlobal(FrameLib_Global *global)
-    {
-       gensym("__FrameLib__Global__")->s_thing = (t_object *) global;
-    }
-
+    
     FrameLib_Context getContext()
     {
         mTopLevelPatch = jpatcher_get_toppatcher(gensym("#P")->s_thing);
         
-        if (!getGlobal())
-            setGlobal(new FrameLib_Global);
-        else
-            getGlobal()->increment();
-        
-        return FrameLib_Context(getGlobal(), mTopLevelPatch);
+        return FrameLib_Context(FrameLib_Global::get(globalHandle()), mTopLevelPatch);
     }
 
+    // Call to get the context increments the global counter, so it needs relasing when we are done
+    
     void releaseGlobal()
     {
-        setGlobal(getGlobal()->decrement());
+        FrameLib_Global::release(globalHandle());
     }
 
     // Parameter Parsing

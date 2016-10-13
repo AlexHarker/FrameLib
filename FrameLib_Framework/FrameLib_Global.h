@@ -73,26 +73,42 @@ template<class T> struct FrameLib_PointerSet : private std::vector<FrameLib_Coun
     }
 };
 
+// The global object
 
 class FrameLib_Global
 {
-    
-public:
-    
     FrameLib_Global();
-
+    ~FrameLib_Global(){};
+    FrameLib_Global(const FrameLib_Global&);
+    FrameLib_Global& operator=(const FrameLib_Global&);
+    
+    // Reference Counting / Auto-deletion
+    
     void increment();
     FrameLib_Global *decrement();
     
+public:
+    
+    // Retrieve and release the global object
+    
+    static FrameLib_Global *get(FrameLib_Global **global);
+    static void release(FrameLib_Global **global);
+    
+    // Methods to retrieve common objects
+
     FrameLib_LocalAllocator *getAllocator(void *ref);
     FrameLib_MultiChannel::ConnectionQueue *getConnectionQueue(void *ref);
     FrameLib_DSP::DSPQueue *getDSPQueue(void *ref);
     
+    // Methods to release common objects
+
     void releaseAllocator(void *ref);
     void releaseConnectionQueue(void *ref);
     void releaseDSPQueue(void *ref);
     
 private:
+    
+    // Common Objects
     
     FrameLib_GlobalAllocator mAllocator;
     

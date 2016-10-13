@@ -12,6 +12,8 @@ struct FrameLib_Context
 {
     FrameLib_Context(FrameLib_Global *global, void *ref) : mGlobal(global), mReference(ref) {}
     
+    // Methods to retrieve common objects
+
     FrameLib_LocalAllocator *getAllocator();
     
     // FIX - hack for now...
@@ -19,6 +21,8 @@ struct FrameLib_Context
     void *getConnectionQueue();
     void *getDSPQueue();
     
+    // Methods to release common objects
+
     void releaseAllocator();
     void releaseConnectionQueue();
     void releaseDSPQueue();
