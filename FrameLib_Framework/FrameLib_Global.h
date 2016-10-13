@@ -9,7 +9,7 @@
 
 // A template class for storing reference counted pointers against reference addresses (representing contexts)
 
-template<class T> struct FrameLib_PointerSet
+template<class T> class FrameLib_PointerSet
 {
     // A simple countable pointer with a reference address
     
@@ -25,6 +25,8 @@ template<class T> struct FrameLib_PointerSet
     // Type definition for concision
     
     typedef std::vector<CountablePointer<T> > VectorType;
+    
+public:
     
     // Find a pre-exisitng object by reference address
     
@@ -80,15 +82,15 @@ private:
 
 class FrameLib_Global
 {
-    FrameLib_Global();
+    // Constructor / destructor
+    
+    FrameLib_Global() : mCount(1){}
     ~FrameLib_Global(){};
+    
+    // Deleted
+    
     FrameLib_Global(const FrameLib_Global&);
     FrameLib_Global& operator=(const FrameLib_Global&);
-    
-    // Reference Counting / Auto-deletion
-    
-    void increment();
-    FrameLib_Global *decrement();
     
 public:
     
@@ -110,6 +112,11 @@ public:
     void releaseDSPQueue(void *reference);
     
 private:
+    
+    // Reference Counting / Auto-deletion
+    
+    void increment();
+    FrameLib_Global *decrement();
     
     // Common Objects
     

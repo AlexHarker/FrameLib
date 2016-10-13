@@ -1,26 +1,6 @@
 
 #include "FrameLib_Global.h"
 
-// Constructor and reference counting
-
-FrameLib_Global::FrameLib_Global() : mCount(1) {}
-
-void FrameLib_Global::increment()
-{
-    ++mCount;
-}
-    
-FrameLib_Global *FrameLib_Global::decrement()
-{
-    if (--mCount < 1)
-    {
-        delete this;
-        return NULL;
-    }
-    
-    return this;
-}
-
 // Retrieve and release the global object
 
 FrameLib_Global *FrameLib_Global::get(FrameLib_Global **global)
@@ -95,4 +75,22 @@ void FrameLib_Global::releaseConnectionQueue(void *reference)
 void FrameLib_Global::releaseDSPQueue(void *reference)
 {
     mDSPQueues.release(reference);
+}
+
+// Reference Counting / Auto-deletion
+
+void FrameLib_Global::increment()
+{
+    ++mCount;
+}
+
+FrameLib_Global *FrameLib_Global::decrement()
+{
+    if (--mCount < 1)
+    {
+        delete this;
+        return NULL;
+    }
+    
+    return this;
 }

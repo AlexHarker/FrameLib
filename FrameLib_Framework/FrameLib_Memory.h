@@ -9,9 +9,7 @@
 #include <ctime>
 
 // FIX - do alignment improvements ?? (be better as part of allocator directly)
-// FIX - threadsafety?
 // FIX - expand the block and do free heuristics differently/for malloc (always free large blocks for instance)
-// FIX - cleanup and checks
 // FIX - free storage once it is no longer referenced? or when allocator is destroyed?
 
 // The Main Allocator (has no threadsafety)

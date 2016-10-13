@@ -6,18 +6,24 @@
 
 // N.B. - alignment must be a power of two
 
-static size_t const initialSize = 1024 * 1024 * 2;
+static const size_t alignment = 16;
+static size_t const initSize = 1024 * 1024 * 2;
 static size_t const growSize = 1024 * 1024 * 2;
 static const int pruneInterval = 20;
-static const size_t alignment = 16;
-
 
 // Utility
 
-// FIX - THE SECOND OF THESE FUNCTIONS IS SLOW - cache mishit?
+size_t alignedSize(size_t x)
+{
+    return (x + (alignment - 1)) & ~(alignment - 1);
+}
 
-size_t alignedSize(size_t x)    { return (x + (alignment - 1)) & ~(alignment - 1); }
-size_t blockSize(void* ptr)     { return (*(size_t *) (((unsigned char*) ptr) - sizeof(size_t))) & ~(0x3); }
+// FIX - THIS IS SLOW AND REPLICATES tlsf code - cache mishit?
+
+size_t blockSize(void* ptr)
+{
+    return (*(size_t *) (((unsigned char*) ptr) - sizeof(size_t))) & ~(0x3);
+}
 
 
 // Memory Pools
@@ -43,7 +49,7 @@ bool FrameLib_MainAllocator::Pool::isFree()
 FrameLib_MainAllocator::FrameLib_MainAllocator() : mPools(NULL), mOSAllocated(0), mAllocated(0)
 {
     mTLSF = tlsf_create(malloc(tlsf_size()));
-    newPool(initialSize);
+    newPool(initSize);
 }
 
 FrameLib_MainAllocator::~FrameLib_MainAllocator()

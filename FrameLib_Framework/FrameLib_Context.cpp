@@ -35,4 +35,3 @@ void FrameLib_Context::releaseDSPQueue() const
 {
     mGlobal->releaseDSPQueue(mReference);
 }
-

@@ -15,11 +15,11 @@ DONE	- Make C++ class extensible
 	- Review memory management
 
 5 - Revise, refactor and cleanup
+DONE	- Global / Common
+	- Memory
 	- Max Object Work
 	- Block / DSP
 	- Attribute
-	- Memory
-	- Global / Common
 	- Multichannel
 
 6 - Assist/Help Info (Inputs and Parameters)

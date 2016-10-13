@@ -11,8 +11,11 @@ class FrameLib_LocalAllocator;
 
 // The context object (used to define non-connectable areas in the host ennvironment
 
-struct FrameLib_Context
+class FrameLib_Context
 {
+    
+public:
+    
     // Constructor - the reference should be a suitable reference address in the host environment
     
     FrameLib_Context(FrameLib_Global *global, void *reference) : mGlobal(global), mReference(reference) {}
