@@ -31,7 +31,7 @@ struct MaxMessage
 // FIX - slightly nasty forward declarations...
 
 class FrameLib_MaxObj_From;
-MaxMessage *getMessages(FrameLib_MaxObj_From *obj);
+MaxMessage *getMessages(FrameLib_MaxObj_From *object);
 
 class FrameLib_FromMax : public FrameLib_Processor
 {
@@ -206,9 +206,9 @@ public:
     MaxMessage messages;
 };
 
-MaxMessage *getMessages(FrameLib_MaxObj_From *obj)
+MaxMessage *getMessages(FrameLib_MaxObj_From *object)
 {
-    return &obj->messages;
+    return &object->messages;
 }
 
 extern "C" int C74_EXPORT main(void)
