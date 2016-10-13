@@ -11,7 +11,8 @@ FrameLib_Global *FrameLib_Global::get(FrameLib_Global **global)
         return *global;
     }
     
-    return new FrameLib_Global();
+    *global = new FrameLib_Global();
+    return *global;
 }
 
 void FrameLib_Global::release(FrameLib_Global **global)
