@@ -2,14 +2,19 @@
 #include "FrameLib_Memory.h"
 #include "FrameLib_Types.h"
 
-// Utility
-
-// FIX - THE SECOND OF THESE FUNCTIONS IS SLOW - cache mishit?
+// Static constants for memory scheduling and alignment
 
 // N.B. - alignment must be a power of two
 
-static const size_t alignment = 16;
+static size_t const initialSize = 1024 * 1024 * 2;
+static size_t const growSize = 1024 * 1024 * 2;
 static const int pruneInterval = 20;
+static const size_t alignment = 16;
+
+
+// Utility
+
+// FIX - THE SECOND OF THESE FUNCTIONS IS SLOW - cache mishit?
 
 size_t alignedSize(size_t x)    { return (x + (alignment - 1)) & ~(alignment - 1); }
 size_t blockSize(void* ptr)     { return (*(size_t *) (((unsigned char*) ptr) - sizeof(size_t))) & ~(0x3); }

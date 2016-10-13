@@ -17,10 +17,7 @@
 // The Main Allocator (has no threadsafety)
 
 class FrameLib_MainAllocator
-{
-    static size_t const initialSize = 1024 * 1024 * 2;
-    static size_t const growSize = 1024 * 1024 * 2;
-    
+{    
     struct Pool
     {
         Pool(tlsf_t tlsf, void *mem, size_t size);
