@@ -6,6 +6,18 @@
 #include <cmath>
 #include <limits>
 
+// This needs to be altered to cope with platforms other than windows/mac and compilers other than visual studio and GCC
+
+#ifdef __APPLE__
+#if __LP64__
+#define FL_64BIT
+#endif
+#else
+#ifdef _WIN64
+#define FL_64BIT
+#endif
+#endif
+
 // ************************************************************************************** //
 
 // Numeric Limits
@@ -34,7 +46,7 @@ public:
         mLo = 0;
     }
     
-    FL_SoftUInt64(FL_UInt32 hi, FL_UInt32 lo)
+    FL_SoftUInt64(uint32_t hi, uint32_t lo)
     {
         mHi = hi;
         mLo = lo;
@@ -62,7 +74,7 @@ public:
     
     friend FL_SoftUInt64 operator + (const FL_SoftUInt64& lhs, const FL_SoftUInt64& rhs)
     {
-        FL_UInt32 hi, lo;
+        uint32_t hi, lo;
         
         hi = lhs.mHi + rhs.mHi;
         lo = lhs.mLo + rhs.mHi;
@@ -74,7 +86,7 @@ public:
     
     friend FL_SoftUInt64 operator - (const FL_SoftUInt64& lhs, const FL_SoftUInt64& rhs)
     {
-        FL_UInt32 hi, lo;
+        uint32_t hi, lo;
         
         hi = lhs.mHi - rhs.mHi;
         lo = lhs.mLo - rhs.mHi;
@@ -119,16 +131,16 @@ public:
     
     FL_SoftUInt64& operator = (const double& rhs)
     {
-        mLo = (FL_UInt32) (rhs / 4294967296.0);
-        mHi = (FL_UInt32) (rhs - (mLo * 4294967296));
+        mLo = (uint32_t) (rhs / 4294967296.0);
+        mHi = (uint32_t) (rhs - (mLo * 4294967296));
         
         return *this;
     }
     
 private:
     
-    FL_UInt32 mHi;
-    FL_UInt32 mLo;
+    uint32_t mHi;
+    uint32_t mLo;
 };
 
 // ************************************************************************************** //
@@ -137,7 +149,7 @@ template<> struct FL_Limits <FL_SoftUInt64>
 {
     static FL_SoftUInt64 largest()
     {
-        return FL_SoftUInt64(std::numeric_limits<FL_UInt32>::max(), std::numeric_limits<FL_UInt32>::max());
+        return FL_SoftUInt64(std::numeric_limits<uint32_t>::max(), std::numeric_limits<uint32_t>::max());
     }
 };
 
@@ -145,7 +157,7 @@ template<> struct FL_Limits <FL_SoftUInt64>
 // ************************************************************************************** //
 
 //#ifdef FL_64BIT
-typedef FL_UInt64 FL_Internal_UInt64;
+typedef uint64_t FL_Internal_UInt64;
 //#else
 //typedef FL_SoftUInt64 FL_Internal_UInt64;
 //#endif
@@ -183,71 +195,71 @@ struct SuperPrecision
         return mFracLo;
     }
     
-    static FL_UInt64 lowBits(FL_UInt64 a)
+    static uint64_t lowBits(uint64_t a)
     {
         return a & 0xFFFFFFFF;
     }
     
-    static FL_UInt64 highBits(FL_UInt64 a)
+    static uint64_t highBits(uint64_t a)
     {
         return a >> 0x20;
     }
     
-    static FL_UInt64 combineBits(FL_UInt64 hi, FL_UInt64 lo)
+    static uint64_t combineBits(uint64_t hi, uint64_t lo)
     {
         return (hi << 0x20) | highBits(lo);
     }
     
-    friend SuperPrecision qMul (const SuperPrecision& lhs, const FL_UInt64 &intPart, const FL_UInt64 &fracPart)
+    friend SuperPrecision qMul (const SuperPrecision& lhs, const uint64_t &intPart, const uint64_t &fracPart)
     {
         // Split both into 4 x 32 bits stored within 64 bit integers
         
-        FL_UInt64 a1 = highBits(lhs.mInt);
-        FL_UInt64 a2 = lowBits(lhs.mInt);
-        FL_UInt64 a3 = highBits(lhs.mFracHi);
-        FL_UInt64 a4 = lowBits(lhs.mFracHi);
-        FL_UInt64 a5 = highBits(lhs.mFracLo);
-        FL_UInt64 a6 = lowBits(lhs.mFracLo);
+        uint64_t a1 = highBits(lhs.mInt);
+        uint64_t a2 = lowBits(lhs.mInt);
+        uint64_t a3 = highBits(lhs.mFracHi);
+        uint64_t a4 = lowBits(lhs.mFracHi);
+        uint64_t a5 = highBits(lhs.mFracLo);
+        uint64_t a6 = lowBits(lhs.mFracLo);
         
-        FL_UInt64 b1 = highBits(intPart);
-        FL_UInt64 b2 = lowBits(intPart);
-        FL_UInt64 b3 = highBits(fracPart);
-        FL_UInt64 b4 = lowBits(fracPart);
+        uint64_t b1 = highBits(intPart);
+        uint64_t b2 = lowBits(intPart);
+        uint64_t b3 = highBits(fracPart);
+        uint64_t b4 = lowBits(fracPart);
         
-        FL_UInt64 a1b1 = a1 * b1;
-        FL_UInt64 a1b2 = a1 * b2;
-        FL_UInt64 a1b3 = a1 * b3;
-        FL_UInt64 a1b4 = a1 * b4;
+        uint64_t a1b1 = a1 * b1;
+        uint64_t a1b2 = a1 * b2;
+        uint64_t a1b3 = a1 * b3;
+        uint64_t a1b4 = a1 * b4;
         
-        FL_UInt64 a2b1 = a2 * b1;
-        FL_UInt64 a2b2 = a2 * b2;
-        FL_UInt64 a2b3 = a2 * b3;
-        FL_UInt64 a2b4 = a2 * b4;
+        uint64_t a2b1 = a2 * b1;
+        uint64_t a2b2 = a2 * b2;
+        uint64_t a2b3 = a2 * b3;
+        uint64_t a2b4 = a2 * b4;
         
-        FL_UInt64 a3b1 = a3 * b1;
-        FL_UInt64 a3b2 = a3 * b2;
-        FL_UInt64 a3b3 = a3 * b3;
-        FL_UInt64 a3b4 = a3 * b4;
+        uint64_t a3b1 = a3 * b1;
+        uint64_t a3b2 = a3 * b2;
+        uint64_t a3b3 = a3 * b3;
+        uint64_t a3b4 = a3 * b4;
         
-        FL_UInt64 a4b1 = a4 * b1;
-        FL_UInt64 a4b2 = a4 * b2;
-        FL_UInt64 a4b3 = a4 * b3;
-        FL_UInt64 a4b4 = a4 * b4;
+        uint64_t a4b1 = a4 * b1;
+        uint64_t a4b2 = a4 * b2;
+        uint64_t a4b3 = a4 * b3;
+        uint64_t a4b4 = a4 * b4;
         
-        FL_UInt64 a5b1 = a5 * b1;
-        FL_UInt64 a5b2 = a5 * b2;
-        FL_UInt64 a5b3 = a5 * b3;
-        FL_UInt64 a5b4 = a5 * b4;
+        uint64_t a5b1 = a5 * b1;
+        uint64_t a5b2 = a5 * b2;
+        uint64_t a5b3 = a5 * b3;
+        uint64_t a5b4 = a5 * b4;
         
-        FL_UInt64 a6b1 = a6 * b1;
-        FL_UInt64 a6b2 = a6 * b2;
-        FL_UInt64 a6b3 = a6 * b3;
-        FL_UInt64 a6b4 = a6 * b4;
+        uint64_t a6b1 = a6 * b1;
+        uint64_t a6b2 = a6 * b2;
+        uint64_t a6b3 = a6 * b3;
+        uint64_t a6b4 = a6 * b4;
         
         // Lowest carry bits
         
-        FL_UInt64 c1 = 0;
-        FL_UInt64 t1 = a6b4;
+        uint64_t c1 = 0;
+        uint64_t t1 = a6b4;
         sumWithCarry(t1, c1, (a6b3 << 0x20));
         sumWithCarry(t1, c1, (a5b4 << 0x20));
         
@@ -257,8 +269,8 @@ struct SuperPrecision
         
         // Sum the lo fractional part
         
-        FL_UInt64 c2 = 0;
-        FL_UInt64 lo = a6b2;
+        uint64_t c2 = 0;
+        uint64_t lo = a6b2;
         sumWithCarry(lo, c2, a5b3);
         sumWithCarry(lo, c2, a4b4);
         sumWithCarry(lo, c2, combineBits(a6b1, a6b3));
@@ -268,8 +280,8 @@ struct SuperPrecision
         
         // Sum the hi fractional part
         
-        FL_UInt64 c3 = 0;
-        FL_UInt64 md = a2b4;
+        uint64_t c3 = 0;
+        uint64_t md = a2b4;
         sumWithCarry(md, c3, a4b2);
         sumWithCarry(md, c3, a3b3);
         sumWithCarry(md, c3, a5b1);
@@ -281,8 +293,8 @@ struct SuperPrecision
         
         // Sum the integer part
         
-        FL_UInt64 c4 = 0;
-        FL_UInt64 hi = a2b2;
+        uint64_t c4 = 0;
+        uint64_t hi = a2b2;
         sumWithCarry(hi, c4, a1b3);
         sumWithCarry(hi, c4, a3b1);
         sumWithCarry(hi, c4, combineBits(a1b2, a1b4));
@@ -301,72 +313,72 @@ struct SuperPrecision
     {
         // Split both into 4 x 32 bits stored within 64 bit integers
         
-        FL_UInt64 a1 = highBits(lhs.mInt);
-        FL_UInt64 a2 = lowBits(lhs.mInt);
-        FL_UInt64 a3 = highBits(lhs.mFracHi);
-        FL_UInt64 a4 = lowBits(lhs.mFracHi);
-        FL_UInt64 a5 = highBits(lhs.mFracLo);
-        FL_UInt64 a6 = lowBits(lhs.mFracLo);
+        uint64_t a1 = highBits(lhs.mInt);
+        uint64_t a2 = lowBits(lhs.mInt);
+        uint64_t a3 = highBits(lhs.mFracHi);
+        uint64_t a4 = lowBits(lhs.mFracHi);
+        uint64_t a5 = highBits(lhs.mFracLo);
+        uint64_t a6 = lowBits(lhs.mFracLo);
         
-        FL_UInt64 b1 = highBits(rhs.mInt);
-        FL_UInt64 b2 = lowBits(rhs.mInt);
-        FL_UInt64 b3 = highBits(rhs.mFracHi);
-        FL_UInt64 b4 = lowBits(rhs.mFracHi);
-        FL_UInt64 b5 = highBits(rhs.mFracLo);
-        FL_UInt64 b6 = lowBits(rhs.mFracLo);
+        uint64_t b1 = highBits(rhs.mInt);
+        uint64_t b2 = lowBits(rhs.mInt);
+        uint64_t b3 = highBits(rhs.mFracHi);
+        uint64_t b4 = lowBits(rhs.mFracHi);
+        uint64_t b5 = highBits(rhs.mFracLo);
+        uint64_t b6 = lowBits(rhs.mFracLo);
         
-        FL_UInt64 a1b1 = a1 * b1;
-        FL_UInt64 a1b2 = a1 * b2;
-        FL_UInt64 a1b3 = a1 * b3;
-        FL_UInt64 a1b4 = a1 * b4;
-        FL_UInt64 a1b5 = a1 * b5;
-        FL_UInt64 a1b6 = a1 * b6;
+        uint64_t a1b1 = a1 * b1;
+        uint64_t a1b2 = a1 * b2;
+        uint64_t a1b3 = a1 * b3;
+        uint64_t a1b4 = a1 * b4;
+        uint64_t a1b5 = a1 * b5;
+        uint64_t a1b6 = a1 * b6;
         
-        FL_UInt64 a2b1 = a2 * b1;
-        FL_UInt64 a2b2 = a2 * b2;
-        FL_UInt64 a2b3 = a2 * b3;
-        FL_UInt64 a2b4 = a2 * b4;
-        FL_UInt64 a2b5 = a2 * b5;
-        FL_UInt64 a2b6 = a2 * b6;
+        uint64_t a2b1 = a2 * b1;
+        uint64_t a2b2 = a2 * b2;
+        uint64_t a2b3 = a2 * b3;
+        uint64_t a2b4 = a2 * b4;
+        uint64_t a2b5 = a2 * b5;
+        uint64_t a2b6 = a2 * b6;
         
-        FL_UInt64 a3b1 = a3 * b1;
-        FL_UInt64 a3b2 = a3 * b2;
-        FL_UInt64 a3b3 = a3 * b3;
-        FL_UInt64 a3b4 = a3 * b4;
-        FL_UInt64 a3b5 = a3 * b5;
-        FL_UInt64 a3b6 = a3 * b6;
+        uint64_t a3b1 = a3 * b1;
+        uint64_t a3b2 = a3 * b2;
+        uint64_t a3b3 = a3 * b3;
+        uint64_t a3b4 = a3 * b4;
+        uint64_t a3b5 = a3 * b5;
+        uint64_t a3b6 = a3 * b6;
         
-        FL_UInt64 a4b1 = a4 * b1;
-        FL_UInt64 a4b2 = a4 * b2;
-        FL_UInt64 a4b3 = a4 * b3;
-        FL_UInt64 a4b4 = a4 * b4;
-        FL_UInt64 a4b5 = a4 * b5;
-        FL_UInt64 a4b6 = a4 * b6;
+        uint64_t a4b1 = a4 * b1;
+        uint64_t a4b2 = a4 * b2;
+        uint64_t a4b3 = a4 * b3;
+        uint64_t a4b4 = a4 * b4;
+        uint64_t a4b5 = a4 * b5;
+        uint64_t a4b6 = a4 * b6;
         
-        FL_UInt64 a5b1 = a5 * b1;
-        FL_UInt64 a5b2 = a5 * b2;
-        FL_UInt64 a5b3 = a5 * b3;
-        FL_UInt64 a5b4 = a5 * b4;
-        FL_UInt64 a5b5 = a5 * b5;
-        FL_UInt64 a5b6 = a5 * b6;
+        uint64_t a5b1 = a5 * b1;
+        uint64_t a5b2 = a5 * b2;
+        uint64_t a5b3 = a5 * b3;
+        uint64_t a5b4 = a5 * b4;
+        uint64_t a5b5 = a5 * b5;
+        uint64_t a5b6 = a5 * b6;
         
-        FL_UInt64 a6b1 = a6 * b1;
-        FL_UInt64 a6b2 = a6 * b2;
-        FL_UInt64 a6b3 = a6 * b3;
-        FL_UInt64 a6b4 = a6 * b4;
-        FL_UInt64 a6b5 = a6 * b5;
-        FL_UInt64 a6b6 = a6 * b6;
+        uint64_t a6b1 = a6 * b1;
+        uint64_t a6b2 = a6 * b2;
+        uint64_t a6b3 = a6 * b3;
+        uint64_t a6b4 = a6 * b4;
+        uint64_t a6b5 = a6 * b5;
+        uint64_t a6b6 = a6 * b6;
 
         // Sub carry bits
 
-        FL_UInt64 c0 = 0;
-        FL_UInt64 t1 = a6b6;
+        uint64_t c0 = 0;
+        uint64_t t1 = a6b6;
         sumWithCarry(t1, c0, (a5b6 << 0x20));
         sumWithCarry(t1, c0, (a6b5 << 0x20));
 
         // Lowest carry bits
         
-        FL_UInt64 c1 = 0;
+        uint64_t c1 = 0;
         t1 = a4b6;
         sumWithCarry(t1, c1, a6b4);
         sumWithCarry(t1, c1, a5b5);
@@ -381,8 +393,8 @@ struct SuperPrecision
         
         // Sum the lo fractional part
         
-        FL_UInt64 c2 = 0;
-        FL_UInt64 lo = a2b6;
+        uint64_t c2 = 0;
+        uint64_t lo = a2b6;
         sumWithCarry(lo, c2, a6b2);
         sumWithCarry(lo, c2, a3b5);
         sumWithCarry(lo, c2, a5b3);
@@ -396,8 +408,8 @@ struct SuperPrecision
         
         // Sum the hi fractional part
         
-        FL_UInt64 c3 = 0;
-        FL_UInt64 md = a2b4;
+        uint64_t c3 = 0;
+        uint64_t md = a2b4;
         sumWithCarry(md, c3, a4b2);
         sumWithCarry(md, c3, a3b3);
         sumWithCarry(md, c3, a1b5);
@@ -411,8 +423,8 @@ struct SuperPrecision
 
         // Sum the integer part
         
-        FL_UInt64 c4 = 0;
-        FL_UInt64 hi = a2b2;
+        uint64_t c4 = 0;
+        uint64_t hi = a2b2;
         sumWithCarry(hi, c4, a1b3);
         sumWithCarry(hi, c4, a3b1);
         sumWithCarry(hi, c4, combineBits(a1b2, a1b4));
@@ -657,17 +669,17 @@ public:
     
     // Multiplication
     
-    static FL_UInt64 lowBits(FL_UInt64 a)
+    static uint64_t lowBits(uint64_t a)
     {
         return a & 0xFFFFFFFF;
     }
     
-    static FL_UInt64 highBits(FL_UInt64 a)
+    static uint64_t highBits(uint64_t a)
     {
         return a >> 0x20;
     }
     
-    static FL_UInt64 combineBits(FL_UInt64 hi, FL_UInt64 lo)
+    static uint64_t combineBits(uint64_t hi, uint64_t lo)
     {
         return (hi << 0x20) | highBits(lo);
     }
@@ -676,40 +688,40 @@ public:
     {
         // N.B. Overflow behaviour is undefined for multiplication (it is assumed you are using values well within range for the purpose)
         
-        FL_UInt64 c1, c2, c3;
-        FL_UInt64 t1, hi, lo;
+        uint64_t c1, c2, c3;
+        uint64_t t1, hi, lo;
         
         // Split both into 4 x 32 bits stored within 64 bit integers
         
-        const FL_UInt64 a1 = highBits(lhs.mInt);
-        const FL_UInt64 a2 = lowBits(lhs.mInt);
-        const FL_UInt64 a3 = highBits(lhs.mFrac);
-        const FL_UInt64 a4 = lowBits(lhs.mFrac);
+        const uint64_t a1 = highBits(lhs.mInt);
+        const uint64_t a2 = lowBits(lhs.mInt);
+        const uint64_t a3 = highBits(lhs.mFrac);
+        const uint64_t a4 = lowBits(lhs.mFrac);
         
-        const FL_UInt64 b1 = highBits(rhs.mInt);
-        const FL_UInt64 b2 = lowBits(rhs.mInt);
-        const FL_UInt64 b3 = highBits(rhs.mFrac);
-        const FL_UInt64 b4 = lowBits(rhs.mFrac);
+        const uint64_t b1 = highBits(rhs.mInt);
+        const uint64_t b2 = lowBits(rhs.mInt);
+        const uint64_t b3 = highBits(rhs.mFrac);
+        const uint64_t b4 = lowBits(rhs.mFrac);
         
-        const FL_UInt64 a1b1 = a1 * b1;
-        const FL_UInt64 a1b2 = a1 * b2;
-        const FL_UInt64 a1b3 = a1 * b3;
-        const FL_UInt64 a1b4 = a1 * b4;
+        const uint64_t a1b1 = a1 * b1;
+        const uint64_t a1b2 = a1 * b2;
+        const uint64_t a1b3 = a1 * b3;
+        const uint64_t a1b4 = a1 * b4;
         
-        const FL_UInt64 a2b1 = a2 * b1;
-        const FL_UInt64 a2b2 = a2 * b2;
-        const FL_UInt64 a2b3 = a2 * b3;
-        const FL_UInt64 a2b4 = a2 * b4;
+        const uint64_t a2b1 = a2 * b1;
+        const uint64_t a2b2 = a2 * b2;
+        const uint64_t a2b3 = a2 * b3;
+        const uint64_t a2b4 = a2 * b4;
         
-        const FL_UInt64 a3b1 = a3 * b1;
-        const FL_UInt64 a3b2 = a3 * b2;
-        const FL_UInt64 a3b3 = a3 * b3;
-        const FL_UInt64 a3b4 = a3 * b4;
+        const uint64_t a3b1 = a3 * b1;
+        const uint64_t a3b2 = a3 * b2;
+        const uint64_t a3b3 = a3 * b3;
+        const uint64_t a3b4 = a3 * b4;
         
-        const FL_UInt64 a4b1 = a4 * b1;
-        const FL_UInt64 a4b2 = a4 * b2;
-        const FL_UInt64 a4b3 = a4 * b3;
-        const FL_UInt64 a4b4 = a4 * b4;
+        const uint64_t a4b1 = a4 * b1;
+        const uint64_t a4b2 = a4 * b2;
+        const uint64_t a4b3 = a4 * b3;
+        const uint64_t a4b4 = a4 * b4;
         
         // Lowest carry bits
         

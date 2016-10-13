@@ -24,37 +24,37 @@ void numberOut(const char *name, FrameLib_FixedPoint in)
 
 FrameLib_RandGen gen;
 
-FL_UInt64 randu64()
+uint64_t randu64()
 {
-    return (FL_UInt64) gen.randInt() | (((FL_UInt64) gen.randInt()) << 0x20);
+    return (uint64_t) gen.randInt() | (((uint64_t) gen.randInt()) << 0x20);
 }
 
-FL_UInt64 randu32()
+uint64_t randu32()
 {
-    return (FL_UInt64) gen.randInt();
+    return (uint64_t) gen.randInt();
 }
 
 FrameLib_FixedPoint randSmallFixed()
 {
-    FL_UInt64 hi = randu32() & 0xF;
-    FL_UInt64 lo = randu32();
+    uint64_t hi = randu32() & 0xF;
+    uint64_t lo = randu32();
     
     return FrameLib_FixedPoint(hi, lo);
 }
 
 FrameLib_FixedPoint randFixed()
 {
-    FL_UInt64 hi = randu32();
-    FL_UInt64 lo = randu64();
+    uint64_t hi = randu32();
+    uint64_t lo = randu64();
     
     return FrameLib_FixedPoint(hi, lo);
 }
 
 SuperPrecision randSP()
 {
-    FL_UInt64 hi = randu32();
-    FL_UInt64 md = randu64();
-    FL_UInt64 lo = randu64();
+    uint64_t hi = randu32();
+    uint64_t md = randu64();
+    uint64_t lo = randu64();
     
     return SuperPrecision(hi, md, lo);
 }
@@ -91,7 +91,7 @@ int main(int argc, const char * argv[]) {
 
     // Multiplication commutation test
     
-    for (FL_UInt64 i=0; i <= 0xFFFFFF; i++)
+    for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
         FrameLib_FixedPoint rand1 = randFixed();
         FrameLib_FixedPoint rand2 = randFixed();
@@ -104,7 +104,7 @@ int main(int argc, const char * argv[]) {
     
     // Multiplication double comparison test
     
-    for (FL_UInt64 i=0; i <= 0xFFFFFF; i++)
+    for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
         double rand1D = (double) randFixed();
         double rand2D = (double) randFixed();
@@ -120,7 +120,7 @@ int main(int argc, const char * argv[]) {
     
     // Multiplication SP commutation test
     
-    for (FL_UInt64 i=0; i <= 0xFFFFFF; i++)
+    for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
         SuperPrecision rand1 = randSP();
         SuperPrecision rand2 = randSP();
@@ -133,7 +133,7 @@ int main(int argc, const char * argv[]) {
     
     // SP and QMul comparison
     
-    for (FL_UInt64 i=0; i <= 0xFFFFFF; i++)
+    for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
         SuperPrecision rand1 = randSP();
         SuperPrecision rand2 = SuperPrecision(randu64(), randu64(), 0);
@@ -147,7 +147,7 @@ int main(int argc, const char * argv[]) {
     
     // SP and Fixed comparison
     /*
-    for (FL_UInt64 i=0; i <= 0xFFFFFF; i++)
+    for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
         SuperPrecision rand1 = randSP();
         SuperPrecision rand2 = SuperPrecision(randu64(), randu64(), 0);
@@ -161,7 +161,7 @@ int main(int argc, const char * argv[]) {
     
     // QMul and Fixed comparison
     
-    for (FL_UInt64 i=0; i <= 0xFFFFFF; i++)
+    for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
         FrameLib_FixedPoint rand1 = randFixed();
         FrameLib_FixedPoint rand2 = randFixed();
@@ -175,7 +175,7 @@ int main(int argc, const char * argv[]) {
     
     // Simple Divide Check
     
-    for (FL_UInt64 i=0; i <= 0xFFFFFF; i++)
+    for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
         FrameLib_FixedPoint a = randSmallFixed();
         FrameLib_FixedPoint b = randSmallFixed();
@@ -199,7 +199,7 @@ int main(int argc, const char * argv[]) {
     
     // Hard Divide Check
     
-    for (FL_UInt64 i=0; i <= 0xFFFFFF; i++)
+    for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
         FrameLib_FixedPoint a = randSmallFixed();
         FrameLib_FixedPoint b = randSmallFixed();
@@ -239,7 +239,7 @@ int main(int argc, const char * argv[]) {
     {
         double result = 1.0;
 
-        for (FL_UInt64 i=0; i <= 0xFFFFFFF; i++)
+        for (uint64_t i=0; i <= 0xFFFFFFF; i++)
             result *= 2.5;
         
         if (result == 0.0)
@@ -258,7 +258,7 @@ int main(int argc, const char * argv[]) {
     {
         FrameLib_FixedPoint result = FrameLib_FixedPoint(1.0);
     
-        for (FL_UInt64 i=0; i <= 0xFFFFFFF; i++)
+        for (uint64_t i=0; i <= 0xFFFFFFF; i++)
             result *= FrameLib_FixedPoint(2,0x8000000000000000ULL);
         
             if (result == FrameLib_FixedPoint(0,0))
@@ -278,7 +278,7 @@ int main(int argc, const char * argv[]) {
     start = mach_absolute_time();
 
     ///                      
-    for (FL_UInt64 i=0; i <= 0x8FFFFFF; i++)
+    for (uint64_t i=0; i <= 0x8FFFFFF; i++)
     {
         double result = 1.0 / (i + 2);
         
@@ -295,7 +295,7 @@ int main(int argc, const char * argv[]) {
     
     start = mach_absolute_time();
 
-    for (FL_UInt64 i=0; i <= 0x8FFFFFF; i++)
+    for (uint64_t i=0; i <= 0x8FFFFFF; i++)
     {
         FrameLib_FixedPoint result = FrameLib_FixedPoint(0,i) / FrameLib_FixedPoint(0,1);
         

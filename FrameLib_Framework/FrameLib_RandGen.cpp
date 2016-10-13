@@ -3,19 +3,19 @@
     
 // Routines that are specific to the generator
 
-inline FL_UInt32 FrameLib_RandGen::CMWC()
+inline uint32_t FrameLib_RandGen::CMWC()
 {
-    FL_UInt32 i = mIncrement;
-    FL_UInt32 c = mCarry;
-    FL_UInt32 x;
+    uint32_t i = mIncrement;
+    uint32_t c = mCarry;
+    uint32_t x;
     
-    FL_UInt64 t;
+    uint64_t t;
     
     i = (i + 1) & (CMWC_LAG_SIZE - 1);
-    t = (FL_UInt64) CMWC_A_VALUE * mSTATE[i] + c;
+    t = (uint64_t) CMWC_A_VALUE * mSTATE[i] + c;
     c = (t >> 32);
     //FIX - check this line and look elsewhere also...
-    x = (FL_UInt32) ((t + c) & 0xFFFFFFFF);
+    x = (uint32_t) ((t + c) & 0xFFFFFFFF);
     
     if (x < c)
     {
@@ -32,21 +32,21 @@ inline FL_UInt32 FrameLib_RandGen::CMWC()
 
 // Initialise with seed values
 
-void FrameLib_RandGen::initCMWC(FL_UInt32 *init)
+void FrameLib_RandGen::initCMWC(uint32_t *init)
 {
     mIncrement = (CMWC_LAG_SIZE - 1);
     mCarry = 123;
     
-    for (FL_UInt32 i = 0; i < CMWC_LAG_SIZE; i++)
+    for (uint32_t i = 0; i < CMWC_LAG_SIZE; i++)
         mSTATE[i] = init[i];
 }
 
 void FrameLib_RandGen::randSeedCMWC()
 {
-    FL_UInt32 seeds[CMWC_LAG_SIZE];
+    uint32_t seeds[CMWC_LAG_SIZE];
     
 #ifdef __APPLE__
-    for (FL_UInt32 i = 0; i < CMWC_LAG_SIZE; i++)
+    for (uint32_t i = 0; i < CMWC_LAG_SIZE; i++)
         seeds[i] = arc4random();
 #else
     HCRYPTPROV hProvider = 0;
@@ -64,17 +64,17 @@ void FrameLib_RandGen::randSeedCMWC()
 
 // Generate a single pseudo-random unsigned integer
 
-FL_UInt32 FrameLib_RandGen::randInt()
+uint32_t FrameLib_RandGen::randInt()
 {
     return CMWC();
 }
 
 // Return an unsigned 32 bit integer
 
-inline FL_UInt32 FrameLib_RandGen::randInt(FL_UInt32 n)
+inline uint32_t FrameLib_RandGen::randInt(uint32_t n)
 {
-    FL_UInt32 used = n;
-    FL_UInt32 i;
+    uint32_t used = n;
+    uint32_t i;
     
     used |= used >> 1;
     used |= used >> 2;
@@ -91,7 +91,7 @@ inline FL_UInt32 FrameLib_RandGen::randInt(FL_UInt32 n)
 
 // Return an signed 32 bit integer in the range [lo, hi]
 
-FL_SInt32 FrameLib_RandGen::randInt(FL_SInt32 lo, FL_SInt32 hi)
+int32_t FrameLib_RandGen::randInt(int32_t lo, int32_t hi)
 {
     return lo + randInt(hi - lo);
 }

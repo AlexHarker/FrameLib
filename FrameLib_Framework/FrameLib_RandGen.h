@@ -6,16 +6,16 @@
 
 class FrameLib_RandGen
 {
-    static const FL_UInt32 CMWC_LAG_SIZE = 32;
-    static const FL_UInt64 CMWC_A_VALUE = 987655670LL;
+    static const uint32_t CMWC_LAG_SIZE = 32;
+    static const uint64_t CMWC_A_VALUE = 987655670LL;
     
     // Routines that are specific to the generator
     
-    inline FL_UInt32 CMWC();
+    inline uint32_t CMWC();
     
     // Initialise with seed values
     
-    void initCMWC(FL_UInt32 *init);
+    void initCMWC(uint32_t *init);
     
     // Seed the random number generator randomly using OS specific routines
     
@@ -31,19 +31,19 @@ public:
     
     // Initialise with seed values
     
-    void init(FL_UInt32 *init) { initCMWC(init); }
+    void init(uint32_t *init) { initCMWC(init); }
     
     // Generate a single pseudo-random unsigned integer
     
-    FL_UInt32 randInt();
+    uint32_t randInt();
         
     // Return an unsigned 32 bit integer  in the range [0, n]
     
-    FL_UInt32 randInt(FL_UInt32 n);
+    uint32_t randInt(uint32_t n);
     
     // Return an signed 32 bit integer in the range [lo, hi]
     
-    FL_SInt32 randInt(FL_SInt32 lo, FL_SInt32 hi);
+    int32_t randInt(int32_t lo, int32_t hi);
     
     // Return a 32 bit random double in the range [0,1]
     
@@ -59,9 +59,9 @@ public:
 
 private:
     
-    FL_UInt32 mIncrement;
-	FL_UInt32 mCarry;
-	FL_UInt32 mSTATE[CMWC_LAG_SIZE];
+    uint32_t mIncrement;
+	uint32_t mCarry;
+	uint32_t mSTATE[CMWC_LAG_SIZE];
 };
 
 #endif
