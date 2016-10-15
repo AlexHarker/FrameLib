@@ -41,10 +41,14 @@ Global Level\
 \b pre-allocated pools
 \b0  with proper allocation (removing freed pools from scheduled deletion if necessary)\
 \
-3 - If pre-allocated global pools fail\
-	a - check if 
+
+\b DONE 	
+\b0 3 - If pre-allocated global pools fail\
+
+\b DONE
+\b0 	a - check if 
 \b previously scheduled (and sufficient) allocation
-\b0  has completed (only join if both conditions true)\
+\b0  has completed or a free pool is available\
 
 \b DONE	
 \b0 	b - if not, 
@@ -58,11 +62,7 @@ Global Level\
 \b allocating from there
 \b0 \
 \
-
-\b ONCE PER AUDIO CALL/DSP QUEUE EXIT
-\b0 \
-\
-4 - Check for near capacity and \
+4 - check overall memory usage if near capacity (and schedule new memory if not)\
 	a - 
 \b remove blocks scheduled to be freed
 \b0  if available or \
@@ -70,7 +70,13 @@ Global Level\
 \b schedule fixed memory block to be allocated in another thread
 \b0  if none is pending (joining next time it is needed)\
 \
-5 - Check for empty blocks and schedule deletion\
+
+\b ONCE PER AUDIO CALL/DSP QUEUE EXIT
+\b0 \
+\
+
+\b DONE 
+\b0 5 - Check for empty blocks and schedule deletion\
 \
 
 \i\b question
@@ -110,4 +116,23 @@ globalService\
 	- scheduleAdd (+ associated thread specific add)\
 	- scheduleDelete (+ associated thread specific delete)\
 \
-	}
+	\
+Threading updates:\
+\
+Additional processes:\
+\
+1 - check for memory near full (on every main allocation) and schedule new pool\
+2 - if memory allocation fails try these in order:\
+	- pick up scheduled new memory (waiting if necessary - simply spinning on the pointer being null)\
+	- pick up scheduled free memory\
+	- allocate directly\
+3 - schedule memory to be freed, never do it directly\
+\
+We require:\
+\
+1 - A thread we can \
+	- create (with main loop function)		(main allocator constructor)\
+	- destroy							(main allocator deconstructor)\
+	- signal (semaphore)					(alloc/prune)\
+\
+2 - Pointers that we can swap in a threadsafe manner (with null values only)}

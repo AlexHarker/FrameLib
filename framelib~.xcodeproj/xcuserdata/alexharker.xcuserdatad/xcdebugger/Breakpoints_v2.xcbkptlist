@@ -2,4 +2,1359 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FrameLib_Memory.cpp"
+            timestampString = "498122756.674467"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "FrameLib_MainAllocator::NewThread::doTask()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.abs~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.687167"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.acos~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.687333"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.acosh~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.687442"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.asin~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.687541"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.asinh~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.687643"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.atan~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.687747"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.atan2~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.687842"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.atanh~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.68794"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.cbrt~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.688048"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.ceil~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.688157"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.chop~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.688259"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.convolve~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.68836"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.coordinatesystem~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.688493"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.copysign~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.68864"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.cos~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.688803"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.cosh~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.689013"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.count~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.689153"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.diff~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.689289"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.divide~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.689452"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.equals~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.689604"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.erf~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.689771"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.erfc~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.689877"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.exp~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.689983"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.exp2~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.690084"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.fft~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.690176"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.floor~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.690275"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.frommax~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.69038"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.gmean~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.69049"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.greaterthan~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.69098"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.greaterthaneq~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.691204"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.hypot~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.691303"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.ifft~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.691401"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.interval~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.69149"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.join~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.691583"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.length~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.69168"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.lessthan~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.691772"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.lessthaneq~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.691865"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.log~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.691952"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.log2~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.692037"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.log10~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.692127"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.map~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.692235"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.max~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.692324"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.mean~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.69241"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.medianfilter~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.692498"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.min~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.692586"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.minus~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.692671"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.notequal~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.692759"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.onepole~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.692848"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.onepolezero~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.692936"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.pack~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.693021"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.pad~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.69311"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.percentile~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.693196"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.plus~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.693281"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.pow~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.693368"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.product~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.693454"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.random~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.693546"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.read~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.693635"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.recall~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.693722"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.register~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.693811"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.resonant~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.693898"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.round~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.693989"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.sallenkey~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.694076"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.samplerate~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.694164"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.select~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.69425"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.setparam~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.694339"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.shift~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.694426"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.sin~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.694514"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.sinh~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.694601"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.sink~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.694687"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.sort~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.694778"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.source~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.694866"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.spatial~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.694957"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.split~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.695049"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.sqrt~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.695137"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.store~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.695227"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.subframe~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.695312"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.sum~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.695406"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.t1~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.695493"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.t2~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.695579"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.tan~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.695665"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.tanh~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.695752"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.times~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.695838"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.trace~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.695926"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.trunc~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.696044"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.unpack~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.696153"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.vmax~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.69626"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.vmin~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.696371"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.window~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.696481"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FrameLib_MainAllocator::NewThread::doTask()"
+                  moduleName = "fl.0dfsvf~"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexharker/Documents/Max%20Externals/-%20Huddersfield/FrameLib/FrameLib_Memory.cpp"
+                  timestampString = "498122756.696583"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

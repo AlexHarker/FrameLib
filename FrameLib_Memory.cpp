@@ -11,6 +11,7 @@ static size_t const initSize = 1024 * 1024 * 2;
 static size_t const growSize = 1024 * 1024 * 2;
 static const int pruneInterval = 20;
 
+
 // Utility
 
 size_t alignedSize(size_t x)
@@ -28,34 +29,39 @@ size_t blockSize(void* ptr)
 
 // Memory Pools
 
-FrameLib_MainAllocator::Pool::Pool(tlsf_t tlsf, void *mem, size_t size) : mTLSF(tlsf), mTLSFPool(NULL), mUsedRecently(false), mTime(0), mSize(size), mPrev(NULL), mNext(NULL)
-{
-    mTLSFPool = tlsf_add_pool(mTLSF, mem, size);
-}
-
-FrameLib_MainAllocator::Pool::~Pool()
-{
-    if (mTLSFPool)
-        tlsf_remove_pool(mTLSF, mTLSFPool);
-}
+FrameLib_MainAllocator::Pool::Pool(void *mem, size_t size) : mUsedRecently(true), mTime(0), mSize(size), mPrev(NULL), mNext(NULL), mMem(mem)
+{}
 
 bool FrameLib_MainAllocator::Pool::isFree()
 {
-    return tlsf_pool_is_free(mTLSFPool);
+    return tlsf_pool_is_free(mMem);
+}
+
+void FrameLib_MainAllocator::NewThread::doTask()
+{
+    mAllocator->addScheduledPool(FrameLib_MainAllocator::createPool(growSize));
+}
+
+void FrameLib_MainAllocator::FreeThread::doTask()
+{
+    mAllocator->destroyPool(mAllocator->getScheduledPool());
 }
 
 // The Main Allocator (has no threadsafety)
 
-FrameLib_MainAllocator::FrameLib_MainAllocator() : mPools(NULL), mOSAllocated(0), mAllocated(0)
+FrameLib_MainAllocator::FrameLib_MainAllocator() : mPools(NULL), mOSAllocated(0), mAllocated(0), lastDisposedPoolSize(0), allocThread(this), freeThread(this)
 {
     mTLSF = tlsf_create(malloc(tlsf_size()));
-    newPool(initSize);
+    insertPool(createPool(initSize));
 }
 
 FrameLib_MainAllocator::~FrameLib_MainAllocator()
 {
     while (mPools)
-        deletePool(mPools);
+    {
+        removePool(mPools);
+        destroyPool(mPools);
+    }
 
     tlsf_destroy(mTLSF);
     free(mTLSF);
@@ -65,60 +71,95 @@ void *FrameLib_MainAllocator::alloc(size_t size)
 {
     void *ptr = tlsf_memalign(mTLSF, alignment, size);
     
+    // If the allocation fails we need to add a new memory pool
+    
     if (!ptr)
     {
         // FIX - for now allocate double the necessary size (which will always work)
+
+        Pool *pool = NULL;
+        size_t poolSize = size <= (growSize >> 1) ? growSize : (size << 1);
         
-        size_t poolSize = size << 1;
-        newPool(poolSize <= growSize ? growSize : poolSize);
+        // Attempt to get a new pool from the scheduled slot
+        
+        if (poolSize == growSize)
+        {
+            if (allocThread.completed())
+                while (!(pool = scheduledNewPool.clear()));
+        }
+        
+        // If we still don't have pool try the disposed slot
+        
+        if (!pool && lastDisposedPoolSize >= poolSize)
+        {
+            pool = scheduledDisposePool.clear();
+            lastDisposedPoolSize = 0;
+        }
+
+        // Finally try to create one in this thread
+        
+        if (!pool)
+            pool = createPool(poolSize);
+        
+        // Insert the pool and attempt to allocate
+        
+        insertPool(pool);
         ptr = tlsf_memalign(mTLSF, alignment, size);
     }
     
-    if (ptr)
-        mAllocated += tlsf_block_size(ptr);
+    // Update the allocated size
     
+    if (ptr)
+        mAllocated += blockSize(ptr);
+    
+    // Check for near full
+    
+    if (mOSAllocated < mAllocated + growSize)
+        allocThread.signal();
+        
     return ptr;
 }
 
 void FrameLib_MainAllocator::dealloc(void *ptr)
 {
-    mAllocated -= tlsf_block_size(ptr);
+    mAllocated -= blockSize(ptr);
     pool_t tlsfPool = tlsf_free(mTLSF, ptr);
     
     if (tlsfPool)
-    {
-        Pool *pool = getPool(tlsfPool);
-        pool->mUsedRecently = true;
-        removePool(pool);
-        addPool(pool);
-    }
+        poolToTop(getPool(tlsfPool));
 }
 
 // Pool Management
 
 void FrameLib_MainAllocator::prune()
 {
-    Pool *pool = mPools->mPrev;
-    time_t now;
-    
-    if (!pool->isFree())
+    if (mPools)
     {
-        removePool(pool);
-        addPool(pool);
-        return;
+        Pool *pool = mPools->mPrev;
+    
+        if (!pool->isFree())
+        {
+            poolToTop(pool);
+            return;
+        }
+        
+        time_t now;
+        time(&now);
+        
+        if (pool->mUsedRecently)
+        {
+            pool->mUsedRecently = false;
+            pool->mTime = now;
+            return;
+        }
+        
+        if (difftime(now, pool->mTime) > pruneInterval && scheduledDisposePool.compareAndSwap(NULL, pool))
+        {
+            removePool(pool);
+            lastDisposedPoolSize = pool->mSize;
+            freeThread.signal();
+        }
     }
-    
-    time(&now);
-    
-    if (pool->mUsedRecently)
-    {
-        pool->mUsedRecently = false;
-        pool->mTime = now;
-        return;
-    }
-    
-    if (difftime(now, pool->mTime) > pruneInterval)
-        deletePool(pool);
 }
 
 FrameLib_MainAllocator::Pool *FrameLib_MainAllocator::getPool(pool_t pool)
@@ -126,7 +167,25 @@ FrameLib_MainAllocator::Pool *FrameLib_MainAllocator::getPool(pool_t pool)
     return (Pool *) (((BytePointer) pool) - sizeof(Pool));
 }
 
-void FrameLib_MainAllocator::addPool(Pool *pool)
+FrameLib_MainAllocator::Pool *FrameLib_MainAllocator::createPool(size_t size)
+{
+    // FIX - alignment for pool sizes
+    
+    void *memory = malloc(sizeof(Pool) + alignedSize(size) + alignedSize(tlsf_pool_overhead()));
+    
+    return new(memory) Pool(((BytePointer) memory) + sizeof(Pool), size);
+}
+
+void FrameLib_MainAllocator::destroyPool(Pool *pool)
+{
+    if (pool)
+    {
+        pool->~Pool();
+        free(pool);
+    }
+}
+
+void FrameLib_MainAllocator::linkPool(Pool *pool)
 {
     if (!mPools)
     {
@@ -141,49 +200,42 @@ void FrameLib_MainAllocator::addPool(Pool *pool)
         pool->mPrev->mNext = pool;
     }
     
-    mOSAllocated += pool->mSize;
-    
     mPools = pool;
 }
 
-void FrameLib_MainAllocator::removePool(Pool *pool)
+void FrameLib_MainAllocator::unlinkPool(Pool *pool)
 {
     pool->mPrev->mNext = pool->mNext;
     pool->mNext->mPrev = pool->mPrev;
     
     if (pool == mPools)
         mPools = pool->mNext == pool ? NULL : pool->mNext;
-    
+}
+
+void FrameLib_MainAllocator::poolToTop(Pool *pool)
+{
+    pool->mUsedRecently = true;
+    unlinkPool(pool);
+    linkPool(pool);
+}
+
+void FrameLib_MainAllocator::insertPool(Pool *pool)
+{
+    tlsf_add_pool(mTLSF, pool->mMem, pool->mSize);
+    linkPool(pool);
+    mOSAllocated += pool->mSize;
+}
+
+void FrameLib_MainAllocator::removePool(Pool *pool)
+{
+    tlsf_remove_pool(mTLSF, pool->mMem);
+    unlinkPool(pool);
     mOSAllocated -= pool->mSize;
 }
 
-void FrameLib_MainAllocator::newPool(size_t size)
-{
-    // FIX - alignment for pool sizes
-    
-    // Allocate memory and create
-    
-    size_t actualSize = alignedSize(size) + alignedSize(tlsf_pool_overhead());
-    void *memory = malloc(sizeof(Pool) + actualSize);
-    
-    Pool *pool = new(memory) Pool(mTLSF, ((BytePointer) memory) + sizeof(Pool), size);
+// The global allocator (adds threadsaftey to the main allocator)
 
-    addPool(pool);
-}
-
-void FrameLib_MainAllocator::deletePool(Pool *pool)
-{
-    // Remove from the linked list
-    
-    removePool(pool);
-    
-    // Now free resources
-    
-    pool->~Pool();
-    free(pool);
-}
-
-// The Global Allocator (adds threadsaftey to the main allocator)
+// Acquire/release the internal allocator directly
 
 FrameLib_MainAllocator *FrameLib_GlobalAllocator::acquire()
 {
@@ -201,6 +253,8 @@ bool FrameLib_GlobalAllocator::release(FrameLib_MainAllocator **allocator)
     return true;
 }
 
+// Allocate or deallocate memory
+
 void *FrameLib_GlobalAllocator::alloc(size_t size)
 {
     mLock.acquire();
@@ -216,6 +270,8 @@ void FrameLib_GlobalAllocator::dealloc(void *ptr)
     mAllocator.dealloc(ptr);
     mLock.release();
 }
+
+// Prune available memory (examine usage and free appropriate unsed pools)
 
 void FrameLib_GlobalAllocator::prune()
 {
@@ -258,6 +314,8 @@ void FrameLib_LocalAllocator::Storage::resize(unsigned long size)
 
 // The Local Allocator
 
+// Constructor / Destructor
+
 FrameLib_LocalAllocator::FrameLib_LocalAllocator(FrameLib_GlobalAllocator *allocator) : mGlobalAllocator(allocator)
 {
     // Setup the free lists as a circularly linked list
@@ -277,6 +335,8 @@ FrameLib_LocalAllocator::~FrameLib_LocalAllocator()
 {
     clear();
 }
+
+// Allocate or deallocate memory
 
 void *FrameLib_LocalAllocator::alloc(size_t size)
 {
@@ -318,6 +378,8 @@ void FrameLib_LocalAllocator::dealloc(void *ptr)
     }
 }
 
+// Clear local free blocks (and call to prune global allocator)
+
 void FrameLib_LocalAllocator::clear()
 {
     // Acquire the main allocator and then free all blocks before releasing
@@ -338,10 +400,14 @@ void FrameLib_LocalAllocator::clear()
     mGlobalAllocator->release(&allocator);
 }
 
+// Return new size after adjustment for alignment
+
 size_t FrameLib_LocalAllocator::alignSize(size_t x)
 {
     return alignedSize(x);
 }
+
+// Register and release storage
 
 FrameLib_LocalAllocator::Storage *FrameLib_LocalAllocator::registerStorage(const char *name)
 {
@@ -365,6 +431,8 @@ void FrameLib_LocalAllocator::releaseStorage(const char *name)
     }
 }
 
+// Find storage by name
+
 std::vector<FrameLib_LocalAllocator::Storage *>::iterator FrameLib_LocalAllocator::findStorage(const char *name)
 {
     for (std::vector<Storage *>::iterator it = mStorage.begin(); it != mStorage.end(); it++)
@@ -374,10 +442,16 @@ std::vector<FrameLib_LocalAllocator::Storage *>::iterator FrameLib_LocalAllocato
     return mStorage.end();
 }
 
+// Remove a free block after allocation and return the pointer
+
 void *FrameLib_LocalAllocator::removeBlock(FreeBlock *block)
 {
     void *ptr = block->mMemory;
+    
+    // Set to default values
+    
     block->mMemory = NULL;
+    block->mSize = 0;
     
     // If at the tail there is no need to do anything
     

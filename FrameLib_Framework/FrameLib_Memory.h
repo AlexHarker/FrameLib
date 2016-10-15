@@ -10,7 +10,6 @@
 
 // FIX - do alignment improvements ?? (be better as part of allocator directly)
 // FIX - expand the block and do free heuristics differently/for malloc (always free large blocks for instance)
-// FIX - free storage once it is no longer referenced? or when allocator is destroyed?
 
 // The Main Allocator (has no threadsafety)
 
@@ -18,23 +17,38 @@ class FrameLib_MainAllocator
 {    
     struct Pool
     {
-        Pool(tlsf_t tlsf, void *mem, size_t size);
-        ~Pool();
+        Pool(void *mem, size_t size);
     
         bool isFree();
-        
-    private:
-        
-        tlsf_t mTLSF;
-        pool_t mTLSFPool;
-        
-    public:
         
         bool mUsedRecently;
         time_t mTime;
         size_t mSize;
         Pool *mPrev;
         Pool *mNext;
+        void *mMem;
+    };
+    
+    struct NewThread : public SyncThread
+    {
+        NewThread(FrameLib_MainAllocator *allocator) : mAllocator(allocator){}
+        
+    private:
+        
+        virtual void doTask();
+        
+        FrameLib_MainAllocator *mAllocator;
+    };
+    
+    struct FreeThread : public SignalableThread
+    {
+        FreeThread(FrameLib_MainAllocator *allocator) : mAllocator(allocator){}
+        
+    private:
+        
+        virtual void doTask();
+        
+        FrameLib_MainAllocator *mAllocator;
     };
     
 public:
@@ -47,34 +61,54 @@ public:
     
     void prune();
     
+    void addScheduledPool(Pool *pool) { while (!scheduledNewPool.compareAndSwap(NULL, pool)); }
+    Pool *getScheduledPool() { return scheduledDisposePool.clear(); }
+    
 private:
     
     Pool *getPool(pool_t pool);
-    void addPool(Pool *pool);
+    
+    static Pool *createPool(size_t size);
+    static void destroyPool(Pool *pool);
+    void linkPool(Pool *pool);
+    void unlinkPool(Pool *pool);
+    void poolToTop(Pool *pool);
+    void insertPool(Pool *pool);
     void removePool(Pool *pool);
-    void newPool(size_t size);
-    void deletePool(Pool *pool);
 
+    // TSLF allocator and pools
     tlsf_t mTLSF;
     Pool *mPools;
     
     size_t mOSAllocated;
     size_t mAllocated;
+    
+    size_t lastDisposedPoolSize;
+    FrameLib_AtomicPtr<Pool> scheduledNewPool;
+    FrameLib_AtomicPtr<Pool> scheduledDisposePool;
+    NewThread allocThread;
+    FreeThread freeThread;
 };
 
 
-// The Global Allocator (adds threadsaftey to the main allocator)
+// The global allocator (simply adds threadsaftey to the main allocator)
 
 class FrameLib_GlobalAllocator
 {
 
 public:
 
+    // Acquire/release the internal allocator directly
+    
     FrameLib_MainAllocator *acquire();
     bool release(FrameLib_MainAllocator **allocator);
 
+    // Allocate or deallocate memory
+    
     void *alloc(size_t size);
     void dealloc(void *ptr);
+    
+    // Prune available memory (examine usage and free appropriate unsed pools)
     
     void prune();
     
@@ -85,11 +119,14 @@ private:
 
 };
 
-// The Local Allocator
+
+// The local allocator
 
 class FrameLib_LocalAllocator
 {
     static const int numLocalFreeBlocks = 16;
+    
+    // Local blocks of free memory in double linked list (using internal pointers)
     
     struct FreeBlock
     {
@@ -103,6 +140,10 @@ class FrameLib_LocalAllocator
     };
 
 public:
+    
+    // Named storage local to each context
+    
+    // FIX - style
     
     struct Storage
     {
@@ -125,36 +166,51 @@ public:
         void resize(unsigned long size);
         
     private:
+
+        char *mName;
         
         double *mData;
         unsigned long mSize;
         unsigned long mMaxSize;
         unsigned long mCount;
-        char *mName;
         
         FrameLib_LocalAllocator *mAllocator;
     };
     
-public:
-
+    // Constructor / Destructor
+    
     FrameLib_LocalAllocator(FrameLib_GlobalAllocator *allocator);
     ~FrameLib_LocalAllocator();
     
+    // Allocate or deallocate memory
+
     void *alloc(size_t size);
     void dealloc(void *ptr);
+
+    // Clear local free blocks (and call to prune global allocator)
     
     void clear();
     
+    // Return new size after adjustment for alignment
+    
     static size_t alignSize(size_t x);
+    
+    // Register and release storage
     
     Storage *registerStorage(const char *name);
     void releaseStorage(const char *name);
     
 private:
     
+    // Find storage by name
+    
     std::vector<Storage *>::iterator findStorage(const char *name);
     
+    // Remove a free block after allocation and return the pointer
+
     void *removeBlock(FreeBlock *block);
+    
+    // Pointer to global allocator, blocks and storage
     
     FrameLib_GlobalAllocator *mGlobalAllocator;
     

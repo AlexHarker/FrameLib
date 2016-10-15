@@ -809,6 +809,95 @@
 		B8D8DB861B89D74B000203E5 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8D8DB871B89D74B000203E5 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8D8DB8F1B89D76A000203E5 /* fl.select~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D8DB7E1B89D72A000203E5 /* fl.select~.cpp */; };
+		B8EDFD291DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD2A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD2B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD2C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD2D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD2E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD2F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD301DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD311DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD321DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD331DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD341DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD351DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD361DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD371DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD381DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD391DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD3A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD3B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD3C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD3D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD3E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD3F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD401DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD411DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD421DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD431DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD441DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD451DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD461DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD471DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD481DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD491DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD4A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD4B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD4C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD4D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD4E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD4F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD501DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD511DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD521DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD531DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD541DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD551DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD561DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD571DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD581DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD591DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD5A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD5B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD5C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD5D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD5E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD5F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD601DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD611DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD621DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD631DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD641DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD651DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD661DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD671DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD681DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD691DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD6A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD6B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD6C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD6D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD6E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD6F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD701DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD711DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD721DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD731DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD741DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD751DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD761DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD771DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD781DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD791DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD7A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD7B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD7C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD7D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD7E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD7F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD801DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B8EDFD811DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
 		B8F3797F19F1C8B400EC7FDA /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
 		B8F3798119F1C8B400EC7FDA /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8F3798219F1C8B400EC7FDA /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
@@ -1090,6 +1179,7 @@
 		B8DE14DC0EB46B030050BDFE /* Framelib_Max.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Framelib_Max.h; sourceTree = "<group>"; };
 		B8DF3FA2198AABAD00CA8BB6 /* FrameLib_Attributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Attributes.h; sourceTree = "<group>"; };
 		B8E058AE198DA34D00721359 /* FrameLib_Block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Block.h; sourceTree = "<group>"; };
+		B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Threading.cpp; sourceTree = "<group>"; };
 		B8F3797919F1C8AF00EC7FDA /* FrameLib_OnePole.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FrameLib_OnePole.h; path = Filters/FrameLib_OnePole.h; sourceTree = "<group>"; };
 		B8F3798819F1C8B400EC7FDA /* fl.onepole~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.onepole~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F3798A19F1C8E600EC7FDA /* fl.onepole~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.onepole~.cpp"; sourceTree = "<group>"; };
@@ -2277,13 +2367,14 @@
 			children = (
 				B8FD919E197F40B200437EB5 /* FrameLib_Types.h */,
 				B8FD919D197F0F6C00437EB5 /* FrameLib_FixedPoint.h */,
+				B835F31019A61128003CD5E7 /* FrameLib_Threading.h */,
+				B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */,
 				B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */,
 				B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */,
 				B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */,
 				B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */,
 				B8BCCF46199CEF230038259B /* FrameLib_Memory.h */,
 				B8D272F11DA6629A00E0E566 /* FrameLib_Memory.cpp */,
-				B835F31019A61128003CD5E7 /* FrameLib_Threading.h */,
 				B8C680371B80F2B800B74B90 /* FrameLib_RandGen.h */,
 				B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */,
 				B8DF3FA2198AABAD00CA8BB6 /* FrameLib_Attributes.h */,
@@ -6394,6 +6485,7 @@
 			files = (
 				B8F6E4CC199D247C0073E06D /* tlsf.c in Sources */,
 				B8CA31DC199A1F5F005F30A1 /* fl.unpack~.cpp in Sources */,
+				B8EDFD2A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272F31DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C51D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120111D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6406,6 +6498,7 @@
 			files = (
 				B805E22919C3AD0A007D8D8B /* tlsf.c in Sources */,
 				B805E34119C3AF77007D8D8B /* fl.minus~.cpp in Sources */,
+				B8EDFD311DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272FA1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CC1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120181D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6418,6 +6511,7 @@
 			files = (
 				B805E23A19C3AD0C007D8D8B /* tlsf.c in Sources */,
 				B805E34219C3AF7A007D8D8B /* fl.times~.cpp in Sources */,
+				B8EDFD321DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272FB1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CD1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120191D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6430,6 +6524,7 @@
 			files = (
 				B805E24B19C3AD11007D8D8B /* tlsf.c in Sources */,
 				B805E34319C3AF84007D8D8B /* fl.divide~.cpp in Sources */,
+				B8EDFD331DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272FC1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CE1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6442,6 +6537,7 @@
 			files = (
 				B805E25C19C3AD14007D8D8B /* tlsf.c in Sources */,
 				B805E34419C3AFA6007D8D8B /* fl.equals~.cpp in Sources */,
+				B8EDFD341DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272FD1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6454,6 +6550,7 @@
 			files = (
 				B805E26D19C3AD16007D8D8B /* tlsf.c in Sources */,
 				B805E34519C3AFAA007D8D8B /* fl.notequals~.cpp in Sources */,
+				B8EDFD351DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272FE1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D01D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6466,6 +6563,7 @@
 			files = (
 				B805E27E19C3AD18007D8D8B /* tlsf.c in Sources */,
 				B805E34619C3AFAD007D8D8B /* fl.greaterthan~.cpp in Sources */,
+				B8EDFD361DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272FF1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D11D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6478,6 +6576,7 @@
 			files = (
 				B805E28F19C3AD20007D8D8B /* tlsf.c in Sources */,
 				B805E34719C3AFB1007D8D8B /* fl.greaterthaneq~.cpp in Sources */,
+				B8EDFD371DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273001DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D21D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6490,6 +6589,7 @@
 			files = (
 				B805E2A019C3AD22007D8D8B /* tlsf.c in Sources */,
 				B805E34819C3AFB7007D8D8B /* fl.lessthan~.cpp in Sources */,
+				B8EDFD381DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273011DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D31D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6502,6 +6602,7 @@
 			files = (
 				B805E2B119C3AD23007D8D8B /* tlsf.c in Sources */,
 				B805E34919C3AFBA007D8D8B /* fl.lessthaneq~.cpp in Sources */,
+				B8EDFD391DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273021DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D41D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120201D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6514,6 +6615,7 @@
 			files = (
 				B805E2C219C3AD25007D8D8B /* tlsf.c in Sources */,
 				B805E34A19C3AFBD007D8D8B /* fl.pow~.cpp in Sources */,
+				B8EDFD3A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273031DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D51D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120211D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6526,6 +6628,7 @@
 			files = (
 				B805E2D319C3ADF5007D8D8B /* tlsf.c in Sources */,
 				B805E34B19C3AFC2007D8D8B /* fl.atan2~.cpp in Sources */,
+				B8EDFD3B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273041DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D61D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120221D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6538,6 +6641,7 @@
 			files = (
 				B805E2E319C3ADF7007D8D8B /* tlsf.c in Sources */,
 				B805E34C19C3AFC6007D8D8B /* fl.hypot~.cpp in Sources */,
+				B8EDFD3C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273051DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D71D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120231D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6550,6 +6654,7 @@
 			files = (
 				B805E2F319C3ADF9007D8D8B /* tlsf.c in Sources */,
 				B805E34D19C3AFCB007D8D8B /* fl.copysign~.cpp in Sources */,
+				B8EDFD3D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273061DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D81D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120241D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6562,6 +6667,7 @@
 			files = (
 				B805E30319C3ADFC007D8D8B /* tlsf.c in Sources */,
 				B805E34E19C3AFCF007D8D8B /* fl.min~.cpp in Sources */,
+				B8EDFD3E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273071DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D91D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120251D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6574,6 +6680,7 @@
 			files = (
 				B805E31319C3ADFE007D8D8B /* tlsf.c in Sources */,
 				B805E34F19C3AFD3007D8D8B /* fl.max~.cpp in Sources */,
+				B8EDFD3F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273081DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DA1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120261D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6586,6 +6693,7 @@
 			files = (
 				B805E32319C3AE00007D8D8B /* tlsf.c in Sources */,
 				B809BF3119C42D3600BA41F4 /* fl.diff~.cpp in Sources */,
+				B8EDFD401DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273091DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DB1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120271D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6598,6 +6706,7 @@
 			files = (
 				B809BDE419C42CDA00BA41F4 /* tlsf.c in Sources */,
 				B809C08B19C42FFB00BA41F4 /* fl.abs~.cpp in Sources */,
+				B8EDFD411DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2730A1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DC1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120281D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6610,6 +6719,7 @@
 			files = (
 				B809BDF519C42CEB00BA41F4 /* tlsf.c in Sources */,
 				B809C08C19C42FFE00BA41F4 /* fl.acos~.cpp in Sources */,
+				B8EDFD421DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2730B1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DD1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120291D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6622,6 +6732,7 @@
 			files = (
 				B809BE0519C42CEF00BA41F4 /* tlsf.c in Sources */,
 				B809C09519C4302400BA41F4 /* fl.cosh~.cpp in Sources */,
+				B8EDFD4B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273141DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E61D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120321D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6634,6 +6745,7 @@
 			files = (
 				B809BF3619C42D5100BA41F4 /* tlsf.c in Sources */,
 				B809C08E19C4300A00BA41F4 /* fl.asin~.cpp in Sources */,
+				B8EDFD441DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2730D1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6646,6 +6758,7 @@
 			files = (
 				B809BF4519C42D5400BA41F4 /* tlsf.c in Sources */,
 				B809C0A019C4305800BA41F4 /* fl.sinh~.cpp in Sources */,
+				B8EDFD561DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2731F1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F11D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6658,6 +6771,7 @@
 			files = (
 				B809BF5419C42D5800BA41F4 /* tlsf.c in Sources */,
 				B809C09019C4301300BA41F4 /* fl.atan~.cpp in Sources */,
+				B8EDFD461DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2730F1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E11D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6670,6 +6784,7 @@
 			files = (
 				B809BF6319C42D5A00BA41F4 /* tlsf.c in Sources */,
 				B809C09119C4301600BA41F4 /* fl.atanh~.cpp in Sources */,
+				B8EDFD471DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273101DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E21D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6682,6 +6797,7 @@
 			files = (
 				B809BF7219C42D5C00BA41F4 /* tlsf.c in Sources */,
 				B809C09219C4301900BA41F4 /* fl.cbrt~.cpp in Sources */,
+				B8EDFD481DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273111DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E31D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6694,6 +6810,7 @@
 			files = (
 				B809BF8119C42D6400BA41F4 /* tlsf.c in Sources */,
 				B809C09319C4301C00BA41F4 /* fl.ceil~.cpp in Sources */,
+				B8EDFD491DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273121DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E41D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120301D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6706,6 +6823,7 @@
 			files = (
 				B809BF9019C42D6400BA41F4 /* tlsf.c in Sources */,
 				B809C09419C4302000BA41F4 /* fl.cos~.cpp in Sources */,
+				B8EDFD4A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273131DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E51D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120311D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6718,6 +6836,7 @@
 			files = (
 				B809BF9F19C42D6500BA41F4 /* tlsf.c in Sources */,
 				B809C08D19C4300600BA41F4 /* fl.acosh~.cpp in Sources */,
+				B8EDFD431DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2730C1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DE1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6730,6 +6849,7 @@
 			files = (
 				B809BFAE19C42D6600BA41F4 /* tlsf.c in Sources */,
 				B809C09619C4302700BA41F4 /* fl.erf~.cpp in Sources */,
+				B8EDFD4C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273151DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E71D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120331D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6742,6 +6862,7 @@
 			files = (
 				B809BFBD19C42D6800BA41F4 /* tlsf.c in Sources */,
 				B809C09719C4302C00BA41F4 /* fl.erfc~.cpp in Sources */,
+				B8EDFD4D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273161DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E81D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120341D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6754,6 +6875,7 @@
 			files = (
 				B809BFCC19C42D6800BA41F4 /* tlsf.c in Sources */,
 				B809C09819C4303000BA41F4 /* fl.exp~.cpp in Sources */,
+				B8EDFD4E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273171DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E91D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120351D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6766,6 +6888,7 @@
 			files = (
 				B809BFDB19C42D6900BA41F4 /* tlsf.c in Sources */,
 				B809C09919C4303B00BA41F4 /* fl.exp2~.cpp in Sources */,
+				B8EDFD4F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273181DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120EA1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120361D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6778,6 +6901,7 @@
 			files = (
 				B809BFEA19C42D7000BA41F4 /* tlsf.c in Sources */,
 				B809C09A19C4304100BA41F4 /* fl.floor~.cpp in Sources */,
+				B8EDFD501DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273191DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120EB1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120371D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6790,6 +6914,7 @@
 			files = (
 				B809BFF919C42D7100BA41F4 /* tlsf.c in Sources */,
 				B809C09B19C4304500BA41F4 /* fl.log~.cpp in Sources */,
+				B8EDFD511DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2731A1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120EC1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120381D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6802,6 +6927,7 @@
 			files = (
 				B809C00819C42D7100BA41F4 /* tlsf.c in Sources */,
 				B809C09C19C4304A00BA41F4 /* fl.log2~.cpp in Sources */,
+				B8EDFD521DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2731B1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120ED1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120391D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6814,6 +6940,7 @@
 			files = (
 				B809C01719C42D7200BA41F4 /* tlsf.c in Sources */,
 				B809C09D19C4304E00BA41F4 /* fl.log10~.cpp in Sources */,
+				B8EDFD531DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2731C1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120EE1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6826,6 +6953,7 @@
 			files = (
 				B809C02619C42D7200BA41F4 /* tlsf.c in Sources */,
 				B809C09E19C4305200BA41F4 /* fl.round~.cpp in Sources */,
+				B8EDFD541DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2731D1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120EF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6838,6 +6966,7 @@
 			files = (
 				B809C03519C42D7300BA41F4 /* tlsf.c in Sources */,
 				B809C09F19C4305500BA41F4 /* fl.sin~.cpp in Sources */,
+				B8EDFD551DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2731E1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F01D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6850,6 +6979,7 @@
 			files = (
 				B809C04419C42D7300BA41F4 /* tlsf.c in Sources */,
 				B809C08F19C4300E00BA41F4 /* fl.asinh~.cpp in Sources */,
+				B8EDFD451DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2730E1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E01D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6862,6 +6992,7 @@
 			files = (
 				B809C05319C42D7300BA41F4 /* tlsf.c in Sources */,
 				B809C0A119C4305D00BA41F4 /* fl.sqrt~.cpp in Sources */,
+				B8EDFD571DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273201DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F21D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6874,6 +7005,7 @@
 			files = (
 				B809C06219C42D7400BA41F4 /* tlsf.c in Sources */,
 				B809C0A219C4306000BA41F4 /* fl.tan~.cpp in Sources */,
+				B8EDFD581DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273211DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F31D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6886,6 +7018,7 @@
 			files = (
 				B809C07119C42D7400BA41F4 /* tlsf.c in Sources */,
 				B809C0A319C4306400BA41F4 /* fl.tanh~.cpp in Sources */,
+				B8EDFD591DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273221DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F41D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120401D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6898,6 +7031,7 @@
 			files = (
 				B8F83E2919C78DBC00230CD4 /* fl.trunc~.cpp in Sources */,
 				B809C08019C42D7500BA41F4 /* tlsf.c in Sources */,
+				B8EDFD5A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273231DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F51D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120411D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6910,6 +7044,7 @@
 			files = (
 				B812463219F476CB009833F1 /* fl.recall~.cpp in Sources */,
 				B812463319F476CB009833F1 /* tlsf.c in Sources */,
+				B8EDFD751DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2733E1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121101D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841205C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6922,6 +7057,7 @@
 			files = (
 				B812464719F476D3009833F1 /* fl.store~.cpp in Sources */,
 				B812464919F476D3009833F1 /* tlsf.c in Sources */,
+				B8EDFD761DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2733F1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121111D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841205D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6934,6 +7070,7 @@
 			files = (
 				B843AAA719C07046000D3476 /* tlsf.c in Sources */,
 				B843AAB519C070A1000D3476 /* fl.sink~.cpp in Sources */,
+				B8EDFD2E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272F71DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C91D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120151D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6946,6 +7083,7 @@
 			files = (
 				B843AABA19C08452000D3476 /* tlsf.c in Sources */,
 				B805E34019C3AF73007D8D8B /* fl.plus~.cpp in Sources */,
+				B8EDFD301DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272F91DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CB1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120171D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6958,6 +7096,7 @@
 			files = (
 				B846E62319F15A57005E9718 /* fl.window~.cpp in Sources */,
 				B846E61719F15A25005E9718 /* tlsf.c in Sources */,
+				B8EDFD681DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273311DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121031D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841204F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6970,6 +7109,7 @@
 			files = (
 				B84943B91B834AD00037DFF1 /* tlsf.c in Sources */,
 				B84943C71B834B4A0037DFF1 /* fl.setparam~.cpp in Sources */,
+				B8EDFD781DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273411DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121131D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841205F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6982,6 +7122,7 @@
 			files = (
 				B84943D01B837DB70037DFF1 /* tlsf.c in Sources */,
 				B84943DB1B837DDC0037DFF1 /* fl.chop~.cpp in Sources */,
+				B8EDFD791DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273421DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121141D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120601D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -6994,6 +7135,7 @@
 			files = (
 				B84943EE1B8386100037DFF1 /* fl.spatial~.cpp in Sources */,
 				B84943E11B8385BC0037DFF1 /* tlsf.c in Sources */,
+				B8EDFD7A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273431DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121151D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120611D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7006,6 +7148,7 @@
 			files = (
 				B84BE88A1C1F641500A55F8C /* fl.medianfilter~.cpp in Sources */,
 				B84BE87D1C1F63E500A55F8C /* tlsf.c in Sources */,
+				B8EDFD811DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2734A1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841211C1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120681D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7018,6 +7161,7 @@
 			files = (
 				B85B68A719F1CF56002D6F1D /* fl.sallenkey~.cpp in Sources */,
 				B85B689B19F1CEDC002D6F1D /* tlsf.c in Sources */,
+				B8EDFD6F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273381DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210A1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120561D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7030,6 +7174,7 @@
 			files = (
 				B85B68BA19F1D39F002D6F1D /* fl.onepolezero~.cpp in Sources */,
 				B85B68AF19F1D38F002D6F1D /* tlsf.c in Sources */,
+				B8EDFD6D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273361DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121081D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120541D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7042,6 +7187,7 @@
 			files = (
 				B85B68CE19F1D6A9002D6F1D /* fl.resonant~.cpp in Sources */,
 				B85B68C219F1D5F0002D6F1D /* tlsf.c in Sources */,
+				B8EDFD6E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273371DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121091D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120551D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7054,6 +7200,7 @@
 			files = (
 				B85B68E219F262A3002D6F1D /* fl.register~.cpp in Sources */,
 				B85B68D719F2628C002D6F1D /* tlsf.c in Sources */,
+				B8EDFD621DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2732B1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120FD1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120491D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7066,6 +7213,7 @@
 			files = (
 				B85BDDCE19F1C22400A349C5 /* fl.0dfsvf~.cpp in Sources */,
 				B85BDDC319F1C21400A349C5 /* tlsf.c in Sources */,
+				B8EDFD6B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273341DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121061D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120521D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7078,6 +7226,7 @@
 			files = (
 				B861EBC819CA3F2900B89477 /* fl.sort~.cpp in Sources */,
 				B861EBA819CA3E8700B89477 /* tlsf.c in Sources */,
+				B8EDFD691DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273321DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121041D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120501D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7090,6 +7239,7 @@
 			files = (
 				B861EBC719CA3F2400B89477 /* fl.percentile~.cpp in Sources */,
 				B861EBBA19CA3E9500B89477 /* tlsf.c in Sources */,
+				B8EDFD6A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273331DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121051D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120511D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7106,6 +7256,7 @@
 				B87E877519C8EEEB00B1D0CD /* fl.fft~.cpp in Sources */,
 				B87E875A19C8EE9600B1D0CD /* tlsf.c in Sources */,
 				B841204C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B8EDFD651DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7119,6 +7270,7 @@
 				B87E878B19C8F4BC00B1D0CD /* fl.ifft~.cpp in Sources */,
 				B87E877F19C8F4AA00B1D0CD /* tlsf.c in Sources */,
 				B841204D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B8EDFD661DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7141,6 +7293,7 @@
 				B8A4758519C9DDEA0043DC65 /* fl.convolve~.cpp in Sources */,
 				B8A4757919C9DDCD0043DC65 /* tlsf.c in Sources */,
 				B841204E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B8EDFD671DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7154,6 +7307,7 @@
 				B8AD887119C7C4B400FFA238 /* ibuffer_access.c in Sources */,
 				B8AD886319C7C46B00FFA238 /* tlsf.c in Sources */,
 				B841204B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B8EDFD641DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7163,6 +7317,7 @@
 			files = (
 				B8AE693819F45A380040B4EE /* fl.shift~.cpp in Sources */,
 				B8AE693919F45A380040B4EE /* tlsf.c in Sources */,
+				B8EDFD741DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2733D1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210F1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841205B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7179,6 +7334,7 @@
 				B8D273401DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121121D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841205E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B8EDFD771DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7188,6 +7344,7 @@
 			files = (
 				B8C8564619F2A96C006358DA /* fl.pad~.cpp in Sources */,
 				B8C8564919F2A96C006358DA /* tlsf.c in Sources */,
+				B8EDFD701DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273391DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210B1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120571D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7200,6 +7357,7 @@
 			files = (
 				B8C8566119F2A96E006358DA /* fl.subframe~.cpp in Sources */,
 				B8C8566019F2A96E006358DA /* tlsf.c in Sources */,
+				B8EDFD711DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2733A1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210C1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120581D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7212,6 +7370,7 @@
 			files = (
 				B8C8567619F2A978006358DA /* fl.split~.cpp in Sources */,
 				B8C8567719F2A978006358DA /* tlsf.c in Sources */,
+				B8EDFD721DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2733B1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210D1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120591D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7224,6 +7383,7 @@
 			files = (
 				B812465319F4781E009833F1 /* fl.join~.cpp in Sources */,
 				B8C8568D19F2A97A006358DA /* tlsf.c in Sources */,
+				B8EDFD731DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2733C1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210E1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841205A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7236,6 +7396,7 @@
 			files = (
 				B8F6E4CB199D247C0073E06D /* tlsf.c in Sources */,
 				B8CA31EF199A20FF005F30A1 /* fl.pack~.cpp in Sources */,
+				B8EDFD291DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272F21DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C41D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120101D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7248,6 +7409,7 @@
 			files = (
 				B8F6E4CD199D247C0073E06D /* tlsf.c in Sources */,
 				B8CA3211199A2454005F30A1 /* fl.t1~.cpp in Sources */,
+				B8EDFD2B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272F41DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C61D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120121D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7260,6 +7422,7 @@
 			files = (
 				B8F6E4CE199D247C0073E06D /* tlsf.c in Sources */,
 				B8CA3213199A2464005F30A1 /* fl.t2~.cpp in Sources */,
+				B8EDFD2C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272F51DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C71D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120131D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7272,6 +7435,7 @@
 			files = (
 				B8F6E4CF199D247C0073E06D /* tlsf.c in Sources */,
 				B8CA3225199A29D5005F30A1 /* fl.interval~.cpp in Sources */,
+				B8EDFD2D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272F61DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C81D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120141D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7284,6 +7448,7 @@
 			files = (
 				B8CACC7D19C0F4A9007434C9 /* tlsf.c in Sources */,
 				B8CACC8B19C0F5D1007434C9 /* fl.source~.cpp in Sources */,
+				B8EDFD2F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272F81DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CA1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120161D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7296,6 +7461,7 @@
 			files = (
 				B8D679DF1B83E5A600519310 /* fl.trace~.cpp in Sources */,
 				B8D679D21B83E51A00519310 /* tlsf.c in Sources */,
+				B8EDFD7B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273441DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121161D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120621D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7308,6 +7474,7 @@
 			files = (
 				B8D679E71B847A3300519310 /* fl.map~.cpp in Sources */,
 				B8D679E91B847A3300519310 /* tlsf.c in Sources */,
+				B8EDFD7C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273451DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121171D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120631D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7320,6 +7487,7 @@
 			files = (
 				B8D679FA1B84996800519310 /* tlsf.c in Sources */,
 				B8D67A071B8499D900519310 /* fl.samplerate~.cpp in Sources */,
+				B8EDFD7D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273461DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121181D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120641D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7332,6 +7500,7 @@
 			files = (
 				B8D67A0D1B84A00500519310 /* tlsf.c in Sources */,
 				B8D67A191B84A04D00519310 /* fl.frommax~.cpp in Sources */,
+				B8EDFD7E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273471DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121191D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120651D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7344,6 +7513,7 @@
 			files = (
 				B8D67A201B84D88F00519310 /* tlsf.c in Sources */,
 				B8D67A2C1B84D8B200519310 /* fl.coordinatesystem.cpp in Sources */,
+				B8EDFD7F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273481DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841211A1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120661D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7356,6 +7526,7 @@
 			files = (
 				B8D8DB831B89D74B000203E5 /* tlsf.c in Sources */,
 				B8D8DB8F1B89D76A000203E5 /* fl.select~.cpp in Sources */,
+				B8EDFD801DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273491DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841211B1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120671D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7368,6 +7539,7 @@
 			files = (
 				B8F3798B19F1C8E600EC7FDA /* fl.onepole~.cpp in Sources */,
 				B8F3797F19F1C8B400EC7FDA /* tlsf.c in Sources */,
+				B8EDFD6C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273351DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121071D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120531D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7380,6 +7552,7 @@
 			files = (
 				B8F83EA819C78F9800230CD4 /* fl.vmin~.cpp in Sources */,
 				B8F83E3619C78E9A00230CD4 /* tlsf.c in Sources */,
+				B8EDFD5B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273241DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F61D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120421D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7392,6 +7565,7 @@
 			files = (
 				B8F83EA719C78F9400230CD4 /* fl.vmax~.cpp in Sources */,
 				B8F83E4719C78EA700230CD4 /* tlsf.c in Sources */,
+				B8EDFD5C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273251DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F71D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120431D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7404,6 +7578,7 @@
 			files = (
 				B8F83EA619C78F9100230CD4 /* fl.sum~.cpp in Sources */,
 				B8F83E5719C78EA900230CD4 /* tlsf.c in Sources */,
+				B8EDFD5D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273261DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F81D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120441D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7416,6 +7591,7 @@
 			files = (
 				B8F83EA519C78F8800230CD4 /* fl.product~.cpp in Sources */,
 				B8F83E6719C78EAB00230CD4 /* tlsf.c in Sources */,
+				B8EDFD5E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273271DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F91D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120451D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7428,6 +7604,7 @@
 			files = (
 				B8F83EA419C78F8000230CD4 /* fl.mean~.cpp in Sources */,
 				B8F83E7719C78EAE00230CD4 /* tlsf.c in Sources */,
+				B8EDFD5F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273281DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120FA1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120461D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7440,6 +7617,7 @@
 			files = (
 				B8F83EA319C78F7B00230CD4 /* fl.gmean~.cpp in Sources */,
 				B8F83E8719C78EAF00230CD4 /* tlsf.c in Sources */,
+				B8EDFD601DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273291DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120FB1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120471D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7452,6 +7630,7 @@
 			files = (
 				B8F83EA219C78F7700230CD4 /* fl.length~.cpp in Sources */,
 				B8F83E9719C78EB100230CD4 /* tlsf.c in Sources */,
+				B8EDFD611DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2732A1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120FC1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120481D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
@@ -7464,6 +7643,7 @@
 			files = (
 				B8F83EB019C79CC900230CD4 /* tlsf.c in Sources */,
 				B8F83EBD19C79D0200230CD4 /* fl.count~.cpp in Sources */,
+				B8EDFD631DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2732C1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120FE1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841204A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
