@@ -1,4 +1,8 @@
 
+#ifndef __APPLE__
+#include "windows.h"
+#endif
+
 #include "FrameLib_RandGen.h"
 
 // Return an signed 32 bit integer in the range [lo, hi]
@@ -81,7 +85,7 @@ void FrameLib_RandGen::randSeedCMWC()
 #else
     HCRYPTPROV hProvider = 0;
     const DWORD dwLength = 4 * CMWC_LAG_SIZE;
-    BYTE *pbBuffer = (BYTE *) seed;
+    BYTE *pbBuffer = (BYTE *) seeds;
     
     if (!CryptAcquireContextW(&hProvider, 0, 0, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT | CRYPT_SILENT))
         return;
