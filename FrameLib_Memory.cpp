@@ -27,26 +27,6 @@ size_t blockSize(void* ptr)
 }
 
 
-// Memory Pools
-
-FrameLib_MainAllocator::Pool::Pool(void *mem, size_t size) : mUsedRecently(true), mTime(0), mSize(size), mPrev(NULL), mNext(NULL), mMem(mem)
-{}
-
-bool FrameLib_MainAllocator::Pool::isFree()
-{
-    return tlsf_pool_is_free(mMem);
-}
-
-void FrameLib_MainAllocator::NewThread::doTask()
-{
-    mAllocator->addScheduledPool(FrameLib_MainAllocator::createPool(growSize));
-}
-
-void FrameLib_MainAllocator::FreeThread::doTask()
-{
-    mAllocator->destroyPool(mAllocator->getScheduledPool());
-}
-
 // The Main Allocator (has no threadsafety)
 
 FrameLib_MainAllocator::FrameLib_MainAllocator() : mPools(NULL), mOSAllocated(0), mAllocated(0), lastDisposedPoolSize(0), allocThread(this), freeThread(this)
@@ -162,10 +142,14 @@ void FrameLib_MainAllocator::prune()
     }
 }
 
+// Get a Pool class from the tlsf pool_t
+
 FrameLib_MainAllocator::Pool *FrameLib_MainAllocator::getPool(pool_t pool)
 {
     return (Pool *) (((BytePointer) pool) - sizeof(Pool));
 }
+
+// Pool Helpers
 
 FrameLib_MainAllocator::Pool *FrameLib_MainAllocator::createPool(size_t size)
 {
@@ -232,6 +216,20 @@ void FrameLib_MainAllocator::removePool(Pool *pool)
     unlinkPool(pool);
     mOSAllocated -= pool->mSize;
 }
+
+// Scheduled creation/deletion
+
+void FrameLib_MainAllocator::addScheduledPool()
+{
+    Pool *pool = createPool(growSize);
+    while (!scheduledNewPool.compareAndSwap(NULL, pool));
+}
+
+void FrameLib_MainAllocator::destroyScheduledPool()
+{
+    destroyPool(scheduledDisposePool.clear());
+}
+
 
 // The global allocator (adds threadsaftey to the main allocator)
 
@@ -414,7 +412,10 @@ FrameLib_LocalAllocator::Storage *FrameLib_LocalAllocator::registerStorage(const
     std::vector<Storage *>::iterator it = findStorage(name);
     
     if (it != mStorage.end())
+    {
+        (*it)->increment();
         return *it;
+    }
     
     mStorage.push_back(new Storage(name, this));
     return mStorage.back();

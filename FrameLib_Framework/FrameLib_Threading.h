@@ -5,6 +5,11 @@
 #ifdef __APPLE__
 
 #include <libkern/OSAtomic.h>
+#include <pthread.h>
+#include <mach/semaphore.h>
+#include <mach/task.h>
+
+// Mac OS specific definitions
 
 typedef volatile int32_t Atomic32;
 
@@ -26,7 +31,13 @@ static inline void *swapPtr(AtomicPtr *loc, void *swap)
     return ptr;
 }
 
+typedef pthread_t OSThreadType;
+typedef semaphore_t OSSemaphoreType;
+typedef void *OSThreadFunctionType(void *arg);
+
 #else
+
+// Windows OS specific definitions
 
 #include <windows.h>
 
@@ -35,12 +46,16 @@ typedef volatile long Atomic32;
 static inline Atomic32 increment32(Atomic32 *a) { return InterlockedIncrement(a); }
 static inline Atomic32 decrement32(Atomic32 *a) { return InterlockedDecrement(a); }
 static inline Atomic32 add32(Atomic32 *a, Atomic32 b) { return InterlockedAdd(a, b); }
-static inline bool compareAndSwap32(Atomic32 *loc, Atomic32 comp, Atomic32 exch) { return InterlockedCompareExchange(loc, comp, exch) == comp; }
+static inline bool compareAndSwap32(Atomic32 *loc, Atomic32 comp, Atomic32 exch) { return InterlockedCompareExchange(loc, exch, comp) == comp; }
 
 typedef volatile PVOID AtomicPtr;
 
-static inline bool compareAndSwapPtr(AtomicPtr *loc, void *comp, void *exch) { return InterlockedCompareExchangePointer(comp, exch, loc); }
+static inline bool compareAndSwapPtr(AtomicPtr *loc, void *comp, void *exch) { return InterlockedCompareExchangePointer(loc, exch, comp) == comp; }
 static inline void *swapPtr(AtomicPtr *loc, void *swap) { return InterlockedExchangePointer(loc, swap); }
+
+typedef HANDLE OSThreadType;
+typedef HANDLE OSSemaphoreType;
+typedef DWORD WINAPI OSThreadFunctionType(LPVOID arg);
 
 #endif
 
@@ -103,135 +118,150 @@ private:
 	FrameLib_Atomic32 mAtomicLock;
 };
 
-/////////////////
 
-// Lightweight high priority thread and semaphore (note you should destroy the thread before the semaphore)
-
-#ifdef __APPLE__
-#include <pthread.h>
-#include <mach/semaphore.h>
-#include <mach/task.h>
-#else
-#include <Windows.h>
-#endif
+// Lightweight thread
 
 struct Thread
 {
     
-#ifdef __APPLE__
-    typedef void *threadFunc(void *arg);
-#else
-    DWORD WINAPI threadFunc(LPVOID arg);
-#endif
+    typedef void ThreadFunctionType(void *);
     
-    Thread(threadFunc *threadFunction, void *arg);
+public:
+    
+    enum PriorityLevel {kLowPriority, kMediumPriority, kHighPriority, kAudioPriority};
+
+    Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void *arg);
     ~Thread();
-    
+
+    void close();
+
 private:
     
-#ifdef __APPLE__
-    pthread_t mPth;
-#else
-    HANDLE mPth;
-    bool mExiting;
-#endif
+    // Deleted
+    
+    Thread(const Thread&);
+    Thread& operator=(const Thread&);
+    
+    // threadStart is a quick OS-style wrapper to call the object which calls the relevant static function
+    
+    static OSThreadFunctionType threadStart;
+    void call() { mThreadFunction(mArg); }
+    
+    // Data
+    
+    OSThreadType mInternal;
+    ThreadFunctionType *mThreadFunction;
+    void *mArg;
+    bool mValid;
 };
 
-struct Semaphore
+
+// Semaphore (note that you should most likely close() before the destructor is called
+
+class Semaphore
 {
-    Semaphore(long size);
+
+public:
+    
+    Semaphore(long maxCount);
     ~Semaphore();
     
-    void tick(long n);
+    void close();
+    void signal(long n);
     bool wait();
     
 private:
     
-#ifdef __APPLE__
-    task_t mTask;
-    semaphore_t mInternal;
-#else
-    long mSize;
-    HANDLE mInternal;
-#endif
+    // Deleted
     
+    Semaphore(const Semaphore&);
+    Semaphore& operator=(const Semaphore&);
+    
+    // Data
+    
+    OSSemaphoreType mInternal;
+    bool mValid;
 };
 
-struct SignalableThread : private Thread
+
+// A thread that can be triggered from another thread but without any built-in mechanism to check progress
+
+class TriggerableThread
 {
-    SignalableThread() : Thread(threadStart, this), mSemaphore(1){}
-    virtual ~SignalableThread(){}
     
-    void signal() { mSemaphore.tick(1); }
+public:
+
+    TriggerableThread(Thread::PriorityLevel priority) : mThread(priority, threadEntry, this), mSemaphore(1) {}
+    ~TriggerableThread();
     
-protected:
+    // Trigger the thread to do something
     
-    bool wait()   { return mSemaphore.wait(); }
+    void signal() { mSemaphore.signal(1); };
     
 private:
     
-    static void *threadStart(void *thread)
-    {
-        ((SignalableThread *) thread)->threadEntry();
-        
-        return NULL;
-    }
+    // Deleted
     
-    void threadEntry()
-    {
-        while(wait()) doTask();
-    }
+    TriggerableThread(const Thread&);
+    TriggerableThread& operator=(const Thread&);
+    
+    // threadEntry simply calls threadClassEntry which calls the task handler
+    
+    static void threadEntry(void *thread);
+    void threadClassEntry();
+    
+    // Override this and provide code for the thread's functionaility
     
     virtual void doTask() = 0;
     
+    // Data
+    
+    Thread mThread;
     Semaphore mSemaphore;
 };
 
-struct SyncThread : private SignalableThread
+
+// A thread to delegate tasks to, which can be then be checked for completion
+
+class DelegateThread
 {
-    SyncThread() : mSignaled(false) {}
     
-    bool signal()
-    {
-        if (mSignaled || !mFlag.compareAndSwap(0, 1))
-            return false;
-        mSignaled = true;
-        SignalableThread::signal();
-        return true;
-    }
+public:
+
+    DelegateThread(Thread::PriorityLevel priority) : mThread(priority, threadEntry, this), mSemaphore(1), mSignaled(false) {}
+    ~DelegateThread();
     
-    bool completed()
-    {
-        if (!mSignaled)
-            return false;
-        while (!mFlag.compareAndSwap(2, 0));
-        mSignaled = false;
-        return true;
-    }
+    // Signal the thread to do something if it is not busy (returns true if the thread was signalled, false if busy)
+    
+    bool signal();
+    
+    // Wait for thread's completion of a task - returns true  first time after a signal / false for subsequent calls/the thread has not been signalled
+    
+    bool completed();
     
 private:
     
-    static void *threadStart(void *thread)
-    {
-        ((SyncThread *) thread)->threadEntry();
-        
-        return NULL;
-    }
+    // Deleted
     
-    void threadEntry()
-    {
-        while(!wait())
-        {
-            doTask();
-            mFlag.compareAndSwap(1, 2);
-        }
-    }
+    DelegateThread(const DelegateThread&);
+    DelegateThread& operator=(const DelegateThread&);
     
+    // threadEntry simply calls threadClassEntry which calls the task handler
+    
+    static void threadEntry(void *thread);
+    void threadClassEntry();
+    
+    // Override this and provide code for the thread's functionaility
+
     virtual void doTask() = 0;
+    
+    // Data
+
+    Thread mThread;
+    Semaphore mSemaphore;
+    
     bool mSignaled;
     FrameLib_Atomic32 mFlag;
 };
-
-/////////////
 
 #endif

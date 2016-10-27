@@ -8,18 +8,15 @@
 #include <vector>
 #include <ctime>
 
-// FIX - do alignment improvements ?? (be better as part of allocator directly)
-// FIX - expand the block and do free heuristics differently/for malloc (always free large blocks for instance)
-
 // The Main Allocator (has no threadsafety)
 
 class FrameLib_MainAllocator
 {    
     struct Pool
     {
-        Pool(void *mem, size_t size);
+        Pool(void *mem, size_t size)  : mUsedRecently(true), mTime(0), mSize(size), mPrev(NULL), mNext(NULL), mMem(mem) {}
     
-        bool isFree();
+        bool isFree() { return tlsf_pool_is_free(mMem); }
         
         bool mUsedRecently;
         time_t mTime;
@@ -29,24 +26,30 @@ class FrameLib_MainAllocator
         void *mMem;
     };
     
-    struct NewThread : public SyncThread
+    class NewThread : public DelegateThread
     {
-        NewThread(FrameLib_MainAllocator *allocator) : mAllocator(allocator){}
+        
+    public:
+
+        NewThread(FrameLib_MainAllocator *allocator) : DelegateThread(Thread::kHighPriority), mAllocator(allocator){}
         
     private:
         
-        virtual void doTask();
+        virtual void doTask() { mAllocator->addScheduledPool(); };
         
         FrameLib_MainAllocator *mAllocator;
     };
     
-    struct FreeThread : public SignalableThread
+    class FreeThread : public TriggerableThread
     {
-        FreeThread(FrameLib_MainAllocator *allocator) : mAllocator(allocator){}
+        
+    public:
+        
+        FreeThread(FrameLib_MainAllocator *allocator) : TriggerableThread(Thread::kLowPriority), mAllocator(allocator){}
         
     private:
         
-        virtual void doTask();
+        virtual void doTask() { mAllocator->destroyScheduledPool(); };
         
         FrameLib_MainAllocator *mAllocator;
     };
@@ -56,17 +59,20 @@ public:
     FrameLib_MainAllocator();
     ~FrameLib_MainAllocator();
     
+    // Allocate and deallocate memory (plus pruning)
+    
     void *alloc(size_t size);
     void dealloc(void *ptr);
     
     void prune();
     
-    void addScheduledPool(Pool *pool) { while (!scheduledNewPool.compareAndSwap(NULL, pool)); }
-    Pool *getScheduledPool() { return scheduledDisposePool.clear(); }
-    
 private:
     
+    // Get a Pool class from the tlsf pool_t
+    
     Pool *getPool(pool_t pool);
+    
+    // Pool Helpers
     
     static Pool *createPool(size_t size);
     static void destroyPool(Pool *pool);
@@ -76,7 +82,13 @@ private:
     void insertPool(Pool *pool);
     void removePool(Pool *pool);
 
+    // Scheduled creation/deletion
+    
+    void addScheduledPool();
+    void destroyScheduledPool();
+
     // TSLF allocator and pools
+    
     tlsf_t mTLSF;
     Pool *mPools;
     
