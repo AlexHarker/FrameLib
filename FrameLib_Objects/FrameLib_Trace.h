@@ -21,7 +21,7 @@ class FrameLib_Trace : public FrameLib_AudioProcessor
     
 public:
     
-    FrameLib_Trace(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_AudioProcessor(context, 1, 0, 1, 1)
+    FrameLib_Trace(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_AudioProcessor(context, 1, 0, 0, 1)
     {
         mAttributes.addDouble(kLength, "length", 8000, 0);
         mAttributes.setMin(0.0);
@@ -73,7 +73,7 @@ public:
         
         memset(mBuffer, 0, mSize * sizeof(double));
         for (unsigned long i = 0; i < size; i++)
-            mFlags[i] = FALSE;
+            mFlags[i] = false;
 
         mLastValue = 0.0;
         mCounter = 0;
@@ -88,18 +88,17 @@ private:
         if (size)
         {
             for (unsigned long i = 0; i < size; i++)
+            {
                 output[i] = trace = mFlags[offset + i] ? mBuffer[offset + i] : trace;
-            
-            
-            for (unsigned long i = 0; i < size; i++)
-                mFlags[offset + i] = FALSE;
+                mFlags[offset + i] = false;
+            }
             
             mLastValue = trace;
             mCounter = offset + size;
         }
     }
     
-    void blockProcess (double **ins, double **outs, unsigned long vecSize)
+    void blockProcessPost(double **ins, double **outs, unsigned long vecSize)
     {
         double *output = outs[0];
         
@@ -116,12 +115,12 @@ private:
         copyAndZero(output + size, 0, vecSize - size);
     }
     
-    void WriteToBuffer (double *input, unsigned long offset, unsigned long size)
+    void WriteToBuffer(double *input, unsigned long offset, unsigned long size)
     {
         for (unsigned long i = 0; i < size; i++)
         {
             mBuffer[i + offset] = input[i];
-            mFlags[i + offset] = TRUE;
+            mFlags[i + offset] = true;
         }
     }
     
