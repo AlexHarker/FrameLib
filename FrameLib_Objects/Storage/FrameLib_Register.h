@@ -23,9 +23,9 @@ public:
         Modes mode = (Modes) mAttributes.getInt(kMode);
         
         if (mode == kStore)
-            inputMode(1, FALSE, FALSE, FALSE);
+            inputMode(1, false, false, false);
         else
-            inputMode(1, FALSE, TRUE, FALSE);
+            inputMode(1, false, true, false);
     }
     
 protected:

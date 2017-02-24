@@ -1,6 +1,6 @@
 
-#ifndef FRAMELIB_SHIFT_H
-#define FRAMELIB_SHIFT_H
+#ifndef FRAMELIB_MEDIANFILTER_H
+#define FRAMELIB_MEDIANFILTER_H
 
 #include <algorithm>
 #include "FrameLib_DSP.h"
