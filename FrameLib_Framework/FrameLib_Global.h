@@ -28,7 +28,7 @@ template<class T> class FrameLib_PointerSet
     
 public:
     
-    // Find a pre-exisitng object by reference address
+    // Find a pre-existing object by reference address
     
     T *find(void *reference)
     {

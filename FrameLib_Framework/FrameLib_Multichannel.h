@@ -14,7 +14,6 @@
 
 class FrameLib_MultiChannel
 {
-    // ************************************************************************************** //
 
     // Connection Queue - this allows the network to update itself without deep recursive stack calls
 

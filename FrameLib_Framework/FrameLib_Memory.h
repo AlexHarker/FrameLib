@@ -128,7 +128,6 @@ private:
     
     FrameLib_SpinLock mLock;
     FrameLib_MainAllocator mAllocator;
-
 };
 
 
@@ -155,9 +154,7 @@ public:
     
     // Named storage local to each context
     
-    // FIX - style
-    
-    struct Storage
+    class Storage
     {
         friend FrameLib_LocalAllocator;
 
@@ -166,14 +163,14 @@ public:
         Storage(const char *name, FrameLib_LocalAllocator *allocator);
         ~Storage();
         
-        void increment()            { mCount++; }
-        unsigned long decrement()   { return --mCount; }
+        void increment()                { mCount++; }
+        unsigned long decrement()       { return --mCount; }
         
     public:
         
-        double *getData() const           { return mData; }
-        unsigned long getSize() const     { return mSize; }
-        const char *getName() const       { return mName; }
+        double *getData() const         { return mData; }
+        unsigned long getSize() const   { return mSize; }
+        const char *getName() const     { return mName; }
         
         void resize(unsigned long size);
         
