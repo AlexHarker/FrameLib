@@ -28,7 +28,7 @@ public:
     
 protected:
     
-    void process ()
+    void process()
 	{
         // Get Input 
         
