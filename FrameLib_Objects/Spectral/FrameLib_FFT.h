@@ -5,7 +5,7 @@
 #include "FrameLib_DSP.h"
 #include "../../FrameLib_Dependencies/HISSTools_FFT/HISSTools_FFT.h"
 
-// FIX - add zero padding
+// FIX - add zero padding (why not do this prior to FFT with the pad object?)
 
 class FrameLib_FFT : public FrameLib_Processor
 {
@@ -33,7 +33,7 @@ public:
 	
 private:
 	
-	unsigned long log2 (unsigned long value)
+	unsigned long log2(unsigned long value)
 	{
 		unsigned long bitShift = value;
 		unsigned long bitCount = 0;
@@ -52,7 +52,7 @@ private:
 	
 protected:
     
-    void process ()
+    void process()
 	{
         FFT_SPLIT_COMPLEX_D spectrum;
         
@@ -89,7 +89,7 @@ protected:
             hisstools_unzip_zero_d(input, &spectrum, sizeIn, FFTSizelog2);
             hisstools_rfft_d(mFFTSetup, &spectrum, FFTSizelog2);
             
-            // Move Nyquat Bin
+            // Move Nyquist Bin
             
             spectrum.realp[sizeOut - 1] = spectrum.imagp[0];
             spectrum.imagp[sizeOut - 1] = 0.0;
