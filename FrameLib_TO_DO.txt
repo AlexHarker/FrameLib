@@ -11,16 +11,16 @@ DONE	- Make C++ class extensible
 3 - Review parameter inputs (how to handle, including max wrapper)
 
 4 - Finalise Memory Management
-	- Do variable memory management (underlying engine)
-	- Review memory management
+PROGRESS	- Do variable memory management (underlying engine)
+		- Review memory management
 
 5 - Revise, refactor and cleanup
-DONE	- Global / Common
-	- Memory
-	- Max Object Work
-	- Block / DSP
-	- Attribute
-	- Multichannel
+DONE		- Global / Context
+PROGRESS	- Memory
+		- Max Object Work
+		- Block / DSP
+		- Attribute
+		- Multichannel
 
 6 - Assist/Help Info (Inputs and Parameters)
 
