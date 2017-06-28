@@ -48,7 +48,6 @@ inline uint32_t FrameLib_RandGen::CMWC()
     i = (i + 1) & (CMWC_LAG_SIZE - 1);
     t = (uint64_t) CMWC_A_VALUE * mSTATE[i] + c;
     c = (t >> 32);
-    //FIX - check this line and look elsewhere also...
     x = (uint32_t) ((t + c) & 0xFFFFFFFF);
     
     if (x < c)
