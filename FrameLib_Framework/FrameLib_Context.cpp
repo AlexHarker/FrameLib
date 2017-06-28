@@ -1,6 +1,7 @@
 
 #include "FrameLib_Context.h"
 #include "FrameLib_Global.h"
+#include "FrameLib_DSPQueue.h"
 
 // Methods to retrieve common objects
 
@@ -14,7 +15,7 @@ void *FrameLib_Context::getConnectionQueue() const
     return mGlobal->getConnectionQueue(mReference);
 }
 
-void *FrameLib_Context::getDSPQueue() const
+FrameLib_DSPQueue *FrameLib_Context::getDSPQueue() const
 {
     return mGlobal->getDSPQueue(mReference);
 }

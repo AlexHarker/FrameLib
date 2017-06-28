@@ -48,13 +48,13 @@ FrameLib_MultiChannel::ConnectionQueue *FrameLib_Global::getConnectionQueue(void
     return queue;
 }
 
-FrameLib_DSP::DSPQueue *FrameLib_Global::getDSPQueue(void *reference)
+FrameLib_DSPQueue *FrameLib_Global::getDSPQueue(void *reference)
 {
-    FrameLib_DSP::DSPQueue *queue = mDSPQueues.find(reference);
+    FrameLib_DSPQueue *queue = mDSPQueues.find(reference);
     
     if (!queue)
     {
-        queue = new FrameLib_DSP::DSPQueue();
+        queue = new FrameLib_DSPQueue();
         mDSPQueues.add(queue, reference);
     }
     

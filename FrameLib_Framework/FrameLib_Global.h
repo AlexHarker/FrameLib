@@ -3,8 +3,8 @@
 #define FRAMELIB_GLOBAL_H
 
 #include "FrameLib_Memory.h"
-#include "FrameLib_DSP.h"
 #include "FrameLib_MultiChannel.h"
+#include "FrameLib_DSPQueue.h"
 #include <vector>
 
 // A template class for storing reference counted pointers against reference addresses (representing contexts)
@@ -103,7 +103,7 @@ public:
 
     FrameLib_LocalAllocator *getAllocator(void *reference);
     FrameLib_MultiChannel::ConnectionQueue *getConnectionQueue(void *reference);
-    FrameLib_DSP::DSPQueue *getDSPQueue(void *reference);
+    FrameLib_DSPQueue *getDSPQueue(void *reference);
     
     // Methods to release common objects
 
@@ -124,7 +124,7 @@ private:
     
     FrameLib_PointerSet<FrameLib_LocalAllocator> mLocalAllocators;
     FrameLib_PointerSet<FrameLib_MultiChannel::ConnectionQueue> mConnectionQueues;
-    FrameLib_PointerSet<FrameLib_DSP::DSPQueue> mDSPQueues;
+    FrameLib_PointerSet<FrameLib_DSPQueue> mDSPQueues;
     
     long mCount;
 };

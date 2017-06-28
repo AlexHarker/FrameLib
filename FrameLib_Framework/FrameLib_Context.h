@@ -7,6 +7,7 @@
 class FrameLib_Global;
 class FrameLib_GlobalAllocator;
 class FrameLib_LocalAllocator;
+class FrameLib_DSPQueue;
 
 
 // The context object (used to define non-connectable areas in the host ennvironment
@@ -27,7 +28,7 @@ public:
     // FIX - hack for now...
     
     void *getConnectionQueue() const;
-    void *getDSPQueue() const;
+    FrameLib_DSPQueue *getDSPQueue() const;
     
     // Methods to release common objects
 
