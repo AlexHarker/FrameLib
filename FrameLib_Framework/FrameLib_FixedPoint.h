@@ -6,7 +6,7 @@
 #include <cmath>
 #include <limits>
 
-// This needs to be altered to cope with platforms other than windows/mac and compilers other than visual studio and GCC
+// FIX - This needs to be altered to cope with platforms other than windows/mac and compilers other than visual studio and GCC
 
 #ifdef __APPLE__
 #if __LP64__
