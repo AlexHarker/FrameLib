@@ -53,6 +53,9 @@ protected:
         
         double *input = getInput(0, &sizeIn);
       
+        if (!sizeIn)
+            return;
+        
         // Calculate number of peaks (for now ignore peaks in the top 2 positions)
       
         if (sizeIn > 2 && (input[0] > input[1]) && (input[0] > input[2]))
