@@ -1,7 +1,5 @@
 
 #include "FrameLib_Context.h"
-#include "FrameLib_Global.h"
-#include "FrameLib_DSPQueue.h"
 
 // Methods to retrieve common objects
 
@@ -10,7 +8,7 @@ FrameLib_LocalAllocator *FrameLib_Context::getAllocator() const
     return mGlobal->getAllocator(mReference);
 }
 
-void *FrameLib_Context::getConnectionQueue() const
+FrameLib_ConnectionQueue *FrameLib_Context::getConnectionQueue() const
 {
     return mGlobal->getConnectionQueue(mReference);
 }

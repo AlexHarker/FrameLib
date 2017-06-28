@@ -2,15 +2,9 @@
 #ifndef FRAMELIB_CONTEXT_H
 #define FRAMELIB_CONTEXT_H
 
-// Forward Definitions
+#include "FrameLib_Global.h"
 
-class FrameLib_Global;
-class FrameLib_GlobalAllocator;
-class FrameLib_LocalAllocator;
-class FrameLib_DSPQueue;
-
-
-// The context object (used to define non-connectable areas in the host ennvironment
+// The context object (used to define non-connectable areas in the host environment
 
 class FrameLib_Context
 {
@@ -24,10 +18,7 @@ public:
     // Methods to retrieve common objects
 
     FrameLib_LocalAllocator *getAllocator() const;
-    
-    // FIX - hack for now...
-    
-    void *getConnectionQueue() const;
+    FrameLib_ConnectionQueue *getConnectionQueue() const;
     FrameLib_DSPQueue *getDSPQueue() const;
     
     // Methods to release common objects

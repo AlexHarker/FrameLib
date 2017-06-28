@@ -1,17 +1,13 @@
 
+#include "FrameLib_ConnectionQueue.h"
+#include "FrameLib_MultiChannel.h"
 
-#include "FrameLib_DSPQueue.h"
-#include "FrameLib_DSP.h"
-
-
-// DSP Queue
-
-// FIX - check assumption that an object can only be in the queue once at a time!
-// FIX - check also speed implications as this will not inline from here (perhaps this should call an internal routine of DSP?)
-
-void FrameLib_DSPQueue::add(FrameLib_DSP *object)
+void FrameLib_ConnectionQueue::add(FrameLib_MultiChannel *object)
 {
-    object->mNext = NULL;
+    // Do not re-add if already in queue
+    
+    if (object->mNext != NULL)
+        return;
     
     if (!mTop)
     {
@@ -22,7 +18,7 @@ void FrameLib_DSPQueue::add(FrameLib_DSP *object)
         while (mTop)
         {
             object = mTop;
-            object->dependenciesReady();
+            object->inputUpdate();
             mTop = object->mNext;
             object->mNext = NULL;
         }

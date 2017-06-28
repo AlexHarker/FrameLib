@@ -35,13 +35,13 @@ FrameLib_LocalAllocator *FrameLib_Global::getAllocator(void *reference)
     return allocator;
 }
 
-FrameLib_MultiChannel::ConnectionQueue *FrameLib_Global::getConnectionQueue(void *reference)
+FrameLib_ConnectionQueue *FrameLib_Global::getConnectionQueue(void *reference)
 {
-    FrameLib_MultiChannel::ConnectionQueue *queue = mConnectionQueues.find(reference);
+    FrameLib_ConnectionQueue *queue = mConnectionQueues.find(reference);
     
     if (!queue)
     {
-        queue = new FrameLib_MultiChannel::ConnectionQueue();
+        queue = new FrameLib_ConnectionQueue();
         mConnectionQueues.add(queue, reference);
     }
     

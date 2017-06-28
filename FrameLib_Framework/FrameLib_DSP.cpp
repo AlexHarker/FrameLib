@@ -5,7 +5,7 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP (ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
-: FrameLib_Block(nAudioIns, nAudioOuts), mContext(context), mAllocator(context.getAllocator()), mQueue((FrameLib_DSPQueue *)context.getDSPQueue()), mNext(NULL), mType(type)
+: FrameLib_Block(nAudioIns, nAudioOuts), mContext(context), mAllocator(context.getAllocator()), mQueue(context.getDSPQueue()), mNext(NULL), mType(type)
 {
     // Set IO
     
@@ -31,6 +31,9 @@ FrameLib_DSP::~FrameLib_DSP ()
     mContext.releaseAllocator();
 }
 
+// ************************************************************************************** //
+
+// Set IO Size
 
 void FrameLib_DSP::setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
 {

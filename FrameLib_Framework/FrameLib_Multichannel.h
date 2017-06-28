@@ -18,54 +18,7 @@ class FrameLib_MultiChannel
 
     // Connection Queue - this allows the network to update itself without deep recursive stack calls
 
-public:
-    
-    class ConnectionQueue 
-    {
-    
-    public:
-        
-        ConnectionQueue() : mTop(NULL), mTail(NULL) {}
-        
-        void add(FrameLib_MultiChannel *object)
-        {
-            // Do not re-add if already in queue
-            
-            if (object->mNext != NULL)
-                return;
-            
-            if (!mTop)
-            {
-                // Queue is empty - add and start processing the queue
-
-                mTop = mTail = object;
-
-                while (mTop)
-                {
-                    object = mTop;
-                    object->inputUpdate();
-                    mTop = object->mNext;
-                    object->mNext = NULL;
-                }
-                
-                mTail = NULL;
-            }
-            else
-            {
-                // Add to the queue (which is already processing)
-                
-                mTail->mNext = object;
-                mTail = object;
-            }
-        }
-        
-    private:
-
-        FrameLib_MultiChannel *mTop;
-        FrameLib_MultiChannel *mTail;
-    };
-    
-    // ************************************************************************************** //
+    friend FrameLib_ConnectionQueue;
 
     // Connection Structures
     
@@ -98,12 +51,12 @@ private:
     
 public:
     
-    FrameLib_MultiChannel (FrameLib_Context context, unsigned long nIns, unsigned long nOuts) : mContext(context), mQueue((ConnectionQueue *)context.getConnectionQueue()), mNext(NULL)
+    FrameLib_MultiChannel (FrameLib_Context context, unsigned long nIns, unsigned long nOuts) : mContext(context), mQueue(context.getConnectionQueue()), mNext(NULL)
     {
         setIO(nIns, nOuts);
     }
     
-    FrameLib_MultiChannel (FrameLib_Context context) : mContext(context), mQueue((ConnectionQueue *)context.getConnectionQueue()), mNext(NULL)
+    FrameLib_MultiChannel (FrameLib_Context context) : mContext(context), mQueue(context.getConnectionQueue()), mNext(NULL)
     {
     }
     
@@ -373,7 +326,7 @@ private:
     
     // Queue
     
-    ConnectionQueue *mQueue;
+    FrameLib_ConnectionQueue *mQueue;
     FrameLib_MultiChannel *mNext;
     
     // Connection Info

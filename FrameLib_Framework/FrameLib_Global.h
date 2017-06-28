@@ -3,7 +3,7 @@
 #define FRAMELIB_GLOBAL_H
 
 #include "FrameLib_Memory.h"
-#include "FrameLib_MultiChannel.h"
+#include "FrameLib_ConnectionQueue.h"
 #include "FrameLib_DSPQueue.h"
 #include <vector>
 
@@ -102,7 +102,7 @@ public:
     // Methods to retrieve common objects
 
     FrameLib_LocalAllocator *getAllocator(void *reference);
-    FrameLib_MultiChannel::ConnectionQueue *getConnectionQueue(void *reference);
+    FrameLib_ConnectionQueue *getConnectionQueue(void *reference);
     FrameLib_DSPQueue *getDSPQueue(void *reference);
     
     // Methods to release common objects
@@ -123,7 +123,7 @@ private:
     FrameLib_GlobalAllocator mAllocator;
     
     FrameLib_PointerSet<FrameLib_LocalAllocator> mLocalAllocators;
-    FrameLib_PointerSet<FrameLib_MultiChannel::ConnectionQueue> mConnectionQueues;
+    FrameLib_PointerSet<FrameLib_ConnectionQueue> mConnectionQueues;
     FrameLib_PointerSet<FrameLib_DSPQueue> mDSPQueues;
     
     long mCount;
