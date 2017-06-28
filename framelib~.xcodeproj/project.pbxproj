@@ -557,6 +557,18 @@
 		B85BDDC519F1C21400A349C5 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B85BDDC619F1C21400A349C5 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B85BDDCE19F1C22400A349C5 /* fl.0dfsvf~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85BDDBD19F1C1FF00A349C5 /* fl.0dfsvf~.cpp */; };
+		B85C8FD01E605B2E004D7D40 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
+		B85C8FD11E605B2E004D7D40 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B85C8FD51E605B2E004D7D40 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
+		B85C8FD61E605B2E004D7D40 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
+		B85C8FD71E605B2E004D7D40 /* FrameLib_Memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D272F11DA6629A00E0E566 /* FrameLib_Memory.cpp */; };
+		B85C8FD81E605B2E004D7D40 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
+		B85C8FD91E605B2E004D7D40 /* FrameLib_Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B841200E1D9D469E00C2D5C0 /* FrameLib_Context.cpp */; };
+		B85C8FDB1E605B2E004D7D40 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
+		B85C8FDC1E605B2E004D7D40 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		B85C8FE41E605B44004D7D40 /* fl.mutlitaper~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85C8FCD1E605B28004D7D40 /* fl.mutlitaper~.cpp */; };
+		B85C8FE51E605C9E004D7D40 /* HISSTools_FFT.c in Sources */ = {isa = PBXBuildFile; fileRef = B87E877019C8EEB900B1D0CD /* HISSTools_FFT.c */; };
+		B85C8FE61E605E5D004D7D40 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879419C8F58C00B1D0CD /* Accelerate.framework */; };
 		B861EBA819CA3E8700B89477 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
 		B861EBAB19CA3E8700B89477 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B861EBBA19CA3E9500B89477 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
@@ -636,6 +648,282 @@
 		B87E87D319C8F62F00B1D0CD /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B87E87D419C8F62F00B1D0CD /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B87E87D519C8F63000B1D0CD /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		B88BD2181F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2191F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD21A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD21B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD21C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD21D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD21E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD21F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2201F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2211F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2221F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2231F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2241F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2251F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2261F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2271F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2281F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2291F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD22A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD22B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD22C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD22D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD22E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD22F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2301F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2311F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2321F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2331F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2341F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2351F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2361F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2371F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2381F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2391F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD23A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD23B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD23C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD23D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD23E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD23F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2401F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2411F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2421F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2431F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2441F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2451F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2461F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2471F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2481F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2491F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD24A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD24B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD24C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD24D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD24E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD24F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2501F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2511F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2521F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2531F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2541F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2551F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2561F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2571F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2581F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2591F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD25A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD25B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD25C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD25D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD25E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD25F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2601F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2611F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2621F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2631F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2641F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2651F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2661F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2671F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2681F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2691F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD26A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD26B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD26C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD26D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD26E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD26F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2701F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2711F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2721F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2731F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
+		B88BD2761F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2771F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2781F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2791F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD27A1F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD27B1F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD27C1F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD27D1F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD27E1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD27F1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2801F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2811F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2821F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2831F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2841F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2851F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2861F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2871F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2881F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2891F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD28A1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD28B1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD28C1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD28D1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD28E1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD28F1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2901F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2911F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2921F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2931F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2941F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2951F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2961F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2971F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2981F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2991F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD29A1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD29B1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD29C1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD29D1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD29E1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD29F1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2A01F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2A11F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2A21F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2A31F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2A41F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2A51F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2A61F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2A71F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2A81F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2A91F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2AA1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2AB1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2AC1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2AD1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2AE1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2AF1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2B01F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2B11F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2B21F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2B31F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2B41F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2B51F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2B61F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2B71F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2B81F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2B91F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2BA1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2BB1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2BC1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2BD1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2BE1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2BF1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2C01F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2C11F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2C21F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2C31F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2C41F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2C51F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2C61F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2C71F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2C81F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2C91F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2CA1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2CB1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2CC1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2CD1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2CE1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2CF1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2D01F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2D11F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
+		B88BD2D21F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2D31F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2D41F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2D51F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2D61F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2D71F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2D81F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2D91F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2DA1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2DB1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2DC1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2DD1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2DE1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2DF1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2E01F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2E11F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2E21F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2E31F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2E41F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2E51F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2E61F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2E71F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2E81F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2E91F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2EA1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2EB1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2EC1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2ED1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2EE1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2EF1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2F01F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2F11F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2F21F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2F31F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2F41F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2F51F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2F61F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2F71F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2F81F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2F91F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2FA1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2FB1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2FC1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2FD1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2FE1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD2FF1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3001F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3011F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3021F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3031F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3041F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3051F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3061F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3071F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3081F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3091F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD30A1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD30B1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD30C1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD30D1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD30E1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD30F1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3101F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3111F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3121F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3131F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3141F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3151F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3161F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3171F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3181F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3191F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD31A1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD31B1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD31C1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD31D1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD31E1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD31F1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3201F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3211F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3221F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3231F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3241F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3251F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3261F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3271F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3281F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD3291F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD32A1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD32B1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD32C1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
+		B88BD32D1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
 		B8A1F5BE1D5370DE00FA5FFC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8A1F5BD1D5370DE00FA5FFC /* main.cpp */; };
 		B8A4757719C9DDCD0043DC65 /* HISSTools_FFT.c in Sources */ = {isa = PBXBuildFile; fileRef = B87E877019C8EEB900B1D0CD /* HISSTools_FFT.c */; };
 		B8A4757919C9DDCD0043DC65 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
@@ -1108,6 +1396,9 @@
 		B85BDDBA19F1BC8700A349C5 /* FrameLib_0dfSVF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FrameLib_0dfSVF.h; path = Filters/FrameLib_0dfSVF.h; sourceTree = "<group>"; };
 		B85BDDBD19F1C1FF00A349C5 /* fl.0dfsvf~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.0dfsvf~.cpp"; sourceTree = "<group>"; };
 		B85BDDCC19F1C21400A349C5 /* fl.0dfsvf~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.0dfsvf~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B85C8FCC1E604F19004D7D40 /* FrameLib_Multitaper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Multitaper.h; sourceTree = "<group>"; };
+		B85C8FCD1E605B28004D7D40 /* fl.mutlitaper~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.mutlitaper~.cpp"; sourceTree = "<group>"; };
+		B85C8FE21E605B2E004D7D40 /* fl.multitaper~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.multitaper~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B861EB9F19CA2DCE00B89477 /* FrameLib_Sort_Functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Sort_Functions.h; sourceTree = "<group>"; };
 		B861EBA019CA389E00B89477 /* FrameLib_Sort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Sort.h; sourceTree = "<group>"; };
 		B861EBA119CA3AA500B89477 /* FrameLib_Percentile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Percentile.h; sourceTree = "<group>"; };
@@ -1136,6 +1427,9 @@
 		B87E878919C8F4AA00B1D0CD /* fl.ifft~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.ifft~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B87E879419C8F58C00B1D0CD /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = ../../../../../../System/Library/Frameworks/Accelerate.framework; sourceTree = "<group>"; };
 		B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = "../Max6_support/c74support/msp-includes/MaxAudioAPI.framework"; sourceTree = "<group>"; };
+		B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_DSP.cpp; sourceTree = "<group>"; };
+		B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_DSPQueue.cpp; sourceTree = "<group>"; };
+		B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_DSPQueue.h; sourceTree = "<group>"; };
 		B8A1F5BB1D5370DE00FA5FFC /* NumericTesting */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NumericTesting; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A1F5BD1D5370DE00FA5FFC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B8A4757019C9D9E30043DC65 /* FrameLib_Convolve.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Convolve.h; sourceTree = "<group>"; };
@@ -1749,6 +2043,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B85C8FDA1E605B2E004D7D40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B85C8FDB1E605B2E004D7D40 /* Carbon.framework in Frameworks */,
+				B85C8FDC1E605B2E004D7D40 /* MaxAudioAPI.framework in Frameworks */,
+				B85C8FE61E605E5D004D7D40 /* Accelerate.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B861EBA919CA3E8700B89477 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -2204,6 +2508,7 @@
 				B8A1F5BB1D5370DE00FA5FFC /* NumericTesting */,
 				B8C5EBD51E5F99A80086E8B6 /* fl.lookup~.mxo */,
 				B8C5EBEF1E5FA6340086E8B6 /* fl.peaks~.mxo */,
+				B85C8FE21E605B2E004D7D40 /* fl.multitaper~.mxo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2293,6 +2598,7 @@
 				B846E61119F15A12005E9718 /* FrameLib_Window.h */,
 				B87E875319C8EA4900B1D0CD /* FrameLib_FFT.h */,
 				B87E877819C8F47700B1D0CD /* FrameLib_iFFT.h */,
+				B85C8FCC1E604F19004D7D40 /* FrameLib_Multitaper.h */,
 				B8A4757019C9D9E30043DC65 /* FrameLib_Convolve.h */,
 			);
 			path = Spectral;
@@ -2359,6 +2665,7 @@
 			children = (
 				B846E62219F15A57005E9718 /* fl.window~.cpp */,
 				B8A4757219C9DD9F0043DC65 /* fl.convolve~.cpp */,
+				B85C8FCD1E605B28004D7D40 /* fl.mutlitaper~.cpp */,
 				B87E877419C8EEEB00B1D0CD /* fl.fft~.cpp */,
 				B87E877719C8F45700B1D0CD /* fl.ifft~.cpp */,
 			);
@@ -2428,6 +2735,9 @@
 				B8DF3FA2198AABAD00CA8BB6 /* FrameLib_Attributes.h */,
 				B8E058AE198DA34D00721359 /* FrameLib_Block.h */,
 				B8075B131979173E00EB3A35 /* FrameLib_DSP.h */,
+				B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */,
+				B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */,
+				B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */,
 				B85B20E619938415004FFF22 /* FrameLib_Multichannel.h */,
 				B843AAA019BF3358000D3476 /* FrameLib_Templates.h */,
 			);
@@ -2538,6 +2848,7 @@
 			files = (
 				B841206A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841211E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2D31F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2547,6 +2858,7 @@
 			files = (
 				B84120711D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121251D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2DA1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2556,6 +2868,7 @@
 			files = (
 				B84120721D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121261D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2DB1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2565,6 +2878,7 @@
 			files = (
 				B84120731D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121271D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2DC1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2574,6 +2888,7 @@
 			files = (
 				B84120741D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121281D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2DD1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2583,6 +2898,7 @@
 			files = (
 				B84120751D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121291D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2DE1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2592,6 +2908,7 @@
 			files = (
 				B84120761D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841212A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2DF1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2601,6 +2918,7 @@
 			files = (
 				B84120771D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841212B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2E01F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2610,6 +2928,7 @@
 			files = (
 				B84120781D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841212C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2E11F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2619,6 +2938,7 @@
 			files = (
 				B84120791D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841212D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2E21F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2628,6 +2948,7 @@
 			files = (
 				B841207A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841212E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2E31F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2637,6 +2958,7 @@
 			files = (
 				B841207B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841212F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2E41F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2646,6 +2968,7 @@
 			files = (
 				B841207C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121301D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2E51F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2655,6 +2978,7 @@
 			files = (
 				B841207D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121311D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2E61F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2664,6 +2988,7 @@
 			files = (
 				B841207E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121321D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2E71F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2673,6 +2998,7 @@
 			files = (
 				B841207F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121331D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2E81F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2682,6 +3008,7 @@
 			files = (
 				B84120801D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121341D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2E91F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2691,6 +3018,7 @@
 			files = (
 				B84120811D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121351D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2EA1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2700,6 +3028,7 @@
 			files = (
 				B84120821D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121361D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2EB1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2709,6 +3038,7 @@
 			files = (
 				B841208B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841213F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2F41F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2718,6 +3048,7 @@
 			files = (
 				B84120841D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121381D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2ED1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2727,6 +3058,7 @@
 			files = (
 				B84120961D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841214A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2FF1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2736,6 +3068,7 @@
 			files = (
 				B84120861D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841213A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2EF1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2745,6 +3078,7 @@
 			files = (
 				B84120871D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841213B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2F01F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2754,6 +3088,7 @@
 			files = (
 				B84120881D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841213C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2F11F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2763,6 +3098,7 @@
 			files = (
 				B84120891D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841213D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2F21F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2772,6 +3108,7 @@
 			files = (
 				B841208A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841213E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2F31F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2781,6 +3118,7 @@
 			files = (
 				B84120831D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121371D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2EC1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2790,6 +3128,7 @@
 			files = (
 				B841208C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121401D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2F51F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2799,6 +3138,7 @@
 			files = (
 				B841208D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121411D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2F61F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2808,6 +3148,7 @@
 			files = (
 				B841208E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121421D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2F71F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2817,6 +3158,7 @@
 			files = (
 				B841208F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121431D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2F81F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2826,6 +3168,7 @@
 			files = (
 				B84120901D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121441D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2F91F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2835,6 +3178,7 @@
 			files = (
 				B84120911D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121451D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2FA1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2844,6 +3188,7 @@
 			files = (
 				B84120921D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121461D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2FB1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2853,6 +3198,7 @@
 			files = (
 				B84120931D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121471D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2FC1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2862,6 +3208,7 @@
 			files = (
 				B84120941D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121481D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2FD1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2871,6 +3218,7 @@
 			files = (
 				B84120951D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121491D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2FE1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2880,6 +3228,7 @@
 			files = (
 				B84120851D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121391D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2EE1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2889,6 +3238,7 @@
 			files = (
 				B84120971D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841214B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3001F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2898,6 +3248,7 @@
 			files = (
 				B84120981D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841214C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3011F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2907,6 +3258,7 @@
 			files = (
 				B84120991D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841214D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3021F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2916,6 +3268,7 @@
 			files = (
 				B841209A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841214E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3031F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2925,6 +3278,7 @@
 			files = (
 				B84121691D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B84120B51D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B88BD31E1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B812462A19F476CB009833F1 /* FrameLib_Subframe.h in Headers */,
 				B812462B19F476CB009833F1 /* FrameLib_Join.h in Headers */,
 				B812462C19F476CB009833F1 /* FrameLib_Split.h in Headers */,
@@ -2937,6 +3291,7 @@
 			files = (
 				B841216A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B84120B61D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B88BD31F1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B812464019F476D3009833F1 /* FrameLib_Subframe.h in Headers */,
 				B812464119F476D3009833F1 /* FrameLib_Join.h in Headers */,
 				B812464219F476D3009833F1 /* FrameLib_Split.h in Headers */,
@@ -2949,6 +3304,7 @@
 			files = (
 				B841206E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121221D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2D71F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2958,6 +3314,7 @@
 			files = (
 				B84120701D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121241D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2D91F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2967,6 +3324,7 @@
 			files = (
 				B84120A81D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841215C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3111F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2976,6 +3334,7 @@
 			files = (
 				B84120B81D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841216C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3211F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2985,6 +3344,7 @@
 			files = (
 				B84120B91D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841216D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3221F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2994,6 +3354,7 @@
 			files = (
 				B84120BA1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841216E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3231F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3003,6 +3364,7 @@
 			files = (
 				B84120C11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121751D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD32A1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3012,6 +3374,7 @@
 			files = (
 				B84121631D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B84120AF1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B88BD3181F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B85B68EB19F29470002D6F1D /* FrameLib_Subframe.h in Headers */,
 				B85B68E919F29470002D6F1D /* FrameLib_Join.h in Headers */,
 				B85B68EA19F29470002D6F1D /* FrameLib_Split.h in Headers */,
@@ -3024,6 +3387,7 @@
 			files = (
 				B84120AD1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121611D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3161F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3033,6 +3397,7 @@
 			files = (
 				B84120AE1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121621D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3171F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3042,6 +3407,7 @@
 			files = (
 				B84120A21D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121561D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD30B1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3051,6 +3417,17 @@
 			files = (
 				B84120AB1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841215F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3141F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B85C8FCF1E605B2E004D7D40 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B85C8FD01E605B2E004D7D40 /* FrameLib_Context.h in Headers */,
+				B85C8FD11E605B2E004D7D40 /* FrameLib_Global.h in Headers */,
+				B88BD32D1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3060,6 +3437,7 @@
 			files = (
 				B84120A91D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841215D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3121F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3069,6 +3447,7 @@
 			files = (
 				B84120AA1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841215E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3131F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3078,6 +3457,7 @@
 			files = (
 				B84120A51D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121591D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD30E1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3087,6 +3467,7 @@
 			files = (
 				B84120A61D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841215A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD30F1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3096,6 +3477,7 @@
 			files = (
 				B84120A71D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841215B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3101F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3105,6 +3487,7 @@
 			files = (
 				B84120A41D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121581D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD30D1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3114,6 +3497,7 @@
 			files = (
 				B84121681D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B84120B41D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B88BD31D1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B8AE693219F45A380040B4EE /* FrameLib_Subframe.h in Headers */,
 				B8AE693319F45A380040B4EE /* FrameLib_Join.h in Headers */,
 				B8AE693419F45A380040B4EE /* FrameLib_Split.h in Headers */,
@@ -3126,6 +3510,7 @@
 			files = (
 				B8C5EBC31E5F99A80086E8B6 /* FrameLib_Context.h in Headers */,
 				B8C5EBC41E5F99A80086E8B6 /* FrameLib_Global.h in Headers */,
+				B88BD32B1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3135,6 +3520,7 @@
 			files = (
 				B8C5EBDD1E5FA6340086E8B6 /* FrameLib_Context.h in Headers */,
 				B8C5EBDE1E5FA6340086E8B6 /* FrameLib_Global.h in Headers */,
+				B88BD32C1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3144,6 +3530,7 @@
 			files = (
 				B84120B71D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841216B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3201F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3153,6 +3540,7 @@
 			files = (
 				B84121641D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B84120B01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B88BD3191F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B8C8564119F2A96C006358DA /* FrameLib_Subframe.h in Headers */,
 				B8C8564219F2A96C006358DA /* FrameLib_Join.h in Headers */,
 				B8C8564319F2A96C006358DA /* FrameLib_Split.h in Headers */,
@@ -3165,6 +3553,7 @@
 			files = (
 				B84121651D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B84120B11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B88BD31A1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B8C8565819F2A96E006358DA /* FrameLib_Subframe.h in Headers */,
 				B8C8565919F2A96E006358DA /* FrameLib_Join.h in Headers */,
 				B8C8565A19F2A96E006358DA /* FrameLib_Split.h in Headers */,
@@ -3177,6 +3566,7 @@
 			files = (
 				B84121661D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B84120B21D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B88BD31B1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B8C8566F19F2A978006358DA /* FrameLib_Subframe.h in Headers */,
 				B8C8567019F2A978006358DA /* FrameLib_Join.h in Headers */,
 				B8C8567119F2A978006358DA /* FrameLib_Split.h in Headers */,
@@ -3189,6 +3579,7 @@
 			files = (
 				B84121671D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B84120B31D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B88BD31C1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B8C8568519F2A97A006358DA /* FrameLib_Subframe.h in Headers */,
 				B8C8568619F2A97A006358DA /* FrameLib_Join.h in Headers */,
 				B8C8568719F2A97A006358DA /* FrameLib_Split.h in Headers */,
@@ -3201,6 +3592,7 @@
 			files = (
 				B84120691D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841211D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2D21F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3210,6 +3602,7 @@
 			files = (
 				B841206B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841211F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2D41F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3219,6 +3612,7 @@
 			files = (
 				B841206C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121201D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2D51F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3228,6 +3622,7 @@
 			files = (
 				B841206D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B8061D511B8C0C00002C8BD2 /* FrameLib_Interval.h in Headers */,
+				B88BD2D61F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B84121211D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3238,6 +3633,7 @@
 			files = (
 				B841206F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121231D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD2D81F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3247,6 +3643,7 @@
 			files = (
 				B84120BB1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841216F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3241F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3256,6 +3653,7 @@
 			files = (
 				B84120BC1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121701D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3251F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3265,6 +3663,7 @@
 			files = (
 				B84120BD1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121711D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3261F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3274,6 +3673,7 @@
 			files = (
 				B84120BE1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121721D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3271F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3283,6 +3683,7 @@
 			files = (
 				B84120BF1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121731D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3281F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3292,6 +3693,7 @@
 			files = (
 				B84120C01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121741D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3291F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3301,6 +3703,7 @@
 			files = (
 				B84120AC1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121601D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3151F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3310,6 +3713,7 @@
 			files = (
 				B841209B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841214F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3041F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3319,6 +3723,7 @@
 			files = (
 				B841209C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121501D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3051F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3328,6 +3733,7 @@
 			files = (
 				B841209D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121511D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3061F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3337,6 +3743,7 @@
 			files = (
 				B841209E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121521D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3071F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3346,6 +3753,7 @@
 			files = (
 				B841209F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121531D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3081F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3355,6 +3763,7 @@
 			files = (
 				B84120A01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121541D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD3091F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3364,6 +3773,7 @@
 			files = (
 				B84120A11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121551D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD30A1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3373,6 +3783,7 @@
 			files = (
 				B84120A31D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121571D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
+				B88BD30C1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4519,6 +4930,26 @@
 			productReference = B85BDDCC19F1C21400A349C5 /* fl.0dfsvf~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
+		B85C8FCE1E605B2E004D7D40 /* fl.multitaper~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B85C8FDE1E605B2E004D7D40 /* Build configuration list for PBXNativeTarget "fl.multitaper~" */;
+			buildPhases = (
+				B85C8FCF1E605B2E004D7D40 /* Headers */,
+				B85C8FD21E605B2E004D7D40 /* Resources */,
+				B85C8FD31E605B2E004D7D40 /* Sources */,
+				B85C8FDA1E605B2E004D7D40 /* Frameworks */,
+				B85C8FDD1E605B2E004D7D40 /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "fl.multitaper~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = B85C8FE21E605B2E004D7D40 /* fl.multitaper~.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
 		B861EBA219CA3E8700B89477 /* fl.sort~ */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B861EBAE19CA3E8700B89477 /* Build configuration list for PBXNativeTarget "fl.sort~" */;
@@ -5331,6 +5762,7 @@
 				B84BE8791C1F63E500A55F8C /* fl.medianfilter~ */,
 				B8C5EBC11E5F99A80086E8B6 /* fl.lookup~ */,
 				B8C5EBDB1E5FA6340086E8B6 /* fl.peaks~ */,
+				B85C8FCE1E605B2E004D7D40 /* fl.multitaper~ */,
 				B8A1F5BA1D5370DE00FA5FFC /* NumericTesting */,
 			);
 		};
@@ -5730,6 +6162,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B85BDDC019F1C21400A349C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B85C8FD21E605B2E004D7D40 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -6376,6 +6815,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B85C8FDD1E605B2E004D7D40 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B861EBAD19CA3E8700B89477 /* Rez */ = {
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
@@ -6622,11 +7068,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F6E4CC199D247C0073E06D /* tlsf.c in Sources */,
+				B88BD2771F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8CA31DC199A1F5F005F30A1 /* fl.unpack~.cpp in Sources */,
 				B8EDFD2A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272F31DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C51D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120111D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2191F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6635,11 +7083,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E22919C3AD0A007D8D8B /* tlsf.c in Sources */,
+				B88BD27E1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B805E34119C3AF77007D8D8B /* fl.minus~.cpp in Sources */,
 				B8EDFD311DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272FA1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CC1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120181D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2201F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6648,11 +7098,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E23A19C3AD0C007D8D8B /* tlsf.c in Sources */,
+				B88BD27F1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B805E34219C3AF7A007D8D8B /* fl.times~.cpp in Sources */,
 				B8EDFD321DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272FB1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CD1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120191D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2211F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6661,11 +7113,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E24B19C3AD11007D8D8B /* tlsf.c in Sources */,
+				B88BD2801F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B805E34319C3AF84007D8D8B /* fl.divide~.cpp in Sources */,
 				B8EDFD331DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272FC1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CE1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2221F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6674,11 +7128,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E25C19C3AD14007D8D8B /* tlsf.c in Sources */,
+				B88BD2811F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B805E34419C3AFA6007D8D8B /* fl.equals~.cpp in Sources */,
 				B8EDFD341DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272FD1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2231F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6687,11 +7143,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E26D19C3AD16007D8D8B /* tlsf.c in Sources */,
+				B88BD2821F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B805E34519C3AFAA007D8D8B /* fl.notequals~.cpp in Sources */,
 				B8EDFD351DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272FE1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D01D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2241F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6700,11 +7158,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E27E19C3AD18007D8D8B /* tlsf.c in Sources */,
+				B88BD2831F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B805E34619C3AFAD007D8D8B /* fl.greaterthan~.cpp in Sources */,
 				B8EDFD361DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272FF1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D11D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2251F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6713,11 +7173,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E28F19C3AD20007D8D8B /* tlsf.c in Sources */,
+				B88BD2841F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B805E34719C3AFB1007D8D8B /* fl.greaterthaneq~.cpp in Sources */,
 				B8EDFD371DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273001DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D21D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2261F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6726,11 +7188,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E2A019C3AD22007D8D8B /* tlsf.c in Sources */,
+				B88BD2851F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B805E34819C3AFB7007D8D8B /* fl.lessthan~.cpp in Sources */,
 				B8EDFD381DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273011DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D31D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2271F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6739,11 +7203,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E2B119C3AD23007D8D8B /* tlsf.c in Sources */,
+				B88BD2861F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B805E34919C3AFBA007D8D8B /* fl.lessthaneq~.cpp in Sources */,
 				B8EDFD391DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273021DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D41D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120201D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2281F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6752,11 +7218,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E2C219C3AD25007D8D8B /* tlsf.c in Sources */,
+				B88BD2871F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B805E34A19C3AFBD007D8D8B /* fl.pow~.cpp in Sources */,
 				B8EDFD3A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273031DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D51D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120211D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2291F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6765,11 +7233,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E2D319C3ADF5007D8D8B /* tlsf.c in Sources */,
+				B88BD2881F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B805E34B19C3AFC2007D8D8B /* fl.atan2~.cpp in Sources */,
 				B8EDFD3B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273041DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D61D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120221D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD22A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6778,11 +7248,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E2E319C3ADF7007D8D8B /* tlsf.c in Sources */,
+				B88BD2891F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B805E34C19C3AFC6007D8D8B /* fl.hypot~.cpp in Sources */,
 				B8EDFD3C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273051DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D71D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120231D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD22B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6791,11 +7263,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E2F319C3ADF9007D8D8B /* tlsf.c in Sources */,
+				B88BD28A1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B805E34D19C3AFCB007D8D8B /* fl.copysign~.cpp in Sources */,
 				B8EDFD3D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273061DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D81D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120241D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD22C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6804,11 +7278,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E30319C3ADFC007D8D8B /* tlsf.c in Sources */,
+				B88BD28B1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B805E34E19C3AFCF007D8D8B /* fl.min~.cpp in Sources */,
 				B8EDFD3E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273071DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D91D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120251D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD22D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6817,11 +7293,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E31319C3ADFE007D8D8B /* tlsf.c in Sources */,
+				B88BD28C1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B805E34F19C3AFD3007D8D8B /* fl.max~.cpp in Sources */,
 				B8EDFD3F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273081DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DA1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120261D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD22E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6830,11 +7308,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E32319C3AE00007D8D8B /* tlsf.c in Sources */,
+				B88BD28D1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809BF3119C42D3600BA41F4 /* fl.diff~.cpp in Sources */,
 				B8EDFD401DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273091DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DB1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120271D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD22F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6843,11 +7323,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BDE419C42CDA00BA41F4 /* tlsf.c in Sources */,
+				B88BD28E1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C08B19C42FFB00BA41F4 /* fl.abs~.cpp in Sources */,
 				B8EDFD411DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2730A1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DC1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120281D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2301F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6856,11 +7338,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BDF519C42CEB00BA41F4 /* tlsf.c in Sources */,
+				B88BD28F1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C08C19C42FFE00BA41F4 /* fl.acos~.cpp in Sources */,
 				B8EDFD421DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2730B1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DD1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120291D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2311F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6869,11 +7353,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BE0519C42CEF00BA41F4 /* tlsf.c in Sources */,
+				B88BD2981F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C09519C4302400BA41F4 /* fl.cosh~.cpp in Sources */,
 				B8EDFD4B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273141DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E61D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120321D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD23A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6882,11 +7368,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BF3619C42D5100BA41F4 /* tlsf.c in Sources */,
+				B88BD2911F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C08E19C4300A00BA41F4 /* fl.asin~.cpp in Sources */,
 				B8EDFD441DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2730D1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2331F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6895,11 +7383,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BF4519C42D5400BA41F4 /* tlsf.c in Sources */,
+				B88BD2A31F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C0A019C4305800BA41F4 /* fl.sinh~.cpp in Sources */,
 				B8EDFD561DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2731F1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F11D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2451F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6908,11 +7398,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BF5419C42D5800BA41F4 /* tlsf.c in Sources */,
+				B88BD2931F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C09019C4301300BA41F4 /* fl.atan~.cpp in Sources */,
 				B8EDFD461DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2730F1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E11D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2351F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6921,11 +7413,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BF6319C42D5A00BA41F4 /* tlsf.c in Sources */,
+				B88BD2941F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C09119C4301600BA41F4 /* fl.atanh~.cpp in Sources */,
 				B8EDFD471DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273101DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E21D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2361F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6934,11 +7428,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BF7219C42D5C00BA41F4 /* tlsf.c in Sources */,
+				B88BD2951F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C09219C4301900BA41F4 /* fl.cbrt~.cpp in Sources */,
 				B8EDFD481DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273111DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E31D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2371F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6947,11 +7443,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BF8119C42D6400BA41F4 /* tlsf.c in Sources */,
+				B88BD2961F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C09319C4301C00BA41F4 /* fl.ceil~.cpp in Sources */,
 				B8EDFD491DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273121DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E41D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120301D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2381F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6960,11 +7458,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BF9019C42D6400BA41F4 /* tlsf.c in Sources */,
+				B88BD2971F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C09419C4302000BA41F4 /* fl.cos~.cpp in Sources */,
 				B8EDFD4A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273131DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E51D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120311D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2391F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6973,11 +7473,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BF9F19C42D6500BA41F4 /* tlsf.c in Sources */,
+				B88BD2901F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C08D19C4300600BA41F4 /* fl.acosh~.cpp in Sources */,
 				B8EDFD431DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2730C1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DE1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2321F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6986,11 +7488,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BFAE19C42D6600BA41F4 /* tlsf.c in Sources */,
+				B88BD2991F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C09619C4302700BA41F4 /* fl.erf~.cpp in Sources */,
 				B8EDFD4C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273151DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E71D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120331D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD23B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6999,11 +7503,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BFBD19C42D6800BA41F4 /* tlsf.c in Sources */,
+				B88BD29A1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C09719C4302C00BA41F4 /* fl.erfc~.cpp in Sources */,
 				B8EDFD4D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273161DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E81D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120341D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD23C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7012,11 +7518,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BFCC19C42D6800BA41F4 /* tlsf.c in Sources */,
+				B88BD29B1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C09819C4303000BA41F4 /* fl.exp~.cpp in Sources */,
 				B8EDFD4E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273171DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E91D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120351D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD23D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7025,11 +7533,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BFDB19C42D6900BA41F4 /* tlsf.c in Sources */,
+				B88BD29C1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C09919C4303B00BA41F4 /* fl.exp2~.cpp in Sources */,
 				B8EDFD4F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273181DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120EA1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120361D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD23E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7038,11 +7548,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BFEA19C42D7000BA41F4 /* tlsf.c in Sources */,
+				B88BD29D1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C09A19C4304100BA41F4 /* fl.floor~.cpp in Sources */,
 				B8EDFD501DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273191DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120EB1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120371D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD23F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7051,11 +7563,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BFF919C42D7100BA41F4 /* tlsf.c in Sources */,
+				B88BD29E1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C09B19C4304500BA41F4 /* fl.log~.cpp in Sources */,
 				B8EDFD511DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2731A1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120EC1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120381D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2401F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7064,11 +7578,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809C00819C42D7100BA41F4 /* tlsf.c in Sources */,
+				B88BD29F1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C09C19C4304A00BA41F4 /* fl.log2~.cpp in Sources */,
 				B8EDFD521DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2731B1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120ED1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120391D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2411F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7077,11 +7593,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809C01719C42D7200BA41F4 /* tlsf.c in Sources */,
+				B88BD2A01F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C09D19C4304E00BA41F4 /* fl.log10~.cpp in Sources */,
 				B8EDFD531DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2731C1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120EE1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2421F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7090,11 +7608,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809C02619C42D7200BA41F4 /* tlsf.c in Sources */,
+				B88BD2A11F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C09E19C4305200BA41F4 /* fl.round~.cpp in Sources */,
 				B8EDFD541DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2731D1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120EF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2431F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7103,11 +7623,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809C03519C42D7300BA41F4 /* tlsf.c in Sources */,
+				B88BD2A21F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C09F19C4305500BA41F4 /* fl.sin~.cpp in Sources */,
 				B8EDFD551DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2731E1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F01D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2441F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7116,11 +7638,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809C04419C42D7300BA41F4 /* tlsf.c in Sources */,
+				B88BD2921F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C08F19C4300E00BA41F4 /* fl.asinh~.cpp in Sources */,
 				B8EDFD451DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2730E1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E01D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2341F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7129,11 +7653,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809C05319C42D7300BA41F4 /* tlsf.c in Sources */,
+				B88BD2A41F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C0A119C4305D00BA41F4 /* fl.sqrt~.cpp in Sources */,
 				B8EDFD571DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273201DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F21D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2461F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7142,11 +7668,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809C06219C42D7400BA41F4 /* tlsf.c in Sources */,
+				B88BD2A51F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C0A219C4306000BA41F4 /* fl.tan~.cpp in Sources */,
 				B8EDFD581DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273211DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F31D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2471F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7155,11 +7683,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809C07119C42D7400BA41F4 /* tlsf.c in Sources */,
+				B88BD2A61F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C0A319C4306400BA41F4 /* fl.tanh~.cpp in Sources */,
 				B8EDFD591DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273221DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F41D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120401D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2481F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7168,11 +7698,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83E2919C78DBC00230CD4 /* fl.trunc~.cpp in Sources */,
+				B88BD2A71F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B809C08019C42D7500BA41F4 /* tlsf.c in Sources */,
 				B8EDFD5A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273231DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F51D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120411D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2491F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7181,11 +7713,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B812463219F476CB009833F1 /* fl.recall~.cpp in Sources */,
+				B88BD2C21F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B812463319F476CB009833F1 /* tlsf.c in Sources */,
 				B8EDFD751DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2733E1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121101D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841205C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2641F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7194,11 +7728,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B812464719F476D3009833F1 /* fl.store~.cpp in Sources */,
+				B88BD2C31F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B812464919F476D3009833F1 /* tlsf.c in Sources */,
 				B8EDFD761DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2733F1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121111D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841205D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2651F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7207,11 +7743,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B843AAA719C07046000D3476 /* tlsf.c in Sources */,
+				B88BD27B1F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B843AAB519C070A1000D3476 /* fl.sink~.cpp in Sources */,
 				B8EDFD2E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272F71DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C91D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120151D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD21D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7220,11 +7758,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B843AABA19C08452000D3476 /* tlsf.c in Sources */,
+				B88BD27D1F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B805E34019C3AF73007D8D8B /* fl.plus~.cpp in Sources */,
 				B8EDFD301DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272F91DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CB1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120171D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD21F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7233,11 +7773,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B846E62319F15A57005E9718 /* fl.window~.cpp in Sources */,
+				B88BD2B51F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B846E61719F15A25005E9718 /* tlsf.c in Sources */,
 				B8EDFD681DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273311DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121031D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841204F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2571F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7246,11 +7788,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84943B91B834AD00037DFF1 /* tlsf.c in Sources */,
+				B88BD2C51F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B84943C71B834B4A0037DFF1 /* fl.setparam~.cpp in Sources */,
 				B8EDFD781DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273411DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121131D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841205F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2671F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7259,11 +7803,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84943D01B837DB70037DFF1 /* tlsf.c in Sources */,
+				B88BD2C61F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B84943DB1B837DDC0037DFF1 /* fl.chop~.cpp in Sources */,
 				B8EDFD791DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273421DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121141D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120601D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2681F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7272,11 +7818,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84943EE1B8386100037DFF1 /* fl.spatial~.cpp in Sources */,
+				B88BD2C71F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B84943E11B8385BC0037DFF1 /* tlsf.c in Sources */,
 				B8EDFD7A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273431DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121151D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120611D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2691F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7285,11 +7833,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84BE88A1C1F641500A55F8C /* fl.medianfilter~.cpp in Sources */,
+				B88BD2CE1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B84BE87D1C1F63E500A55F8C /* tlsf.c in Sources */,
 				B8EDFD811DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2734A1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841211C1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120681D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2701F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7298,11 +7848,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B85B68A719F1CF56002D6F1D /* fl.sallenkey~.cpp in Sources */,
+				B88BD2BC1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B85B689B19F1CEDC002D6F1D /* tlsf.c in Sources */,
 				B8EDFD6F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273381DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210A1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120561D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD25E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7311,11 +7863,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B85B68BA19F1D39F002D6F1D /* fl.onepolezero~.cpp in Sources */,
+				B88BD2BA1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B85B68AF19F1D38F002D6F1D /* tlsf.c in Sources */,
 				B8EDFD6D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273361DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121081D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120541D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD25C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7324,11 +7878,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B85B68CE19F1D6A9002D6F1D /* fl.resonant~.cpp in Sources */,
+				B88BD2BB1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B85B68C219F1D5F0002D6F1D /* tlsf.c in Sources */,
 				B8EDFD6E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273371DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121091D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120551D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD25D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7337,11 +7893,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B85B68E219F262A3002D6F1D /* fl.register~.cpp in Sources */,
+				B88BD2AF1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B85B68D719F2628C002D6F1D /* tlsf.c in Sources */,
 				B8EDFD621DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2732B1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120FD1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120491D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2511F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7350,11 +7908,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				B85BDDCE19F1C22400A349C5 /* fl.0dfsvf~.cpp in Sources */,
+				B88BD2B81F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B85BDDC319F1C21400A349C5 /* tlsf.c in Sources */,
 				B8EDFD6B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273341DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121061D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120521D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD25A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B85C8FD31E605B2E004D7D40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B85C8FE41E605B44004D7D40 /* fl.mutlitaper~.cpp in Sources */,
+				B88BD2D11F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
+				B85C8FD51E605B2E004D7D40 /* tlsf.c in Sources */,
+				B85C8FE51E605C9E004D7D40 /* HISSTools_FFT.c in Sources */,
+				B85C8FD61E605B2E004D7D40 /* FrameLib_Threading.cpp in Sources */,
+				B85C8FD71E605B2E004D7D40 /* FrameLib_Memory.cpp in Sources */,
+				B85C8FD81E605B2E004D7D40 /* FrameLib_Global.cpp in Sources */,
+				B85C8FD91E605B2E004D7D40 /* FrameLib_Context.cpp in Sources */,
+				B88BD2731F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7363,11 +7939,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B861EBC819CA3F2900B89477 /* fl.sort~.cpp in Sources */,
+				B88BD2B61F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B861EBA819CA3E8700B89477 /* tlsf.c in Sources */,
 				B8EDFD691DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273321DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121041D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120501D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2581F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7376,11 +7954,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B861EBC719CA3F2400B89477 /* fl.percentile~.cpp in Sources */,
+				B88BD2B71F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B861EBBA19CA3E9500B89477 /* tlsf.c in Sources */,
 				B8EDFD6A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273331DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121051D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120511D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2591F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7389,12 +7969,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D2732E1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
+				B88BD2B21F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B84121001D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B87E877319C8EEBF00B1D0CD /* HISSTools_FFT.c in Sources */,
 				B87E877519C8EEEB00B1D0CD /* fl.fft~.cpp in Sources */,
 				B87E875A19C8EE9600B1D0CD /* tlsf.c in Sources */,
 				B841204C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 				B8EDFD651DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
+				B88BD2541F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7403,12 +7985,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D2732F1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
+				B88BD2B31F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B84121011D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B87E877D19C8F4AA00B1D0CD /* HISSTools_FFT.c in Sources */,
 				B87E878B19C8F4BC00B1D0CD /* fl.ifft~.cpp in Sources */,
 				B87E877F19C8F4AA00B1D0CD /* tlsf.c in Sources */,
 				B841204D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 				B8EDFD661DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
+				B88BD2551F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7426,12 +8010,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D273301DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
+				B88BD2B41F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B84121021D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B8A4757719C9DDCD0043DC65 /* HISSTools_FFT.c in Sources */,
 				B8A4758519C9DDEA0043DC65 /* fl.convolve~.cpp in Sources */,
 				B8A4757919C9DDCD0043DC65 /* tlsf.c in Sources */,
 				B841204E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 				B8EDFD671DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
+				B88BD2561F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7440,12 +8026,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D2732D1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
+				B88BD2B11F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B84120FF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B8AD887019C7C4AC00FFA238 /* fl.read~.cpp in Sources */,
 				B8AD887119C7C4B400FFA238 /* ibuffer_access.c in Sources */,
 				B8AD886319C7C46B00FFA238 /* tlsf.c in Sources */,
 				B841204B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 				B8EDFD641DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
+				B88BD2531F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7454,11 +8042,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8AE693819F45A380040B4EE /* fl.shift~.cpp in Sources */,
+				B88BD2C11F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8AE693919F45A380040B4EE /* tlsf.c in Sources */,
 				B8EDFD741DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2733D1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210F1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841205B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2631F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7467,11 +8057,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8C5EBD71E5F99CD0086E8B6 /* fl.lookup~.cpp in Sources */,
+				B88BD2CF1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8C5EBC81E5F99A80086E8B6 /* tlsf.c in Sources */,
 				B8C5EBC91E5F99A80086E8B6 /* FrameLib_Threading.cpp in Sources */,
 				B8C5EBCA1E5F99A80086E8B6 /* FrameLib_Memory.cpp in Sources */,
 				B8C5EBCB1E5F99A80086E8B6 /* FrameLib_Global.cpp in Sources */,
 				B8C5EBCC1E5F99A80086E8B6 /* FrameLib_Context.cpp in Sources */,
+				B88BD2711F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7480,11 +8072,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8C5EBF11E5FA6D20086E8B6 /* fl.peaks~.cpp in Sources */,
+				B88BD2D01F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8C5EBE21E5FA6340086E8B6 /* tlsf.c in Sources */,
 				B8C5EBE31E5FA6340086E8B6 /* FrameLib_Threading.cpp in Sources */,
 				B8C5EBE41E5FA6340086E8B6 /* FrameLib_Memory.cpp in Sources */,
 				B8C5EBE51E5FA6340086E8B6 /* FrameLib_Global.cpp in Sources */,
 				B8C5EBE61E5FA6340086E8B6 /* FrameLib_Context.cpp in Sources */,
+				B88BD2721F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7493,12 +8087,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84943C81B834B740037DFF1 /* fl.random~.cpp in Sources */,
+				B88BD2C41F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B80059BE1DAF96340073A866 /* FrameLib_RandGen.cpp in Sources */,
 				B8C6803C1B80F62300B74B90 /* tlsf.c in Sources */,
 				B8D273401DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121121D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841205E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
 				B8EDFD771DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
+				B88BD2661F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7507,11 +8103,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8C8564619F2A96C006358DA /* fl.pad~.cpp in Sources */,
+				B88BD2BD1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8C8564919F2A96C006358DA /* tlsf.c in Sources */,
 				B8EDFD701DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273391DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210B1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120571D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD25F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7520,11 +8118,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8C8566119F2A96E006358DA /* fl.subframe~.cpp in Sources */,
+				B88BD2BE1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8C8566019F2A96E006358DA /* tlsf.c in Sources */,
 				B8EDFD711DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2733A1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210C1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120581D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2601F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7533,11 +8133,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8C8567619F2A978006358DA /* fl.split~.cpp in Sources */,
+				B88BD2BF1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8C8567719F2A978006358DA /* tlsf.c in Sources */,
 				B8EDFD721DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2733B1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210D1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120591D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2611F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7546,11 +8148,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B812465319F4781E009833F1 /* fl.join~.cpp in Sources */,
+				B88BD2C01F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8C8568D19F2A97A006358DA /* tlsf.c in Sources */,
 				B8EDFD731DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2733C1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210E1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841205A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2621F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7559,11 +8163,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F6E4CB199D247C0073E06D /* tlsf.c in Sources */,
+				B88BD2761F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8CA31EF199A20FF005F30A1 /* fl.pack~.cpp in Sources */,
 				B8EDFD291DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272F21DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C41D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120101D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2181F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7572,11 +8178,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F6E4CD199D247C0073E06D /* tlsf.c in Sources */,
+				B88BD2781F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8CA3211199A2454005F30A1 /* fl.t1~.cpp in Sources */,
 				B8EDFD2B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272F41DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C61D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120121D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD21A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7585,11 +8193,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F6E4CE199D247C0073E06D /* tlsf.c in Sources */,
+				B88BD2791F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8CA3213199A2464005F30A1 /* fl.t2~.cpp in Sources */,
 				B8EDFD2C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272F51DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C71D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120131D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD21B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7598,11 +8208,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F6E4CF199D247C0073E06D /* tlsf.c in Sources */,
+				B88BD27A1F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8CA3225199A29D5005F30A1 /* fl.interval~.cpp in Sources */,
 				B8EDFD2D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272F61DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C81D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120141D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD21C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7611,11 +8223,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8CACC7D19C0F4A9007434C9 /* tlsf.c in Sources */,
+				B88BD27C1F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8CACC8B19C0F5D1007434C9 /* fl.source~.cpp in Sources */,
 				B8EDFD2F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272F81DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CA1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120161D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD21E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7624,11 +8238,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D679DF1B83E5A600519310 /* fl.trace~.cpp in Sources */,
+				B88BD2C81F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8D679D21B83E51A00519310 /* tlsf.c in Sources */,
 				B8EDFD7B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273441DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121161D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120621D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD26A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7637,11 +8253,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D679E71B847A3300519310 /* fl.map~.cpp in Sources */,
+				B88BD2C91F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8D679E91B847A3300519310 /* tlsf.c in Sources */,
 				B8EDFD7C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273451DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121171D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120631D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD26B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7650,11 +8268,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D679FA1B84996800519310 /* tlsf.c in Sources */,
+				B88BD2CA1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8D67A071B8499D900519310 /* fl.samplerate~.cpp in Sources */,
 				B8EDFD7D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273461DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121181D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120641D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD26C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7663,11 +8283,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D67A0D1B84A00500519310 /* tlsf.c in Sources */,
+				B88BD2CB1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8D67A191B84A04D00519310 /* fl.frommax~.cpp in Sources */,
 				B8EDFD7E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273471DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121191D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120651D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD26D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7676,11 +8298,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D67A201B84D88F00519310 /* tlsf.c in Sources */,
+				B88BD2CC1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8D67A2C1B84D8B200519310 /* fl.coordinatesystem.cpp in Sources */,
 				B8EDFD7F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273481DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841211A1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120661D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD26E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7689,11 +8313,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D8DB831B89D74B000203E5 /* tlsf.c in Sources */,
+				B88BD2CD1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8D8DB8F1B89D76A000203E5 /* fl.select~.cpp in Sources */,
 				B8EDFD801DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273491DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841211B1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120671D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD26F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7702,11 +8328,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F3798B19F1C8E600EC7FDA /* fl.onepole~.cpp in Sources */,
+				B88BD2B91F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F3797F19F1C8B400EC7FDA /* tlsf.c in Sources */,
 				B8EDFD6C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273351DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121071D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120531D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD25B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7715,11 +8343,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83EA819C78F9800230CD4 /* fl.vmin~.cpp in Sources */,
+				B88BD2A81F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F83E3619C78E9A00230CD4 /* tlsf.c in Sources */,
 				B8EDFD5B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273241DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F61D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120421D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD24A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7728,11 +8358,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83EA719C78F9400230CD4 /* fl.vmax~.cpp in Sources */,
+				B88BD2A91F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F83E4719C78EA700230CD4 /* tlsf.c in Sources */,
 				B8EDFD5C1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273251DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F71D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120431D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD24B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7741,11 +8373,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83EA619C78F9100230CD4 /* fl.sum~.cpp in Sources */,
+				B88BD2AA1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F83E5719C78EA900230CD4 /* tlsf.c in Sources */,
 				B8EDFD5D1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273261DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F81D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120441D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD24C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7754,11 +8388,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83EA519C78F8800230CD4 /* fl.product~.cpp in Sources */,
+				B88BD2AB1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F83E6719C78EAB00230CD4 /* tlsf.c in Sources */,
 				B8EDFD5E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273271DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F91D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120451D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD24D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7767,11 +8403,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83EA419C78F8000230CD4 /* fl.mean~.cpp in Sources */,
+				B88BD2AC1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F83E7719C78EAE00230CD4 /* tlsf.c in Sources */,
 				B8EDFD5F1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273281DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120FA1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120461D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD24E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7780,11 +8418,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83EA319C78F7B00230CD4 /* fl.gmean~.cpp in Sources */,
+				B88BD2AD1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F83E8719C78EAF00230CD4 /* tlsf.c in Sources */,
 				B8EDFD601DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D273291DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120FB1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120471D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD24F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7793,11 +8433,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83EA219C78F7700230CD4 /* fl.length~.cpp in Sources */,
+				B88BD2AE1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F83E9719C78EB100230CD4 /* tlsf.c in Sources */,
 				B8EDFD611DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2732A1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120FC1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120481D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2501F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7806,11 +8448,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83EB019C79CC900230CD4 /* tlsf.c in Sources */,
+				B88BD2B01F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F83EBD19C79D0200230CD4 /* fl.count~.cpp in Sources */,
 				B8EDFD631DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2732C1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120FE1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841204A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
+				B88BD2521F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12803,6 +13447,96 @@
 			};
 			name = Default;
 		};
+		B85C8FDF1E605B2E004D7D40 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_CFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		B85C8FE01E605B2E004D7D40 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_CFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		B85C8FE11E605B2E004D7D40 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_PPC64 = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_CFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
 		B861EBAF19CA3E8700B89477 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -16464,6 +17198,16 @@
 				B85BDDC919F1C21400A349C5 /* Development */,
 				B85BDDCA19F1C21400A349C5 /* Deployment */,
 				B85BDDCB19F1C21400A349C5 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		B85C8FDE1E605B2E004D7D40 /* Build configuration list for PBXNativeTarget "fl.multitaper~" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B85C8FDF1E605B2E004D7D40 /* Development */,
+				B85C8FE01E605B2E004D7D40 /* Deployment */,
+				B85C8FE11E605B2E004D7D40 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
