@@ -75,8 +75,8 @@ public:
             assert(Serial::alignment >= sizeof(size_t) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
             assert(Serial::alignment >= sizeof(char) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
             assert(Serial::alignment >= sizeof(char *) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
-            // FIX - what?
-            //assert(Serial::alignment >= FrameLib_Memory::getAlignment() && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
+            // FIX - swapped the below inequality - check it is now correct and find an appropriate call
+            //assert(Serial::alignment <= FrameLib_MainAllocator::getAlignment() && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
         }
         
         static size_t align(size_t size)

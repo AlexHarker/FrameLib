@@ -19,11 +19,11 @@ size_t alignedSize(size_t x)
     return (x + (alignment - 1)) & ~(alignment - 1);
 }
 
-// FIX - THIS IS SLOW AND REPLICATES tlsf code - cache mishit?
+// FIX - THIS IS SLOW AND NOT INLINE - cahce mishit/extra function call - test this
 
-size_t blockSize(void* ptr)
+inline size_t blockSize(void* ptr)
 {
-    return (*(size_t *) (((unsigned char*) ptr) - sizeof(size_t))) & ~(0x3);
+    return tlsf_block_size(ptr);
 }
 
 

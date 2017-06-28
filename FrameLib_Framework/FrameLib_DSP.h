@@ -15,12 +15,9 @@
 
 class FrameLib_DSP : public FrameLib_Block
 {
-    
-private:
-    
-    // FIX - hack for circularity
-    
+
     friend FrameLib_DSPQueue;
+    
     static const size_t taggedOutputAlignment = FrameLib_Attributes::Serial::alignment;
     
     // ************************************************************************************** //
@@ -202,10 +199,8 @@ protected:
     FrameLib_TimeFormat getBlockStartTime() { return mBlockStartTime; }
     FrameLib_TimeFormat getBlockEndTime()   { return mBlockEndTime; }
     
-    // FIX - you can't just pretend these will all be fine to access - these times need safety checks...!!!!!!!!!!!
-    
-    FrameLib_TimeFormat getInputFrameTime(unsigned long idx)        { return mInputs[idx].mObject->mFrameTime; }
-    FrameLib_TimeFormat getInputValidTillTime(unsigned long idx)    { return mInputs[idx].mObject->mValidTime; }
+    FrameLib_TimeFormat getInputFrameTime(unsigned long idx)        { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : 0.0; }
+    FrameLib_TimeFormat getInputValidTillTime(unsigned long idx)    { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : 0.0; }
     
     void requestOutputSize(unsigned long idx, size_t size)          { mOutputs[idx].mRequestedSize = size; }
     

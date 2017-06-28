@@ -5,8 +5,7 @@
 
 #ifdef __APPLE__
 
-// FIX - TODO
-// Check windows
+// FIX - TODO - Check windows
 
 // Thread Mac OS implementation
 

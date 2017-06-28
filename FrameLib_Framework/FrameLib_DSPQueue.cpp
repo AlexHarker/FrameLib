@@ -7,7 +7,6 @@
 // DSP Queue
 
 // FIX - check assumption that an object can only be in the queue once at a time!
-// FIX - check also speed implications as this will not inline from here (perhaps this should call an internal routine of DSP?)
 
 void FrameLib_DSPQueue::add(FrameLib_DSP *object)
 {

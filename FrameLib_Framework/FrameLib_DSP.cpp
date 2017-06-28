@@ -237,9 +237,7 @@ void FrameLib_DSP::dependenciesReady()
             mOutputDone = true;
             
             for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
-            {
-                // FIX - I don't get the second of these tests
-                
+            {                
                 if (ins->mObject && ((ins->mTrigger && !ins->mSwitchable) || (!ins->mObject->mOutputDone || ins->mSwitchable)) && (mValidTime == ins->mObject->mValidTime))
                 {
                     if (ins->mObject->mOutputDone)
