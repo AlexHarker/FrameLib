@@ -156,7 +156,7 @@ private:
 };
 
 
-// Semaphore (note that you should most likely close() before the destructor is called
+// Semaphore (note that you should most likely close() before the destructor is called)
 
 class Semaphore
 {
