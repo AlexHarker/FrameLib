@@ -1756,7 +1756,7 @@
 		B8CACC8819C0F4A9007434C9 /* fl.source~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.source~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8CACC8A19C0F5D1007434C9 /* fl.source~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.source~.cpp"; sourceTree = "<group>"; };
 		B8CACC8C19C0F62C007434C9 /* FrameLib_Source.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Source.h; sourceTree = "<group>"; };
-		B8D272F11DA6629A00E0E566 /* FrameLib_Memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FrameLib_Memory.cpp; path = ../FrameLib_Memory.cpp; sourceTree = "<group>"; };
+		B8D272F11DA6629A00E0E566 /* FrameLib_Memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Memory.cpp; sourceTree = "<group>"; };
 		B8D679CC1B83E39E00519310 /* FrameLib_Trace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Trace.h; sourceTree = "<group>"; };
 		B8D679DB1B83E51A00519310 /* fl.trace~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.trace~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D679DD1B83E55900519310 /* fl.trace~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.trace~.cpp"; sourceTree = "<group>"; };
