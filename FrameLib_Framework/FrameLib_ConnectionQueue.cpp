@@ -2,7 +2,7 @@
 #include "FrameLib_ConnectionQueue.h"
 #include "FrameLib_MultiChannel.h"
 
-void FrameLib_ConnectionQueue::add(FrameLib_MultiChannel *object)
+void FrameLib_ConnectionQueue::add(Item *object)
 {
     // Do not re-add if already in queue
     

@@ -5,20 +5,15 @@
 #include "FrameLib_Context.h"
 #include "FrameLib_Block.h"
 #include "FrameLib_DSP.h"
+#include "FrameLib_ConnectionQueue.h"
 #include <vector>
-#include <queue>
 
 // FrameLib_MultiChannel
 
 // This abstract class allows mulitchannel connnections and the means to update the network according to the number of channels
 
-class FrameLib_MultiChannel
+class FrameLib_MultiChannel : private FrameLib_ConnectionQueue::Item
 {
-
-    // Connection Queue - this allows the network to update itself without deep recursive stack calls
-
-    friend FrameLib_ConnectionQueue;
-
     // Connection Structures
     
 protected:
@@ -50,14 +45,12 @@ private:
     
 public:
     
-    FrameLib_MultiChannel (FrameLib_Context context, unsigned long nIns, unsigned long nOuts) : mContext(context), mQueue(context.getConnectionQueue()), mNext(NULL)
+    FrameLib_MultiChannel (FrameLib_Context context, unsigned long nIns, unsigned long nOuts) : mContext(context), mQueue(context.getConnectionQueue())
     {
         setIO(nIns, nOuts);
     }
     
-    FrameLib_MultiChannel (FrameLib_Context context) : mContext(context), mQueue(context.getConnectionQueue()), mNext(NULL)
-    {
-    }
+    FrameLib_MultiChannel (FrameLib_Context context) : mContext(context), mQueue(context.getConnectionQueue()) {}
     
     // FIX - is this true?
     
@@ -87,92 +80,40 @@ public:
     virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) = 0;
     virtual void setSamplingRate(double samplingRate) = 0;
     
-    unsigned long getNumIns()
-    {
-        return mInputs.size();
-    }
-    
-    unsigned long getNumOuts()
-    {
-        return mOutputs.size();
-    }
-    
-    virtual unsigned long getNumAudioIns()
-    {
-        // Override this if you are handling audio
-    
-        return 0;
-    }
-    
-    virtual unsigned long getNumAudioOuts()
-    {
-        // Override this if you are handling audio
-        
-        return 0;
-    }
+    unsigned long getNumIns()   { return mInputs.size(); }
+    unsigned long getNumOuts()  { return mOutputs.size(); }
+
+    // Override these if you are handling audio
+
+    virtual unsigned long getNumAudioIns()  { return 0; }
+    virtual unsigned long getNumAudioOuts() { return 0; }
 
     // ************************************************************************************** //
 
     // Audio processing
     
-    virtual void blockProcess(double **ins, double **outs, unsigned long vecSize)
-    {
-        // Override to handle audio at the block level (objects with block-based audio must overload this)
-    }
+    // Override to handle audio at the block level (objects with block-based audio must overload this)
+
+    virtual void blockProcess(double **ins, double **outs, unsigned long vecSize) {}
     
-    static bool handlesAudio()
-    {
-        // This function allows you to tell the outside world (whatever that is) whether or not it should call the audio brocessing block
-        // By default this is false, but it can be overridden to be true
-        
-        return false;
-    }
+    // This function allows you to tell the outside world (whatever that is) whether or not it should call the audio brocessing block
+    // By default this is false, but it can be overridden to be true
     
-    virtual void reset()
-    {
-        // Override this if your object contains FrameLib_Block objects and reset them here
-    }
+    static bool handlesAudio() { return false; }
+    
+    // Override this if your object contains FrameLib_Block objects and reset them here
+
+    virtual void reset() {}
     
     // ************************************************************************************** //
 
     // Multichannel update code
     
-private:
-    
-    // Override to deal with changes in the input connections
-    
-    virtual void inputUpdate() = 0;
-    
 protected:
     
-    void outputUpdate()
-    {
-        // Add to the queue to update all output dependencies
-        
-        for (std::vector <FrameLib_MultiChannel *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-            mQueue->add(*it);
-    }
-    
-    unsigned long getNumChans(unsigned long inIdx)
-    {
-        if (mInputs[inIdx].mObject)
-            return mInputs[inIdx].mObject->mOutputs[mInputs[inIdx].mIndex].mConnections.size();
-        
-        return 0;
-    }
-    
-    ConnectionInfo getChan(unsigned long inIdx, unsigned long chan)
-    {
-        if (mInputs[inIdx].mObject == NULL)
-        {
-            unsigned long *ptr = NULL;
-            *ptr = 0;
-            
-        }
-        
-        return mInputs[inIdx].mObject->mOutputs[mInputs[inIdx].mIndex].mConnections[chan];
-    }
-    
+    void outputUpdate();
+    unsigned long getNumChans(unsigned long inIdx);
+    ConnectionInfo getChan(unsigned long inIdx, unsigned long chan);
 
     // ************************************************************************************** //
 
@@ -182,66 +123,16 @@ private:
 
     // Dependency updating
 
-    std::vector <FrameLib_MultiChannel *>::iterator removeOutputDependency(FrameLib_MultiChannel *object)
-    {
-        std::vector <FrameLib_MultiChannel *>::iterator it;
-        
-        for (it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-            if (*it == object)
-                return mOutputDependencies.erase(it);
-
-        return it;
-    }
-    
-    void addOutputDependency(FrameLib_MultiChannel *object)
-    {
-        for (std::vector <FrameLib_MultiChannel *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-            if (*it == object)
-                return;
-        
-        mOutputDependencies.push_back(object);
-    }
+    std::vector <FrameLib_MultiChannel *>::iterator removeOutputDependency(FrameLib_MultiChannel *object);
+    void addOutputDependency(FrameLib_MultiChannel *object);
 
     // Removal of one connection to this object (before replacement / deletion)
     
-    void removeConnection(unsigned long inIdx)
-    {
-        // Check that there is an object connected and that it is not connected to another input also
-        
-        if (!mInputs[inIdx].mObject)
-            return;
-
-        for (unsigned long i = 0; i < mInputs.size(); i++)
-            if (mInputs[i].mObject == mInputs[inIdx].mObject && i != inIdx)
-                return;
-        
-        // Update dependencies
-        
-        mInputs[inIdx].mObject->removeOutputDependency(this);
-    }
+    void removeConnection(unsigned long inIdx);
 
     // Removal of all connections from one object to this object
     
-    std::vector <FrameLib_MultiChannel *>::iterator removeConnections(FrameLib_MultiChannel *object)
-    {
-        // Set any inputs connected to the object to default values
-        
-        for (unsigned long i = 0; i < mInputs.size(); i++)
-        {
-            if (mInputs[i].mObject == object)
-            {
-                mInputs[i].mObject = NULL;
-                mInputs[i].mIndex = 0;
-            }
-        }
-        
-        // Update dependencies
-        
-        std::vector <FrameLib_MultiChannel *>::iterator updatedIterator = object->removeOutputDependency(this);
-        mQueue->add(this);
-        
-        return updatedIterator;
-    }
+    std::vector <FrameLib_MultiChannel *>::iterator removeConnections(FrameLib_MultiChannel *object);
 
     // ************************************************************************************** //
     
@@ -251,68 +142,10 @@ public:
     
     // N.B. - No sanity checks here to maximise speed and help debugging (better for it to crash if a mistake is made)
     
-    void deleteConnection(unsigned long inIdx)
-    {
-        // Update Dependencies
-        
-        removeConnection(inIdx);
-        
-        // Set default values
-        
-        mInputs[inIdx].mObject = NULL;
-        mInputs[inIdx].mIndex = 0;
-        
-        // Update
-        
-        mQueue->add(this);
-    }
-    
-    void addConnection(FrameLib_MultiChannel *object, unsigned long outIdx, unsigned long inIdx)
-    {
-        // Update dependencies if the connected object has changed
-        
-        if (mInputs[inIdx].mObject != object)
-        {
-            removeConnection(inIdx);
-            object->addOutputDependency(this);
-        }
-                          
-        // Store data about connection
-        
-        mInputs[inIdx].mObject = object;
-        mInputs[inIdx].mIndex = outIdx;
-        
-        // Update
-        
-        mQueue->add(this);
-    }
-    
-    void clearConnections()
-    {
-        // Remove input connections
-        
-        for (unsigned long i = 0; i < mInputs.size(); i++)
-        {
-            removeConnection(i);
-            mInputs[i].mObject = NULL;
-            mInputs[i].mIndex = 0;
-        }
-        
-        // Update
-        
-        mQueue->add(this);
-
-        // Remove output connections
-        
-        for (std::vector <FrameLib_MultiChannel *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); )
-            it = (*it)->removeConnections(this);
-    }
-    
-    bool isConnected(unsigned long inIdx)
-    {
-        return mInputs[inIdx].mObject != NULL;
-    }
-
+    void deleteConnection(unsigned long inIdx);
+    void addConnection(FrameLib_MultiChannel *object, unsigned long outIdx, unsigned long inIdx);
+    void clearConnections();
+    bool isConnected(unsigned long inIdx);
     // ************************************************************************************** //
 
     // Member variables
@@ -326,7 +159,6 @@ private:
     // Queue
     
     FrameLib_ConnectionQueue *mQueue;
-    FrameLib_MultiChannel *mNext;
     
     // Connection Info
     
@@ -350,37 +182,15 @@ class FrameLib_Pack : public FrameLib_MultiChannel
 
 public:
     
-    FrameLib_Pack(FrameLib_Context context, FrameLib_Attributes::Serial *serialAttributes, void *owner) : FrameLib_MultiChannel(context)
-    {
-        mAttributes.addDouble(0, "inputs", 2, 0 );
-        mAttributes.set(serialAttributes);
-        setIO(mAttributes.getValue(kInputs), 1);
-    }
-    
-    ~FrameLib_Pack()
-    {
-        // Clear connections before deletion
-        
-        clearConnections();
-    }
+    FrameLib_Pack(FrameLib_Context context, FrameLib_Attributes::Serial *serialAttributes, void *owner);
+    ~FrameLib_Pack();
     
     virtual void setSamplingRate(double samplingRate){}
     virtual void setFixedInput(unsigned long idx, double *input, unsigned long size){}
     
 private:
     
-    // Update (pack)
-    
-    void inputUpdate()
-    {
-        mOutputs[0].mConnections.clear();
-        
-        for (unsigned long i = 0; i < getNumIns(); i++)
-            for (unsigned long j = 0; j < getNumChans(i); j++)
-                mOutputs[0].mConnections.push_back(getChan(i, j));
-        
-        outputUpdate();
-    }
+    virtual void inputUpdate();
     
     FrameLib_Attributes mAttributes;
 };
@@ -395,19 +205,8 @@ class FrameLib_Unpack : public FrameLib_MultiChannel
     
 public:
 
-    FrameLib_Unpack(FrameLib_Context context, FrameLib_Attributes::Serial *serialAttributes, void *owner) : FrameLib_MultiChannel(context)
-    {
-        mAttributes.addDouble(kOutputs, "outputs", 2, 0);
-        mAttributes.set(serialAttributes);
-        setIO(1, mAttributes.getValue(kOutputs));
-    }
-   
-    ~FrameLib_Unpack()
-    {
-        // Clear connections before deletion
-        
-        clearConnections();
-    }
+    FrameLib_Unpack(FrameLib_Context context, FrameLib_Attributes::Serial *serialAttributes, void *owner);
+    ~FrameLib_Unpack();
     
     virtual void setSamplingRate(double samplingRate){}
     virtual void setFixedInput(unsigned long idx, double *input, unsigned long size){}
@@ -416,17 +215,8 @@ private:
 
     // Update (unpack)
     
-    void inputUpdate()
-    {
-        for (unsigned long i = 0; i < getNumOuts(); i++)
-            mOutputs[i].mConnections.clear();
+    virtual void inputUpdate();
         
-        for (unsigned long i = 0; i < getNumChans(0) && i < getNumOuts(); i++)
-            mOutputs[i].mConnections.push_back(getChan(0, i));
-        
-        outputUpdate();
-    }
-    
     FrameLib_Attributes mAttributes;
 };
 

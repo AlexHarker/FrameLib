@@ -3,23 +3,30 @@
 #ifndef FRAMELIB_CONNECTIONQUEUE_H
 #define FRAMELIB_CONNECTIONQUEUE_H
 
-// Forwar Declarations
-
-class FrameLib_MultiChannel;
-
 class FrameLib_ConnectionQueue
 {
     
 public:
     
+    struct Item
+    {        
+        Item() : mNext(NULL) {}
+        
+        // Override to deal with changes in the input connections
+        
+        virtual void inputUpdate() = 0;
+        
+        Item *mNext;
+    };
+    
     FrameLib_ConnectionQueue() : mTop(NULL), mTail(NULL) {}
     
-    void add(FrameLib_MultiChannel *object);
+    void add(Item *object);
     
 private:
     
-    FrameLib_MultiChannel *mTop;
-    FrameLib_MultiChannel *mTail;
+    Item *mTop;
+    Item *mTail;
 };
 
 
