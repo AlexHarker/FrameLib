@@ -213,7 +213,8 @@ void TriggerableThread::threadEntry(void *thread)
 
 void TriggerableThread::threadClassEntry()
 {
-    while(mSemaphore.wait()) doTask();
+    while(mSemaphore.wait())
+        doTask();
 }
 
 
