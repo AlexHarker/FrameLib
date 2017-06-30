@@ -19,7 +19,7 @@ size_t alignedSize(size_t x)
     return (x + (alignment - 1)) & ~(alignment - 1);
 }
 
-// FIX - THIS IS SLOW AND NOT INLINE - cahce mishit/extra function call - test this
+// FIX - THIS IS SLOW AND NOT INLINE - cache mishit/extra function call - test this
 
 inline size_t blockSize(void* ptr)
 {
