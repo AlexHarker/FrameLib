@@ -386,7 +386,7 @@ static int block_is_last(const block_header_t* block)
 
 static int block_is_pool(const block_header_t* block)
 {
-    return tlsf_cast(int, block->size & block_header_pool_bit);
+    return tlsf_cast(int, (block->size & block_header_pool_bit) >> FL_INDEX_MAX);
 }
 
 static void block_set_pool(block_header_t* block)
