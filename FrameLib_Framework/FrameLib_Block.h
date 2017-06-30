@@ -20,9 +20,10 @@ public:
     FrameLib_Block(){}
     virtual ~FrameLib_Block(){}
    
-    // Basic Parameters
+    // Basic Setup
     
     virtual void setSamplingRate(double samplingRate) = 0;
+    
     virtual unsigned long getNumIns() = 0;
     virtual unsigned long getNumOuts() = 0;
     virtual  unsigned long getNumAudioIns() = 0;

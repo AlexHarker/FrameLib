@@ -89,15 +89,14 @@ public:
     FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts);
     ~FrameLib_DSP();
     
-    // ************************************************************************************** //
-
-    // Sampling Rate
-
-public:
+   // Basic Setup
     
-    void setSamplingRate(double samplingRate) { mSamplingRate = samplingRate > 0 ? samplingRate : 44100.0; }
+    void setSamplingRate(double samplingRate)   { mSamplingRate = samplingRate > 0 ? samplingRate : 44100.0; }
     
-    // ************************************************************************************** //
+    virtual unsigned long getNumIns()           { return mInputs.size(); }
+    virtual unsigned long getNumOuts()          { return mOutputs.size(); }
+    virtual unsigned long getNumAudioIns()      { return mNumAudioIns; }
+    virtual unsigned long getNumAudioOuts()     { return mNumAudioOuts; }
     
     // Object Type
     
@@ -115,12 +114,6 @@ protected:
    
     void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0);
     
-public:
-    
-    virtual unsigned long getNumIns()   { return mInputs.size(); }
-    virtual unsigned long getNumOuts()  { return mOutputs.size(); }
-    virtual unsigned long getNumAudioIns()   { return mNumAudioIns; }
-    virtual unsigned long getNumAudioOuts()  { return mNumAudioOuts; }
     
     // ************************************************************************************** //
     
