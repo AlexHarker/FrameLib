@@ -3,7 +3,6 @@
 #include "FrameLib_DSPQueue.h"
 #include "FrameLib_DSP.h"
 
-
 // DSP Queue
 
 // FIX - check assumption that an object can only be in the queue once at a time!
