@@ -5,6 +5,33 @@
 
 #include "FrameLib_RandGen.h"
 
+// Generate a single pseudo-random unsigned integer
+
+uint32_t FrameLib_RandGen::randInt()
+{
+    return CMWC();
+}
+
+// Return an unsigned 32 bit integer
+
+inline uint32_t FrameLib_RandGen::randInt(uint32_t n)
+{
+    uint32_t used = n;
+    uint32_t i;
+    
+    used |= used >> 1;
+    used |= used >> 2;
+    used |= used >> 4;
+    used |= used >> 8;
+    used |= used >> 16;
+    
+    do
+        i = randInt() & used;			// toss unused bits shortens search
+    while (i > n);
+    
+    return i;
+}
+
 // Return an signed 32 bit integer in the range [lo, hi]
 
 int32_t FrameLib_RandGen::randInt(int32_t lo, int32_t hi)
@@ -65,7 +92,7 @@ inline uint32_t FrameLib_RandGen::CMWC()
 
 // Initialise with seed values
 
-void FrameLib_RandGen::initCMWC(uint32_t *init)
+void FrameLib_RandGen::initSeedCMWC(uint32_t *init)
 {
     mIncrement = (CMWC_LAG_SIZE - 1);
     mCarry = 123;
@@ -92,32 +119,5 @@ void FrameLib_RandGen::randSeedCMWC()
     CryptGenRandom(hProvider, dwLength, pbBuffer);
     CryptReleaseContext(hProvider, 0);
 #endif
-    initCMWC(seeds);
-}
-
-// Generate a single pseudo-random unsigned integer
-
-uint32_t FrameLib_RandGen::randInt()
-{
-    return CMWC();
-}
-
-// Return an unsigned 32 bit integer
-
-inline uint32_t FrameLib_RandGen::randInt(uint32_t n)
-{
-    uint32_t used = n;
-    uint32_t i;
-    
-    used |= used >> 1;
-    used |= used >> 2;
-    used |= used >> 4;
-    used |= used >> 8;
-    used |= used >> 16;
-    
-    do
-        i = randInt() & used;			// toss unused bits shortens search
-    while (i > n);
-    
-    return i;
+    initSeedCMWC(seeds);
 }

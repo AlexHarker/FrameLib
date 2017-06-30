@@ -11,38 +11,23 @@ class FrameLib_RandGen
     
 public:
     
-    FrameLib_RandGen() { randSeed(); }
+    FrameLib_RandGen()              { randSeed(); }
     
-    // Randomly seed
+    // Seeding (specific / random values)
     
-    void randSeed() { randSeedCMWC(); }
+    void initSeed(uint32_t *init)   { initSeedCMWC(init); }
+    void randSeed()                 { randSeedCMWC(); }
     
-    // Initialise with seed values
-    
-    void init(uint32_t *init) { initCMWC(init); }
-    
-    // Generate a single pseudo-random unsigned integer
+    // Generate a single pseudo-random unsigned integer (full range /  in the range [0, n] / in the range [lo, hi])
     
     uint32_t randInt();
-        
-    // Return an unsigned 32 bit integer  in the range [0, n]
-    
     uint32_t randInt(uint32_t n);
-    
-    // Return an signed 32 bit integer in the range [lo, hi]
-    
     int32_t randInt(int32_t lo, int32_t hi);
     
-    // Return a 32 bit random double in the range [0,1]
+    // Generate a 32 bit random double (in the range [0,1] / in the range [0, n] / in the range [lo, hi])
     
     double randDouble();
-    
-    // Return a 32 bit random double in the range [0, n]
-    
-    double randDouble (double n);
-    
-    // Return a 32 bit random double in the range [lo, hi]
-    
+    double randDouble(double n);
     double randDouble(double lo, double hi);
 
 private:
@@ -53,12 +38,9 @@ private:
 
     inline uint32_t CMWC();
     
-    // Initialise with seed values
+    // Seeding (specific / OS-specific random values)
     
-    void initCMWC(uint32_t *init);
-    
-    // Seed the random number generator randomly using OS specific routines
-    
+    void initSeedCMWC(uint32_t *init);    
     void randSeedCMWC();
     
     // State
