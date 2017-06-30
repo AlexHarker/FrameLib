@@ -59,7 +59,7 @@ public:
         mAttributes.set(serialisedAttributes);
         
         unsigned long speakerSize;
-        double *speakers = mAttributes.getArray(kSpeakers, &speakerSize);
+        const double *speakers = mAttributes.getArray(kSpeakers, &speakerSize);
         
         for (unsigned long i = 0; i < (speakerSize + 2) / 3; i++)
         {
@@ -78,7 +78,7 @@ protected:
         unsigned long sizeIn, weightsSize;
         double *input = getInput(0, &sizeIn);
                 
-        double *weights = mAttributes.getArray(kWeights, &weightsSize);
+        const double *weights = mAttributes.getArray(kWeights, &weightsSize);
         unsigned long numSpeakers = mSpeakers.size();
         unsigned long maxSpeakers = mAttributes.getValue(kMaxSpeakers);
 

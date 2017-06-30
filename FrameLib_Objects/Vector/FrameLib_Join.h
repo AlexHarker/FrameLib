@@ -23,7 +23,7 @@ public:
         
         setIO(mAttributes.getInt(kNumIns), 1);
         
-        double *triggers = mAttributes.getArray(kTriggers);
+        const double *triggers = mAttributes.getArray(kTriggers);
         
         // Set up triggers
         
