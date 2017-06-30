@@ -92,475 +92,13 @@ public:
 
     // ************************************************************************************** //
 
+private:
+    
     class Attribute
     {
         
-        // ************************************************************************************** //
-
-    private:
-        /*
-        class Enum
-        {
-            
-        public:
-            
-            Enum() : mValue(0) {}
-            
-            ~Enum()
-            {
-                for (unsigned long i = 0; i < mItems.size(); i++)
-                    free(mItems[i]);
-            }
-            
-            void addItem(const char *str)                   { mItems.push_back(strdup(str)); }
-            
-            unsigned long size()                            { return mItems.size(); }
-
-            unsigned long getValue()                        { return mValue; }
-            const char *getValueAsString()                  { return mItems[mValue]; }
-            const char *getItemString(unsigned long item)   { return mItems[item]; }
-
-            void setValue(unsigned long value)              { mValue = ((value >= mItems.size()) ? (mItems.size() - 1) : value); }
-            
-            void setValueFromString(const char *str)
-            {
-                for (unsigned long i = 0; i < mItems.size(); i++)
-                {
-                    if (strcmp(str, mItems[i]) == 0)
-                    {
-                        mValue = i;
-                        return;
-                    }
-                }
-            }
-            
-        private:
-            
-            std::vector <char *> mItems;
-            unsigned long mValue;
-        };
-
-         // ************************************************************************************** //
-
-        template <class T> class Array
-        {
-            enum clipMode {kNone, kMin, kMax, kClip};
-            
-        public:
-            
-            Array(T defaultValue, size_t maxSize, size_t size, bool variableSize) : mItems(new T[maxSize]), mMaxSize(maxSize), mVariableSize(variableSize)
-            {
-                mSize = size < mMaxSize ? size : mMaxSize;
-                size = variableSize ? size : maxSize;
-                mMode = kNone;
-                
-                for (size_t i = 0; i < mSize; i++)
-                    mItems[i] = defaultValue;
-                
-                mDefaultValue = defaultValue;
-            }
-            
-            ~Array()
-            {
-                delete[] mItems;
-            }
-
-            size_t size()
-            {
-                return mSize;
-            }
-            
-            void setMin(T min)
-            {
-                mMode = kMin;
-                mMin = min;
-            }
-            
-            void setMax(T max)
-            {
-                mMode = kMax;
-                mMax = max;
-            }
-            
-            void setClip(T min, T max)
-            {
-                mMode = kClip;
-                mMin = min;
-                mMax = max;
-            }
-            
-            void getRange(double *min, double *max)
-            {
-                *min = mMin;
-                *max = mMax;
-            }
-            
-            void set(T *values, size_t size)
-            {
-                size = size > mMaxSize ? mMaxSize : size;
-
-                switch(mMode)
-                {
-                    case kNone:
-                        for (size_t i = 0; i < size; i++)
-                            mItems[i] = values[i];
-                        break;
-                    case kMin:
-                        for (size_t i = 0; i < size; i++)
-                            mItems[i] = values[i] < mMin ? mMin : values[i];
-                        break;
-                    case kMax:
-                        for (size_t i = 0; i < size; i++)
-                            mItems[i] = values[i] > mMax ? mMax : values[i];
-                        break;
-                    case kClip:
-                        for (size_t i = 0; i < size; i++)
-                            mItems[i] = values[i] < mMin ? mMin : (values[i] > mMax ? mMax : values[i]);
-                        break;
-                }
-
-                if (!mVariableSize)
-                    for (size_t i = size; i < mMaxSize; i++)
-                        mItems[i] = mDefaultValue;
-                else
-                    mSize = size;
-            }
-            
-            T *get()
-            {
-                return mItems;
-            }
-            
-        private:
-            
-            clipMode mMode;
-            
-            T mDefaultValue;
-            T mMin;
-            T mMax;
-            
-            T *mItems;
-            size_t mSize;
-            
-            const size_t mMaxSize;
-            const bool mVariableSize;
-        };
-        
-        // ************************************************************************************** //
-
-         class String
-        {
-            const static size_t maxLen = 128;
-            
-        public:
-            
-            String() { mCString[0] = 0; }
-            
-            void set(const char *str)
-            {
-                size_t i = 0;
-                
-                if (str != NULL)
-                {
-                    for (i = 0; i < maxLen; i++)
-                        if ((mCString[i] = str[i]) == 0)
-                            break;                    
-                }
-                
-                mCString[i] = 0;
-            }
-            
-            const char *get() const     { return mCString; }
-            
-        private:
-            
-            char mCString[maxLen + 1];
-        };
-        // ************************************************************************************** //
-
     public:
-        Attribute(Type type, const char *name, long argumentIdx, double defaultValue = 0.0, size_t maxSize = 1, size_t size = 1)
-        {
-            mType = type;
-            mName = strdup(name);
-            mArgumentIdx = argumentIdx;
-            mChanged = FALSE;
-            
-            assert(size <= maxSize && "attributes cannot have a default size greater than the maximum size");
-            
-            switch(type)
-            {
-                case kBool:
-                case kDouble:
-                    assert(maxSize == 1 && "non-array attributes do not support sizes greater than 1");
-                    mValue = defaultValue;
-                    break;
-                case kString:
-                    assert(maxSize == 1 && "non-array attributes do not support sizes greater than 1");
-                    mString = new String();
-                    break;
-                case kEnum:
-                    assert(maxSize == 1 && "non-array attributes do not support sizes greater than 1");
-                    mEnum = new Enum();
-                    break;
-                case kArray:
-                    mArray = new Array <double> (defaultValue, maxSize, maxSize, FALSE);
-                    break;
-                case kVariableArray:
-                    mArray = new Array <double> (defaultValue, maxSize, size, TRUE);
-                    break;
-            }
-            
-            mMin = -std::numeric_limits<double>::infinity();
-            mMax = std::numeric_limits<double>::infinity();
-        }
-        
-        ~Attribute()
-        {
-            free(mName);
-            
-            if (mType == kString)
-                delete mString;
-            if (mType == kEnum)
-                delete mEnum;
-            if (mType == kArray || mType == kVariableArray)
-                delete mArray;
-        }
-        
-        Type type()
-        {
-            return mType;
-        }
-        
-        const char *name()
-        {
-            return mName;
-        }
-        
-        long argumentIdx()
-        {
-            return mArgumentIdx;
-        }
-        
-        void addEnumItem(const char *str)
-        {
-            assert(mType == kEnum && "cannot add enum items to non-enum attribute");
-            mEnum->addItem(str);
-        }
-        
-        const char *getEnumItemString(unsigned long item)
-        {
-            assert(mType == kEnum && "cannot get enum string for non-enum attribute");
-            return mEnum->getItemString(item);
-        }
-        
-        void setMin(double min)
-        {
-            switch (mType)
-            {
-                case kDouble:
-                    mMin = min;
-                    mMax = std::numeric_limits<double>::infinity();
-                    break;
-                case kArray:
-                case kVariableArray:
-                    mArray->setMin(min);
-                    break;
-                default:
-                    assert(0 && "attribute type does not support minimum values");
-            }
-        }
-        
-        void setMax(double max)
-        {
-            switch (mType)
-            {
-                case kDouble:
-                    mMin = -std::numeric_limits<double>::infinity();
-                    mMax = max;
-                    break;
-                case kArray:
-                case kVariableArray:
-                    mArray->setMax(max);
-                    break;
-                default:
-                    assert(0 && "attribute type does not support maximum values");
-            }
-        }
-        
-        void setClip(double min, double max)
-        {
-            switch (mType)
-            {
-                case kDouble:
-                    mMin = min;
-                    mMax = max;
-                    break;
-                case kArray:
-                case kVariableArray:
-                    mArray->setClip(min, max);
-                    break;
-                default:
-                    assert(0 && "attribute type does not support clipping values");
-            }
-        }
-        
-        void getRange(double *min, double *max)
-        {
-            switch (mType)
-            {
-                case kBool:
-                    *min = FALSE;
-                    *max = TRUE;
-                    break;
-                case kDouble:
-                    *min = mMin;
-                    *max = mMax;
-                    break;
-                case kString:
-                    *min = 0;
-                    *max = 0;
-                    break;
-                case kEnum:
-                    *min = 0;
-                    *max = mEnum->size() - 1;
-                    break;
-                case kArray:
-                case kVariableArray:
-                    mArray->getRange(min, max);
-            }
-        }
-        
-        void set(const char *str)
-        {
-            switch (mType)
-            {
-                case kString:
-                    mString->set(str);
-                    mChanged = TRUE;
-                    break;
-                case kEnum:
-                    mEnum->setValueFromString(str);
-                    mChanged = TRUE;
-                    break;
-                default:
-                    break;
-            }
-        }
-        
-        void set(double *values, size_t size)
-        {
-            switch (mType)
-            {
-                case kBool:
-                    mValue = *values;
-                    mChanged = TRUE;
-                    break;
-                case kDouble:
-                    mValue = (*values < mMin) ? mMin : ((*values > mMax) ? mMax : *values);
-                    mChanged = TRUE;
-                    break;
-                case kString:
-                    break;
-                case kEnum:
-                    mEnum->setValue(*values < 0 ? 0 : *values);
-                    mChanged = TRUE;
-                    break;
-                case kArray:
-                case kVariableArray:
-                    mArray->set(values, size);
-                    mChanged = TRUE;
-            }
-        }
-        
-        double getValue()
-        {
-            switch (mType)
-            {
-                case kBool:
-                case kDouble:
-                    return mValue;
-                case kEnum:
-                    return mEnum->getValue();
-                default:
-                    return 0.0;
-            }
-        }
-        
-        const char *getString()
-        {
-            switch (mType)
-            {
-                case kString:
-                    return mString->get();
-                case kEnum:
-                    return mEnum->getValueAsString();
-                    break;
-                default:
-                    return NULL;
-            }
-        }
-        
-        double *getArray()
-        {
-            switch (mType)
-            {
-                case kArray:
-                case kVariableArray:
-                    return mArray->get();
-                default:
-                    return NULL;
-            }
-
-        }
-        
-        double *getArray(size_t *size)
-        {
-            *size = getArraySize();
-            return getArray();
-        }
-        
-        size_t getArraySize() const
-        {
-            switch (mType)
-            {
-                case kArray:
-                case kVariableArray:
-                    return mArray->size();
-                default:
-                    return 0;
-            }
-        }
-        
-        bool changed()
-        {
-            bool result = mChanged;
-            mChanged = FALSE;
-            return result;
-        }
-        
-    private:
-        
-        Type mType;
-        char *mName;
-        long mArgumentIdx;
-        bool mChanged;
-        
-        union
-        {
-            double mValue;
-            String *mString;
-            Enum *mEnum;
-            Array <double> *mArray;
-        };
-        
-        double mMin;
-        double mMax;
-    };
-         */
-        
-    public:
-        
+      
         Attribute(const char *name, long argumentIdx) : mChanged(0)
         {
             mName = strdup(name);
@@ -582,7 +120,7 @@ public:
             assert(0 && "cannot add enum items to non-enum attribute");
         }
         
-        virtual const char *getEnumItemString(unsigned long item) const
+        virtual const char *getItemString(unsigned long item) const
         {
             assert(0 == kEnum && "cannot get enum string for non-enum attribute");
         }
@@ -620,7 +158,7 @@ public:
         
         virtual void set(double *values, size_t size)
         {
-            assert(0 && "attribute type does not support setting by array");
+            set(*values);
         }
         
         virtual double getValue() const             { return 0; }
@@ -706,7 +244,7 @@ public:
         
         virtual double getValue() const                                     { return mValue; }
         virtual const char *getString() const                               { return mItems[mValue]; }
-        virtual const char *getEnumItemString(unsigned long item) const     { return mItems[item]; }
+        virtual const char *getItemString(unsigned long item) const     { return mItems[item]; }
         // FIX - review type and implications here...
         virtual void set(double value)
         {
@@ -727,7 +265,7 @@ public:
             }
         }
         
-        virtual  void getRange(double *min, double *max)
+        virtual void getRange(double *min, double *max)
         {
             *min = 0;
             *max = size() - 1;
@@ -788,7 +326,7 @@ public:
             mChanged = true;
         }
         
-        virtual  void getRange(double *min, double *max)
+        virtual void getRange(double *min, double *max)
         {
             *min = mMin;
             *max = mMax;
@@ -932,21 +470,35 @@ public:
 
 public:
     
+    // Destructor
+    
     ~FrameLib_Attributes()
     {
         for (std::vector <Attribute *>::iterator it = mAttributes.begin(); it != mAttributes.end(); it++)
             delete *it;
     }
     
-private:
+    // Size and Index
     
-    void addAttribute(unsigned long index, Attribute *attr)
+    unsigned long size() const                  { return mAttributes.size(); }
+    
+    long getIdx(const char *name) const
     {
-        assert((index == mAttributes.size()) && "attributes must be added in order");
-        mAttributes.push_back(attr);
+        for (unsigned long i = 0; i < mAttributes.size(); i++)
+            if (strcmp(name, mAttributes[i]->name()) == 0)
+                return i;
+        
+        long argumentIdx = convertToNumber(name);
+        
+        if (argumentIdx >= 0)
+            for (unsigned long i = 0; i < mAttributes.size(); i++)
+                if (argumentIdx == mAttributes[i]->argumentIdx())
+                    return i;
+        
+        return -1;
     }
-    
-public:
+
+    // Add Attributes
     
     void addBool(unsigned long index, const char *name, bool defaultValue = FALSE, long argumentIdx = -1)
     {
@@ -983,96 +535,17 @@ public:
     {
         addAttribute(index, new Array(name, argumentIdx, defaultValue, maxSize, size));
     }
-    
-    /////////////////////////////////////////////////////////////////////////////
 
-private:
-    
-    static long convertToNumber(const char *name)
-    {
-        long result = 0;
-        
-        for (unsigned long i = 0; ; i++)
-        {
-            long current = name[i];
-            
-            if (current == 0 && i)
-                return result;
-            
-            if (current < '0' || current > '9')
-                return -1;
-                
-            result = (result * 10) + (current - '0');
-        }
-    }
-    
-public:
-    
-    unsigned long size() const
-    {
-        return mAttributes.size();
-    }
-    
-    long getIdx(const char *name) const
-    {
-        for (unsigned long i = 0; i < mAttributes.size(); i++)
-            if (strcmp(name, mAttributes[i]->name()) == 0)
-                return i;
-        
-        long argumentIdx = convertToNumber(name);
-        
-        if (argumentIdx >= 0)
-            for (unsigned long i = 0; i < mAttributes.size(); i++)
-                if (argumentIdx == mAttributes[i]->argumentIdx())
-                    return i;
-        
-        return -1;
-    }
-    
-    Type getType(unsigned long idx) const
-    {
-        return mAttributes[idx]->type();
-    }
-    
-    Type getType(const char *name) const
-    {
-        return getType(getIdx(name));
-    }
+    // Setters (N.B. - setters have sanity checks as the tags are set by the end-user)
 
-    void getRange(unsigned long idx, double *min, double *max) const
-    {
-        return mAttributes[idx]->getRange(min, max);
-    }
-    
-    void getRange(const char *name, double *min, double *max) const
-    {
-        return getRange(getIdx(name), min, max);
-    }
-    
-    const char *getEnumItemString(unsigned long idx, unsigned long item) const
-    {
-        return mAttributes[idx]->getEnumItemString(item);
-    }
-    
-    const char *getEnumItemString(const char *name, unsigned long item) const
-    {
-        return getEnumItemString(getIdx(name), item);
-    }
-    
-    /////////////////////////////////////////////////////////////////////////////
-    
-
-    
-public:
-   
-    // Range
+    // Set Range
     
     void setMin(double min)                     { mAttributes.back()->setMin(min); }
     void setMax(double max)                     { mAttributes.back()->setMax(max); }
     void setClip(double min, double max)        { mAttributes.back()->setClip(min, max); }
    
-    // Setters (N.B. - setters have sanity checks as the tags are set by the end-user)
-
+    // Set Value
+    
     void set(Serial *serialised)                { serialised->read(this); }
 
     void set(unsigned long idx, bool value)     { set(idx, (double) value); }
@@ -1109,6 +582,23 @@ public:
 
     // Getters (N.B. - getters have no sanity checks, because they are the programmer's responsibility)
     
+    // Get Type
+    
+    Type getType(unsigned long idx) const                                   { return mAttributes[idx]->type(); }
+    Type getType(const char *name) const                                    { return getType(getIdx(name)); }
+    
+    // Get Range
+    
+    void getRange(unsigned long idx, double *min, double *max) const        { return mAttributes[idx]->getRange(min, max); }
+    void getRange(const char *name, double *min, double *max) const         { return getRange(getIdx(name), min, max); }
+    
+    // Get Item Strings
+    
+    const char *getItemString(unsigned long idx, unsigned long item) const  { return mAttributes[idx]->getItemString(item); }
+    const char *getItemString(const char *name, unsigned long item) const   { return getItemString(getIdx(name), item); }
+    
+    // Get Value
+    
     double getValue(unsigned long idx) const                        { return mAttributes[idx]->getValue(); }
     double getValue(const char *name) const                         { return getValue(getIdx(name)); }
     
@@ -1133,6 +623,32 @@ public:
     bool changed(const char *name)                                  { return changed(getIdx(name)); }
     
 private:
+    
+    void addAttribute(unsigned long index, Attribute *attr)
+    {
+        assert((index == mAttributes.size()) && "attributes must be added in order");
+        mAttributes.push_back(attr);
+    }
+    
+    static long convertToNumber(const char *name)
+    {
+        long result = 0;
+        
+        for (unsigned long i = 0; ; i++)
+        {
+            long current = name[i];
+            
+            if (current == 0 && i)
+                return result;
+            
+            if (current < '0' || current > '9')
+                return -1;
+            
+            result = (result * 10) + (current - '0');
+        }
+    }
+    
+    // Data
     
     std::vector <Attribute *> mAttributes;
 };
