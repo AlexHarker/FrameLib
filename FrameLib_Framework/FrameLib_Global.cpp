@@ -5,13 +5,10 @@
 
 FrameLib_Global *FrameLib_Global::get(FrameLib_Global **global)
 {
-    if (*global)
-    {
-        (*global)->increment();
-        return *global;
-    }
-    
-    *global = new FrameLib_Global();
+    if (!*global)
+        *global = new FrameLib_Global();
+
+    (*global)->increment();
     return *global;
 }
 

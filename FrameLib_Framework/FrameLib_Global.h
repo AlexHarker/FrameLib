@@ -82,9 +82,12 @@ private:
 
 class FrameLib_Global
 {
-    // Constructor / destructor
     
-    FrameLib_Global() : mCount(1){}
+private:
+    
+    // Constructor / Destructor
+    
+    FrameLib_Global() : mCount(0){}
     ~FrameLib_Global(){};
     
     // Deleted
