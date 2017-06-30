@@ -9,8 +9,19 @@
 
 // Thread Mac OS implementation
 
-Thread::Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void *arg) : mThreadFunction(threadFunction), mArg(arg), mValid(true)
+Thread::~Thread()
 {
+    assert(!mValid && "Thread not joined before deletion");
+}
+
+void Thread::start()
+{
+    // Valid
+    
+    mValid = true;
+    
+    // Create thread
+    
     pthread_attr_t threadAttributes;
     sched_param schedulingParameters;
     
@@ -22,11 +33,11 @@ Thread::Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void 
     // Set detach state and policy
     
     pthread_attr_setdetachstate(&threadAttributes, PTHREAD_CREATE_JOINABLE);
-    pthread_attr_setschedpolicy(&threadAttributes, (priority == kAudioPriority) ? SCHED_FIFO : SCHED_OTHER);
+    pthread_attr_setschedpolicy(&threadAttributes, (mPriority == kAudioPriority) ? SCHED_FIFO : SCHED_OTHER);
     
     // Set the priority of the thread before we create it
     
-    switch (priority)
+    switch (mPriority)
     {
         case kAudioPriority:        schedulingParameters.sched_priority = 75;       break;
         case kHighPriority:         schedulingParameters.sched_priority = 52;       break;
@@ -40,12 +51,7 @@ Thread::Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void 
     pthread_create(&mInternal, &threadAttributes, threadStart, this);
 }
 
-Thread::~Thread()
-{
-    assert(!mValid && "Thread not closed before deletion");
-}
-
-void Thread::close()
+void Thread::join()
 {
     if (mValid)
     {
@@ -64,7 +70,6 @@ void *Thread::threadStart(void *arg)
     
     return NULL;
 }
-
 
 // Semaphore Mac OS implementation
 
@@ -108,15 +113,25 @@ bool Semaphore::wait()
 
 // Thread Windows OS implementation
 
-Thread::Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void *arg) : mThreadFunction(threadFunction), mArg(arg), mValid(true)
+Thread::~Thread()
 {
+    assert(!mValid && "Thread not closed before deletion");
+    CloseHandle(mInternal);
+}
+
+void start()
+{
+    // Valid
+    
+    mValid = true;
+    
     // Create thread
     
     mInternal = CreateThread(NULL, 0, threadStart, this, 0, NULL);
     
     // Set priority
     
-    switch (priority)
+    switch (mPriority)
     {
         case kAudioPriority:        SetThreadPriority(mInternal, THREAD_PRIORITY_TIME_CRITICAL);        break;
         case kHighPriority:         SetThreadPriority(mInternal, THREAD_PRIORITY_HIGHEST);              break;
@@ -125,13 +140,7 @@ Thread::Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void 
     }
 }
 
-Thread::~Thread()
-{
-    assert(!mValid && "Thread not closed before deletion");
-    CloseHandle(mInternal);
-}
-
-void Thread::close()
+void Thread::join()
 {
     if (mValid)
     {
@@ -200,10 +209,10 @@ bool Semaphore::wait()
 
 // Triggerable Thread
 
-TriggerableThread::~TriggerableThread()
+void TriggerableThread::join()
 {
     mSemaphore.close();
-    mThread.close();
+    mThread.join();
 }
 
 void TriggerableThread::threadEntry(void *thread)
@@ -220,10 +229,10 @@ void TriggerableThread::threadClassEntry()
 
 // Delegate Thread
 
-DelegateThread::~DelegateThread()
+void DelegateThread::join()
 {
     mSemaphore.close();
-    mThread.close();
+    mThread.join();
 }
 
 bool DelegateThread::signal()

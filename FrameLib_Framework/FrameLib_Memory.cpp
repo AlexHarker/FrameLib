@@ -29,14 +29,20 @@ inline size_t blockSize(void* ptr)
 
 // The Main Allocator (has no threadsafety)
 
-FrameLib_MainAllocator::FrameLib_MainAllocator() : mPools(NULL), mOSAllocated(0), mAllocated(0), lastDisposedPoolSize(0), allocThread(this), freeThread(this)
+FrameLib_MainAllocator::FrameLib_MainAllocator() : mPools(NULL), mOSAllocated(0), mAllocated(0), mLastDisposedPoolSize(0), mAllocThread(this), mFreeThread(this)
 {
     mTLSF = tlsf_create(malloc(tlsf_size()));
     insertPool(createPool(initSize));
+    
+    mAllocThread.start();
+    mFreeThread.start();
 }
 
 FrameLib_MainAllocator::~FrameLib_MainAllocator()
 {
+    mAllocThread.join();
+    mFreeThread.join();
+    
     while (mPools)
     {
         removePool(mPools);
@@ -64,16 +70,16 @@ void *FrameLib_MainAllocator::alloc(size_t size)
         
         if (poolSize == growSize)
         {
-            if (allocThread.completed())
-                while (!(pool = scheduledNewPool.clear()));
+            if (mAllocThread.completed())
+                while (!(pool = mScheduledNewPool.clear()));
         }
         
         // If we still don't have pool try the disposed slot
         
-        if (!pool && lastDisposedPoolSize >= poolSize)
+        if (!pool && mLastDisposedPoolSize >= poolSize)
         {
-            pool = scheduledDisposePool.clear();
-            lastDisposedPoolSize = 0;
+            pool = mScheduledDisposePool.clear();
+            mLastDisposedPoolSize = 0;
         }
 
         // Finally try to create one in this thread
@@ -95,7 +101,7 @@ void *FrameLib_MainAllocator::alloc(size_t size)
     // Check for near full
     
     if (mOSAllocated < mAllocated + growSize)
-        allocThread.signal();
+        mAllocThread.signal();
         
     return ptr;
 }
@@ -133,11 +139,11 @@ void FrameLib_MainAllocator::prune()
             return;
         }
         
-        if (difftime(now, pool->mTime) > pruneInterval && scheduledDisposePool.compareAndSwap(NULL, pool))
+        if (difftime(now, pool->mTime) > pruneInterval && mScheduledDisposePool.compareAndSwap(NULL, pool))
         {
             removePool(pool);
-            lastDisposedPoolSize = pool->mSize;
-            freeThread.signal();
+            mLastDisposedPoolSize = pool->mSize;
+            mFreeThread.signal();
         }
     }
 }
@@ -222,12 +228,12 @@ void FrameLib_MainAllocator::removePool(Pool *pool)
 void FrameLib_MainAllocator::addScheduledPool()
 {
     Pool *pool = createPool(growSize);
-    while (!scheduledNewPool.compareAndSwap(NULL, pool));
+    while (!mScheduledNewPool.compareAndSwap(NULL, pool));
 }
 
 void FrameLib_MainAllocator::destroyScheduledPool()
 {
-    destroyPool(scheduledDisposePool.clear());
+    destroyPool(mScheduledDisposePool.clear());
 }
 
 

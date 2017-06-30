@@ -119,9 +119,9 @@ private:
 };
 
 
-// Lightweight thread
+// Lightweight joinable thread
 
-struct Thread
+class Thread
 {
     
     typedef void ThreadFunctionType(void *);
@@ -130,10 +130,14 @@ public:
     
     enum PriorityLevel {kLowPriority, kMediumPriority, kHighPriority, kAudioPriority};
 
-    Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void *arg);
+    Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void *arg)
+    : mInternal(NULL), mPriority(priority), mThreadFunction(threadFunction), mArg(arg), mValid(false)
+    {}
+
     ~Thread();
 
-    void close();
+    void start();
+    void join();
 
 private:
     
@@ -150,6 +154,7 @@ private:
     // Data
     
     OSThreadType mInternal;
+    PriorityLevel mPriority;
     ThreadFunctionType *mThreadFunction;
     void *mArg;
     bool mValid;
@@ -192,10 +197,14 @@ class TriggerableThread
 public:
 
     TriggerableThread(Thread::PriorityLevel priority) : mThread(priority, threadEntry, this), mSemaphore(1) {}
-    ~TriggerableThread();
+    
+    // Start and join
+    
+    void start() { mThread.start(); }
+    void join();
     
     // Trigger the thread to do something
-    
+
     void signal() { mSemaphore.signal(1); };
     
 private:
@@ -210,7 +219,7 @@ private:
     static void threadEntry(void *thread);
     void threadClassEntry();
     
-    // Override this and provide code for the thread's functionaility
+    // Override this and provide code for the thread's functionality
     
     virtual void doTask() = 0;
     
@@ -229,7 +238,11 @@ class DelegateThread
 public:
 
     DelegateThread(Thread::PriorityLevel priority) : mThread(priority, threadEntry, this), mSemaphore(1), mSignaled(false) {}
-    ~DelegateThread();
+    
+    // Start and join
+
+    void start() { mThread.start(); }
+    void join();
     
     // Signal the thread to do something if it is not busy (returns true if the thread was signalled, false if busy)
     
@@ -251,7 +264,7 @@ private:
     static void threadEntry(void *thread);
     void threadClassEntry();
     
-    // Override this and provide code for the thread's functionaility
+    // Override this and provide code for the thread's functionality
 
     virtual void doTask() = 0;
     

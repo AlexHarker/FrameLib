@@ -95,11 +95,11 @@ private:
     size_t mOSAllocated;
     size_t mAllocated;
     
-    size_t lastDisposedPoolSize;
-    FrameLib_AtomicPtr<Pool> scheduledNewPool;
-    FrameLib_AtomicPtr<Pool> scheduledDisposePool;
-    NewThread allocThread;
-    FreeThread freeThread;
+    size_t mLastDisposedPoolSize;
+    FrameLib_AtomicPtr<Pool> mScheduledNewPool;
+    FrameLib_AtomicPtr<Pool> mScheduledDisposePool;
+    NewThread mAllocThread;
+    FreeThread mFreeThread;
 };
 
 
