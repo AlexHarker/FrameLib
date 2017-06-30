@@ -8,6 +8,7 @@
 #include <cstring>
 #include <cassert>
 #include <limits>
+#include <string>
 
 // FrameLib_Attributes
 
@@ -94,90 +95,51 @@ public:
 
 private:
     
+    // Abstract Attribute Class
+    
     class Attribute
     {
         
     public:
       
-        Attribute(const char *name, long argumentIdx) : mChanged(0)
-        {
-            mName = strdup(name);
-            mArgumentIdx = argumentIdx;
-        }
+        // Constructor / Destructor
         
-        virtual ~Attribute()
-        {
-            free(mName);
-        }
+        Attribute(const char *name, long argumentIdx);
+        virtual ~Attribute(){};
+       
+        // Setters
+        
+        virtual void addEnumItem(const char *str);
+        
+        virtual void setMin(double min);
+        virtual void setMax(double max);
+        virtual void setClip(double min, double max);
+        
+        virtual void set(const char *str);
+        virtual void set(double value);
+        virtual void set(double *values, size_t size);
+
+        // Getters
+        
+        // Setup
         
         virtual Type type() = 0;
         
-        const char *name()  { return mName; }
+        const char *name()  { return mName.c_str(); }
         long argumentIdx()  { return mArgumentIdx; }
         
-        virtual void addEnumItem(const char *str)
-        {
-            assert(0 && "cannot add enum items to non-enum attribute");
-        }
-        
-        virtual const char *getItemString(unsigned long item) const
-        {
-            assert(0 == kEnum && "cannot get enum string for non-enum attribute");
-        }
-        
-        virtual void setMin(double min)
-        {
-            assert(0 && "attribute type does not support minimum values");
-        }
-        
-        virtual void setMax(double max)
-        {
-           assert(0 && "attribute type does not support maximum values");
-        }
-        
-        virtual void setClip(double min, double max)
-        {
-            assert(0 && "attribute type does not support clipping values");
-        }
-        
-        virtual  void getRange(double *min, double *max)
-        {
-            *min = 0;
-            *max = 0;
-        }
-        
-        virtual void set(const char *str)
-        {
-            assert(0 && "attribute type does not support setting by string");
-        }
-        
-        virtual void set(double value)
-        {
-            assert(0 && "attribute type does not support setting by double");
-        }
-        
-        virtual void set(double *values, size_t size)
-        {
-            set(*values);
-        }
+        virtual  void getRange(double *min, double *max);
+        virtual const char *getItemString(unsigned long item) const;
+
+        // Values
         
         virtual double getValue() const             { return 0; }
         virtual const char *getString() const       { return NULL; }
         virtual size_t getArraySize() const         { return 0; }
         virtual const double *getArray() const      { return NULL; }
+        const double *getArray(size_t *size) const;
         
-        const double *getArray(size_t *size) const
-        {
-            *size = getArraySize();
-            return getArray();
-        }
-        
-        bool changed()
-        {
-            bool result = mChanged;
-            mChanged = FALSE;
-            return result;
-        }
+        bool changed();
         
     protected:
         
@@ -185,176 +147,139 @@ private:
 
     private:
         
-        char *mName;
+        std::string mName;
         long mArgumentIdx;
     };
     
-    class String : public Attribute
-    {
-        const static size_t maxLen = 128;
-        
-    public:
-        
-        String(const char *name, long argumentIdx) : Attribute(name, argumentIdx)
-        {
-            mCString[0] = 0;
-        }
-        
-        virtual Type type() { return kString; }
-
-        virtual void set(const char *str)
-        {
-            size_t i = 0;
-            
-            if (str != NULL)
-            {
-                for (i = 0; i < maxLen; i++)
-                    if ((mCString[i] = str[i]) == 0)
-                        break;
-            }
-            
-            mCString[i] = 0;
-            mChanged = true;
-        }
-        
-        virtual const char *getString() const     { return mCString; }
-        
-    private:
-        
-        char mCString[maxLen + 1];
-    };
+    // ************************************************************************************** //
     
-    class Enum : public Attribute
-    {
-        
-    public:
-        
-        virtual Type type() { return kEnum; }
+    // Bool Attribute Class
 
-        Enum(const char *name, long argumentIdx) : Attribute(name, argumentIdx), mValue(0) {}
-        
-        ~Enum()
-        {
-            for (unsigned long i = 0; i < mItems.size(); i++)
-                free(mItems[i]);
-        }
-        
-        void addEnumItem(const char *str)                                   { mItems.push_back(strdup(str)); }
-        
-        unsigned long size() const                                          { return mItems.size(); }
-        
-        virtual double getValue() const                                     { return mValue; }
-        virtual const char *getString() const                               { return mItems[mValue]; }
-        virtual const char *getItemString(unsigned long item) const     { return mItems[item]; }
-        // FIX - review type and implications here...
-        virtual void set(double value)
-        {
-            mValue = ((value >= mItems.size()) ? (mItems.size() - 1) : value);
-            mChanged = true;
-        }
-        
-        virtual void set(const char *str)
-        {
-            for (unsigned long i = 0; i < mItems.size(); i++)
-            {
-                if (strcmp(str, mItems[i]) == 0)
-                {
-                    mValue = i;
-                    mChanged = true;
-                    return;
-                }
-            }
-        }
-        
-        virtual void getRange(double *min, double *max)
-        {
-            *min = 0;
-            *max = size() - 1;
-        }
-        
-    private:
-        
-        std::vector <char *> mItems;
-        unsigned long mValue;
-    };
-    
     class Bool : public Attribute
     {
         
     public:
         
+        Bool(const char *name, long argumentIdx, bool defaultValue)
+        : Attribute(name, argumentIdx), mValue(defaultValue) {}
+
+        // Setters
+        
+        virtual void set(double value);
+
+        // Getters
+
         virtual Type type() { return kBool; }
-        
-        Bool(const char *name, long argumentIdx, bool defaultValue) : Attribute(name, argumentIdx), mValue(defaultValue) {}
-        
-        virtual double getValue() const                { return mValue; }
-        
-        virtual void set(double value)
-        {
-            mValue = value ? true : false;
-            mChanged = true;
-        }
-        
-        virtual void getRange(double *min, double *max)
-        {
-            *min = false;
-            *max = true;
-        }
+
+        virtual void getRange(double *min, double *max);
+
+        virtual double getValue() const { return mValue; }
         
     private:
         
         bool mValue;
     };
     
+    // ************************************************************************************** //
+
+    // Enum Attribute Class
+
+    class Enum : public Attribute
+    {
+        
+    public:
+        
+        Enum(const char *name, long argumentIdx)
+        : Attribute(name, argumentIdx), mValue(0) {}
+        
+        // Setters
+        
+        void addEnumItem(const char *str) { mItems.push_back(str); }
+        
+        virtual void set(double value);
+        virtual void set(const char *str);
+        
+        virtual Type type() { return kEnum; }
+        
+        // Getters
+        
+        virtual void getRange(double *min, double *max);
+        
+        virtual double getValue() const                                 { return mValue; }
+        virtual const char *getString() const                           { return mItems[mValue].c_str(); }
+        virtual const char *getItemString(unsigned long item) const     { return mItems[item].c_str(); }
+        
+    private:
+        
+        std::vector <std::string> mItems;
+        unsigned long mValue;
+    };
+    
+    // ************************************************************************************** //
+
+    // Double Attribute Class
+
     class Double : public Attribute
     {
         
     public:
         
-        virtual Type type() { return kDouble; }
+        Double(const char *name, long argumentIdx, double defaultValue)
+        : Attribute(name, argumentIdx), mValue(defaultValue), mMin(-std::numeric_limits<double>::infinity()), mMax(std::numeric_limits<double>::infinity()) {}
         
-        Double(const char *name, long argumentIdx, double defaultValue) : Attribute(name, argumentIdx), mValue(defaultValue)
-        {
-            mMin = -std::numeric_limits<double>::infinity();
-            mMax = std::numeric_limits<double>::infinity();
-        }
-        
-        virtual double getValue() const                    { return mValue; }
-        
-        virtual void set(double value)
-        {
-            mValue = (value < mMin) ? mMin : ((value > mMax) ? mMax : value);
-            mChanged = true;
-        }
-        
-        virtual void getRange(double *min, double *max)
-        {
-            *min = mMin;
-            *max = mMax;
-        }
-        
-        virtual void setMin(double min)
-        {
-            mMin = min;
-        }
-        
-        virtual void setMax(double max)
-        {
-            mMax = max;
-        }
-        
-        virtual void setClip(double min, double max)
-        {
-            setMin(min);
-            setMax(max);
-        }
+        // Setters
 
+        virtual void setMin(double min);
+        virtual void setMax(double max);
+        virtual void setClip(double min, double max);
+
+        virtual void set(double value);
+        
+        // Getters
+
+        virtual Type type() { return kDouble; }
+
+        virtual void getRange(double *min, double *max);
+        
+        virtual double getValue() const { return mValue; }
+       
     private:
         
         double mValue;
         double mMin;
         double mMax;
     };
+    
+    // ************************************************************************************** //
+
+    // String Attribute Class
+
+    class String : public Attribute
+    {
+        const static size_t maxLen = 128;
+        
+    public:
+        
+        String(const char *name, long argumentIdx);
+        
+        // Setters
+        
+        virtual void set(const char *str);
+        
+        // Getters
+        
+        virtual Type type() { return kString; }
+        
+        virtual const char *getString() const { return mCString; }
+        
+    private:
+        
+        char mCString[maxLen + 1];
+    };
+
+    // ************************************************************************************** //
+
+    // Array Attribute Class
 
     class Array : public Attribute, private std::vector<double>
     {
@@ -362,96 +287,25 @@ private:
         
     public:
         
-        Array(const char *name, long argumentIdx, double defaultValue, size_t size)
-        : Attribute(name, argumentIdx), mMode(kNone), mDefaultValue(defaultValue), mSize(size), mVariableSize(false)
-        {
-            mItems.resize(size);
-            
-            for (size_t i = 0; i < mSize; i++)
-                mItems[i] = defaultValue;
-        }
-        
-        Array(const char *name, long argumentIdx, double defaultValue, size_t maxSize, size_t size)
-        : Attribute(name, argumentIdx), mMode(kNone), mDefaultValue(defaultValue), mVariableSize(true)
-        {
-            mItems.resize(maxSize);
+        Array(const char *name, long argumentIdx, double defaultValue, size_t size);
+        Array(const char *name, long argumentIdx, double defaultValue, size_t maxSize, size_t size);
 
-            mSize = size < maxSize ? size : maxSize;
-            
-            for (size_t i = 0; i < mSize; i++)
-                mItems[i] = defaultValue;
-        }
+        // Setters
 
-        
+        virtual void setMin(double min);
+        virtual void setMax(double max);
+        virtual void setClip(double min, double max);
+
+        void set(double *values, size_t size);
+
+        // Getters
+
         virtual Type type() { return mVariableSize ? kVariableArray : kArray; }
-
-        virtual void setMin(double min)
-        {
-            mMode = kMin;
-            mMin = min;
-        }
         
-        virtual void setMax(double max)
-        {
-            mMode = kMax;
-            mMax = max;
-        }
+        void getRange(double *min, double *max);
         
-        virtual void setClip(double min, double max)
-        {
-            mMode = kClip;
-            mMin = min;
-            mMax = max;
-        }
-        
-        void getRange(double *min, double *max)
-        {
-            *min = mMin;
-            *max = mMax;
-        }
-        
-        void set(double *values, size_t size)
-        {
-            size = size > mItems.size() ? mItems.size() : size;
-            
-            switch (mMode)
-            {
-                case kNone:
-                    for (size_t i = 0; i < size; i++)
-                        mItems[i] = values[i];
-                    break;
-                case kMin:
-                    for (size_t i = 0; i < size; i++)
-                        mItems[i] = values[i] < mMin ? mMin : values[i];
-                    break;
-                case kMax:
-                    for (size_t i = 0; i < size; i++)
-                        mItems[i] = values[i] > mMax ? mMax : values[i];
-                    break;
-                case kClip:
-                    for (size_t i = 0; i < size; i++)
-                        mItems[i] = values[i] < mMin ? mMin : (values[i] > mMax ? mMax : values[i]);
-                    break;
-            }
-            
-            if (!mVariableSize)
-                for (size_t i = size; i < mItems.size(); i++)
-                    mItems[i] = mDefaultValue;
-            else
-                mSize = size;
-            
-            mChanged = true;
-        }
-        
-        virtual size_t getArraySize() const
-        {
-            return mSize;
-        }
-        
-        virtual const double * getArray() const
-        {
-            return &mItems[0];
-        }
+        virtual size_t getArraySize() const         { return mSize; }
+        virtual const double * getArray() const     { return &mItems[0]; }
         
     private:
         
@@ -501,7 +355,7 @@ public:
 
     // Add Attributes
     
-    void addBool(unsigned long index, const char *name, bool defaultValue = FALSE, long argumentIdx = -1)
+    void addBool(unsigned long index, const char *name, bool defaultValue = false, long argumentIdx = -1)
     {
         addAttribute(index, new Bool(name, argumentIdx, defaultValue));
     }
