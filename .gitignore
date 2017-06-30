@@ -1,30 +1,27 @@
-*.exe
-ipch/
-*.aps
-*.ncb
-*.opendb
-*.opensdf
-*.sdf
-*.cachefile
-*.zip
-*.suo
-*.ncb
-*.vcproj.*
-*.pkg
-*.dmg
-*.depend
-*.layout
-*.pbxuser
-*.mode1
-*.mode1v3
-*.db
-*.LSOverride
-*.xcworkspace/
-*.xcuserdata/
-build-*
-ipch/*
-*/CVS/*
+## Build generated
+build/
+DerivedData/
 
+## Outmoded source tracking
+CVS/
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1
+!default.mode1
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+
+## Other
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
 
 Icon?
 .DS_Stor*
