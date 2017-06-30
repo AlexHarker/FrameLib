@@ -38,7 +38,7 @@ public:
 
     // Audio Processing
     
-    virtual void blockUpdate (double **ins, double **outs, unsigned long vecSize)
+    virtual void blockUpdate(double **ins, double **outs, unsigned long vecSize)
     {
         // Override to handle audio at the block level (objects with block-based audio must overload this)
     }
