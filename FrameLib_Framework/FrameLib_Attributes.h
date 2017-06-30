@@ -14,8 +14,6 @@
 
 // This class deals with attributes of an object
 
-// FIX - add ability for constructor settings of array to resize the array
-// FIX - allow setting of default on enums differently?
 // FIX - consider various formatting possibilities for attribs
 // FIX - allow attribute copying - consider going back to objects...
 // FIX - add error reporting
