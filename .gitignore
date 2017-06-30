@@ -14,13 +14,16 @@ ipch/
 *.dmg
 *.depend
 *.layout
+*.pbxuser
+*.mode1
 *.mode1v3
 *.db
 *.LSOverride
-*.xcworkspace
-*.xcuserdata
+*.xcworkspace/
+*.xcuserdata/
 build-*
 ipch/*
+*/CVS/*
 
 
 Icon?
