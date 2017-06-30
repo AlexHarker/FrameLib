@@ -180,6 +180,7 @@ private:
         }
         
     protected:
+        
         bool mChanged;
 
     private:
@@ -413,7 +414,7 @@ private:
         {
             size = size > mItems.size() ? mItems.size() : size;
             
-            switch(mMode)
+            switch (mMode)
             {
                 case kNone:
                     for (size_t i = 0; i < size; i++)
@@ -512,7 +513,7 @@ public:
     
     void addString(unsigned long index, const char *name, const char *str, long argumentIdx = -1)
     {
-        addAttribute(index, new String (name, argumentIdx));
+        addAttribute(index, new String(name, argumentIdx));
         mAttributes.back()->set(str);
     }
     
