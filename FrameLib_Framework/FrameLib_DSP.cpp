@@ -5,7 +5,7 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP (ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
-: FrameLib_Block(nAudioIns, nAudioOuts), mContext(context), mAllocator(context.getAllocator()), mQueue(context.getDSPQueue()), mNext(NULL), mType(type)
+: mContext(context), mAllocator(context.getAllocator()), mQueue(context.getDSPQueue()), mNext(NULL), mType(type)
 {
     // Set IO
     
@@ -46,11 +46,8 @@ void FrameLib_DSP::setIO(unsigned long nIns, unsigned long nOuts, unsigned long 
     mInputs.resize((mType != kScheduler || nIns > 0) ? nIns : 1);
     mOutputs.resize(nOuts);
     
-    FrameLib_Block::setIO(nAudioIns, nAudioOuts);
-    
-    // Check if the object handles audio
-    
-    //updateHandlesAudio();
+    mNumAudioIns = nAudioIns;
+    mNumAudioOuts = nAudioOuts;
     
     // Reset for audio
     

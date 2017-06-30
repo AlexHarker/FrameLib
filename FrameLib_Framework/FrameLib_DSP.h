@@ -86,8 +86,8 @@ private:
     
 public:
     
-    FrameLib_DSP (ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts);
-    ~FrameLib_DSP ();
+    FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts);
+    ~FrameLib_DSP();
     
     // ************************************************************************************** //
 
@@ -117,8 +117,10 @@ protected:
     
 public:
     
-    unsigned long getNumIns()   { return mInputs.size(); }
-    unsigned long getNumOuts()  { return mOutputs.size(); }
+    virtual unsigned long getNumIns()   { return mInputs.size(); }
+    virtual unsigned long getNumOuts()  { return mOutputs.size(); }
+    virtual unsigned long getNumAudioIns()   { return mNumAudioIns; }
+    virtual unsigned long getNumAudioOuts()  { return mNumAudioOuts; }
     
     // ************************************************************************************** //
     
@@ -211,18 +213,6 @@ protected:
 
     double *getInput(unsigned long idx, size_t *size);
     FrameLib_Attributes::Serial *getInput(unsigned long idx);
-    
-    // ************************************************************************************** //
-    
-    // Audio handling reporting
-    /*
-    void updateHandlesAudio()
-    {
-        mHandlesAudio = (mType == kScheduler || getNumAudioIns() || getNumAudioOuts());
-        mRequiresAudioNotification = handlesAudio() && mType != kOutput;
-    }*/
-    
-    // ************************************************************************************** //
     
     // Customisable processing
     
@@ -322,6 +312,11 @@ private:
     
     std::vector <FrameLib_DSP *> mInputDependencies;
     std::vector <FrameLib_DSP *> mOutputDependencies;
+    
+    // Audio IO Counts
+    
+    unsigned long mNumAudioIns;
+    unsigned long mNumAudioOuts;
     
     // Dependency Counts
     

@@ -15,13 +15,9 @@ class FrameLib_Block
     
 public:
     
-    // Constructors
+    // Constructor / Destructor (virtual)
     
-    FrameLib_Block(unsigned long nAudioIns, unsigned long nAudioOuts)   { setIO(nAudioIns, nAudioOuts); }
-    FrameLib_Block()                                                    { setIO(0, 0); }
-    
-    // Destructor (virtual)
-    
+    FrameLib_Block(){}
     virtual ~FrameLib_Block(){}
    
     // Basic Parameters
@@ -29,8 +25,8 @@ public:
     virtual void setSamplingRate(double samplingRate) = 0;
     virtual unsigned long getNumIns() = 0;
     virtual unsigned long getNumOuts() = 0;
-    unsigned long getNumAudioIns()  { return mNumAudioIns; }
-    unsigned long getNumAudioOuts() { return mNumAudioOuts; }
+    virtual  unsigned long getNumAudioIns() = 0;
+    virtual  unsigned long getNumAudioOuts() = 0;
     
     // Set Fixed Inputs
     
@@ -44,11 +40,6 @@ public:
     }
     
     static bool handlesAudio()  { return false; }
-    
-    virtual void updateHandlesAudio()
-    {
-        // This function should set the mHandlesAudio member variable and be called whenever this might change
-    }
     
     virtual void reset() = 0;
     
@@ -65,23 +56,10 @@ public:
     }
     
 protected:
-        
-    void setIO(unsigned long nAudioIns, unsigned long nAudioOuts)
-    {
-        mNumAudioIns = nAudioIns;
-        mNumAudioOuts = nAudioOuts;
-        
-        updateHandlesAudio();
-    }
 
     virtual class FrameLib_DSP *getOutputObject(unsigned long outIdx) = 0;
 
     FrameLib_Attributes mAttributes;
-    
-private:
-    
-    unsigned long mNumAudioIns;
-    unsigned long mNumAudioOuts;
 };
 
 #endif
