@@ -29,5 +29,4 @@ private:
     Item *mTail;
 };
 
-
 #endif /* FRAMELIB_CONNECTIONQUEUE_H */

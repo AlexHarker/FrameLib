@@ -261,5 +261,4 @@ protected:
     }
 };
 
-
 #endif
