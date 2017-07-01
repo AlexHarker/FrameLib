@@ -140,9 +140,7 @@ private:
     // This returns true if the object requires notification from an audio thread
     
     bool requiresAudioNotification()
-    {
-        // FIX- review this...
-        
+    {        
         return mType == kScheduler || getNumAudioIns() || getNumAudioOuts();
     }
     

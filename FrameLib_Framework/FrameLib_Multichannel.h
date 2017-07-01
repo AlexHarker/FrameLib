@@ -355,9 +355,7 @@ public:
 
         if (getNumAudioOuts())
             mAllocator->dealloc(temps[0]);
-        
-        // FIX - would this get called less in the FrameLib_DSPQueue?
-        
+                
         mAllocator->clear();
     }
     
