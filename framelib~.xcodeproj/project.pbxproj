@@ -9298,6 +9298,7 @@
 			buildSettings = {
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				LLVM_LTO = YES;
 			};
 			name = Development;
 		};
@@ -9307,6 +9308,7 @@
 			buildSettings = {
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				LLVM_LTO = YES;
 			};
 			name = Deployment;
 		};
@@ -9316,6 +9318,7 @@
 			buildSettings = {
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				LLVM_LTO = YES;
 			};
 			name = Default;
 		};
