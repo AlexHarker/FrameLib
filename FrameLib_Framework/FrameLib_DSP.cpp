@@ -289,7 +289,7 @@ inline void FrameLib_DSP::freeOutputMemory()
         
         for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
             if (outs->mMode == kOutputTagged)
-                ((FrameLib_Attributes::Serial *)outs->mMemory)->FrameLib_Attributes::Serial::~Serial();
+                ((Serial *)outs->mMemory)->Serial::~Serial();
             
         mOutputs[0].mMemory = NULL;
     }
@@ -351,7 +351,7 @@ bool FrameLib_DSP::allocateOutputs()
         
         // FIX - check serial alignment safety - move this into the class to be on the safe side??
         
-        size_t unalignedSize = outs->mMode == kOutputNormal ? outs->mRequestedSize * sizeof(double) : sizeof(FrameLib_Attributes::Serial) + FrameLib_Attributes::Serial::align(outs->mRequestedSize);
+        size_t unalignedSize = outs->mMode == kOutputNormal ? outs->mRequestedSize * sizeof(double) : sizeof(Serial) + Serial::align(outs->mRequestedSize);
         size_t alignedSize = FrameLib_LocalAllocator::alignSize(unalignedSize);
         
         outs->mCurrentSize = outs->mRequestedSize;
@@ -375,7 +375,7 @@ bool FrameLib_DSP::allocateOutputs()
             outs->mMemory = pointer + outs->mPointerOffset;
             
             if (outs->mMode == kOutputTagged)
-                new (outs->mMemory) FrameLib_Attributes::Serial(((BytePointer) outs->mMemory) + sizeof(FrameLib_Attributes::Serial), outs->mCurrentSize);
+                new (outs->mMemory) Serial(((BytePointer) outs->mMemory) + sizeof(Serial), outs->mCurrentSize);
         }
         
         // Set dependency count
@@ -413,7 +413,7 @@ double *FrameLib_DSP::getOutput(unsigned long idx, size_t *size)
 FrameLib_Attributes::Serial *FrameLib_DSP::getOutput(unsigned long idx)
 {
     if (mOutputs[0].mMemory && mOutputs[idx].mMode == kOutputTagged)
-        return (FrameLib_Attributes::Serial *) mOutputs[idx].mMemory;
+        return (Serial *) mOutputs[idx].mMemory;
     
     return NULL;
 }

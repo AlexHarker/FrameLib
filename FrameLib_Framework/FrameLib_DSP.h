@@ -15,7 +15,7 @@
 
 class FrameLib_DSP : public FrameLib_Block
 {
-
+    typedef FrameLib_Attributes::Serial Serial;
     friend FrameLib_DSPQueue;
         
     // ************************************************************************************** //
