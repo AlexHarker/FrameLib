@@ -26,8 +26,8 @@ public:
     
     virtual unsigned long getNumIns() = 0;
     virtual unsigned long getNumOuts() = 0;
-    virtual  unsigned long getNumAudioIns() = 0;
-    virtual  unsigned long getNumAudioOuts() = 0;
+    virtual unsigned long getNumAudioIns() = 0;
+    virtual unsigned long getNumAudioOuts() = 0;
     
     // Set Fixed Inputs
     
