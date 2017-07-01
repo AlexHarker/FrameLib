@@ -98,9 +98,9 @@ public:
         TriggerModes triggers = (TriggerModes) mAttributes.getInt(kTriggers);
         
         if (triggers == kLeft)
-            inputMode(1, FALSE, FALSE, FALSE);
+            inputMode(1, false, false, false);
         if (triggers == kRight)
-            inputMode(0, FALSE, FALSE, FALSE);
+            inputMode(0, false, false, false);
     }
     
 protected:
