@@ -281,9 +281,16 @@ void FrameLib_DSP::dependenciesReady()
 
 inline void FrameLib_DSP::freeOutputMemory()
 {
-    if (getNumOuts())
+    if (getNumOuts() && mOutputs[0].mMemory)
     {
         mAllocator->dealloc(mOutputs[0].mMemory);
+        
+        // Call the destructor for any serial outputs
+        
+        for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
+            if (outs->mMode == kOutputTagged)
+                ((FrameLib_Attributes::Serial *)outs->mMemory)->FrameLib_Attributes::Serial::~Serial();
+            
         mOutputs[0].mMemory = NULL;
     }
 }
@@ -353,10 +360,9 @@ bool FrameLib_DSP::allocateOutputs()
         allocationSize += alignedSize;
     }
     
-    // Allocate memory
+    // Free then allocate memory
     
-    if (mOutputs[0].mMemory)
-        mAllocator->dealloc(mOutputs[0].mMemory);
+    freeOutputMemory();
     
     char *pointer = !allocationSize ? NULL : (char *) mAllocator->alloc(allocationSize);
     
@@ -367,8 +373,6 @@ bool FrameLib_DSP::allocateOutputs()
         for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
         {
             outs->mMemory = pointer + outs->mPointerOffset;
-            
-            // FIX - where does the destructor get called (I know it shouldn't do anything)
             
             if (outs->mMode == kOutputTagged)
                 new (outs->mMemory) FrameLib_Attributes::Serial(((BytePointer) outs->mMemory) + sizeof(FrameLib_Attributes::Serial), outs->mCurrentSize);
