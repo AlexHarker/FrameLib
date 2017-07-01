@@ -8,7 +8,24 @@
 
 // FIX - vectorise where appropriate
 // FIX - default modes (situation dependent)
-// FIX - fix function versions (how are they broken??)
+
+// Unary Functor
+
+template < double func(double)> struct Unary_Functor
+{
+public:
+    double operator()(double x) { return func(x); }
+};
+
+// Binary Functor
+
+template < double func(double, double)> struct Binary_Functor
+{
+public:
+    double operator()(double x, double y) { return func(x, y); }
+};
+
+// ************************************************************************************** //
 
 // Unary (Operator Version)
 
@@ -39,18 +56,14 @@ protected:
 
 // Unary (Function Version)
 
-template < double func(double)> struct Unary_Functor
-{
-public:
-    double operator()(double x) { return func(x); }
-};
-
 template <double func(double)> class FrameLib_Unary : public FrameLib_UnaryOp < Unary_Functor<func> >
 {
 public:
     FrameLib_Unary(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner)
     : FrameLib_UnaryOp < Unary_Functor<func> > (context, serialisedAttributes, owner) {}
 };
+
+// ************************************************************************************** //
 
 // Binary Operator
 
@@ -220,18 +233,14 @@ private:
 
 // Binary (Function Version)
 
-template < double func(double, double)> struct Binary_Functor
-{
-public:
-    double operator()(double x, double y) { return func(x, y); }
-};
-
 template <double func(double, double)> class FrameLib_Binary : public FrameLib_BinaryOp < Binary_Functor<func> >
 {
 public:
     FrameLib_Binary(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner)
     : FrameLib_BinaryOp < Binary_Functor<func> > (context, serialisedAttributes, owner) {}
 };
+
+// ************************************************************************************** //
 
 // Vector
 
