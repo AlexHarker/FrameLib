@@ -17,9 +17,7 @@ class FrameLib_DSP : public FrameLib_Block
 {
 
     friend FrameLib_DSPQueue;
-    
-    static const size_t taggedOutputAlignment = FrameLib_Attributes::Serial::alignment;
-    
+        
     // ************************************************************************************** //
 
     // Enums and Structs (IO / scheduling)

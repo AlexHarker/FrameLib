@@ -351,7 +351,7 @@ bool FrameLib_DSP::allocateOutputs()
         
         // FIX - check serial alignment safety - move this into the class to be on the safe side??
         
-        size_t unalignedSize = outs->mMode == kOutputNormal ? outs->mRequestedSize * sizeof(double) : outs->mRequestedSize + sizeof(FrameLib_Attributes::Serial) + taggedOutputAlignment;
+        size_t unalignedSize = outs->mMode == kOutputNormal ? outs->mRequestedSize * sizeof(double) : sizeof(FrameLib_Attributes::Serial) + FrameLib_Attributes::Serial::align(outs->mRequestedSize);
         size_t alignedSize = FrameLib_LocalAllocator::alignSize(unalignedSize);
         
         outs->mCurrentSize = outs->mRequestedSize;

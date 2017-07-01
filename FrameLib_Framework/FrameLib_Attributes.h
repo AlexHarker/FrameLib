@@ -63,11 +63,12 @@ public:
         size_t size()   { return mSize; }
         void clear()    { mSize = 0; }
 
+        static size_t align(size_t size)            { return (size + (alignment - 1)) & ~(alignment - 1); }
+
     private:
         
         void alignmentChecks();
         
-        static size_t align(size_t size)            { return (size + (alignment - 1)) & ~(alignment - 1); }
         static size_t sizeType()                    { return align(sizeof(DataType)); }
         static size_t sizeString(const char *str)   { return align(sizeof(size_t)) + align(strlen(str) + 1); }
         static size_t sizeArray(size_t N)           { return align(sizeof(size_t)) + align((N * sizeof(double))); }
