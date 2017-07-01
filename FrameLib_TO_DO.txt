@@ -8,19 +8,19 @@ DONE	- Make C++ class extensible
 	- Make safe (avoid direct access of other objects / thread safety / avoid symbol bindings)
 	- Better connection issue reporting
 
-3 - Review parameter inputs (how to handle, including max wrapper)
+PROGRESS 3 - Review parameter inputs (how to handle, including max wrapper)
 
 4 - Finalise Memory Management
 PROGRESS	- Do variable memory management (underlying engine)
 		- Review memory management
 
-5 - Revise, refactor and cleanup
+PROGRESS s5 - Revise, refactor and cleanup
 DONE		- Global / Context
 PROGRESS	- Memory
-		- Max Object Work
-		- Block / DSP
-		- Attribute
-		- Multichannel
+PROGRESS	- Max Object Work
+PROGRESS	- Block / DSP
+PROGRESS	- Attribute
+PROGRESS	- Multichannel
 
 6 - Assist/Help Info (Inputs and Parameters)
 

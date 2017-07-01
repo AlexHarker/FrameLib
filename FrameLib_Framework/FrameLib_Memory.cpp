@@ -53,6 +53,11 @@ FrameLib_MainAllocator::~FrameLib_MainAllocator()
     free(mTLSF);
 }
 
+ size_t FrameLib_MainAllocator::getAlignment()
+{
+    return alignment;
+}
+
 void *FrameLib_MainAllocator::alloc(size_t size)
 {
     void *ptr = tlsf_memalign(mTLSF, alignment, size);

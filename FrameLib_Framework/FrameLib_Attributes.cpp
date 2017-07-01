@@ -47,6 +47,8 @@ void FrameLib_Attributes::Serial::write(const char *tag, char *str)
 
 void FrameLib_Attributes::Serial::write(const char *tag, double *values, size_t N)
 {
+    // FIX - this might mean we can't set an empty array - might need adjusting
+    
     if (!N || !checkSize(calcSize(tag, N)))
         return;
     
@@ -93,8 +95,7 @@ void FrameLib_Attributes::Serial::alignmentChecks()
     assert(Serial::alignment >= sizeof(size_t) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
     assert(Serial::alignment >= sizeof(char) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
     assert(Serial::alignment >= sizeof(char *) && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
-    // FIX - swapped the below inequality - check it is now correct and find an appropriate call
-    //assert(Serial::alignment <= FrameLib_MainAllocator::getAlignment() && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
+    assert(Serial::alignment <= FrameLib_MainAllocator::getAlignment() && "alignment assumptions are incorrect for FrameLib_Attributes::Serial");
 }
 
 void FrameLib_Attributes::Serial::writeType(DataType type)
@@ -105,7 +106,7 @@ void FrameLib_Attributes::Serial::writeType(DataType type)
 
 void FrameLib_Attributes::Serial::writeSize(size_t size)
 {
-    * ((size_t *) (mPtr + mSize)) = size;
+    *((size_t *) (mPtr + mSize)) = size;
     mSize += align(sizeof(size_t));
 }
 
@@ -116,8 +117,6 @@ void FrameLib_Attributes::Serial::writeString(const char *str)
     strcpy((char *) (mPtr + mSize), str);
     mSize += align(N);
 }
-
-// N.B. the assumption is that double is the largest type, and thus alignment is not necessary here
 
 void FrameLib_Attributes::Serial::writeDoubles(double *ptr, size_t N)
 {

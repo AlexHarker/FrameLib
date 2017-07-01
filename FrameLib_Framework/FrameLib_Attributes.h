@@ -14,7 +14,6 @@
 
 // This class deals with attributes of an object
 
-// FIX - consider various formatting possibilities for attribs
 // FIX - allow attribute copying - consider going back to objects...
 // FIX - add error reporting
 // FIX - instantiation only attributes (with error checking - simply a marker)?
@@ -33,6 +32,8 @@ public:
     {
         
     public:
+        
+        // N.B. the assumption is that double is the largest type in use
         
         static const size_t alignment = sizeof(double);
         static const size_t minGrowSize = 512;
@@ -164,6 +165,7 @@ private:
         // Setters
         
         virtual void set(double value);
+        virtual void set(double *values, size_t size) { Bool::set(*values); }
 
         // Getters
 
@@ -195,6 +197,7 @@ private:
         void addEnumItem(const char *str) { mItems.push_back(str); }
         
         virtual void set(double value);
+        virtual void set(double *values, size_t size) { Enum::set(*values); }
         virtual void set(const char *str);
         
         virtual Type type() { return kEnum; }
@@ -232,6 +235,7 @@ private:
         virtual void setClip(double min, double max);
 
         virtual void set(double value);
+        virtual void set(double *values, size_t size) { Double::set(*values); }
         
         // Getters
 
@@ -407,9 +411,16 @@ public:
     void set(unsigned long idx, long value)     { set(idx, (double) value); }
     void set(const char *name, long value)      { set(name, (double) value); }
 
-    void set(unsigned long idx, double value)   { set(idx, &value, 1); }
-    void set(const char *name, double value)    { set(name, &value, 1); }
+    void set(unsigned long idx, double value)   { mAttributes[idx]->set(value); }
 
+    void set(const char *name, double value)
+    {
+        long idx = getIdx(name);
+        
+        if (idx >= 0)
+            set(idx, value);
+    }
+    
     void set(unsigned long idx, char *str)      { mAttributes[idx]->set(str); }
     
     void set(const char *name, char *str)

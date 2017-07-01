@@ -59,6 +59,8 @@ public:
     FrameLib_MainAllocator();
     ~FrameLib_MainAllocator();
     
+    static size_t getAlignment();
+    
     // Allocate and deallocate memory (plus pruning)
     
     void *alloc(size_t size);
