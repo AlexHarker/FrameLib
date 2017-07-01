@@ -136,6 +136,14 @@ void FrameLib_DSP::dependenciesReady()
     
     if (mType == kScheduler)
     {
+        // Find the new input time (the min valid time of all inputs)
+        
+        mInputTime = FL_Limits<FrameLib_TimeFormat>::largest();
+        
+        for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
+            if (ins->mObject && ins->mObject->mValidTime < mInputTime)
+                mInputTime = ins->mObject->mValidTime;
+        
         // It is disallowed to advance if the output already stretches beyond the current block time
         
         bool upToDate = mValidTime >= mBlockEndTime;
@@ -154,15 +162,6 @@ void FrameLib_DSP::dependenciesReady()
             upToDate = mValidTime >= mBlockEndTime;
             timeUpdated = true;
         }
-        
-        // Find the new input time (the min valid time of all inputs)
-        // FIX - move above (to make scheduling easier?) - although currently inputtime is inaccessible - make function?
-        
-        mInputTime = FL_Limits<FrameLib_TimeFormat>::largest();
-        
-        for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
-            if (ins->mObject && ins->mObject->mValidTime < mInputTime)
-                mInputTime = ins->mObject->mValidTime;
         
         // If we are up to date with the block time (output and all inputs) add the dependency on the block update
         
