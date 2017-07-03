@@ -6,6 +6,7 @@
 #include "FrameLib_Block.h"
 #include "FrameLib_DSP.h"
 #include "FrameLib_ConnectionQueue.h"
+#include <algorithm>
 #include <vector>
 
 // FrameLib_MultiChannel
@@ -14,7 +15,7 @@
 
 class FrameLib_MultiChannel : private FrameLib_ConnectionQueue::Item
 {
-    // Connection Structures
+    // Connection and Other Structures
     
 protected:
 
@@ -39,33 +40,58 @@ private:
         std::vector <ConnectionInfo> mConnections;
     };
     
-    // ************************************************************************************** //
-
-    // Constructors
-    
 public:
     
-    FrameLib_MultiChannel (FrameLib_Context context, unsigned long nIns, unsigned long nOuts) : mContext(context), mQueue(context.getConnectionQueue())
-    {
-        setIO(nIns, nOuts);
-    }
+    // Constructors
+
+    FrameLib_MultiChannel(FrameLib_Context context, unsigned long nIns, unsigned long nOuts)
+    : mContext(context), mQueue(context.getConnectionQueue())
+    { setIO(nIns, nOuts); }
     
-    FrameLib_MultiChannel (FrameLib_Context context) : mContext(context), mQueue(context.getConnectionQueue()) {}
+    FrameLib_MultiChannel(FrameLib_Context context) : mContext(context), mQueue(context.getConnectionQueue()) {}
     
-    // FIX - is this true?
-    
-    // Destructor (virtual) - this MUST call clearConnections() in the inheriting class, before deleting objects
+    // Destructor (virtual) - inheriting classes MUST call clearConnections(), before deleting internal objects
     
     virtual ~FrameLib_MultiChannel()
     {
         mContext.releaseConnectionQueue();
     }
-
-    // ************************************************************************************** //
-
-    // IO Utilities
     
+    // Basic Setup / IO Queries (override the audio methods if handling audio)
+
+    virtual void setSamplingRate(double samplingRate) {};
+
+    unsigned long getNumIns()                   { return mInputs.size(); }
+    unsigned long getNumOuts()                  { return mOutputs.size(); }
+    virtual unsigned long getNumAudioIns()      { return 0; }
+    virtual unsigned long getNumAudioOuts()     { return 0; }
+
+    // Set Fixed Inputs
+    
+    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) {};
+
+    // Audio processing
+    
+    // Override to handle audio at the block level (objects with block-based audio must overload this)
+
+    virtual void blockProcess(double **ins, double **outs, unsigned long vecSize) {}
+    
+    static bool handlesAudio() { return false; }
+    
+    virtual void reset() {}
+    
+    // Multichannel updates
+    
+    // N.B. - No sanity checks here to maximise speed and help debugging (better for it to crash if a mistake is made)
+    
+    void deleteConnection(unsigned long inIdx);
+    void addConnection(FrameLib_MultiChannel *object, unsigned long outIdx, unsigned long inIdx);
+    void clearConnections();
+    bool isConnected(unsigned long inIdx);
+
 protected:
+    
+    // IO Utilities
     
     // Call this in derived class constructors if the IO size is not static
     
@@ -75,43 +101,8 @@ protected:
         mOutputs.resize(nOuts);
     }
     
-public:
-   
-    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) = 0;
-    virtual void setSamplingRate(double samplingRate) = 0;
-    
-    unsigned long getNumIns()   { return mInputs.size(); }
-    unsigned long getNumOuts()  { return mOutputs.size(); }
-
-    // Override these if you are handling audio
-
-    virtual unsigned long getNumAudioIns()  { return 0; }
-    virtual unsigned long getNumAudioOuts() { return 0; }
-
-    // ************************************************************************************** //
-
-    // Audio processing
-    
-    // Override to handle audio at the block level (objects with block-based audio must overload this)
-
-    virtual void blockProcess(double **ins, double **outs, unsigned long vecSize) {}
-    
-    // This function allows you to tell the outside world (whatever that is) whether or not it should call the audio brocessing block
-    // By default this is false, but it can be overridden to be true
-    
-    static bool handlesAudio() { return false; }
-    
-    // Override this if your object contains FrameLib_Block objects and reset them here
-
-    virtual void reset() {}
-    
-    // ************************************************************************************** //
-
-    // Multichannel update code
-    
-protected:
-    
     void outputUpdate();
+    
     unsigned long getNumChans(unsigned long inIdx);
     ConnectionInfo getChan(unsigned long inIdx, unsigned long chan);
 
@@ -134,26 +125,18 @@ private:
     
     std::vector <FrameLib_MultiChannel *>::iterator removeConnections(FrameLib_MultiChannel *object);
 
-    // ************************************************************************************** //
-    
-    // Connection methods (public)
-    
-public:
-    
-    // N.B. - No sanity checks here to maximise speed and help debugging (better for it to crash if a mistake is made)
-    
-    void deleteConnection(unsigned long inIdx);
-    void addConnection(FrameLib_MultiChannel *object, unsigned long outIdx, unsigned long inIdx);
-    void clearConnections();
-    bool isConnected(unsigned long inIdx);
-    // ************************************************************************************** //
-
     // Member variables
     
 protected:
+
+    // Context
     
     FrameLib_Context mContext;
     
+    // Outputs
+    
+    std::vector <MultiChannelOutput> mOutputs;
+
 private:
     
     // Queue
@@ -164,11 +147,6 @@ private:
     
     std::vector <FrameLib_MultiChannel *> mOutputDependencies;
     std::vector <MultiChannelInput> mInputs;
-
-protected:
-    
-    std::vector <MultiChannelOutput> mOutputs;
-    
 };
 
 
@@ -184,9 +162,6 @@ public:
     
     FrameLib_Pack(FrameLib_Context context, FrameLib_Attributes::Serial *serialAttributes, void *owner);
     ~FrameLib_Pack();
-    
-    virtual void setSamplingRate(double samplingRate){}
-    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size){}
     
 private:
     
@@ -207,9 +182,6 @@ public:
 
     FrameLib_Unpack(FrameLib_Context context, FrameLib_Attributes::Serial *serialAttributes, void *owner);
     ~FrameLib_Unpack();
-    
-    virtual void setSamplingRate(double samplingRate){}
-    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size){}
         
 private:
 
@@ -304,22 +276,12 @@ public:
     
     // Handles Audio
     
-    static bool handlesAudio()
-    {
-        return T::handlesAudio();
-    }
+    static bool handlesAudio() { return T::handlesAudio(); }
     
     // IO
     
-    virtual unsigned long getNumAudioIns()
-    {
-        return mBlocks[0]->getNumAudioIns();
-    }
-    
-    virtual unsigned long getNumAudioOuts()
-    {
-        return mBlocks[0]->getNumAudioOuts();
-    }
+    virtual unsigned long getNumAudioIns()  { return mBlocks[0]->getNumAudioIns(); }
+    virtual unsigned long getNumAudioOuts() { return mBlocks[0]->getNumAudioOuts(); }
     
     // ************************************************************************************** //
     
@@ -327,6 +289,8 @@ public:
     
     virtual void blockProcess(double **ins, double **outs, unsigned long vecSize)
     {
+        // FIX - this won't fly on windows...
+        
         double *temps[getNumAudioOuts()];
         
         for (unsigned long i = 0; i < getNumAudioOuts(); i++)
@@ -336,17 +300,14 @@ public:
             else
                 temps[i] = temps[0] + (i * vecSize);
 
-            for (unsigned long j = 0; j < vecSize; j++)
-                outs[i][j] = 0.0;
+            std::fill(outs[i], outs[i] + vecSize, 0.0);
         }
         
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
         {
-            // Process
+            // Process then sum to output
             
             (*it)->blockUpdate(ins, temps, vecSize);
-
-            // Sum to outputs
             
             for (unsigned long i = 0; i < getNumAudioOuts(); i++)
                 for (unsigned long j = 0; j < vecSize; j++)

@@ -3113,8 +3113,8 @@
 				B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */,
 				B85B20E619938415004FFF22 /* FrameLib_Multichannel.h */,
 				B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */,
-				B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */,
 				B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */,
+				B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */,
 				B843AAA019BF3358000D3476 /* FrameLib_Templates.h */,
 			);
 			name = Framework;

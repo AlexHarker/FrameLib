@@ -1,10 +1,11 @@
 
 
 #include "FrameLib_DSP.h"
+#include <algorithm>
 
 // Constructor / Destructor
 
-FrameLib_DSP::FrameLib_DSP (ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
+FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
 : mContext(context), mAllocator(context.getAllocator()), mQueue(context.getDSPQueue()), mNext(NULL), mType(type)
 {
     // Set IO
@@ -16,7 +17,7 @@ FrameLib_DSP::FrameLib_DSP (ObjectType type, FrameLib_Context context, unsigned 
 
 // Destructor
 
-FrameLib_DSP::~FrameLib_DSP ()
+FrameLib_DSP::~FrameLib_DSP()
 {
     // Clear connections before deleting
     
@@ -329,9 +330,7 @@ void FrameLib_DSP::setFixedInput(unsigned long idx, double *input, unsigned long
     
     if (mInputs[idx].mFixedInput)
     {
-        for (unsigned long i = 0; i < size; i++)
-            mInputs[idx].mFixedInput[i] = input[i];
-        
+        std::copy(input, input + size, mInputs[idx].mFixedInput);
         mInputs[idx].mSize = size;
     }
 }

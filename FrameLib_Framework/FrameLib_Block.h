@@ -20,7 +20,7 @@ public:
     FrameLib_Block(){}
     virtual ~FrameLib_Block(){}
    
-    // Basic Setup
+    // Basic Setup / IO Queries
     
     virtual void setSamplingRate(double samplingRate) = 0;
     
