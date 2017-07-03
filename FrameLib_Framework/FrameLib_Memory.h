@@ -31,7 +31,7 @@ class FrameLib_MainAllocator
         
     public:
 
-        NewThread(FrameLib_MainAllocator *allocator) : DelegateThread(Thread::kHighPriority), mAllocator(allocator){}
+        NewThread(FrameLib_MainAllocator *allocator) : DelegateThread(Thread::kHighPriority), mAllocator(allocator) {}
         
     private:
         
@@ -45,7 +45,7 @@ class FrameLib_MainAllocator
         
     public:
         
-        FreeThread(FrameLib_MainAllocator *allocator) : TriggerableThread(Thread::kLowPriority), mAllocator(allocator){}
+        FreeThread(FrameLib_MainAllocator *allocator) : TriggerableThread(Thread::kLowPriority), mAllocator(allocator) {}
         
     private:
         

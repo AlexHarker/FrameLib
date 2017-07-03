@@ -118,7 +118,7 @@ class FrameLib_MaxObj_From : public FrameLib_MaxObj<FrameLib_Expand<FrameLib_Fro
 
 public:
     
-    FrameLib_MaxObj_From(t_symbol *s, long argc, t_atom *argv) : FrameLib_MaxObj(s, argc, argv){}
+    FrameLib_MaxObj_From(t_symbol *s, long argc, t_atom *argv) : FrameLib_MaxObj(s, argc, argv) {}
     
     // Additional handlers
     

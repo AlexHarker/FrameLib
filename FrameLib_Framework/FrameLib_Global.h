@@ -87,8 +87,8 @@ private:
     
     // Constructor / Destructor
     
-    FrameLib_Global() : mCount(0){}
-    ~FrameLib_Global(){};
+    FrameLib_Global() : mCount(0) {}
+    ~FrameLib_Global() {};
     
     // Deleted
     

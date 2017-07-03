@@ -105,7 +105,7 @@ private:
         // Constructor / Destructor
         
         Attribute(const char *name, long argumentIdx);
-        virtual ~Attribute(){};
+        virtual ~Attribute() {};
        
         // Setters
         

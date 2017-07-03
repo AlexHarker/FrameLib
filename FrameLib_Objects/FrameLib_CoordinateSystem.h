@@ -10,7 +10,7 @@ class FrameLib_CoordinateSystem : public FrameLib_Processor
 {
     struct Cartesian
     {
-        Cartesian(){}
+        Cartesian() {}
         Cartesian(double X, double Y, double Z) : x(X), y(Y), z(Z) {}
 
         double x, y, z;
@@ -18,7 +18,7 @@ class FrameLib_CoordinateSystem : public FrameLib_Processor
     
     struct Polar
     {
-        Polar(){}
+        Polar() {}
         Polar(double a, double e, double r) : azimuth(a), elevation(e), radius(r) {}
         
         double azimuth, elevation, radius;
