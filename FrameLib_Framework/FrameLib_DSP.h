@@ -79,11 +79,11 @@ private:
     };
     
     // ************************************************************************************** //
-
-    // Constructor / Destructor
     
 public:
-    
+
+    // Constructor / Destructor
+
     FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts);
     ~FrameLib_DSP();
     
@@ -134,12 +134,13 @@ protected:
     
     // ************************************************************************************** //
     
-    // Processing utilities
+    // Processing Utilities
     
-    bool isTrigger(unsigned long idx)
-    {
-        return mInputs[idx].mTrigger && mInputs[idx].mObject && (mInputs[idx].mObject->mFrameTime == mFrameTime);
-    }
+    // Test if an Input Triggered the Current Frame
+    
+    bool isTrigger(unsigned long idx) { return mInputs[idx].mTrigger && mInputs[idx].mObject && (mInputs[idx].mObject->mFrameTime == mFrameTime); }
+    
+    // Timing
     
     FrameLib_TimeFormat getFrameTime()      { return mFrameTime; }
     FrameLib_TimeFormat getValidTime()      { return mValidTime; }
@@ -149,15 +150,20 @@ protected:
     FrameLib_TimeFormat getInputFrameTime(unsigned long idx)        { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : 0.0; }
     FrameLib_TimeFormat getInputValidTillTime(unsigned long idx)    { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : 0.0; }
     
-    void requestOutputSize(unsigned long idx, size_t size)          { mOutputs[idx].mRequestedSize = size; }
+    // Output Allocation
     
+    void requestOutputSize(unsigned long idx, size_t size)          { mOutputs[idx].mRequestedSize = size; }
     bool allocateOutputs();
+    
+    // Get Inputs and Outputs
+    
+    double *getInput(unsigned long idx, size_t *size);
+    FrameLib_Attributes::Serial *getInput(unsigned long idx);
     
     double *getOutput(unsigned long idx, size_t *size);
     FrameLib_Attributes::Serial *getOutput(unsigned long idx);
 
-    double *getInput(unsigned long idx, size_t *size);
-    FrameLib_Attributes::Serial *getInput(unsigned long idx);
+    // Get DSP Object for a Given Output
     
     FrameLib_DSP *getOutputObject(unsigned long outIdx)     { return this; }
     
