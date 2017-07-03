@@ -285,7 +285,7 @@ public:
         {
             // Process then sum to output
             
-            (*it)->blockUpdate(ins, mAudioTemps, vecSize);
+            (*it)->blockUpdate(ins, &mAudioTemps[0], vecSize);
             
             for (unsigned long i = 0; i < getNumAudioOuts(); i++)
                 for (unsigned long j = 0; j < vecSize; j++)
