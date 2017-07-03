@@ -18,7 +18,8 @@ void FrameLib_ConnectionQueue::add(Item *object)
         while (mTop)
         {
             object = mTop;
-            object->inputUpdate();
+            if (object->inputUpdate())
+                object->outputUpdate();
             mTop = object->mNext;
             object->mNext = NULL;
         }

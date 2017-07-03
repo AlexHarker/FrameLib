@@ -8,13 +8,20 @@ class FrameLib_ConnectionQueue
     
 public:
     
-    struct Item
-    {        
+    class Item
+    {
+        friend FrameLib_ConnectionQueue;
+        
+    public:
+        
         Item() : mNext(NULL) {}
         
-        // Override to deal with changes in the input connections
+    private:
         
-        virtual void inputUpdate() = 0;
+        // Override to deal with changes in IO (inputUpdate() returns true is output size has changed)
+        
+        virtual bool inputUpdate() = 0;
+        virtual void outputUpdate() = 0;
         
         Item *mNext;
     };

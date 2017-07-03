@@ -9,8 +9,9 @@ void FrameLib_MultiChannel::outputUpdate()
 {
     // Add to the queue to update all output dependencies
     
-    for (std::vector <FrameLib_MultiChannel *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-        mQueue->add(*it);
+    if (mQueue)
+        for (std::vector <FrameLib_MultiChannel *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
+            mQueue->add(*it);
 }
 
 unsigned long FrameLib_MultiChannel::getNumChans(unsigned long inIdx)
@@ -95,7 +96,8 @@ std::vector <FrameLib_MultiChannel *>::iterator FrameLib_MultiChannel::removeCon
     // Update dependencies
     
     std::vector <FrameLib_MultiChannel *>::iterator updatedIterator = object->removeOutputDependency(this);
-    mQueue->add(this);
+    if (mQueue)
+        mQueue->add(this);
     
     return updatedIterator;
 }
@@ -119,7 +121,8 @@ void FrameLib_MultiChannel::deleteConnection(unsigned long inIdx)
     
     // Update
     
-    mQueue->add(this);
+    if (mQueue)
+        mQueue->add(this);
 }
 
 void FrameLib_MultiChannel::addConnection(FrameLib_MultiChannel *object, unsigned long outIdx, unsigned long inIdx)
@@ -139,7 +142,8 @@ void FrameLib_MultiChannel::addConnection(FrameLib_MultiChannel *object, unsigne
     
     // Update
     
-    mQueue->add(this);
+    if (mQueue)
+        mQueue->add(this);
 }
 
 void FrameLib_MultiChannel::clearConnections()
@@ -155,7 +159,8 @@ void FrameLib_MultiChannel::clearConnections()
     
     // Update
     
-    mQueue->add(this);
+    if (mQueue)
+        mQueue->add(this);
     
     // Remove output connections
     
@@ -179,14 +184,7 @@ FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, FrameLib_Attributes::Seri
     setIO(mAttributes.getValue(kInputs), 1);
 }
 
-FrameLib_Pack::~FrameLib_Pack()
-{
-    // Clear connections before deletion
-    
-    clearConnections();
-}
-
-void FrameLib_Pack::inputUpdate()
+bool FrameLib_Pack::inputUpdate()
 {
     mOutputs[0].mConnections.clear();
     
@@ -194,7 +192,7 @@ void FrameLib_Pack::inputUpdate()
         for (unsigned long j = 0; j < getNumChans(i); j++)
             mOutputs[0].mConnections.push_back(getChan(i, j));
     
-    outputUpdate();
+    return true;
 }
 
 // ************************************************************************************** //
@@ -208,14 +206,7 @@ FrameLib_Unpack::FrameLib_Unpack(FrameLib_Context context, FrameLib_Attributes::
     setIO(1, mAttributes.getValue(kOutputs));
 }
 
-FrameLib_Unpack::~FrameLib_Unpack()
-{
-    // Clear connections before deletion
-    
-    clearConnections();
-}
-
-void FrameLib_Unpack::inputUpdate()
+bool FrameLib_Unpack::inputUpdate()
 {
     for (unsigned long i = 0; i < getNumOuts(); i++)
         mOutputs[i].mConnections.clear();
@@ -223,5 +214,5 @@ void FrameLib_Unpack::inputUpdate()
     for (unsigned long i = 0; i < getNumChans(0) && i < getNumOuts(); i++)
         mOutputs[i].mConnections.push_back(getChan(0, i));
     
-    outputUpdate();
+    return true;
 }

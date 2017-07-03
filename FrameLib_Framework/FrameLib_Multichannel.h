@@ -50,11 +50,13 @@ public:
     
     FrameLib_MultiChannel(FrameLib_Context context) : mContext(context), mQueue(context.getConnectionQueue()) {}
     
-    // Destructor (virtual) - inheriting classes MUST call clearConnections(), before deleting internal objects
+    // Destructor (virtual)
     
     virtual ~FrameLib_MultiChannel()
     {
         mContext.releaseConnectionQueue();
+        mQueue = NULL;
+        clearConnections();
     }
     
     // Basic Setup / IO Queries (override the audio methods if handling audio)
@@ -88,7 +90,7 @@ public:
     void addConnection(FrameLib_MultiChannel *object, unsigned long outIdx, unsigned long inIdx);
     void clearConnections();
     bool isConnected(unsigned long inIdx);
-
+    
 protected:
     
     // IO Utilities
@@ -101,8 +103,6 @@ protected:
         mOutputs.resize(nOuts);
     }
     
-    void outputUpdate();
-    
     unsigned long getNumChans(unsigned long inIdx);
     ConnectionInfo getChan(unsigned long inIdx, unsigned long chan);
 
@@ -114,6 +114,7 @@ private:
 
     // Dependency updating
 
+    virtual void outputUpdate();
     std::vector <FrameLib_MultiChannel *>::iterator removeOutputDependency(FrameLib_MultiChannel *object);
     void addOutputDependency(FrameLib_MultiChannel *object);
 
@@ -161,11 +162,10 @@ class FrameLib_Pack : public FrameLib_MultiChannel
 public:
     
     FrameLib_Pack(FrameLib_Context context, FrameLib_Attributes::Serial *serialAttributes, void *owner);
-    ~FrameLib_Pack();
     
 private:
     
-    virtual void inputUpdate();
+    virtual bool inputUpdate();
     
     FrameLib_Attributes mAttributes;
 };
@@ -181,11 +181,10 @@ class FrameLib_Unpack : public FrameLib_MultiChannel
 public:
 
     FrameLib_Unpack(FrameLib_Context context, FrameLib_Attributes::Serial *serialAttributes, void *owner);
-    ~FrameLib_Unpack();
-        
+    
 private:
     
-    virtual void inputUpdate();
+    virtual bool inputUpdate();
         
     FrameLib_Attributes mAttributes;
 };
@@ -200,16 +199,15 @@ template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
 public:
     
     FrameLib_Expand(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner)
-    : FrameLib_MultiChannel(context), mAllocator(context.getAllocator()), mOwner(owner)
+    : FrameLib_MultiChannel(context), mAllocator(context.getAllocator()), mSerialisedAttributes(serialisedAttributes->size()), mOwner(owner)
     {
         // Make first block
         
         mBlocks.push_back(new T(context, serialisedAttributes, owner));
         
         // Copy serialised attributes for later instantiations
-        
-        mSerialisedAttributes = new FrameLib_Attributes::Serial(serialisedAttributes->size());
-        mSerialisedAttributes->write(serialisedAttributes);
+
+        mSerialisedAttributes.write(serialisedAttributes);
         
         // Set up IO / Fixed Inputs / Audio Temps
         
@@ -227,7 +225,7 @@ public:
     
     ~FrameLib_Expand()
     {
-        // Clear connections before deletion
+        // Clear connections before deleting internal objects
         
         clearConnections();
         
@@ -235,8 +233,6 @@ public:
         
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
             delete (*it);
-        
-        delete mSerialisedAttributes;
         
         mContext.releaseAllocator();
     }
@@ -271,20 +267,23 @@ public:
     
     virtual void blockProcess(double **ins, double **outs, unsigned long vecSize)
     {
-        for (unsigned long i = 0; i < getNumAudioOuts(); i++)
-        {
-            if (i == 0)
-                mAudioTemps[0] = (double *) mAllocator->alloc(sizeof(double) * vecSize * getNumAudioOuts());
-            else
-                mAudioTemps[i] = mAudioTemps[0] + (i * vecSize);
-
-            std::fill(outs[i], outs[i] + vecSize, 0.0);
-        }
+        // Allocate Temps
         
+        if (getNumAudioOuts())
+            mAudioTemps[0] = (double *) mAllocator->alloc(sizeof(double) * vecSize * getNumAudioOuts());
+
+        for (unsigned long i = 1; i < getNumAudioOuts(); i++)
+            mAudioTemps[i] = mAudioTemps[0] + (i * vecSize);
+            
+        // Zero outputs
+        
+        for (unsigned long i = 0; i < getNumAudioOuts(); i++)
+            std::fill(outs[i], outs[i] + vecSize, 0.0);
+
+        // Process and Sum to Output
+
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
         {
-            // Process then sum to output
-            
             (*it)->blockUpdate(ins, &mAudioTemps[0], vecSize);
             
             for (unsigned long i = 0; i < getNumAudioOuts(); i++)
@@ -292,6 +291,8 @@ public:
                     outs[i][j] += mAudioTemps[i][j];
         }
 
+        // Release Temps and Clear Allocator
+        
         if (getNumAudioOuts())
             mAllocator->dealloc(mAudioTemps[0]);
                 
@@ -322,8 +323,8 @@ private:
     
     // Update (expand)
     
-    void inputUpdate()
-    {        
+    virtual bool inputUpdate()
+    {
         // Find number of channels
         
         unsigned long nChannels = 0;
@@ -339,7 +340,9 @@ private:
         
         // Resize if necessary
         
-        if (nChannels != cChannels)
+        bool numChansChanged = nChannels != cChannels;
+        
+        if (numChansChanged)
         {
             if (nChannels > cChannels)
             {
@@ -347,7 +350,7 @@ private:
                 
                 for (unsigned long i = cChannels; i < nChannels; i++)
                 {
-                    mBlocks[i] = new T(mContext, mSerialisedAttributes, mOwner);
+                    mBlocks[i] = new T(mContext, &mSerialisedAttributes, mOwner);
                     mBlocks[i]->setSamplingRate(mSamplingRate);
                 }
             }
@@ -372,10 +375,6 @@ private:
             
             for (unsigned long i = 0; i < getNumIns(); i++)
                 updateFixedInput(i);
-            
-            // Update output dependencies
-            
-            outputUpdate();
         }
         
         // Make input connections
@@ -396,10 +395,12 @@ private:
                     mBlocks[j]->deleteConnection(i);
             }
         }
+        
+        return numChansChanged;
     }
 
     FrameLib_LocalAllocator *mAllocator;
-    FrameLib_Attributes::Serial *mSerialisedAttributes;
+    FrameLib_Attributes::Serial mSerialisedAttributes;
 
     std::vector <FrameLib_Block *> mBlocks;
     std::vector <std::vector <double> > mFixedInputs;
