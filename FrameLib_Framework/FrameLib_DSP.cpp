@@ -34,6 +34,85 @@ FrameLib_DSP::~FrameLib_DSP()
 
 // ************************************************************************************** //
 
+// Set Fixed Input
+
+void FrameLib_DSP::setFixedInput(unsigned long idx, double *input, unsigned long size)
+{
+    // This is not threadsafe with the processing thread and should not be called concurrently...
+    
+    mInputs[idx].mSize = 0;
+    
+    if (mInputs[idx].mFixedInput)
+        mAllocator->dealloc(mInputs[idx].mFixedInput);
+    
+    mInputs[idx].mFixedInput = (double *) mAllocator->alloc(size * sizeof(double));
+    
+    if (mInputs[idx].mFixedInput)
+    {
+        std::copy(input, input + size, mInputs[idx].mFixedInput);
+        mInputs[idx].mSize = size;
+    }
+}
+
+// ************************************************************************************** //
+
+// Connection methods (public)
+
+void FrameLib_DSP::deleteConnection(unsigned long inIdx)
+{
+    // Update dependencies
+    
+    removeConnection(inIdx);
+    
+    // Set default values
+    
+    mInputs[inIdx].mObject = NULL;
+    mInputs[inIdx].mIndex = 0;
+    
+    resetDependencyCount();
+}
+
+void FrameLib_DSP::addConnection(FrameLib_DSP *object, unsigned long outIdx, unsigned long inIdx)
+{
+    // Update dependencies if the connection is now from a different object
+    
+    if (mInputs[inIdx].mObject != object)
+    {
+        removeConnection(inIdx);
+        addInputDependency(object);
+        object->addOutputDependency(this);
+    }
+    
+    // Store data about connection
+    
+    mInputs[inIdx].mObject = object;
+    mInputs[inIdx].mIndex = outIdx;
+    
+    resetDependencyCount();
+}
+
+void FrameLib_DSP::clearConnections()
+{
+    // Remove input connections
+    
+    for (unsigned long i = 0; i < mInputs.size(); i++)
+        deleteConnection(i);
+    
+    // Remove output connections
+    
+    for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); )
+        it = (*it)->removeConnections(this);
+    
+    resetDependencyCount();
+}
+
+bool FrameLib_DSP::isConnected(unsigned long inIdx)
+{
+    return mInputs[inIdx].mObject != NULL;
+}
+
+// ************************************************************************************** //
+
 // Set IO Size
 
 void FrameLib_DSP::setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
@@ -68,6 +147,13 @@ void FrameLib_DSP::inputMode(unsigned long idx, bool update, bool trigger, bool 
     mInputs[idx].mSwitchable = switchable;
 }
 
+// Call this from your constructor only (unsafe elsewhere)
+
+void FrameLib_DSP::outputMode(unsigned long idx, OutputMode mode)
+{
+    mOutputs[idx].mMode = mode;
+}
+
 // You should only call this from your update method (it is unsafe anywhere else)
 
 void FrameLib_DSP::updateTrigger(unsigned long idx, bool trigger)
@@ -75,13 +161,6 @@ void FrameLib_DSP::updateTrigger(unsigned long idx, bool trigger)
     // Update trigger only if switchable
     
     mInputs[idx].mTrigger = mInputs[idx].mSwitchable ? trigger : mInputs[idx].mTrigger;
-}
-
-// Call this from your constructor only (unsafe elsewhere)
-
-void FrameLib_DSP::outputMode(unsigned long idx, OutputMode mode)
-{
-    mOutputs[idx].mMode = mode;
 }
 
 // ************************************************************************************** //
@@ -317,24 +396,6 @@ void FrameLib_DSP::reset()
     resetDependencyCount();
 }
 
-void FrameLib_DSP::setFixedInput(unsigned long idx, double *input, unsigned long size)
-{
-    // This is not threadsafe with the processing thread and should not be called concurrently...
-    
-    mInputs[idx].mSize = 0;
-    
-    if (mInputs[idx].mFixedInput)
-        mAllocator->dealloc(mInputs[idx].mFixedInput);
-    
-    mInputs[idx].mFixedInput = (double *) mAllocator->alloc(size * sizeof(double));
-    
-    if (mInputs[idx].mFixedInput)
-    {
-        std::copy(input, input + size, mInputs[idx].mFixedInput);
-        mInputs[idx].mSize = size;
-    }
-}
-
 // ************************************************************************************** //
 
 // Processing utilities
@@ -519,63 +580,4 @@ std::vector <FrameLib_DSP *>::iterator FrameLib_DSP::removeConnections(FrameLib_
     removeInputDependency(object);
     return object->removeOutputDependency(this);
 }
-
-// ************************************************************************************** //
-
-// Connection methods (public)
-
-void FrameLib_DSP::deleteConnection(unsigned long inIdx)
-{
-    // Update dependencies
-    
-    removeConnection(inIdx);
-    
-    // Set default values
-    
-    mInputs[inIdx].mObject = NULL;
-    mInputs[inIdx].mIndex = 0;
-    
-    resetDependencyCount();
-}
-
-void FrameLib_DSP::addConnection(FrameLib_DSP *object, unsigned long outIdx, unsigned long inIdx)
-{
-    // Update dependencies if the connection is now from a different object
-    
-    if (mInputs[inIdx].mObject != object)
-    {
-        removeConnection(inIdx);
-        addInputDependency(object);
-        object->addOutputDependency(this);
-    }
-    
-    // Store data about connection
-    
-    mInputs[inIdx].mObject = object;
-    mInputs[inIdx].mIndex = outIdx;
-    
-    resetDependencyCount();
-}
-
-void FrameLib_DSP::clearConnections()
-{
-    // Remove input connections
-    
-    for (unsigned long i = 0; i < mInputs.size(); i++)
-        deleteConnection(i);
-    
-    // Remove output connections
-    
-    for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); )
-        it = (*it)->removeConnections(this);
-    
-    resetDependencyCount();
-}
-
-bool FrameLib_DSP::isConnected(unsigned long inIdx)
-{
-    return mInputs[inIdx].mObject != NULL;
-}
-
-
 

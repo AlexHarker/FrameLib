@@ -3,6 +3,77 @@
 
 // FrameLib_MultiChannel
 
+// Connection methods (public)
+
+// N.B. - No sanity checks here to maximise speed and help debugging (better for it to crash if a mistake is made)
+
+void FrameLib_MultiChannel::deleteConnection(unsigned long inIdx)
+{
+    // Update Dependencies
+    
+    removeConnection(inIdx);
+    
+    // Set default values
+    
+    mInputs[inIdx].mObject = NULL;
+    mInputs[inIdx].mIndex = 0;
+    
+    // Update
+    
+    if (mQueue)
+        mQueue->add(this);
+}
+
+void FrameLib_MultiChannel::addConnection(FrameLib_MultiChannel *object, unsigned long outIdx, unsigned long inIdx)
+{
+    // Update dependencies if the connected object has changed
+    
+    if (mInputs[inIdx].mObject != object)
+    {
+        removeConnection(inIdx);
+        object->addOutputDependency(this);
+    }
+    
+    // Store data about connection
+    
+    mInputs[inIdx].mObject = object;
+    mInputs[inIdx].mIndex = outIdx;
+    
+    // Update
+    
+    if (mQueue)
+        mQueue->add(this);
+}
+
+void FrameLib_MultiChannel::clearConnections()
+{
+    // Remove input connections
+    
+    for (unsigned long i = 0; i < mInputs.size(); i++)
+    {
+        removeConnection(i);
+        mInputs[i].mObject = NULL;
+        mInputs[i].mIndex = 0;
+    }
+    
+    // Update
+    
+    if (mQueue)
+        mQueue->add(this);
+    
+    // Remove output connections
+    
+    for (std::vector <FrameLib_MultiChannel *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); )
+        it = (*it)->removeConnections(this);
+}
+
+bool FrameLib_MultiChannel::isConnected(unsigned long inIdx)
+{
+    return mInputs[inIdx].mObject != NULL;
+}
+
+// ************************************************************************************** //
+
 // This abstract class allows mulitchannel connnections and the means to update the network according to the number of channels
 
 void FrameLib_MultiChannel::outputUpdate()
@@ -14,24 +85,12 @@ void FrameLib_MultiChannel::outputUpdate()
             mQueue->add(*it);
 }
 
-unsigned long FrameLib_MultiChannel::getNumChans(unsigned long inIdx)
+unsigned long FrameLib_MultiChannel::getInputNumChans(unsigned long inIdx)
 {
     if (mInputs[inIdx].mObject)
         return mInputs[inIdx].mObject->mOutputs[mInputs[inIdx].mIndex].mConnections.size();
     
     return 0;
-}
-
-FrameLib_MultiChannel::ConnectionInfo FrameLib_MultiChannel::getChan(unsigned long inIdx, unsigned long chan)
-{
-    if (mInputs[inIdx].mObject == NULL)
-    {
-        unsigned long *ptr = NULL;
-        *ptr = 0;
-        
-    }
-    
-    return mInputs[inIdx].mObject->mOutputs[mInputs[inIdx].mIndex].mConnections[chan];
 }
 
 // ************************************************************************************** //
@@ -104,77 +163,6 @@ std::vector <FrameLib_MultiChannel *>::iterator FrameLib_MultiChannel::removeCon
 
 // ************************************************************************************** //
 
-// Connection methods (public)
-
-// N.B. - No sanity checks here to maximise speed and help debugging (better for it to crash if a mistake is made)
-
-void FrameLib_MultiChannel::deleteConnection(unsigned long inIdx)
-{
-    // Update Dependencies
-    
-    removeConnection(inIdx);
-    
-    // Set default values
-    
-    mInputs[inIdx].mObject = NULL;
-    mInputs[inIdx].mIndex = 0;
-    
-    // Update
-    
-    if (mQueue)
-        mQueue->add(this);
-}
-
-void FrameLib_MultiChannel::addConnection(FrameLib_MultiChannel *object, unsigned long outIdx, unsigned long inIdx)
-{
-    // Update dependencies if the connected object has changed
-    
-    if (mInputs[inIdx].mObject != object)
-    {
-        removeConnection(inIdx);
-        object->addOutputDependency(this);
-    }
-    
-    // Store data about connection
-    
-    mInputs[inIdx].mObject = object;
-    mInputs[inIdx].mIndex = outIdx;
-    
-    // Update
-    
-    if (mQueue)
-        mQueue->add(this);
-}
-
-void FrameLib_MultiChannel::clearConnections()
-{
-    // Remove input connections
-    
-    for (unsigned long i = 0; i < mInputs.size(); i++)
-    {
-        removeConnection(i);
-        mInputs[i].mObject = NULL;
-        mInputs[i].mIndex = 0;
-    }
-    
-    // Update
-    
-    if (mQueue)
-        mQueue->add(this);
-    
-    // Remove output connections
-    
-    for (std::vector <FrameLib_MultiChannel *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); )
-        it = (*it)->removeConnections(this);
-}
-
-bool FrameLib_MultiChannel::isConnected(unsigned long inIdx)
-{
-    return mInputs[inIdx].mObject != NULL;
-}
-
-// ************************************************************************************** //
-
 // FrameLib_Pack - Pack single multichannel signals
 
 FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, FrameLib_Attributes::Serial *serialAttributes, void *owner) : FrameLib_MultiChannel(context)
@@ -189,8 +177,8 @@ bool FrameLib_Pack::inputUpdate()
     mOutputs[0].mConnections.clear();
     
     for (unsigned long i = 0; i < getNumIns(); i++)
-        for (unsigned long j = 0; j < getNumChans(i); j++)
-            mOutputs[0].mConnections.push_back(getChan(i, j));
+        for (unsigned long j = 0; j < getInputNumChans(i); j++)
+            mOutputs[0].mConnections.push_back(getInputChan(i, j));
     
     return true;
 }
@@ -211,8 +199,8 @@ bool FrameLib_Unpack::inputUpdate()
     for (unsigned long i = 0; i < getNumOuts(); i++)
         mOutputs[i].mConnections.clear();
     
-    for (unsigned long i = 0; i < getNumChans(0) && i < getNumOuts(); i++)
-        mOutputs[i].mConnections.push_back(getChan(0, i));
+    for (unsigned long i = 0; i < getInputNumChans(0) && i < getNumOuts(); i++)
+        mOutputs[i].mConnections.push_back(getInputChan(0, i));
     
     return true;
 }

@@ -96,89 +96,45 @@ public:
     virtual unsigned long getNumAudioIns()      { return mNumAudioIns; }
     virtual unsigned long getNumAudioOuts()     { return mNumAudioOuts; }
     
-    // Object Type
+    // Set Fixed Inputs
     
-protected:
-    
-    ObjectType getType()    { return mType; }
+    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size);
 
-    // ************************************************************************************** //
+    // Audio Processing
     
-    // IO Utilities
+    virtual void blockUpdate(double **ins, double **outs, unsigned long vecSize);
+    virtual void reset();
+    
+    // Connection methods
+    
+    // N.B. - No sanity checks here to maximise speed / help debugging (better for it to crash if a mistake is made)
+    
+    virtual void deleteConnection(unsigned long inIdx);
+    virtual void addConnection(FrameLib_DSP *object, unsigned long outIdx, unsigned long inIdx);
+    virtual void clearConnections();
+    virtual bool isConnected(unsigned long inIdx);
     
 protected:
     
-    // Call this in derived class constructors only if the IO size is not fixed
+    // Object Type
+
+    ObjectType getType()    { return mType; }
+    
+    // Setup and Modes
+    
+    // Call these from your constructor only (unsafe elsewhere)
    
     void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0);
-    
-    
-    // ************************************************************************************** //
-    
-    // Input/Output Modes
-    
-protected:
-    
-    // Call this from your constructor only (unsafe elsewhere)
-    
     void inputMode(unsigned long idx, bool update, bool trigger, bool switchable);
+    void outputMode(unsigned long idx, OutputMode mode);
     
     // You should only call this from your update method (it is unsafe anywhere else)
     
     void updateTrigger(unsigned long idx, bool trigger);
     
-    // Call this from your constructor only (unsafe elsewhere)
-    
-    void outputMode(unsigned long idx, OutputMode mode);
-
-    // ************************************************************************************** //
-    
-    // Processing methods
- 
-private:
-    
-    // This returns true if the object requires notification from an audio thread
-    
-    bool requiresAudioNotification()
-    {        
-        return mType == kScheduler || getNumAudioIns() || getNumAudioOuts();
-    }
-    
-    // Block updates for objects with audio IO
-    
-    void blockUpdate(double **ins, double **outs, unsigned long vecSize);
-    
-    // Dependency notification
-    
-    inline void notify(bool releaseMemory);
-    
-    // Release output memory
-    
-    inline void releaseOutputMemory();
-    
-    // Main code to control time flow (called when all input/output dependencies are ready)
-    
-    void dependenciesReady();
-    
-    // ************************************************************************************** //
-
-    // Resets
-    
-private:
-    
-    inline void freeOutputMemory();
-    void resetDependencyCount();
-    
-public:
-
-    void reset();
-    void setFixedInput(unsigned long idx, double *input, unsigned long size);
-    
     // ************************************************************************************** //
     
     // Processing utilities
-    
-protected:
     
     bool isTrigger(unsigned long idx)
     {
@@ -203,18 +159,20 @@ protected:
     double *getInput(unsigned long idx, size_t *size);
     FrameLib_Attributes::Serial *getInput(unsigned long idx);
     
-    // Customisable processing
+    FrameLib_DSP *getOutputObject(unsigned long outIdx)     { return this; }
     
 private:
     
-    // Override to handle audio at the block level (objects with block-based audio must overload this)
+    // Customisable processing
+
+    // Override to handle audio at the block level (pre or post processing by the host)
     
     virtual void blockProcessPre(double **ins, double **outs, unsigned long vecSize) {}
     virtual void blockProcessPost(double **ins, double **outs, unsigned long vecSize) {}
-    
+
     // Override for updates prior to schedule / process (e.g. adjusting triggers)
     
-    virtual void update(){}
+    virtual void update() {}
     
     // Override for scheduling code (scheduler objects must override this)
 
@@ -224,11 +182,30 @@ private:
 
     virtual void process() = 0;
 
+    // This returns true if the object requires notification from an audio thread
+    
+    bool requiresAudioNotification()    { return mType == kScheduler || getNumAudioIns() || getNumAudioOuts(); }
+    
+    // Dependency notification
+    
+    inline void notify(bool releaseMemory);
+    
+    // Release output memory
+    
+    inline void releaseOutputMemory();
+    
+    // Main code to control time flow (called when all input/output dependencies are ready)
+    
+    void dependenciesReady();
+    
+    // Resets
+    
+    inline void freeOutputMemory();
+    void resetDependencyCount();
+    
     // ************************************************************************************** //
 
     // Connection mathods (private)
-    
-private:
     
     // Dependency updating
     
@@ -245,28 +222,6 @@ private:
     
     std::vector <FrameLib_DSP *>::iterator removeConnections(FrameLib_DSP *object);
    
-    // ************************************************************************************** //
-    
-    // Connection methods (public)
-    
-public:
-    
-    // N.B. - No sanity checks here to maximise speed and help debugging (better for it to crash if a mistake is made)
-    
-    void deleteConnection(unsigned long inIdx);
-    void addConnection(FrameLib_DSP *object, unsigned long outIdx, unsigned long inIdx);
-    void clearConnections();
-    virtual bool isConnected(unsigned long inIdx);
-    
-protected:
-    
-    FrameLib_DSP *getOutputObject(unsigned long outIdx)
-    {
-        return this;
-    }
-    
-    // ************************************************************************************** //
-    
     // Member variables
    
 protected:
@@ -341,7 +296,7 @@ protected:
     
     // This prevents the user from needing to implement this method - doing so will do nothing
     
-    virtual SchedulerInfo schedule(bool newFrame, bool noOutput)    { return SchedulerInfo(); }
+    virtual SchedulerInfo schedule(bool newFrame, bool noOutput) { return SchedulerInfo(); }
     
     void setIO(unsigned long nIns, unsigned long nOuts) { FrameLib_DSP::setIO(nIns, nOuts); }
 };
@@ -385,7 +340,7 @@ protected:
 
     // This prevents the user from needing to implement this method - doing so will do nothing
     
-    virtual void process(){}
+    virtual void process() {}
 };
 
 #endif

@@ -17,8 +17,8 @@ public:
     
     // Constructor / Destructor (virtual)
     
-    FrameLib_Block(){}
-    virtual ~FrameLib_Block(){}
+    FrameLib_Block() {}
+    virtual ~FrameLib_Block() {}
    
     // Basic Setup / IO Queries
     
@@ -34,15 +34,15 @@ public:
     virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) = 0;
 
     // Audio Processing
+
+    // Override to handle audio at the block level (reset called with the audio engine resets)
     
-    virtual void blockUpdate(double **ins, double **outs, unsigned long vecSize)
-    {
-        // Override to handle audio at the block level (objects with block-based audio must overload this)
-    }
+    virtual void blockUpdate(double **ins, double **outs, unsigned long vecSize) = 0;
+    virtual void reset() = 0;
+    
+    // Return to host to request to be passed audio
     
     static bool handlesAudio()  { return false; }
-    
-    virtual void reset() = 0;
     
     // Connections
     

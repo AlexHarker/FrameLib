@@ -50,7 +50,7 @@ public:
     
     FrameLib_MultiChannel(FrameLib_Context context) : mContext(context), mQueue(context.getConnectionQueue()) {}
     
-    // Destructor (virtual)
+    // Destructor
     
     virtual ~FrameLib_MultiChannel()
     {
@@ -74,8 +74,6 @@ public:
 
     // Audio processing
     
-    // Override to handle audio at the block level (objects with block-based audio must overload this)
-
     virtual void blockProcess(double **ins, double **outs, unsigned long vecSize) {}
     
     static bool handlesAudio() { return false; }
@@ -103,8 +101,9 @@ protected:
         mOutputs.resize(nOuts);
     }
     
-    unsigned long getNumChans(unsigned long inIdx);
-    ConnectionInfo getChan(unsigned long inIdx, unsigned long chan);
+    unsigned long getInputNumChans(unsigned long inIdx);
+    ConnectionInfo getInputChan(unsigned long inIdx, unsigned long chan) { return mInputs[inIdx].mObject->mOutputs[mInputs[inIdx].mIndex].mConnections[chan]; }
+;
 
     // ************************************************************************************** //
 
@@ -271,16 +270,15 @@ public:
         
         if (getNumAudioOuts())
             mAudioTemps[0] = (double *) mAllocator->alloc(sizeof(double) * vecSize * getNumAudioOuts());
-
         for (unsigned long i = 1; i < getNumAudioOuts(); i++)
             mAudioTemps[i] = mAudioTemps[0] + (i * vecSize);
             
-        // Zero outputs
+        // Zero Outputs
         
         for (unsigned long i = 0; i < getNumAudioOuts(); i++)
             std::fill(outs[i], outs[i] + vecSize, 0.0);
 
-        // Process and Sum to Output
+        // Process and Sum to Outputs
 
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
         {
@@ -298,10 +296,6 @@ public:
                 
         mAllocator->clear();
     }
-    
-    // Handles Audio
-    
-    static bool handlesAudio() { return T::handlesAudio(); }
    
     // Reset
     
@@ -310,6 +304,10 @@ public:
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
             (*it)->reset();
     }
+    
+    // Handles Audio
+    
+    static bool handlesAudio() { return T::handlesAudio(); }
     
 private:
 
@@ -331,8 +329,8 @@ private:
         unsigned long cChannels = mBlocks.size();
         
         for (unsigned long i = 0; i < getNumIns(); i++)
-            if (getNumChans(i) > nChannels)
-                nChannels = getNumChans(i);
+            if (getInputNumChans(i) > nChannels)
+                nChannels = getInputNumChans(i);
         
         // Always maintain at least one object
         
@@ -381,11 +379,11 @@ private:
 
         for (unsigned long i = 0; i < getNumIns(); i++)
         {
-            if (getNumChans(i))
+            if (getInputNumChans(i))
             {
                 for (unsigned long j = 0; j < nChannels; j++)
                 {
-                    ConnectionInfo connection = getChan(i, j % getNumChans(i));
+                    ConnectionInfo connection = getInputChan(i, j % getInputNumChans(i));
                     mBlocks[j]->addConnection(connection.mObject, connection.mIndex, i);
                 }
             }
