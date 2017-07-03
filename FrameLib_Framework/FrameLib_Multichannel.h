@@ -184,8 +184,6 @@ public:
     ~FrameLib_Unpack();
         
 private:
-
-    // Update (unpack)
     
     virtual void inputUpdate();
         
@@ -213,13 +211,11 @@ public:
         mSerialisedAttributes = new FrameLib_Attributes::Serial(serialisedAttributes->size());
         mSerialisedAttributes->write(serialisedAttributes);
         
-        // Set up IO
+        // Set up IO / Fixed Inputs / Audio Temps
         
         setIO(mBlocks[0]->getNumIns(), mBlocks[0]->getNumOuts());
-        
-        // Set up Fixed Inputs
-        
         mFixedInputs.resize(getNumIns());
+        mAudioTemps.resize(getNumAudioOuts());
         
         // Make initial output connections
         
@@ -245,6 +241,21 @@ public:
         mContext.releaseAllocator();
     }
     
+    // Sampling Rate
+
+    virtual void setSamplingRate(double samplingRate)
+    {
+        mSamplingRate = samplingRate;
+        
+        for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
+            (*it)->setSamplingRate(samplingRate);
+    }
+    
+    // Audio IO Queries
+    
+    virtual unsigned long getNumAudioIns()  { return mBlocks[0]->getNumAudioIns(); }
+    virtual unsigned long getNumAudioOuts() { return mBlocks[0]->getNumAudioOuts(); }
+    
     // Fixed Inputs
     
     virtual void setFixedInput(unsigned long idx, double *input, unsigned long size)
@@ -256,49 +267,16 @@ public:
         }
     }
     
-    // Sampling Rate
-
-    virtual void setSamplingRate(double samplingRate)
-    {
-        mSamplingRate = samplingRate;
-        
-        for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
-            (*it)->setSamplingRate(samplingRate);
-    }
-    
-    // Reset
-    
-    void reset()
-    {
-        for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
-            (*it)->reset();
-    }
-    
-    // Handles Audio
-    
-    static bool handlesAudio() { return T::handlesAudio(); }
-    
-    // IO
-    
-    virtual unsigned long getNumAudioIns()  { return mBlocks[0]->getNumAudioIns(); }
-    virtual unsigned long getNumAudioOuts() { return mBlocks[0]->getNumAudioOuts(); }
-    
-    // ************************************************************************************** //
-    
     // Audio Processing
     
     virtual void blockProcess(double **ins, double **outs, unsigned long vecSize)
     {
-        // FIX - this won't fly on windows...
-        
-        double *temps[getNumAudioOuts()];
-        
         for (unsigned long i = 0; i < getNumAudioOuts(); i++)
         {
             if (i == 0)
-                temps[0] = (double *) mAllocator->alloc(sizeof(double) * vecSize * getNumAudioOuts());
+                mAudioTemps[0] = (double *) mAllocator->alloc(sizeof(double) * vecSize * getNumAudioOuts());
             else
-                temps[i] = temps[0] + (i * vecSize);
+                mAudioTemps[i] = mAudioTemps[0] + (i * vecSize);
 
             std::fill(outs[i], outs[i] + vecSize, 0.0);
         }
@@ -307,21 +285,31 @@ public:
         {
             // Process then sum to output
             
-            (*it)->blockUpdate(ins, temps, vecSize);
+            (*it)->blockUpdate(ins, mAudioTemps, vecSize);
             
             for (unsigned long i = 0; i < getNumAudioOuts(); i++)
                 for (unsigned long j = 0; j < vecSize; j++)
-                    outs[i][j] += temps[i][j];
+                    outs[i][j] += mAudioTemps[i][j];
         }
 
         if (getNumAudioOuts())
-            mAllocator->dealloc(temps[0]);
+            mAllocator->dealloc(mAudioTemps[0]);
                 
         mAllocator->clear();
     }
     
-    // ************************************************************************************** //
-
+    // Handles Audio
+    
+    static bool handlesAudio() { return T::handlesAudio(); }
+   
+    // Reset
+    
+    void reset()
+    {
+        for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
+            (*it)->reset();
+    }
+    
 private:
 
     // Update Fixed Inputs
@@ -419,6 +407,8 @@ private:
     void *mOwner;
     
     double mSamplingRate;
+    
+    std::vector<double *> mAudioTemps;
 };
 
 #endif
