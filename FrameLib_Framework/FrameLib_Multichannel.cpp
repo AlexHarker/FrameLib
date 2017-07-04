@@ -27,7 +27,6 @@ void FrameLib_MultiChannel::addConnection(FrameLib_MultiChannel *object, unsigne
     
     mInputs[inIdx] = MultiChannelInput(object, outIdx);
     updateConnections();
-
 }
 
 void FrameLib_MultiChannel::clearConnections()
@@ -129,9 +128,7 @@ std::vector <FrameLib_MultiChannel *>::iterator FrameLib_MultiChannel::removeCon
 // Update the inputs of all output dependencies
 
 void FrameLib_MultiChannel::outputUpdate()
-{
-    // Add to the queue to update all output dependencies
-    
+{    
     if (mQueue)
         for (std::vector <FrameLib_MultiChannel *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
             mQueue->add(*it);
