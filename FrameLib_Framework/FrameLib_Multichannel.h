@@ -124,7 +124,7 @@ private:
     
     void clearConnection(unsigned long inIdx);
     void removeConnection(unsigned long inIdx);
-    std::vector <FrameLib_MultiChannel *>::iterator removeConnections(FrameLib_MultiChannel *object);
+    std::vector <FrameLib_MultiChannel *>::iterator disconnect(FrameLib_MultiChannel *object);
     
     virtual void outputUpdate();
 
@@ -326,18 +326,14 @@ private:
     
     virtual bool inputUpdate()
     {
-        // Find number of channels
+        // Find number of channels (always keep at least one channel)
         
-        unsigned long nChannels = 0;
+        unsigned long nChannels = 1;
         unsigned long cChannels = mBlocks.size();
         
         for (unsigned long i = 0; i < getNumIns(); i++)
             if (getInputNumChans(i) > nChannels)
                 nChannels = getInputNumChans(i);
-        
-        // Always maintain at least one object
-        
-        nChannels = nChannels ? nChannels : 1;
         
         // Resize if necessary
         

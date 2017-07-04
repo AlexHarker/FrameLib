@@ -2,8 +2,6 @@
 #include "FrameLib_DSPQueue.h"
 #include "FrameLib_DSP.h"
 
-// FIX - check assumption that an object can only be in the queue once at a time!
-
 void FrameLib_DSPQueue::add(FrameLib_DSP *object)
 {
     object->mNext = NULL;

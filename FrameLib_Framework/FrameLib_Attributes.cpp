@@ -101,13 +101,13 @@ void FrameLib_Attributes::Serial::alignmentChecks()
 void FrameLib_Attributes::Serial::writeType(DataType type)
 {
     *((DataType *) (mPtr + mSize)) = type;
-    mSize += align(sizeof(DataType));
+    mSize += alignSize(sizeof(DataType));
 }
 
 void FrameLib_Attributes::Serial::writeSize(size_t size)
 {
     *((size_t *) (mPtr + mSize)) = size;
-    mSize += align(sizeof(size_t));
+    mSize += alignSize(sizeof(size_t));
 }
 
 void FrameLib_Attributes::Serial::writeString(const char *str)
@@ -115,7 +115,7 @@ void FrameLib_Attributes::Serial::writeString(const char *str)
     size_t N = strlen(str) + 1;
     writeSize(N);
     strcpy((char *) (mPtr + mSize), str);
-    mSize += align(N);
+    mSize += alignSize(N);
 }
 
 void FrameLib_Attributes::Serial::writeDoubles(double *ptr, size_t N)
@@ -123,27 +123,27 @@ void FrameLib_Attributes::Serial::writeDoubles(double *ptr, size_t N)
     size_t size = N * sizeof(double);
     writeSize(N);
     memcpy(mPtr + mSize, ptr, size);
-    mSize += align(size);
+    mSize += alignSize(size);
 }
 
 FrameLib_Attributes::Serial::DataType FrameLib_Attributes::Serial::readType(BytePointer *readPtr)
 {
     DataType type = *((DataType *) *readPtr);
-    *readPtr += align(sizeof(DataType));
+    *readPtr += alignSize(sizeof(DataType));
     return type;
 }
 
 void FrameLib_Attributes::Serial::readSize(BytePointer *readPtr, size_t *size)
 {
     *size = *((size_t *) *readPtr);
-    *readPtr += align(sizeof(size_t));
+    *readPtr += alignSize(sizeof(size_t));
 }
 
 void FrameLib_Attributes::Serial::readDoubles(BytePointer *readPtr, double **values, size_t *N)
 {
     readSize(readPtr, N);
     *values = ((double *) *readPtr);
-    *readPtr += align(*N * sizeof(double));
+    *readPtr += alignSize(*N * sizeof(double));
 }
 
 void FrameLib_Attributes::Serial::readString(BytePointer *readPtr, char **str)
@@ -151,7 +151,7 @@ void FrameLib_Attributes::Serial::readString(BytePointer *readPtr, char **str)
     size_t size;
     readSize(readPtr, &size);
     *str = ((char *) *readPtr);
-    *readPtr += align(size);
+    *readPtr += alignSize(size);
 }
 
 bool FrameLib_Attributes::Serial::checkSize(size_t writeSize)

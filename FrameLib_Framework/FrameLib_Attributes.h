@@ -62,16 +62,19 @@ public:
         
         size_t size()   { return mSize; }
         void clear()    { mSize = 0; }
+        
+        static size_t alignSize(size_t size)                { return (size + (alignment - 1)) & ~(alignment - 1); }
+        static size_t inPlaceSize(size_t size)              { return alignSize(sizeof(Serial)) + alignSize(size); }
 
-        static size_t align(size_t size)            { return (size + (alignment - 1)) & ~(alignment - 1); }
+        static Serial *newInPlace(void *ptr, size_t size)   { return new (ptr) Serial(((BytePointer) ptr) + alignSize(sizeof(Serial)), size); }
 
     private:
         
         void alignmentChecks();
         
-        static size_t sizeType()                    { return align(sizeof(DataType)); }
-        static size_t sizeString(const char *str)   { return align(sizeof(size_t)) + align(strlen(str) + 1); }
-        static size_t sizeArray(size_t N)           { return align(sizeof(size_t)) + align((N * sizeof(double))); }
+        static size_t sizeType()                    { return alignSize(sizeof(DataType)); }
+        static size_t sizeString(const char *str)   { return alignSize(sizeof(size_t)) + alignSize(strlen(str) + 1); }
+        static size_t sizeArray(size_t N)           { return alignSize(sizeof(size_t)) + alignSize((N * sizeof(double))); }
 
         void writeType(DataType type);
         void writeSize(size_t size);

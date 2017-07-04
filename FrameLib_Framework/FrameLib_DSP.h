@@ -17,12 +17,11 @@ class FrameLib_DSP : public FrameLib_Block
 {
     typedef FrameLib_Attributes::Serial Serial;
     friend FrameLib_DSPQueue;
-        
-    // ************************************************************************************** //
 
+public:
+    
     // Enums and Structs (IO / scheduling)
     
-public:
 
     enum ObjectType { kProcessor, kScheduler };
     enum OutputMode { kOutputNormal, kOutputTagged };
@@ -47,6 +46,18 @@ private:
     struct Input
     {
         Input() : mObject(NULL), mIndex(0), mSize(0), mFixedInput(NULL), mUpdate(false), mTrigger(true), mSwitchable(false) {}
+        
+        void SetInput()
+        {
+            mObject = NULL;
+            mIndex = 0;
+        }
+        
+        void SetInput(FrameLib_DSP *object, unsigned long idx)
+        {
+            mObject = object;
+            mIndex = idx;
+        }
         
         // Connection Info
         
@@ -78,8 +89,6 @@ private:
         size_t mPointerOffset;
     };
     
-    // ************************************************************************************** //
-    
 public:
 
     // Constructor / Destructor
@@ -105,7 +114,7 @@ public:
     virtual void blockUpdate(double **ins, double **outs, unsigned long vecSize);
     virtual void reset();
     
-    // Connection methods
+    // Connection Methods
     
     // N.B. - No sanity checks here to maximise speed / help debugging (better for it to crash if a mistake is made)
     
@@ -120,7 +129,7 @@ protected:
 
     ObjectType getType()    { return mType; }
     
-    // Setup and Modes
+    // Setup and IO Modes
     
     // Call these from your constructor only (unsafe elsewhere)
    
@@ -131,8 +140,6 @@ protected:
     // You should only call this from your update method (it is unsafe anywhere else)
     
     void updateTrigger(unsigned long idx, bool trigger);
-    
-    // ************************************************************************************** //
     
     // Processing Utilities
     
@@ -169,7 +176,7 @@ protected:
     
 private:
     
-    // Customisable processing
+    // Customisable Processing
 
     // Override to handle audio at the block level (pre or post processing by the host)
     
@@ -187,51 +194,41 @@ private:
     // Override for main frame processing code (processor objects must override this)
 
     virtual void process() = 0;
-
+    
+    // Scheduling
+    
     // This returns true if the object requires notification from an audio thread
     
     bool requiresAudioNotification()    { return mType == kScheduler || getNumAudioIns() || getNumAudioOuts(); }
     
-    // Dependency notification
-    
-    inline void notify(bool releaseMemory);
-    
-    // Release output memory
-    
-    inline void releaseOutputMemory();
-    
-    // Main code to control time flow (called when all input/output dependencies are ready)
-    
-    void dependenciesReady();
-    
-    // Resets
-    
+    // Manage Output Memory
+
     inline void freeOutputMemory();
+    inline void releaseOutputMemory();
+
+    // Dependency Notification
+    
+    inline void dependencyNotify(bool releaseMemory);
+    void dependenciesReady();
     void resetDependencyCount();
     
-    // ************************************************************************************** //
-
-    // Connection mathods (private)
-    
-    // Dependency updating
+    // Dependency Updating
     
     std::vector <FrameLib_DSP *>::iterator removeInputDependency(FrameLib_DSP *object);
     std::vector <FrameLib_DSP *>::iterator removeOutputDependency(FrameLib_DSP *object);
     void addInputDependency(FrameLib_DSP *object);
     void addOutputDependency(FrameLib_DSP *object);
     
-    // Removal of one connection to this object (before replacement / deletion)
+    // Connection Methods (private)
 
+    void clearConnection(unsigned long inIdx);
     void removeConnection(unsigned long inIdx);
+    std::vector <FrameLib_DSP *>::iterator disconnect(FrameLib_DSP *object);
     
-    // Removal of all connections from one object to this object
-    
-    std::vector <FrameLib_DSP *>::iterator removeConnections(FrameLib_DSP *object);
-   
-    // Member variables
-   
 protected:
-    
+   
+    // Member Variables
+
     // Context
     
     FrameLib_Context mContext;
@@ -281,6 +278,7 @@ private:
     FrameLib_TimeFormat mBlockStartTime;
     FrameLib_TimeFormat mBlockEndTime;
     
+    bool mInUpdate;
     bool mOutputDone;
 };
 
@@ -350,4 +348,3 @@ protected:
 };
 
 #endif
-

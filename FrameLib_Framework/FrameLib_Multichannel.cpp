@@ -5,8 +5,6 @@
 
 // Connection methods (public)
 
-// N.B. - No sanity checks here to maximise speed and help debugging (better for it to crash if a mistake is made)
-
 void FrameLib_MultiChannel::deleteConnection(unsigned long inIdx)
 {
     clearConnection(inIdx);
@@ -39,7 +37,7 @@ void FrameLib_MultiChannel::clearConnections()
     // Remove output connections
     
     for (std::vector <FrameLib_MultiChannel *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); )
-        it = (*it)->removeConnections(this);
+        it = (*it)->disconnect(this);
     
     // Update
     
@@ -111,7 +109,7 @@ void FrameLib_MultiChannel::removeConnection(unsigned long inIdx)
 
 // Removal of all connections from one object to this object
 
-std::vector <FrameLib_MultiChannel *>::iterator FrameLib_MultiChannel::removeConnections(FrameLib_MultiChannel *object)
+std::vector <FrameLib_MultiChannel *>::iterator FrameLib_MultiChannel::disconnect(FrameLib_MultiChannel *object)
 {
     // Set any inputs connected to the object to default values
     

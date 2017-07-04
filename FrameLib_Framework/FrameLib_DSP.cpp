@@ -6,7 +6,7 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
-: mContext(context), mAllocator(context.getAllocator()), mQueue(context.getDSPQueue()), mNext(NULL), mType(type)
+: mContext(context), mAllocator(context.getAllocator()), mQueue(context.getDSPQueue()), mNext(NULL), mType(type), mInUpdate(false)
 {
     // Set IO
     
@@ -32,8 +32,6 @@ FrameLib_DSP::~FrameLib_DSP()
     mContext.releaseAllocator();
 }
 
-// ************************************************************************************** //
-
 // Set Fixed Input
 
 void FrameLib_DSP::setFixedInput(unsigned long idx, double *input, unsigned long size)
@@ -54,21 +52,49 @@ void FrameLib_DSP::setFixedInput(unsigned long idx, double *input, unsigned long
     }
 }
 
-// ************************************************************************************** //
 
-// Connection methods (public)
+// Audio Processing
+
+// Block updates for objects with audio IO
+
+void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long vecSize)
+{
+    // Update block time and process the block
+    
+    mBlockEndTime += vecSize;
+    blockProcessPre(ins, outs, vecSize);
+    
+    // If the object is not an output then notify
+    
+    if (mValidTime < mBlockEndTime && requiresAudioNotification())
+        dependencyNotify(false);
+    
+    blockProcessPost(ins, outs, vecSize);
+    mBlockStartTime = mBlockEndTime;
+}
+
+// Reset
+
+void FrameLib_DSP::reset()
+{
+    // Note that the first sample will be at time == 1 so that we can start the frames *before* this with non-negative values
+    
+    mFrameTime = 0.0;
+    mInputTime = 0.0;
+    mValidTime = 1.0;
+    mBlockStartTime = 1.0;
+    mBlockEndTime = 1.0;
+    mOutputDone = true;
+    
+    resetDependencyCount();
+}
+
+// Connection Methods
 
 void FrameLib_DSP::deleteConnection(unsigned long inIdx)
 {
-    // Update dependencies
-    
     removeConnection(inIdx);
-    
-    // Set default values
-    
-    mInputs[inIdx].mObject = NULL;
-    mInputs[inIdx].mIndex = 0;
-    
+    clearConnection(inIdx);
     resetDependencyCount();
 }
 
@@ -83,11 +109,9 @@ void FrameLib_DSP::addConnection(FrameLib_DSP *object, unsigned long outIdx, uns
         object->addOutputDependency(this);
     }
     
-    // Store data about connection
+    // Store data about connection and reset the dependency count
     
-    mInputs[inIdx].mObject = object;
-    mInputs[inIdx].mIndex = outIdx;
-    
+    mInputs[inIdx].SetInput(object, outIdx);
     resetDependencyCount();
 }
 
@@ -101,7 +125,7 @@ void FrameLib_DSP::clearConnections()
     // Remove output connections
     
     for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); )
-        it = (*it)->removeConnections(this);
+        it = (*it)->disconnect(this);
     
     resetDependencyCount();
 }
@@ -111,9 +135,7 @@ bool FrameLib_DSP::isConnected(unsigned long inIdx)
     return mInputs[inIdx].mObject != NULL;
 }
 
-// ************************************************************************************** //
-
-// Set IO Size
+// Setup and IO Modes
 
 void FrameLib_DSP::setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
 {
@@ -134,10 +156,6 @@ void FrameLib_DSP::setIO(unsigned long nIns, unsigned long nOuts, unsigned long 
     reset();
 }
 
-// ************************************************************************************** //
-
-// Input / Output Modes
-
 // Call this from your constructor only (unsafe elsewhere)
 
 void FrameLib_DSP::inputMode(unsigned long idx, bool update, bool trigger, bool switchable)
@@ -154,40 +172,114 @@ void FrameLib_DSP::outputMode(unsigned long idx, OutputMode mode)
     mOutputs[idx].mMode = mode;
 }
 
-// You should only call this from your update method (it is unsafe anywhere else)
+// You should only call this from your update method
 
 void FrameLib_DSP::updateTrigger(unsigned long idx, bool trigger)
 {
-    // Update trigger only if switchable
+    // Update trigger only if switchable and we are in the update method
     
-    mInputs[idx].mTrigger = mInputs[idx].mSwitchable ? trigger : mInputs[idx].mTrigger;
+    mInputs[idx].mTrigger = mInputs[idx].mSwitchable && mInUpdate ? trigger : mInputs[idx].mTrigger;
 }
 
-// ************************************************************************************** //
+// Output Allocation
 
-// Processing methods
-
-// Block updates for objects with audio IO
-    
-void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long vecSize)
+bool FrameLib_DSP::allocateOutputs()
 {
-    // Update block time and process the block
+    size_t allocationSize = 0;
     
-    mBlockEndTime += vecSize;
-    blockProcessPre(ins, outs, vecSize);
+    for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
+    {
+        // Calculate allocation size, including necessary alignment padding and assuming success
+        
+        size_t unalignedSize = outs->mMode == kOutputNormal ? outs->mRequestedSize * sizeof(double) : Serial::inPlaceSize(outs->mRequestedSize);
+        size_t alignedSize = FrameLib_LocalAllocator::alignSize(unalignedSize);
+        
+        outs->mCurrentSize = outs->mRequestedSize;
+        outs->mPointerOffset = allocationSize;
+        
+        allocationSize += alignedSize;
+    }
     
-    // If the object is not an output then notify
+    // Free then allocate memory
     
-    if (mValidTime < mBlockEndTime && requiresAudioNotification())
-        notify(false);
+    freeOutputMemory();
     
-    blockProcessPost(ins, outs, vecSize);
-    mBlockStartTime = mBlockEndTime;
+    BytePointer pointer = (BytePointer) mAllocator->alloc(allocationSize);
+    
+    if (pointer)
+    {
+        // Store pointers and create tagged outputs
+        
+        for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
+        {
+            outs->mMemory = pointer + outs->mPointerOffset;
+            
+            if (outs->mMode == kOutputTagged)
+                Serial::newInPlace(outs->mMemory, outs->mCurrentSize);
+        }
+        
+        // Set dependency count
+        
+        mOutputMemoryCount = mOutputDependencies.size();
+        
+        return true;
+    }
+    
+    // Reset outputs on failure of zero size
+    
+    for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
+    {
+        outs->mMemory = NULL;
+        outs->mCurrentSize = 0;
+    }
+    
+    mOutputMemoryCount = 0;
+    
+    return false;
 }
 
-// Dependency notification
+// Get Inputs and Outputs
 
-inline void FrameLib_DSP::notify(bool releaseMemory)
+double *FrameLib_DSP::getInput(unsigned long idx, size_t *size)
+{
+    if (mInputs[idx].mObject)
+        return mInputs[idx].mObject->getOutput(mInputs[idx].mIndex, size);
+    
+    *size = mInputs[idx].mSize;
+    return mInputs[idx].mFixedInput;
+}
+
+FrameLib_Attributes::Serial *FrameLib_DSP::getInput(unsigned long idx)
+{
+    if (mInputs[idx].mObject)
+        return mInputs[idx].mObject->getOutput(mInputs[idx].mIndex);
+    
+    return NULL;
+}
+
+double *FrameLib_DSP::getOutput(unsigned long idx, size_t *size)
+{
+    if (mOutputs[0].mMemory && mOutputs[idx].mMode == kOutputNormal)
+    {
+        *size = mOutputs[idx].mCurrentSize;
+        return (double *) mOutputs[idx].mMemory;
+    }
+    
+    *size = 0;
+    return NULL;
+}
+
+FrameLib_Attributes::Serial *FrameLib_DSP::getOutput(unsigned long idx)
+{
+    if (mOutputs[0].mMemory && mOutputs[idx].mMode == kOutputTagged)
+        return (Serial *) mOutputs[idx].mMemory;
+    
+    return NULL;
+}
+
+// Dependency Notification
+
+inline void FrameLib_DSP::dependencyNotify(bool releaseMemory)
 {
     if (releaseMemory)
         releaseOutputMemory();
@@ -198,14 +290,6 @@ inline void FrameLib_DSP::notify(bool releaseMemory)
         mQueue->add(this);
     
     // N.B. For multithreading re-entrancy needs to be avoided by increasing the dependency count before adding to the queue (with matching notification)
-}
-
-// Release output memory
-
-inline void FrameLib_DSP::releaseOutputMemory()
-{
-    if (mOutputMemoryCount && (--mOutputMemoryCount == 0))
-        freeOutputMemory();
 }
 
 // Main code to control time flow (called when all input/output dependencies are ready)
@@ -258,7 +342,9 @@ void FrameLib_DSP::dependenciesReady()
         {
             if (ins->mUpdate && ins->mObject && mValidTime == ins->mObject->mFrameTime)
             {
+                mInUpdate = true;
                 update();
+                mInUpdate = false;
                 break;
             }
         }
@@ -301,8 +387,7 @@ void FrameLib_DSP::dependenciesReady()
                 (*mInputDependencies.begin())->releaseOutputMemory();
         }
         
-        // Determine if time has updated
-        // FIX - is it possible in a process object for time not to update???
+        // It shouldn't be it possible in a process object for time not to update but just in case...
         
         timeUpdated = mValidTime != prevValidTillTime;
         
@@ -313,7 +398,7 @@ void FrameLib_DSP::dependenciesReady()
             mOutputDone = true;
             
             for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
-            {                
+            {
                 if (ins->mObject && ((ins->mTrigger && !ins->mSwitchable) || (!ins->mObject->mOutputDone || ins->mSwitchable)) && (mValidTime == ins->mObject->mValidTime))
                 {
                     if (ins->mObject->mOutputDone)
@@ -343,7 +428,7 @@ void FrameLib_DSP::dependenciesReady()
         if (mInputTime == (*it)->mValidTime)
         {
             mDependencyCount++;
-            (*it)->notify((mType == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone);
+            (*it)->dependencyNotify((mType == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone);
         }
     }
     
@@ -351,12 +436,18 @@ void FrameLib_DSP::dependenciesReady()
     
     if (timeUpdated)
         for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-            (*it)->notify(false);
+            (*it)->dependencyNotify(false);
 }
 
-// ************************************************************************************** //
+void FrameLib_DSP::resetDependencyCount()
+{
+    mOutputMemoryCount = 0;
+    mDependencyCount = mInputDependencies.size() + ((requiresAudioNotification()) ? 1 : 0);
+    
+    freeOutputMemory();
+}
 
-// Resets
+// Manage Output Memory
 
 inline void FrameLib_DSP::freeOutputMemory()
 {
@@ -369,136 +460,20 @@ inline void FrameLib_DSP::freeOutputMemory()
         for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
             if (outs->mMode == kOutputTagged)
                 ((Serial *)outs->mMemory)->Serial::~Serial();
-            
+        
         mOutputs[0].mMemory = NULL;
     }
 }
 
-void FrameLib_DSP::resetDependencyCount()
+inline void FrameLib_DSP::releaseOutputMemory()
 {
-    mOutputMemoryCount = 0;
-    mDependencyCount = mInputDependencies.size() + ((requiresAudioNotification()) ? 1 : 0);
-    
-    freeOutputMemory();
+    if (mOutputMemoryCount && (--mOutputMemoryCount == 0))
+        freeOutputMemory();
 }
 
-void FrameLib_DSP::reset()
-{
-    // Note that the first sample will be at time == 1 so that we can start the frames *before* this with non-negative values
-    
-    mFrameTime = 0.0;
-    mInputTime = 0.0;
-    mValidTime = 1.0;
-    mBlockStartTime = 1.0;
-    mBlockEndTime = 1.0;
-    mOutputDone = true;
-    
-    resetDependencyCount();
-}
+// Connection Methods (private)
 
-// ************************************************************************************** //
-
-// Processing utilities
-
-bool FrameLib_DSP::allocateOutputs()
-{
-    size_t allocationSize = 0;
-    
-    for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
-    {
-        // Calculate allocation size, including necessary alignment padding and assuming success
-        
-        // FIX - check serial alignment safety - move this into the class to be on the safe side??
-        
-        size_t unalignedSize = outs->mMode == kOutputNormal ? outs->mRequestedSize * sizeof(double) : sizeof(Serial) + Serial::align(outs->mRequestedSize);
-        size_t alignedSize = FrameLib_LocalAllocator::alignSize(unalignedSize);
-        
-        outs->mCurrentSize = outs->mRequestedSize;
-        outs->mPointerOffset = allocationSize;
-        
-        allocationSize += alignedSize;
-    }
-    
-    // Free then allocate memory
-    
-    freeOutputMemory();
-    
-    char *pointer = !allocationSize ? NULL : (char *) mAllocator->alloc(allocationSize);
-    
-    if (pointer)
-    {
-        // Store pointers and create tagged outputs
-        
-        for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
-        {
-            outs->mMemory = pointer + outs->mPointerOffset;
-            
-            if (outs->mMode == kOutputTagged)
-                new (outs->mMemory) Serial(((BytePointer) outs->mMemory) + sizeof(Serial), outs->mCurrentSize);
-        }
-        
-        // Set dependency count
-        
-        mOutputMemoryCount = mOutputDependencies.size();
-        
-        return true;
-    }
-    
-    // Reset outputs on failure of zero size
-    
-    for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
-    {
-        outs->mMemory = NULL;
-        outs->mCurrentSize = 0;
-    }
-    
-    mOutputMemoryCount = 0;
-    
-    return false;
-}
-
-double *FrameLib_DSP::getOutput(unsigned long idx, size_t *size)
-{
-    if (mOutputs[0].mMemory && mOutputs[idx].mMode == kOutputNormal)
-    {
-        *size = mOutputs[idx].mCurrentSize;
-        return (double *) mOutputs[idx].mMemory;
-    }
-    
-    *size = 0;
-    return NULL;
-}
-
-FrameLib_Attributes::Serial *FrameLib_DSP::getOutput(unsigned long idx)
-{
-    if (mOutputs[0].mMemory && mOutputs[idx].mMode == kOutputTagged)
-        return (Serial *) mOutputs[idx].mMemory;
-    
-    return NULL;
-}
-
-double *FrameLib_DSP::getInput(unsigned long idx, size_t *size)
-{
-    if (mInputs[idx].mObject)
-        return mInputs[idx].mObject->getOutput(mInputs[idx].mIndex, size);
-    
-    *size = mInputs[idx].mSize;
-    return mInputs[idx].mFixedInput;
-}
-
-FrameLib_Attributes::Serial *FrameLib_DSP::getInput(unsigned long idx)
-{
-    if (mInputs[idx].mObject)
-        return mInputs[idx].mObject->getOutput(mInputs[idx].mIndex);
-    
-    return NULL;
-}
-
-// ************************************************************************************** //
-
-// Connection mathods (private)
-
-// Dependency updating
+// Dependency Updating
 
 std::vector <FrameLib_DSP *>::iterator FrameLib_DSP::removeInputDependency(FrameLib_DSP *object)
 {
@@ -540,6 +515,14 @@ void FrameLib_DSP::addOutputDependency(FrameLib_DSP *object)
     mOutputDependencies.push_back(object);
 }
 
+// Remove connection and set to defaults
+
+void FrameLib_DSP::clearConnection(unsigned long inIdx)
+{
+    removeConnection(inIdx);
+    mInputs[inIdx].SetInput();
+}
+
 // Removal of one connection to this object (before replacement / deletion)
 
 void FrameLib_DSP::removeConnection(unsigned long inIdx)
@@ -561,23 +544,16 @@ void FrameLib_DSP::removeConnection(unsigned long inIdx)
 
 // Removal of all connections from one object to this object
 
-std::vector <FrameLib_DSP *>::iterator FrameLib_DSP::removeConnections(FrameLib_DSP *object)
+std::vector <FrameLib_DSP *>::iterator FrameLib_DSP::disconnect(FrameLib_DSP *object)
 {
     // Set any inputs connected to the object to default values
     
     for (unsigned long i = 0; i < mInputs.size(); i++)
-    {
         if (mInputs[i].mObject == object)
-        {
-            mInputs[i].mObject = NULL;
-            mInputs[i].mIndex = 0;
-            
-        }
-    }
-    
+            mInputs[i].SetInput();
+
     // Update dependencies
     
     removeInputDependency(object);
     return object->removeOutputDependency(this);
 }
-
