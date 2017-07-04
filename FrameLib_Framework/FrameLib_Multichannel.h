@@ -74,12 +74,11 @@ public:
 
     // Audio processing
     
-    virtual void blockProcess(double **ins, double **outs, unsigned long vecSize) {}
-    
-    static bool handlesAudio() { return false; }
-    
+    virtual void blockUpdate(double **ins, double **outs, unsigned long vecSize) {}
     virtual void reset() {}
-    
+
+    static bool handlesAudio() { return false; }
+
     // Multichannel updates
     
     // N.B. - No sanity checks here to maximise speed and help debugging (better for it to crash if a mistake is made)
@@ -264,7 +263,7 @@ public:
     
     // Audio Processing
     
-    virtual void blockProcess(double **ins, double **outs, unsigned long vecSize)
+    virtual void blockUpdate(double **ins, double **outs, unsigned long vecSize)
     {
         // Allocate Temps
         

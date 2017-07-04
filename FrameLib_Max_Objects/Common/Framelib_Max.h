@@ -592,7 +592,7 @@ public:
     {
         // N.B. Plus one due to sync inputs
         
-        mObject->blockProcess(ins + 1, outs + 1, vec_size);
+        mObject->blockUpdate(ins + 1, outs + 1, vec_size);
     }
 
     void dsp(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
