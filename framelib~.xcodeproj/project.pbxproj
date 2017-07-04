@@ -9297,8 +9297,8 @@
 			baseConfigurationReference = B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */;
 			buildSettings = {
 				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				LLVM_LTO = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				LLVM_LTO = NO;
 			};
 			name = Development;
 		};
