@@ -36,12 +36,14 @@ void FrameLib_MultiChannel::clearConnections()
     for (unsigned long i = 0; i < mInputs.size(); i++)
         clearConnection(i);
     
-    updateConnections();
-    
     // Remove output connections
     
     for (std::vector <FrameLib_MultiChannel *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); )
         it = (*it)->removeConnections(this);
+    
+    // Update
+    
+    updateConnections();
 }
 
 bool FrameLib_MultiChannel::isConnected(unsigned long inIdx)

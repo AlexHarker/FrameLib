@@ -15,9 +15,10 @@
 
 class FrameLib_MultiChannel : private FrameLib_ConnectionQueue::Item
 {
-    // Connection and Other Structures
     
 protected:
+
+    // Connection Info Structure
 
     struct ConnectionInfo
     {
@@ -29,6 +30,8 @@ protected:
 
 private:
     
+    // IO Structures
+
     struct MultiChannelInput
     {
         MultiChannelInput() : mObject(NULL), mIndex(0) {}
@@ -103,17 +106,19 @@ protected:
         mOutputs.resize(nOuts);
     }
     
+    // Query Input Channels
+    
     unsigned long getInputNumChans(unsigned long inIdx);
     ConnectionInfo getInputChan(unsigned long inIdx, unsigned long chan) { return mInputs[inIdx].mObject->mOutputs[mInputs[inIdx].mIndex].mConnections[chan]; }
 
 private:
 
-    // Dependency updating
+    // Dependency Updating
 
     void addOutputDependency(FrameLib_MultiChannel *object);
     std::vector <FrameLib_MultiChannel *>::iterator removeOutputDependency(FrameLib_MultiChannel *object);
 
-    // Connection methods (private)
+    // Connection Methods (private)
     
     void updateConnections() { if (mQueue) mQueue->add(this); }
     
@@ -125,7 +130,7 @@ private:
 
 protected:
 
-    // Member variables
+    // Member Variables
 
     // Context
     
@@ -264,19 +269,19 @@ public:
     
     virtual void blockUpdate(double **ins, double **outs, unsigned long vecSize)
     {
-        // Allocate Temps
+        // Allocate temporary memory
         
         if (getNumAudioOuts())
             mAudioTemps[0] = (double *) mAllocator->alloc(sizeof(double) * vecSize * getNumAudioOuts());
         for (unsigned long i = 1; i < getNumAudioOuts(); i++)
             mAudioTemps[i] = mAudioTemps[0] + (i * vecSize);
             
-        // Zero Outputs
+        // Zero outputs
         
         for (unsigned long i = 0; i < getNumAudioOuts(); i++)
             std::fill(outs[i], outs[i] + vecSize, 0.0);
 
-        // Process and Sum to Outputs
+        // Process and sum to outputs
 
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
         {
@@ -287,7 +292,7 @@ public:
                     outs[i][j] += mAudioTemps[i][j];
         }
 
-        // Release Temps and Clear Allocator
+        // Release temporary memory and clear allocator
         
         if (getNumAudioOuts())
             mAllocator->dealloc(mAudioTemps[0]);
@@ -395,6 +400,8 @@ private:
         return numChansChanged;
     }
 
+    // Member Variables
+    
     FrameLib_LocalAllocator *mAllocator;
     FrameLib_Attributes::Serial mSerialisedAttributes;
 
