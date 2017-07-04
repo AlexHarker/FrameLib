@@ -31,6 +31,9 @@ private:
     
     struct MultiChannelInput
     {
+        MultiChannelInput() : mObject(NULL), mIndex(0) {}
+        MultiChannelInput(FrameLib_MultiChannel *object, unsigned long index) : mObject(object), mIndex(index) {}
+        
         FrameLib_MultiChannel *mObject;
         unsigned long mIndex;
     };
@@ -72,14 +75,14 @@ public:
     
     virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) {};
 
-    // Audio processing
+    // Audio Processing
     
     virtual void blockUpdate(double **ins, double **outs, unsigned long vecSize) {}
     virtual void reset() {}
 
     static bool handlesAudio() { return false; }
 
-    // Multichannel updates
+    // Connection Methods
     
     // N.B. - No sanity checks here to maximise speed and help debugging (better for it to crash if a mistake is made)
     
@@ -102,31 +105,27 @@ protected:
     
     unsigned long getInputNumChans(unsigned long inIdx);
     ConnectionInfo getInputChan(unsigned long inIdx, unsigned long chan) { return mInputs[inIdx].mObject->mOutputs[mInputs[inIdx].mIndex].mConnections[chan]; }
-;
-
-    // ************************************************************************************** //
-
-    // Connection methods (private)
 
 private:
 
     // Dependency updating
 
-    virtual void outputUpdate();
-    std::vector <FrameLib_MultiChannel *>::iterator removeOutputDependency(FrameLib_MultiChannel *object);
     void addOutputDependency(FrameLib_MultiChannel *object);
+    std::vector <FrameLib_MultiChannel *>::iterator removeOutputDependency(FrameLib_MultiChannel *object);
 
-    // Removal of one connection to this object (before replacement / deletion)
+    // Connection methods (private)
     
+    void updateConnections() { if (mQueue) mQueue->add(this); }
+    
+    void clearConnection(unsigned long inIdx);
     void removeConnection(unsigned long inIdx);
-
-    // Removal of all connections from one object to this object
-    
     std::vector <FrameLib_MultiChannel *>::iterator removeConnections(FrameLib_MultiChannel *object);
+    
+    virtual void outputUpdate();
+
+protected:
 
     // Member variables
-    
-protected:
 
     // Context
     
