@@ -61,7 +61,7 @@ void *FrameLib_GlobalAllocator::CoreAllocator::alloc(size_t size)
     
     if (!ptr)
     {
-        // FIX - for now allocate double the necessary size (which will always work)
+        // N.B. - for now allocate double the necessary size (which should always work)
 
         Pool *pool = NULL;
         size_t poolSize = size <= (growSize >> 1) ? growSize : (size << 1);
