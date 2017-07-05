@@ -170,7 +170,6 @@ protected:
                 
                     if (sizeIn1 > sizeIn2)
                     {
-                        // FIX - consider local memory for small wrapped vectors and/or faster mode switching (e.g. through function pointers / single switch etc.)
                        if (sizeIn2 == 1)
                        {
                            double value = input2[0];
