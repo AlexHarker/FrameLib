@@ -6,7 +6,7 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
-: mContext(context), mAllocator(context.getAllocator()), mQueue(context.getDSPQueue()), mNext(NULL), mType(type), mInUpdate(false)
+: mAllocator(context), mQueue(context), mNext(NULL), mType(type), mInUpdate(false)
 {
     // Set IO
     
@@ -27,9 +27,6 @@ FrameLib_DSP::~FrameLib_DSP()
     
     for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
         mAllocator->dealloc(ins->mFixedInput);
-    
-    mContext.releaseDSPQueue();
-    mContext.releaseAllocator();
 }
 
 // Set Fixed Input

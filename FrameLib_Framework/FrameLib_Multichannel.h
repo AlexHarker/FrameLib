@@ -51,17 +51,16 @@ public:
     // Constructors
 
     FrameLib_MultiChannel(FrameLib_Context context, unsigned long nIns, unsigned long nOuts)
-    : mContext(context), mQueue(context.getConnectionQueue())
+    : mQueue(context)
     { setIO(nIns, nOuts); }
     
-    FrameLib_MultiChannel(FrameLib_Context context) : mContext(context), mQueue(context.getConnectionQueue()) {}
+    FrameLib_MultiChannel(FrameLib_Context context) : mQueue(context) {}
     
     // Destructor
     
     virtual ~FrameLib_MultiChannel()
     {
-        mContext.releaseConnectionQueue();
-        mQueue = NULL;
+        mQueue.release();
         clearConnections();
     }
     
@@ -137,10 +136,6 @@ protected:
 
     // Member Variables
 
-    // Context
-    
-    FrameLib_Context mContext;
-    
     // Outputs
     
     std::vector <MultiChannelOutput> mOutputs;
@@ -149,7 +144,7 @@ private:
     
     // Queue
     
-    FrameLib_ConnectionQueue *mQueue;
+    FrameLib_Context::ConnectionQueue mQueue;
     
     // Connection Info
     
@@ -205,7 +200,7 @@ template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
 public:
     
     FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-    : FrameLib_MultiChannel(context), mAllocator(context.getAllocator()), mSerialisedParameters(serialisedParameters->size()), mOwner(owner)
+    : FrameLib_MultiChannel(context), mContext(context), mAllocator(context), mSerialisedParameters(serialisedParameters->size()), mOwner(owner)
     {
         // Make first block
         
@@ -239,8 +234,6 @@ public:
         
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
             delete(*it);
-        
-        mContext.releaseAllocator();
     }
     
     // Sampling Rate
@@ -402,7 +395,8 @@ private:
 
     // Member Variables
     
-    FrameLib_LocalAllocator *mAllocator;
+    FrameLib_Context mContext;
+    FrameLib_Context::Allocator mAllocator;
     FrameLib_Parameters::Serial mSerialisedParameters;
 
     std::vector <FrameLib_Block *> mBlocks;

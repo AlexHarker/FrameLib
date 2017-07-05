@@ -233,10 +233,6 @@ private:
 protected:
    
     // Member Variables
-
-    // Context
-    
-    FrameLib_Context mContext;
     
     // Sampling Rate
     
@@ -244,7 +240,7 @@ protected:
     
     // Memory Allocator
     
-    FrameLib_LocalAllocator *mAllocator;
+    FrameLib_Context::Allocator mAllocator;
 
     // Parameters
     
@@ -254,7 +250,7 @@ private:
     
     // DSP Queue
     
-    FrameLib_DSPQueue *mQueue;
+    FrameLib_Context::DSPQueue mQueue;
     FrameLib_DSP *mNext;
     
     // Object Type
