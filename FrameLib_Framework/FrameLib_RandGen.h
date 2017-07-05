@@ -18,13 +18,13 @@ public:
     void initSeed(uint32_t *init)   { initSeedCMWC(init); }
     void randSeed()                 { randSeedCMWC(); }
     
-    // Generate a single pseudo-random unsigned integer (full range /  in the range [0, n] / in the range [lo, hi])
+    // Generate a Single Pseudo-random Unsigned Integer (full range /  in the range [0, n] / in the range [lo, hi])
     
     uint32_t randInt();
     uint32_t randInt(uint32_t n);
     int32_t randInt(int32_t lo, int32_t hi);
     
-    // Generate a 32 bit random double (in the range [0,1] / in the range [0, n] / in the range [lo, hi])
+    // Generate a 32 bit Random Double (in the range [0,1] / in the range [0, n] / in the range [lo, hi])
     
     double randDouble();
     double randDouble(double n);
@@ -32,9 +32,9 @@ public:
 
 private:
     
-    // Methods that are specific to the algorithm used
+    // Methods Specific to the RNG Algorithm
     
-    // Basic generator
+    // Basic Generator
 
     inline uint32_t CMWC();
     

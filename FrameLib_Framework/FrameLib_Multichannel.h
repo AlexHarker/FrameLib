@@ -157,7 +157,6 @@ private:
     std::vector <MultiChannelInput> mInputs;
 };
 
-
 // ************************************************************************************** //
 
 // FrameLib_Pack - Pack Multichannel Signals

@@ -5,14 +5,14 @@
 
 #include "FrameLib_RandGen.h"
 
-// Generate a single pseudo-random unsigned integer
+// Generate a Single Pseudo-random Unsigned Integer
 
 uint32_t FrameLib_RandGen::randInt()
 {
     return CMWC();
 }
 
-// Return an unsigned 32 bit integer
+// Return an Unsigned 32 bit Integer
 
 inline uint32_t FrameLib_RandGen::randInt(uint32_t n)
 {
@@ -32,37 +32,37 @@ inline uint32_t FrameLib_RandGen::randInt(uint32_t n)
     return i;
 }
 
-// Return an signed 32 bit integer in the range [lo, hi]
+// Return a Signed 32 bit Integer in the Range [lo, hi]
 
 int32_t FrameLib_RandGen::randInt(int32_t lo, int32_t hi)
 {
     return lo + randInt(hi - lo);
 }
 
-// Return a 32 bit random double in the range [0,1]
+// Return a 32 bit Random Double in the Range [0,1]
 
 double FrameLib_RandGen::randDouble()
 {
     return randInt() * 2.32830643653869628906e-10;
 }
 
-// Return a 32 bit random double in the range [0, n]
+// Return a 32 bit Random Double in the Range [0, n]
 
 double FrameLib_RandGen::randDouble (double n)
 {
     return randDouble() * n;
 }
 
-// Return a 32 bit random double in the range [lo, hi]
+// Return a 32 bit Random Double in the Range [lo, hi]
 
 double FrameLib_RandGen::randDouble(double lo, double hi)
 {
     return lo + randDouble() * (hi - lo);
 }
 
-// Methods that are specific to the algorithm used
+// Methods Specific to the RNG Algorithm
 
-// Basic generator
+// Basic Generator
 
 inline uint32_t FrameLib_RandGen::CMWC()
 {
@@ -90,7 +90,7 @@ inline uint32_t FrameLib_RandGen::CMWC()
     return mSTATE[i];
 }
 
-// Initialise with seed values
+// Initialise with Seed Values
 
 void FrameLib_RandGen::initSeedCMWC(uint32_t *init)
 {
