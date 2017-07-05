@@ -308,7 +308,7 @@ void FrameLib_LocalAllocator::Storage::resize(unsigned long size)
 
 // Constructor / Destructor
 
-FrameLib_LocalAllocator::FrameLib_LocalAllocator(FrameLib_GlobalAllocator *allocator) : mGlobalAllocator(allocator)
+FrameLib_LocalAllocator::FrameLib_LocalAllocator(FrameLib_GlobalAllocator *allocator) : mAllocator(allocator)
 {
     // Setup the free lists as a circularly linked list
     
