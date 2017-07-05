@@ -9,6 +9,8 @@
 
 class FrameLib_Context
 {
+    // Type definition for concision
+    
     typedef FrameLib_Global Global;
     
     // Non-copyable template class for retaining reference counted pointers using RIAA
