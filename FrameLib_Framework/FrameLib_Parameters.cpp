@@ -46,10 +46,8 @@ void FrameLib_Parameters::Serial::write(const char *tag, char *str)
 }
 
 void FrameLib_Parameters::Serial::write(const char *tag, double *values, size_t N)
-{
-    // FIX - this might mean we can't set an empty array - might need adjusting
-    
-    if (!N || !checkSize(calcSize(tag, N)))
+{    
+    if (!checkSize(calcSize(tag, N)))
         return;
     
     writeType(kDoubleArray);
@@ -211,19 +209,12 @@ void FrameLib_Parameters::Attribute::setClip(double min, double max)
     assert(0 && "attribute type does not support clipping values");
 }
 
-void FrameLib_Parameters::Attribute::set(const char *str)
-{
-    assert(0 && "attribute type does not support setting by string");
-}
-
-void FrameLib_Parameters::Attribute::set(double value)
-{
-    assert(0 && "attribute type does not support setting by double");
-}
-
 void FrameLib_Parameters::Attribute::set(double *values, size_t size)
 {
-    set(*values);
+    if (size)
+        set(*values);
+    else
+        clear();
 }
 
 void FrameLib_Parameters::Attribute::getRange(double *min, double *max)
@@ -258,6 +249,14 @@ void FrameLib_Parameters::Bool::set(double value)
     mChanged = true;
 }
 
+void FrameLib_Parameters::Bool::set(double *values, size_t size)
+{
+    if (size)
+        Bool::set(*values);
+    else
+        Bool::clear();
+}
+
 void FrameLib_Parameters::Bool::getRange(double *min, double *max)
 {
     *min = false;
@@ -285,6 +284,14 @@ void FrameLib_Parameters::Enum::set(const char *str)
     }
 }
 
+void FrameLib_Parameters::Enum::set(double *values, size_t size)
+{
+    if (size)
+        Enum::set(*values);
+    else
+        Enum::clear();
+}
+
 void FrameLib_Parameters::Enum::getRange(double *min, double *max)
 {
     *min = 0;
@@ -298,7 +305,15 @@ void FrameLib_Parameters::Double::set(double value)
     mValue = (value < mMin) ? mMin : ((value > mMax) ? mMax : value);
     mChanged = true;
 }
-    
+
+void FrameLib_Parameters::Double::set(double *values, size_t size)
+{
+    if (size)
+        Double::set(*values);
+    else
+        Double::clear();
+}
+
 void FrameLib_Parameters::Double::getRange(double *min, double *max)
 {
     *min = mMin;

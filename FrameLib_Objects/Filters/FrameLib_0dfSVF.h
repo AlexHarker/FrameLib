@@ -80,7 +80,7 @@ public:
 	
     FrameLib_0dfSVF(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
     {
-        mParameters.addDouble(kFreq, "freq", 0.0, 0);
+        mParameters.addDouble(kFreq, "freq", 500.0, 0);
         mParameters.setMin(0.0);
         
         mParameters.addDouble(kReson, "reson", 0.0, 1);

@@ -144,10 +144,12 @@ private:
         virtual void setMax(double max);
         virtual void setClip(double min, double max);
         
-        virtual void set(const char *str);
-        virtual void set(double value);
+        virtual void set(const char *str) {}
+        virtual void set(double value) {}
         virtual void set(double *values, size_t size);
 
+        virtual void clear() = 0;
+        
         // Getters
         
         // Setup
@@ -161,7 +163,7 @@ private:
         virtual const char *getItemString(unsigned long item) const;
 
         // Values
-        
+
         virtual double getValue() const             { return 0; }
         virtual const char *getString() const       { return NULL; }
         virtual size_t getArraySize() const         { return 0; }
@@ -190,12 +192,14 @@ private:
     public:
         
         Bool(const char *name, long argumentIdx, bool defaultValue)
-        : Attribute(name, argumentIdx), mValue(defaultValue) {}
+        : Attribute(name, argumentIdx), mValue(defaultValue), mDefault(defaultValue) {}
 
         // Setters
         
         virtual void set(double value);
-        virtual void set(double *values, size_t size) { Bool::set(*values); }
+        virtual void set(double *values, size_t size);
+
+        virtual void clear() { Bool::set(mDefault); };
 
         // Getters
 
@@ -208,6 +212,7 @@ private:
     private:
         
         bool mValue;
+        bool mDefault;
     };
     
     // ************************************************************************************** //
@@ -227,9 +232,11 @@ private:
         void addEnumItem(const char *str) { mItems.push_back(str); }
         
         virtual void set(double value);
-        virtual void set(double *values, size_t size) { Enum::set(*values); }
+        virtual void set(double *values, size_t size);
         virtual void set(const char *str);
         
+        virtual void clear() { Enum::set(0.0); };
+
         virtual Type type() { return kEnum; }
         
         // Getters
@@ -256,7 +263,7 @@ private:
     public:
         
         Double(const char *name, long argumentIdx, double defaultValue)
-        : Attribute(name, argumentIdx), mValue(defaultValue), mMin(-std::numeric_limits<double>::infinity()), mMax(std::numeric_limits<double>::infinity()) {}
+        : Attribute(name, argumentIdx), mValue(defaultValue), mDefault(defaultValue), mMin(-std::numeric_limits<double>::infinity()), mMax(std::numeric_limits<double>::infinity()) {}
         
         // Setters
 
@@ -265,8 +272,10 @@ private:
         virtual void setClip(double min, double max);
 
         virtual void set(double value);
-        virtual void set(double *values, size_t size) { Double::set(*values); }
+        virtual void set(double *values, size_t size);
         
+        virtual void clear() { Double::set(mDefault); };
+
         // Getters
 
         virtual Type type() { return kDouble; }
@@ -278,6 +287,7 @@ private:
     private:
         
         double mValue;
+        double mDefault;
         double mMin;
         double mMax;
     };
@@ -298,6 +308,8 @@ private:
         
         virtual void set(const char *str);
         
+        virtual void clear() { String::set(NULL); };
+
         // Getters
         
         virtual Type type() { return kString; }
@@ -328,13 +340,15 @@ private:
         virtual void setMax(double max);
         virtual void setClip(double min, double max);
 
-        void set(double *values, size_t size);
+        virtual void set(double *values, size_t size);
+
+        virtual void clear() { Array::set(NULL, 0); };
 
         // Getters
 
         virtual Type type() { return mVariableSize ? kVariableArray : kArray; }
         
-        void getRange(double *min, double *max);
+        virtual void getRange(double *min, double *max);
         
         virtual size_t getArraySize() const         { return mSize; }
         virtual const double * getArray() const     { return &mItems[0]; }
