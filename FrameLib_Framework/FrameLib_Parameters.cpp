@@ -95,7 +95,7 @@ void FrameLib_Parameters::Serial::alignmentChecks()
     assert(Serial::alignment >= sizeof(size_t) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
     assert(Serial::alignment >= sizeof(char) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
     assert(Serial::alignment >= sizeof(char *) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
-    assert(Serial::alignment <= FrameLib_MainAllocator::getAlignment() && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
+    assert(Serial::alignment <= FrameLib_GlobalAllocator::getAlignment() && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
 }
 
 void FrameLib_Parameters::Serial::writeType(DataType type)
