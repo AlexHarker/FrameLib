@@ -307,7 +307,7 @@ private:
     
     // Member Variables
     
-    FrameLib_GlobalAllocator *mGlobalAllocator;
+    FrameLib_GlobalAllocator *mAllocator;
     
     FreeBlock mFreeLists[numLocalFreeBlocks];
     FreeBlock *mTail;

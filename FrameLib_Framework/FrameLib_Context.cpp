@@ -1,6 +1,6 @@
 
 #include "FrameLib_Context.h"
-
+/*
 // Methods to retrieve common objects
 
 FrameLib_LocalAllocator *FrameLib_Context::getAllocator() const
@@ -34,3 +34,4 @@ void FrameLib_Context::releaseDSPQueue() const
 {
     mGlobal->releaseDSPQueue(mReference);
 }
+*/

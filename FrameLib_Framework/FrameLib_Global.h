@@ -77,8 +77,9 @@ private:
     std::vector<CountablePointer<T> > mPointers;
 };
 
+// ************************************************************************************** //
 
-// The global object
+// The Global Object
 
 class FrameLib_Global
 {

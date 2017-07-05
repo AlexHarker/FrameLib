@@ -347,7 +347,7 @@ void *FrameLib_LocalAllocator::alloc(size_t size)
     
     // If this fails call the global allocator
     
-    return mGlobalAllocator->alloc(size);
+    return mAllocator->alloc(size);
 }
 
 void FrameLib_LocalAllocator::dealloc(void *ptr)
@@ -357,7 +357,7 @@ void FrameLib_LocalAllocator::dealloc(void *ptr)
         // If the free lists are full send the tail back to the global allocator
         
         if (mTail->mMemory)
-            mGlobalAllocator->dealloc(mTail->mMemory);
+            mAllocator->dealloc(mTail->mMemory);
         
         // Put the memory into the (now vacant) tail position
         
@@ -376,7 +376,7 @@ void FrameLib_LocalAllocator::clear()
 {
     // Acquire the main allocator and then free all blocks before releasing
     
-    FrameLib_GlobalAllocator::Pruner pruner(mGlobalAllocator);
+    FrameLib_GlobalAllocator::Pruner pruner(mAllocator);
     
     for (unsigned long i = 0; i < numLocalFreeBlocks; i++)
     {
