@@ -63,7 +63,7 @@ public:
         }
     }
     
-    // Add a new object given a pointer (transferring ownership) and a reference address
+    // Add an object given a pointer (transferring ownership) and a reference address
     
     void add(T *object, void *reference)
     {

@@ -60,7 +60,7 @@ void *FrameLib_MainAllocator::alloc(size_t size)
 {
     void *ptr = tlsf_memalign(mTLSF, alignment, size);
     
-    // If the allocation fails we need to add a new memory pool
+    // If the allocation fails we need to add another memory pool
     
     if (!ptr)
     {
@@ -69,7 +69,7 @@ void *FrameLib_MainAllocator::alloc(size_t size)
         Pool *pool = NULL;
         size_t poolSize = size <= (growSize >> 1) ? growSize : (size << 1);
         
-        // Attempt to get a new pool from the scheduled slot
+        // Attempt to get the pool from the scheduled slot
         
         if (poolSize == growSize)
         {
@@ -379,7 +379,7 @@ void FrameLib_LocalAllocator::dealloc(void *ptr)
         mTail->mMemory = ptr;
         mTail->mSize = blockSize(ptr);
         
-        // Move top and tail back one (old tail is new top)
+        // Move top and tail back one (old tail is now the top)
         
         mTail = mTail->mPrev;
     }
@@ -407,7 +407,7 @@ void FrameLib_LocalAllocator::clear()
     mGlobalAllocator->release(&allocator);
 }
 
-// Return new size after adjustment for alignment
+// Return required size after adjustment for alignment
 
 size_t FrameLib_LocalAllocator::alignSize(size_t x)
 {

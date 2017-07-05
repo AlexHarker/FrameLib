@@ -239,7 +239,7 @@ public:
         // Delete blocks
         
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
-            delete (*it);
+            delete(*it);
         
         mContext.releaseAllocator();
     }

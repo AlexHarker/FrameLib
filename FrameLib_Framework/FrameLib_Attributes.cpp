@@ -169,7 +169,7 @@ bool FrameLib_Attributes::Serial::checkSize(size_t writeSize)
     growSize = (mSize + writeSize) - mMaxSize;
     growSize = growSize < minGrowSize ? minGrowSize : growSize;
     
-    // Allocate new memory and copy old data before deleting
+    // Allocate required memory and copy old data before deleting the old pointer
     
     BytePointer newPtr = new Byte[mMaxSize + growSize];
     memcpy(newPtr, mPtr, mSize);

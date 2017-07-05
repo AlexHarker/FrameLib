@@ -300,7 +300,7 @@ void FrameLib_DSP::dependenciesReady()
     
     if (mType == kScheduler)
     {
-        // Find the new input time (the min valid time of all inputs)
+        // Find the input time (the min valid time of all inputs)
         
         mInputTime = FL_Limits<FrameLib_TimeFormat>::largest();
         
@@ -364,7 +364,7 @@ void FrameLib_DSP::dependenciesReady()
         
         FrameLib_TimeFormat prevValidTillTime = mValidTime;
         
-        // Find the new valid till time (the min valid time of connected inputs that can trigger) and input time (the min valid time of all inputs)
+        // Find the valid till time (the min valid time of connected inputs that can trigger) and input time (the min valid time of all inputs)
         
         mInputTime = FL_Limits<FrameLib_TimeFormat>::largest();
         mValidTime = FL_Limits<FrameLib_TimeFormat>::largest();

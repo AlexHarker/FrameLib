@@ -202,7 +202,7 @@ public:
     
     void clear();
     
-    // Return new size after adjustment for alignment
+    // Return required size after adjustment for alignment
     
     static size_t alignSize(size_t x);
     
