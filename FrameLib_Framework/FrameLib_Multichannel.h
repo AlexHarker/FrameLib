@@ -168,13 +168,13 @@ class FrameLib_Pack : public FrameLib_MultiChannel
 
 public:
     
-    FrameLib_Pack(FrameLib_Context context, FrameLib_Attributes::Serial *serialAttributes, void *owner);
+    FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
 private:
     
     virtual bool inputUpdate();
     
-    FrameLib_Attributes mAttributes;
+    FrameLib_Parameters mParameters;
 };
 
 // ************************************************************************************** //
@@ -187,13 +187,13 @@ class FrameLib_Unpack : public FrameLib_MultiChannel
     
 public:
 
-    FrameLib_Unpack(FrameLib_Context context, FrameLib_Attributes::Serial *serialAttributes, void *owner);
+    FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
 private:
     
     virtual bool inputUpdate();
         
-    FrameLib_Attributes mAttributes;
+    FrameLib_Parameters mParameters;
 };
 
 // ************************************************************************************** //
@@ -205,16 +205,16 @@ template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
 
 public:
     
-    FrameLib_Expand(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner)
-    : FrameLib_MultiChannel(context), mAllocator(context.getAllocator()), mSerialisedAttributes(serialisedAttributes->size()), mOwner(owner)
+    FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
+    : FrameLib_MultiChannel(context), mAllocator(context.getAllocator()), mSerialisedParameters(serialisedParameters->size()), mOwner(owner)
     {
         // Make first block
         
-        mBlocks.push_back(new T(context, serialisedAttributes, owner));
+        mBlocks.push_back(new T(context, serialisedParameters, owner));
         
-        // Copy serialised attributes for later instantiations
+        // Copy serialised parameters for later instantiations
 
-        mSerialisedAttributes.write(serialisedAttributes);
+        mSerialisedParameters.write(serialisedParameters);
         
         // Set up IO / Fixed Inputs / Audio Temps
         
@@ -352,7 +352,7 @@ private:
                 
                 for (unsigned long i = cChannels; i < nChannels; i++)
                 {
-                    mBlocks[i] = new T(mContext, &mSerialisedAttributes, mOwner);
+                    mBlocks[i] = new T(mContext, &mSerialisedParameters, mOwner);
                     mBlocks[i]->setSamplingRate(mSamplingRate);
                 }
             }
@@ -404,7 +404,7 @@ private:
     // Member Variables
     
     FrameLib_LocalAllocator *mAllocator;
-    FrameLib_Attributes::Serial mSerialisedAttributes;
+    FrameLib_Parameters::Serial mSerialisedParameters;
 
     std::vector <FrameLib_Block *> mBlocks;
     std::vector <std::vector <double> > mFixedInputs;

@@ -34,7 +34,7 @@ template <typename Op> class FrameLib_UnaryOp : public FrameLib_Processor
     
 public:
     
-    FrameLib_UnaryOp(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_UnaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {}
     
 protected:
@@ -59,8 +59,8 @@ protected:
 template <double func(double)> class FrameLib_Unary : public FrameLib_UnaryOp < Unary_Functor<func> >
 {
 public:
-    FrameLib_Unary(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner)
-    : FrameLib_UnaryOp < Unary_Functor<func> > (context, serialisedAttributes, owner) {}
+    FrameLib_Unary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
+    : FrameLib_UnaryOp < Unary_Functor<func> > (context, serialisedParameters, owner) {}
 };
 
 // ************************************************************************************** //
@@ -75,27 +75,27 @@ template <typename Op> class FrameLib_BinaryOp : public FrameLib_Processor
     
 public:
     
-    FrameLib_BinaryOp(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 2, 1)
+    FrameLib_BinaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
     {
-        mAttributes.addEnum(kMode, "mode");
-        mAttributes.addEnumItem(kWrap, "wrap");
-        mAttributes.addEnumItem(kShrink, "shrink");
-        mAttributes.addEnumItem(kPadIn, "padin");
-        mAttributes.addEnumItem(kPadOut, "padout");
+        mParameters.addEnum(kMode, "mode");
+        mParameters.addEnumItem(kWrap, "wrap");
+        mParameters.addEnumItem(kShrink, "shrink");
+        mParameters.addEnumItem(kPadIn, "padin");
+        mParameters.addEnumItem(kPadOut, "padout");
         
-        mAttributes.addEnum(kTriggers, "triggers");
-        mAttributes.addEnumItem(kBoth, "both");
-        mAttributes.addEnumItem(kLeft, "left");
-        mAttributes.addEnumItem(kRight, "right");
+        mParameters.addEnum(kTriggers, "triggers");
+        mParameters.addEnumItem(kBoth, "both");
+        mParameters.addEnumItem(kLeft, "left");
+        mParameters.addEnumItem(kRight, "right");
 
-        mAttributes.addDouble(kPadding, "padding", 0.0);
+        mParameters.addDouble(kPadding, "padding", 0.0);
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
         
-        mMode = (Modes) mAttributes.getInt(kMode);
-        mPadValue = mAttributes.getValue(kPadding);
+        mMode = (Modes) mParameters.getInt(kMode);
+        mPadValue = mParameters.getValue(kPadding);
         
-        TriggerModes triggers = (TriggerModes) mAttributes.getInt(kTriggers);
+        TriggerModes triggers = (TriggerModes) mParameters.getInt(kTriggers);
         
         if (triggers == kLeft)
             inputMode(1, false, false, false);
@@ -236,8 +236,8 @@ private:
 template <double func(double, double)> class FrameLib_Binary : public FrameLib_BinaryOp < Binary_Functor<func> >
 {
 public:
-    FrameLib_Binary(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner)
-    : FrameLib_BinaryOp < Binary_Functor<func> > (context, serialisedAttributes, owner) {}
+    FrameLib_Binary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
+    : FrameLib_BinaryOp < Binary_Functor<func> > (context, serialisedParameters, owner) {}
 };
 
 // ************************************************************************************** //
@@ -249,7 +249,7 @@ template <double func(double *, unsigned long) > class FrameLib_Vector : public 
     
 public:
     
-    FrameLib_Vector (FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_Vector (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
     }
     

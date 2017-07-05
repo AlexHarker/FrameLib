@@ -9,13 +9,13 @@ class FrameLib_T1 : public FrameLib_Processor
 
 public:
     
-    FrameLib_T1(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context)
+    FrameLib_T1(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context)
     {
-        mAttributes.addDouble(kInputs, "outputs", 1, 0);
+        mParameters.addDouble(kInputs, "outputs", 1, 0);
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
             
-        setIO(mAttributes.getValue(kInputs), 2);
+        setIO(mParameters.getValue(kInputs), 2);
     }
         
 protected:

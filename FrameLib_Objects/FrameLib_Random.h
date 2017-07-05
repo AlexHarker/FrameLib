@@ -12,15 +12,15 @@ class FrameLib_Random : public FrameLib_Processor
 
 public:
     
-    FrameLib_Random (FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_Random (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mAttributes.addDouble(kLength, "length", 64.0, 0);
-        mAttributes.setMin(0.0);
-        mAttributes.addEnum(kMode, "mode", 1);
-        mAttributes.addEnumItem(kInLength, "input");
-        mAttributes.addEnumItem(kRequestedLength, "requested");
+        mParameters.addDouble(kLength, "length", 64.0, 0);
+        mParameters.setMin(0.0);
+        mParameters.addEnum(kMode, "mode", 1);
+        mParameters.addEnumItem(kInLength, "input");
+        mParameters.addEnumItem(kRequestedLength, "requested");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
     }
     
 protected:
@@ -31,7 +31,7 @@ protected:
         
         getInput(0, &sizeIn);
         
-        sizeOut = ((Modes) mAttributes.getInt(kMode)) == kInLength ? sizeIn : mAttributes.getInt(kLength);
+        sizeOut = ((Modes) mParameters.getInt(kMode)) == kInLength ? sizeIn : mParameters.getInt(kLength);
         requestOutputSize(0, sizeOut);
         allocateOutputs();
         

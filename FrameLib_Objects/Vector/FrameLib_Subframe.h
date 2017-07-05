@@ -12,19 +12,19 @@ class FrameLib_Subframe : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Subframe(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_Subframe(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mAttributes.addDouble(kStart, "start", 0.0, 0);
-        mAttributes.setMin(0.0);
+        mParameters.addDouble(kStart, "start", 0.0, 0);
+        mParameters.setMin(0.0);
 
-        mAttributes.addDouble(kEnd, "end", 0.0, 1);
-        mAttributes.setMin(0.0);
+        mParameters.addDouble(kEnd, "end", 0.0, 1);
+        mParameters.setMin(0.0);
         
-        mAttributes.addEnum(kUnits, "units", 2);
-        mAttributes.addEnumItem(kSamples, "samples");
-        mAttributes.addEnumItem(kRatio, "ratios");
+        mParameters.addEnum(kUnits, "units", 2);
+        mParameters.addEnumItem(kSamples, "samples");
+        mParameters.addEnumItem(kRatio, "ratios");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
     }
     
 protected:
@@ -38,17 +38,17 @@ protected:
 
         unsigned long start, end;
         
-        Units units = (Units) mAttributes.getInt(kUnits);
+        Units units = (Units) mParameters.getInt(kUnits);
         
         if (units == kSamples)
         {
-            start = mAttributes.getInt(kStart);
-            end = mAttributes.getInt(kEnd);
+            start = mParameters.getInt(kStart);
+            end = mParameters.getInt(kEnd);
         }
         else
         {
-            start = round(mAttributes.getValue(kStart) * sizeIn);
-            end = round(mAttributes.getValue(kEnd) * sizeIn);
+            start = round(mParameters.getValue(kStart) * sizeIn);
+            end = round(mParameters.getValue(kEnd) * sizeIn);
         }
         
         start = start > sizeIn ? sizeIn : start;

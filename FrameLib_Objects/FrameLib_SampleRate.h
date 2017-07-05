@@ -11,21 +11,21 @@ class FrameLib_SampleRate : public FrameLib_Processor
 
 public:
     
-    FrameLib_SampleRate (FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_SampleRate (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mAttributes.addEnum(kMode, "mode", 0);
-        mAttributes.addEnumItem(kValue, "value");
-        mAttributes.addEnumItem(kNyquist, "nyquist");
-        mAttributes.addEnumItem(kSampsToMS, "samples->ms");
-        mAttributes.addEnumItem(kSampsToSecs, "samples->seconds");
-        mAttributes.addEnumItem(kMSToSamps, "ms->samples");
-        mAttributes.addEnumItem(kSecsToSamps, "seconds->samples");
-        mAttributes.addEnumItem(kNormToFreq, "norm->freq");
-        mAttributes.addEnumItem(kHalfNormToFreq, "halfnorm->freq");
-        mAttributes.addEnumItem(kFreqToNorm, "freq->norm");
-        mAttributes.addEnumItem(kFreqToHalfNorm, "freq->halfnorm");
+        mParameters.addEnum(kMode, "mode", 0);
+        mParameters.addEnumItem(kValue, "value");
+        mParameters.addEnumItem(kNyquist, "nyquist");
+        mParameters.addEnumItem(kSampsToMS, "samples->ms");
+        mParameters.addEnumItem(kSampsToSecs, "samples->seconds");
+        mParameters.addEnumItem(kMSToSamps, "ms->samples");
+        mParameters.addEnumItem(kSecsToSamps, "seconds->samples");
+        mParameters.addEnumItem(kNormToFreq, "norm->freq");
+        mParameters.addEnumItem(kHalfNormToFreq, "halfnorm->freq");
+        mParameters.addEnumItem(kFreqToNorm, "freq->norm");
+        mParameters.addEnumItem(kFreqToHalfNorm, "freq->halfnorm");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
     }
     
 protected:
@@ -36,7 +36,7 @@ protected:
         
         double *input = getInput(0, &sizeIn);
         
-        Modes mode = (Modes) mAttributes.getInt(kMode);
+        Modes mode = (Modes) mParameters.getInt(kMode);
         bool outputValue = mode == kValue || mode == kNyquist;
         
         sizeOut = outputValue ? 1 : sizeIn;

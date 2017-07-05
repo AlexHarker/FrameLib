@@ -15,7 +15,7 @@
 
 class FrameLib_DSP : public FrameLib_Block
 {
-    typedef FrameLib_Attributes::Serial Serial;
+    typedef FrameLib_Parameters::Serial Serial;
     friend FrameLib_DSPQueue;
 
 public:
@@ -165,10 +165,10 @@ protected:
     // Get Inputs and Outputs
     
     double *getInput(unsigned long idx, size_t *size);
-    FrameLib_Attributes::Serial *getInput(unsigned long idx);
+    FrameLib_Parameters::Serial *getInput(unsigned long idx);
     
     double *getOutput(unsigned long idx, size_t *size);
-    FrameLib_Attributes::Serial *getOutput(unsigned long idx);
+    FrameLib_Parameters::Serial *getOutput(unsigned long idx);
 
     // Get DSP Object for a Given Output
     
@@ -246,9 +246,9 @@ protected:
     
     FrameLib_LocalAllocator *mAllocator;
 
-    // Attributes
+    // Parameters
     
-    FrameLib_Attributes mAttributes;
+    FrameLib_Parameters mParameters;
 
 private:
     

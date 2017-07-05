@@ -13,21 +13,21 @@ class FrameLib_Shift : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Shift(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_Shift(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mAttributes.addDouble(kShift, "shift", 0.0, 0);
+        mParameters.addDouble(kShift, "shift", 0.0, 0);
         
-        mAttributes.addDouble(kPadding, "padding", 0.0, 1);
+        mParameters.addDouble(kPadding, "padding", 0.0, 1);
         
-        mAttributes.addEnum(kMode, "mode", 2);
-        mAttributes.addEnumItem(kPad, "pad");
-        mAttributes.addEnumItem(kWrap, "wrap");
+        mParameters.addEnum(kMode, "mode", 2);
+        mParameters.addEnumItem(kPad, "pad");
+        mParameters.addEnumItem(kWrap, "wrap");
         
-        mAttributes.addEnum(kUnits, "units", 3);
-        mAttributes.addEnumItem(kSamples, "samples");
-        mAttributes.addEnumItem(kRatio, "ratios");
+        mParameters.addEnum(kUnits, "units", 3);
+        mParameters.addEnumItem(kSamples, "samples");
+        mParameters.addEnumItem(kRatio, "ratios");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
     }
     
 protected:
@@ -39,8 +39,8 @@ protected:
         long shift;
         unsigned long sizeIn, sizeOut;
         double *input = getInput(0, &sizeIn);
-        double padValue = mAttributes.getValue(kPadding);
-        Units units = (Units) mAttributes.getInt(kUnits);
+        double padValue = mParameters.getValue(kPadding);
+        Units units = (Units) mParameters.getInt(kUnits);
         
         requestOutputSize(0, sizeIn);
         allocateOutputs();
@@ -50,9 +50,9 @@ protected:
         // Calculate shift amount
         
         if (units == kSamples)
-            shift = mAttributes.getInt(kShift);
+            shift = mParameters.getInt(kShift);
         else
-            shift = round(mAttributes.getValue(kShift) * sizeIn);
+            shift = round(mParameters.getValue(kShift) * sizeIn);
         
         unsigned long absShift = std::abs(shift);
         
@@ -60,7 +60,7 @@ protected:
         
         if (sizeOut)
         {
-            if ((Modes) mAttributes.getInt(kMode) == kWrap)
+            if ((Modes) mParameters.getInt(kMode) == kWrap)
             {
                 // Wrap in case of large shift sizes
                 

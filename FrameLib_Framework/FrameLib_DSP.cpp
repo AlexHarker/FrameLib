@@ -249,7 +249,7 @@ double *FrameLib_DSP::getInput(unsigned long idx, size_t *size)
     return mInputs[idx].mFixedInput;
 }
 
-FrameLib_Attributes::Serial *FrameLib_DSP::getInput(unsigned long idx)
+FrameLib_Parameters::Serial *FrameLib_DSP::getInput(unsigned long idx)
 {
     if (mInputs[idx].mObject)
         return mInputs[idx].mObject->getOutput(mInputs[idx].mIndex);
@@ -269,7 +269,7 @@ double *FrameLib_DSP::getOutput(unsigned long idx, size_t *size)
     return NULL;
 }
 
-FrameLib_Attributes::Serial *FrameLib_DSP::getOutput(unsigned long idx)
+FrameLib_Parameters::Serial *FrameLib_DSP::getOutput(unsigned long idx)
 {
     if (mOutputs[0].mMemory && mOutputs[idx].mMode == kOutputTagged)
         return (Serial *) mOutputs[idx].mMemory;

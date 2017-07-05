@@ -12,21 +12,21 @@ class FrameLib_Pad : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Pad(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_Pad(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mAttributes.addDouble(kPadding, "padding", 0.0, 0);
+        mParameters.addDouble(kPadding, "padding", 0.0, 0);
         
-        mAttributes.addDouble(kStart, "start", 0.0, 1);
-        mAttributes.setMin(0.0);
+        mParameters.addDouble(kStart, "start", 0.0, 1);
+        mParameters.setMin(0.0);
 
-        mAttributes.addDouble(kEnd, "end", 0.0, 2);
-        mAttributes.setMin(0.0);
+        mParameters.addDouble(kEnd, "end", 0.0, 2);
+        mParameters.setMin(0.0);
         
-        mAttributes.addEnum(kUnits, "units", 3);
-        mAttributes.addEnumItem(kSamples, "samples");
-        mAttributes.addEnumItem(kRatio, "ratios");
+        mParameters.addEnum(kUnits, "units", 3);
+        mParameters.addEnumItem(kSamples, "samples");
+        mParameters.addEnumItem(kRatio, "ratios");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
     }
     
 protected:
@@ -37,20 +37,20 @@ protected:
         
         unsigned long sizeIn, sizeOut, padStart, padEnd;
         double *input = getInput(0, &sizeIn);
-        double padValue = mAttributes.getValue(kPadding);
-        Units units = (Units) mAttributes.getInt(kUnits);
+        double padValue = mParameters.getValue(kPadding);
+        Units units = (Units) mParameters.getInt(kUnits);
         
         // Calculate pad amounts
         
         if (units == kSamples)
         {
-            padStart = mAttributes.getInt(kStart);
-            padEnd = mAttributes.getInt(kEnd);
+            padStart = mParameters.getInt(kStart);
+            padEnd = mParameters.getInt(kEnd);
         }
         else
         {
-            padStart = round(mAttributes.getValue(kStart) * sizeIn);
-            padEnd = round(mAttributes.getValue(kEnd) * sizeIn);
+            padStart = round(mParameters.getValue(kStart) * sizeIn);
+            padEnd = round(mParameters.getValue(kEnd) * sizeIn);
         }
         
         requestOutputSize(0, padStart + sizeIn + padEnd);

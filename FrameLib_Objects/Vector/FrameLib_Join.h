@@ -12,18 +12,18 @@ class FrameLib_Join : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Join(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context)
+    FrameLib_Join(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context)
     {
-        mAttributes.addDouble(kNumIns, "numins", 2.0, 0);
-        mAttributes.setClip(2.0, 32.0);
+        mParameters.addDouble(kNumIns, "numins", 2.0, 0);
+        mParameters.setClip(2.0, 32.0);
         
-        mAttributes.addArray(kTriggers, "triggers", 1.0, 32);
+        mParameters.addArray(kTriggers, "triggers", 1.0, 32);
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
         
-        setIO(mAttributes.getInt(kNumIns), 1);
+        setIO(mParameters.getInt(kNumIns), 1);
         
-        const double *triggers = mAttributes.getArray(kTriggers);
+        const double *triggers = mParameters.getArray(kTriggers);
         
         // Set up triggers
         

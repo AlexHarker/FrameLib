@@ -76,20 +76,20 @@ class FrameLib_SallenAndKey : public FrameLib_Processor
 
 public:
 	
-    FrameLib_SallenAndKey(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_SallenAndKey(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mAttributes.addDouble(kFreq, "freq", 0.0, 0);
-        mAttributes.setMin(0.0);
+        mParameters.addDouble(kFreq, "freq", 0.0, 0);
+        mParameters.setMin(0.0);
         
-        mAttributes.addDouble(kReson, "reson", 0.0, 1);
-        mAttributes.setClip(0.0, 1.0);
+        mParameters.addDouble(kReson, "reson", 0.0, 1);
+        mParameters.setClip(0.0, 1.0);
         
-        mAttributes.addEnum(kMode, "mode", 2);
-        mAttributes.addEnumItem(kLPF, "lpf");
-        mAttributes.addEnumItem(kBPF, "bpf");
-        mAttributes.addEnumItem(kHPF, "hpf");
+        mParameters.addEnum(kMode, "mode", 2);
+        mParameters.addEnumItem(kLPF, "lpf");
+        mParameters.addEnumItem(kBPF, "bpf");
+        mParameters.addEnumItem(kHPF, "hpf");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
     }
     
 protected:
@@ -97,12 +97,12 @@ protected:
     void process ()
 	{
         SallenAndKey filter;
-        Modes mode = (Modes) mAttributes.getValue(kMode);
+        Modes mode = (Modes) mParameters.getValue(kMode);
         
         bool staticParams = TRUE;
         
-        double freq = mAttributes.getValue(kFreq);
-        double reson = mAttributes.getValue(kReson);
+        double freq = mParameters.getValue(kFreq);
+        double reson = mParameters.getValue(kReson);
         
         // Get Input
         

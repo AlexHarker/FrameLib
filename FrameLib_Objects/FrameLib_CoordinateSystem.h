@@ -48,13 +48,13 @@ class FrameLib_CoordinateSystem : public FrameLib_Processor
 
 public:
     
-    FrameLib_CoordinateSystem (FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_CoordinateSystem (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mAttributes.addEnum(kMode, "mode");
-        mAttributes.addEnumItem(kPolarToCartesian, "polar->cartesian");
-        mAttributes.addEnumItem(kCartesianToPolar, "cartesian->polar");
+        mParameters.addEnum(kMode, "mode");
+        mParameters.addEnumItem(kPolarToCartesian, "polar->cartesian");
+        mParameters.addEnumItem(kCartesianToPolar, "cartesian->polar");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
     }
     
 protected:
@@ -69,7 +69,7 @@ protected:
         
         double *output = getOutput(0, &sizeOut);
         
-        if (((InputModes) mAttributes.getValue(kMode)) == kPolarToCartesian)
+        if (((InputModes) mParameters.getValue(kMode)) == kPolarToCartesian)
         {
             double azimuth = sizeIn > 0 ? input[0] : 0.0;
             double elevation = sizeIn > 1 ? input[1] : 0.0;

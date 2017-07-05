@@ -14,18 +14,18 @@ class FrameLib_MedianFilter : public FrameLib_Processor
     
 public:
     
-    FrameLib_MedianFilter(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 2, 1)
+    FrameLib_MedianFilter(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
     {
-        mAttributes.addDouble(kWidth, "width", 1.0, 0);
-        mAttributes.setMin(0.0);
-        mAttributes.addDouble(kPadding, "padding", 0.0, 1);
+        mParameters.addDouble(kWidth, "width", 1.0, 0);
+        mParameters.setMin(0.0);
+        mParameters.addDouble(kPadding, "padding", 0.0, 1);
         
-        mAttributes.addEnum(kMode, "mode", 3);
-        mAttributes.addEnumItem(kPad, "pad");
-        mAttributes.addEnumItem(kWrap, "wrap");
-        mAttributes.addEnumItem(kFold, "fold");
+        mParameters.addEnum(kMode, "mode", 3);
+        mParameters.addEnumItem(kPad, "pad");
+        mParameters.addEnumItem(kWrap, "wrap");
+        mParameters.addEnumItem(kFold, "fold");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
         
         inputMode(1, TRUE, FALSE, FALSE);
     }
@@ -126,21 +126,21 @@ protected:
     
     void update()
     {
-        FrameLib_Attributes::Serial *serialised = getInput(1);
+        FrameLib_Parameters::Serial *serialised = getInput(1);
         
         if (serialised)
-            mAttributes.set(serialised);
+            mParameters.set(serialised);
     }
     
     void process ()
     {
         // Get Input
         
-        unsigned long width = mAttributes.getInt(kWidth);
+        unsigned long width = mParameters.getInt(kWidth);
         unsigned long sizeIn, sizeOut;
         double *input = getInput(0, &sizeIn);
-        double padValue = mAttributes.getValue(kPadding);
-        Modes mode = (Modes) mAttributes.getInt(kMode);
+        double padValue = mParameters.getValue(kPadding);
+        Modes mode = (Modes) mParameters.getInt(kMode);
         
         requestOutputSize(0, sizeIn);
         allocateOutputs();

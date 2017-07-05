@@ -22,40 +22,40 @@ class FrameLib_Window : public FrameLib_Processor
 
 public:
 	
-    FrameLib_Window(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 2, 1)
+    FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
     {
-        mAttributes.addEnum(kWindowType, "window", 0);
-        mAttributes.addEnumItem(kHann, "hann");
-        mAttributes.addEnumItem(kHamming, "hamming");
-        mAttributes.addEnumItem(kTriangle, "triangle");
-        mAttributes.addEnumItem(kCosine, "cosine");
-        mAttributes.addEnumItem(kBlackman, "blackman");
-        mAttributes.addEnumItem(kBlackman62, "blackman62");
-        mAttributes.addEnumItem(kBlackman70, "blackman70");
-        mAttributes.addEnumItem(kBlackman74, "blackman74");
-        mAttributes.addEnumItem(kBlackman92, "blackman92");
-        mAttributes.addEnumItem(kBlackmanHarris, "blackmanharris");
-        mAttributes.addEnumItem(kFlatTop, "flattop");
-        mAttributes.addEnumItem(kRectangle, "rectangle");
+        mParameters.addEnum(kWindowType, "window", 0);
+        mParameters.addEnumItem(kHann, "hann");
+        mParameters.addEnumItem(kHamming, "hamming");
+        mParameters.addEnumItem(kTriangle, "triangle");
+        mParameters.addEnumItem(kCosine, "cosine");
+        mParameters.addEnumItem(kBlackman, "blackman");
+        mParameters.addEnumItem(kBlackman62, "blackman62");
+        mParameters.addEnumItem(kBlackman70, "blackman70");
+        mParameters.addEnumItem(kBlackman74, "blackman74");
+        mParameters.addEnumItem(kBlackman92, "blackman92");
+        mParameters.addEnumItem(kBlackmanHarris, "blackmanharris");
+        mParameters.addEnumItem(kFlatTop, "flattop");
+        mParameters.addEnumItem(kRectangle, "rectangle");
         
-        mAttributes.addDouble(kSize, "size", 0, 1);
-        mAttributes.setMin(0.0);
+        mParameters.addDouble(kSize, "size", 0, 1);
+        mParameters.setMin(0.0);
         
-        mAttributes.addBool(kSqrt, "sqrt", FALSE, 2);
+        mParameters.addBool(kSqrt, "sqrt", FALSE, 2);
         
-        mAttributes.addEnum(kCompensation, "compensation");
-        mAttributes.addEnumItem(kOff, "off");
-        mAttributes.addEnumItem(kLinear, "linear");
-        mAttributes.addEnumItem(kPower, "power");
-        mAttributes.addEnumItem(kPowerOverLinear, "powoverlin");
+        mParameters.addEnum(kCompensation, "compensation");
+        mParameters.addEnumItem(kOff, "off");
+        mParameters.addEnumItem(kLinear, "linear");
+        mParameters.addEnumItem(kPower, "power");
+        mParameters.addEnumItem(kPowerOverLinear, "powoverlin");
         
-        mAttributes.addEnum(kEndPoints, "endpoints");
-        mAttributes.addEnumItem(kFirst, "first");
-        mAttributes.addEnumItem(kLast, "last");
-        mAttributes.addEnumItem(kBoth, "both");
-        mAttributes.addEnumItem(kNone, "none");
+        mParameters.addEnum(kEndPoints, "endpoints");
+        mParameters.addEnumItem(kFirst, "first");
+        mParameters.addEnumItem(kLast, "last");
+        mParameters.addEnumItem(kBoth, "both");
+        mParameters.addEnumItem(kNone, "none");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
         
         mWindow = NULL;
         mWindowType = kHann;
@@ -76,9 +76,9 @@ private:
 	
 	void updateWindow (unsigned long inSize, EndPoints ends)
 	{
-        WindowTypes windowType = (WindowTypes) mAttributes.getInt(kWindowType);
-        bool sqrtWindow = mAttributes.getBool(kSqrt);
-        unsigned long windowSize = mAttributes.getInt(kSize);
+        WindowTypes windowType = (WindowTypes) mParameters.getInt(kWindowType);
+        bool sqrtWindow = mParameters.getBool(kSqrt);
+        unsigned long windowSize = mParameters.getInt(kSize);
         
         windowSize = !windowSize ? inSize : windowSize;
         
@@ -204,10 +204,10 @@ protected:
     
     void update()
     {
-        FrameLib_Attributes::Serial *serialised = getInput(1);
+        FrameLib_Parameters::Serial *serialised = getInput(1);
         
         if (serialised)
-            mAttributes.set(serialised);
+            mParameters.set(serialised);
     }
     
     void process ()
@@ -224,8 +224,8 @@ protected:
         
         if (sizeOut)
         {
-            Compensation compensate = (Compensation) mAttributes.getInt(kCompensation);
-            EndPoints ends = (EndPoints) mAttributes.getInt(kEndPoints);
+            Compensation compensate = (Compensation) mParameters.getInt(kCompensation);
+            EndPoints ends = (EndPoints) mParameters.getInt(kEndPoints);
             
             double gain;
             

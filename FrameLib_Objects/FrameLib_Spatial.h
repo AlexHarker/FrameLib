@@ -38,28 +38,28 @@ class FrameLib_Spatial : public FrameLib_Processor
 
 public:
     
-    FrameLib_Spatial (FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_Spatial (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mAttributes.addEnum(kInputMode, "inputmode");
-        mAttributes.addEnumItem(kPolar, "polar");
-        mAttributes.addEnumItem(kCartesian, "cartesian");
+        mParameters.addEnum(kInputMode, "inputmode");
+        mParameters.addEnumItem(kPolar, "polar");
+        mParameters.addEnumItem(kCartesian, "cartesian");
         
-        mAttributes.addVariableArray(kSpeakers, "speakers", 0.0, 360, 0);
-        mAttributes.addVariableArray(kWeights, "weights", 1.0, 360, 0);
+        mParameters.addVariableArray(kSpeakers, "speakers", 0.0, 360, 0);
+        mParameters.addVariableArray(kWeights, "weights", 1.0, 360, 0);
         
-        mAttributes.addDouble(kRolloff, "rolloff", 6.0);
-        mAttributes.setMin(0.0);
-        mAttributes.addDouble(kBlur, "blur", 0.4);
-        mAttributes.setMin(0.0000001);
-        mAttributes.addDouble(kMaxSpeakers, "maxspeakers", 0.0);
-        mAttributes.setMin(0.0);
-        mAttributes.addDouble(kPoints, "points", 0.0);
-        mAttributes.setClip(0.1, 1.0);
+        mParameters.addDouble(kRolloff, "rolloff", 6.0);
+        mParameters.setMin(0.0);
+        mParameters.addDouble(kBlur, "blur", 0.4);
+        mParameters.setMin(0.0000001);
+        mParameters.addDouble(kMaxSpeakers, "maxspeakers", 0.0);
+        mParameters.setMin(0.0);
+        mParameters.addDouble(kPoints, "points", 0.0);
+        mParameters.setClip(0.1, 1.0);
 
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
         
         unsigned long speakerSize;
-        const double *speakers = mAttributes.getArray(kSpeakers, &speakerSize);
+        const double *speakers = mParameters.getArray(kSpeakers, &speakerSize);
         
         for (unsigned long i = 0; i < (speakerSize + 2) / 3; i++)
         {
@@ -78,13 +78,13 @@ protected:
         unsigned long sizeIn, weightsSize;
         double *input = getInput(0, &sizeIn);
                 
-        const double *weights = mAttributes.getArray(kWeights, &weightsSize);
+        const double *weights = mParameters.getArray(kWeights, &weightsSize);
         unsigned long numSpeakers = mSpeakers.size();
-        unsigned long maxSpeakers = mAttributes.getValue(kMaxSpeakers);
+        unsigned long maxSpeakers = mParameters.getValue(kMaxSpeakers);
 
-        double blur = mAttributes.getValue(kBlur);
-        double rolloff = mAttributes.getValue(kRolloff);
-        double pointFactor = mAttributes.getValue(kPoints);
+        double blur = mParameters.getValue(kBlur);
+        double rolloff = mParameters.getValue(kRolloff);
+        double pointFactor = mParameters.getValue(kPoints);
         
         double rolloffFactor =  rolloff / (20 * log10(2.0));;
         double blur2 = blur * blur;
@@ -101,7 +101,7 @@ protected:
         
         Cartesian panPosition;
         
-        if (((InputModes) mAttributes.getValue(kInputMode)) == kPolar)
+        if (((InputModes) mParameters.getValue(kInputMode)) == kPolar)
         {
             double azimuth = sizeIn > 0 ? input[0] : 0.0;
             double elevation = sizeIn > 1 ? input[1] : 0.0;

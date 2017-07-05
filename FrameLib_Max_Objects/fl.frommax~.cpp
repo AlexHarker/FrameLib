@@ -40,15 +40,15 @@ class FrameLib_FromMax : public FrameLib_Processor
     
 public:
     
-    FrameLib_FromMax(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_FromMax(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mAttributes.addEnum(kMode, "mode", 0);
-        mAttributes.addEnumItem(kValues, "values");
-        mAttributes.addEnumItem(kParams, "params");
+        mParameters.addEnum(kMode, "mode", 0);
+        mParameters.addEnumItem(kValues, "values");
+        mParameters.addEnumItem(kParams, "params");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
         
-        mMode = (Modes) mAttributes.getValue(kMode);
+        mMode = (Modes) mParameters.getValue(kMode);
         
         outputMode(0, mMode == kValues ? kOutputNormal : kOutputTagged);
         
@@ -79,22 +79,22 @@ protected:
             for (unsigned long i = 0; i < mMessages->mTagged.size(); i++)
             {
                 if (mMessages->mTagged[i].mStringFlag)
-                    size += FrameLib_Attributes::Serial::calcSize(mMessages->mTagged[i].mTag, mMessages->mTagged[i].mString);
+                    size += FrameLib_Parameters::Serial::calcSize(mMessages->mTagged[i].mTag, mMessages->mTagged[i].mString);
                 else
-                    size += FrameLib_Attributes::Serial::calcSize(mMessages->mTagged[i].mTag, mMessages->mTagged[i].mCount);
+                    size += FrameLib_Parameters::Serial::calcSize(mMessages->mTagged[i].mTag, mMessages->mTagged[i].mCount);
             }
             
             requestOutputSize(0, size);
             allocateOutputs();
 
-            FrameLib_Attributes::Serial *serialisedAttributes = getOutput(0);
+            FrameLib_Parameters::Serial *serialisedParameters = getOutput(0);
             
             for (unsigned long i = 0; i < mMessages->mTagged.size(); i++)
             {
                 if (mMessages->mTagged[i].mStringFlag)
-                    serialisedAttributes->write(mMessages->mTagged[i].mTag, mMessages->mTagged[i].mString);
+                    serialisedParameters->write(mMessages->mTagged[i].mTag, mMessages->mTagged[i].mString);
                 else
-                    serialisedAttributes->write(mMessages->mTagged[i].mTag, mMessages->mTagged[i].mValues, mMessages->mTagged[i].mCount);
+                    serialisedParameters->write(mMessages->mTagged[i].mTag, mMessages->mTagged[i].mValues, mMessages->mTagged[i].mCount);
             }
             
             mMessages->mTagged.clear();

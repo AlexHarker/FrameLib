@@ -12,33 +12,33 @@ class FrameLib_Interval : public FrameLib_Scheduler
 
 public:
     
-    FrameLib_Interval(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Scheduler(context, 1, 1)
+    FrameLib_Interval(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Scheduler(context, 1, 1)
     {
         // FIX - safety on minimum time?
         
-        mAttributes.addDouble(kInterval, "interval", 16, 0);
-        mAttributes.setMin(0);
+        mParameters.addDouble(kInterval, "interval", 16, 0);
+        mParameters.setMin(0);
         
-        mAttributes.addEnum(kUnits, "units");
-        mAttributes.addEnumItem(kSamples, "samples");
-        mAttributes.addEnumItem(kMS, "ms");
-        mAttributes.addEnumItem(kSeconds, "seconds");
+        mParameters.addEnum(kUnits, "units");
+        mParameters.addEnumItem(kSamples, "samples");
+        mParameters.addEnumItem(kMS, "ms");
+        mParameters.addEnumItem(kSeconds, "seconds");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
     }
     
 protected:
     
     SchedulerInfo schedule(bool newFrame, bool noOutput)
     {
-        FrameLib_Attributes::Serial *serialised = getInput(0);
+        FrameLib_Parameters::Serial *serialised = getInput(0);
         
         if (serialised)
-            mAttributes.set(serialised);
+            mParameters.set(serialised);
         
-        FrameLib_TimeFormat interval = mAttributes.getValue(kInterval);
+        FrameLib_TimeFormat interval = mParameters.getValue(kInterval);
         
-        switch ((Units) (mAttributes.getValue(kUnits)))
+        switch ((Units) (mParameters.getValue(kUnits)))
         {
             case kMS:
                 interval *= mSamplingRate / 1000.0;

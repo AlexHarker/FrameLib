@@ -12,25 +12,25 @@ class FrameLib_Map : public FrameLib_Processor
 
 public:
     
-    FrameLib_Map (FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 2, 1)
+    FrameLib_Map (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
     {
-        mAttributes.addEnum(kMode, "mode", 0);
-        mAttributes.addEnumItem(kLinear, "linear");
-        mAttributes.addEnumItem(kLog, "log");
-        mAttributes.addEnumItem(kExp, "exp");
-        mAttributes.addEnumItem(kDB, "db");
-        mAttributes.addEnumItem(kInvDB, "invdb");
-        mAttributes.addEnumItem(kTranspose, "transpose");
-        mAttributes.addEnumItem(kInvTranspose, "invtranspose");
+        mParameters.addEnum(kMode, "mode", 0);
+        mParameters.addEnumItem(kLinear, "linear");
+        mParameters.addEnumItem(kLog, "log");
+        mParameters.addEnumItem(kExp, "exp");
+        mParameters.addEnumItem(kDB, "db");
+        mParameters.addEnumItem(kInvDB, "invdb");
+        mParameters.addEnumItem(kTranspose, "transpose");
+        mParameters.addEnumItem(kInvTranspose, "invtranspose");
         
-        mAttributes.addDouble(kInLo, "inlo", 0., 1);
-        mAttributes.addDouble(kInHi, "inhi", 1., 2);
-        mAttributes.addDouble(kOutLo, "outlo", 0., 3);
-        mAttributes.addDouble(kOutHi, "outhi", 1., 4);
+        mParameters.addDouble(kInLo, "inlo", 0., 1);
+        mParameters.addDouble(kInHi, "inhi", 1., 2);
+        mParameters.addDouble(kOutLo, "outlo", 0., 3);
+        mParameters.addDouble(kOutHi, "outhi", 1., 4);
         
-        mAttributes.addBool(kClip, "clip", TRUE, 5);
+        mParameters.addBool(kClip, "clip", TRUE, 5);
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
         
         inputMode(1, TRUE, FALSE, FALSE);
         
@@ -41,12 +41,12 @@ private:
     
     void setScaling()
     {
-        double inLo = mAttributes.getValue(kInLo);
-        double inHi = mAttributes.getValue(kInHi);
-        double outLo = mAttributes.getValue(kOutLo);
-        double outHi = mAttributes.getValue(kOutHi);
+        double inLo = mParameters.getValue(kInLo);
+        double inHi = mParameters.getValue(kInHi);
+        double outLo = mParameters.getValue(kOutLo);
+        double outHi = mParameters.getValue(kOutHi);
         
-        switch ((Modes) mAttributes.getInt(kMode))
+        switch ((Modes) mParameters.getInt(kMode))
         {
             case kLinear:
                 mMode = kScaleLinear;
@@ -111,10 +111,10 @@ protected:
     
     void update()
     {
-        FrameLib_Attributes::Serial *serialised = getInput(1);
+        FrameLib_Parameters::Serial *serialised = getInput(1);
         
         if (serialised)
-            mAttributes.set(serialised);
+            mParameters.set(serialised);
        
         setScaling();
     }
@@ -151,7 +151,7 @@ protected:
                 break;
         }
         
-        if (mAttributes.getBool(kClip))
+        if (mParameters.getBool(kClip))
         {
             double min = mMin;
             double max = mMax;

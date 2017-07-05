@@ -1301,98 +1301,98 @@
 		B8D8DB861B89D74B000203E5 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8D8DB871B89D74B000203E5 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8D8DB8F1B89D76A000203E5 /* fl.select~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D8DB7E1B89D72A000203E5 /* fl.select~.cpp */; };
-		B8DE5D921F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5D931F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5D941F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5D951F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5D961F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5D971F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5D981F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5D991F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5D9A1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5D9B1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5D9C1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5D9D1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5D9E1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5D9F1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DA01F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DA11F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DA21F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DA31F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DA41F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DA51F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DA61F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DA71F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DA81F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DA91F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DAA1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DAB1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DAC1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DAD1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DAE1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DAF1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DB01F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DB11F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DB21F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DB31F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DB41F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DB51F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DB61F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DB71F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DB81F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DB91F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DBA1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DBB1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DBC1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DBD1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DBE1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DBF1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DC01F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DC11F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DC21F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DC31F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DC41F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DC51F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DC61F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DC71F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DC81F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DC91F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DCA1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DCB1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DCC1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DCD1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DCE1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DCF1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DD01F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DD11F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DD21F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DD31F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DD41F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DD51F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DD61F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DD71F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DD81F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DD91F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DDA1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DDB1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DDC1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DDD1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DDE1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DDF1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DE01F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DE11F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DE21F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DE31F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DE41F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DE51F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DE61F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DE71F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DE81F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DE91F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DEA1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DEB1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DEC1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
-		B8DE5DED1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */; };
+		B8DE5D921F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5D931F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5D941F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5D951F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5D961F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5D971F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5D981F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5D991F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5D9A1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5D9B1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5D9C1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5D9D1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5D9E1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5D9F1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DA01F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DA11F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DA21F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DA31F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DA41F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DA51F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DA61F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DA71F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DA81F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DA91F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DAA1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DAB1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DAC1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DAD1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DAE1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DAF1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DB01F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DB11F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DB21F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DB31F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DB41F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DB51F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DB61F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DB71F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DB81F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DB91F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DBA1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DBB1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DBC1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DBD1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DBE1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DBF1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DC01F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DC11F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DC21F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DC31F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DC41F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DC51F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DC61F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DC71F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DC81F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DC91F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DCA1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DCB1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DCC1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DCD1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DCE1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DCF1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DD01F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DD11F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DD21F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DD31F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DD41F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DD51F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DD61F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DD71F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DD81F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DD91F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DDA1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DDB1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DDC1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DDD1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DDE1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DDF1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DE01F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DE11F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DE21F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DE31F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DE41F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DE51F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DE61F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DE71F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DE81F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DE91F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DEA1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DEB1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DEC1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
+		B8DE5DED1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
 		B8EDFD291DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
 		B8EDFD2A1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
 		B8EDFD2B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
@@ -1867,8 +1867,8 @@
 		B8D8DB7E1B89D72A000203E5 /* fl.select~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "fl.select~.cpp"; path = "FrameLib_Max_Objects/fl.select~.cpp"; sourceTree = SOURCE_ROOT; };
 		B8D8DB8D1B89D74B000203E5 /* fl.select~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.select~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8DE14DC0EB46B030050BDFE /* Framelib_Max.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Framelib_Max.h; sourceTree = "<group>"; };
-		B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Attributes.cpp; sourceTree = "<group>"; };
-		B8DF3FA2198AABAD00CA8BB6 /* FrameLib_Attributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Attributes.h; sourceTree = "<group>"; };
+		B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Parameters.cpp; sourceTree = "<group>"; };
+		B8DF3FA2198AABAD00CA8BB6 /* FrameLib_Parameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Parameters.h; sourceTree = "<group>"; };
 		B8E058AE198DA34D00721359 /* FrameLib_Block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Block.h; sourceTree = "<group>"; };
 		B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Threading.cpp; sourceTree = "<group>"; };
 		B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Multichannel.cpp; sourceTree = "<group>"; };
@@ -3104,8 +3104,8 @@
 				B8D272F11DA6629A00E0E566 /* FrameLib_Memory.cpp */,
 				B8C680371B80F2B800B74B90 /* FrameLib_RandGen.h */,
 				B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */,
-				B8DF3FA2198AABAD00CA8BB6 /* FrameLib_Attributes.h */,
-				B8DE5D911F06A5E4007B0601 /* FrameLib_Attributes.cpp */,
+				B8DF3FA2198AABAD00CA8BB6 /* FrameLib_Parameters.h */,
+				B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */,
 				B8E058AE198DA34D00721359 /* FrameLib_Block.h */,
 				B8075B131979173E00EB3A35 /* FrameLib_DSP.h */,
 				B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */,
@@ -7544,7 +7544,7 @@
 				B8D272F31DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C51D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120111D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5D931F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5D931F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2191F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7562,7 +7562,7 @@
 				B8D272FA1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CC1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120181D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5D9A1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5D9A1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2201F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7580,7 +7580,7 @@
 				B8D272FB1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CD1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120191D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5D9B1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5D9B1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2211F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7598,7 +7598,7 @@
 				B8D272FC1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CE1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5D9C1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5D9C1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2221F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7616,7 +7616,7 @@
 				B8D272FD1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5D9D1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5D9D1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2231F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7634,7 +7634,7 @@
 				B8D272FE1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D01D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5D9E1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5D9E1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2241F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7652,7 +7652,7 @@
 				B8D272FF1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D11D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5D9F1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5D9F1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2251F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7670,7 +7670,7 @@
 				B8D273001DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D21D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DA01F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DA01F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2261F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7688,7 +7688,7 @@
 				B8D273011DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D31D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841201F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DA11F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DA11F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2271F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7706,7 +7706,7 @@
 				B8D273021DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D41D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120201D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DA21F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DA21F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2281F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7724,7 +7724,7 @@
 				B8D273031DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D51D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120211D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DA31F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DA31F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2291F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7742,7 +7742,7 @@
 				B8D273041DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D61D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120221D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DA41F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DA41F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD22A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7760,7 +7760,7 @@
 				B8D273051DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D71D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120231D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DA51F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DA51F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD22B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7778,7 +7778,7 @@
 				B8D273061DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D81D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120241D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DA61F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DA61F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD22C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7796,7 +7796,7 @@
 				B8D273071DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120D91D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120251D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DA71F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DA71F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD22D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7814,7 +7814,7 @@
 				B8D273081DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DA1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120261D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DA81F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DA81F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD22E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7832,7 +7832,7 @@
 				B8D273091DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DB1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120271D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DA91F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DA91F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD22F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7850,7 +7850,7 @@
 				B8D2730A1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DC1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120281D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DAA1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DAA1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2301F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7868,7 +7868,7 @@
 				B8D2730B1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DD1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120291D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DAB1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DAB1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2311F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7886,7 +7886,7 @@
 				B8D273141DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E61D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120321D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DB41F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DB41F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD23A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7904,7 +7904,7 @@
 				B8D2730D1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DAD1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DAD1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2331F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7922,7 +7922,7 @@
 				B8D2731F1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F11D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DBF1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DBF1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2451F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7940,7 +7940,7 @@
 				B8D2730F1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E11D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DAF1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DAF1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2351F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7958,7 +7958,7 @@
 				B8D273101DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E21D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DB01F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DB01F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2361F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7976,7 +7976,7 @@
 				B8D273111DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E31D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DB11F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DB11F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2371F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7994,7 +7994,7 @@
 				B8D273121DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E41D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120301D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DB21F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DB21F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2381F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8012,7 +8012,7 @@
 				B8D273131DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E51D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120311D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DB31F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DB31F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2391F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8030,7 +8030,7 @@
 				B8D2730C1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120DE1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DAC1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DAC1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2321F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8048,7 +8048,7 @@
 				B8D273151DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E71D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120331D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DB51F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DB51F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD23B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8066,7 +8066,7 @@
 				B8D273161DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E81D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120341D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DB61F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DB61F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD23C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8084,7 +8084,7 @@
 				B8D273171DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E91D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120351D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DB71F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DB71F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD23D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8102,7 +8102,7 @@
 				B8D273181DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120EA1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120361D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DB81F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DB81F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD23E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8120,7 +8120,7 @@
 				B8D273191DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120EB1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120371D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DB91F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DB91F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD23F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8138,7 +8138,7 @@
 				B8D2731A1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120EC1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120381D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DBA1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DBA1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2401F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8156,7 +8156,7 @@
 				B8D2731B1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120ED1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120391D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DBB1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DBB1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2411F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8174,7 +8174,7 @@
 				B8D2731C1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120EE1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DBC1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DBC1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2421F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8192,7 +8192,7 @@
 				B8D2731D1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120EF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DBD1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DBD1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2431F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8210,7 +8210,7 @@
 				B8D2731E1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F01D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DBE1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DBE1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2441F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8228,7 +8228,7 @@
 				B8D2730E1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120E01D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841202C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DAE1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DAE1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2341F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8246,7 +8246,7 @@
 				B8D273201DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F21D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203E1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DC01F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DC01F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2461F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8264,7 +8264,7 @@
 				B8D273211DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F31D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841203F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DC11F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DC11F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2471F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8282,7 +8282,7 @@
 				B8D273221DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F41D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120401D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DC21F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DC21F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2481F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8300,7 +8300,7 @@
 				B8D273231DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F51D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120411D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DC31F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DC31F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2491F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8318,7 +8318,7 @@
 				B8D2733E1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121101D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841205C1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DDE1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DDE1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2641F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8336,7 +8336,7 @@
 				B8D2733F1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121111D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841205D1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DDF1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DDF1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2651F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8354,7 +8354,7 @@
 				B8D272F71DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C91D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120151D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5D971F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5D971F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD21D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8372,7 +8372,7 @@
 				B8D272F91DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CB1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120171D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5D991F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5D991F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD21F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8390,7 +8390,7 @@
 				B8D273311DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121031D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841204F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DD11F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DD11F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2571F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8408,7 +8408,7 @@
 				B8D273411DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121131D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841205F1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DE11F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DE11F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2671F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8426,7 +8426,7 @@
 				B8D273421DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121141D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120601D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DE21F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DE21F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2681F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8444,7 +8444,7 @@
 				B8D273431DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121151D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120611D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DE31F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DE31F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2691F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8462,7 +8462,7 @@
 				B8D2734A1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841211C1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120681D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DEA1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DEA1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2701F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8480,7 +8480,7 @@
 				B8D273381DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210A1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120561D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DD81F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DD81F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD25E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8498,7 +8498,7 @@
 				B8D273361DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121081D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120541D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DD61F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DD61F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD25C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8516,7 +8516,7 @@
 				B8D273371DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121091D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120551D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DD71F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DD71F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD25D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8534,7 +8534,7 @@
 				B8D2732B1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120FD1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120491D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DCB1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DCB1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2511F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8552,7 +8552,7 @@
 				B8D273341DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121061D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120521D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DD41F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DD41F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD25A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8565,7 +8565,7 @@
 				B8F1803A1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B88BD2D11F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B85C8FD51E605B2E004D7D40 /* tlsf.c in Sources */,
-				B8DE5DED1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DED1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B85C8FE51E605C9E004D7D40 /* HISSTools_FFT.c in Sources */,
 				B85C8FD61E605B2E004D7D40 /* FrameLib_Threading.cpp in Sources */,
 				B85C8FD71E605B2E004D7D40 /* FrameLib_Memory.cpp in Sources */,
@@ -8589,7 +8589,7 @@
 				B8D273321DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121041D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120501D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DD21F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DD21F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2581F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8607,7 +8607,7 @@
 				B8D273331DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121051D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120511D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DD31F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DD31F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2591F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8620,7 +8620,7 @@
 				B8F1801B1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B88BD2B21F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B84121001D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
-				B8DE5DCE1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DCE1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B87E877319C8EEBF00B1D0CD /* HISSTools_FFT.c in Sources */,
 				B87E877519C8EEEB00B1D0CD /* fl.fft~.cpp in Sources */,
 				B87E875A19C8EE9600B1D0CD /* tlsf.c in Sources */,
@@ -8639,7 +8639,7 @@
 				B8F1801C1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B88BD2B31F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B84121011D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
-				B8DE5DCF1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DCF1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B87E877D19C8F4AA00B1D0CD /* HISSTools_FFT.c in Sources */,
 				B87E878B19C8F4BC00B1D0CD /* fl.ifft~.cpp in Sources */,
 				B87E877F19C8F4AA00B1D0CD /* tlsf.c in Sources */,
@@ -8667,7 +8667,7 @@
 				B8F1801D1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B88BD2B41F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B84121021D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
-				B8DE5DD01F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DD01F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B8A4757719C9DDCD0043DC65 /* HISSTools_FFT.c in Sources */,
 				B8A4758519C9DDEA0043DC65 /* fl.convolve~.cpp in Sources */,
 				B8A4757919C9DDCD0043DC65 /* tlsf.c in Sources */,
@@ -8686,7 +8686,7 @@
 				B8F1801A1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B88BD2B11F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B84120FF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
-				B8DE5DCD1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DCD1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B8AD887019C7C4AC00FFA238 /* fl.read~.cpp in Sources */,
 				B8AD887119C7C4B400FFA238 /* ibuffer_access.c in Sources */,
 				B8AD886319C7C46B00FFA238 /* tlsf.c in Sources */,
@@ -8710,7 +8710,7 @@
 				B8D2733D1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210F1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841205B1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DDD1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DDD1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2631F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8728,7 +8728,7 @@
 				B8C5EBCA1E5F99A80086E8B6 /* FrameLib_Memory.cpp in Sources */,
 				B8C5EBCB1E5F99A80086E8B6 /* FrameLib_Global.cpp in Sources */,
 				B8C5EBCC1E5F99A80086E8B6 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DEB1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DEB1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2711F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8746,7 +8746,7 @@
 				B8C5EBE41E5FA6340086E8B6 /* FrameLib_Memory.cpp in Sources */,
 				B8C5EBE51E5FA6340086E8B6 /* FrameLib_Global.cpp in Sources */,
 				B8C5EBE61E5FA6340086E8B6 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DEC1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DEC1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2721F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8759,7 +8759,7 @@
 				B8F1802D1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B88BD2C41F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B80059BE1DAF96340073A866 /* FrameLib_RandGen.cpp in Sources */,
-				B8DE5DE01F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DE01F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B8C6803C1B80F62300B74B90 /* tlsf.c in Sources */,
 				B8D273401DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121121D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
@@ -8783,7 +8783,7 @@
 				B8D273391DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210B1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120571D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DD91F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DD91F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD25F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8801,7 +8801,7 @@
 				B8D2733A1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210C1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120581D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DDA1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DDA1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2601F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8819,7 +8819,7 @@
 				B8D2733B1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210D1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120591D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DDB1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DDB1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2611F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8837,7 +8837,7 @@
 				B8D2733C1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841210E1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841205A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DDC1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DDC1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2621F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8855,7 +8855,7 @@
 				B8D272F21DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C41D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120101D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5D921F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5D921F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2181F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8873,7 +8873,7 @@
 				B8D272F41DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C61D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120121D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5D941F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5D941F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD21A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8891,7 +8891,7 @@
 				B8D272F51DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C71D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120131D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5D951F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5D951F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD21B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8909,7 +8909,7 @@
 				B8D272F61DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120C81D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120141D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5D961F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5D961F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD21C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8927,7 +8927,7 @@
 				B8D272F81DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120CA1D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120161D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5D981F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5D981F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD21E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8945,7 +8945,7 @@
 				B8D273441DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121161D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120621D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DE41F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DE41F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD26A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8963,7 +8963,7 @@
 				B8D273451DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121171D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120631D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DE51F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DE51F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD26B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8981,7 +8981,7 @@
 				B8D273461DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121181D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120641D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DE61F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DE61F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD26C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8999,7 +8999,7 @@
 				B8D273471DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121191D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120651D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DE71F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DE71F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD26D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9017,7 +9017,7 @@
 				B8D273481DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841211A1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120661D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DE81F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DE81F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD26E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9035,7 +9035,7 @@
 				B8D273491DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B841211B1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120671D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DE91F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DE91F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD26F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9053,7 +9053,7 @@
 				B8D273351DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121071D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120531D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DD51F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DD51F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD25B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9071,7 +9071,7 @@
 				B8D273241DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F61D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120421D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DC41F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DC41F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD24A1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9089,7 +9089,7 @@
 				B8D273251DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F71D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120431D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DC51F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DC51F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD24B1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9107,7 +9107,7 @@
 				B8D273261DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F81D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120441D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DC61F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DC61F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD24C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9125,7 +9125,7 @@
 				B8D273271DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120F91D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120451D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DC71F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DC71F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD24D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9143,7 +9143,7 @@
 				B8D273281DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120FA1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120461D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DC81F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DC81F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD24E1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9161,7 +9161,7 @@
 				B8D273291DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120FB1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120471D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DC91F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DC91F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD24F1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9179,7 +9179,7 @@
 				B8D2732A1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120FC1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B84120481D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DCA1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DCA1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2501F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9197,7 +9197,7 @@
 				B8D2732C1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84120FE1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B841204A1D9D469E00C2D5C0 /* FrameLib_Context.cpp in Sources */,
-				B8DE5DCC1F06A5E4007B0601 /* FrameLib_Attributes.cpp in Sources */,
+				B8DE5DCC1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2521F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

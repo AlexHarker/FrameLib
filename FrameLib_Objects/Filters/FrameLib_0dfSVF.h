@@ -78,20 +78,20 @@ class FrameLib_0dfSVF : public FrameLib_Processor
 
 public:
 	
-    FrameLib_0dfSVF(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 2, 1)
+    FrameLib_0dfSVF(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
     {
-        mAttributes.addDouble(kFreq, "freq", 0.0, 0);
-        mAttributes.setMin(0.0);
+        mParameters.addDouble(kFreq, "freq", 0.0, 0);
+        mParameters.setMin(0.0);
         
-        mAttributes.addDouble(kReson, "reson", 0.0, 1);
-        mAttributes.setClip(0.0, 1.0);
+        mParameters.addDouble(kReson, "reson", 0.0, 1);
+        mParameters.setClip(0.0, 1.0);
         
-        mAttributes.addEnum(kMode, "mode", 2);
-        mAttributes.addEnumItem(kLPF, "lpf");
-        mAttributes.addEnumItem(kBPF, "bpf");
-        mAttributes.addEnumItem(kHPF, "hpf");
+        mParameters.addEnum(kMode, "mode", 2);
+        mParameters.addEnumItem(kLPF, "lpf");
+        mParameters.addEnumItem(kBPF, "bpf");
+        mParameters.addEnumItem(kHPF, "hpf");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
         
         inputMode(1, TRUE, FALSE, FALSE);
     }
@@ -100,21 +100,21 @@ protected:
     
     void update()
     {
-        FrameLib_Attributes::Serial *serialised = getInput(1);
+        FrameLib_Parameters::Serial *serialised = getInput(1);
         
         if (serialised)
-            mAttributes.set(serialised);
+            mParameters.set(serialised);
     }
     
     void process ()
 	{
         ZeroDelayFeedbackSVF filter;
-        Modes mode = (Modes) mAttributes.getValue(kMode);
+        Modes mode = (Modes) mParameters.getValue(kMode);
         
         bool staticParams = TRUE;
         
-        double freq = mAttributes.getValue(kFreq);
-        double reson = mAttributes.getValue(kReson);
+        double freq = mParameters.getValue(kFreq);
+        double reson = mParameters.getValue(kReson);
         
         // Get Input
         

@@ -2,7 +2,7 @@
 #ifndef FRAMELIB_BLOCK_H
 #define FRAMELIB_BLOCK_H
 
-#include "FrameLib_Attributes.h"
+#include "FrameLib_Parameters.h"
 
 // FrameLib_Block
 

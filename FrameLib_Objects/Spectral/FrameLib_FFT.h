@@ -13,14 +13,14 @@ class FrameLib_FFT : public FrameLib_Processor
     
 public:
 	
-    FrameLib_FFT(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 2)
+    FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 2)
     {
-        mAttributes.addDouble(kMaxLength, "maxlength", 16384, 0);
-        mAttributes.setMin(0.0);
+        mParameters.addDouble(kMaxLength, "maxlength", 16384, 0);
+        mParameters.setMin(0.0);
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
         
-        unsigned long maxFFTSizeLog2 = log2(mAttributes.getInt(kMaxLength));
+        unsigned long maxFFTSizeLog2 = log2(mParameters.getInt(kMaxLength));
 		
 		mFFTSetup = hisstools_create_setup_d(maxFFTSizeLog2);
         mMaxFFTSize = 1 << maxFFTSizeLog2;

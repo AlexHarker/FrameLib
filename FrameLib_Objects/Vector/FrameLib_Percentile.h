@@ -11,14 +11,14 @@ class FrameLib_Percentile : public FrameLib_Processor
     
 public:
     
-    FrameLib_Percentile (FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_Percentile (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mAttributes.addDouble(kPercentile, "percentile", 50.0, 0);
-        mAttributes.setClip(0.0, 100.0);
+        mParameters.addDouble(kPercentile, "percentile", 50.0, 0);
+        mParameters.setClip(0.0, 100.0);
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
         
-        mPercentile = mAttributes.getValue(kPercentile);
+        mPercentile = mParameters.getValue(kPercentile);
     }
     
 protected:

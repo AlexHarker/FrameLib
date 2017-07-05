@@ -12,15 +12,15 @@ class FrameLib_Sort : public FrameLib_Processor
 
 public:
     
-    FrameLib_Sort (FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_Sort (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mAttributes.addEnum(kOrder, "order", 0);
-        mAttributes.addEnumItem(kUp, "up");
-        mAttributes.addEnumItem(kDown, "down");
+        mParameters.addEnum(kOrder, "order", 0);
+        mParameters.addEnumItem(kUp, "up");
+        mParameters.addEnumItem(kDown, "down");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
         
-        mOrder = (Orders) mAttributes.getInt(kOrder);
+        mOrder = (Orders) mParameters.getInt(kOrder);
     }
     
 protected:

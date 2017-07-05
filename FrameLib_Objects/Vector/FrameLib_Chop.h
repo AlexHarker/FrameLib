@@ -12,21 +12,21 @@ class FrameLib_Chop : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Chop(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context)
+    FrameLib_Chop(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context)
     {
-        mAttributes.addDouble(kNumOuts, "numouts", 1.0, 0);
-        mAttributes.setClip(2.0, 32.0);
+        mParameters.addDouble(kNumOuts, "numouts", 1.0, 0);
+        mParameters.setClip(2.0, 32.0);
         
-        mAttributes.addDouble(kSize, "size", 1.0, 1);
-        mAttributes.setMin(0.0);
+        mParameters.addDouble(kSize, "size", 1.0, 1);
+        mParameters.setMin(0.0);
         
-        mAttributes.addEnum(kUnits, "units", 1);
-        mAttributes.addEnumItem(kSamples, "samples");
-        mAttributes.addEnumItem(kRatio, "ratios");
+        mParameters.addEnum(kUnits, "units", 1);
+        mParameters.addEnumItem(kSamples, "samples");
+        mParameters.addEnumItem(kRatio, "ratios");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
         
-        mNumOuts = mAttributes.getInt(kNumOuts);
+        mNumOuts = mParameters.getInt(kNumOuts);
         
         setIO(1, mNumOuts);
     }
@@ -39,14 +39,14 @@ protected:
         
         unsigned long sizeIn, sizeOut, sizeCalc, chop, i;
         double *input = getInput(0, &sizeIn);
-        Units units = (Units) mAttributes.getInt(kUnits);
+        Units units = (Units) mParameters.getInt(kUnits);
         
         // Calculate chop sizes
         
         if (units == kSamples)
-            chop = mAttributes.getInt(kSize);
+            chop = mParameters.getInt(kSize);
         else
-            chop = round(mAttributes.getValue(kSize) * sizeIn);
+            chop = round(mParameters.getValue(kSize) * sizeIn);
         
         for (i = 0, sizeCalc = sizeIn; i < mNumOuts; i++)
         {

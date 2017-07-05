@@ -14,16 +14,16 @@ class FrameLib_Split : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Split(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 2)
+    FrameLib_Split(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 2)
     {
-        mAttributes.addDouble(kSplit, "split", 0.0, 0);
-        mAttributes.setMin(0.0);
+        mParameters.addDouble(kSplit, "split", 0.0, 0);
+        mParameters.setMin(0.0);
         
-        mAttributes.addEnum(kUnits, "units", 1);
-        mAttributes.addEnumItem(kSamples, "samples");
-        mAttributes.addEnumItem(kRatio, "ratios");
+        mParameters.addEnum(kUnits, "units", 1);
+        mParameters.addEnumItem(kSamples, "samples");
+        mParameters.addEnumItem(kRatio, "ratios");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
     }
     
 protected:
@@ -34,14 +34,14 @@ protected:
         
         unsigned long sizeIn, sizeOut1, sizeOut2, split;
         double *input = getInput(0, &sizeIn);
-        Units units = (Units) mAttributes.getInt(kUnits);
+        Units units = (Units) mParameters.getInt(kUnits);
         
         // Calculate split point
         
         if (units == kSamples)
-            split = mAttributes.getInt(kSplit);
+            split = mParameters.getInt(kSplit);
         else
-            split = round(mAttributes.getValue(kSplit) * sizeIn);
+            split = round(mParameters.getValue(kSplit) * sizeIn);
         
         split = split > sizeIn ? sizeIn : split;
 

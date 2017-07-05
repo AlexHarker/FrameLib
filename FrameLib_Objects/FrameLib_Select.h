@@ -10,18 +10,18 @@ class FrameLib_Select : public FrameLib_Processor
 
 public:
     
-    FrameLib_Select (FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context)
+    FrameLib_Select (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context)
     {
-        mAttributes.addDouble(kNumIns, "numins", 2, 0);
-        mAttributes.setClip(2, 32);
-        mAttributes.addDouble(kActiveIn, "input", 0, 1);
+        mParameters.addDouble(kNumIns, "numins", 2, 0);
+        mParameters.setClip(2, 32);
+        mParameters.addDouble(kActiveIn, "input", 0, 1);
 
         // FIX - clip??
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
         
-        mNumIns = mAttributes.getValue(kNumIns);
-        mActiveIn = mAttributes.getValue(kActiveIn);
+        mNumIns = mParameters.getValue(kNumIns);
+        mActiveIn = mParameters.getValue(kActiveIn);
         
         setIO(mNumIns + 1, 1);
         
@@ -34,13 +34,13 @@ protected:
     
     void update()
     {
-        FrameLib_Attributes::Serial *serialised = getInput(mNumIns);
+        FrameLib_Parameters::Serial *serialised = getInput(mNumIns);
         
         if (serialised)
         {
-            mAttributes.set(serialised);
+            mParameters.set(serialised);
         
-            mActiveIn = mAttributes.getValue(kActiveIn);
+            mActiveIn = mParameters.getValue(kActiveIn);
         
             for (unsigned long i = 0; i < mNumIns; i++)
                 updateTrigger(i, i == mActiveIn);

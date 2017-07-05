@@ -8,7 +8,7 @@
 
 // FIX - MAX_VECTOR_SIZE hack
 // FIX - source is only sample accurate (not subsample) - add a function to interpolate if neceesary
-// FIX - allow attributes to change (and check naming and behaviour...)
+// FIX - allow parameters to change (and check naming and behaviour...)
 // FIX - add delay for alignment purposes
 
 #define MAX_VECTOR_SIZE 8192
@@ -22,7 +22,7 @@ private:
     
     unsigned long convertTimeToSamples(double time)
     {
-        long units = mAttributes.getInt(kUnits);
+        long units = mParameters.getInt(kUnits);
         
         if (units != kSamples)
         {
@@ -37,20 +37,20 @@ private:
     
 public:
     
-    FrameLib_Source(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_AudioProcessor(context, 1, 1, 1, 0)
+    FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioProcessor(context, 1, 1, 1, 0)
     {        
-        mAttributes.addDouble(kMaxLength, "length", 16384, 0);
-        mAttributes.setMin(0.0);
-        mAttributes.addDouble(kLength, "size", 4096, 1);
-        mAttributes.setMin(0.0);
-        mAttributes.addEnum(kUnits, "units", 2);
-        mAttributes.addEnumItem(kSamples, "samples");
-        mAttributes.addEnumItem(kMS, "ms");
-        mAttributes.addEnumItem(kSeconds, "seconds");
+        mParameters.addDouble(kMaxLength, "length", 16384, 0);
+        mParameters.setMin(0.0);
+        mParameters.addDouble(kLength, "size", 4096, 1);
+        mParameters.setMin(0.0);
+        mParameters.addEnum(kUnits, "units", 2);
+        mParameters.addEnumItem(kSamples, "samples");
+        mParameters.addEnumItem(kMS, "ms");
+        mParameters.addEnumItem(kSeconds, "seconds");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
 
-        mLength = convertTimeToSamples(mAttributes.getValue(kLength));
+        mLength = convertTimeToSamples(mParameters.getValue(kLength));
         
         mBuffer = NULL;
         mSize = 0;
@@ -66,7 +66,7 @@ public:
     {
         FrameLib_DSP::reset();
 
-        double size = convertTimeToSamples(mAttributes.getValue(kMaxLength)) + MAX_VECTOR_SIZE;
+        double size = convertTimeToSamples(mParameters.getValue(kMaxLength)) + MAX_VECTOR_SIZE;
         
         if (size != mSize)
         {

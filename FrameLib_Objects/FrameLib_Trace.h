@@ -21,16 +21,16 @@ class FrameLib_Trace : public FrameLib_AudioProcessor
     
 public:
     
-    FrameLib_Trace(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_AudioProcessor(context, 1, 0, 0, 1)
+    FrameLib_Trace(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioProcessor(context, 1, 0, 0, 1)
     {
-        mAttributes.addDouble(kLength, "length", 8000, 0);
-        mAttributes.setMin(0.0);
-        mAttributes.addEnum(kUnits, "units", 1);
-        mAttributes.addEnumItem(kMS, "ms");
-        mAttributes.addEnumItem(kSeconds, "seconds");
-        mAttributes.addEnumItem(kSamples, "samples");
+        mParameters.addDouble(kLength, "length", 8000, 0);
+        mParameters.setMin(0.0);
+        mParameters.addEnum(kUnits, "units", 1);
+        mParameters.addEnumItem(kMS, "ms");
+        mParameters.addEnumItem(kSeconds, "seconds");
+        mParameters.addEnumItem(kSamples, "samples");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
         
         mBuffer = NULL;
         mFlags = NULL;
@@ -48,8 +48,8 @@ public:
     {
         FrameLib_DSP::reset();
 
-        long units = mAttributes.getInt(kUnits);
-        double size = mAttributes.getValue(kLength);
+        long units = mParameters.getInt(kUnits);
+        double size = mParameters.getValue(kLength);
 
         if (units != kSamples)
         {

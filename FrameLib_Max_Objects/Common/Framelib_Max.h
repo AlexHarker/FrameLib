@@ -375,7 +375,7 @@ private:
         return idx;
     }
     
-    FrameLib_Attributes::Serial *parseAttributes(long argc, t_atom *argv)
+    FrameLib_Parameters::Serial *parseParameters(long argc, t_atom *argv)
     {
         t_symbol *sym;
         std::vector<double> values;
@@ -383,7 +383,7 @@ private:
        
         // Allocate
         
-        FrameLib_Attributes::Serial *serialisedAttributes = new FrameLib_Attributes::Serial();
+        FrameLib_Parameters::Serial *serialisedParameters = new FrameLib_Parameters::Serial();
         
         // Parse arguments
         
@@ -400,16 +400,16 @@ private:
             sym = atom_getsym(argv + i);
 
             if (sym != gensym(""))
-                serialisedAttributes->write(argNames, sym->s_name);
+                serialisedParameters->write(argNames, sym->s_name);
             else
             {
                 double value = atom_getfloat(argv + i);
-                serialisedAttributes->write(argNames, &value, 1);
+                serialisedParameters->write(argNames, &value, 1);
             }
 #endif
         }
         
-        // Parse attributes
+        // Parse parameters
         
         while (i < argc)
         {
@@ -441,16 +441,16 @@ private:
                 // Do strings or values
                 
                 if (atom_getsym(argv + i) != gensym(""))
-                    serialisedAttributes->write(sym->s_name + 1, atom_getsym(argv + i++)->s_name);
+                    serialisedParameters->write(sym->s_name + 1, atom_getsym(argv + i++)->s_name);
                 else
                 {
                     i = parseNumericalList(values, argv, argc, i);
-                    serialisedAttributes->write(sym->s_name + 1, &values[0], values.size());
+                    serialisedParameters->write(sym->s_name + 1, &values[0], values.size());
                 }
             }
         }
 
-        return serialisedAttributes;
+        return serialisedParameters;
     }
 
     // Input Parsing
@@ -529,13 +529,13 @@ public:
         FrameLib_Context context = getContext();
         mUserObject = (t_object *)this;
 
-        // Object creation with attributes and arguments
+        // Object creation with parameters and arguments
         
-        FrameLib_Attributes::Serial *serialisedAttributes = parseAttributes(argc, argv);
+        FrameLib_Parameters::Serial *serialisedParameters = parseParameters(argc, argv);
 
-        mObject = new T(context, serialisedAttributes, this);
+        mObject = new T(context, serialisedParameters, this);
         
-        delete serialisedAttributes;
+        delete serialisedParameters;
         
         parseInputs(argc, argv);
         

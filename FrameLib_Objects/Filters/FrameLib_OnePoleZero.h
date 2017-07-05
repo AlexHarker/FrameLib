@@ -63,16 +63,16 @@ class FrameLib_OnePoleZero : public FrameLib_Processor
 
 public:
 	
-    FrameLib_OnePoleZero(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_OnePoleZero(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mAttributes.addDouble(kFreq, "freq", 0.0, 0);
-        mAttributes.setMin(0.0);
+        mParameters.addDouble(kFreq, "freq", 0.0, 0);
+        mParameters.setMin(0.0);
         
-        mAttributes.addEnum(kMode, "mode", 1);
-        mAttributes.addEnumItem(kLPF, "lpf");
-        mAttributes.addEnumItem(kHPF, "hpf");
+        mParameters.addEnum(kMode, "mode", 1);
+        mParameters.addEnumItem(kLPF, "lpf");
+        mParameters.addEnumItem(kHPF, "hpf");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
     }
     
 protected:
@@ -80,11 +80,11 @@ protected:
     void process ()
 	{
         OnePoleZero filter;
-        Modes mode = (Modes) mAttributes.getValue(kMode);
+        Modes mode = (Modes) mParameters.getValue(kMode);
         
         bool staticParams = TRUE;
         
-        double freq = mAttributes.getValue(kFreq);
+        double freq = mParameters.getValue(kFreq);
         
         // Get Input
         

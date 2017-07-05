@@ -16,30 +16,30 @@ class FrameLib_MaxRead : public FrameLib_Processor
     
 public:
     
-    FrameLib_MaxRead (FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_MaxRead (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mAttributes.addString(kBuffer, "buffer", "", 0);
+        mParameters.addString(kBuffer, "buffer", "", 0);
         
-        mAttributes.addDouble(kChannel, "chan", 0.0, 1);
-        mAttributes.setClip(1.0, 4.0);
+        mParameters.addDouble(kChannel, "chan", 0.0, 1);
+        mParameters.setClip(1.0, 4.0);
         
-        mAttributes.addEnum(kMode, "mode");
-        mAttributes.addEnumItem(kHermite, "hermite");
-        mAttributes.addEnumItem(kBSpline, "bspline");
-        mAttributes.addEnumItem(kLagrange, "lagrange");
-        mAttributes.addEnumItem(kLinear, "linear");
+        mParameters.addEnum(kMode, "mode");
+        mParameters.addEnumItem(kHermite, "hermite");
+        mParameters.addEnumItem(kBSpline, "bspline");
+        mParameters.addEnumItem(kLagrange, "lagrange");
+        mParameters.addEnumItem(kLinear, "linear");
         
-        mAttributes.addEnum(kUnits, "units");
-        mAttributes.addEnumItem(kMS, "ms");
-        mAttributes.addEnumItem(kSeconds, "seconds");
-        mAttributes.addEnumItem(kSamples, "samples");
+        mParameters.addEnum(kUnits, "units");
+        mParameters.addEnumItem(kMS, "ms");
+        mParameters.addEnumItem(kSeconds, "seconds");
+        mParameters.addEnumItem(kSamples, "samples");
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
 
-        mBufferName = gensym(mAttributes.getString(kBuffer));
-        mChan = mAttributes.getInt(kChannel);
-        mMode = (Modes) mAttributes.getInt(kMode);
-        mUnits = (Units) mAttributes.getInt(kUnits);
+        mBufferName = gensym(mParameters.getString(kBuffer));
+        mChan = mParameters.getInt(kChannel);
+        mMode = (Modes) mParameters.getInt(kMode);
+        mUnits = (Units) mParameters.getInt(kUnits);
         
         assert(FALSE == 0 && "False does not equal zero");
         

@@ -12,18 +12,18 @@ class FrameLib_Store : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Store(FrameLib_Context context, FrameLib_Attributes::Serial *serialisedAttributes, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_Store(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mAttributes.addString(kName, "name", "", 0);
+        mParameters.addString(kName, "name", "", 0);
         
-        mAttributes.set(serialisedAttributes);
+        mParameters.set(serialisedParameters);
         
-        mStorage = mAllocator->registerStorage(mAttributes.getString(kName));
+        mStorage = mAllocator->registerStorage(mParameters.getString(kName));
     }
     
     ~FrameLib_Store()
     {
-        mAllocator->releaseStorage(mAttributes.getString(kName));
+        mAllocator->releaseStorage(mParameters.getString(kName));
     }
     
     
