@@ -14,7 +14,6 @@
 
 // This class deals with attributes of an object
 
-// FIX - allow attribute copying - consider going back to objects...
 // FIX - add error reporting
 // FIX - instantiation only attributes (with error checking - simply a marker)?
 // FIx - consider adding descriptions (using const char * strings)
@@ -44,21 +43,31 @@ public:
         
     public:
         
+        // Constructors and Destructor
+        
         Serial(BytePointer ptr, size_t size);
         Serial(size_t size);
         Serial();
 
         ~Serial();
         
+        // Size Calculations
+        
         static size_t calcSize(Serial *serialised)          { return serialised != NULL ? serialised->mSize : 0; }
         static size_t calcSize(const char *tag, char *str)  { return sizeType() + sizeString(tag) + sizeString(str); }
         static size_t calcSize(const char *tag, size_t N)   { return sizeType() + sizeString(tag) + sizeArray(N); }
+        
+        // Write Items
         
         void write(Serial *serialised);
         void write(const char *tag, char *str);
         void write(const char *tag, double *values, size_t N);
         
+        // Read into Attributes
+        
         void read(FrameLib_Attributes *attributes);
+        
+        // Utility
         
         size_t size()   { return mSize; }
         void clear()    { mSize = 0; }
@@ -70,24 +79,41 @@ public:
 
     private:
         
+        // Deleted
+        
+        Serial(const Serial&);
+        Serial& operator=(const Serial&);
+        
+        // Debug
+        
         void alignmentChecks();
+        
+        // Size Calculators
         
         static size_t sizeType()                    { return alignSize(sizeof(DataType)); }
         static size_t sizeString(const char *str)   { return alignSize(sizeof(size_t)) + alignSize(strlen(str) + 1); }
         static size_t sizeArray(size_t N)           { return alignSize(sizeof(size_t)) + alignSize((N * sizeof(double))); }
 
+        // Write Item
+        
         void writeType(DataType type);
         void writeSize(size_t size);
         void writeString(const char *str);
         void writeDoubles(double *ptr, size_t N);
+        
+        // Read Item
         
         DataType readType(BytePointer *readPtr);
         void readSize(BytePointer *readPtr, size_t *size);
         void readDoubles(BytePointer *readPtr, double **values, size_t *N);
         void readString(BytePointer *readPtr, char **str);
         
+        // Check Size
+        
         bool checkSize(size_t writeSize);
-                
+        
+        // Member Variables
+        
         BytePointer mPtr;
         size_t mSize;
         size_t mMaxSize;
@@ -266,7 +292,7 @@ private:
         
     public:
         
-        String(const char *name, long argumentIdx);
+        String(const char *name, const char *str, long argumentIdx);
         
         // Setters
         
@@ -331,6 +357,10 @@ private:
 
 public:
     
+    // Constructor
+    
+    FrameLib_Attributes() {}
+    
     // Destructor
     
     ~FrameLib_Attributes()
@@ -373,8 +403,7 @@ public:
     
     void addString(unsigned long index, const char *name, const char *str, long argumentIdx = -1)
     {
-        addAttribute(index, new String(name, argumentIdx));
-        mAttributes.back()->set(str);
+        addAttribute(index, new String(name, str, argumentIdx));
     }
     
     void addEnum(unsigned long index, const char *name, long argumentIdx = -1)
@@ -491,6 +520,13 @@ public:
     bool changed(const char *name)                                  { return changed(getIdx(name)); }
     
 private:
+    
+    // Deleted
+    
+    FrameLib_Attributes(const FrameLib_Attributes&);
+    FrameLib_Attributes& operator=(const FrameLib_Attributes&);
+    
+    // Utility
     
     void addAttribute(unsigned long index, Attribute *attr)
     {

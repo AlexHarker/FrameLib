@@ -20,6 +20,11 @@ public:
     
 private:
     
+    // Deleted
+    
+    FrameLib_DSPQueue(const FrameLib_DSPQueue&);
+    FrameLib_DSPQueue& operator=(const FrameLib_DSPQueue&);
+    
     FrameLib_DSP *mTop;
     FrameLib_DSP *mTail;
 };

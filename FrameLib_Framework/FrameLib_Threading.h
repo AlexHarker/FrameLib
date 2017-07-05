@@ -77,6 +77,11 @@ public:
     
 private:
 	
+    // Deleted
+    
+    FrameLib_Atomic32(const FrameLib_Atomic32&);
+    FrameLib_Atomic32& operator=(const FrameLib_Atomic32&);
+    
 	Atomic32 mValue;
 };
 
@@ -96,6 +101,11 @@ public:
     
 private:
     
+    // Deleted
+    
+    FrameLib_AtomicPtr(const FrameLib_AtomicPtr&);
+    FrameLib_AtomicPtr& operator=(const FrameLib_AtomicPtr&);
+    
     AtomicPtr mValue;
 };
 
@@ -107,6 +117,7 @@ class FrameLib_SpinLock
 
 public:
     
+    FrameLib_SpinLock() {}
     ~FrameLib_SpinLock() { acquire(); }
     
     bool attempt() { return mAtomicLock.compareAndSwap(0, 1); }
@@ -115,6 +126,11 @@ public:
     
 private:
 	
+    // Deleted
+    
+    FrameLib_SpinLock(const FrameLib_SpinLock&);
+    FrameLib_SpinLock& operator=(const FrameLib_SpinLock&);
+    
 	FrameLib_Atomic32 mAtomicLock;
 };
 

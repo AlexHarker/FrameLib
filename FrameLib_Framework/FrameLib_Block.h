@@ -59,8 +59,6 @@ public:
 protected:
 
     virtual class FrameLib_DSP *getOutputObject(unsigned long outIdx) = 0;
-
-    FrameLib_Attributes mAttributes;
 };
 
 #endif

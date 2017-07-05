@@ -32,6 +32,11 @@ public:
     
 private:
     
+    // Deleted
+    
+    FrameLib_ConnectionQueue(const FrameLib_ConnectionQueue&);
+    FrameLib_ConnectionQueue& operator=(const FrameLib_ConnectionQueue&);
+    
     Item *mTop;
     Item *mTail;
 };

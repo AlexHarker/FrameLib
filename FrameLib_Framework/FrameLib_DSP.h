@@ -176,6 +176,11 @@ protected:
     
 private:
     
+    // Deleted
+    
+    FrameLib_DSP(const FrameLib_DSP&);
+    FrameLib_DSP& operator=(const FrameLib_DSP&);
+
     // Customisable Processing
 
     // Override to handle audio at the block level (pre or post processing by the host)
@@ -240,7 +245,11 @@ protected:
     // Memory Allocator
     
     FrameLib_LocalAllocator *mAllocator;
+
+    // Attributes
     
+    FrameLib_Attributes mAttributes;
+
 private:
     
     // DSP Queue

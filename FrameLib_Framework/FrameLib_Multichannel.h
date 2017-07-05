@@ -113,6 +113,11 @@ protected:
 
 private:
 
+    // Deleted
+    
+    FrameLib_MultiChannel(const FrameLib_MultiChannel&);
+    FrameLib_MultiChannel& operator=(const FrameLib_MultiChannel&);
+    
     // Dependency Updating
 
     void addOutputDependency(FrameLib_MultiChannel *object);

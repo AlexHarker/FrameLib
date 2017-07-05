@@ -325,9 +325,9 @@ void FrameLib_Attributes::Double::setClip(double min, double max)
 
 // ************************************************************************************** //
 
-FrameLib_Attributes::String::String(const char *name, long argumentIdx) : Attribute(name, argumentIdx)
+FrameLib_Attributes::String::String(const char *name, const char *str, long argumentIdx) : Attribute(name, argumentIdx)
 {
-    mCString[0] = 0;
+    String::set(str);
 }
 
 void FrameLib_Attributes::String::set(const char *str)
