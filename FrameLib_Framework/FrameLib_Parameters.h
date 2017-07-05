@@ -16,7 +16,7 @@
 
 // FIX - add error reporting
 // FIX - instantiation only parameters (with error checking - simply a marker)?
-// FIx - consider adding descriptions (using const char * strings)
+// FIX - consider adding descriptions (using const char * strings)
 
 class FrameLib_Parameters
 {

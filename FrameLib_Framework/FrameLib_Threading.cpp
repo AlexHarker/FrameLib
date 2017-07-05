@@ -5,8 +5,6 @@
 
 #ifdef __APPLE__
 
-// FIX - TODO - Check windows
-
 // Thread Mac OS implementation
 
 Thread::~Thread()
@@ -45,7 +43,7 @@ void Thread::start()
         case kLowPriority:          schedulingParameters.sched_priority = 15;       break;
     }
     
-    // Set the scheduling attributes and creat the thread
+    // Set the scheduling attributes and create the thread
     
     pthread_attr_setschedparam(&threadAttributes, &schedulingParameters);
     pthread_create(&mInternal, &threadAttributes, threadStart, this);

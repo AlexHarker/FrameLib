@@ -136,7 +136,7 @@ void FrameLib_MultiChannel::outputUpdate()
 
 // ************************************************************************************** //
 
-// FrameLib_Pack - Pack single multichannel signals
+// FrameLib_Pack - Pack Multichannel signals
 
 FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_MultiChannel(context)
 {
@@ -158,7 +158,7 @@ bool FrameLib_Pack::inputUpdate()
 
 // ************************************************************************************** //
 
-// FrameLib_Unpack - Unpack multichannel signals
+// FrameLib_Unpack - Unpack Multichannel Signals
 
 FrameLib_Unpack::FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_MultiChannel(context)
 {

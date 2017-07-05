@@ -160,7 +160,7 @@ private:
 
 // ************************************************************************************** //
 
-// FrameLib_Pack - Pack single multichannel signals
+// FrameLib_Pack - Pack Multichannel Signals
 
 class FrameLib_Pack : public FrameLib_MultiChannel
 {
@@ -179,7 +179,7 @@ private:
 
 // ************************************************************************************** //
 
-// FrameLib_Unpack - Unpack multichannel signals
+// FrameLib_Unpack - Unpack Multichannel Signals
 
 class FrameLib_Unpack : public FrameLib_MultiChannel
 {
@@ -216,7 +216,7 @@ public:
 
         mSerialisedParameters.write(serialisedParameters);
         
-        // Set up IO / Fixed Inputs / Audio Temps
+        // Set up IO / fixed inputs / audio temps
         
         setIO(mBlocks[0]->getNumIns(), mBlocks[0]->getNumOuts());
         mFixedInputs.resize(getNumIns());

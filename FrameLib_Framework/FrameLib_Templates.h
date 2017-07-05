@@ -7,7 +7,6 @@
 #include <functional>
 
 // FIX - vectorise where appropriate
-// FIX - default modes (situation dependent)
 
 // Unary Functor
 
