@@ -6,7 +6,7 @@
 #include "FrameLib_FixedPoint.h"
 #include "FrameLib_RandGen.h"
 
-void numberOut(const char *name, FrameLib_FixedPoint in)
+void numberOut(const char *name, FL_FP in)
 {
     std::cout << std::setw(10) << std::setfill(' ');
     std::cout.setf(std::ios::left);
@@ -16,10 +16,10 @@ void numberOut(const char *name, FrameLib_FixedPoint in)
     std::cout << std::setw(16) << std::setfill('0');
     std::cout.unsetf(std::ios::left);
     std::cout.setf(std::ios::right);
-    std::cout << in.intPart() << " ";
+    std::cout << in.intVal() << " ";
     std::cout << std::setbase(16);
     std::cout << std::setw(16) << std::setfill('0') << std::setiosflags(std::ios::right);
-    std::cout << in.fracPart() << " \n";
+    std::cout << in.fracVal() << " \n";
 }
 
 FrameLib_RandGen gen;
@@ -34,32 +34,32 @@ uint64_t randu32()
     return (uint64_t) gen.randInt();
 }
 
-FrameLib_FixedPoint randSmallFixed()
+FL_FP randSmallFixed()
 {
     uint64_t hi = randu32() & 0xF;
     uint64_t lo = randu32();
     
-    return FrameLib_FixedPoint(hi, lo);
+    return FL_FP(hi, lo);
 }
 
-FrameLib_FixedPoint randFixed()
+FL_FP randFixed()
 {
     uint64_t hi = randu32();
     uint64_t lo = randu64();
     
-    return FrameLib_FixedPoint(hi, lo);
+    return FL_FP(hi, lo);
 }
 
-SuperPrecision randSP()
+FL_SP randSP()
 {
     uint64_t hi = randu32();
     uint64_t md = randu64();
     uint64_t lo = randu64();
     
-    return SuperPrecision(hi, md, lo);
+    return FL_SP(hi, md, lo);
 }
 
-SuperPrecision diff(SuperPrecision a, SuperPrecision b)
+FL_SP diff(FL_SP a, FL_SP b)
 {
     if (a > b)
         return a - b;
@@ -67,7 +67,7 @@ SuperPrecision diff(SuperPrecision a, SuperPrecision b)
         return b - a;
 }
 
-bool equal(FrameLib_FixedPoint a, double b)
+bool equal(FL_FP a, double b)
 {
     double c = a;
     
@@ -79,24 +79,24 @@ bool equal(FrameLib_FixedPoint a, double b)
 
 int main(int argc, const char * argv[]) {
     
-    //FrameLib_FixedPoint num = FrameLib_FixedPoint(5, 35798);//(9.34567434);
-    //FrameLib_FixedPoint num = FrameLib_FixedPoint(9, 0x587e1d115dcb894c);//(9.34567434);
-    //FrameLib_FixedPoint denom = FrameLib_FixedPoint(3547938458, 0x00000000FEFEFEF1);
-    FrameLib_FixedPoint denom = FrameLib_FixedPoint(0, 1);
+    //FL_FP num = FL_FP(5, 35798);//(9.34567434);
+    //FL_FP num = FL_FP(9, 0x587e1d115dcb894c);//(9.34567434);
+    //FL_FP denom = FL_FP(3547938458, 0x00000000FEFEFEF1);
+    FL_FP denom = FL_FP(0, 1);
 
-    //FrameLib_FixedPoint num = FrameLib_FixedPoint(7892343, 4378529);//(9.34567434);
-   // FrameLib_FixedPoint denom = FrameLib_FixedPoint(9, 0xF0000000FEFEFEF1);
+    //FL_FP num = FL_FP(7892343, 4378529);//(9.34567434);
+   // FL_FP denom = FL_FP(9, 0xF0000000FEFEFEF1);
     
-    FrameLib_FixedPoint num = FrameLib_FixedPoint(0, 87430);//(9.34567434);
+    FL_FP num = FL_FP(0, 87430);//(9.34567434);
 
     // Multiplication commutation test
     
     for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
-        FrameLib_FixedPoint rand1 = randFixed();
-        FrameLib_FixedPoint rand2 = randFixed();
-        FrameLib_FixedPoint result1 = rand1 * rand2;
-        FrameLib_FixedPoint result2 = rand2 * rand1;
+        FL_FP rand1 = randFixed();
+        FL_FP rand2 = randFixed();
+        FL_FP result1 = rand1 * rand2;
+        FL_FP result2 = rand2 * rand1;
         
         if (result1 != result2)
             std::cout << "Fixed mul not commutative " << i << "\n";
@@ -108,9 +108,9 @@ int main(int argc, const char * argv[]) {
     {
         double rand1D = (double) randFixed();
         double rand2D = (double) randFixed();
-        FrameLib_FixedPoint rand1 = rand1D;
-        FrameLib_FixedPoint rand2 = rand2D;
-        FrameLib_FixedPoint result1 = (rand1 * rand2);
+        FL_FP rand1 = rand1D;
+        FL_FP rand2 = rand2D;
+        FL_FP result1 = (rand1 * rand2);
 
         double result2 = rand2D * rand1D;
         
@@ -122,12 +122,12 @@ int main(int argc, const char * argv[]) {
     
     for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
-        SuperPrecision rand1 = randSP();
-        SuperPrecision rand2 = randSP();
-        SuperPrecision result1 = rand1 * rand2;
-        SuperPrecision result2 = rand2 * rand1;
+        FL_SP rand1 = randSP();
+        FL_SP rand2 = randSP();
+        FL_SP result1 = rand1 * rand2;
+        FL_SP result2 = rand2 * rand1;
         
-        if ((result1.intPart() != result2.intPart()) || (result1.fracHiPart() != result2.fracHiPart()) || (result1.fracLoPart() != result2.fracLoPart()))
+        if ((result1.intVal() != result2.intVal()) || (result1.fracHiVal() != result2.fracHiVal()) || (result1.fracLoVal() != result2.fracLoVal()))
             std::cout << "SP mul not commutative " << i << "\n";
     }
     
@@ -135,13 +135,13 @@ int main(int argc, const char * argv[]) {
     
     for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
-        SuperPrecision rand1 = randSP();
-        SuperPrecision rand2 = SuperPrecision(randu64(), randu64(), 0);
+        FL_SP rand1 = randSP();
+        FL_SP rand2 = FL_SP(randu64(), randu64(), 0);
         
-        SuperPrecision result1 = rand1 * rand2;
-        SuperPrecision result2 = qMul(rand1, rand2.intPart(), rand2.fracHiPart());
+        FL_SP result1 = rand1 * rand2;
+        FL_SP result2 = qMul(rand1, rand2.intVal(), rand2.fracHiVal());
         
-        if ((result1.intPart() != result2.intPart()) || (result1.fracHiPart() != result2.fracHiPart()) || (result1.fracLoPart() != result2.fracLoPart()))
+        if ((result1.intVal() != result2.intVal()) || (result1.fracHiVal() != result2.fracHiVal()) || (result1.fracLoVal() != result2.fracLoVal()))
             std::cout << "SP mul not equal to qMul " << i << "\n";
     }
     
@@ -149,13 +149,13 @@ int main(int argc, const char * argv[]) {
     /*
     for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
-        SuperPrecision rand1 = randSP();
-        SuperPrecision rand2 = SuperPrecision(randu64(), randu64(), 0);
+        FL_SP rand1 = randSP();
+        FL_SP rand2 = FL_SP(randu64(), randu64(), 0);
         
-        SuperPrecision result1 = rand1 * rand2;
-        SuperPrecision result2 = qMul(rand1, rand2.intPart(), rand2.fracHiPart());
+        FL_SP result1 = rand1 * rand2;
+        FL_SP result2 = qMul(rand1, rand2.intVal(), rand2.fracHiVal());
         
-        if ((result1.intPart() != result2.intPart()) || (result1.fracHiPart() != result2.fracHiPart()) || (result1.fracLoPart() != result2.fracLoPart()))
+        if ((result1.intVal() != result2.intVal()) || (result1.fracHiVal() != result2.fracHiVal()) || (result1.fracLoVal() != result2.fracLoVal()))
             std::cout << "SP mul not equal to fixed " << i << "\n";
     }
     
@@ -163,13 +163,13 @@ int main(int argc, const char * argv[]) {
     
     for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
-        FrameLib_FixedPoint rand1 = randFixed();
-        FrameLib_FixedPoint rand2 = randFixed();
+        FL_FP rand1 = randFixed();
+        FL_FP rand2 = randFixed();
         
-        FrameLib_FixedPoint result1 = rand1 * rand2;
-        SuperPrecision result2 = qMul(rand1, rand2.intPart(), rand2.fracHiPart());
+        FL_FP result1 = rand1 * rand2;
+        FL_SP result2 = qMul(rand1, rand2.intVal(), rand2.fracHiVal());
         
-        if ((result1.intPart() != result2.intPart()) || (result1.fracHiPart() != result2.fracHiPart()) || (result2.fracLoPart() != result2.fracLoPart()))
+        if ((result1.intVal() != result2.intVal()) || (result1.fracHiVal() != result2.fracHiVal()) || (result2.fracLoVal() != result2.fracLoVal()))
             std::cout << "fixed mul not equal to qMul " << i << "\n";
     }*/
     
@@ -177,13 +177,13 @@ int main(int argc, const char * argv[]) {
     
     for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
-        FrameLib_FixedPoint a = randSmallFixed();
-        FrameLib_FixedPoint b = randSmallFixed();
-        FrameLib_FixedPoint result = a / b;
+        FL_FP a = randSmallFixed();
+        FL_FP b = randSmallFixed();
+        FL_FP result = a / b;
         
-        FrameLib_FixedPoint check1 = result * b;
-        FrameLib_FixedPoint check2 = (result + FrameLib_FixedPoint(0,1)) * b;
-        FrameLib_FixedPoint check3 = (result - FrameLib_FixedPoint(0,1)) * b;
+        FL_FP check1 = result * b;
+        FL_FP check2 = (result + FL_FP(0,1)) * b;
+        FL_FP check3 = (result - FL_FP(0,1)) * b;
         
         if (check1 == a)
             continue;
@@ -201,21 +201,21 @@ int main(int argc, const char * argv[]) {
     
     for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
-        FrameLib_FixedPoint a = randSmallFixed();
-        FrameLib_FixedPoint b = randSmallFixed();
-        FrameLib_FixedPoint result = a / b;
-        FrameLib_FixedPoint resultP1 = result + FrameLib_FixedPoint(0,1);
-        FrameLib_FixedPoint resultM1 = result - FrameLib_FixedPoint(0,1);
+        FL_FP a = randSmallFixed();
+        FL_FP b = randSmallFixed();
+        FL_FP result = a / b;
+        FL_FP resultP1 = result + FL_FP(0,1);
+        FL_FP resultM1 = result - FL_FP(0,1);
 
-        SuperPrecision a1(a.intPart(), a.fracPart(), 0);
-        SuperPrecision b1(b.intPart(), b.fracPart(), 0);
-        SuperPrecision r1(result.intPart(), result.fracPart(), 0);
-        SuperPrecision rP1(resultP1.intPart(), resultP1.fracPart(), 0);
-        SuperPrecision rM1(resultM1.intPart(), resultM1.fracPart(), 0);
+        FL_SP a1(a.intVal(), a.fracVal(), 0);
+        FL_SP b1(b.intVal(), b.fracVal(), 0);
+        FL_SP r1(result.intVal(), result.fracVal(), 0);
+        FL_SP rP1(resultP1.intVal(), resultP1.fracVal(), 0);
+        FL_SP rM1(resultM1.intVal(), resultM1.fracVal(), 0);
         
-        SuperPrecision check1 = diff(a1, r1 * b1);
-        SuperPrecision check2 = diff(a1, rP1 * b1);
-        SuperPrecision check3 = diff(a1, rM1 * b1);
+        FL_SP check1 = diff(a1, r1 * b1);
+        FL_SP check2 = diff(a1, rP1 * b1);
+        FL_SP check3 = diff(a1, rM1 * b1);
         
         if ((check3 > check1) && (check2 > check1))
             continue;
@@ -256,12 +256,12 @@ int main(int argc, const char * argv[]) {
     start = mach_absolute_time();
 
     {
-        FrameLib_FixedPoint result = FrameLib_FixedPoint(1.0);
+        FL_FP result = FL_FP(1.0);
     
         for (uint64_t i=0; i <= 0xFFFFFFF; i++)
-            result *= FrameLib_FixedPoint(2,0x8000000000000000ULL);
+            result *= FL_FP(2,0x8000000000000000ULL);
         
-            if (result == FrameLib_FixedPoint(0,0))
+            if (result == FL_FP(0,0))
                 std::cout << "equals zero\n";
     }
 
@@ -297,9 +297,9 @@ int main(int argc, const char * argv[]) {
 
     for (uint64_t i=0; i <= 0x8FFFFFF; i++)
     {
-        FrameLib_FixedPoint result = FrameLib_FixedPoint(0,i) / FrameLib_FixedPoint(0,1);
+        FL_FP result = FL_FP(0,i) / FL_FP(0,1);
         
-        if (result != FrameLib_FixedPoint(i,0))
+        if (result != FL_FP(i,0))
             std::cout << "failed " << i << "\n";
     }
     
@@ -313,15 +313,15 @@ int main(int argc, const char * argv[]) {
     
     std::cout << "relative " << elapsed2 / elapsed1 << "\n";
     
-    FrameLib_FixedPoint divtemp = (num / denom);
+    FL_FP divtemp = (num / denom);
     
-    FrameLib_FixedPoint div = divtemp;// + FrameLib_FixedPoint(0,0x002E0000);//FrameLib_FixedPoint(divtemp.intPart(), divtemp.fractPart() & 0xFFFFFFFF00000000);//- FrameLib_FixedPoint(0, 0x1FFFFFFFFULL);
-    FrameLib_FixedPoint mul = div * denom;
-    FrameLib_FixedPoint fldiv = ((double) num / (double) denom);
-    FrameLib_FixedPoint flmul = ((double) fldiv * (double) denom);
-    FrameLib_FixedPoint flmul2 = fldiv * denom;
-    FrameLib_FixedPoint mult = FrameLib_FixedPoint(56772.567890) * FrameLib_FixedPoint(3.5);
-    FrameLib_FixedPoint mulp = FrameLib_FixedPoint(56772.567890 * 3.5);
+    FL_FP div = divtemp;// + FL_FP(0,0x002E0000);//FL_FP(divtemp.intVal(), divtemp.fractVal() & 0xFFFFFFFF00000000);//- FL_FP(0, 0x1FFFFFFFFULL);
+    FL_FP mul = div * denom;
+    FL_FP fldiv = ((double) num / (double) denom);
+    FL_FP flmul = ((double) fldiv * (double) denom);
+    FL_FP flmul2 = fldiv * denom;
+    FL_FP mult = FL_FP(56772.567890) * FL_FP(3.5);
+    FL_FP mulp = FL_FP(56772.567890 * 3.5);
 
     numberOut("mul", mul);
     numberOut("num", num);
