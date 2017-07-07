@@ -286,9 +286,9 @@ FL_SP twoMinus(const FL_SP& b)
 {
     // FIX - needs more checking!!
     
-    FUInt64 hi =  FUInt64(2U) - b.mInt;
-    FUInt64 md = -b.mFracHi;
-    FUInt64 lo = -b.mFracLo;
+    FUInt64 hi = FUInt64(2U) - b.mInt;
+    FUInt64 md = FUInt64(0U) - b.mFracHi;
+    FUInt64 lo = FUInt64(0U) - b.mFracLo;
     
     // Double carry!
     
