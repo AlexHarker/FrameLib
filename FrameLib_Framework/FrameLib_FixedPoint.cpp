@@ -36,7 +36,7 @@ bool subWithCarry(FUInt64 *result, const FUInt64& a, const FUInt64& b)
 
 FL_SP qMul(const FL_SP& a, const FUInt64 &intVal, const FUInt64 &fracVal)
 {
-    // Split both into 4 x 32 bits stored within 64 bit integers
+    // Split both into 6/4 x 32 bits stored within 64 bit integers
     
     const FUInt64 a1 = hi32Bits(a.mInt);
     const FUInt64 a2 = lo32Bits(a.mInt);
@@ -135,7 +135,7 @@ FL_SP qMul(const FL_SP& a, const FUInt64 &intVal, const FUInt64 &fracVal)
 
 FL_SP operator * (const FL_SP& a, const FL_SP& b)
 {
-    // Split both into 4 x 32 bits stored within 64 bit integers
+    // Split both into 6 x 32 bits stored within 64 bit integers
     
     const FUInt64 a1 = hi32Bits(a.mInt);
     const FUInt64 a2 = lo32Bits(a.mInt);
