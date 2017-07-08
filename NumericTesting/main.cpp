@@ -7,31 +7,9 @@
 #include "FrameLib_FixedPoint.h"
 #include "FrameLib_RandGen.h"
 
-void tabbedOut(const std::string& name, const std::string& text, int tab = 25)
-{
-    std::cout << std::setw(tab) << std::setfill(' ');
-    std::cout.setf(std::ios::left);
-    std::cout.unsetf(std::ios::right);
-    std::cout << name;
-    std::cout.unsetf(std::ios::left);
-    std::cout << text << "\n";
-}
+// ************************************************************************************** //
 
-void numberOut(const std::string& name, FL_FP in)
-{
-    std::cout << std::setw(10) << std::setfill(' ');
-    std::cout.setf(std::ios::left);
-    std::cout.unsetf(std::ios::right);
-    std::cout << name;
-    std::cout << std::setbase(16);
-    std::cout << std::setw(16) << std::setfill('0');
-    std::cout.unsetf(std::ios::left);
-    std::cout.setf(std::ios::right);
-    std::cout << in.intVal() << " ";
-    std::cout << std::setbase(16);
-    std::cout << std::setw(16) << std::setfill('0') << std::setiosflags(std::ios::right);
-    std::cout << in.fracVal() << " \n";
-}
+// Random Numbers
 
 FrameLib_RandGen gen;
 
@@ -52,14 +30,6 @@ FL_FP randSmallFixed()
     
     return FL_FP(hi, lo);
 }
-/*
-FL_FP randFixed()
-{
-    uint64_t hi = randu32();
-    uint64_t lo = randu64();
-    
-    return FL_FP(hi, lo);
-}*/
 
 FL_FP randFixed(uint64_t i)
 {
@@ -81,6 +51,65 @@ FL_SP randSP()
     return FL_SP(hi, md, lo);
 }
 
+// ************************************************************************************** //
+
+// Output
+
+void tabbedOut(const std::string& name, const std::string& text, int tab = 25)
+{
+    std::cout << std::setw(tab) << std::setfill(' ');
+    std::cout.setf(std::ios::left);
+    std::cout.unsetf(std::ios::right);
+    std::cout << name;
+    std::cout.unsetf(std::ios::left);
+    std::cout << text << "\n";
+}
+
+void fixedOut(const std::string& name, FL_FP in)
+{
+    std::cout << std::setw(10) << std::setfill(' ');
+    std::cout.setf(std::ios::left);
+    std::cout.unsetf(std::ios::right);
+    std::cout << name;
+    std::cout << std::setbase(16);
+    std::cout << std::setw(16) << std::setfill('0');
+    std::cout.unsetf(std::ios::left);
+    std::cout.setf(std::ios::right);
+    std::cout << in.intVal() << " ";
+    std::cout << std::setbase(16);
+    std::cout << std::setw(16) << std::setfill('0') << std::setiosflags(std::ios::right);
+    std::cout << in.fracVal() << " \n";
+}
+
+template <typename T>
+std::string to_string_with_precision(const T a_value, const int n = 4, bool fixed = true)
+{
+    std::ostringstream out;
+    if (fixed)
+        out << std::setprecision(n) << std::fixed << a_value;
+    else
+        out << std::setprecision(n) << a_value;
+    
+    return out.str();
+}
+
+std::string getPercentage(uint64_t count, uint64_t total)
+{
+    double percentage = 100.0 * ((double) count / (double) total);
+    
+    std::string outStr(to_string_with_precision(percentage, 4, false) + "%");
+    
+    return outStr;
+}
+
+void postPercentage(std::string msg, uint64_t count, uint64_t total)
+{
+    std::cout << msg << " " << getPercentage(count, total) << "\n";
+}
+
+// ************************************************************************************** //
+
+// Helpers for fixed precision tasks
 
 bool operator > (const FL_SP& a, const FL_SP& b)
 {
@@ -112,13 +141,17 @@ FL_SP operator - (const FL_SP& a, const FL_SP& b)
     return FL_SP(hi, md, lo);
 }
 
-FL_SP diff(FL_SP a, FL_SP b)
+FL_SP absDifference(FL_SP a, FL_SP b)
 {
     if (a > b)
         return a - b;
     else
         return b - a;
 }
+
+// ************************************************************************************** //
+
+// Checks
 
 enum Equality
 {
@@ -161,52 +194,46 @@ Equality equalCheck(FL_FP a, double b)
 
 bool roundCheck(uint64_t a)                        { return (a & 0x8000000000000000ULL) ? true : false; }
 
-template <typename T>
-std::string to_string_with_precision(const T a_value, const int n = 4, bool fixed = true)
-{
-    std::ostringstream out;
-    if (fixed)
-        out << std::setprecision(n) << std::fixed << a_value;
-    else
-        out << std::setprecision(n) << a_value;
-
-    return out.str();
-}
-
-std::string getPercentage(uint64_t count, uint64_t total)
-{
-    double percentage = 100.0 * ((double) count / (double) total);
-    
-    std::string outStr(to_string_with_precision(percentage, 4, false) + "%");
-    
-    return outStr;
-}
-
-void postPercentage(std::string msg, uint64_t count, uint64_t total)
-{
-    std::cout << msg << " " << getPercentage(count, total) << "\n";
-}
-
 // ************************************************************************************** //
 
 // Correctness
 
 typedef uint64_t testFunc(uint64_t count);
 
+static int numTests = 0;
+static int numPassedTests = 0;
+
 void runTest(std::string name, testFunc func, uint64_t count)
 {
+    numTests++;
+    
     std::cout << name << " - Test Started\n";
 
     uint64_t done = func(count);
 
     if (done == count)
+    {
+        numPassedTests++;
         std::cout << name << " - Test Passed\n";
+    }
     else
+    {
         postPercentage(name + " : - TEST FAILED AT", done, count);
+    }
     
     std::cout << "\n";
 }
 
+void testsCompleted()
+{
+    if (numTests == numPassedTests)
+        std::cout << " ***** ALL TESTS PASSED *****\n";
+    else
+    {
+        std::cout << " ***** TESTS FAILED *****\n";
+        std::cout << numPassedTests << " out of " << numTests << " passed" << "\n";
+    }
+}
 // ************************************************************************************** //
 
 // Timing
@@ -451,9 +478,9 @@ uint64_t strictDivideTest(uint64_t count)
         FL_SP rP1(resultP1.intVal(), resultP1.fracVal(), 0U);
         FL_SP rM1(resultM1.intVal(), resultM1.fracVal(), 0U);
         
-        FL_SP check1 = diff(a1, r1 * b1);
-        FL_SP check2 = diff(a1, rP1 * b1);
-        FL_SP check3 = diff(a1, rM1 * b1);
+        FL_SP check1 = absDifference(a1, r1 * b1);
+        FL_SP check2 = absDifference(a1, rP1 * b1);
+        FL_SP check3 = absDifference(a1, rM1 * b1);
         
         // N.B. - equidistance is the maximum error allowed
         
@@ -516,6 +543,7 @@ void fixedDivideSpeedTest(uint64_t count)
 
 // ************************************************************************************** //
 
+// Main
 
 int main(int argc, const char * argv[]) {
     
@@ -534,29 +562,8 @@ int main(int argc, const char * argv[]) {
     
     runTimeCompareTest("Multiply Speed", "Double", "Fixed", &doubleMultiplySpeedTest, &fixedMultiplySpeedTest, 0xFFFFFFF);
     runTimeCompareTest("Divide Speed", "Double", "Fixed", &doubleDivideSpeedTest, &fixedDivideSpeedTest, 0x8FFFFFF);
-    
-    FL_FP num = FL_FP(0U, 87430U);
-    FL_FP denom = FL_FP(0U, 1U);
-    
-    FL_FP divtemp = (num / denom);
-    
-    FL_FP div = divtemp;// + FL_FP(0,0x002E0000);//FL_FP(divtemp.intVal(), divtemp.fractVal() & 0xFFFFFFFF00000000);//- FL_FP(0, 0x1FFFFFFFFULL);
-    FL_FP mul = div * denom;
-    FL_FP fldiv = ((double) num / (double) denom);
-    FL_FP flmul = ((double) fldiv * (double) denom);
-    FL_FP flmul2 = fldiv * denom;
-    FL_FP mult = FL_FP(56772.567890) * FL_FP(3.5);
-    FL_FP mulp = FL_FP(56772.567890 * 3.5);
 
-    numberOut("mul", mul);
-    numberOut("num", num);
-    numberOut("denom", denom);
-    numberOut("div", div);
-    numberOut("divd", fldiv);
-    numberOut("muld", flmul);
-    numberOut("muldd", flmul2);
-    numberOut("mulc", mult);
-    numberOut("mulp", mulp);
+    testsCompleted();
     
     return 0;
 }
