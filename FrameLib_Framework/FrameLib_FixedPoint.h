@@ -30,12 +30,13 @@ public:
     SUInt64() : mHi(0), mLo(0) {}
     SUInt64(const uint32_t& lo)  : mHi(0), mLo(lo) {}
     SUInt64(const uint32_t& hi, const uint32_t& lo)  : mHi(hi), mLo(lo) {}
+    SUInt64(const uint64_t& a) : mHi(a >> 0x20), mLo(a & 0xFFFFFFFF) {}
  
     SUInt64(const double& b)
     {
         double temp = fabs(b);
-        mLo = (uint32_t) (temp / 4294967296.0);
-        mHi = (uint32_t) (temp - (mLo * 4294967296));
+        mHi = (uint32_t) (temp / 4294967296.0);
+        mLo = (uint32_t) (temp - (mHi * 4294967296));
     }
     
     // Comparisions
@@ -58,7 +59,7 @@ public:
     friend SUInt64 operator + (const SUInt64& a, const SUInt64& b)
     {
         uint32_t hi = a.mHi + b.mHi;
-        uint32_t lo = a.mLo + b.mHi;
+        uint32_t lo = a.mLo + b.mLo;
         
         return SUInt64((lo < a.mLo) ? ++hi : hi, lo);
     }
@@ -66,7 +67,7 @@ public:
     friend SUInt64 operator - (const SUInt64& a, const SUInt64& b)
     {
         uint32_t hi = a.mHi - b.mHi;
-        uint32_t lo = a.mLo - b.mHi;
+        uint32_t lo = a.mLo - b.mLo;
         
         return SUInt64((lo > a.mLo) ? --hi : hi, lo);
     }
@@ -77,8 +78,15 @@ public:
     {
         // FIX - requires implementation for software emulation of 64bit int
         
-        return SUInt64();
+        uint64_t a1 = a.mHi;
+        a1 = (a1 << 0x20) | a.mLo;
+        
+        uint64_t b1 = b.mHi;
+        b1 = (b1 << 0x20) | b.mLo;
+        
+        return SUInt64(a1 * b1);
     }
+    
     // Addition with Assignment
     
     SUInt64& operator += (const SUInt64& b)
@@ -202,7 +210,8 @@ public:
     
     FL_FP() {}
     FL_FP(FUInt64 a, FUInt64 b) : mInt(a), mFrac(b) {}
-    FL_FP(double val);
+    FL_FP(const FL_SP& val);
+    FL_FP(const double& val);
     
     // Int and Fract
     
