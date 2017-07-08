@@ -9,7 +9,7 @@ uint64_t lo32Bits(uint64_t a)                        { return a & 0xFFFFFFFF; }
 uint64_t hi32Bits(uint64_t a)                        { return a >> 0x20; }
 uint64_t joinBits(uint64_t hi, uint64_t lo)          { return (hi << 0x20) | hi32Bits(lo); }
 uint64_t highBits(uint64_t a)                        { return (a << 0x20); }
-bool checkHighBit(uint64_t a)                        { return a & 0x8000000000000000ULL; }
+bool checkHighBit(uint64_t a)                        { return (a & 0x8000000000000000ULL) ? true : false; }
 
 // Single 64 bit sum/add/subtract with carry bit
 
@@ -428,7 +428,7 @@ FL_FP operator / (const FL_FP& a, const FL_FP& b)
     const FL_SP result = qMul(recip, a.mInt, a.mFrac);
     
     FL_FP resultLP = FL_FP(result.intVal(), result.fracHiVal());
-    resultLP = (result.fracLoVal() & FL_Limits<FUInt64>::largest()) ? resultLP + FL_FP(0U, 1U) : resultLP;
+    resultLP = checkHighBit(result.fracLoVal()) ? resultLP + FL_FP(0U, 1U) : resultLP;
     
     return resultLP;
 };
