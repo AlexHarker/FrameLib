@@ -389,12 +389,9 @@ FL_FP operator / (const FL_FP& a, const FL_FP& b)
     
     // Newton-Raphson
     
-    // FIX - maybe 2 is enough iterations?
-    
     FL_SP r = FL_SP(rE.mInt, rE.mFrac, 0);
     r = qMul(twoMinus(qMul(r, b.mInt, b.mFrac)), rE.mInt, rE.mFrac);
     r = r * twoMinus(qMul(r, b.mInt, b.mFrac));
-    //r = r * twoMinus(qMul(r, b.mInt, b.mFrac));
     
     // Multiply reciprocal to get final result and then convert to lower precision
     
