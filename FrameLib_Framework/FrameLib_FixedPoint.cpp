@@ -10,6 +10,7 @@ uint64_t hi32Bits(uint64_t a)                        { return a >> 0x20; }
 uint64_t joinBits(uint64_t hi, uint64_t lo)          { return (hi << 0x20) | hi32Bits(lo); }
 uint64_t highBits(uint64_t a)                        { return (a << 0x20); }
 bool checkHighBit(uint64_t a)                        { return (a & 0x8000000000000000ULL) ? true : false; }
+bool notZero(uint64_t a)                             { return a ? true : false; }
 
 // Single 64 bit add/subtract with carry bit
 
@@ -23,6 +24,54 @@ bool subWithCarry(FUInt64 *result, const FUInt64& a, const FUInt64& b)
 {
     *result = a - b;
     return (*result > a);
+}
+
+// ************************************************************************************** //
+
+uint32_t lo16Bits(uint32_t a)                        { return a & 0xFFFF; }
+uint32_t hi16Bits(uint32_t a)                        { return a >> 0x10; }
+uint32_t highBits(uint32_t a)                        { return (a << 0x10); }
+
+bool addWithCarry(uint32_t *result, const uint32_t& a, const uint32_t& b)
+{
+    *result = a + b;
+    return (*result < b);
+}
+
+SUInt64 operator * (const SUInt64& a, const SUInt64& b)
+{
+    // Split both into 4 x 32 bits stored within 64 bit integers
+    
+    const uint32_t a3 = hi16Bits(a.mLo);
+    const uint32_t a4 = lo16Bits(a.mLo);
+    
+    const uint32_t b3 = hi16Bits(b.mLo);
+    const uint32_t b4 = lo16Bits(b.mLo);
+    
+    const uint32_t a3b3 = a3 * b3;
+    const uint32_t a3b4 = a3 * b4;
+    
+    const uint32_t a4b3 = a4 * b3;
+    const uint32_t a4b4 = a4 * b4;
+    
+    // Sum the low part
+    
+    uint32_t lo(0U);
+    unsigned int c1 = addWithCarry(&lo, a4b4, highBits(a4b3)) ? 1U : 0U;
+    c1 = addWithCarry(&lo, lo, highBits(a3b4)) ? ++c1 : c1;
+    
+    // Sum the hi part
+    
+    uint32_t hi(0U);
+    unsigned int c2 = addWithCarry(&hi, a3b3, hi16Bits(a4b3)) ? 1U : 0U;
+    c2 = addWithCarry(&hi, hi, hi16Bits(a3b4)) ? ++c2: c2;
+    c2 = addWithCarry(&hi, hi, uint32_t(c1)) ? ++c2: c2;
+    
+    // Do overflow
+    
+    uint32_t t1 = c2 ? FL_Limits<uint32_t>::largest() : 0U;
+    
+    return SUInt64(hi | t1, lo | t1);
 }
 
 // ************************************************************************************** //
@@ -273,10 +322,10 @@ FL_SP twoMinus(const FL_SP& b)
     
     // N.B. - must be able to double carry!
     
-    if ((b.mFracHi | b.mFracLo))
+    if (notZero(b.mFracHi | b.mFracLo))
         --hi;
     
-    if (b.mFracLo)
+    if (notZero(b.mFracLo))
         --md;
     
     return FL_SP(hi, md, lo);
@@ -366,6 +415,9 @@ FL_FP operator * (const FL_FP& a, const FL_FP& b)
     FUInt64 t1(0U);
     unsigned int c1 = addWithCarry(&t1, a4b4, highBits(a4b3)) ? 1U : 0U;
     c1 = addWithCarry(&t1, t1, highBits(a3b4)) ? ++c1 : c1;
+    
+    // Round
+    
     c1 = checkHighBit(t1) ? ++c1 : c1;
     
     // Sum the fractional part

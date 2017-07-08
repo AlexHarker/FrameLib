@@ -30,22 +30,23 @@ public:
     SUInt64() : mHi(0), mLo(0) {}
     SUInt64(const uint32_t& lo)  : mHi(0), mLo(lo) {}
     SUInt64(const uint32_t& hi, const uint32_t& lo)  : mHi(hi), mLo(lo) {}
-    SUInt64(const uint64_t& a) : mHi(a >> 0x20), mLo(a & 0xFFFFFFFF) {}
+    SUInt64(const uint64_t& a) : mHi((a >> 0x20) & 0xFFFFFFFF), mLo(a & 0xFFFFFFFF) {}
  
     SUInt64(const double& b)
     {
         double temp = fabs(b);
         mHi = (uint32_t) (temp / 4294967296.0);
-        mLo = (uint32_t) (temp - (mHi * 4294967296));
+        mLo = (uint32_t) (temp - (mHi * 4294967296.0));
     }
     
     // Comparisions
 
-    friend bool operator == (const SUInt64& a, const SUInt64& b)    { return (a.mHi == b.mHi && a.mLo == b.mLo);}
-    friend bool operator < (const SUInt64& a, const SUInt64& b)     { return ((a.mHi < b.mHi) || (a.mHi == b.mHi && a.mLo < b.mLo));}
+    friend bool operator == (const SUInt64& a, const SUInt64& b)    { return (a.mHi == b.mHi && a.mLo == b.mLo); }
+    
+    friend bool operator < (const SUInt64& a, const SUInt64& b)     { return ((a.mHi < b.mHi) || (a.mHi == b.mHi && a.mLo < b.mLo)); }
     friend bool operator > (const SUInt64& a, const SUInt64& b)     { return ((a.mHi > b.mHi) || (a.mHi == b.mHi && a.mLo > b.mLo)); }
     
-    // Not Zero
+    // Zero Test
     
     friend bool operator !  ( const SUInt64& b)                     { return !b.mHi && !b.mLo; }
     
@@ -60,20 +61,23 @@ public:
     {
         uint32_t hi = a.mHi + b.mHi;
         uint32_t lo = a.mLo + b.mLo;
+        hi = (lo < a.mLo) ? ++hi : hi;
         
-        return SUInt64((lo < a.mLo) ? ++hi : hi, lo);
+        return SUInt64(hi, lo);
     }
     
     friend SUInt64 operator - (const SUInt64& a, const SUInt64& b)
     {
         uint32_t hi = a.mHi - b.mHi;
         uint32_t lo = a.mLo - b.mLo;
+        hi = (lo > a.mLo) ? --hi : hi;
         
-        return SUInt64((lo > a.mLo) ? --hi : hi, lo);
+        return SUInt64(hi, lo);
     }
     
     // Multiplication
-    
+    friend SUInt64 operator * (const SUInt64& a, const SUInt64& b);
+    /*
     friend SUInt64 operator * (const SUInt64& a, const SUInt64& b)
     {
         // FIX - requires implementation for software emulation of 64bit int
@@ -85,7 +89,7 @@ public:
         b1 = (b1 << 0x20) | b.mLo;
         
         return SUInt64(a1 * b1);
-    }
+    }*/
     
     // Addition with Assignment
     
@@ -97,7 +101,7 @@ public:
     
     // Increment/Decrement
     
-    SUInt64& operator -- ()
+    SUInt64& operator ++ ()
     {
         mHi = (++mLo == 0) ? ++mHi : mHi;
         return *this;
@@ -110,7 +114,7 @@ public:
         return result;
     }
     
-    SUInt64& operator ++ ()
+    SUInt64& operator -- ()
     {
         mHi = (mLo-- == 0) ? --mHi : mHi;
         return *this;
@@ -139,8 +143,9 @@ public:
     friend SUInt64 hi32Bits(SUInt64 a)                      { return SUInt64(0, a.mHi); }
     friend SUInt64 joinBits(SUInt64 hi, SUInt64 lo)         { return SUInt64(hi.mLo, lo.mHi); }
     friend SUInt64 highBits(SUInt64 a)                      { return SUInt64(a.mLo, 0);  }
-    friend bool checkHighBit(SUInt64 a)                     { return a & SUInt64(0x80000000U, 0); }
-    
+    friend bool checkHighBit(SUInt64 a)                     { return (a.mHi & 0x80000000U) ? true : false; }
+    friend bool notZero(SUInt64 a)                          { return !a ? false : true; }
+
 private:
     
     uint32_t mHi;
@@ -150,9 +155,9 @@ private:
 // ************************************************************************************** //
 
 //#ifdef FL_64BIT
-typedef uint64_t FUInt64;
+//typedef uint64_t FUInt64;
 //#else
-//typedef SUInt64 FUInt64;
+typedef SUInt64 FUInt64;
 //#endif
 
 // ************************************************************************************** //
@@ -231,7 +236,7 @@ public:
     friend bool operator <= (const FL_FP& a, const FL_FP& b)    { return !(a > b); }
     friend bool operator >= (const FL_FP& a, const FL_FP& b)    { return !(a < b); }
     
-    // Not zero
+    // Zero Test
     
     friend bool operator ! ( const FL_FP& b)                    { return !b.mInt && !b.mFrac; }
     
