@@ -6,198 +6,36 @@
 #include <cmath>
 #include <limits>
 
-// FIX - This needs to be altered to cope with platforms other than windows/mac and compilers other than visual studio and GCC
-
-#ifdef __APPLE__
-#if __LP64__
-#define FL_64BIT
-#endif
-#else
-#ifdef _WIN64
-#define FL_64BIT
-#endif
-#endif
-
 // ************************************************************************************** //
 
-class SUInt64
-{
+// FL_SP
 
-public:
-    
-    // Constructors
-    
-    SUInt64() : mHi(0), mLo(0) {}
-    SUInt64(const uint32_t& lo)  : mHi(0), mLo(lo) {}
-    SUInt64(const uint32_t& hi, const uint32_t& lo)  : mHi(hi), mLo(lo) {}
-    SUInt64(const uint64_t& a) : mHi((a >> 0x20) & 0xFFFFFFFF), mLo(a & 0xFFFFFFFF) {}
- 
-    SUInt64(const double& b)
-    {
-        double temp = fabs(b);
-        mHi = (uint32_t) (temp / 4294967296.0);
-        mLo = (uint32_t) (temp - (mHi * 4294967296.0));
-    }
-    
-    // Comparisions
-
-    friend bool operator == (const SUInt64& a, const SUInt64& b)    { return (a.mHi == b.mHi && a.mLo == b.mLo); }
-    
-    friend bool operator < (const SUInt64& a, const SUInt64& b)     { return ((a.mHi < b.mHi) || (a.mHi == b.mHi && a.mLo < b.mLo)); }
-    friend bool operator > (const SUInt64& a, const SUInt64& b)     { return ((a.mHi > b.mHi) || (a.mHi == b.mHi && a.mLo > b.mLo)); }
-    
-    // Zero Test
-    
-    friend bool operator !  ( const SUInt64& b)                     { return !b.mHi && !b.mLo; }
-    
-    // Bit Operations
-    
-    friend SUInt64 operator | (const SUInt64& a, const SUInt64& b)  { return SUInt64(a.mHi | b.mHi, a.mLo | b.mLo); }
-    friend SUInt64 operator & (const SUInt64& a, const SUInt64& b)  { return SUInt64(a.mHi & b.mHi, a.mLo & b.mLo); }
-
-    // Addition and Subtraction
-    
-    friend SUInt64 operator + (const SUInt64& a, const SUInt64& b)
-    {
-        uint32_t hi = a.mHi + b.mHi;
-        uint32_t lo = a.mLo + b.mLo;
-        hi = (lo < a.mLo) ? ++hi : hi;
-        
-        return SUInt64(hi, lo);
-    }
-    
-    friend SUInt64 operator - (const SUInt64& a, const SUInt64& b)
-    {
-        uint32_t hi = a.mHi - b.mHi;
-        uint32_t lo = a.mLo - b.mLo;
-        hi = (lo > a.mLo) ? --hi : hi;
-        
-        return SUInt64(hi, lo);
-    }
-    
-    // Multiplication
-    friend SUInt64 operator * (const SUInt64& a, const SUInt64& b);
-    /*
-    friend SUInt64 operator * (const SUInt64& a, const SUInt64& b)
-    {
-        // FIX - requires implementation for software emulation of 64bit int
-        
-        uint64_t a1 = a.mHi;
-        a1 = (a1 << 0x20) | a.mLo;
-        
-        uint64_t b1 = b.mHi;
-        b1 = (b1 << 0x20) | b.mLo;
-        
-        return SUInt64(a1 * b1);
-    }*/
-    
-    // Addition with Assignment
-    
-    SUInt64& operator += (const SUInt64& b)
-    {
-        *this = *this + b;
-        return *this;
-    }
-    
-    // Increment/Decrement
-    
-    SUInt64& operator ++ ()
-    {
-        mHi = (++mLo == 0) ? ++mHi : mHi;
-        return *this;
-    }
-
-    SUInt64& operator ++ (int)
-    {
-        SUInt64& result = *this;
-        operator++();
-        return result;
-    }
-    
-    SUInt64& operator -- ()
-    {
-        mHi = (mLo-- == 0) ? --mHi : mHi;
-        return *this;
-    }
-    
-    SUInt64& operator -- (int)
-    {
-        SUInt64& result = *this;
-        operator--();
-        return result;
-    }
-    
-    // Conversion
-
-    operator double() const     { return ((double) mHi * 4294967296.0) + ((double) mLo); }
-    
-    SUInt64& operator = (const double& b)
-    {
-        *this = SUInt64(b);
-        return *this;
-    }
-    
-    // Bit Manipulation
-    
-    friend SUInt64 lo32Bits(SUInt64 a)                      { return SUInt64(0, a.mLo); }
-    friend SUInt64 hi32Bits(SUInt64 a)                      { return SUInt64(0, a.mHi); }
-    friend SUInt64 joinBits(SUInt64 hi, SUInt64 lo)         { return SUInt64(hi.mLo, lo.mHi); }
-    friend SUInt64 highBits(SUInt64 a)                      { return SUInt64(a.mLo, 0);  }
-    friend bool checkHighBit(SUInt64 a)                     { return (a.mHi & 0x80000000U) ? true : false; }
-    friend bool notZero(SUInt64 a)                          { return !a ? false : true; }
-
-private:
-    
-    uint32_t mHi;
-    uint32_t mLo;
-};
-
-// ************************************************************************************** //
-
-//#ifdef FL_64BIT
-//typedef uint64_t FUInt64;
-//#else
-typedef SUInt64 FUInt64;
-//#endif
-
-// ************************************************************************************** //
+// This is a minimal class for super precision that aids the calculation of division in fixed point (giving added precision where needed)
 
 struct FL_SP
 {
     // Constructors
     
     FL_SP() {}
-    FL_SP(FUInt64 a, FUInt64 b, FUInt64 c) : mInt(a), mFracHi(b), mFracLo(c) {}
+    FL_SP(uint64_t a, uint64_t b, uint64_t c) : mInt(a), mFracHi(b), mFracLo(c) {}
     
     // Get Components
     
-    FUInt64 intVal() const       { return mInt; }
-    FUInt64 fracHiVal() const    { return mFracHi; }
-    FUInt64 fracLoVal() const    { return mFracLo; }
+    uint64_t intVal() const       { return mInt; }
+    uint64_t fracHiVal() const    { return mFracHi; }
+    uint64_t fracLoVal() const    { return mFracLo; }
     
     // Necessary Operations
     
-    friend FL_SP qMul (const FL_SP& a, const FUInt64 &intVal, const FUInt64 &fracVal);
+    friend FL_SP qMul (const FL_SP& a, const uint64_t &intVal, const uint64_t &fracVal);
     friend FL_SP operator * (const FL_SP& a, const FL_SP& b);
-    friend FL_SP operator - (const FL_SP& a, const FL_SP& b);
     friend FL_SP twoMinus(const FL_SP& b);
-    
-    FL_SP& operator *= (const FL_SP& b)
-    {
-        *this = *this * b;
-        return *this;
-    }
-    
-    friend bool operator > (const FL_SP& a, const FL_SP& b)
-    {
-        return ((a.mInt > b.mInt) || (a.mInt == b.mInt && a.mFracHi > b.mFracHi) || (a.mInt == b.mInt && a.mFracHi == b.mFracHi && a.mFracLo > b.mFracLo));
-    }
     
 private:
     
-    FUInt64 mInt;
-    FUInt64 mFracHi;
-    FUInt64 mFracLo;
+    uint64_t mInt;
+    uint64_t mFracHi;
+    uint64_t mFracLo;
 };
 
 // ************************************************************************************** //
@@ -214,14 +52,14 @@ public:
     // Constructors
     
     FL_FP() : mInt(0U), mFrac(0U) {}
-    FL_FP(FUInt64 a, FUInt64 b) : mInt(a), mFrac(b) {}
+    FL_FP(uint64_t a, uint64_t b) : mInt(a), mFrac(b) {}
     FL_FP(const FL_SP& val);
     FL_FP(const double& val);
     
     // Int and Fract
     
-    FUInt64 intVal()   { return mInt; }
-    FUInt64 fracVal()  { return mFrac; }
+    uint64_t intVal()   { return mInt; }
+    uint64_t fracVal()  { return mFrac; }
     
     // Absolute value
     
@@ -277,7 +115,7 @@ public:
     
     FL_FP& operator ++ ()
     {
-        if (++mFrac == FUInt64(0U))
+        if (++mFrac == uint64_t(0U))
             ++mInt;
         
         return *this;
@@ -292,7 +130,7 @@ public:
     
     FL_FP& operator -- ()
     {
-        if (mFrac-- == FUInt64(0U))
+        if (mFrac-- == uint64_t(0U))
             --mInt;
         
         return *this;
@@ -351,8 +189,8 @@ public:
     
 private:
 
-    FUInt64 mInt;
-    FUInt64 mFrac;
+    uint64_t mInt;
+    uint64_t mFrac;
 };
 
 // ************************************************************************************** //
@@ -370,14 +208,9 @@ template <class T> struct FL_Limits
     }
 };
 
-template<> struct FL_Limits <SUInt64>
-{
-    static SUInt64 largest() { return SUInt64(std::numeric_limits<uint32_t>::max(), std::numeric_limits<uint32_t>::max()); }
-};
-
 template<> struct FL_Limits <FL_FP>
 {
-    static FL_FP largest() { return FL_FP(FL_Limits<FUInt64>::largest(), FL_Limits<FUInt64>::largest()); }
+    static FL_FP largest() { return FL_FP(FL_Limits<uint64_t>::largest(), FL_Limits<uint64_t>::largest()); }
 };
 
 // Double Helper Utility

@@ -108,6 +108,37 @@ FL_SP randSP()
     return FL_SP(hi, md, lo);
 }
 
+
+bool operator > (const FL_SP& a, const FL_SP& b)
+{
+    return ((a.intVal() > b.intVal()) || (a.intVal() == b.intVal() && a.fracHiVal() > b.fracHiVal()) || (a.intVal() == b.intVal() && a.fracHiVal() == b.fracHiVal() && a.fracLoVal() > b.fracLoVal()));
+}
+
+bool operator < (const FL_SP& a, const FL_SP& b)
+{
+    return ((a.intVal() < b.intVal()) || (a.intVal() == b.intVal() && a.fracHiVal() < b.fracHiVal()) || (a.intVal() == b.intVal() && a.fracHiVal() == b.fracHiVal() && a.fracLoVal() < b.fracLoVal()));
+}
+
+FL_SP operator - (const FL_SP& a, const FL_SP& b)
+{
+    uint64_t hi, md, lo;
+    
+    hi = a.intVal() - b.intVal();
+    md = a.fracHiVal() - b.fracHiVal();
+    hi = md > a.fracHiVal() ? --hi : hi;
+    lo = a.fracLoVal() - b.fracLoVal();
+    
+    // N.B. - must be able to double carry!
+    
+    if (lo > a.fracLoVal())
+    {
+        hi = md ? hi : --hi;
+        --md;
+    }
+    
+    return FL_SP(hi, md, lo);
+}
+
 FL_SP diff(FL_SP a, FL_SP b)
 {
     if (a > b)
@@ -282,7 +313,7 @@ int main(int argc, const char * argv[]) {
         FL_FP result1 = rand1 * rand2;
         FL_SP result2 = qMul(FL_SP(rand1.intVal(), rand1.fracVal(), 0U), rand2.intVal(), rand2.fracVal());
         
-        if ((result1.intVal() != result2.intVal()) || ((result1.fracVal() != result2.fracHiVal()) && !(roundCheck(result2.fracLoVal()) && (result1.fracVal() - FUInt64(1U)) == result2.fracHiVal())))
+        if ((result1.intVal() != result2.intVal()) || ((result1.fracVal() != result2.fracHiVal()) && !(roundCheck(result2.fracLoVal()) && (result1.fracVal() - 1) == result2.fracHiVal())))
             std::cout << "fixed mul not equal to qMul " << i << "\n";
     }
     
@@ -343,7 +374,9 @@ int main(int argc, const char * argv[]) {
         FL_SP check2 = diff(a1, rP1 * b1);
         FL_SP check3 = diff(a1, rM1 * b1);
         
-        if ((check3 > check1) && (check2 > check1))
+        // N.B. - equidistance is the maximum error allowed
+        
+        if (!(check3 < check1) && !(check2 < check1))
             continue;
         
         std::cout << "FAILED \n";
@@ -373,7 +406,7 @@ int main(int argc, const char * argv[]) {
         for (uint64_t i=0; i <= 0xFFFFFFF; i++)
             result *= FL_FP(2U,0x8000000000000000ULL);
         
-            if (result.fracVal() == FUInt64(0U))
+            if (result.fracVal() == 0)
                 std::cout << "equals zero\n";
     }
 
