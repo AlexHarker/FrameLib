@@ -297,7 +297,7 @@ FL_FP::FL_FP(const double& val)
     else
     {
         mInt = absVal;
-        mFrac = ((absVal - floor(absVal)) * 18446744073709551616.0);
+        mFrac = round((absVal - floor(absVal)) * 18446744073709551616.0);
     }
 }
 
