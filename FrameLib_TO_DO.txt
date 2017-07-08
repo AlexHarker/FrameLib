@@ -28,7 +28,7 @@ PROGRESS	- Max Object Work
 
 8 - Methods of dealing with data storage and retrieval (a la coll etc.) and also buffers (abstract out?)
 
-PROGRESS	9 - Fixed Point Division / Fixed Point Time Format
+DONE		9 - Fixed Point Division / Fixed Point Time Format
 
 10 - Multi threading work (Memory / DSP / Attributes / DSP Queue / Connection)
 
