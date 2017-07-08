@@ -6,7 +6,45 @@
 #include "FrameLib_FixedPoint.h"
 #include "FrameLib_RandGen.h"
 
-void numberOut(const char *name, FL_FP in)
+class Timer
+{
+    
+public:
+    
+    Timer() : mStart(0), mStore1(0), mStore2(0) {}
+    
+    void start()
+    {
+        mStart = mach_absolute_time();
+    };
+    
+    void stop(const std::string& msg)
+    {
+        uint64_t end = mach_absolute_time();
+        
+        mach_timebase_info_data_t info;
+        mach_timebase_info(&info);
+        
+        uint64_t elapsed = ((end - mStart) * info.numer) / info.denom;
+        std::cout << msg << " elapsed " << (elapsed / 1000000.0) << "\n";
+        
+        mStore2 = mStore1;
+        mStore1 = elapsed;
+    };
+    
+    void relative(const std::string& msg)
+    {
+        std::cout << msg << " relative " << ((double) mStore1 / (double) mStore2) << "\n";
+    }
+
+private:
+    
+    uint64_t        mStart;
+    uint64_t        mStore1;
+    uint64_t        mStore2;
+};
+
+void numberOut(const std::string& name, FL_FP in)
 {
     std::cout << std::setw(10) << std::setfill(' ');
     std::cout.setf(std::ios::left);
@@ -80,6 +118,8 @@ bool equal(FL_FP a, double b)
 bool roundCheck(uint64_t a)                        { return (a & 0x8000000000000000ULL) ? true : false; }
 
 int main(int argc, const char * argv[]) {
+    
+    Timer timeMeasure;
     
     //FL_FP num = FL_FP(5, 35798);//(9.34567434);
     //FL_FP num = FL_FP(9, 0x587e1d115dcb894c);//(9.34567434);
@@ -240,15 +280,7 @@ int main(int argc, const char * argv[]) {
     
     std::cout << "done hard\n";
     
-    /* Get the timebase info */
-    mach_timebase_info_data_t info;
-    mach_timebase_info(&info);
-    
-    uint64_t        start;
-    uint64_t        end;
-    uint64_t        elapsed;
-
-    start = mach_absolute_time();
+    timeMeasure.start();
     
     {
         double result = 1.0;
@@ -260,14 +292,8 @@ int main(int argc, const char * argv[]) {
             std::cout << "equals zero\n";
     }
     
-    end = mach_absolute_time();
-    elapsed = end - start;
-    elapsed *= info.numer;
-    elapsed /= info.denom;
-    double elapsed1 = elapsed / 1000000.0;
-    std::cout << "elapsed " << elapsed1 << "\n";
-
-    start = mach_absolute_time();
+    timeMeasure.stop("double multiply");
+    timeMeasure.start();
 
     {
         FL_FP result = FL_FP(1.0);
@@ -279,17 +305,9 @@ int main(int argc, const char * argv[]) {
                 std::cout << "equals zero\n";
     }
 
-    end = mach_absolute_time();
-    elapsed = end - start;
-    elapsed *= info.numer;
-    elapsed /= info.denom;
-    double elapsed2 = elapsed / 1000000.0;
-    
-    std::cout << "elapsed " << elapsed2 << "\n";
-
-    std::cout << "relative " << elapsed2 / elapsed1 << "\n";
-    
-    start = mach_absolute_time();
+    timeMeasure.stop("FP_FP multiply");
+    timeMeasure.relative("FP_FP/double multiply");
+    timeMeasure.start();
 
     ///                      
     for (uint64_t i=0; i <= 0x8FFFFFF; i++)
@@ -300,14 +318,8 @@ int main(int argc, const char * argv[]) {
             std::cout << "failed " << i << "\n";
     }
     
-    end = mach_absolute_time();
-    elapsed = end - start;
-    elapsed *= info.numer;
-    elapsed /= info.denom;
-    elapsed1 = elapsed / 1000000.0;
-    std::cout << "elapsed " << elapsed1 << "\n";
-    
-    start = mach_absolute_time();
+    timeMeasure.stop("double divide");
+    timeMeasure.start();
 
     for (uint64_t i=0; i <= 0x8FFFFFF; i++)
     {
@@ -317,15 +329,9 @@ int main(int argc, const char * argv[]) {
             std::cout << "failed " << i << "\n";
     }
     
-    end = mach_absolute_time();
-    elapsed = end - start;
-    elapsed *= info.numer;
-    elapsed /= info.denom;
-    elapsed2 = elapsed / 1000000.0;
-    
-    std::cout << "elapsed " << elapsed2 << "\n";
-    
-    std::cout << "relative " << elapsed2 / elapsed1 << "\n";
+    timeMeasure.stop("FP_FP divide");
+    timeMeasure.relative("FP_FP/double divide");
+    timeMeasure.start();
     
     FL_FP divtemp = (num / denom);
     
