@@ -214,7 +214,7 @@ FL_SP operator * (const FL_SP& a, const FL_SP& b)
     c2 = addWithCarry(&lo, lo, joinBits(a2b5, a4b5)) ? ++c2: c2;
     c2 = addWithCarry(&lo, lo, joinBits(a5b2, a5b4)) ? ++c2: c2;
     c2 = addWithCarry(&lo, lo, highBits(a4b3)) ? ++c2: c2;
-    c2 = addWithCarry(&lo, lo, highBits(a3b4)) ? ++c2: c2;
+    c2 = addWithCarry(&lo, lo, highBits(a3b4) | FUInt64(c1)) ? ++c2: c2;
     
     // Sum the hi fractional part
     
@@ -228,7 +228,7 @@ FL_SP operator * (const FL_SP& a, const FL_SP& b)
     c3 = addWithCarry(&md, md, joinBits(a2b3, a1b6)) ? ++c3: c3;
     c3 = addWithCarry(&md, md, joinBits(a3b2, a6b1)) ? ++c3: c3;
     c3 = addWithCarry(&md, md, hi32Bits(a2b5) + hi32Bits(a5b2)) ? ++c3: c3;
-    c3 = addWithCarry(&md, md, c2) ? ++c3: c3;
+    c3 = addWithCarry(&md, md, FUInt64(c2)) ? ++c3: c3;
     
     // Sum the integer part
     
@@ -238,7 +238,7 @@ FL_SP operator * (const FL_SP& a, const FL_SP& b)
     c4 = addWithCarry(&hi, hi, joinBits(a1b2, a1b4)) ? ++c4: c4;
     c4 = addWithCarry(&hi, hi, joinBits(a2b1, a4b1)) ? ++c4: c4;
     c4 = addWithCarry(&hi, hi, hi32Bits(a2b3) + hi32Bits(a3b2)) ? ++c4: c4;
-    c4 = addWithCarry(&hi, hi, c3) ? ++c4: c4;
+    c4 = addWithCarry(&hi, hi, FUInt64(c3)) ? ++c4: c4;
     
     // Do overflow
     
