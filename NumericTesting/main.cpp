@@ -79,11 +79,22 @@ FL_FP randSmallFixed()
     
     return FL_FP(hi, lo);
 }
-
+/*
 FL_FP randFixed()
 {
     uint64_t hi = randu32();
     uint64_t lo = randu64();
+    
+    return FL_FP(hi, lo);
+}*/
+
+FL_FP randFixed(uint64_t i)
+{
+    uint64_t hi = randu64();
+    uint64_t lo = randu64();
+    
+    hi >>= (i % 64);
+    lo >>= gen.randInt(64);
     
     return FL_FP(hi, lo);
 }
@@ -105,17 +116,53 @@ FL_SP diff(FL_SP a, FL_SP b)
         return b - a;
 }
 
-bool equal(FL_FP a, double b)
+enum Equality
 {
-    double c = a;
+    kExact,
+    kEqualFixed,
+    kNextDoubleOneULP,
+    kOneULP,
+    kNextDouble,
+    kInaccurate,
+};
+
+Equality equalCheck(FL_FP a, double b)
+{
+    double c  = a;
+    double cp = nextafter(c, std::numeric_limits<double>::infinity());
+    double cm = nextafter(c, -std::numeric_limits<double>::infinity());
     
-    if (b == c || (b == nextafter(a, std::numeric_limits<double>::infinity())) || (b == nextafter(a, -std::numeric_limits<double>::infinity())))
-        return true;
+    FL_FP d = b;
     
-    return false;
+    if (b == c)
+        return kExact;
+    
+    if (a == d)
+        return kEqualFixed;
+    
+    bool ulp = ((a + FL_FP(0U, 1U)) == d) || ((a - FL_FP(0U, 1U)) == d);
+    bool next = (b == cp) || (b == cm);
+    
+    if (ulp && next)
+        return kNextDoubleOneULP;
+    
+    if (ulp)
+        return kOneULP;
+    
+    if (next)
+        return kNextDouble;
+    
+    return kInaccurate;
 }
 
 bool roundCheck(uint64_t a)                        { return (a & 0x8000000000000000ULL) ? true : false; }
+
+void postPercentage(std::string msg, uint64_t count, uint64_t total)
+{
+    double percentage = 100.0 * ((double) count / (double) total);
+    
+    std::cout << msg << " " << percentage << "%\n";
+}
 
 int main(int argc, const char * argv[]) {
     
@@ -135,8 +182,8 @@ int main(int argc, const char * argv[]) {
     
     for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
-        FL_FP rand1 = randFixed();
-        FL_FP rand2 = randFixed();
+        FL_FP rand1 = randFixed(i);
+        FL_FP rand2 = randFixed(i);
         FL_FP result1 = rand1 * rand2;
         FL_FP result2 = rand2 * rand1;
         
@@ -146,20 +193,44 @@ int main(int argc, const char * argv[]) {
     
     // Multiplication double comparison test
     
+    uint64_t exact = 0;
+    uint32_t equalFP = 0;
+    uint32_t nextULP = 0;
+    uint32_t nextDouble = 0;
+    uint32_t oneULP = 0;
+    uint32_t inaccurate = 0;
+    
     for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
-        double rand1D = (double) randFixed();
-        double rand2D = (double) randFixed();
+        double rand1D = (double) randFixed(i);
+        double rand2D = (double) randFixed(i);
         FL_FP rand1 = rand1D;
         FL_FP rand2 = rand2D;
         FL_FP result1 = (rand1 * rand2);
 
         double result2 = rand2D * rand1D;
         
-        if (!equal(result1, result2))
-            std::cout << "Fixed mul not the same as double " << i << "\n";
+        switch (equalCheck(result1, result2))
+        {
+            case kExact:            exact++;            break;
+            case kEqualFixed:       equalFP++;          break;
+            case kNextDouble:       nextDouble++;       break;
+            case kNextDoubleOneULP: nextULP++;          break;
+            case kOneULP:           oneULP++;           break;
+            case kInaccurate:       inaccurate++;       break;
+        }
     }
     
+    if (inaccurate)
+        std::cout << "FAILED double multiplication comparison test\n";
+
+    postPercentage("exact", exact, 0xFFFFFF);
+    postPercentage("equal as fixed point", equalFP, 0xFFFFFF);
+    postPercentage("next double / one ULP", nextULP, 0xFFFFFF);
+    postPercentage("next double", nextDouble, 0xFFFFFF);
+    postPercentage("one ULP out", oneULP, 0xFFFFFF);
+    postPercentage("inaccurate", inaccurate, 0xFFFFFF);
+
     // Multiplication SP commutation test
     
     for (uint64_t i=0; i <= 0xFFFFFF; i++)
@@ -205,8 +276,8 @@ int main(int argc, const char * argv[]) {
     
     for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
-        FL_FP rand1 = randFixed();
-        FL_FP rand2 = randFixed();
+        FL_FP rand1 = randFixed(i);
+        FL_FP rand2 = randFixed(i);
         
         FL_FP result1 = rand1 * rand2;
         FL_SP result2 = qMul(FL_SP(rand1.intVal(), rand1.fracVal(), 0U), rand2.intVal(), rand2.fracVal());
@@ -217,10 +288,10 @@ int main(int argc, const char * argv[]) {
     
     // Simple Divide Check
     
-    uint64_t correct = 0;
-    uint64_t between = 0 ;
+    uint64_t exact2 = 0;
+    uint64_t between = 0;
     
-    for (uint64_t i=0; i <= 0xFFFFFF; i++)
+    for (uint64_t i = 0; i <= 0xFFFFFF; i++)
     {
         FL_FP a = randSmallFixed();
         FL_FP b = randSmallFixed();
@@ -232,7 +303,7 @@ int main(int argc, const char * argv[]) {
         
         if (check1 == a)
         {
-            correct++;
+            exact2++;
             continue;
         }
         
@@ -242,17 +313,18 @@ int main(int argc, const char * argv[]) {
             continue;
         }
         
-        std::cout << "failed\n";
+        std::cout << "FAILED\n";
 
         break;
     }
 
-    std::cout << "correct " << correct << "\n";
-    std::cout << "between " << between << "\n";
+    postPercentage("exact", exact2, 0xFFFFFF);
+    postPercentage("between", between, 0xFFFFFF);
+
     std::cout << "done simple\n";
     
     // Hard Divide Check
-    
+ 
     for (uint64_t i=0; i <= 0xFFFFFF; i++)
     {
         FL_FP a = randSmallFixed();
@@ -274,7 +346,7 @@ int main(int argc, const char * argv[]) {
         if ((check3 > check1) && (check2 > check1))
             continue;
         
-        std::cout << "failed \n";
+        std::cout << "FAILED \n";
         break;
     }
     
@@ -301,7 +373,7 @@ int main(int argc, const char * argv[]) {
         for (uint64_t i=0; i <= 0xFFFFFFF; i++)
             result *= FL_FP(2U,0x8000000000000000ULL);
         
-            if (result.fracVal() == 0U)
+            if (result.fracVal() == FUInt64(0U))
                 std::cout << "equals zero\n";
     }
 
@@ -315,7 +387,7 @@ int main(int argc, const char * argv[]) {
         double result = 1.0 / (i + 2);
         
         if (result == i)
-            std::cout << "failed " << i << "\n";
+            std::cout << "FAILED " << i << "\n";
     }
     
     timeMeasure.stop("double divide");
@@ -326,7 +398,7 @@ int main(int argc, const char * argv[]) {
         FL_FP result = FL_FP(0U,i) / FL_FP(0U,1U);
         
         if (result != FL_FP(i,0U))
-            std::cout << "failed " << i << "\n";
+            std::cout << "FAILED " << i << "\n";
     }
     
     timeMeasure.stop("FP_FP divide");
