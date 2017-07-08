@@ -14,7 +14,7 @@ uint32_t FrameLib_RandGen::randInt()
 
 // Return an Unsigned 32 bit Integer
 
-inline uint32_t FrameLib_RandGen::randInt(uint32_t n)
+uint32_t FrameLib_RandGen::randInt(uint32_t n)
 {
     uint32_t used = n;
     uint32_t i;
