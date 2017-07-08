@@ -312,9 +312,8 @@ FL_FP::FL_FP(const FL_SP& val) : mInt(val.intVal()), mFrac(val.fracHiVal())
 
 FL_FP operator + (const FL_FP& a, const FL_FP& b)
 {
-    FUInt64 hi, lo;
-    
-    hi = a.mInt + b.mInt;
+    FUInt64 lo(0U);
+    FUInt64 hi = a.mInt + b.mInt;
     hi = addWithCarry(&lo, a.mFrac, b.mFrac) ? ++hi : hi;
     
     return FL_FP(hi, lo);
@@ -322,9 +321,8 @@ FL_FP operator + (const FL_FP& a, const FL_FP& b)
 
 FL_FP operator - (const FL_FP& a, const FL_FP& b)
 {
-    FUInt64 hi, lo;
-    
-    hi = a.mInt - b.mInt;
+    FUInt64 lo(0U);
+    FUInt64 hi = a.mInt - b.mInt;
     hi = subWithCarry(&lo, a.mFrac, b.mFrac) ? --hi : hi;
     
     return FL_FP(hi, lo);

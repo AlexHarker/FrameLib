@@ -301,7 +301,7 @@ int main(int argc, const char * argv[]) {
         for (uint64_t i=0; i <= 0xFFFFFFF; i++)
             result *= FL_FP(2U,0x8000000000000000ULL);
         
-            if (result == FL_FP(0U,0U))
+            if (result.fracVal() == 0U)
                 std::cout << "equals zero\n";
     }
 

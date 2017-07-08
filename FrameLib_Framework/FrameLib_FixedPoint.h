@@ -208,7 +208,7 @@ public:
     
     // Constructors
     
-    FL_FP() {}
+    FL_FP() : mInt(0U), mFrac(0U) {}
     FL_FP(FUInt64 a, FUInt64 b) : mInt(a), mFrac(b) {}
     FL_FP(const FL_SP& val);
     FL_FP(const double& val);
@@ -272,7 +272,7 @@ public:
     
     FL_FP& operator ++ ()
     {
-        if (++mFrac == FUInt64())
+        if (++mFrac == FUInt64(0U))
             ++mInt;
         
         return *this;
@@ -287,7 +287,7 @@ public:
     
     FL_FP& operator -- ()
     {
-        if (mFrac-- == FUInt64())
+        if (mFrac-- == FUInt64(0U))
             --mInt;
         
         return *this;
