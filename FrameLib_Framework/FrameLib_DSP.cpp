@@ -63,6 +63,8 @@ void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long vecSiz
     
     // If the object is not an output then notify
     
+    // FIX - review how this works/is reported and naming (Audio is misleading in the static functions)
+    
     if (mValidTime < mBlockEndTime && requiresAudioNotification())
         dependencyNotify(false);
     
