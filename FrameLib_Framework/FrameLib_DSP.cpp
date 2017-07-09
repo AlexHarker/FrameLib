@@ -466,7 +466,7 @@ inline void FrameLib_DSP::freeOutputMemory()
 
 inline void FrameLib_DSP::releaseOutputMemory()
 {
-    if (mOutputMemoryCount && (--mOutputMemoryCount == 0))
+    if (--mOutputMemoryCount == 0)
         freeOutputMemory();
 }
 
