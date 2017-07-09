@@ -461,13 +461,17 @@ inline void FrameLib_DSP::freeOutputMemory()
 {
     if (getNumOuts() && mOutputs[0].mMemory)
     {
-        mAllocator->dealloc(mOutputs[0].mMemory);
+        // FIX - revise this as there is nothing for the destructor to do (except branch on a call to delete[])
         
         // Call the destructor for any serial outputs
         
         for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
             if (outs->mMode == kOutputTagged)
                 ((Serial *)outs->mMemory)->Serial::~Serial();
+        
+        // Then deallocate
+        
+        mAllocator->dealloc(mOutputs[0].mMemory);
         
         mOutputs[0].mMemory = NULL;
     }
