@@ -13,10 +13,10 @@
 
 typedef volatile int32_t Atomic32;
 
-static inline Atomic32 increment32(Atomic32 *a) { return OSAtomicIncrement32Barrier(a); }
-static inline Atomic32 decrement32(Atomic32 *a) { return OSAtomicDecrement32Barrier(a); }
-static inline Atomic32 add32(Atomic32 *a, Atomic32 b) { return OSAtomicAdd32Barrier(b, a); }
-static inline bool compareAndSwap32(Atomic32 *loc, Atomic32 comp, Atomic32 exch) { return OSAtomicCompareAndSwap32Barrier(comp, exch, loc); }
+static inline int32_t increment32(Atomic32 *a) { return OSAtomicIncrement32Barrier(a); }
+static inline int32_t decrement32(Atomic32 *a) { return OSAtomicDecrement32Barrier(a); }
+static inline int32_t add32(Atomic32 *a, int32_t b) { return OSAtomicAdd32Barrier(b, a); }
+static inline bool compareAndSwap32(Atomic32 *loc, int32_t comp, int32_t exch) { return OSAtomicCompareAndSwap32Barrier(comp, exch, loc); }
 
 typedef void * volatile AtomicPtr;
 
@@ -43,10 +43,10 @@ typedef void *OSThreadFunctionType(void *arg);
 
 typedef volatile long Atomic32;
 
-static inline Atomic32 increment32(Atomic32 *a) { return InterlockedIncrement(a); }
-static inline Atomic32 decrement32(Atomic32 *a) { return InterlockedDecrement(a); }
-static inline Atomic32 add32(Atomic32 *a, Atomic32 b) { return InterlockedAdd(a, b); }
-static inline bool compareAndSwap32(Atomic32 *loc, Atomic32 comp, Atomic32 exch) { return InterlockedCompareExchange(loc, exch, comp) == comp; }
+static inline long increment32(Atomic32 *a) { return InterlockedIncrement(a); }
+static inline long decrement32(Atomic32 *a) { return InterlockedDecrement(a); }
+static inline long add32(Atomic32 *a, long b) { return InterlockedAdd(a, b); }
+static inline bool compareAndSwap32(Atomic32 *loc, long comp, long exch) { return InterlockedCompareExchange(loc, exch, comp) == comp; }
 
 typedef volatile PVOID AtomicPtr;
 
@@ -68,12 +68,14 @@ public:
 	
 	FrameLib_Atomic32()	{ mValue = 0; }
 	
-	bool compareAndSwap(Atomic32 comparand, Atomic32 exchange) { return compareAndSwap32(&mValue, comparand, exchange); }
+	bool compareAndSwap(int32_t comparand, int32_t exchange) { return compareAndSwap32(&mValue, comparand, exchange); }
     
-    Atomic32 add(Atomic32 amount) { return add32(&mValue, amount); }
+    int32_t operator += (const int32_t& a)      { return add32(&mValue, a); }
     
-	Atomic32 increment() { return increment32(&mValue); }
-	Atomic32 decrement() { return decrement32(&mValue); }
+    int32_t operator ++ ()                      { return increment32(&mValue); }
+    int32_t operator ++ (int)                   { return operator++() - 1; }
+    int32_t operator -- ()                      { return decrement32(&mValue); }
+    int32_t operator -- (int)                   { return operator--() + 1; }
     
 private:
 	
