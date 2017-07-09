@@ -630,14 +630,14 @@ public:
         *frameConnectionInfo() = info;
     }
 
+    void checkConnection(FrameLib_MaxObj *x, unsigned long index, ConnectMode mode)
+    {
+        object_method(x, gensym("internal_connect"), index, mode);
+    }
+    
     static void connectionCall(FrameLib_MaxObj *x, unsigned long index, ConnectMode mode)
     {
         x->connect(index, mode);
-    }
-
-    void connectExternal(FrameLib_MaxObj *x, unsigned long index, ConnectMode mode)
-    {
-        object_method(x, gensym("internal_connect"), index, mode);
     }
     
     void connect(unsigned long index, ConnectMode mode)
@@ -663,7 +663,7 @@ public:
                 mConfirmIndex = i;
                 
                 if (mObject->isConnected(i))
-                    connectExternal(mInputs[i].mObject, mInputs[i].mIndex, kConfirm);
+                    checkConnection(mInputs[i].mObject, mInputs[i].mIndex, kConfirm);
                 
                 if (!mConfirm)
                 {
@@ -721,7 +721,7 @@ public:
                 if (mInputs[index].mObject && mInputs[index].mReportError && connectionChange && mObject->isConnected(index))
                 {
                     mConfirmIndex = index;
-                    connectExternal(mInputs[index].mObject, mInputs[index].mIndex, kDoubleCheck);
+                    checkConnection(mInputs[index].mObject, mInputs[index].mIndex, kDoubleCheck);
                     mConfirmIndex = -1;
                     mInputs[index].mReportError = false;
                 }
