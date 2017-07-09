@@ -274,8 +274,8 @@ private:
     
     // Dependency Counts
     
-    long mDependencyCount;
-    long mOutputMemoryCount;
+    FrameLib_Atomic32 mDependencyCount;
+    FrameLib_Atomic32 mOutputMemoryCount;
     
     // Frame and Block Timings
     
