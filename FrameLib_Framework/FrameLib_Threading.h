@@ -71,6 +71,12 @@ public:
 	
 	bool compareAndSwap(int32_t comparand, int32_t exchange) { return compareAndSwap32(&mValue, comparand, exchange); }
     
+    int32_t operator = (const int32_t value)
+    {
+        mValue = value;
+        return value;
+    }
+    
     int32_t operator += (const int32_t& a)      { return add32(&mValue, a); }
     
     int32_t operator ++ ()                      { return increment32(&mValue); }
