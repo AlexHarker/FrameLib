@@ -65,8 +65,9 @@ class FrameLib_Atomic32
 {
     
 public:
-	
-	FrameLib_Atomic32()	{ mValue = 0; }
+
+    FrameLib_Atomic32(int32_t value) : mValue(value) {}
+    FrameLib_Atomic32() : mValue(0)	{}
 	
 	bool compareAndSwap(int32_t comparand, int32_t exchange) { return compareAndSwap32(&mValue, comparand, exchange); }
     
