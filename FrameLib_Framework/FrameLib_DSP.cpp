@@ -286,9 +286,12 @@ inline void FrameLib_DSP::dependencyNotify(bool releaseMemory)
     // If ready add to queue
     
     if (--mDependencyCount == 0)
+    {
+        // N.B. For multithreading re-entrancy needs to be avoided by increasing the dependency count before adding to the queue (with matching notification)
+
+        mDependencyCount++;
         mQueue->add(this);
-    
-    // N.B. For multithreading re-entrancy needs to be avoided by increasing the dependency count before adding to the queue (with matching notification)
+    }
 }
 
 // Main code to control time flow (called when all input/output dependencies are ready)
@@ -436,6 +439,10 @@ void FrameLib_DSP::dependenciesReady()
     if (timeUpdated)
         for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
             (*it)->dependencyNotify(false);
+    
+    // Finally, notify this object that it can now process again
+    
+    dependencyNotify(false);
 }
 
 void FrameLib_DSP::resetDependencyCount()
