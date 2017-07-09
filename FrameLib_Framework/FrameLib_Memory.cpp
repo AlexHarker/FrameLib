@@ -356,11 +356,13 @@ void FrameLib_LocalAllocator::dealloc(void *ptr)
 {
     if (ptr)
     {
+        mAllocator->dealloc(ptr);
+        /*
         // If the free lists are full send the tail back to the global allocator
         
         //if (mTail->mMemory)
             mAllocator->dealloc(mTail->mMemory);
-        /*
+        
         // Put the memory into the (now vacant) tail position
         
         mTail->mMemory = ptr;
