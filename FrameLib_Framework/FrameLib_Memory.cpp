@@ -154,7 +154,7 @@ void FrameLib_GlobalAllocator::CoreAllocator::prune()
 
 FrameLib_GlobalAllocator::CoreAllocator::Pool *FrameLib_GlobalAllocator::CoreAllocator::getPool(pool_t pool)
 {
-    return (Pool *) (((BytePointer) pool) - sizeof(Pool));
+    return (Pool *) (((BytePointer) pool) - alignedSize(sizeof(Pool)));
 }
 
 // Pool Helpers
