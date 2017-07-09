@@ -11,7 +11,7 @@
 // FIX - improve reporting of extra connections + look into feedback detection...
 // FIX - think about adding assist helpers for this later...
 // FIX - threadsafety??
-// FIX - look at static class pointers
+// FIX - look at static items
 
 t_class *objectClass = NULL;
 t_class *wrapperClass = NULL;
@@ -21,13 +21,16 @@ t_class *mutatorClass = NULL;
 ///////////////////////////// Sync Check Class ///////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-struct SyncCheck
+class SyncCheck
 {
+    
+public:
+    
     SyncCheck() : mTime(-1), mObject(NULL) {}
     
     bool operator()()
     {
-        SyncCheck *info = (SyncCheck *) gensym("__FrameLib__SYNC__")->s_thing;
+        SyncCheck *info = *syncInfo();
         
         if (!info || (info->mTime == mTime && info->mObject == mObject))
             return false;
@@ -37,18 +40,20 @@ struct SyncCheck
         return true;
     }
     
+    void syncSet(void *object, long time)
+    {
+        mObject = object;
+        mTime = time;
+        *syncInfo() = (object ? this : NULL);
+    }
+    
+private:
+    
+    SyncCheck **syncInfo() { return (SyncCheck **) &gensym("__FrameLib__SYNC__")->s_thing; }
+    
     long mTime;
     void *mObject;
 };
-
-SyncCheck syncInfo;
-
-void syncSet(void *object, long time)
-{
-    syncInfo.mObject = object;
-    syncInfo.mTime = time;
-    gensym("__FrameLib__SYNC__")->s_thing = (t_object *) (object ? &syncInfo : NULL);
-}
 
 //////////////////////////////////////////////////////////////////////////
 ////////////////////// Mutator for Synchronisation ///////////////////////
@@ -71,12 +76,14 @@ public:
     
     void mutate(t_symbol *sym, long ac, t_atom *av)
     {
-        syncSet(this, gettime());
+        mSyncChecker.syncSet(this, gettime());
         outlet_anything(mOutlet, gensym("sync"), 0, 0);
-        syncSet(NULL, gettime());
+        mSyncChecker.syncSet(NULL, gettime());
     }
     
 private:
+    
+    SyncCheck mSyncChecker;
     
     void *mOutlet;
 };
@@ -311,8 +318,6 @@ template <class T> class FrameLib_MaxObj : public MaxBase
         unsigned long mIndex;
         bool mReportError;
     };
-
-    t_symbol *ps_frame_connection_info() { return gensym("__frame__connection__info__"); }
     
 private:
     
@@ -329,6 +334,8 @@ private:
         
         return FrameLib_Context(FrameLib_Global::get(globalHandle()), mTopLevelPatch);
     }
+
+    ConnectionInfo **frameConnectionInfo() { return (ConnectionInfo **) &gensym("__frame__connection__info__")->s_thing; }
 
     // Call to get the context increments the global counter, so it needs relasing when we are done
     
@@ -615,12 +622,12 @@ public:
     
     ConnectionInfo* getConnectionInfo()
     {
-        return (ConnectionInfo *) ps_frame_connection_info()->s_thing;
+        return *frameConnectionInfo();
     }
     
     void setConnectionInfo(ConnectionInfo *info = NULL)
     {
-        ps_frame_connection_info()->s_thing = (t_object *) info;
+        *frameConnectionInfo() = info;
     }
 
     static void connectionCall(FrameLib_MaxObj *x, unsigned long index, ConnectMode mode)
