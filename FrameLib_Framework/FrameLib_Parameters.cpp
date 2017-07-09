@@ -96,6 +96,8 @@ void FrameLib_Parameters::Serial::alignmentChecks()
     assert(Serial::alignment <= FrameLib_GlobalAllocator::getAlignment() && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
 }
 
+// Writes (private)
+
 void FrameLib_Parameters::Serial::writeType(DataType type)
 {
     *((DataType *) (mPtr + mSize)) = type;
@@ -124,6 +126,8 @@ void FrameLib_Parameters::Serial::writeDoubles(double *ptr, size_t N)
     mSize += alignSize(size);
 }
 
+// Reads (private)
+
 FrameLib_Parameters::Serial::DataType FrameLib_Parameters::Serial::readType(BytePointer *readPtr)
 {
     DataType type = *((DataType *) *readPtr);
@@ -151,6 +155,8 @@ void FrameLib_Parameters::Serial::readString(BytePointer *readPtr, char **str)
     *str = ((char *) *readPtr);
     *readPtr += alignSize(size);
 }
+
+// Size Check
 
 bool FrameLib_Parameters::Serial::checkSize(size_t writeSize)
 {
@@ -182,6 +188,8 @@ bool FrameLib_Parameters::Serial::checkSize(size_t writeSize)
 }
 
 // ************************************************************************************** //
+
+// Parameter Abstract Class
 
 FrameLib_Parameters::Attribute::Attribute(const char *name, long argumentIdx) : mChanged(false)
 {
@@ -243,6 +251,8 @@ bool FrameLib_Parameters::Attribute::changed()
 
 // ************************************************************************************** //
 
+// Bool Parameter Class
+
 void FrameLib_Parameters::Bool::set(double value)
 {
     mValue = value ? true : false;
@@ -264,6 +274,8 @@ void FrameLib_Parameters::Bool::getRange(double *min, double *max)
 }
 
 // ************************************************************************************** //
+
+// Enum Parameter Class
 
 void FrameLib_Parameters::Enum::set(double value)
 {
@@ -299,6 +311,8 @@ void FrameLib_Parameters::Enum::getRange(double *min, double *max)
 }
 
 // ************************************************************************************** //
+
+// Double Parameter Class
 
 void FrameLib_Parameters::Double::set(double value)
 {
@@ -340,6 +354,8 @@ void FrameLib_Parameters::Double::setClip(double min, double max)
 
 // ************************************************************************************** //
 
+// String Parameter Class
+
 FrameLib_Parameters::String::String(const char *name, const char *str, long argumentIdx) : Attribute(name, argumentIdx)
 {
     String::set(str);
@@ -361,6 +377,8 @@ void FrameLib_Parameters::String::set(const char *str)
 }
 
 // ************************************************************************************** //
+
+// Array Parameter Class
 
 FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double defaultValue, size_t size)
 : Attribute(name, argumentIdx), mMode(kNone), mDefaultValue(defaultValue), mSize(size), mVariableSize(false)

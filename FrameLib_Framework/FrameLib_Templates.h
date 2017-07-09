@@ -6,7 +6,7 @@
 #include "FrameLib_DSP.h"
 #include <functional>
 
-// FIX - vectorise where appropriate
+// OPT - vectorise where appropriate
 
 // Unary Functor
 
