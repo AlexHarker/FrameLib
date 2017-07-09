@@ -4,8 +4,8 @@ DONE 	1 - Methods of dealing with fixed input values (and modes related to this)
 
 2 - Finalise Max Wrapper
 DONE	- Make C++ class extensible
-	- Review entry of inputs and parameters
 	- Make safe (avoid direct access of other objects / thread safety / avoid symbol bindings)
+	- Review entry of inputs and parameters
 	- Better connection issue reporting
 
 PROGRESS 3 - Review parameter inputs (how to handle, including max wrapper)
@@ -14,13 +14,12 @@ PROGRESS 3 - Review parameter inputs (how to handle, including max wrapper)
 DONE		- Do variable memory management (underlying engine)
 		- Review memory management
 
-PROGRESS - Revise, refactor and cleanup
+DONE - Revise, refactor and cleanup
 DONE		- Global / Context
 DONE		- Memory
 DONE		- Block / DSP
 DONE		- Parameter
 DONE		- Multichannel
-PROGRESS	- Max Object Work
 
 6 - Assist/Help Info (Inputs and Parameters)
 
