@@ -6,7 +6,7 @@
 
 class FrameLib_Shift : public FrameLib_Processor
 {
-	enum AttributeList {kShift, kPadding, kMode, kUnits};
+	enum ParameterList {kShift, kPadding, kMode, kUnits};
 
     enum Modes {kPad, kWrap};
     enum Units {kSamples, kRatio};

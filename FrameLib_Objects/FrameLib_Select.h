@@ -6,7 +6,7 @@
 
 class FrameLib_Select : public FrameLib_Processor
 {
-    enum AttributeList {kNumIns, kActiveIn};
+    enum ParameterList {kNumIns, kActiveIn};
 
 public:
     

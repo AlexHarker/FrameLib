@@ -5,7 +5,7 @@
 
 class FrameLib_T1 : public FrameLib_Processor
 {
-    enum AttributeList {kInputs};
+    enum ParameterList {kInputs};
 
 public:
     

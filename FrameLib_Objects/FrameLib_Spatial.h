@@ -33,7 +33,7 @@ class FrameLib_Spatial : public FrameLib_Processor
         return Cartesian(position.radius * sin(theta) * sin(psi), position.radius * sin(theta) * cos(psi), position.radius * cos(theta));
     }
     
-    enum AttributeList {kInputMode, kSpeakers, kWeights, kRolloff, kBlur, kMaxSpeakers, kPoints};
+    enum ParameterList {kInputMode, kSpeakers, kWeights, kRolloff, kBlur, kMaxSpeakers, kPoints};
     enum InputModes {kPolar, kCartesian};
 
 public:

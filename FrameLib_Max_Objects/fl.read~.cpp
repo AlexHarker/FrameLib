@@ -8,7 +8,7 @@
 
 class FrameLib_MaxRead : public FrameLib_Processor
 {
-    enum AttributeList {kBuffer, kChannel, kMode, kUnits};
+    enum ParameterList {kBuffer, kChannel, kMode, kUnits};
     enum Modes {kHermite, kBSpline, kLagrange, kLinear};
     enum Units {kMS, kSeconds, kSamples};
 

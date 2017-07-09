@@ -6,7 +6,7 @@
 
 class FrameLib_Subframe : public FrameLib_Processor
 {
-	enum AttributeList {kStart, kEnd, kUnits};
+	enum ParameterList {kStart, kEnd, kUnits};
 
     enum Units {kSamples, kRatio};
     

@@ -8,7 +8,7 @@
 
 class FrameLib_Convolve : public FrameLib_Processor
 {
-	enum AttributeList {kMaxLength};
+	enum ParameterList {kMaxLength};
     
 public:
 	

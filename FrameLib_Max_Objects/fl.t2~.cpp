@@ -3,7 +3,7 @@
 
 class FrameLib_T2 : public FrameLib_Processor
 {
-    enum AttributeList {kOutputs};
+    enum ParameterList {kOutputs};
         
 public:
     

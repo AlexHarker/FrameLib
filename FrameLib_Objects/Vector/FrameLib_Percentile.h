@@ -7,7 +7,7 @@
 
 class FrameLib_Percentile : public FrameLib_Processor
 {
-    enum AttributeList {kPercentile};
+    enum ParameterList {kPercentile};
     
 public:
     

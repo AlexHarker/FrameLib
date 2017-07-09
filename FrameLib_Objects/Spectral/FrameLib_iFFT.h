@@ -9,7 +9,7 @@
 
 class FrameLib_iFFT : public FrameLib_Processor
 {
-	enum AttributeList {kMaxLength};
+	enum ParameterList {kMaxLength};
     
 public:
 	

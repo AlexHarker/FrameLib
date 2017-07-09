@@ -8,7 +8,7 @@
 
 class FrameLib_Store : public FrameLib_Processor
 {
-	enum AttributeList {kName};
+	enum ParameterList {kName};
     
 public:
 	

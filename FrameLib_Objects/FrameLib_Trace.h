@@ -16,7 +16,7 @@
 
 class FrameLib_Trace : public FrameLib_AudioProcessor
 {
-    enum AttributeList {kLength, kUnits};
+    enum ParameterList {kLength, kUnits};
     enum Units {kMS, kSeconds, kSamples};
     
 public:

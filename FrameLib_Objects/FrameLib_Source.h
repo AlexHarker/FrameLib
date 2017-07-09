@@ -15,7 +15,7 @@
 
 class FrameLib_Source : public FrameLib_AudioProcessor
 {
-    enum AttributeList {kMaxLength, kLength, kUnits};
+    enum ParameterList {kMaxLength, kLength, kUnits};
     enum Units {kSamples, kMS, kSeconds};
     
 private:

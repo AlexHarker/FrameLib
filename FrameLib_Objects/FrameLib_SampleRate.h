@@ -6,7 +6,7 @@
 
 class FrameLib_SampleRate : public FrameLib_Processor
 {
-    enum AttributeList {kMode};
+    enum ParameterList {kMode};
     enum Modes {kValue, kNyquist, kSampsToMS, kSampsToSecs, kMSToSamps, kSecsToSamps, kNormToFreq, kHalfNormToFreq, kFreqToNorm, kFreqToHalfNorm};
 
 public:

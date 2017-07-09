@@ -6,7 +6,7 @@
 
 class FrameLib_Chop : public FrameLib_Processor
 {
-	enum AttributeList {kNumOuts, kSize, kUnits};
+	enum ParameterList {kNumOuts, kSize, kUnits};
 
     enum Units {kSamples, kRatio};
     

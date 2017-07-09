@@ -7,7 +7,7 @@
 
 class FrameLib_Interval : public FrameLib_Scheduler
 {
-    enum AttributeList {kInterval, kUnits};
+    enum ParameterList {kInterval, kUnits};
     enum Units {kSamples, kMS, kSeconds};
 
 public:

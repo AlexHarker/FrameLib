@@ -72,7 +72,7 @@ class FrameLib_0dfSVF : public FrameLib_Processor
         double lp, bp, hp, r, g, s1, s2;
     };
     
-    enum AttributeList {kFreq, kReson, kMode};
+    enum ParameterList {kFreq, kReson, kMode};
     
     enum Modes {kLPF, kBPF, kHPF};
 

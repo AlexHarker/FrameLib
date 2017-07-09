@@ -6,7 +6,7 @@
 
 class FrameLib_Register : public FrameLib_Processor
 {
-	enum AttributeList {kMode};
+	enum ParameterList {kMode};
 
     enum Modes {kStore, kPass};
     

@@ -70,7 +70,7 @@ class FrameLib_SallenAndKey : public FrameLib_Processor
         double k, a0, a1, a2, a3, a4, a5, v1, v2, ic1eq, ic2eq;
     };
     
-    enum AttributeList {kFreq, kReson, kMode};
+    enum ParameterList {kFreq, kReson, kMode};
     
     enum Modes {kLPF, kBPF, kHPF};
 

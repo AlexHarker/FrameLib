@@ -124,17 +124,17 @@ public:
 
 private:
     
-    // Abstract Attribute Class
+    // Abstract Parameter Class
     
-    class Attribute
+    class Parameter
     {
         
     public:
       
         // Constructor / Destructor
         
-        Attribute(const char *name, long argumentIdx);
-        virtual ~Attribute() {};
+        Parameter(const char *name, long argumentIdx);
+        virtual ~Parameter() {};
        
         // Setters
         
@@ -184,15 +184,15 @@ private:
     
     // ************************************************************************************** //
     
-    // Bool Attribute Class
+    // Bool Parameter Class
 
-    class Bool : public Attribute
+    class Bool : public Parameter
     {
         
     public:
         
         Bool(const char *name, long argumentIdx, bool defaultValue)
-        : Attribute(name, argumentIdx), mValue(defaultValue), mDefault(defaultValue) {}
+        : Parameter(name, argumentIdx), mValue(defaultValue), mDefault(defaultValue) {}
 
         // Setters
         
@@ -217,15 +217,15 @@ private:
     
     // ************************************************************************************** //
 
-    // Enum Attribute Class
+    // Enum Parameter Class
 
-    class Enum : public Attribute
+    class Enum : public Parameter
     {
         
     public:
         
         Enum(const char *name, long argumentIdx)
-        : Attribute(name, argumentIdx), mValue(0) {}
+        : Parameter(name, argumentIdx), mValue(0) {}
         
         // Setters
         
@@ -255,15 +255,15 @@ private:
     
     // ************************************************************************************** //
 
-    // Double Attribute Class
+    // Double Parameter Class
 
-    class Double : public Attribute
+    class Double : public Parameter
     {
         
     public:
         
         Double(const char *name, long argumentIdx, double defaultValue)
-        : Attribute(name, argumentIdx), mValue(defaultValue), mDefault(defaultValue), mMin(-std::numeric_limits<double>::infinity()), mMax(std::numeric_limits<double>::infinity()) {}
+        : Parameter(name, argumentIdx), mValue(defaultValue), mDefault(defaultValue), mMin(-std::numeric_limits<double>::infinity()), mMax(std::numeric_limits<double>::infinity()) {}
         
         // Setters
 
@@ -294,9 +294,9 @@ private:
     
     // ************************************************************************************** //
 
-    // String Attribute Class
+    // String Parameter Class
 
-    class String : public Attribute
+    class String : public Parameter
     {
         const static size_t maxLen = 128;
         
@@ -323,9 +323,9 @@ private:
 
     // ************************************************************************************** //
 
-    // Array Attribute Class
+    // Array Parameter Class
 
-    class Array : public Attribute, private std::vector<double>
+    class Array : public Parameter, private std::vector<double>
     {
         enum clipMode {kNone, kMin, kMax, kClip};
         
@@ -379,7 +379,7 @@ public:
     
     ~FrameLib_Parameters()
     {
-        for (std::vector <Attribute *>::iterator it = mParameters.begin(); it != mParameters.end(); it++)
+        for (std::vector <Parameter *>::iterator it = mParameters.begin(); it != mParameters.end(); it++)
             delete *it;
     }
     
@@ -407,22 +407,22 @@ public:
     
     void addBool(unsigned long index, const char *name, bool defaultValue = false, long argumentIdx = -1)
     {
-        addAttribute(index, new Bool(name, argumentIdx, defaultValue));
+        addParameter(index, new Bool(name, argumentIdx, defaultValue));
     }
     
     void addDouble(unsigned long index, const char *name, double defaultValue = 0.0, long argumentIdx = -1)
     {
-        addAttribute(index, new Double(name, argumentIdx, defaultValue));
+        addParameter(index, new Double(name, argumentIdx, defaultValue));
     }
     
     void addString(unsigned long index, const char *name, const char *str, long argumentIdx = -1)
     {
-        addAttribute(index, new String(name, str, argumentIdx));
+        addParameter(index, new String(name, str, argumentIdx));
     }
     
     void addEnum(unsigned long index, const char *name, long argumentIdx = -1)
     {
-       addAttribute(index, new Enum(name, argumentIdx));
+       addParameter(index, new Enum(name, argumentIdx));
     }
     
     void addEnumItem(unsigned long index, const char *str)
@@ -432,12 +432,12 @@ public:
     
     void addArray(unsigned long index, const char *name, double defaultValue, size_t size, long argumentIdx = -1)
     {
-        addAttribute(index, new Array(name, argumentIdx, defaultValue, size));
+        addParameter(index, new Array(name, argumentIdx, defaultValue, size));
     }
     
     void addVariableArray(unsigned long index, const char *name, double defaultValue, size_t maxSize, size_t size, long argumentIdx = -1)
     {
-        addAttribute(index, new Array(name, argumentIdx, defaultValue, maxSize, size));
+        addParameter(index, new Array(name, argumentIdx, defaultValue, maxSize, size));
     }
 
     // Setters (N.B. - setters have sanity checks as the tags are set by the end-user)
@@ -542,7 +542,7 @@ private:
     
     // Utility
     
-    void addAttribute(unsigned long index, Attribute *attr)
+    void addParameter(unsigned long index, Parameter *attr)
     {
         assert((index == mParameters.size()) && "parameters must be added in order");
         mParameters.push_back(attr);
@@ -568,7 +568,7 @@ private:
     
     // Data
     
-    std::vector <Attribute *> mParameters;
+    std::vector <Parameter *> mParameters;
 };
 
 #endif

@@ -191,33 +191,33 @@ bool FrameLib_Parameters::Serial::checkSize(size_t writeSize)
 
 // Parameter Abstract Class
 
-FrameLib_Parameters::Attribute::Attribute(const char *name, long argumentIdx) : mChanged(false)
+FrameLib_Parameters::Parameter::Parameter(const char *name, long argumentIdx) : mChanged(false)
 {
     mName = name;
     mArgumentIdx = argumentIdx;
 }
 
-void FrameLib_Parameters::Attribute::addEnumItem(const char *str)
+void FrameLib_Parameters::Parameter::addEnumItem(const char *str)
 {
-    assert(0 && "cannot add enum items to non-enum attribute");
+    assert(0 && "cannot add enum items to non-enum parameter");
 }
 
-void FrameLib_Parameters::Attribute::setMin(double min)
+void FrameLib_Parameters::Parameter::setMin(double min)
 {
-    assert(0 && "attribute type does not support minimum values");
+    assert(0 && "parameter type does not support minimum values");
 }
 
-void FrameLib_Parameters::Attribute::setMax(double max)
+void FrameLib_Parameters::Parameter::setMax(double max)
 {
-    assert(0 && "attribute type does not support maximum values");
+    assert(0 && "parameter type does not support maximum values");
 }
 
-void FrameLib_Parameters::Attribute::setClip(double min, double max)
+void FrameLib_Parameters::Parameter::setClip(double min, double max)
 {
-    assert(0 && "attribute type does not support clipping values");
+    assert(0 && "parameter type does not support clipping values");
 }
 
-void FrameLib_Parameters::Attribute::set(double *values, size_t size)
+void FrameLib_Parameters::Parameter::set(double *values, size_t size)
 {
     if (size)
         set(*values);
@@ -225,24 +225,24 @@ void FrameLib_Parameters::Attribute::set(double *values, size_t size)
         clear();
 }
 
-void FrameLib_Parameters::Attribute::getRange(double *min, double *max)
+void FrameLib_Parameters::Parameter::getRange(double *min, double *max)
 {
     *min = 0;
     *max = 0;
 }
 
-const char *FrameLib_Parameters::Attribute::getItemString(unsigned long item) const
+const char *FrameLib_Parameters::Parameter::getItemString(unsigned long item) const
 {
-    assert(0 && "cannot get enum string for non-enum attribute");
+    assert(0 && "cannot get enum string for non-enum parameter");
 }
 
-const double *FrameLib_Parameters::Attribute::getArray(size_t *size) const
+const double *FrameLib_Parameters::Parameter::getArray(size_t *size) const
 {
     *size = getArraySize();
     return getArray();
 }
 
-bool FrameLib_Parameters::Attribute::changed()
+bool FrameLib_Parameters::Parameter::changed()
 {
     bool result = mChanged;
     mChanged = false;
@@ -356,7 +356,7 @@ void FrameLib_Parameters::Double::setClip(double min, double max)
 
 // String Parameter Class
 
-FrameLib_Parameters::String::String(const char *name, const char *str, long argumentIdx) : Attribute(name, argumentIdx)
+FrameLib_Parameters::String::String(const char *name, const char *str, long argumentIdx) : Parameter(name, argumentIdx)
 {
     String::set(str);
 }
@@ -381,7 +381,7 @@ void FrameLib_Parameters::String::set(const char *str)
 // Array Parameter Class
 
 FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double defaultValue, size_t size)
-: Attribute(name, argumentIdx), mMode(kNone), mDefaultValue(defaultValue), mSize(size), mVariableSize(false)
+: Parameter(name, argumentIdx), mMode(kNone), mDefaultValue(defaultValue), mSize(size), mVariableSize(false)
 {
     mItems.resize(size);
     
@@ -390,7 +390,7 @@ FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double def
 }
 
 FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double defaultValue, size_t maxSize, size_t size)
-: Attribute(name, argumentIdx), mMode(kNone), mDefaultValue(defaultValue), mVariableSize(true)
+: Parameter(name, argumentIdx), mMode(kNone), mDefaultValue(defaultValue), mVariableSize(true)
 {
     mItems.resize(maxSize);
     

@@ -8,7 +8,7 @@
 
 class FrameLib_MedianFilter : public FrameLib_Processor
 {
-    enum AttributeList {kWidth, kPadding, kMode};
+    enum ParameterList {kWidth, kPadding, kMode};
     
     enum Modes {kPad, kWrap, kFold};
     

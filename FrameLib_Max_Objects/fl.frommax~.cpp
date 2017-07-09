@@ -35,7 +35,7 @@ MaxMessage *getMessages(FrameLib_MaxObj_From *object);
 
 class FrameLib_FromMax : public FrameLib_Processor
 {
-    enum AttributeList {kMode};
+    enum ParameterList {kMode};
     enum Modes {kValues, kParams};
     
 public:

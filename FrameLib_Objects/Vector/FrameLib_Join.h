@@ -8,7 +8,7 @@
 
 class FrameLib_Join : public FrameLib_Processor
 {
-	enum AttributeList {kNumIns, kTriggers};
+	enum ParameterList {kNumIns, kTriggers};
     
 public:
 	

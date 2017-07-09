@@ -57,7 +57,7 @@ class FrameLib_OnePoleZero : public FrameLib_Processor
         double a0, a1, r1;
     };
     
-    enum AttributeList {kFreq, kMode};
+    enum ParameterList {kFreq, kMode};
     
     enum Modes {kLPF, kHPF};
 

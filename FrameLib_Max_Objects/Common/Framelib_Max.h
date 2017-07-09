@@ -339,7 +339,7 @@ private:
 
     // Parameter Parsing
     
-    bool isAttributeTag(t_symbol *sym)
+    bool isParameterTag(t_symbol *sym)
     {
         return (sym && sym->s_name[0] == '#' && strlen(sym->s_name) > 1);
     }
@@ -352,7 +352,7 @@ private:
     bool isTag(t_atom *a)
     {
         t_symbol *sym = atom_getsym(a);
-        return isAttributeTag(sym) || isInputTag(sym);
+        return isParameterTag(sym) || isInputTag(sym);
     }
     
     long parseNumericalList(std::vector<double> &values, t_atom *argv, long argc, long idx)
@@ -436,7 +436,7 @@ private:
                 continue;
             }
             
-            if (isAttributeTag(sym))
+            if (isParameterTag(sym))
             {
                 // Do strings or values
                 

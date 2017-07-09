@@ -8,7 +8,7 @@
 
 class FrameLib_Recall : public FrameLib_Processor
 {
-    enum AttributeList {kName};
+    enum ParameterList {kName};
     
 public:
     

@@ -14,7 +14,7 @@
 
 class FrameLib_Window : public FrameLib_Processor
 {
-	enum AttributeList {kWindowType, kSize, kSqrt, kCompensation, kEndPoints};
+	enum ParameterList {kWindowType, kSize, kSqrt, kCompensation, kEndPoints};
     
     enum Compensation {kOff, kLinear, kPower, kPowerOverLinear};
     enum EndPoints {kFirst, kLast, kBoth, kNone};

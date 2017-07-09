@@ -6,7 +6,7 @@
 
 class FrameLib_Map : public FrameLib_Processor
 {
-    enum AttributeList {kMode, kInLo, kInHi, kOutLo, kOutHi, kClip};
+    enum ParameterList {kMode, kInLo, kInHi, kOutLo, kOutHi, kClip};
     enum Modes {kLinear, kLog, kExp, kDB, kInvDB, kTranspose, kInvTranspose};
     enum ScaleMode {kScaleLinear, kScaleExp, kScaleLog};
 

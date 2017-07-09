@@ -7,7 +7,7 @@
 
 class FrameLib_Sort : public FrameLib_Processor
 {
-    enum AttributeList {kOrder};
+    enum ParameterList {kOrder};
     enum Orders {kUp, kDown};
 
 public:

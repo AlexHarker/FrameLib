@@ -68,7 +68,7 @@ public:
 
 template <typename Op> class FrameLib_BinaryOp : public FrameLib_Processor
 {
-    enum AttributeList {kMode, kTriggers, kPadding};
+    enum ParameterList {kMode, kTriggers, kPadding};
     enum Modes {kWrap, kShrink, kPadIn, kPadOut};
     enum TriggerModes {kBoth, kLeft, kRight};
     

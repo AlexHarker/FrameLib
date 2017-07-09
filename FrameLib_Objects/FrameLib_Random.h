@@ -7,7 +7,7 @@
 
 class FrameLib_Random : public FrameLib_Processor
 {
-    enum AttributeList {kLength, kMode};
+    enum ParameterList {kLength, kMode};
     enum Modes {kInLength, kRequestedLength};
 
 public:

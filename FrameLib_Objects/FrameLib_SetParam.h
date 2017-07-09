@@ -6,7 +6,7 @@
 
 class FrameLib_SetParam : public FrameLib_Processor
 {
-    enum AttributeList {kNumIns, kNames};
+    enum ParameterList {kNumIns, kNames};
     
 public:
     

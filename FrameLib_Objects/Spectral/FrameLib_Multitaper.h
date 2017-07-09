@@ -7,7 +7,7 @@
 
 class FrameLib_Multitaper : public FrameLib_Processor
 {
-	enum AttributeList {kMaxLength, kNumTapers};
+	enum ParameterList {kMaxLength, kNumTapers};
     
 public:
 	

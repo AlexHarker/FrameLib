@@ -14,7 +14,7 @@
 
 class FrameLib_Sink : public FrameLib_AudioProcessor
 {
-    enum AttributeList {kLength, kUnits};
+    enum ParameterList {kLength, kUnits};
     enum Units {kMS, kSeconds, kSamples};
     
 public:

@@ -59,7 +59,7 @@ class FrameLib_Resonant : public FrameLib_Processor
         double scl, r2, y1, y2;
     };
     
-    enum AttributeList {kFreq, kReson, kMode};
+    enum ParameterList {kFreq, kReson, kMode};
     
     enum Modes {kLPF, kHPF};
 

@@ -43,7 +43,7 @@ class FrameLib_CoordinateSystem : public FrameLib_Processor
         return Polar(azimuth, elevation, radius);
     }
     
-    enum AttributeList {kMode};
+    enum ParameterList {kMode};
     enum InputModes {kPolarToCartesian, kCartesianToPolar};
 
 public:

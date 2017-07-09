@@ -8,7 +8,7 @@
 
 class FrameLib_Split : public FrameLib_Processor
 {
-	enum AttributeList {kSplit, kUnits};
+	enum ParameterList {kSplit, kUnits};
 
     enum Units {kSamples, kRatio};
     
