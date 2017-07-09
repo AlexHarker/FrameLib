@@ -14,7 +14,10 @@ class FrameLib_DSPQueue
     
 public:
     
-    FrameLib_DSPQueue() : mTop(NULL), mTail(NULL) {}
+    FrameLib_DSPQueue() : mInQueue(false)
+    {
+        memset((void *) &mQueue, 0, sizeof(OSFifoQueueHead));
+    }
     
     void add(FrameLib_DSP *object);
     
@@ -25,8 +28,8 @@ private:
     FrameLib_DSPQueue(const FrameLib_DSPQueue&);
     FrameLib_DSPQueue& operator=(const FrameLib_DSPQueue&);
     
-    FrameLib_DSP *mTop;
-    FrameLib_DSP *mTail;
+    bool mInQueue;
+    OSFifoQueueHead mQueue;
 };
 
 #endif /* FRAMELIB_DSPQUEUE_H */

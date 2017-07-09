@@ -13,6 +13,14 @@
 
 // This abstract class is the core of the DSP processing system and handles low level single channel connections and timing
 
+class FrameLib_DSP;
+
+struct QueueItem
+{    
+    FrameLib_DSP *mThis;
+    FrameLib_DSP *mNext;
+};
+
 class FrameLib_DSP : public FrameLib_Block
 {
     // Type definition for concision / Queue access
@@ -253,7 +261,7 @@ private:
     // DSP Queue
     
     FrameLib_Context::DSPQueue mQueue;
-    FrameLib_DSP *mNext;
+    QueueItem mQueueItem;
     
     // Object Type
     

@@ -6,8 +6,10 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
-: mAllocator(context), mQueue(context), mNext(NULL), mType(type), mInUpdate(false)
+: mAllocator(context), mQueue(context), mType(type), mInUpdate(false)
 {
+    mQueueItem.mThis = this;
+    
     // Set IO
     
     setIO(nIns, nOuts, nAudioIns, nAudioOuts);

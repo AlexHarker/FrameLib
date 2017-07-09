@@ -4,29 +4,14 @@
 
 void FrameLib_DSPQueue::add(FrameLib_DSP *object)
 {
-    object->mNext = NULL;
-    
-    if (!mTop)
+    if (!mInQueue)
     {
-        // Queue is empty - add and start processing the queue
-        
-        mTop = mTail = object;
-        
-        while (mTop)
-        {
-            object = mTop;
-            object->dependenciesReady();
-            mTop = object->mNext;
-            object->mNext = NULL;
-        }
-        
-        mTail = NULL;
+        mInQueue = true;
+        object->dependenciesReady();
+        while (QueueItem *next = (QueueItem *) OSAtomicFifoDequeue(&mQueue, offsetof(QueueItem, mNext)))
+            next->mThis->dependenciesReady();
+        mInQueue = false;
     }
     else
-    {
-        // Add to the queue (which is already processing)
-        
-        mTail->mNext = object;
-        mTail = object;
-    }
+        OSAtomicFifoEnqueue(&mQueue, &object->mQueueItem, offsetof(QueueItem, mNext));
 }
