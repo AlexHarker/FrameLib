@@ -29,7 +29,6 @@ void FrameLib_DSPQueue::add(FrameLib_DSP *object)
     OSAtomicFifoEnqueue(&mQueue, &object->mQueueItem, offsetof(QueueItem, mNext));
 }
 
-
 void FrameLib_DSPQueue::serviceQueue()
 {
     while (true)
@@ -40,7 +39,10 @@ void FrameLib_DSPQueue::serviceQueue()
         if (--mInQueue == 0)
             return;
         
-        usleep(1);
+        struct timespec a;
+        a.tv_sec = 0;
+        a.tv_nsec = 1000;
+        nanosleep(&a,NULL);
         
         mInQueue++;
     }
