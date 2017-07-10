@@ -2,6 +2,8 @@
 #ifndef FRAMELIB_DSPQUEUE_H
 #define FRAMELIB_DSPQUEUE_H
 
+#include "FrameLib_Threading.h"
+
 // Forward Declarations
 
 class FrameLib_DSP;
@@ -11,14 +13,39 @@ class FrameLib_DSP;
 
 class FrameLib_DSPQueue
 {
+    class WorkerThread : public TriggerableThread
+    {
+        
+    public:
+        
+        WorkerThread(FrameLib_DSPQueue *queue) : TriggerableThread(Thread::kHighPriority), mQueue(queue) {}
+        
+    private:
+        
+        virtual void doTask()
+        {
+            mQueue->mInQueue++;
+            mQueue->serviceQueue();
+        }
+    
+        FrameLib_DSPQueue *mQueue;
+    };
     
 public:
     
-    FrameLib_DSPQueue() : mInQueue(false)
+    FrameLib_DSPQueue() : worker(this)
     {
         memset((void *) &mQueue, 0, sizeof(OSFifoQueueHead));
+        worker.start();
     }
-    
+
+    ~FrameLib_DSPQueue()
+    {
+        worker.join();
+    }
+
+    void process(FrameLib_DSP *object);
+    void start(FrameLib_DSP *object);
     void add(FrameLib_DSP *object);
     
 private:
@@ -28,7 +55,11 @@ private:
     FrameLib_DSPQueue(const FrameLib_DSPQueue&);
     FrameLib_DSPQueue& operator=(const FrameLib_DSPQueue&);
     
-    bool mInQueue;
+    void serviceQueue();
+    
+    WorkerThread worker;
+    
+    FrameLib_Atomic32 mInQueue;
     OSFifoQueueHead mQueue;
 };
 

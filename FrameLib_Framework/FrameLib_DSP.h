@@ -223,7 +223,7 @@ private:
 
     // Dependency Notification
     
-    inline void dependencyNotify(bool releaseMemory);
+    inline void dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, bool audioNotify = false);
     void dependenciesReady();
     void resetDependencyCount();
     
@@ -262,6 +262,7 @@ private:
     
     FrameLib_Context::DSPQueue mQueue;
     QueueItem mQueueItem;
+    FrameLib_DSP *mNextInThread;
     
     // Object Type
     

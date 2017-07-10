@@ -6,7 +6,7 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
-: mAllocator(context), mQueue(context), mType(type), mInUpdate(false)
+: mAllocator(context), mQueue(context), mNextInThread(NULL), mType(type), mInUpdate(false)
 {
     mQueueItem.mThis = this;
     
@@ -68,7 +68,7 @@ void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long vecSiz
     // FIX - review how this works/is reported and naming (Audio is misleading in the static functions)
     
     if (mValidTime < mBlockEndTime && requiresAudioNotification())
-        dependencyNotify(false);
+        dependencyNotify(this, false, true);
     
     blockProcessPost(ins, outs, vecSize);
     mBlockStartTime = mBlockEndTime;
@@ -280,7 +280,7 @@ FrameLib_Parameters::Serial *FrameLib_DSP::getOutput(unsigned long idx)
 
 // Dependency Notification
 
-inline void FrameLib_DSP::dependencyNotify(bool releaseMemory)
+inline void FrameLib_DSP::dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, bool audioNotify)
 {
     if (releaseMemory)
         releaseOutputMemory();
@@ -292,7 +292,16 @@ inline void FrameLib_DSP::dependencyNotify(bool releaseMemory)
         // N.B. For multithreading re-entrancy needs to be avoided by increasing the dependency count before adding to the queue (with matching notification)
 
         mDependencyCount++;
-        mQueue->add(this);
+        
+        if (audioNotify)
+            mQueue->start(this);
+        else
+        {
+            if (notifier->mNextInThread)
+                mQueue->add(this);
+            else
+                notifier->mNextInThread = this;
+        }
     }
 }
 
@@ -432,7 +441,7 @@ void FrameLib_DSP::dependenciesReady()
         if (mInputTime == (*it)->mValidTime)
         {
             mDependencyCount++;
-            (*it)->dependencyNotify((mType == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone);
+            (*it)->dependencyNotify(this, (mType == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone);
         }
     }
     
@@ -440,11 +449,11 @@ void FrameLib_DSP::dependenciesReady()
     
     if (timeUpdated)
         for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-            (*it)->dependencyNotify(false);
+            (*it)->dependencyNotify(this, false);
     
     // Finally, notify this object that it can now process again
     
-    dependencyNotify(false);
+    dependencyNotify(this, false);
 }
 
 void FrameLib_DSP::resetDependencyCount()
