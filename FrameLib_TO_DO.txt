@@ -2,34 +2,39 @@
 
 DONE 	1 - Methods of dealing with fixed input values (and modes related to this)
 
-2 - Finalise Max Wrapper
-DONE	- Make C++ class extensible
-	- Make safe (avoid direct access of other objects / thread safety / avoid symbol bindings)
-	- Review entry of inputs and parameters
-	- Better connection issue reporting
-
-PROGRESS 3 - Review parameter inputs (how to handle, including max wrapper)
-
-4 - Finalise Memory Management
-DONE		- Do variable memory management (underlying engine)
-		- Review memory management
-
-DONE - Revise, refactor and cleanup
+DONE 	2 - Revise, refactor and cleanup
 DONE		- Global / Context
 DONE		- Memory
 DONE		- Block / DSP
 DONE		- Parameter
 DONE		- Multichannel
 
-6 - Assist/Help Info (Inputs and Parameters)
+DONE	3 - Fixed Point Division / Fixed Point Time Format
 
-7 - Error Reporting (Realtime and push to wrapper)
+4 - Finalise Max Wrapper
+DONE	- Make C++ class extensible
+	- Make safe (avoid direct access of other objects / thread safety / avoid symbol bindings)
+	- Review entry of inputs and parameters
+	- Better connection issue reporting
 
-8 - Methods of dealing with data storage and retrieval (a la coll etc.) and also buffers (abstract out?)
+5 - Finalise Memory Management
+DONE		- Do variable memory management (underlying engine)
+		- Review memory management
 
-DONE		9 - Fixed Point Division / Fixed Point Time Format
+PROGRESS 6 - Review parameter inputs (how to handle, including max wrapper)
 
-10 - Multi threading work (Memory / DSP / Attributes / DSP Queue / Connection)
+7 - Multi threading work (Attributes / Connection)
+DONE		DSP
+PROGRESS	DSP Queue
+TEMP		Memory
+
+8 - Assist/Help Info (Inputs and Parameters)
+
+9 - Error Reporting (Realtime and push to wrapper)
+
+10 - Methods of dealing with data storage and retrieval (a la coll etc.) and also buffers (abstract out?)
+
+
 
 
 Examine https://www.threadingbuildingblocks.org/
