@@ -102,11 +102,6 @@ public:
     
     void setSamplingRate(double samplingRate)   { mSamplingRate = samplingRate > 0 ? samplingRate : 44100.0; }
     
-    virtual unsigned long getNumIns()           { return mInputs.size(); }
-    virtual unsigned long getNumOuts()          { return mOutputs.size(); }
-    virtual unsigned long getNumAudioIns()      { return mNumAudioIns; }
-    virtual unsigned long getNumAudioOuts()     { return mNumAudioOuts; }
-    
     // Set Fixed Inputs
     
     virtual void setFixedInput(unsigned long idx, double *input, unsigned long size);
@@ -206,7 +201,9 @@ private:
     
     // This returns true if the object requires notification from an audio thread
     
-    bool requiresAudioNotification()    { return mType == kScheduler || getNumAudioIns() || getNumAudioOuts(); }
+    // FIX - need to review audio notification to get correct outpu tbehaviour and figure out how to specify this programmatically...
+    
+    bool requiresAudioNotification()    { return mType == kScheduler || getNumAudioIns(); }
     
     // Manage Output Memory
 
@@ -266,11 +263,6 @@ private:
     
     std::vector <FrameLib_DSP *> mInputDependencies;
     std::vector <FrameLib_DSP *> mOutputDependencies;
-    
-    // Audio IO Counts
-    
-    unsigned long mNumAudioIns;
-    unsigned long mNumAudioOuts;
     
     // Dependency Counts
     

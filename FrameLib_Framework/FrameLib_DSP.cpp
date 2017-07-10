@@ -147,8 +147,7 @@ void FrameLib_DSP::setIO(unsigned long nIns, unsigned long nOuts, unsigned long 
     mInputs.resize((mType != kScheduler || nIns > 0) ? nIns : 1);
     mOutputs.resize(nOuts);
     
-    mNumAudioIns = nAudioIns;
-    mNumAudioOuts = nAudioOuts;
+    FrameLib_Block::setIO(FrameLib_Block::IOCount(nIns, nOuts, nAudioIns, nAudioOuts));
     
     // Reset for audio
     
