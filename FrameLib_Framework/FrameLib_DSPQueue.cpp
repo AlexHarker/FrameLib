@@ -18,9 +18,11 @@ void FrameLib_DSPQueue::start(FrameLib_DSP *object)
 {
     mInQueue++;
     mQueueSize++;
+    mWorkers.signal(1);
     object->mNextInThread = NULL;
     process(object);
     serviceQueue();
+    --mInQueue;
 }
 
 void FrameLib_DSPQueue::add(FrameLib_DSP *object)
@@ -49,10 +51,7 @@ void FrameLib_DSPQueue::serviceQueue()
         // FIX - quick reliable and non-contentious exit strategies are needed here...
         
         if (mQueueSize == 0)
-        {
-            --mInQueue;
             return;
-        }
         
         // FIX - how long is a good time to yield for in a high performance thread?
         

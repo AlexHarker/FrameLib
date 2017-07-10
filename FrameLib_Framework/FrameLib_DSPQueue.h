@@ -26,6 +26,7 @@ class FrameLib_DSPQueue
         {
             mQueue->mInQueue++;
             mQueue->serviceQueue();
+            mQueue->mInQueue--;
         }
     
         FrameLib_DSPQueue *mQueue;
