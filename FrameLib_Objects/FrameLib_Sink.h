@@ -111,15 +111,16 @@ private:
         unsigned long sizeIn;
 
         FrameLib_TimeFormat inputTime = getInputFrameTime(0);
+        FrameLib_TimeFormat blockStartTime = getBlockStartTime();
         double *input = getInput(0, &sizeIn);
         
         // Calculate time offset
         
-        unsigned long offset = round(inputTime - getBlockStartTime());
+        unsigned long offset = round(inputTime - blockStartTime);
         
         // Safety
         
-        if (!sizeIn || inputTime < getBlockStartTime() || (offset + sizeIn) > mSize)
+        if (!sizeIn || inputTime < blockStartTime || (offset + sizeIn) > mSize)
             return;
         
         // Calculate actual offset into buffer
