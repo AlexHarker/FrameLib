@@ -53,7 +53,7 @@ public:
         
         // Size Calculations
         
-        static size_t calcSize(Serial *serialised)      { return serialised != NULL ? serialised->mSize : 0; }
+        static size_t calcSize(Serial *serialised)          { return serialised != NULL ? serialised->mSize : 0; }
         static size_t calcSize(const char *tag, char *str)  { return sizeType() + sizeString(tag) + sizeString(str); }
         static size_t calcSize(const char *tag, size_t N)   { return sizeType() + sizeString(tag) + sizeArray(N); }
         
@@ -65,12 +65,12 @@ public:
         
         // Read into Parameters
         
-        void read(FrameLib_Parameters *parameters);
+        void read(FrameLib_Parameters *parameters) const;
         
         // Utility
         
-        size_t size()   { return mSize; }
-        void clear()    { mSize = 0; }
+        size_t size() const     { return mSize; }
+        void clear()            { mSize = 0; }
         
         static size_t alignSize(size_t size)                    { return (size + (alignment - 1)) & ~(alignment - 1); }
         static size_t inPlaceSize(size_t size)                  { return alignSize(sizeof(Serial)) + alignSize(size); }
@@ -92,7 +92,7 @@ public:
         
         // Debug
         
-        void alignmentChecks();
+        void alignmentChecks() const;
         
         // Size Calculators
         
@@ -109,10 +109,10 @@ public:
         
         // Read Item
         
-        DataType readType(BytePointer *readPtr);
-        void readSize(BytePointer *readPtr, size_t *size);
-        void readDoubles(BytePointer *readPtr, double **values, size_t *N);
-        void readString(BytePointer *readPtr, char **str);
+        DataType readType(BytePointer *readPtr) const;
+        void readSize(BytePointer *readPtr, size_t *size) const;
+        void readDoubles(BytePointer *readPtr, double **values, size_t *N) const;
+        void readString(BytePointer *readPtr, char **str) const;
         
     protected:
         
@@ -131,22 +131,18 @@ public:
     public:
 
         AutoSerial() {};
-        AutoSerial(size_t size) : mPtr(new Byte[size]), mMaxSize(size) {}
+        AutoSerial(size_t size) : Serial(new Byte[size], size) {}
         ~AutoSerial() { if (mPtr) delete[] mPtr; }
         
         // Write Items
         
-        void write(Serial *serialised)                      { if (checkSize(calcSize(serialised))) Serial::write(serialised); }
+        void write(Serial *serialised)                          { if (checkSize(calcSize(serialised))) Serial::write(serialised); }
         void write(const char *tag, char *str)                  { if (checkSize(calcSize(tag, str))) Serial::write(tag, str); }
         void write(const char *tag, double *values, size_t N)   { if (checkSize(calcSize(tag, N))) Serial::write(tag, values, N); }
         
     private:
         
         bool checkSize(size_t writeSize);
-        
-        BytePointer mPtr;
-        size_t mSize;
-        size_t mMaxSize;
     };
     
     // ************************************************************************************** //
@@ -188,7 +184,7 @@ private:
         const char *name()  { return mName.c_str(); }
         long argumentIdx()  { return mArgumentIdx; }
         
-        virtual  void getRange(double *min, double *max);
+        virtual void getRange(double *min, double *max);
         virtual const char *getItemString(unsigned long item) const;
 
         // Values

@@ -46,7 +46,7 @@ void FrameLib_Parameters::Serial::write(const char *tag, double *values, size_t 
 
 // Public Read
 
-void FrameLib_Parameters::Serial::read(FrameLib_Parameters *parameters)
+void FrameLib_Parameters::Serial::read(FrameLib_Parameters *parameters) const
 {
     BytePointer readPtr = mPtr;
     char *tag, *str;
@@ -74,7 +74,7 @@ void FrameLib_Parameters::Serial::read(FrameLib_Parameters *parameters)
 
 // Implementation
 
-void FrameLib_Parameters::Serial::alignmentChecks()
+void FrameLib_Parameters::Serial::alignmentChecks() const
 {
     // Assume that alignment of a double is fine for all natural alignment needs (including this class)
     
@@ -117,27 +117,27 @@ void FrameLib_Parameters::Serial::writeDoubles(double *ptr, size_t N)
 
 // Reads (private)
 
-FrameLib_Parameters::Serial::DataType FrameLib_Parameters::Serial::readType(BytePointer *readPtr)
+FrameLib_Parameters::Serial::DataType FrameLib_Parameters::Serial::readType(BytePointer *readPtr) const
 {
     DataType type = *((DataType *) *readPtr);
     *readPtr += alignSize(sizeof(DataType));
     return type;
 }
 
-void FrameLib_Parameters::Serial::readSize(BytePointer *readPtr, size_t *size)
+void FrameLib_Parameters::Serial::readSize(BytePointer *readPtr, size_t *size) const
 {
     *size = *((size_t *) *readPtr);
     *readPtr += alignSize(sizeof(size_t));
 }
 
-void FrameLib_Parameters::Serial::readDoubles(BytePointer *readPtr, double **values, size_t *N)
+void FrameLib_Parameters::Serial::readDoubles(BytePointer *readPtr, double **values, size_t *N) const
 {
     readSize(readPtr, N);
     *values = ((double *) *readPtr);
     *readPtr += alignSize(*N * sizeof(double));
 }
 
-void FrameLib_Parameters::Serial::readString(BytePointer *readPtr, char **str)
+void FrameLib_Parameters::Serial::readString(BytePointer *readPtr, char **str) const
 {
     size_t size;
     readSize(readPtr, &size);
