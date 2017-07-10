@@ -3,25 +3,14 @@
 
 // Constructors / Destructor
 
-FrameLib_Parameters::Serial::Serial(BytePointer ptr, size_t size) : mPtr(ptr), mSize(0), mMaxSize(size), mOwner(false)
+FrameLib_Parameters::Serial::Serial(BytePointer ptr, size_t size) : mPtr(ptr), mSize(0), mMaxSize(size)
 {
     alignmentChecks();
 }
 
-FrameLib_Parameters::Serial::Serial(size_t size) : mPtr(new Byte[size]), mSize(0), mMaxSize(size), mOwner(true)
+FrameLib_Parameters::Serial::Serial() : mPtr(NULL), mSize(0), mMaxSize(0)
 {
     alignmentChecks();
-}
-
-FrameLib_Parameters::Serial::Serial() : mPtr(NULL), mSize(0), mMaxSize(0), mOwner(true)
-{
-    alignmentChecks();
-}
-
-FrameLib_Parameters::Serial::~Serial()
-{
-    if (mOwner)
-        delete[] mPtr;
 }
 
 // Public Writes
@@ -160,13 +149,22 @@ void FrameLib_Parameters::Serial::readString(BytePointer *readPtr, char **str)
 
 bool FrameLib_Parameters::Serial::checkSize(size_t writeSize)
 {
-    size_t growSize;
-    
     if (mSize + writeSize <= mMaxSize)
         return true;
     
-    if (!mOwner)
-        return false;
+    return false;
+}
+
+// ************************************************************************************** //
+
+// AutoSerial Class (owning/resizing/allocating it's own memory using system routines - not suitable for audio thread use)
+
+bool FrameLib_Parameters::AutoSerial::checkSize(size_t writeSize)
+{
+    size_t growSize;
+    
+    if (Serial::checkSize(writeSize))
+        return true;
     
     // Calculate grow size
     
@@ -177,7 +175,7 @@ bool FrameLib_Parameters::Serial::checkSize(size_t writeSize)
     
     BytePointer newPtr = new Byte[mMaxSize + growSize];
     memcpy(newPtr, mPtr, mSize);
-    delete[] mPtr;
+    if (mPtr) delete[] mPtr;
     
     // Update
     

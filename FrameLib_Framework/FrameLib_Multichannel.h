@@ -397,7 +397,7 @@ private:
     
     FrameLib_Context mContext;
     FrameLib_Context::Allocator mAllocator;
-    FrameLib_Parameters::Serial mSerialisedParameters;
+    FrameLib_Parameters::AutoSerial mSerialisedParameters;
 
     std::vector <FrameLib_Block *> mBlocks;
     std::vector <std::vector <double> > mFixedInputs;

@@ -27,6 +27,8 @@ public:
     
 public:
     
+    // A Serialised Set Of Tagged Parameter Values (no memory ownership)
+    
     class Serial
     {
         
@@ -46,14 +48,12 @@ public:
         // Constructors and Destructor
         
         Serial(BytePointer ptr, size_t size);
-        Serial(size_t size);
         Serial();
-
-        ~Serial();
+        ~Serial() {};
         
         // Size Calculations
         
-        static size_t calcSize(Serial *serialised)          { return serialised != NULL ? serialised->mSize : 0; }
+        static size_t calcSize(Serial *serialised)      { return serialised != NULL ? serialised->mSize : 0; }
         static size_t calcSize(const char *tag, char *str)  { return sizeType() + sizeString(tag) + sizeString(str); }
         static size_t calcSize(const char *tag, size_t N)   { return sizeType() + sizeString(tag) + sizeArray(N); }
         
@@ -72,11 +72,17 @@ public:
         size_t size()   { return mSize; }
         void clear()    { mSize = 0; }
         
-        static size_t alignSize(size_t size)                { return (size + (alignment - 1)) & ~(alignment - 1); }
-        static size_t inPlaceSize(size_t size)              { return alignSize(sizeof(Serial)) + alignSize(size); }
+        static size_t alignSize(size_t size)                    { return (size + (alignment - 1)) & ~(alignment - 1); }
+        static size_t inPlaceSize(size_t size)                  { return alignSize(sizeof(Serial)) + alignSize(size); }
 
         static Serial *newInPlace(void *ptr, size_t size)   { return new (ptr) Serial(((BytePointer) ptr) + alignSize(sizeof(Serial)), size); }
 
+    protected:
+        
+        // Check Size
+        
+        bool checkSize(size_t writeSize);
+        
     private:
         
         // Deleted
@@ -108,18 +114,41 @@ public:
         void readDoubles(BytePointer *readPtr, double **values, size_t *N);
         void readString(BytePointer *readPtr, char **str);
         
-        // Check Size
-        
-        bool checkSize(size_t writeSize);
+    protected:
         
         // Member Variables
         
         BytePointer mPtr;
         size_t mSize;
         size_t mMaxSize;
-        bool mOwner;
     };
 
+    // Extends Serial (with memory ownership)
+    
+    class AutoSerial : public Serial
+    {
+        
+    public:
+
+        AutoSerial() {};
+        AutoSerial(size_t size) : mPtr(new Byte[size]), mMaxSize(size) {}
+        ~AutoSerial() { if (mPtr) delete[] mPtr; }
+        
+        // Write Items
+        
+        void write(Serial *serialised)                      { if (checkSize(calcSize(serialised))) Serial::write(serialised); }
+        void write(const char *tag, char *str)                  { if (checkSize(calcSize(tag, str))) Serial::write(tag, str); }
+        void write(const char *tag, double *values, size_t N)   { if (checkSize(calcSize(tag, N))) Serial::write(tag, values, N); }
+        
+    private:
+        
+        bool checkSize(size_t writeSize);
+        
+        BytePointer mPtr;
+        size_t mSize;
+        size_t mMaxSize;
+    };
+    
     // ************************************************************************************** //
 
 private:
@@ -450,7 +479,7 @@ public:
    
     // Set Value
     
-    void set(Serial *serialised)                { serialised->read(this); }
+    void set(Serial *serialised)            { serialised->read(this); }
 
     void set(unsigned long idx, bool value)     { set(idx, (double) value); }
     void set(const char *name, bool value)      { set(name, (double) value); }
