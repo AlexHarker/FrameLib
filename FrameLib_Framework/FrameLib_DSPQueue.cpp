@@ -16,7 +16,8 @@ void FrameLib_DSPQueue::process(FrameLib_DSP *object)
 void FrameLib_DSPQueue::start(FrameLib_DSP *object)
 {
     mInQueue++;
-    worker.signal();
+    mWorker1.signal();
+    mWorker2.signal();
     object->mNextInThread = NULL;
     process(object);
     serviceQueue();

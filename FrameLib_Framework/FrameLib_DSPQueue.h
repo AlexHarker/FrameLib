@@ -33,15 +33,17 @@ class FrameLib_DSPQueue
     
 public:
     
-    FrameLib_DSPQueue() : worker(this)
+    FrameLib_DSPQueue() : mWorker1(this), mWorker2(this)
     {
         memset((void *) &mQueue, 0, sizeof(OSFifoQueueHead));
-        worker.start();
+        mWorker1.start();
+        mWorker2.start();
     }
 
     ~FrameLib_DSPQueue()
     {
-        worker.join();
+        mWorker1.join();
+        mWorker2.join();
     }
 
     void process(FrameLib_DSP *object);
@@ -57,7 +59,8 @@ private:
     
     void serviceQueue();
     
-    WorkerThread worker;
+    WorkerThread mWorker1;
+    WorkerThread mWorker2;
     
     FrameLib_Atomic32 mInQueue;
     OSFifoQueueHead mQueue;
