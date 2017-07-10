@@ -18,7 +18,7 @@ class FrameLib_DSPQueue
         
     public:
         
-        WorkerThreads(FrameLib_DSPQueue *queue) : TriggerableThreadSet(Thread::kHighPriority, 4), mQueue(queue) {}
+        WorkerThreads(FrameLib_DSPQueue *queue) : TriggerableThreadSet(Thread::kHighPriority, 7), mQueue(queue) {}
         
     private:
         
