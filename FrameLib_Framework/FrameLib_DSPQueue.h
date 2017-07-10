@@ -61,7 +61,8 @@ private:
     
     WorkerThread mWorker1;
     WorkerThread mWorker2;
-    
+
+    FrameLib_Atomic32 mQueueSize;
     FrameLib_Atomic32 mInQueue;
     OSFifoQueueHead mQueue;
 };

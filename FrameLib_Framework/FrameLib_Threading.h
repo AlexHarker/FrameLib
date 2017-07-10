@@ -83,6 +83,8 @@ public:
     int32_t operator ++ (int)                   { return operator++() - 1; }
     int32_t operator -- ()                      { return decrement32(&mValue); }
     int32_t operator -- (int)                   { return operator--() + 1; }
+
+    operator int32_t() const                    { return mValue; }
     
 private:
 	
