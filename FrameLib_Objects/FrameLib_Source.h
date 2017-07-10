@@ -13,7 +13,7 @@
 
 #define MAX_VECTOR_SIZE 8192
 
-class FrameLib_Source : public FrameLib_AudioProcessor
+class FrameLib_Source : public FrameLib_AudioInput
 {
     enum ParameterList {kMaxLength, kLength, kUnits};
     enum Units {kSamples, kMS, kSeconds};
@@ -37,7 +37,7 @@ private:
     
 public:
     
-    FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioProcessor(context, 1, 1, 1, 0)
+    FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioInput(context, 1, 1, 1)
     {        
         mParameters.addDouble(kMaxLength, "length", 16384, 0);
         mParameters.setMin(0.0);
@@ -91,7 +91,7 @@ private:
         }
     }
     
-    void blockProcessPre(double **ins, double **outs, unsigned long vecSize)
+    void blockProcess(double **ins, double **outs, unsigned long vecSize)
     {
         double *input = ins[0];
         

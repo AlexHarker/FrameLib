@@ -12,14 +12,14 @@
 
 #define MAX_VECTOR_SIZE 8192
 
-class FrameLib_Sink : public FrameLib_AudioProcessor
+class FrameLib_Sink : public FrameLib_AudioOutput
 {
     enum ParameterList {kLength, kUnits};
     enum Units {kMS, kSeconds, kSamples};
     
 public:
     
-    FrameLib_Sink(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioProcessor(context, 1, 0, 0, 1)
+    FrameLib_Sink(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioOutput(context, 1, 0, 1)
     {
         mParameters.addDouble(kLength, "length", 8000, 0);
         mParameters.setMin(0.0);
@@ -83,7 +83,7 @@ private:
         }
     }
 
-    void blockProcessPost(double **ins, double **outs, unsigned long vecSize)
+    void blockProcess(double **ins, double **outs, unsigned long vecSize)
     {
         double *output = outs[0];
         
@@ -111,15 +111,16 @@ private:
         unsigned long sizeIn;
 
         FrameLib_TimeFormat inputTime = getInputFrameTime(0);
+        FrameLib_TimeFormat blockStartTime = getBlockStartTime();
         double *input = getInput(0, &sizeIn);
         
         // Calculate time offset
         
-        unsigned long offset = round(inputTime - getBlockStartTime());
+        unsigned long offset = round(inputTime - blockStartTime);
         
         // Safety
         
-        if (!sizeIn || inputTime < getBlockStartTime() || (offset + sizeIn) > mSize)
+        if (!sizeIn || inputTime < blockStartTime || (offset + sizeIn) > mSize)
             return;
         
         // Calculate actual offset into buffer

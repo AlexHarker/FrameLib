@@ -12,8 +12,19 @@
 
 class FrameLib_Block
 {
-    
 public:
+ 
+    // IO Count Structure
+    
+    struct IOCount
+    {
+        IOCount() : mNumIns(0), mNumOuts(0), mNumAudioIns(0), mNumAudioOuts(0) {}
+        
+        IOCount(unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
+        : mNumIns(nIns), mNumOuts(nOuts), mNumAudioIns(nAudioIns), mNumAudioOuts(nAudioOuts) {}
+        
+        unsigned long mNumIns, mNumOuts, mNumAudioIns, mNumAudioOuts;
+    };
     
     // Constructor / Destructor (virtual)
     
@@ -24,10 +35,12 @@ public:
     
     virtual void setSamplingRate(double samplingRate) = 0;
     
-    virtual unsigned long getNumIns() = 0;
-    virtual unsigned long getNumOuts() = 0;
-    virtual unsigned long getNumAudioIns() = 0;
-    virtual unsigned long getNumAudioOuts() = 0;
+    void setIO(const IOCount& count)        { mIOCount = count; }
+    
+    unsigned long getNumIns()               { return mIOCount.mNumIns; }
+    unsigned long getNumOuts()              { return mIOCount.mNumOuts; }
+    unsigned long getNumAudioIns()          { return mIOCount.mNumAudioIns; }
+    unsigned long getNumAudioOuts()         { return mIOCount.mNumAudioOuts; }
     
     // Set Fixed Inputs
     
@@ -59,6 +72,10 @@ public:
 protected:
 
     virtual class FrameLib_DSP *getOutputObject(unsigned long outIdx) = 0;
+    
+private:
+
+    IOCount mIOCount;
 };
 
 #endif

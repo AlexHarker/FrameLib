@@ -33,7 +33,7 @@ public:
     // Enums and Structs (IO / scheduling)
     
 
-    enum ObjectType { kProcessor, kScheduler };
+    enum ObjectType { kOutput, kProcessor, kScheduler };
     enum OutputMode { kOutputNormal, kOutputTagged };
     
 protected:
@@ -103,17 +103,12 @@ public:
 
     // Constructor / Destructor
 
-    FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts);
+    FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0);
     ~FrameLib_DSP();
     
    // Basic Setup
     
     void setSamplingRate(double samplingRate)   { mSamplingRate = samplingRate > 0 ? samplingRate : 44100.0; }
-    
-    virtual unsigned long getNumIns()           { return mInputs.size(); }
-    virtual unsigned long getNumOuts()          { return mOutputs.size(); }
-    virtual unsigned long getNumAudioIns()      { return mNumAudioIns; }
-    virtual unsigned long getNumAudioOuts()     { return mNumAudioOuts; }
     
     // Set Fixed Inputs
     
@@ -143,7 +138,7 @@ protected:
     
     // Call these from your constructor only (unsafe elsewhere)
    
-    void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0);
+    void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0);
     void inputMode(unsigned long idx, bool update, bool trigger, bool switchable);
     void outputMode(unsigned long idx, OutputMode mode);
     
@@ -193,10 +188,9 @@ private:
 
     // Customisable Processing
 
-    // Override to handle audio at the block level (pre or post processing by the host)
+    // Override to handle audio at the block level
     
-    virtual void blockProcessPre(double **ins, double **outs, unsigned long vecSize) {}
-    virtual void blockProcessPost(double **ins, double **outs, unsigned long vecSize) {}
+    virtual void blockProcess(double **ins, double **outs, unsigned long vecSize) {}
 
     // Override for updates prior to schedule / process (e.g. adjusting triggers)
     
@@ -212,9 +206,9 @@ private:
     
     // Scheduling
     
-    // This returns true if the object requires notification from an audio thread
+    // This returns true if the object requires notification from an audio thread (is a scheduler/has audio input)
     
-    bool requiresAudioNotification()    { return mType == kScheduler || getNumAudioIns() || getNumAudioOuts(); }
+    bool requiresAudioNotification()    { return mType == kScheduler || getNumAudioIns(); }
     
     // Manage Output Memory
 
@@ -276,11 +270,6 @@ private:
     std::vector <FrameLib_DSP *> mInputDependencies;
     std::vector <FrameLib_DSP *> mOutputDependencies;
     
-    // Audio IO Counts
-    
-    unsigned long mNumAudioIns;
-    unsigned long mNumAudioOuts;
-    
     // Dependency Counts
     
     FrameLib_Atomic32 mDependencyCount;
@@ -308,7 +297,7 @@ class FrameLib_Processor : public FrameLib_DSP
 public:
     
     FrameLib_Processor(FrameLib_Context context, unsigned long nIns = 0, unsigned long nOuts = 0)
-    : FrameLib_DSP(kProcessor, context, nIns, nOuts, 0, 0) {}
+    : FrameLib_DSP(kProcessor, context, nIns, nOuts) {}
     
     static bool handlesAudio() { return false; }
 
@@ -323,15 +312,36 @@ protected:
 
 // ************************************************************************************** //
 
-// FrameLib_AudioProcessor - Simple class for process type objects (can handle audio)
+// FrameLib_AudioInput - Simple class for process type objects (can handle audio input)
 
-class FrameLib_AudioProcessor : public FrameLib_DSP
+class FrameLib_AudioInput : public FrameLib_DSP
 {
     
 public:
     
-    FrameLib_AudioProcessor(FrameLib_Context context, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
-    : FrameLib_DSP(kProcessor, context, nIns, nOuts, nAudioIns, nAudioOuts) {}
+    FrameLib_AudioInput(FrameLib_Context context, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
+    : FrameLib_DSP(kProcessor, context, nIns, nOuts, nAudioIns) {}
+    
+    static bool handlesAudio() { return true; }
+    
+protected:
+    
+    // This prevents the user from needing to implement this method - doing so will do nothing
+    
+    virtual SchedulerInfo schedule(bool newFrame, bool noOutput)    { return SchedulerInfo(); }
+};
+
+// ************************************************************************************** //
+
+// FrameLib_AudioOutput - Simple class for process type objects (can handle audio output)
+
+class FrameLib_AudioOutput : public FrameLib_DSP
+{
+    
+public:
+    
+    FrameLib_AudioOutput(FrameLib_Context context, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioOuts = 0)
+    : FrameLib_DSP(kOutput, context, nIns, nOuts, nAudioOuts) {}
     
     static bool handlesAudio() { return true; }
     
@@ -351,8 +361,8 @@ class FrameLib_Scheduler : public FrameLib_DSP
 
 public:
     
-    FrameLib_Scheduler(FrameLib_Context context, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
-    : FrameLib_DSP(kScheduler, context, nIns, nOuts, nAudioIns, nAudioOuts) {}
+    FrameLib_Scheduler(FrameLib_Context context, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
+    : FrameLib_DSP(kScheduler, context, nIns, nOuts, nAudioIns) {}
     
     static bool handlesAudio() { return true; }
     

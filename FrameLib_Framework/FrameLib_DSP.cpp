@@ -5,14 +5,14 @@
 
 // Constructor / Destructor
 
-FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
+FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
 : mAllocator(context), mQueue(context), mNextInThread(NULL), mType(type), mInUpdate(false)
 {
     mQueueItem.mThis = this;
     
     // Set IO
     
-    setIO(nIns, nOuts, nAudioIns, nAudioOuts);
+    setIO(nIns, nOuts, nAudioChans);
     
     setSamplingRate(0.0);
 }
@@ -61,16 +61,13 @@ void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long vecSiz
     // Update block time and process the block
     
     mBlockEndTime += vecSize;
-    blockProcessPre(ins, outs, vecSize);
+    blockProcess(ins, outs, vecSize);
     
-    // If the object is not an output then notify
-    
-    // FIX - review how this works/is reported and naming (Audio is misleading in the static functions)
+    // If the object is handling audio updates (but is not an output object) then notify
     
     if (mValidTime < mBlockEndTime && requiresAudioNotification())
         dependencyNotify(this, false, true);
     
-    blockProcessPost(ins, outs, vecSize);
     mBlockStartTime = mBlockEndTime;
 }
 
@@ -138,7 +135,7 @@ bool FrameLib_DSP::isConnected(unsigned long inIdx)
 
 // Setup and IO Modes
 
-void FrameLib_DSP::setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
+void FrameLib_DSP::setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
 {
     // Free output memory
     
@@ -149,8 +146,7 @@ void FrameLib_DSP::setIO(unsigned long nIns, unsigned long nOuts, unsigned long 
     mInputs.resize((mType != kScheduler || nIns > 0) ? nIns : 1);
     mOutputs.resize(nOuts);
     
-    mNumAudioIns = nAudioIns;
-    mNumAudioOuts = nAudioOuts;
+    FrameLib_Block::setIO(FrameLib_Block::IOCount(mInputs.size(), mOutputs.size(), getType() != kOutput ? nAudioChans : 0, getType() == kOutput ? nAudioChans : 0));
     
     // Reset for audio
     

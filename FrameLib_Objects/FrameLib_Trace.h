@@ -14,14 +14,14 @@
 
 #define MAX_VECTOR_SIZE 8192
 
-class FrameLib_Trace : public FrameLib_AudioProcessor
+class FrameLib_Trace : public FrameLib_AudioOutput
 {
     enum ParameterList {kLength, kUnits};
     enum Units {kMS, kSeconds, kSamples};
     
 public:
     
-    FrameLib_Trace(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioProcessor(context, 1, 0, 0, 1)
+    FrameLib_Trace(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioOutput(context, 1, 0, 1)
     {
         mParameters.addDouble(kLength, "length", 8000, 0);
         mParameters.setMin(0.0);
@@ -98,7 +98,7 @@ private:
         }
     }
     
-    void blockProcessPost(double **ins, double **outs, unsigned long vecSize)
+    void blockProcess(double **ins, double **outs, unsigned long vecSize)
     {
         double *output = outs[0];
         
