@@ -12,7 +12,7 @@ class FrameLib_Convolve : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Convolve(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
+    FrameLib_Convolve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
     {
         mParameters.addDouble(kMaxLength, "maxlength", 16384, 0);
         mParameters.setMin(0.0);

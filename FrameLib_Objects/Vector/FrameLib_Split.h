@@ -14,7 +14,7 @@ class FrameLib_Split : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Split(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 2)
+    FrameLib_Split(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 2)
     {
         mParameters.addDouble(kSplit, "split", 0.0, 0);
         mParameters.setMin(0.0);

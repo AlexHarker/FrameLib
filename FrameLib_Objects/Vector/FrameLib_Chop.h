@@ -12,7 +12,7 @@ class FrameLib_Chop : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Chop(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context)
+    FrameLib_Chop(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context)
     {
         mParameters.addDouble(kNumOuts, "numouts", 1.0, 0);
         mParameters.setClip(2.0, 32.0);

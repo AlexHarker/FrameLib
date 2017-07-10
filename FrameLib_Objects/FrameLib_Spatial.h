@@ -38,7 +38,7 @@ class FrameLib_Spatial : public FrameLib_Processor
 
 public:
     
-    FrameLib_Spatial (FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_Spatial (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
         mParameters.addEnum(kInputMode, "inputmode");
         mParameters.addEnumItem(kPolar, "polar");

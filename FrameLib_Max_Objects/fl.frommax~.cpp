@@ -40,7 +40,7 @@ class FrameLib_FromMax : public FrameLib_Processor
     
 public:
     
-    FrameLib_FromMax(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_FromMax(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
         mParameters.addEnum(kMode, "mode", 0);
         mParameters.addEnumItem(kValues, "values");
@@ -79,15 +79,15 @@ protected:
             for (unsigned long i = 0; i < mMessages->mTagged.size(); i++)
             {
                 if (mMessages->mTagged[i].mStringFlag)
-                    size += FrameLib_Parameters::SerialBase::calcSize(mMessages->mTagged[i].mTag, mMessages->mTagged[i].mString);
+                    size += FrameLib_Parameters::Serial::calcSize(mMessages->mTagged[i].mTag, mMessages->mTagged[i].mString);
                 else
-                    size += FrameLib_Parameters::SerialBase::calcSize(mMessages->mTagged[i].mTag, mMessages->mTagged[i].mCount);
+                    size += FrameLib_Parameters::Serial::calcSize(mMessages->mTagged[i].mTag, mMessages->mTagged[i].mCount);
             }
             
             requestOutputSize(0, size);
             allocateOutputs();
 
-            FrameLib_Parameters::SerialBase *serialisedParameters = getOutput(0);
+            FrameLib_Parameters::Serial *serialisedParameters = getOutput(0);
             
             for (unsigned long i = 0; i < mMessages->mTagged.size(); i++)
             {

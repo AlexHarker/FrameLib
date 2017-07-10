@@ -12,7 +12,7 @@ class FrameLib_Interval : public FrameLib_Scheduler
 
 public:
     
-    FrameLib_Interval(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Scheduler(context, 1, 1)
+    FrameLib_Interval(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Scheduler(context, 1, 1)
     {
         // FIX - safety on minimum time?
         
@@ -31,7 +31,7 @@ protected:
     
     SchedulerInfo schedule(bool newFrame, bool noOutput)
     {
-        FrameLib_Parameters::SerialBase *serialised = getInput(0);
+        FrameLib_Parameters::Serial *serialised = getInput(0);
         
         if (serialised)
             mParameters.set(serialised);

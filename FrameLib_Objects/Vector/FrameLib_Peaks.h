@@ -9,7 +9,7 @@ class FrameLib_Peaks : public FrameLib_Processor
     
 public:
     
-    FrameLib_Peaks(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 3)
+    FrameLib_Peaks(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 3)
     {
         mParameters.set(serialisedParameters);
     }

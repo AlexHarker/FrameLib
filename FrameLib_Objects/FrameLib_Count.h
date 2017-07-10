@@ -11,7 +11,7 @@ class FrameLib_Count : public FrameLib_Processor
 
 public:
     
-    FrameLib_Count (FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
+    FrameLib_Count (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
     {
         mParameters.addDouble(kLength, "length", 64.0, 0);
         mParameters.setMin(0.0);
@@ -28,7 +28,7 @@ protected:
     
     void update()
     {
-        FrameLib_Parameters::SerialBase *serialised = getInput(1);
+        FrameLib_Parameters::Serial *serialised = getInput(1);
         
         if (serialised)
             mParameters.set(serialised);

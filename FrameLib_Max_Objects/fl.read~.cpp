@@ -16,7 +16,7 @@ class FrameLib_MaxRead : public FrameLib_Processor
     
 public:
     
-    FrameLib_MaxRead (FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_MaxRead (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
         mParameters.addString(kBuffer, "buffer", "", 0);
         

@@ -63,7 +63,7 @@ class FrameLib_OnePoleZero : public FrameLib_Processor
 
 public:
 	
-    FrameLib_OnePoleZero(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_OnePoleZero(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
         mParameters.addDouble(kFreq, "freq", 0.0, 0);
         mParameters.setMin(0.0);

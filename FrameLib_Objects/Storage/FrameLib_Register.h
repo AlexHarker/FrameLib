@@ -12,7 +12,7 @@ class FrameLib_Register : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Register(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
+    FrameLib_Register(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
     {
         mParameters.addEnum(kMode, "mode", 0);
         mParameters.addEnumItem(kStore, "store");

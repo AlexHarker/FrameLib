@@ -22,7 +22,7 @@ class FrameLib_Window : public FrameLib_Processor
 
 public:
 	
-    FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
+    FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
     {
         mParameters.addEnum(kWindowType, "window", 0);
         mParameters.addEnumItem(kHann, "hann");
@@ -204,7 +204,7 @@ protected:
     
     void update()
     {
-        FrameLib_Parameters::SerialBase *serialised = getInput(1);
+        FrameLib_Parameters::Serial *serialised = getInput(1);
         
         if (serialised)
             mParameters.set(serialised);

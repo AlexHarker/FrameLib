@@ -9,7 +9,7 @@ class FrameLib_T1 : public FrameLib_Processor
 
 public:
     
-    FrameLib_T1(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context)
+    FrameLib_T1(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context)
     {
         mParameters.addDouble(kInputs, "outputs", 1, 0);
         

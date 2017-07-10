@@ -11,7 +11,7 @@ class FrameLib_SampleRate : public FrameLib_Processor
 
 public:
     
-    FrameLib_SampleRate (FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_SampleRate (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
         mParameters.addEnum(kMode, "mode", 0);
         mParameters.addEnumItem(kValue, "value");

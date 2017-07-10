@@ -186,7 +186,7 @@ bool FrameLib_DSP::allocateOutputs()
     {
         // Calculate allocation size, including necessary alignment padding and assuming success
         
-        size_t unalignedSize = outs->mMode == kOutputNormal ? outs->mRequestedSize * sizeof(double) : SerialBase::inPlaceSize(outs->mRequestedSize);
+        size_t unalignedSize = outs->mMode == kOutputNormal ? outs->mRequestedSize * sizeof(double) : Serial::inPlaceSize(outs->mRequestedSize);
         size_t alignedSize = FrameLib_LocalAllocator::alignSize(unalignedSize);
         
         outs->mCurrentSize = outs->mRequestedSize;
@@ -210,7 +210,7 @@ bool FrameLib_DSP::allocateOutputs()
             outs->mMemory = pointer + outs->mPointerOffset;
             
             if (outs->mMode == kOutputTagged)
-                SerialBase::newInPlace(outs->mMemory, outs->mCurrentSize);
+                Serial::newInPlace(outs->mMemory, outs->mCurrentSize);
         }
         
         // Set dependency count
@@ -244,7 +244,7 @@ double *FrameLib_DSP::getInput(unsigned long idx, size_t *size)
     return mInputs[idx].mFixedInput;
 }
 
-FrameLib_Parameters::SerialBase *FrameLib_DSP::getInput(unsigned long idx)
+FrameLib_Parameters::Serial *FrameLib_DSP::getInput(unsigned long idx)
 {
     if (mInputs[idx].mObject)
         return mInputs[idx].mObject->getOutput(mInputs[idx].mIndex);
@@ -264,10 +264,10 @@ double *FrameLib_DSP::getOutput(unsigned long idx, size_t *size)
     return NULL;
 }
 
-FrameLib_Parameters::SerialBase *FrameLib_DSP::getOutput(unsigned long idx)
+FrameLib_Parameters::Serial *FrameLib_DSP::getOutput(unsigned long idx)
 {
     if (mOutputs[0].mMemory && mOutputs[idx].mMode == kOutputTagged)
-        return (SerialBase *) mOutputs[idx].mMemory;
+        return (Serial *) mOutputs[idx].mMemory;
     
     return NULL;
 }
@@ -454,7 +454,7 @@ inline void FrameLib_DSP::freeOutputMemory()
         
         for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
             if (outs->mMode == kOutputTagged)
-                ((SerialBase *)outs->mMemory)->SerialBase::~SerialBase();
+                ((Serial *)outs->mMemory)->Serial::~Serial();
 
         // Then deallocate
         

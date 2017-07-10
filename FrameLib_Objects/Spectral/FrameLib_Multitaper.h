@@ -11,7 +11,7 @@ class FrameLib_Multitaper : public FrameLib_Processor
     
 public:
 	
-    FrameLib_Multitaper(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_Multitaper(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
         mParameters.addDouble(kMaxLength, "maxlength", 16384, 0);
         mParameters.setMin(0.0);

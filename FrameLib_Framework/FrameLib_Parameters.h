@@ -29,7 +29,7 @@ public:
     
     // A Serialised Set Of Tagged Parameter Values (no memory ownership)
     
-    class SerialBase
+    class Serial
     {
         
     public:
@@ -47,19 +47,19 @@ public:
         
         // Constructors and Destructor
         
-        SerialBase(BytePointer ptr, size_t size);
-        SerialBase();
-        ~SerialBase() {};
+        Serial(BytePointer ptr, size_t size);
+        Serial();
+        ~Serial() {};
         
         // Size Calculations
         
-        static size_t calcSize(SerialBase *serialised)      { return serialised != NULL ? serialised->mSize : 0; }
+        static size_t calcSize(Serial *serialised)      { return serialised != NULL ? serialised->mSize : 0; }
         static size_t calcSize(const char *tag, char *str)  { return sizeType() + sizeString(tag) + sizeString(str); }
         static size_t calcSize(const char *tag, size_t N)   { return sizeType() + sizeString(tag) + sizeArray(N); }
         
         // Write Items
         
-        void write(SerialBase *serialised);
+        void write(Serial *serialised);
         void write(const char *tag, char *str);
         void write(const char *tag, double *values, size_t N);
         
@@ -73,9 +73,9 @@ public:
         void clear()    { mSize = 0; }
         
         static size_t alignSize(size_t size)                    { return (size + (alignment - 1)) & ~(alignment - 1); }
-        static size_t inPlaceSize(size_t size)                  { return alignSize(sizeof(SerialBase)) + alignSize(size); }
+        static size_t inPlaceSize(size_t size)                  { return alignSize(sizeof(Serial)) + alignSize(size); }
 
-        static SerialBase *newInPlace(void *ptr, size_t size)   { return new (ptr) SerialBase(((BytePointer) ptr) + alignSize(sizeof(SerialBase)), size); }
+        static Serial *newInPlace(void *ptr, size_t size)   { return new (ptr) Serial(((BytePointer) ptr) + alignSize(sizeof(Serial)), size); }
 
     protected:
         
@@ -87,8 +87,8 @@ public:
         
         // Deleted
         
-        SerialBase(const SerialBase&);
-        SerialBase& operator=(const SerialBase&);
+        Serial(const Serial&);
+        Serial& operator=(const Serial&);
         
         // Debug
         
@@ -123,22 +123,22 @@ public:
         size_t mMaxSize;
     };
 
-    // Extends SerialBase (with memory ownership)
+    // Extends Serial (with memory ownership)
     
-    class Serial : public SerialBase
+    class AutoSerial : public Serial
     {
         
     public:
 
-        Serial() {};
-        Serial(size_t size) : mPtr(new Byte[size]), mMaxSize(size) {}
-        ~Serial() { if (mPtr) delete[] mPtr; }
+        AutoSerial() {};
+        AutoSerial(size_t size) : mPtr(new Byte[size]), mMaxSize(size) {}
+        ~AutoSerial() { if (mPtr) delete[] mPtr; }
         
         // Write Items
         
-        void write(SerialBase *serialised)                      { if (checkSize(calcSize(serialised))) SerialBase::write(serialised); }
-        void write(const char *tag, char *str)                  { if (checkSize(calcSize(tag, str))) SerialBase::write(tag, str); }
-        void write(const char *tag, double *values, size_t N)   { if (checkSize(calcSize(tag, N))) SerialBase::write(tag, values, N); }
+        void write(Serial *serialised)                      { if (checkSize(calcSize(serialised))) Serial::write(serialised); }
+        void write(const char *tag, char *str)                  { if (checkSize(calcSize(tag, str))) Serial::write(tag, str); }
+        void write(const char *tag, double *values, size_t N)   { if (checkSize(calcSize(tag, N))) Serial::write(tag, values, N); }
         
     private:
         
@@ -479,7 +479,7 @@ public:
    
     // Set Value
     
-    void set(SerialBase *serialised)            { serialised->read(this); }
+    void set(Serial *serialised)            { serialised->read(this); }
 
     void set(unsigned long idx, bool value)     { set(idx, (double) value); }
     void set(const char *name, bool value)      { set(name, (double) value); }
