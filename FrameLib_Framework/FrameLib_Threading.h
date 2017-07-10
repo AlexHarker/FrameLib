@@ -8,6 +8,7 @@
 #include <pthread.h>
 #include <mach/semaphore.h>
 #include <mach/task.h>
+#include <vector>
 
 // Mac OS specific definitions
 
@@ -158,8 +159,7 @@ public:
     enum PriorityLevel {kLowPriority, kMediumPriority, kHighPriority, kAudioPriority};
 
     Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void *arg)
-    : mInternal(NULL), mPriority(priority), mThreadFunction(threadFunction), mArg(arg), mValid(false)
-    {}
+    : mInternal(NULL), mPriority(priority), mThreadFunction(threadFunction), mArg(arg), mValid(false) {}
 
     ~Thread();
 
@@ -238,8 +238,8 @@ private:
     
     // Deleted
     
-    TriggerableThread(const Thread&);
-    TriggerableThread& operator=(const Thread&);
+    TriggerableThread(const TriggerableThread&);
+    TriggerableThread& operator=(const TriggerableThread&);
     
     // threadEntry simply calls threadClassEntry which calls the task handler
     
@@ -302,6 +302,51 @@ private:
     
     bool mSignaled;
     FrameLib_Atomic32 mFlag;
+};
+
+// A set of threads that can be triggered from another thread but without any built-in mechanism to check progress
+
+class TriggerableThreadSet
+{
+    
+public:
+    
+    TriggerableThreadSet(Thread::PriorityLevel priority, unsigned int size);
+    ~TriggerableThreadSet();
+    
+    // Start and join
+    
+    void start();
+    void join();
+    
+    // Trigger the threads to do something
+    
+    void signal(long n) { mSemaphore.signal(n); };
+
+    // Get the size
+    
+    unsigned long size() { return mThreads.size(); };
+
+private:
+    
+    // Deleted
+    
+    TriggerableThreadSet(const TriggerableThreadSet&);
+    TriggerableThreadSet& operator=(const TriggerableThreadSet&);
+    
+    // threadEntry simply calls threadClassEntry which calls the task handler
+    
+    static void threadEntry(void *thread);
+    void threadClassEntry();
+    
+    // Override this and provide code for the thread's functionality
+    
+    virtual void doTask() = 0;
+    
+    // Data
+    
+    std::vector<Thread *> mThreads;
+    Semaphore mSemaphore;
 };
 
 #endif

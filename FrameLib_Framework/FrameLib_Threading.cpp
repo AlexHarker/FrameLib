@@ -220,7 +220,7 @@ void TriggerableThread::threadEntry(void *thread)
 
 void TriggerableThread::threadClassEntry()
 {
-    while(mSemaphore.wait())
+    while (mSemaphore.wait())
         doTask();
 }
 
@@ -268,3 +268,44 @@ void DelegateThread::threadClassEntry()
         mFlag.compareAndSwap(1, 2);
     }
 }
+
+// Triggerable Thread Set
+
+TriggerableThreadSet::TriggerableThreadSet(Thread::PriorityLevel priority, unsigned int size) : mSemaphore(size)
+{
+    mThreads.resize(size);
+    
+    for (std::vector<Thread *>::iterator it = mThreads.begin(); it != mThreads.end(); it++)
+        *it = new Thread(priority, threadEntry, this);
+}
+
+TriggerableThreadSet::~TriggerableThreadSet()
+{
+    for (std::vector<Thread *>::iterator it = mThreads.begin(); it != mThreads.end(); it++)
+        delete (*it);
+}
+
+void TriggerableThreadSet::start()
+{
+    for (std::vector<Thread *>::iterator it = mThreads.begin(); it != mThreads.end(); it++)
+        (*it)->start();
+}
+
+void TriggerableThreadSet::join()
+{
+    mSemaphore.close();
+    for (std::vector<Thread *>::iterator it = mThreads.begin(); it != mThreads.end(); it++)
+        (*it)->join();
+}
+
+void TriggerableThreadSet::threadEntry(void *thread)
+{
+    static_cast<TriggerableThreadSet *>(thread)->threadClassEntry();
+}
+
+void TriggerableThreadSet::threadClassEntry()
+{
+    while (mSemaphore.wait())
+        doTask();
+}
+

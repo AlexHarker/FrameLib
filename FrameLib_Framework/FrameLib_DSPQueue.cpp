@@ -11,23 +11,22 @@ void FrameLib_DSPQueue::process(FrameLib_DSP *object)
         object->mNextInThread = NULL;
         object = newObject;
     }
-    //mQueueSize--;
+    mQueueSize--;
 }
 
 void FrameLib_DSPQueue::start(FrameLib_DSP *object)
 {
-    mInQueue++;
-    mWorker1.signal();
-    mWorker2.signal();
+    //mInQueue++;
+    mWorkers.signal(mWorkers.size());
     object->mNextInThread = NULL;
-    //mQueueSize++;
+    mQueueSize++;
     process(object);
     serviceQueue();
 }
 
 void FrameLib_DSPQueue::add(FrameLib_DSP *object)
 {
-    //mQueueSize++;
+    mQueueSize++;
     object->mNextInThread = NULL;
     OSAtomicFifoEnqueue(&mQueue, &object->mQueueItem, offsetof(QueueItem, mNext));
 }
@@ -42,8 +41,8 @@ void FrameLib_DSPQueue::serviceQueue()
     
         // FIX - quick reliable and non-contentious exit strategies are needed here...
         
-        //if (mQueueSize == 0)
-        if (--mInQueue == 0)
+        if (mQueueSize == 0)
+        //if (--mInQueue == 0)
             return;
         
         // FIX - how long is a good time to yield for in a high performance thread?
@@ -52,9 +51,9 @@ void FrameLib_DSPQueue::serviceQueue()
         
         struct timespec a;
         a.tv_sec = 0;
-        a.tv_nsec = 1000;
+        a.tv_nsec = 100;
         nanosleep(&a,NULL);
         
-        mInQueue++;
+        //mInQueue++;
     }
 }

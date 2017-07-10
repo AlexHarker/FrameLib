@@ -13,12 +13,12 @@ class FrameLib_DSP;
 
 class FrameLib_DSPQueue
 {
-    class WorkerThread : public TriggerableThread
+    class WorkerThreads : public TriggerableThreadSet
     {
         
     public:
         
-        WorkerThread(FrameLib_DSPQueue *queue) : TriggerableThread(Thread::kHighPriority), mQueue(queue) {}
+        WorkerThreads(FrameLib_DSPQueue *queue) : TriggerableThreadSet(Thread::kHighPriority, 4), mQueue(queue) {}
         
     private:
         
@@ -33,17 +33,15 @@ class FrameLib_DSPQueue
     
 public:
     
-    FrameLib_DSPQueue() : mWorker1(this), mWorker2(this)
+    FrameLib_DSPQueue() : mWorkers(this)
     {
         memset((void *) &mQueue, 0, sizeof(OSFifoQueueHead));
-        mWorker1.start();
-        mWorker2.start();
+        mWorkers.start();
     }
 
     ~FrameLib_DSPQueue()
     {
-        mWorker1.join();
-        mWorker2.join();
+        mWorkers.join();
     }
 
     void process(FrameLib_DSP *object);
@@ -59,8 +57,7 @@ private:
     
     void serviceQueue();
     
-    WorkerThread mWorker1;
-    WorkerThread mWorker2;
+    WorkerThreads mWorkers;
 
     FrameLib_Atomic32 mQueueSize;
     FrameLib_Atomic32 mInQueue;
