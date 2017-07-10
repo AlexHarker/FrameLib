@@ -10,7 +10,7 @@ class FrameLib_SetParam : public FrameLib_Processor
     
 public:
     
-    FrameLib_SetParam (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context)
+    FrameLib_SetParam (FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context)
     {
         mParameters.addDouble(kNumIns, "numins", 1, 0);
         mParameters.setClip(1.0, 32.0);
@@ -47,16 +47,16 @@ protected:
         for (unsigned int i = 0; i < mNumIns; i++)
         {
             getInput(i, &sizeIn);
-            sizeOut += FrameLib_Parameters::Serial::calcSize(mParameters.getString(kNames + i), sizeIn);
+            sizeOut += FrameLib_Parameters::SerialBase::calcSize(mParameters.getString(kNames + i), sizeIn);
         }
         
-        FrameLib_Parameters::Serial *preTagged = getInput(mNumIns);
-        sizeOut += FrameLib_Parameters::Serial::calcSize(preTagged);
+        FrameLib_Parameters::SerialBase *preTagged = getInput(mNumIns);
+        sizeOut += FrameLib_Parameters::SerialBase::calcSize(preTagged);
         
         requestOutputSize(0, sizeOut);
         allocateOutputs();
         
-        FrameLib_Parameters::Serial *output = getOutput(0);
+        FrameLib_Parameters::SerialBase *output = getOutput(0);
         
         for (unsigned int i = 0; i < mNumIns; i++)
         {

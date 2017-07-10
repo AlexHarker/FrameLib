@@ -13,7 +13,7 @@ class FrameLib_FFT : public FrameLib_Processor
     
 public:
 	
-    FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 2)
+    FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 2)
     {
         mParameters.addDouble(kMaxLength, "maxlength", 16384, 0);
         mParameters.setMin(0.0);

@@ -17,7 +17,7 @@ class FrameLib_DSP : public FrameLib_Block
 {
     // Type definition for concision / Queue access
 
-    typedef FrameLib_Parameters::Serial Serial;
+    typedef FrameLib_Parameters::SerialBase SerialBase;
     friend FrameLib_DSPQueue;
 
 public:
@@ -162,10 +162,10 @@ protected:
     // Get Inputs and Outputs
     
     double *getInput(unsigned long idx, size_t *size);
-    FrameLib_Parameters::Serial *getInput(unsigned long idx);
+    FrameLib_Parameters::SerialBase *getInput(unsigned long idx);
     
     double *getOutput(unsigned long idx, size_t *size);
-    FrameLib_Parameters::Serial *getOutput(unsigned long idx);
+    FrameLib_Parameters::SerialBase *getOutput(unsigned long idx);
 
     // Get DSP Object for a Given Output
     

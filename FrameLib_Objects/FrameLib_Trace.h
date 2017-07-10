@@ -21,7 +21,7 @@ class FrameLib_Trace : public FrameLib_AudioOutput
     
 public:
     
-    FrameLib_Trace(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioOutput(context, 1, 0, 1)
+    FrameLib_Trace(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_AudioOutput(context, 1, 0, 1)
     {
         mParameters.addDouble(kLength, "length", 8000, 0);
         mParameters.setMin(0.0);

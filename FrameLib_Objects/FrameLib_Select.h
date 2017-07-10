@@ -10,7 +10,7 @@ class FrameLib_Select : public FrameLib_Processor
 
 public:
     
-    FrameLib_Select (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context)
+    FrameLib_Select (FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context)
     {
         mParameters.addDouble(kNumIns, "numins", 2, 0);
         mParameters.setClip(2, 32);
@@ -34,7 +34,7 @@ protected:
     
     void update()
     {
-        FrameLib_Parameters::Serial *serialised = getInput(mNumIns);
+        FrameLib_Parameters::SerialBase *serialised = getInput(mNumIns);
         
         if (serialised)
         {

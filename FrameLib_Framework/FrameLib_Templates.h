@@ -33,7 +33,7 @@ template <typename Op> class FrameLib_UnaryOp : public FrameLib_Processor
     
 public:
     
-    FrameLib_UnaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_UnaryOp(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {}
     
 protected:
@@ -58,7 +58,7 @@ protected:
 template <double func(double)> class FrameLib_Unary : public FrameLib_UnaryOp < Unary_Functor<func> >
 {
 public:
-    FrameLib_Unary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
+    FrameLib_Unary(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner)
     : FrameLib_UnaryOp < Unary_Functor<func> > (context, serialisedParameters, owner) {}
 };
 
@@ -74,7 +74,7 @@ template <typename Op> class FrameLib_BinaryOp : public FrameLib_Processor
     
 public:
     
-    FrameLib_BinaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
+    FrameLib_BinaryOp(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
     {
         mParameters.addEnum(kMode, "mode");
         mParameters.addEnumItem(kWrap, "wrap");
@@ -234,7 +234,7 @@ private:
 template <double func(double, double)> class FrameLib_Binary : public FrameLib_BinaryOp < Binary_Functor<func> >
 {
 public:
-    FrameLib_Binary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
+    FrameLib_Binary(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner)
     : FrameLib_BinaryOp < Binary_Functor<func> > (context, serialisedParameters, owner) {}
 };
 
@@ -247,7 +247,7 @@ template <double func(double *, unsigned long) > class FrameLib_Vector : public 
     
 public:
     
-    FrameLib_Vector (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
+    FrameLib_Vector (FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
     }
     

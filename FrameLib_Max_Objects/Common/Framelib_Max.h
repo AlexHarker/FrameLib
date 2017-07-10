@@ -538,7 +538,7 @@ public:
 
         // Object creation with parameters and arguments
         
-        FrameLib_Parameters::Serial *serialisedParameters = parseParameters(argc, argv);
+        FrameLib_Parameters::SerialBase *serialisedParameters = parseParameters(argc, argv);
 
         mObject = new T(context, serialisedParameters, this);
         

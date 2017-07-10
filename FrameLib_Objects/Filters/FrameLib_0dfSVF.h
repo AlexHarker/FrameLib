@@ -78,7 +78,7 @@ class FrameLib_0dfSVF : public FrameLib_Processor
 
 public:
 	
-    FrameLib_0dfSVF(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
+    FrameLib_0dfSVF(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
     {
         mParameters.addDouble(kFreq, "freq", 500.0, 0);
         mParameters.setMin(0.0);
@@ -100,7 +100,7 @@ protected:
     
     void update()
     {
-        FrameLib_Parameters::Serial *serialised = getInput(1);
+        FrameLib_Parameters::SerialBase *serialised = getInput(1);
         
         if (serialised)
             mParameters.set(serialised);

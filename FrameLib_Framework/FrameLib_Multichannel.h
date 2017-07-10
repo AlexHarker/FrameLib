@@ -162,7 +162,7 @@ class FrameLib_Pack : public FrameLib_MultiChannel
 
 public:
     
-    FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner);
     
 private:
     
@@ -181,7 +181,7 @@ class FrameLib_Unpack : public FrameLib_MultiChannel
     
 public:
 
-    FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner);
     
 private:
     
@@ -199,7 +199,7 @@ template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
 
 public:
     
-    FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
+    FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::SerialBase *serialisedParameters, void *owner)
     : FrameLib_MultiChannel(context), mContext(context), mAllocator(context), mSerialisedParameters(serialisedParameters->size()), mOwner(owner)
     {
         // Make first block

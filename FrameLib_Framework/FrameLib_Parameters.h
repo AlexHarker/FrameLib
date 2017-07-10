@@ -27,7 +27,9 @@ public:
     
 public:
     
-    class Serial
+    // A Serialised Set Of Tagged Parameter Values (no memory ownership)
+    
+    class SerialBase
     {
         
     public:
@@ -45,21 +47,19 @@ public:
         
         // Constructors and Destructor
         
-        Serial(BytePointer ptr, size_t size);
-        Serial(size_t size);
-        Serial();
-
-        ~Serial();
+        SerialBase(BytePointer ptr, size_t size);
+        SerialBase();
+        ~SerialBase() {};
         
         // Size Calculations
         
-        static size_t calcSize(Serial *serialised)          { return serialised != NULL ? serialised->mSize : 0; }
+        static size_t calcSize(SerialBase *serialised)      { return serialised != NULL ? serialised->mSize : 0; }
         static size_t calcSize(const char *tag, char *str)  { return sizeType() + sizeString(tag) + sizeString(str); }
         static size_t calcSize(const char *tag, size_t N)   { return sizeType() + sizeString(tag) + sizeArray(N); }
         
         // Write Items
         
-        void write(Serial *serialised);
+        void write(SerialBase *serialised);
         void write(const char *tag, char *str);
         void write(const char *tag, double *values, size_t N);
         
@@ -72,17 +72,23 @@ public:
         size_t size()   { return mSize; }
         void clear()    { mSize = 0; }
         
-        static size_t alignSize(size_t size)                { return (size + (alignment - 1)) & ~(alignment - 1); }
-        static size_t inPlaceSize(size_t size)              { return alignSize(sizeof(Serial)) + alignSize(size); }
+        static size_t alignSize(size_t size)                    { return (size + (alignment - 1)) & ~(alignment - 1); }
+        static size_t inPlaceSize(size_t size)                  { return alignSize(sizeof(SerialBase)) + alignSize(size); }
 
-        static Serial *newInPlace(void *ptr, size_t size)   { return new (ptr) Serial(((BytePointer) ptr) + alignSize(sizeof(Serial)), size); }
+        static SerialBase *newInPlace(void *ptr, size_t size)   { return new (ptr) SerialBase(((BytePointer) ptr) + alignSize(sizeof(SerialBase)), size); }
 
+    protected:
+        
+        // Check Size
+        
+        bool checkSize(size_t writeSize);
+        
     private:
         
         // Deleted
         
-        Serial(const Serial&);
-        Serial& operator=(const Serial&);
+        SerialBase(const SerialBase&);
+        SerialBase& operator=(const SerialBase&);
         
         // Debug
         
@@ -108,18 +114,41 @@ public:
         void readDoubles(BytePointer *readPtr, double **values, size_t *N);
         void readString(BytePointer *readPtr, char **str);
         
-        // Check Size
-        
-        bool checkSize(size_t writeSize);
+    protected:
         
         // Member Variables
         
         BytePointer mPtr;
         size_t mSize;
         size_t mMaxSize;
-        bool mOwner;
     };
 
+    // Extends SerialBase (with memory ownership)
+    
+    class Serial : public SerialBase
+    {
+        
+    public:
+
+        Serial() {};
+        Serial(size_t size) : mPtr(new Byte[size]), mMaxSize(size) {}
+        ~Serial() { if (mPtr) delete[] mPtr; }
+        
+        // Write Items
+        
+        void write(SerialBase *serialised)                      { if (checkSize(calcSize(serialised))) SerialBase::write(serialised); }
+        void write(const char *tag, char *str)                  { if (checkSize(calcSize(tag, str))) SerialBase::write(tag, str); }
+        void write(const char *tag, double *values, size_t N)   { if (checkSize(calcSize(tag, N))) SerialBase::write(tag, values, N); }
+        
+    private:
+        
+        bool checkSize(size_t writeSize);
+        
+        BytePointer mPtr;
+        size_t mSize;
+        size_t mMaxSize;
+    };
+    
     // ************************************************************************************** //
 
 private:
@@ -450,7 +479,7 @@ public:
    
     // Set Value
     
-    void set(Serial *serialised)                { serialised->read(this); }
+    void set(SerialBase *serialised)            { serialised->read(this); }
 
     void set(unsigned long idx, bool value)     { set(idx, (double) value); }
     void set(const char *name, bool value)      { set(name, (double) value); }

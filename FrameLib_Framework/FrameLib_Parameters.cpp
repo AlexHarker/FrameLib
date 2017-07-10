@@ -3,30 +3,19 @@
 
 // Constructors / Destructor
 
-FrameLib_Parameters::Serial::Serial(BytePointer ptr, size_t size) : mPtr(ptr), mSize(0), mMaxSize(size), mOwner(false)
+FrameLib_Parameters::SerialBase::SerialBase(BytePointer ptr, size_t size) : mPtr(ptr), mSize(0), mMaxSize(size)
 {
     alignmentChecks();
 }
 
-FrameLib_Parameters::Serial::Serial(size_t size) : mPtr(new Byte[size]), mSize(0), mMaxSize(size), mOwner(true)
+FrameLib_Parameters::SerialBase::SerialBase() : mPtr(NULL), mSize(0), mMaxSize(0)
 {
     alignmentChecks();
-}
-
-FrameLib_Parameters::Serial::Serial() : mPtr(NULL), mSize(0), mMaxSize(0), mOwner(true)
-{
-    alignmentChecks();
-}
-
-FrameLib_Parameters::Serial::~Serial()
-{
-    if (mOwner)
-        delete[] mPtr;
 }
 
 // Public Writes
 
-void FrameLib_Parameters::Serial::write(Serial *serialised)
+void FrameLib_Parameters::SerialBase::write(SerialBase *serialised)
 {
     if (!serialised || !checkSize(serialised->mSize))
         return;
@@ -35,7 +24,7 @@ void FrameLib_Parameters::Serial::write(Serial *serialised)
     mSize += serialised->mSize;
 }
 
-void FrameLib_Parameters::Serial::write(const char *tag, char *str)
+void FrameLib_Parameters::SerialBase::write(const char *tag, char *str)
 {
     if (!checkSize(calcSize(tag, str)))
         return;
@@ -45,7 +34,7 @@ void FrameLib_Parameters::Serial::write(const char *tag, char *str)
     writeString(str);
 }
 
-void FrameLib_Parameters::Serial::write(const char *tag, double *values, size_t N)
+void FrameLib_Parameters::SerialBase::write(const char *tag, double *values, size_t N)
 {    
     if (!checkSize(calcSize(tag, N)))
         return;
@@ -57,7 +46,7 @@ void FrameLib_Parameters::Serial::write(const char *tag, double *values, size_t 
 
 // Public Read
 
-void FrameLib_Parameters::Serial::read(FrameLib_Parameters *parameters)
+void FrameLib_Parameters::SerialBase::read(FrameLib_Parameters *parameters)
 {
     BytePointer readPtr = mPtr;
     char *tag, *str;
@@ -85,32 +74,32 @@ void FrameLib_Parameters::Serial::read(FrameLib_Parameters *parameters)
 
 // Implementation
 
-void FrameLib_Parameters::Serial::alignmentChecks()
+void FrameLib_Parameters::SerialBase::alignmentChecks()
 {
     // Assume that alignment of a double is fine for all natural alignment needs (including this class)
     
-    assert(Serial::alignment >= sizeof(DataType) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial::DataType");
-    assert(Serial::alignment >= sizeof(size_t) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
-    assert(Serial::alignment >= sizeof(char) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
-    assert(Serial::alignment >= sizeof(char *) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
-    assert(Serial::alignment <= FrameLib_GlobalAllocator::getAlignment() && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
+    assert(SerialBase::alignment >= sizeof(DataType) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial::DataType");
+    assert(SerialBase::alignment >= sizeof(size_t) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
+    assert(SerialBase::alignment >= sizeof(char) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
+    assert(SerialBase::alignment >= sizeof(char *) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
+    assert(SerialBase::alignment <= FrameLib_GlobalAllocator::getAlignment() && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
 }
 
 // Writes (private)
 
-void FrameLib_Parameters::Serial::writeType(DataType type)
+void FrameLib_Parameters::SerialBase::writeType(DataType type)
 {
     *((DataType *) (mPtr + mSize)) = type;
     mSize += alignSize(sizeof(DataType));
 }
 
-void FrameLib_Parameters::Serial::writeSize(size_t size)
+void FrameLib_Parameters::SerialBase::writeSize(size_t size)
 {
     *((size_t *) (mPtr + mSize)) = size;
     mSize += alignSize(sizeof(size_t));
 }
 
-void FrameLib_Parameters::Serial::writeString(const char *str)
+void FrameLib_Parameters::SerialBase::writeString(const char *str)
 {
     size_t N = strlen(str) + 1;
     writeSize(N);
@@ -118,7 +107,7 @@ void FrameLib_Parameters::Serial::writeString(const char *str)
     mSize += alignSize(N);
 }
 
-void FrameLib_Parameters::Serial::writeDoubles(double *ptr, size_t N)
+void FrameLib_Parameters::SerialBase::writeDoubles(double *ptr, size_t N)
 {
     size_t size = N * sizeof(double);
     writeSize(N);
@@ -128,27 +117,27 @@ void FrameLib_Parameters::Serial::writeDoubles(double *ptr, size_t N)
 
 // Reads (private)
 
-FrameLib_Parameters::Serial::DataType FrameLib_Parameters::Serial::readType(BytePointer *readPtr)
+FrameLib_Parameters::SerialBase::DataType FrameLib_Parameters::SerialBase::readType(BytePointer *readPtr)
 {
     DataType type = *((DataType *) *readPtr);
     *readPtr += alignSize(sizeof(DataType));
     return type;
 }
 
-void FrameLib_Parameters::Serial::readSize(BytePointer *readPtr, size_t *size)
+void FrameLib_Parameters::SerialBase::readSize(BytePointer *readPtr, size_t *size)
 {
     *size = *((size_t *) *readPtr);
     *readPtr += alignSize(sizeof(size_t));
 }
 
-void FrameLib_Parameters::Serial::readDoubles(BytePointer *readPtr, double **values, size_t *N)
+void FrameLib_Parameters::SerialBase::readDoubles(BytePointer *readPtr, double **values, size_t *N)
 {
     readSize(readPtr, N);
     *values = ((double *) *readPtr);
     *readPtr += alignSize(*N * sizeof(double));
 }
 
-void FrameLib_Parameters::Serial::readString(BytePointer *readPtr, char **str)
+void FrameLib_Parameters::SerialBase::readString(BytePointer *readPtr, char **str)
 {
     size_t size;
     readSize(readPtr, &size);
@@ -158,15 +147,24 @@ void FrameLib_Parameters::Serial::readString(BytePointer *readPtr, char **str)
 
 // Size Check
 
+bool FrameLib_Parameters::SerialBase::checkSize(size_t writeSize)
+{
+    if (mSize + writeSize <= mMaxSize)
+        return true;
+    
+    return false;
+}
+
+// ************************************************************************************** //
+
+// Serial Class (owning it's own memory)
+
 bool FrameLib_Parameters::Serial::checkSize(size_t writeSize)
 {
     size_t growSize;
     
-    if (mSize + writeSize <= mMaxSize)
+    if (SerialBase::checkSize(writeSize))
         return true;
-    
-    if (!mOwner)
-        return false;
     
     // Calculate grow size
     
