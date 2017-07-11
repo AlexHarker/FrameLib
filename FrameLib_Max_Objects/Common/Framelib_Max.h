@@ -111,7 +111,8 @@ public:
         char name[256];
         sprintf(name, "unsynced.%s", accessClassName<Wrapper>()->c_str());
         
-        // FIX - make me better
+        // FIX - make me better (the only issue here is that the text ideally should be the *exact* text in this box, minus the typed object name
+        // Here any numbers go through two conversions, and *might* not end up the same (test)
         
         char *text = NULL;
         long textSize = 0;
