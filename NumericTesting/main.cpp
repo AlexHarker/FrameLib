@@ -67,7 +67,7 @@ void tabbedOut(const std::string& name, const std::string& text, int tab = 25)
 
 void fixedOut(const std::string& name, FL_FP in)
 {
-    std::cout << std::setw(10) << std::setfill(' ');
+    std::cout << std::setw(25) << std::setfill(' ');
     std::cout.setf(std::ios::left);
     std::cout.unsetf(std::ios::right);
     std::cout << name;
@@ -493,6 +493,50 @@ uint64_t strictDivideTest(uint64_t count)
     return count;
 }
 
+uint64_t basicSanity(uint64_t count)
+{
+    FL_FP One(1,0);
+    FL_FP OneULP(0,1);
+    FL_FP MaxInt(std::numeric_limits<uint64>::max(),0);
+    FL_FP MaxVal(std::numeric_limits<uint64>::max(),std::numeric_limits<uint64>::max());
+    FL_FP result;
+    bool success = true;
+    
+    fixedOut("ONE", One);
+    fixedOut("ONE ULP", OneULP);
+    fixedOut("MAX INT", MaxInt);
+    fixedOut("MAX VAL", MaxVal);
+    std::cout << "\n";
+    result = One * FL_FP(2,0);
+    success = result != FL_FP(2,0) ? false : success;
+    fixedOut("ONE x TWO (2)", result);
+    result = FL_FP(8,0) * FL_FP(5,0);
+    success = result != FL_FP(40,0) ? false : success;
+    fixedOut("EIGHT x FIVE (HEX 28)", result);
+    result = FL_FP(2.5) * FL_FP(17.625);
+    success = result != FL_FP(44.0625) ? false : success;
+    fixedOut("2.5 x 17.625 (Hex 2c.1)", result);
+    std::cout << "\n";
+    result = One / OneULP;
+    success = result != MaxVal ? false : success;
+    fixedOut("ONE / ONE ULP (Max)", result);
+    result = One / FL_FP(0,2);
+    success = result != FL_FP(0x8000000000000000ULL,0) ? false : success;
+    fixedOut("ONE / TWO ULP (Max Bit)", result);
+    std::cout << "\n";
+    result = OneULP / OneULP;
+    success = result != One ? false : success;
+    fixedOut("ONE ULP SELF DIV (1)", result);
+    result = MaxInt / MaxInt;
+    success = result != One ? false : success;
+    fixedOut("MAX INT SELF DIV (1)", result);
+    result = MaxVal / MaxVal;
+    success = result != One ? false : success;
+    fixedOut("MAX VAL SELF DIV (1)", result);
+        
+    return success ? count : 0;
+}
+
 // ************************************************************************************** //
 
 // Speed tests
@@ -547,8 +591,11 @@ void fixedDivideSpeedTest(uint64_t count)
 
 int main(int argc, const char * argv[]) {
     
+    std::cout << "BASIC SANITY\n\n";
+    runTest("Basic Sanity", &basicSanity, 1);
+
     std::cout << "CORRECTNESS TESTS\n\n";
-    
+
     runTest("Multiplication Commutation", &multCommutationTest, 0xFFFFFF);
     runTest("Multiplication SP Commutation", &multSPCommutationTest, 0xFFFFFF);
     runTest("Multiplication Double Comparison", &multDoubleComparisonTest, 0xFFFFFF);
