@@ -16,23 +16,26 @@ DONE	- Make C++ class extensible
 	- Make safe (avoid direct access of other objects / thread safety / avoid symbol bindings)
 	- Review entry of inputs and parameters
 	- Better connection issue reporting
+	- INVESTIGATE AND SOLVE SIDEWAYS DEPENDENCIES!!!
 
-5 - Finalise Memory Management
+5 - READ/WRITE Timing ISSUES!!!
+
+6 - Finalise Memory Management
 DONE		- Do variable memory management (underlying engine)
 		- Review memory management
 
-PROGRESS 6 - Review parameter inputs (how to handle, including max wrapper)
+PROGRESS 7 - Review parameter inputs (how to handle, including max wrapper)
 
-7 - Multi threading work (Attributes / Connection)
+8 - Multi threading work (Attributes / Connection)
 DONE		DSP
 PROGRESS	DSP Queue
 TEMP		Memory
 
-8 - Assist/Help Info (Inputs and Parameters)
+9 - Assist/Help Info (Inputs and Parameters)
 
-9 - Error Reporting (Realtime and push to wrapper)
+10 - Error Reporting (Realtime and push to wrapper)
 
-10 - Methods of dealing with data storage and retrieval (a la coll etc.) and also buffers (abstract out?)
+11 - Methods of dealing with data storage and retrieval (a la coll etc.) and also buffers (abstract out?)
 
 
 
