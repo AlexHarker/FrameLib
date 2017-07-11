@@ -43,6 +43,10 @@ void FrameLib_DSPQueue::add(FrameLib_DSP *object)
 
 void FrameLib_DSPQueue::serviceQueue()
 {
+    struct timespec a;
+    a.tv_sec = 0;
+    a.tv_nsec = 100;
+    
     while (true)
     {
         while (QueueItem *next = (QueueItem *) OSAtomicFifoDequeue(&mQueue, offsetof(QueueItem, mNext)))
@@ -56,10 +60,7 @@ void FrameLib_DSPQueue::serviceQueue()
         // FIX - how long is a good time to yield for in a high performance thread?
         
         // Keep pointless contention down and give way to other threads?
-        
-        struct timespec a;
-        a.tv_sec = 0;
-        a.tv_nsec = 100;
+
         nanosleep(&a,NULL);
     }
 }
