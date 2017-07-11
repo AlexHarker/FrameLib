@@ -11,11 +11,6 @@
 // FIX - improve reporting of extra connections + look into feedback detection...
 // FIX - think about adding assist helpers for this later...
 // FIX - threadsafety??
-// FIX - look at static items
-
-t_class *objectClass = NULL;
-t_class *wrapperClass = NULL;
-t_class *mutatorClass = NULL;
 
 //////////////////////////////////////////////////////////////////////////
 ///////////////////////////// Sync Check Class ///////////////////////////
@@ -113,10 +108,8 @@ public:
         
         // Create Objects
         
-        // FIX - this should not be a macro for the name (needs to be stored somehow?? with the class...
-        
         char name[256];
-        sprintf(name, "unsynced.%s", OBJECT_NAME);
+        sprintf(name, "unsynced.%s", accessClassName<Wrapper>()->c_str());
         
         // FIX - make me better
         
@@ -252,7 +245,7 @@ public:
         const char mutatorClassName[] = "__fl.signal.mutator";
                 
         if (!class_findbyname(CLASS_NOBOX, gensym(mutatorClassName)))
-            Mutator::makeClass<Mutator, &mutatorClass>(CLASS_NOBOX, mutatorClassName);
+            Mutator::makeClass<Mutator>(CLASS_NOBOX, mutatorClassName);
     }
     
 private:
@@ -531,7 +524,7 @@ public:
         FrameLib_Context context = getContext();
         mUserObject = (t_object *)this;
 
-        // Object creation with parameters and arguments
+        // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
     
         parseParameters(serialisedParameters, argc, argv);
 
@@ -754,19 +747,27 @@ public:
     
     template <class U> static void makeClass(t_symbol *nameSpace, const char *className)
     {
+        // Safety
+        
+        if (strlen(className) > 240)
+        {
+            error("object name is too long! : %s", className);
+            return;
+        }
+        
         // If handles audio/scheduler then make wrapper class and name the inner object differently..
         
         char internalClassName[256];
         
         if (T::handlesAudio())
         {
-            Wrapper<U>:: template makeClass<Wrapper<U>, &wrapperClass>(CLASS_BOX, className);
+            Wrapper<U>:: template makeClass<Wrapper<U> >(CLASS_BOX, className);
             sprintf(internalClassName, "unsynced.%s", className);
         }
         else
             strcpy(internalClassName, className);
         
-        MaxBase::makeClass<U, &objectClass>(nameSpace, internalClassName);
+        MaxBase::makeClass<U>(nameSpace, internalClassName);
     }
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
