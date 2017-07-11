@@ -280,7 +280,7 @@ private:
 ////////////////// Max Object Class for Synchronisation //////////////////
 //////////////////////////////////////////////////////////////////////////
 
-template <class T> class FrameLib_MaxObj : public MaxBase
+template <class T, bool argsSetAllInputs = false> class FrameLib_MaxObj : public MaxBase
 {
     // Connection Mode Enum
     
@@ -388,21 +388,21 @@ private:
             if (isTag(argv + i))
                 break;
             
-#ifndef OBJECT_ARGS_SET_ALL_INPUTS
-            
-            char argNames[64];
-            
-            sprintf(argNames, "%ld", i);
-            sym = atom_getsym(argv + i);
-
-            if (sym != gensym(""))
-                serialisedParameters.write(argNames, sym->s_name);
-            else
+            if (argsSetAllInputs)
             {
-                double value = atom_getfloat(argv + i);
-                serialisedParameters.write(argNames, &value, 1);
+                char argNames[64];
+            
+                sprintf(argNames, "%ld", i);
+                sym = atom_getsym(argv + i);
+
+                if (sym != gensym(""))
+                    serialisedParameters.write(argNames, sym->s_name);
+                else
+                {
+                    double value = atom_getfloat(argv + i);
+                    serialisedParameters.write(argNames, &value, 1);
+                }
             }
-#endif
         }
         
         // Parse parameters
@@ -457,17 +457,19 @@ private:
     void parseInputs(long argc, t_atom *argv)
     {
         std::vector<double> values;
+        long i;
         
         // Parse arguments if used to set inputs
-// FIX - this shouldn't be a macro.....!!!
-#ifdef OBJECT_ARGS_SET_ALL_INPUTS
-        long i = parseNumericalList(values, argv, argc, 0);
+
+        if (argsSetAllInputs)
+        {
+            i = parseNumericalList(values, argv, argc, 0);
         
-        for (unsigned long j = 0; i && j < mObject->getNumIns(); j++)
-            mObject->setFixedInput(j, &values[0], values.size());
-#else 
-        long i = 0;
-#endif
+            for (unsigned long j = 0; i && j < mObject->getNumIns(); j++)
+                mObject->setFixedInput(j, &values[0], values.size());
+        }
+        else
+            i = 0;
 
         // Parse tags
         
