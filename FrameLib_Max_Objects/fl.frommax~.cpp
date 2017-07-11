@@ -109,8 +109,6 @@ private:
     Modes mMode;
 };
 
-#define OBJECT_NAME "fl.frommax~"
-#define CUSTOM_OBJECT
 #include <FrameLib_Max.h>
 
 class FrameLib_MaxObj_From : public FrameLib_MaxObj<FrameLib_Expand<FrameLib_FromMax> >
@@ -213,5 +211,5 @@ MaxMessage *getMessages(FrameLib_MaxObj_From *object)
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxObj_From::makeClass<FrameLib_MaxObj_From>(CLASS_BOX, OBJECT_NAME);
+    FrameLib_MaxObj_From::makeClass(CLASS_BOX, "fl.frommax~");
 }

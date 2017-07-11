@@ -1,7 +1,8 @@
 
 #include "FrameLib_Store.h"
-
-#define OBJECT_CLASS FrameLib_Expand<FrameLib_Store>
-#define OBJECT_NAME "fl.store~"
-
 #include "Framelib_Max.h"
+
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxObj<FrameLib_Expand<FrameLib_Store> >::makeClass(CLASS_BOX, "fl.store~");
+}

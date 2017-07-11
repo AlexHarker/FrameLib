@@ -50,8 +50,9 @@ protected:
     }
 };
 
-//#define OBJECT_CLASS FrameLib_Expand<FrameLib_Exp>
-#define OBJECT_CLASS FrameLib_Expand <FrameLib_T1>
-#define OBJECT_NAME "fl.t1~"
-
 #include "Framelib_Max.h"
+
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxObj<FrameLib_Expand <FrameLib_T1> >::makeClass(CLASS_BOX, "fl.t1~");
+}

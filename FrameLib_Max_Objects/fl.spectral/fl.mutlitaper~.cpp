@@ -1,7 +1,8 @@
 
 #include "FrameLib_Multitaper.h"
-
-#define OBJECT_CLASS FrameLib_Expand<FrameLib_Multitaper>
-#define OBJECT_NAME "fl.multitaper~"
-
 #include "Framelib_Max.h"
+
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxObj<FrameLib_Expand<FrameLib_Multitaper> >::makeClass(CLASS_BOX, "fl.multitaper~");
+}

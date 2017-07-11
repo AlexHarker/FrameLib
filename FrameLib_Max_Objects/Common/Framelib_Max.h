@@ -459,7 +459,7 @@ private:
         std::vector<double> values;
         
         // Parse arguments if used to set inputs
-        
+// FIX - this shouldn't be a macro.....!!!
 #ifdef OBJECT_ARGS_SET_ALL_INPUTS
         long i = parseNumericalList(values, argv, argc, 0);
         
@@ -745,7 +745,7 @@ public:
     
     // Class Initilisation
     
-    template <class U> static void makeClass(t_symbol *nameSpace, const char *className)
+    static void makeClass(t_symbol *nameSpace, const char *className)
     {
         // Safety
         
@@ -761,13 +761,13 @@ public:
         
         if (T::handlesAudio())
         {
-            Wrapper<U>:: template makeClass<Wrapper<U> >(CLASS_BOX, className);
+            Wrapper<FrameLib_MaxObj<T> >:: template makeClass<Wrapper<FrameLib_MaxObj<T> > >(CLASS_BOX, className);
             sprintf(internalClassName, "unsynced.%s", className);
         }
         else
             strcpy(internalClassName, className);
         
-        MaxBase::makeClass<U>(nameSpace, internalClassName);
+        MaxBase::makeClass<FrameLib_MaxObj<T> >(nameSpace, internalClassName);
     }
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
@@ -800,10 +800,3 @@ public:
     
     t_object *mUserObject;
 };
-
-#ifndef CUSTOM_OBJECT
-extern "C" int C74_EXPORT main(void)
-{
-    FrameLib_MaxObj<OBJECT_CLASS>::makeClass<FrameLib_MaxObj<OBJECT_CLASS> >(CLASS_BOX, OBJECT_NAME);
-}
-#endif
