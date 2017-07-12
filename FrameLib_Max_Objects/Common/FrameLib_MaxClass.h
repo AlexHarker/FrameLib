@@ -316,7 +316,7 @@ public:
     
     // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_MaxClass<>)
     
-    template <class U = FrameLib_MaxClass<T> > static void makeClass(t_symbol *nameSpace, const char *className)
+    template <class U = FrameLib_MaxClass<T, argsSetAllInputs> > static void makeClass(t_symbol *nameSpace, const char *className)
     {
         // Safety
         
