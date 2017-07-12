@@ -757,9 +757,9 @@ public:
                 outlet_anything(mOutputs[i - 1], gensym("sync"), 0, NULL);
     }
     
-    // Class Initilisation (use makeInheritedClass for classes that inherit from FrameLib_MaxObj<>)
+    // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_MaxObj<>)
     
-    template <class U> static void makeInheritedClass(t_symbol *nameSpace, const char *className)
+    template <class U = FrameLib_MaxObj<T> > static void makeClass(t_symbol *nameSpace, const char *className)
     {
         // Safety
         
@@ -782,13 +782,6 @@ public:
             strcpy(internalClassName, className);
         
         MaxBase::makeClass<U>(nameSpace, internalClassName);
-    }
-    
-    // FIX - Convenience function for simple classes (no inheritance) - ALWAYS CREATES CODE!!
-    
-    static void makeClass(t_symbol *nameSpace, const char *className)
-    {
-        makeInheritedClass<FrameLib_MaxObj<T> >(nameSpace, className);
     }
 
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
