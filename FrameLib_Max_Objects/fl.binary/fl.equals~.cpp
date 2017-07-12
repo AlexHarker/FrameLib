@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass<FrameLib_Expand<FrameLib_Equal>, true>::makeClass(CLASS_BOX, "fl.equals~");
+    FrameLib_MaxClass_Expand<FrameLib_Equal, true>::makeClass(CLASS_BOX, "fl.equals~");
 }

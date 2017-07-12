@@ -201,5 +201,5 @@ bool FrameLib_MaxRead::sInit = FALSE;
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass<FrameLib_Expand<FrameLib_MaxRead> >::makeClass(CLASS_BOX, "fl.read~");
+    FrameLib_MaxClass_Expand<FrameLib_MaxRead>::makeClass(CLASS_BOX, "fl.read~");
 }

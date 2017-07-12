@@ -4,6 +4,6 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass<FrameLib_Expand<FrameLib_Lookup> >::makeClass(CLASS_BOX, "fl.lookup~");
+    FrameLib_MaxClass_Expand<FrameLib_Lookup>::makeClass(CLASS_BOX, "fl.lookup~");
 }
 

@@ -815,3 +815,7 @@ public:
     
     t_object *mUserObject;
 };
+
+// Convenience for Objects Using FrameLib_Expand (use FrameLib_MaxClass_Expand<T>::makeClass() to create)
+
+template <class T, bool argsSetAllInputs = false> class FrameLib_MaxClass_Expand : public FrameLib_MaxClass<FrameLib_Expand<T>, argsSetAllInputs>{};

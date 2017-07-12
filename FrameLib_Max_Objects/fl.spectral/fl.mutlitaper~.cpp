@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass<FrameLib_Expand<FrameLib_Multitaper> >::makeClass(CLASS_BOX, "fl.multitaper~");
+    FrameLib_MaxClass_Expand<FrameLib_Multitaper>::makeClass(CLASS_BOX, "fl.multitaper~");
 }

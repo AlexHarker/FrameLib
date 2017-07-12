@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass<FrameLib_Expand<FrameLib_Tan> >::makeClass(CLASS_BOX, "fl.tan~");
+    FrameLib_MaxClass_Expand<FrameLib_Tan>::makeClass(CLASS_BOX, "fl.tan~");
 }
