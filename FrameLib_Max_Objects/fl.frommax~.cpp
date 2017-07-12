@@ -211,5 +211,5 @@ MaxMessage *getMessages(FrameLib_MaxObj_From *object)
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxObj_From::makeClass(CLASS_BOX, "fl.frommax~");
+    FrameLib_MaxObj_From::makeInheritedClass<FrameLib_MaxObj_From>(CLASS_BOX, "fl.frommax~");
 }

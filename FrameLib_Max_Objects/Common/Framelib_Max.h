@@ -757,9 +757,9 @@ public:
                 outlet_anything(mOutputs[i - 1], gensym("sync"), 0, NULL);
     }
     
-    // Class Initilisation
+    // Class Initilisation (use makeInheritedClass for classes that inherit from FrameLib_MaxObj<>)
     
-    static void makeClass(t_symbol *nameSpace, const char *className)
+    template <class U> static void makeInheritedClass(t_symbol *nameSpace, const char *className)
     {
         // Safety
         
@@ -775,15 +775,22 @@ public:
         
         if (T::handlesAudio())
         {
-            Wrapper<FrameLib_MaxObj<T> >:: template makeClass<Wrapper<FrameLib_MaxObj<T> > >(CLASS_BOX, className);
+            Wrapper<U>:: template makeClass<Wrapper<U> >(CLASS_BOX, className);
             sprintf(internalClassName, "unsynced.%s", className);
         }
         else
             strcpy(internalClassName, className);
         
-        MaxBase::makeClass<FrameLib_MaxObj<T> >(nameSpace, internalClassName);
+        MaxBase::makeClass<U>(nameSpace, internalClassName);
     }
     
+    // FIX - Convenience function for simple classes (no inheritance) - ALWAYS CREATES CODE!!
+    
+    static void makeClass(t_symbol *nameSpace, const char *className)
+    {
+        makeInheritedClass<FrameLib_MaxObj<T> >(nameSpace, className);
+    }
+
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
         addMethod(c, (method) &externalConnectionCheck, "connection_check");
