@@ -10,7 +10,6 @@
 
 // FIX - improve reporting of extra connections + look into feedback detection...
 // FIX - think about adding assist helpers for this later...
-// FIX - threadsafety??
 
 //////////////////////////////////////////////////////////////////////////
 ///////////////////////////// Sync Check Class ///////////////////////////
