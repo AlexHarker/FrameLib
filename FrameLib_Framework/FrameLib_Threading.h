@@ -154,6 +154,13 @@ public:
     FrameLib_SpinLockHold(FrameLib_SpinLock *lock) : mLock(lock) { if (mLock) mLock->acquire(); }
     ~FrameLib_SpinLockHold() { if (mLock) mLock->release(); }
     
+    void destroy()
+    {
+        if (mLock)
+            mLock->release();
+        mLock = NULL;
+    }
+    
 private:
     
     FrameLib_SpinLock *mLock;
