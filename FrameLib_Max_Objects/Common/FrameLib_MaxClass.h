@@ -312,212 +312,49 @@ template <class T, bool argsSetAllInputs = false> class FrameLib_MaxClass : publ
         bool mReportError;
     };
     
-private:
+public:
     
-    // Globals
+    // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_MaxClass<>)
     
-    FrameLib_Global **globalHandle()
+    template <class U = FrameLib_MaxClass<T> > static void makeClass(t_symbol *nameSpace, const char *className)
     {
-        return (FrameLib_Global **) &gensym("__FrameLib__Global__")->s_thing;
-    }
-    
-    FrameLib_Context getContext()
-    {
-        mTopLevelPatch = jpatcher_get_toppatcher(gensym("#P")->s_thing);
+        // Safety
         
-        return FrameLib_Context(FrameLib_Global::get(globalHandle()), mTopLevelPatch);
-    }
-
-    ConnectionInfo **frameConnectionInfo() { return (ConnectionInfo **) &gensym("__frame__connection__info__")->s_thing; }
-
-    // Call to get the context increments the global counter, so it needs relasing when we are done
-    
-    void releaseGlobal()
-    {
-        FrameLib_Global::release(globalHandle());
-    }
-
-    // Parameter Parsing
-    
-    bool isParameterTag(t_symbol *sym)
-    {
-        return (sym && sym->s_name[0] == '#' && strlen(sym->s_name) > 1);
-    }
-
-    bool isInputTag(t_symbol *sym)
-    {
-        return (sym && sym->s_name[0] == '/' && strlen(sym->s_name) > 1);
-    }
-    
-    bool isTag(t_atom *a)
-    {
-        t_symbol *sym = atom_getsym(a);
-        return isParameterTag(sym) || isInputTag(sym);
-    }
-    
-    long parseNumericalList(std::vector<double> &values, t_atom *argv, long argc, long idx)
-    {
-        values.resize(0);
-        
-        // Collect doubles
-        
-        for ( ; idx < argc; idx++)
+        if (strlen(className) > 240)
         {
-            if (isTag(argv + idx))
-                break;
-            
-            if (atom_gettype(argv + idx) == A_SYM)
-                object_error(mUserObject, "string %s in entry list where value expected", atom_getsym(argv + idx)->s_name);
-            
-            values.push_back(atom_getfloat(argv + idx));
+            error("object name is too long! : %s", className);
+            return;
         }
         
-        return idx;
-    }
-    
-    void parseParameters(FrameLib_Parameters::AutoSerial& serialisedParameters, long argc, t_atom *argv)
-    {
-        t_symbol *sym;
-        std::vector<double> values;
-        long i, j;
-       
-        // Parse arguments
+        // If handles audio/scheduler then make wrapper class and name the inner object differently..
         
-        for (i = 0; i < argc; i++)
+        char internalClassName[256];
+        
+        if (T::handlesAudio())
         {
-            if (isTag(argv + i))
-                break;
-            
-            if (!argsSetAllInputs)
-            {
-                char argNames[64];
-            
-                sprintf(argNames, "%ld", i);
-                sym = atom_getsym(argv + i);
-
-                if (sym != gensym(""))
-                    serialisedParameters.write(argNames, sym->s_name);
-                else
-                {
-                    double value = atom_getfloat(argv + i);
-                    serialisedParameters.write(argNames, &value, 1);
-                }
-            }
-        }
-        
-        // Parse parameters
-        
-        while (i < argc)
-        {
-            // Strip stray items
-            
-            for (j = 0; i < argc; i++, j++)
-            {
-                if (isTag(argv + i))
-                {
-                    sym = atom_getsym(argv + i);
-                    break;
-                }
-            
-                if (j == 0)
-                    object_error(mUserObject, "stray items after entry %s", sym->s_name);
-            }
-            
-            // Check for lack of values or end of list
-            
-            if ((++i >= argc) || isTag(argv + i))
-            {
-                if (i < (argc + 1))
-                    object_error(mUserObject, "no values given for entry %s", sym->s_name);
-                continue;
-            }
-            
-            if (isParameterTag(sym))
-            {
-                // Do strings or values
-                
-                if (atom_getsym(argv + i) != gensym(""))
-                    serialisedParameters.write(sym->s_name + 1, atom_getsym(argv + i++)->s_name);
-                else
-                {
-                    i = parseNumericalList(values, argv, argc, i);
-                    serialisedParameters.write(sym->s_name + 1, &values[0], values.size());
-                }
-            }
-        }
-    }
-
-    // Input Parsing
-    
-    unsigned long inputNumber(t_symbol *sym)
-    {
-        return atoi(sym->s_name + 1) - 1;
-    }
-
-    void parseInputs(long argc, t_atom *argv)
-    {
-        std::vector<double> values;
-        long i;
-        
-        // Parse arguments if used to set inputs
-
-        if (argsSetAllInputs)
-        {
-            i = parseNumericalList(values, argv, argc, 0);
-        
-            for (unsigned long j = 0; i && j < mObject->getNumIns(); j++)
-                mObject->setFixedInput(j, &values[0], values.size());
+            Wrapper<U>:: template makeClass<Wrapper<U> >(CLASS_BOX, className);
+            sprintf(internalClassName, "unsynced.%s", className);
         }
         else
-            i = 0;
-
-        // Parse tags
+            strcpy(internalClassName, className);
         
-        while (i < argc)
-        {
-            // Advance to next input tag
-            
-            for ( ; i < argc && !isInputTag(atom_getsym(argv + i)); i++);
-            
-            // If there are values to read then do so
-                
-            if ((i + 1) < argc && !isTag(argv + i + 1))
-            {
-                t_symbol *sym = atom_getsym(argv + i);
-                i = parseNumericalList(values, argv, argc, i + 1);
-                mObject->setFixedInput(inputNumber(sym), &values[0], values.size());
-            }
-        }
+        MaxClass_Base::makeClass<U>(nameSpace, internalClassName);
     }
     
-    // IO Helpers
-
-public:
-
-    long getNumAudioIns()
+    static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
-        return (long) mObject->getNumAudioIns() + (T::handlesAudio() ? 1 : 0);
-    }
-
-    long getNumAudioOuts()
-    {
-        return (long) mObject->getNumAudioOuts() + (T::handlesAudio() ? 1 : 0);
-    }
-
-    long getNumIns()
-    {
-        return (long) mObject->getNumIns();
-    }
-
-    long getNumOuts()
-    {
-        return (long) mObject->getNumOuts();
+        addMethod(c, (method) &externalConnectionCheck, "connection_check");
+        addMethod(c, (method) &externalGetObject, "get_internal_object");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::assist>(c, "assist");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
+        
+        dspInit(c);
     }
 
     // Constructor and Destructor
     
-public:
-
     FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv) : mConfirmIndex(-1), mConfirm(false)
     {
         // Init
@@ -581,6 +418,13 @@ public:
         }
     }
 
+    // IO Helpers
+    
+    long getNumAudioIns()   { return (long) mObject->getNumAudioIns() + (T::handlesAudio() ? 1 : 0); }
+    long getNumAudioOuts()  { return (long) mObject->getNumAudioOuts() + (T::handlesAudio() ? 1 : 0); }
+    long getNumIns()        { return (long) mObject->getNumIns(); }
+    long getNumOuts()       { return (long) mObject->getNumOuts(); }
+    
     // Perform and DSP
 
     void perform(t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam)
@@ -628,15 +472,8 @@ public:
         return (FrameLib_MultiChannel *) object_method(x, gensym("get_internal_object"));
     }
     
-    ConnectionInfo* getConnectionInfo()
-    {
-        return *frameConnectionInfo();
-    }
-    
-    void setConnectionInfo(ConnectionInfo *info = NULL)
-    {
-        *frameConnectionInfo() = info;
-    }
+    ConnectionInfo* getConnectionInfo()                     { return *frameConnectionInfo(); }
+    void setConnectionInfo(ConnectionInfo *info = NULL)     { *frameConnectionInfo() = info; }
     
     void connect(unsigned long index, ConnectMode mode)
     {
@@ -757,46 +594,183 @@ public:
                 outlet_anything(mOutputs[i - 1], gensym("sync"), 0, NULL);
     }
     
-    // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_MaxClass<>)
-    
-    template <class U = FrameLib_MaxClass<T> > static void makeClass(t_symbol *nameSpace, const char *className)
-    {
-        // Safety
-        
-        if (strlen(className) > 240)
-        {
-            error("object name is too long! : %s", className);
-            return;
-        }
-        
-        // If handles audio/scheduler then make wrapper class and name the inner object differently..
-        
-        char internalClassName[256];
-        
-        if (T::handlesAudio())
-        {
-            Wrapper<U>:: template makeClass<Wrapper<U> >(CLASS_BOX, className);
-            sprintf(internalClassName, "unsynced.%s", className);
-        }
-        else
-            strcpy(internalClassName, className);
-        
-        MaxClass_Base::makeClass<U>(nameSpace, internalClassName);
-    }
-
-    static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
-    {
-        addMethod(c, (method) &externalConnectionCheck, "connection_check");
-        addMethod(c, (method) &externalGetObject, "get_internal_object");
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::assist>(c, "assist");
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
-        
-        dspInit(c);
-    }
-
 private:
+    
+    // Globals
+    
+    FrameLib_Global **globalHandle()
+    {
+        return (FrameLib_Global **) &gensym("__FrameLib__Global__")->s_thing;
+    }
+    
+    FrameLib_Context getContext()
+    {
+        mTopLevelPatch = jpatcher_get_toppatcher(gensym("#P")->s_thing);
+        
+        return FrameLib_Context(FrameLib_Global::get(globalHandle()), mTopLevelPatch);
+    }
+    
+    ConnectionInfo **frameConnectionInfo() { return (ConnectionInfo **) &gensym("__frame__connection__info__")->s_thing; }
+    
+    // Call to get the context increments the global counter, so it needs relasing when we are done
+    
+    void releaseGlobal()
+    {
+        FrameLib_Global::release(globalHandle());
+    }
+    
+    // Parameter Parsing
+    
+    bool isParameterTag(t_symbol *sym)
+    {
+        return (sym && sym->s_name[0] == '#' && strlen(sym->s_name) > 1);
+    }
+    
+    bool isInputTag(t_symbol *sym)
+    {
+        return (sym && sym->s_name[0] == '/' && strlen(sym->s_name) > 1);
+    }
+    
+    bool isTag(t_atom *a)
+    {
+        t_symbol *sym = atom_getsym(a);
+        return isParameterTag(sym) || isInputTag(sym);
+    }
+    
+    long parseNumericalList(std::vector<double> &values, t_atom *argv, long argc, long idx)
+    {
+        values.resize(0);
+        
+        // Collect doubles
+        
+        for ( ; idx < argc; idx++)
+        {
+            if (isTag(argv + idx))
+                break;
+            
+            if (atom_gettype(argv + idx) == A_SYM)
+                object_error(mUserObject, "string %s in entry list where value expected", atom_getsym(argv + idx)->s_name);
+            
+            values.push_back(atom_getfloat(argv + idx));
+        }
+        
+        return idx;
+    }
+    
+    void parseParameters(FrameLib_Parameters::AutoSerial& serialisedParameters, long argc, t_atom *argv)
+    {
+        t_symbol *sym;
+        std::vector<double> values;
+        long i, j;
+        
+        // Parse arguments
+        
+        for (i = 0; i < argc; i++)
+        {
+            if (isTag(argv + i))
+                break;
+            
+            if (!argsSetAllInputs)
+            {
+                char argNames[64];
+                
+                sprintf(argNames, "%ld", i);
+                sym = atom_getsym(argv + i);
+                
+                if (sym != gensym(""))
+                    serialisedParameters.write(argNames, sym->s_name);
+                else
+                {
+                    double value = atom_getfloat(argv + i);
+                    serialisedParameters.write(argNames, &value, 1);
+                }
+            }
+        }
+        
+        // Parse parameters
+        
+        while (i < argc)
+        {
+            // Strip stray items
+            
+            for (j = 0; i < argc; i++, j++)
+            {
+                if (isTag(argv + i))
+                {
+                    sym = atom_getsym(argv + i);
+                    break;
+                }
+                
+                if (j == 0)
+                    object_error(mUserObject, "stray items after entry %s", sym->s_name);
+            }
+            
+            // Check for lack of values or end of list
+            
+            if ((++i >= argc) || isTag(argv + i))
+            {
+                if (i < (argc + 1))
+                    object_error(mUserObject, "no values given for entry %s", sym->s_name);
+                continue;
+            }
+            
+            if (isParameterTag(sym))
+            {
+                // Do strings or values
+                
+                if (atom_getsym(argv + i) != gensym(""))
+                    serialisedParameters.write(sym->s_name + 1, atom_getsym(argv + i++)->s_name);
+                else
+                {
+                    i = parseNumericalList(values, argv, argc, i);
+                    serialisedParameters.write(sym->s_name + 1, &values[0], values.size());
+                }
+            }
+        }
+    }
+    
+    // Input Parsing
+    
+    unsigned long inputNumber(t_symbol *sym)
+    {
+        return atoi(sym->s_name + 1) - 1;
+    }
+    
+    void parseInputs(long argc, t_atom *argv)
+    {
+        std::vector<double> values;
+        long i = 0;
+        
+        // Parse arguments if used to set inputs
+        
+        if (argsSetAllInputs)
+        {
+            i = parseNumericalList(values, argv, argc, 0);
+            
+            for (unsigned long j = 0; i && j < mObject->getNumIns(); j++)
+                mObject->setFixedInput(j, &values[0], values.size());
+        }
+        
+        // Parse tags
+        
+        while (i < argc)
+        {
+            // Advance to next input tag
+            
+            for ( ; i < argc && !isInputTag(atom_getsym(argv + i)); i++);
+            
+            // If there are values to read then do so
+            
+            if ((i + 1) < argc && !isTag(argv + i + 1))
+            {
+                t_symbol *sym = atom_getsym(argv + i);
+                i = parseNumericalList(values, argv, argc, i + 1);
+                mObject->setFixedInput(inputNumber(sym), &values[0], values.size());
+            }
+        }
+    }
+
+    // Data
     
     FrameLib_MultiChannel *mObject;
     
@@ -818,4 +792,5 @@ public:
 
 // Convenience for Objects Using FrameLib_Expand (use FrameLib_MaxClass_Expand<T>::makeClass() to create)
 
-template <class T, bool argsSetAllInputs = false> class FrameLib_MaxClass_Expand : public FrameLib_MaxClass<FrameLib_Expand<T>, argsSetAllInputs>{};
+template <class T, bool argsSetAllInputs = false>
+class FrameLib_MaxClass_Expand : public FrameLib_MaxClass<FrameLib_Expand<T>, argsSetAllInputs>{};
