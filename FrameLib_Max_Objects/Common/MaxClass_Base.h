@@ -6,11 +6,12 @@
 #include <ext_obex.h>
 #include <ext_obex_util.h>
 #include <z_dsp.h>
+#include <string>
 
 // This is a very lightweight C++ template wrapper for writing max objects as C++ classes
 // This work is loosely based on https://github.com/grrrwaaa/maxcpp by Graham Wakefield
 
-class MaxBase
+class MaxClass_Base
 {
 
 public:
@@ -56,18 +57,34 @@ public:
     template <class T, typename Perform<T>::MethodPerform F> void addPerform(t_object *dsp64) { object_method(dsp64, gensym("dsp_add64"), this, ((method) call<T, F>), 0, NULL); }
     
     // Static Methods for class initialisation, object creation and deletion
-    // FIX - can the class pointer be handled automagically?
     
-    template <class T, static t_class **C> static void makeClass(t_symbol *nameSpace, const char *classname)
+    template<class T> static t_class **getClassPointer()
     {
-        *C = class_new(classname, (method)create<T, C>, (method)destroy<T>, sizeof(T), 0, A_GIMME, 0);
-        T::classInit(*C, nameSpace, classname);
-        class_register(nameSpace, *C);
+        static t_class *C;
+        
+        return &C;
     }
     
-    template <class T, static t_class **C> static void *create(t_symbol *sym, long ac, t_atom *av)
+    template<class T> static std::string *accessClassName()
     {
-        void *x = object_alloc(*C);
+        static std::string str;
+        
+        return &str;
+    }
+
+    template <class T> static void makeClass(t_symbol *nameSpace, const char *classname)
+    {
+        t_class **C = getClassPointer<T>();
+        
+        *C = class_new(classname, (method)create<T>, (method)destroy<T>, sizeof(T), 0, A_GIMME, 0);
+        T::classInit(*C, nameSpace, classname);
+        class_register(nameSpace, *C);
+        *accessClassName<T>() = std::string(classname);
+    }
+    
+    template <class T> static void *create(t_symbol *sym, long ac, t_atom *av)
+    {
+        void *x = object_alloc(*getClassPointer<T>());
         new(x) T(sym, ac, av);
         return (T *)x;
     }

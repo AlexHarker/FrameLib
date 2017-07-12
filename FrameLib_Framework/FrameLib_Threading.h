@@ -126,7 +126,7 @@ private:
 
 class FrameLib_SpinLock
 {
-
+    
 public:
     
     FrameLib_SpinLock() {}
@@ -144,6 +144,29 @@ private:
     FrameLib_SpinLock& operator=(const FrameLib_SpinLock&);
     
 	FrameLib_Atomic32 mAtomicLock;
+};
+
+
+// A class for holding a lock using RIAA
+
+class FrameLib_SpinLockHold
+{
+    
+public:
+    
+    FrameLib_SpinLockHold(FrameLib_SpinLock *lock) : mLock(lock) { if (mLock) mLock->acquire(); }
+    ~FrameLib_SpinLockHold() { if (mLock) mLock->release(); }
+    
+    void destroy()
+    {
+        if (mLock)
+            mLock->release();
+        mLock = NULL;
+    }
+    
+private:
+    
+    FrameLib_SpinLock *mLock;
 };
 
 

@@ -1,7 +1,8 @@
 
 #include "FrameLib_Shift.h"
+#include "FrameLib_MaxClass.h"
 
-#define OBJECT_CLASS FrameLib_Expand<FrameLib_Shift>
-#define OBJECT_NAME "fl.shift~"
-
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass_Expand<FrameLib_Shift>::makeClass(CLASS_BOX, "fl.shift~");
+}

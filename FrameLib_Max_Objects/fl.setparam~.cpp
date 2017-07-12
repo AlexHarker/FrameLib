@@ -1,8 +1,9 @@
 
 #include "FrameLib_SetParam.h"
+#include "FrameLib_MaxClass.h"
 
-#define OBJECT_CLASS FrameLib_Expand<FrameLib_SetParam>
-#define OBJECT_NAME "fl.setparam~"
-
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass_Expand<FrameLib_SetParam>::makeClass(CLASS_BOX, "fl.setparam~");
+}
 

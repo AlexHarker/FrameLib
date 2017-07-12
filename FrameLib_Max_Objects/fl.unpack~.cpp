@@ -1,5 +1,7 @@
 
-#define OBJECT_CLASS FrameLib_Unpack
-#define OBJECT_NAME "fl.unpack~"
+#include "FrameLib_MaxClass.h"
 
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass<FrameLib_Unpack>::makeClass(CLASS_BOX, "fl.unpack~");
+}

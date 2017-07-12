@@ -1,5 +1,5 @@
 
-#include "Max_Base.h"
+#include "MaxClass_Base.h"
 
 #include "FrameLib_Multichannel.h"
 #include "FrameLib_DSP.h"
@@ -10,12 +10,6 @@
 
 // FIX - improve reporting of extra connections + look into feedback detection...
 // FIX - think about adding assist helpers for this later...
-// FIX - threadsafety??
-// FIX - look at static items
-
-t_class *objectClass = NULL;
-t_class *wrapperClass = NULL;
-t_class *mutatorClass = NULL;
 
 //////////////////////////////////////////////////////////////////////////
 ///////////////////////////// Sync Check Class ///////////////////////////
@@ -59,7 +53,7 @@ private:
 ////////////////////// Mutator for Synchronisation ///////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-class Mutator : public MaxBase
+class Mutator : public MaxClass_Base
 {
     
 public:
@@ -92,7 +86,7 @@ private:
 ////////////////////// Wrapper for Synchronisation ///////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-template <class T> class Wrapper : public MaxBase
+template <class T> class Wrapper : public MaxClass_Base
 {
     
 public:
@@ -113,12 +107,11 @@ public:
         
         // Create Objects
         
-        // FIX - this should not be a macro for the name (needs to be stored somehow?? with the class...
-        
         char name[256];
-        sprintf(name, "unsynced.%s", OBJECT_NAME);
+        sprintf(name, "unsynced.%s", accessClassName<Wrapper>()->c_str());
         
-        // FIX - make me better
+        // FIX - make me better (the only issue here is that the text ideally should be the *exact* text in this box, minus the typed object name
+        // Here any numbers go through two conversions, and *might* not end up the same (test)
         
         char *text = NULL;
         long textSize = 0;
@@ -202,9 +195,9 @@ public:
         
         // Free objects - N.B. - free the patch, but not the object within it (which will be freed by deleting the patch)
         
-        freeobject(mSyncIn);
-        freeobject(mMutator);
-        freeobject(mPatch);
+        object_free(mSyncIn);
+        object_free(mMutator);
+        object_free(mPatch);
     }
     
     void assist(void *b, long m, long a, char *s)
@@ -252,7 +245,7 @@ public:
         const char mutatorClassName[] = "__fl.signal.mutator";
                 
         if (!class_findbyname(CLASS_NOBOX, gensym(mutatorClassName)))
-            Mutator::makeClass<Mutator, &mutatorClass>(CLASS_NOBOX, mutatorClassName);
+            Mutator::makeClass<Mutator>(CLASS_NOBOX, mutatorClassName);
     }
     
 private:
@@ -287,7 +280,7 @@ private:
 ////////////////// Max Object Class for Synchronisation //////////////////
 //////////////////////////////////////////////////////////////////////////
 
-template <class T> class FrameLib_MaxObj : public MaxBase
+template <class T, bool argsSetAllInputs = false> class FrameLib_MaxClass : public MaxClass_Base
 {
     // Connection Mode Enum
     
@@ -295,10 +288,10 @@ template <class T> class FrameLib_MaxObj : public MaxBase
     
     struct ConnectionInfo
     {
-        ConnectionInfo(FrameLib_MaxObj *object, unsigned long index, t_object *topLevelPatch, ConnectMode mode) :
+        ConnectionInfo(t_object *object, unsigned long index, t_object *topLevelPatch, ConnectMode mode) :
         mObject(object), mIndex(index), mTopLevelPatch(topLevelPatch), mMode(mode) {}
         
-        FrameLib_MaxObj *mObject;
+        t_object *mObject;
         unsigned long mIndex;
         t_object *mTopLevelPatch;
         ConnectMode mMode;
@@ -310,11 +303,11 @@ template <class T> class FrameLib_MaxObj : public MaxBase
         Input() :
         mProxy(NULL), mObject(NULL), mIndex(0), mReportError(false) {}
         
-        Input(t_object *proxy, FrameLib_MaxObj *object, unsigned long index, bool reportError) :
+        Input(t_object *proxy, t_object *object, unsigned long index, bool reportError) :
         mProxy(proxy), mObject(object), mIndex(index), mReportError(reportError) {}
         
         t_object *mProxy;
-        FrameLib_MaxObj *mObject;
+        t_object *mObject;
         unsigned long mIndex;
         bool mReportError;
     };
@@ -395,21 +388,21 @@ private:
             if (isTag(argv + i))
                 break;
             
-#ifndef OBJECT_ARGS_SET_ALL_INPUTS
-            
-            char argNames[64];
-            
-            sprintf(argNames, "%ld", i);
-            sym = atom_getsym(argv + i);
-
-            if (sym != gensym(""))
-                serialisedParameters.write(argNames, sym->s_name);
-            else
+            if (!argsSetAllInputs)
             {
-                double value = atom_getfloat(argv + i);
-                serialisedParameters.write(argNames, &value, 1);
+                char argNames[64];
+            
+                sprintf(argNames, "%ld", i);
+                sym = atom_getsym(argv + i);
+
+                if (sym != gensym(""))
+                    serialisedParameters.write(argNames, sym->s_name);
+                else
+                {
+                    double value = atom_getfloat(argv + i);
+                    serialisedParameters.write(argNames, &value, 1);
+                }
             }
-#endif
         }
         
         // Parse parameters
@@ -464,17 +457,19 @@ private:
     void parseInputs(long argc, t_atom *argv)
     {
         std::vector<double> values;
+        long i;
         
         // Parse arguments if used to set inputs
+
+        if (argsSetAllInputs)
+        {
+            i = parseNumericalList(values, argv, argc, 0);
         
-#ifdef OBJECT_ARGS_SET_ALL_INPUTS
-        long i = parseNumericalList(values, argv, argc, 0);
-        
-        for (unsigned long j = 0; i && j < mObject->getNumIns(); j++)
-            mObject->setFixedInput(j, &values[0], values.size());
-#else 
-        long i = 0;
-#endif
+            for (unsigned long j = 0; i && j < mObject->getNumIns(); j++)
+                mObject->setFixedInput(j, &values[0], values.size());
+        }
+        else
+            i = 0;
 
         // Parse tags
         
@@ -523,7 +518,7 @@ public:
     
 public:
 
-    FrameLib_MaxObj(t_symbol *s, long argc, t_atom *argv) : mConfirmIndex(-1), mConfirm(false)
+    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv) : mConfirmIndex(-1), mConfirm(false)
     {
         // Init
         
@@ -531,7 +526,7 @@ public:
         FrameLib_Context context = getContext();
         mUserObject = (t_object *)this;
 
-        // Object creation with parameters and arguments
+        // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
     
         parseParameters(serialisedParameters, argc, argv);
 
@@ -562,7 +557,7 @@ public:
             outlet_new(this, "signal");
     }
 
-    ~FrameLib_MaxObj()
+    ~FrameLib_MaxClass()
     {
         dspFree();
 
@@ -608,10 +603,30 @@ public:
         // Add a perform routine to the chain if the object handles audio
         
         if (T::handlesAudio())
-            addPerform<FrameLib_MaxObj, &FrameLib_MaxObj<T>::perform>(dsp64);
+            addPerform<FrameLib_MaxClass, &FrameLib_MaxClass<T>::perform>(dsp64);
     }
 
     // Connection Routines
+    
+    static void externalConnectionCheck(FrameLib_MaxClass *x, unsigned long index, ConnectMode mode)
+    {
+        x->connect(index, mode);
+    }
+    
+    static FrameLib_MultiChannel *externalGetObject(FrameLib_MaxClass *x)
+    {
+        return x->mObject;
+    }
+
+    void checkConnection(t_object *x, unsigned long index, ConnectMode mode)
+    {
+        object_method(x, gensym("connection_check"), index, mode);
+    }
+    
+    FrameLib_MultiChannel *getInternalObject(t_object *x)
+    {
+        return (FrameLib_MultiChannel *) object_method(x, gensym("get_internal_object"));
+    }
     
     ConnectionInfo* getConnectionInfo()
     {
@@ -622,20 +637,10 @@ public:
     {
         *frameConnectionInfo() = info;
     }
-
-    void checkConnection(FrameLib_MaxObj *x, unsigned long index, ConnectMode mode)
-    {
-        object_method(x, gensym("internal_connect"), index, mode);
-    }
-    
-    static void connectionCall(FrameLib_MaxObj *x, unsigned long index, ConnectMode mode)
-    {
-        x->connect(index, mode);
-    }
     
     void connect(unsigned long index, ConnectMode mode)
     {
-        ConnectionInfo info(this, index, mTopLevelPatch, mode);
+        ConnectionInfo info(*this, index, mTopLevelPatch, mode);
         
         setConnectionInfo(&info);
         outlet_anything(mOutputs[index], gensym("frame"), 0, NULL);
@@ -697,13 +702,13 @@ public:
             case kConnect:
             {
                 bool connectionChange = (mInputs[index].mObject != info->mObject || mInputs[index].mIndex != info->mIndex);
-                bool valid = (info->mTopLevelPatch == mTopLevelPatch && info->mObject != this);
+                bool valid = (info->mTopLevelPatch == mTopLevelPatch && info->mObject != *this);
                 
                 // Confirm that the object is valid
                 
                 if (!valid)
                 {
-                    if (info->mObject == this)
+                    if (info->mObject == *this)
                         object_error(mUserObject, "direct feedback loop detected");
                     else
                         object_error(mUserObject, "cannot connect objects from different top level patchers");
@@ -721,12 +726,14 @@ public:
                 
                 // Always change the connection if the new object is valid (only way to ensure new connections work)
                 
-                if (connectionChange && valid)
+                FrameLib_MultiChannel *internalObject = getInternalObject(info->mObject);
+                                                                   
+                if (connectionChange && valid && internalObject)
                 {
                     mInputs[index].mObject = info->mObject;
                     mInputs[index].mIndex = info->mIndex;
                     
-                    mObject->addConnection(info->mObject->mObject, info->mIndex, index);
+                    mObject->addConnection(internalObject, info->mIndex, index);
                 }
             }
                 break;
@@ -750,32 +757,41 @@ public:
                 outlet_anything(mOutputs[i - 1], gensym("sync"), 0, NULL);
     }
     
-    // Class Initilisation
+    // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_MaxClass<>)
     
-    template <class U> static void makeClass(t_symbol *nameSpace, const char *className)
+    template <class U = FrameLib_MaxClass<T> > static void makeClass(t_symbol *nameSpace, const char *className)
     {
+        // Safety
+        
+        if (strlen(className) > 240)
+        {
+            error("object name is too long! : %s", className);
+            return;
+        }
+        
         // If handles audio/scheduler then make wrapper class and name the inner object differently..
         
         char internalClassName[256];
         
         if (T::handlesAudio())
         {
-            Wrapper<U>:: template makeClass<Wrapper<U>, &wrapperClass>(CLASS_BOX, className);
+            Wrapper<U>:: template makeClass<Wrapper<U> >(CLASS_BOX, className);
             sprintf(internalClassName, "unsynced.%s", className);
         }
         else
             strcpy(internalClassName, className);
         
-        MaxBase::makeClass<U, &objectClass>(nameSpace, internalClassName);
+        MaxClass_Base::makeClass<U>(nameSpace, internalClassName);
     }
-    
+
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
-        addMethod(c, (method) &connectionCall, "internal_connect");
-        addMethod<FrameLib_MaxObj<T>, &FrameLib_MaxObj<T>::assist>(c, "assist");
-        addMethod<FrameLib_MaxObj<T>, &FrameLib_MaxObj<T>::frame>(c, "frame");
-        addMethod<FrameLib_MaxObj<T>, &FrameLib_MaxObj<T>::sync>(c, "sync");
-        addMethod<FrameLib_MaxObj<T>, &FrameLib_MaxObj<T>::dsp>(c);
+        addMethod(c, (method) &externalConnectionCheck, "connection_check");
+        addMethod(c, (method) &externalGetObject, "get_internal_object");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::assist>(c, "assist");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
         
         dspInit(c);
     }
@@ -800,9 +816,6 @@ public:
     t_object *mUserObject;
 };
 
-#ifndef CUSTOM_OBJECT
-extern "C" int C74_EXPORT main(void)
-{
-    FrameLib_MaxObj<OBJECT_CLASS>::makeClass<FrameLib_MaxObj<OBJECT_CLASS> >(CLASS_BOX, OBJECT_NAME);
-}
-#endif
+// Convenience for Objects Using FrameLib_Expand (use FrameLib_MaxClass_Expand<T>::makeClass() to create)
+
+template <class T, bool argsSetAllInputs = false> class FrameLib_MaxClass_Expand : public FrameLib_MaxClass<FrameLib_Expand<T>, argsSetAllInputs>{};

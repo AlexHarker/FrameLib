@@ -79,13 +79,19 @@ void FrameLib_Global::releaseDSPQueue(void *reference)
 
 void FrameLib_Global::increment()
 {
+    FrameLib_SpinLockHold lock(&mLock);
     ++mCount;
 }
 
 FrameLib_Global *FrameLib_Global::decrement()
 {
+    FrameLib_SpinLockHold lock(&mLock);
+    
     if (--mCount < 1)
     {
+        // N.B. - The spinlock will attempt to lock itself when deleting, so we can't hold the lock on delete
+        
+        lock.destroy();
         delete this;
         return NULL;
     }

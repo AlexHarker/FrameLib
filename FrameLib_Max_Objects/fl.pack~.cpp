@@ -1,5 +1,7 @@
 
-#define OBJECT_CLASS FrameLib_Pack
-#define OBJECT_NAME "fl.pack~"
+#include "FrameLib_MaxClass.h"
 
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass<FrameLib_Pack>::makeClass(CLASS_BOX, "fl.pack~");
+}

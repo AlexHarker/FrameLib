@@ -1,7 +1,8 @@
 
 #include "FrameLib_FFT.h"
+#include "FrameLib_MaxClass.h"
 
-#define OBJECT_CLASS FrameLib_Expand<FrameLib_FFT>
-#define OBJECT_NAME "fl.fft~"
-
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass_Expand<FrameLib_FFT>::makeClass(CLASS_BOX, "fl.fft~");
+}

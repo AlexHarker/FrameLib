@@ -1,7 +1,8 @@
 
 #include "FrameLib_Objects.h"
+#include "FrameLib_MaxClass.h"
 
-#define OBJECT_CLASS FrameLib_Expand<FrameLib_Length>
-#define OBJECT_NAME "fl.length~"
-
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass_Expand<FrameLib_Length>::makeClass(CLASS_BOX, "fl.length~");
+}

@@ -1,7 +1,8 @@
 
 #include "FrameLib_Peaks.h"
+#include "FrameLib_MaxClass.h"
 
-#define OBJECT_CLASS FrameLib_Expand<FrameLib_Peaks>
-#define OBJECT_NAME "fl.peaks~"
-
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass_Expand<FrameLib_Peaks>::makeClass(CLASS_BOX, "fl.peaks~");
+}

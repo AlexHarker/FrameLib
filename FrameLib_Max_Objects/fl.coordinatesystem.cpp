@@ -1,7 +1,8 @@
 
 #include "FrameLib_CoordinateSystem.h"
+#include "FrameLib_MaxClass.h"
 
-#define OBJECT_CLASS FrameLib_Expand<FrameLib_CoordinateSystem>
-#define OBJECT_NAME "fl.coordinatesystem~"
-
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass_Expand<FrameLib_CoordinateSystem>::makeClass(CLASS_BOX, "fl.coordinatesystem~");
+}

@@ -1,7 +1,8 @@
 
 #include "FrameLib_0dfSVF.h"
+#include "FrameLib_MaxClass.h"
 
-#define OBJECT_CLASS FrameLib_Expand<FrameLib_0dfSVF>
-#define OBJECT_NAME "fl.0dfsvf~"
-
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass_Expand<FrameLib_0dfSVF>::makeClass(CLASS_BOX, "fl.0dfsvf~");
+}

@@ -28,8 +28,9 @@ protected:
         allocateOutputs();
     }
 };
+#include "FrameLib_MaxClass.h"
 
-#define OBJECT_CLASS FrameLib_Expand <FrameLib_T2>
-#define OBJECT_NAME "fl.t2~"
-
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass<FrameLib_Expand <FrameLib_T2> >::makeClass(CLASS_BOX, "fl.t2~");
+}

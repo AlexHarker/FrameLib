@@ -5,6 +5,7 @@
 #include "FrameLib_Memory.h"
 #include "FrameLib_ConnectionQueue.h"
 #include "FrameLib_DSPQueue.h"
+#include "FrameLib_Threading.h"
 #include <vector>
 
 // A template class for storing reference counted pointers against reference addresses (representing contexts)
@@ -130,6 +131,7 @@ private:
     FrameLib_PointerSet<FrameLib_ConnectionQueue> mConnectionQueues;
     FrameLib_PointerSet<FrameLib_DSPQueue> mDSPQueues;
     
+    FrameLib_SpinLock mLock;
     long mCount;
 };
 

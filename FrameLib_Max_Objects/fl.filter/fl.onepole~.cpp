@@ -1,7 +1,8 @@
 
 #include "FrameLib_OnePole.h"
+#include "FrameLib_MaxClass.h"
 
-#define OBJECT_CLASS FrameLib_Expand<FrameLib_OnePole>
-#define OBJECT_NAME "fl.onepole~"
-
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass_Expand<FrameLib_OnePole>::makeClass(CLASS_BOX, "fl.onepole~");
+}

@@ -1,7 +1,8 @@
 
 #include "FrameLib_Interval.h"
+#include "FrameLib_MaxClass.h"
 
-#define OBJECT_CLASS FrameLib_Expand <FrameLib_Interval>
-#define OBJECT_NAME "fl.interval~"
-
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass<FrameLib_Expand <FrameLib_Interval> >::makeClass(CLASS_BOX, "fl.interval~");
+}

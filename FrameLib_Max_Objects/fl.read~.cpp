@@ -197,8 +197,9 @@ private:
 };
 
 bool FrameLib_MaxRead::sInit = FALSE;
+#include "FrameLib_MaxClass.h"
 
-#define OBJECT_CLASS FrameLib_Expand<FrameLib_MaxRead>
-#define OBJECT_NAME "fl.read~"
-
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass_Expand<FrameLib_MaxRead>::makeClass(CLASS_BOX, "fl.read~");
+}

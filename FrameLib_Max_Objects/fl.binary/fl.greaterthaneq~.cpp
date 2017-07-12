@@ -1,8 +1,8 @@
 
 #include "FrameLib_Objects.h"
+#include "FrameLib_MaxClass.h"
 
-#define OBJECT_ARGS_SET_ALL_INPUTS 1
-#define OBJECT_CLASS FrameLib_Expand<FrameLib_GreaterThanEqual>
-#define OBJECT_NAME "fl.greaterthaneq~"
-
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass_Expand<FrameLib_GreaterThanEqual, true>::makeClass(CLASS_BOX, "fl.greaterthaneq~");
+}

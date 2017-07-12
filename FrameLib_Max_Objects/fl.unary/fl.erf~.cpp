@@ -1,7 +1,8 @@
 
 #include "FrameLib_Objects.h"
+#include "FrameLib_MaxClass.h"
 
-#define OBJECT_CLASS FrameLib_Expand<FrameLib_Erf>
-#define OBJECT_NAME "fl.erf~"
-
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass_Expand<FrameLib_Erf>::makeClass(CLASS_BOX, "fl.erf~");
+}

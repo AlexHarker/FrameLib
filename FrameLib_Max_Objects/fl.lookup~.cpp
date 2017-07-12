@@ -1,8 +1,9 @@
 
 #include "FrameLib_Lookup.h"
+#include "FrameLib_MaxClass.h"
 
-#define OBJECT_CLASS FrameLib_Expand<FrameLib_Lookup>
-#define OBJECT_NAME "fl.lookup~"
-
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass_Expand<FrameLib_Lookup>::makeClass(CLASS_BOX, "fl.lookup~");
+}
 

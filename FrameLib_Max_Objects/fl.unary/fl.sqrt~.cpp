@@ -1,7 +1,8 @@
 
 #include "FrameLib_Objects.h"
+#include "FrameLib_MaxClass.h"
 
-#define OBJECT_CLASS FrameLib_Expand<FrameLib_Sqrt>
-#define OBJECT_NAME "fl.sqrt~"
-
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass_Expand<FrameLib_Sqrt>::makeClass(CLASS_BOX, "fl.sqrt~");
+}

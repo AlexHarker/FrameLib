@@ -1,7 +1,8 @@
 
 #include "FrameLib_Recall.h"
+#include "FrameLib_MaxClass.h"
 
-#define OBJECT_CLASS FrameLib_Expand<FrameLib_Recall>
-#define OBJECT_NAME "fl.recall~"
-
-#include "Framelib_Max.h"
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass_Expand<FrameLib_Recall>::makeClass(CLASS_BOX, "fl.recall~");
+}
