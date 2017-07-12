@@ -389,7 +389,7 @@ private:
             if (isTag(argv + i))
                 break;
             
-            if (argsSetAllInputs)
+            if (!argsSetAllInputs)
             {
                 char argNames[64];
             
