@@ -598,19 +598,15 @@ private:
     
     // Globals
     
-    FrameLib_Global **globalHandle()
-    {
-        return (FrameLib_Global **) &gensym("__FrameLib__Global__")->s_thing;
-    }
-    
+    FrameLib_Global **globalHandle()        { return (FrameLib_Global **) &gensym("__FrameLib__Global__")->s_thing; }
+    ConnectionInfo **frameConnectionInfo()  { return (ConnectionInfo **) &gensym("__frame__connection__info__")->s_thing; }
+
     FrameLib_Context getContext()
     {
         mTopLevelPatch = jpatcher_get_toppatcher(gensym("#P")->s_thing);
         
         return FrameLib_Context(FrameLib_Global::get(globalHandle()), mTopLevelPatch);
     }
-    
-    ConnectionInfo **frameConnectionInfo() { return (ConnectionInfo **) &gensym("__frame__connection__info__")->s_thing; }
     
     // Call to get the context increments the global counter, so it needs relasing when we are done
     
