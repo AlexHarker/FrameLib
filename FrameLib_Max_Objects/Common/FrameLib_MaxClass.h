@@ -107,24 +107,24 @@ public:
         
         // Create Objects
         
-        char name[256];
-        sprintf(name, "unsynced.%s", accessClassName<Wrapper>()->c_str());
+        t_object *box = NULL;
+        const char *text = NULL;
         
-        // FIX - make me better (the only issue here is that the text ideally should be the *exact* text in this box, minus the typed object name
-        // Here any numbers go through two conversions, and *might* not end up the same (test)
+        object_obex_lookup(this, gensym("#B"), &box);
+        t_object * textfield = jbox_get_textfield(box);
         
-        char *text = NULL;
-        long textSize = 0;
+        if (textfield)
+            text = (char *)object_method(textfield, _sym_getptr);
         
-        atom_gettext(argc, argv, &textSize, &text, 0);
-        mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch, "@maxclass newobj @text \"%s %s\" @patching_rect 0 0 30 10", name, text));
+        if (!text)
+            text = accessClassName<Wrapper>()->c_str();
+
+        mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch, "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", text));
         mMutator = (t_object *) object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 0, NULL);
         
         // Free resources we no longer need
-        
-        sysmem_freeptr(av);
+    
         freeobject((t_object *)d);
-        sysmem_freeptr(text);
         
         // Get the object itself (typed)
         
@@ -316,7 +316,7 @@ public:
     
     // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_MaxClass<>)
     
-    template <class U = FrameLib_MaxClass<T> > static void makeClass(t_symbol *nameSpace, const char *className)
+    template <class U = FrameLib_MaxClass<T, argsSetAllInputs> > static void makeClass(t_symbol *nameSpace, const char *className)
     {
         // Safety
         
@@ -598,19 +598,15 @@ private:
     
     // Globals
     
-    FrameLib_Global **globalHandle()
-    {
-        return (FrameLib_Global **) &gensym("__FrameLib__Global__")->s_thing;
-    }
-    
+    FrameLib_Global **globalHandle()        { return (FrameLib_Global **) &gensym("__FrameLib__Global__")->s_thing; }
+    ConnectionInfo **frameConnectionInfo()  { return (ConnectionInfo **) &gensym("__frame__connection__info__")->s_thing; }
+
     FrameLib_Context getContext()
     {
         mTopLevelPatch = jpatcher_get_toppatcher(gensym("#P")->s_thing);
         
         return FrameLib_Context(FrameLib_Global::get(globalHandle()), mTopLevelPatch);
     }
-    
-    ConnectionInfo **frameConnectionInfo() { return (ConnectionInfo **) &gensym("__frame__connection__info__")->s_thing; }
     
     // Call to get the context increments the global counter, so it needs relasing when we are done
     
@@ -793,4 +789,4 @@ public:
 // Convenience for Objects Using FrameLib_Expand (use FrameLib_MaxClass_Expand<T>::makeClass() to create)
 
 template <class T, bool argsSetAllInputs = false>
-class FrameLib_MaxClass_Expand : public FrameLib_MaxClass<FrameLib_Expand<T>, argsSetAllInputs>{};
+class FrameLib_MaxClass_Expand : public FrameLib_MaxClass<FrameLib_Expand<T>, argsSetAllInputs> {};
