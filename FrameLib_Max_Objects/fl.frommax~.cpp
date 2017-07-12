@@ -30,8 +30,8 @@ struct MaxMessage
 
 // FIX - slightly nasty forward declarations...
 
-class FrameLib_MaxObj_From;
-MaxMessage *getMessages(FrameLib_MaxObj_From *object);
+class FrameLib_MaxClass_From;
+MaxMessage *getMessages(FrameLib_MaxClass_From *object);
 
 class FrameLib_FromMax : public FrameLib_Processor
 {
@@ -52,7 +52,7 @@ public:
         
         outputMode(0, mMode == kValues ? kOutputNormal : kOutputTagged);
         
-        mMessages = getMessages((FrameLib_MaxObj_From *)owner);
+        mMessages = getMessages((FrameLib_MaxClass_From *)owner);
     }
     
 protected:
@@ -109,14 +109,14 @@ private:
     Modes mMode;
 };
 
-#include <FrameLib_Max.h>
+#include <FrameLib_MaxClass.h>
 
-class FrameLib_MaxObj_From : public FrameLib_MaxObj<FrameLib_Expand<FrameLib_FromMax> >
+class FrameLib_MaxClass_From : public FrameLib_MaxClass<FrameLib_Expand<FrameLib_FromMax> >
 {
 
 public:
     
-    FrameLib_MaxObj_From(t_symbol *s, long argc, t_atom *argv) : FrameLib_MaxObj(s, argc, argv) {}
+    FrameLib_MaxClass_From(t_symbol *s, long argc, t_atom *argv) : FrameLib_MaxClass(s, argc, argv) {}
     
     // Additional handlers
     
@@ -191,12 +191,12 @@ public:
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
-        FrameLib_MaxObj::classInit(c, nameSpace, classname);
+        FrameLib_MaxClass::classInit(c, nameSpace, classname);
         
-        addMethod<FrameLib_MaxObj_From, &FrameLib_MaxObj_From::intHandler>(c, "int");
-        addMethod<FrameLib_MaxObj_From, &FrameLib_MaxObj_From::floatHandler>(c, "float");
-        addMethod<FrameLib_MaxObj_From, &FrameLib_MaxObj_From::list>(c, "list");
-        addMethod<FrameLib_MaxObj_From, &FrameLib_MaxObj_From::anything>(c, "anything");
+        addMethod<FrameLib_MaxClass_From, &FrameLib_MaxClass_From::intHandler>(c, "int");
+        addMethod<FrameLib_MaxClass_From, &FrameLib_MaxClass_From::floatHandler>(c, "float");
+        addMethod<FrameLib_MaxClass_From, &FrameLib_MaxClass_From::list>(c, "list");
+        addMethod<FrameLib_MaxClass_From, &FrameLib_MaxClass_From::anything>(c, "anything");
     }
     
     // Data (public so we can take the address)
@@ -204,12 +204,12 @@ public:
     MaxMessage messages;
 };
 
-MaxMessage *getMessages(FrameLib_MaxObj_From *object)
+MaxMessage *getMessages(FrameLib_MaxClass_From *object)
 {
     return &object->messages;
 }
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxObj_From::makeClass<FrameLib_MaxObj_From>(CLASS_BOX, "fl.frommax~");
+    FrameLib_MaxClass_From::makeClass<FrameLib_MaxClass_From>(CLASS_BOX, "fl.frommax~");
 }

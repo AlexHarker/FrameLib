@@ -1,5 +1,5 @@
 
-#include "Max_Base.h"
+#include "MaxClass_Base.h"
 
 #include "FrameLib_Multichannel.h"
 #include "FrameLib_DSP.h"
@@ -53,7 +53,7 @@ private:
 ////////////////////// Mutator for Synchronisation ///////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-class Mutator : public MaxBase
+class Mutator : public MaxClass_Base
 {
     
 public:
@@ -86,7 +86,7 @@ private:
 ////////////////////// Wrapper for Synchronisation ///////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-template <class T> class Wrapper : public MaxBase
+template <class T> class Wrapper : public MaxClass_Base
 {
     
 public:
@@ -280,7 +280,7 @@ private:
 ////////////////// Max Object Class for Synchronisation //////////////////
 //////////////////////////////////////////////////////////////////////////
 
-template <class T, bool argsSetAllInputs = false> class FrameLib_MaxObj : public MaxBase
+template <class T, bool argsSetAllInputs = false> class FrameLib_MaxClass : public MaxClass_Base
 {
     // Connection Mode Enum
     
@@ -518,7 +518,7 @@ public:
     
 public:
 
-    FrameLib_MaxObj(t_symbol *s, long argc, t_atom *argv) : mConfirmIndex(-1), mConfirm(false)
+    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv) : mConfirmIndex(-1), mConfirm(false)
     {
         // Init
         
@@ -557,7 +557,7 @@ public:
             outlet_new(this, "signal");
     }
 
-    ~FrameLib_MaxObj()
+    ~FrameLib_MaxClass()
     {
         dspFree();
 
@@ -603,17 +603,17 @@ public:
         // Add a perform routine to the chain if the object handles audio
         
         if (T::handlesAudio())
-            addPerform<FrameLib_MaxObj, &FrameLib_MaxObj<T>::perform>(dsp64);
+            addPerform<FrameLib_MaxClass, &FrameLib_MaxClass<T>::perform>(dsp64);
     }
 
     // Connection Routines
     
-    static void externalConnectionCheck(FrameLib_MaxObj *x, unsigned long index, ConnectMode mode)
+    static void externalConnectionCheck(FrameLib_MaxClass *x, unsigned long index, ConnectMode mode)
     {
         x->connect(index, mode);
     }
     
-    static FrameLib_MultiChannel *externalGetObject(FrameLib_MaxObj *x)
+    static FrameLib_MultiChannel *externalGetObject(FrameLib_MaxClass *x)
     {
         return x->mObject;
     }
@@ -757,9 +757,9 @@ public:
                 outlet_anything(mOutputs[i - 1], gensym("sync"), 0, NULL);
     }
     
-    // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_MaxObj<>)
+    // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_MaxClass<>)
     
-    template <class U = FrameLib_MaxObj<T> > static void makeClass(t_symbol *nameSpace, const char *className)
+    template <class U = FrameLib_MaxClass<T> > static void makeClass(t_symbol *nameSpace, const char *className)
     {
         // Safety
         
@@ -781,17 +781,17 @@ public:
         else
             strcpy(internalClassName, className);
         
-        MaxBase::makeClass<U>(nameSpace, internalClassName);
+        MaxClass_Base::makeClass<U>(nameSpace, internalClassName);
     }
 
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
         addMethod(c, (method) &externalConnectionCheck, "connection_check");
         addMethod(c, (method) &externalGetObject, "get_internal_object");
-        addMethod<FrameLib_MaxObj<T>, &FrameLib_MaxObj<T>::assist>(c, "assist");
-        addMethod<FrameLib_MaxObj<T>, &FrameLib_MaxObj<T>::frame>(c, "frame");
-        addMethod<FrameLib_MaxObj<T>, &FrameLib_MaxObj<T>::sync>(c, "sync");
-        addMethod<FrameLib_MaxObj<T>, &FrameLib_MaxObj<T>::dsp>(c);
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::assist>(c, "assist");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
         
         dspInit(c);
     }

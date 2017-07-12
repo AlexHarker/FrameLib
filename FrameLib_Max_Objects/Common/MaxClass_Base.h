@@ -11,7 +11,7 @@
 // This is a very lightweight C++ template wrapper for writing max objects as C++ classes
 // This work is loosely based on https://github.com/grrrwaaa/maxcpp by Graham Wakefield
 
-class MaxBase
+class MaxClass_Base
 {
 
 public:
