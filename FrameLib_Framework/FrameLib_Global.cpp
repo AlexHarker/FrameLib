@@ -79,11 +79,14 @@ void FrameLib_Global::releaseDSPQueue(void *reference)
 
 void FrameLib_Global::increment()
 {
+    FrameLib_SpinLockHold lock(&mLock);
     ++mCount;
 }
 
 FrameLib_Global *FrameLib_Global::decrement()
 {
+    FrameLib_SpinLockHold lock(&mLock);
+    
     if (--mCount < 1)
     {
         delete this;
