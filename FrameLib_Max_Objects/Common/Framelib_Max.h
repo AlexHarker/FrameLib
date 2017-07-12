@@ -196,9 +196,9 @@ public:
         
         // Free objects - N.B. - free the patch, but not the object within it (which will be freed by deleting the patch)
         
-        freeobject(mSyncIn);
-        freeobject(mMutator);
-        freeobject(mPatch);
+        object_free(mSyncIn);
+        object_free(mMutator);
+        object_free(mPatch);
     }
     
     void assist(void *b, long m, long a, char *s)
@@ -289,10 +289,10 @@ template <class T, bool argsSetAllInputs = false> class FrameLib_MaxObj : public
     
     struct ConnectionInfo
     {
-        ConnectionInfo(FrameLib_MaxObj *object, unsigned long index, t_object *topLevelPatch, ConnectMode mode) :
+        ConnectionInfo(t_object *object, unsigned long index, t_object *topLevelPatch, ConnectMode mode) :
         mObject(object), mIndex(index), mTopLevelPatch(topLevelPatch), mMode(mode) {}
         
-        FrameLib_MaxObj *mObject;
+        t_object *mObject;
         unsigned long mIndex;
         t_object *mTopLevelPatch;
         ConnectMode mMode;
@@ -304,11 +304,11 @@ template <class T, bool argsSetAllInputs = false> class FrameLib_MaxObj : public
         Input() :
         mProxy(NULL), mObject(NULL), mIndex(0), mReportError(false) {}
         
-        Input(t_object *proxy, FrameLib_MaxObj *object, unsigned long index, bool reportError) :
+        Input(t_object *proxy, t_object *object, unsigned long index, bool reportError) :
         mProxy(proxy), mObject(object), mIndex(index), mReportError(reportError) {}
         
         t_object *mProxy;
-        FrameLib_MaxObj *mObject;
+        t_object *mObject;
         unsigned long mIndex;
         bool mReportError;
     };
@@ -609,6 +609,26 @@ public:
 
     // Connection Routines
     
+    static void externalConnectionCheck(FrameLib_MaxObj *x, unsigned long index, ConnectMode mode)
+    {
+        x->connect(index, mode);
+    }
+    
+    static FrameLib_MultiChannel *externalGetObject(FrameLib_MaxObj *x)
+    {
+        return x->mObject;
+    }
+
+    void checkConnection(t_object *x, unsigned long index, ConnectMode mode)
+    {
+        object_method(x, gensym("connection_check"), index, mode);
+    }
+    
+    FrameLib_MultiChannel *getInternalObject(t_object *x)
+    {
+        return (FrameLib_MultiChannel *) object_method(x, gensym("get_internal_object"));
+    }
+    
     ConnectionInfo* getConnectionInfo()
     {
         return *frameConnectionInfo();
@@ -618,20 +638,10 @@ public:
     {
         *frameConnectionInfo() = info;
     }
-
-    void checkConnection(FrameLib_MaxObj *x, unsigned long index, ConnectMode mode)
-    {
-        object_method(x, gensym("internal_connect"), index, mode);
-    }
-    
-    static void connectionCall(FrameLib_MaxObj *x, unsigned long index, ConnectMode mode)
-    {
-        x->connect(index, mode);
-    }
     
     void connect(unsigned long index, ConnectMode mode)
     {
-        ConnectionInfo info(this, index, mTopLevelPatch, mode);
+        ConnectionInfo info(*this, index, mTopLevelPatch, mode);
         
         setConnectionInfo(&info);
         outlet_anything(mOutputs[index], gensym("frame"), 0, NULL);
@@ -693,13 +703,13 @@ public:
             case kConnect:
             {
                 bool connectionChange = (mInputs[index].mObject != info->mObject || mInputs[index].mIndex != info->mIndex);
-                bool valid = (info->mTopLevelPatch == mTopLevelPatch && info->mObject != this);
+                bool valid = (info->mTopLevelPatch == mTopLevelPatch && info->mObject != *this);
                 
                 // Confirm that the object is valid
                 
                 if (!valid)
                 {
-                    if (info->mObject == this)
+                    if (info->mObject == *this)
                         object_error(mUserObject, "direct feedback loop detected");
                     else
                         object_error(mUserObject, "cannot connect objects from different top level patchers");
@@ -717,12 +727,14 @@ public:
                 
                 // Always change the connection if the new object is valid (only way to ensure new connections work)
                 
-                if (connectionChange && valid)
+                FrameLib_MultiChannel *internalObject = getInternalObject(info->mObject);
+                                                                   
+                if (connectionChange && valid && internalObject)
                 {
                     mInputs[index].mObject = info->mObject;
                     mInputs[index].mIndex = info->mIndex;
                     
-                    mObject->addConnection(info->mObject->mObject, info->mIndex, index);
+                    mObject->addConnection(internalObject, info->mIndex, index);
                 }
             }
                 break;
@@ -775,7 +787,8 @@ public:
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
-        addMethod(c, (method) &connectionCall, "internal_connect");
+        addMethod(c, (method) &externalConnectionCheck, "connection_check");
+        addMethod(c, (method) &externalGetObject, "get_internal_object");
         addMethod<FrameLib_MaxObj<T>, &FrameLib_MaxObj<T>::assist>(c, "assist");
         addMethod<FrameLib_MaxObj<T>, &FrameLib_MaxObj<T>::frame>(c, "frame");
         addMethod<FrameLib_MaxObj<T>, &FrameLib_MaxObj<T>::sync>(c, "sync");
