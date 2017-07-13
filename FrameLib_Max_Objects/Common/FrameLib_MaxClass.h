@@ -113,13 +113,20 @@ public:
         object_obex_lookup(this, gensym("#B"), &box);
         t_object * textfield = jbox_get_textfield(box);
         
-        if (textfield)
-            text = (char *)object_method(textfield, _sym_getptr);
+        std::string newObjectText = accessClassName<Wrapper>()->c_str();
         
-        if (!text)
-            text = accessClassName<Wrapper>()->c_str();
-
-        mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch, "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", text));
+        // Get box text and strip object name from the top (relace with stored name in case the object name is an alias)
+        
+        if (textfield)
+        {
+            text = (char *)object_method(textfield, _sym_getptr);
+            text = strchr(text, ' ');
+            
+            if (text)
+                newObjectText += text;
+        }
+        
+        mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch, "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", newObjectText.c_str()));
         mMutator = (t_object *) object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 0, NULL);
         
         // Free resources we no longer need
@@ -318,27 +325,17 @@ public:
     
     template <class U = FrameLib_MaxClass<T, argsSetAllInputs> > static void makeClass(t_symbol *nameSpace, const char *className)
     {
-        // Safety
-        
-        if (strlen(className) > 240)
-        {
-            error("object name is too long! : %s", className);
-            return;
-        }
-        
         // If handles audio/scheduler then make wrapper class and name the inner object differently..
         
-        char internalClassName[256];
+        std::string internalClassName = className;
         
         if (T::handlesAudio())
         {
             Wrapper<U>:: template makeClass<Wrapper<U> >(CLASS_BOX, className);
-            sprintf(internalClassName, "unsynced.%s", className);
+            internalClassName.insert(0, "unsynced.");
         }
-        else
-            strcpy(internalClassName, className);
         
-        MaxClass_Base::makeClass<U>(nameSpace, internalClassName);
+        MaxClass_Base::makeClass<U>(nameSpace, internalClassName.c_str());
     }
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
