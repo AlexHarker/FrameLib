@@ -776,7 +776,7 @@ private:
     
     t_object *mTopLevelPatch;
     
-     SyncCheck mSyncChecker;
+    SyncCheck mSyncChecker;
     
 public:
     
