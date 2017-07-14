@@ -17,36 +17,71 @@
 
 class SyncCheck
 {
+    enum TraversalMode {kDownOnly, kDown, kAcross};
     
 public:
     
-    SyncCheck() : mTime(-1), mObject(NULL) {}
+    SyncCheck() : mObject(NULL), mTime(-1), mMode(kDownOnly), mAttached(false) {}
     
     bool operator()()
     {
         SyncCheck *info = *syncInfo();
         
-        if (!info || (info->mTime == mTime && info->mObject == mObject))
-            return false;
-        
-        *this = *info;
-        
-        return true;
+        if (info && (info->mTime != mTime || info->mObject != mObject))
+        {
+            *this = SyncCheck(info->mObject, info->mTime, info->mMode);
+            return true;
+        }
+        else if (info && mMode == kAcross && info->mMode == kDown)
+        {
+            mMode = kDown;
+            return true;
+        }
+
+        return false;
     }
     
     void syncSet(void *object = NULL, long time = -1)
     {
-        mObject = object;
-        mTime = time;
+        *this = SyncCheck(object, time, object && objectIsOutput(object) ? kDownOnly : kDown);
         *syncInfo() = (object ? this : NULL);
     }
+
+    bool attachSignal(void *object)
+    {
+        SyncCheck *info = *syncInfo();
+        
+        if (!mAttached && info && (info->mMode != kAcross || (info->mMode != kDownOnly && objectIsOutput(object))))
+            return (mAttached = true);
+        
+        return false;
+    }
+    
+    bool startAcross()    { return setMode(kAcross); }
+    void restoreMode()    { setMode(mMode); }
     
 private:
     
-    SyncCheck **syncInfo() { return (SyncCheck **) &gensym("__FrameLib__SYNC__")->s_thing; }
+    SyncCheck(void *object, long time, TraversalMode mode) : mObject(object), mTime(time), mMode(mode), mAttached(false) {}
+
+    SyncCheck **syncInfo()              { return (SyncCheck **) &gensym("__FrameLib__SYNC__")->s_thing; }
+    bool objectIsOutput(void *object)   { return object_method(object, gensym("is_output")); }
     
-    long mTime;
+    bool setMode(TraversalMode mode)
+    {
+        SyncCheck *info = *syncInfo();
+        
+        if (mMode == kDownOnly || !info)
+            return false;
+            
+        info->mMode = mode;
+        return true;
+    }
+    
     void *mObject;
+    long mTime;
+    TraversalMode mMode;
+    bool mAttached;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -58,7 +93,7 @@ class Mutator : public MaxClass_Base
     
 public:
     
-    Mutator(t_symbol *sym, long ac, t_atom *av) : mObject(ac ? (t_object *) atom_getobj(av) : NULL) {}
+    Mutator(t_symbol *sym, long ac, t_atom *av) : mObject(ac ? atom_getobj(av) : NULL) {}
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
@@ -75,7 +110,7 @@ public:
 private:
     
     SyncCheck mSyncChecker;    
-    t_object *mObject;
+    void *mObject;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -222,7 +257,11 @@ public:
     void sync(t_symbol *sym, long ac, t_atom *av)
     {
         if (mSyncChecker())
-            outlet_anything(mSyncIn, gensym("signal"), ac, av);
+        {
+            if (mSyncChecker.attachSignal(mObject))
+                outlet_anything(mSyncIn, gensym("signal"), ac, av);
+            object_method(mObject, gensym("sync"));
+        }
     }
     
     void anything(t_symbol *sym, long ac, t_atom *av)
@@ -341,6 +380,7 @@ public:
     {
         addMethod(c, (method) &externalConnectionCheck, "connection_check");
         addMethod(c, (method) &externalGetObject, "get_internal_object");
+        addMethod(c, (method) &externalIsOutput, "is_output");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::assist>(c, "assist");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
@@ -457,10 +497,25 @@ public:
     {
         return x->mObject;
     }
-
-    void checkConnection(t_object *x, unsigned long index, ConnectMode mode)
+    
+    static bool externalIsOutput(FrameLib_MaxClass *x)
     {
-        object_method(x, gensym("connection_check"), index, mode);
+        return T::handlesAudio() && (x->getNumAudioOuts() > 1);
+    }
+
+    bool checkConnection(unsigned long inputIndex, ConnectMode mode)
+    {
+        mConfirm = false;
+        mConfirmIndex = inputIndex;
+        
+        object_method(mInputs[inputIndex].mObject, gensym("connection_check"), mInputs[inputIndex].mIndex, mode);
+        
+        bool result = mConfirm;
+        
+        mConfirm = false;
+        mConfirmIndex = -1;
+        
+        return result;
     }
     
     FrameLib_MultiChannel *getInternalObject(t_object *x)
@@ -490,25 +545,15 @@ public:
             
             if (mInputs[i].mObject)
             {
-                mConfirm = false;
-                mConfirmIndex = i;
-                
-                if (mObject->isConnected(i))
-                    checkConnection(mInputs[i].mObject, mInputs[i].mIndex, kConfirm);
-                
-                if (!mConfirm)
+                if (mObject->isConnected(i) && !checkConnection(i, kConfirm))
                 {
                     // Object is no longer connected as before
                     
                     mInputs[i].mObject = NULL;
                     mInputs[i].mIndex = 0;
                     
-                    if (mObject->isConnected(i))
-                        mObject->deleteConnection(i);
+                    mObject->deleteConnection(i);
                 }
-                
-                mConfirm = false;
-                mConfirmIndex = -1;
             }
         }
         
@@ -534,7 +579,7 @@ public:
         {
             case kConnect:
             {
-                bool connectionChange = (mInputs[index].mObject != info->mObject || mInputs[index].mIndex != info->mIndex);
+                bool connectionChange = (mInputs[index].mObject != info->mObject || mInputs[index].mIndex != info->mIndex) && mInputs[index].mReportError;
                 bool valid = (info->mTopLevelPatch == mTopLevelPatch && info->mObject != *this);
                 
                 // Confirm that the object is valid
@@ -549,12 +594,11 @@ public:
                 
                 // Check for double connection *only* if the internal object is connected (otherwise the previously connected object has been deleted)
                 
-                if (mInputs[index].mObject && mInputs[index].mReportError && connectionChange && mObject->isConnected(index))
+                if (connectionChange && mInputs[index].mObject && mObject->isConnected(index))
                 {
-                    mConfirmIndex = index;
-                    checkConnection(mInputs[index].mObject, mInputs[index].mIndex, kDoubleCheck);
-                    mConfirmIndex = -1;
-                    mInputs[index].mReportError = false;
+                    bool doubleConnection = checkConnection(index, kDoubleCheck);
+                    connectionChange = doubleConnection ? false : connectionChange;
+                    mInputs[index].mReportError = doubleConnection ? false : true;
                 }
                 
                 // Always change the connection if the new object is valid (only way to ensure new connections work)
@@ -563,6 +607,10 @@ public:
                                                                    
                 if (connectionChange && valid && internalObject)
                 {
+                    // FIX - hack for double compile
+                    
+                    dspchain_setbroken(dspchain_fromobject(*this));
+
                     mInputs[index].mObject = info->mObject;
                     mInputs[index].mIndex = info->mIndex;
                     
@@ -578,7 +626,10 @@ public:
                 
             case kDoubleCheck:
                 if (index == mConfirmIndex && mInputs[index].mObject == info->mObject && mInputs[index].mIndex == info->mIndex)
-                    object_error(mUserObject, "extra connection to input %ld", index + 1);
+                {
+                    object_error(mUserObject, "extra connection(s) to input %ld", index + 1);
+                    mConfirm = true;
+                }
                 break;
         }
     }
@@ -586,8 +637,18 @@ public:
     void sync()
     {
         if (mSyncChecker())
+        {
             for (unsigned long i = getNumOuts(); i > 0; i--)
                 outlet_anything(mOutputs[i - 1], gensym("sync"), 0, NULL);
+            
+            if (mSyncChecker.startAcross())
+            {
+                for (unsigned long i = 0; i < getNumIns(); i++)
+                    if (mInputs[i].mObject)
+                        object_method(mInputs[i].mObject, gensym("sync"));
+                mSyncChecker.restoreMode();
+            }
+        }
     }
     
 private:
