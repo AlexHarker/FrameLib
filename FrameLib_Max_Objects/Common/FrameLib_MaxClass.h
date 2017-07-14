@@ -34,7 +34,7 @@ public:
         return true;
     }
     
-    void syncSet(void *object, long time)
+    void syncSet(void *object = NULL, long time = -1)
     {
         mObject = object;
         mTime = time;
@@ -58,10 +58,7 @@ class Mutator : public MaxClass_Base
     
 public:
     
-    Mutator(t_symbol *sym, long ac, t_atom *av)
-    {
-        mOutlet = outlet_new(this, "sync");
-    }
+    Mutator(t_symbol *sym, long ac, t_atom *av) : mObject(ac ? (t_object *) atom_getobj(av) : NULL) {}
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
@@ -70,16 +67,15 @@ public:
     
     void mutate(t_symbol *sym, long ac, t_atom *av)
     {
-        mSyncChecker.syncSet(this, gettime());
-        outlet_anything(mOutlet, gensym("sync"), 0, 0);
-        mSyncChecker.syncSet(NULL, gettime());
+        mSyncChecker.syncSet(mObject, gettime());
+        object_method(mObject, gensym("sync"));
+        mSyncChecker.syncSet();
     }
     
 private:
     
-    SyncCheck mSyncChecker;
-    
-    void *mOutlet;
+    SyncCheck mSyncChecker;    
+    t_object *mObject;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -126,8 +122,14 @@ public:
                 newObjectText += text;
         }
         
+        // Make Internal Object
+
         mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch, "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", newObjectText.c_str()));
-        mMutator = (t_object *) object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 0, NULL);
+        
+        // Make Mutator (with argument referencing the internal object)
+        
+        atom_setobj(&a, mObject);
+        mMutator = (t_object *) object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 1, &a);
         
         // Free resources we no longer need
     
@@ -184,10 +186,7 @@ public:
             outlet_add(outlet_nth(mObject, i + 1), mAudioOuts[i]);
         
         for (long i = 0; i < numOuts; i++)
-        {
             outlet_add(outlet_nth(mObject, i + numAudioOuts), mOuts[i]);
-            outlet_add(outlet_nth(mMutator, 0), mOuts[i]);
-        }
     }
     
     ~Wrapper()
