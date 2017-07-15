@@ -49,16 +49,14 @@ public:
 
     bool attachSignal(void *object)
     {
-        SyncCheck *info = *syncInfo();
-        
-        if (!mAttached && info && (info->mMode != kAcross || (info->mMode != kDownOnly && objectIsOutput(object))))
+        if (!mAttached && (mMode != kAcross || (mMode != kDownOnly && objectIsOutput(object))))
             return (mAttached = true);
         
         return false;
     }
     
-    bool startAcross()    { return setMode(kAcross); }
-    void restoreMode()    { setMode(mMode); }
+    bool startAcross()    { return setMode(*syncInfo(), kAcross); }
+    void restoreMode()    { setMode(*syncInfo(), mMode); }
     
 private:
     
@@ -67,15 +65,9 @@ private:
     SyncCheck **syncInfo()              { return (SyncCheck **) &gensym("__FrameLib__SYNC__")->s_thing; }
     bool objectIsOutput(void *object)   { return object_method(object, gensym("is_output")); }
     
-    bool setMode(TraversalMode mode)
+    bool setMode(SyncCheck *info, TraversalMode mode)
     {
-        SyncCheck *info = *syncInfo();
-        
-        if (mMode == kDownOnly || !info)
-            return false;
-            
-        info->mMode = mode;
-        return true;
+        return info && info->mMode != kDownOnly && ((info->mMode = mode) == mode);
     }
     
     void *mObject;
@@ -275,6 +267,8 @@ public:
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
+        addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
+        addMethod(c, (method) &externalWrapperInternalObject, "wrapper_internal_object");
         addMethod<Wrapper<T>, &Wrapper<T>::sync>(c, "sync");
         addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "anything");
         addMethod<Wrapper<T>, &Wrapper<T>::subpatcher>(c, "subpatcher");
@@ -291,6 +285,21 @@ public:
                 
         if (!class_findbyname(CLASS_NOBOX, gensym(mutatorClassName)))
             Mutator::makeClass<Mutator>(CLASS_NOBOX, mutatorClassName);
+    }
+    
+    static t_max_err externalPatchLineUpdate(Wrapper *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
+    {
+        // Only handle destinations and account for internal sync connections
+        
+        if ((t_object *) x == dst)
+            return (t_max_err) object_method(x->mObject, gensym("patchlineupdate"), patchline, updatetype, src, srcout, x->mObject, dstin + 1);
+        
+        return MAX_ERR_NONE;
+    }
+    
+    static void *externalWrapperInternalObject(Wrapper *x)
+    {
+        return x->mObject;
     }
     
 private:
@@ -345,16 +354,12 @@ template <class T, bool argsSetAllInputs = false> class FrameLib_MaxClass : publ
 
     struct Input
     {
-        Input() :
-        mProxy(NULL), mObject(NULL), mIndex(0), mReportError(false) {}
-        
-        Input(t_object *proxy, t_object *object, unsigned long index, bool reportError) :
-        mProxy(proxy), mObject(object), mIndex(index), mReportError(reportError) {}
+        Input() : mProxy(NULL), mObject(NULL), mIndex(0) {}
+        Input(t_object *proxy, t_object *object, unsigned long index) : mProxy(proxy), mObject(object), mIndex(index) {}
         
         t_object *mProxy;
         t_object *mObject;
         unsigned long mIndex;
-        bool mReportError;
     };
     
 public:
@@ -378,6 +383,8 @@ public:
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
+        addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
+        addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
         addMethod(c, (method) &externalConnectionCheck, "connection_check");
         addMethod(c, (method) &externalGetObject, "get_internal_object");
         addMethod(c, (method) &externalIsOutput, "is_output");
@@ -416,7 +423,7 @@ public:
             
             t_object *proxy = (t_object *) ((i || T::handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : NULL);
             
-            mInputs[i] = Input(proxy, NULL, 0, true);
+            mInputs[i] = Input(proxy, NULL, 0);
         }
         
         for (unsigned long i = getNumOuts(); i > 0; i--)
@@ -490,7 +497,7 @@ public:
     
     static void externalConnectionCheck(FrameLib_MaxClass *x, unsigned long index, ConnectMode mode)
     {
-        x->connect(index, mode);
+        x->makeConnection(index, mode);
     }
     
     static FrameLib_MultiChannel *externalGetObject(FrameLib_MaxClass *x)
@@ -505,12 +512,19 @@ public:
 
     bool checkConnection(unsigned long inputIndex, ConnectMode mode)
     {
+        bool result = false;
         mConfirm = false;
         mConfirmIndex = inputIndex;
         
-        object_method(mInputs[inputIndex].mObject, gensym("connection_check"), mInputs[inputIndex].mIndex, mode);
-        
-        bool result = mConfirm;
+        // Check for connection *only* if the internal object is connected (otherwise assume the previously connected object has been deleted)
+
+        if (mInputs[inputIndex].mObject && mObject->isConnected(inputIndex))
+        {
+            object_method(mInputs[inputIndex].mObject, gensym("connection_check"), mInputs[inputIndex].mIndex, mode);
+            
+            if (!(result = mConfirm))
+                disconnect(mInputs[inputIndex].mObject, mInputs[inputIndex].mIndex, inputIndex);
+        }
         
         mConfirm = false;
         mConfirmIndex = -1;
@@ -526,7 +540,7 @@ public:
     ConnectionInfo* getConnectionInfo()                     { return *frameConnectionInfo(); }
     void setConnectionInfo(ConnectionInfo *info = NULL)     { *frameConnectionInfo() = info; }
     
-    void connect(unsigned long index, ConnectMode mode)
+    void makeConnection(unsigned long index, ConnectMode mode)
     {
         ConnectionInfo info(*this, index, mTopLevelPatch, mode);
         
@@ -540,27 +554,12 @@ public:
         // Check input connections
         
         for (unsigned long i = 0; i < getNumIns(); i++)
-        {
-            mInputs[i].mReportError = true;
-            
-            if (mInputs[i].mObject)
-            {
-                if (mObject->isConnected(i) && !checkConnection(i, kConfirm))
-                {
-                    // Object is no longer connected as before
-                    
-                    mInputs[i].mObject = NULL;
-                    mInputs[i].mIndex = 0;
-                    
-                    mObject->deleteConnection(i);
-                }
-            }
-        }
+            checkConnection(i, kConfirm);
         
         // Make output connections
         
         for (unsigned long i = getNumOuts(); i > 0; i--)
-            connect(i - 1, kConnect);
+            makeConnection(i - 1, kConnect);
         
         // Reset DSP
         
@@ -577,46 +576,23 @@ public:
         
         switch (info->mMode)
         {
+            // FIX - need better confirmation here that things are working correctly...
+                
             case kConnect:
-            {
-                bool connectionChange = (mInputs[index].mObject != info->mObject || mInputs[index].mIndex != info->mIndex) && mInputs[index].mReportError;
-                bool valid = (info->mTopLevelPatch == mTopLevelPatch && info->mObject != *this);
-                
-                // Confirm that the object is valid
-                
-                if (!valid)
-                {
-                    if (info->mObject == *this)
-                        object_error(mUserObject, "direct feedback loop detected");
-                    else
-                        object_error(mUserObject, "cannot connect objects from different top level patchers");
-                }
-                
-                // Check for double connection *only* if the internal object is connected (otherwise the previously connected object has been deleted)
-                
-                if (connectionChange && mInputs[index].mObject && mObject->isConnected(index))
-                {
-                    bool doubleConnection = checkConnection(index, kDoubleCheck);
-                    connectionChange = doubleConnection ? false : connectionChange;
-                    mInputs[index].mReportError = doubleConnection ? false : true;
-                }
-                
-                // Always change the connection if the new object is valid (only way to ensure new connections work)
-                
-                FrameLib_MultiChannel *internalObject = getInternalObject(info->mObject);
-                                                                   
-                if (connectionChange && valid && internalObject)
-                {
-                    // FIX - hack for double compile
-                    
-                    dspchain_setbroken(dspchain_fromobject(*this));
 
-                    mInputs[index].mObject = info->mObject;
-                    mInputs[index].mIndex = info->mIndex;
-                    
-                    mObject->addConnection(internalObject, info->mIndex, index);
+                if (info->mObject == *this)
+                {
+                    object_error(mUserObject, "direct feedback loop detected");
+                    return;
                 }
-            }
+                
+                if (info->mTopLevelPatch != mTopLevelPatch)
+                {
+                    object_error(mUserObject, "cannot connect objects from different top level patchers");
+                    return;
+                }
+                
+                connect(info->mObject, info->mIndex, index);
                 break;
                 
             case kConfirm:
@@ -627,7 +603,7 @@ public:
             case kDoubleCheck:
                 if (index == mConfirmIndex && mInputs[index].mObject == info->mObject && mInputs[index].mIndex == info->mIndex)
                 {
-                    object_error(mUserObject, "extra connection(s) to input %ld", index + 1);
+                    object_error(mUserObject, "extra connection to input %ld", index + 1);
                     mConfirm = true;
                 }
                 break;
@@ -649,6 +625,96 @@ public:
                 mSyncChecker.restoreMode();
             }
         }
+    }
+    
+    static t_max_err externalConnectionAccept(FrameLib_MaxClass *x, t_object *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
+    {
+        return x->connectionAccept(src, dst, srcout, dstin, outlet, inlet);
+    }
+    
+    long connectionAccept(t_object *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
+    {
+        return 1;
+    }
+    
+    static t_max_err externalPatchLineUpdate(FrameLib_MaxClass *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
+    {
+        return x->patchLineUpdate(patchline, updatetype, src, srcout, dst, dstin);
+    }
+
+    bool disconnect(t_object *src, long outIdx, long inIdx)
+    {
+        if (inIdx < 0 || inIdx >= getNumIns() || !mInputs[inIdx].mObject || mInputs[inIdx].mObject != src || mInputs[inIdx].mIndex != outIdx)
+            return false;
+        
+        dspchain_setbroken(dspchain_fromobject(*this));
+            
+        mInputs[inIdx].mObject = NULL;
+        mInputs[inIdx].mIndex = 0;
+        
+        if (mObject->isConnected(inIdx))
+            mObject->deleteConnection(inIdx);
+        
+        return true;
+    }
+
+    
+    bool connect(t_object *src, long outIdx, long inIdx)
+    {
+        FrameLib_MultiChannel *internalObject = getInternalObject(src);
+        bool connectionChange = (mInputs[inIdx].mObject != src || mInputs[inIdx].mIndex != outIdx);
+        
+        if (inIdx < 0 || inIdx >= getNumIns() || !internalObject || outIdx < 0 || outIdx >= internalObject->getNumOuts() || (connectionChange && checkConnection(inIdx, kDoubleCheck)))
+            return false;
+        
+        // Change the connection if needed
+    
+        if (connectionChange)
+        {
+            dspchain_setbroken(dspchain_fromobject(*this));
+            
+            mInputs[inIdx].mObject = src;
+            mInputs[inIdx].mIndex = outIdx;
+        
+            mObject->addConnection(internalObject, outIdx, inIdx);
+        }
+        
+        return true;
+    }
+
+    t_max_err patchLineUpdate(t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
+    {
+        if (*this == dst)
+        {
+            // FIX - need wrappers as src to work correctly here!
+
+            t_object *wrapperSrc = (t_object*) object_method(src, gensym("wrapper_internal_object"));
+            
+            if (wrapperSrc)
+                src = wrapperSrc;
+            
+            FrameLib_MultiChannel *internalObject = getInternalObject(src);
+            
+            if (internalObject)
+            {
+                srcout -= internalObject->getNumAudioOuts();
+                dstin -= getNumAudioIns();
+            
+                switch (updatetype)
+                {
+                    case JPATCHLINE_CONNECT:
+                        connect(src, srcout, dstin);
+                        break;
+                    case JPATCHLINE_DISCONNECT:
+                        disconnect(src, srcout, dstin);
+                        break;
+                    case JPATCHLINE_ORDER:
+                        break;
+                }
+            }
+        }
+        
+        return MAX_ERR_NONE;
     }
     
 private:
