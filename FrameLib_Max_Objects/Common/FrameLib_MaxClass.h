@@ -698,12 +698,12 @@ private:
         
         // Change the connection if needed
         
-        dspchain_setbroken(dspchain_fromobject(*this));
-        
         mInputs[inIdx].mObject = src;
         mInputs[inIdx].mIndex = outIdx;
         
         mObject->addConnection(internalObject, outIdx, inIdx);
+
+        dspchain_setbroken(dspchain_fromobject(*this));
     }
     
     void disconnect(t_object *src, long outIdx, long inIdx)
@@ -711,13 +711,13 @@ private:
         if (!inRange(inIdx, getNumIns()) || !mInputs[inIdx].mObject || mInputs[inIdx].mObject != src || mInputs[inIdx].mIndex != outIdx)
             return;
         
-        dspchain_setbroken(dspchain_fromobject(*this));
-        
         mInputs[inIdx].mObject = NULL;
         mInputs[inIdx].mIndex = 0;
         
         if (mObject->isConnected(inIdx))
             mObject->deleteConnection(inIdx);
+        
+        dspchain_setbroken(dspchain_fromobject(*this));
     }
 
     // Patchline connections
