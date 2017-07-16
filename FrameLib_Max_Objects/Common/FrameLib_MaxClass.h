@@ -670,7 +670,6 @@ private:
     
     bool confirmConnection(unsigned long inputIndex, ConnectMode mode)
     {
-        bool result = false;
         mConfirm = false;
         mConfirmIndex = inputIndex;
         
@@ -680,14 +679,11 @@ private:
         {
             object_method(mInputs[inputIndex].mObject, gensym("connection_confirm"), mInputs[inputIndex].mIndex, mode);
             
-            if (!(result = mConfirm))
+            if (!mConfirm)
                 disconnect(mInputs[inputIndex].mObject, mInputs[inputIndex].mIndex, inputIndex);
         }
         
-        mConfirm = false;
-        mConfirmIndex = -1;
-        
-        return result;
+        return mConfirm;
     }
     
     bool inRange(long index, long numFrameConnectors) { return index >= 0 && index < numFrameConnectors; }
