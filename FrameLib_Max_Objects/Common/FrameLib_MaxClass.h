@@ -278,7 +278,7 @@ public:
         // Only handle destinations and account for internal sync connections
         
         if ((t_object *) x == dst)
-            return x->internalObject()->patchLineUpdate(patchline, updatetype, src, srcout, x->mObject, dstin + 1);
+            return T::externalPatchLineUpdate(x->internalObject(), patchline, updatetype, src, srcout, x->mObject, dstin + 1);
         
         return MAX_ERR_NONE;
     }
@@ -287,7 +287,7 @@ public:
     {
         // Only handle sources and account for internal sync connections
 
-        return src->internalObject()->connectionAccept(dst, srcout + 1, dstin, outlet, inlet);
+        return T::externalConnectionAccept(src->internalObject(), dst, srcout + 1, dstin, outlet, inlet);
     }
     
     static void *externalWrapperInternalObject(Wrapper *x)
