@@ -375,6 +375,7 @@ public:
     {
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
+        addMethod(c, (method) &externalIsConnected, "is_connected");
         addMethod(c, (method) &externalConnectionConfirm, "connection_confirm");
         addMethod(c, (method) &externalGetInternalObject, "get_internal_object");
         addMethod(c, (method) &externalIsOutput, "is_output");
@@ -579,6 +580,11 @@ public:
 
     // External methods (A_CANT)
     
+    static bool externalIsConnected(FrameLib_MaxClass *x, unsigned long index)
+    {
+        return x->confirmConnection(index, kConfirm);
+    }
+    
     static void externalConnectionConfirm(FrameLib_MaxClass *x, unsigned long index, ConnectMode mode)
     {
         x->makeConnection(index, mode);
@@ -756,6 +762,9 @@ private:
         if (!internal || !inRange(dstin - (long) object_method(dst, gensym("get_num_audio_ins")), internal->getNumIns()))
             return 0;
         
+        if (object_method(dst, gensym("is_connected"), dstin))
+            return 0;
+            
         // FIX - make wrapper work, and also make inlets/outlets work...
         
         return 1;
