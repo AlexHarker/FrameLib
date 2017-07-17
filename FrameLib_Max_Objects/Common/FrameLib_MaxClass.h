@@ -692,14 +692,17 @@ private:
         return mConfirm;
     }
     
-    bool inRange(long index, long numFrameConnectors) { return index >= 0 && index < numFrameConnectors; }
+    bool validInput(long index, FrameLib_MultiChannel *object)      { return object && index >= 0 && index < object->getNumIns(); }
+    bool validOutput(long index, FrameLib_MultiChannel *object)     { return object && index >= 0 && index < object->getNumOuts(); }
+    bool validInput(long index)                                     { return validInput(index, mObject); }
+    bool validOutput(long index)                                    { return validOutput(index, mObject); }
     
     void connect(t_object *src, long outIdx, long inIdx)
     {
-        FrameLib_MultiChannel *internalObject = getInternalObject(src);
+        FrameLib_MultiChannel *object = getInternalObject(src);
         bool connectionChange = (mInputs[inIdx].mObject != src || mInputs[inIdx].mIndex != outIdx);
         
-        if (!inRange(inIdx, getNumIns()) || !internalObject || !inRange(outIdx, internalObject->getNumOuts()) || !connectionChange || (connectionChange && confirmConnection(inIdx, kDoubleCheck)))
+        if (!validInput(inIdx) || !validOutput(outIdx, object) || !connectionChange || confirmConnection(inIdx, kDoubleCheck))
             return;
         
         // Change the connection if needed
@@ -707,14 +710,14 @@ private:
         mInputs[inIdx].mObject = src;
         mInputs[inIdx].mIndex = outIdx;
         
-        mObject->addConnection(internalObject, outIdx, inIdx);
+        mObject->addConnection(object, outIdx, inIdx);
 
         dspchain_setbroken(dspchain_fromobject(*this));
     }
     
     void disconnect(t_object *src, long outIdx, long inIdx)
     {
-        if (!inRange(inIdx, getNumIns()) || !mInputs[inIdx].mObject || mInputs[inIdx].mObject != src || mInputs[inIdx].mIndex != outIdx)
+        if (!validInput(inIdx) || !mInputs[inIdx].mObject || mInputs[inIdx].mObject != src || mInputs[inIdx].mIndex != outIdx)
             return;
         
         mInputs[inIdx].mObject = NULL;
@@ -753,21 +756,18 @@ private:
     
     long connectionAccept(t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
     {
-        if (!inRange(srcout - getNumAudioOuts(), getNumOuts()))
+        if (!validOutput(srcout - getNumAudioOuts()) || object_classname_compare(dst, gensym("outlet")))
+            return 1;
+
+        unwrapConnection(dst, dstin);
+        FrameLib_MultiChannel *object = getInternalObject(dst);
+        
+        if (validInput(dstin - (long) object_method(dst, gensym("get_num_audio_ins")), object) && !object_method(dst, gensym("is_connected"), dstin))
             return 1;
         
-        unwrapConnection(dst, dstin);
-        FrameLib_MultiChannel *internal = getInternalObject(dst);
-        
-        if (!internal || !inRange(dstin - (long) object_method(dst, gensym("get_num_audio_ins")), internal->getNumIns()))
-            return 0;
-        
-        if (object_method(dst, gensym("is_connected"), dstin))
-            return 0;
+        return 0;
             
-        // FIX - make wrapper work, and also make inlets/outlets work...
-        
-        return 1;
+        // FIX - make inlets/outlets work...
     }
 
     // Parameter Parsing
