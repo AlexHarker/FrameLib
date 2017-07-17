@@ -17,24 +17,25 @@
 
 class SyncCheck
 {
-    enum TraversalMode {kDownOnly, kDown, kAcross};
     
 public:
-    
-    enum SyncMode { kSyncComplete, kSync, kAttachAndSync };
+
+    enum Mode { kDownOnly, kDown, kAcross };
+    enum Action { kSyncComplete, kSync, kAttachAndSync };
 
     SyncCheck() : mObject(NULL), mTime(-1), mMode(kDownOnly) {}
     
-    SyncMode operator()(void *object, bool handlesAudio, bool isOutput)
+    Action operator()(void *object, bool handlesAudio, bool isOutput)
     {
         SyncCheck *info = *syncInfo();
         
         if (info && (info->mTime != mTime || info->mObject != mObject))
         {
             *this = SyncCheck(info->mObject, info->mTime, info->mMode);
-            return handlesAudio && object != mObject && (mMode != kAcross ||isOutput) ? kAttachAndSync : kSync;
+            return handlesAudio && object != mObject && (mMode != kAcross || isOutput) ? kAttachAndSync : kSync;
         }
-        else if (info && mMode == kAcross && info->mMode == kDown)
+        
+        if (info && mMode == kAcross && info->mMode == kDown)
         {
             mMode = kDown;
             return handlesAudio && object != mObject && !isOutput ? kAttachAndSync : kSync;
@@ -43,25 +44,25 @@ public:
         return kSyncComplete;
     }
     
-    void syncSet(void *object = NULL, long time = -1)
+    void sync(void *object = NULL, long time = -1)
     {
         *this = SyncCheck(object, time, object && object_method(object, gensym("is_output")) ? kDownOnly : kDown);
         *syncInfo() = (object ? this : NULL);
     }
 
-    bool startAcross()    { return setMode(*syncInfo(), kAcross); }
-    void restoreMode()    { setMode(*syncInfo(), mMode); }
+    bool upwardsMode()  { return setMode(*syncInfo(), kAcross); }
+    void restoreMode()  { setMode(*syncInfo(), mMode); }
     
 private:
     
-    SyncCheck(void *object, long time, TraversalMode mode) : mObject(object), mTime(time), mMode(mode) {}
+    SyncCheck(void *object, long time, Mode mode) : mObject(object), mTime(time), mMode(mode) {}
 
-    SyncCheck **syncInfo()              { return (SyncCheck **) &gensym("__FrameLib__SYNC__")->s_thing; }
-    bool setMode(SyncCheck *info, TraversalMode mode) { return info && info->mMode != kDownOnly && ((info->mMode = mode) == mode); }
+    SyncCheck **syncInfo()                      { return (SyncCheck **) &gensym("__FrameLib__SYNC__")->s_thing; }
+    bool setMode(SyncCheck *info, Mode mode)    { return info && info->mMode != kDownOnly && ((info->mMode = mode) == mode); }
     
     void *mObject;
     long mTime;
-    TraversalMode mMode;
+    Mode mMode;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -82,9 +83,9 @@ public:
     
     void mutate(t_symbol *sym, long ac, t_atom *av)
     {
-        mSyncChecker.syncSet(mObject, gettime());
+        mSyncChecker.sync(mObject, gettime());
         object_method(mObject, gensym("sync"));
-        mSyncChecker.syncSet();
+        mSyncChecker.sync();
     }
     
 private:
@@ -511,17 +512,17 @@ public:
     
     void sync()
     {
-        SyncCheck::SyncMode mode = mSyncChecker(this, T::handlesAudio(), externalIsOutput(this));
+        SyncCheck::Action action = mSyncChecker(this, T::handlesAudio(), externalIsOutput(this));
         
-        if (mode == SyncCheck::kAttachAndSync)
+        if (action == SyncCheck::kAttachAndSync)
             outlet_anything(mSyncIn, gensym("signal"), 0, NULL);
         
-        if (mode != SyncCheck::kSyncComplete)
+        if (action != SyncCheck::kSyncComplete)
         {
             for (unsigned long i = getNumOuts(); i > 0; i--)
                 outlet_anything(mOutputs[i - 1], gensym("sync"), 0, NULL);
             
-            if (mSyncChecker.startAcross())
+            if (mSyncChecker.upwardsMode())
             {
                 for (unsigned long i = 0; i < getNumIns(); i++)
                     if (mInputs[i].mObject)
