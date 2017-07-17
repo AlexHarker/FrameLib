@@ -643,7 +643,7 @@ private:
     
     void releaseGlobal()                    { FrameLib_Global::release(globalHandle()); }
     
-    // Unwrapping Connections
+    // Unwrapping connections
     
     void unwrapConnection(t_object *& object, long& connection)
     {
@@ -717,7 +717,7 @@ private:
     
     void disconnect(t_object *src, long outIdx, long inIdx)
     {
-        if (!validInput(inIdx) || !mInputs[inIdx].mObject || mInputs[inIdx].mObject != src || mInputs[inIdx].mIndex != outIdx)
+        if (!validInput(inIdx) || mInputs[inIdx].mObject != src || mInputs[inIdx].mIndex != outIdx)
             return;
         
         mInputs[inIdx].mObject = NULL;
@@ -737,17 +737,14 @@ private:
         {
             unwrapConnection(src, srcout);
             
-            if (getInternalObject(src))
-            {
-                srcout -= (long) object_method(src, gensym("get_num_audio_outs"));
-                dstin -= getNumAudioIns();
+            srcout -= (long) object_method(src, gensym("get_num_audio_outs"));
+            dstin -= getNumAudioIns();
                 
-                switch (updatetype)
-                {
-                    case JPATCHLINE_CONNECT:        connect(src, srcout, dstin);        break;
-                    case JPATCHLINE_DISCONNECT:     disconnect(src, srcout, dstin);     break;
-                    case JPATCHLINE_ORDER:                                              break;
-                }
+            switch (updatetype)
+            {
+                case JPATCHLINE_CONNECT:        connect(src, srcout, dstin);        break;
+                case JPATCHLINE_DISCONNECT:     disconnect(src, srcout, dstin);     break;
+                case JPATCHLINE_ORDER:                                              break;
             }
         }
         
@@ -760,14 +757,11 @@ private:
             return 1;
 
         unwrapConnection(dst, dstin);
-        FrameLib_MultiChannel *object = getInternalObject(dst);
         
-        if (validInput(dstin - (long) object_method(dst, gensym("get_num_audio_ins")), object) && !object_method(dst, gensym("is_connected"), dstin))
+        if (validInput(dstin - (long) object_method(dst, gensym("get_num_audio_ins")), getInternalObject(dst)) && !object_method(dst, gensym("is_connected"), dstin))
             return 1;
         
         return 0;
-            
-        // FIX - make inlets/outlets work...
     }
 
     // Parameter Parsing
