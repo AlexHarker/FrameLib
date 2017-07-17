@@ -24,7 +24,8 @@ public:
     enum Action { kSyncComplete, kSync, kAttachAndSync };
 
     SyncCheck() : mObject(NULL), mTime(-1), mMode(kDownOnly) {}
-    
+    SyncCheck(void *object, long time, Mode mode) : mObject(object), mTime(time), mMode(mode) {}
+
     Action operator()(void *object, bool handlesAudio, bool isOutput)
     {
         SyncCheck *info = *syncInfo();
@@ -44,9 +45,9 @@ public:
         return kSyncComplete;
     }
     
-    void sync(void *object = NULL, long time = -1)
+    void sync(void *object = NULL, long time = -1, Mode mode = kDownOnly )
     {
-        *this = SyncCheck(object, time, object && object_method(object, gensym("is_output")) ? kDownOnly : kDown);
+        *this = SyncCheck(object, time, mode);
         *syncInfo() = (object ? this : NULL);
     }
 
@@ -55,8 +56,6 @@ public:
     
 private:
     
-    SyncCheck(void *object, long time, Mode mode) : mObject(object), mTime(time), mMode(mode) {}
-
     SyncCheck **syncInfo()                      { return (SyncCheck **) &gensym("__FrameLib__SYNC__")->s_thing; }
     bool setMode(SyncCheck *info, Mode mode)    { return info && info->mMode != kDownOnly && ((info->mMode = mode) == mode); }
     
@@ -74,7 +73,11 @@ class Mutator : public MaxClass_Base
     
 public:
     
-    Mutator(t_symbol *sym, long ac, t_atom *av) : mObject(ac ? atom_getobj(av) : NULL) {}
+    Mutator(t_symbol *sym, long ac, t_atom *av)
+    {
+        mObject = ac ? atom_getobj(av) : NULL;
+        mMode = object_method(mObject, gensym("is_output")) ? SyncCheck::kDownOnly : SyncCheck::kDown;
+    }
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
@@ -83,14 +86,15 @@ public:
     
     void mutate(t_symbol *sym, long ac, t_atom *av)
     {
-        mSyncChecker.sync(mObject, gettime());
+        mSyncChecker.sync(mObject, gettime(), mMode);
         object_method(mObject, gensym("sync"));
         mSyncChecker.sync();
     }
     
 private:
     
-    SyncCheck mSyncChecker;    
+    SyncCheck mSyncChecker;
+    SyncCheck::Mode mMode;
     void *mObject;
 };
 
