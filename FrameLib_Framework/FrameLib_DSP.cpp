@@ -447,9 +447,7 @@ void FrameLib_DSP::resetDependencyCount()
 inline void FrameLib_DSP::freeOutputMemory()
 {
     if (getNumOuts() && mOutputs[0].mMemory)
-    {
-        // FIX - revise this as there is nothing for the destructor to do (except branch on a call to delete[])
-        
+    {        
         // Call the destructor for any serial outputs
         
         for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
