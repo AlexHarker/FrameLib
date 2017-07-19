@@ -16,7 +16,7 @@ DONE	- Make C++ class extensible
 	- Make safe (avoid direct access of other objects / thread safety / avoid symbol bindings)
 	- Review entry of inputs and parameters
 	- Better connection issue reporting
-	- INVESTIGATE AND SOLVE SIDEWAYS DEPENDENCIES!!!
+DONE	- INVESTIGATE AND SOLVE SIDEWAYS DEPENDENCIES!!!
 
 5 - READ/WRITE Timing ISSUES!!!
 
