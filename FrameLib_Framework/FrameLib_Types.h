@@ -15,9 +15,8 @@
 typedef unsigned char Byte;
 typedef unsigned char *BytePointer;
 
-// Time formats
+// Time format
 
-typedef double FrameLib_TimeFormat;
-//typedef FrameLib_FixedPoint FrameLib_TimeFormat;
+typedef FL_FP FrameLib_TimeFormat;
 
 #endif

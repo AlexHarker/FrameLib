@@ -151,8 +151,8 @@ protected:
     FrameLib_TimeFormat getBlockStartTime() { return mBlockStartTime; }
     FrameLib_TimeFormat getBlockEndTime()   { return mBlockEndTime; }
     
-    FrameLib_TimeFormat getInputFrameTime(unsigned long idx)        { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : 0.0; }
-    FrameLib_TimeFormat getInputValidTillTime(unsigned long idx)    { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : 0.0; }
+    FrameLib_TimeFormat getInputFrameTime(unsigned long idx)        { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : FrameLib_TimeFormat(0); }
+    FrameLib_TimeFormat getInputValidTillTime(unsigned long idx)    { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : FrameLib_TimeFormat(0); }
     
     // Output Allocation
     

@@ -2,7 +2,7 @@
 #ifndef FRAMELIB_FIXEDPOINT_H
 #define FRAMELIB_FIXEDPOINT_H
 
-#include "FrameLib_Types.h"
+#include <stdint.h>
 #include <cmath>
 #include <limits>
 
