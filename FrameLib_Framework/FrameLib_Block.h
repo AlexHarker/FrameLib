@@ -12,6 +12,7 @@
 
 class FrameLib_Block
 {
+    
 public:
  
     // IO Count Structure

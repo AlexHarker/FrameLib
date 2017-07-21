@@ -49,13 +49,13 @@ private:
     {
         Input() : mObject(NULL), mIndex(0), mSize(0), mFixedInput(NULL), mUpdate(false), mTrigger(true), mSwitchable(false) {}
         
-        void SetInput()
+        void setInput()
         {
             mObject = NULL;
             mIndex = 0;
         }
         
-        void SetInput(FrameLib_DSP *object, unsigned long idx)
+        void setInput(FrameLib_DSP *object, unsigned long idx)
         {
             mObject = object;
             mIndex = idx;
