@@ -74,6 +74,8 @@ void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long vecSiz
 
 void FrameLib_DSP::reset()
 {
+    objectReset();
+    
     // Note that the first sample will be at time == 1 so that we can start the frames *before* this with non-negative values
     
     mFrameTime = 0.0;
@@ -149,7 +151,7 @@ void FrameLib_DSP::setIO(unsigned long nIns, unsigned long nOuts, unsigned long 
     
     // Reset for audio
     
-    reset();
+    FrameLib_DSP::reset();
 }
 
 // Call this from your constructor only (unsafe elsewhere)

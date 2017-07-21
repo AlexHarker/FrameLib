@@ -184,6 +184,10 @@ private:
     
     virtual void blockProcess(double **ins, double **outs, unsigned long vecSize) {}
 
+    // Override to get called on audio reset
+    
+    virtual void objectReset() {}
+
     // Override for updates prior to schedule / process (e.g. adjusting triggers)
     
     virtual void update() {}

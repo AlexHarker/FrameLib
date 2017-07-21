@@ -35,7 +35,7 @@ public:
         mBuffer = NULL;
         mFlags = NULL;
         mSize = 0;
-        reset();
+        objectReset();
     }
     
     ~FrameLib_Trace()
@@ -44,10 +44,8 @@ public:
         delete[] mFlags;
     }
     
-    void reset()
+    void objectReset()
     {
-        FrameLib_DSP::reset();
-
         long units = mParameters.getInt(kUnits);
         double size = mParameters.getValue(kLength);
 
