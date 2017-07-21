@@ -18,7 +18,7 @@ DONE	- Make C++ class extensible
 	- Better connection issue reporting
 DONE	- INVESTIGATE AND SOLVE SIDEWAYS DEPENDENCIES!!!
 
-5 - READ/WRITE Timing ISSUES!!!
+5 - READ/WRITE Timing ISSUES!!!	(multi-channel expansion/ease of use/ability to make mistakes/handle multiple ordering dependencies)
 
 6 - Finalise Memory Management
 DONE		- Do variable memory management (underlying engine)
