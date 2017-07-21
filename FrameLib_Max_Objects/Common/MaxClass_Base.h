@@ -16,6 +16,10 @@ class MaxClass_Base
 
 public:
     
+    // Default Constructor
+    
+    MaxClass_Base() {}
+    
     // Template static functions, defintions to forward Max messages to class methods and methods to add Max methods to the class
     
     static void addMethod(t_class *c, method F, const char *name) { class_addmethod(c, F, name, A_CANT, 0); }
@@ -119,6 +123,11 @@ public:
     operator t_object* () { return (t_object *) this; }
     
 private:
+    
+    // Deleted
+    
+    MaxClass_Base(const MaxClass_Base&);
+    MaxClass_Base& operator=(const MaxClass_Base&);
     
     // The object structure
     
