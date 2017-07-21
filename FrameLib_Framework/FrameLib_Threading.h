@@ -144,7 +144,7 @@ private:
 };
 
 
-// A class for holding a lock using RIAA
+// A class for holding a lock using RAII
 
 class FrameLib_SpinLockHold
 {

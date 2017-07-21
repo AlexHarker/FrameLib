@@ -89,7 +89,7 @@ public:
         
     };
 
-    // Convenience Pointer for automatic deletion and RIAA
+    // Convenience Pointer for automatic deletion and RAII
     
     struct ManagedPointer
     {
