@@ -77,15 +77,15 @@ public:
     
     struct ConnectionInfo
     {
-        enum ConnectMode { kConnect, kConfirm, kDoubleCheck };
+        enum Mode { kConnect, kConfirm, kDoubleCheck };
 
-        ConnectionInfo(t_object *object, unsigned long index, t_object *topLevelPatch, ConnectMode mode) :
+        ConnectionInfo(t_object *object, unsigned long index, t_object *topLevelPatch, Mode mode) :
         mObject(object), mIndex(index), mTopLevelPatch(topLevelPatch), mMode(mode) {}
         
         t_object *mObject;
         unsigned long mIndex;
         t_object *mTopLevelPatch;
-        ConnectMode mMode;
+        Mode mMode;
         
     };
 
@@ -252,17 +252,14 @@ public:
         atom_setobj(&a, d);
         mPatch = (t_object *)object_new_typed(CLASS_NOBOX, gensym("jpatcher"),1, &a);
         
-        // Create Objects
+        // Get Box Text (and strip object name from the top - relace with stored name in case the object name is an alias)
         
         t_object *box = NULL;
         const char *text = NULL;
-        
-        object_obex_lookup(this, gensym("#B"), &box);
-        t_object * textfield = jbox_get_textfield(box);
-        
         std::string newObjectText = accessClassName<Wrapper>()->c_str();
-        
-        // Get box text and strip object name from the top (relace with stored name in case the object name is an alias)
+
+        object_obex_lookup(this, gensym("#B"), &box);
+        t_object *textfield = jbox_get_textfield(box);
         
         if (textfield)
         {
@@ -282,11 +279,11 @@ public:
         atom_setobj(&a, mObject);
         mMutator = (t_object *) object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 1, &a);
         
-        // Free resources we no longer need
+        // Free the Dictionary
     
-        freeobject((t_object *)d);
+        object_free(d);
         
-        // Get the object itself (typed)
+        // Get the Object Itself (typed)
         
         T *internal = internalObject();
         
@@ -304,7 +301,7 @@ public:
         mAudioOuts.resize(numAudioOuts - 1);
         mOuts.resize(numOuts);
         
-        // Inlets for messages/signals
+        // Inlets for Messages/Signals
         
         for (long i = numIns + numAudioIns - 2; i >= 0 ; i--)
         {
@@ -312,7 +309,7 @@ public:
             mProxyIns[i] = (t_object *)  (i ? proxy_new(this, i, &mProxyNum) : NULL);
         }
         
-        // Outlets for messages/signals
+        // Outlets for Messages/Signals
         
         for (long i = numOuts - 1; i >= 0 ; i--)
             mOuts[i] = (t_object *) outlet_new(this, NULL);
@@ -673,7 +670,7 @@ public:
         return x->confirmConnection(index, FrameLib_MaxGlobals::ConnectionInfo::kConfirm);
     }
     
-    static void externalConnectionConfirm(FrameLib_MaxClass *x, unsigned long index, FrameLib_MaxGlobals::ConnectionInfo::ConnectMode mode)
+    static void externalConnectionConfirm(FrameLib_MaxClass *x, unsigned long index, FrameLib_MaxGlobals::ConnectionInfo::Mode mode)
     {
         x->makeConnection(index, mode);
     }
@@ -746,16 +743,16 @@ private:
     
     // Private connection methods
     
-    void makeConnection(unsigned long index, FrameLib_MaxGlobals::ConnectionInfo::ConnectMode mode)
+    void makeConnection(unsigned long index, FrameLib_MaxGlobals::ConnectionInfo::Mode mode)
     {
-        FrameLib_MaxGlobals::ConnectionInfo::ConnectionInfo info(*this, index, mTopLevelPatch, mode);
+        FrameLib_MaxGlobals::ConnectionInfo info(*this, index, mTopLevelPatch, mode);
         
         mGlobal->setConnectionInfo(&info);
         outlet_anything(mOutputs[index], gensym("frame"), 0, NULL);
         mGlobal->setConnectionInfo();
     }
     
-    bool confirmConnection(unsigned long inputIndex, FrameLib_MaxGlobals::ConnectionInfo::ConnectMode mode)
+    bool confirmConnection(unsigned long inputIndex, FrameLib_MaxGlobals::ConnectionInfo::Mode mode)
     {
         mConfirm = false;
         mConfirmIndex = inputIndex;
