@@ -39,7 +39,7 @@ public:
             
             if (info && (info->mTime != mTime || info->mObject != mObject))
             {
-                *this = SyncCheck(mGlobal, info->mObject, info->mTime, info->mMode);
+                set(info->mObject, info->mTime, info->mMode);
                 return handlesAudio && object != mObject && (mMode != kAcross || isOutput) ? kAttachAndSync : kSync;
             }
             
@@ -54,7 +54,7 @@ public:
         
         void sync(void *object = NULL, long time = -1, Mode mode = kDownOnly)
         {
-            *this = SyncCheck(mGlobal, object, time, mode);
+            set(object, time, mode);
             mGlobal->setSyncCheck(object ? this : NULL);
         }
         
@@ -63,8 +63,13 @@ public:
         
     private:
         
-        SyncCheck(FrameLib_MaxGlobals *global, void *object, long time, Mode mode) : mGlobal(global), mObject(object), mTime(time), mMode(mode) {}
-        
+        void set(void *object, long time, Mode mode)
+        {
+            mObject = object;
+            mTime = time;
+            mMode = mode;
+        }
+    
         bool setMode(SyncCheck *info, Mode mode)    { return info && info->mMode != kDownOnly && ((info->mMode = mode) == mode); }
         
         FrameLib_MaxGlobals *mGlobal;
@@ -130,21 +135,21 @@ private:
     
     static FrameLib_MaxGlobals *get()
     {
-        const char maxGlobalClassName[] = "__fl.max_global_items";
-        t_symbol *nameSpaceSym = gensym("__fl.framelib_private");
-        t_symbol *globalSym = gensym("__fl.max_global_tag");
+        const char maxGlobalClass[] = "__fl.max_global_items";
+        t_symbol *nameSpace = gensym("__fl.framelib_private");
+        t_symbol *globalTag = gensym("__fl.max_global_tag");
      
         // Make sure the max globals class exists
 
-        if (!class_findbyname(CLASS_NOBOX, gensym(maxGlobalClassName)))
-            makeClass<FrameLib_MaxGlobals>(CLASS_NOBOX, maxGlobalClassName);
+        if (!class_findbyname(CLASS_NOBOX, gensym(maxGlobalClass)))
+            makeClass<FrameLib_MaxGlobals>(CLASS_NOBOX, maxGlobalClass);
         
         // See if an object is registered (otherwise make object and register it...)
         
-        FrameLib_MaxGlobals *x = (FrameLib_MaxGlobals *) object_findregistered(nameSpaceSym, globalSym);
+        FrameLib_MaxGlobals *x = (FrameLib_MaxGlobals *) object_findregistered(nameSpace, globalTag);
         
         if (!x)
-            x = (FrameLib_MaxGlobals *) object_register(nameSpaceSym, globalSym, object_new_typed(CLASS_NOBOX, gensym(maxGlobalClassName), 0, NULL));
+            x = (FrameLib_MaxGlobals *) object_register(nameSpace, globalTag, object_new_typed(CLASS_NOBOX, gensym(maxGlobalClass), 0, NULL));
             
         x->mCount++;
         
@@ -180,7 +185,7 @@ public:
     Mutator(t_symbol *sym, long ac, t_atom *av)
     {
         mObject = ac ? atom_getobj(av) : NULL;
-        mMode = object_method(mObject, gensym("is_output")) ? FrameLib_MaxGlobals::SyncCheck::kDownOnly : FrameLib_MaxGlobals::SyncCheck::kDown;
+        mMode = object_method(mObject, gensym("__fl.is_output")) ? FrameLib_MaxGlobals::SyncCheck::kDownOnly : FrameLib_MaxGlobals::SyncCheck::kDown;
     }
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
@@ -215,13 +220,13 @@ public:
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
-        addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "anything");
-        addMethod<Wrapper<T>, &Wrapper<T>::subpatcher>(c, "subpatcher");
         addMethod<Wrapper<T>, &Wrapper<T>::assist>(c, "assist");
+        addMethod<Wrapper<T>, &Wrapper<T>::subpatcher>(c, "subpatcher");
+        addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "anything");
         addMethod<Wrapper<T>, &Wrapper<T>::sync>(c, "sync");
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
-        addMethod(c, (method) &externalWrapperInternalObject, "wrapper_internal_object");
+        addMethod(c, (method) &externalWrapperInternalObject, "__fl.wrapper_internal_object");
         
         // N.B. MUST add signal handling after dspInit to override the builtin responses
         
@@ -365,16 +370,16 @@ public:
         return (index == 0) ? (void *) mPatch : NULL;
     }
     
+    void sync()
+    {
+        internalObject()->sync();
+    }
+    
     void anything(t_symbol *sym, long ac, t_atom *av)
     {
         long inlet = getInlet();
         
         outlet_anything(mInOutlets[inlet], sym, ac, av);
-    }
-    
-    void sync()
-    {
-        internalObject()->sync();
     }
     
     // External methods (A_CANT)
@@ -465,19 +470,18 @@ public:
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
-        addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
-        addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
-        addMethod(c, (method) &externalIsConnected, "is_connected");
-        addMethod(c, (method) &externalConnectionConfirm, "connection_confirm");
-        addMethod(c, (method) &externalGetInternalObject, "get_internal_object");
-        addMethod(c, (method) &externalIsOutput, "is_output");
-        addMethod(c, (method) &externalIsInput, "is_input");
-        addMethod(c, (method) &externalGetNumAudioIns, "get_num_audio_ins");
-        addMethod(c, (method) &externalGetNumAudioOuts, "get_num_audio_outs");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::assist>(c, "assist");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
+        addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
+        addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
+        addMethod(c, (method) &externalIsConnected, "__fl.is_connected");
+        addMethod(c, (method) &externalConnectionConfirm, "__fl.connection_confirm");
+        addMethod(c, (method) &externalGetInternalObject, "__fl.get_internal_object");
+        addMethod(c, (method) &externalIsOutput, "__fl.is_output");
+        addMethod(c, (method) &externalGetNumAudioIns, "__fl.get_num_audio_ins");
+        addMethod(c, (method) &externalGetNumAudioOuts, "__fl.get_num_audio_outs");
         
         dspInit(c);
     }
@@ -665,6 +669,16 @@ public:
 
     // External methods (A_CANT)
     
+    static long externalConnectionAccept(FrameLib_MaxClass *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
+    {
+        return src->connectionAccept(dst, srcout, dstin, outlet, inlet);
+    }
+    
+    static t_max_err externalPatchLineUpdate(FrameLib_MaxClass *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
+    {
+        return x->patchLineUpdate(patchline, updatetype, src, srcout, dst, dstin);
+    }
+
     static bool externalIsConnected(FrameLib_MaxClass *x, unsigned long index)
     {
         return x->confirmConnection(index, FrameLib_MaxGlobals::ConnectionInfo::kConfirm);
@@ -680,11 +694,6 @@ public:
         return x->mObject;
     }
     
-    static bool externalIsInput(FrameLib_MaxClass *x)
-    {
-        return T::handlesAudio() && (x->getNumAudioOuts() == 1);
-    }
-    
     static bool externalIsOutput(FrameLib_MaxClass *x)
     {
         return T::handlesAudio() && (x->getNumAudioOuts() > 1);
@@ -698,16 +707,6 @@ public:
     static long externalGetNumAudioOuts(FrameLib_MaxClass *x)
     {
         return x->getNumAudioOuts();
-    }
-    
-    static long externalConnectionAccept(FrameLib_MaxClass *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
-    {
-        return src->connectionAccept(dst, srcout, dstin, outlet, inlet);
-    }
-    
-    static t_max_err externalPatchLineUpdate(FrameLib_MaxClass *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
-    {
-        return x->patchLineUpdate(patchline, updatetype, src, srcout, dst, dstin);
     }
 
 private:
@@ -725,7 +724,7 @@ private:
     
     void unwrapConnection(t_object *& object, long& connection)
     {
-        t_object *wrapped = (t_object *) object_method(object, gensym("wrapper_internal_object"));
+        t_object *wrapped = (t_object *) object_method(object, gensym("__fl.wrapper_internal_object"));
         
         if (wrapped)
         {
@@ -738,7 +737,7 @@ private:
     
     FrameLib_MultiChannel *getInternalObject(t_object *x)
     {
-        return (FrameLib_MultiChannel *) object_method(x, gensym("get_internal_object"));
+        return (FrameLib_MultiChannel *) object_method(x, gensym("__fl.get_internal_object"));
     }
     
     // Private connection methods
@@ -761,7 +760,7 @@ private:
         
         if (mInputs[inputIndex].mObject && mObject->isConnected(inputIndex))
         {
-            object_method(mInputs[inputIndex].mObject, gensym("connection_confirm"), mInputs[inputIndex].mIndex, mode);
+            object_method(mInputs[inputIndex].mObject, gensym("__fl.connection_confirm"), mInputs[inputIndex].mIndex, mode);
             
             if (!mConfirm)
                 disconnect(mInputs[inputIndex].mObject, mInputs[inputIndex].mIndex, inputIndex);
@@ -815,7 +814,7 @@ private:
         {
             unwrapConnection(src, srcout);
             
-            srcout -= (long) object_method(src, gensym("get_num_audio_outs"));
+            srcout -= (long) object_method(src, gensym("__fl.get_num_audio_outs"));
             dstin -= getNumAudioIns();
                 
             switch (updatetype)
@@ -836,7 +835,10 @@ private:
 
         unwrapConnection(dst, dstin);
         
-        if (validInput(dstin - (long) object_method(dst, gensym("get_num_audio_ins")), getInternalObject(dst)) && !object_method(dst, gensym("is_connected"), dstin))
+        long num_audio_ins = (long) object_method(dst, gensym("__fl.get_num_audio_ins"));
+        bool connected = object_method(dst, gensym("__fl.is_connected"), dstin);
+        
+        if (validInput(dstin - num_audio_ins, getInternalObject(dst)) && !connected)
             return 1;
         
         return 0;
