@@ -20,8 +20,6 @@ class FrameLib_MaxGlobals : public MaxClass_Base
     
 public:
     
-    // ********************** //
-
     // Sync Check Class
     
     class SyncCheck
@@ -75,8 +73,6 @@ public:
         Mode mMode;
     };
 
-    // ********************** //
-
     // ConnectionInfo Struct
     
     struct ConnectionInfo
@@ -92,8 +88,6 @@ public:
         ConnectMode mMode;
         
     };
-
-    // ********************** //
 
     // Convenience Pointer for automatic deletion and RIAA
     
@@ -114,8 +108,6 @@ public:
         FrameLib_MaxGlobals *mPointer;
     };
     
-    // ********************** //
-
     // Constructor and Destructor (public for the max API, but use the ManagedPointer for use from outside this class)
     
     FrameLib_MaxGlobals(t_symbol *sym, long ac, t_atom *av)
