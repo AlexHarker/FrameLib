@@ -45,7 +45,7 @@ public:
         return kSyncComplete;
     }
     
-    void sync(void *object = NULL, long time = -1, Mode mode = kDownOnly )
+    void sync(void *object = NULL, long time = -1, Mode mode = kDownOnly)
     {
         *this = SyncCheck(object, time, mode);
         *syncInfo() = (object ? this : NULL);
@@ -550,9 +550,7 @@ public:
             return;
         
         switch (info->mMode)
-        {
-            // FIX - need better confirmation here that things are working correctly...
-                
+        {                
             case kConnect:
 
                 if (info->mObject == *this)
