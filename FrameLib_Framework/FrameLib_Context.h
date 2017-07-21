@@ -41,14 +41,10 @@ class FrameLib_Context
             mReference  = NULL;
         }
         
-        // Pointer
+        // Pointer  / Bool Conversion
         
         T *operator->()         { return mPointer; }
-        
-        // Bool Conversion
-        
-        operator bool() const   {
-            return mPointer != NULL; }
+        operator bool() const   { return mPointer != NULL; }
         
     private:
         
