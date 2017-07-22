@@ -100,7 +100,7 @@ public:
     
    // Basic Setup
     
-    void setSamplingRate(double samplingRate)   { mSamplingRate = samplingRate > 0 ? samplingRate : 44100.0; }
+    virtual void setSamplingRate(double samplingRate)   { mSamplingRate = samplingRate > 0 ? samplingRate : 44100.0; }
     
     // Set Fixed Inputs
     
