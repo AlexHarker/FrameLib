@@ -68,10 +68,10 @@ public:
 
     virtual void setSamplingRate(double samplingRate) {};
 
-    unsigned long getNumIns()                   { return mInputs.size(); }
-    unsigned long getNumOuts()                  { return mOutputs.size(); }
-    virtual unsigned long getNumAudioIns()      { return 0; }
-    virtual unsigned long getNumAudioOuts()     { return 0; }
+    unsigned long getNumIns()           { return mInputs.size(); }
+    unsigned long getNumOuts()          { return mOutputs.size(); }
+    unsigned long getNumAudioIns()      { return mNumAudioIns; }
+    unsigned long getNumAudioOuts()     { return mNumAudioOuts; }
 
     // Set Fixed Inputs
     
@@ -99,10 +99,12 @@ protected:
     
     // Call this in derived class constructors if the IO size is not static
     
-    void setIO(unsigned long nIns, unsigned long nOuts)
+    void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
     {
         mInputs.resize(nIns);
         mOutputs.resize(nOuts);
+        mNumAudioIns = nAudioIns;
+        mNumAudioOuts = nAudioOuts;
     }
     
     // Query Input Channels
@@ -145,6 +147,11 @@ private:
     // Queue
     
     FrameLib_Context::ConnectionQueue mQueue;
+    
+    // Audio IO Counts
+    
+    unsigned long mNumAudioIns;
+    unsigned long mNumAudioOuts;
     
     // Connection Info
     
@@ -212,7 +219,7 @@ public:
         
         // Set up IO / fixed inputs / audio temps
         
-        setIO(mBlocks[0]->getNumIns(), mBlocks[0]->getNumOuts());
+        setIO(mBlocks[0]->getNumIns(), mBlocks[0]->getNumOuts(), mBlocks[0]->getNumAudioIns(), mBlocks[0]->getNumAudioOuts());
         mFixedInputs.resize(getNumIns());
         mAudioTemps.resize(getNumAudioOuts());
         
@@ -245,11 +252,6 @@ public:
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
             (*it)->setSamplingRate(samplingRate);
     }
-    
-    // Audio IO Queries
-    
-    virtual unsigned long getNumAudioIns()  { return mBlocks[0]->getNumAudioIns(); }
-    virtual unsigned long getNumAudioOuts() { return mBlocks[0]->getNumAudioOuts(); }
     
     // Fixed Inputs
     
@@ -299,7 +301,7 @@ public:
    
     // Reset
     
-    void reset()
+    virtual void reset()
     {
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
             (*it)->reset();
