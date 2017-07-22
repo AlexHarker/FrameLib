@@ -54,7 +54,7 @@ public:
         
         mBuffer = NULL;
         mSize = 0;
-        reset();
+        objectReset();
     }
     
     ~FrameLib_Source()
@@ -62,10 +62,8 @@ public:
         delete[] mBuffer;
     }
     
-    void reset()
+    void objectReset()
     {
-        FrameLib_DSP::reset();
-
         double size = convertTimeToSamples(mParameters.getValue(kMaxLength)) + MAX_VECTOR_SIZE;
         
         if (size != mSize)

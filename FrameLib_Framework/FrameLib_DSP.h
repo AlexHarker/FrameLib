@@ -57,13 +57,13 @@ private:
     {
         Input() : mObject(NULL), mIndex(0), mSize(0), mFixedInput(NULL), mUpdate(false), mTrigger(true), mSwitchable(false) {}
         
-        void SetInput()
+        void setInput()
         {
             mObject = NULL;
             mIndex = 0;
         }
         
-        void SetInput(FrameLib_DSP *object, unsigned long idx)
+        void setInput(FrameLib_DSP *object, unsigned long idx)
         {
             mObject = object;
             mIndex = idx;
@@ -106,10 +106,6 @@ public:
     FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0);
     ~FrameLib_DSP();
     
-   // Basic Setup
-    
-    void setSamplingRate(double samplingRate)   { mSamplingRate = samplingRate > 0 ? samplingRate : 44100.0; }
-    
     // Set Fixed Inputs
     
     virtual void setFixedInput(unsigned long idx, double *input, unsigned long size);
@@ -117,7 +113,7 @@ public:
     // Audio Processing
     
     virtual void blockUpdate(double **ins, double **outs, unsigned long vecSize);
-    virtual void reset();
+    virtual void reset(double samplingRate);
     
     // Connection Methods
     
@@ -159,8 +155,8 @@ protected:
     FrameLib_TimeFormat getBlockStartTime() { return mBlockStartTime; }
     FrameLib_TimeFormat getBlockEndTime()   { return mBlockEndTime; }
     
-    FrameLib_TimeFormat getInputFrameTime(unsigned long idx)        { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : 0.0; }
-    FrameLib_TimeFormat getInputValidTillTime(unsigned long idx)    { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : 0.0; }
+    FrameLib_TimeFormat getInputFrameTime(unsigned long idx)        { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : FrameLib_TimeFormat(0); }
+    FrameLib_TimeFormat getInputValidTillTime(unsigned long idx)    { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : FrameLib_TimeFormat(0); }
     
     // Output Allocation
     
@@ -191,6 +187,10 @@ private:
     // Override to handle audio at the block level
     
     virtual void blockProcess(double **ins, double **outs, unsigned long vecSize) {}
+
+    // Override to get called on audio reset
+    
+    virtual void objectReset() {}
 
     // Override for updates prior to schedule / process (e.g. adjusting triggers)
     

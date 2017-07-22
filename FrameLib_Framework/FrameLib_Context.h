@@ -13,7 +13,7 @@ class FrameLib_Context
     
     typedef FrameLib_Global Global;
     
-    // Non-copyable template class for retaining reference counted pointers using RIAA
+    // Non-copyable template class for retaining reference counted pointers using RAII
     
     template <class T, T *(Global::*getMethod)(void *), void(Global::*releaseMethod)(void *)> class ManagedPointer
     {
@@ -41,14 +41,10 @@ class FrameLib_Context
             mReference  = NULL;
         }
         
-        // Pointer
+        // Pointer  / Bool Conversion
         
         T *operator->()         { return mPointer; }
-        
-        // Bool Conversion
-        
-        operator bool() const   {
-            return mPointer != NULL; }
+        operator bool() const   { return mPointer != NULL; }
         
     private:
         

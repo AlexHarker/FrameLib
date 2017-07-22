@@ -1,5 +1,4 @@
 
-
 #include "FrameLib_DSP.h"
 #include <algorithm>
 
@@ -14,7 +13,7 @@ FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned l
     
     setIO(nIns, nOuts, nAudioChans);
     
-    setSamplingRate(0.0);
+    reset(0.0);
 }
 
 // Destructor
@@ -73,8 +72,16 @@ void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long vecSiz
 
 // Reset
 
-void FrameLib_DSP::reset()
+// FIX - issues with override on this - need to sort (and any others...)
+
+void FrameLib_DSP::reset(double samplingRate)
 {
+    // Store sample rate and call object specific reset
+    
+    mSamplingRate = samplingRate > 0 ? samplingRate : 44100.0;
+    
+    objectReset();
+    
     // Note that the first sample will be at time == 1 so that we can start the frames *before* this with non-negative values
     
     mFrameTime = 0.0;
@@ -109,7 +116,7 @@ void FrameLib_DSP::addConnection(FrameLib_DSP *object, unsigned long outIdx, uns
     
     // Store data about connection and reset the dependency count
     
-    mInputs[inIdx].SetInput(object, outIdx);
+    mInputs[inIdx].setInput(object, outIdx);
     resetDependencyCount();
 }
 
@@ -150,7 +157,7 @@ void FrameLib_DSP::setIO(unsigned long nIns, unsigned long nOuts, unsigned long 
     
     // Reset for audio
     
-    reset();
+    FrameLib_DSP::reset(mSamplingRate);
 }
 
 // Call this from your constructor only (unsafe elsewhere)
@@ -465,9 +472,7 @@ void FrameLib_DSP::resetDependencyCount()
 inline void FrameLib_DSP::freeOutputMemory()
 {
     if (getNumOuts() && mOutputs[0].mMemory)
-    {
-        // FIX - revise this as there is nothing for the destructor to do (except branch on a call to delete[])
-        
+    {        
         // Call the destructor for any serial outputs
         
         for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
@@ -537,7 +542,7 @@ void FrameLib_DSP::addOutputDependency(FrameLib_DSP *object)
 void FrameLib_DSP::clearConnection(unsigned long inIdx)
 {
     removeConnection(inIdx);
-    mInputs[inIdx].SetInput();
+    mInputs[inIdx].setInput();
 }
 
 // Removal of one connection to this object (before replacement / deletion)
@@ -567,7 +572,7 @@ std::vector <FrameLib_DSP *>::iterator FrameLib_DSP::disconnect(FrameLib_DSP *ob
     
     for (unsigned long i = 0; i < mInputs.size(); i++)
         if (mInputs[i].mObject == object)
-            mInputs[i].SetInput();
+            mInputs[i].setInput();
 
     // Update dependencies
     

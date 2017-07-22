@@ -32,7 +32,7 @@ public:
         
         mBuffer = NULL;
         mSize = 0;
-        reset();
+        objectReset();
     }
     
     ~FrameLib_Sink()
@@ -40,10 +40,8 @@ public:
         delete[] mBuffer;
     }
     
-    void reset()
+    void objectReset()
     {
-        FrameLib_DSP::reset();
-
         long units = mParameters.getInt(kUnits);
         double size = mParameters.getValue(kLength);
 
