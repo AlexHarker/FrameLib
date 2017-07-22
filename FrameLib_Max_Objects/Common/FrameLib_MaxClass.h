@@ -577,10 +577,6 @@ public:
 
     void dsp(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
     {
-        // Set sampling rate
-        
-        mObject->setSamplingRate(samplerate);
-        
         // Confirm input connections
         
         for (unsigned long i = 0; i < getNumIns(); i++)
@@ -593,7 +589,7 @@ public:
         
         // Reset DSP
         
-        mObject->reset();
+        mObject->reset(samplerate);
         
         // Add a perform routine to the chain if the object handles audio
         

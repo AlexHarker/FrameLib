@@ -98,10 +98,6 @@ public:
     FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0);
     ~FrameLib_DSP();
     
-   // Basic Setup
-    
-    virtual void setSamplingRate(double samplingRate)   { mSamplingRate = samplingRate > 0 ? samplingRate : 44100.0; }
-    
     // Set Fixed Inputs
     
     virtual void setFixedInput(unsigned long idx, double *input, unsigned long size);
@@ -109,7 +105,7 @@ public:
     // Audio Processing
     
     virtual void blockUpdate(double **ins, double **outs, unsigned long vecSize);
-    virtual void reset();
+    virtual void reset(double samplingRate);
     
     // Connection Methods
     

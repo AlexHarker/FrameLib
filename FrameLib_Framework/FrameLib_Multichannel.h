@@ -64,9 +64,7 @@ public:
         clearConnections();
     }
     
-    // Basic Setup / IO Queries (override the audio methods if handling audio)
-
-    virtual void setSamplingRate(double samplingRate) {};
+    // IO Queries
 
     unsigned long getNumIns()           { return mInputs.size(); }
     unsigned long getNumOuts()          { return mOutputs.size(); }
@@ -80,7 +78,7 @@ public:
     // Audio Processing
     
     virtual void blockUpdate(double **ins, double **outs, unsigned long vecSize) {}
-    virtual void reset() {}
+    virtual void reset(double samplingRate) {}
 
     static bool handlesAudio() { return false; }
 
@@ -228,7 +226,7 @@ public:
         for (unsigned long i = 0; i < getNumOuts(); i++)
             mOutputs[i].mConnections.push_back(ConnectionInfo(mBlocks[0], i));
         
-        setSamplingRate(0.0);
+        reset(0.0);
     }
     
     ~FrameLib_Expand()
@@ -241,16 +239,6 @@ public:
         
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
             delete(*it);
-    }
-    
-    // Sampling Rate
-
-    virtual void setSamplingRate(double samplingRate)
-    {
-        mSamplingRate = samplingRate;
-        
-        for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
-            (*it)->setSamplingRate(samplingRate);
     }
     
     // Fixed Inputs
@@ -301,10 +289,12 @@ public:
    
     // Reset
     
-    virtual void reset()
+    virtual void reset(double samplingRate)
     {
+        mSamplingRate = samplingRate;
+
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
-            (*it)->reset();
+            (*it)->reset(samplingRate);
     }
     
     // Handles Audio
@@ -347,7 +337,7 @@ private:
                 for (unsigned long i = cChannels; i < nChannels; i++)
                 {
                     mBlocks[i] = new T(mContext, &mSerialisedParameters, mOwner);
-                    mBlocks[i]->setSamplingRate(mSamplingRate);
+                    mBlocks[i]->reset(mSamplingRate);
                 }
             }
             else

@@ -32,9 +32,7 @@ public:
     FrameLib_Block() {}
     virtual ~FrameLib_Block() {}
    
-    // Basic Setup / IO Queries
-    
-    virtual void setSamplingRate(double samplingRate) = 0;
+    // Basic IO Setup / Queries
     
     void setIO(const IOCount& count)        { mIOCount = count; }
     
@@ -52,7 +50,7 @@ public:
     // Override to handle audio at the block level (reset called with the audio engine resets)
     
     virtual void blockUpdate(double **ins, double **outs, unsigned long vecSize) = 0;
-    virtual void reset() = 0;
+    virtual void reset(double samplingRate) = 0;
     
     // Return to host to request to be passed audio
     
