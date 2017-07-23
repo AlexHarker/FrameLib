@@ -27,7 +27,7 @@ public:
         unsigned long mNumIns, mNumOuts, mNumAudioIns, mNumAudioOuts;
     };
     
-    // Constructor / Destructor (virtual)
+    // Constructor / Destructor
     
     FrameLib_Block() {}
     virtual ~FrameLib_Block() {}
