@@ -116,6 +116,8 @@ public:
     virtual void clearConnections();
     virtual bool isConnected(unsigned long inIdx);
     
+    using FrameLib_Block::addConnection;
+
 protected:
     
     // Object Type
