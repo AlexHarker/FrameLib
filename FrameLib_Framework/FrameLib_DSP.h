@@ -18,7 +18,7 @@ class FrameLib_DSP : public FrameLib_Block
     // Type definition for concision / Queue access
 
     typedef FrameLib_Parameters::Serial Serial;
-    friend FrameLib_DSPQueue;
+    friend class FrameLib_DSPQueue;
 
 public:
     

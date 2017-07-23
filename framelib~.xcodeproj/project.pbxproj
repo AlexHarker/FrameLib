@@ -9298,8 +9298,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_CXX0X_EXTENSIONS = NO;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				LLVM_LTO = NO;
 			};
 			name = Development;
@@ -9308,8 +9311,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_CXX0X_EXTENSIONS = NO;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				LLVM_LTO = YES;
 			};
 			name = Deployment;
@@ -9318,8 +9324,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_CXX0X_EXTENSIONS = NO;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				LLVM_LTO = YES;
 			};
 			name = Default;

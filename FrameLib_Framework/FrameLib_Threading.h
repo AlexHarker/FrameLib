@@ -245,6 +245,7 @@ class TriggerableThread
 public:
 
     TriggerableThread(Thread::PriorityLevel priority) : mThread(priority, threadEntry, this), mSemaphore(1) {}
+    virtual ~TriggerableThread() {}
     
     // Start and join
     
@@ -286,7 +287,8 @@ class DelegateThread
 public:
 
     DelegateThread(Thread::PriorityLevel priority) : mThread(priority, threadEntry, this), mSemaphore(1), mSignaled(false) {}
-    
+    virtual ~DelegateThread() {}
+
     // Start and join
 
     void start() { mThread.start(); }

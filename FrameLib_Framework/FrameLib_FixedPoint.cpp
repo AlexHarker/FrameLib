@@ -76,7 +76,7 @@ FL_SP qMul(const FL_SP& a, const uint64_t &intVal, const uint64_t &fracVal)
     
     // Lowest carry bits
     
-    uint64_t t1 = 0ULL;
+    uint64_t t1 = 0U;
     unsigned int c1 = addWithCarry(&t1, a6b4, loToHiBits(a6b3)) ? 1U : 0U;
     c1 = addWithCarry(&t1, t1, loToHiBits(a5b4)) ? ++c1: c1;
     
@@ -86,7 +86,7 @@ FL_SP qMul(const FL_SP& a, const uint64_t &intVal, const uint64_t &fracVal)
     
     // Sum the lo fractional part
     
-    uint64_t lo = 0ULL;
+    uint64_t lo = 0U;
     unsigned int c2 = addWithCarry(&lo, a6b2, a5b3) ? 1U : 0U;
     c2 = addWithCarry(&lo, lo, a4b4) ? ++c2: c2;
     c2 = addWithCarry(&lo, lo, joinBits(a6b1, a6b3)) ? ++c2: c2;
@@ -96,7 +96,7 @@ FL_SP qMul(const FL_SP& a, const uint64_t &intVal, const uint64_t &fracVal)
     
     // Sum the hi fractional part
     
-    uint64_t md = 0ULL;
+    uint64_t md = 0U;
     unsigned int c3 = addWithCarry(&md, a2b4, a4b2) ? 1U : 0U;
     c3 = addWithCarry(&md, md, a3b3) ? ++c3: c3;
     c3 = addWithCarry(&md, md, a5b1) ? ++c3: c3;
@@ -108,7 +108,7 @@ FL_SP qMul(const FL_SP& a, const uint64_t &intVal, const uint64_t &fracVal)
     
     // Sum the integer part
     
-    uint64_t hi = 0ULL;
+    uint64_t hi = 0U;
     unsigned int c4 = addWithCarry(&hi, a2b2, a1b3) ? 1U : 0U;
     c4 = addWithCarry(&hi, hi, a3b1) ? ++c4: c4;
     c4 = addWithCarry(&hi, hi, joinBits(a1b2, a1b4)) ? ++c4: c4;
@@ -118,7 +118,7 @@ FL_SP qMul(const FL_SP& a, const uint64_t &intVal, const uint64_t &fracVal)
     
     // Do overflow
     
-    t1 = (a1b1 | hi32Bits(a1b2) | hi32Bits(a2b1) | c4) ? FL_Limits<uint64_t>::largest() : 0ULL;
+    t1 = (a1b1 | hi32Bits(a1b2) | hi32Bits(a2b1) | c4) ? FL_Limits<uint64_t>::largest() : 0U;
     
     return FL_SP(hi | t1, md | t1, lo | t1);
 }
@@ -185,13 +185,13 @@ FL_SP operator * (const FL_SP& a, const FL_SP& b)
     
     // Sub carry bits
     
-    uint64_t t1 = 0ULL;
+    uint64_t t1 = 0U;
     unsigned int c0 = addWithCarry(&t1, a6b6, loToHiBits(a5b6)) ? 1U : 0U;
     c0 = addWithCarry(&t1, t1, loToHiBits(a6b5)) ? ++c0: c0;
     
     // Lowest carry bits
     
-    t1 = 0ULL;
+    t1 = 0U;
     unsigned int c1 = addWithCarry(&t1, a4b6, a6b4) ? 1U : 0U;
     c1 = addWithCarry(&t1, t1, a5b5) ? ++c1: c1;
     c1 = addWithCarry(&t1, t1, joinBits(a3b6, a5b6)) ? ++c1: c1;
@@ -205,7 +205,7 @@ FL_SP operator * (const FL_SP& a, const FL_SP& b)
     
     // Sum the lo fractional part
     
-    uint64_t lo = 0ULL;
+    uint64_t lo = 0U;
     unsigned int c2 = addWithCarry(&lo, a2b6, a6b2) ? 1U : 0U;
     c2 = addWithCarry(&lo, lo, a3b5) ? ++c2: c2;
     c2 = addWithCarry(&lo, lo, a5b3) ? ++c2: c2;
@@ -219,7 +219,7 @@ FL_SP operator * (const FL_SP& a, const FL_SP& b)
     
     // Sum the hi fractional part
     
-    uint64_t md = 0ULL;
+    uint64_t md = 0U;
     unsigned int c3 = addWithCarry(&md, a2b4, a4b2) ? 1U : 0U;
     c3 = addWithCarry(&md, md, a3b3) ? ++c3: c3;
     c3 = addWithCarry(&md, md, a1b5) ? ++c3: c3;
@@ -233,7 +233,7 @@ FL_SP operator * (const FL_SP& a, const FL_SP& b)
     
     // Sum the integer part
     
-    uint64_t hi = 0ULL;
+    uint64_t hi = 0U;
     unsigned int c4 = addWithCarry(&hi, a2b2, a1b3) ? 1U : 0U;
     c4 = addWithCarry(&hi, hi, a3b1) ? ++c4: c4;
     c4 = addWithCarry(&hi, hi, joinBits(a1b2, a1b4)) ? ++c4: c4;
@@ -243,7 +243,7 @@ FL_SP operator * (const FL_SP& a, const FL_SP& b)
     
     // Do overflow
     
-    t1 = (a1b1 | hi32Bits(a1b2) | hi32Bits(a2b1) | c4) ? FL_Limits<uint64_t>::largest() : 0ULL;
+    t1 = (a1b1 | hi32Bits(a1b2) | hi32Bits(a2b1) | c4) ? FL_Limits<uint64_t>::largest() : 0U;
     
     return FL_SP(hi | t1, md | t1, lo | t1);
 }
@@ -294,7 +294,7 @@ FL_FP::FL_FP(const FL_SP& val) : mInt(val.intVal()), mFrac(val.fracHiVal())
 
 FL_FP operator + (const FL_FP& a, const FL_FP& b)
 {
-    uint64_t lo = 0ULL;
+    uint64_t lo = 0U;
     uint64_t hi = a.mInt + b.mInt;
     hi = addWithCarry(&lo, a.mFrac, b.mFrac) ? ++hi : hi;
     
@@ -303,7 +303,7 @@ FL_FP operator + (const FL_FP& a, const FL_FP& b)
 
 FL_FP operator - (const FL_FP& a, const FL_FP& b)
 {
-    uint64_t lo = 0ULL;
+    uint64_t lo = 0U;
     uint64_t hi = a.mInt - b.mInt;
     hi = subWithCarry(&lo, a.mFrac, b.mFrac) ? --hi : hi;
     
@@ -346,7 +346,7 @@ FL_FP operator * (const FL_FP& a, const FL_FP& b)
     
     // Lowest carry bits
     
-    uint64_t t1 = 0ULL;
+    uint64_t t1 = 0U;
     unsigned int c1 = addWithCarry(&t1, a4b4, loToHiBits(a4b3)) ? 1U : 0U;
     c1 = addWithCarry(&t1, t1, loToHiBits(a3b4)) ? ++c1 : c1;
     
@@ -356,7 +356,7 @@ FL_FP operator * (const FL_FP& a, const FL_FP& b)
     
     // Sum the fractional part
     
-    uint64_t lo = 0ULL;
+    uint64_t lo = 0U;
     unsigned int c2 = addWithCarry(&lo, a2b4, a4b2) ? 1U : 0U;
     c2 = addWithCarry(&lo, lo, a3b3) ? ++c2: c2;
     c2 = addWithCarry(&lo, lo, joinBits(a1b4, a4b3)) ? ++c2: c2;
@@ -366,7 +366,7 @@ FL_FP operator * (const FL_FP& a, const FL_FP& b)
     
     // Sum the integer part
     
-    uint64_t hi = 0ULL;
+    uint64_t hi = 0U;
     unsigned int c3 = addWithCarry(&hi, a2b2, a1b3) ? 1U : 0U;
     c3 = addWithCarry(&hi, hi, a3b1) ? ++c3: c3;
     c3 = addWithCarry(&hi, hi, joinBits(a1b2, a1b4)) ? ++c3: c3;
@@ -376,7 +376,7 @@ FL_FP operator * (const FL_FP& a, const FL_FP& b)
     
     // Do overflow
     
-    t1 = (a1b1 | hi32Bits(a1b2) | hi32Bits(a2b1) | c3) ? FL_Limits<uint64_t>::largest() : 0ULL;
+    t1 = (a1b1 | hi32Bits(a1b2) | hi32Bits(a2b1) | c3) ? FL_Limits<uint64_t>::largest() : 0U;
     
     return FL_FP(hi | t1, lo | t1);
 }
@@ -396,4 +396,4 @@ FL_FP operator / (const FL_FP& a, const FL_FP& b)
     // Multiply reciprocal to get final result and then convert to lower precision
     
     return FL_FP(qMul(r, a.mInt, a.mFrac));
-};
+}

@@ -86,7 +86,7 @@ int tlsf_check(tlsf_t tlsf);
 int tlsf_check_pool(pool_t pool);
 
 #if defined(__cplusplus)
-};
+}
 #endif
 
 #endif

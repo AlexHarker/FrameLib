@@ -10,12 +10,13 @@ public:
     
     class Item
     {
-        friend FrameLib_ConnectionQueue;
+        friend class FrameLib_ConnectionQueue;
         
     public:
         
         Item() : mNext(NULL) {}
-        
+        virtual ~Item() {}
+
     private:
         
         // Override to deal with changes in IO (inputUpdate() returns true is output size has changed)
