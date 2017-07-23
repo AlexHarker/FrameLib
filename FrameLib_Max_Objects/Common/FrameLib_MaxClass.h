@@ -826,7 +826,9 @@ private:
     
     long connectionAccept(t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
     {
-        if (!validOutput(srcout - getNumAudioOuts()) || object_classname_compare(dst, gensym("outlet")))
+        t_symbol *className = object_classname(dst);
+        
+        if (!validOutput(srcout - getNumAudioOuts()) || className == gensym("outlet") || className == gensym("jpatcher"))
             return 1;
 
         unwrapConnection(dst, dstin);
@@ -844,12 +846,26 @@ private:
     
     bool isParameterTag(t_symbol *sym)
     {
-        return (sym && sym->s_name[0] == '#' && strlen(sym->s_name) > 1);
+        if (!sym)
+            return false;
+        
+        size_t len = strlen(sym->s_name);
+        char beg = sym->s_name[0];
+        char end = sym->s_name[len - 1];
+        
+        return (beg == '#' || (beg == '/' && end != '/'))  && len > 1;
     }
     
     bool isInputTag(t_symbol *sym)
     {
-        return (sym && sym->s_name[0] == '/' && strlen(sym->s_name) > 1);
+        if (!sym)
+            return false;
+        
+        size_t len = strlen(sym->s_name);
+        char beg = sym->s_name[0];
+        char end = sym->s_name[len - 1];
+        
+        return (((beg == '/' && end == '/') || (beg == '<' && end == '>') || (beg == '[' && end == ']'))  && len > 2) || (beg == '~' && len >1);
     }
     
     bool isTag(t_atom *a)
