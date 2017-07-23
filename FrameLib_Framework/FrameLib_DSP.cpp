@@ -342,7 +342,7 @@ void FrameLib_DSP::dependenciesReady()
         
         for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
         {
-            if (ins->mUpdate && ins->mObject && mValidTime == ins->mObject->mFrameTime)
+            if (ins->mObject && ins->mUpdate && mValidTime == ins->mObject->mFrameTime)
             {
                 mInUpdate = true;
                 update();
@@ -355,7 +355,7 @@ void FrameLib_DSP::dependenciesReady()
         
         for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
         {
-            if (ins->mTrigger && ins->mObject && mValidTime == ins->mObject->mFrameTime)
+            if (ins->mObject && ins->mTrigger && mValidTime == ins->mObject->mFrameTime)
             {
                 trigger = true;
                 break;
