@@ -572,7 +572,7 @@ public:
     {
         // N.B. Plus one due to sync inputs
         
-        mObject->blockUpdate(ins + 1, outs + 1, vec_size);
+        mObject->T::blockUpdate(ins + 1, outs + 1, vec_size);
     }
 
     void dsp(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
@@ -589,7 +589,7 @@ public:
         
         // Reset DSP
         
-        mObject->reset(samplerate);
+        mObject->T::reset(samplerate);
         
         // Add a perform routine to the chain if the object handles audio
         
@@ -685,7 +685,7 @@ public:
         x->makeConnection(index, mode);
     }
     
-    static FrameLib_MultiChannel *externalGetInternalObject(FrameLib_MaxClass *x)
+    static void *externalGetInternalObject(FrameLib_MaxClass *x)
     {
         return x->mObject;
     }
@@ -985,7 +985,7 @@ private:
             i = parseNumericalList(values, argv, argc, 0);
             
             for (unsigned long j = 0; i && j < mObject->getNumIns(); j++)
-                mObject->setFixedInput(j, &values[0], values.size());
+                mObject->T::setFixedInput(j, &values[0], values.size());
         }
         
         // Parse tags
@@ -1002,14 +1002,14 @@ private:
             {
                 t_symbol *sym = atom_getsym(argv + i);
                 i = parseNumericalList(values, argv, argc, i + 1);
-                mObject->setFixedInput(inputNumber(sym), &values[0], values.size());
+                mObject->T::setFixedInput(inputNumber(sym), &values[0], values.size());
             }
         }
     }
 
     // Data
     
-    FrameLib_MultiChannel *mObject;
+    T *mObject;
     
     std::vector <Input> mInputs;
     std::vector <void *> mOutputs;
