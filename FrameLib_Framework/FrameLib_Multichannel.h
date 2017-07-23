@@ -237,7 +237,7 @@ public:
         
         // Delete blocks
         
-        for (typename std::vector <T *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
+        for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
             delete(*it);
     }
     
@@ -270,9 +270,9 @@ public:
 
         // Process and sum to outputs
 
-        for (typename std::vector <T *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
+        for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
         {
-            (*it)->T::blockUpdate(ins, &mAudioTemps[0], vecSize);
+            (*it)->blockUpdate(ins, &mAudioTemps[0], vecSize);
             
             for (unsigned long i = 0; i < getNumAudioOuts(); i++)
                 for (unsigned long j = 0; j < vecSize; j++)
@@ -293,7 +293,7 @@ public:
     {
         mSamplingRate = samplingRate;
 
-        for (typename std::vector <T *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
+        for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
             (*it)->reset(samplingRate);
     }
     
@@ -308,7 +308,7 @@ private:
     void updateFixedInput(unsigned long idx)
     {
         for (unsigned long i = 0; i < mBlocks.size(); i++)
-            mBlocks[i]->T::setFixedInput(idx, &mFixedInputs[idx][0], mFixedInputs[idx].size());
+            mBlocks[i]->setFixedInput(idx, &mFixedInputs[idx][0], mFixedInputs[idx].size());
     }
     
     // Update (expand)
@@ -337,7 +337,7 @@ private:
                 for (unsigned long i = cChannels; i < nChannels; i++)
                 {
                     mBlocks[i] = new T(mContext, &mSerialisedParameters, mOwner);
-                    mBlocks[i]->T::reset(mSamplingRate);
+                    mBlocks[i]->reset(mSamplingRate);
                 }
             }
             else
@@ -391,7 +391,7 @@ private:
     FrameLib_Context::Allocator mAllocator;
     FrameLib_Parameters::AutoSerial mSerialisedParameters;
 
-    std::vector <T *> mBlocks;
+    std::vector <FrameLib_Block *> mBlocks;
     std::vector <std::vector <double> > mFixedInputs;
     
     void *mOwner;
