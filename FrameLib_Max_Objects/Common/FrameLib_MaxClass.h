@@ -534,15 +534,25 @@ public:
         object_free(mSyncIn);
     }
 
-    void assist (void *b, long m, long a, char *s)
+    void assist(void *b, long m, long a, char *s)
     {
         if (m == ASSIST_OUTLET)
         {
-            sprintf(s,"(signal) Output %ld", a + (T::handlesAudio() ? 0 : 1));
+            if (a == 0 && T::handlesAudio())
+                 sprintf(s,"(signal) Audio Synchronisation Output");
+            else if (a < getNumAudioOuts())
+                sprintf(s,"(signal) Signal Output %ld", a);
+            else
+                sprintf(s,"(frame) Frame Output %ld", a - getNumAudioOuts() + 1);
         }
         else
         {
-            sprintf(s,"(signal) Input %ld", a + (T::handlesAudio() ? 0 : 1));
+            if (a == 0 && T::handlesAudio())
+                sprintf(s,"(signal) Audio Synchronisation Input");
+            else if (a < getNumAudioIns())
+                sprintf(s,"(signal) Signal Input %ld", a);
+            else
+                sprintf(s,"(frame) Frame Input %ld", a - getNumAudioIns() + 1);
         }
     }
 
@@ -908,7 +918,7 @@ private:
     {
         t_symbol *sym;
         std::vector<double> values;
-        long i, j;
+        long i;
         
         // Parse arguments
         
@@ -941,7 +951,7 @@ private:
         {
             // Strip stray items
             
-            for (j = 0; i < argc; i++, j++)
+            for (long j = 0; i < argc; i++, j++)
             {
                 if (isTag(argv + i))
                 {
