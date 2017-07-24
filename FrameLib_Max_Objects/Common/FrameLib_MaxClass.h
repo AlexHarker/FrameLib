@@ -8,7 +8,6 @@
 
 #include <vector>
 
-// FIX - improve reporting of extra connections + look into feedback detection...
 // FIX - think about adding assist helpers for this later...
 
 //////////////////////////////////////////////////////////////////////////
@@ -394,7 +393,7 @@ public:
         return MAX_ERR_NONE;
     }
     
-    static long externalConnectionAccept(Wrapper *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
+    static t_ptr_int externalConnectionAccept(Wrapper *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
     {
         // Only handle sources and account for internal sync connections
 
@@ -476,6 +475,7 @@ public:
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
+        addMethod(c, (method) &externalResolveConnections, "__fl.resolve_connections");
         addMethod(c, (method) &externalIsConnected, "__fl.is_connected");
         addMethod(c, (method) &externalConnectionConfirm, "__fl.connection_confirm");
         addMethod(c, (method) &externalGetInternalObject, "__fl.get_internal_object");
@@ -488,7 +488,7 @@ public:
 
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv) : mConfirmIndex(-1), mConfirm(false), mSyncIn(NULL)
+    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv) : mConfirmIndex(-1), mConfirm(false), mSyncIn(NULL), mNeedsResolve(true)
     {
         // Init
         
@@ -577,15 +577,10 @@ public:
 
     void dsp(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
     {
-        // Confirm input connections
+        // Resolve connections and mark unresolved for next time
         
-        for (unsigned long i = 0; i < getNumIns(); i++)
-            confirmConnection(i, FrameLib_MaxGlobals::ConnectionInfo::kConfirm);
-        
-        // Make output connections
-        
-        for (unsigned long i = getNumOuts(); i > 0; i--)
-            makeConnection(i - 1, FrameLib_MaxGlobals::ConnectionInfo::kConnect);
+        resolveConnections();
+        mNeedsResolve = true;
         
         // Reset DSP
         
@@ -601,6 +596,9 @@ public:
     
     void sync()
     {
+        if (T::handlesAudio)
+            traverseToResolveConnections(mTopLevelPatch);
+        
         FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, T::handlesAudio(), externalIsOutput(this));
         
         if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
@@ -665,7 +663,7 @@ public:
 
     // External methods (A_CANT)
     
-    static long externalConnectionAccept(FrameLib_MaxClass *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
+    static t_ptr_int externalConnectionAccept(FrameLib_MaxClass *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
     {
         return src->connectionAccept(dst, srcout, dstin, outlet, inlet);
     }
@@ -675,7 +673,12 @@ public:
         return x->patchLineUpdate(patchline, updatetype, src, srcout, dst, dstin);
     }
 
-    static bool externalIsConnected(FrameLib_MaxClass *x, unsigned long index)
+    static void externalResolveConnections(FrameLib_MaxClass *x)
+    {
+        x->resolveConnections();
+    }
+    
+    static t_ptr_int externalIsConnected(FrameLib_MaxClass *x, unsigned long index)
     {
         return x->confirmConnection(index, FrameLib_MaxGlobals::ConnectionInfo::kConfirm);
     }
@@ -690,17 +693,17 @@ public:
         return x->mObject;
     }
     
-    static bool externalIsOutput(FrameLib_MaxClass *x)
+    static t_ptr_int externalIsOutput(FrameLib_MaxClass *x)
     {
         return T::handlesAudio() && (x->getNumAudioOuts() > 1);
     }
     
-    static long externalGetNumAudioIns(FrameLib_MaxClass *x)
+    static t_ptr_int externalGetNumAudioIns(FrameLib_MaxClass *x)
     {
         return x->getNumAudioIns();
     }
     
-    static long externalGetNumAudioOuts(FrameLib_MaxClass *x)
+    static t_ptr_int externalGetNumAudioOuts(FrameLib_MaxClass *x)
     {
         return x->getNumAudioOuts();
     }
@@ -738,6 +741,46 @@ private:
     
     // Private connection methods
     
+    void traverseToResolveConnections(t_patcher *p)
+    {
+        // Avoid recursion into a poly / pfft / etc.
+        
+        t_object *assoc = 0;
+        object_method(p, gensym("getassoc"), &assoc);
+        if (assoc)
+            return;
+        
+        // Search for subpatchers, and call method on objects that don't have subpatchers
+        
+        for (t_box *b = jpatcher_get_firstobject(p); b; b = jbox_get_nextobject(b))
+        {
+            long index = 0;
+            
+            while (b && (p = (t_patcher *)object_subpatcher(jbox_get_object(b), &index, this)))
+                traverseToResolveConnections(p);
+            
+            object_method(jbox_get_object(b), gensym("__fl.resolve_connections"));
+        }
+    }
+
+    void resolveConnections()
+    {
+        if (mNeedsResolve)
+        {
+            // Confirm input connections
+        
+            for (unsigned long i = 0; i < getNumIns(); i++)
+                confirmConnection(i, FrameLib_MaxGlobals::ConnectionInfo::kConfirm);
+            
+            // Make output connections
+            
+            for (unsigned long i = getNumOuts(); i > 0; i--)
+                makeConnection(i - 1, FrameLib_MaxGlobals::ConnectionInfo::kConnect);
+            
+            mNeedsResolve = false;
+        }
+    }
+
     void makeConnection(unsigned long index, FrameLib_MaxGlobals::ConnectionInfo::Mode mode)
     {
         FrameLib_MaxGlobals::ConnectionInfo info(*this, index, mTopLevelPatch, mode);
@@ -755,14 +798,16 @@ private:
         // Check for connection *only* if the internal object is connected (otherwise assume the previously connected object has been deleted)
         
         if (mInputs[inputIndex].mObject && mObject->isConnected(inputIndex))
-        {
             object_method(mInputs[inputIndex].mObject, gensym("__fl.connection_confirm"), mInputs[inputIndex].mIndex, mode);
-            
-            if (!mConfirm)
-                disconnect(mInputs[inputIndex].mObject, mInputs[inputIndex].mIndex, inputIndex);
-        }
         
-        return mConfirm;
+        if (mInputs[inputIndex].mObject && !mConfirm)
+            disconnect(mInputs[inputIndex].mObject, mInputs[inputIndex].mIndex, inputIndex);
+        
+        bool result = mConfirm;
+        mConfirm = false;
+        mConfirmIndex = -1;
+        
+        return result;
     }
     
     bool validInput(long index, FrameLib_MultiChannel *object)      { return object && index >= 0 && index < object->getNumIns(); }
@@ -784,8 +829,6 @@ private:
         mInputs[inIdx].mIndex = outIdx;
         
         mObject->addConnection(object, outIdx, inIdx);
-
-        dspchain_setbroken(dspchain_fromobject(*this));
     }
     
     void disconnect(t_object *src, long outIdx, long inIdx)
@@ -798,8 +841,6 @@ private:
         
         if (mObject->isConnected(inIdx))
             mObject->deleteConnection(inIdx);
-        
-        dspchain_setbroken(dspchain_fromobject(*this));
     }
 
     // Patchline connections
@@ -1024,8 +1065,10 @@ private:
     FrameLib_MaxGlobals::ManagedPointer mGlobal;
     FrameLib_MaxGlobals::SyncCheck mSyncChecker;
     
-public:
+    bool mNeedsResolve;
     
+public:
+
     t_object *mUserObject;
 };
 

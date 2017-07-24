@@ -15,8 +15,8 @@ DONE	3 - Fixed Point Division / Fixed Point Time Format
 DONE	- Make C++ class extensible
 DONE	- Sideways Dependencies Issues
 DONE	- Safety (no direct access of other objects / thread safety / no symbol bindings)
+DONE	- Better connection issue reporting
 PROGRESS- Review entry of inputs and parameters
-	- Better connection issue reporting
 
 
 5 - READ/WRITE Timing ISSUES!!!	
