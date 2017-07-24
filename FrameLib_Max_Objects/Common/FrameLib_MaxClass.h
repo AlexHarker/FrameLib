@@ -489,11 +489,8 @@ public:
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
         FrameLib_Parameters::AutoSerial serialisedParameters;
-        
         parseParameters(serialisedParameters, argc, argv);
-
-        mObject = new T(getContext(), &serialisedParameters, this);
-        
+        mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mTopLevelPatch), &serialisedParameters, this);
         parseInputs(argc, argv);
         
         mInputs.resize(getNumIns());
@@ -699,13 +696,6 @@ public:
     }
 
 private:
-    
-    // Globals
-    
-    FrameLib_Context getContext()
-    {
-        return FrameLib_Context(mGlobal->getGlobal(), mTopLevelPatch);
-    }
     
     // Unwrapping connections
     
