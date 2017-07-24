@@ -6,6 +6,7 @@
 #include "FrameLib_Global.h"
 #include "FrameLib_Context.h"
 
+#include <string>
 #include <vector>
 
 // FIX - think about adding assist helpers for this later...
@@ -244,7 +245,7 @@ public:
     
     Wrapper(t_symbol *s, long argc, t_atom *argv)
     {
-        // Create Patcher (you must report this as a subpatcher to get audio working)
+        // Create patcher (you must report this as a subpatcher to get audio working)
         
         t_dictionary *d = dictionary_new();
         t_atom a;
@@ -256,16 +257,15 @@ public:
         atom_setobj(&a, d);
         mPatch = (t_object *)object_new_typed(CLASS_NOBOX, gensym("jpatcher"),1, &a);
         
-        // Get Box Text (and strip object name from the top - relace with stored name in case the object name is an alias)
+        // Get box text (and strip object name from the top - relace with stored name in case the object name is an alias)
         
-        t_object *box = NULL;
+        t_object *textfield = NULL;
         const char *text = NULL;
         std::string newObjectText = accessClassName<Wrapper>()->c_str();
 
-        object_obex_lookup(this, gensym("#B"), &box);
-        t_object *textfield = jbox_get_textfield(box);
+        object_obex_lookup(this, gensym("#B"), &textfield);
         
-        if (textfield)
+        if ((textfield = jbox_get_textfield(textfield)))
         {
             text = (char *)object_method(textfield, gensym("getptr"));
             text = strchr(text, ' ');
@@ -274,7 +274,7 @@ public:
                 newObjectText += text;
         }
         
-        // Make Internal Object
+        // Make internal object
 
         mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch, "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", newObjectText.c_str()));
         
@@ -283,11 +283,11 @@ public:
         atom_setobj(&a, mObject);
         mMutator = (t_object *) object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 1, &a);
         
-        // Free the Dictionary
+        // Free the dictionary
     
         object_free(d);
         
-        // Get the Object Itself (typed)
+        // Get the object itself (typed)
         
         T *internal = internalObject();
         
@@ -305,7 +305,7 @@ public:
         mAudioOuts.resize(numAudioOuts - 1);
         mOuts.resize(numOuts);
         
-        // Inlets for Messages/Signals
+        // Inlets for messages/signals
         
         for (long i = numIns + numAudioIns - 2; i >= 0 ; i--)
         {
@@ -313,7 +313,7 @@ public:
             mProxyIns[i] = (t_object *)  (i ? proxy_new(this, i, &mProxyNum) : NULL);
         }
         
-        // Outlets for Messages/Signals
+        // Outlets for messages/signals
         
         for (long i = numOuts - 1; i >= 0 ; i--)
             mOuts[i] = (t_object *) outlet_new(this, NULL);
@@ -436,7 +436,7 @@ template <class T, bool argsSetAllInputs = false> class FrameLib_MaxClass : publ
     struct Input
     {
         Input() : mProxy(NULL), mObject(NULL), mIndex(0) {}
-        Input(t_object *proxy, t_object *object, unsigned long index) : mProxy(proxy), mObject(object), mIndex(index) {}
+        Input(void *proxy) : mProxy((t_object *) proxy), mObject(NULL), mIndex(0) {}
         
         t_object *mProxy;
         t_object *mObject;
@@ -483,33 +483,28 @@ public:
 
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv) : mConfirmIndex(-1), mConfirm(false), mSyncIn(NULL), mNeedsResolve(true)
+    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv)
+    : mConfirmIndex(-1), mConfirm(false), mTopLevelPatch(jpatcher_get_toppatcher(gensym("#P")->s_thing)), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
     {
-        // Init
+        // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
         FrameLib_Parameters::AutoSerial serialisedParameters;
-        FrameLib_Context context = getContext();
-        mUserObject = (t_object *)this;
-
-        // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
-    
+        
         parseParameters(serialisedParameters, argc, argv);
 
-        mObject = new T(context, &serialisedParameters, this);
+        mObject = new T(getContext(), &serialisedParameters, this);
         
         parseInputs(argc, argv);
         
         mInputs.resize(getNumIns());
         mOutputs.resize(getNumOuts());
         
+        // Create frame inlets and outlets
+        
+        // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles audio)
+        
         for (long i = getNumIns() - 1; i >= 0; i--)
-        {
-            // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles audio)
-            
-            t_object *proxy = (t_object *) ((i || T::handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : NULL);
-            
-            mInputs[i] = Input(proxy, NULL, 0);
-        }
+            mInputs[i] = Input(((i || T::handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : NULL));
         
         for (unsigned long i = getNumOuts(); i > 0; i--)
             mOutputs[i - 1] = outlet_new(this, NULL);
@@ -709,8 +704,6 @@ private:
     
     FrameLib_Context getContext()
     {
-        mTopLevelPatch = jpatcher_get_toppatcher(gensym("#P")->s_thing);
-        
         return FrameLib_Context(mGlobal->getGlobal(), mTopLevelPatch);
     }
     
@@ -813,12 +806,9 @@ private:
     void connect(t_object *src, long outIdx, long inIdx)
     {
         FrameLib_MultiChannel *object = getInternalObject(src);
-        bool connectionChange = (mInputs[inIdx].mObject != src || mInputs[inIdx].mIndex != outIdx);
         
-        if (!validInput(inIdx) || !validOutput(outIdx, object) || !connectionChange || confirmConnection(inIdx, FrameLib_MaxGlobals::ConnectionInfo::kDoubleCheck))
+        if (!validInput(inIdx) || !validOutput(outIdx, object) || (mInputs[inIdx].mObject == src && mInputs[inIdx].mIndex == outIdx) || confirmConnection(inIdx, FrameLib_MaxGlobals::ConnectionInfo::kDoubleCheck))
             return;
-        
-        // Change the connection if needed
         
         mInputs[inIdx].mObject = src;
         mInputs[inIdx].mIndex = outIdx;
@@ -882,9 +872,6 @@ private:
     
     bool isParameterTag(t_symbol *sym)
     {
-        if (!sym)
-            return false;
-        
         size_t len = strlen(sym->s_name);
         char beg = sym->s_name[0];
         char end = sym->s_name[len - 1];
@@ -894,9 +881,6 @@ private:
     
     bool isInputTag(t_symbol *sym)
     {
-        if (!sym)
-            return false;
-        
         size_t len = strlen(sym->s_name);
         char beg = sym->s_name[0];
         char end = sym->s_name[len - 1];
@@ -946,12 +930,13 @@ private:
             if (!argsSetAllInputs)
             {
                 char argNames[64];
-                
                 sprintf(argNames, "%ld", i);
-                sym = atom_getsym(argv + i);
                 
-                if (sym != gensym(""))
-                    serialisedParameters.write(argNames, sym->s_name);
+                if (atom_gettype(argv + i) == A_SYM)
+                {
+                    t_symbol *str = atom_getsym(argv + i);
+                    serialisedParameters.write(argNames, str->s_name);
+                }
                 else
                 {
                     double value = atom_getfloat(argv + i);
