@@ -219,8 +219,8 @@ public:
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
-        addMethod<Wrapper<T>, &Wrapper<T>::assist>(c, "assist");
         addMethod<Wrapper<T>, &Wrapper<T>::subpatcher>(c, "subpatcher");
+        addMethod<Wrapper<T>, &Wrapper<T>::assist>(c, "assist");
         addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "anything");
         addMethod<Wrapper<T>, &Wrapper<T>::sync>(c, "sync");
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
@@ -356,17 +356,14 @@ public:
     
     // Standard methods
     
+    void *subpatcher(long index, void *arg)
+    {
+        return ((t_ptr_uint) arg > 1 && !NOGOOD(arg) && index == 0) ? (void *) mPatch : NULL;
+    }
+    
     void assist(void *b, long m, long a, char *s)
     {
         internalObject()->assist(b, m, a + 1, s);
-    }
-    
-    void *subpatcher(long index, void *arg)
-    {
-        if ((t_ptr_uint) arg <= 1 || NOGOOD(arg))
-            return NULL;
-        
-        return (index == 0) ? (void *) mPatch : NULL;
     }
     
     void sync()
@@ -376,9 +373,7 @@ public:
     
     void anything(t_symbol *sym, long ac, t_atom *av)
     {
-        long inlet = getInlet();
-        
-        outlet_anything(mInOutlets[inlet], sym, ac, av);
+        outlet_anything(mInOutlets[getInlet()], sym, ac, av);
     }
     
     // External methods (A_CANT)
@@ -395,7 +390,7 @@ public:
     
     static t_ptr_int externalConnectionAccept(Wrapper *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
     {
-        // Only handle sources and account for internal sync connections
+        // Only handle sources / account for internal sync connections
 
         return T::externalConnectionAccept(src->internalObject(), dst, srcout + 1, dstin, outlet, inlet);
     }
@@ -596,7 +591,7 @@ public:
     
     void sync()
     {
-        if (T::handlesAudio)
+        if (T::handlesAudio && mNeedsResolve)
             traverseToResolveConnections(mTopLevelPatch);
         
         FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, T::handlesAudio(), externalIsOutput(this));
