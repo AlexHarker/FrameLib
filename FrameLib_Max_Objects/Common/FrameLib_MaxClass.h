@@ -9,8 +9,6 @@
 #include <string>
 #include <vector>
 
-// FIX - think about adding assist helpers for this later...
-
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////// Max Globals Class ///////////////////////////
 //////////////////////////////////////////////////////////////////////////
@@ -559,7 +557,63 @@ public:
     
     void help(t_symbol *sym, long ac, t_atom *av)
     {
-        object_post(mUserObject, mObject->objectInfo(true));
+        enum HelpFlags { kHelpDesciption = 0x01, kHelpInputs = 0x02, kHelpOutputs = 0x04 };
+        
+        long flags = kHelpDesciption;
+        bool verbose = true;
+        
+        if (ac)
+        {
+            t_symbol *type = atom_getsym(av);
+            
+            if (type == gensym("inputs"))
+                flags = kHelpInputs;
+            else if (type == gensym("outputs"))
+                flags = kHelpOutputs;
+            else if (type == gensym("io"))
+                flags = kHelpInputs | kHelpOutputs;
+            else if (type == gensym("ref"))
+                flags = kHelpDesciption | kHelpInputs | kHelpOutputs;
+        }
+        
+        // Description
+        
+        if (flags & kHelpDesciption)
+        {
+            std::string str(mObject->objectInfo(verbose));
+            size_t oldPos = 0;
+            
+            object_post(mUserObject, "--- Description ---");
+            
+            for (size_t pos = str.find_first_of(":."); pos != std::string::npos; pos = str.find_first_of(":.", pos + 1))
+            {
+                if (oldPos == 0)
+                    object_post(mUserObject, str.substr(oldPos, (pos - oldPos) + 1).c_str());
+                else
+                    object_post(mUserObject, "-%s", str.substr(oldPos, (pos - oldPos) + 1).c_str());
+                oldPos = pos + 1;
+            }
+        }
+        
+        // IO
+        
+        if (flags & kHelpInputs)
+        {
+            object_post(mUserObject, "--- Input List ---");
+            for (long i = 0; i < mObject->getNumAudioIns(); i++)
+                object_post(mUserObject, "Audio Input %ld: %s", i + 1, mObject->audioInfo(i, verbose));
+            for (long i = 0; i < getNumIns(); i++)
+                object_post(mUserObject, "Frame Input %ld: %s", i + 1, mObject->inputInfo(i, verbose));
+        }
+        
+        if (flags & kHelpOutputs)
+        {
+            object_post(mUserObject, "--- Output List ---");
+            for (long i = 0; i < mObject->getNumAudioOuts(); i++)
+                object_post(mUserObject, "Audio Output %ld: %s", i + 1, mObject->audioInfo(i, verbose));
+            for (long i = 0; i < getNumOuts(); i++)
+                object_post(mUserObject, "Frame Output %ld: %s", i + 1, mObject->outputInfo(i, verbose));
+        }
     }
 
 
