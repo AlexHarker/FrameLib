@@ -114,6 +114,10 @@ public:
     virtual void clearConnections();
     virtual bool isConnected(unsigned long inIdx);
     
+    // Info (individual objects should override other methods to provide info)
+    
+    virtual const FrameLib_Parameters *getParameters() { return &mParameters;  }
+
 protected:
         
     // Setup and IO Modes

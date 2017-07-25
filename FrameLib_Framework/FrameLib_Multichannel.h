@@ -305,7 +305,9 @@ public:
     virtual const char *inputInfo(unsigned long idx, bool verbose)  { return mBlocks[0]->inputInfo(idx, verbose); }
     virtual const char *outputInfo(unsigned long idx, bool verbose) { return mBlocks[0]->outputInfo(idx, verbose); }
     virtual const char *audioInfo(unsigned long idx, bool verbose)  { return mBlocks[0]->audioInfo(idx, verbose); }
-    
+
+    virtual const FrameLib_Parameters *getParameters()              { return mBlocks[0]->getParameters(); }
+
 private:
 
     // Update Fixed Inputs

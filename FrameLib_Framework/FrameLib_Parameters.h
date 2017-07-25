@@ -18,9 +18,11 @@
 // FIX - instantiation only parameters (with error checking - simply a marker)?
 // FIX - consider adding descriptions (using const char * strings)
 
+static const char *typeStrings[] = {"Boolean", "Double", "Enumeration", "String", "Fixed Length Array", "Variable Length Array" };
+
 class FrameLib_Parameters
 {
-
+    
 public:
     
     enum Type {kBool, kDouble, kEnum, kString, kArray, kVariableArray };
@@ -518,11 +520,18 @@ public:
 
     // Getters (N.B. - getters have no sanity checks, because they are the programmer's responsibility)
     
+    // Get Name
+    
+    const char *getName(unsigned long idx) const                            { return mParameters[idx]->name(); }
+    
     // Get Type
     
     Type getType(unsigned long idx) const                                   { return mParameters[idx]->type(); }
     Type getType(const char *name) const                                    { return getType(getIdx(name)); }
     
+    const char *getTypeString(unsigned long idx) const                      { return typeStrings[mParameters[idx]->type()]; }
+    const char *getTypeString(const char *name) const                       { return getTypeString(getIdx(name)); }
+
     // Get Range
     
     void getRange(unsigned long idx, double *min, double *max) const        { return mParameters[idx]->getRange(min, max); }

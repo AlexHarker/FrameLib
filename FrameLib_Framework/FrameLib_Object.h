@@ -67,6 +67,10 @@ public:
     virtual const char *inputInfo(unsigned long idx, bool verbose = false)      { return "No info available";  }
     virtual const char *outputInfo(unsigned long idx, bool verbose = false)     { return "No info available";  }
     virtual const char *audioInfo(unsigned long idx, bool verbose = false)      { return "No info available";  }
+   
+    // N.B. Parameter objects can be queried directly for info
+    
+    virtual const FrameLib_Parameters *getParameters()                          { return NULL;  }
     
 private:
 

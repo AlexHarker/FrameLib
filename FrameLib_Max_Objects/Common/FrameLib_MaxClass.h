@@ -1,10 +1,11 @@
 
 #include "MaxClass_Base.h"
 
-#include "FrameLib_Multichannel.h"
-#include "FrameLib_DSP.h"
 #include "FrameLib_Global.h"
 #include "FrameLib_Context.h"
+#include "FrameLib_Parameters.h"
+#include "FrameLib_DSP.h"
+#include "FrameLib_Multichannel.h"
 
 #include <string>
 #include <vector>
@@ -557,7 +558,7 @@ public:
     
     void help(t_symbol *sym, long ac, t_atom *av)
     {
-        enum HelpFlags { kHelpDesciption = 0x01, kHelpInputs = 0x02, kHelpOutputs = 0x04 };
+        enum HelpFlags { kHelpDesciption = 0x01, kHelpInputs = 0x02, kHelpOutputs = 0x04, kParameters = 0x08 };
         
         long flags = kHelpDesciption;
         bool verbose = true;
@@ -572,8 +573,10 @@ public:
                 flags = kHelpOutputs;
             else if (type == gensym("io"))
                 flags = kHelpInputs | kHelpOutputs;
+            else if (type == gensym("parameters"))
+                flags = kHelpInputs | kParameters;
             else if (type == gensym("ref"))
-                flags = kHelpDesciption | kHelpInputs | kHelpOutputs;
+                flags = kHelpDesciption | kHelpInputs | kHelpOutputs | kParameters;
         }
         
         // Description
@@ -614,8 +617,18 @@ public:
             for (long i = 0; i < getNumOuts(); i++)
                 object_post(mUserObject, "Frame Output %ld: %s", i + 1, mObject->outputInfo(i, verbose));
         }
+        
+        if (flags & kParameters)
+        {
+            object_post(mUserObject, "--- Parameter List ---");
+            const FrameLib_Parameters *parameters = mObject->getParameters();
+            
+            if (!parameters || !parameters->size())
+                 object_post(mUserObject, "- Empty -");
+            for (long i = 0; parameters && i < parameters->size(); i++)
+                object_post(mUserObject, "Parameter %ld: %s - %s", i + 1, parameters->getName(i), parameters->getTypeString(i));
+        }
     }
-
 
     // IO Helpers
     
