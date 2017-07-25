@@ -17,7 +17,7 @@ public:
      
     // Constructor / Destructor
     
-    FrameLib_Object(ObjectType type) : mType(type) {}
+    FrameLib_Object(ObjectType type) : mType(type), mNumIns(0), mNumOuts(0), mNumAudioChans(0) {}
     virtual ~FrameLib_Object() {}
    
     // Object Type
