@@ -14,12 +14,13 @@ DONE	3 - Fixed Point Division / Fixed Point Time Format
 4 - Finalise Max Wrapper
 DONE	- Make C++ class extensible
 DONE	- Sideways Dependencies Issues
-DONE	- Make safe (avoid direct access of other objects / thread safety / avoid symbol bindings)
-	- Review entry of inputs and parameters
-	- Better connection issue reporting
+DONE	- Safety (no direct access of other objects / thread safety / no symbol bindings)
+DONE	- Better connection issue reporting
+PROGRESS- Review entry of inputs and parameters
 
 
-5 - READ/WRITE Timing ISSUES!!!	(multi-channel expansion/ease of use/ability to make mistakes/handle multiple ordering dependencies)
+5 - READ/WRITE Timing ISSUES!!!	
+	- (multi-chan expansion/ease of use/chance of mistakes/multiple dependencies)
 
 6 - Finalise Memory Management
 DONE		- Do variable memory management (underlying engine)

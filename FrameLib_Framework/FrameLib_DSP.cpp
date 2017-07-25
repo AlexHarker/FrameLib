@@ -5,7 +5,7 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
-: mAllocator(context), mQueue(context), mNextInThread(NULL), mType(type), mInUpdate(false)
+: FrameLib_Block(type), mAllocator(context), mQueue(context), mNextInThread(NULL), mInUpdate(false)
 {
     mQueueItem.mThis = this;
     
@@ -144,16 +144,16 @@ bool FrameLib_DSP::isConnected(unsigned long inIdx)
 
 void FrameLib_DSP::setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
 {
+    FrameLib_Block::setIO(nIns, nOuts, nAudioChans);
+    
     // Free output memory
     
     freeOutputMemory();
     
     // Resize inputs and outputs
     
-    mInputs.resize((mType != kScheduler || nIns > 0) ? nIns : 1);
-    mOutputs.resize(nOuts);
-    
-    FrameLib_Block::setIO(FrameLib_Block::IOCount(mInputs.size(), mOutputs.size(), getType() != kOutput ? nAudioChans : 0, getType() == kOutput ? nAudioChans : 0));
+    mInputs.resize(getNumIns());
+    mOutputs.resize(getNumOuts());
     
     // Reset for audio
     
@@ -314,7 +314,7 @@ void FrameLib_DSP::dependenciesReady()
 {
     bool timeUpdated = false;
     
-    if (mType == kScheduler)
+    if (getType() == kScheduler)
     {
         // Find the input time (the min valid time of all inputs)
         
@@ -356,7 +356,7 @@ void FrameLib_DSP::dependenciesReady()
         
         for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
         {
-            if (ins->mUpdate && ins->mObject && mValidTime == ins->mObject->mFrameTime)
+            if (ins->mObject && ins->mUpdate && mValidTime == ins->mObject->mFrameTime)
             {
                 mInUpdate = true;
                 update();
@@ -369,7 +369,7 @@ void FrameLib_DSP::dependenciesReady()
         
         for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
         {
-            if (ins->mTrigger && ins->mObject && mValidTime == ins->mObject->mFrameTime)
+            if (ins->mObject && ins->mTrigger && mValidTime == ins->mObject->mFrameTime)
             {
                 trigger = true;
                 break;
@@ -444,7 +444,7 @@ void FrameLib_DSP::dependenciesReady()
         if (mInputTime == (*it)->mValidTime)
         {
             mDependencyCount++;
-            (*it)->dependencyNotify(this, (mType == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone);
+            (*it)->dependencyNotify(this, (getType() == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone);
         }
     }
     

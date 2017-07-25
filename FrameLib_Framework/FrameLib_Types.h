@@ -19,4 +19,8 @@ typedef unsigned char *BytePointer;
 
 typedef FL_FP FrameLib_TimeFormat;
 
+// Object Types
+
+enum ObjectType { kOutput, kProcessor, kScheduler };
+
 #endif

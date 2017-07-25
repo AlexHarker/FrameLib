@@ -219,7 +219,7 @@ public:
     
     class Storage
     {
-        friend FrameLib_LocalAllocator;
+        friend class FrameLib_LocalAllocator;
 
     public:
         
