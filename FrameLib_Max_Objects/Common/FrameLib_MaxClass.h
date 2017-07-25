@@ -558,6 +558,8 @@ public:
     
     void help(t_symbol *sym, long ac, t_atom *av)
     {
+        // Figure out what to post
+        
         enum HelpFlags { kHelpDesciption = 0x01, kHelpInputs = 0x02, kHelpOutputs = 0x04, kParameters = 0x08 };
         
         long flags = kHelpDesciption;
@@ -574,11 +576,15 @@ public:
             else if (type == gensym("io"))
                 flags = kHelpInputs | kHelpOutputs;
             else if (type == gensym("parameters"))
-                flags = kHelpInputs | kParameters;
+                flags = kParameters;
             else if (type == gensym("ref"))
                 flags = kHelpDesciption | kHelpInputs | kHelpOutputs | kParameters;
         }
         
+        // Start Tag
+        
+        object_post(mUserObject, "********* %s *********", object_classname(mUserObject)->s_name);
+
         // Description
         
         if (flags & kHelpDesciption)
@@ -588,8 +594,10 @@ public:
             
             object_post(mUserObject, "--- Description ---");
             
-            for (size_t pos = str.find_first_of(":."); pos != std::string::npos; pos = str.find_first_of(":.", pos + 1))
+            for (size_t pos = str.find_first_of(":."); oldPos < str.size(); pos = str.find_first_of(":.", pos + 1))
             {
+                pos = pos == std::string::npos ? str.size() : pos;
+                
                 if (oldPos == 0)
                     object_post(mUserObject, str.substr(oldPos, (pos - oldPos) + 1).c_str());
                 else
@@ -624,9 +632,9 @@ public:
             const FrameLib_Parameters *parameters = mObject->getParameters();
             
             if (!parameters || !parameters->size())
-                 object_post(mUserObject, "- Empty -");
+                 object_post(mUserObject, "< Empty >");
             for (long i = 0; parameters && i < parameters->size(); i++)
-                object_post(mUserObject, "Parameter %ld: %s - %s", i + 1, parameters->getName(i), parameters->getTypeString(i));
+                object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, parameters->getName(i), parameters->getTypeString(i));
         }
     }
 

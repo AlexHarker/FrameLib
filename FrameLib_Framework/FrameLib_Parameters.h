@@ -18,7 +18,7 @@
 // FIX - instantiation only parameters (with error checking - simply a marker)?
 // FIX - consider adding descriptions (using const char * strings)
 
-static const char *typeStrings[] = {"Boolean", "Double", "Enumeration", "String", "Fixed Length Array", "Variable Length Array" };
+static const char *typeStrings[] = {"bool", "double", "enum", "string", "fixed length array", "variable length array" };
 
 class FrameLib_Parameters
 {
