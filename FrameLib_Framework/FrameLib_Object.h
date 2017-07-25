@@ -2,6 +2,7 @@
 #ifndef FRAMELIB_BLOCK_H
 #define FRAMELIB_BLOCK_H
 
+#include "FrameLib_Types.h"
 #include "FrameLib_Parameters.h"
 
 // FrameLib_Block
@@ -14,32 +15,30 @@ class FrameLib_Block
 {
     
 public:
- 
-    // IO Count Structure
-    
-    struct IOCount
-    {
-        IOCount() : mNumIns(0), mNumOuts(0), mNumAudioIns(0), mNumAudioOuts(0) {}
-        
-        IOCount(unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns, unsigned long nAudioOuts)
-        : mNumIns(nIns), mNumOuts(nOuts), mNumAudioIns(nAudioIns), mNumAudioOuts(nAudioOuts) {}
-        
-        unsigned long mNumIns, mNumOuts, mNumAudioIns, mNumAudioOuts;
-    };
-    
+     
     // Constructor / Destructor
     
-    FrameLib_Block() {}
+    FrameLib_Block(ObjectType type) : mType(type) {}
     virtual ~FrameLib_Block() {}
    
+    // Object Type
+    
+    ObjectType getType()    { return mType; }
+    
     // Basic IO Setup / Queries
     
-    void setIO(const IOCount& count)        { mIOCount = count; }
+    void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0)
+    {
+        mNumIns = (getType() == kScheduler || nIns) ? nIns : 1;
+        mNumOuts = nOuts;
+        mNumAudioChans = nAudioChans;
+    }
     
-    unsigned long getNumIns()               { return mIOCount.mNumIns; }
-    unsigned long getNumOuts()              { return mIOCount.mNumOuts; }
-    unsigned long getNumAudioIns()          { return mIOCount.mNumAudioIns; }
-    unsigned long getNumAudioOuts()         { return mIOCount.mNumAudioOuts; }
+    unsigned long getNumIns()               { return mNumIns; }
+    unsigned long getNumOuts()              { return mNumOuts; }
+    unsigned long getNumAudioIns()          { return getType() != kOutput ? mNumAudioChans : 0; }
+    unsigned long getNumAudioOuts()         { return getType() == kOutput ? mNumAudioChans : 0; }
+    unsigned long getNumAudioChans()        { return mNumAudioChans; }
     
     // Set Fixed Inputs
     
@@ -67,14 +66,18 @@ public:
     {
         addConnection(object->getOutputObject(outIdx), outIdx, inIdx);
     }
-    
+
 protected:
 
     virtual class FrameLib_DSP *getOutputObject(unsigned long outIdx) = 0;
-    
+
 private:
 
-    IOCount mIOCount;
+    const ObjectType mType;
+    
+    unsigned long mNumIns;
+    unsigned long mNumOuts;
+    unsigned long mNumAudioChans;
 };
 
 #endif
