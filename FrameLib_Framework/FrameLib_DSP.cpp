@@ -142,11 +142,13 @@ bool FrameLib_DSP::isConnected(unsigned long inIdx)
 
 void FrameLib_DSP::setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
 {
-    FrameLib_Block::setIO(nIns, nOuts, nAudioChans);
-    
     // Free output memory
     
     freeOutputMemory();
+    
+    // Call the base class to store new sizes
+    
+    FrameLib_Block::setIO(nIns, nOuts, nAudioChans);
     
     // Resize inputs and outputs
     
