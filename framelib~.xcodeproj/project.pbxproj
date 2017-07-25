@@ -1870,7 +1870,7 @@
 		B8DE14DC0EB46B030050BDFE /* FrameLib_MaxClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_MaxClass.h; sourceTree = "<group>"; };
 		B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Parameters.cpp; sourceTree = "<group>"; };
 		B8DF3FA2198AABAD00CA8BB6 /* FrameLib_Parameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Parameters.h; sourceTree = "<group>"; };
-		B8E058AE198DA34D00721359 /* FrameLib_Block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Block.h; sourceTree = "<group>"; };
+		B8E058AE198DA34D00721359 /* FrameLib_Object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Object.h; sourceTree = "<group>"; };
 		B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Threading.cpp; sourceTree = "<group>"; };
 		B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Multichannel.cpp; sourceTree = "<group>"; };
 		B8F3797919F1C8AF00EC7FDA /* FrameLib_OnePole.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FrameLib_OnePole.h; path = Filters/FrameLib_OnePole.h; sourceTree = "<group>"; };
@@ -3107,7 +3107,7 @@
 				B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */,
 				B8DF3FA2198AABAD00CA8BB6 /* FrameLib_Parameters.h */,
 				B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */,
-				B8E058AE198DA34D00721359 /* FrameLib_Block.h */,
+				B8E058AE198DA34D00721359 /* FrameLib_Object.h */,
 				B8075B131979173E00EB3A35 /* FrameLib_DSP.h */,
 				B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */,
 				B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */,

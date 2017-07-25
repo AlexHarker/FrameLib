@@ -5,21 +5,20 @@
 #include "FrameLib_Types.h"
 #include "FrameLib_Parameters.h"
 
-// FrameLib_Block
+// FrameLib_Object
 
-// This abstract class provides a connectivity interface to FrameLib_DSP objects or blocks (groups of FrameLib_DSP objects).
-// Standard objects inherit this in the FrameLib_DSP class.
-// Objects that have asynchronous outputs can use this class to host multiple FrameLib_DSP objects and connect them correctly.
+// This abstract template class outlines the basic functionality that objects (blocks / DSP / multichannel must provide)
 
-class FrameLib_Block
+template <class T>
+class FrameLib_Object
 {
     
 public:
      
     // Constructor / Destructor
     
-    FrameLib_Block(ObjectType type) : mType(type) {}
-    virtual ~FrameLib_Block() {}
+    FrameLib_Object(ObjectType type) : mType(type) {}
+    virtual ~FrameLib_Object() {}
    
     // Object Type
     
@@ -58,18 +57,9 @@ public:
     // Connections
     
     virtual void deleteConnection(unsigned long inIdx) = 0;
-    virtual void addConnection(class FrameLib_DSP *object, unsigned long outIdx, unsigned long inIdx) = 0;
+    virtual void addConnection(T *object, unsigned long outIdx, unsigned long inIdx) = 0;
     virtual void clearConnections() = 0;
     virtual bool isConnected(unsigned long inIdx) = 0;
-    
-    void addConnection(FrameLib_Block *object, unsigned long outIdx, unsigned long inIdx)
-    {
-        addConnection(object->getOutputObject(outIdx), outIdx, inIdx);
-    }
-
-protected:
-
-    virtual class FrameLib_DSP *getOutputObject(unsigned long outIdx) = 0;
 
 private:
 
@@ -78,6 +68,36 @@ private:
     unsigned long mNumIns;
     unsigned long mNumOuts;
     unsigned long mNumAudioChans;
+};
+
+// FrameLib_Block
+
+// This abstract class provides a connectivity interface to FrameLib_DSP objects or blocks (groups of FrameLib_DSP objects).
+// Standard objects inherit this in the FrameLib_DSP class.
+// Objects that have asynchronous outputs can use this class to host multiple FrameLib_DSP objects and connect them correctly.
+
+class FrameLib_Block : public FrameLib_Object<FrameLib_Block>
+{
+    
+public:
+    
+    // Constructor / Destructor
+    
+    FrameLib_Block(ObjectType type) : FrameLib_Object<FrameLib_Block>(type) {}
+    virtual ~FrameLib_Block() {}
+
+    // Connections
+    
+    virtual void addConnection(class FrameLib_DSP *object, unsigned long outIdx, unsigned long inIdx) = 0;
+    
+    virtual void addConnection(FrameLib_Block *object, unsigned long outIdx, unsigned long inIdx)
+    {
+        addConnection(object->getOutputObject(outIdx), outIdx, inIdx);
+    }
+    
+protected:
+    
+    virtual class FrameLib_DSP *getOutputObject(unsigned long outIdx) = 0;
 };
 
 #endif

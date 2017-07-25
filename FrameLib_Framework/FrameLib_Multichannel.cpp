@@ -138,7 +138,7 @@ void FrameLib_MultiChannel::outputUpdate()
 
 // FrameLib_Pack - Pack Multichannel signals
 
-FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_MultiChannel(context)
+FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_MultiChannel(kProcessor, context)
 {
     mParameters.addDouble(0, "inputs", 2, 0 );
     mParameters.set(serialisedParameters);
@@ -160,7 +160,7 @@ bool FrameLib_Pack::inputUpdate()
 
 // FrameLib_Unpack - Unpack Multichannel Signals
 
-FrameLib_Unpack::FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_MultiChannel(context)
+FrameLib_Unpack::FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_MultiChannel(kProcessor, context)
 {
     mParameters.addDouble(kOutputs, "outputs", 2, 0);
     mParameters.set(serialisedParameters);

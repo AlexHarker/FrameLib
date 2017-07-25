@@ -593,10 +593,10 @@ public:
     
     void sync()
     {
-        if (T::handlesAudio && mNeedsResolve)
-            traverseToResolveConnections(mTopLevelPatch);
-        
         FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, T::handlesAudio(), externalIsOutput(this));
+       
+        if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && T::handlesAudio && mNeedsResolve)
+            traverseToResolveConnections(mTopLevelPatch);
         
         if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
             outlet_anything(mSyncIn, gensym("signal"), 0, NULL);
@@ -609,7 +609,7 @@ public:
             if (mSyncChecker.upwardsMode())
             {
                 for (unsigned long i = 0; i < getNumIns(); i++)
-                    if (mInputs[i].mObject)
+                    if (mInputs[i].mObject && mObject->isConnected(i))
                         object_method(mInputs[i].mObject, gensym("sync"));
                 mSyncChecker.restoreMode();
             }

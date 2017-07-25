@@ -4,7 +4,7 @@
 
 #include "FrameLib_Types.h"
 #include "FrameLib_Context.h"
-#include "FrameLib_Block.h"
+#include "FrameLib_Object.h"
 #include "FrameLib_DSPQueue.h"
 #include <limits>
 #include <vector>
@@ -23,9 +23,7 @@ class FrameLib_DSP : public FrameLib_Block
 public:
     
     // Enums and Structs (IO / scheduling)
-    
 
-    enum ObjectType { kOutput, kProcessor, kScheduler };
     enum OutputMode { kOutputNormal, kOutputTagged };
     
 protected:
@@ -116,14 +114,8 @@ public:
     virtual void clearConnections();
     virtual bool isConnected(unsigned long inIdx);
     
-    using FrameLib_Block::addConnection;
-
 protected:
-    
-    // Object Type
-
-    ObjectType getType()    { return mType; }
-    
+        
     // Setup and IO Modes
     
     // Call these from your constructor only (unsafe elsewhere)
@@ -202,7 +194,7 @@ private:
     
     // This returns true if the object requires notification from an audio thread (is a scheduler/has audio input)
     
-    bool requiresAudioNotification()    { return mType == kScheduler || getNumAudioIns(); }
+    bool requiresAudioNotification()    { return getType() == kScheduler || getNumAudioIns(); }
     
     // Manage Output Memory
 
@@ -251,10 +243,6 @@ private:
     FrameLib_Context::DSPQueue mQueue;
     FrameLib_DSP *mNext;
     
-    // Object Type
-    
-    const ObjectType mType;
-    
     // IO Info
     
     std::vector <Input> mInputs;
@@ -292,7 +280,8 @@ public:
     FrameLib_Processor(FrameLib_Context context, unsigned long nIns = 0, unsigned long nOuts = 0)
     : FrameLib_DSP(kProcessor, context, nIns, nOuts) {}
     
-    static bool handlesAudio() { return false; }
+    static ObjectType getType() { return kProcessor; }
+    static bool handlesAudio()  { return false; }
 
 protected:
     
@@ -314,8 +303,9 @@ public:
     
     FrameLib_AudioInput(FrameLib_Context context, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
     : FrameLib_DSP(kProcessor, context, nIns, nOuts, nAudioIns) {}
-    
-    static bool handlesAudio() { return true; }
+
+    static ObjectType getType() { return kProcessor; }
+    static bool handlesAudio()  { return true; }
     
 protected:
     
@@ -336,7 +326,8 @@ public:
     FrameLib_AudioOutput(FrameLib_Context context, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioOuts = 0)
     : FrameLib_DSP(kOutput, context, nIns, nOuts, nAudioOuts) {}
     
-    static bool handlesAudio() { return true; }
+    static ObjectType getType() { return kOutput; }
+    static bool handlesAudio()  { return true; }
     
 protected:
     
@@ -357,7 +348,8 @@ public:
     FrameLib_Scheduler(FrameLib_Context context, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
     : FrameLib_DSP(kScheduler, context, nIns, nOuts, nAudioIns) {}
     
-    static bool handlesAudio() { return true; }
+    static ObjectType getType() { return kScheduler; }
+    static bool handlesAudio()  { return true; }
     
 protected:
 

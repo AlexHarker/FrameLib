@@ -3,7 +3,7 @@
 #define FRAMELIB_MULTICHANNEL_H
 
 #include "FrameLib_Context.h"
-#include "FrameLib_Block.h"
+#include "FrameLib_Object.h"
 #include "FrameLib_DSP.h"
 #include "FrameLib_ConnectionQueue.h"
 #include <algorithm>
@@ -13,7 +13,7 @@
 
 // This abstract class allows mulitchannel connnections and the means to update the network according to the number of channels
 
-class FrameLib_MultiChannel : private FrameLib_ConnectionQueue::Item
+class FrameLib_MultiChannel : public FrameLib_Object<FrameLib_MultiChannel>, private FrameLib_ConnectionQueue::Item
 {
     
 protected:
@@ -50,11 +50,11 @@ public:
     
     // Constructors
 
-    FrameLib_MultiChannel(FrameLib_Context context, unsigned long nIns, unsigned long nOuts)
-    : mQueue(context)
+    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts)
+    : FrameLib_Object(type), mQueue(context)
     { setIO(nIns, nOuts); }
     
-    FrameLib_MultiChannel(FrameLib_Context context) : mQueue(context) {}
+    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context) : FrameLib_Object(type), mQueue(context) {}
     
     // Destructor
     
@@ -64,13 +64,6 @@ public:
         clearConnections();
     }
     
-    // IO Queries
-
-    unsigned long getNumIns()           { return mInputs.size(); }
-    unsigned long getNumOuts()          { return mOutputs.size(); }
-    unsigned long getNumAudioIns()      { return mNumAudioIns; }
-    unsigned long getNumAudioOuts()     { return mNumAudioOuts; }
-
     // Set Fixed Inputs
     
     virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) {};
@@ -86,10 +79,10 @@ public:
     
     // N.B. - No sanity checks here to maximise speed and help debugging (better for it to crash if a mistake is made)
     
-    void deleteConnection(unsigned long inIdx);
-    void addConnection(FrameLib_MultiChannel *object, unsigned long outIdx, unsigned long inIdx);
-    void clearConnections();
-    bool isConnected(unsigned long inIdx);
+    virtual void deleteConnection(unsigned long inIdx);
+    virtual void addConnection(FrameLib_MultiChannel *object, unsigned long outIdx, unsigned long inIdx);
+    virtual void clearConnections();
+    virtual bool isConnected(unsigned long inIdx);
     
 protected:
     
@@ -97,12 +90,11 @@ protected:
     
     // Call this in derived class constructors if the IO size is not static
     
-    void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioIns = 0, unsigned long nAudioOuts = 0)
+    void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0)
     {
-        mInputs.resize(nIns);
-        mOutputs.resize(nOuts);
-        mNumAudioIns = nAudioIns;
-        mNumAudioOuts = nAudioOuts;
+        FrameLib_Object::setIO(nIns, nOuts, nAudioChans);
+        mInputs.resize(getNumIns());
+        mOutputs.resize(getNumOuts());
     }
     
     // Query Input Channels
@@ -145,11 +137,6 @@ private:
     // Queue
     
     FrameLib_Context::ConnectionQueue mQueue;
-    
-    // Audio IO Counts
-    
-    unsigned long mNumAudioIns;
-    unsigned long mNumAudioOuts;
     
     // Connection Info
     
@@ -205,7 +192,7 @@ template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
 public:
     
     FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-    : FrameLib_MultiChannel(context), mContext(context), mAllocator(context), mSerialisedParameters(serialisedParameters->size()), mOwner(owner)
+    : FrameLib_MultiChannel(T::getType(), context), mContext(context), mAllocator(context), mSerialisedParameters(serialisedParameters->size()), mOwner(owner)
     {
         // Make first block
         
@@ -217,7 +204,7 @@ public:
         
         // Set up IO / fixed inputs / audio temps
         
-        setIO(mBlocks[0]->getNumIns(), mBlocks[0]->getNumOuts(), mBlocks[0]->getNumAudioIns(), mBlocks[0]->getNumAudioOuts());
+        setIO(mBlocks[0]->getNumIns(), mBlocks[0]->getNumOuts(), mBlocks[0]->getNumAudioChans());
         mFixedInputs.resize(getNumIns());
         mAudioTemps.resize(getNumAudioOuts());
         
