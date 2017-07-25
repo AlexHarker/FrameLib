@@ -61,6 +61,13 @@ public:
     virtual void clearConnections() = 0;
     virtual bool isConnected(unsigned long inIdx) = 0;
 
+    // Info
+
+    virtual const char *objectInfo(bool verbose = false)                        { return "No info available";  }
+    virtual const char *inputInfo(unsigned long idx, bool verbose = false)      { return "No info available";  }
+    virtual const char *outputInfo(unsigned long idx, bool verbose = false)     { return "No info available";  }
+    virtual const char *audioInfo(unsigned long idx, bool verbose = false)      { return "No info available";  }
+    
 private:
 
     const ObjectType mType;

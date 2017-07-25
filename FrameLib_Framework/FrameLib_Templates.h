@@ -4,6 +4,7 @@
 #define FRAMELIB_TEMPLATES_H
 
 #include "FrameLib_DSP.h"
+#include "FrameLib_Info.h"
 #include <functional>
 
 // OPT - vectorise where appropriate
@@ -36,6 +37,10 @@ public:
     FrameLib_UnaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {}
     
+    const char *objectInfo(bool verbose)                        { return "Applies a unary operator to each value of a frame."; }
+    const char *inputInfo(unsigned long idx, bool verbose)      { return "Input"; }
+    const char *outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
+
 protected:
     
     void process()
@@ -66,7 +71,7 @@ public:
 
 // Binary Operator
 
-template <typename Op> class FrameLib_BinaryOp : public FrameLib_Processor
+template <typename Op> class FrameLib_BinaryOp : public FrameLib_Processor, private FrameLib_Info
 {
     enum ParameterList {kMode, kTriggers, kPadding};
     enum Modes {kWrap, kShrink, kPadIn, kPadOut};
@@ -101,6 +106,15 @@ public:
         if (triggers == kRight)
             inputMode(0, false, false, false);
     }
+    
+    const char *objectInfo(bool verbose)
+    {
+        return getInfo("Applies a binary operator  to two input frames, one value at a time: When frames mismatch in size the result depends on the setting of the mode parameter. Either or both inputs may be set to trigger output.",
+                       "Applies a binary operator to two input frames, one value at a time.", verbose);
+    }
+    
+    const char *inputInfo(unsigned long idx, bool verbose)      { return idx ? "Right Operand" : "Left Operand"; }
+    const char *outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
     
 protected:
     
@@ -242,7 +256,7 @@ public:
 
 // Vector
 
-template <double func(double *, unsigned long) > class FrameLib_Vector : public FrameLib_Processor
+template <double func(double *, unsigned long) > class FrameLib_Vector : public FrameLib_Processor, private FrameLib_Info
 {
     
 public:
@@ -251,6 +265,15 @@ public:
     {
     }
     
+    const char *objectInfo(bool verbose)
+    {
+        return getInfo("Applies a vector operation across an entire frame: The result is a single value.",
+                       "Applies a vector operation across an entire frame.", verbose);
+    }
+    
+    const char *inputInfo(unsigned long idx, bool verbose)      { return "Input"; }
+    const char *outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
+
 protected:
     
     void process()

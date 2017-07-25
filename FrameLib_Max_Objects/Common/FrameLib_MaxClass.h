@@ -465,6 +465,7 @@ public:
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::assist>(c, "assist");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::help>(c, "help");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
@@ -539,22 +540,28 @@ public:
         if (m == ASSIST_OUTLET)
         {
             if (a == 0 && T::handlesAudio())
-                 sprintf(s,"(signal) Audio Synchronisation Output");
+                 sprintf(s,"(signal) Audio Synchronisation Output" );
             else if (a < getNumAudioOuts())
-                sprintf(s,"(signal) Signal Output %ld", a);
+                sprintf(s,"(signal) %s", mObject->audioInfo(a - 1));
             else
-                sprintf(s,"(frame) Frame Output %ld", a - getNumAudioOuts() + 1);
+                sprintf(s,"(frame) %s", mObject->outputInfo(a - getNumAudioOuts()));
         }
         else
         {
             if (a == 0 && T::handlesAudio())
                 sprintf(s,"(signal) Audio Synchronisation Input");
             else if (a < getNumAudioIns())
-                sprintf(s,"(signal) Signal Input %ld", a);
+                sprintf(s,"(signal) %s", mObject->audioInfo(a - 1));
             else
-                sprintf(s,"(frame) Frame Input %ld", a - getNumAudioIns() + 1);
+                sprintf(s,"(frame) %s", mObject->inputInfo(a - getNumAudioIns()));
         }
     }
+    
+    void help(t_symbol *sym, long ac, t_atom *av)
+    {
+        object_post(mUserObject, mObject->objectInfo(true));
+    }
+
 
     // IO Helpers
     

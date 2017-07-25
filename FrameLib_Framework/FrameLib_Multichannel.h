@@ -6,6 +6,7 @@
 #include "FrameLib_Object.h"
 #include "FrameLib_DSP.h"
 #include "FrameLib_ConnectionQueue.h"
+#include "FrameLib_Info.h"
 #include <algorithm>
 #include <vector>
 
@@ -148,7 +149,7 @@ private:
 
 // FrameLib_Pack - Pack Multichannel Signals
 
-class FrameLib_Pack : public FrameLib_MultiChannel
+class FrameLib_Pack : public FrameLib_MultiChannel, private FrameLib_Info
 {
     enum AtrributeList {kInputs};
 
@@ -156,10 +157,16 @@ public:
     
     FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
+    // Info
+    
+    virtual const char *objectInfo(bool verbose);
+    virtual const char *inputInfo(unsigned long idx, bool verbose);
+    virtual const char *outputInfo(unsigned long idx, bool verbose);
+    
 private:
     
     virtual bool inputUpdate();
-    
+
     FrameLib_Parameters mParameters;
 };
 
@@ -167,7 +174,7 @@ private:
 
 // FrameLib_Unpack - Unpack Multichannel Signals
 
-class FrameLib_Unpack : public FrameLib_MultiChannel
+class FrameLib_Unpack : public FrameLib_MultiChannel, private FrameLib_Info
 {
     enum AtrributeList {kOutputs};
     
@@ -175,6 +182,12 @@ public:
 
     FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
+    // Info
+    
+    virtual const char *objectInfo(bool verbose);
+    virtual const char *inputInfo(unsigned long idx, bool verbose);
+    virtual const char *outputInfo(unsigned long idx, bool verbose);
+
 private:
     
     virtual bool inputUpdate();
@@ -287,6 +300,11 @@ public:
     // Handles Audio
     
     static bool handlesAudio() { return T::handlesAudio(); }
+    
+    virtual const char *objectInfo(bool verbose)                    { return mBlocks[0]->objectInfo(verbose); }
+    virtual const char *inputInfo(unsigned long idx, bool verbose)  { return mBlocks[0]->inputInfo(idx, verbose); }
+    virtual const char *outputInfo(unsigned long idx, bool verbose) { return mBlocks[0]->outputInfo(idx, verbose); }
+    virtual const char *audioInfo(unsigned long idx, bool verbose)  { return mBlocks[0]->audioInfo(idx, verbose); }
     
 private:
 
