@@ -1803,6 +1803,7 @@
 		B8A4757019C9D9E30043DC65 /* FrameLib_Convolve.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Convolve.h; sourceTree = "<group>"; };
 		B8A4757219C9DD9F0043DC65 /* fl.convolve~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.convolve~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8A4758319C9DDCD0043DC65 /* fl.convolve~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.convolve~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8A54DB91F277E1700618324 /* FrameLib_Info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Info.h; sourceTree = "<group>"; };
 		B8AD883219C7C2B500FFA238 /* AH_Atomic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AH_Atomic.h; sourceTree = "<group>"; };
 		B8AD883319C7C2B500FFA238 /* AH_Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AH_Types.h; sourceTree = "<group>"; };
 		B8AD883419C7C2B500FFA238 /* AH_VectorOps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AH_VectorOps.h; sourceTree = "<group>"; };
@@ -3108,6 +3109,7 @@
 				B8DF3FA2198AABAD00CA8BB6 /* FrameLib_Parameters.h */,
 				B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */,
 				B8E058AE198DA34D00721359 /* FrameLib_Object.h */,
+				B8A54DB91F277E1700618324 /* FrameLib_Info.h */,
 				B8075B131979173E00EB3A35 /* FrameLib_DSP.h */,
 				B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */,
 				B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */,

@@ -93,7 +93,7 @@ public:
         
         mParameters.set(serialisedParameters);
         
-        inputMode(1, TRUE, FALSE, FALSE);
+        inputMode(1, true, false, false, kFrameTagged);
     }
     
 protected:
@@ -111,7 +111,7 @@ protected:
         ZeroDelayFeedbackSVF filter;
         Modes mode = (Modes) mParameters.getValue(kMode);
         
-        bool staticParams = TRUE;
+        bool staticParams = true;
         
         double freq = mParameters.getValue(kFreq);
         double reson = mParameters.getValue(kReson);

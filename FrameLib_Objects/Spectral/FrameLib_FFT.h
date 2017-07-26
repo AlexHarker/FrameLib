@@ -15,9 +15,10 @@ public:
 	
     FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 2)
     {
-        mParameters.addDouble(kMaxLength, "maxlength", 16384, 0);
-        mParameters.setMin(0.0);
-        
+        mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
+        mParameters.setMin(0);
+        mParameters.setInstantiation();
+
         mParameters.set(serialisedParameters);
         
         unsigned long maxFFTSizeLog2 = log2(mParameters.getInt(kMaxLength));

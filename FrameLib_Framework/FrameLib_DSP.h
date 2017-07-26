@@ -26,13 +26,7 @@ class FrameLib_DSP : public FrameLib_Block
     // Type definition for concision / Queue access
 
     typedef FrameLib_Parameters::Serial Serial;
-    friend class FrameLib_DSPQueue;
-
-public:
-    
-    // Enums and Structs (IO / scheduling)
-
-    enum OutputMode { kOutputNormal, kOutputTagged };
+    friend class FrameLib_DSPQueue;   
     
 protected:
     
@@ -53,7 +47,7 @@ private:
     
     struct Input
     {
-        Input() : mObject(NULL), mIndex(0), mSize(0), mFixedInput(NULL), mUpdate(false), mTrigger(true), mSwitchable(false) {}
+        Input() : mObject(NULL), mIndex(0), mSize(0), mFixedInput(NULL), mType(kFrameNormal), mUpdate(false), mTrigger(true), mSwitchable(false) {}
         
         void setInput()
         {
@@ -78,6 +72,8 @@ private:
         double *mFixedInput;
         
         // Flags
+
+        FrameType mType;
         
         bool mUpdate;
         bool mTrigger;
@@ -86,11 +82,11 @@ private:
    
     struct Output
     {
-        Output() : mMemory(NULL), mMode(kOutputNormal), mCurrentSize(0), mRequestedSize(0), mPointerOffset(0) {}
+        Output() : mMemory(NULL), mType(kFrameNormal), mCurrentSize(0), mRequestedSize(0), mPointerOffset(0) {}
         
         void *mMemory;
         
-        OutputMode mMode;
+        FrameType mType;
         
         size_t mCurrentSize;
         size_t mRequestedSize;
@@ -122,6 +118,13 @@ public:
     virtual void clearConnections();
     virtual bool isConnected(unsigned long inIdx);
     
+    // Info (individual objects should override other methods to provide info)
+    
+    virtual const FrameLib_Parameters *getParameters() { return &mParameters;  }
+
+    virtual FrameType inputType(unsigned long idx)  { return mInputs[idx].mType; }
+    virtual FrameType outputType(unsigned long idx) { return mOutputs[idx].mType; }
+
 protected:
         
     // Setup and IO Modes
@@ -129,8 +132,8 @@ protected:
     // Call these from your constructor only (unsafe elsewhere)
    
     void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0);
-    void inputMode(unsigned long idx, bool update, bool trigger, bool switchable);
-    void outputMode(unsigned long idx, OutputMode mode);
+    void inputMode(unsigned long idx, bool update, bool trigger, bool switchable, FrameType type = kFrameNormal);
+    void outputMode(unsigned long idx, FrameType type);
     
     // You should only call this from your update method (it is unsafe anywhere else)
     

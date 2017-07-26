@@ -13,10 +13,12 @@ public:
 	
     FrameLib_Multitaper(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mParameters.addDouble(kMaxLength, "maxlength", 16384, 0);
-        mParameters.setMin(0.0);
-        mParameters.addDouble(kNumTapers, "numtapers", 3, 1);
-        mParameters.setMin(1.0);
+        mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
+        mParameters.setMin(0);
+        mParameters.setInstantiation();
+
+        mParameters.addInt(kNumTapers, "numtapers", 3, 1);
+        mParameters.setMin(1);
         
         mParameters.set(serialisedParameters);
         

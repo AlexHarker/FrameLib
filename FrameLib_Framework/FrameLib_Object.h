@@ -17,7 +17,7 @@ public:
      
     // Constructor / Destructor
     
-    FrameLib_Object(ObjectType type) : mType(type) {}
+    FrameLib_Object(ObjectType type) : mType(type), mNumIns(0), mNumOuts(0), mNumAudioChans(0) {}
     virtual ~FrameLib_Object() {}
    
     // Object Type
@@ -61,6 +61,20 @@ public:
     virtual void clearConnections() = 0;
     virtual bool isConnected(unsigned long inIdx) = 0;
 
+    // Info
+
+    virtual const char *objectInfo(bool verbose = false)                        { return "No info available";  }
+    virtual const char *inputInfo(unsigned long idx, bool verbose = false)      { return "No info available";  }
+    virtual const char *outputInfo(unsigned long idx, bool verbose = false)     { return "No info available";  }
+    virtual const char *audioInfo(unsigned long idx, bool verbose = false)      { return "No info available";  }
+   
+    virtual FrameType inputType(unsigned long idx) = 0;
+    virtual FrameType outputType(unsigned long idx) = 0;
+    
+    // N.B. Parameter objects can be queried directly for info
+    
+    virtual const FrameLib_Parameters *getParameters()                          { return NULL;  }
+    
 private:
 
     const ObjectType mType;

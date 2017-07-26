@@ -41,7 +41,7 @@ public:
         mParameters.addDouble(kSize, "size", 0, 1);
         mParameters.setMin(0.0);
         
-        mParameters.addBool(kSqrt, "sqrt", FALSE, 2);
+        mParameters.addBool(kSqrt, "sqrt", false, 2);
         
         mParameters.addEnum(kCompensation, "compensation");
         mParameters.addEnumItem(kOff, "off");
@@ -60,11 +60,11 @@ public:
         mWindow = NULL;
         mWindowType = kHann;
         mSize = 0;
-        mSqrtWindow = FALSE;
+        mSqrtWindow = false;
         mLinearGain = 0.0;
         mPowerGain = 0.0;
         
-        inputMode(1, TRUE, FALSE, FALSE);
+        inputMode(1, true, false, false, kFrameTagged);
     }
     
 	~FrameLib_Window()
@@ -161,7 +161,7 @@ private:
         
         mWindow[windowSize + 1] = 0.0;
         
-        if (sqrtWindow == TRUE)
+        if (sqrtWindow == true)
         {
             for (unsigned long i = 0; i <= windowSize; i++)
                 mWindow[i] = sqrt(mWindow[i]);

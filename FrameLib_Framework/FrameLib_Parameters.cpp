@@ -187,9 +187,25 @@ bool FrameLib_Parameters::AutoSerial::checkSize(size_t writeSize)
 
 // ************************************************************************************** //
 
+bool checkMin(double min)
+{
+    return min == -std::numeric_limits<double>::infinity();
+}
+
+bool checkMax(double max)
+{
+    return max == std::numeric_limits<double>::infinity();
+}
+
+bool checkRange(double min, double max)
+{
+    return checkMin(min) && checkMax(max);
+}
+
 // Parameter Abstract Class
 
-FrameLib_Parameters::Parameter::Parameter(const char *name, long argumentIdx) : mChanged(false)
+FrameLib_Parameters::Parameter::Parameter(const char *name, long argumentIdx)
+: mChanged(false), mFlags(0), mDefault(0.0), mMin(-std::numeric_limits<double>::infinity()), mMax(std::numeric_limits<double>::infinity())
 {
     mName = name;
     mArgumentIdx = argumentIdx;
@@ -202,17 +218,23 @@ void FrameLib_Parameters::Parameter::addEnumItem(const char *str)
 
 void FrameLib_Parameters::Parameter::setMin(double min)
 {
-    assert(0 && "parameter type does not support minimum values");
+    assert(checkRange(mMin, mMax) && "parameter range has already been set");
+    mMin = min;
+    mMax = std::numeric_limits<double>::infinity();
 }
 
 void FrameLib_Parameters::Parameter::setMax(double max)
 {
-    assert(0 && "parameter type does not support maximum values");
+    assert(checkRange(mMin, mMax) && "parameter range has already been set");
+    mMin = -std::numeric_limits<double>::infinity();
+    mMax = max;
 }
 
 void FrameLib_Parameters::Parameter::setClip(double min, double max)
 {
-    assert(0 && "parameter type does not support clipping values");
+    assert(checkRange(mMin, mMax) && "parameter range has already been set");
+    mMin = min;
+    mMax = max;
 }
 
 void FrameLib_Parameters::Parameter::set(double *values, size_t size)
@@ -223,10 +245,20 @@ void FrameLib_Parameters::Parameter::set(double *values, size_t size)
         clear();
 }
 
-void FrameLib_Parameters::Parameter::getRange(double *min, double *max)
+FrameLib_Parameters::ClipMode FrameLib_Parameters::Parameter::getClipMode() const
 {
-    *min = 0;
-    *max = 0;
+    bool maxCheck = checkMax(mMax);
+    
+    if (checkMin(mMin))
+        return maxCheck ? kNone : kMax;
+    else
+        return maxCheck ? kMin : kClip;
+}
+
+void FrameLib_Parameters::Parameter::getRange(double *min, double *max) const
+{
+    *min = mMin;
+    *max = mMax;
 }
 
 const char *FrameLib_Parameters::Parameter::getItemString(unsigned long item) const
@@ -249,31 +281,21 @@ bool FrameLib_Parameters::Parameter::changed()
 
 // ************************************************************************************** //
 
-// Bool Parameter Class
-
-void FrameLib_Parameters::Bool::set(double value)
-{
-    mValue = value ? true : false;
-    mChanged = true;
-}
-
-void FrameLib_Parameters::Bool::set(double *values, size_t size)
-{
-    if (size)
-        Bool::set(*values);
-    else
-        Bool::clear();
-}
-
-void FrameLib_Parameters::Bool::getRange(double *min, double *max)
-{
-    *min = false;
-    *max = true;
-}
-
-// ************************************************************************************** //
-
 // Enum Parameter Class
+
+FrameLib_Parameters::Enum::Enum(const char *name, long argumentIdx) : Parameter(name, argumentIdx), mValue(0)
+{
+    mMin = 0.0;
+    mMax = -1.0;
+}
+
+// Setters
+
+void FrameLib_Parameters::Enum::addEnumItem(const char *str)
+{
+    mItems.push_back(str);
+    mMax += 1.0;
+}
 
 void FrameLib_Parameters::Enum::set(double value)
 {
@@ -302,61 +324,33 @@ void FrameLib_Parameters::Enum::set(double *values, size_t size)
         Enum::clear();
 }
 
-void FrameLib_Parameters::Enum::getRange(double *min, double *max)
-{
-    *min = 0;
-    *max = mItems.size() - 1;
-}
-
 // ************************************************************************************** //
 
-// Double Parameter Class
+// Value Parameter Class
 
-void FrameLib_Parameters::Double::set(double value)
+void FrameLib_Parameters::Value::set(double value)
 {
     mValue = (value < mMin) ? mMin : ((value > mMax) ? mMax : value);
     mChanged = true;
 }
 
-void FrameLib_Parameters::Double::set(double *values, size_t size)
+void FrameLib_Parameters::Value::set(double *values, size_t size)
 {
     if (size)
-        Double::set(*values);
+        Value::set(*values);
     else
-        Double::clear();
-}
-
-void FrameLib_Parameters::Double::getRange(double *min, double *max)
-{
-    *min = mMin;
-    *max = mMax;
-}
-
-void FrameLib_Parameters::Double::setMin(double min)
-{
-    mMin = min;
-    mMax = std::numeric_limits<double>::infinity();
-}
-
-void FrameLib_Parameters::Double::setMax(double max)
-{
-    mMin = -std::numeric_limits<double>::infinity();
-    mMax = max;
-}
-
-void FrameLib_Parameters::Double::setClip(double min, double max)
-{
-    mMin = min;
-    mMax = max;
+        Value::clear();
 }
 
 // ************************************************************************************** //
 
 // String Parameter Class
 
-FrameLib_Parameters::String::String(const char *name, const char *str, long argumentIdx) : Parameter(name, argumentIdx)
+FrameLib_Parameters::String::String(const char *name, long argumentIdx) : Parameter(name, argumentIdx)
 {
-    String::set(str);
+    setNonNumeric();
+    String::clear();
+    mMin = mMax = 0.0;
 }
 
 void FrameLib_Parameters::String::set(const char *str)
@@ -379,8 +373,9 @@ void FrameLib_Parameters::String::set(const char *str)
 // Array Parameter Class
 
 FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double defaultValue, size_t size)
-: Parameter(name, argumentIdx), mMode(kNone), mDefaultValue(defaultValue), mSize(size), mVariableSize(false)
+: Parameter(name, argumentIdx), mSize(size), mVariableSize(false)
 {
+    mDefault = defaultValue;
     mItems.resize(size);
     
     for (size_t i = 0; i < mSize; i++)
@@ -388,8 +383,9 @@ FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double def
 }
 
 FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double defaultValue, size_t maxSize, size_t size)
-: Parameter(name, argumentIdx), mMode(kNone), mDefaultValue(defaultValue), mVariableSize(true)
+: Parameter(name, argumentIdx), mVariableSize(true)
 {
+    mDefault = defaultValue;
     mItems.resize(maxSize);
     
     mSize = size < maxSize ? size : maxSize;
@@ -398,30 +394,11 @@ FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double def
         mItems[i] = defaultValue;
 }
 
-void FrameLib_Parameters::Array::setMin(double min)
-{
-    mMode = kMin;
-    mMin = min;
-}
-
-void FrameLib_Parameters::Array::setMax(double max)
-{
-    mMode = kMax;
-    mMax = max;
-}
-
-void FrameLib_Parameters::Array::setClip(double min, double max)
-{
-    mMode = kClip;
-    mMin = min;
-    mMax = max;
-}
-
 void FrameLib_Parameters::Array::set(double *values, size_t size)
 {
     size = size > mItems.size() ? mItems.size() : size;
     
-    switch (mMode)
+    switch (getClipMode())
     {
         case kNone:
             for (size_t i = 0; i < size; i++)
@@ -443,15 +420,9 @@ void FrameLib_Parameters::Array::set(double *values, size_t size)
     
     if (!mVariableSize)
         for (size_t i = size; i < mItems.size(); i++)
-            mItems[i] = mDefaultValue;
+            mItems[i] = mDefault;
     else
         mSize = size;
     
     mChanged = true;
-}
-
-void FrameLib_Parameters::Array::getRange(double *min, double *max)
-{
-    *min = mMin;
-    *max = mMax;
 }

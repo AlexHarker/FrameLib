@@ -4,7 +4,7 @@
 
 void sortAscending (double *data, unsigned long size)
 {
-    bool swaps = TRUE;
+    bool swaps = true;
     double temp;
     unsigned long gap = size;
 	unsigned long i;
@@ -19,14 +19,14 @@ void sortAscending (double *data, unsigned long size)
 			if (gap < 1) gap = 1;
 		}
 		
-		for (i = 0, swaps = FALSE; i + gap < size; i++)
+		for (i = 0, swaps = false; i + gap < size; i++)
 		{
 			if (data[i] > data[i + gap])
 			{
 				temp = data[i];
 				data[i] = data[i + gap];
 				data[i + gap] = temp;
-				swaps = TRUE;
+				swaps = true;
 			}
 		}
 	}
@@ -35,7 +35,7 @@ void sortAscending (double *data, unsigned long size)
 void sortDescending (double *data, unsigned long size)
 {
 	double temp;
-	bool swaps = TRUE;
+	bool swaps = true;
     unsigned long gap = size;
 	unsigned long i;
 	
@@ -49,14 +49,14 @@ void sortDescending (double *data, unsigned long size)
 			if (gap < 1) gap = 1;
 		}
 		
-		for (i = 0, swaps = FALSE; i + gap < size; i++)
+		for (i = 0, swaps = false; i + gap < size; i++)
 		{
 			if (data[i] < data[i + gap])
 			{
 				temp = data[i];
 				data[i] = data[i + gap];
 				data[i + gap] = temp;
-				swaps = TRUE;
+				swaps = true;
 			}
 		}
 	}
@@ -81,7 +81,7 @@ void sortDescending (double *output, double *input, unsigned long size)
 
 void sortAscending (unsigned long *indices, double *data, unsigned long size)
 {
-    bool swaps = TRUE;
+    bool swaps = true;
     unsigned long gap = size;
     unsigned long gapIndex;
     unsigned long index;
@@ -100,7 +100,7 @@ void sortAscending (unsigned long *indices, double *data, unsigned long size)
             if (gap < 1) gap = 1;
         }
         
-        for (i = 0, swaps = FALSE; i + gap < size; i++)
+        for (i = 0, swaps = false; i + gap < size; i++)
         {
             index = indices[i];
             gapIndex = indices[i + gap];
@@ -108,7 +108,7 @@ void sortAscending (unsigned long *indices, double *data, unsigned long size)
             {
                 indices[i] = gapIndex;
                 indices[i + gap] = index;
-                swaps = TRUE;
+                swaps = true;
             }
         }
     }
@@ -116,7 +116,7 @@ void sortAscending (unsigned long *indices, double *data, unsigned long size)
 
 void sortDescending (unsigned long *indices, double *data, unsigned long size)
 {
-    bool swaps = TRUE;
+    bool swaps = true;
     unsigned long gap = size;
     unsigned long gapIndex;
     unsigned long index;
@@ -135,7 +135,7 @@ void sortDescending (unsigned long *indices, double *data, unsigned long size)
             if (gap < 1) gap = 1;
         }
         
-        for (i = 0, swaps = FALSE; i + gap < size; i++)
+        for (i = 0, swaps = false; i + gap < size; i++)
         {
             index = indices[i];
             gapIndex = indices[i + gap];
@@ -143,7 +143,7 @@ void sortDescending (unsigned long *indices, double *data, unsigned long size)
             {
                 indices[i] = gapIndex;
                 indices[i + gap] = index;
-                swaps = TRUE;
+                swaps = true;
             }
         }
     }

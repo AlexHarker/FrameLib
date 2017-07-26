@@ -23,11 +23,13 @@ public:
     {
         mParameters.addDouble(kLength, "length", 8000, 0);
         mParameters.setMin(0.0);
+        mParameters.setInstantiation();
         mParameters.addEnum(kUnits, "units", 1);
         mParameters.addEnumItem(kMS, "ms");
         mParameters.addEnumItem(kSeconds, "seconds");
         mParameters.addEnumItem(kSamples, "samples");
-        
+        mParameters.setInstantiation();
+
         mParameters.set(serialisedParameters);
         
         mBuffer = NULL;

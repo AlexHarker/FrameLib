@@ -14,11 +14,13 @@ public:
 	
     FrameLib_Join(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context)
     {
-        mParameters.addDouble(kNumIns, "numins", 2.0, 0);
-        mParameters.setClip(2.0, 32.0);
-        
-        mParameters.addArray(kTriggers, "triggers", 1.0, 32);
-        
+        mParameters.addInt(kNumIns, "numins", 2, 0);
+        mParameters.setClip(2, 32);
+        mParameters.setInstantiation();
+
+        mParameters.addBoolArray(kTriggers, "triggers", 1.0, 32);
+        mParameters.setInstantiation();
+
         mParameters.set(serialisedParameters);
         
         setIO(mParameters.getInt(kNumIns), 1);
@@ -28,7 +30,7 @@ public:
         // Set up triggers
         
         for (unsigned long i = 0; i < getNumIns(); i++)
-            inputMode(i, FALSE, triggers[i], FALSE);
+            inputMode(i, false, triggers[i], false);
     }
     
 protected:

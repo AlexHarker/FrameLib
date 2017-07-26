@@ -12,26 +12,28 @@ public:
     
     FrameLib_SetParam (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context)
     {
-        mParameters.addDouble(kNumIns, "numins", 1, 0);
-        mParameters.setClip(1.0, 32.0);
+        mParameters.addInt(kNumIns, "numins", 1, 0);
+        mParameters.setClip(1, 32);
+        mParameters.setInstantiation();
         
-        mParameters.addString(kNames + 0, "name1", "", 1);
-        mParameters.addString(kNames + 1, "name2", "", 2);
-        mParameters.addString(kNames + 2, "name3", "", 3);
-        mParameters.addString(kNames + 3, "name4", "", 4);
-        mParameters.addString(kNames + 4, "name5", "", 5);
-        mParameters.addString(kNames + 5, "name6", "", 6);
-        mParameters.addString(kNames + 6, "name7", "", 7);
-        mParameters.addString(kNames + 7, "name8", "", 8);
-        mParameters.addString(kNames + 8, "name9", "", 9);
-        mParameters.addString(kNames + 9, "name10", "", 10);
+        mParameters.addString(kNames + 0, "name1", 1);
+        mParameters.addString(kNames + 1, "name2", 2);
+        mParameters.addString(kNames + 2, "name3", 3);
+        mParameters.addString(kNames + 3, "name4", 4);
+        mParameters.addString(kNames + 4, "name5", 5);
+        mParameters.addString(kNames + 5, "name6", 6);
+        mParameters.addString(kNames + 6, "name7", 7);
+        mParameters.addString(kNames + 7, "name8", 8);
+        mParameters.addString(kNames + 8, "name9", 9);
+        mParameters.addString(kNames + 9, "name10", 10);
         
         mParameters.set(serialisedParameters);
         mNumIns = mParameters.getInt(kNumIns);
 
         setIO(mNumIns + 1, 1);
         
-        outputMode(0, kOutputTagged);
+        inputMode(mNumIns, false, true, false, kFrameTagged);
+        outputMode(0, kFrameTagged);
     }
     
 protected:

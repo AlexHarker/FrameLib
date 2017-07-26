@@ -18,22 +18,20 @@ DONE	- Safety (no direct access of other objects / thread safety / no symbol bin
 DONE	- Better connection issue reporting
 PROGRESS- Review entry of inputs and parameters
 
+PROGRESS 5 - Assist/Help Info (Inputs and Parameters)
 
-5 - READ/WRITE Timing ISSUES!!!	
+6 - READ/WRITE Timing ISSUES!!!	
 	- (multi-chan expansion/ease of use/chance of mistakes/multiple dependencies)
-
-6 - Finalise Memory Management
+7 - Finalise Memory Management
 DONE		- Do variable memory management (underlying engine)
 		- Review memory management
 
-PROGRESS 7 - Review parameter inputs (how to handle, including max wrapper)
+8 - Review parameter inputs (how to handle, including max wrapper)
 
-8 - Multi threading work (Attributes / Connection)
+9 - Multi threading work (Attributes / Connection)
 DONE		DSP
 PROGRESS	DSP Queue
 TEMP		Memory
-
-9 - Assist/Help Info (Inputs and Parameters)
 
 10 - Error Reporting (Realtime and push to wrapper)
 

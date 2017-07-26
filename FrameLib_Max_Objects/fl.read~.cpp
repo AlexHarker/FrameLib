@@ -18,10 +18,10 @@ public:
     
     FrameLib_MaxRead (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mParameters.addString(kBuffer, "buffer", "", 0);
+        mParameters.addString(kBuffer, "buffer", 0);
         
-        mParameters.addDouble(kChannel, "chan", 0.0, 1);
-        mParameters.setClip(1.0, 4.0);
+        mParameters.addInt(kChannel, "chan", 0, 1);
+        mParameters.setClip(1, 4);
         
         mParameters.addEnum(kMode, "mode");
         mParameters.addEnumItem(kHermite, "hermite");
@@ -41,12 +41,12 @@ public:
         mMode = (Modes) mParameters.getInt(kMode);
         mUnits = (Units) mParameters.getInt(kUnits);
         
-        assert(FALSE == 0 && "False does not equal zero");
+        assert(false == 0 && "False does not equal zero");
         
         if (!sInit)
         {
             ibuffer_init();
-            sInit = TRUE;
+            sInit = true;
         }
     }
     
@@ -65,7 +65,7 @@ protected:
         long chan, nChans, format;
         size_t tempMemSize;
         
-        bool interp = FALSE;
+        bool interp = false;
         
         double *input = getInput(0, &size);
         
@@ -141,7 +141,7 @@ protected:
                 offsets[i] = offset;
                 fracts[i] = fract;
 
-                // N.B. - Assume that FALSE is zero
+                // N.B. - Assume that false is zero
                 
                 interp |= (fract != 0.0);
             }
@@ -196,7 +196,7 @@ private:
     Units mUnits;
 };
 
-bool FrameLib_MaxRead::sInit = FALSE;
+bool FrameLib_MaxRead::sInit = false;
 #include "FrameLib_MaxClass.h"
 
 extern "C" int C74_EXPORT main(void)
