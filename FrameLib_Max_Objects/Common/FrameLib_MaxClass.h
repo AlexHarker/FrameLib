@@ -686,7 +686,7 @@ public:
                             
                         case FrameLib_Parameters::kEnum:
                             for (long j = 0; j <= params->getMax(i); j++)
-                                object_post(mUserObject, "   [%6ld] - %s", j, params->getItemString(i, j));
+                                object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j));
                             break;
                             
                         default:
@@ -701,8 +701,8 @@ public:
                                 switch (mode)
                                 {
                                     case FrameLib_Parameters::kNone:    break;
-                                    case FrameLib_Parameters::kMin:     object_post(mUserObject, "- min value: %lg", min);             break;
-                                    case FrameLib_Parameters::kMax:     object_post(mUserObject, "- max value: %lg", max);             break;
+                                    case FrameLib_Parameters::kMin:     object_post(mUserObject, "- min value: %lg", min);          break;
+                                    case FrameLib_Parameters::kMax:     object_post(mUserObject, "- max value: %lg", max);          break;
                                     case FrameLib_Parameters::kClip:    object_post(mUserObject, "- clipped: %lg-%lg", min, max);   break;
                                 }
                             }
