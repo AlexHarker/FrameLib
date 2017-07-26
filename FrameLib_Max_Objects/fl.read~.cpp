@@ -18,7 +18,7 @@ public:
     
     FrameLib_MaxRead (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mParameters.addString(kBuffer, "buffer", "", 0);
+        mParameters.addString(kBuffer, "buffer", 0);
         
         mParameters.addDouble(kChannel, "chan", 0.0, 1);
         mParameters.setClip(1.0, 4.0);

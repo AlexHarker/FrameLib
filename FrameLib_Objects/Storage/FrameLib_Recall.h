@@ -14,7 +14,7 @@ public:
     
     FrameLib_Recall(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
     {
-        mParameters.addString(kName, "name", "", 0);
+        mParameters.addString(kName, "name", 0);
         
         mParameters.set(serialisedParameters);
         

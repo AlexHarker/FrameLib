@@ -562,19 +562,24 @@ public:
         
         enum HelpFlags { kHelpDesciption = 0x01, kHelpInputs = 0x02, kHelpOutputs = 0x04, kParameters = 0x08 };
         
-        long flags = kHelpDesciption;
+        long flags = 0;
         bool verbose = true;
         
-        if (ac)
+        while (ac--)
         {
-            t_symbol *type = atom_getsym(av);
+            t_symbol *type = atom_getsym(av++);
             
-            if (type == gensym("inputs"))               flags = kHelpInputs;
-            else if (type == gensym("outputs"))         flags = kHelpOutputs;
-            else if (type == gensym("io"))              flags = kHelpInputs | kHelpOutputs;
-            else if (type == gensym("parameters"))      flags = kParameters;
-            else if (type == gensym("ref"))             flags = kHelpDesciption | kHelpInputs | kHelpOutputs | kParameters;
+            if (type == gensym("description"))          flags |= kHelpDesciption;
+            else if (type == gensym("inputs"))          flags |= kHelpInputs;
+            else if (type == gensym("outputs"))         flags |= kHelpOutputs;
+            else if (type == gensym("io"))              flags |= kHelpInputs | kHelpOutputs;
+            else if (type == gensym("parameters"))      flags |= kParameters;
+            else if (type == gensym("ref"))             flags |= kHelpDesciption | kHelpInputs | kHelpOutputs | kParameters;
+            else if (type == gensym("quick"))           verbose = false;
         }
+        
+        if (!flags)
+            flags = kHelpDesciption | kHelpInputs | kHelpOutputs | kParameters;
         
         // Start Tag
         
@@ -625,7 +630,9 @@ public:
         
         if (flags & kParameters)
         {
-            // FIX - default values / range / initial only / int types / arguments / descriptions (parameters and enum values - how to deal with this??)
+            // FIX -  initial only / int types / descriptions (parameters and enum values - how to deal with this??)
+
+            // DONE - arguments / range / array sizes / default values
             
             object_post(mUserObject, "--- Parameter List ---");
             const FrameLib_Parameters *params = mObject->getParameters();
@@ -634,31 +641,63 @@ public:
                  object_post(mUserObject, "< Empty >");
             for (long i = 0; params && i < params->size(); i++)
             {
-                switch (params->getType(i))
+                FrameLib_Parameters::Type type = params->getType(i);
+                
+                switch (type)
                 {
                     case FrameLib_Parameters::kBool:
-                        object_post(mUserObject, "Parameter %ld: %s [%s] (default %s)", i + 1, params->getName(i), params->getTypeString(i), params->getDefault(i) ? "true" : "false");
+                        object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i), params->getDefault(i) ? "true" : "false");
+                        break;
+                    
+                    case FrameLib_Parameters::kString:
+                        object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i), params->getTypeString(i));
                         break;
                         
                     case FrameLib_Parameters::kEnum:
-                        object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i), params->getTypeString(i));
-                        if (verbose)
-                        {
-                            if (params->getType(i) == FrameLib_Parameters::kEnum)
-                            {
-                                double min, max;
-                                params->getRange(i, &min, &max);
-                                long enumMax = max;
-                            
-                                for (long j = 0; j <= enumMax; j++)
-                                    object_post(mUserObject, "[%ld] - %s", j, params->getItemString(i, j));
-                            }
-                        }
+                        object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i), params->getItemString(i, 0));
                         break;
 
                     default:
-                        object_post(mUserObject, "Parameter %ld: %s [%s] (default %lf)", i + 1, params->getName(i), params->getTypeString(i), params->getDefault(i));
-                        break;
+                        object_post(mUserObject, "Parameter %ld: %s [%s] (default: %lg)", i + 1, params->getName(i), params->getTypeString(i), params->getDefault(i));
+                }
+                
+                if (verbose)
+                {
+                    long argumentIdx = params->getArgumentIdx(i);
+                    if (!argsSetAllInputs && argumentIdx >= 0)
+                        object_post(mUserObject, "- argument: %ld", argumentIdx + 1);
+                    
+                    switch (type)
+                    {
+                        case FrameLib_Parameters::kBool:    break;
+                        case FrameLib_Parameters::kString:  break;
+                            
+                        case FrameLib_Parameters::kEnum:
+                            for (long j = 0; j <= params->getMax(i); j++)
+                                object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j));
+                            break;
+                            
+                        default:
+                        {
+                            FrameLib_Parameters::ClipMode mode = params->getClipMode(i);
+                            double min, max;
+                                
+                            params->getRange(i, &min, &max);
+                                
+                            switch (mode)
+                            {
+                                case FrameLib_Parameters::kNone:    break;
+                                case FrameLib_Parameters::kMin:     object_post(mUserObject, "- min value: %lg", min);             break;
+                                case FrameLib_Parameters::kMax:     object_post(mUserObject, "- max value: %lg", max);             break;
+                                case FrameLib_Parameters::kClip:    object_post(mUserObject, "- clipped: %lg-%lg", min, max);   break;
+                            }
+                            
+                            if (type == FrameLib_Parameters::kArray)
+                                object_post(mUserObject, "- array size: %ld", params->getArraySize(i));
+                            if (type == FrameLib_Parameters::kVariableArray)
+                                object_post(mUserObject, "- array max size: %ld", params->getArrayMaxSize(i));
+                        }
+                    }
                 }
             }
         }

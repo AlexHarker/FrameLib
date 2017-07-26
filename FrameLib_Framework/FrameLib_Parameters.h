@@ -26,6 +26,7 @@ class FrameLib_Parameters
 public:
     
     enum Type {kBool, kDouble, kEnum, kString, kArray, kVariableArray };
+    enum ClipMode {kNone, kMin, kMax, kClip};
     
 public:
     
@@ -157,7 +158,7 @@ private:
     {
         
     public:
-      
+        
         // Constructor / Destructor
         
         Parameter(const char *name, long argumentIdx);
@@ -167,9 +168,9 @@ private:
         
         virtual void addEnumItem(const char *str);
         
-        virtual void setMin(double min);
-        virtual void setMax(double max);
-        virtual void setClip(double min, double max);
+        void setMin(double min);
+        void setMax(double max);
+        void setClip(double min, double max);
         
         virtual void set(const char *str) {}
         virtual void set(double value) {}
@@ -183,18 +184,24 @@ private:
         
         virtual Type type() = 0;
         
-        const char *name()  { return mName.c_str(); }
-        long argumentIdx()  { return mArgumentIdx; }
+        const char *name()                          { return mName.c_str(); }
+        long argumentIdx()                          { return mArgumentIdx; }
         
-        virtual void getRange(double *min, double *max);
+        ClipMode getClipMode();
+        double getMin()                             {return mMin; }
+        double getMax()                             { return mMax; }
+        void getRange(double *min, double *max);
+        
         virtual const char *getItemString(unsigned long item) const;
 
         // Values
+        
+        double getDefault() const                   { return mDefault; }
 
         virtual double getValue() const             { return 0; }
-        virtual double getDefault() const = 0;
         virtual const char *getString() const       { return NULL; }
         virtual size_t getArraySize() const         { return 0; }
+        virtual size_t getArrayMaxSize() const      { return 0; }
         virtual const double *getArray() const      { return NULL; }
         const double *getArray(size_t *size) const;
         
@@ -204,6 +211,10 @@ private:
         
         bool mChanged;
 
+        double mDefault;
+        double mMin;
+        double mMax;
+        
     private:
         
         std::string mName;
@@ -219,9 +230,8 @@ private:
         
     public:
         
-        Bool(const char *name, long argumentIdx, bool defaultValue)
-        : Parameter(name, argumentIdx), mValue(defaultValue), mDefault(defaultValue) {}
-
+        Bool(const char *name, long argumentIdx, bool defaultValue);
+        
         // Setters
         
         virtual void set(double value);
@@ -233,15 +243,11 @@ private:
 
         virtual Type type() { return kBool; }
 
-        virtual void getRange(double *min, double *max);
-
         virtual double getValue() const     { return mValue; }
-        virtual double getDefault() const   { return mDefault; }
         
     private:
         
         bool mValue;
-        bool mDefault;
     };
     
     // ************************************************************************************** //
@@ -253,12 +259,11 @@ private:
         
     public:
         
-        Enum(const char *name, long argumentIdx)
-        : Parameter(name, argumentIdx), mValue(0) {}
+        Enum(const char *name, long argumentIdx);
         
         // Setters
         
-        void addEnumItem(const char *str) { mItems.push_back(str); }
+        void addEnumItem(const char *str);
         
         virtual void set(double value);
         virtual void set(double *values, size_t size);
@@ -270,10 +275,7 @@ private:
         
         // Getters
         
-        virtual void getRange(double *min, double *max);
-        
         virtual double getValue() const                                 { return mValue; }
-        virtual double getDefault() const                               { return 0; }
         virtual const char *getString() const                           { return mItems[mValue].c_str(); }
         virtual const char *getItemString(unsigned long item) const     { return mItems[item].c_str(); }
         
@@ -292,14 +294,10 @@ private:
         
     public:
         
-        Double(const char *name, long argumentIdx, double defaultValue)
-        : Parameter(name, argumentIdx), mValue(defaultValue), mDefault(defaultValue), mMin(-std::numeric_limits<double>::infinity()), mMax(std::numeric_limits<double>::infinity()) {}
+        Double(const char *name, long argumentIdx, double defaultValue) : Parameter(name, argumentIdx), mValue(defaultValue)
+        { mDefault = defaultValue; }
         
         // Setters
-
-        virtual void setMin(double min);
-        virtual void setMax(double max);
-        virtual void setClip(double min, double max);
 
         virtual void set(double value);
         virtual void set(double *values, size_t size);
@@ -309,18 +307,12 @@ private:
         // Getters
 
         virtual Type type() { return kDouble; }
-
-        virtual void getRange(double *min, double *max);
         
-        virtual double getValue() const     { return mValue; }
-        virtual double getDefault() const   { return mDefault; }
+        virtual double getValue() const { return mValue; }
        
     private:
         
         double mValue;
-        double mDefault;
-        double mMin;
-        double mMax;
     };
     
     // ************************************************************************************** //
@@ -333,7 +325,7 @@ private:
         
     public:
         
-        String(const char *name, const char *str, long argumentIdx);
+        String(const char *name, long argumentIdx);
         
         // Setters
         
@@ -346,7 +338,6 @@ private:
         virtual Type type() { return kString; }
         
         virtual const char *getString() const   { return mCString; }
-        virtual double getDefault() const       { return 0.0; }
 
     private:
         
@@ -359,18 +350,13 @@ private:
 
     class Array : public Parameter, private std::vector<double>
     {
-        enum clipMode {kNone, kMin, kMax, kClip};
-        
+    
     public:
         
         Array(const char *name, long argumentIdx, double defaultValue, size_t size);
         Array(const char *name, long argumentIdx, double defaultValue, size_t maxSize, size_t size);
 
         // Setters
-
-        virtual void setMin(double min);
-        virtual void setMax(double max);
-        virtual void setClip(double min, double max);
 
         virtual void set(double *values, size_t size);
 
@@ -380,23 +366,15 @@ private:
 
         virtual Type type() { return mVariableSize ? kVariableArray : kArray; }
         
-        virtual void getRange(double *min, double *max);
-        
         virtual size_t getArraySize() const         { return mSize; }
+        virtual size_t getArrayMaxSize() const      { return mItems.size(); }
         virtual const double * getArray() const     { return &mItems[0]; }
-        virtual double getDefault() const           { return mDefault; }
 
     private:
         
-        clipMode mMode;
-        
-        double mDefault;
-        double mMin;
-        double mMax;
-        
         std::vector<double> mItems;
         size_t mSize;
-        
+    
         const bool mVariableSize;
     };
     
@@ -448,9 +426,9 @@ public:
         addParameter(index, new Double(name, argumentIdx, defaultValue));
     }
     
-    void addString(unsigned long index, const char *name, const char *str, long argumentIdx = -1)
+    void addString(unsigned long index, const char *name, long argumentIdx = -1)
     {
-        addParameter(index, new String(name, str, argumentIdx));
+        addParameter(index, new String(name, argumentIdx));
     }
     
     void addEnum(unsigned long index, const char *name, long argumentIdx = -1)
@@ -524,11 +502,27 @@ public:
             set(idx, values, size);
     }
 
+    void clear(unsigned long idx)
+    {
+        mParameters[idx]->clear();
+    }
+    
+    void clear(const char *name)
+    {
+        long idx = getIdx(name);
+        
+        if (idx >= 0)
+            clear(idx);
+    }
+
     // Getters (N.B. - getters have no sanity checks, because they are the programmer's responsibility)
     
     // Get Name
     
     const char *getName(unsigned long idx) const                            { return mParameters[idx]->name(); }
+   
+    long getArgumentIdx(unsigned long idx) const                            { return mParameters[idx]->argumentIdx(); }
+    long getArgumentIdx(const char *name) const                             { return mParameters[getIdx(name)]->argumentIdx(); }
     
     // Get Type
     
@@ -540,21 +534,32 @@ public:
 
     // Get Range
     
+    ClipMode getClipMode(unsigned long idx) const                           { return mParameters[idx]->getClipMode(); }
+    ClipMode getClipMode(const char *name) const                            { return getClipMode(getIdx(name)); }
+
+    double getMin(unsigned long idx) const                                  { return mParameters[idx]->getMin(); }
+    double getMin(const char *name) const                                   { return getMin(getIdx(name)); }
+    
+    double getMax(unsigned long idx) const                                  { return mParameters[idx]->getMax(); }
+    double getMax(const char *name) const                                   { return getMax(getIdx(name)); }
+    
     void getRange(unsigned long idx, double *min, double *max) const        { return mParameters[idx]->getRange(min, max); }
     void getRange(const char *name, double *min, double *max) const         { return getRange(getIdx(name), min, max); }
-    
+        
     // Get Item Strings
     
     const char *getItemString(unsigned long idx, unsigned long item) const  { return mParameters[idx]->getItemString(item); }
     const char *getItemString(const char *name, unsigned long item) const   { return getItemString(getIdx(name), item); }
     
+    // Default Values
+    
+    double getDefault(unsigned long idx) const                              { return mParameters[idx]->getDefault(); }
+    double getDefault(const char *name) const                               { return getDefault(getIdx(name)); }
+
     // Get Value
     
     double getValue(unsigned long idx) const                        { return mParameters[idx]->getValue(); }
     double getValue(const char *name) const                         { return getValue(getIdx(name)); }
-    
-    double getDefault(unsigned long idx) const                      { return mParameters[idx]->getDefault(); }
-    double getDefault(const char *name) const                       { return getDefault(getIdx(name)); }
     
     long getInt(unsigned long idx) const                            { return (long) getValue(idx); }
     long getInt(const char *name) const                             { return getInt(getIdx(name)); }
@@ -572,7 +577,10 @@ public:
     
     size_t getArraySize(unsigned long idx) const                    { return mParameters[idx]->getArraySize(); }
     size_t getArraySize(const char *name) const                     { return getArraySize(getIdx(name)); }
-    
+
+    size_t getArrayMaxSize(unsigned long idx) const                 { return mParameters[idx]->getArrayMaxSize(); }
+    size_t getArrayMaxSize(const char *name) const                  { return getArrayMaxSize(getIdx(name)); }
+
     bool changed(unsigned long idx)                                 { return mParameters[idx]->changed(); }
     bool changed(const char *name)                                  { return changed(getIdx(name)); }
     
@@ -615,4 +623,3 @@ private:
 };
 
 #endif
-
