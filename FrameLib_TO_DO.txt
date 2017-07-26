@@ -11,17 +11,18 @@ DONE		- Multichannel
 
 DONE	3 - Fixed Point Division / Fixed Point Time Format
 
-4 - Finalise Max Wrapper
+DONE 	4 - Assist/Help Info (Inputs and Parameters)
+
+PROGRESS 5 - Finalise Max Wrapper
 DONE	- Make C++ class extensible
 DONE	- Sideways Dependencies Issues
 DONE	- Safety (no direct access of other objects / thread safety / no symbol bindings)
 DONE	- Better connection issue reporting
 PROGRESS- Review entry of inputs and parameters
 
-PROGRESS 5 - Assist/Help Info (Inputs and Parameters)
-
 6 - READ/WRITE Timing ISSUES!!!	
 	- (multi-chan expansion/ease of use/chance of mistakes/multiple dependencies)
+
 7 - Finalise Memory Management
 DONE		- Do variable memory management (underlying engine)
 		- Review memory management
