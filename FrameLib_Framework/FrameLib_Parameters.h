@@ -192,6 +192,7 @@ private:
         // Values
 
         virtual double getValue() const             { return 0; }
+        virtual double getDefault() const = 0;
         virtual const char *getString() const       { return NULL; }
         virtual size_t getArraySize() const         { return 0; }
         virtual const double *getArray() const      { return NULL; }
@@ -234,7 +235,8 @@ private:
 
         virtual void getRange(double *min, double *max);
 
-        virtual double getValue() const { return mValue; }
+        virtual double getValue() const     { return mValue; }
+        virtual double getDefault() const   { return mDefault; }
         
     private:
         
@@ -271,6 +273,7 @@ private:
         virtual void getRange(double *min, double *max);
         
         virtual double getValue() const                                 { return mValue; }
+        virtual double getDefault() const                               { return 0; }
         virtual const char *getString() const                           { return mItems[mValue].c_str(); }
         virtual const char *getItemString(unsigned long item) const     { return mItems[item].c_str(); }
         
@@ -309,7 +312,8 @@ private:
 
         virtual void getRange(double *min, double *max);
         
-        virtual double getValue() const { return mValue; }
+        virtual double getValue() const     { return mValue; }
+        virtual double getDefault() const   { return mDefault; }
        
     private:
         
@@ -341,8 +345,9 @@ private:
         
         virtual Type type() { return kString; }
         
-        virtual const char *getString() const { return mCString; }
-        
+        virtual const char *getString() const   { return mCString; }
+        virtual double getDefault() const       { return 0.0; }
+
     private:
         
         char mCString[maxLen + 1];
@@ -379,12 +384,13 @@ private:
         
         virtual size_t getArraySize() const         { return mSize; }
         virtual const double * getArray() const     { return &mItems[0]; }
-        
+        virtual double getDefault() const           { return mDefault; }
+
     private:
         
         clipMode mMode;
         
-        double mDefaultValue;
+        double mDefault;
         double mMin;
         double mMax;
         
@@ -546,6 +552,9 @@ public:
     
     double getValue(unsigned long idx) const                        { return mParameters[idx]->getValue(); }
     double getValue(const char *name) const                         { return getValue(getIdx(name)); }
+    
+    double getDefault(unsigned long idx) const                      { return mParameters[idx]->getDefault(); }
+    double getDefault(const char *name) const                       { return getDefault(getIdx(name)); }
     
     long getInt(unsigned long idx) const                            { return (long) getValue(idx); }
     long getInt(const char *name) const                             { return getInt(getIdx(name)); }

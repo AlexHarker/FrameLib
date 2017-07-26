@@ -379,7 +379,7 @@ void FrameLib_Parameters::String::set(const char *str)
 // Array Parameter Class
 
 FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double defaultValue, size_t size)
-: Parameter(name, argumentIdx), mMode(kNone), mDefaultValue(defaultValue), mSize(size), mVariableSize(false)
+: Parameter(name, argumentIdx), mMode(kNone), mDefault(defaultValue), mSize(size), mVariableSize(false)
 {
     mItems.resize(size);
     
@@ -388,7 +388,7 @@ FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double def
 }
 
 FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double defaultValue, size_t maxSize, size_t size)
-: Parameter(name, argumentIdx), mMode(kNone), mDefaultValue(defaultValue), mVariableSize(true)
+: Parameter(name, argumentIdx), mMode(kNone), mDefault(defaultValue), mVariableSize(true)
 {
     mItems.resize(maxSize);
     
@@ -443,7 +443,7 @@ void FrameLib_Parameters::Array::set(double *values, size_t size)
     
     if (!mVariableSize)
         for (size_t i = size; i < mItems.size(); i++)
-            mItems[i] = mDefaultValue;
+            mItems[i] = mDefault;
     else
         mSize = size;
     

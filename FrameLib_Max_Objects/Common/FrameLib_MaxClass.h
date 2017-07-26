@@ -569,16 +569,11 @@ public:
         {
             t_symbol *type = atom_getsym(av);
             
-            if (type == gensym("inputs"))
-                flags = kHelpInputs;
-            else if (type == gensym("outputs"))
-                flags = kHelpOutputs;
-            else if (type == gensym("io"))
-                flags = kHelpInputs | kHelpOutputs;
-            else if (type == gensym("parameters"))
-                flags = kParameters;
-            else if (type == gensym("ref"))
-                flags = kHelpDesciption | kHelpInputs | kHelpOutputs | kParameters;
+            if (type == gensym("inputs"))               flags = kHelpInputs;
+            else if (type == gensym("outputs"))         flags = kHelpOutputs;
+            else if (type == gensym("io"))              flags = kHelpInputs | kHelpOutputs;
+            else if (type == gensym("parameters"))      flags = kParameters;
+            else if (type == gensym("ref"))             flags = kHelpDesciption | kHelpInputs | kHelpOutputs | kParameters;
         }
         
         // Start Tag
@@ -626,15 +621,46 @@ public:
                 object_post(mUserObject, "Frame Output %ld: %s", i + 1, mObject->outputInfo(i, verbose));
         }
         
+        // Parameters
+        
         if (flags & kParameters)
         {
-            object_post(mUserObject, "--- Parameter List ---");
-            const FrameLib_Parameters *parameters = mObject->getParameters();
+            // FIX - default values / range / initial only / int types / arguments / descriptions (parameters and enum values - how to deal with this??)
             
-            if (!parameters || !parameters->size())
+            object_post(mUserObject, "--- Parameter List ---");
+            const FrameLib_Parameters *params = mObject->getParameters();
+            
+            if (!params || !params->size())
                  object_post(mUserObject, "< Empty >");
-            for (long i = 0; parameters && i < parameters->size(); i++)
-                object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, parameters->getName(i), parameters->getTypeString(i));
+            for (long i = 0; params && i < params->size(); i++)
+            {
+                switch (params->getType(i))
+                {
+                    case FrameLib_Parameters::kBool:
+                        object_post(mUserObject, "Parameter %ld: %s [%s] (default %s)", i + 1, params->getName(i), params->getTypeString(i), params->getDefault(i) ? "true" : "false");
+                        break;
+                        
+                    case FrameLib_Parameters::kEnum:
+                        object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i), params->getTypeString(i));
+                        if (verbose)
+                        {
+                            if (params->getType(i) == FrameLib_Parameters::kEnum)
+                            {
+                                double min, max;
+                                params->getRange(i, &min, &max);
+                                long enumMax = max;
+                            
+                                for (long j = 0; j <= enumMax; j++)
+                                    object_post(mUserObject, "[%ld] - %s", j, params->getItemString(i, j));
+                            }
+                        }
+                        break;
+
+                    default:
+                        object_post(mUserObject, "Parameter %ld: %s [%s] (default %lf)", i + 1, params->getName(i), params->getTypeString(i), params->getDefault(i));
+                        break;
+                }
+            }
         }
     }
 
