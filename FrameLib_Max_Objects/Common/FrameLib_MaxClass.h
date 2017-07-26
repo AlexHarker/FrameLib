@@ -990,7 +990,6 @@ private:
         if (*this == dst)
         {
             unwrapConnection(src, srcout);
-            
             srcout -= (long) object_method(src, gensym("__fl.get_num_audio_outs"));
             dstin -= getNumAudioIns();
                 
@@ -1013,11 +1012,9 @@ private:
             return 1;
 
         unwrapConnection(dst, dstin);
+        dstin -= (long) object_method(dst, gensym("__fl.get_num_audio_ins"));
         
-        long num_audio_ins = (long) object_method(dst, gensym("__fl.get_num_audio_ins"));
-        bool connected = object_method(dst, gensym("__fl.is_connected"), dstin);
-        
-        if (validInput(dstin - num_audio_ins, getInternalObject(dst)) && !connected)
+        if (validInput(dstin, getInternalObject(dst)) && !object_method(dst, gensym("__fl.is_connected"), dstin))
             return 1;
         
         return 0;
