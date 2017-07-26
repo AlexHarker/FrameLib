@@ -163,6 +163,8 @@ public:
     virtual const char *inputInfo(unsigned long idx, bool verbose);
     virtual const char *outputInfo(unsigned long idx, bool verbose);
     
+    virtual const FrameLib_Parameters *getParameters() { return &mParameters; }
+
 private:
     
     virtual bool inputUpdate();
@@ -187,6 +189,8 @@ public:
     virtual const char *objectInfo(bool verbose);
     virtual const char *inputInfo(unsigned long idx, bool verbose);
     virtual const char *outputInfo(unsigned long idx, bool verbose);
+
+    virtual const FrameLib_Parameters *getParameters() { return &mParameters; }
 
 private:
     

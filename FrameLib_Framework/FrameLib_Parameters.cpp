@@ -205,7 +205,7 @@ bool checkRange(double min, double max)
 // Parameter Abstract Class
 
 FrameLib_Parameters::Parameter::Parameter(const char *name, long argumentIdx)
-: mChanged(false), mDefault(0.0), mMin(-std::numeric_limits<double>::infinity()), mMax(std::numeric_limits<double>::infinity())
+: mChanged(false), mFlags(0), mDefault(0.0), mMin(-std::numeric_limits<double>::infinity()), mMax(std::numeric_limits<double>::infinity())
 {
     mName = name;
     mArgumentIdx = argumentIdx;
@@ -245,7 +245,7 @@ void FrameLib_Parameters::Parameter::set(double *values, size_t size)
         clear();
 }
 
-FrameLib_Parameters::ClipMode FrameLib_Parameters::Parameter::getClipMode()
+FrameLib_Parameters::ClipMode FrameLib_Parameters::Parameter::getClipMode() const
 {
     bool maxCheck = checkMax(mMax);
     
@@ -255,7 +255,7 @@ FrameLib_Parameters::ClipMode FrameLib_Parameters::Parameter::getClipMode()
         return maxCheck ? kMin : kClip;
 }
 
-void FrameLib_Parameters::Parameter::getRange(double *min, double *max)
+void FrameLib_Parameters::Parameter::getRange(double *min, double *max) const
 {
     *min = mMin;
     *max = mMax;
@@ -277,31 +277,6 @@ bool FrameLib_Parameters::Parameter::changed()
     bool result = mChanged;
     mChanged = false;
     return result;
-}
-
-// ************************************************************************************** //
-
-// Bool Parameter Class
-
-FrameLib_Parameters::Bool::Bool(const char *name, long argumentIdx, bool defaultValue) : Parameter(name, argumentIdx), mValue(defaultValue)
-{
-    mDefault = defaultValue;
-    mMin = false;
-    mMax = true;
-}
-
-void FrameLib_Parameters::Bool::set(double value)
-{
-    mValue = value ? true : false;
-    mChanged = true;
-}
-
-void FrameLib_Parameters::Bool::set(double *values, size_t size)
-{
-    if (size)
-        Bool::set(*values);
-    else
-        Bool::clear();
 }
 
 // ************************************************************************************** //
@@ -351,20 +326,20 @@ void FrameLib_Parameters::Enum::set(double *values, size_t size)
 
 // ************************************************************************************** //
 
-// Double Parameter Class
+// Value Parameter Class
 
-void FrameLib_Parameters::Double::set(double value)
+void FrameLib_Parameters::Value::set(double value)
 {
     mValue = (value < mMin) ? mMin : ((value > mMax) ? mMax : value);
     mChanged = true;
 }
 
-void FrameLib_Parameters::Double::set(double *values, size_t size)
+void FrameLib_Parameters::Value::set(double *values, size_t size)
 {
     if (size)
-        Double::set(*values);
+        Value::set(*values);
     else
-        Double::clear();
+        Value::clear();
 }
 
 // ************************************************************************************** //
@@ -373,6 +348,7 @@ void FrameLib_Parameters::Double::set(double *values, size_t size)
 
 FrameLib_Parameters::String::String(const char *name, long argumentIdx) : Parameter(name, argumentIdx)
 {
+    setNonNumeric();
     String::clear();
     mMin = mMax = 0.0;
 }

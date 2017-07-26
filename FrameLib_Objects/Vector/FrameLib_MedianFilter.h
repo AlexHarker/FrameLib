@@ -16,8 +16,8 @@ public:
     
     FrameLib_MedianFilter(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
     {
-        mParameters.addDouble(kWidth, "width", 1.0, 0);
-        mParameters.setMin(0.0);
+        mParameters.addInt(kWidth, "width", 1, 0);
+        mParameters.setMin(0);
         mParameters.addDouble(kPadding, "padding", 0.0, 1);
         
         mParameters.addEnum(kMode, "mode", 3);
@@ -27,7 +27,7 @@ public:
         
         mParameters.set(serialisedParameters);
         
-        inputMode(1, TRUE, FALSE, FALSE);
+        inputMode(1, true, false, false);
     }
     
 private:

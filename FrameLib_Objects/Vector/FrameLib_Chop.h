@@ -14,8 +14,9 @@ public:
 	
     FrameLib_Chop(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context)
     {
-        mParameters.addDouble(kNumOuts, "numouts", 1.0, 0);
-        mParameters.setClip(2.0, 32.0);
+        mParameters.addInt(kNumOuts, "numouts", 1, 0);
+        mParameters.setClip(2, 32);
+        mParameters.setInstantiation();
         
         mParameters.addDouble(kSize, "size", 1.0, 1);
         mParameters.setMin(0.0);

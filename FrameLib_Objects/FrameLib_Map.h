@@ -28,11 +28,11 @@ public:
         mParameters.addDouble(kOutLo, "outlo", 0., 3);
         mParameters.addDouble(kOutHi, "outhi", 1., 4);
         
-        mParameters.addBool(kClip, "clip", TRUE, 5);
+        mParameters.addBool(kClip, "clip", true, 5);
         
         mParameters.set(serialisedParameters);
         
-        inputMode(1, TRUE, FALSE, FALSE);
+        inputMode(1, true, false, false);
         
         setScaling();
     }

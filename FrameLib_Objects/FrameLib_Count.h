@@ -13,15 +13,15 @@ public:
     
     FrameLib_Count (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
     {
-        mParameters.addDouble(kLength, "length", 64.0, 0);
-        mParameters.setMin(0.0);
+        mParameters.addInt(kLength, "length", 64.0, 0);
+        mParameters.setMin(0);
         mParameters.addEnum(kMode, "mode", 1);
         mParameters.addEnumItem(kInLength, "input");
         mParameters.addEnumItem(kRequestedLength, "requested");
         
         mParameters.set(serialisedParameters);
         
-        inputMode(1, TRUE, FALSE, FALSE);
+        inputMode(1, true, false, false);
     }
     
 protected:

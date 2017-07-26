@@ -15,17 +15,20 @@
 // This class deals with parameters of an object
 
 // FIX - add error reporting
-// FIX - instantiation only parameters (with error checking - simply a marker)?
 // FIX - consider adding descriptions (using const char * strings)
+// FIX - enforce instantiation - feature a lock?
 
-static const char *typeStrings[] = {"bool", "double", "enum", "string", "fixed length array", "variable length array" };
+static const char *typeStringsDouble[] = {"double", "enum", "string", "fixed length double array", "variable length double array" };
+static const char *typeStringsInteger[] = {"int", "enum", "string", "fixed length int array", "variable length int array" };
+static const char *typeStringsBool[] = {"bool", "enum", "string", "fixed length bool array", "variable length bool array" };
 
 class FrameLib_Parameters
 {
     
 public:
     
-    enum Type {kBool, kDouble, kEnum, kString, kArray, kVariableArray };
+    enum NumericType { kNumericBool, kNumericInteger, kNumericDouble, kNumericNone };
+    enum Type { kValue, kEnum, kString, kArray, kVariableArray };
     enum ClipMode {kNone, kMin, kMax, kClip};
     
 public:
@@ -158,7 +161,9 @@ private:
     {
         
     public:
-        
+    
+        enum Flags { kFlagInstantiation = 0x1, kFlagBool = 0x2, kFlagInteger = 0x4, kFlagNonNumeric = 0x8 };
+
         // Constructor / Destructor
         
         Parameter(const char *name, long argumentIdx);
@@ -167,6 +172,11 @@ private:
         // Setters
         
         virtual void addEnumItem(const char *str);
+        
+        void setInstantiation()                         { mFlags |= kFlagInstantiation; }
+        void setBoolOnly()                              { mFlags |= kFlagBool | kFlagInteger; }
+        void setIntegerOnly()                           { mFlags |= kFlagInteger; }
+        void setNonNumeric()                            { mFlags |= kFlagNonNumeric; }
         
         void setMin(double min);
         void setMax(double max);
@@ -184,25 +194,26 @@ private:
         
         virtual Type type() = 0;
         
-        const char *name()                          { return mName.c_str(); }
-        long argumentIdx()                          { return mArgumentIdx; }
+        const char *name() const                        { return mName.c_str(); }
+        long argumentIdx() const                        { return mArgumentIdx; }
+        int flags() const                               { return mFlags; }
         
-        ClipMode getClipMode();
-        double getMin()                             {return mMin; }
-        double getMax()                             { return mMax; }
-        void getRange(double *min, double *max);
+        ClipMode getClipMode() const;
+        double getMin() const                           { return mMin; }
+        double getMax()                                 { return mMax; }
+        void getRange(double *min, double *max) const;
         
         virtual const char *getItemString(unsigned long item) const;
 
         // Values
         
-        double getDefault() const                   { return mDefault; }
+        double getDefault() const                       { return mDefault; }
 
-        virtual double getValue() const             { return 0; }
-        virtual const char *getString() const       { return NULL; }
-        virtual size_t getArraySize() const         { return 0; }
-        virtual size_t getArrayMaxSize() const      { return 0; }
-        virtual const double *getArray() const      { return NULL; }
+        virtual double getValue() const                 { return 0; }
+        virtual const char *getString() const           { return NULL; }
+        virtual size_t getArraySize() const             { return 0; }
+        virtual size_t getArrayMaxSize() const          { return 0; }
+        virtual const double *getArray() const          { return NULL; }
         const double *getArray(size_t *size) const;
         
         bool changed();
@@ -210,7 +221,8 @@ private:
     protected:
         
         bool mChanged;
-
+        int mFlags;
+        
         double mDefault;
         double mMin;
         double mMax;
@@ -219,35 +231,6 @@ private:
         
         std::string mName;
         long mArgumentIdx;
-    };
-    
-    // ************************************************************************************** //
-    
-    // Bool Parameter Class
-
-    class Bool : public Parameter
-    {
-        
-    public:
-        
-        Bool(const char *name, long argumentIdx, bool defaultValue);
-        
-        // Setters
-        
-        virtual void set(double value);
-        virtual void set(double *values, size_t size);
-
-        virtual void clear() { Bool::set(mDefault); };
-
-        // Getters
-
-        virtual Type type() { return kBool; }
-
-        virtual double getValue() const     { return mValue; }
-        
-    private:
-        
-        bool mValue;
     };
     
     // ************************************************************************************** //
@@ -287,14 +270,14 @@ private:
     
     // ************************************************************************************** //
 
-    // Double Parameter Class
+    // Value Parameter Class
 
-    class Double : public Parameter
+    class Value : public Parameter
     {
         
     public:
         
-        Double(const char *name, long argumentIdx, double defaultValue) : Parameter(name, argumentIdx), mValue(defaultValue)
+        Value(const char *name, long argumentIdx, double defaultValue) : Parameter(name, argumentIdx), mValue(defaultValue)
         { mDefault = defaultValue; }
         
         // Setters
@@ -302,11 +285,11 @@ private:
         virtual void set(double value);
         virtual void set(double *values, size_t size);
         
-        virtual void clear() { Double::set(mDefault); };
+        virtual void clear() { Value::set(mDefault); };
 
         // Getters
 
-        virtual Type type() { return kDouble; }
+        virtual Type type() { return kValue; }
         
         virtual double getValue() const { return mValue; }
        
@@ -418,12 +401,20 @@ public:
     
     void addBool(unsigned long index, const char *name, bool defaultValue = false, long argumentIdx = -1)
     {
-        addParameter(index, new Bool(name, argumentIdx, defaultValue));
+        addParameter(index, new Value(name, argumentIdx, defaultValue));
+        mParameters.back()->setClip(false, true);
+        mParameters.back()->setBoolOnly();
     }
     
     void addDouble(unsigned long index, const char *name, double defaultValue = 0.0, long argumentIdx = -1)
     {
-        addParameter(index, new Double(name, argumentIdx, defaultValue));
+        addParameter(index, new Value(name, argumentIdx, defaultValue));
+    }
+    
+    void addInt(unsigned long index, const char *name, long defaultValue = 0, long argumentIdx = -1)
+    {
+        addParameter(index, new Value(name, argumentIdx, defaultValue));
+        mParameters.back()->setIntegerOnly();
     }
     
     void addString(unsigned long index, const char *name, long argumentIdx = -1)
@@ -441,17 +432,43 @@ public:
         mParameters.back()->addEnumItem(str);
     }
     
-    void addArray(unsigned long index, const char *name, double defaultValue, size_t size, long argumentIdx = -1)
+    void addBoolArray(unsigned long index, const char *name, long defaultValue, size_t size, long argumentIdx = -1)
+    {
+        addParameter(index, new Array(name, argumentIdx, defaultValue, size));
+        mParameters.back()->setBoolOnly();
+    }
+    
+    void addIntArray(unsigned long index, const char *name, long defaultValue, size_t size, long argumentIdx = -1)
+    {
+        addParameter(index, new Array(name, argumentIdx, defaultValue, size));
+        mParameters.back()->setIntegerOnly();
+    }
+    
+    void addDoubleArray(unsigned long index, const char *name, double defaultValue, size_t size, long argumentIdx = -1)
     {
         addParameter(index, new Array(name, argumentIdx, defaultValue, size));
     }
     
-    void addVariableArray(unsigned long index, const char *name, double defaultValue, size_t maxSize, size_t size, long argumentIdx = -1)
+    void addVariableBoolArray(unsigned long index, const char *name, long defaultValue, size_t maxSize, size_t size, long argumentIdx = -1)
+    {
+        addParameter(index, new Array(name, argumentIdx, defaultValue, maxSize, size));
+        mParameters.back()->setBoolOnly();
+    }
+    
+    void addVariableIntArray(unsigned long index, const char *name, long defaultValue, size_t maxSize, size_t size, long argumentIdx = -1)
+    {
+        addParameter(index, new Array(name, argumentIdx, defaultValue, maxSize, size));
+        mParameters.back()->setIntegerOnly();
+    }
+    
+    void addVariableDoubleArray(unsigned long index, const char *name, double defaultValue, size_t maxSize, size_t size, long argumentIdx = -1)
     {
         addParameter(index, new Array(name, argumentIdx, defaultValue, maxSize, size));
     }
 
     // Setters (N.B. - setters have sanity checks as the tags are set by the end-user)
+
+    void setInstantiation()                     { mParameters.back()->setInstantiation(); }
 
     // Set Range
     
@@ -529,10 +546,40 @@ public:
     Type getType(unsigned long idx) const                                   { return mParameters[idx]->type(); }
     Type getType(const char *name) const                                    { return getType(getIdx(name)); }
     
-    const char *getTypeString(unsigned long idx) const                      { return typeStrings[mParameters[idx]->type()]; }
+    NumericType getNumericType(unsigned long idx) const
+    {
+        int flags = mParameters[idx]->flags();
+        
+        if (flags & Parameter::kFlagNonNumeric) return kNumericNone;
+        else if (flags & Parameter::kFlagBool) return kNumericBool;
+        else if (flags & Parameter::kFlagInteger) return kNumericInteger;
+        
+        return kNumericDouble;
+    }
+    
+    NumericType getNumericType(const char *name) const                      { return getNumericType(getIdx(name)); }
+    
+    // N.B. the type string includes details of numeric type / instantion only
+    
+    const char *getTypeString(unsigned long idx) const
+    {
+        const char **typeStrings = typeStringsDouble;
+        int flags = mParameters[idx]->flags();
+        
+        if (flags & Parameter::kFlagInstantiation) mTypeInfo = "instantiation ";
+        else mTypeInfo = "";
+        
+        if (flags & Parameter::kFlagBool) typeStrings = typeStringsBool;
+        else if (flags & Parameter::kFlagInteger) typeStrings = typeStringsInteger;
+        
+        mTypeInfo = mTypeInfo + typeStrings[mParameters[idx]->type()];
+        
+        return mTypeInfo.c_str();
+    }
+    
     const char *getTypeString(const char *name) const                       { return getTypeString(getIdx(name)); }
 
-    // Get Range
+        // Get Range
     
     ClipMode getClipMode(unsigned long idx) const                           { return mParameters[idx]->getClipMode(); }
     ClipMode getClipMode(const char *name) const                            { return getClipMode(getIdx(name)); }
@@ -551,6 +598,11 @@ public:
     const char *getItemString(unsigned long idx, unsigned long item) const  { return mParameters[idx]->getItemString(item); }
     const char *getItemString(const char *name, unsigned long item) const   { return getItemString(getIdx(name), item); }
     
+    // Get Info
+    
+    const char *getInfo(unsigned long idx) const                            { return "No info available"; }
+    const char *getInfo(const char *name) const                             { return getInfo(getIdx(name)); }
+
     // Default Values
     
     double getDefault(unsigned long idx) const                              { return mParameters[idx]->getDefault(); }
@@ -620,6 +672,7 @@ private:
     // Data
     
     std::vector <Parameter *> mParameters;
+    mutable std::string mTypeInfo;
 };
 
 #endif

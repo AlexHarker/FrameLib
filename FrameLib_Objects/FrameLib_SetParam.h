@@ -12,8 +12,9 @@ public:
     
     FrameLib_SetParam (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context)
     {
-        mParameters.addDouble(kNumIns, "numins", 1, 0);
-        mParameters.setClip(1.0, 32.0);
+        mParameters.addInt(kNumIns, "numins", 1, 0);
+        mParameters.setClip(1, 32);
+        mParameters.setInstantiation();
         
         mParameters.addString(kNames + 0, "name1", 1);
         mParameters.addString(kNames + 1, "name2", 2);

@@ -175,13 +175,13 @@ public:
                 object_error(mUserObject, "too many arguments for string value");
             
             copyString(messages.mTagged.back().mString, atom_getsym(argv)->s_name);
-            messages.mTagged.back().mStringFlag = TRUE;
+            messages.mTagged.back().mStringFlag = true;
         }
         else
         {
             for (unsigned long i = 0; i < argc; i++)
                 messages.mTagged.back().mValues[i] = atom_getfloat(argv + i);
-            messages.mTagged.back().mStringFlag = FALSE;
+            messages.mTagged.back().mStringFlag = false;
             messages.mTagged.back().mCount = argc;
         }
         messages.mLock.release();

@@ -14,8 +14,9 @@ public:
     
     FrameLib_Random (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
     {
-        mParameters.addDouble(kLength, "length", 64.0, 0);
-        mParameters.setMin(0.0);
+        mParameters.addInt(kLength, "length", 64, 0);
+        mParameters.setMin(0);
+
         mParameters.addEnum(kMode, "mode", 1);
         mParameters.addEnumItem(kInLength, "input");
         mParameters.addEnumItem(kRequestedLength, "requested");

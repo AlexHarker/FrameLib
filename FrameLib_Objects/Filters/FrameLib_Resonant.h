@@ -87,7 +87,7 @@ protected:
         Resonant filter;
         Modes mode = (Modes) mParameters.getValue(kMode);
         
-        bool staticParams = TRUE;
+        bool staticParams = true;
         
         double freq = mParameters.getValue(kFreq);
         double reson = mParameters.getValue(kReson);

@@ -26,8 +26,8 @@ public:
         setIO(mNumIns + 1, 1);
         
         for (unsigned long i = 0; i < mNumIns; i++)
-            inputMode(i, FALSE, i == mActiveIn, TRUE);
-        inputMode(mNumIns, TRUE, FALSE, FALSE);
+            inputMode(i, false, i == mActiveIn, true);
+        inputMode(mNumIns, true, false, false);
     }
     
 protected:

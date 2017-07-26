@@ -44,15 +44,15 @@ public:
         mParameters.addEnumItem(kPolar, "polar");
         mParameters.addEnumItem(kCartesian, "cartesian");
         
-        mParameters.addVariableArray(kSpeakers, "speakers", 0.0, 360, 0);
-        mParameters.addVariableArray(kWeights, "weights", 1.0, 360, 0);
+        mParameters.addVariableDoubleArray(kSpeakers, "speakers", 0.0, 360, 0);
+        mParameters.addVariableDoubleArray(kWeights, "weights", 1.0, 360, 0);
         
         mParameters.addDouble(kRolloff, "rolloff", 6.0);
         mParameters.setMin(0.0);
         mParameters.addDouble(kBlur, "blur", 0.4);
         mParameters.setMin(0.0000001);
-        mParameters.addDouble(kMaxSpeakers, "maxspeakers", 0.0);
-        mParameters.setMin(0.0);
+        mParameters.addInt(kMaxSpeakers, "maxspeakers", 0);
+        mParameters.setMin(0);
         mParameters.addDouble(kPoints, "points", 0.0);
         mParameters.setClip(0.1, 1.0);
 

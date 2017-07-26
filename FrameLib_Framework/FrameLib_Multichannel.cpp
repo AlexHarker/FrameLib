@@ -140,7 +140,8 @@ void FrameLib_MultiChannel::outputUpdate()
 
 FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_MultiChannel(kProcessor, context)
 {
-    mParameters.addDouble(0, "inputs", 2, 0 );
+    mParameters.addInt(0, "inputs", 2, 0 );
+    mParameters.setInstantiation();
     mParameters.set(serialisedParameters);
     setIO(mParameters.getValue(kInputs), 1);
 }
@@ -178,7 +179,8 @@ bool FrameLib_Pack::inputUpdate()
 
 FrameLib_Unpack::FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_MultiChannel(kProcessor, context)
 {
-    mParameters.addDouble(kOutputs, "outputs", 2, 0);
+    mParameters.addInt(kOutputs, "outputs", 2, 0);
+    mParameters.setInstantiation();
     mParameters.set(serialisedParameters);
     setIO(1, mParameters.getValue(kOutputs));
 }

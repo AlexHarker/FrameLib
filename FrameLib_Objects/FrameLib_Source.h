@@ -41,8 +41,9 @@ public:
     {        
         mParameters.addDouble(kMaxLength, "length", 16384, 0);
         mParameters.setMin(0.0);
-        mParameters.addDouble(kLength, "size", 4096, 1);
-        mParameters.setMin(0.0);
+        mParameters.setInstantiation();
+        mParameters.addInt(kLength, "size", 4096, 1);
+        mParameters.setMin(0);
         mParameters.addEnum(kUnits, "units", 2);
         mParameters.addEnumItem(kSamples, "samples");
         mParameters.addEnumItem(kMS, "ms");
