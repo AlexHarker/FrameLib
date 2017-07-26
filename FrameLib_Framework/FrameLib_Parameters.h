@@ -16,7 +16,6 @@
 
 // FIX - add error reporting
 // FIX - consider adding descriptions (using const char * strings)
-// FIX - enforce instantiation - feature a lock?
 
 static const char *typeStringsDouble[] = {"double", "enum", "string", "fixed length double array", "variable length double array" };
 static const char *typeStringsInteger[] = {"int", "enum", "string", "fixed length int array", "variable length int array" };
@@ -486,7 +485,10 @@ public:
     void set(unsigned long idx, long value)     { set(idx, (double) value); }
     void set(const char *name, long value)      { set(name, (double) value); }
 
-    void set(unsigned long idx, double value)   { mParameters[idx]->set(value); }
+    void set(unsigned long idx, double value)
+    {
+        mParameters[idx]->set(value);
+    }
 
     void set(const char *name, double value)
     {
@@ -496,7 +498,10 @@ public:
             set(idx, value);
     }
     
-    void set(unsigned long idx, char *str)      { mParameters[idx]->set(str); }
+    void set(unsigned long idx, char *str)
+    {
+        mParameters[idx]->set(str);
+    }
     
     void set(const char *name, char *str)
     {
@@ -579,7 +584,7 @@ public:
     
     const char *getTypeString(const char *name) const                       { return getTypeString(getIdx(name)); }
 
-        // Get Range
+    // Get Range
     
     ClipMode getClipMode(unsigned long idx) const                           { return mParameters[idx]->getClipMode(); }
     ClipMode getClipMode(const char *name) const                            { return getClipMode(getIdx(name)); }

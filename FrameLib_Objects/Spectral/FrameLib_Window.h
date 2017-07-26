@@ -64,7 +64,7 @@ public:
         mLinearGain = 0.0;
         mPowerGain = 0.0;
         
-        inputMode(1, true, false, false);
+        inputMode(1, true, false, false, kFrameTagged);
     }
     
 	~FrameLib_Window()

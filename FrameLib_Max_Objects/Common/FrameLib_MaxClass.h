@@ -607,17 +607,15 @@ public:
         
         // IO
         
-        // FIX - IO types
-        
         if (flags & kHelpInputs)
         {
             object_post(mUserObject, "--- Input List ---");
             if (argsSetAllInputs)
-                object_post(mUserObject, "N.B. - arguments set the fixed array values for all inputs");
+                object_post(mUserObject, "N.B. - arguments set the fixed array values for all inputs.");
             for (long i = 0; i < mObject->getNumAudioIns(); i++)
                 object_post(mUserObject, "Audio Input %ld: %s", i + 1, mObject->audioInfo(i, verbose));
             for (long i = 0; i < mObject->getNumIns(); i++)
-                object_post(mUserObject, "Frame Input %ld: %s", i + 1, mObject->inputInfo(i, verbose));
+                object_post(mUserObject, "Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose));
         }
         
         if (flags & kHelpOutputs)
@@ -626,15 +624,13 @@ public:
             for (long i = 0; i < mObject->getNumAudioOuts(); i++)
                 object_post(mUserObject, "Audio Output %ld: %s", i + 1, mObject->audioInfo(i, verbose));
             for (long i = 0; i < mObject->getNumOuts(); i++)
-                object_post(mUserObject, "Frame Output %ld: %s", i + 1, mObject->outputInfo(i, verbose));
+                object_post(mUserObject, "Frame Output %ld [%s]: %s", i + 1, frameTypeString(mObject->outputType(i)), mObject->outputInfo(i, verbose));
         }
         
         // Parameters
         
         if (flags & kParameters)
         {
-            // FIX - descriptions (parameters and enum values - how to deal with this??)
-            
             object_post(mUserObject, "--- Parameter List ---");
             const FrameLib_Parameters *params = mObject->getParameters();
             
@@ -1030,6 +1026,18 @@ private:
         return 0;
     }
 
+    // Utility
+    
+    const char *frameTypeString(FrameType type)
+    {
+        switch(type)
+        {
+            case kFrameAny:     return "either";
+            case kFrameNormal:  return "vector";
+            case kFrameTagged:  return "tagged";
+        }
+    }
+    
     // Parameter Parsing
     
     bool isParameterTag(t_symbol *sym)

@@ -27,7 +27,7 @@ public:
         
         for (unsigned long i = 0; i < mNumIns; i++)
             inputMode(i, false, i == mActiveIn, true);
-        inputMode(mNumIns, true, false, false);
+        inputMode(mNumIns, true, false, false, kFrameTagged);
     }
     
 protected:

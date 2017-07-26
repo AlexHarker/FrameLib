@@ -27,7 +27,7 @@ public:
         
         mParameters.set(serialisedParameters);
         
-        inputMode(1, true, false, false);
+        inputMode(1, true, false, false, kFrameTagged);
     }
     
 private:

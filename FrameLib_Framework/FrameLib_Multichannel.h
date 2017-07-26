@@ -165,6 +165,9 @@ public:
     
     virtual const FrameLib_Parameters *getParameters() { return &mParameters; }
 
+    virtual FrameType inputType(unsigned long idx) { return kFrameAny; }
+    virtual FrameType outputType(unsigned long idx) { return kFrameAny; }
+    
 private:
     
     virtual bool inputUpdate();
@@ -192,6 +195,9 @@ public:
 
     virtual const FrameLib_Parameters *getParameters() { return &mParameters; }
 
+    virtual FrameType inputType(unsigned long idx) { return kFrameAny; }
+    virtual FrameType outputType(unsigned long idx) { return kFrameAny; }
+    
 private:
     
     virtual bool inputUpdate();
@@ -310,6 +316,9 @@ public:
     virtual const char *outputInfo(unsigned long idx, bool verbose) { return mBlocks[0]->outputInfo(idx, verbose); }
     virtual const char *audioInfo(unsigned long idx, bool verbose)  { return mBlocks[0]->audioInfo(idx, verbose); }
 
+    virtual FrameType inputType(unsigned long idx)                  { return mBlocks[0]->inputType(idx); }
+    virtual FrameType outputType(unsigned long idx)                 { return mBlocks[0]->outputType(idx); }
+    
     virtual const FrameLib_Parameters *getParameters()              { return mBlocks[0]->getParameters(); }
 
 private:

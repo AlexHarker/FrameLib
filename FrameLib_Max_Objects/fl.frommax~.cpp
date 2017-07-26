@@ -50,7 +50,7 @@ public:
         
         mMode = (Modes) mParameters.getValue(kMode);
         
-        outputMode(0, mMode == kValues ? kOutputNormal : kOutputTagged);
+        outputMode(0, mMode == kValues ? kFrameNormal : kFrameTagged);
         
         mMessages = getMessages((FrameLib_MaxClass_From *)owner);
     }

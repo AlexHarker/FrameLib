@@ -32,7 +32,8 @@ public:
 
         setIO(mNumIns + 1, 1);
         
-        outputMode(0, kOutputTagged);
+        inputMode(mNumIns, false, true, false, kFrameTagged);
+        outputMode(0, kFrameTagged);
     }
     
 protected:
