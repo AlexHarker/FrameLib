@@ -597,10 +597,7 @@ public:
             for (size_t pos = str.find_first_of(":."); oldPos < str.size(); pos = str.find_first_of(":.", pos + 1))
             {
                 pos = pos == std::string::npos ? str.size() : pos;
-                if (oldPos == 0)
-                    object_post(mUserObject, str.substr(oldPos, (pos - oldPos) + 1).c_str());
-                else
-                    object_post(mUserObject, "-%s", str.substr(oldPos, (pos - oldPos) + 1).c_str());
+                object_post(mUserObject, "%s%s", oldPos ? "-" : "", str.substr(oldPos, (pos - oldPos) + 1).c_str());
                 oldPos = pos + 1;
             }
         }
@@ -631,14 +628,16 @@ public:
         
         if (flags & kParameters)
         {
-            object_post(mUserObject, "--- Parameter List ---");
             const FrameLib_Parameters *params = mObject->getParameters();
+
+            object_post(mUserObject, "--- Parameter List ---");
             
             if (!params || !params->size())
                  object_post(mUserObject, "< Empty >");
             for (long i = 0; params && i < params->size(); i++)
             {
                 FrameLib_Parameters::Type type = params->getType(i);
+                FrameLib_Parameters::NumericType numericType = params->getNumericType(i);
                 
                 switch (type)
                 {
@@ -651,61 +650,50 @@ public:
                         break;
 
                     default:
-                        if (params->getNumericType(i) == FrameLib_Parameters::kNumericBool)
+                        if (numericType == FrameLib_Parameters::kNumericBool)
                             object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i), params->getDefault(i) ? "true" : "false");
                         else
                             object_post(mUserObject, "Parameter %ld: %s [%s] (default: %lg)", i + 1, params->getName(i), params->getTypeString(i), params->getDefault(i));
                 }
                 
-                if (verbose)
+                if (!verbose)
+                    continue;
+                
+                std::string str = std::string(" ") + params->getInfo(i);
+                size_t oldPos = 0;
+                    
+                for (size_t pos = str.find_first_of(":."); oldPos < str.size(); pos = str.find_first_of(":.", pos + 1))
                 {
-                    std::string str = std::string(" ") + params->getInfo(i);
-                    size_t oldPos = 0;
+                    pos = pos == std::string::npos ? str.size() : pos;
+                    object_post(mUserObject, "-%s", str.substr(oldPos, (pos - oldPos) + 1).c_str());
+                    oldPos = pos + 1;
+                }
                     
-                    for (size_t pos = str.find_first_of(":."); oldPos < str.size(); pos = str.find_first_of(":.", pos + 1))
+                long argumentIdx = params->getArgumentIdx(i);
+                if (!argsSetAllInputs && argumentIdx >= 0)
+                    object_post(mUserObject, "- Argument: %ld", argumentIdx + 1);
+                
+                if (type == FrameLib_Parameters::kEnum)
+                {
+                    for (long j = 0; j <= params->getMax(i); j++)
+                        object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j));
+                }
+                else
+                {
+                    if (numericType == FrameLib_Parameters::kNumericInteger || numericType == FrameLib_Parameters::kNumericDouble)
                     {
-                        pos = pos == std::string::npos ? str.size() : pos;
-                        object_post(mUserObject, "-%s", str.substr(oldPos, (pos - oldPos) + 1).c_str());
-                        oldPos = pos + 1;
-                    }
-                    
-                    long argumentIdx = params->getArgumentIdx(i);
-                    if (!argsSetAllInputs && argumentIdx >= 0)
-                        object_post(mUserObject, "- Argument: %ld", argumentIdx + 1);
-                    
-                    switch (type)
-                    {
-                        case FrameLib_Parameters::kString:  break;
-                            
-                        case FrameLib_Parameters::kEnum:
-                            for (long j = 0; j <= params->getMax(i); j++)
-                                object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j));
-                            break;
-                            
-                        default:
+                        switch (params->getClipMode(i))
                         {
-                            FrameLib_Parameters::ClipMode mode = params->getClipMode(i);
-                            double min, max;
-                         
-                            if (params->getNumericType(i) != FrameLib_Parameters::kNumericBool)
-                            {
-                                params->getRange(i, &min, &max);
-                                
-                                switch (mode)
-                                {
-                                    case FrameLib_Parameters::kNone:    break;
-                                    case FrameLib_Parameters::kMin:     object_post(mUserObject, "- Min Value: %lg", min);          break;
-                                    case FrameLib_Parameters::kMax:     object_post(mUserObject, "- Max Value: %lg", max);          break;
-                                    case FrameLib_Parameters::kClip:    object_post(mUserObject, "- Clipped: %lg-%lg", min, max);   break;
-                                }
-                            }
-                            
-                            if (type == FrameLib_Parameters::kArray)
-                                object_post(mUserObject, "- Array Size: %ld", params->getArraySize(i));
-                            if (type == FrameLib_Parameters::kVariableArray)
-                                object_post(mUserObject, "- Array Max Size: %ld", params->getArrayMaxSize(i));
+                            case FrameLib_Parameters::kNone:    break;
+                            case FrameLib_Parameters::kMin:     object_post(mUserObject, "- Min Value: %lg", params->getMin(i));                        break;
+                            case FrameLib_Parameters::kMax:     object_post(mUserObject, "- Max Value: %lg", params->getMax(i));                        break;
+                            case FrameLib_Parameters::kClip:    object_post(mUserObject, "- Clipped: %lg-%lg", params->getMin(i), params->getMax(i));   break;
                         }
                     }
+                    if (type == FrameLib_Parameters::kArray)
+                        object_post(mUserObject, "- Array Size: %ld", params->getArraySize(i));
+                    if (type == FrameLib_Parameters::kVariableArray)
+                        object_post(mUserObject, "- Array Max Size: %ld", params->getArrayMaxSize(i));
                 }
             }
         }
