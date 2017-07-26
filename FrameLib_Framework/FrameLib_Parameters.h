@@ -14,9 +14,6 @@
 
 // This class deals with parameters of an object
 
-// FIX - add error reporting
-// FIX - consider adding descriptions (using const char * strings)
-
 static const char *typeStringsDouble[] = {"double", "enum", "string", "fixed length double array", "variable length double array" };
 static const char *typeStringsInteger[] = {"int", "enum", "string", "fixed length int array", "variable length int array" };
 static const char *typeStringsBool[] = {"bool", "enum", "string", "fixed length bool array", "variable length bool array" };
@@ -148,6 +145,24 @@ public:
     private:
         
         bool checkSize(size_t writeSize);
+    };
+    
+    // ************************************************************************************** //
+
+    // Info Class for Passing in Info Strings
+    
+    class Info
+    {
+        
+    public:
+        
+        void add(const char *str)               { mInfoStrings.push_back(str); }
+        void add(const std::string &str)        { mInfoStrings.push_back(str); }
+        const char *get(unsigned long idx)      { return (idx < mInfoStrings.size()) ? mInfoStrings[idx].c_str() : "No info available"; }
+        
+    private:
+        
+        std::vector<std::string> mInfoStrings;
     };
     
     // ************************************************************************************** //
@@ -366,7 +381,7 @@ public:
     
     // Constructor
     
-    FrameLib_Parameters() {}
+    FrameLib_Parameters() : mParameterInfo(NULL) {}
     
     // Destructor
     
@@ -467,6 +482,10 @@ public:
 
     // Setters (N.B. - setters have sanity checks as the tags are set by the end-user)
 
+    void setInfo(Info *info)                    { mParameterInfo = info; }
+    
+    // Set as Instantiation Only
+    
     void setInstantiation()                     { mParameters.back()->setInstantiation(); }
 
     // Set Range
@@ -605,7 +624,7 @@ public:
     
     // Get Info
     
-    const char *getInfo(unsigned long idx) const                            { return "No info available"; }
+    const char *getInfo(unsigned long idx) const                            { return mParameterInfo ? mParameterInfo->get(idx) : "No info available"; }
     const char *getInfo(const char *name) const                             { return getInfo(getIdx(name)); }
 
     // Default Values
@@ -677,6 +696,7 @@ private:
     // Data
     
     std::vector <Parameter *> mParameters;
+    Info *mParameterInfo;
     mutable std::string mTypeInfo;
 };
 
