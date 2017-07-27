@@ -153,7 +153,7 @@ class FrameLib_Pack : public FrameLib_MultiChannel, private FrameLib_Info
 {
     enum AtrributeList { kInputs };
 
-    class ParameterInfo : public FrameLib_Parameters::Info { public: ParameterInfo() { add("Sets the number of inputs."); } };
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo() { add("Sets the number of inputs."); } };
     
 public:
     
@@ -187,7 +187,7 @@ class FrameLib_Unpack : public FrameLib_MultiChannel, private FrameLib_Info
 {
     enum AtrributeList { kOutputs };
     
-    class ParameterInfo : public FrameLib_Parameters::Info { public: ParameterInfo() { add("Sets the number of outputs."); } };
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo() { add("Sets the number of outputs."); } };
 
 public:
 

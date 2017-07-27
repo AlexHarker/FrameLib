@@ -35,6 +35,16 @@ public:
         return mInfo.c_str();
     }
     
+    const char *getInfo(const char *verboseStr, const char *briefStr, const char *replaceStr, bool verbose)
+    {
+        getInfo(verboseStr, briefStr, verbose);
+        
+        for (size_t pos = mInfo.find("#", 0); pos != std::string::npos;  pos = mInfo.find("#", pos + 1))
+            mInfo.replace(pos, 1, replaceStr);
+        
+        return mInfo.c_str();
+    }
+    
 private:
       
     std::string mInfo;

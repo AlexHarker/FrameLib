@@ -63,10 +63,10 @@ public:
 
     // Info
 
-    virtual const char *objectInfo(bool verbose = false)                        { return "No info available";  }
-    virtual const char *inputInfo(unsigned long idx, bool verbose = false)      { return "No info available";  }
-    virtual const char *outputInfo(unsigned long idx, bool verbose = false)     { return "No info available";  }
-    virtual const char *audioInfo(unsigned long idx, bool verbose = false)      { return "No info available";  }
+    virtual const char *objectInfo(bool verbose = false)                        { return "No object info available";  }
+    virtual const char *inputInfo(unsigned long idx, bool verbose = false)      { return "No input info available";  }
+    virtual const char *outputInfo(unsigned long idx, bool verbose = false)     { return "No output info available";  }
+    virtual const char *audioInfo(unsigned long idx, bool verbose = false)      { return "No audio channel info available";  }
    
     virtual FrameType inputType(unsigned long idx) = 0;
     virtual FrameType outputType(unsigned long idx) = 0;

@@ -619,7 +619,7 @@ public:
             object_post(mUserObject, "--- Parameter List ---");
             
             const FrameLib_Parameters *params = mObject->getParameters();
-            if (!params || !params->size()) object_post(mUserObject, "< Empty >");
+            if (!params || !params->size()) object_post(mUserObject, "< No Parameters >");
             
             // Loop over parameters
             

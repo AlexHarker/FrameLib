@@ -158,7 +158,7 @@ public:
         
         void add(const char *str)               { mInfoStrings.push_back(str); }
         void add(const std::string &str)        { mInfoStrings.push_back(str); }
-        const char *get(unsigned long idx)      { return (idx < mInfoStrings.size()) ? mInfoStrings[idx].c_str() : "No info available"; }
+        const char *get(unsigned long idx)      { return (idx < mInfoStrings.size()) ? mInfoStrings[idx].c_str() : "No parameter info available"; }
         
     private:
         
@@ -559,7 +559,7 @@ public:
     
     // Get Info
     
-    const char *getInfo(unsigned long idx) const                            { return mParameterInfo ? mParameterInfo->get(idx) : "No info available"; }
+    const char *getInfo(unsigned long idx) const                            { return mParameterInfo ? mParameterInfo->get(idx) : "No parameter info available"; }
     const char *getInfo(const char *name) const                             { return getInfo(getIdx(name)); }
 
     // Default Values
