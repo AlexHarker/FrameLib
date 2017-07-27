@@ -32,7 +32,7 @@ protected:
         
         double *output = getOutput(0, &sizeOut);
         
-        for (unsigned int i = 0; i < sizeOut; i++)
+        for (unsigned long i = 0; i < sizeOut; i++)
         {
             long pos = input1[i];
             

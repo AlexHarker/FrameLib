@@ -71,7 +71,7 @@ protected:
         
             double *output = getOutput(0, &size);
         
-            for (unsigned int i = 0; i < size; i++)
+            for (unsigned long i = 0; i < size; i++)
                 output[i] = mMessages->mValues[i];
         }
         else

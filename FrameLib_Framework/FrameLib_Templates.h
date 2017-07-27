@@ -57,7 +57,7 @@ protected:
 
         double *output = getOutput(0, &size);
         
-        for (unsigned int i = 0; i < size; i++)
+        for (unsigned long i = 0; i < size; i++)
             output[i] = Op()(input[i]);
     }
     
@@ -181,7 +181,7 @@ protected:
         
         // Do first part
         
-        for (unsigned int i = 0; i < sizeCommon; i++)
+        for (unsigned long i = 0; i < sizeCommon; i++)
             output[i] = Op()(input1[i], input2[i]);
         
         // Clean up if sizes don't match
@@ -212,13 +212,13 @@ protected:
                        if (sizeIn2 == 1)
                        {
                            double value = input2[0];
-                           for (unsigned int i = 1; i < sizeOut; i++)
+                           for (unsigned long i = 1; i < sizeOut; i++)
                                output[i] = Op()(input1[i], value);
                        }
                        else
                        {
-                           for (unsigned int i = sizeCommon; i < sizeOut;)
-                               for (unsigned int j = 0; j < sizeIn2; i++, j++)
+                           for (unsigned long i = sizeCommon; i < sizeOut;)
+                               for (unsigned long j = 0; j < sizeIn2; i++, j++)
                                 output[i] = Op()(input1[i], input2[j]);
                        }
                     }
@@ -227,13 +227,13 @@ protected:
                         if (sizeIn1 == 1)
                         {
                             double value = input1[0];
-                            for (unsigned int i = 1; i < sizeOut; i++)
+                            for (unsigned long i = 1; i < sizeOut; i++)
                                 output[i] = Op()(value, input2[i]);
                         }
                         else
                         {
-                            for (unsigned int i = sizeCommon; i < sizeOut;)
-                                for (unsigned int j = 0; j < sizeIn1; i++, j++)
+                            for (unsigned long i = sizeCommon; i < sizeOut;)
+                                for (unsigned long j = 0; j < sizeIn1; i++, j++)
                                     output[i] = Op()(input1[j], input2[i]);
                         }
                     }
@@ -243,19 +243,19 @@ protected:
                     
                     if (sizeIn1 > sizeIn2)
                     {
-                        for (unsigned int i = sizeCommon; i < sizeOut; i++)
+                        for (unsigned long i = sizeCommon; i < sizeOut; i++)
                             output[i] = Op()(input1[i], defaultValue);
                     }
                     else
                     {
-                        for (unsigned int i = sizeCommon; i < sizeOut; i++)
+                        for (unsigned long i = sizeCommon; i < sizeOut; i++)
                             output[i] = Op()(defaultValue, input2[i]);
                     }
                     break;
                     
                 case kPadOut:
                     
-                    for (unsigned int i = sizeCommon; i < sizeOut; i++)
+                    for (unsigned long i = sizeCommon; i < sizeOut; i++)
                         output[i] = defaultValue;
                     break;
             }

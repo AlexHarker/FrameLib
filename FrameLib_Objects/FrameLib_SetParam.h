@@ -46,7 +46,7 @@ protected:
         
         sizeOut = 0;
         
-        for (unsigned int i = 0; i < mNumIns; i++)
+        for (unsigned long i = 0; i < mNumIns; i++)
         {
             getInput(i, &sizeIn);
             sizeOut += FrameLib_Parameters::Serial::calcSize(mParameters.getString(kNames + i), sizeIn);
@@ -60,7 +60,7 @@ protected:
         
         FrameLib_Parameters::Serial *output = getOutput(0);
         
-        for (unsigned int i = 0; i < mNumIns; i++)
+        for (unsigned long i = 0; i < mNumIns; i++)
         {
             double *input = getInput(i, &sizeIn);
             output->write(mParameters.getString(kNames + i), input, sizeIn);
