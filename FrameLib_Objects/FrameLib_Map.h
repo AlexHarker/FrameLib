@@ -4,12 +4,27 @@
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_Map : public FrameLib_Processor
+class FrameLib_Map : public FrameLib_Processor, private FrameLib_Info
 {
-    enum ParameterList {kMode, kInLo, kInHi, kOutLo, kOutHi, kClip};
-    enum Modes {kLinear, kLog, kExp, kDB, kInvDB, kTranspose, kInvTranspose};
-    enum ScaleMode {kScaleLinear, kScaleExp, kScaleLog};
+    enum ParameterList { kMode, kInLo, kInHi, kOutLo, kOutHi, kClip };
+    enum Modes { kLinear, kLog, kExp, kDB, kInvDB, kTranspose, kInvTranspose };
+    enum ScaleMode { kScaleLinear, kScaleExp, kScaleLog };
 
+    struct ParameterInfo : public FrameLib_Parameters::Info
+    {
+        ParameterInfo()
+        {
+            add("Sets the type of output scaling: linear / log / exp - scaling as specified. "
+                "db / invdb - output / input respectively are set in dB but scaled as gain values. "
+                "transpose / invtranspose - output / input respectively are set in semitones but scaled as ratios for transposition.");
+            add("Sets the low input value.");
+            add("Sets the high input value.");
+            add("Sets the low output value.");
+            add("Sets the high output value.");
+            add("If true then the output is clipped between the low and high output value.");
+        }
+    };
+    
 public:
     
     FrameLib_Map (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
@@ -32,11 +47,24 @@ public:
         
         mParameters.set(serialisedParameters);
         
+        mParameters.setInfo(getParameterInfo());
+
         inputMode(1, true, false, false, kFrameTagged);
         
         setScaling();
     }
     
+    const char *objectInfo(bool verbose)
+    {
+        return getInfo("Maps values in the input via a given scaling to corresponding output values: The output size matches the input size. "
+                       "Scaling maps a specified range of values in the input to a specified range of output values. Different modes of scaling are offered. "
+                       "Values may be optionally constrained within the specified ranges.",
+                       "Maps values in the input via a given scaling to corresponding output values.", verbose);
+    }
+    
+    const char *inputInfo(unsigned long idx, bool verbose)  { return "Input Frame"; }
+    const char *outputInfo(unsigned long idx, bool verbose) { return "Maooed Output"; }
+
 private:
     
     void setScaling()
@@ -163,6 +191,12 @@ protected:
     }
     
 private:
+    
+    ParameterInfo *getParameterInfo()
+    {
+        static ParameterInfo info;
+        return &info;
+    }
     
     ScaleMode mMode;
     

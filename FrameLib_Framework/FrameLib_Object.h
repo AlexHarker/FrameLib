@@ -4,6 +4,7 @@
 
 #include "FrameLib_Types.h"
 #include "FrameLib_Parameters.h"
+#include "FrameLib_Info.h"
 
 // FrameLib_Object
 

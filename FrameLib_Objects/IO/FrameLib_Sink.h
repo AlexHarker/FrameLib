@@ -12,17 +12,26 @@
 
 #define MAX_VECTOR_SIZE 8192
 
-class FrameLib_Sink : public FrameLib_AudioOutput
+class FrameLib_Sink : public FrameLib_AudioOutput, private FrameLib_Info
 {
-    enum ParameterList {kLength, kUnits};
-    enum Units {kMS, kSeconds, kSamples};
+    enum ParameterList { kLength, kUnits };
+    enum Units { kMS, kSeconds, kSamples };
+    
+    struct ParameterInfo : public FrameLib_Parameters::Info
+    {
+        ParameterInfo()
+        {
+            add("Sets the internal buffer length in the units specified by the units parameter.");
+            add("Sets the time units used to determine the buffer length.");
+        }
+    };
     
 public:
     
     FrameLib_Sink(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioOutput(context, 1, 0, 1)
     {
         mParameters.addDouble(kLength, "length", 8000, 0);
-        mParameters.setMin(0.0);
+        mParameters.setMin(0);
         mParameters.setInstantiation();
         mParameters.addEnum(kUnits, "units", 1);
         mParameters.addEnumItem(kMS, "ms");
@@ -32,6 +41,8 @@ public:
 
         mParameters.set(serialisedParameters);
         
+        mParameters.setInfo(getParameterInfo());
+
         mBuffer = NULL;
         mSize = 0;
         objectReset();
@@ -69,6 +80,16 @@ public:
         
         mCounter = 0;
     }
+    
+    const char *objectInfo(bool verbose)
+    {
+        return getInfo("Outputs audio frames to the host environment by pasting them into an overlap-add buffer: "
+                       "The length of the internal buffer determines the maximum frame length. Output suffers no latency. ",
+                       "Outputs audio frames to the host environment by pasting them into an overlap add buffer.", verbose);
+    }
+    
+    const char *inputInfo(unsigned long idx, bool verbose)  { return getInfo("Frames to Output", "Frames to Output - overlapped to the output", verbose); }
+    const char *audioInfo(unsigned long idx, bool verbose)  { return "Audio Output"; }
     
 private:
     
@@ -138,6 +159,12 @@ private:
 
     
 private:
+    
+    ParameterInfo *getParameterInfo()
+    {
+        static ParameterInfo info;
+        return &info;
+    }
     
     double *mBuffer;
     unsigned long mSize;

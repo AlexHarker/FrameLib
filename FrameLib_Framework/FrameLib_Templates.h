@@ -269,7 +269,6 @@ private:
     ParameterInfo *getParameterInfo()
     {
         static ParameterInfo info;
-        
         return &info;
     }
     

@@ -13,10 +13,20 @@
 
 #define MAX_VECTOR_SIZE 8192
 
-class FrameLib_Source : public FrameLib_AudioInput
+class FrameLib_Source : public FrameLib_AudioInput, private FrameLib_Info
 {
-    enum ParameterList {kMaxLength, kLength, kUnits};
-    enum Units {kSamples, kMS, kSeconds};
+    enum ParameterList { kMaxLength, kLength, kUnits };
+    enum Units { kSamples, kMS, kSeconds };
+    
+    struct ParameterInfo : public FrameLib_Parameters::Info
+    {
+        ParameterInfo()
+        {
+            add("Sets the internal buffer length in the units specified by the units parameter.");
+            add("Sets the size of output frames.");
+            add("Sets the time units used to determine the buffer length and output size.");
+        }
+    };
     
 private:
     
@@ -51,6 +61,8 @@ public:
         
         mParameters.set(serialisedParameters);
 
+        mParameters.setInfo(getParameterInfo());
+
         mLength = convertTimeToSamples(mParameters.getValue(kLength));
         
         mBuffer = NULL;
@@ -78,6 +90,17 @@ public:
         
         mCounter = 0;
     }
+    
+    const char *objectInfo(bool verbose)
+    {
+        return getInfo("Captures audio from the host environment and outputs the most recent values as frames: The size of captured frames is variable. "
+                       "Latency is equivalent to the length of the captured frame. The length of the internal buffer determines the maximum frame length.",
+                       "Captures audio from the host environment and outputs the most recent values as frames.", verbose);
+    }
+    
+    const char *inputInfo(unsigned long idx, bool verbose)  { return getInfo("Trigger Frame", "Trigger Frame - triggers capture to output", verbose); }
+    const char *outputInfo(unsigned long idx, bool verbose) { return "Frame of Captured Values"; }
+    const char *audioInfo(unsigned long idx, bool verbose)  { return "Audio Input"; }
     
 private:
     
@@ -143,6 +166,12 @@ private:
 
     
 private:
+    
+    ParameterInfo *getParameterInfo()
+    {
+        static ParameterInfo info;
+        return &info;
+    }
     
     double *mBuffer;
     unsigned long mSize;
