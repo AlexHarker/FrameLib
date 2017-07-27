@@ -558,12 +558,11 @@ public:
     
     void help(t_symbol *sym, long ac, t_atom *av)
     {
-        // Figure out what to post
+        // Determine what to post
         
         enum HelpFlags { kHelpDesciption = 0x01, kHelpInputs = 0x02, kHelpOutputs = 0x04, kParameters = 0x08 };
-        
-        long flags = 0;
         bool verbose = true;
+        long flags = 0;
         
         while (ac--)
         {
@@ -577,8 +576,7 @@ public:
             else if (type == gensym("quick"))           verbose = false;
         }
         
-        if (!flags)
-            flags = kHelpDesciption | kHelpInputs | kHelpOutputs | kParameters;
+        flags = !flags ? (kHelpDesciption | kHelpInputs | kHelpOutputs | kParameters) : flags;
         
         // Start Tag
         
@@ -618,12 +616,12 @@ public:
         
         if (flags & kParameters)
         {
-            const FrameLib_Parameters *params = mObject->getParameters();
-
             object_post(mUserObject, "--- Parameter List ---");
             
-            if (!params || !params->size())
-                 object_post(mUserObject, "< Empty >");
+            const FrameLib_Parameters *params = mObject->getParameters();
+            if (!params || !params->size()) object_post(mUserObject, "< Empty >");
+            
+            // Loop over parameters
             
             for (long i = 0; params && i < params->size(); i++)
             {
@@ -631,18 +629,20 @@ public:
                 FrameLib_Parameters::NumericType numericType = params->getNumericType(i);
                 std::string defaultStr = params->getDefaultString(i);
 
+                // Name, type and default value
+                
                 if (defaultStr.size())
                     object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i), defaultStr.c_str());
                 else
                     object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i), params->getTypeString(i));
+
+                // Verbose - description, arguments, range (for numeric types), enum items (for enums), array sizes (for arrays)
                 
                 if (verbose)
                 {
                     postSplit(params->getInfo(i), "- ", "-");
-                    
                     if (!argsSetAllInputs && params->getArgumentIdx(i) >= 0)
                         object_post(mUserObject, "- Argument: %ld", params->getArgumentIdx(i) + 1);
-                
                     if (numericType == FrameLib_Parameters::kNumericInteger || numericType == FrameLib_Parameters::kNumericDouble)
                     {
                         switch (params->getClipMode(i))
@@ -653,13 +653,12 @@ public:
                             case FrameLib_Parameters::kClip:    object_post(mUserObject, "- Clipped: %lg-%lg", params->getMin(i), params->getMax(i));   break;
                         }
                     }
-                
                     if (type == FrameLib_Parameters::kEnum)
                         for (long j = 0; j <= params->getMax(i); j++)
                             object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j));
-                    if (type == FrameLib_Parameters::kArray)
+                    else if (type == FrameLib_Parameters::kArray)
                         object_post(mUserObject, "- Array Size: %ld", params->getArraySize(i));
-                    if (type == FrameLib_Parameters::kVariableArray)
+                    else if (type == FrameLib_Parameters::kVariableArray)
                         object_post(mUserObject, "- Array Max Size: %ld", params->getArrayMaxSize(i));
                 }
             }
