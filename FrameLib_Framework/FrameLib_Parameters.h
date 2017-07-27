@@ -198,7 +198,7 @@ private:
         
         virtual void set(const char *str) {}
         virtual void set(double value) {}
-        virtual void set(double *values, size_t size);
+        virtual void set(double *values, size_t N);
 
         virtual void clear() = 0;
         
@@ -263,7 +263,7 @@ private:
         void addEnumItem(const char *str);
         
         virtual void set(double value);
-        virtual void set(double *values, size_t size);
+        virtual void set(double *values, size_t N);
         virtual void set(const char *str);
         
         virtual void clear() { Enum::set(0.0); };
@@ -297,7 +297,7 @@ private:
         // Setters
 
         virtual void set(double value);
-        virtual void set(double *values, size_t size);
+        virtual void set(double *values, size_t N);
         
         virtual void clear() { Value::set(mDefault); };
 
@@ -355,7 +355,7 @@ private:
 
         // Setters
 
-        virtual void set(double *values, size_t size);
+        virtual void set(double *values, size_t N);
 
         virtual void clear() { Array::set(NULL, 0); };
 
@@ -393,7 +393,7 @@ public:
     
     // Size and Index
     
-    unsigned long size() const                  { return mParameters.size(); }
+    unsigned long size() const { return mParameters.size(); }
     
     long getIdx(const char *name) const
     {
@@ -496,65 +496,25 @@ public:
    
     // Set Value
     
-    void set(Serial *serialised)                { serialised->read(this); }
+    void set(Serial *serialised)                                { serialised->read(this); }
 
-    void set(unsigned long idx, bool value)     { set(idx, (double) value); }
-    void set(const char *name, bool value)      { set(name, (double) value); }
+    void set(unsigned long idx, bool value)                     { set(idx, (double) value); }
+    void set(const char *name, bool value)                      { set(name, (double) value); }
     
-    void set(unsigned long idx, long value)     { set(idx, (double) value); }
-    void set(const char *name, long value)      { set(name, (double) value); }
+    void set(unsigned long idx, long value)                     { set(idx, (double) value); }
+    void set(const char *name, long value)                      { set(name, (double) value); }
 
-    void set(unsigned long idx, double value)
-    {
-        mParameters[idx]->set(value);
-    }
+    void set(unsigned long idx, double value)                   { if (idx < size()) mParameters[idx]->set(value); }
+    void set(const char *name, double value)                    { set(getIdx(name), value); }
+    
+    void set(unsigned long idx, char *str)                      { if (idx < size()) mParameters[idx]->set(str); }
+    void set(const char *name, char *str)                       { set(getIdx(name), str); }
+    
+    void set(unsigned long idx, double *values, size_t N)       { if (idx < size()) mParameters[idx]->set(values, N); }
+    void set(const char *name, double *values, size_t N)        { set(getIdx(name), values, N); }
 
-    void set(const char *name, double value)
-    {
-        long idx = getIdx(name);
-        
-        if (idx >= 0)
-            set(idx, value);
-    }
-    
-    void set(unsigned long idx, char *str)
-    {
-        mParameters[idx]->set(str);
-    }
-    
-    void set(const char *name, char *str)
-    {
-        long idx = getIdx(name);
-        
-        if (idx >= 0)
-            set(idx, str);
-    }
-    
-    void set(unsigned long idx, double *values, size_t size)
-    {
-        mParameters[idx]->set(values, size);
-    }
-    
-    void set(const char *name, double *values, size_t size)
-    {
-        long idx = getIdx(name);
-        
-        if (idx >= 0)
-            set(idx, values, size);
-    }
-
-    void clear(unsigned long idx)
-    {
-        mParameters[idx]->clear();
-    }
-    
-    void clear(const char *name)
-    {
-        long idx = getIdx(name);
-        
-        if (idx >= 0)
-            clear(idx);
-    }
+    void clear(unsigned long idx)                               { if (idx < size()) mParameters[idx]->clear(); }
+    void clear(const char *name)                                { clear(getIdx(name)); }
 
     // Getters (N.B. - getters have no sanity checks, because they are the programmer's responsibility)
     
@@ -570,37 +530,12 @@ public:
     Type getType(unsigned long idx) const                                   { return mParameters[idx]->type(); }
     Type getType(const char *name) const                                    { return getType(getIdx(name)); }
     
-    NumericType getNumericType(unsigned long idx) const
-    {
-        int flags = mParameters[idx]->flags();
-        
-        if (flags & Parameter::kFlagNonNumeric) return kNumericNone;
-        else if (flags & Parameter::kFlagBool) return kNumericBool;
-        else if (flags & Parameter::kFlagInteger) return kNumericInteger;
-        
-        return kNumericDouble;
-    }
-    
+    NumericType getNumericType(unsigned long idx) const;
     NumericType getNumericType(const char *name) const                      { return getNumericType(getIdx(name)); }
     
     // N.B. the type string includes details of numeric type / instantion only
     
-    const char *getTypeString(unsigned long idx) const
-    {
-        const char **typeStrings = typeStringsDouble;
-        int flags = mParameters[idx]->flags();
-        
-        if (flags & Parameter::kFlagInstantiation) mTypeInfo = "instantiation ";
-        else mTypeInfo = "";
-        
-        if (flags & Parameter::kFlagBool) typeStrings = typeStringsBool;
-        else if (flags & Parameter::kFlagInteger) typeStrings = typeStringsInteger;
-        
-        mTypeInfo = mTypeInfo + typeStrings[mParameters[idx]->type()];
-        
-        return mTypeInfo.c_str();
-    }
-    
+    const char *getTypeString(unsigned long idx) const;
     const char *getTypeString(const char *name) const                       { return getTypeString(getIdx(name)); }
 
     // Get Range
@@ -632,33 +567,36 @@ public:
     double getDefault(unsigned long idx) const                              { return mParameters[idx]->getDefault(); }
     double getDefault(const char *name) const                               { return getDefault(getIdx(name)); }
 
+    const char *getDefaultString(unsigned long idx) const;
+    const char *getDefaultString(const char *name) const                    { return getDefaultString(getIdx(name)); }
+
     // Get Value
     
-    double getValue(unsigned long idx) const                        { return mParameters[idx]->getValue(); }
-    double getValue(const char *name) const                         { return getValue(getIdx(name)); }
+    double getValue(unsigned long idx) const                                { return mParameters[idx]->getValue(); }
+    double getValue(const char *name) const                                 { return getValue(getIdx(name)); }
     
-    long getInt(unsigned long idx) const                            { return (long) getValue(idx); }
-    long getInt(const char *name) const                             { return getInt(getIdx(name)); }
+    long getInt(unsigned long idx) const                                    { return (long) getValue(idx); }
+    long getInt(const char *name) const                                     { return getInt(getIdx(name)); }
     
-    long getBool(unsigned long idx) const                           { return (bool) getValue(idx); }
-    bool getBool(const char *name) const                            { return (bool) getValue(getIdx(name)); }
+    long getBool(unsigned long idx) const                                   { return (bool) getValue(idx); }
+    bool getBool(const char *name) const                                    { return (bool) getValue(getIdx(name)); }
     
-    const char *getString(unsigned long idx) const                  { return mParameters[idx]->getString(); }
-    const char *getString(const char *name) const                   { return getString(getIdx(name)); }
+    const char *getString(unsigned long idx) const                          { return mParameters[idx]->getString(); }
+    const char *getString(const char *name) const                           { return getString(getIdx(name)); }
     
-    const double *getArray(unsigned long idx) const                 { return mParameters[idx]->getArray(); }
-    const double *getArray(const char *name) const                  { return getArray(getIdx(name)); }
-    const double *getArray(unsigned long idx, size_t *size) const   { return mParameters[idx]->getArray(size); }
-    const double *getArray(const char *name, size_t *size) const    { return getArray(getIdx(name), size); }
+    const double *getArray(unsigned long idx) const                         { return mParameters[idx]->getArray(); }
+    const double *getArray(const char *name) const                          { return getArray(getIdx(name)); }
+    const double *getArray(unsigned long idx, size_t *size) const           { return mParameters[idx]->getArray(size); }
+    const double *getArray(const char *name, size_t *size) const            { return getArray(getIdx(name), size); }
     
-    size_t getArraySize(unsigned long idx) const                    { return mParameters[idx]->getArraySize(); }
-    size_t getArraySize(const char *name) const                     { return getArraySize(getIdx(name)); }
+    size_t getArraySize(unsigned long idx) const                            { return mParameters[idx]->getArraySize(); }
+    size_t getArraySize(const char *name) const                             { return getArraySize(getIdx(name)); }
 
-    size_t getArrayMaxSize(unsigned long idx) const                 { return mParameters[idx]->getArrayMaxSize(); }
-    size_t getArrayMaxSize(const char *name) const                  { return getArrayMaxSize(getIdx(name)); }
+    size_t getArrayMaxSize(unsigned long idx) const                         { return mParameters[idx]->getArrayMaxSize(); }
+    size_t getArrayMaxSize(const char *name) const                          { return getArrayMaxSize(getIdx(name)); }
 
-    bool changed(unsigned long idx)                                 { return mParameters[idx]->changed(); }
-    bool changed(const char *name)                                  { return changed(getIdx(name)); }
+    bool changed(unsigned long idx)                                         { return mParameters[idx]->changed(); }
+    bool changed(const char *name)                                          { return changed(getIdx(name)); }
     
 private:
     
@@ -697,7 +635,7 @@ private:
     
     std::vector <Parameter *> mParameters;
     Info *mParameterInfo;
-    mutable std::string mTypeInfo;
+    mutable std::string mReportInfo;
 };
 
 #endif

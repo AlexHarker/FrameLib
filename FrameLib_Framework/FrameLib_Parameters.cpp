@@ -237,9 +237,9 @@ void FrameLib_Parameters::Parameter::setClip(double min, double max)
     mMax = max;
 }
 
-void FrameLib_Parameters::Parameter::set(double *values, size_t size)
+void FrameLib_Parameters::Parameter::set(double *values, size_t N)
 {
-    if (size)
+    if (N)
         set(*values);
     else
         clear();
@@ -287,6 +287,7 @@ FrameLib_Parameters::Enum::Enum(const char *name, long argumentIdx) : Parameter(
 {
     mMin = 0.0;
     mMax = -1.0;
+    setNonNumeric();
 }
 
 // Setters
@@ -316,9 +317,9 @@ void FrameLib_Parameters::Enum::set(const char *str)
     }
 }
 
-void FrameLib_Parameters::Enum::set(double *values, size_t size)
+void FrameLib_Parameters::Enum::set(double *values, size_t N)
 {
-    if (size)
+    if (N)
         Enum::set(*values);
     else
         Enum::clear();
@@ -334,9 +335,9 @@ void FrameLib_Parameters::Value::set(double value)
     mChanged = true;
 }
 
-void FrameLib_Parameters::Value::set(double *values, size_t size)
+void FrameLib_Parameters::Value::set(double *values, size_t N)
 {
-    if (size)
+    if (N)
         Value::set(*values);
     else
         Value::clear();
@@ -394,35 +395,81 @@ FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double def
         mItems[i] = defaultValue;
 }
 
-void FrameLib_Parameters::Array::set(double *values, size_t size)
+void FrameLib_Parameters::Array::set(double *values, size_t N)
 {
-    size = size > mItems.size() ? mItems.size() : size;
+    N = N > mItems.size() ? mItems.size() : N;
     
     switch (getClipMode())
     {
         case kNone:
-            for (size_t i = 0; i < size; i++)
+            for (size_t i = 0; i < N; i++)
                 mItems[i] = values[i];
             break;
         case kMin:
-            for (size_t i = 0; i < size; i++)
+            for (size_t i = 0; i < N; i++)
                 mItems[i] = values[i] < mMin ? mMin : values[i];
             break;
         case kMax:
-            for (size_t i = 0; i < size; i++)
+            for (size_t i = 0; i < N; i++)
                 mItems[i] = values[i] > mMax ? mMax : values[i];
             break;
         case kClip:
-            for (size_t i = 0; i < size; i++)
+            for (size_t i = 0; i < N; i++)
                 mItems[i] = values[i] < mMin ? mMin : (values[i] > mMax ? mMax : values[i]);
             break;
     }
     
     if (!mVariableSize)
-        for (size_t i = size; i < mItems.size(); i++)
+        for (size_t i = N; i < mItems.size(); i++)
             mItems[i] = mDefault;
     else
-        mSize = size;
+        mSize = N;
     
     mChanged = true;
+}
+
+// ************************************************************************************** //
+
+// Getters
+
+FrameLib_Parameters::NumericType FrameLib_Parameters::getNumericType(unsigned long idx) const
+{
+    int flags = mParameters[idx]->flags();
+    
+    if (flags & Parameter::kFlagNonNumeric) return kNumericNone;
+    else if (flags & Parameter::kFlagBool) return kNumericBool;
+    else if (flags & Parameter::kFlagInteger) return kNumericInteger;
+    
+    return kNumericDouble;
+}
+
+const char *FrameLib_Parameters::getTypeString(unsigned long idx) const
+{
+    const char **typeStrings = typeStringsDouble;
+    int flags = mParameters[idx]->flags();
+    
+    if (flags & Parameter::kFlagInstantiation) mReportInfo = "instantiation ";
+    else mReportInfo = "";
+    
+    if (flags & Parameter::kFlagBool) typeStrings = typeStringsBool;
+    else if (flags & Parameter::kFlagInteger) typeStrings = typeStringsInteger;
+    
+    mReportInfo = mReportInfo + typeStrings[mParameters[idx]->type()];
+    
+    return mReportInfo.c_str();
+}
+
+const char *FrameLib_Parameters::getDefaultString(unsigned long idx) const
+{
+    Type type = getType(idx);
+    char numericStr[64];
+    
+    if (type == kString) return "";
+    else if (type == kEnum) return getItemString(idx, 0);
+    else if (getNumericType(idx) == kNumericBool) return getDefault(idx) ? "true" : "false";
+    
+    sprintf(numericStr, "%lg", getDefault(idx));
+    mReportInfo = numericStr;
+    
+    return mReportInfo.c_str();
 }

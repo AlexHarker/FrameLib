@@ -574,7 +574,6 @@ public:
             else if (type == gensym("outputs"))         flags |= kHelpOutputs;
             else if (type == gensym("io"))              flags |= kHelpInputs | kHelpOutputs;
             else if (type == gensym("parameters"))      flags |= kParameters;
-            else if (type == gensym("ref"))             flags |= kHelpDesciption | kHelpInputs | kHelpOutputs | kParameters;
             else if (type == gensym("quick"))           verbose = false;
         }
         
@@ -589,17 +588,8 @@ public:
         
         if (flags & kHelpDesciption)
         {
-            std::string str(mObject->objectInfo(verbose));
-            size_t oldPos = 0;
-            
             object_post(mUserObject, "--- Description ---");
-            
-            for (size_t pos = str.find_first_of(":."); oldPos < str.size(); pos = str.find_first_of(":.", pos + 1))
-            {
-                pos = pos == std::string::npos ? str.size() : pos;
-                object_post(mUserObject, "%s%s", oldPos ? "-" : "", str.substr(oldPos, (pos - oldPos) + 1).c_str());
-                oldPos = pos + 1;
-            }
+            postSplit(mObject->objectInfo(verbose), "", "-");
         }
         
         // IO
@@ -634,52 +624,25 @@ public:
             
             if (!params || !params->size())
                  object_post(mUserObject, "< Empty >");
+            
             for (long i = 0; params && i < params->size(); i++)
             {
                 FrameLib_Parameters::Type type = params->getType(i);
                 FrameLib_Parameters::NumericType numericType = params->getNumericType(i);
-                
-                switch (type)
-                {
-                    case FrameLib_Parameters::kString:
-                        object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i), params->getTypeString(i));
-                        break;
-                        
-                    case FrameLib_Parameters::kEnum:
-                        object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i), params->getItemString(i, 0));
-                        break;
+                std::string defaultStr = params->getDefaultString(i);
 
-                    default:
-                        if (numericType == FrameLib_Parameters::kNumericBool)
-                            object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i), params->getDefault(i) ? "true" : "false");
-                        else
-                            object_post(mUserObject, "Parameter %ld: %s [%s] (default: %lg)", i + 1, params->getName(i), params->getTypeString(i), params->getDefault(i));
-                }
-                
-                if (!verbose)
-                    continue;
-                
-                std::string str = std::string(" ") + params->getInfo(i);
-                size_t oldPos = 0;
-                    
-                for (size_t pos = str.find_first_of(":."); oldPos < str.size(); pos = str.find_first_of(":.", pos + 1))
-                {
-                    pos = pos == std::string::npos ? str.size() : pos;
-                    object_post(mUserObject, "-%s", str.substr(oldPos, (pos - oldPos) + 1).c_str());
-                    oldPos = pos + 1;
-                }
-                    
-                long argumentIdx = params->getArgumentIdx(i);
-                if (!argsSetAllInputs && argumentIdx >= 0)
-                    object_post(mUserObject, "- Argument: %ld", argumentIdx + 1);
-                
-                if (type == FrameLib_Parameters::kEnum)
-                {
-                    for (long j = 0; j <= params->getMax(i); j++)
-                        object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j));
-                }
+                if (defaultStr.size())
+                    object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i), defaultStr.c_str());
                 else
+                    object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i), params->getTypeString(i));
+                
+                if (verbose)
                 {
+                    postSplit(params->getInfo(i), "- ", "-");
+                    
+                    if (!argsSetAllInputs && params->getArgumentIdx(i) >= 0)
+                        object_post(mUserObject, "- Argument: %ld", params->getArgumentIdx(i) + 1);
+                
                     if (numericType == FrameLib_Parameters::kNumericInteger || numericType == FrameLib_Parameters::kNumericDouble)
                     {
                         switch (params->getClipMode(i))
@@ -690,6 +653,10 @@ public:
                             case FrameLib_Parameters::kClip:    object_post(mUserObject, "- Clipped: %lg-%lg", params->getMin(i), params->getMax(i));   break;
                         }
                     }
+                
+                    if (type == FrameLib_Parameters::kEnum)
+                        for (long j = 0; j <= params->getMax(i); j++)
+                            object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j));
                     if (type == FrameLib_Parameters::kArray)
                         object_post(mUserObject, "- Array Size: %ld", params->getArraySize(i));
                     if (type == FrameLib_Parameters::kVariableArray)
@@ -1008,7 +975,21 @@ private:
         return 0;
     }
 
-    // Utility
+    // Help Utilities
+    
+    void postSplit(const char *text, const char *firstLineTag, const char *lineTag)
+    {
+        std::string str(text);
+        
+        size_t oldPos, pos;
+        
+        for (oldPos = 0, pos = str.find_first_of(":."); oldPos < str.size(); pos = str.find_first_of(":.", pos + 1))
+        {
+            pos = pos == std::string::npos ? str.size() : pos;
+            object_post(mUserObject, "%s%s", oldPos ? lineTag : firstLineTag, str.substr(oldPos, (pos - oldPos) + 1).c_str());
+            oldPos = pos + 1;
+        }
+    }
     
     const char *frameTypeString(FrameType type)
     {
