@@ -464,7 +464,7 @@ public:
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::assist>(c, "assist");
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::help>(c, "help");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::info>(c, "info");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
@@ -556,11 +556,11 @@ public:
         }
     }
     
-    void help(t_symbol *sym, long ac, t_atom *av)
+    void info(t_symbol *sym, long ac, t_atom *av)
     {
         // Determine what to post
         
-        enum HelpFlags { kHelpDesciption = 0x01, kHelpInputs = 0x02, kHelpOutputs = 0x04, kParameters = 0x08 };
+        enum InfoFlags { kInfoDesciption = 0x01, kInfoInputs = 0x02, kInfoOutputs = 0x04, kInfoParameters = 0x08 };
         bool verbose = true;
         long flags = 0;
         
@@ -568,15 +568,15 @@ public:
         {
             t_symbol *type = atom_getsym(av++);
             
-            if (type == gensym("description"))          flags |= kHelpDesciption;
-            else if (type == gensym("inputs"))          flags |= kHelpInputs;
-            else if (type == gensym("outputs"))         flags |= kHelpOutputs;
-            else if (type == gensym("io"))              flags |= kHelpInputs | kHelpOutputs;
-            else if (type == gensym("parameters"))      flags |= kParameters;
+            if (type == gensym("description"))          flags |= kInfoDesciption;
+            else if (type == gensym("inputs"))          flags |= kInfoInputs;
+            else if (type == gensym("outputs"))         flags |= kInfoOutputs;
+            else if (type == gensym("io"))              flags |= kInfoInputs | kInfoOutputs;
+            else if (type == gensym("parameters"))      flags |= kInfoParameters;
             else if (type == gensym("quick"))           verbose = false;
         }
         
-        flags = !flags ? (kHelpDesciption | kHelpInputs | kHelpOutputs | kParameters) : flags;
+        flags = !flags ? (kInfoDesciption | kInfoInputs | kInfoOutputs | kInfoParameters) : flags;
         
         // Start Tag
         
@@ -584,7 +584,7 @@ public:
 
         // Description
         
-        if (flags & kHelpDesciption)
+        if (flags & kInfoDesciption)
         {
             object_post(mUserObject, "--- Description ---");
             postSplit(mObject->objectInfo(verbose), "", "-");
@@ -592,7 +592,7 @@ public:
         
         // IO
         
-        if (flags & kHelpInputs)
+        if (flags & kInfoInputs)
         {
             object_post(mUserObject, "--- Input List ---");
             if (argsSetAllInputs)
@@ -603,7 +603,7 @@ public:
                 object_post(mUserObject, "Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose));
         }
         
-        if (flags & kHelpOutputs)
+        if (flags & kInfoOutputs)
         {
             object_post(mUserObject, "--- Output List ---");
             for (long i = 0; i < mObject->getNumAudioOuts(); i++)
@@ -614,7 +614,7 @@ public:
         
         // Parameters
         
-        if (flags & kParameters)
+        if (flags & kInfoParameters)
         {
             object_post(mUserObject, "--- Parameter List ---");
             
@@ -974,7 +974,7 @@ private:
         return 0;
     }
 
-    // Help Utilities
+    // Info Utilities
     
     void postSplit(const char *text, const char *firstLineTag, const char *lineTag)
     {
