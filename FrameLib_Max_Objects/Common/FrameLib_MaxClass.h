@@ -464,7 +464,7 @@ public:
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::assist>(c, "assist");
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::help>(c, "help");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::info>(c, "info");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
@@ -556,30 +556,27 @@ public:
         }
     }
     
-    void help(t_symbol *sym, long ac, t_atom *av)
+    void info(t_symbol *sym, long ac, t_atom *av)
     {
-        // Figure out what to post
+        // Determine what to post
         
-        enum HelpFlags { kHelpDesciption = 0x01, kHelpInputs = 0x02, kHelpOutputs = 0x04, kParameters = 0x08 };
-        
-        long flags = 0;
+        enum InfoFlags { kInfoDesciption = 0x01, kInfoInputs = 0x02, kInfoOutputs = 0x04, kInfoParameters = 0x08 };
         bool verbose = true;
+        long flags = 0;
         
         while (ac--)
         {
             t_symbol *type = atom_getsym(av++);
             
-            if (type == gensym("description"))          flags |= kHelpDesciption;
-            else if (type == gensym("inputs"))          flags |= kHelpInputs;
-            else if (type == gensym("outputs"))         flags |= kHelpOutputs;
-            else if (type == gensym("io"))              flags |= kHelpInputs | kHelpOutputs;
-            else if (type == gensym("parameters"))      flags |= kParameters;
-            else if (type == gensym("ref"))             flags |= kHelpDesciption | kHelpInputs | kHelpOutputs | kParameters;
+            if (type == gensym("description"))          flags |= kInfoDesciption;
+            else if (type == gensym("inputs"))          flags |= kInfoInputs;
+            else if (type == gensym("outputs"))         flags |= kInfoOutputs;
+            else if (type == gensym("io"))              flags |= kInfoInputs | kInfoOutputs;
+            else if (type == gensym("parameters"))      flags |= kInfoParameters;
             else if (type == gensym("quick"))           verbose = false;
         }
         
-        if (!flags)
-            flags = kHelpDesciption | kHelpInputs | kHelpOutputs | kParameters;
+        flags = !flags ? (kInfoDesciption | kInfoInputs | kInfoOutputs | kInfoParameters) : flags;
         
         // Start Tag
         
@@ -587,27 +584,15 @@ public:
 
         // Description
         
-        if (flags & kHelpDesciption)
+        if (flags & kInfoDesciption)
         {
-            std::string str(mObject->objectInfo(verbose));
-            size_t oldPos = 0;
-            
             object_post(mUserObject, "--- Description ---");
-            
-            for (size_t pos = str.find_first_of(":."); oldPos < str.size(); pos = str.find_first_of(":.", pos + 1))
-            {
-                pos = pos == std::string::npos ? str.size() : pos;
-                if (oldPos == 0)
-                    object_post(mUserObject, str.substr(oldPos, (pos - oldPos) + 1).c_str());
-                else
-                    object_post(mUserObject, "-%s", str.substr(oldPos, (pos - oldPos) + 1).c_str());
-                oldPos = pos + 1;
-            }
+            postSplit(mObject->objectInfo(verbose), "", "-");
         }
         
         // IO
         
-        if (flags & kHelpInputs)
+        if (flags & kInfoInputs)
         {
             object_post(mUserObject, "--- Input List ---");
             if (argsSetAllInputs)
@@ -618,7 +603,7 @@ public:
                 object_post(mUserObject, "Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose));
         }
         
-        if (flags & kHelpOutputs)
+        if (flags & kInfoOutputs)
         {
             object_post(mUserObject, "--- Output List ---");
             for (long i = 0; i < mObject->getNumAudioOuts(); i++)
@@ -629,83 +614,52 @@ public:
         
         // Parameters
         
-        if (flags & kParameters)
+        if (flags & kInfoParameters)
         {
             object_post(mUserObject, "--- Parameter List ---");
-            const FrameLib_Parameters *params = mObject->getParameters();
             
-            if (!params || !params->size())
-                 object_post(mUserObject, "< Empty >");
+            const FrameLib_Parameters *params = mObject->getParameters();
+            if (!params || !params->size()) object_post(mUserObject, "< Empty >");
+            
+            // Loop over parameters
+            
             for (long i = 0; params && i < params->size(); i++)
             {
                 FrameLib_Parameters::Type type = params->getType(i);
-                
-                switch (type)
-                {
-                    case FrameLib_Parameters::kString:
-                        object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i), params->getTypeString(i));
-                        break;
-                        
-                    case FrameLib_Parameters::kEnum:
-                        object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i), params->getItemString(i, 0));
-                        break;
+                FrameLib_Parameters::NumericType numericType = params->getNumericType(i);
+                std::string defaultStr = params->getDefaultString(i);
 
-                    default:
-                        if (params->getNumericType(i) == FrameLib_Parameters::kNumericBool)
-                            object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i), params->getDefault(i) ? "true" : "false");
-                        else
-                            object_post(mUserObject, "Parameter %ld: %s [%s] (default: %lg)", i + 1, params->getName(i), params->getTypeString(i), params->getDefault(i));
-                }
+                // Name, type and default value
+                
+                if (defaultStr.size())
+                    object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i), defaultStr.c_str());
+                else
+                    object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i), params->getTypeString(i));
+
+                // Verbose - description, arguments, range (for numeric types), enum items (for enums), array sizes (for arrays)
                 
                 if (verbose)
                 {
-                    std::string str = std::string(" ") + params->getInfo(i);
-                    size_t oldPos = 0;
-                    
-                    for (size_t pos = str.find_first_of(":."); oldPos < str.size(); pos = str.find_first_of(":.", pos + 1))
+                    postSplit(params->getInfo(i), "- ", "-");
+                    if (!argsSetAllInputs && params->getArgumentIdx(i) >= 0)
+                        object_post(mUserObject, "- Argument: %ld", params->getArgumentIdx(i) + 1);
+                    if (numericType == FrameLib_Parameters::kNumericInteger || numericType == FrameLib_Parameters::kNumericDouble)
                     {
-                        pos = pos == std::string::npos ? str.size() : pos;
-                        object_post(mUserObject, "-%s", str.substr(oldPos, (pos - oldPos) + 1).c_str());
-                        oldPos = pos + 1;
-                    }
-                    
-                    long argumentIdx = params->getArgumentIdx(i);
-                    if (!argsSetAllInputs && argumentIdx >= 0)
-                        object_post(mUserObject, "- Argument: %ld", argumentIdx + 1);
-                    
-                    switch (type)
-                    {
-                        case FrameLib_Parameters::kString:  break;
-                            
-                        case FrameLib_Parameters::kEnum:
-                            for (long j = 0; j <= params->getMax(i); j++)
-                                object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j));
-                            break;
-                            
-                        default:
+                        switch (params->getClipMode(i))
                         {
-                            FrameLib_Parameters::ClipMode mode = params->getClipMode(i);
-                            double min, max;
-                         
-                            if (params->getNumericType(i) != FrameLib_Parameters::kNumericBool)
-                            {
-                                params->getRange(i, &min, &max);
-                                
-                                switch (mode)
-                                {
-                                    case FrameLib_Parameters::kNone:    break;
-                                    case FrameLib_Parameters::kMin:     object_post(mUserObject, "- Min Value: %lg", min);          break;
-                                    case FrameLib_Parameters::kMax:     object_post(mUserObject, "- Max Value: %lg", max);          break;
-                                    case FrameLib_Parameters::kClip:    object_post(mUserObject, "- Clipped: %lg-%lg", min, max);   break;
-                                }
-                            }
-                            
-                            if (type == FrameLib_Parameters::kArray)
-                                object_post(mUserObject, "- Array Size: %ld", params->getArraySize(i));
-                            if (type == FrameLib_Parameters::kVariableArray)
-                                object_post(mUserObject, "- Array Max Size: %ld", params->getArrayMaxSize(i));
+                            case FrameLib_Parameters::kNone:    break;
+                            case FrameLib_Parameters::kMin:     object_post(mUserObject, "- Min Value: %lg", params->getMin(i));                        break;
+                            case FrameLib_Parameters::kMax:     object_post(mUserObject, "- Max Value: %lg", params->getMax(i));                        break;
+                            case FrameLib_Parameters::kClip:    object_post(mUserObject, "- Clipped: %lg-%lg", params->getMin(i), params->getMax(i));   break;
                         }
                     }
+                    if (type == FrameLib_Parameters::kEnum)
+                        for (long j = 0; j <= params->getMax(i); j++)
+                            object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j));
+                    else if (type == FrameLib_Parameters::kArray)
+                        object_post(mUserObject, "- Array Size: %ld", params->getArraySize(i));
+                    else if (type == FrameLib_Parameters::kVariableArray)
+                        object_post(mUserObject, "- Array Max Size: %ld", params->getArrayMaxSize(i));
                 }
             }
         }
@@ -990,7 +944,6 @@ private:
         if (*this == dst)
         {
             unwrapConnection(src, srcout);
-            
             srcout -= (long) object_method(src, gensym("__fl.get_num_audio_outs"));
             dstin -= getNumAudioIns();
                 
@@ -1013,17 +966,29 @@ private:
             return 1;
 
         unwrapConnection(dst, dstin);
+        dstin -= (long) object_method(dst, gensym("__fl.get_num_audio_ins"));
         
-        long num_audio_ins = (long) object_method(dst, gensym("__fl.get_num_audio_ins"));
-        bool connected = object_method(dst, gensym("__fl.is_connected"), dstin);
-        
-        if (validInput(dstin - num_audio_ins, getInternalObject(dst)) && !connected)
+        if (validInput(dstin, getInternalObject(dst)) && !object_method(dst, gensym("__fl.is_connected"), dstin))
             return 1;
         
         return 0;
     }
 
-    // Utility
+    // Info Utilities
+    
+    void postSplit(const char *text, const char *firstLineTag, const char *lineTag)
+    {
+        std::string str(text);
+        
+        size_t oldPos, pos;
+        
+        for (oldPos = 0, pos = str.find_first_of(":."); oldPos < str.size(); pos = str.find_first_of(":.", pos + 1))
+        {
+            pos = pos == std::string::npos ? str.size() : pos;
+            object_post(mUserObject, "%s%s", oldPos ? lineTag : firstLineTag, str.substr(oldPos, (pos - oldPos) + 1).c_str());
+            oldPos = pos + 1;
+        }
+    }
     
     const char *frameTypeString(FrameType type)
     {
