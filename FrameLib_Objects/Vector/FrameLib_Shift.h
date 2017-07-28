@@ -6,10 +6,10 @@
 
 class FrameLib_Shift : public FrameLib_Processor
 {
-	enum ParameterList {kShift, kPadding, kMode, kUnits};
+	enum ParameterList { kShift, kPadding, kMode, kUnits };
 
-    enum Modes {kPad, kWrap};
-    enum Units {kSamples, kRatio};
+    enum Modes { kPad, kWrap };
+    enum Units { kSamples, kRatio };
     
 public:
 	
@@ -30,9 +30,9 @@ public:
         mParameters.set(serialisedParameters);
     }
     
-protected:
+private:
     
-    void process ()
+    void process()
 	{
         // Get Input
         

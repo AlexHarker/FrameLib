@@ -7,7 +7,7 @@
 
 class FrameLib_Percentile : public FrameLib_Processor
 {
-    enum ParameterList {kPercentile};
+    enum ParameterList { kPercentile };
     
 public:
     
@@ -21,7 +21,7 @@ public:
         mPercentile = mParameters.getValue(kPercentile);
     }
     
-protected:
+private:
     
     void process()
     {
@@ -53,9 +53,7 @@ protected:
         
         mAllocator->dealloc(temp);
     }
-    
-private:
-    
+        
     double mPercentile;
 };
 

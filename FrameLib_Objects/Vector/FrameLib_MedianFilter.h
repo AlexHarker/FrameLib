@@ -8,9 +8,9 @@
 
 class FrameLib_MedianFilter : public FrameLib_Processor
 {
-    enum ParameterList {kWidth, kPadding, kMode};
+    enum ParameterList { kWidth, kPadding, kMode };
     
-    enum Modes {kPad, kWrap, kFold};
+    enum Modes { kPad, kWrap, kFold };
     
 public:
     
@@ -120,9 +120,6 @@ private:
         
         return input[index];
     }
-    
-    
-protected:
     
     void update()
     {

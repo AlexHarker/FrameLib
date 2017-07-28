@@ -6,9 +6,9 @@
 
 class FrameLib_Chop : public FrameLib_Processor
 {
-	enum ParameterList {kNumOuts, kSize, kUnits};
+	enum ParameterList { kNumOuts, kSize, kUnits };
 
-    enum Units {kSamples, kRatio};
+    enum Units { kSamples, kRatio };
     
 public:
 	
@@ -32,7 +32,7 @@ public:
         setIO(1, mNumOuts);
     }
     
-protected:
+private:
     
     void process ()
 	{
@@ -68,9 +68,7 @@ protected:
             sizeCalc += sizeOut;
         }
     }
-    
-private:
-    
+        
     unsigned long mNumOuts;
 };
 

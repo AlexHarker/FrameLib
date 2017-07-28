@@ -6,9 +6,9 @@
 
 class FrameLib_Pad : public FrameLib_Processor
 {
-	enum ParameterList {kPadding, kStart, kEnd, kUnits};
+	enum ParameterList { kPadding, kStart, kEnd, kUnits };
 
-    enum Units {kSamples, kRatio};
+    enum Units { kSamples, kRatio };
     
 public:
 	

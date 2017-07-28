@@ -6,9 +6,9 @@
 
 class FrameLib_Subframe : public FrameLib_Processor
 {
-	enum ParameterList {kStart, kEnd, kUnits};
+	enum ParameterList { kStart, kEnd, kUnits };
 
-    enum Units {kSamples, kRatio};
+    enum Units { kSamples, kRatio };
     
 public:
 	
@@ -27,7 +27,7 @@ public:
         mParameters.set(serialisedParameters);
     }
     
-protected:
+private:
     
     void process()
 	{

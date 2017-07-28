@@ -8,9 +8,9 @@
 
 class FrameLib_Split : public FrameLib_Processor
 {
-	enum ParameterList {kSplit, kUnits};
+	enum ParameterList { kSplit, kUnits };
 
-    enum Units {kSamples, kRatio};
+    enum Units { kSamples, kRatio };
     
 public:
 	
@@ -26,7 +26,7 @@ public:
         mParameters.set(serialisedParameters);
     }
     
-protected:
+private:
     
     void process()
 	{

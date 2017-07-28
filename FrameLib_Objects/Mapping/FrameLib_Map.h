@@ -135,8 +135,6 @@ private:
         mSub = sub;
     }
     
-protected:
-    
     void update()
     {
         FrameLib_Parameters::Serial *serialised = getInput(1);
@@ -189,9 +187,7 @@ protected:
         }
             
     }
-    
-private:
-    
+        
     ParameterInfo *getParameterInfo()
     {
         static ParameterInfo info;

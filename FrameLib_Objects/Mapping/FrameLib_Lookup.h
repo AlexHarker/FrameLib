@@ -18,7 +18,7 @@ public:
         inputMode(1, false, false, false);
     }
     
-protected:
+private:
     
     void process()
     {

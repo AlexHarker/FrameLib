@@ -6,8 +6,8 @@
 
 class FrameLib_SampleRate : public FrameLib_Processor
 {
-    enum ParameterList {kMode};
-    enum Modes {kValue, kNyquist, kSampsToMS, kSampsToSecs, kMSToSamps, kSecsToSamps, kNormToFreq, kHalfNormToFreq, kFreqToNorm, kFreqToHalfNorm};
+    enum ParameterList { kMode };
+    enum Modes { kValue, kNyquist, kSampsToMS, kSampsToSecs, kMSToSamps, kSecsToSamps, kNormToFreq, kHalfNormToFreq, kFreqToNorm, kFreqToHalfNorm };
 
 public:
     
@@ -28,7 +28,7 @@ public:
         mParameters.set(serialisedParameters);
     }
     
-protected:
+private:
     
     void process()
     {

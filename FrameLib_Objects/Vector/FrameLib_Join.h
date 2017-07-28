@@ -8,7 +8,7 @@
 
 class FrameLib_Join : public FrameLib_Processor
 {
-	enum ParameterList {kNumIns, kTriggers};
+	enum ParameterList { kNumIns, kTriggers };
     
 public:
 	
@@ -33,7 +33,7 @@ public:
             inputMode(i, false, triggers[i], false);
     }
     
-protected:
+private:
     
     void process ()
 	{

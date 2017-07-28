@@ -47,7 +47,7 @@ public:
     const char *inputInfo(unsigned long idx, bool verbose)  { return getInfo("Trigger Frame", "Trigger Frame - triggers generation of output", verbose); }
     const char *outputInfo(unsigned long idx, bool verbose) { return "Output Frame"; }
 
-protected:
+private:
     
     void update()
     {
@@ -72,9 +72,7 @@ protected:
         for (unsigned long i = 0; i < sizeOut; i++)
             output[i] = (double) i;
     }
-    
-private:
-    
+        
     ParameterInfo *getParameterInfo()
     {
         static ParameterInfo info;

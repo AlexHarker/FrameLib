@@ -28,23 +28,6 @@ class FrameLib_Source : public FrameLib_AudioInput, private FrameLib_Info
         }
     };
     
-private:
-    
-    unsigned long convertTimeToSamples(double time)
-    {
-        long units = mParameters.getInt(kUnits);
-        
-        if (units != kSamples)
-        {
-            time *= mSamplingRate;
-            
-            if (units != kSeconds)
-                time /= 1000.0;
-        }
-        
-        return time;
-    }
-    
 public:
     
     FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioInput(context, 1, 1, 1)
@@ -103,6 +86,21 @@ public:
     const char *audioInfo(unsigned long idx, bool verbose)  { return "Audio Input"; }
     
 private:
+    
+    unsigned long convertTimeToSamples(double time)
+    {
+        long units = mParameters.getInt(kUnits);
+        
+        if (units != kSamples)
+        {
+            time *= mSamplingRate;
+            
+            if (units != kSeconds)
+                time /= 1000.0;
+        }
+        
+        return time;
+    }
     
     void copy(double *input, unsigned long offset, unsigned long size)
     {
@@ -164,9 +162,6 @@ private:
         memcpy((output + size), mBuffer, (sizeOut - size) * sizeof(double));
     }
 
-    
-private:
-    
     ParameterInfo *getParameterInfo()
     {
         static ParameterInfo info;

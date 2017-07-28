@@ -41,9 +41,7 @@ private:
         pos = posUncorrected + correction;
         amp = exp(v0 - (0.25 * (vm1 - vp1) * correction));
     }
-    
-protected:
-    
+        
     void process ()
     {
         // Get Input

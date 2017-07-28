@@ -175,9 +175,6 @@ private:
         WriteToBuffer(input + size, 0, sizeIn - size);
     }
 
-    
-private:
-    
     ParameterInfo *getParameterInfo()
     {
         static ParameterInfo info;
