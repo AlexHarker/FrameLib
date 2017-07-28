@@ -284,7 +284,7 @@ public:
         // Zero outputs
         
         for (unsigned long i = 0; i < getNumAudioOuts(); i++)
-            std::fill(outs[i], outs[i] + vecSize, 0.0);
+            std::fill_n(outs[i], vecSize, 0.0);
 
         // Process and sum to outputs
 
