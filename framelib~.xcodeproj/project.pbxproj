@@ -550,6 +550,8 @@
 		B87E87D319C8F62F00B1D0CD /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B87E87D419C8F62F00B1D0CD /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B87E87D519C8F63000B1D0CD /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		B8891CD01F2B5CDC00C5C4F0 /* FrameLib_Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CCF1F2B5CDC00C5C4F0 /* FrameLib_Random.cpp */; };
+		B8891CD21F2B5EA400C5C4F0 /* FrameLib_Count.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CD11F2B5EA400C5C4F0 /* FrameLib_Count.cpp */; };
 		B88BD2181F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
 		B88BD2191F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
 		B88BD21C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
@@ -1761,6 +1763,8 @@
 		B87E878919C8F4AA00B1D0CD /* fl.ifft~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.ifft~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B87E879419C8F58C00B1D0CD /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = ../../../../../../System/Library/Frameworks/Accelerate.framework; sourceTree = "<group>"; };
 		B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = "../Max6_support/c74support/msp-includes/MaxAudioAPI.framework"; sourceTree = "<group>"; };
+		B8891CCF1F2B5CDC00C5C4F0 /* FrameLib_Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Random.cpp; sourceTree = "<group>"; };
+		B8891CD11F2B5EA400C5C4F0 /* FrameLib_Count.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Count.cpp; sourceTree = "<group>"; };
 		B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_DSP.cpp; sourceTree = "<group>"; };
 		B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_DSPQueue.cpp; sourceTree = "<group>"; };
 		B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_DSPQueue.h; sourceTree = "<group>"; };
@@ -3145,7 +3149,9 @@
 			isa = PBXGroup;
 			children = (
 				B8C680351B80EF0D00B74B90 /* FrameLib_Random.h */,
+				B8891CCF1F2B5CDC00C5C4F0 /* FrameLib_Random.cpp */,
 				B8F83EAA19C79C8900230CD4 /* FrameLib_Count.h */,
+				B8891CD11F2B5EA400C5C4F0 /* FrameLib_Count.cpp */,
 			);
 			path = Generators;
 			sourceTree = "<group>";
@@ -8668,6 +8674,7 @@
 				B80059BE1DAF96340073A866 /* FrameLib_RandGen.cpp in Sources */,
 				B8DE5DE01F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B8C6803C1B80F62300B74B90 /* tlsf.c in Sources */,
+				B8891CD01F2B5CDC00C5C4F0 /* FrameLib_Random.cpp in Sources */,
 				B8D273401DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121121D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B8EDFD771DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
@@ -9061,6 +9068,7 @@
 				B8F83EB019C79CC900230CD4 /* tlsf.c in Sources */,
 				B8C53C9A1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2B01F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
+				B8891CD21F2B5EA400C5C4F0 /* FrameLib_Count.cpp in Sources */,
 				B8F180191F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961BB1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
 				B8F83EBD19C79D0200230CD4 /* fl.count~.cpp in Sources */,
