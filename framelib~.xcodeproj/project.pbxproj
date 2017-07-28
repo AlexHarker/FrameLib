@@ -552,6 +552,9 @@
 		B87E87D519C8F63000B1D0CD /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8891CD01F2B5CDC00C5C4F0 /* FrameLib_Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CCF1F2B5CDC00C5C4F0 /* FrameLib_Random.cpp */; };
 		B8891CD21F2B5EA400C5C4F0 /* FrameLib_Count.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CD11F2B5EA400C5C4F0 /* FrameLib_Count.cpp */; };
+		B8891CD41F2BF4CE00C5C4F0 /* FrameLib_Source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CD31F2BF4CE00C5C4F0 /* FrameLib_Source.cpp */; };
+		B8891CD61F2BF4E000C5C4F0 /* FrameLib_Sink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CD51F2BF4E000C5C4F0 /* FrameLib_Sink.cpp */; };
+		B8891CD81F2BF4F500C5C4F0 /* FrameLib_Trace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CD71F2BF4F500C5C4F0 /* FrameLib_Trace.cpp */; };
 		B88BD2181F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
 		B88BD2191F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
 		B88BD21C1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
@@ -1765,6 +1768,9 @@
 		B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = "../Max6_support/c74support/msp-includes/MaxAudioAPI.framework"; sourceTree = "<group>"; };
 		B8891CCF1F2B5CDC00C5C4F0 /* FrameLib_Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Random.cpp; sourceTree = "<group>"; };
 		B8891CD11F2B5EA400C5C4F0 /* FrameLib_Count.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Count.cpp; sourceTree = "<group>"; };
+		B8891CD31F2BF4CE00C5C4F0 /* FrameLib_Source.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Source.cpp; sourceTree = "<group>"; };
+		B8891CD51F2BF4E000C5C4F0 /* FrameLib_Sink.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Sink.cpp; sourceTree = "<group>"; };
+		B8891CD71F2BF4F500C5C4F0 /* FrameLib_Trace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Trace.cpp; sourceTree = "<group>"; };
 		B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_DSP.cpp; sourceTree = "<group>"; };
 		B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_DSPQueue.cpp; sourceTree = "<group>"; };
 		B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_DSPQueue.h; sourceTree = "<group>"; };
@@ -3129,8 +3135,11 @@
 			isa = PBXGroup;
 			children = (
 				B8CACC8C19C0F62C007434C9 /* FrameLib_Source.h */,
+				B8891CD31F2BF4CE00C5C4F0 /* FrameLib_Source.cpp */,
 				B843AAA219C05435000D3476 /* FrameLib_Sink.h */,
+				B8891CD51F2BF4E000C5C4F0 /* FrameLib_Sink.cpp */,
 				B8D679CC1B83E39E00519310 /* FrameLib_Trace.h */,
+				B8891CD71F2BF4F500C5C4F0 /* FrameLib_Trace.cpp */,
 			);
 			path = IO;
 			sourceTree = "<group>";
@@ -8264,6 +8273,7 @@
 				B843AAB519C070A1000D3476 /* fl.sink~.cpp in Sources */,
 				B8EDFD2E1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D272F71DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
+				B8891CD61F2BF4E000C5C4F0 /* FrameLib_Sink.cpp in Sources */,
 				B84120C91D9D484700C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B8DE5D971F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD21D1F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
@@ -8797,6 +8807,7 @@
 			files = (
 				B8CACC7D19C0F4A9007434C9 /* tlsf.c in Sources */,
 				B8C53C661F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
+				B8891CD41F2BF4CE00C5C4F0 /* FrameLib_Source.cpp in Sources */,
 				B88BD27C1F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FE51F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961871F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -8820,6 +8831,7 @@
 				B8B961D31F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
 				B8D679D21B83E51A00519310 /* tlsf.c in Sources */,
 				B8EDFD7B1DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
+				B8891CD81F2BF4F500C5C4F0 /* FrameLib_Trace.cpp in Sources */,
 				B8D273441DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
 				B84121161D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B8DE5DE41F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
