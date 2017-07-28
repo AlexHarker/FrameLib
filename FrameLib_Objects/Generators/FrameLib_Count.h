@@ -6,7 +6,7 @@
 
 class FrameLib_Count : public FrameLib_Processor, private FrameLib_Info
 {
-    // Parameter enums and info
+    // Parameter Enums and Info
     
     enum ParameterList { kLength, kMode };
     enum Modes { kInLength, kRequestedLength };

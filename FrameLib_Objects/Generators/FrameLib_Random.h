@@ -7,7 +7,7 @@
 
 class FrameLib_Random : public FrameLib_Processor, private FrameLib_Info
 {
-    // Parameter enums and info
+    // Parameter Enums and Info
     
     enum ParameterList { kLength, kMode };
     enum Modes { kInLength, kRequestedLength };
@@ -35,6 +35,7 @@ private:
     // Data
     
     FrameLib_RandGen mRandom;
+    
     static ParameterInfo sParamInfo;
 };
 
