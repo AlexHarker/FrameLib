@@ -8,7 +8,7 @@
 
 #define MAX_VECTOR_SIZE 8192
 
-// Constructor / Destructor
+// Constructor
 
 FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioOutput(context, 1, 0, 1)
 {
@@ -24,15 +24,8 @@ FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, FrameLib_Parameters::Seri
     mParameters.set(serialisedParameters);
     
     mParameters.setInfo(&sParamInfo);
-    
-    mBuffer = NULL;
-    mSize = 0;
-    objectReset();
-}
 
-FrameLib_Sink::~FrameLib_Sink()
-{
-    delete[] mBuffer;
+    objectReset();
 }
 
 // Info
@@ -70,8 +63,8 @@ void FrameLib_Sink::copyAndZero(double *output, unsigned long offset, unsigned l
 {
     if (size)
     {
-        std::copy(mBuffer + offset, mBuffer + (offset + size), output);
-        std::fill_n(mBuffer + offset, size, 0.0);
+        std::copy(mBuffer.begin() + offset, mBuffer.begin() + (offset + size), output);
+        std::fill_n(mBuffer.begin() + offset, size, 0.0);
         
         mCounter = offset + size;
     }
@@ -87,28 +80,22 @@ void FrameLib_Sink::addToBuffer(double *input, unsigned long offset, unsigned lo
 
 void FrameLib_Sink::objectReset()
 {
-    long units = mParameters.getInt(kUnits);
+    Units units = (Units) mParameters.getInt(kUnits);
     double size = mParameters.getValue(kLength);
     
-    if (units != kSamples)
+    switch (units)
     {
-        size *= mSamplingRate;
-        
-        if (units != kSeconds)
-            size /= 1000.0;
+        case kSamples:  break;
+        case kMS:       size *= mSamplingRate / 1000.0;     break;
+        case kSeconds:  size *= mSamplingRate;              break;
     }
     
-    size += MAX_VECTOR_SIZE;
-    size = round(size);
+    size = round(size + MAX_VECTOR_SIZE);
     
-    if (size != mSize)
-    {
-        mSize = size;
-        delete[] mBuffer;
-        mBuffer = new double[mSize];
-    }
+    if (size != bufferSize())
+        mBuffer.resize(size);
     
-    std::fill_n(mBuffer, mSize, 0.0);
+    std::fill_n(mBuffer.begin(), bufferSize(), 0.0);
     
     mCounter = 0;
 }
@@ -119,12 +106,12 @@ void FrameLib_Sink::blockProcess(double **ins, double **outs, unsigned long vecS
     
     // Safety
     
-    if (vecSize > mSize)
+    if (vecSize > bufferSize())
         return;
     
     // Calculate first segment size and copy segments
     
-    unsigned long size = ((mCounter + vecSize) > mSize) ? mSize - mCounter : vecSize;
+    unsigned long size = ((mCounter + vecSize) > bufferSize()) ? bufferSize() - mCounter : vecSize;
     
     copyAndZero(output, mCounter, size);
     copyAndZero(output + size, 0, vecSize - size);
@@ -144,17 +131,17 @@ void FrameLib_Sink::process()
     
     // Safety
     
-    if (!sizeIn || inputTime < blockStartTime || (offset + sizeIn) > mSize)
+    if (!sizeIn || inputTime < blockStartTime || (offset + sizeIn) > bufferSize())
         return;
     
     // Calculate actual offset into buffer
     
     offset += mCounter;
-    offset = (offset < mSize) ? offset : offset - mSize;
+    offset = (offset < bufferSize()) ? offset : offset - bufferSize();
     
     // Calculate first segment size and copy segments
     
-    unsigned long size = ((offset + sizeIn) > mSize) ? mSize - offset : sizeIn;
+    unsigned long size = ((offset + sizeIn) > bufferSize()) ? bufferSize() - offset : sizeIn;
     
     addToBuffer(input, offset, size);
     addToBuffer(input + size, 0, sizeIn - size);

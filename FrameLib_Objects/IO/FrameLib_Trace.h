@@ -4,6 +4,7 @@
 #define FRAMELIB_TRACE_H
 
 #include "FrameLib_DSP.h"
+#include <vector>
 
 class FrameLib_Trace : public FrameLib_AudioOutput, private FrameLib_Info
 {
@@ -16,10 +17,9 @@ class FrameLib_Trace : public FrameLib_AudioOutput, private FrameLib_Info
     
 public:
     
-    // Constructor / Destructor
+    // Constructor
     
     FrameLib_Trace(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
-    ~FrameLib_Trace();
     
     // Info
     
@@ -31,6 +31,8 @@ private:
     
     // Helpers
     
+    size_t bufferSize() const {return mBuffer.size(); }
+
     void copyAndZero(double *output, unsigned long offset, unsigned long size);
     void writeToBuffer(double *input, unsigned long offset, unsigned long size);
     
@@ -42,10 +44,9 @@ private:
 
     // Data
     
-    double *mBuffer;
-    bool *mFlags;
+    std::vector<double> mBuffer;
+    std::vector<bool> mFlags;
     double mLastValue;
-    unsigned long mSize;
     unsigned long mCounter;
     
     static ParameterInfo sParamInfo;

@@ -4,6 +4,7 @@
 #define FRAMELIB_SOURCE_H
 
 #include "FrameLib_DSP.h"
+#include <vector>
 
 class FrameLib_Source : public FrameLib_AudioInput, private FrameLib_Info
 {
@@ -16,10 +17,9 @@ class FrameLib_Source : public FrameLib_AudioInput, private FrameLib_Info
     
 public:
     
-    // Constructor / Destructor
+    // Constructor
     
     FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
-    ~FrameLib_Source();
     
     // Info
     
@@ -32,6 +32,8 @@ private:
     
     // Helpers
     
+    size_t bufferSize() const {return mBuffer.size(); }
+    
     unsigned long convertTimeToSamples(double time);
     void copy(double *input, unsigned long offset, unsigned long size);
     
@@ -43,8 +45,9 @@ private:
     
     // Data
     
-    double *mBuffer;
-    unsigned long mSize;
+    std::vector<double> mBuffer;
+//    double *mBuffer;
+  //  unsigned long mSize;
     unsigned long mLength;
     unsigned long mCounter;
     

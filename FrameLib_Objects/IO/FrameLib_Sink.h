@@ -4,6 +4,7 @@
 #define FRAMELIB_SINK_H
 
 #include "FrameLib_DSP.h"
+#include <vector>
 
 class FrameLib_Sink : public FrameLib_AudioOutput, private FrameLib_Info
 {
@@ -13,9 +14,10 @@ class FrameLib_Sink : public FrameLib_AudioOutput, private FrameLib_Info
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     
 public:
+
+    // Constructor
     
     FrameLib_Sink(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
-    ~FrameLib_Sink();
     
     // Info
     
@@ -27,6 +29,8 @@ private:
     
     // Helpers
     
+    size_t bufferSize() const {return mBuffer.size(); }
+
     void copyAndZero(double *output, unsigned long offset, unsigned long size);
     void addToBuffer(double *input, unsigned long offset, unsigned long size);
     
@@ -38,8 +42,7 @@ private:
     
     // Data
     
-    double *mBuffer;
-    unsigned long mSize;
+    std::vector<double> mBuffer;
     unsigned long mCounter;
     
     static ParameterInfo sParamInfo;

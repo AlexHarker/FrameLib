@@ -9,7 +9,7 @@
 
 #define MAX_VECTOR_SIZE 8192
 
-// Constructor / Destructor
+// Constructor
 
 FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioInput(context, 1, 1, 1)
 {
@@ -29,14 +29,7 @@ FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::
     
     mLength = convertTimeToSamples(mParameters.getValue(kLength));
     
-    mBuffer = NULL;
-    mSize = 0;
     objectReset();
-}
-
-FrameLib_Source::~FrameLib_Source()
-{
-    delete[] mBuffer;
 }
 
 // Info
@@ -78,24 +71,23 @@ FrameLib_Source::ParameterInfo::ParameterInfo()
 
 unsigned long FrameLib_Source::convertTimeToSamples(double time)
 {
-    long units = mParameters.getInt(kUnits);
+    Units units = (Units) mParameters.getInt(kUnits);
     
-    if (units != kSamples)
+    switch (units)
     {
-        time *= mSamplingRate;
-        
-        if (units != kSeconds)
-            time /= 1000.0;
+        case kSamples:  break;
+        case kMS:       time *= mSamplingRate / 1000.0;     break;
+        case kSeconds:  time *= mSamplingRate;              break;
     }
     
-    return time;
+    return round(time);
 }
 
 void FrameLib_Source::copy(double *input, unsigned long offset, unsigned long size)
 {
     if (size)
     {
-        std::copy(input, input + size, mBuffer + offset);
+        std::copy(input, input + size, mBuffer.begin() + offset);
         mCounter = offset + size;
     }
 }
@@ -104,16 +96,12 @@ void FrameLib_Source::copy(double *input, unsigned long offset, unsigned long si
 
 void FrameLib_Source::objectReset()
 {
-    double size = convertTimeToSamples(mParameters.getValue(kMaxLength)) + MAX_VECTOR_SIZE;
+    unsigned long size = convertTimeToSamples(mParameters.getValue(kMaxLength)) + MAX_VECTOR_SIZE;
     
-    if (size != mSize)
-    {
-        mSize = round(size);
-        delete[] mBuffer;
-        mBuffer = new double[mSize];
-    }
+    if (size != mBuffer.size())
+        mBuffer.resize(size);
     
-    std::fill_n(mBuffer, mSize, 0.0);
+    std::fill_n(mBuffer.begin(), bufferSize(), 0.0);
     
     mCounter = 0;
 }
@@ -124,12 +112,12 @@ void FrameLib_Source::blockProcess(double **ins, double **outs, unsigned long ve
     
     // Safety
     
-    if (vecSize > mSize)
+    if (vecSize > bufferSize())
         return;
     
     // Calculate first segment size and copy segments
     
-    unsigned long size = ((mCounter + vecSize) > mSize) ? mSize - mCounter : vecSize;
+    unsigned long size = ((mCounter + vecSize) > bufferSize()) ? bufferSize() - mCounter : vecSize;
     
     copy(input, mCounter, size);
     copy(input + size, 0, vecSize - size);
@@ -153,18 +141,18 @@ void FrameLib_Source::process()
     
     // Safety
     
-    if (!sizeOut || (offset + sizeOut) > mSize)
+    if (!sizeOut || (offset + sizeOut) > bufferSize())
         return;
     
     // Calculate actual offset into buffer
     
     offset += sizeOut;
-    offset = (offset <= mCounter) ? mCounter - offset : mCounter + mSize - offset;
+    offset = (offset <= mCounter) ? mCounter - offset : mCounter + bufferSize() - offset;
     
     // Calculate first segment size and copy segments
     
-    unsigned long size = ((offset + sizeOut) > mSize) ? mSize - offset : sizeOut;
+    unsigned long size = ((offset + sizeOut) > bufferSize()) ? bufferSize() - offset : sizeOut;
     
-    std::copy(mBuffer + offset, mBuffer + (offset + size), output);
-    std::copy(mBuffer, mBuffer + (sizeOut - size), output + size);
+    std::copy(mBuffer.begin() + offset, mBuffer.begin() + (offset + size), output);
+    std::copy(mBuffer.begin(), mBuffer.begin() + (sizeOut - size), output + size);
 }
