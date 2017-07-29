@@ -46,8 +46,6 @@ private:
     // Data
     
     std::vector<double> mBuffer;
-//    double *mBuffer;
-  //  unsigned long mSize;
     unsigned long mLength;
     unsigned long mCounter;
     
