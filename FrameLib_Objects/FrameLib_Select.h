@@ -63,7 +63,7 @@ protected:
         
         double *output = getOutput(0, &size);
         
-        memcpy(output, input, size * sizeof(double));
+        copyVector(output, input, size);
     }
     
 private:

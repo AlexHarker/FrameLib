@@ -55,7 +55,7 @@ void FrameLib_Chop::process()
         
         double *output = getOutput(i, &sizeOut);
         
-        memcpy(output, input + sizeCalc, sizeOut * sizeof(double));
+        copyVector(output, input + sizeCalc, sizeOut);
         sizeCalc += sizeOut;
     }
 }

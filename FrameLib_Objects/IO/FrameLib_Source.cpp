@@ -1,6 +1,5 @@
 
 #include "FrameLib_Source.h"
-#include <algorithm>
 
 // FIX - MAX_VECTOR_SIZE hack
 // FIX - source is only sample accurate (not subsample) - add a function to interpolate if neceesary
@@ -87,7 +86,7 @@ void FrameLib_Source::copy(double *input, unsigned long offset, unsigned long si
 {
     if (size)
     {
-        std::copy(input, input + size, mBuffer.begin() + offset);
+        copyVector(&mBuffer[offset], input, size);
         mCounter = offset + size;
     }
 }
@@ -101,7 +100,7 @@ void FrameLib_Source::objectReset()
     if (size != mBuffer.size())
         mBuffer.resize(size);
     
-    std::fill_n(mBuffer.begin(), bufferSize(), 0.0);
+    zeroVector(&mBuffer[0], bufferSize());
     
     mCounter = 0;
 }
@@ -153,6 +152,6 @@ void FrameLib_Source::process()
     
     unsigned long size = ((offset + sizeOut) > bufferSize()) ? bufferSize() - offset : sizeOut;
     
-    std::copy(mBuffer.begin() + offset, mBuffer.begin() + (offset + size), output);
-    std::copy(mBuffer.begin(), mBuffer.begin() + (sizeOut - size), output + size);
+    copyVector(output, &mBuffer[offset], size);
+    copyVector(output + size, &mBuffer[0], (sizeOut - size));
 }

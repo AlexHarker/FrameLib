@@ -8,6 +8,7 @@
 #include "FrameLib_DSPQueue.h"
 #include <limits>
 #include <vector>
+#include <algorithm>
 
 // FrameLib_DSP
 
@@ -160,6 +161,11 @@ protected:
     double *getOutput(unsigned long idx, size_t *size);
     FrameLib_Parameters::Serial *getOutput(unsigned long idx);
 
+    // Convience methods for copying and zeroing
+    
+    void copyVector(double *output, double *input, unsigned long size)      { std::copy(input, input + size, output); }
+    void zeroVector(double *output, unsigned long size)                     { std::fill_n(output, size, 0.0); }
+    
     // Get DSP Object for a Given Output
     
     FrameLib_DSP *getOutputObject(unsigned long outIdx)     { return this; }

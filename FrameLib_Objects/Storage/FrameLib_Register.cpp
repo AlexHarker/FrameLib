@@ -35,5 +35,5 @@ void FrameLib_Register::process()
     
     // Copy to output
     
-    memcpy(output, input, sizeOut * sizeof(double));
+    copyVector(output, input, sizeOut);
 }

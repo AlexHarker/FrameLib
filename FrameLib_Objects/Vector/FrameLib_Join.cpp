@@ -54,7 +54,7 @@ void FrameLib_Join::process()
         for (unsigned long i = 0; i < getNumIns(); i++)
         {
             double *input = getInput(i, &sizeIn);
-            memcpy(output + offset, input, sizeIn * sizeof(double));
+            copyVector(output + offset, input, sizeIn);
             offset += sizeIn;
         }
     }

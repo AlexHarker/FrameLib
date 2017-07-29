@@ -58,13 +58,13 @@ void FrameLib_Shift::process()
             
             if (shift >= 0)
             {
-                memcpy(output, input + (sizeIn - absShift), absShift * sizeof(double));
-                memcpy((output + absShift), input, (sizeIn - absShift) * sizeof(double));
+                copyVector(output, input + (sizeIn - absShift), absShift);
+                copyVector((output + absShift), input, (sizeIn - absShift));
             }
             else
             {
-                memcpy(output, input + absShift, (sizeIn - absShift) * sizeof(double));
-                memcpy((output + (sizeIn - absShift)), input, absShift * sizeof(double));
+                copyVector(output, input + absShift, (sizeIn - absShift));
+                copyVector((output + (sizeIn - absShift)), input, absShift);
             }
         }
         else
@@ -77,11 +77,11 @@ void FrameLib_Shift::process()
             {
                 for (unsigned long i = 0; i < absShift; i++)
                     output[i] = padValue;
-                memcpy((output + absShift), input, (sizeIn - absShift) * sizeof(double));
+                copyVector((output + absShift), input, (sizeIn - absShift));
             }
             else
             {
-                memcpy(output, input + absShift, (sizeIn - absShift) * sizeof(double));
+                copyVector(output, input + absShift, (sizeIn - absShift));
                 for (unsigned long i = (sizeIn - absShift); i < sizeIn; i++)
                     output[i] = padValue;
             }

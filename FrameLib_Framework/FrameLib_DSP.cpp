@@ -1,6 +1,5 @@
 
 #include "FrameLib_DSP.h"
-#include <algorithm>
 
 // Constructor / Destructor
 
@@ -43,11 +42,10 @@ void FrameLib_DSP::setFixedInput(unsigned long idx, double *input, unsigned long
     
     if (mInputs[idx].mFixedInput)
     {
-        std::copy(input, input + size, mInputs[idx].mFixedInput);
+        copyVector(mInputs[idx].mFixedInput, input, size);
         mInputs[idx].mSize = size;
     }
 }
-
 
 // Audio Processing
 

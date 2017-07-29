@@ -30,5 +30,5 @@ void FrameLib_Recall::process()
     
     double *output = getOutput(0, &sizeOut);
     
-    memcpy(output, mStorage->getData(), sizeOut * sizeof(double));
+    copyVector(output, mStorage->getData(), sizeOut);
 }

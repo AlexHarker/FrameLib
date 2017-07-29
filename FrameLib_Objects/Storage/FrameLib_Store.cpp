@@ -36,7 +36,7 @@ void FrameLib_Store::process()
     // Copy to storage and output
     
     if (mStorage->getSize() == sizeOut)
-        memcpy(mStorage->getData(), input, sizeOut * sizeof(double));
+        copyVector(mStorage->getData(), input, sizeOut);
     
-    memcpy(output, input, sizeOut * sizeof(double));
+    copyVector(output, input, sizeOut);
 }

@@ -53,5 +53,5 @@ void FrameLib_Subframe::process()
     
     // Copy to output
     
-    memcpy(output, input + start, sizeOut * sizeof(double));
+    copyVector(output, input + start, sizeOut);
 }

@@ -43,6 +43,6 @@ void FrameLib_Split::process()
     
     // Copy to outputs
     
-    memcpy(output1, input, sizeOut1 * sizeof(double));
-    memcpy(output2, input + split, sizeOut2 * sizeof(double));
+    copyVector(output1, input, sizeOut1);
+    copyVector(output2, input + split, sizeOut2);
 }

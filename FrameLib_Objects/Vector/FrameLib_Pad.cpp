@@ -56,7 +56,7 @@ void FrameLib_Pad::process ()
         for (unsigned long i = 0; i < padStart; i++)
             output[i] = padValue;
         
-        memcpy((output + padStart), input, sizeIn * sizeof(double));
+        copyVector(output + padStart, input, sizeIn);
         
         for (unsigned long i = padStart + sizeIn; i < (padStart + sizeIn + padEnd); i++)
             output[i] = padValue;

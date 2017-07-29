@@ -107,9 +107,8 @@ void FrameLib_Multitaper::process()
         
         // Zero output power spectrum
         
-        for (unsigned long j = 0; j < sizeOut; j++)
-            output[j] = 0.0;
-        
+        zeroVector(output, sizeOut);
+
         // Do tapers
         
         // FIX - weighting - I can't find where this stuff comes from...

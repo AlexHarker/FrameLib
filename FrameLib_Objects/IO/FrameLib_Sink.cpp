@@ -1,6 +1,5 @@
 
 #include "FrameLib_Sink.h"
-#include <algorithm>
 
 // FIX - MAX_VECTOR_SIZE hack
 // FIX - sink is only sample accurate (not subsample) - double the buffer and add a function to interpolate if neceesary
@@ -63,8 +62,8 @@ void FrameLib_Sink::copyAndZero(double *output, unsigned long offset, unsigned l
 {
     if (size)
     {
-        std::copy(mBuffer.begin() + offset, mBuffer.begin() + (offset + size), output);
-        std::fill_n(mBuffer.begin() + offset, size, 0.0);
+        copyVector(output, &mBuffer[offset], size);
+        zeroVector(&mBuffer[offset], size);
         
         mCounter = offset + size;
     }
@@ -95,7 +94,7 @@ void FrameLib_Sink::objectReset()
     if (size != bufferSize())
         mBuffer.resize(size);
     
-    std::fill_n(mBuffer.begin(), bufferSize(), 0.0);
+    zeroVector(&mBuffer[0], bufferSize());
     
     mCounter = 0;
 }

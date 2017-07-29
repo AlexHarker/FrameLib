@@ -80,7 +80,7 @@ void FrameLib_Trace::copyAndZero(double *output, unsigned long offset, unsigned 
 
 void FrameLib_Trace::writeToBuffer(double *input, unsigned long offset, unsigned long size)
 {
-    std::copy(input, input + size, mBuffer.begin() + offset);
+    copyVector(&mBuffer[offset], input, size);
     std::fill_n(mFlags.begin() + offset, size, true);
 }
 
@@ -106,7 +106,7 @@ void FrameLib_Trace::objectReset()
         mFlags.resize(size);
     }
     
-    std::fill_n(mBuffer.begin(), bufferSize(), 0.0);
+    zeroVector(&mBuffer[0], bufferSize());
     std::fill_n(mFlags.begin(), bufferSize(), false);
     
     mLastValue = 0.0;
