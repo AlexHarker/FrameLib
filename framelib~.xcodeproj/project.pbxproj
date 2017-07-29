@@ -950,6 +950,11 @@
 		B8B961DB1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
 		B8B961DC1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
 		B8B961DD1F1000D500D174F2 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
+		B8BDF0461F2D0A3700264316 /* FrameLib_Register.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF0451F2D0A3600264316 /* FrameLib_Register.cpp */; };
+		B8BDF0481F2D0AA200264316 /* FrameLib_Recall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF0471F2D0AA200264316 /* FrameLib_Recall.cpp */; };
+		B8BDF04A1F2D0B3B00264316 /* FrameLib_Store.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF0491F2D0B3B00264316 /* FrameLib_Store.cpp */; };
+		B8BDF04C1F2D0BDC00264316 /* FrameLib_MedianFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF04B1F2D0BDC00264316 /* FrameLib_MedianFilter.cpp */; };
+		B8BDF04E1F2D0E0600264316 /* FrameLib_Peaks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF04D1F2D0E0600264316 /* FrameLib_Peaks.cpp */; };
 		B8C53C601F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B8C53C611F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B8C53C641F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
@@ -1828,6 +1833,11 @@
 		B8AE694219F45A380040B4EE /* fl.shift~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.shift~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_FixedPoint.cpp; sourceTree = "<group>"; };
 		B8BCCF46199CEF230038259B /* FrameLib_Memory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Memory.h; sourceTree = "<group>"; };
+		B8BDF0451F2D0A3600264316 /* FrameLib_Register.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Register.cpp; sourceTree = "<group>"; };
+		B8BDF0471F2D0AA200264316 /* FrameLib_Recall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Recall.cpp; sourceTree = "<group>"; };
+		B8BDF0491F2D0B3B00264316 /* FrameLib_Store.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Store.cpp; sourceTree = "<group>"; };
+		B8BDF04B1F2D0BDC00264316 /* FrameLib_MedianFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_MedianFilter.cpp; sourceTree = "<group>"; };
+		B8BDF04D1F2D0E0600264316 /* FrameLib_Peaks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Peaks.cpp; sourceTree = "<group>"; };
 		B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_ConnectionQueue.cpp; sourceTree = "<group>"; };
 		B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_ConnectionQueue.h; sourceTree = "<group>"; };
 		B8C5EBBF1E5F979B0086E8B6 /* FrameLib_Lookup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Lookup.h; sourceTree = "<group>"; };
@@ -2988,7 +2998,9 @@
 				B8AE692D19F45A1D0040B4EE /* FrameLib_Shift.h */,
 				B8891CE71F2C90E800C5C4F0 /* FrameLib_Shift.cpp */,
 				B84BE8781C1F592400A55F8C /* FrameLib_MedianFilter.h */,
+				B8BDF04B1F2D0BDC00264316 /* FrameLib_MedianFilter.cpp */,
 				B8C5EBD91E5F9E5A0086E8B6 /* FrameLib_Peaks.h */,
+				B8BDF04D1F2D0E0600264316 /* FrameLib_Peaks.cpp */,
 			);
 			path = Vector;
 			sourceTree = "<group>";
@@ -3120,9 +3132,9 @@
 				B8F5A4E21F2AA32700D4777C /* Generators */,
 				B8F5A4E31F2AA3E800D4777C /* Mapping */,
 				B85B68D019F26185002D6F1D /* Vector */,
-				B850749519F1BB61002315F4 /* Filters */,
 				B850749619F1BB7C002315F4 /* Spectral */,
 				B8AE692819F459FF0040B4EE /* Storage */,
+				B850749519F1BB61002315F4 /* Filters */,
 				B84943B41B8349D40037DFF1 /* FrameLib_SetParam.h */,
 				B8D8DB7D1B89D664000203E5 /* FrameLib_Select.h */,
 				B8061D501B8C0C00002C8BD2 /* FrameLib_Interval.h */,
@@ -3162,8 +3174,11 @@
 			isa = PBXGroup;
 			children = (
 				B85B68D119F26185002D6F1D /* FrameLib_Register.h */,
+				B8BDF0451F2D0A3600264316 /* FrameLib_Register.cpp */,
 				B8AE692919F459FF0040B4EE /* FrameLib_Recall.h */,
+				B8BDF0471F2D0AA200264316 /* FrameLib_Recall.cpp */,
 				B8AE692C19F459FF0040B4EE /* FrameLib_Store.h */,
+				B8BDF0491F2D0B3B00264316 /* FrameLib_Store.cpp */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -8279,6 +8294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8BDF0481F2D0AA200264316 /* FrameLib_Recall.cpp in Sources */,
 				B812463219F476CB009833F1 /* fl.recall~.cpp in Sources */,
 				B8C53CAC1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2C21F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
@@ -8298,6 +8314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B812464719F476D3009833F1 /* fl.store~.cpp in Sources */,
+				B8BDF04A1F2D0B3B00264316 /* FrameLib_Store.cpp in Sources */,
 				B8C53CAD1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2C31F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F1802C1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
@@ -8437,6 +8454,7 @@
 				B841211C1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B8DE5DEA1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2701F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
+				B8BDF04C1F2D0BDC00264316 /* FrameLib_MedianFilter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8506,6 +8524,7 @@
 				B85B68D719F2628C002D6F1D /* tlsf.c in Sources */,
 				B8EDFD621DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B8D2732B1DA6629A00E0E566 /* FrameLib_Memory.cpp in Sources */,
+				B8BDF0461F2D0A3700264316 /* FrameLib_Register.cpp in Sources */,
 				B84120FD1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B8DE5DCB1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2511F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
@@ -8727,6 +8746,7 @@
 				B8C5EBE21E5FA6340086E8B6 /* tlsf.c in Sources */,
 				B8C5EBE31E5FA6340086E8B6 /* FrameLib_Threading.cpp in Sources */,
 				B8C5EBE41E5FA6340086E8B6 /* FrameLib_Memory.cpp in Sources */,
+				B8BDF04E1F2D0E0600264316 /* FrameLib_Peaks.cpp in Sources */,
 				B8C5EBE51E5FA6340086E8B6 /* FrameLib_Global.cpp in Sources */,
 				B8DE5DEC1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B88BD2721F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
