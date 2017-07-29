@@ -312,7 +312,7 @@ FrameLib_LocalAllocator::FrameLib_LocalAllocator(FrameLib_GlobalAllocator *alloc
 {
     // Setup the free lists as a circularly linked list
     
-    for (unsigned long i = 0; i < (numLocalFreeBlocks - 1); i++)
+    for (unsigned int i = 0; i < (numLocalFreeBlocks - 1); i++)
     {
         mFreeLists[i + 1].mPrev = mFreeLists + i;
         mFreeLists[i].mNext = mFreeLists + i + 1;
@@ -380,7 +380,7 @@ void FrameLib_LocalAllocator::clear()
     
     FrameLib_GlobalAllocator::Pruner pruner(mAllocator);
     /*
-    for (unsigned long i = 0; i < numLocalFreeBlocks; i++)
+    for (unsigned int i = 0; i < numLocalFreeBlocks; i++)
     {
         if (mFreeLists[i].mMemory)
         {

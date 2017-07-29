@@ -29,15 +29,19 @@ public:
 
 // Unary (Operator Version)
 
-template <typename Op> class FrameLib_UnaryOp : public FrameLib_Processor
+template <typename Op> class FrameLib_UnaryOp : public FrameLib_Processor, private FrameLib_Info
 {
     
 public:
     
-    FrameLib_UnaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
-    {}
+    FrameLib_UnaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1) {}
     
-    const char *objectInfo(bool verbose)                        { return "Applies a unary operator to each value of a frame."; }
+    const char *objectInfo(bool verbose)
+    {
+        return getInfo("Calculates the # of each value in the input frame: The result is a frame of the same size as the input.",
+                       "Calculates the # of each value in the input frame.", getOpString(), verbose);
+    }
+
     const char *inputInfo(unsigned long idx, bool verbose)      { return "Input"; }
     const char *outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
 
@@ -53,9 +57,11 @@ protected:
 
         double *output = getOutput(0, &size);
         
-        for (unsigned int i = 0; i < size; i++)
+        for (unsigned long i = 0; i < size; i++)
             output[i] = Op()(input[i]);
     }
+    
+    virtual const char *getOpString() { return "<unary operation>"; }
 };
 
 // Unary (Function Version)
@@ -65,6 +71,8 @@ template <double func(double)> class FrameLib_Unary : public FrameLib_UnaryOp < 
 public:
     FrameLib_Unary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
     : FrameLib_UnaryOp < Unary_Functor<func> > (context, serialisedParameters, owner) {}
+private:
+    virtual const char *getOpString() { return "<unary operation>"; }
 };
 
 // ************************************************************************************** //
@@ -73,9 +81,23 @@ public:
 
 template <typename Op> class FrameLib_BinaryOp : public FrameLib_Processor, private FrameLib_Info
 {
-    enum ParameterList {kMode, kTriggers, kPadding};
-    enum Modes {kWrap, kShrink, kPadIn, kPadOut};
-    enum TriggerModes {kBoth, kLeft, kRight};
+    struct ParameterInfo : public FrameLib_Parameters::Info
+    {
+        ParameterInfo()
+        {
+            add("Sets the mode used when dealing with mismatched input lengths: "
+                "wrap - the smaller input is read modulo against the larger input. "
+                "shrink - the output length is set to the size of the smaller input. "
+                "padin - the smaller input is padded prior to calculation to match the size of the larger input. "
+                "padout - the output is padded to match the size of the larger input.");
+            add("Sets which input(s) trigger output.");
+            add("Sets the value used for padding (for either padin or padout modes).");
+        }
+    };
+    
+    enum ParameterList { kMode, kTriggers, kPadding };
+    enum Modes { kWrap, kShrink, kPadIn, kPadOut };
+    enum TriggerModes { kBoth, kLeft, kRight };
     
 public:
     
@@ -96,6 +118,8 @@ public:
         
         mParameters.set(serialisedParameters);
         
+        mParameters.setInfo(getParameterInfo());
+                            
         mMode = (Modes) mParameters.getInt(kMode);
         mPadValue = mParameters.getValue(kPadding);
         
@@ -109,8 +133,9 @@ public:
     
     const char *objectInfo(bool verbose)
     {
-        return getInfo("Applies a binary operator  to two input frames, one value at a time: When frames mismatch in size the result depends on the setting of the mode parameter. Either or both inputs may be set to trigger output.",
-                       "Applies a binary operator to two input frames, one value at a time.", verbose);
+        return getInfo("#: Calculation is performed on pairs of values in turn. The result is an output frame at least as long as the smaller of the two inputs. "
+                       "When frames mismatch in size the result depends on the setting of the mode parameter. Either or both inputs may be set to trigger output.",
+                       "#.", getDescriptionString(), verbose);
     }
     
     const char *inputInfo(unsigned long idx, bool verbose)      { return idx ? "Right Operand" : "Left Operand"; }
@@ -156,7 +181,7 @@ protected:
         
         // Do first part
         
-        for (unsigned int i = 0; i < sizeCommon; i++)
+        for (unsigned long i = 0; i < sizeCommon; i++)
             output[i] = Op()(input1[i], input2[i]);
         
         // Clean up if sizes don't match
@@ -187,13 +212,13 @@ protected:
                        if (sizeIn2 == 1)
                        {
                            double value = input2[0];
-                           for (unsigned int i = 1; i < sizeOut; i++)
+                           for (unsigned long i = 1; i < sizeOut; i++)
                                output[i] = Op()(input1[i], value);
                        }
                        else
                        {
-                           for (unsigned int i = sizeCommon; i < sizeOut;)
-                               for (unsigned int j = 0; j < sizeIn2; i++, j++)
+                           for (unsigned long i = sizeCommon; i < sizeOut;)
+                               for (unsigned long j = 0; j < sizeIn2; i++, j++)
                                 output[i] = Op()(input1[i], input2[j]);
                        }
                     }
@@ -202,13 +227,13 @@ protected:
                         if (sizeIn1 == 1)
                         {
                             double value = input1[0];
-                            for (unsigned int i = 1; i < sizeOut; i++)
+                            for (unsigned long i = 1; i < sizeOut; i++)
                                 output[i] = Op()(value, input2[i]);
                         }
                         else
                         {
-                            for (unsigned int i = sizeCommon; i < sizeOut;)
-                                for (unsigned int j = 0; j < sizeIn1; i++, j++)
+                            for (unsigned long i = sizeCommon; i < sizeOut;)
+                                for (unsigned long j = 0; j < sizeIn1; i++, j++)
                                     output[i] = Op()(input1[j], input2[i]);
                         }
                     }
@@ -218,19 +243,19 @@ protected:
                     
                     if (sizeIn1 > sizeIn2)
                     {
-                        for (unsigned int i = sizeCommon; i < sizeOut; i++)
+                        for (unsigned long i = sizeCommon; i < sizeOut; i++)
                             output[i] = Op()(input1[i], defaultValue);
                     }
                     else
                     {
-                        for (unsigned int i = sizeCommon; i < sizeOut; i++)
+                        for (unsigned long i = sizeCommon; i < sizeOut; i++)
                             output[i] = Op()(defaultValue, input2[i]);
                     }
                     break;
                     
                 case kPadOut:
                     
-                    for (unsigned int i = sizeCommon; i < sizeOut; i++)
+                    for (unsigned long i = sizeCommon; i < sizeOut; i++)
                         output[i] = defaultValue;
                     break;
             }
@@ -238,6 +263,14 @@ protected:
     }
     
 private:
+    
+    virtual const char *getDescriptionString() { return "Binary Operator - No operator info available"; }
+
+    ParameterInfo *getParameterInfo()
+    {
+        static ParameterInfo info;
+        return &info;
+    }
     
     double mPadValue;
     Modes mMode;
@@ -250,6 +283,8 @@ template <double func(double, double)> class FrameLib_Binary : public FrameLib_B
 public:
     FrameLib_Binary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
     : FrameLib_BinaryOp < Binary_Functor<func> > (context, serialisedParameters, owner) {}
+private:
+    virtual const char *getDescriptionString() { return "Binary Operator - No operator info available"; }
 };
 
 // ************************************************************************************** //
@@ -261,14 +296,12 @@ template <double func(double *, unsigned long) > class FrameLib_Vector : public 
     
 public:
     
-    FrameLib_Vector (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
-    {
-    }
+    FrameLib_Vector(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1) {}
     
     const char *objectInfo(bool verbose)
     {
-        return getInfo("Applies a vector operation across an entire frame: The result is a single value.",
-                       "Applies a vector operation across an entire frame.", verbose);
+        return getInfo("Calculates the # of the input frame: The result is a single value.",
+                       "Calculates the # of the input frame.", getOpString(), verbose);
     }
     
     const char *inputInfo(unsigned long idx, bool verbose)      { return "Input"; }
@@ -289,6 +322,8 @@ protected:
         if (sizeOut)
             output[0] = func(input, sizeIn);
     }
+    
+    const char *getOpString() { return "<vector operation>"; }
 };
 
 #endif

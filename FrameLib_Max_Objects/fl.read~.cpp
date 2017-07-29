@@ -126,7 +126,7 @@ protected:
                     break;
             }
             
-            for (unsigned int i = 0; i < size; i++)
+            for (unsigned long i = 0; i < size; i++)
             {
                 double position = input[i] * conversionFactor;
                 
@@ -183,8 +183,7 @@ protected:
         {
             // Zero output if no buffer or memory
             
-            for (unsigned int i = 0; i < size; i++)
-                output[i] = 0.0;
+            zeroVector(output, size);
         }
     }
     

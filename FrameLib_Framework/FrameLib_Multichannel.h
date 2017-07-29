@@ -153,7 +153,7 @@ class FrameLib_Pack : public FrameLib_MultiChannel, private FrameLib_Info
 {
     enum AtrributeList { kInputs };
 
-    class ParameterInfo : public FrameLib_Parameters::Info { public: ParameterInfo() { add("Sets the number of inputs."); } };
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo() { add("Sets the number of inputs."); } };
     
 public:
     
@@ -187,7 +187,7 @@ class FrameLib_Unpack : public FrameLib_MultiChannel, private FrameLib_Info
 {
     enum AtrributeList { kOutputs };
     
-    class ParameterInfo : public FrameLib_Parameters::Info { public: ParameterInfo() { add("Sets the number of outputs."); } };
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo() { add("Sets the number of outputs."); } };
 
 public:
 
@@ -284,7 +284,7 @@ public:
         // Zero outputs
         
         for (unsigned long i = 0; i < getNumAudioOuts(); i++)
-            std::fill(outs[i], outs[i] + vecSize, 0.0);
+            std::fill_n(outs[i], vecSize, 0.0);
 
         // Process and sum to outputs
 

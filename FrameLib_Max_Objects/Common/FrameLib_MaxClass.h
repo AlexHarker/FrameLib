@@ -526,10 +526,10 @@ public:
     {
         dspFree();
 
+        delete mObject;
+
         for (typename std::vector <Input>::iterator it = mInputs.begin(); it != mInputs.end(); it++)
             object_free(it->mProxy);
-
-        delete mObject;
         
         object_free(mSyncIn);
     }
@@ -619,7 +619,7 @@ public:
             object_post(mUserObject, "--- Parameter List ---");
             
             const FrameLib_Parameters *params = mObject->getParameters();
-            if (!params || !params->size()) object_post(mUserObject, "< Empty >");
+            if (!params || !params->size()) object_post(mUserObject, "< No Parameters >");
             
             // Loop over parameters
             
@@ -889,6 +889,9 @@ private:
     
     bool confirmConnection(unsigned long inputIndex, FrameLib_MaxGlobals::ConnectionInfo::Mode mode)
     {
+        if (!validInput(inputIndex))
+            return false;
+        
         mConfirm = false;
         mConfirmIndex = inputIndex;
         
@@ -979,7 +982,6 @@ private:
     void postSplit(const char *text, const char *firstLineTag, const char *lineTag)
     {
         std::string str(text);
-        
         size_t oldPos, pos;
         
         for (oldPos = 0, pos = str.find_first_of(":."); oldPos < str.size(); pos = str.find_first_of(":.", pos + 1))
@@ -992,7 +994,7 @@ private:
     
     const char *frameTypeString(FrameType type)
     {
-        switch(type)
+        switch (type)
         {
             case kFrameAny:     return "either";
             case kFrameNormal:  return "vector";

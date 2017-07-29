@@ -10,106 +10,56 @@
 
 class FrameLib_OnePole : public FrameLib_Processor
 {
+    // Filter Class
+
     class OnePole
     {
         
     public:
         
-        OnePole() : f0(0.0), y1(0.0)
-        {
-        }
+        OnePole() : f0(0.0), y1(0.0) {}
         
-        void reset()
-        {
-            y1 = 0.0;
-        }
+        // Reset
+
+        void reset()            { y1 = 0.0; }
+
+        // Filter Types
         
-        double HPF(double x)
-        {
-            return x - calculateFilter(x);
-        }
+        double HPF(double x)    { return x - calculateFilter(x); }
+        double LPF(double x)    { return calculateFilter(x); }
         
-        double LPF(double x)
-        {
-            return calculateFilter(x);
-        }
+        // Set Parmaeters
         
-        void setParams(double freq, double samplingRate)
-        {
-            f0 = sin((freq * FILTER_TWO_PI) / samplingRate);
-        }
+        void setParams(double freq, double samplingRate)    { f0 = sin((freq * FILTER_TWO_PI) / samplingRate); }
         
     private:
         
-        inline double calculateFilter(double x)
-        {
-            double y = y1 + f0 * (x - y1);
-            
-            y1 = y;
-            
-            return y;
-        }
+        // Filter Calculation
         
+        inline double calculateFilter(double x);
+        
+        // Coefficients and Memories
+
         double f0, y1;
     };
     
-    enum ParameterList {kFreq, kMode};
-    
-    enum Modes {kLPF, kHPF};
+    // Parameter Enums and Info
+
+    enum ParameterList { kFreq, kMode };
+    enum Modes { kLPF, kHPF };
 
 public:
 	
-    FrameLib_OnePole(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
-    {
-        mParameters.addDouble(kFreq, "freq", 0.0, 0);
-        mParameters.setMin(0.0);
-        
-        mParameters.addEnum(kMode, "mode", 1);
-        mParameters.addEnumItem(kLPF, "lpf");
-        mParameters.addEnumItem(kHPF, "hpf");
-        
-        mParameters.set(serialisedParameters);
-    }
+    // Constructor
     
-protected:
+    FrameLib_OnePole(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
-    void process()
-	{
-        OnePole filter;
-        Modes mode = (Modes) mParameters.getValue(kMode);
-        
-        bool staticParams = true;
-        
-        double freq = mParameters.getValue(kFreq);
-        
-        // Get Input
-        
-        unsigned long sizeIn, sizeOut;
-        double *input = getInput(0, &sizeIn);
-
-        requestOutputSize(0, sizeIn);
-        allocateOutputs();
-        
-        double *output = getOutput(0, &sizeOut);
-        
-        filter.setParams(freq, mSamplingRate);
-        
-        if (staticParams)
-        {
-            switch (mode)
-            {
-                case kLPF:
-                    for (unsigned long i = 0; i < sizeOut; i++)
-                        output[i] = filter.LPF(input[i]);
-                    break;
-                    
-                case kHPF:
-                    for (unsigned long i = 0; i < sizeOut; i++)
-                        output[i] = filter.HPF(input[i]);
-                    break;
-            }
-        }
-    }
+private:
+    
+    // Update and Process
+    
+    void update();
+    void process();
 };
 
 #endif

@@ -8,66 +8,21 @@
 
 class FrameLib_Join : public FrameLib_Processor
 {
-	enum ParameterList {kNumIns, kTriggers};
+    // Parameter Enums and Info
+
+	enum ParameterList { kNumIns, kTriggers };
     
 public:
 	
-    FrameLib_Join(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context)
-    {
-        mParameters.addInt(kNumIns, "numins", 2, 0);
-        mParameters.setClip(2, 32);
-        mParameters.setInstantiation();
+    // Constructor
 
-        mParameters.addBoolArray(kTriggers, "triggers", 1.0, 32);
-        mParameters.setInstantiation();
-
-        mParameters.set(serialisedParameters);
-        
-        setIO(mParameters.getInt(kNumIns), 1);
-        
-        const double *triggers = mParameters.getArray(kTriggers);
-        
-        // Set up triggers
-        
-        for (unsigned long i = 0; i < getNumIns(); i++)
-            inputMode(i, false, triggers[i], false);
-    }
+    FrameLib_Join(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
-protected:
+private:
     
-    void process ()
-	{
-        // Get Input 
-        
-        unsigned long sizeIn;
-        unsigned long sizeOut = 0;
-        unsigned long offset = 0;
-
-       // Calculate size
-        
-        for (unsigned long i = 0; i < getNumIns(); i++)
-        {
-            getInput(i, &sizeIn);
-            sizeOut += sizeIn;
-        }
-
-        requestOutputSize(0, sizeOut);
-        allocateOutputs();
-        
-        double *output = getOutput(0, &sizeOut);
-        
-        // Copy to outputs
-
-        if (sizeOut)
-        {
-            for (unsigned long i = 0; i < getNumIns(); i++)
-            {
-                double *input = getInput(i, &sizeIn);
-                memcpy(output + offset, input, sizeIn * sizeof(double));
-                offset += sizeIn;
-            }
-        }
-    }
+    // Process
+    
+    void process();
 };
 
 #endif
