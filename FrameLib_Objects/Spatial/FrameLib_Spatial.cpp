@@ -116,7 +116,7 @@ void FrameLib_Spatial::process()
     if (maxSpeakers < numSpeakers)
     {
         unsigned long *indices = (unsigned long *) mAllocator->alloc(numSpeakers * sizeof(unsigned long));
-        sortDescending(indices, output, numSpeakers);
+        sortIndicesDescending(indices, output, numSpeakers);
         
         for (unsigned long i = maxSpeakers; i < numSpeakers; i++)
             output[indices[i]] = 0.0;

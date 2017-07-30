@@ -87,7 +87,7 @@ double FrameLib_MedianFilter::insertMedian(double *temp, unsigned long *indices,
 
 double FrameLib_MedianFilter::median(double *temp, unsigned long *indices, long width)
 {
-    sortAscending(indices, temp, width);
+    sortIndicesAscending(indices, temp, width);
     return temp[indices[width >> 1]];
 }
 

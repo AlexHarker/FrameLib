@@ -2,150 +2,90 @@
 #ifndef FRAMELIB_SORT_FUNCTIONS_H
 #define FRAMELIB_SORT_FUNCTIONS_H
 
-void sortAscending (double *data, unsigned long size)
+#include <algorithm>
+
+template <typename Compare, class T> void sortVector(T *data, unsigned long size)
 {
     bool swaps = true;
-    double temp;
     unsigned long gap = size;
-	unsigned long i;
-	
-	while (gap > 1 || swaps)
-	{
-		if (gap > 1)
-		{
-			gap = (gap * 10) / 13;
-			if (gap == 9 || gap == 10)
-				gap = 11;
-			if (gap < 1) gap = 1;
-		}
-		
-		for (i = 0, swaps = false; i + gap < size; i++)
-		{
-			if (data[i] > data[i + gap])
-			{
-				temp = data[i];
-				data[i] = data[i + gap];
-				data[i + gap] = temp;
-				swaps = true;
-			}
-		}
-	}
-}
-
-void sortDescending (double *data, unsigned long size)
-{
-	double temp;
-	bool swaps = true;
-    unsigned long gap = size;
-	unsigned long i;
-	
-	while (gap > 1 || swaps)
-	{
-		if (gap > 1)
-		{
-			gap = (gap * 10) / 13;
-			if (gap == 9 || gap == 10)
-				gap = 11;
-			if (gap < 1) gap = 1;
-		}
-		
-		for (i = 0, swaps = false; i + gap < size; i++)
-		{
-			if (data[i] < data[i + gap])
-			{
-				temp = data[i];
-				data[i] = data[i + gap];
-				data[i + gap] = temp;
-				swaps = true;
-			}
-		}
-	}
-}
-
-void sortAscending (double *output, double *input, unsigned long size)
-{
-	for (unsigned long i = 0; i < size; i++)
-        output[i] = input[i];
     
+    while (gap > 1 || swaps)
+    {
+        gap = (gap > 1) ? (gap * 10) / 13 : gap;
+        gap = (gap == 9 || gap == 10) ? 11 : gap;
+        gap = !gap ? 1 : gap;
+        
+        for (unsigned long i = 0, swaps = false; i + gap < size; i++)
+        {
+            if (Compare()(data[i], data[i + gap]))
+            {
+                std::swap(data[i], data[i + gap]);
+                swaps = true;
+            }
+        }
+    }
+}
+
+template <typename Compare, class T> void sortIndices(unsigned long *indices, T *data, unsigned long size)
+{
+    bool swaps = true;
+    unsigned long gap = size;
+    
+    for (unsigned long i = 0; i < size; i++)
+        indices[i] = i;
+    
+    while (gap > 1 || swaps)
+    {
+        gap = (gap > 1) ? (gap * 10) / 13 : gap;
+        gap = (gap == 9 || gap == 10) ? 11 : gap;
+        gap = !gap ? 1 : gap;
+        
+        for (unsigned long i = 0, swaps = false; i + gap < size; i++)
+        {
+            unsigned long index1 = indices[i];
+            unsigned long index2 = indices[i + gap];
+            
+            if (Compare()(data[index1], data[index2]))
+            {
+                indices[i] = index2;
+                indices[i + gap] = index1;
+                swaps = true;
+            }
+        }
+    }
+}
+
+template <class T> void sortAscending(T *data, unsigned long size)
+{
+    sortVector<std::greater<T> >(data, size);
+}
+
+template <class T> void sortDescending(T *data, unsigned long size)
+{
+	sortVector<std::less<T> >(data, size);
+}
+
+template <class T> void sortAscending(T *output, T *input, unsigned long size)
+{
+    std::copy(input, input + size, output);
     sortAscending(output, size);
 }
 
-void sortDescending (double *output, double *input, unsigned long size)
+template <class T> void sortDescending(T *output, T *input, unsigned long size)
 {
-    for (unsigned long i = 0; i < size; i++)
-        output[i] = input[i];
-    
+    std::copy(input, input + size, output);
     sortDescending(output, size);
 }
 
-
-void sortAscending (unsigned long *indices, double *data, unsigned long size)
+template <class T> void sortIndicesAscending(unsigned long *indices, T *data, unsigned long size)
 {
-    bool swaps = true;
-    unsigned long gap = size;
-    unsigned long gapIndex;
-    unsigned long index;
-    unsigned long i;
-    
-    for (i = 0; i < size; i++)
-        indices[i] = i;
-    
-    while (gap > 1 || swaps)
-    {
-        if (gap > 1)
-        {
-            gap = (gap * 10) / 13;
-            if (gap == 9 || gap == 10)
-                gap = 11;
-            if (gap < 1) gap = 1;
-        }
-        
-        for (i = 0, swaps = false; i + gap < size; i++)
-        {
-            index = indices[i];
-            gapIndex = indices[i + gap];
-            if (data[index] > data[gapIndex])
-            {
-                indices[i] = gapIndex;
-                indices[i + gap] = index;
-                swaps = true;
-            }
-        }
-    }
+    sortIndices<std::greater<T> >(indices, data, size);
 }
 
-void sortDescending (unsigned long *indices, double *data, unsigned long size)
+template <class T> void sortIndicesDescending(unsigned long *indices, T *data, unsigned long size)
 {
-    bool swaps = true;
-    unsigned long gap = size;
-    unsigned long gapIndex;
-    unsigned long index;
-    unsigned long i;
-    
-    for (i = 0; i < size; i++)
-        indices[i] = i;
-    
-    while (gap > 1 || swaps)
-    {
-        if (gap > 1)
-        {
-            gap = (gap * 10) / 13;
-            if (gap == 9 || gap == 10)
-                gap = 11;
-            if (gap < 1) gap = 1;
-        }
-        
-        for (i = 0, swaps = false; i + gap < size; i++)
-        {
-            index = indices[i];
-            gapIndex = indices[i + gap];
-            if (data[index] < data[gapIndex])
-            {
-                indices[i] = gapIndex;
-                indices[i + gap] = index;
-                swaps = true;
-            }
-        }
-    }
+    sortIndices<std::less<T> >(indices, data, size);
 }
+
+
 #endif
