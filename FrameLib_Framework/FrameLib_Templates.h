@@ -64,7 +64,7 @@ protected:
 
 // Unary (Function Version)
 
-template <double func(double)> class FrameLib_Unary : public FrameLib_UnaryOp < Unary_Functor<func> >
+template <double func(double)> class FrameLib_Unary : public FrameLib_UnaryOp<Unary_Functor<func> >
 {
 public:
     FrameLib_Unary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
@@ -276,7 +276,7 @@ private:
 
 // Binary (Function Version)
 
-template <double func(double, double)> class FrameLib_Binary : public FrameLib_BinaryOp < Binary_Functor<func> >
+template <double func(double, double)> class FrameLib_Binary : public FrameLib_BinaryOp<Binary_Functor<func> >
 {
 public:
     FrameLib_Binary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
