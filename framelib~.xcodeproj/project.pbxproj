@@ -1749,6 +1749,9 @@
 		B85753551F2E208100478E9F /* FrameLib_Binary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FrameLib_Binary_Template.h; path = Binary/FrameLib_Binary_Template.h; sourceTree = "<group>"; };
 		B85753571F2E21A700478E9F /* FrameLib_Unary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FrameLib_Unary_Objects.h; path = Unary/FrameLib_Unary_Objects.h; sourceTree = "<group>"; };
 		B85753581F2E21A700478E9F /* FrameLib_Unary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FrameLib_Unary_Template.h; path = Unary/FrameLib_Unary_Template.h; sourceTree = "<group>"; };
+		B857535D1F2E957300478E9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B857535E1F2E964D00478E9F /* fl.read~.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fl.read~.h"; sourceTree = "<group>"; };
+		B857535F1F2E984200478E9F /* fl.frommax~.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "fl.frommax~.h"; path = "FrameLib_Max_Objects/Max Specific/fl.frommax~.h"; sourceTree = SOURCE_ROOT; };
 		B85B20E619938415004FFF22 /* FrameLib_Multichannel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Multichannel.h; sourceTree = "<group>"; };
 		B85B689419F1CDA3002D6F1D /* FrameLib_SallenAndKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_SallenAndKey.h; sourceTree = "<group>"; };
 		B85B689519F1CEB7002D6F1D /* fl.sallenkey~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.sallenkey~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -2792,6 +2795,7 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B857535D1F2E957300478E9F /* Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2905,7 +2909,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B805E22419C3ABB6007D8D8B /* fl.binary */ = {
+		B805E22419C3ABB6007D8D8B /* Binary */ = {
 			isa = PBXGroup;
 			children = (
 				B805E32F19C3AF69007D8D8B /* fl.atan2~.cpp */,
@@ -2926,10 +2930,10 @@
 				B805E33E19C3AF69007D8D8B /* fl.pow~.cpp */,
 				B805E33F19C3AF69007D8D8B /* fl.times~.cpp */,
 			);
-			path = fl.binary;
+			path = Binary;
 			sourceTree = "<group>";
 		};
-		B809BDC519C42CAF00BA41F4 /* fl.unary */ = {
+		B809BDC519C42CAF00BA41F4 /* Unary */ = {
 			isa = PBXGroup;
 			children = (
 				B809BDC619C42CC500BA41F4 /* fl.abs~.cpp */,
@@ -2959,17 +2963,17 @@
 				B809BDDE19C42CC500BA41F4 /* fl.tanh~.cpp */,
 				B8F83E2819C78DBC00230CD4 /* fl.trunc~.cpp */,
 			);
-			path = fl.unary;
+			path = Unary;
 			sourceTree = "<group>";
 		};
-		B812462119F475B8009833F1 /* fl.storage */ = {
+		B812462119F475B8009833F1 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
 				B812462219F475B8009833F1 /* fl.recall~.cpp */,
 				B812462419F475B8009833F1 /* fl.store~.cpp */,
 				B85B68CF19F26146002D6F1D /* fl.register~.cpp */,
 			);
-			path = fl.storage;
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		B850749519F1BB61002315F4 /* Filters */ = {
@@ -3036,6 +3040,44 @@
 			name = Unary;
 			sourceTree = "<group>";
 		};
+		B85753591F2E92E300478E9F /* Max Specific */ = {
+			isa = PBXGroup;
+			children = (
+				B8AD883119C7C2B500FFA238 /* ibuffer */,
+				B857535F1F2E984200478E9F /* fl.frommax~.h */,
+				B8D67A081B849F4000519310 /* fl.frommax~.cpp */,
+				B857535E1F2E964D00478E9F /* fl.read~.h */,
+				B8AD883819C7C2FA00FFA238 /* fl.read~.cpp */,
+			);
+			path = "Max Specific";
+			sourceTree = "<group>";
+		};
+		B857535A1F2E931F00478E9F /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				B8CA31DA199A1F5F005F30A1 /* fl.unpack~.cpp */,
+				B8CA31EE199A20FF005F30A1 /* fl.pack~.cpp */,
+				B8D8DB7E1B89D72A000203E5 /* fl.select~.cpp */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
+		B857535B1F2E932700478E9F /* Parameters */ = {
+			isa = PBXGroup;
+			children = (
+				B84943C61B834B4A0037DFF1 /* fl.setparam~.cpp */,
+			);
+			path = Parameters;
+			sourceTree = "<group>";
+		};
+		B857535C1F2E933300478E9F /* Schedulers */ = {
+			isa = PBXGroup;
+			children = (
+				B8CA3214199A29C3005F30A1 /* fl.interval~.cpp */,
+			);
+			path = Schedulers;
+			sourceTree = "<group>";
+		};
 		B85B68D019F26185002D6F1D /* Vector */ = {
 			isa = PBXGroup;
 			children = (
@@ -3065,7 +3107,7 @@
 			path = Vector;
 			sourceTree = "<group>";
 		};
-		B85BDDBC19F1C1E300A349C5 /* fl.filter */ = {
+		B85BDDBC19F1C1E300A349C5 /* Filters */ = {
 			isa = PBXGroup;
 			children = (
 				B85BDDBD19F1C1FF00A349C5 /* fl.0dfsvf~.cpp */,
@@ -3074,7 +3116,7 @@
 				B85B68BC19F1D5E5002D6F1D /* fl.resonant~.cpp */,
 				B85B689519F1CEB7002D6F1D /* fl.sallenkey~.cpp */,
 			);
-			path = fl.filter;
+			path = Filters;
 			sourceTree = "<group>";
 		};
 		B87E876619C8EEB900B1D0CD /* HISSTools_FFT */ = {
@@ -3104,7 +3146,7 @@
 			path = NumericTesting;
 			sourceTree = "<group>";
 		};
-		B8A4757119C9DD7F0043DC65 /* fl.spectral */ = {
+		B8A4757119C9DD7F0043DC65 /* Spectral */ = {
 			isa = PBXGroup;
 			children = (
 				B846E62219F15A57005E9718 /* fl.window~.cpp */,
@@ -3113,30 +3155,27 @@
 				B87E877419C8EEEB00B1D0CD /* fl.fft~.cpp */,
 				B87E877719C8F45700B1D0CD /* fl.ifft~.cpp */,
 			);
-			path = fl.spectral;
+			path = Spectral;
 			sourceTree = "<group>";
 		};
 		B8A70CDD19C11084005BA4E3 /* Objects Max */ = {
 			isa = PBXGroup;
 			children = (
 				B8A70CE119C11303005BA4E3 /* Common */,
-				B8AD883119C7C2B500FFA238 /* ibuffer */,
-				B8F5A4E11F2A62F100D4777C /* fl.audio */,
-				B8F5A4E51F2AA42200D4777C /* fl.generators */,
-				B8F5A4E41F2AA3F600D4777C /* fl.mapping */,
-				B809BDC519C42CAF00BA41F4 /* fl.unary */,
-				B805E22419C3ABB6007D8D8B /* fl.binary */,
-				B8F83E2719C78D7A00230CD4 /* fl.vector */,
-				B85BDDBC19F1C1E300A349C5 /* fl.filter */,
-				B8A4757119C9DD7F0043DC65 /* fl.spectral */,
-				B812462119F475B8009833F1 /* fl.storage */,
-				B8F5A4DF1F2A619200D4777C /* fl.multichannel */,
-				B8D67A081B849F4000519310 /* fl.frommax~.cpp */,
-				B8AD883819C7C2FA00FFA238 /* fl.read~.cpp */,
-				B8D8DB7E1B89D72A000203E5 /* fl.select~.cpp */,
-				B84943C61B834B4A0037DFF1 /* fl.setparam~.cpp */,
-				B8D67A1B1B84D87800519310 /* fl.coordinatesystem.cpp */,
-				B8CA3214199A29C3005F30A1 /* fl.interval~.cpp */,
+				B857535C1F2E933300478E9F /* Schedulers */,
+				B857535B1F2E932700478E9F /* Parameters */,
+				B857535A1F2E931F00478E9F /* Routing */,
+				B8F5A4E11F2A62F100D4777C /* IO */,
+				B8F5A4E51F2AA42200D4777C /* Generators */,
+				B8F5A4E41F2AA3F600D4777C /* Mapping */,
+				B809BDC519C42CAF00BA41F4 /* Unary */,
+				B805E22419C3ABB6007D8D8B /* Binary */,
+				B8F83E2719C78D7A00230CD4 /* Vector */,
+				B8A4757119C9DD7F0043DC65 /* Spectral */,
+				B812462119F475B8009833F1 /* Storage */,
+				B85BDDBC19F1C1E300A349C5 /* Filters */,
+				B8F5A4DF1F2A619200D4777C /* Spatial */,
+				B85753591F2E92E300478E9F /* Max Specific */,
 			);
 			name = "Objects Max";
 			path = FrameLib_Max_Objects;
@@ -3277,14 +3316,13 @@
 			path = Spatial;
 			sourceTree = "<group>";
 		};
-		B8F5A4DF1F2A619200D4777C /* fl.multichannel */ = {
+		B8F5A4DF1F2A619200D4777C /* Spatial */ = {
 			isa = PBXGroup;
 			children = (
-				B8CA31DA199A1F5F005F30A1 /* fl.unpack~.cpp */,
-				B8CA31EE199A20FF005F30A1 /* fl.pack~.cpp */,
 				B84943ED1B8386100037DFF1 /* fl.spatial~.cpp */,
+				B8D67A1B1B84D87800519310 /* fl.coordinatesystem.cpp */,
 			);
-			path = fl.multichannel;
+			path = Spatial;
 			sourceTree = "<group>";
 		};
 		B8F5A4E01F2A624900D4777C /* IO */ = {
@@ -3300,14 +3338,14 @@
 			path = IO;
 			sourceTree = "<group>";
 		};
-		B8F5A4E11F2A62F100D4777C /* fl.audio */ = {
+		B8F5A4E11F2A62F100D4777C /* IO */ = {
 			isa = PBXGroup;
 			children = (
 				B8CACC8A19C0F5D1007434C9 /* fl.source~.cpp */,
 				B843AAB419C070A1000D3476 /* fl.sink~.cpp */,
 				B8D679DD1B83E55900519310 /* fl.trace~.cpp */,
 			);
-			path = fl.audio;
+			path = IO;
 			sourceTree = "<group>";
 		};
 		B8F5A4E21F2AA32700D4777C /* Generators */ = {
@@ -3334,23 +3372,23 @@
 			path = Mapping;
 			sourceTree = "<group>";
 		};
-		B8F5A4E41F2AA3F600D4777C /* fl.mapping */ = {
+		B8F5A4E41F2AA3F600D4777C /* Mapping */ = {
 			isa = PBXGroup;
 			children = (
 				B8C5EBC01E5F998A0086E8B6 /* fl.lookup~.cpp */,
 				B8D67A051B84999800519310 /* fl.samplerate~.cpp */,
 				B8D679E11B847A1E00519310 /* fl.map~.cpp */,
 			);
-			path = fl.mapping;
+			path = Mapping;
 			sourceTree = "<group>";
 		};
-		B8F5A4E51F2AA42200D4777C /* fl.generators */ = {
+		B8F5A4E51F2AA42200D4777C /* Generators */ = {
 			isa = PBXGroup;
 			children = (
 				B8C680481B80F65700B74B90 /* fl.random~.cpp */,
 				B8F83EBC19C79D0200230CD4 /* fl.count~.cpp */,
 			);
-			path = fl.generators;
+			path = Generators;
 			sourceTree = "<group>";
 		};
 		B8F6E4DA199D24820073E06D /* tlsf */ = {
@@ -3362,7 +3400,7 @@
 			path = tlsf;
 			sourceTree = "<group>";
 		};
-		B8F83E2719C78D7A00230CD4 /* fl.vector */ = {
+		B8F83E2719C78D7A00230CD4 /* Vector */ = {
 			isa = PBXGroup;
 			children = (
 				B8F83E2A19C78DF600230CD4 /* fl.vmin~.cpp */,
@@ -3383,7 +3421,7 @@
 				B8AE692E19F45A2E0040B4EE /* fl.shift~.cpp */,
 				B8C5EBDA1E5FA6180086E8B6 /* fl.peaks~.cpp */,
 			);
-			path = fl.vector;
+			path = Vector;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
