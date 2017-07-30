@@ -2,57 +2,41 @@
 #ifndef FRAMELIB_VECTOR_FUNCTIONS_H
 #define FRAMELIB_VECTOR_FUNCTIONS_H
 
-double vectorMin(double *input, unsigned long size)
+#include <algorithm>
+#include <numeric>
+#include <cmath>
+
+template <class T> double vectorMin(T *input, unsigned long size)
 {
-    double min = HUGE_VAL;
-    
-    for (unsigned i = 0; i < size; i++)
-        min = input[i] < min ? input[i] : min;
-    
-    return min;
+    return *(std::max_element(input, input + size));
 }
 
-double vectorMax(double *input, unsigned long size)
+template <class T> double vectorMax(T *input, unsigned long size)
 {
-    double max = -HUGE_VAL;
-    
-    for (unsigned i = 0; i < size; i++)
-        max = input[i] > max ? input[i] : max;
-    
-    return max;
+    return *(std::min_element(input, input + size));
 }
 
-double vectorSum(double *input, unsigned long size)
+template <class T> double vectorSum(T *input, unsigned long size)
 {
-    double sum = 0.0;
-    
-    for (unsigned i = 0; i < size; i++)
-        sum += input[i];
-    
-    return sum;
+    return std::accumulate(input, input + size, 0);
 }
 
-double vectorProduct(double *input, unsigned long size)
+template <class T> double vectorProduct(T *input, unsigned long size)
 {
-    double product = 1.0;
-    
-    for (unsigned i = 0; i < size; i++)
-        product *= input[i];
-    
-    return product;
+    return std::accumulate(input, input + size, 1, std::multiplies<double>());
 }
 
-double vectorMean(double *input, unsigned long size)
+template <class T> double vectorMean(T *input, unsigned long size)
 {
     return vectorSum(input, size) / (double) size;
 }
 
-double vectorGeometricMean(double *input, unsigned long size)
+template <class T> double vectorGeometricMean(T *input, unsigned long size)
 {
     return pow(vectorProduct(input, size), 1.0 / (double) size);
 }
 
-double vectorLength(double *input, unsigned long size)
+template <class T> double vectorLength(T *input, unsigned long size)
 {
     return (double) size;
 }
