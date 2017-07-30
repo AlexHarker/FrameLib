@@ -1,7 +1,7 @@
 
 
-#ifndef FRAMELIB_TEMPLATES_H
-#define FRAMELIB_TEMPLATES_H
+#ifndef FRAMELIB_BINARY_TEMPLATE_H
+#define FRAMELIB_BINARY_TEMPLATE_H
 
 #include "FrameLib_DSP.h"
 #include "FrameLib_Info.h"
@@ -9,78 +9,12 @@
 
 // OPT - vectorise where appropriate
 
-// Unary Functor
-
-template < double func(double)> struct Unary_Functor
-{
-public:
-    double operator()(double x) { return func(x); }
-};
-
-// Binary Functor
-
-template < double func(double, double)> struct Binary_Functor
-{
-public:
-    double operator()(double x, double y) { return func(x, y); }
-};
-
-// ************************************************************************************** //
-
-// Unary (Operator Version)
-
-template <typename Op> class FrameLib_UnaryOp : public FrameLib_Processor, private FrameLib_Info
-{
-    
-public:
-    
-    FrameLib_UnaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1) {}
-    
-    const char *objectInfo(bool verbose)
-    {
-        return getInfo("Calculates the # of each value in the input frame: The result is a frame of the same size as the input.",
-                       "Calculates the # of each value in the input frame.", getOpString(), verbose);
-    }
-
-    const char *inputInfo(unsigned long idx, bool verbose)      { return "Input"; }
-    const char *outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
-
-protected:
-    
-    void process()
-    {
-        unsigned long size;
-        double *input = getInput(0, &size);
-        
-        requestOutputSize(0, size);
-        allocateOutputs();
-
-        double *output = getOutput(0, &size);
-        
-        for (unsigned long i = 0; i < size; i++)
-            output[i] = Op()(input[i]);
-    }
-    
-    virtual const char *getOpString() { return "<unary operation>"; }
-};
-
-// Unary (Function Version)
-
-template <double func(double)> class FrameLib_Unary : public FrameLib_UnaryOp < Unary_Functor<func> >
-{
-public:
-    FrameLib_Unary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-    : FrameLib_UnaryOp < Unary_Functor<func> > (context, serialisedParameters, owner) {}
-private:
-    virtual const char *getOpString() { return "<unary operation>"; }
-};
-
-// ************************************************************************************** //
-
 // Binary Operator
 
 template <typename Op> class FrameLib_BinaryOp : public FrameLib_Processor, private FrameLib_Info
 {
+    // Parameter Enums and Info
+    
     struct ParameterInfo : public FrameLib_Parameters::Info
     {
         ParameterInfo()
@@ -100,6 +34,8 @@ template <typename Op> class FrameLib_BinaryOp : public FrameLib_Processor, priv
     enum TriggerModes { kBoth, kLeft, kRight };
     
 public:
+    
+    // Constructor
     
     FrameLib_BinaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
     {
@@ -131,6 +67,8 @@ public:
             inputMode(0, false, false, false);
     }
     
+    // Info
+    
     const char *objectInfo(bool verbose)
     {
         return getInfo("#: Calculation is performed on pairs of values in turn. The result is an output frame at least as long as the smaller of the two inputs. "
@@ -142,6 +80,8 @@ public:
     const char *outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
     
 protected:
+    
+    // Process
     
     void process()
     {
@@ -264,6 +204,8 @@ protected:
     
 private:
     
+    // Description (specialise/override to change description)
+    
     virtual const char *getDescriptionString() { return "Binary Operator - No operator info available"; }
 
     ParameterInfo *getParameterInfo()
@@ -272,58 +214,36 @@ private:
         return &info;
     }
     
+    // Data
+    
     double mPadValue;
     Modes mMode;
 };
 
 // Binary (Function Version)
 
-template <double func(double, double)> class FrameLib_Binary : public FrameLib_BinaryOp < Binary_Functor<func> >
+// Binary Functor
+
+template <double func(double, double)> struct Binary_Functor
 {
-public:
-    FrameLib_Binary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-    : FrameLib_BinaryOp < Binary_Functor<func> > (context, serialisedParameters, owner) {}
-private:
-    virtual const char *getDescriptionString() { return "Binary Operator - No operator info available"; }
+    double operator()(double x, double y) { return func(x, y); }
 };
 
-// ************************************************************************************** //
-
-// Vector
-
-template <double func(double *, unsigned long) > class FrameLib_Vector : public FrameLib_Processor, private FrameLib_Info
+template <double func(double, double)> class FrameLib_Binary : public FrameLib_BinaryOp<Binary_Functor<func> >
 {
     
 public:
     
-    FrameLib_Vector(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1) {}
+    // Constructor
     
-    const char *objectInfo(bool verbose)
-    {
-        return getInfo("Calculates the # of the input frame: The result is a single value.",
-                       "Calculates the # of the input frame.", getOpString(), verbose);
-    }
-    
-    const char *inputInfo(unsigned long idx, bool verbose)      { return "Input"; }
-    const char *outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
+    FrameLib_Binary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
+    : FrameLib_BinaryOp < Binary_Functor<func> > (context, serialisedParameters, owner) {}
 
-protected:
+private:
     
-    void process()
-    {
-        unsigned long sizeIn, sizeOut;
-        
-        requestOutputSize(0, 1);
-        allocateOutputs();
-        
-        double *output = getOutput(0, &sizeOut);
-        double *input = getInput(0, &sizeIn);
-        
-        if (sizeOut)
-            output[0] = func(input, sizeIn);
-    }
-    
-    const char *getOpString() { return "<vector operation>"; }
+    // Description (specialise/override to change description)
+
+    virtual const char *getDescriptionString() { return "Binary Operator - No operator info available"; }
 };
 
 #endif
