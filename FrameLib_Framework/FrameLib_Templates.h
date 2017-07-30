@@ -11,17 +11,15 @@
 
 // Unary Functor
 
-template < double func(double)> struct Unary_Functor
+template <double func(double)> struct Unary_Functor
 {
-public:
     double operator()(double x) { return func(x); }
 };
 
 // Binary Functor
 
-template < double func(double, double)> struct Binary_Functor
+template <double func(double, double)> struct Binary_Functor
 {
-public:
     double operator()(double x, double y) { return func(x, y); }
 };
 

@@ -10,11 +10,11 @@
 
 // A template class for storing reference counted pointers against reference addresses (representing contexts)
 
-template<class T> class FrameLib_PointerSet
+template <class T> class FrameLib_PointerSet
 {
     // A simple countable pointer with a reference address
     
-    template<class U> struct CountablePointer
+    template <class U> struct CountablePointer
     {
         CountablePointer(T* object, void *reference) : mObject(object), mReference(reference), mCount(1) {}
         
