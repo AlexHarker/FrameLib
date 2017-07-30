@@ -114,9 +114,7 @@ void FrameLib_Trace::objectReset()
 }
 
 void FrameLib_Trace::blockProcess(double **ins, double **outs, unsigned long vecSize)
-{
-    double *output = outs[0];
-    
+{    
     // Safety
     
     if (vecSize > bufferSize())
@@ -126,8 +124,8 @@ void FrameLib_Trace::blockProcess(double **ins, double **outs, unsigned long vec
     
     unsigned long size = ((mCounter + vecSize) > bufferSize()) ? bufferSize() - mCounter : vecSize;
     
-    copyAndZero(output, mCounter, size);
-    copyAndZero(output + size, 0, vecSize - size);
+    copyAndZero(outs[0], mCounter, size);
+    copyAndZero(outs[0] + size, 0, vecSize - size);
 }
 
 void FrameLib_Trace::process()

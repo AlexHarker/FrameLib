@@ -106,9 +106,7 @@ void FrameLib_Source::objectReset()
 }
 
 void FrameLib_Source::blockProcess(double **ins, double **outs, unsigned long vecSize)
-{
-    double *input = ins[0];
-    
+{    
     // Safety
     
     if (vecSize > bufferSize())
@@ -118,8 +116,8 @@ void FrameLib_Source::blockProcess(double **ins, double **outs, unsigned long ve
     
     unsigned long size = ((mCounter + vecSize) > bufferSize()) ? bufferSize() - mCounter : vecSize;
     
-    copy(input, mCounter, size);
-    copy(input + size, 0, vecSize - size);
+    copy(ins[0], mCounter, size);
+    copy(ins[0] + size, 0, vecSize - size);
 }
 
 void FrameLib_Source::process()

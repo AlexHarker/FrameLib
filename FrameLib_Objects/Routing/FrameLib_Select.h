@@ -25,8 +25,8 @@ private:
     
     // Data
     
-    unsigned long mNumIns;
-    unsigned long mActiveIn;
+    long mNumIns;
+    long mActiveIn;
 };
 
 #endif

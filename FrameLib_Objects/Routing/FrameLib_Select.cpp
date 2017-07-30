@@ -7,19 +7,21 @@ FrameLib_Select::FrameLib_Select(FrameLib_Context context, FrameLib_Parameters::
 {
     mParameters.addDouble(kNumIns, "numins", 2, 0);
     mParameters.setClip(2, 32);
-    mParameters.addDouble(kActiveIn, "input", 0, 1);
+    mParameters.setInstantiation();
+    mParameters.addInt(kActiveIn, "input", 0, 1);
     
     // FIX - clip??
     
     mParameters.set(serialisedParameters);
     
-    mNumIns = mParameters.getValue(kNumIns);
-    mActiveIn = mParameters.getValue(kActiveIn);
+    mNumIns = mParameters.getInt(kNumIns);
+    mActiveIn = mParameters.getInt(kActiveIn);
     
     setIO(mNumIns + 1, 1);
     
     for (unsigned long i = 0; i < mNumIns; i++)
         inputMode(i, false, i == mActiveIn, true);
+    
     inputMode(mNumIns, true, false, false, kFrameTagged);
 }
 
@@ -33,12 +35,12 @@ void FrameLib_Select::update()
     {
         mParameters.set(serialised);
         
-        mActiveIn = mParameters.getValue(kActiveIn);
+        mActiveIn = mParameters.getInt(kActiveIn);
         
         for (unsigned long i = 0; i < mNumIns; i++)
             updateTrigger(i, i == mActiveIn);
         
-        // FIX - negative values trucated etc. - make sure this is safe
+        // FIX - negative values truncated etc. - make sure this is safe
         
     }
 }
