@@ -8,6 +8,8 @@ FrameLib_Convolve::FrameLib_Convolve(FrameLib_Context context, FrameLib_Paramete
     mParameters.setMin(0);
     mParameters.setInstantiation();
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
     
     unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
@@ -19,6 +21,34 @@ FrameLib_Convolve::FrameLib_Convolve(FrameLib_Context context, FrameLib_Paramete
 FrameLib_Convolve::~FrameLib_Convolve()
 {
     hisstools_destroy_setup_d(mFFTSetup);
+}
+
+// Info
+
+const char *FrameLib_Convolve::objectInfo(bool verbose)
+{
+    return getInfo("Convolve two real frames together, (using frequency domain processing internally): "
+                   "The result will be a frame of M + N - 1 where M and N are the sizes of the two inputs respectively",
+                   "Convolve two time domain frames together, (using frequency domain processing internally).", verbose);
+}
+
+const char *FrameLib_Convolve::inputInfo(unsigned long idx, bool verbose)
+{
+    return getInfo("Input #", "Input #", idx, verbose);
+}
+
+const char *FrameLib_Convolve::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Convolved Output";
+}
+
+// Parameter Info
+
+FrameLib_Convolve::ParameterInfo FrameLib_Convolve::sParamInfo;
+
+FrameLib_Convolve::ParameterInfo::ParameterInfo()
+{
+    add("Sets the maximum output length. The output length will be M + N - 1 where M and N are the sizes of the two inputs respectively");
 }
 
 // Process

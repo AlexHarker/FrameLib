@@ -7,19 +7,27 @@
 
 // FIX - add zero padding (why not do this prior to FFT with the pad object?)
 
-class FrameLib_FFT : public FrameLib_Processor
+class FrameLib_FFT : public FrameLib_Processor, private FrameLib_Info
 {
     // Parameter Enums and Info
 
 	enum ParameterList { kMaxLength };
     
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
+
 public:
 	
     // Constructor / Destructor
 
     FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     ~FrameLib_FFT();
-	
+    
+    // Info
+    
+    const char *objectInfo(bool verbose);
+    const char *inputInfo(unsigned long idx, bool verbose);
+    const char *outputInfo(unsigned long idx, bool verbose);
+
 private:
 
     // Process
@@ -35,6 +43,8 @@ private:
 	// Maximum FFT Size
 	
 	unsigned long mMaxFFTSize;
+    
+    static ParameterInfo sParamInfo;
 };
 
 #endif

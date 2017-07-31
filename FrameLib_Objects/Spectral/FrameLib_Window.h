@@ -6,7 +6,7 @@
 
 // FIX - review gain calculation
 
-class FrameLib_Window : public FrameLib_Processor
+class FrameLib_Window : public FrameLib_Processor, private FrameLib_Info
 {
     // Parameter Enums and Info
 
@@ -15,12 +15,20 @@ class FrameLib_Window : public FrameLib_Processor
     enum EndPoints { kFirst, kLast, kBoth, kNone };
     enum WindowTypes { kHann, kHamming, kTriangle, kCosine, kBlackman, kBlackman62, kBlackman70, kBlackman74, kBlackman92, kBlackmanHarris, kFlatTop, kRectangle };
 
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
+
 public:
 	
     // Constructor / Destructor
     
     FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     ~FrameLib_Window();
+    
+    // Info
+    
+    const char *objectInfo(bool verbose);
+    const char *inputInfo(unsigned long idx, bool verbose);
+    const char *outputInfo(unsigned long idx, bool verbose);
 	
 private:
 	
@@ -47,6 +55,8 @@ private:
 
     double mLinearGain;
     double mPowerGain;
+    
+    static ParameterInfo sParamInfo;
 };
 
 #endif

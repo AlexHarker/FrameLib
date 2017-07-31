@@ -42,6 +42,8 @@ FrameLib_Window::FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::
     mParameters.addEnumItem(kBoth, "both");
     mParameters.addEnumItem(kNone, "none");
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
     
     mWindow = NULL;
@@ -57,6 +59,43 @@ FrameLib_Window::FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::
 FrameLib_Window::~FrameLib_Window()
 {
     mAllocator->dealloc(mWindow);
+}
+
+// Info
+
+const char *FrameLib_Window::objectInfo(bool verbose)
+{
+    return getInfo("Multiplies the incoming frame against a specified window: The output length will match the input length.",
+                   "Multiplies the incoming frame against a specified window.", verbose);
+}
+
+const char *FrameLib_Window::inputInfo(unsigned long idx, bool verbose)
+{
+    if (idx)
+        return getInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
+    else
+        return getInfo("Input Frame", "Input Frame", idx, verbose);
+}
+
+const char *FrameLib_Window::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Windowed Output";
+}
+
+// Parameter Info
+
+FrameLib_Window::ParameterInfo FrameLib_Window::sParamInfo;
+
+FrameLib_Window::ParameterInfo::ParameterInfo()
+{
+    add("Sets the window type.");
+    add("Sets the size of the internal window. If set to 0 the window will be recalculated to match the input size (good for frequency domain applications. "
+        "Otherwise an internally stored window is linearly interpolated to fit the input size (good for granular applications.");
+    add("Sets whether the window should be used directly, or the square root of the window.");
+    add("Sets the gain compensation used. "
+        "off - no compensation is used. linear - compensate the linear gain of the window. "
+        "power - compensate the power gain of the window. poweroverlin - compensate by the power gain divided by the linear gain");
+    add("Sets which endpoints of the window used will be non-zero for windows that start and end at zero.");
 }
 
 // Helpers
