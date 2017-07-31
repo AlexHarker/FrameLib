@@ -32,6 +32,8 @@ FrameLib_MaxRead::FrameLib_MaxRead(FrameLib_Context context, FrameLib_Parameters
     mParameters.addEnumItem(kSeconds, "seconds");
     mParameters.addEnumItem(kSamples, "samples");
     
+    mParameters.setInfo(&sParamInfo);
+    
     mParameters.set(serialisedParameters);
     
     mBufferName = gensym(mParameters.getString(kBuffer));
@@ -46,6 +48,40 @@ FrameLib_MaxRead::FrameLib_MaxRead(FrameLib_Context context, FrameLib_Parameters
         ibuffer_init();
         sInit = true;
     }
+}
+
+// Info
+
+const char *FrameLib_MaxRead::objectInfo(bool verbose)
+{
+    return getInfo("Reads from a buffer~ given an input frame of sample positions: There are different available interpolation types. ",
+                   "Reads from a buffer~ given an input frame of sample positions.", verbose);
+}
+
+const char *FrameLib_MaxRead::inputInfo(unsigned long idx, bool verbose)
+{
+    return getInfo("Frame of Positions - triggers generation of output", "Frame of Positions", verbose);
+}
+
+const char *FrameLib_MaxRead::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Output Frame";
+}
+
+// Parameter Info
+
+FrameLib_MaxRead::ParameterInfo FrameLib_MaxRead::sParamInfo;
+
+FrameLib_MaxRead::ParameterInfo::ParameterInfo()
+{
+    add("Sets the buffer~ name to use.");
+    add("Sets the buffer~ channel to use.");
+    add("Sets the interpolation mode: "
+        "hermite - cubic hermite interpolation. "
+        "bspline - cubic bspline interpolation. "
+        "lagrange - cubic lagrange interpolation. "
+        "linear - linear interpolation.");
+    add("Sets the units for the position input.");
 }
 
 // Process
