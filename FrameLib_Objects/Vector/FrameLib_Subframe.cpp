@@ -44,8 +44,8 @@ FrameLib_Subframe::ParameterInfo FrameLib_Subframe::sParamInfo;
 
 FrameLib_Subframe::ParameterInfo::ParameterInfo()
 {
-    add("Sets the start point.");
-    add("Sets the end point.");
+    add("Sets the start point of the subframe.");
+    add("Sets the end point of the subframe.");
     add("Sets units for the start and end points (samples or ratios [0-1]).");
 }
 

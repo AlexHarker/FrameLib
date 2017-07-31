@@ -54,7 +54,7 @@ FrameLib_MaxRead::FrameLib_MaxRead(FrameLib_Context context, FrameLib_Parameters
 
 const char *FrameLib_MaxRead::objectInfo(bool verbose)
 {
-    return getInfo("Reads from a buffer~ given an input frame of sample positions: There are different available interpolation types. ",
+    return getInfo("Reads from a buffer~ given an input frame of sample positions: There are different available interpolation types.",
                    "Reads from a buffer~ given an input frame of sample positions.", verbose);
 }
 

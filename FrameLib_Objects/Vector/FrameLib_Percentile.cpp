@@ -20,8 +20,8 @@ FrameLib_Percentile::FrameLib_Percentile(FrameLib_Context context, FrameLib_Para
 
 const char *FrameLib_Percentile::objectInfo(bool verbose)
 {
-    return getInfo("Calculates any percentile (e.g. the median at 50%) of an input frame: The output is a single value.",
-                   "Calculates any percentile (e.g. the median at 50%) of an input frame.", verbose);
+    return getInfo("Calculates any percentile (for example the median at 50%) of an input frame: The output is a single value.",
+                   "Calculates any percentile (for example the median at 50%) of an input frame.", verbose);
 }
 
 const char *FrameLib_Percentile::inputInfo(unsigned long idx, bool verbose)
