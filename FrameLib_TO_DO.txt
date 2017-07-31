@@ -20,7 +20,7 @@ DONE	- Safety (no direct access of other objects / thread safety / no symbol bin
 DONE	- Better connection issue reporting
 PROGRESS- Review entry of inputs and parameters
 
-6 - Review parameter inputs (how to handle, including max wrapper)
+PROGRESS 6 - Review parameter inputs (how to handle, including max wrapper)
 
 7 - READ/WRITE Timing ISSUES!!!	
 	- (multi-chan expansion/ease of use/chance of mistakes/multiple dependencies)
