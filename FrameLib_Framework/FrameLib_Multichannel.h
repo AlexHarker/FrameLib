@@ -89,7 +89,7 @@ protected:
     
     // IO Utilities
     
-    // Call this in derived class constructors if the IO size is not static
+    // Call this in derived class constructors if the IO size is not always the same
     
     void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0)
     {
