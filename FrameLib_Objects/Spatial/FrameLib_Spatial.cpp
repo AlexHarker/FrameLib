@@ -20,7 +20,9 @@ FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, FrameLib_Parameters
     mParameters.addInt(kMaxSpeakers, "maxspeakers", 0);
     mParameters.setMin(0);
     mParameters.addDouble(kPoints, "points", 0.0);
-    mParameters.setClip(0.1, 1.0);
+    mParameters.setClip(0.0, 1.0);
+    
+    mParameters.setInfo(&sParamInfo);
     
     mParameters.set(serialisedParameters);
     
@@ -35,6 +37,45 @@ FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, FrameLib_Parameters
         
         mSpeakers.push_back(convertToCartesian(Polar(azimuth, elevation, radius)));
     }
+}
+
+// Info
+
+const char *FrameLib_Spatial::objectInfo(bool verbose)
+{
+    return getInfo("Generates multiplication factors for a number of speakers from an input coordinate triple: "
+                   "The alogirthm used is a modified version of DBAP, with extra features. "
+                   "Input may be in cartesian coordinates (x, y, z) or polar ones (azimuth, elevation, radius. "
+                   "Missing values at the input are assumed zero. Extra values are ignored. "
+                   "The output size is equal to the number of loudspeakers.",
+                   "Generates multiplication factors for a number of speakers from an input coordinate triple.", verbose);
+}
+
+const char *FrameLib_Spatial::inputInfo(unsigned long idx, bool verbose)
+{
+    return getInfo("Input Triple - cartesian or polar values for which to generate factors.", "Input Triple", verbose);
+
+}
+
+const char *FrameLib_Spatial::outputInfo(unsigned long idx, bool verbose)
+{
+    return getInfo("Multiplication Factors - one per loudspeaker.", "Multiplication Factors", verbose);
+}
+
+// Parameter Info
+
+FrameLib_Spatial::ParameterInfo FrameLib_Spatial::sParamInfo;
+
+FrameLib_Spatial::ParameterInfo::ParameterInfo()
+{
+    add("Sets the input coordinate mode.");
+    add("Sets the speaker positions in polar triples (one triple per speaker).");
+    add("Sets the speaker weightings (one value per speaker).");
+    add("Sets the rolloff in dB.");
+    add("Sets the blur factor.");
+    add("Sets the maximum number of speakers to be used (the neaarest N speakers will be used only). "
+        "If zero all speakers are used.");
+    add("Interpolate to point source panning (0 is modified DBAP - 1 is point source).");
 }
 
 // Conversion Helper

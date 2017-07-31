@@ -5,7 +5,7 @@
 #include "FrameLib_DSP.h"
 #include <vector>
 
-class FrameLib_Spatial : public FrameLib_Processor
+class FrameLib_Spatial : public FrameLib_Processor, private FrameLib_Info
 {
     // Spatial Types
     
@@ -30,11 +30,19 @@ class FrameLib_Spatial : public FrameLib_Processor
     enum ParameterList {kInputMode, kSpeakers, kWeights, kRolloff, kBlur, kMaxSpeakers, kPoints};
     enum InputModes {kPolar, kCartesian};
 
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
+
 public:
     
     // Constructor
     
     FrameLib_Spatial(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    
+    // Info
+    
+    const char *objectInfo(bool verbose);
+    const char *inputInfo(unsigned long idx, bool verbose);
+    const char *outputInfo(unsigned long idx, bool verbose);
     
 private:
 
@@ -46,12 +54,11 @@ private:
     
     void process();
     
-private:
-    
     // Data
     
     std::vector <Cartesian> mSpeakers;
-    
+
+    static ParameterInfo sParamInfo;
 };
 
 #endif
