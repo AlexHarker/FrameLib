@@ -30,7 +30,7 @@ const char *FrameLib_Lookup::inputInfo(unsigned long idx, bool verbose)
 
 const char *FrameLib_Lookup::outputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Output Frame", "Output Frame - values after look up", verbose);
+    return getInfo("Output Frame - values after look up", "Output Frame", verbose);
 }
 
 // Process
