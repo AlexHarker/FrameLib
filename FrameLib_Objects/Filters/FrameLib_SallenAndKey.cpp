@@ -41,7 +41,7 @@ void FrameLib_SallenAndKey::SallenAndKey::setParams(double freq, double resonanc
 
 // Filter Calculation
 
-inline void FrameLib_SallenAndKey::SallenAndKey::calculateFilter(double x)
+void FrameLib_SallenAndKey::SallenAndKey::calculateFilter(double x)
 {
     v1 = (a1 * ic2eq) + (a2 * ic1eq) + (a3 * x);
     v2 = (a4 * ic2eq) + (a5 * v1);
@@ -69,18 +69,10 @@ FrameLib_SallenAndKey::FrameLib_SallenAndKey(FrameLib_Context context, FrameLib_
     
     mParameters.set(serialisedParameters);
     
-    inputMode(1, true, false, false, kFrameTagged);
+    setParameterInput(1);
 }
 
-// Update and Process
-
-void FrameLib_SallenAndKey::update()
-{
-    FrameLib_Parameters::Serial *serialised = getInput(1);
-    
-    if (serialised)
-        mParameters.set(serialised);
-}
+// Process
 
 void FrameLib_SallenAndKey::process()
 {

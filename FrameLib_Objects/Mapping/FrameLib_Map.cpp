@@ -25,7 +25,7 @@ FrameLib_Map::FrameLib_Map(FrameLib_Context context, FrameLib_Parameters::Serial
     
     mParameters.setInfo(&sParamInfo);
     
-    inputMode(1, true, false, false, kFrameTagged);
+    setParameterInput(1);
     
     setScaling();
 }
@@ -140,11 +140,6 @@ void FrameLib_Map::setScaling()
 
 void FrameLib_Map::update()
 {
-    FrameLib_Parameters::Serial *serialised = getInput(1);
-    
-    if (serialised)
-        mParameters.set(serialised);
-    
     setScaling();
 }
 

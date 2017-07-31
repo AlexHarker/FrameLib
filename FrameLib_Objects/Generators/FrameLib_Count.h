@@ -27,9 +27,8 @@ public:
 
 private:
     
-    // Update and Process
+    // Process
     
-    void update();
     void process();
     
     // Data

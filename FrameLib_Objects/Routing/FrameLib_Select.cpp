@@ -22,26 +22,21 @@ FrameLib_Select::FrameLib_Select(FrameLib_Context context, FrameLib_Parameters::
     for (unsigned long i = 0; i < mNumIns; i++)
         inputMode(i, false, i == mActiveIn, true);
     
-    inputMode(mNumIns, true, false, false, kFrameTagged);
+    setParameterInput(mNumIns);
 }
 
 // Update and Process
 
 void FrameLib_Select::update()
 {
-    FrameLib_Parameters::Serial *serialised = getInput(mNumIns);
-    
-    if (serialised)
+    if (mParameters.changed(kActiveIn))
     {
-        mParameters.set(serialised);
-        
         mActiveIn = mParameters.getInt(kActiveIn);
         
         for (unsigned long i = 0; i < mNumIns; i++)
             updateTrigger(i, i == mActiveIn);
         
         // FIX - negative values truncated etc. - make sure this is safe
-        
     }
 }
 

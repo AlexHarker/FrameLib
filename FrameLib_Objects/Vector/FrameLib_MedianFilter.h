@@ -28,9 +28,8 @@ private:
     double getWrap(double *input, long index, long sizeIn, long width);
     double getFold(double *input, long index, long sizeIn, long width);
     
-    // Update and Process
+    // Process
     
-    void update();
     void process();
 };
 

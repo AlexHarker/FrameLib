@@ -16,7 +16,7 @@ void FrameLib_Resonant::Resonant::setParams(double freq, double reson, double sa
 
 // Filter Calculation
 
-inline double FrameLib_Resonant::Resonant::calculateFilter(double x)
+double FrameLib_Resonant::Resonant::calculateFilter(double x)
 {
     x = x * ((scl + r2) + 1.0);
     double y = x - ((scl * y1) + (r2 * y2));
@@ -45,18 +45,10 @@ FrameLib_Resonant::FrameLib_Resonant(FrameLib_Context context, FrameLib_Paramete
     
     mParameters.set(serialisedParameters);
     
-    inputMode(1, true, false, false, kFrameTagged);
+    setParameterInput(1);
 }
 
-// Update and Process
-
-void FrameLib_Resonant::update()
-{
-    FrameLib_Parameters::Serial *serialised = getInput(1);
-    
-    if (serialised)
-        mParameters.set(serialised);
-}
+// Process
 
 void FrameLib_Resonant::process()
 {

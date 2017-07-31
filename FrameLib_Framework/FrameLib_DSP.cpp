@@ -168,6 +168,12 @@ void FrameLib_DSP::inputMode(unsigned long idx, bool update, bool trigger, bool 
     mInputs[idx].mType = type;
 }
 
+void FrameLib_DSP::setParameterInput(unsigned long idx)
+{
+    inputMode(idx, true, false, false, kFrameTagged);
+    mInputs[idx].mParameters = true;
+}
+
 // Call this from your constructor only (unsafe elsewhere)
 
 void FrameLib_DSP::outputMode(unsigned long idx, FrameType type)
@@ -338,19 +344,30 @@ void FrameLib_DSP::dependenciesReady()
     else
     {
         bool trigger = false;
+        bool callUpdate = false;
         
-        // Check for inputs at the current frame time that update
+        // Check for inputs at the current frame time that update (update parameters if requested)
         
         for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
         {
             if (ins->mObject && ins->mUpdate && mValidTime == ins->mObject->mFrameTime)
             {
-                mInUpdate = true;
-                update();
-                mInUpdate = false;
-                break;
+                callUpdate = true;
+                if (ins->mParameters)
+                {
+                    FrameLib_Parameters::Serial *serialised = ins->mObject->getOutput(ins->mIndex);
+                
+                    if (serialised)
+                        mParameters.set(serialised);
+                }
             }
         }
+        
+        // Custom Update
+        
+        mInUpdate = true;
+        update();
+        mInUpdate = false;
         
         // Check for inputs at the current frame time that trigger (after any update)
         

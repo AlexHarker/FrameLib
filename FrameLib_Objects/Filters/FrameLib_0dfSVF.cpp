@@ -36,7 +36,7 @@ void FrameLib_0dfSVF::ZeroDelayFeedbackSVF::setParams(double freq, double resona
 
 // Filter Calculation
 
-inline void FrameLib_0dfSVF::ZeroDelayFeedbackSVF::calculateFilter(double x)
+void FrameLib_0dfSVF::ZeroDelayFeedbackSVF::calculateFilter(double x)
 {
     // Compute highpass then bandpass  by applying 1st integrator to highpass output and update state
     
@@ -69,18 +69,10 @@ FrameLib_0dfSVF::FrameLib_0dfSVF(FrameLib_Context context, FrameLib_Parameters::
     
     mParameters.set(serialisedParameters);
     
-    inputMode(1, true, false, false, kFrameTagged);
+    setParameterInput(1);
 }
 
-// Update and Process
-
-void FrameLib_0dfSVF::update()
-{
-    FrameLib_Parameters::Serial *serialised = getInput(1);
-    
-    if (serialised)
-        mParameters.set(serialised);
-}
+// Process
 
 void FrameLib_0dfSVF::process()
 {

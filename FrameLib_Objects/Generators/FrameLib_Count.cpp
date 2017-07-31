@@ -15,7 +15,7 @@ FrameLib_Count::FrameLib_Count(FrameLib_Context context, FrameLib_Parameters::Se
     
     mParameters.setInfo(&sParamInfo);
     
-    inputMode(1, true, false, false, kFrameTagged);
+    setParameterInput(1);
 }
 
 // Info
@@ -49,15 +49,7 @@ FrameLib_Count::ParameterInfo::ParameterInfo()
         "requested - the output frame size is set by the length parameter.");
 }
 
-// Update and Process
-
-void FrameLib_Count::update()
-{
-    FrameLib_Parameters::Serial *serialised = getInput(1);
-    
-    if (serialised)
-        mParameters.set(serialised);
-}
+// Process
 
 void FrameLib_Count::process()
 {

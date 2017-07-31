@@ -15,7 +15,7 @@ void FrameLib_OnePoleZero::OnePoleZero::setParams(double freq, double samplingRa
 
 // Filter Calculation
 
-inline double FrameLib_OnePoleZero::OnePoleZero::calculateFilter(double x)
+double FrameLib_OnePoleZero::OnePoleZero::calculateFilter(double x)
 {
     double w = x * a0;
     double y = r1 + w;
@@ -40,18 +40,10 @@ FrameLib_OnePoleZero::FrameLib_OnePoleZero(FrameLib_Context context, FrameLib_Pa
     
     mParameters.set(serialisedParameters);
     
-    inputMode(1, true, false, false, kFrameTagged);
+    setParameterInput(1);
 }
 
-// Update and Process
-
-void FrameLib_OnePoleZero::update()
-{
-    FrameLib_Parameters::Serial *serialised = getInput(1);
-    
-    if (serialised)
-        mParameters.set(serialised);
-}
+// Process
 
 void FrameLib_OnePoleZero::process()
 {

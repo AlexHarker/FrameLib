@@ -5,7 +5,7 @@
 
 // Filter Calculation
 
-inline double FrameLib_OnePole::OnePole::calculateFilter(double x)
+double FrameLib_OnePole::OnePole::calculateFilter(double x)
 {
     double y = y1 + f0 * (x - y1);
     
@@ -29,18 +29,10 @@ FrameLib_OnePole::FrameLib_OnePole(FrameLib_Context context, FrameLib_Parameters
     
     mParameters.set(serialisedParameters);
     
-    inputMode(1, true, false, false, kFrameTagged);
+    setParameterInput(1);
 }
 
-// Update and Process
-
-void FrameLib_OnePole::update()
-{
-    FrameLib_Parameters::Serial *serialised = getInput(1);
-    
-    if (serialised)
-        mParameters.set(serialised);
-}
+// Process
 
 void FrameLib_OnePole::process()
 {

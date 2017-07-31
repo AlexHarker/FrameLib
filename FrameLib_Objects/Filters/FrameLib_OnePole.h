@@ -36,7 +36,7 @@ class FrameLib_OnePole : public FrameLib_Processor
         
         // Filter Calculation
         
-        inline double calculateFilter(double x);
+        double calculateFilter(double x);
         
         // Coefficients and Memories
 
@@ -56,9 +56,8 @@ public:
     
 private:
     
-    // Update and Process
+    // Process
     
-    void update();
     void process();
 };
 

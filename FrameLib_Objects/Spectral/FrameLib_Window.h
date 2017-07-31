@@ -29,9 +29,8 @@ private:
     void updateWindow (unsigned long inSize, EndPoints ends);
     double linearInterp(double pos);
     
-    // Update and Process
+    // Process
     
-    void update();
     void process();
 	
 private:

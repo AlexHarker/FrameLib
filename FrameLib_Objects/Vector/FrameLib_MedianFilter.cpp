@@ -18,7 +18,7 @@ FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, FrameLib_
     
     mParameters.set(serialisedParameters);
     
-    inputMode(1, true, false, false, kFrameTagged);
+    setParameterInput(1);
 }
 
 // Helpers
@@ -112,15 +112,7 @@ double FrameLib_MedianFilter::getFold(double *input, long index, long sizeIn, lo
     return input[index];
 }
 
-// Update and Process
-
-void FrameLib_MedianFilter::update()
-{
-    FrameLib_Parameters::Serial *serialised = getInput(1);
-    
-    if (serialised)
-        mParameters.set(serialised);
-}
+// Process
 
 void FrameLib_MedianFilter::process()
 {

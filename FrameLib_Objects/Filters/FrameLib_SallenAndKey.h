@@ -37,7 +37,7 @@ class FrameLib_SallenAndKey : public FrameLib_Processor
 
         // Filter Calculation
 
-        inline void calculateFilter(double x);
+        void calculateFilter(double x);
         
         // Coefficients and Memories
 
@@ -57,9 +57,8 @@ public:
     
 private:
     
-    // Update and Process
+    // Process
     
-    void update();
     void process();
 };
 

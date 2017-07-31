@@ -51,7 +51,7 @@ FrameLib_Window::FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::
     mLinearGain = 0.0;
     mPowerGain = 0.0;
     
-    inputMode(1, true, false, false, kFrameTagged);
+    setParameterInput(1);
 }
 
 FrameLib_Window::~FrameLib_Window()
@@ -61,7 +61,7 @@ FrameLib_Window::~FrameLib_Window()
 
 // Helpers
 
-void FrameLib_Window::updateWindow (unsigned long inSize, EndPoints ends)
+void FrameLib_Window::updateWindow(unsigned long inSize, EndPoints ends)
 {
     WindowTypes windowType = (WindowTypes) mParameters.getInt(kWindowType);
     bool sqrtWindow = mParameters.getBool(kSqrt);
@@ -187,15 +187,7 @@ double FrameLib_Window::linearInterp(double pos)
     return lo + fract * (hi - lo);
 }
 
-// Update and Process
-
-void FrameLib_Window::update()
-{
-    FrameLib_Parameters::Serial *serialised = getInput(1);
-    
-    if (serialised)
-        mParameters.set(serialised);
-}
+// Process
 
 void FrameLib_Window::process()
 {
