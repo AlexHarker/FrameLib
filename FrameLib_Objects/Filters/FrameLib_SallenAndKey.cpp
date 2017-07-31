@@ -67,9 +67,43 @@ FrameLib_SallenAndKey::FrameLib_SallenAndKey(FrameLib_Context context, FrameLib_
     mParameters.addEnumItem(kBPF, "bpf");
     mParameters.addEnumItem(kHPF, "hpf");
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
-    
+        
     setParameterInput(1);
+}
+
+// Info
+
+const char *FrameLib_SallenAndKey::objectInfo(bool verbose)
+{
+    return getInfo("Filters input frames using a sallen and key filter: The size of the output is equal to the input.",
+                   "Filters input frames using a sallen and key filter.", verbose);
+}
+
+const char *FrameLib_SallenAndKey::inputInfo(unsigned long idx, bool verbose)
+{
+    if (idx)
+        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+    else
+        return getInfo("Input Frame - input to be triggered", "Input Frame", verbose);
+}
+
+const char *FrameLib_SallenAndKey::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Frame of Filtered Values";
+}
+
+// Parameter Info
+
+FrameLib_SallenAndKey::ParameterInfo FrameLib_SallenAndKey::sParamInfo;
+
+FrameLib_SallenAndKey::ParameterInfo::ParameterInfo()
+{
+    add("Sets the filter cutoff frequency.");
+    add("Sets the filter resonance [0-1].");
+    add("Sets the filter mode.");
 }
 
 // Process

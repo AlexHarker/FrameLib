@@ -5,20 +5,25 @@
 
 FrameLib_SetParam::FrameLib_SetParam (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context)
 {
+    char nameStr[7];
+    
     mParameters.addInt(kNumIns, "numins", 1, 0);
-    mParameters.setClip(1, 32);
+    mParameters.setClip(1, 10);
     mParameters.setInstantiation();
     
-    mParameters.addString(kNames + 0, "name1", 1);
-    mParameters.addString(kNames + 1, "name2", 2);
-    mParameters.addString(kNames + 2, "name3", 3);
-    mParameters.addString(kNames + 3, "name4", 4);
-    mParameters.addString(kNames + 4, "name5", 5);
-    mParameters.addString(kNames + 5, "name6", 6);
-    mParameters.addString(kNames + 6, "name7", 7);
-    mParameters.addString(kNames + 7, "name8", 8);
-    mParameters.addString(kNames + 8, "name9", 9);
-    mParameters.addString(kNames + 9, "name10", 10);
+    // Read in once to get number of strings needed
+    
+    mParameters.set(serialisedParameters);
+    mNumIns = mParameters.getInt(kNumIns);
+
+    for (int i = 0; i < mNumIns; i++)
+    {
+        sprintf(nameStr, "name%02d", i + 1);
+        mParameters.addString(kNames + 0, nameStr, i + 1);
+        mParameters.setInstantiation();
+    }
+    
+    // Read in again to get names
     
     mParameters.set(serialisedParameters);
     mNumIns = mParameters.getInt(kNumIns);
@@ -27,6 +32,46 @@ FrameLib_SetParam::FrameLib_SetParam (FrameLib_Context context, FrameLib_Paramet
     
     inputMode(mNumIns, false, true, false, kFrameTagged);
     outputMode(0, kFrameTagged);
+}
+
+// Info
+
+const char *FrameLib_SetParam::objectInfo(bool verbose)
+{
+    return getInfo("Tags vectors with parameter names ready to send to the parameter input of an object: "
+                   "A variable number of inputs is available, each of which deal will a specific parameter name. "
+                   "The final input takes tagged input which is concatanated with other inputs after tagging. All inputs trigger output.",
+                   "Tags vectors with parameter names ready to send to the parameter input of an object.", verbose);
+}
+
+const char *FrameLib_SetParam::inputInfo(unsigned long idx, bool verbose)
+{
+    if (idx == mNumIns)
+        return getInfo("Parameter Input - takes tagged input for concatenation with other inputs", "Parameter Input", verbose);
+    else
+        return getInfo("Input for Parameter #", "Input  for Parameter #", idx, verbose);
+
+}
+
+const char *FrameLib_SetParam::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Tagged Output Frames";
+}
+
+// Parameter Info
+
+FrameLib_SetParam::ParameterInfo FrameLib_SetParam::sParamInfo;
+
+FrameLib_SetParam::ParameterInfo::ParameterInfo()
+{
+    char str[256];
+    
+    add("Sets the number of object inputs (and hence the number of parameters.");
+    for (int i = 0; i < 10; i++)
+    {
+        sprintf(str, "Sets the parameter name for input %d.", i + 1);
+        add(str);
+    }
 }
 
 // Process

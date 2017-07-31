@@ -67,9 +67,43 @@ FrameLib_0dfSVF::FrameLib_0dfSVF(FrameLib_Context context, FrameLib_Parameters::
     mParameters.addEnumItem(kBPF, "bpf");
     mParameters.addEnumItem(kHPF, "hpf");
     
+    mParameters.setInfo(&sParamInfo);
+    
     mParameters.set(serialisedParameters);
     
     setParameterInput(1);
+}
+
+// Info
+
+const char *FrameLib_0dfSVF::objectInfo(bool verbose)
+{
+    return getInfo("Filters input frames using a zero delay state variable filter: The size of the output is equal to the input.",
+                   "Filters input frames using a zero delay state variable filter.", verbose);
+}
+
+const char *FrameLib_0dfSVF::inputInfo(unsigned long idx, bool verbose)
+{
+    if (idx)
+        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+    else
+        return getInfo("Input Frame - input to be triggered", "Input Frame", verbose);
+}
+
+const char *FrameLib_0dfSVF::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Frame of Filtered Values";
+}
+
+// Parameter Info
+
+FrameLib_0dfSVF::ParameterInfo FrameLib_0dfSVF::sParamInfo;
+
+FrameLib_0dfSVF::ParameterInfo::ParameterInfo()
+{
+    add("Sets the filter cutoff frequency.");
+    add("Sets the filter resonance [0-1].");
+    add("Sets the filter mode.");
 }
 
 // Process

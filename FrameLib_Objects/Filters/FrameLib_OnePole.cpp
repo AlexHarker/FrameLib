@@ -27,9 +27,42 @@ FrameLib_OnePole::FrameLib_OnePole(FrameLib_Context context, FrameLib_Parameters
     mParameters.addEnumItem(kLPF, "lpf");
     mParameters.addEnumItem(kHPF, "hpf");
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
     
     setParameterInput(1);
+}
+
+// Info
+
+const char *FrameLib_OnePole::objectInfo(bool verbose)
+{
+    return getInfo("Filters input frames using a one pole filter: The size of the output is equal to the input.",
+                   "Filters input frames using a one pole  filter.", verbose);
+}
+
+const char *FrameLib_OnePole::inputInfo(unsigned long idx, bool verbose)
+{
+    if (idx)
+        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+    else
+        return getInfo("Input Frame - input to be triggered", "Input Frame", verbose);
+}
+
+const char *FrameLib_OnePole::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Frame of Filtered Values";
+}
+
+// Parameter Info
+
+FrameLib_OnePole::ParameterInfo FrameLib_OnePole::sParamInfo;
+
+FrameLib_OnePole::ParameterInfo::ParameterInfo()
+{
+    add("Sets the filter cutoff frequency.");
+    add("Sets the filter mode.");
 }
 
 // Process
