@@ -13,7 +13,39 @@ FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, FrameLib_Paramete
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
+    
+    setParameterInput(0);
+}
+
+// Info
+
+const char *FrameLib_Interval::objectInfo(bool verbose)
+{
+    return getInfo("Schedules frames at a regular interval, which can be adjusted using the interval parameter: Output frames are empty.",
+                   "Schedules frames at a regular interval, which can be adjusted using the interval parameter.", verbose);
+}
+
+const char *FrameLib_Interval::inputInfo(unsigned long idx, bool verbose)
+{
+    return getInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
+}
+
+const char *FrameLib_Interval::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Empty Trigger Frames";
+}
+
+// Parameter Info
+
+FrameLib_Interval::ParameterInfo FrameLib_Interval::sParamInfo;
+
+FrameLib_Interval::ParameterInfo::ParameterInfo()
+{
+    add("Sets the interval between frames in the units of the units parameter.");
+    add("Sets the time units used to set the interval between frames.");
 }
 
 FrameLib_Interval::SchedulerInfo FrameLib_Interval::schedule(bool newFrame, bool noOutput)

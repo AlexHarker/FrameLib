@@ -10,7 +10,7 @@
 
 // Constructor
 
-FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioInput(context, 1, 1, 1)
+FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioInput(context, 2, 1, 1)
 {
     mParameters.addDouble(kMaxLength, "length", 16384, 0);
     mParameters.setMin(0.0);
@@ -28,6 +28,8 @@ FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::
     
     mLength = convertTimeToSamples(mParameters.getValue(kLength));
     
+    setParameterInput(1);
+    
     objectReset();
 }
 
@@ -42,7 +44,10 @@ const char *FrameLib_Source::objectInfo(bool verbose)
 
 const char *FrameLib_Source::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Trigger Frame", "Trigger Frame - triggers capture to output", verbose);
+    if (idx)
+        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+    else
+        return getInfo("Trigger Frame - triggers capture to output", "Trigger Frame", verbose);
 }
 
 const char *FrameLib_Source::outputInfo(unsigned long idx, bool verbose)

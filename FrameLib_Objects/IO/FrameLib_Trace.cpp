@@ -41,7 +41,7 @@ const char *FrameLib_Trace::objectInfo(bool verbose)
 
 const char *FrameLib_Trace::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Frames to Output", "Frames to Output - overlapped to the output", verbose);
+    return getInfo("Frames to Output - overlapped to the output", "Frames to Output", verbose);
 }
 
 const char *FrameLib_Trace::audioInfo(unsigned long idx, bool verbose)

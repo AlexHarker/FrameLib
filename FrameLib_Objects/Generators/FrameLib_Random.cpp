@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Random::FrameLib_Random(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
+FrameLib_Random::FrameLib_Random(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
 {
     mParameters.addInt(kLength, "length", 1, 0);
     mParameters.setMin(0);
@@ -15,6 +15,8 @@ FrameLib_Random::FrameLib_Random(FrameLib_Context context, FrameLib_Parameters::
     mParameters.set(serialisedParameters);
     
     mParameters.setInfo(&sParamInfo);
+    
+    setParameterInput(1);
 }
 
 // Info
@@ -28,7 +30,10 @@ const char *FrameLib_Random::objectInfo(bool verbose)
 
 const char *FrameLib_Random::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Trigger Frame", "Trigger Frame - triggers generation of output", verbose);
+    if (idx)
+        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+    else
+        return getInfo("Trigger Frame - triggers generation of output", "Trigger Frame", verbose);
 }
 
 const char *FrameLib_Random::outputInfo(unsigned long idx, bool verbose)

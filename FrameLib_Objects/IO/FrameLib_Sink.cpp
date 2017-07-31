@@ -38,7 +38,7 @@ const char *FrameLib_Sink::objectInfo(bool verbose)
 
 const char *FrameLib_Sink::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Frames to Output", "Frames to Output - overlapped to the output", verbose);
+    return getInfo("Frames to Output - overlapped to the output", "Frames to Output", verbose);
 }
 
 const char *FrameLib_Sink::FrameLib_Sink::audioInfo(unsigned long idx, bool verbose)

@@ -16,8 +16,51 @@ FrameLib_SampleRate::FrameLib_SampleRate(FrameLib_Context context, FrameLib_Para
     mParameters.addEnumItem(kHalfNormToFreq, "halfnorm->freq");
     mParameters.addEnumItem(kFreqToNorm, "freq->norm");
     mParameters.addEnumItem(kFreqToHalfNorm, "freq->halfnorm");
+    mParameters.setInstantiation();
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
+}
+
+// Info
+
+const char *FrameLib_SampleRate::objectInfo(bool verbose)
+{
+    return getInfo("Convert values based on the sample rate / Output a value based on the sampling rate value: "
+                   "The output is either a single value or (when converting values) the size matches the input size. "
+                   "The sample rate or the nyquist frequency can be requested. A number of conversions are offered. ",
+                   "Convert values based on the sample rate / Output a value based on the sampling rate value.", verbose);
+}
+
+const char *FrameLib_SampleRate::inputInfo(unsigned long idx, bool verbose)
+{
+    return getInfo("Trigger / Input Frame - triggers cause output of a value / input frames are converted as specified",
+                   "Trigger / Input Frame", verbose);
+}
+
+const char *FrameLib_SampleRate::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Output Value / Scaled Frame";
+}
+
+// Parameter Info
+
+FrameLib_SampleRate::ParameterInfo FrameLib_SampleRate::sParamInfo;
+
+FrameLib_SampleRate::ParameterInfo::ParameterInfo()
+{
+    add("Sets the type of conversion / value to output: "
+        "value - output the sample rate. "
+        "nyquist - output the nyquist frequency. "
+        "samples->ms - convert from samples to milliseconds. "
+        "samples->seconds - convert from samples to seconds. "
+        "ms->samples - convert from milliseconds to samples. "
+        "seconds->samples - convert from seconds to samples. "
+        "norm->freq - convert from normalised frequency [0 - 1 is 0 - sample rate] to frequency in Hz. "
+        "halfnorm->freq - convert from half normalised frequency [0 - 1 is 0 - nyquist] to frequency in Hz.  "
+        "freq->norm  - convert from frequency in Hz to normalised frequency [0 - 1 is 0 - sample rate]. "
+        "freq->halfnorm - convert from frequency in Hz to hald normalised frequency [0 - 1 is 0 - nyquist].");
 }
 
 // Process

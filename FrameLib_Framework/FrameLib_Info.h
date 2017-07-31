@@ -16,9 +16,11 @@ public:
     
     const char *getInfo(const char *verboseStr, const char *briefStr, bool verbose)
     {
-        mInfo = verbose ? verboseStr : briefStr;
+        const char *outStr = verbose ? verboseStr : briefStr;
         
-        return mInfo.c_str();
+        mInfo = outStr;
+        
+        return outStr;
     }
 
     const char *getInfo(const char *verboseStr, const char *briefStr, unsigned long idx, bool verbose)

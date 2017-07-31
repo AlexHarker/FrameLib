@@ -42,12 +42,15 @@ const char *FrameLib_Map::objectInfo(bool verbose)
 
 const char *FrameLib_Map::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Input Frame";
+    if (idx)
+        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+    else
+        return "Input Frame";
 }
 
 const char *FrameLib_Map::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Maooed Output";
+    return "Mapped Output";
 }
 
 // Parameter Info

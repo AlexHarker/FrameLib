@@ -29,7 +29,10 @@ const char *FrameLib_Count::objectInfo(bool verbose)
 
 const char *FrameLib_Count::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Trigger Frame", "Trigger Frame - triggers generation of output", verbose);
+    if (idx)
+        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+    else
+        return getInfo("Trigger Frame - triggers generation of output", "Trigger Frame", verbose);
 }
 
 const char *FrameLib_Count::outputInfo(unsigned long idx, bool verbose)
