@@ -1,6 +1,8 @@
 
 #include "FrameLib_Register.h"
 
+// FIX - needs to work for either frame type...
+
 // Constructor
 
 FrameLib_Register::FrameLib_Register(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
@@ -8,15 +10,50 @@ FrameLib_Register::FrameLib_Register(FrameLib_Context context, FrameLib_Paramete
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kStore, "store");
     mParameters.addEnumItem(kPass, "pass");
+    mParameters.setInstantiation();
+    
+    mParameters.setInfo(&sParamInfo);
     
     mParameters.set(serialisedParameters);
     
     Modes mode = (Modes) mParameters.getInt(kMode);
     
     if (mode == kStore)
-        inputMode(1, false, false, false);
+        inputMode(1, false, false, false, kFrameAny);
     else
         inputMode(1, false, true, false);
+}
+
+// Info
+
+const char *FrameLib_Register::objectInfo(bool verbose)
+{
+    return getInfo("Store and recall a vector frame locally: The left input triggers recall, whilst the right input stores (with or without output).",
+                   "Store and recall a vector frame locally.", verbose);
+}
+
+const char *FrameLib_Register::inputInfo(unsigned long idx, bool verbose)
+{
+    if (idx)
+        return getInfo("Frame to Store - output is optional based on the mode parameter", "Frame to Store", verbose);
+    else
+        return getInfo("Trigger Input", "Trigger Input", verbose);
+}
+
+const char *FrameLib_Register::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Output Frames";
+}
+
+// Parameter Info
+
+FrameLib_Register::ParameterInfo FrameLib_Register::sParamInfo;
+
+FrameLib_Register::ParameterInfo::ParameterInfo()
+{
+    add("Sets the behaviour of the right input: "
+        "store - stores without output. "
+        "pass - stores and outputs.");
 }
 
 // Process

@@ -24,7 +24,6 @@ public:
     const char *inputInfo(unsigned long idx, bool verbose);
     const char *outputInfo(unsigned long idx, bool verbose);
     
-
 private:
     
     // Update and Process
