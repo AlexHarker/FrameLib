@@ -9,9 +9,38 @@ FrameLib_Percentile::FrameLib_Percentile(FrameLib_Context context, FrameLib_Para
     mParameters.addDouble(kPercentile, "percentile", 50.0, 0);
     mParameters.setClip(0.0, 100.0);
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
     
     mPercentile = mParameters.getValue(kPercentile);
+}
+
+// Info
+
+const char *FrameLib_Percentile::objectInfo(bool verbose)
+{
+    return getInfo("Calculates any percentile (e.g. the median at 50%) of an input frame: The output is a single value.",
+                   "Calculates any percentile (e.g. the median at 50%) of an input frame.", verbose);
+}
+
+const char *FrameLib_Percentile::inputInfo(unsigned long idx, bool verbose)
+{
+    return "Input Frame";
+}
+
+const char *FrameLib_Percentile::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Percentile Output Value";
+}
+
+// Parameter Info
+
+FrameLib_Percentile::ParameterInfo FrameLib_Percentile::sParamInfo;
+
+FrameLib_Percentile::ParameterInfo::ParameterInfo()
+{
+    add("Sets the percentile to calculate [0-100].");
 }
 
 // Process
