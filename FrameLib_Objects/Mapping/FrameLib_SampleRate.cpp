@@ -29,7 +29,7 @@ const char *FrameLib_SampleRate::objectInfo(bool verbose)
 {
     return getInfo("Convert values based on the sample rate / Output a value based on the sampling rate value: "
                    "The output is either a single value or (when converting values) the size matches the input size. "
-                   "The sample rate or the nyquist frequency can be requested. A number of conversions are offered. ",
+                   "The sample rate or the nyquist frequency can be requested. A number of conversions are offered.",
                    "Convert values based on the sample rate / Output a value based on the sampling rate value.", verbose);
 }
 

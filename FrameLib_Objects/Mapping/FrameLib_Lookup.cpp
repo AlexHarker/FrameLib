@@ -16,7 +16,7 @@ const char *FrameLib_Lookup::objectInfo(bool verbose)
 {
     return getInfo("Use one frame as a lookup table for another: The left input frame is used to lookup values from the last values received as the right input frame. "
                    "The output is the same size as the left input, which is interpreted as a set of sample positions used to read the right input. "
-                   "Only the left input triggers output. ",
+                   "Only the left input triggers output.",
                    "Use one frame as a lookup table for another.", verbose);
 }
 
