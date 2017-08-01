@@ -60,39 +60,22 @@ void FrameLib_FromMax::process()
     
     if (mMode == kValues)
     {
-        size = mMessages->mCount;
-        requestOutputSize(0, size);
+        requestOutputSize(0, mMessages->mList.size());
         allocateOutputs();
         
         double *output = getOutput(0, &size);
         
-        for (unsigned long i = 0; i < size; i++)
-            output[i] = mMessages->mValues[i];
+        mMessages->mList.get(output, size);
     }
     else
     {
-        for (unsigned long i = 0; i < mMessages->mTagged.size(); i++)
-        {
-            if (mMessages->mTagged[i].mStringFlag)
-                size += FrameLib_Parameters::Serial::calcSize(mMessages->mTagged[i].mTag, mMessages->mTagged[i].mString);
-            else
-                size += FrameLib_Parameters::Serial::calcSize(mMessages->mTagged[i].mTag, mMessages->mTagged[i].mCount);
-        }
-        
-        requestOutputSize(0, size);
+        requestOutputSize(0, mMessages->calcTaggedSize());
         allocateOutputs();
         
         FrameLib_Parameters::Serial *serialisedParameters = getOutput(0);
         
-        for (unsigned long i = 0; i < mMessages->mTagged.size(); i++)
-        {
-            if (mMessages->mTagged[i].mStringFlag)
-                serialisedParameters->write(mMessages->mTagged[i].mTag, mMessages->mTagged[i].mString);
-            else
-                serialisedParameters->write(mMessages->mTagged[i].mTag, mMessages->mTagged[i].mValues, mMessages->mTagged[i].mCount);
-        }
-        
-        mMessages->mTagged.clear();
+        mMessages->writeTagged(serialisedParameters);
+        mMessages->mTagsNeedClear = true;
     }
     
     mMessages->mLock.release();
@@ -116,71 +99,44 @@ void FrameLib_MaxClass_FromMax::classInit(t_class *c, t_symbol *nameSpace, const
 
 void FrameLib_MaxClass_FromMax::intHandler(t_atom_long in)
 {
-    mMessages.mLock.acquire();
-    mMessages.mValues[0] = in;
-    mMessages.mCount = 1;
-    mMessages.mLock.release();
+    floatHandler(in);
 }
 
 void FrameLib_MaxClass_FromMax::floatHandler(double in)
 {
-    mMessages.mLock.acquire();
-    mMessages.mValues[0] = in;
-    mMessages.mCount = 1;
-    mMessages.mLock.release();
+    atom a;
+    atom_setfloat(&a, in);
+    
+    list(NULL, 1, &a);
 }
 
 void FrameLib_MaxClass_FromMax::list(t_symbol *s, long argc, t_atom *argv)
 {
-    argc = argc > 4096 ? 4096 : argc;
-    
     mMessages.mLock.acquire();
-    for (unsigned long i = 0; i < argc; i++)
-        mMessages.mValues[i] = atom_getfloat(argv + i);
-    mMessages.mCount = argc;
+    if (mMessages.mTagsNeedClear)
+        mMessages.mTagged.clear();
+    mMessages.mList.set(argv, argc);
     mMessages.mLock.release();
 }
 
 void FrameLib_MaxClass_FromMax::anything(t_symbol *s, long argc, t_atom *argv)
 {
-    argc = argc > 4096 ? 4096 : argc;
+    if (argc > 1 && atom_gettype(argv) == A_SYM)
+        object_error(mUserObject, "too many arguments for string value");
     
     mMessages.mLock.acquire();
+    if (mMessages.mTagsNeedClear)
+        mMessages.mTagged.clear();
+    
     mMessages.mTagged.push_back(MaxMessage::TaggedMessages());
-    copyString(mMessages.mTagged.back().mTag, s->s_name);
+    mMessages.mTagged.back().setTag(s->s_name);
     
     if (atom_gettype(argv) == A_SYM)
-    {
-        if (argc > 1)
-            object_error(mUserObject, "too many arguments for string value");
-        
-        copyString(mMessages.mTagged.back().mString, atom_getsym(argv)->s_name);
-        mMessages.mTagged.back().mStringFlag = true;
-    }
+        mMessages.mTagged.back().set(atom_getsym(argv)->s_name);
     else
-    {
-        for (unsigned long i = 0; i < argc; i++)
-            mMessages.mTagged.back().mValues[i] = atom_getfloat(argv + i);
-        mMessages.mTagged.back().mStringFlag = false;
-        mMessages.mTagged.back().mCount = argc;
-    }
+        mMessages.mTagged.back().set(argv, argc);
+    
     mMessages.mLock.release();
-}
-
-// String Helper
-
-void FrameLib_MaxClass_FromMax::copyString(char *str, const char *toCopy)
-{
-    size_t i = 0;
-    
-    if (toCopy != NULL)
-    {
-        for (i = 0; i < 128; i++)
-            if ((str[i] = toCopy[i]) == 0)
-                break;
-    }
-    
-    str[i] = 0;
 }
 
 // Main

@@ -1,6 +1,7 @@
 
 #include "FrameLib_DSP.h"
 #include <FrameLib_MaxClass.h>
+#include <algorithm>
 
 // FIX - memory management is horrible - don't memory manage use std::vector in the audio thread - replace this also
 // TO DO - redo memory management and structs so they are less horrible and ugly
@@ -9,22 +10,113 @@
 
 struct MaxMessage
 {
-    struct TaggedMessages
+    class List
     {
-        char mTag[129];
-        char mString[129];
-        bool mStringFlag;
+        
+    public:
+        
+        List() : mSize(0) {}
+        
+        void set(t_atom *values, unsigned long size)
+        {
+            mSize = size > 4096 ? 4096 : size;
+            for (unsigned long i = 0; i < mSize; i++)
+                mValues[i] = atom_getfloat(values++);
+        }
+        
+        void get(double *output, unsigned long size) const      { std::copy(mValues, mValues + (size > mSize ? mSize : size), output); }
+        const double *get() const                               { return mValues; }
+        unsigned long size() const                              { return mSize; }
+
+    private:
+        
         double mValues[4096];
-        unsigned long mCount;
+        unsigned long mSize;
     };
     
-    MaxMessage() : mCount(0) { mValues.resize(4096); }
+    // FIX - tags with multichannel expansion
+    
+    class TaggedMessages
+    {
+        
+    public:
+        
+        void setTag(const char *str)    { copyString(mTag, str); }
+        
+        void set(const char *str)
+        {
+            mIsString = true;
+            copyString(mString, str);
+        }
+        
+        void set(t_atom *values, unsigned long size)
+        {
+            mIsString = false;
+            mList.set(values, size);
+        }
+        
+        size_t calcTaggedSize()
+        {
+            if (mIsString)
+                return FrameLib_Parameters::Serial::calcSize(mTag, mString);
+            else
+                return FrameLib_Parameters::Serial::calcSize(mTag, mList.size());
+        }
+        
+        void writeTagged(FrameLib_Parameters::Serial *serialisedParameters)
+        {
+            if (mIsString)
+                serialisedParameters->write(mTag, mString);
+            else
+                serialisedParameters->write(mTag, mList.get(), mList.size());
+        }
+        
+    private:
+        
+        static void copyString(char *str, const char *toCopy)
+        {
+            size_t i = 0;
+            
+            if (toCopy != NULL)
+            {
+                for (i = 0; i < 128; i++)
+                    if ((str[i] = toCopy[i]) == 0)
+                        break;
+            }
+            
+            str[i] = 0;
+        }
+        
+        
+        char mTag[129];
+        bool mIsString;
+        char mString[129];
+        List mList;
+    };
+    
+    MaxMessage() : mTagsNeedClear(false) {}
+    
+    size_t calcTaggedSize()
+    {
+        size_t size = 0;
+        
+        for (unsigned long i = 0; i < mTagged.size() && !mTagsNeedClear; i++)
+            size += mTagged[i].calcTaggedSize();
+       
+        return size;
+    }
+    
+    void writeTagged(FrameLib_Parameters::Serial *serialisedParameters)
+    {
+        for (unsigned long i = 0; i < mTagged.size() && !mTagsNeedClear; i++)
+            mTagged[i].writeTagged(serialisedParameters);
+    }
     
     FrameLib_SpinLock mLock;
     
-    std::vector<double> mValues;
-    unsigned long mCount;
+    List mList;
     std::vector<TaggedMessages> mTagged;
+    bool mTagsNeedClear;
 };
 
 // Underlying FrameLib Class
@@ -87,10 +179,6 @@ public:
     MaxMessage *getMessages() { return &mMessages; }
         
 private:
-    
-    // String Helper
-
-    void copyString(char *str, const char *toCopy);
     
     // Data (public so we can take the address)
     
