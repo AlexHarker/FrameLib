@@ -9,7 +9,7 @@
 
 // Constructor
 
-FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioOutput(context, 1, 0, 1)
+FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioOutput(context, &sParamInfo, 1, 0, 1)
 {
     mParameters.addDouble(kLength, "length", 8000, 0);
     mParameters.setMin(0);
@@ -22,8 +22,6 @@ FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, FrameLib_Parameters::Seri
     
     mParameters.set(serialisedParameters);
     
-    mParameters.setInfo(&sParamInfo);
-
     objectReset();
 }
 

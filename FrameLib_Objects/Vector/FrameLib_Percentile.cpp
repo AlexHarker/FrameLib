@@ -4,13 +4,11 @@
 
 // Constructor
 
-FrameLib_Percentile::FrameLib_Percentile(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
+FrameLib_Percentile::FrameLib_Percentile(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 1, 1)
 {
     mParameters.addDouble(kPercentile, "percentile", 50.0, 0);
     mParameters.setClip(0.0, 100.0);
     
-    mParameters.setInfo(&sParamInfo);
-
     mParameters.set(serialisedParameters);
     
     mPercentile = mParameters.getValue(kPercentile);

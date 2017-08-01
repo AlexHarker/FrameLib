@@ -4,14 +4,12 @@
 
 // Constructor
 
-FrameLib_Sort::FrameLib_Sort(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
+FrameLib_Sort::FrameLib_Sort(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 1, 1)
 {
     mParameters.addEnum(kOrder, "order", 0);
     mParameters.addEnumItem(kUp, "up");
     mParameters.addEnumItem(kDown, "down");
     
-    mParameters.setInfo(&sParamInfo);
-
     mParameters.set(serialisedParameters);
     
     mOrder = (Orders) mParameters.getInt(kOrder);

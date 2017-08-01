@@ -3,8 +3,8 @@
 
 // Constructor / Destructor
 
-FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
-: FrameLib_Block(type), mAllocator(context), mQueue(context), mNext(NULL), mInUpdate(false)
+FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
+: FrameLib_Block(type), mAllocator(context), mQueue(context), mNext(NULL), mInUpdate(false), mParameters(info)
 {
     // Set IO
     

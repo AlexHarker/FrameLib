@@ -381,7 +381,7 @@ public:
     
     // Constructor
     
-    FrameLib_Parameters() : mParameterInfo(NULL) {}
+    FrameLib_Parameters(Info *info) : mParameterInfo(info) {}
     
     // Destructor
     
@@ -481,8 +481,6 @@ public:
     }
 
     // Setters (N.B. - setters have sanity checks as the tags are set by the end-user)
-
-    void setInfo(Info *info)                    { mParameterInfo = info; }
     
     // Set as Instantiation Only
     

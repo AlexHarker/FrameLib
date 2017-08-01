@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Map::FrameLib_Map(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
+FrameLib_Map::FrameLib_Map(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kLinear, "linear");
@@ -22,9 +22,7 @@ FrameLib_Map::FrameLib_Map(FrameLib_Context context, FrameLib_Parameters::Serial
     mParameters.addBool(kClip, "clip", true, 5);
     
     mParameters.set(serialisedParameters);
-    
-    mParameters.setInfo(&sParamInfo);
-    
+        
     setParameterInput(1);
     
     setScaling();

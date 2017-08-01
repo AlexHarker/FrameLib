@@ -5,7 +5,7 @@
 
 // Constructor
 
-FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
+FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 2, 1)
 {
     mParameters.addInt(kWidth, "width", 1, 0);
     mParameters.setMin(0);
@@ -17,8 +17,6 @@ FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, FrameLib_
     mParameters.addEnumItem(kWrap, "wrap");
     mParameters.addEnumItem(kFold, "fold");
     
-    mParameters.setInfo(&sParamInfo);
-
     mParameters.set(serialisedParameters);
     
     setParameterInput(1);

@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Random::FrameLib_Random(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
+FrameLib_Random::FrameLib_Random(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 2, 1)
 {
     mParameters.addInt(kLength, "length", 1, 0);
     mParameters.setMin(0);
@@ -13,9 +13,7 @@ FrameLib_Random::FrameLib_Random(FrameLib_Context context, FrameLib_Parameters::
     mParameters.addEnumItem(kRequestedLength, "requested");
     
     mParameters.set(serialisedParameters);
-    
-    mParameters.setInfo(&sParamInfo);
-    
+        
     setParameterInput(1);
 }
 

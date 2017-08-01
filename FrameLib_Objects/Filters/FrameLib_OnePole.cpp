@@ -18,7 +18,7 @@ double FrameLib_OnePole::OnePole::calculateFilter(double x)
 
 // Constructor
 
-FrameLib_OnePole::FrameLib_OnePole(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
+FrameLib_OnePole::FrameLib_OnePole(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 2, 1)
 {
     mParameters.addDouble(kFreq, "freq", 0.0, 0);
     mParameters.setMin(0.0);
@@ -27,8 +27,6 @@ FrameLib_OnePole::FrameLib_OnePole(FrameLib_Context context, FrameLib_Parameters
     mParameters.addEnumItem(kLPF, "lpf");
     mParameters.addEnumItem(kHPF, "hpf");
     
-    mParameters.setInfo(&sParamInfo);
-
     mParameters.set(serialisedParameters);
     
     setParameterInput(1);

@@ -4,7 +4,7 @@
 
 // Constructor / Destructor
 
-FrameLib_Multitaper::FrameLib_Multitaper(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
+FrameLib_Multitaper::FrameLib_Multitaper(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 1, 1)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -14,9 +14,7 @@ FrameLib_Multitaper::FrameLib_Multitaper(FrameLib_Context context, FrameLib_Para
     mParameters.setMin(1);
     
     mParameters.set(serialisedParameters);
-    
-    mParameters.setInfo(&sParamInfo);
-    
+        
     unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
     
     mFFTSetup = hisstools_create_setup_d(maxFFTSizeLog2 + 1);

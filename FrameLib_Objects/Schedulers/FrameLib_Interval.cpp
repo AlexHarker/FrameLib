@@ -1,7 +1,7 @@
 
 #include "FrameLib_Interval.h"
 
-FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Scheduler(context, 1, 1)
+FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Scheduler(context, &sParamInfo, 1, 1)
 {
     // FIX - safety on minimum time?
     
@@ -13,8 +13,6 @@ FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, FrameLib_Paramete
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
     
-    mParameters.setInfo(&sParamInfo);
-
     mParameters.set(serialisedParameters);
     
     setParameterInput(0);

@@ -10,7 +10,7 @@
 
 // Constructor
 
-FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioInput(context, 2, 1, 1)
+FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioInput(context, &sParamInfo, 2, 1, 1)
 {
     mParameters.addDouble(kMaxLength, "length", 16384, 0);
     mParameters.setMin(0.0);
@@ -23,9 +23,7 @@ FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::
     mParameters.addEnumItem(kSeconds, "seconds");
     
     mParameters.set(serialisedParameters);
-    
-    mParameters.setInfo(&sParamInfo);
-    
+        
     mLength = convertTimeToSamples(mParameters.getValue(kLength));
     
     setParameterInput(1);

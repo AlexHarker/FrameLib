@@ -5,14 +5,12 @@
 
 // Constructor
 
-FrameLib_FromMax::FrameLib_FromMax(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
+FrameLib_FromMax::FrameLib_FromMax(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 1, 1)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kValues, "values");
     mParameters.addEnumItem(kParams, "params");
-    
-    mParameters.setInfo(&sParamInfo);
-    
+        
     mParameters.set(serialisedParameters);
     
     mMode = (Modes) mParameters.getValue(kMode);

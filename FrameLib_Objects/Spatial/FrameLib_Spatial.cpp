@@ -4,7 +4,7 @@
 
 // Constructor
 
-FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
+FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 1, 1)
 {
     mParameters.addEnum(kInputMode, "inputmode");
     mParameters.addEnumItem(kPolar, "polar");
@@ -21,9 +21,7 @@ FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, FrameLib_Parameters
     mParameters.setMin(0);
     mParameters.addDouble(kPoints, "points", 0.0);
     mParameters.setClip(0.0, 1.0);
-    
-    mParameters.setInfo(&sParamInfo);
-    
+        
     mParameters.set(serialisedParameters);
     
     unsigned long speakerSize;

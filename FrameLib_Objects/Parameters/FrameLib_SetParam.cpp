@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_SetParam::FrameLib_SetParam (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context)
+FrameLib_SetParam::FrameLib_SetParam (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo)
 {
     char nameStr[7];
     
