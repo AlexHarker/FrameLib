@@ -14,6 +14,8 @@ FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, FrameLib_Paramete
     mParameters.set(serialisedParameters);
     
     setParameterInput(0);
+    
+    update();
 }
 
 // Info
@@ -72,5 +74,9 @@ void FrameLib_Interval::update()
 
 FrameLib_Interval::SchedulerInfo FrameLib_Interval::schedule(bool newFrame, bool noOutput)
 {
+    // FIX - output memory count on schedulers is broken without this...
+    
+    allocateOutputs();
+    
     return SchedulerInfo(mInterval, true, true);
 }
