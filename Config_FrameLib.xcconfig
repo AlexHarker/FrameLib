@@ -18,8 +18,6 @@ INFOPLIST_FILE = Info.plist
 
 GCC_VERSION = com.apple.compilers.llvm.clang.1_0
 MACOSX_DEPLOYMENT_TARGET = 10.5
-// FIX - can this be higher?
-//SDKROOT = macosx10.10
 
 ARCHS = i386 x86_64 
 

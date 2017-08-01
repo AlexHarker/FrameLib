@@ -100,8 +100,8 @@ public:
 
     // Audio Processing
     
-    virtual void blockUpdate(double **ins, double **outs, unsigned long vecSize);
-    virtual void reset(double samplingRate);
+    virtual void blockUpdate(double **ins, double **outs, unsigned long blockSize);
+    virtual void reset(double samplingRate, unsigned long maxBlockSize);
     
     // Connection Methods
     
@@ -184,7 +184,7 @@ private:
 
     // Override to handle audio at the block level
     
-    virtual void blockProcess(double **ins, double **outs, unsigned long vecSize) {}
+    virtual void blockProcess(double **ins, double **outs, unsigned long blockSize) {}
 
     // Override to get called on audio reset
     
@@ -236,9 +236,10 @@ protected:
    
     // Member Variables
     
-    // Sampling Rate
+    // Sampling Rate and Maximum Block Size
     
     double mSamplingRate;
+    unsigned long mMaxBlockSize;
     
     // Memory Allocator
     

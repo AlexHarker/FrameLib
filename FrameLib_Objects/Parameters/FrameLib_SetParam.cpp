@@ -78,9 +78,7 @@ FrameLib_SetParam::ParameterInfo::ParameterInfo()
 // Process
 
 void FrameLib_SetParam::process()
-{
-    // FIX - use of types for sizes should all be size_t?
-    
+{    
     unsigned long sizeIn, sizeOut;
     
     sizeOut = 0;

@@ -1,11 +1,8 @@
 
 #include "FrameLib_Sink.h"
 
-// FIX - MAX_VECTOR_SIZE hack
 // FIX - sink is only sample accurate (not subsample) - double the buffer and add a function to interpolate if neceesary
 // FIX - add multichannel later (including multichannel output from one cable - is it possible?)
-
-#define MAX_VECTOR_SIZE 8192
 
 // Constructor
 
@@ -87,7 +84,7 @@ void FrameLib_Sink::objectReset()
         case kSeconds:  size *= mSamplingRate;              break;
     }
     
-    size = round(size + MAX_VECTOR_SIZE);
+    size = round(size) + mMaxBlockSize;
     
     if (size != bufferSize())
         mBuffer.resize(size);
@@ -97,19 +94,19 @@ void FrameLib_Sink::objectReset()
     mCounter = 0;
 }
 
-void FrameLib_Sink::blockProcess(double **ins, double **outs, unsigned long vecSize)
+void FrameLib_Sink::blockProcess(double **ins, double **outs, unsigned long blockSize)
 {    
     // Safety
     
-    if (vecSize > bufferSize())
+    if (blockSize > bufferSize())
         return;
     
     // Calculate first segment size and copy segments
     
-    unsigned long size = ((mCounter + vecSize) > bufferSize()) ? bufferSize() - mCounter : vecSize;
+    unsigned long size = ((mCounter + blockSize) > bufferSize()) ? bufferSize() - mCounter : blockSize;
     
     copyAndZero(outs[0], mCounter, size);
-    copyAndZero(outs[0] + size, 0, vecSize - size);
+    copyAndZero(outs[0] + size, 0, blockSize - size);
 }
 
 void FrameLib_Sink::process()

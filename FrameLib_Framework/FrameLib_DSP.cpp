@@ -9,8 +9,6 @@ FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_P
     // Set IO
     
     setIO(nIns, nOuts, nAudioChans);
-    
-    reset(0.0);
 }
 
 // Destructor
@@ -51,12 +49,12 @@ void FrameLib_DSP::setFixedInput(unsigned long idx, double *input, unsigned long
 
 // Block updates for objects with audio IO
 
-void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long vecSize)
+void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long blockSize)
 {
     // Update block time and process the block
     
-    mBlockEndTime += vecSize;
-    blockProcess(ins, outs, vecSize);
+    mBlockEndTime += blockSize;
+    blockProcess(ins, outs, blockSize);
     
     // If the object is handling audio updates (but is not an output object) then notify
     
@@ -68,9 +66,7 @@ void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long vecSiz
 
 // Reset
 
-// FIX - issues with override on this - need to sort (and any others...)
-
-void FrameLib_DSP::reset(double samplingRate)
+void FrameLib_DSP::reset(double samplingRate, unsigned long maxBlockSize)
 {
     // Store sample rate and call object specific reset
     
@@ -155,7 +151,7 @@ void FrameLib_DSP::setIO(unsigned long nIns, unsigned long nOuts, unsigned long 
     
     // Reset for audio
     
-    FrameLib_DSP::reset(mSamplingRate);
+    FrameLib_DSP::reset(mSamplingRate, mMaxBlockSize);
 }
 
 // Call this from your constructor only (unsafe elsewhere)

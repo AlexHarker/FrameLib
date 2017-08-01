@@ -71,8 +71,8 @@ public:
 
     // Audio Processing
     
-    virtual void blockUpdate(double **ins, double **outs, unsigned long vecSize) {}
-    virtual void reset(double samplingRate) {}
+    virtual void blockUpdate(double **ins, double **outs, unsigned long blockSize) {}
+    virtual void reset(double samplingRate, unsigned long maxBlockSize) {}
 
     static bool handlesAudio() { return false; }
 
@@ -244,7 +244,7 @@ public:
         for (unsigned long i = 0; i < getNumOuts(); i++)
             mOutputs[i].mConnections.push_back(ConnectionInfo(mBlocks[0], i));
         
-        reset(0.0);
+        reset(0.0, 4096);
     }
     
     ~FrameLib_Expand()
@@ -272,28 +272,28 @@ public:
     
     // Audio Processing
     
-    virtual void blockUpdate(double **ins, double **outs, unsigned long vecSize)
+    virtual void blockUpdate(double **ins, double **outs, unsigned long blockSize)
     {
         // Allocate temporary memory
         
         if (getNumAudioOuts())
-            mAudioTemps[0] = (double *) mAllocator->alloc(sizeof(double) * vecSize * getNumAudioOuts());
+            mAudioTemps[0] = (double *) mAllocator->alloc(sizeof(double) * blockSize * getNumAudioOuts());
         for (unsigned long i = 1; i < getNumAudioOuts(); i++)
-            mAudioTemps[i] = mAudioTemps[0] + (i * vecSize);
+            mAudioTemps[i] = mAudioTemps[0] + (i * blockSize);
             
         // Zero outputs
         
         for (unsigned long i = 0; i < getNumAudioOuts(); i++)
-            std::fill_n(outs[i], vecSize, 0.0);
+            std::fill_n(outs[i], blockSize, 0.0);
 
         // Process and sum to outputs
 
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
         {
-            (*it)->blockUpdate(ins, &mAudioTemps[0], vecSize);
+            (*it)->blockUpdate(ins, &mAudioTemps[0], blockSize);
             
             for (unsigned long i = 0; i < getNumAudioOuts(); i++)
-                for (unsigned long j = 0; j < vecSize; j++)
+                for (unsigned long j = 0; j < blockSize; j++)
                     outs[i][j] += mAudioTemps[i][j];
         }
 
@@ -307,12 +307,13 @@ public:
    
     // Reset
     
-    virtual void reset(double samplingRate)
+    virtual void reset(double samplingRate, unsigned long maxBlockSize)
     {
         mSamplingRate = samplingRate;
-
+        mMaxBlockSize = maxBlockSize;
+        
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
-            (*it)->reset(samplingRate);
+            (*it)->reset(samplingRate, maxBlockSize);
     }
     
     // Handles Audio
@@ -365,7 +366,7 @@ private:
                 for (unsigned long i = cChannels; i < nChannels; i++)
                 {
                     mBlocks[i] = new T(mContext, &mSerialisedParameters, mOwner);
-                    mBlocks[i]->reset(mSamplingRate);
+                    mBlocks[i]->reset(mSamplingRate, mMaxBlockSize);
                 }
             }
             else
@@ -424,6 +425,7 @@ private:
     
     void *mOwner;
     
+    unsigned long mMaxBlockSize;
     double mSamplingRate;
     
     std::vector<double *> mAudioTemps;
