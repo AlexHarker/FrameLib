@@ -18,7 +18,6 @@ public:
     
     FrameLib_SetParam (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
-    
     // Info
     
     std::string objectInfo(bool verbose);

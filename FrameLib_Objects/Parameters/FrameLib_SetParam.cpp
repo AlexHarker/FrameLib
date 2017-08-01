@@ -67,6 +67,7 @@ FrameLib_SetParam::ParameterInfo::ParameterInfo()
     char str[256];
     
     add("Sets the number of object inputs (and hence the number of parameters.");
+    
     for (int i = 0; i < 10; i++)
     {
         sprintf(str, "Sets the parameter name for input %d.", i + 1);
