@@ -17,7 +17,41 @@ FrameLib_Shift::FrameLib_Shift(FrameLib_Context context, FrameLib_Parameters::Se
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kRatio, "ratios");
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
+}
+
+// Info
+
+std::string FrameLib_Shift::objectInfo(bool verbose)
+{
+    return getInfo("Shifts an input frame either with padding, or cyclically: "
+                   "The output is the same length as the input. Output can be shifted left or right in the frame. "
+                   "When in pad mode values are moved out on one side and padded on the other, otherwise the shift is cyclical.",
+                   "Shifts an input frame either with padding, or cyclically.", verbose);
+}
+
+std::string FrameLib_Shift::inputInfo(unsigned long idx, bool verbose)
+{
+    return "Frames to Shift";
+}
+
+std::string FrameLib_Shift::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Shifted Frames";
+}
+
+// Parameter Info
+
+FrameLib_Shift::ParameterInfo FrameLib_Shift::sParamInfo;
+
+FrameLib_Shift::ParameterInfo::ParameterInfo()
+{
+    add("Sets the shift amount (-ve for left shift / +ve for right shift).");
+    add("Sets the padding value.");
+    add("Sets the shift mode. pad - values are replaced with the padding value. wrap - values are wrapped cyclically.");
+    add("Sets units for the shift (samples or ratio of the input length [-1 to 1]).");
 }
 
 // Process

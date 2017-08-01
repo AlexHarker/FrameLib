@@ -12,7 +12,38 @@ FrameLib_Split::FrameLib_Split(FrameLib_Context context, FrameLib_Parameters::Se
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kRatio, "ratios");
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
+}
+
+// Info
+
+std::string FrameLib_Split::objectInfo(bool verbose)
+{
+    return getInfo("Splits input frames into two parts, given a specified split point: "
+                   "The split point may be specified in samples or as a ratio",
+                   "Splits input frames into two parts, given a specified split point.", verbose);
+}
+
+std::string FrameLib_Split::inputInfo(unsigned long idx, bool verbose)
+{
+    return "Frame to Split";
+}
+
+std::string FrameLib_Split::outputInfo(unsigned long idx, bool verbose)
+{
+    return getInfo("Output Frame #", "Output Frame #", idx, verbose);
+}
+
+// Parameter Info
+
+FrameLib_Split::ParameterInfo FrameLib_Split::sParamInfo;
+
+FrameLib_Split::ParameterInfo::ParameterInfo()
+{
+    add("Sets the split point.");
+    add("Sets units for the split point (samples or ratios [0-1]).");
 }
 
 // Process

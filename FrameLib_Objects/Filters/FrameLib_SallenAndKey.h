@@ -37,7 +37,7 @@ class FrameLib_SallenAndKey : public FrameLib_Processor
 
         // Filter Calculation
 
-        inline void calculateFilter(double x);
+        void calculateFilter(double x);
         
         // Coefficients and Memories
 
@@ -49,18 +49,29 @@ class FrameLib_SallenAndKey : public FrameLib_Processor
     enum ParameterList { kFreq, kReson, kMode };
     enum Modes { kLPF, kBPF, kHPF };
 
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
+
 public:
 	
     // Constructor
     
     FrameLib_SallenAndKey(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
+    // Info
+    
+    std::string objectInfo(bool verbose);
+    std::string inputInfo(unsigned long idx, bool verbose);
+    std::string outputInfo(unsigned long idx, bool verbose);
+    
 private:
     
-    // Update and Process
+    // Process
     
-    void update();
     void process();
+    
+    // Data
+    
+    static ParameterInfo sParamInfo;
 };
 
 #endif

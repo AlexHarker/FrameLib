@@ -15,7 +15,38 @@ FrameLib_Subframe::FrameLib_Subframe(FrameLib_Context context, FrameLib_Paramete
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kRatio, "ratios");
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
+}
+
+// Info
+
+std::string FrameLib_Subframe::objectInfo(bool verbose)
+{
+    return getInfo("Output part of an input frame: The subframe is specified by a start and end point in the input frame.",
+                   "Output part of an input frame.", verbose);
+}
+
+std::string FrameLib_Subframe::inputInfo(unsigned long idx, bool verbose)
+{
+    return "Input Frames";
+}
+
+std::string FrameLib_Subframe::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Subframe Output";
+}
+
+// Parameter Info
+
+FrameLib_Subframe::ParameterInfo FrameLib_Subframe::sParamInfo;
+
+FrameLib_Subframe::ParameterInfo::ParameterInfo()
+{
+    add("Sets the start point of the subframe.");
+    add("Sets the end point of the subframe.");
+    add("Sets units for the start and end points (samples or ratios [0-1]).");
 }
 
 // Process

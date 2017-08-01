@@ -10,7 +10,7 @@
 
 // Constructor
 
-FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioInput(context, 1, 1, 1)
+FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioInput(context, 2, 1, 1)
 {
     mParameters.addDouble(kMaxLength, "length", 16384, 0);
     mParameters.setMin(0.0);
@@ -28,29 +28,34 @@ FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::
     
     mLength = convertTimeToSamples(mParameters.getValue(kLength));
     
+    setParameterInput(1);
+    
     objectReset();
 }
 
 // Info
 
-const char *FrameLib_Source::objectInfo(bool verbose)
+std::string FrameLib_Source::objectInfo(bool verbose)
 {
     return getInfo("Captures audio from the host environment and outputs the most recent values as frames: The size of captured frames is variable. "
                    "Latency is equivalent to the length of the captured frame. The length of the internal buffer determines the maximum frame length.",
                    "Captures audio from the host environment and outputs the most recent values as frames.", verbose);
 }
 
-const char *FrameLib_Source::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Source::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Trigger Frame", "Trigger Frame - triggers capture to output", verbose);
+    if (idx)
+        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+    else
+        return getInfo("Trigger Frame - triggers capture to output", "Trigger Frame", verbose);
 }
 
-const char *FrameLib_Source::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Source::outputInfo(unsigned long idx, bool verbose)
 {
     return "Frame of Captured Values";
 }
 
-const char *FrameLib_Source::audioInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Source::audioInfo(unsigned long idx, bool verbose)
 {
     return "Audio Input";
 }
@@ -106,9 +111,7 @@ void FrameLib_Source::objectReset()
 }
 
 void FrameLib_Source::blockProcess(double **ins, double **outs, unsigned long vecSize)
-{
-    double *input = ins[0];
-    
+{    
     // Safety
     
     if (vecSize > bufferSize())
@@ -118,8 +121,8 @@ void FrameLib_Source::blockProcess(double **ins, double **outs, unsigned long ve
     
     unsigned long size = ((mCounter + vecSize) > bufferSize()) ? bufferSize() - mCounter : vecSize;
     
-    copy(input, mCounter, size);
-    copy(input + size, 0, vecSize - size);
+    copy(ins[0], mCounter, size);
+    copy(ins[0] + size, 0, vecSize - size);
 }
 
 void FrameLib_Source::process()

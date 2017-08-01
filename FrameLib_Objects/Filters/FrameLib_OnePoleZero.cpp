@@ -15,7 +15,7 @@ void FrameLib_OnePoleZero::OnePoleZero::setParams(double freq, double samplingRa
 
 // Filter Calculation
 
-inline double FrameLib_OnePoleZero::OnePoleZero::calculateFilter(double x)
+double FrameLib_OnePoleZero::OnePoleZero::calculateFilter(double x)
 {
     double w = x * a0;
     double y = r1 + w;
@@ -38,20 +38,45 @@ FrameLib_OnePoleZero::FrameLib_OnePoleZero(FrameLib_Context context, FrameLib_Pa
     mParameters.addEnumItem(kLPF, "lpf");
     mParameters.addEnumItem(kHPF, "hpf");
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
     
-    inputMode(1, true, false, false, kFrameTagged);
+    setParameterInput(1);
 }
 
-// Update and Process
+// Info
 
-void FrameLib_OnePoleZero::update()
+std::string FrameLib_OnePoleZero::objectInfo(bool verbose)
 {
-    FrameLib_Parameters::Serial *serialised = getInput(1);
-    
-    if (serialised)
-        mParameters.set(serialised);
+    return getInfo("Filters input frames using a one pole, one zero filter: The size of the output is equal to the input.",
+                   "Filters input frames using a one pole, one zero filter.", verbose);
 }
+
+std::string FrameLib_OnePoleZero::inputInfo(unsigned long idx, bool verbose)
+{
+    if (idx)
+        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+    else
+        return getInfo("Input Frame - input to be triggered", "Input Frame", verbose);
+}
+
+std::string FrameLib_OnePoleZero::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Frame of Filtered Values";
+}
+
+// Parameter Info
+
+FrameLib_OnePoleZero::ParameterInfo FrameLib_OnePoleZero::sParamInfo;
+
+FrameLib_OnePoleZero::ParameterInfo::ParameterInfo()
+{
+    add("Sets the filter cutoff frequency.");
+    add("Sets the filter mode.");
+}
+
+// Process
 
 void FrameLib_OnePoleZero::process()
 {

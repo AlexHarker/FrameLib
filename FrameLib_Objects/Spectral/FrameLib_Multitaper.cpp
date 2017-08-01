@@ -15,6 +15,8 @@ FrameLib_Multitaper::FrameLib_Multitaper(FrameLib_Context context, FrameLib_Para
     
     mParameters.set(serialisedParameters);
     
+    mParameters.setInfo(&sParamInfo);
+    
     unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
     
     mFFTSetup = hisstools_create_setup_d(maxFFTSizeLog2 + 1);
@@ -43,6 +45,38 @@ void FrameLib_Multitaper::getWrapped(double &rOut, double&iOut, double *real, do
         rOut = real[pos];
         iOut = -imag[pos];
     }
+}
+
+// Info
+
+std::string FrameLib_Multitaper::objectInfo(bool verbose)
+{
+    return getInfo("Calculates the multitaper power spectrum of a real input using the cosinre tapers: All FFTs performed will use a power of two size. "
+                   "Output frames will be (N / 2) + 1 in length where N is the FFT size. Inputs which are not a power of two are zero-padded to the next power of two.",
+                   "Calculates the multitaper power spectrum of a real input using the cosinre tapers.", verbose);
+}
+
+std::string FrameLib_Multitaper::inputInfo(unsigned long idx, bool verbose)
+{
+    if (idx)
+        return getInfo("Frequency Domain Real Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Real Values", verbose);
+    else
+        return getInfo("Frequency Domain Imaginary Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Imag Values", verbose);
+}
+
+std::string FrameLib_Multitaper::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Time Domain Output";
+}
+
+// Parameter Info
+
+FrameLib_Multitaper::ParameterInfo FrameLib_Multitaper::sParamInfo;
+
+FrameLib_Multitaper::ParameterInfo::ParameterInfo()
+{
+    add("Sets the maximum input length / FFT size.");
+    add("Sets the number of tapers to use.");
 }
 
 // Process

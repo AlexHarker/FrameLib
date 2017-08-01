@@ -11,12 +11,20 @@ class FrameLib_MedianFilter : public FrameLib_Processor
     enum ParameterList { kWidth, kPadding, kMode };
     enum Modes { kPad, kWrap, kFold };
     
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
+
 public:
     
     // Constructor
     
     FrameLib_MedianFilter(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
+    // Info
+    
+    std::string objectInfo(bool verbose);
+    std::string inputInfo(unsigned long idx, bool verbose);
+    std::string outputInfo(unsigned long idx, bool verbose);
+
 private:
     
     // Helpers
@@ -28,10 +36,13 @@ private:
     double getWrap(double *input, long index, long sizeIn, long width);
     double getFold(double *input, long index, long sizeIn, long width);
     
-    // Update and Process
+    // Process
     
-    void update();
     void process();
+    
+    // Data
+    
+    static ParameterInfo sParamInfo;
 };
 
 #endif

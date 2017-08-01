@@ -8,8 +8,40 @@ FrameLib_CoordinateSystem::FrameLib_CoordinateSystem(FrameLib_Context context, F
     mParameters.addEnum(kMode, "mode");
     mParameters.addEnumItem(kPolarToCartesian, "polar->cartesian");
     mParameters.addEnumItem(kCartesianToPolar, "cartesian->polar");
+    mParameters.setInstantiation();
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
+}
+
+// Info
+
+std::string FrameLib_CoordinateSystem::objectInfo(bool verbose)
+{
+    return getInfo("Converts vectors of triples between cartesian and polar values: "
+                   "Inputs should either be a cartesian triple (x, y, x) or polar tripe (azimuth, elevation, radius). "
+                   "Missing values are assumed to be zeroes. Extra values are ignored and the output is also a triple.",
+                   "Converts vectors of triples between cartesian and polar values.", verbose);
+}
+
+std::string FrameLib_CoordinateSystem::inputInfo(unsigned long idx, bool verbose)
+{
+    return getInfo("Input Triple - cartesian or polar values to be converted.", "Input Triple", verbose);
+}
+
+std::string FrameLib_CoordinateSystem::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Converted values";
+}
+
+// Parameter Info
+
+FrameLib_CoordinateSystem::ParameterInfo FrameLib_CoordinateSystem::sParamInfo;
+
+FrameLib_CoordinateSystem::ParameterInfo::ParameterInfo()
+{
+    add("Sets the conversion mode.");
 }
 
 // Conversion Helpers

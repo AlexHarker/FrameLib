@@ -9,9 +9,13 @@ FrameLib_Join::FrameLib_Join(FrameLib_Context context, FrameLib_Parameters::Seri
     mParameters.setClip(2, 32);
     mParameters.setInstantiation();
     
-    mParameters.addBoolArray(kTriggers, "triggers", 1.0, 32);
+    mParameters.set(serialisedParameters);
+
+    mParameters.addBoolArray(kTriggers, "triggers", 1.0, mParameters.getInt(kNumIns));
     mParameters.setInstantiation();
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
     
     setIO(mParameters.getInt(kNumIns), 1);
@@ -22,6 +26,34 @@ FrameLib_Join::FrameLib_Join(FrameLib_Context context, FrameLib_Parameters::Seri
     
     for (unsigned long i = 0; i < getNumIns(); i++)
         inputMode(i, false, triggers[i], false);
+}
+
+// Info
+
+std::string FrameLib_Join::objectInfo(bool verbose)
+{
+    return getInfo("Concatenates all input frames into a single output frame: Inputs can be set to trigger output or not.",
+                   "Concatenates all input frames into a single output frame.", verbose);
+}
+
+std::string FrameLib_Join::inputInfo(unsigned long idx, bool verbose)
+{
+    return getInfo("Input #", "Input #", idx, verbose);
+}
+
+std::string FrameLib_Join::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Joined Frames";
+}
+
+// Parameter Info
+
+FrameLib_Join::ParameterInfo FrameLib_Join::sParamInfo;
+
+FrameLib_Join::ParameterInfo::ParameterInfo()
+{
+    add("Sets the number of object inputs.");
+    add("Set which inputs trigger output by default all inputs).");
 }
 
 // Process

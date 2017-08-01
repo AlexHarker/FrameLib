@@ -41,7 +41,7 @@ void FrameLib_SallenAndKey::SallenAndKey::setParams(double freq, double resonanc
 
 // Filter Calculation
 
-inline void FrameLib_SallenAndKey::SallenAndKey::calculateFilter(double x)
+void FrameLib_SallenAndKey::SallenAndKey::calculateFilter(double x)
 {
     v1 = (a1 * ic2eq) + (a2 * ic1eq) + (a3 * x);
     v2 = (a4 * ic2eq) + (a5 * v1);
@@ -67,20 +67,46 @@ FrameLib_SallenAndKey::FrameLib_SallenAndKey(FrameLib_Context context, FrameLib_
     mParameters.addEnumItem(kBPF, "bpf");
     mParameters.addEnumItem(kHPF, "hpf");
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
-    
-    inputMode(1, true, false, false, kFrameTagged);
+        
+    setParameterInput(1);
 }
 
-// Update and Process
+// Info
 
-void FrameLib_SallenAndKey::update()
+std::string FrameLib_SallenAndKey::objectInfo(bool verbose)
 {
-    FrameLib_Parameters::Serial *serialised = getInput(1);
-    
-    if (serialised)
-        mParameters.set(serialised);
+    return getInfo("Filters input frames using a sallen and key filter: The size of the output is equal to the input.",
+                   "Filters input frames using a sallen and key filter.", verbose);
 }
+
+std::string FrameLib_SallenAndKey::inputInfo(unsigned long idx, bool verbose)
+{
+    if (idx)
+        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+    else
+        return getInfo("Input Frame - input to be triggered", "Input Frame", verbose);
+}
+
+std::string FrameLib_SallenAndKey::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Frame of Filtered Values";
+}
+
+// Parameter Info
+
+FrameLib_SallenAndKey::ParameterInfo FrameLib_SallenAndKey::sParamInfo;
+
+FrameLib_SallenAndKey::ParameterInfo::ParameterInfo()
+{
+    add("Sets the filter cutoff frequency.");
+    add("Sets the filter resonance [0-1].");
+    add("Sets the filter mode.");
+}
+
+// Process
 
 void FrameLib_SallenAndKey::process()
 {

@@ -16,11 +16,43 @@ FrameLib_Chop::FrameLib_Chop(FrameLib_Context context, FrameLib_Parameters::Seri
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kRatio, "ratios");
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
     
     mNumOuts = mParameters.getInt(kNumOuts);
     
     setIO(1, mNumOuts);
+}
+
+// Info
+
+std::string FrameLib_Chop::objectInfo(bool verbose)
+{
+    return getInfo("Chops input frames into equally sized output frames: "
+                   "The size can be set in samples, or as a ratio of the length of the input frame.",
+                   "Chops input frames into equally sized output frames.", verbose);
+}
+
+std::string FrameLib_Chop::inputInfo(unsigned long idx, bool verbose)
+{
+    return "Input to Chop";
+}
+
+std::string FrameLib_Chop::outputInfo(unsigned long idx, bool verbose)
+{
+    return getInfo("Output #", "Output #", idx, verbose);
+}
+
+// Parameter Info
+
+FrameLib_Chop::ParameterInfo FrameLib_Chop::sParamInfo;
+
+FrameLib_Chop::ParameterInfo::ParameterInfo()
+{
+    add("Sets the number of object outputs.");
+    add("Sets the size of the output frames.");
+    add("Sets units for the chop size (samples or ratio of the input length [0-1]).");
 }
 
 // Process

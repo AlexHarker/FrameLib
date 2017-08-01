@@ -26,12 +26,20 @@ class FrameLib_CoordinateSystem : public FrameLib_Processor
     
     // Parameter Enums and Info
 
-    enum ParameterList {kMode};
-    enum InputModes {kPolarToCartesian, kCartesianToPolar};
+    enum ParameterList { kMode };
+    enum InputModes { kPolarToCartesian, kCartesianToPolar };
+
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
     
     FrameLib_CoordinateSystem(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    
+    // Info
+    
+    std::string objectInfo(bool verbose);
+    std::string inputInfo(unsigned long idx, bool verbose);
+    std::string outputInfo(unsigned long idx, bool verbose);
     
 private:
     
@@ -43,6 +51,8 @@ private:
     // Process
     
     void process();
+    
+    static ParameterInfo sParamInfo;
 };
 
 #endif

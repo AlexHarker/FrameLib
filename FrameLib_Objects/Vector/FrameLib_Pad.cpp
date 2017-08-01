@@ -16,8 +16,42 @@ FrameLib_Pad::FrameLib_Pad(FrameLib_Context context, FrameLib_Parameters::Serial
     mParameters.addEnum(kUnits, "units", 3);
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kRatio, "ratios");
+
+    mParameters.setInfo(&sParamInfo);
     
     mParameters.set(serialisedParameters);
+}
+
+// Info
+
+std::string FrameLib_Pad::objectInfo(bool verbose)
+{
+    return getInfo("Pads an input frame with a fixed value at either the start the end, or both: "
+                   "The output frame size is at least the same length as the input, plus the number of padding values. "
+                   "Padding amounts may be set in samples, or as a ratio of the input length.",
+                   "Pads an input frame with a fixed value at either the start the end, or both.", verbose);
+}
+
+std::string FrameLib_Pad::inputInfo(unsigned long idx, bool verbose)
+{
+    return "Frames to Pad";
+}
+
+std::string FrameLib_Pad::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Padded Frames";
+}
+
+// Parameter Info
+
+FrameLib_Pad::ParameterInfo FrameLib_Pad::sParamInfo;
+
+FrameLib_Pad::ParameterInfo::ParameterInfo()
+{
+    add("Sets the padding value.");
+    add("Sets the amount of padding to apply at the start of the frame.");
+    add("Sets the amount of padding to apply at the end of the frame.");
+    add("Sets units for padding amounts (samples or ratios [0-1]).");
 }
 
 // Process

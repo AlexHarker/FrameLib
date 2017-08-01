@@ -9,6 +9,7 @@ FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, FrameLib_
 {
     mParameters.addInt(kWidth, "width", 1, 0);
     mParameters.setMin(0);
+    
     mParameters.addDouble(kPadding, "padding", 0.0, 1);
     
     mParameters.addEnum(kMode, "mode", 3);
@@ -16,9 +17,48 @@ FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, FrameLib_
     mParameters.addEnumItem(kWrap, "wrap");
     mParameters.addEnumItem(kFold, "fold");
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
     
-    inputMode(1, true, false, false, kFrameTagged);
+    setParameterInput(1);
+}
+
+// Info
+
+std::string FrameLib_MedianFilter::objectInfo(bool verbose)
+{
+    return getInfo("Median filter an input frame: The output is the same size as the input. "
+                   "Each output value is the median of the area surrounding the input value. "
+                   "The width of the area, and the edge behaviours are controllable.",
+                   "Median filter an input frame.", verbose);
+}
+
+std::string FrameLib_MedianFilter::inputInfo(unsigned long idx, bool verbose)
+{
+    if (idx)
+        return getInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
+    else
+        return "Input Frames";
+}
+
+std::string FrameLib_MedianFilter::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Median Filtered Frames";
+}
+
+// Parameter Info
+
+FrameLib_MedianFilter::ParameterInfo FrameLib_MedianFilter::sParamInfo;
+
+FrameLib_MedianFilter::ParameterInfo::ParameterInfo()
+{
+    add("Sets the width of the median filtering in samples.");
+    add("Sets the padding value.");
+    add("Sets the mode that controls the edge behaviour: "
+        "pad - the edges are treated as though infinitely padded with the padding value. "
+        "wrap - the edges are treated as though the frame is wrapped cyclically. "
+        "fold - the edges are treated as through they fold over (suitable for spectral purposes).");
 }
 
 // Helpers
@@ -112,15 +152,7 @@ double FrameLib_MedianFilter::getFold(double *input, long index, long sizeIn, lo
     return input[index];
 }
 
-// Update and Process
-
-void FrameLib_MedianFilter::update()
-{
-    FrameLib_Parameters::Serial *serialised = getInput(1);
-    
-    if (serialised)
-        mParameters.set(serialised);
-}
+// Process
 
 void FrameLib_MedianFilter::process()
 {

@@ -15,12 +15,20 @@ class FrameLib_Window : public FrameLib_Processor
     enum EndPoints { kFirst, kLast, kBoth, kNone };
     enum WindowTypes { kHann, kHamming, kTriangle, kCosine, kBlackman, kBlackman62, kBlackman70, kBlackman74, kBlackman92, kBlackmanHarris, kFlatTop, kRectangle };
 
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
+
 public:
 	
     // Constructor / Destructor
     
     FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     ~FrameLib_Window();
+    
+    // Info
+    
+    std::string objectInfo(bool verbose);
+    std::string inputInfo(unsigned long idx, bool verbose);
+    std::string outputInfo(unsigned long idx, bool verbose);
 	
 private:
 	
@@ -29,9 +37,8 @@ private:
     void updateWindow (unsigned long inSize, EndPoints ends);
     double linearInterp(double pos);
     
-    // Update and Process
+    // Process
     
-    void update();
     void process();
 	
 private:
@@ -48,6 +55,8 @@ private:
 
     double mLinearGain;
     double mPowerGain;
+    
+    static ParameterInfo sParamInfo;
 };
 
 #endif

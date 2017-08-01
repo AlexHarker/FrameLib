@@ -7,39 +7,69 @@ FrameLib_Select::FrameLib_Select(FrameLib_Context context, FrameLib_Parameters::
 {
     mParameters.addDouble(kNumIns, "numins", 2, 0);
     mParameters.setClip(2, 32);
-    mParameters.addDouble(kActiveIn, "input", 0, 1);
+    mParameters.setInstantiation();
+    mParameters.addInt(kActiveIn, "input", 0, 1);
     
     // FIX - clip??
     
     mParameters.set(serialisedParameters);
     
-    mNumIns = mParameters.getValue(kNumIns);
-    mActiveIn = mParameters.getValue(kActiveIn);
+    mParameters.setInfo(&sParamInfo);
+    
+    mNumIns = mParameters.getInt(kNumIns);
+    mActiveIn = mParameters.getInt(kActiveIn);
     
     setIO(mNumIns + 1, 1);
     
     for (unsigned long i = 0; i < mNumIns; i++)
-        inputMode(i, false, i == mActiveIn, true);
-    inputMode(mNumIns, true, false, false, kFrameTagged);
+        inputMode(i, false, i == mActiveIn, true, kFrameAny);
+    
+    setParameterInput(mNumIns);
+}
+
+// Info
+
+std::string FrameLib_Select::objectInfo(bool verbose)
+{
+    return getInfo("Selects between a number of input frame streams: The number of inputs is variable. The selected input can be changed with a parameter.",
+                   "Selects between a number of input frame streams.", verbose);
+}
+
+std::string FrameLib_Select::inputInfo(unsigned long idx, bool verbose)
+{
+    if (idx == mNumIns)
+        return getInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
+    else
+        return getInfo("Input #", "Input #", idx, verbose);
+}
+
+std::string FrameLib_Select::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Output Frames";
+}
+
+// Parameter Info
+
+FrameLib_Select::ParameterInfo FrameLib_Select::sParamInfo;
+
+FrameLib_Select::ParameterInfo::ParameterInfo()
+{
+    add("Sets the number of object inputs.");
+    add("Sets the current input (or off if out of range).");
 }
 
 // Update and Process
 
 void FrameLib_Select::update()
 {
-    FrameLib_Parameters::Serial *serialised = getInput(mNumIns);
-    
-    if (serialised)
+    if (mParameters.changed(kActiveIn))
     {
-        mParameters.set(serialised);
-        
-        mActiveIn = mParameters.getValue(kActiveIn);
+        mActiveIn = mParameters.getInt(kActiveIn);
         
         for (unsigned long i = 0; i < mNumIns; i++)
             updateTrigger(i, i == mActiveIn);
         
-        // FIX - negative values trucated etc. - make sure this is safe
-        
+        // FIX - negative values truncated etc. - make sure this is safe
     }
 }
 

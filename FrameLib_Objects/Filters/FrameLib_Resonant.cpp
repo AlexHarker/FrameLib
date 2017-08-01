@@ -16,7 +16,7 @@ void FrameLib_Resonant::Resonant::setParams(double freq, double reson, double sa
 
 // Filter Calculation
 
-inline double FrameLib_Resonant::Resonant::calculateFilter(double x)
+double FrameLib_Resonant::Resonant::calculateFilter(double x)
 {
     x = x * ((scl + r2) + 1.0);
     double y = x - ((scl * y1) + (r2 * y2));
@@ -43,20 +43,46 @@ FrameLib_Resonant::FrameLib_Resonant(FrameLib_Context context, FrameLib_Paramete
     mParameters.addEnumItem(kLPF, "lpf");
     mParameters.addEnumItem(kHPF, "hpf");
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
     
-    inputMode(1, true, false, false, kFrameTagged);
+    setParameterInput(1);
 }
 
-// Update and Process
+// Info
 
-void FrameLib_Resonant::update()
+std::string FrameLib_Resonant::objectInfo(bool verbose)
 {
-    FrameLib_Parameters::Serial *serialised = getInput(1);
-    
-    if (serialised)
-        mParameters.set(serialised);
+    return getInfo("Filters input frames using a resonant filter: The size of the output is equal to the input.",
+                   "Filters input frames using a resonant filter.", verbose);
 }
+
+std::string FrameLib_Resonant::inputInfo(unsigned long idx, bool verbose)
+{
+    if (idx)
+        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+    else
+        return getInfo("Input Frame - input to be triggered", "Input Frame", verbose);
+}
+
+std::string FrameLib_Resonant::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Frame of Filtered Values";
+}
+
+// Parameter Info
+
+FrameLib_Resonant::ParameterInfo FrameLib_Resonant::sParamInfo;
+
+FrameLib_Resonant::ParameterInfo::ParameterInfo()
+{
+    add("Sets the filter cutoff frequency.");
+    add("Sets the filter resonance [0-1].");
+    add("Sets the filter mode.");
+}
+
+// Process
 
 void FrameLib_Resonant::process()
 {

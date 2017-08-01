@@ -89,7 +89,7 @@ protected:
     
     // IO Utilities
     
-    // Call this in derived class constructors if the IO size is not static
+    // Call this in derived class constructors if the IO size is not always the same
     
     void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0)
     {
@@ -149,7 +149,7 @@ private:
 
 // FrameLib_Pack - Pack Multichannel Signals
 
-class FrameLib_Pack : public FrameLib_MultiChannel, private FrameLib_Info
+class FrameLib_Pack : public FrameLib_MultiChannel
 {
     enum AtrributeList { kInputs };
 
@@ -161,9 +161,9 @@ public:
     
     // Info
     
-    virtual const char *objectInfo(bool verbose);
-    virtual const char *inputInfo(unsigned long idx, bool verbose);
-    virtual const char *outputInfo(unsigned long idx, bool verbose);
+    virtual std::string objectInfo(bool verbose);
+    virtual std::string inputInfo(unsigned long idx, bool verbose);
+    virtual std::string outputInfo(unsigned long idx, bool verbose);
     
     virtual const FrameLib_Parameters *getParameters() { return &mParameters; }
 
@@ -183,7 +183,7 @@ private:
 
 // FrameLib_Unpack - Unpack Multichannel Signals
 
-class FrameLib_Unpack : public FrameLib_MultiChannel, private FrameLib_Info
+class FrameLib_Unpack : public FrameLib_MultiChannel
 {
     enum AtrributeList { kOutputs };
     
@@ -195,9 +195,9 @@ public:
     
     // Info
     
-    virtual const char *objectInfo(bool verbose);
-    virtual const char *inputInfo(unsigned long idx, bool verbose);
-    virtual const char *outputInfo(unsigned long idx, bool verbose);
+    virtual std::string objectInfo(bool verbose);
+    virtual std::string inputInfo(unsigned long idx, bool verbose);
+    virtual std::string outputInfo(unsigned long idx, bool verbose);
 
     virtual const FrameLib_Parameters *getParameters() { return &mParameters; }
 
@@ -319,10 +319,10 @@ public:
     
     static bool handlesAudio() { return T::handlesAudio(); }
     
-    virtual const char *objectInfo(bool verbose)                    { return mBlocks[0]->objectInfo(verbose); }
-    virtual const char *inputInfo(unsigned long idx, bool verbose)  { return mBlocks[0]->inputInfo(idx, verbose); }
-    virtual const char *outputInfo(unsigned long idx, bool verbose) { return mBlocks[0]->outputInfo(idx, verbose); }
-    virtual const char *audioInfo(unsigned long idx, bool verbose)  { return mBlocks[0]->audioInfo(idx, verbose); }
+    virtual std::string objectInfo(bool verbose)                    { return mBlocks[0]->objectInfo(verbose); }
+    virtual std::string inputInfo(unsigned long idx, bool verbose)  { return mBlocks[0]->inputInfo(idx, verbose); }
+    virtual std::string outputInfo(unsigned long idx, bool verbose) { return mBlocks[0]->outputInfo(idx, verbose); }
+    virtual std::string audioInfo(unsigned long idx, bool verbose)  { return mBlocks[0]->audioInfo(idx, verbose); }
 
     virtual FrameType inputType(unsigned long idx)                  { return mBlocks[0]->inputType(idx); }
     virtual FrameType outputType(unsigned long idx)                 { return mBlocks[0]->outputType(idx); }

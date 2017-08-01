@@ -12,7 +12,7 @@ FRAMEWORK_SEARCH_PATHS = "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-include
 // Special Files
 
 GCC_PREFIX_HEADER = $(C74SUPPORT)/max-includes/macho-prefix.pch
-INFOPLIST_FILE = FrameLib_Max_Objects/Common/Info.plist
+INFOPLIST_FILE = Info.plist
 
 // Per architecture and deployment settings
 

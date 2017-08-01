@@ -30,11 +30,19 @@ class FrameLib_Spatial : public FrameLib_Processor
     enum ParameterList {kInputMode, kSpeakers, kWeights, kRolloff, kBlur, kMaxSpeakers, kPoints};
     enum InputModes {kPolar, kCartesian};
 
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
+
 public:
     
     // Constructor
     
     FrameLib_Spatial(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    
+    // Info
+    
+    std::string objectInfo(bool verbose);
+    std::string inputInfo(unsigned long idx, bool verbose);
+    std::string outputInfo(unsigned long idx, bool verbose);
     
 private:
 
@@ -46,12 +54,11 @@ private:
     
     void process();
     
-private:
-    
     // Data
     
     std::vector <Cartesian> mSpeakers;
-    
+
+    static ParameterInfo sParamInfo;
 };
 
 #endif

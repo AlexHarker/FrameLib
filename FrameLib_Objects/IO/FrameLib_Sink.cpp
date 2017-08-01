@@ -29,19 +29,19 @@ FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, FrameLib_Parameters::Seri
 
 // Info
 
-const char *FrameLib_Sink::objectInfo(bool verbose)
+std::string FrameLib_Sink::objectInfo(bool verbose)
 {
     return getInfo("Outputs audio frames to the host environment by pasting them into an overlap-add buffer: "
                    "The length of the internal buffer determines the maximum frame length. Output suffers no latency. ",
                    "Outputs audio frames to the host environment by pasting them into an overlap add buffer.", verbose);
 }
 
-const char *FrameLib_Sink::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Sink::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Frames to Output", "Frames to Output - overlapped to the output", verbose);
+    return getInfo("Frames to Output - overlapped to the output", "Frames to Output", verbose);
 }
 
-const char *FrameLib_Sink::FrameLib_Sink::audioInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Sink::FrameLib_Sink::audioInfo(unsigned long idx, bool verbose)
 {
     return "Audio Output";
 }
@@ -100,9 +100,7 @@ void FrameLib_Sink::objectReset()
 }
 
 void FrameLib_Sink::blockProcess(double **ins, double **outs, unsigned long vecSize)
-{
-    double *output = outs[0];
-    
+{    
     // Safety
     
     if (vecSize > bufferSize())
@@ -112,8 +110,8 @@ void FrameLib_Sink::blockProcess(double **ins, double **outs, unsigned long vecS
     
     unsigned long size = ((mCounter + vecSize) > bufferSize()) ? bufferSize() - mCounter : vecSize;
     
-    copyAndZero(output, mCounter, size);
-    copyAndZero(output + size, 0, vecSize - size);
+    copyAndZero(outs[0], mCounter, size);
+    copyAndZero(outs[0] + size, 0, vecSize - size);
 }
 
 void FrameLib_Sink::process()

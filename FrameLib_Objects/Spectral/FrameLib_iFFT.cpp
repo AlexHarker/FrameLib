@@ -10,6 +10,8 @@ FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, FrameLib_Parameters::Seri
     mParameters.setMin(0);
     mParameters.setInstantiation();
     
+    mParameters.setInfo(&sParamInfo);
+
     mParameters.set(serialisedParameters);
     
     unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
@@ -21,6 +23,37 @@ FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, FrameLib_Parameters::Seri
 FrameLib_iFFT::~FrameLib_iFFT()
 {
     hisstools_destroy_setup_d(mFFTSetup);
+}
+
+// Info
+
+std::string FrameLib_iFFT::objectInfo(bool verbose)
+{
+    return getInfo("Calculate the inverse real Fast Fourier Transform of two input frames (comprising the real and imaginary values): All FFTs performed will use a power of two size. "
+                   "Output frames will be N in length where N is the FFT size. Inputs are expected to match in length with a length of (N / 2) + 1.",
+                   "Calculate the inverse real Fast Fourier Transform of two input frames (comprising the real and imaginary values).", verbose);
+}
+
+std::string FrameLib_iFFT::inputInfo(unsigned long idx, bool verbose)
+{
+    if (idx)
+        return getInfo("Frequency Domain Real Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Real Values", verbose);
+    else
+        return getInfo("Frequency Domain Imaginary Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Imag Values", verbose);
+}
+
+std::string FrameLib_iFFT::outputInfo(unsigned long idx, bool verbose)
+{
+    return "Time Domain Output";
+}
+
+// Parameter Info
+
+FrameLib_iFFT::ParameterInfo FrameLib_iFFT::sParamInfo;
+
+FrameLib_iFFT::ParameterInfo::ParameterInfo()
+{
+    add("Sets the maximum output length / FFT size.");
 }
 
 // Process

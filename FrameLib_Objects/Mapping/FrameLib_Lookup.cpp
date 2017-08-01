@@ -10,6 +10,29 @@ FrameLib_Lookup::FrameLib_Lookup(FrameLib_Context context, FrameLib_Parameters::
     inputMode(1, false, false, false);
 }
 
+// Info
+
+std::string FrameLib_Lookup::objectInfo(bool verbose)
+{
+    return getInfo("Use one frame as a lookup table for another: The left input frame is used to lookup values from the last values received as the right input frame. "
+                   "The output is the same size as the left input, which is interpreted as a set of sample positions used to read the right input. "
+                   "Only the left input triggers output.",
+                   "Use one frame as a lookup table for another.", verbose);
+}
+
+std::string FrameLib_Lookup::inputInfo(unsigned long idx, bool verbose)
+{
+    if (idx)
+        return getInfo("Frame for Table - values are retrieved from this frame / does not trigger output", "Frame for Table", verbose);
+    else
+        return getInfo("Values to Lookup - interpreted as sample positions into the table / right input", "Values to Lookup", verbose);
+}
+
+std::string FrameLib_Lookup::outputInfo(unsigned long idx, bool verbose)
+{
+    return getInfo("Output Frame - values after look up", "Output Frame", verbose);
+}
+
 // Process
 
 void FrameLib_Lookup::process()

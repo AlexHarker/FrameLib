@@ -15,24 +15,27 @@ FrameLib_Count::FrameLib_Count(FrameLib_Context context, FrameLib_Parameters::Se
     
     mParameters.setInfo(&sParamInfo);
     
-    inputMode(1, true, false, false, kFrameTagged);
+    setParameterInput(1);
 }
 
 // Info
 
-const char *FrameLib_Count::objectInfo(bool verbose)
+std::string FrameLib_Count::objectInfo(bool verbose)
 {
     return getInfo("Generates frames consisting of the integers in counting order from 0 to (size - 1): The size of the output is dependent on the mode. "
                    "The output size may either be set as a parameter, or be set to match that of the triggering input.",
                    "Generates frames consisting of the integers in counting order from 0 to (size - 1).", verbose);
 }
 
-const char *FrameLib_Count::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Count::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Trigger Frame", "Trigger Frame - triggers generation of output", verbose);
+    if (idx)
+        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+    else
+        return getInfo("Trigger Frame - triggers generation of output", "Trigger Frame", verbose);
 }
 
-const char *FrameLib_Count::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Count::outputInfo(unsigned long idx, bool verbose)
 {
     return "Output Frame";
 }
@@ -49,15 +52,7 @@ FrameLib_Count::ParameterInfo::ParameterInfo()
         "requested - the output frame size is set by the length parameter.");
 }
 
-// Update and Process
-
-void FrameLib_Count::update()
-{
-    FrameLib_Parameters::Serial *serialised = getInput(1);
-    
-    if (serialised)
-        mParameters.set(serialised);
-}
+// Process
 
 void FrameLib_Count::process()
 {

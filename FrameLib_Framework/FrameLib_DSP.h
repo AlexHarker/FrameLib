@@ -48,7 +48,7 @@ private:
     
     struct Input
     {
-        Input() : mObject(NULL), mIndex(0), mSize(0), mFixedInput(NULL), mType(kFrameNormal), mUpdate(false), mTrigger(true), mSwitchable(false) {}
+        Input() : mObject(NULL), mIndex(0), mSize(0), mFixedInput(NULL), mType(kFrameNormal), mUpdate(false), mParameters(false), mTrigger(true), mSwitchable(false) {}
         
         void setInput()
         {
@@ -75,8 +75,9 @@ private:
         // Flags
 
         FrameType mType;
-        
+
         bool mUpdate;
+        bool mParameters;
         bool mTrigger;
         bool mSwitchable;
     };
@@ -134,6 +135,8 @@ protected:
    
     void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0);
     void inputMode(unsigned long idx, bool update, bool trigger, bool switchable, FrameType type = kFrameNormal);
+    void setParameterInput(unsigned long idx);
+    void addParameterInput();
     void outputMode(unsigned long idx, FrameType type);
     
     // You should only call this from your update method (it is unsafe anywhere else)
