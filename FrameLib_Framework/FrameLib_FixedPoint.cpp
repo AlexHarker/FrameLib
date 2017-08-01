@@ -28,7 +28,7 @@ bool subWithCarry(uint64_t *result, const uint64_t& a, const uint64_t& b)
 
 // ************************************************************************************** //
 
-FL_SP qMul(const FL_SP& a, const uint64_t &intVal, const uint64_t &fracVal)
+FL_SP qMul(const FL_SP& a, const uint64_t& intVal, const uint64_t& fracVal)
 {
     // Split both into 6/4 x 32 bits stored within 64 bit integers
     
@@ -288,7 +288,7 @@ FL_FP::FL_FP(const FL_SP& val) : mInt(val.intVal()), mFrac(val.fracHiVal())
 {
     // Complete rounding
     
-    if (checkHighBit(val.fracLoVal()) && !(mInt == std::numeric_limits<uint64>::max() && mFrac == std::numeric_limits<uint64>::max()))
+    if (checkHighBit(val.fracLoVal()) & !(mInt == std::numeric_limits<uint64>::max() & mFrac == std::numeric_limits<uint64>::max()))
         *this += FL_FP(0, 1);
 }
 

@@ -27,7 +27,7 @@ struct FL_SP
     
     // Necessary Operations
     
-    friend FL_SP qMul (const FL_SP& a, const uint64_t &intVal, const uint64_t &fracVal);
+    friend FL_SP qMul(const FL_SP& a, const uint64_t& intVal, const uint64_t& fracVal);
     friend FL_SP operator * (const FL_SP& a, const FL_SP& b);
     friend FL_SP twoMinus(const FL_SP& b);
     
@@ -65,12 +65,12 @@ public:
     
     friend FL_FP clipToPositive(const FL_FP& arg)               { return arg; }
     
-    // Comparison operators
+    // Comparison operators (N.B. - it is faster to avoid branching using bit rather logical operators)
 
-    friend bool operator == (const FL_FP& a, const FL_FP& b)    { return (a.mInt == b.mInt && a.mFrac == b.mFrac); }
+    friend bool operator == (const FL_FP& a, const FL_FP& b)    { return (a.mInt == b.mInt & a.mFrac == b.mFrac); }
     
-    friend bool operator < (const FL_FP& a, const FL_FP& b)     { return ((a.mInt < b.mInt) || (a.mInt == b.mInt && a.mFrac < b.mFrac)); }
-    friend bool operator > (const FL_FP& a, const FL_FP& b)     { return ((a.mInt > b.mInt) || (a.mInt == b.mInt && a.mFrac > b.mFrac)); }
+    friend bool operator < (const FL_FP& a, const FL_FP& b)     { return ((a.mInt < b.mInt) | (a.mInt == b.mInt & a.mFrac < b.mFrac)); }
+    friend bool operator > (const FL_FP& a, const FL_FP& b)     { return ((a.mInt > b.mInt) | (a.mInt == b.mInt & a.mFrac > b.mFrac)); }
     friend bool operator <= (const FL_FP& a, const FL_FP& b)    { return !(a > b); }
     friend bool operator >= (const FL_FP& a, const FL_FP& b)    { return !(a < b); }
     
@@ -215,6 +215,6 @@ template<> struct FL_Limits <FL_FP>
 
 // Double Helper Utility
 
-inline double clipToPositive (double &arg)  {return arg < 0 ? 0 : arg; }
+inline double clipToPositive(double &arg)  {return arg < 0 ? 0 : arg; }
 
 #endif
