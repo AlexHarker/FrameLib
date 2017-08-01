@@ -168,10 +168,24 @@ void FrameLib_DSP::inputMode(unsigned long idx, bool update, bool trigger, bool 
     mInputs[idx].mType = type;
 }
 
+// Call this from your constructor only (unsafe elsewhere)
+
 void FrameLib_DSP::setParameterInput(unsigned long idx)
 {
     inputMode(idx, true, false, false, kFrameTagged);
     mInputs[idx].mParameters = true;
+}
+
+// Call this from your constructor only (unsafe elsewhere)
+
+void FrameLib_DSP::addParameterInput()
+{
+    unsigned long nIns = getNumIns();
+    unsigned long nOuts = getNumOuts();
+    unsigned long nAudioChans = getNumAudioChans();
+    
+    setIO(nIns, nOuts + 1, nAudioChans);
+    setParameterInput(nOuts);
 }
 
 // Call this from your constructor only (unsafe elsewhere)

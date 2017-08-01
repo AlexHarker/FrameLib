@@ -128,6 +128,7 @@ protected:
     void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0);
     void inputMode(unsigned long idx, bool update, bool trigger, bool switchable, FrameType type = kFrameNormal);
     void setParameterInput(unsigned long idx);
+    void addParameterInput();
     void outputMode(unsigned long idx, FrameType type);
     
     // You should only call this from your update method (it is unsafe anywhere else)
