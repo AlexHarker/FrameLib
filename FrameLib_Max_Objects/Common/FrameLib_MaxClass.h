@@ -640,7 +640,6 @@ public:
                 
                 if (verbose)
                 {
-                    postSplit(params->getInfo(i), "- ", "-");
                     if (!argsSetAllInputs && params->getArgumentIdx(i) >= 0)
                         object_post(mUserObject, "- Argument: %ld", params->getArgumentIdx(i) + 1);
                     if (numericType == FrameLib_Parameters::kNumericInteger || numericType == FrameLib_Parameters::kNumericDouble)
@@ -660,6 +659,7 @@ public:
                         object_post(mUserObject, "- Array Size: %ld", params->getArraySize(i));
                     else if (type == FrameLib_Parameters::kVariableArray)
                         object_post(mUserObject, "- Array Max Size: %ld", params->getArrayMaxSize(i));
+                    postSplit(params->getInfo(i).c_str(), "- ", "-");
                 }
             }
         }
