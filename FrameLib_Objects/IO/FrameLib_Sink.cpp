@@ -1,8 +1,7 @@
 
 #include "FrameLib_Sink.h"
 
-// FIX - sink is only sample accurate (not subsample) - double the buffer and add a function to interpolate if neceesary
-// FIX - add multichannel later (including multichannel output from one cable - is it possible?)
+// FIX - sink is only sample accurate (not subsample) - double the buffer and add a function to interpolate if necessary
 
 // Constructor
 

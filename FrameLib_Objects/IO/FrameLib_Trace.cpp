@@ -3,7 +3,6 @@
 #include <algorithm>
 
 // FIX - trace is only sample accurate (not subsample) - double the buffer and add a function to interpolate if neceesary
-// FIX - add multichannel later (including multichannel output from one cable - is it possible?)???
 // FIX - trace writes whole vectors then traces, would it be better to specify which index to use?
 
 // Constructor
