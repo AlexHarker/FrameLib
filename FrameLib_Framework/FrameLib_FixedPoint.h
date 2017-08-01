@@ -199,6 +199,10 @@ private:
 
 template <class T> struct FL_Limits
 {
+    // N.B. there is basically no good value for smallest for a floating point unit, because all values will fail at some point before total overflow
+    
+    static T smallest()    { return std::numeric_limits<T>::epsilon() * 65536.0; }
+    
     static T largest()
     {
         if (std::numeric_limits<T>::has_infinity)
@@ -210,6 +214,7 @@ template <class T> struct FL_Limits
 
 template<> struct FL_Limits <FL_FP>
 {
+    static FL_FP smallest() { return FL_FP(0,1); }
     static FL_FP largest() { return FL_FP(FL_Limits<uint64_t>::largest(), FL_Limits<uint64_t>::largest()); }
 };
 
