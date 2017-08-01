@@ -27,12 +27,15 @@ public:
     
 private:
     
-    // Scheduler
+    // Update and Schedule
     
+    void update();
     SchedulerInfo schedule(bool newFrame, bool noOutput);
     
     // Data
 
+    FrameLib_TimeFormat mInterval;
+    
     static ParameterInfo sParamInfo;
 };
 
