@@ -55,15 +55,15 @@ public:
         
         // Size Calculations
         
-        static size_t calcSize(Serial *serialised)          { return serialised != NULL ? serialised->mSize : 0; }
-        static size_t calcSize(const char *tag, char *str)  { return sizeType() + sizeString(tag) + sizeString(str); }
-        static size_t calcSize(const char *tag, size_t N)   { return sizeType() + sizeString(tag) + sizeArray(N); }
+        static size_t calcSize(Serial *serialised)                  { return serialised != NULL ? serialised->mSize : 0; }
+        static size_t calcSize(const char *tag, const char *str)    { return sizeType() + sizeString(tag) + sizeString(str); }
+        static size_t calcSize(const char *tag, size_t N)           { return sizeType() + sizeString(tag) + sizeArray(N); }
         
         // Write Items
         
         void write(Serial *serialised);
-        void write(const char *tag, char *str);
-        void write(const char *tag, double *values, size_t N);
+        void write(const char *tag, const char *str);
+        void write(const char *tag, const double *values, size_t N);
         
         // Read into Parameters
         
@@ -107,7 +107,7 @@ public:
         void writeType(DataType type);
         void writeSize(size_t size);
         void writeString(const char *str);
-        void writeDoubles(double *ptr, size_t N);
+        void writeDoubles(const double *ptr, size_t N);
         
         // Read Item
         

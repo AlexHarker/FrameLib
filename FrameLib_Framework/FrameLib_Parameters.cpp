@@ -24,7 +24,7 @@ void FrameLib_Parameters::Serial::write(Serial *serialised)
     mSize += serialised->mSize;
 }
 
-void FrameLib_Parameters::Serial::write(const char *tag, char *str)
+void FrameLib_Parameters::Serial::write(const char *tag, const char *str)
 {
     if (!checkSize(calcSize(tag, str)))
         return;
@@ -34,7 +34,7 @@ void FrameLib_Parameters::Serial::write(const char *tag, char *str)
     writeString(str);
 }
 
-void FrameLib_Parameters::Serial::write(const char *tag, double *values, size_t N)
+void FrameLib_Parameters::Serial::write(const char *tag, const double *values, size_t N)
 {    
     if (!checkSize(calcSize(tag, N)))
         return;
@@ -107,7 +107,7 @@ void FrameLib_Parameters::Serial::writeString(const char *str)
     mSize += alignSize(N);
 }
 
-void FrameLib_Parameters::Serial::writeDoubles(double *ptr, size_t N)
+void FrameLib_Parameters::Serial::writeDoubles(const double *ptr, size_t N)
 {
     size_t size = N * sizeof(double);
     writeSize(N);
