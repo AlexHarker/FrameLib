@@ -47,13 +47,13 @@ FrameLib_OnePoleZero::FrameLib_OnePoleZero(FrameLib_Context context, FrameLib_Pa
 
 // Info
 
-const char *FrameLib_OnePoleZero::objectInfo(bool verbose)
+std::string FrameLib_OnePoleZero::objectInfo(bool verbose)
 {
     return getInfo("Filters input frames using a one pole, one zero filter: The size of the output is equal to the input.",
                    "Filters input frames using a one pole, one zero filter.", verbose);
 }
 
-const char *FrameLib_OnePoleZero::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_OnePoleZero::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
         return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
@@ -61,7 +61,7 @@ const char *FrameLib_OnePoleZero::inputInfo(unsigned long idx, bool verbose)
         return getInfo("Input Frame - input to be triggered", "Input Frame", verbose);
 }
 
-const char *FrameLib_OnePoleZero::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_OnePoleZero::outputInfo(unsigned long idx, bool verbose)
 {
     return "Frame of Filtered Values";
 }

@@ -27,19 +27,19 @@ FrameLib_Chop::FrameLib_Chop(FrameLib_Context context, FrameLib_Parameters::Seri
 
 // Info
 
-const char *FrameLib_Chop::objectInfo(bool verbose)
+std::string FrameLib_Chop::objectInfo(bool verbose)
 {
     return getInfo("Chops input frames into equally sized output frames: "
                    "The size can be set in samples, or as a ratio of the length of the input frame.",
                    "Chops input frames into equally sized output frames.", verbose);
 }
 
-const char *FrameLib_Chop::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Chop::inputInfo(unsigned long idx, bool verbose)
 {
     return "Input to Chop";
 }
 
-const char *FrameLib_Chop::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Chop::outputInfo(unsigned long idx, bool verbose)
 {
     return getInfo("Output #", "Output #", idx, verbose);
 }

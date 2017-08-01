@@ -541,18 +541,18 @@ public:
             if (a == 0 && T::handlesAudio())
                  sprintf(s,"(signal) Audio Synchronisation Output" );
             else if (a < getNumAudioOuts())
-                sprintf(s,"(signal) %s", mObject->audioInfo(a - 1));
+                sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
             else
-                sprintf(s,"(frame) %s", mObject->outputInfo(a - getNumAudioOuts()));
+                sprintf(s,"(frame) %s", mObject->outputInfo(a - getNumAudioOuts()).c_str());
         }
         else
         {
             if (a == 0 && T::handlesAudio())
                 sprintf(s,"(signal) Audio Synchronisation Input");
             else if (a < getNumAudioIns())
-                sprintf(s,"(signal) %s", mObject->audioInfo(a - 1));
+                sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
             else
-                sprintf(s,"(frame) %s", mObject->inputInfo(a - getNumAudioIns()));
+                sprintf(s,"(frame) %s", mObject->inputInfo(a - getNumAudioIns()).c_str());
         }
     }
     
@@ -587,7 +587,7 @@ public:
         if (flags & kInfoDesciption)
         {
             object_post(mUserObject, "--- Description ---");
-            postSplit(mObject->objectInfo(verbose), "", "-");
+            postSplit(mObject->objectInfo(verbose).c_str(), "", "-");
         }
         
         // IO
@@ -598,18 +598,18 @@ public:
             if (argsSetAllInputs)
                 object_post(mUserObject, "N.B. - arguments set the fixed array values for all inputs.");
             for (long i = 0; i < mObject->getNumAudioIns(); i++)
-                object_post(mUserObject, "Audio Input %ld: %s", i + 1, mObject->audioInfo(i, verbose));
+                object_post(mUserObject, "Audio Input %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
             for (long i = 0; i < mObject->getNumIns(); i++)
-                object_post(mUserObject, "Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose));
+                object_post(mUserObject, "Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose).c_str());
         }
         
         if (flags & kInfoOutputs)
         {
             object_post(mUserObject, "--- Output List ---");
             for (long i = 0; i < mObject->getNumAudioOuts(); i++)
-                object_post(mUserObject, "Audio Output %ld: %s", i + 1, mObject->audioInfo(i, verbose));
+                object_post(mUserObject, "Audio Output %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
             for (long i = 0; i < mObject->getNumOuts(); i++)
-                object_post(mUserObject, "Frame Output %ld [%s]: %s", i + 1, frameTypeString(mObject->outputType(i)), mObject->outputInfo(i, verbose));
+                object_post(mUserObject, "Frame Output %ld [%s]: %s", i + 1, frameTypeString(mObject->outputType(i)), mObject->outputInfo(i, verbose).c_str());
         }
         
         // Parameters
@@ -632,11 +632,11 @@ public:
                 // Name, type and default value
                 
                 if (defaultStr.size())
-                    object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i), params->getTypeString(i), defaultStr.c_str());
+                    object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str(), defaultStr.c_str());
                 else
-                    object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i), params->getTypeString(i));
+                    object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str());
 
-                // Verbose - description, arguments, range (for numeric types), enum items (for enums), array sizes (for arrays)
+                // Verbose - arguments, range (for numeric types), enum items (for enums), array sizes (for arrays), description
                 
                 if (verbose)
                 {
@@ -654,7 +654,7 @@ public:
                     }
                     if (type == FrameLib_Parameters::kEnum)
                         for (long j = 0; j <= params->getMax(i); j++)
-                            object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j));
+                            object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j).c_str());
                     else if (type == FrameLib_Parameters::kArray)
                         object_post(mUserObject, "- Array Size: %ld", params->getArraySize(i));
                     else if (type == FrameLib_Parameters::kVariableArray)

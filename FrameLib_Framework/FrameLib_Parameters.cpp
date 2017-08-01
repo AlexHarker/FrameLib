@@ -443,33 +443,38 @@ FrameLib_Parameters::NumericType FrameLib_Parameters::getNumericType(unsigned lo
     return kNumericDouble;
 }
 
-const char *FrameLib_Parameters::getTypeString(unsigned long idx) const
+std::string FrameLib_Parameters::getTypeString(unsigned long idx) const
 {
     const char **typeStrings = typeStringsDouble;
     int flags = mParameters[idx]->flags();
+    std::string str("");
     
-    if (flags & Parameter::kFlagInstantiation) mReportInfo = "instantiation ";
-    else mReportInfo = "";
+    if (flags & Parameter::kFlagInstantiation)
+        str = "instantiation ";
     
-    if (flags & Parameter::kFlagBool) typeStrings = typeStringsBool;
-    else if (flags & Parameter::kFlagInteger) typeStrings = typeStringsInteger;
+    if (flags & Parameter::kFlagBool)
+        typeStrings = typeStringsBool;
+    else if (flags & Parameter::kFlagInteger)
+        typeStrings = typeStringsInteger;
     
-    mReportInfo = mReportInfo + typeStrings[mParameters[idx]->type()];
+    str += typeStrings[mParameters[idx]->type()];
     
-    return mReportInfo.c_str();
+    return str;
 }
 
-const char *FrameLib_Parameters::getDefaultString(unsigned long idx) const
+std::string FrameLib_Parameters::getDefaultString(unsigned long idx) const
 {
     Type type = getType(idx);
     char numericStr[64];
-    
-    if (type == kString) return "";
-    else if (type == kEnum) return getItemString(idx, 0);
-    else if (getNumericType(idx) == kNumericBool) return getDefault(idx) ? "true" : "false";
+
+    if (type == kString)
+        return "";
+    else if (type == kEnum)
+        return getItemString(idx, 0);
+    else if (getNumericType(idx) == kNumericBool)
+        return getDefault(idx) ? "true" : "false";
     
     sprintf(numericStr, "%lg", getDefault(idx));
-    mReportInfo = numericStr;
     
-    return mReportInfo.c_str();
+    return numericStr;
 }

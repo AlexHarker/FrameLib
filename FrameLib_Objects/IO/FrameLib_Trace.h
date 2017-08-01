@@ -6,7 +6,7 @@
 #include "FrameLib_DSP.h"
 #include <vector>
 
-class FrameLib_Trace : public FrameLib_AudioOutput, private FrameLib_Info
+class FrameLib_Trace : public FrameLib_AudioOutput
 {
     // Paramter Enums and Info
     
@@ -23,9 +23,9 @@ public:
     
     // Info
     
-    const char *objectInfo(bool verbose);
-    const char *inputInfo(unsigned long idx, bool verbose);
-    const char *audioInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose);
+    std::string inputInfo(unsigned long idx, bool verbose);
+    std::string audioInfo(unsigned long idx, bool verbose);
     
 private:
     

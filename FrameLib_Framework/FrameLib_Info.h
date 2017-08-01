@@ -18,38 +18,34 @@ public:
     {
         const char *outStr = verbose ? verboseStr : briefStr;
         
-        mInfo = outStr;
-        
         return outStr;
     }
 
-    const char *getInfo(const char *verboseStr, const char *briefStr, unsigned long idx, bool verbose)
+    std::string getInfo(const char *verboseStr, const char *briefStr, unsigned long idx, bool verbose)
     {
+        std::string info;
         std::ostringstream idxStr;
 
         idxStr << (idx + 1);
 
-        getInfo(verboseStr, briefStr, verbose);
+        info = getInfo(verboseStr, briefStr, verbose);
     
-        for (size_t pos = mInfo.find("#", 0); pos != std::string::npos;  pos = mInfo.find("#", pos + 1))
-            mInfo.replace(pos, 1, idxStr.str());
+        for (size_t pos = info.find("#", 0); pos != std::string::npos;  pos = info.find("#", pos + 1))
+            info.replace(pos, 1, idxStr.str());
 
-        return mInfo.c_str();
+        return info;
     }
     
-    const char *getInfo(const char *verboseStr, const char *briefStr, const char *replaceStr, bool verbose)
+    std::string getInfo(const char *verboseStr, const char *briefStr, const char *replaceStr, bool verbose)
     {
+        std::string info;
         getInfo(verboseStr, briefStr, verbose);
         
-        for (size_t pos = mInfo.find("#", 0); pos != std::string::npos;  pos = mInfo.find("#", pos + 1))
-            mInfo.replace(pos, 1, replaceStr);
+        for (size_t pos = info.find("#", 0); pos != std::string::npos;  pos = info.find("#", pos + 1))
+            info.replace(pos, 1, replaceStr);
         
-        return mInfo.c_str();
+        return info;
     }
-    
-private:
-      
-    std::string mInfo;
 };
 
 #endif

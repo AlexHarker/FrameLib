@@ -27,7 +27,7 @@ FrameLib_FFT::~FrameLib_FFT()
 
 // Info
 
-const char *FrameLib_FFT::objectInfo(bool verbose)
+std::string FrameLib_FFT::objectInfo(bool verbose)
 {
     return getInfo("Calculate the real Fast Fourier Transform of an input frame: All FFTs performed will use a power of two size. "
                    "Output frames will be (N / 2) + 1 in length where N is the FFT size. Inputs which are not a power of two are zero-padded to the next power of two. "
@@ -35,12 +35,12 @@ const char *FrameLib_FFT::objectInfo(bool verbose)
                    "Calculate the real Fast Fourier Transform of an input frame.", verbose);
 }
 
-const char *FrameLib_FFT::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_FFT::inputInfo(unsigned long idx, bool verbose)
 {
     return getInfo("Time Domain Input - will be zero-padded if the length is not a power of two.", "Time Domain Input", verbose);
 }
 
-const char *FrameLib_FFT::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_FFT::outputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
         return "Real Values";

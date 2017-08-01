@@ -22,18 +22,18 @@ FrameLib_Subframe::FrameLib_Subframe(FrameLib_Context context, FrameLib_Paramete
 
 // Info
 
-const char *FrameLib_Subframe::objectInfo(bool verbose)
+std::string FrameLib_Subframe::objectInfo(bool verbose)
 {
     return getInfo("Output part of an input frame: The subframe is specified by a start and end point in the input frame.",
                    "Output part of an input frame.", verbose);
 }
 
-const char *FrameLib_Subframe::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Subframe::inputInfo(unsigned long idx, bool verbose)
 {
     return "Input Frames";
 }
 
-const char *FrameLib_Subframe::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Subframe::outputInfo(unsigned long idx, bool verbose)
 {
     return "Subframe Output";
 }

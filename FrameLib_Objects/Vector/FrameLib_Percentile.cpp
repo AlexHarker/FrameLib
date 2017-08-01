@@ -18,18 +18,18 @@ FrameLib_Percentile::FrameLib_Percentile(FrameLib_Context context, FrameLib_Para
 
 // Info
 
-const char *FrameLib_Percentile::objectInfo(bool verbose)
+std::string FrameLib_Percentile::objectInfo(bool verbose)
 {
     return getInfo("Calculates any percentile (for example the median at 50%) of an input frame: The output is a single value.",
                    "Calculates any percentile (for example the median at 50%) of an input frame.", verbose);
 }
 
-const char *FrameLib_Percentile::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Percentile::inputInfo(unsigned long idx, bool verbose)
 {
     return "Input Frame";
 }
 
-const char *FrameLib_Percentile::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Percentile::outputInfo(unsigned long idx, bool verbose)
 {
     return "Percentile Output Value";
 }

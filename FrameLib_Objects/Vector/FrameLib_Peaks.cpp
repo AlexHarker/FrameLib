@@ -8,7 +8,7 @@ FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, FrameLib_Parameters::Se
 
 // Info
 
-const char *FrameLib_Peaks::objectInfo(bool verbose)
+std::string FrameLib_Peaks::objectInfo(bool verbose)
 {
     return getInfo("Finds peaks in an input frame (spectrum): "
                    "Peaks are output in terms of interpolated sample position, interpolated amplitude and peak index. "
@@ -16,12 +16,12 @@ const char *FrameLib_Peaks::objectInfo(bool verbose)
                    "Finds peaks in an input frame (spectrum).", verbose);
 }
 
-const char *FrameLib_Peaks::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Peaks::inputInfo(unsigned long idx, bool verbose)
 {
     return "Input Frame / Spectrum";
 }
 
-const char *FrameLib_Peaks::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Peaks::outputInfo(unsigned long idx, bool verbose)
 {
     if (idx == 0) return getInfo("Peak Index - for each input sample / bin the output lists the peak it belongs to", "Peak Index", verbose);
     else if (idx == 1) return getInfo("Peak Position - an interpolated position in samples / bins for each peak", "Peak Position", verbose);

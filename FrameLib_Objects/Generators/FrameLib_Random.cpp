@@ -21,14 +21,14 @@ FrameLib_Random::FrameLib_Random(FrameLib_Context context, FrameLib_Parameters::
 
 // Info
 
-const char *FrameLib_Random::objectInfo(bool verbose)
+std::string FrameLib_Random::objectInfo(bool verbose)
 {
     return getInfo("Generates frames of random values in the range [0-1]: The size of the output is dependent on the mode. "
                    "The output size may either be set as a parameter, or be set to match that of the triggering input.",
                    "Generates frames of random values in the range [0-1].", verbose);
 }
 
-const char *FrameLib_Random::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Random::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
         return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
@@ -36,7 +36,7 @@ const char *FrameLib_Random::inputInfo(unsigned long idx, bool verbose)
         return getInfo("Trigger Frame - triggers generation of output", "Trigger Frame", verbose);
 }
 
-const char *FrameLib_Random::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Random::outputInfo(unsigned long idx, bool verbose)
 {
     return "Frame of Random Values";
 }

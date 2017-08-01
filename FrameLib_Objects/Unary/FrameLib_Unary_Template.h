@@ -11,7 +11,7 @@
 
 // Unary (Operator Version)
 
-template <typename Op> class FrameLib_UnaryOp : public FrameLib_Processor, private FrameLib_Info
+template <typename Op> class FrameLib_UnaryOp : public FrameLib_Processor
 {
     
 public:
@@ -22,14 +22,14 @@ public:
     
     // Info
     
-    const char *objectInfo(bool verbose)
+    std::string objectInfo(bool verbose)
     {
         return getInfo("Calculates the # of each value in the input frame: The result is a frame of the same size as the input.",
                        "Calculates the # of each value in the input frame.", getOpString(), verbose);
     }
 
-    const char *inputInfo(unsigned long idx, bool verbose)      { return "Input"; }
-    const char *outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
+    std::string inputInfo(unsigned long idx, bool verbose)      { return "Input"; }
+    std::string outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
 
 protected:
     

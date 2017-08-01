@@ -19,19 +19,19 @@ FrameLib_Split::FrameLib_Split(FrameLib_Context context, FrameLib_Parameters::Se
 
 // Info
 
-const char *FrameLib_Split::objectInfo(bool verbose)
+std::string FrameLib_Split::objectInfo(bool verbose)
 {
     return getInfo("Splits input frames into two parts, given a specified split point: "
                    "The split point may be specified in samples or as a ratio",
                    "Splits input frames into two parts, given a specified split point.", verbose);
 }
 
-const char *FrameLib_Split::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Split::inputInfo(unsigned long idx, bool verbose)
 {
     return "Frame to Split";
 }
 
-const char *FrameLib_Split::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Split::outputInfo(unsigned long idx, bool verbose)
 {
     return getInfo("Output Frame #", "Output Frame #", idx, verbose);
 }

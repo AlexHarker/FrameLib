@@ -24,7 +24,7 @@ FrameLib_Shift::FrameLib_Shift(FrameLib_Context context, FrameLib_Parameters::Se
 
 // Info
 
-const char *FrameLib_Shift::objectInfo(bool verbose)
+std::string FrameLib_Shift::objectInfo(bool verbose)
 {
     return getInfo("Shifts an input frame either with padding, or cyclically: "
                    "The output is the same length as the input. Output can be shifted left or right in the frame. "
@@ -32,12 +32,12 @@ const char *FrameLib_Shift::objectInfo(bool verbose)
                    "Shifts an input frame either with padding, or cyclically.", verbose);
 }
 
-const char *FrameLib_Shift::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Shift::inputInfo(unsigned long idx, bool verbose)
 {
     return "Frames to Shift";
 }
 
-const char *FrameLib_Shift::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Shift::outputInfo(unsigned long idx, bool verbose)
 {
     return "Shifted Frames";
 }

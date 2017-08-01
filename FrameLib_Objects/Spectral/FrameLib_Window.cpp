@@ -63,13 +63,13 @@ FrameLib_Window::~FrameLib_Window()
 
 // Info
 
-const char *FrameLib_Window::objectInfo(bool verbose)
+std::string FrameLib_Window::objectInfo(bool verbose)
 {
     return getInfo("Multiplies the incoming frame against a specified window: The output length will match the input length.",
                    "Multiplies the incoming frame against a specified window.", verbose);
 }
 
-const char *FrameLib_Window::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Window::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
         return getInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
@@ -77,7 +77,7 @@ const char *FrameLib_Window::inputInfo(unsigned long idx, bool verbose)
         return getInfo("Input Frame", "Input Frame", idx, verbose);
 }
 
-const char *FrameLib_Window::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Window::outputInfo(unsigned long idx, bool verbose)
 {
     return "Windowed Output";
 }

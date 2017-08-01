@@ -5,13 +5,14 @@
 #include "FrameLib_Types.h"
 #include "FrameLib_Parameters.h"
 #include "FrameLib_Info.h"
+#include <string>
 
 // FrameLib_Object
 
 // This abstract template class outlines the basic functionality that objects (blocks / DSP / multichannel must provide)
 
 template <class T>
-class FrameLib_Object
+class FrameLib_Object : protected FrameLib_Info
 {
     
 public:
@@ -64,10 +65,10 @@ public:
 
     // Info
 
-    virtual const char *objectInfo(bool verbose = false)                        { return "No object info available";  }
-    virtual const char *inputInfo(unsigned long idx, bool verbose = false)      { return "No input info available";  }
-    virtual const char *outputInfo(unsigned long idx, bool verbose = false)     { return "No output info available";  }
-    virtual const char *audioInfo(unsigned long idx, bool verbose = false)      { return "No audio channel info available";  }
+    virtual std::string objectInfo(bool verbose = false)                        { return "No object info available";  }
+    virtual std::string inputInfo(unsigned long idx, bool verbose = false)      { return "No input info available";  }
+    virtual std::string outputInfo(unsigned long idx, bool verbose = false)     { return "No output info available";  }
+    virtual std::string audioInfo(unsigned long idx, bool verbose = false)      { return "No audio channel info available";  }
    
     virtual FrameType inputType(unsigned long idx) = 0;
     virtual FrameType outputType(unsigned long idx) = 0;

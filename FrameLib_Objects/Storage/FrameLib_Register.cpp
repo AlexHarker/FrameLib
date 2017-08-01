@@ -26,13 +26,13 @@ FrameLib_Register::FrameLib_Register(FrameLib_Context context, FrameLib_Paramete
 
 // Info
 
-const char *FrameLib_Register::objectInfo(bool verbose)
+std::string FrameLib_Register::objectInfo(bool verbose)
 {
     return getInfo("Store and recall a vector frame locally: The left input triggers recall, whilst the right input stores (with or without output).",
                    "Store and recall a vector frame locally.", verbose);
 }
 
-const char *FrameLib_Register::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Register::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
         return getInfo("Frame to Store - output is optional based on the mode parameter", "Frame to Store", verbose);
@@ -40,7 +40,7 @@ const char *FrameLib_Register::inputInfo(unsigned long idx, bool verbose)
         return getInfo("Trigger Input", "Trigger Input", verbose);
 }
 
-const char *FrameLib_Register::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Register::outputInfo(unsigned long idx, bool verbose)
 {
     return "Output Frames";
 }

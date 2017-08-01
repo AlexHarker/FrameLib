@@ -11,7 +11,7 @@
 
 // Binary Operator
 
-template <typename Op> class FrameLib_BinaryOp : public FrameLib_Processor, private FrameLib_Info
+template <typename Op> class FrameLib_BinaryOp : public FrameLib_Processor
 {
     // Parameter Enums and Info
     
@@ -69,15 +69,15 @@ public:
     
     // Info
     
-    const char *objectInfo(bool verbose)
+    std::string objectInfo(bool verbose)
     {
         return getInfo("#: Calculation is performed on pairs of values in turn. The result is an output frame at least as long as the smaller of the two inputs. "
                        "When frames mismatch in size the result depends on the setting of the mode parameter. Either or both inputs may be set to trigger output.",
                        "#.", getDescriptionString(), verbose);
     }
     
-    const char *inputInfo(unsigned long idx, bool verbose)      { return idx ? "Right Operand" : "Left Operand"; }
-    const char *outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
+    std::string inputInfo(unsigned long idx, bool verbose)      { return idx ? "Right Operand" : "Left Operand"; }
+    std::string outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
     
 protected:
     

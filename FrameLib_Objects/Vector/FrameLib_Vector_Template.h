@@ -6,7 +6,7 @@
 #include "FrameLib_Info.h"
 #include <functional>
 
-template <double func(double *, unsigned long) > class FrameLib_Vector : public FrameLib_Processor, private FrameLib_Info
+template <double func(double *, unsigned long) > class FrameLib_Vector : public FrameLib_Processor
 {
     
 public:
@@ -17,14 +17,14 @@ public:
     
     // Info
     
-    const char *objectInfo(bool verbose)
+    std::string objectInfo(bool verbose)
     {
         return getInfo("Calculates the # of the input frame: The result is a single value.",
                        "Calculates the # of the input frame.", getOpString(), verbose);
     }
     
-    const char *inputInfo(unsigned long idx, bool verbose)      { return "Input"; }
-    const char *outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
+    std::string inputInfo(unsigned long idx, bool verbose)      { return "Input"; }
+    std::string outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
 
 protected:
     

@@ -22,13 +22,13 @@ FrameLib_Recall::~FrameLib_Recall()
 
 // Info
 
-const char *FrameLib_Recall::objectInfo(bool verbose)
+std::string FrameLib_Recall::objectInfo(bool verbose)
 {
     return getInfo("Recall a vector frame from named memory for use: The second output can be used to control ordering/synchronsation.",
                    "Recall a vector frame from named memory for use.", verbose);
 }
 
-const char *FrameLib_Recall::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Recall::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
         return getInfo("Synchronisation Input - use to control ordering", "Synchronisation Input", verbose);
@@ -36,7 +36,7 @@ const char *FrameLib_Recall::inputInfo(unsigned long idx, bool verbose)
         return getInfo("Trigger Input - triggers recall", "Trigger Input", verbose);
 }
 
-const char *FrameLib_Recall::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Recall::outputInfo(unsigned long idx, bool verbose)
 {
     return "Frame Output";
 }

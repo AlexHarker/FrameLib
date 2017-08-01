@@ -19,18 +19,18 @@ FrameLib_Sort::FrameLib_Sort(FrameLib_Context context, FrameLib_Parameters::Seri
 
 // Info
 
-const char *FrameLib_Sort::objectInfo(bool verbose)
+std::string FrameLib_Sort::objectInfo(bool verbose)
 {
     return getInfo("Sorts an input frame in ascending or descending order.",
                    "Sorts an input frame in ascending or descending order.", verbose);
 }
 
-const char *FrameLib_Sort::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Sort::inputInfo(unsigned long idx, bool verbose)
 {
     return "Frames to Sort";
 }
 
-const char *FrameLib_Sort::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Sort::outputInfo(unsigned long idx, bool verbose)
 {
     return "Sorted Frames";
 }

@@ -27,14 +27,14 @@ FrameLib_iFFT::~FrameLib_iFFT()
 
 // Info
 
-const char *FrameLib_iFFT::objectInfo(bool verbose)
+std::string FrameLib_iFFT::objectInfo(bool verbose)
 {
     return getInfo("Calculate the inverse real Fast Fourier Transform of two input frames (comprising the real and imaginary values): All FFTs performed will use a power of two size. "
                    "Output frames will be N in length where N is the FFT size. Inputs are expected to match in length with a length of (N / 2) + 1.",
                    "Calculate the inverse real Fast Fourier Transform of two input frames (comprising the real and imaginary values).", verbose);
 }
 
-const char *FrameLib_iFFT::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_iFFT::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
         return getInfo("Frequency Domain Real Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Real Values", verbose);
@@ -42,7 +42,7 @@ const char *FrameLib_iFFT::inputInfo(unsigned long idx, bool verbose)
         return getInfo("Frequency Domain Imaginary Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Imag Values", verbose);
 }
 
-const char *FrameLib_iFFT::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_iFFT::outputInfo(unsigned long idx, bool verbose)
 {
     return "Time Domain Output";
 }

@@ -31,7 +31,7 @@ FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, FrameLib_Parameters::Se
 
 // Info
 
-const char *FrameLib_Trace::objectInfo(bool verbose)
+std::string FrameLib_Trace::objectInfo(bool verbose)
 {
     return getInfo("Outputs audio frames to the host environment without overlapping, continuing the final value till a new frame arrives: "
                    "This is intended for tracking control type values. The length of the internal buffer determines the maximum frame length. "
@@ -39,12 +39,12 @@ const char *FrameLib_Trace::objectInfo(bool verbose)
                    "Outputs audio frames to the host environment without overlapping, continuing the final value till a new frame arrives.", verbose);
 }
 
-const char *FrameLib_Trace::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Trace::inputInfo(unsigned long idx, bool verbose)
 {
     return getInfo("Frames to Output - overlapped to the output", "Frames to Output", verbose);
 }
 
-const char *FrameLib_Trace::audioInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Trace::audioInfo(unsigned long idx, bool verbose)
 {
     return "Audio Output";
 }

@@ -36,7 +36,7 @@ FrameLib_SetParam::FrameLib_SetParam (FrameLib_Context context, FrameLib_Paramet
 
 // Info
 
-const char *FrameLib_SetParam::objectInfo(bool verbose)
+std::string FrameLib_SetParam::objectInfo(bool verbose)
 {
     return getInfo("Tags vectors with parameter names ready to send to the parameter input of an object: "
                    "A variable number of inputs is available, each of which deal will a specific parameter name. "
@@ -44,7 +44,7 @@ const char *FrameLib_SetParam::objectInfo(bool verbose)
                    "Tags vectors with parameter names ready to send to the parameter input of an object.", verbose);
 }
 
-const char *FrameLib_SetParam::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_SetParam::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx == mNumIns)
         return getInfo("Parameter Input - takes tagged input for concatenation with other inputs", "Parameter Input", verbose);
@@ -53,7 +53,7 @@ const char *FrameLib_SetParam::inputInfo(unsigned long idx, bool verbose)
 
 }
 
-const char *FrameLib_SetParam::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_SetParam::outputInfo(unsigned long idx, bool verbose)
 {
     return "Tagged Output Frames";
 }

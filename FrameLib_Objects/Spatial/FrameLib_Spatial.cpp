@@ -41,7 +41,7 @@ FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, FrameLib_Parameters
 
 // Info
 
-const char *FrameLib_Spatial::objectInfo(bool verbose)
+std::string FrameLib_Spatial::objectInfo(bool verbose)
 {
     return getInfo("Generates multiplication factors for a number of speakers from an input coordinate triple: "
                    "The alogirthm used is a modified version of DBAP, with extra features. "
@@ -51,13 +51,13 @@ const char *FrameLib_Spatial::objectInfo(bool verbose)
                    "Generates multiplication factors for a number of speakers from an input coordinate triple.", verbose);
 }
 
-const char *FrameLib_Spatial::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Spatial::inputInfo(unsigned long idx, bool verbose)
 {
     return getInfo("Input Triple - cartesian or polar values for which to generate factors.", "Input Triple", verbose);
 
 }
 
-const char *FrameLib_Spatial::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Spatial::outputInfo(unsigned long idx, bool verbose)
 {
     return getInfo("Multiplication Factors - one per loudspeaker.", "Multiplication Factors", verbose);
 }

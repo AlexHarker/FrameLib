@@ -30,18 +30,18 @@ FrameLib_Join::FrameLib_Join(FrameLib_Context context, FrameLib_Parameters::Seri
 
 // Info
 
-const char *FrameLib_Join::objectInfo(bool verbose)
+std::string FrameLib_Join::objectInfo(bool verbose)
 {
     return getInfo("Concatenates all input frames into a single output frame: Inputs can be set to trigger output or not.",
                    "Concatenates all input frames into a single output frame.", verbose);
 }
 
-const char *FrameLib_Join::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Join::inputInfo(unsigned long idx, bool verbose)
 {
     return getInfo("Input #", "Input #", idx, verbose);
 }
 
-const char *FrameLib_Join::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Join::outputInfo(unsigned long idx, bool verbose)
 {
     return "Joined Frames";
 }

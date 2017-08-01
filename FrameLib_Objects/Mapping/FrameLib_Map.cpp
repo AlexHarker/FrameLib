@@ -32,7 +32,7 @@ FrameLib_Map::FrameLib_Map(FrameLib_Context context, FrameLib_Parameters::Serial
 
 // Info
 
-const char *FrameLib_Map::objectInfo(bool verbose)
+std::string FrameLib_Map::objectInfo(bool verbose)
 {
     return getInfo("Maps values in the input via a given scaling to corresponding output values: The output size matches the input size. "
                    "Scaling maps a specified range of values in the input to a specified range of output values. Different modes of scaling are offered. "
@@ -40,7 +40,7 @@ const char *FrameLib_Map::objectInfo(bool verbose)
                    "Maps values in the input via a given scaling to corresponding output values.", verbose);
 }
 
-const char *FrameLib_Map::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Map::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
         return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
@@ -48,7 +48,7 @@ const char *FrameLib_Map::inputInfo(unsigned long idx, bool verbose)
         return "Input Frame";
 }
 
-const char *FrameLib_Map::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Map::outputInfo(unsigned long idx, bool verbose)
 {
     return "Mapped Output";
 }

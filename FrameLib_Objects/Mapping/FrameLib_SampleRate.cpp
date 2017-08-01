@@ -25,7 +25,7 @@ FrameLib_SampleRate::FrameLib_SampleRate(FrameLib_Context context, FrameLib_Para
 
 // Info
 
-const char *FrameLib_SampleRate::objectInfo(bool verbose)
+std::string FrameLib_SampleRate::objectInfo(bool verbose)
 {
     return getInfo("Convert values based on the sample rate / Output a value based on the sampling rate value: "
                    "The output is either a single value or (when converting values) the size matches the input size. "
@@ -33,13 +33,13 @@ const char *FrameLib_SampleRate::objectInfo(bool verbose)
                    "Convert values based on the sample rate / Output a value based on the sampling rate value.", verbose);
 }
 
-const char *FrameLib_SampleRate::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_SampleRate::inputInfo(unsigned long idx, bool verbose)
 {
     return getInfo("Trigger / Input Frame - triggers cause output of a value / input frames are converted as specified",
                    "Trigger / Input Frame", verbose);
 }
 
-const char *FrameLib_SampleRate::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_SampleRate::outputInfo(unsigned long idx, bool verbose)
 {
     return "Output Value / Scaled Frame";
 }

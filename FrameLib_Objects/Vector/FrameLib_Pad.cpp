@@ -24,7 +24,7 @@ FrameLib_Pad::FrameLib_Pad(FrameLib_Context context, FrameLib_Parameters::Serial
 
 // Info
 
-const char *FrameLib_Pad::objectInfo(bool verbose)
+std::string FrameLib_Pad::objectInfo(bool verbose)
 {
     return getInfo("Pads an input frame with a fixed value at either the start the end, or both: "
                    "The output frame size is at least the same length as the input, plus the number of padding values. "
@@ -32,12 +32,12 @@ const char *FrameLib_Pad::objectInfo(bool verbose)
                    "Pads an input frame with a fixed value at either the start the end, or both.", verbose);
 }
 
-const char *FrameLib_Pad::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Pad::inputInfo(unsigned long idx, bool verbose)
 {
     return "Frames to Pad";
 }
 
-const char *FrameLib_Pad::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Pad::outputInfo(unsigned long idx, bool verbose)
 {
     return "Padded Frames";
 }

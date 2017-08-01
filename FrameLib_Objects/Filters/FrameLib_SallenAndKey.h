@@ -8,7 +8,7 @@
 // FIX - All filters to templates
 // FIX - time varying params
 
-class FrameLib_SallenAndKey : public FrameLib_Processor, private FrameLib_Info
+class FrameLib_SallenAndKey : public FrameLib_Processor
 {
     // Filter Class
 
@@ -59,9 +59,9 @@ public:
     
     // Info
     
-    const char *objectInfo(bool verbose);
-    const char *inputInfo(unsigned long idx, bool verbose);
-    const char *outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose);
+    std::string inputInfo(unsigned long idx, bool verbose);
+    std::string outputInfo(unsigned long idx, bool verbose);
     
 private:
     

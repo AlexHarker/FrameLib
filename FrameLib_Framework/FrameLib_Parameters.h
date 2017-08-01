@@ -520,7 +520,7 @@ public:
     
     // Get Name
     
-    const char *getName(unsigned long idx) const                            { return mParameters[idx]->name(); }
+    std::string getName(unsigned long idx) const                            { return mParameters[idx]->name(); }
    
     long getArgumentIdx(unsigned long idx) const                            { return mParameters[idx]->argumentIdx(); }
     long getArgumentIdx(const char *name) const                             { return mParameters[getIdx(name)]->argumentIdx(); }
@@ -535,8 +535,8 @@ public:
     
     // N.B. the type string includes details of numeric type / instantion only
     
-    const char *getTypeString(unsigned long idx) const;
-    const char *getTypeString(const char *name) const                       { return getTypeString(getIdx(name)); }
+    std::string getTypeString(unsigned long idx) const;
+    std::string getTypeString(const char *name) const                       { return getTypeString(getIdx(name)); }
 
     // Get Range
     
@@ -554,21 +554,21 @@ public:
         
     // Get Item Strings
     
-    const char *getItemString(unsigned long idx, unsigned long item) const  { return mParameters[idx]->getItemString(item); }
-    const char *getItemString(const char *name, unsigned long item) const   { return getItemString(getIdx(name), item); }
+    std::string getItemString(unsigned long idx, unsigned long item) const  { return mParameters[idx]->getItemString(item); }
+    std::string getItemString(const char *name, unsigned long item) const   { return getItemString(getIdx(name), item); }
     
     // Get Info
     
-    const char *getInfo(unsigned long idx) const                            { return mParameterInfo ? mParameterInfo->get(idx) : "No parameter info available"; }
-    const char *getInfo(const char *name) const                             { return getInfo(getIdx(name)); }
+    std::string getInfo(unsigned long idx) const                            { return mParameterInfo ? mParameterInfo->get(idx) : "No parameter info available"; }
+    std::string getInfo(const char *name) const                             { return getInfo(getIdx(name)); }
 
     // Default Values
     
     double getDefault(unsigned long idx) const                              { return mParameters[idx]->getDefault(); }
     double getDefault(const char *name) const                               { return getDefault(getIdx(name)); }
 
-    const char *getDefaultString(unsigned long idx) const;
-    const char *getDefaultString(const char *name) const                    { return getDefaultString(getIdx(name)); }
+    std::string getDefaultString(unsigned long idx) const;
+    std::string getDefaultString(const char *name) const                    { return getDefaultString(getIdx(name)); }
 
     // Get Value
     
@@ -635,7 +635,6 @@ private:
     
     std::vector <Parameter *> mParameters;
     Info *mParameterInfo;
-    mutable std::string mReportInfo;
 };
 
 #endif

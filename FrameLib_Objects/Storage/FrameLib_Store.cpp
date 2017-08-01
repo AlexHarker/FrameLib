@@ -22,13 +22,13 @@ FrameLib_Store::~FrameLib_Store()
 
 // Info
 
-const char *FrameLib_Store::objectInfo(bool verbose)
+std::string FrameLib_Store::objectInfo(bool verbose)
 {
     return getInfo("Stores a vector frame in named memory for recall: The output can be used to control ordering/synchronsation.",
                    "Stores a vector frame in named memory for recall.", verbose);
 }
 
-const char *FrameLib_Store::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Store::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
         return getInfo("Synchronisation Input - use to control ordering", "Synchronisation Input", verbose);
@@ -36,7 +36,7 @@ const char *FrameLib_Store::inputInfo(unsigned long idx, bool verbose)
         return "Input to Store";
 }
 
-const char *FrameLib_Store::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Store::outputInfo(unsigned long idx, bool verbose)
 {
     return "Synchronisation Output";
 }

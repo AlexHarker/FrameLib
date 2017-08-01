@@ -24,19 +24,19 @@ FrameLib_FromMax::FrameLib_FromMax(FrameLib_Context context, FrameLib_Parameters
 
 // Info
 
-const char *FrameLib_FromMax::objectInfo(bool verbose)
+std::string FrameLib_FromMax::objectInfo(bool verbose)
 {
     return getInfo("Turn max messages into frames: In values mode the output is the last receive value(s) as a vector. "
                    "In params mode messages are collected and output as a single tagged frame for setting parameters.",
                    "Turn max messages into frames.", verbose);
 }
 
-const char *FrameLib_FromMax::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_FromMax::inputInfo(unsigned long idx, bool verbose)
 {
     return getInfo("Trigger Frame - triggers output", "Trigger Frame", verbose);
 }
 
-const char *FrameLib_FromMax::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_FromMax::outputInfo(unsigned long idx, bool verbose)
 {
     return "Output Frames";
 }
