@@ -426,10 +426,10 @@ void FrameLib_DSP::dependenciesReady()
         if (timeUpdated)
         {
             mOutputDone = true;
-            
+
             for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
-            {
-                if (ins->mObject && ((ins->mTrigger && !ins->mSwitchable) || (!ins->mObject->mOutputDone || ins->mSwitchable)) && (mValidTime == ins->mObject->mValidTime))
+            {                
+                if (ins->mObject && ((ins->mTrigger && !ins->mSwitchable) || (!ins->mObject->mOutputDone && ins->mSwitchable)) && (mValidTime == ins->mObject->mValidTime))
                 {
                     if (ins->mObject->mOutputDone)
                     {
@@ -462,7 +462,7 @@ void FrameLib_DSP::dependenciesReady()
         }
     }
     
-    // If time has updated then notify output dependencies of calculation (updates to inputs)
+    // If time has updated then notify output dependencies (updates to inputs)
     
     if (timeUpdated)
         for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
