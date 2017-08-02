@@ -344,28 +344,23 @@ void FrameLib_DSP::dependenciesReady()
             if (ins->mObject && ins->mObject->mValidTime < mInputTime)
                 mInputTime = ins->mObject->mValidTime;
         
-        // It is disallowed to advance if the output already stretches beyond the current block time
+        // Schedule
         
-        bool upToDate = mValidTime >= mBlockEndTime;
-        
-        SchedulerInfo scheduleInfo = schedule(mOutputDone && !upToDate, upToDate);
+        SchedulerInfo scheduleInfo = schedule(mOutputDone);
         
         // Check if time has been updated (limiting to positive advances only), and if so set output times
-        
-        scheduleInfo.mTimeAdvance = clipToPositive(scheduleInfo.mTimeAdvance);
-        
-        if (scheduleInfo.mTimeAdvance && !upToDate)
-        {
-            bool newFrame = (scheduleInfo.mNewFrame || mOutputDone);
-            
-            if (newFrame)
-                setOutputDependencyCount();
                 
-            mFrameTime = newFrame ? mValidTime : mFrameTime;
+        if (nonZeroPositive(scheduleInfo.mTimeAdvance))
+        {
+            if (scheduleInfo.mNewFrame || mOutputDone)
+            {
+                setOutputDependencyCount();
+                mFrameTime = mValidTime;
+            }
+            
             mValidTime += scheduleInfo.mTimeAdvance;
             mOutputDone = scheduleInfo.mOutputDone;
             
-            upToDate = mValidTime >= mBlockEndTime;
             timeUpdated = true;
         }
         
@@ -376,7 +371,7 @@ void FrameLib_DSP::dependenciesReady()
         
         // If we are up to date with the block time (output and all inputs) add the dependency on the block update
         
-        if (upToDate && mInputTime >= mBlockEndTime)
+        if (mInputTime >= mBlockEndTime)
             mDependencyCount++;
     }
     else

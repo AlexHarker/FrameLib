@@ -63,7 +63,7 @@ public:
     
     // Absolute value
     
-    friend FL_FP clipToPositive(const FL_FP& arg)               { return arg; }
+    friend bool nonZeroPositive(const FL_FP& a)                 { return a.mInt || a.mFrac; }
     
     // Comparison operators (N.B. - it is faster to avoid branching using bit rather logical operators)
 
@@ -220,6 +220,6 @@ template<> struct FL_Limits <FL_FP>
 
 // Double Helper Utility
 
-inline double clipToPositive(double &arg)  {return arg < 0 ? 0 : arg; }
+inline double nonZeroPositive(double& a)  {return a > 0.0; }
 
 #endif

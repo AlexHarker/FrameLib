@@ -24,7 +24,7 @@ private:
     
     // Schedule
     
-    SchedulerInfo schedule(bool newFrame, bool noOutput);
+    SchedulerInfo schedule(bool newFrame);
 };
 
 #endif

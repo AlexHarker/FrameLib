@@ -75,7 +75,7 @@ void FrameLib_Interval::update()
     }
 }
 
-FrameLib_Interval::SchedulerInfo FrameLib_Interval::schedule(bool newFrame, bool noOutput)
+FrameLib_Interval::SchedulerInfo FrameLib_Interval::schedule(bool newFrame)
 {
     return SchedulerInfo(mInterval, true, true);
 }

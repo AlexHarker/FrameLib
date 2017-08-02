@@ -21,7 +21,7 @@ std::string FrameLib_Once::outputInfo(unsigned long idx, bool verbose)
 
 // Schedule
 
-FrameLib_Once::SchedulerInfo FrameLib_Once::schedule(bool newFrame, bool noOutput)
+FrameLib_Once::SchedulerInfo FrameLib_Once::schedule(bool newFrame)
 {
     return SchedulerInfo(FL_Limits<FrameLib_TimeFormat>::largest() - getValidTime(), getValidTime() == FrameLib_TimeFormat(1), true);
 }

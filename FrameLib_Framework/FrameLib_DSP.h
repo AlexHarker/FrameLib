@@ -196,7 +196,7 @@ private:
     
     // Override for scheduling code (scheduler objects must override this)
 
-    virtual SchedulerInfo schedule(bool newFrame, bool noOutput) = 0;
+    virtual SchedulerInfo schedule(bool newFrame) = 0;
     
     // Override for main frame processing code (processor objects must override this)
 
@@ -301,7 +301,7 @@ protected:
     
     // This prevents the user from needing to implement this method - doing so will do nothing
     
-    virtual SchedulerInfo schedule(bool newFrame, bool noOutput) { return SchedulerInfo(); }
+    virtual SchedulerInfo schedule(bool newFrame) { return SchedulerInfo(); }
     
     void setIO(unsigned long nIns, unsigned long nOuts) { FrameLib_DSP::setIO(nIns, nOuts); }
 };
@@ -325,7 +325,7 @@ protected:
     
     // This prevents the user from needing to implement this method - doing so will do nothing
     
-    virtual SchedulerInfo schedule(bool newFrame, bool noOutput)    { return SchedulerInfo(); }
+    virtual SchedulerInfo schedule(bool newFrame) { return SchedulerInfo(); }
 };
 
 // ************************************************************************************** //
@@ -347,7 +347,7 @@ protected:
     
     // This prevents the user from needing to implement this method - doing so will do nothing
     
-    virtual SchedulerInfo schedule(bool newFrame, bool noOutput)    { return SchedulerInfo(); }
+    virtual SchedulerInfo schedule(bool newFrame) { return SchedulerInfo(); }
 };
 
 // ************************************************************************************** //

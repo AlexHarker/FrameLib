@@ -30,7 +30,7 @@ private:
     // Update and Schedule
     
     void update();
-    SchedulerInfo schedule(bool newFrame, bool noOutput);
+    SchedulerInfo schedule(bool newFrame);
     
     // Data
 
