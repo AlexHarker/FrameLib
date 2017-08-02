@@ -68,9 +68,10 @@ void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long blockS
 
 void FrameLib_DSP::reset(double samplingRate, unsigned long maxBlockSize)
 {
-    // Store sample rate and call object specific reset
+    // Store sample rate / max block size and call object specific reset
     
     mSamplingRate = samplingRate > 0 ? samplingRate : 44100.0;
+    mMaxBlockSize = maxBlockSize;
     
     objectReset();
     
@@ -337,7 +338,7 @@ void FrameLib_DSP::dependenciesReady()
     {
         // Find the input time (the min valid time of all inputs)
         
-        mInputTime = FL_Limits<FrameLib_TimeFormat>::largest();
+        mInputTime = mBlockEndTime;
         
         for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
             if (ins->mObject && ins->mObject->mValidTime < mInputTime)
@@ -392,9 +393,9 @@ void FrameLib_DSP::dependenciesReady()
         
         FrameLib_TimeFormat prevValidTillTime = mValidTime;
         
-        // Find the valid till time (the min valid time of connected inputs that can trigger) and input time (the min valid time of all inputs)
+        // Find the valid till time (the min valid time of connected inputs that can trigger) and input time (the min valid time of all inputs and block end time if relevant)
         
-        mInputTime = FL_Limits<FrameLib_TimeFormat>::largest();
+        mInputTime = requiresAudioNotification() ? mBlockEndTime : FL_Limits<FrameLib_TimeFormat>::largest();
         mValidTime = FL_Limits<FrameLib_TimeFormat>::largest();
         
         for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
