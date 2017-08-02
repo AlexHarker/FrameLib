@@ -236,11 +236,7 @@ bool FrameLib_DSP::allocateOutputs()
             if (outs->mType == kFrameTagged)
                 Serial::newInPlace(outs->mMemory, outs->mCurrentSize);
         }
-        
-        // Set dependency count
-        
-        mOutputMemoryCount = mOutputDependencies.size();
-        
+    
         return true;
     }
     
@@ -251,8 +247,6 @@ bool FrameLib_DSP::allocateOutputs()
         outs->mMemory = NULL;
         outs->mCurrentSize = 0;
     }
-    
-    mOutputMemoryCount = 0;
     
     return false;
 }
@@ -353,7 +347,7 @@ void FrameLib_DSP::dependenciesReady()
         
         bool upToDate = mValidTime >= mBlockEndTime;
         
-        SchedulerInfo scheduleInfo = schedule(mOutputDone, upToDate);
+        SchedulerInfo scheduleInfo = schedule(mOutputDone && !upToDate, upToDate);
         
         // Check if time has been updated (limiting to positive advances only), and if so set output times
         
@@ -361,9 +355,15 @@ void FrameLib_DSP::dependenciesReady()
         
         if (scheduleInfo.mTimeAdvance && !upToDate)
         {
-            mFrameTime = (scheduleInfo.mNewFrame || mOutputDone) ? mValidTime : mFrameTime;
+            bool newFrame = (scheduleInfo.mNewFrame || mOutputDone);
+            
+            if (newFrame)
+                setOutputDependencyCount();
+                
+            mFrameTime = newFrame ? mValidTime : mFrameTime;
             mValidTime += scheduleInfo.mTimeAdvance;
             mOutputDone = scheduleInfo.mOutputDone;
+            
             upToDate = mValidTime >= mBlockEndTime;
             timeUpdated = true;
         }
@@ -411,6 +411,7 @@ void FrameLib_DSP::dependenciesReady()
         {
             mFrameTime = prevValidTillTime;
             process();
+            setOutputDependencyCount();
             if (mInputDependencies.size() == 1)
                 (*mInputDependencies.begin())->releaseOutputMemory();
         }
@@ -465,6 +466,11 @@ void FrameLib_DSP::dependenciesReady()
     if (timeUpdated)
         for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
             (*it)->dependencyNotify(false);
+}
+
+void FrameLib_DSP::setOutputDependencyCount()
+{
+    mOutputMemoryCount = mOutputDependencies.size();
 }
 
 void FrameLib_DSP::resetDependencyCount()

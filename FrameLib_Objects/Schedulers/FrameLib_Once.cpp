@@ -11,7 +11,7 @@ std::string FrameLib_Once::objectInfo(bool verbose)
 
 std::string FrameLib_Once::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Synchronisation Input";
+    return getInfo("Synchronisation Input - input is ignored, but can be used for synchronsation purposes", "Synchronisation Input", verbose);
 }
 
 std::string FrameLib_Once::outputInfo(unsigned long idx, bool verbose)
@@ -23,9 +23,5 @@ std::string FrameLib_Once::outputInfo(unsigned long idx, bool verbose)
 
 FrameLib_Once::SchedulerInfo FrameLib_Once::schedule(bool newFrame, bool noOutput)
 {
-    // FIX - output memory count on schedulers is broken without this...
-    
-    allocateOutputs();
-    
-    return SchedulerInfo(FL_Limits<FrameLib_TimeFormat>::largest() - getValidTime(), true, true);
+    return SchedulerInfo(FL_Limits<FrameLib_TimeFormat>::largest() - getValidTime(), getValidTime() == FrameLib_TimeFormat(1), true);
 }

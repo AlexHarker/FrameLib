@@ -3318,8 +3318,8 @@
 			children = (
 				B8061D501B8C0C00002C8BD2 /* FrameLib_Interval.h */,
 				B8BDF05A1F2D40C800264316 /* FrameLib_Interval.cpp */,
-				B826E4AE1F31490100B920C8 /* FrameLib_Once.cpp */,
 				B826E4AF1F31490100B920C8 /* FrameLib_Once.h */,
+				B826E4AE1F31490100B920C8 /* FrameLib_Once.cpp */,
 			);
 			path = Schedulers;
 			sourceTree = "<group>";

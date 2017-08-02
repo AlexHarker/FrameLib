@@ -217,6 +217,7 @@ private:
     
     inline void dependencyNotify(bool releaseMemory);
     void dependenciesReady();
+    void setOutputDependencyCount();
     void resetDependencyCount();
     
     // Dependency Updating
