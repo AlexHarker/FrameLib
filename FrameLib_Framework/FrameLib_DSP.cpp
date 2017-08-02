@@ -338,7 +338,7 @@ void FrameLib_DSP::dependenciesReady()
     {
         // Find the input time (the min valid time of all inputs)
         
-        mInputTime = mBlockEndTime;
+        mInputTime = FL_Limits<FrameLib_TimeFormat>::largest();
         
         for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
             if (ins->mObject && ins->mObject->mValidTime < mInputTime)
@@ -369,6 +369,11 @@ void FrameLib_DSP::dependenciesReady()
             timeUpdated = true;
         }
         
+        // Revise the input time to the end of the current frame (in order that we don't free anything we might still need)
+        
+        if (mValidTime < mInputTime)
+            mInputTime = mValidTime;
+        
         // If we are up to date with the block time (output and all inputs) add the dependency on the block update
         
         if (upToDate && mInputTime >= mBlockEndTime)
@@ -393,9 +398,9 @@ void FrameLib_DSP::dependenciesReady()
         
         FrameLib_TimeFormat prevValidTillTime = mValidTime;
         
-        // Find the valid till time (the min valid time of connected inputs that can trigger) and input time (the min valid time of all inputs and block end time if relevant)
+        // Find the valid till time (the min valid time of connected inputs that can trigger) and input time (the min valid time of all inputs)
         
-        mInputTime = requiresAudioNotification() ? mBlockEndTime : FL_Limits<FrameLib_TimeFormat>::largest();
+        mInputTime = FL_Limits<FrameLib_TimeFormat>::largest();
         mValidTime = FL_Limits<FrameLib_TimeFormat>::largest();
         
         for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
