@@ -413,7 +413,7 @@ void FrameLib_DSP::dependenciesReady()
             mFrameTime = prevValidTillTime;
             process();
             setOutputDependencyCount();
-            if (mInputDependencies.size() == 1)
+            if (mImmediateRelease)
                 (*mInputDependencies.begin())->releaseOutputMemory();
         }
         
@@ -458,7 +458,7 @@ void FrameLib_DSP::dependenciesReady()
         if (mInputTime == (*it)->mValidTime)
         {
             mDependencyCount++;
-            (*it)->dependencyNotify((getType() == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone);
+            (*it)->dependencyNotify(!mImmediateRelease && (*it)->mOutputDone);
         }
     }
     
@@ -478,6 +478,7 @@ void FrameLib_DSP::resetDependencyCount()
 {
     mOutputMemoryCount = 0;
     mDependencyCount = mInputDependencies.size() + ((requiresAudioNotification()) ? 1 : 0);
+    mImmediateRelease = getType() != kScheduler && mInputDependencies.size() == 1;
     
     freeOutputMemory();
 }
