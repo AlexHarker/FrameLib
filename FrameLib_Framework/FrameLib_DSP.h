@@ -278,7 +278,6 @@ private:
     FrameLib_TimeFormat mBlockStartTime;
     FrameLib_TimeFormat mBlockEndTime;
     
-    bool mImmediateRelease;
     bool mInUpdate;
     bool mOutputDone;
 };
