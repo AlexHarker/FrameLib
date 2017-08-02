@@ -316,6 +316,28 @@ inline void FrameLib_DSP::dependencyNotify(bool releaseMemory)
 void FrameLib_DSP::dependenciesReady()
 {
     bool timeUpdated = false;
+    bool callUpdate = false;
+    
+    // Check for inputs at the current frame time that update (update parameters if requested)
+    
+    for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
+    {
+        if (ins->mObject && ins->mUpdate && mValidTime == ins->mObject->mFrameTime)
+        {
+            callUpdate = true;
+            if (ins->mParameters)
+                mParameters.set(ins->mObject->getOutput(ins->mIndex));
+        }
+    }
+    
+    // Custom Update
+    
+    if (callUpdate)
+    {
+        mInUpdate = true;
+        update();
+        mInUpdate = false;
+    }
     
     if (getType() == kScheduler)
     {
@@ -354,31 +376,7 @@ void FrameLib_DSP::dependenciesReady()
     else
     {
         bool trigger = false;
-        bool callUpdate = false;
-        
-        // Check for inputs at the current frame time that update (update parameters if requested)
-        
-        for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
-        {
-            if (ins->mObject && ins->mUpdate && mValidTime == ins->mObject->mFrameTime)
-            {
-                callUpdate = true;
-                if (ins->mParameters)
-                {
-                    FrameLib_Parameters::Serial *serialised = ins->mObject->getOutput(ins->mIndex);
-                
-                    if (serialised)
-                        mParameters.set(serialised);
-                }
-            }
-        }
-        
-        // Custom Update
-        
-        mInUpdate = true;
-        update();
-        mInUpdate = false;
-        
+
         // Check for inputs at the current frame time that trigger (after any update)
         
         for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
@@ -428,7 +426,7 @@ void FrameLib_DSP::dependenciesReady()
             mOutputDone = true;
 
             for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
-            {                
+            {
                 if (ins->mObject && ((ins->mTrigger && !ins->mSwitchable) || (!ins->mObject->mOutputDone && ins->mSwitchable)) && (mValidTime == ins->mObject->mValidTime))
                 {
                     if (ins->mObject->mOutputDone)

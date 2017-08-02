@@ -50,26 +50,29 @@ FrameLib_Interval::ParameterInfo::ParameterInfo()
 
 void FrameLib_Interval::update()
 {
-    FrameLib_TimeFormat interval = mParameters.getValue(kInterval);
-    
-    switch ((Units) (mParameters.getValue(kUnits)))
+    if (mParameters.changed(kInterval))
     {
-        case kMS:
-            interval *= mSamplingRate / 1000.0;
-            break;
-            
-        case kSeconds:
-            interval *= mSamplingRate;
-            break;
-            
-        case kSamples:
-            break;
+        FrameLib_TimeFormat interval = mParameters.getValue(kInterval);
+    
+        switch ((Units) (mParameters.getValue(kUnits)))
+        {
+            case kMS:
+                interval *= mSamplingRate / 1000.0;
+                break;
+                
+            case kSeconds:
+                interval *= mSamplingRate;
+                break;
+                
+            case kSamples:
+                break;
+        }
+        
+        if (!interval)
+            interval = FL_Limits<FrameLib_TimeFormat>::smallest();
+        
+        mInterval = interval;
     }
-    
-    if (!interval)
-        interval = FL_Limits<FrameLib_TimeFormat>::smallest();
-    
-    mInterval = interval;
 }
 
 FrameLib_Interval::SchedulerInfo FrameLib_Interval::schedule(bool newFrame, bool noOutput)

@@ -494,7 +494,7 @@ public:
    
     // Set Value
     
-    void set(Serial *serialised)                                { serialised->read(this); }
+    void set(Serial *serialised)                                { if (serialised) serialised->read(this); }
 
     void set(unsigned long idx, bool value)                     { set(idx, (double) value); }
     void set(const char *name, bool value)                      { set(name, (double) value); }

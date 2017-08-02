@@ -42,34 +42,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8CA31F0199A23F9005F30A1"
-               BuildableName = "fl.t1~.mxo"
-               BlueprintName = "fl.t1~"
-               ReferencedContainer = "container:framelib~.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8CA3200199A23FC005F30A1"
-               BuildableName = "fl.t2~.mxo"
-               BlueprintName = "fl.t2~"
-               ReferencedContainer = "container:framelib~.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8CA3215199A29C8005F30A1"
                BuildableName = "fl.interval~.mxo"
                BlueprintName = "fl.interval~"
@@ -1291,6 +1263,20 @@
                BlueprintIdentifier = "B85C8FCE1E605B2E004D7D40"
                BuildableName = "fl.multitaper~.mxo"
                BlueprintName = "fl.multitaper~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B826E48F1F3148AB00B920C8"
+               BuildableName = "fl.once~.mxo"
+               BlueprintName = "fl.once~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
