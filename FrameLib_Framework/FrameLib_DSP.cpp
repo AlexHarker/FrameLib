@@ -391,7 +391,7 @@ void FrameLib_DSP::dependenciesReady()
         
         // Store previous valid till time to determine later if there has been any change
         
-        FrameLib_TimeFormat prevValidTillTime = mValidTime;
+        FrameLib_TimeFormat prevValidTime = mValidTime;
         
         // Find the valid till time (the min valid time of connected inputs that can trigger) and input time (the min valid time of all inputs)
         
@@ -410,7 +410,7 @@ void FrameLib_DSP::dependenciesReady()
         
         if (trigger)
         {
-            mFrameTime = prevValidTillTime;
+            mFrameTime = prevValidTime;
             process();
             setOutputDependencyCount();
             if (mInputDependencies.size() == 1)
@@ -419,7 +419,7 @@ void FrameLib_DSP::dependenciesReady()
         
         // Check for the frame times updating
         
-        if (mValidTime != prevValidTillTime)
+        if (mValidTime != prevValidTime)
         {
             timeUpdated = true;
             mOutputDone = true;
