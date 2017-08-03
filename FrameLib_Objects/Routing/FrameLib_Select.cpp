@@ -10,8 +10,6 @@ FrameLib_Select::FrameLib_Select(FrameLib_Context context, FrameLib_Parameters::
     mParameters.setInstantiation();
     mParameters.addInt(kActiveIn, "input", 0, 1);
     
-    // FIX - clip??
-    
     mParameters.set(serialisedParameters);
     
     mNumIns = mParameters.getInt(kNumIns);
@@ -62,19 +60,17 @@ void FrameLib_Select::update()
 {
     if (mParameters.changed(kActiveIn))
     {
-        mActiveIn = mParameters.getInt(kActiveIn);
+        // FIX - which way to index the inputs?
+        
+        mActiveIn = floor(mParameters.getValue(kActiveIn));
         
         for (unsigned long i = 0; i < mNumIns; i++)
             updateTrigger(i, i == mActiveIn);
-        
-        // FIX - negative values truncated etc. - make sure this is safe
     }
 }
 
 void FrameLib_Select::process()
 {
-    // FIX - this calls into question the validity of the DSP - it needs checking - I think it will keep memory around...
-    
     unsigned long size;
     
     double *input = getInput(mActiveIn, &size);
