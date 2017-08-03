@@ -26,7 +26,7 @@ protected:
     struct SchedulerInfo
     {
         SchedulerInfo()
-        : mTimeAdvance(), mNewFrame(), mOutputDone() {}
+        : mTimeAdvance(0), mNewFrame(false), mOutputDone(false) {}
         
         SchedulerInfo(FrameLib_TimeFormat timeAdvance, bool newFrame, bool outputDone)
         : mTimeAdvance(timeAdvance), mNewFrame(newFrame), mOutputDone(outputDone) {}
@@ -145,6 +145,7 @@ protected:
     
     FrameLib_TimeFormat getFrameTime()      { return mFrameTime; }
     FrameLib_TimeFormat getValidTime()      { return mValidTime; }
+    FrameLib_TimeFormat getInputTime()      { return mInputTime; }
     FrameLib_TimeFormat getCurrentTime()    { return getType() == kScheduler ? mValidTime : mFrameTime; }
     FrameLib_TimeFormat getBlockStartTime() { return mBlockStartTime; }
     FrameLib_TimeFormat getBlockEndTime()   { return mBlockEndTime; }
@@ -197,7 +198,7 @@ private:
     
     // Override for scheduling code (scheduler objects must override this)
 
-    virtual SchedulerInfo schedule(bool newFrame) = 0;
+    virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) = 0;
     
     // Override for main frame processing code (processor objects must override this)
 
@@ -302,7 +303,7 @@ protected:
     
     // This prevents the user from needing to implement this method - doing so will do nothing
     
-    virtual SchedulerInfo schedule(bool newFrame) { return SchedulerInfo(); }
+    virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) { return SchedulerInfo(); }
     
     void setIO(unsigned long nIns, unsigned long nOuts) { FrameLib_DSP::setIO(nIns, nOuts); }
 };
@@ -326,7 +327,7 @@ protected:
     
     // This prevents the user from needing to implement this method - doing so will do nothing
     
-    virtual SchedulerInfo schedule(bool newFrame) { return SchedulerInfo(); }
+    virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) { return SchedulerInfo(); }
 };
 
 // ************************************************************************************** //
@@ -348,7 +349,7 @@ protected:
     
     // This prevents the user from needing to implement this method - doing so will do nothing
     
-    virtual SchedulerInfo schedule(bool newFrame) { return SchedulerInfo(); }
+    virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) { return SchedulerInfo(); }
 };
 
 // ************************************************************************************** //

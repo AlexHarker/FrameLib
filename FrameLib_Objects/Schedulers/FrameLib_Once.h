@@ -24,7 +24,7 @@ private:
     
     // Schedule
     
-    SchedulerInfo schedule(bool newFrame);
+    SchedulerInfo schedule(bool newFrame, bool noAdvance);
 };
 
 #endif

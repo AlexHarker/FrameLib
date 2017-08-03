@@ -1,14 +1,14 @@
 
-#ifndef FRAMELIB_INTERVAL_H
-#define FRAMELIB_INTERVAL_H
+#ifndef FRAMELIB_TIME_H
+#define FRAMELIB_TIME_H
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_Interval : public FrameLib_Scheduler
+class FrameLib_Time : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kInterval, kUnits };
+    enum ParameterList { kUnits };
     enum Units { kSamples, kMS, kSeconds };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
@@ -17,7 +17,7 @@ public:
     
     // Constructor
     
-    FrameLib_Interval(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_Time(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
     // Info
     
@@ -27,22 +27,23 @@ public:
     
 private:
     
-    // Calculate Interval
+    // Calculate Multiplier
     
-    void calculateInterval();
+    void calculateMultiplier();
     
     // Object Reset
     
-    void objectReset() { calculateInterval(); }
+    void objectReset() { calculateMultiplier(); }
+    
     
     // Update and Schedule
     
     void update();
-    SchedulerInfo schedule(bool newFrame, bool noAdvance);
+    void process();
     
     // Data
 
-    FrameLib_TimeFormat mInterval;
+    FrameLib_TimeFormat mMultiplier;
     
     static ParameterInfo sParamInfo;
 };

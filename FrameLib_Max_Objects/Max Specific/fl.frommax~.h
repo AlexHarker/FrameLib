@@ -15,7 +15,7 @@ struct MaxMessage
         
     public:
         
-        List() : mSize(0) {}
+        List() : mSize(0) { mValues.resize(4096); }
         
         void set(t_atom *values, unsigned long size)
         {
@@ -24,13 +24,13 @@ struct MaxMessage
                 mValues[i] = atom_getfloat(values++);
         }
         
-        void get(double *output, unsigned long size) const      { std::copy(mValues, mValues + (size > mSize ? mSize : size), output); }
-        const double *get() const                               { return mValues; }
+        void get(double *output, unsigned long size) const      { std::copy(mValues.begin(), mValues.begin() + (size > mSize ? mSize : size), output); }
+        const double *get() const                               { return &mValues[0]; }
         unsigned long size() const                              { return mSize; }
 
     private:
         
-        double mValues[4096];
+        std::vector<double> mValues;
         unsigned long mSize;
     };
     

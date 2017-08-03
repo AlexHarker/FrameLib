@@ -4,7 +4,7 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
-: FrameLib_Block(type), mAllocator(context), mParameters(info), mQueue(context), mNext(NULL), mInUpdate(false)
+: FrameLib_Block(type), mSamplingRate(44100.0), mMaxBlockSize(4096), mAllocator(context), mParameters(info), mQueue(context), mNext(NULL), mInUpdate(false)
 {
     // Set IO
     
@@ -58,7 +58,7 @@ void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long blockS
     
     // If the object is handling audio updates (but is not an output object) then notify
     
-    if (mValidTime < mBlockEndTime && requiresAudioNotification())
+    if (requiresAudioNotification())
         dependencyNotify(false);
     
     mBlockStartTime = mBlockEndTime;
@@ -78,11 +78,12 @@ void FrameLib_DSP::reset(double samplingRate, unsigned long maxBlockSize)
     // Note that the first sample will be at time == 1 so that we can start the frames *before* this with non-negative values
     
     mFrameTime = 0.0;
-    mInputTime = 0.0;
+    mInputTime = 1.0;
     mValidTime = 1.0;
     mBlockStartTime = 1.0;
     mBlockEndTime = 1.0;
-    mOutputDone = true;
+    
+    mOutputDone = false;
     
     resetDependencyCount();
 }
@@ -317,7 +318,7 @@ void FrameLib_DSP::dependenciesReady()
     
     for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
     {
-        if (ins->mObject && ins->mUpdate && mValidTime == ins->mObject->mFrameTime)
+        if (ins->mObject && ins->mUpdate && mInputTime == ins->mObject->mFrameTime)
         {
             callUpdate = true;
             if (ins->mParameters)
@@ -346,11 +347,12 @@ void FrameLib_DSP::dependenciesReady()
         
         // Schedule
         
-        SchedulerInfo scheduleInfo = schedule(mOutputDone);
+        bool upToDate = mValidTime >= mBlockEndTime;
+        SchedulerInfo scheduleInfo = schedule(mOutputDone && !upToDate, upToDate);
         
         // Check if time has been updated (limiting to positive advances only), and if so set output times
                 
-        if (nonZeroPositive(scheduleInfo.mTimeAdvance))
+        if (!upToDate && nonZeroPositive(scheduleInfo.mTimeAdvance))
         {
             if (scheduleInfo.mNewFrame || mOutputDone)
             {

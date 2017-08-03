@@ -6,7 +6,7 @@ FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, FrameLib_Paramete
     mParameters.addDouble(kInterval, "interval", 64, 0);
     mParameters.setMin(0);
     
-    mParameters.addEnum(kUnits, "units");
+    mParameters.addEnum(kUnits, "units", 1);
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
@@ -15,7 +15,7 @@ FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, FrameLib_Paramete
     
     setParameterInput(0);
     
-    update();
+    calculateInterval();
 }
 
 // Info
@@ -46,36 +46,34 @@ FrameLib_Interval::ParameterInfo::ParameterInfo()
     add("Sets the time units used to set the interval between frames.");
 }
 
+// Calculate Interval
+
+void FrameLib_Interval::calculateInterval()
+{
+    FrameLib_TimeFormat interval = mParameters.getValue(kInterval);
+    
+    switch ((Units) (mParameters.getValue(kUnits)))
+    {
+        case kMS:           interval *= mSamplingRate / 1000.0;     break;
+        case kSeconds:      interval *= mSamplingRate;              break;
+        case kSamples:      break;
+    }
+    
+    if (!interval)
+        interval = FL_Limits<FrameLib_TimeFormat>::smallest();
+    
+    mInterval = interval;
+}
+
 // Update and Schedule
 
 void FrameLib_Interval::update()
 {
-    if (mParameters.changed(kInterval))
-    {
-        FrameLib_TimeFormat interval = mParameters.getValue(kInterval);
-    
-        switch ((Units) (mParameters.getValue(kUnits)))
-        {
-            case kMS:
-                interval *= mSamplingRate / 1000.0;
-                break;
-                
-            case kSeconds:
-                interval *= mSamplingRate;
-                break;
-                
-            case kSamples:
-                break;
-        }
-        
-        if (!interval)
-            interval = FL_Limits<FrameLib_TimeFormat>::smallest();
-        
-        mInterval = interval;
-    }
+    if (mParameters.changed(kInterval) || mParameters.changed(kUnits))
+        calculateInterval();
 }
 
-FrameLib_Interval::SchedulerInfo FrameLib_Interval::schedule(bool newFrame)
+FrameLib_Interval::SchedulerInfo FrameLib_Interval::schedule(bool newFrame, bool noAdvance)
 {
     return SchedulerInfo(mInterval, true, true);
 }

@@ -116,6 +116,7 @@ void FrameLib_MaxClass_FromMax::list(t_symbol *s, long argc, t_atom *argv)
     if (mMessages.mTagsNeedClear)
         mMessages.mTagged.clear();
     mMessages.mList.set(argv, argc);
+    mMessages.mTagsNeedClear = false;
     mMessages.mLock.release();
 }
 
@@ -136,6 +137,7 @@ void FrameLib_MaxClass_FromMax::anything(t_symbol *s, long argc, t_atom *argv)
     else
         mMessages.mTagged.back().set(argv, argc);
     
+    mMessages.mTagsNeedClear = false;
     mMessages.mLock.release();
 }
 
