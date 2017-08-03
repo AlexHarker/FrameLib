@@ -32,7 +32,7 @@ private:
     
     // Helpers
     
-    size_t bufferSize() const {return mBuffer.size(); }
+    size_t bufferSize() const { return mBuffer.size(); }
     
     unsigned long convertTimeToSamples(double time);
     void copy(double *input, unsigned long offset, unsigned long size);

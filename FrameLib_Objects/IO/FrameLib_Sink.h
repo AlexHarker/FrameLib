@@ -29,7 +29,7 @@ private:
     
     // Helpers
     
-    size_t bufferSize() const {return mBuffer.size(); }
+    size_t bufferSize() const { return mBuffer.size(); }
 
     void copyAndZero(double *output, unsigned long offset, unsigned long size);
     void addToBuffer(double *input, unsigned long offset, unsigned long size);

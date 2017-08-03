@@ -96,7 +96,7 @@ void FrameLib_Source::objectReset()
 {
     unsigned long size = convertTimeToSamples(mParameters.getValue(kMaxLength)) + mMaxBlockSize;
     
-    if (size != mBuffer.size())
+    if (size != bufferSize())
         mBuffer.resize(size);
     
     zeroVector(&mBuffer[0], bufferSize());
