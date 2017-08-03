@@ -417,15 +417,14 @@ void FrameLib_DSP::dependenciesReady()
                 (*mInputDependencies.begin())->releaseOutputMemory();
         }
         
-        // It shouldn't be it possible in a process object for time not to update but just in case...
+        // Check for the frame times updating
         
-        timeUpdated = mValidTime != prevValidTillTime;
-        
-        // Check for completion
-        
-        if (timeUpdated)
+        if (mValidTime != prevValidTillTime)
         {
+            timeUpdated = true;
             mOutputDone = true;
+
+            // Check for completion
 
             for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
             {

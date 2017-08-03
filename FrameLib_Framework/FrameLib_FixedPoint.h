@@ -63,7 +63,7 @@ public:
     
     // Absolute value
     
-    friend bool nonZeroPositive(const FL_FP& a)                 { return a.mInt || a.mFrac; }
+    friend bool nonZeroPositive(const FL_FP& a)                 { return a.mInt | a.mFrac; }
     
     // Comparison operators (N.B. - it is faster to avoid branching using bit rather logical operators)
 
@@ -215,7 +215,7 @@ template <class T> struct FL_Limits
 template<> struct FL_Limits <FL_FP>
 {
     static FL_FP smallest() { return FL_FP(0,1); }
-    static FL_FP largest() { return FL_FP(FL_Limits<uint64_t>::largest(), FL_Limits<uint64_t>::largest()); }
+    static FL_FP largest() { return FL_FP(std::numeric_limits<uint64_t>::max(), std::numeric_limits<uint64_t>::max()); }
 };
 
 // Double Helper Utility
