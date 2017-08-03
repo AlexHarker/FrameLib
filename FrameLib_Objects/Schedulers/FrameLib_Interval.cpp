@@ -10,6 +10,7 @@ FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, FrameLib_Paramete
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
+    mParameters.addEnumItem(kHz, "hz");
     
     mParameters.set(serialisedParameters);
     
@@ -54,6 +55,7 @@ void FrameLib_Interval::calculateInterval()
     
     switch ((Units) (mParameters.getValue(kUnits)))
     {
+        case kHz:           interval = mSamplingRate / interval;    break;
         case kMS:           interval *= mSamplingRate / 1000.0;     break;
         case kSeconds:      interval *= mSamplingRate;              break;
         case kSamples:      break;

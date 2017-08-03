@@ -9,7 +9,7 @@ class FrameLib_Interval : public FrameLib_Scheduler
     // Parameter Enums and Info
 
     enum ParameterList { kInterval, kUnits };
-    enum Units { kSamples, kMS, kSeconds };
+    enum Units { kSamples, kMS, kSeconds, kHz };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
