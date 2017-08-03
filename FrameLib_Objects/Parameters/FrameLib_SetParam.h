@@ -6,6 +6,8 @@
 
 class FrameLib_SetParam : public FrameLib_Processor
 {
+    const static int maxNumIns = 10;
+    
     // Parameter Enums and Info
 
     enum ParameterList { kNumIns, kNames };

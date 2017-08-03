@@ -145,11 +145,12 @@ protected:
     
     FrameLib_TimeFormat getFrameTime()      { return mFrameTime; }
     FrameLib_TimeFormat getValidTime()      { return mValidTime; }
+    FrameLib_TimeFormat getCurrentTime()    { return getType() == kScheduler ? mValidTime : mFrameTime; }
     FrameLib_TimeFormat getBlockStartTime() { return mBlockStartTime; }
     FrameLib_TimeFormat getBlockEndTime()   { return mBlockEndTime; }
     
-    FrameLib_TimeFormat getInputFrameTime(unsigned long idx)        { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : FrameLib_TimeFormat(0); }
-    FrameLib_TimeFormat getInputValidTillTime(unsigned long idx)    { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : FrameLib_TimeFormat(0); }
+    FrameLib_TimeFormat getInputFrameTime(unsigned long idx)    { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : FrameLib_TimeFormat(0); }
+    FrameLib_TimeFormat getInputValidTime(unsigned long idx)    { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : FrameLib_TimeFormat(0); }
     
     // Output Allocation
     

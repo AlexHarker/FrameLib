@@ -8,7 +8,7 @@ FrameLib_SetParam::FrameLib_SetParam (FrameLib_Context context, FrameLib_Paramet
     char nameStr[7];
     
     mParameters.addInt(kNumIns, "numins", 1, 0);
-    mParameters.setClip(1, 10);
+    mParameters.setClip(1, maxNumIns);
     mParameters.setInstantiation();
     
     // Read in once to get number of strings needed
@@ -68,7 +68,7 @@ FrameLib_SetParam::ParameterInfo::ParameterInfo()
     
     add("Sets the number of object inputs (and hence the number of parameters.");
     
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < maxNumIns; i++)
     {
         sprintf(str, "Sets the parameter name for input %d.", i + 1);
         add(str);
