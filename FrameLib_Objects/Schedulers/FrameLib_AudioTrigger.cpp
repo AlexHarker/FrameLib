@@ -56,19 +56,13 @@ FrameLib_AudioTrigger::SchedulerInfo FrameLib_AudioTrigger::schedule(bool newFra
 {
     unsigned long time = getCurrentTime().intVal();
     unsigned long offset = time - getBlockStartTime().intVal();
-    unsigned long i, j;
+    unsigned long i;
     
     // Find next trigger
     
-    for (i = offset; i < mBlockSize; i++)
+    for (i = offset + 1; i < mBlockSize; i++)
         if (mBuffer[i])
             break;
     
-    // Is there another trigger in this block?
-    
-    for (j = (i + 1); j < mBlockSize; j++)
-        if (mBuffer[j])
-            break;
-    
-    return SchedulerInfo(i == offset ? j - i : i - offset, i == offset && i < mBlockSize, j < mBlockSize);
+    return SchedulerInfo(i - offset, mBuffer[offset], i < mBlockSize);
 }
