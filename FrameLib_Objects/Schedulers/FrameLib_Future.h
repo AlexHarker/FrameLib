@@ -8,7 +8,7 @@ class FrameLib_Future : public FrameLib_Scheduler
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kTime, kUnits };
+    enum ParameterList { kTime, kUnits, kMode };
     enum Units { kSamples, kMS, kSeconds };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
@@ -27,13 +27,20 @@ public:
     
 private:
 
-    // Schedule
+    // Calculate Time
     
+    void calculateTime();
+    
+    // Update and schedule
+    
+    void update();
     SchedulerInfo schedule(bool newFrame, bool noAdvance);
     
     // Data
     
     static ParameterInfo sParamInfo;
+    
+    FrameLib_TimeFormat mTime;
 };
 
 #endif

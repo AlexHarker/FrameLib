@@ -11,9 +11,15 @@ FrameLib_Future::FrameLib_Future(FrameLib_Context context, FrameLib_Parameters::
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
     
+    mParameters.addEnum(kMode, "mode", 2);
+    mParameters.addEnumItem(kSamples, "absolute");
+    mParameters.addEnumItem(kMS, "relative");
+    
     mParameters.set(serialisedParameters);
     
     setParameterInput(0);
+    
+    calculateTime();
 }
 
 // Info
@@ -44,9 +50,7 @@ FrameLib_Future::ParameterInfo::ParameterInfo()
     add("Sets the time units used to set the interval between frames.");
 }
 
-// Schedule
-
-FrameLib_Future::SchedulerInfo FrameLib_Future::schedule(bool newFrame, bool noAdvance)
+void FrameLib_Future::calculateTime()
 {
     FrameLib_TimeFormat time = mParameters.getValue(kTime);
     FrameLib_TimeFormat now = getCurrentTime();
@@ -58,10 +62,28 @@ FrameLib_Future::SchedulerInfo FrameLib_Future::schedule(bool newFrame, bool noA
         case kSamples:  break;
     }
     
-    time += FrameLib_TimeFormat(1);
+    if (mParameters.getInt(kMode))
+        time += now;
+    else
+        time += FrameLib_TimeFormat(1);
+   
+    mTime = time;
+}
+
+void FrameLib_Future::update()
+{
+    if (mParameters.changed(kTime))
+        calculateTime();
+}
+
+// Schedule
+
+FrameLib_Future::SchedulerInfo FrameLib_Future::schedule(bool newFrame, bool noAdvance)
+{
+    FrameLib_TimeFormat now = getCurrentTime();
     
-    if (now < time)
-        return SchedulerInfo(time - now, false, true);
+    if (now < mTime)
+        return SchedulerInfo(mTime - now, false, true);
     
     FrameLib_TimeFormat inputTime = getInputTime();
     FrameLib_TimeFormat blockEndTime = getBlockEndTime();
