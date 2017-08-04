@@ -690,7 +690,7 @@ public:
         
         // Reset DSP
         
-        mObject->reset(samplerate);
+        mObject->reset(samplerate, maxvectorsize);
         
         // Add a perform routine to the chain if the object handles audio
         

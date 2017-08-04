@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Random::FrameLib_Random(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
+FrameLib_Random::FrameLib_Random(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 2, 1)
 {
     mParameters.addInt(kLength, "length", 1, 0);
     mParameters.setMin(0);
@@ -13,9 +13,7 @@ FrameLib_Random::FrameLib_Random(FrameLib_Context context, FrameLib_Parameters::
     mParameters.addEnumItem(kRequestedLength, "requested");
     
     mParameters.set(serialisedParameters);
-    
-    mParameters.setInfo(&sParamInfo);
-    
+        
     setParameterInput(1);
 }
 
@@ -23,9 +21,9 @@ FrameLib_Random::FrameLib_Random(FrameLib_Context context, FrameLib_Parameters::
 
 std::string FrameLib_Random::objectInfo(bool verbose)
 {
-    return getInfo("Generates frames of random values in the range [0-1]: The size of the output is dependent on the mode. "
+    return getInfo("Generates frames of linearly distributed random values in the range [0-1]: The size of the output is dependent on the mode. "
                    "The output size may either be set as a parameter, or be set to match that of the triggering input.",
-                   "Generates frames of random values in the range [0-1].", verbose);
+                   "Generates frames of linearly distributed random values in the range [0-1].", verbose);
 }
 
 std::string FrameLib_Random::inputInfo(unsigned long idx, bool verbose)

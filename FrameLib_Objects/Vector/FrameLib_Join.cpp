@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Join::FrameLib_Join(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context)
+FrameLib_Join::FrameLib_Join(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo)
 {
     mParameters.addInt(kNumIns, "numins", 2, 0);
     mParameters.setClip(2, 32);
@@ -14,8 +14,6 @@ FrameLib_Join::FrameLib_Join(FrameLib_Context context, FrameLib_Parameters::Seri
     mParameters.addBoolArray(kTriggers, "triggers", 1.0, mParameters.getInt(kNumIns));
     mParameters.setInstantiation();
     
-    mParameters.setInfo(&sParamInfo);
-
     mParameters.set(serialisedParameters);
     
     setIO(mParameters.getInt(kNumIns), 1);

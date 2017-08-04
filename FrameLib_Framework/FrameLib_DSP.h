@@ -34,7 +34,7 @@ protected:
     struct SchedulerInfo
     {
         SchedulerInfo()
-        : mTimeAdvance(), mNewFrame(), mOutputDone() {}
+        : mTimeAdvance(0), mNewFrame(false), mOutputDone(false) {}
         
         SchedulerInfo(FrameLib_TimeFormat timeAdvance, bool newFrame, bool outputDone)
         : mTimeAdvance(timeAdvance), mNewFrame(newFrame), mOutputDone(outputDone) {}
@@ -99,7 +99,7 @@ public:
 
     // Constructor / Destructor
 
-    FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0);
+    FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0);
     ~FrameLib_DSP();
     
     // Set Fixed Inputs
@@ -108,8 +108,8 @@ public:
 
     // Audio Processing
     
-    virtual void blockUpdate(double **ins, double **outs, unsigned long vecSize);
-    virtual void reset(double samplingRate);
+    virtual void blockUpdate(double **ins, double **outs, unsigned long blockSize);
+    virtual void reset(double samplingRate, unsigned long maxBlockSize);
     
     // Connection Methods
     
@@ -153,11 +153,13 @@ protected:
     
     FrameLib_TimeFormat getFrameTime()      { return mFrameTime; }
     FrameLib_TimeFormat getValidTime()      { return mValidTime; }
+    FrameLib_TimeFormat getInputTime()      { return mInputTime; }
+    FrameLib_TimeFormat getCurrentTime()    { return getType() == kScheduler ? mValidTime : mFrameTime; }
     FrameLib_TimeFormat getBlockStartTime() { return mBlockStartTime; }
     FrameLib_TimeFormat getBlockEndTime()   { return mBlockEndTime; }
     
-    FrameLib_TimeFormat getInputFrameTime(unsigned long idx)        { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : FrameLib_TimeFormat(0); }
-    FrameLib_TimeFormat getInputValidTillTime(unsigned long idx)    { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : FrameLib_TimeFormat(0); }
+    FrameLib_TimeFormat getInputFrameTime(unsigned long idx)    { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : FrameLib_TimeFormat(0); }
+    FrameLib_TimeFormat getInputValidTime(unsigned long idx)    { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : FrameLib_TimeFormat(0); }
     
     // Output Allocation
     
@@ -192,7 +194,7 @@ private:
 
     // Override to handle audio at the block level
     
-    virtual void blockProcess(double **ins, double **outs, unsigned long vecSize) {}
+    virtual void blockProcess(double **ins, double **outs, unsigned long blockSize) {}
 
     // Override to get called on audio reset
     
@@ -204,7 +206,7 @@ private:
     
     // Override for scheduling code (scheduler objects must override this)
 
-    virtual SchedulerInfo schedule(bool newFrame, bool noOutput) = 0;
+    virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) = 0;
     
     // Override for main frame processing code (processor objects must override this)
 
@@ -225,6 +227,7 @@ private:
     
     inline void dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, bool audioNotify = false);
     void dependenciesReady();
+    void setOutputDependencyCount();
     void resetDependencyCount();
     
     // Dependency Updating
@@ -244,9 +247,10 @@ protected:
    
     // Member Variables
     
-    // Sampling Rate
+    // Sampling Rate and Maximum Block Size
     
     double mSamplingRate;
+    unsigned long mMaxBlockSize;
     
     // Memory Allocator
     
@@ -298,8 +302,8 @@ class FrameLib_Processor : public FrameLib_DSP
     
 public:
     
-    FrameLib_Processor(FrameLib_Context context, unsigned long nIns = 0, unsigned long nOuts = 0)
-    : FrameLib_DSP(kProcessor, context, nIns, nOuts) {}
+    FrameLib_Processor(FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0)
+    : FrameLib_DSP(kProcessor, context, info, nIns, nOuts) {}
     
     static ObjectType getType() { return kProcessor; }
     static bool handlesAudio()  { return false; }
@@ -308,7 +312,7 @@ protected:
     
     // This prevents the user from needing to implement this method - doing so will do nothing
     
-    virtual SchedulerInfo schedule(bool newFrame, bool noOutput) { return SchedulerInfo(); }
+    virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) { return SchedulerInfo(); }
     
     void setIO(unsigned long nIns, unsigned long nOuts) { FrameLib_DSP::setIO(nIns, nOuts); }
 };
@@ -322,8 +326,8 @@ class FrameLib_AudioInput : public FrameLib_DSP
     
 public:
     
-    FrameLib_AudioInput(FrameLib_Context context, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
-    : FrameLib_DSP(kProcessor, context, nIns, nOuts, nAudioIns) {}
+    FrameLib_AudioInput(FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
+    : FrameLib_DSP(kProcessor, context, info, nIns, nOuts, nAudioIns) {}
 
     static ObjectType getType() { return kProcessor; }
     static bool handlesAudio()  { return true; }
@@ -332,7 +336,7 @@ protected:
     
     // This prevents the user from needing to implement this method - doing so will do nothing
     
-    virtual SchedulerInfo schedule(bool newFrame, bool noOutput)    { return SchedulerInfo(); }
+    virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) { return SchedulerInfo(); }
 };
 
 // ************************************************************************************** //
@@ -344,8 +348,8 @@ class FrameLib_AudioOutput : public FrameLib_DSP
     
 public:
     
-    FrameLib_AudioOutput(FrameLib_Context context, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioOuts = 0)
-    : FrameLib_DSP(kOutput, context, nIns, nOuts, nAudioOuts) {}
+    FrameLib_AudioOutput(FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioOuts = 0)
+    : FrameLib_DSP(kOutput, context, info, nIns, nOuts, nAudioOuts) {}
     
     static ObjectType getType() { return kOutput; }
     static bool handlesAudio()  { return true; }
@@ -354,7 +358,7 @@ protected:
     
     // This prevents the user from needing to implement this method - doing so will do nothing
     
-    virtual SchedulerInfo schedule(bool newFrame, bool noOutput)    { return SchedulerInfo(); }
+    virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) { return SchedulerInfo(); }
 };
 
 // ************************************************************************************** //
@@ -366,8 +370,8 @@ class FrameLib_Scheduler : public FrameLib_DSP
 
 public:
     
-    FrameLib_Scheduler(FrameLib_Context context, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
-    : FrameLib_DSP(kScheduler, context, nIns, nOuts, nAudioIns) {}
+    FrameLib_Scheduler(FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
+    : FrameLib_DSP(kScheduler, context, info, nIns, nOuts, nAudioIns) {}
     
     static ObjectType getType() { return kScheduler; }
     static bool handlesAudio()  { return true; }

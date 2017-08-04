@@ -18,7 +18,7 @@ public:
     
     // Constructor
     
-    FrameLib_UnaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1) {}
+    FrameLib_UnaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, NULL, 1, 1) {}
     
     // Info
     

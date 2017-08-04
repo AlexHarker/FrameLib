@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_SampleRate::FrameLib_SampleRate(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
+FrameLib_SampleRate::FrameLib_SampleRate(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 1, 1)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kValue, "value");
@@ -18,8 +18,6 @@ FrameLib_SampleRate::FrameLib_SampleRate(FrameLib_Context context, FrameLib_Para
     mParameters.addEnumItem(kFreqToHalfNorm, "freq->halfnorm");
     mParameters.setInstantiation();
     
-    mParameters.setInfo(&sParamInfo);
-
     mParameters.set(serialisedParameters);
 }
 

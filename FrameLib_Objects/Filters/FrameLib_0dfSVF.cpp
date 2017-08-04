@@ -54,7 +54,7 @@ void FrameLib_0dfSVF::ZeroDelayFeedbackSVF::calculateFilter(double x)
 
 // Constructor
 
-FrameLib_0dfSVF::FrameLib_0dfSVF(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
+FrameLib_0dfSVF::FrameLib_0dfSVF(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 2, 1)
 {
     mParameters.addDouble(kFreq, "freq", 500.0, 0);
     mParameters.setMin(0.0);
@@ -66,9 +66,7 @@ FrameLib_0dfSVF::FrameLib_0dfSVF(FrameLib_Context context, FrameLib_Parameters::
     mParameters.addEnumItem(kLPF, "lpf");
     mParameters.addEnumItem(kBPF, "bpf");
     mParameters.addEnumItem(kHPF, "hpf");
-    
-    mParameters.setInfo(&sParamInfo);
-    
+        
     mParameters.set(serialisedParameters);
     
     setParameterInput(1);

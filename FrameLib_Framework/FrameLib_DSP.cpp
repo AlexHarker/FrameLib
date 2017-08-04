@@ -3,16 +3,14 @@
 
 // Constructor / Destructor
 
-FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
-: FrameLib_Block(type), mAllocator(context), mQueue(context), mNextInThread(NULL), mInUpdate(false)
+FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
+: FrameLib_Block(type), mSamplingRate(44100.0), mMaxBlockSize(4096), mAllocator(context), mParameters(info), mQueue(context), mNextInThread(NULL), mInUpdate(false)
 {
     mQueueItem.mThis = this;
     
     // Set IO
     
     setIO(nIns, nOuts, nAudioChans);
-    
-    reset(0.0);
 }
 
 // Destructor
@@ -53,16 +51,16 @@ void FrameLib_DSP::setFixedInput(unsigned long idx, double *input, unsigned long
 
 // Block updates for objects with audio IO
 
-void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long vecSize)
+void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long blockSize)
 {
     // Update block time and process the block
     
-    mBlockEndTime += vecSize;
-    blockProcess(ins, outs, vecSize);
+    mBlockEndTime += blockSize;
+    blockProcess(ins, outs, blockSize);
     
     // If the object is handling audio updates (but is not an output object) then notify
     
-    if (mValidTime < mBlockEndTime && requiresAudioNotification())
+    if (requiresAudioNotification())
         dependencyNotify(this, false, true);
     
     mBlockStartTime = mBlockEndTime;
@@ -70,24 +68,24 @@ void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long vecSiz
 
 // Reset
 
-// FIX - issues with override on this - need to sort (and any others...)
-
-void FrameLib_DSP::reset(double samplingRate)
+void FrameLib_DSP::reset(double samplingRate, unsigned long maxBlockSize)
 {
-    // Store sample rate and call object specific reset
+    // Store sample rate / max block size and call object specific reset
     
     mSamplingRate = samplingRate > 0 ? samplingRate : 44100.0;
+    mMaxBlockSize = maxBlockSize;
     
     objectReset();
     
     // Note that the first sample will be at time == 1 so that we can start the frames *before* this with non-negative values
     
     mFrameTime = 0.0;
-    mInputTime = 0.0;
+    mInputTime = 1.0;
     mValidTime = 1.0;
     mBlockStartTime = 1.0;
     mBlockEndTime = 1.0;
-    mOutputDone = true;
+    
+    mOutputDone = false;
     
     resetDependencyCount();
 }
@@ -157,7 +155,7 @@ void FrameLib_DSP::setIO(unsigned long nIns, unsigned long nOuts, unsigned long 
     
     // Reset for audio
     
-    FrameLib_DSP::reset(mSamplingRate);
+    FrameLib_DSP::reset(mSamplingRate, mMaxBlockSize);
 }
 
 // Call this from your constructor only (unsafe elsewhere)
@@ -242,11 +240,7 @@ bool FrameLib_DSP::allocateOutputs()
             if (outs->mType == kFrameTagged)
                 Serial::newInPlace(outs->mMemory, outs->mCurrentSize);
         }
-        
-        // Set dependency count
-        
-        mOutputMemoryCount = mOutputDependencies.size();
-        
+    
         return true;
     }
     
@@ -257,8 +251,6 @@ bool FrameLib_DSP::allocateOutputs()
         outs->mMemory = NULL;
         outs->mCurrentSize = 0;
     }
-    
-    mOutputMemoryCount = 0;
     
     return false;
 }
@@ -334,6 +326,28 @@ inline void FrameLib_DSP::dependencyNotify(FrameLib_DSP *notifier, bool releaseM
 void FrameLib_DSP::dependenciesReady()
 {
     bool timeUpdated = false;
+    bool callUpdate = false;
+    
+    // Check for inputs at the current frame time that update (update parameters if requested)
+    
+    for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
+    {
+        if (ins->mObject && ins->mUpdate && mInputTime == ins->mObject->mFrameTime)
+        {
+            callUpdate = true;
+            if (ins->mParameters)
+                mParameters.set(ins->mObject->getOutput(ins->mIndex));
+        }
+    }
+    
+    // Custom Update
+    
+    if (callUpdate)
+    {
+        mInUpdate = true;
+        update();
+        mInUpdate = false;
+    }
     
     if (getType() == kScheduler)
     {
@@ -345,58 +359,41 @@ void FrameLib_DSP::dependenciesReady()
             if (ins->mObject && ins->mObject->mValidTime < mInputTime)
                 mInputTime = ins->mObject->mValidTime;
         
-        // It is disallowed to advance if the output already stretches beyond the current block time
+        // Schedule
         
         bool upToDate = mValidTime >= mBlockEndTime;
-        
-        SchedulerInfo scheduleInfo = schedule(mOutputDone, upToDate);
+        SchedulerInfo scheduleInfo = schedule(mOutputDone && !upToDate, upToDate);
         
         // Check if time has been updated (limiting to positive advances only), and if so set output times
-        
-        scheduleInfo.mTimeAdvance = clipToPositive(scheduleInfo.mTimeAdvance);
-        
-        if (scheduleInfo.mTimeAdvance && !upToDate)
+                
+        if (!upToDate && nonZeroPositive(scheduleInfo.mTimeAdvance))
         {
-            mFrameTime = (scheduleInfo.mNewFrame || mOutputDone) ? mValidTime : mFrameTime;
+            if (scheduleInfo.mNewFrame || mOutputDone)
+            {
+                setOutputDependencyCount();
+                mFrameTime = mValidTime;
+            }
+            
             mValidTime += scheduleInfo.mTimeAdvance;
             mOutputDone = scheduleInfo.mOutputDone;
-            upToDate = mValidTime >= mBlockEndTime;
+            
             timeUpdated = true;
         }
         
+        // Revise the input time to the end of the current frame (in order that we don't free anything we might still need)
+        
+        if (mValidTime < mInputTime)
+            mInputTime = mValidTime;
+        
         // If we are up to date with the block time (output and all inputs) add the dependency on the block update
         
-        if (upToDate && mInputTime >= mBlockEndTime)
+        if (mInputTime >= mBlockEndTime)
             mDependencyCount++;
     }
     else
     {
         bool trigger = false;
-        bool callUpdate = false;
-        
-        // Check for inputs at the current frame time that update (update parameters if requested)
-        
-        for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
-        {
-            if (ins->mObject && ins->mUpdate && mValidTime == ins->mObject->mFrameTime)
-            {
-                callUpdate = true;
-                if (ins->mParameters)
-                {
-                    FrameLib_Parameters::Serial *serialised = ins->mObject->getOutput(ins->mIndex);
-                
-                    if (serialised)
-                        mParameters.set(serialised);
-                }
-            }
-        }
-        
-        // Custom Update
-        
-        mInUpdate = true;
-        update();
-        mInUpdate = false;
-        
+
         // Check for inputs at the current frame time that trigger (after any update)
         
         for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
@@ -410,7 +407,7 @@ void FrameLib_DSP::dependenciesReady()
         
         // Store previous valid till time to determine later if there has been any change
         
-        FrameLib_TimeFormat prevValidTillTime = mValidTime;
+        FrameLib_TimeFormat prevValidTime = mValidTime;
         
         // Find the valid till time (the min valid time of connected inputs that can trigger) and input time (the min valid time of all inputs)
         
@@ -429,25 +426,25 @@ void FrameLib_DSP::dependenciesReady()
         
         if (trigger)
         {
-            mFrameTime = prevValidTillTime;
+            mFrameTime = prevValidTime;
             process();
+            setOutputDependencyCount();
             if (mInputDependencies.size() == 1)
                 (*mInputDependencies.begin())->releaseOutputMemory();
         }
         
-        // It shouldn't be it possible in a process object for time not to update but just in case...
+        // Check for the frame times updating
         
-        timeUpdated = mValidTime != prevValidTillTime;
-        
-        // Check for completion
-        
-        if (timeUpdated)
+        if (mValidTime != prevValidTime)
         {
+            timeUpdated = true;
             mOutputDone = true;
-            
+
+            // Check for completion
+
             for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
             {
-                if (ins->mObject && ((ins->mTrigger && !ins->mSwitchable) || (!ins->mObject->mOutputDone || ins->mSwitchable)) && (mValidTime == ins->mObject->mValidTime))
+                if (ins->mObject && ((ins->mTrigger && !ins->mSwitchable) || (!ins->mObject->mOutputDone && ins->mSwitchable)) && (mValidTime == ins->mObject->mValidTime))
                 {
                     if (ins->mObject->mOutputDone)
                     {
@@ -480,7 +477,7 @@ void FrameLib_DSP::dependenciesReady()
         }
     }
     
-    // If time has updated then notify output dependencies of calculation (updates to inputs)
+    // If time has updated then notify output dependencies (updates to inputs)
     
     if (timeUpdated)
         for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
@@ -489,6 +486,11 @@ void FrameLib_DSP::dependenciesReady()
     // Finally, notify this object that it can now process again
     
     dependencyNotify(this, false);
+}
+
+void FrameLib_DSP::setOutputDependencyCount()
+{
+    mOutputMemoryCount = mOutputDependencies.size();
 }
 
 void FrameLib_DSP::resetDependencyCount()

@@ -585,6 +585,75 @@ void fixedDivideSpeedTest(uint64_t count)
     }
 }
 
+void doubleComparisonSpeedTest(uint64_t count)
+{
+    int countGreater = 0;
+    int countLess = 0;
+    
+    for (uint64_t i = 0; i < count; i++)
+    {
+        double a = gen.randInt() + gen.randInt();
+        double b = gen.randInt() + gen.randInt();
+        
+        if (a > b)
+            countGreater++;
+        if (a < b)
+            countLess++;
+    }
+    
+    std::cout << "count of greater " << countGreater << " count of less " << countLess << "\n";
+}
+void fixedComparisonSpeedTest(uint64_t count)
+{
+    int countGreater = 0;
+    int countLess = 0;
+
+    for (uint64_t i = 0; i < count; i++)
+    {
+        FL_FP a = FL_FP(gen.randInt(), gen.randInt());
+        FL_FP b = FL_FP(gen.randInt(), gen.randInt());
+        
+        if (a > b)
+            countGreater++;
+        if (a < b)
+            countLess++;
+    }
+    
+    std::cout << "count of greater " << countGreater << " count of less " << countLess << "\n";
+}
+
+void doubleEqualSpeedTest(uint64_t count)
+{
+    int countTrue = 0;
+
+    for (uint64_t i = 0; i < count; i++)
+    {
+        double a = gen.randInt() + gen.randInt();
+        double b = gen.randInt() + gen.randInt();
+        bool result = a == b;
+        
+        if (result)
+            countTrue++;
+    }
+    
+    std::cout << "count of true " << countTrue << "\n";
+}
+
+void fixedEqualSpeedTest(uint64_t count)
+{
+    int countTrue = 0;
+
+    for (uint64_t i = 0; i < count; i++)
+    {
+           bool result = FL_FP(gen.randInt(), gen.randInt()) == FL_FP(gen.randInt(), gen.randInt());
+        
+        if (result)
+            countTrue++;
+    }
+    
+    std::cout << "count of true " << countTrue << "\n";
+}
+
 // ************************************************************************************** //
 
 // Main
@@ -607,8 +676,11 @@ int main(int argc, const char * argv[]) {
     
     std::cout << "TIMING TESTS\n\n";
     
+    runTimeCompareTest("Comparison Speed", "Double", "Fixed", &doubleComparisonSpeedTest, &fixedComparisonSpeedTest, 0xFFFFFFF);
+    runTimeCompareTest("Equal Speed", "Double", "Fixed", &doubleEqualSpeedTest, &fixedEqualSpeedTest, 0xFFFFFFF);
     runTimeCompareTest("Multiply Speed", "Double", "Fixed", &doubleMultiplySpeedTest, &fixedMultiplySpeedTest, 0xFFFFFFF);
     runTimeCompareTest("Divide Speed", "Double", "Fixed", &doubleDivideSpeedTest, &fixedDivideSpeedTest, 0x8FFFFFF);
+
 
     testsCompleted();
     

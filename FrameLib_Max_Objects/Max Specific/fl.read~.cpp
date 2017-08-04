@@ -14,7 +14,7 @@ bool FrameLib_MaxRead::sInit = false;
 
 // Constructor
 
-FrameLib_MaxRead::FrameLib_MaxRead(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 1, 1)
+FrameLib_MaxRead::FrameLib_MaxRead(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 1, 1)
 {
     mParameters.addString(kBuffer, "buffer", 0);
     
@@ -31,9 +31,7 @@ FrameLib_MaxRead::FrameLib_MaxRead(FrameLib_Context context, FrameLib_Parameters
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
     mParameters.addEnumItem(kSamples, "samples");
-    
-    mParameters.setInfo(&sParamInfo);
-    
+        
     mParameters.set(serialisedParameters);
     
     mBufferName = gensym(mParameters.getString(kBuffer));

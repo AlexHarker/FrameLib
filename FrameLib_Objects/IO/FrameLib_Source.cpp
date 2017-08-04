@@ -1,16 +1,12 @@
 
 #include "FrameLib_Source.h"
 
-// FIX - MAX_VECTOR_SIZE hack
 // FIX - source is only sample accurate (not subsample) - add a function to interpolate if neceesary
-// FIX - allow parameters to change (and check naming and behaviour...)
 // FIX - add delay for alignment purposes
-
-#define MAX_VECTOR_SIZE 8192
 
 // Constructor
 
-FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioInput(context, 2, 1, 1)
+FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioInput(context, &sParamInfo, 2, 1, 1)
 {
     mParameters.addDouble(kMaxLength, "length", 16384, 0);
     mParameters.setMin(0.0);
@@ -23,9 +19,7 @@ FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::
     mParameters.addEnumItem(kSeconds, "seconds");
     
     mParameters.set(serialisedParameters);
-    
-    mParameters.setInfo(&sParamInfo);
-    
+        
     mLength = convertTimeToSamples(mParameters.getValue(kLength));
     
     setParameterInput(1);
@@ -100,9 +94,9 @@ void FrameLib_Source::copy(double *input, unsigned long offset, unsigned long si
 
 void FrameLib_Source::objectReset()
 {
-    unsigned long size = convertTimeToSamples(mParameters.getValue(kMaxLength)) + MAX_VECTOR_SIZE;
+    unsigned long size = convertTimeToSamples(mParameters.getValue(kMaxLength)) + mMaxBlockSize;
     
-    if (size != mBuffer.size())
+    if (size != bufferSize())
         mBuffer.resize(size);
     
     zeroVector(&mBuffer[0], bufferSize());
@@ -110,19 +104,19 @@ void FrameLib_Source::objectReset()
     mCounter = 0;
 }
 
-void FrameLib_Source::blockProcess(double **ins, double **outs, unsigned long vecSize)
+void FrameLib_Source::blockProcess(double **ins, double **outs, unsigned long blockSize)
 {    
     // Safety
     
-    if (vecSize > bufferSize())
+    if (blockSize > bufferSize())
         return;
     
     // Calculate first segment size and copy segments
     
-    unsigned long size = ((mCounter + vecSize) > bufferSize()) ? bufferSize() - mCounter : vecSize;
+    unsigned long size = ((mCounter + blockSize) > bufferSize()) ? bufferSize() - mCounter : blockSize;
     
     copy(ins[0], mCounter, size);
-    copy(ins[0] + size, 0, vecSize - size);
+    copy(ins[0] + size, 0, blockSize - size);
 }
 
 void FrameLib_Source::process()

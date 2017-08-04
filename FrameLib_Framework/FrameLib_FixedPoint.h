@@ -27,7 +27,7 @@ struct FL_SP
     
     // Necessary Operations
     
-    friend FL_SP qMul (const FL_SP& a, const uint64_t &intVal, const uint64_t &fracVal);
+    friend FL_SP qMul(const FL_SP& a, const uint64_t& intVal, const uint64_t& fracVal);
     friend FL_SP operator * (const FL_SP& a, const FL_SP& b);
     friend FL_SP twoMinus(const FL_SP& b);
     
@@ -63,14 +63,14 @@ public:
     
     // Absolute value
     
-    friend FL_FP clipToPositive(const FL_FP& arg)               { return arg; }
+    friend bool nonZeroPositive(const FL_FP& a)                 { return a.mInt | a.mFrac; }
     
-    // Comparison operators
+    // Comparison operators (N.B. - it is faster to avoid branching using bit rather logical operators)
 
-    friend bool operator == (const FL_FP& a, const FL_FP& b)    { return (a.mInt == b.mInt && a.mFrac == b.mFrac); }
+    friend bool operator == (const FL_FP& a, const FL_FP& b)    { return (a.mInt == b.mInt & a.mFrac == b.mFrac); }
     
-    friend bool operator < (const FL_FP& a, const FL_FP& b)     { return ((a.mInt < b.mInt) || (a.mInt == b.mInt && a.mFrac < b.mFrac)); }
-    friend bool operator > (const FL_FP& a, const FL_FP& b)     { return ((a.mInt > b.mInt) || (a.mInt == b.mInt && a.mFrac > b.mFrac)); }
+    friend bool operator < (const FL_FP& a, const FL_FP& b)     { return ((a.mInt < b.mInt) | (a.mInt == b.mInt & a.mFrac < b.mFrac)); }
+    friend bool operator > (const FL_FP& a, const FL_FP& b)     { return ((a.mInt > b.mInt) | (a.mInt == b.mInt & a.mFrac > b.mFrac)); }
     friend bool operator <= (const FL_FP& a, const FL_FP& b)    { return !(a > b); }
     friend bool operator >= (const FL_FP& a, const FL_FP& b)    { return !(a < b); }
     
@@ -199,6 +199,10 @@ private:
 
 template <class T> struct FL_Limits
 {
+    // N.B. there is basically no good value for smallest for a floating point unit, because all values will fail at some point before total overflow
+    
+    static T smallest()    { return std::numeric_limits<T>::epsilon() * 65536.0; }
+    
     static T largest()
     {
         if (std::numeric_limits<T>::has_infinity)
@@ -210,11 +214,12 @@ template <class T> struct FL_Limits
 
 template<> struct FL_Limits <FL_FP>
 {
-    static FL_FP largest() { return FL_FP(FL_Limits<uint64_t>::largest(), FL_Limits<uint64_t>::largest()); }
+    static FL_FP smallest() { return FL_FP(0,1); }
+    static FL_FP largest() { return FL_FP(std::numeric_limits<uint64_t>::max(), std::numeric_limits<uint64_t>::max()); }
 };
 
 // Double Helper Utility
 
-inline double clipToPositive (double &arg)  {return arg < 0 ? 0 : arg; }
+inline double nonZeroPositive(double& a)  {return a > 0.0; }
 
 #endif

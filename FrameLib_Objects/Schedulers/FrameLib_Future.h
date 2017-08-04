@@ -1,24 +1,23 @@
 
-#ifndef FRAMELIB_SETPARAM_H
-#define FRAMELIB_SETPARAM_H
+#ifndef FRAMELIB_FUTURE_H
+#define FRAMELIB_FUTURE_H
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_SetParam : public FrameLib_Processor
+class FrameLib_Future : public FrameLib_Scheduler
 {
-    const static int maxNumIns = 10;
-    
     // Parameter Enums and Info
 
-    enum ParameterList { kNumIns, kNames };
-    
+    enum ParameterList { kTime, kUnits };
+    enum Units { kSamples, kMS, kSeconds };
+
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
     
     // Constructor
     
-    FrameLib_SetParam (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_Future(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
     // Info
     
@@ -27,14 +26,12 @@ public:
     std::string outputInfo(unsigned long idx, bool verbose);
     
 private:
+
+    // Schedule
     
-    // Process
-    
-    void process();
+    SchedulerInfo schedule(bool newFrame, bool noAdvance);
     
     // Data
-    
-    unsigned long mNumIns;
     
     static ParameterInfo sParamInfo;
 };

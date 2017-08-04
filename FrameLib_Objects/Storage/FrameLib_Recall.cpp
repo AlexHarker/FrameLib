@@ -3,13 +3,11 @@
 
 // Constructor / Destructor
 
-FrameLib_Recall::FrameLib_Recall(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, 2, 1)
+FrameLib_Recall::FrameLib_Recall(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 2, 1)
 {
     mParameters.addString(kName, "name", 0);
     mParameters.setInstantiation();
-    
-    mParameters.setInfo(&sParamInfo);
-    
+        
     mParameters.set(serialisedParameters);
     
     mStorage = mAllocator->registerStorage(mParameters.getString(kName));

@@ -1,31 +1,30 @@
 
 #include "FrameLib_Interval.h"
 
-FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Scheduler(context, 1, 1)
+FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Scheduler(context, &sParamInfo, 1, 1)
 {
-    // FIX - safety on minimum time?
-    
-    mParameters.addDouble(kInterval, "interval", 16, 0);
+    mParameters.addDouble(kInterval, "interval", 64, 0);
     mParameters.setMin(0);
     
-    mParameters.addEnum(kUnits, "units");
+    mParameters.addEnum(kUnits, "units", 1);
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
+    mParameters.addEnumItem(kHz, "hz");
     
-    mParameters.setInfo(&sParamInfo);
-
     mParameters.set(serialisedParameters);
     
     setParameterInput(0);
+    
+    calculateInterval();
 }
 
 // Info
 
 std::string FrameLib_Interval::objectInfo(bool verbose)
 {
-    return getInfo("Schedules frames at a regular interval, which can be adjusted using the interval parameter: Output frames are empty.",
-                   "Schedules frames at a regular interval, which can be adjusted using the interval parameter.", verbose);
+    return getInfo("Schedules frames at regular intervals, which can be adjusted using the interval parameter: Output frames are empty.",
+                   "Schedules frames at regular intervals, which can be adjusted using the interval parameter.", verbose);
 }
 
 std::string FrameLib_Interval::inputInfo(unsigned long idx, bool verbose)
@@ -48,28 +47,35 @@ FrameLib_Interval::ParameterInfo::ParameterInfo()
     add("Sets the time units used to set the interval between frames.");
 }
 
-FrameLib_Interval::SchedulerInfo FrameLib_Interval::schedule(bool newFrame, bool noOutput)
+// Calculate Interval
+
+void FrameLib_Interval::calculateInterval()
 {
-    FrameLib_Parameters::Serial *serialised = getInput(0);
-    
-    if (serialised)
-        mParameters.set(serialised);
-    
     FrameLib_TimeFormat interval = mParameters.getValue(kInterval);
     
     switch ((Units) (mParameters.getValue(kUnits)))
     {
-        case kMS:
-            interval *= mSamplingRate / 1000.0;
-            break;
-            
-        case kSeconds:
-            interval *= mSamplingRate;
-            break;
-            
-        case kSamples:
-            break;
+        case kHz:           interval = mSamplingRate / interval;    break;
+        case kMS:           interval *= mSamplingRate / 1000.0;     break;
+        case kSeconds:      interval *= mSamplingRate;              break;
+        case kSamples:      break;
     }
     
-    return SchedulerInfo(interval, true, true);
+    if (!interval)
+        interval = FL_Limits<FrameLib_TimeFormat>::smallest();
+    
+    mInterval = interval;
+}
+
+// Update and Schedule
+
+void FrameLib_Interval::update()
+{
+    if (mParameters.changed(kInterval) || mParameters.changed(kUnits))
+        calculateInterval();
+}
+
+FrameLib_Interval::SchedulerInfo FrameLib_Interval::schedule(bool newFrame, bool noAdvance)
+{
+    return SchedulerInfo(mInterval, true, true);
 }

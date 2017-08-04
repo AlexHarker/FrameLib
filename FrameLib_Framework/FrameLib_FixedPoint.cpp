@@ -28,7 +28,7 @@ bool subWithCarry(uint64_t *result, const uint64_t& a, const uint64_t& b)
 
 // ************************************************************************************** //
 
-FL_SP qMul(const FL_SP& a, const uint64_t &intVal, const uint64_t &fracVal)
+FL_SP qMul(const FL_SP& a, const uint64_t& intVal, const uint64_t& fracVal)
 {
     // Split both into 6/4 x 32 bits stored within 64 bit integers
     
@@ -118,7 +118,7 @@ FL_SP qMul(const FL_SP& a, const uint64_t &intVal, const uint64_t &fracVal)
     
     // Do overflow
     
-    t1 = (a1b1 | hi32Bits(a1b2) | hi32Bits(a2b1) | c4) ? FL_Limits<uint64_t>::largest() : 0U;
+    t1 = (a1b1 | hi32Bits(a1b2) | hi32Bits(a2b1) | c4) ? std::numeric_limits<uint64_t>::max() : 0U;
     
     return FL_SP(hi | t1, md | t1, lo | t1);
 }
@@ -243,7 +243,7 @@ FL_SP operator * (const FL_SP& a, const FL_SP& b)
     
     // Do overflow
     
-    t1 = (a1b1 | hi32Bits(a1b2) | hi32Bits(a2b1) | c4) ? FL_Limits<uint64_t>::largest() : 0U;
+    t1 = (a1b1 | hi32Bits(a1b2) | hi32Bits(a2b1) | c4) ? std::numeric_limits<uint64_t>::max() : 0U;
     
     return FL_SP(hi | t1, md | t1, lo | t1);
 }
@@ -276,7 +276,7 @@ FL_FP::FL_FP(const double& val)
     double absVal = fabs(val);
     
     if (18446744073709551616.0 <= absVal)
-        mInt = mFrac = FL_Limits<uint64_t>::largest();
+        mInt = mFrac = std::numeric_limits<uint64_t>::max();
     else
     {
         mInt = absVal;
@@ -288,7 +288,7 @@ FL_FP::FL_FP(const FL_SP& val) : mInt(val.intVal()), mFrac(val.fracHiVal())
 {
     // Complete rounding
     
-    if (checkHighBit(val.fracLoVal()) && !(mInt == std::numeric_limits<uint64>::max() && mFrac == std::numeric_limits<uint64>::max()))
+    if (checkHighBit(val.fracLoVal()) & !(mInt == std::numeric_limits<uint64>::max() & mFrac == std::numeric_limits<uint64>::max()))
         *this += FL_FP(0, 1);
 }
 
@@ -376,7 +376,7 @@ FL_FP operator * (const FL_FP& a, const FL_FP& b)
     
     // Do overflow
     
-    t1 = (a1b1 | hi32Bits(a1b2) | hi32Bits(a2b1) | c3) ? FL_Limits<uint64_t>::largest() : 0U;
+    t1 = (a1b1 | hi32Bits(a1b2) | hi32Bits(a2b1) | c3) ? std::numeric_limits<uint64_t>::max() : 0U;
     
     return FL_FP(hi | t1, lo | t1);
 }

@@ -29,7 +29,7 @@ private:
     
     // Helpers
     
-    size_t bufferSize() const {return mBuffer.size(); }
+    size_t bufferSize() const { return mBuffer.size(); }
 
     void copyAndZero(double *output, unsigned long offset, unsigned long size);
     void addToBuffer(double *input, unsigned long offset, unsigned long size);
@@ -37,7 +37,7 @@ private:
     // Object Reset, Block Process and Process
 
     void objectReset();
-    void blockProcess(double **ins, double **outs, unsigned long vecSize);
+    void blockProcess(double **ins, double **outs, unsigned long blockSize);
     void process();
     
     // Data
