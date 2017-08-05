@@ -138,9 +138,9 @@ template <class T> struct PowClipScaler : public ClipScaler<T, PowScaler<T> >
 
 // Variable Lin, Log or Exp Scaling
 
-template <class T>struct VariScaler
+template <class T>struct VariableScaler
 {
-    VariScaler() : mMode(kScaleLin) {}
+    VariableScaler() : mMode(kScaleLin) {}
 
     void setLin(T inLo, T inHi, T outLo, T outHi)
     {
@@ -205,7 +205,7 @@ protected:
 
 // Variable Lin, Log or Exp Scaling With or Without Clipping
 
-template <class T> struct VariClipScaler : public VariScaler<T>
+template <class T> struct VariClipScaler : public VariableScaler<T>
 {
     VariClipScaler() : mMin(0), mMax(1) {}
     
@@ -237,7 +237,7 @@ template <class T> struct VariClipScaler : public VariScaler<T>
     
     template <class U> void scaleClip(U *output, U *input, unsigned long size)
     {
-        switch (VariScaler<T>::mMode)
+        switch (VariableScaler<T>::mMode)
         {
             case Base::kScaleLin:
                 (LinClipScaler<T>(Base::mCoefficients1, mMin, mMax))(output, input, size);
@@ -266,23 +266,23 @@ protected:
     
 private:
     
-    typedef VariScaler<T> Base;
+    typedef VariableScaler<T> Base;
 };
 
 // Variable Scaling and Common Conversions
 
-template <class T> struct ScaleConvert : public VariScaler<T>
+template <class T> struct ScaleConverter : public VariableScaler<T>
 {
-    void setDBToAmplitude()     { Base::set(VariScaler<T>::kScaleExp, 0, 20, 1, 10); }
-    void setAmplitudeToDB()     { Base::set(VariScaler<T>::kScaleLog, 1, 10, 0, 20); }
-    void setMIDIToFreq()        { Base::set(VariScaler<T>::kScaleExp, 57, 69, 220, 440); }
-    void setFreqToMIDI()        { Base::set(VariScaler<T>::kScaleLog, 220, 440, 57, 69); }
-    void setSemitonesToRatio()  { Base::set(VariScaler<T>::kScaleExp, 0, 12, 1, 2); }
-    void setRatioToSemitones()  { Base::set(VariScaler<T>::kScaleLog, 1, 2, 0, 12); }
+    void setDBToAmplitude()     { Base::setExp(0, 20, 1, 10); }
+    void setAmplitudeToDB()     { Base::setLog(1, 10, 0, 20); }
+    void setMIDIToFreq()        { Base::setExp(57, 69, 220, 440); }
+    void setFreqToMIDI()        { Base::setLog(220, 440, 57, 69); }
+    void setSemitonesToRatio()  { Base::setExp(0, 12, 1, 2); }
+    void setRatioToSemitones()  { Base::setLog(1, 2, 0, 12); }
     
 private:
     
-    typedef VariScaler<T> Base;
+    typedef VariableScaler<T> Base;
 };
 
 // Typedefs for double precision versions
@@ -297,8 +297,8 @@ typedef LogClipScaler<double> FrameLib_LogClipScaler;
 typedef ExpClipScaler<double> FrameLib_ExpClipScaler;
 typedef PowClipScaler<double> FrameLib_PowClipScaler;
 
-typedef VariScaler<double>      FrameLib_VariScaler;
-typedef VariClipScaler<double>  FrameLib_VariClipScaler;
-typedef ScaleConvert<double>    FrameLib_ScaleConvert;
+typedef VariableScaler<double> FrameLib_VariableScaler;
+typedef VariClipScaler<double> FrameLib_VariClipScaler;
+typedef ScaleConverter<double> FrameLib_ScaleConverter;
 
 #endif
