@@ -279,6 +279,8 @@ template <class T> struct ScaleConverter : public VariableScaler<T>
     void setFreqToMIDI()        { Base::setLog(220, 440, 57, 69); }
     void setSemitonesToRatio()  { Base::setExp(0, 12, 1, 2); }
     void setRatioToSemitones()  { Base::setLog(1, 2, 0, 12); }
+    void setDegreesToRadians()  { Base::setLin(0, 360, 0, 6.28318530717958647692); }
+    void setRadiansToDegrees()  { Base::setLin(0, 6.28318530717958647692, 0, 360); }
     
 private:
     

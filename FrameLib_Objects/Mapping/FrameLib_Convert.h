@@ -10,7 +10,7 @@ class FrameLib_Convert : public FrameLib_Processor, private FrameLib_ScaleConver
     // Parameter Enums and Info
 
     enum ParameterList { kMode };
-    enum Modes { kDBtoA, kAtoDB, kMtoF, kFtoM, kSemiToRatio, kRatioToSemi };
+    enum Modes { kDBtoA, kAtoDB, kMtoF, kFtoM, kSemiToRatio, kRatioToSemi, kDegToRad, kRadToDeg };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
         
