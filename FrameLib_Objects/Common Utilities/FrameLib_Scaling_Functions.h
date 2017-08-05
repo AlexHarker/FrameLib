@@ -123,7 +123,7 @@ template <class T>struct VariScaler
         {
             case kScaleLinear:  mCoefficients = LinScaler<T>(inLo, inHi, outLo, outHi);   break;
             case kScaleLog:     mCoefficients = LogScaler<T>(inLo, inHi, outLo, outHi);   break;
-            case kScaleExp:     mCoefficients = LogScaler<T>(inLo, inHi, outLo, outHi);   break;
+            case kScaleExp:     mCoefficients = ExpScaler<T>(inLo, inHi, outLo, outHi);   break;
         }
     }
   
@@ -193,12 +193,12 @@ protected:
 
 template <class T> struct ScaleConvert : public VariScaler<T>
 {
-    void setDBToAmplitude()     { set(VariScaler<T>::kScaleExp, 0, 20, 1, 10); }
-    void setAmplitudeToDB()     { set(VariScaler<T>::kScaleLog, 1, 10, 0, 20); }
-    void setMIDIToFreq()        { set(VariScaler<T>::kScaleExp, 57, 69, 220, 440); }
-    void setFreqToMIDI()        { set(VariScaler<T>::kScaleLog, 220, 440, 57, 69); }
-    void setSemitonesToRatio()  { set(VariScaler<T>::kScaleExp, 0, 12, 1, 2); }
-    void setRatioToSemitones()  { set(VariScaler<T>::kScaleLog, 1, 2, 0, 12); }
+    void setDBToAmplitude()     { VariScaler<T>::set(VariScaler<T>::kScaleExp, 0, 20, 1, 10); }
+    void setAmplitudeToDB()     { VariScaler<T>::set(VariScaler<T>::kScaleLog, 1, 10, 0, 20); }
+    void setMIDIToFreq()        { VariScaler<T>::set(VariScaler<T>::kScaleExp, 57, 69, 220, 440); }
+    void setFreqToMIDI()        { VariScaler<T>::set(VariScaler<T>::kScaleLog, 220, 440, 57, 69); }
+    void setSemitonesToRatio()  { VariScaler<T>::set(VariScaler<T>::kScaleExp, 0, 12, 1, 2); }
+    void setRatioToSemitones()  { VariScaler<T>::set(VariScaler<T>::kScaleLog, 1, 2, 0, 12); }
 };
 
 // Typedefs for double precision versions
