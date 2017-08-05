@@ -36,7 +36,7 @@ private:
     void objectReset() { calculateMultiplier(); }
     
     
-    // Update and Schedule
+    // Update and Process
     
     void update();
     void process();

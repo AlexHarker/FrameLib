@@ -10,9 +10,7 @@ FrameLib_Time::FrameLib_Time(FrameLib_Context context, FrameLib_Parameters::Seri
     mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
-    
-    setParameterInput(1);
-    
+        
     calculateMultiplier();
 }
 
@@ -55,7 +53,7 @@ void FrameLib_Time::calculateMultiplier()
     }
 }
 
-// Update and Schedule
+// Update and Process
 
 void FrameLib_Time::update()
 {
