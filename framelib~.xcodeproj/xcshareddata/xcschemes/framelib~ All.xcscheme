@@ -1350,6 +1350,20 @@
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B87F757E1F3678D0002B91E9"
+               BuildableName = "fl.constant~.mxo"
+               BlueprintName = "fl.constant~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
