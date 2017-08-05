@@ -9,6 +9,7 @@ FrameLib_Map::FrameLib_Map(FrameLib_Context context, FrameLib_Parameters::Serial
     mParameters.addEnumItem(kLinear, "linear");
     mParameters.addEnumItem(kLog, "log");
     mParameters.addEnumItem(kExp, "exp");
+    mParameters.addEnumItem(kPow, "pow");
     mParameters.addEnumItem(kDB, "db");
     mParameters.addEnumItem(kInvDB, "invdb");
     mParameters.addEnumItem(kTranspose, "transpose");
@@ -18,6 +19,7 @@ FrameLib_Map::FrameLib_Map(FrameLib_Context context, FrameLib_Parameters::Serial
     mParameters.addDouble(kInHi, "inhi", 1., 2);
     mParameters.addDouble(kOutLo, "outlo", 0., 3);
     mParameters.addDouble(kOutHi, "outhi", 1., 4);
+    mParameters.addDouble(kExponent, "exponent", 1.);
     
     mParameters.addBool(kClip, "clip", true, 5);
     
@@ -58,6 +60,7 @@ FrameLib_Map::ParameterInfo FrameLib_Map::sParamInfo;
 FrameLib_Map::ParameterInfo::ParameterInfo()
 {
     add("Sets the type of output scaling: linear / log / exp - scaling as specified. "
+        "pow - scale the input range to [0-1], apply the exponent and then scale to the output range. "
         "db / invdb - output / input respectively are set in dB but scaled as gain values. "
         "transpose / invtranspose - output / input respectively are set in semitones but scaled as ratios for transposition.");
     add("Sets the low input value.");
@@ -75,43 +78,19 @@ void FrameLib_Map::setScaling()
     double inHi = mParameters.getValue(kInHi);
     double outLo = mParameters.getValue(kOutLo);
     double outHi = mParameters.getValue(kOutHi);
-    
-    ScaleMode mode;
+    double exponent = mParameters.getValue(kExponent);
     
     switch ((Modes) mParameters.getInt(kMode))
     {
-        case kLinear:
-            mode = kScaleLinear;
-            break;
-        case kLog:
-            mode = kScaleLog;
-            break;
-        case kExp:
-            mode = kScaleExp;
-            break;
-        case kDB:
-            mode = kScaleExp;
-            outLo = dbtoa(outLo);
-            outHi = dbtoa(outHi);
-            break;
-        case kInvDB:
-            mode = kScaleLog;
-            inLo = dbtoa(inLo);
-            inHi = dbtoa(inHi);
-            break;
-        case kTranspose:
-            mode = kScaleExp;
-            outLo = semitonesToRatio(outLo);
-            outHi = semitonesToRatio(outHi);
-            break;
-        case kInvTranspose:
-            mode = kScaleLog;
-            inLo = semitonesToRatio(inLo);
-            inHi = semitonesToRatio(inHi);
-            break;
+        case kLinear:           Scaler::setLin(inLo, inHi, outLo, outHi);                                       break;
+        case kLog:              Scaler::setLog(inLo, inHi, outLo, outHi);                                       break;
+        case kExp:              Scaler::setExp(inLo, inHi, outLo, outHi);                                       break;
+        case kPow:              Scaler::setPow(inLo, inHi, outLo, outHi, exponent);                             break;
+        case kDB:               Scaler::setExp(inLo, inHi, dbtoa(outLo), dbtoa(outHi));                         break;
+        case kInvDB:            Scaler::setLog(dbtoa(inLo), dbtoa(inHi), outLo, outHi);                         break;
+        case kTranspose:        Scaler::setExp(inLo, inHi, semitonesToRatio(outLo), semitonesToRatio(outHi));   break;
+        case kInvTranspose:     Scaler::setLog(semitonesToRatio(inLo), semitonesToRatio(inHi), outLo, outHi);   break;
     }
-    
-    FrameLib_VariClipScaler::set(mode, inLo, inHi, outLo, outHi);
 }
 
 // Update and Process

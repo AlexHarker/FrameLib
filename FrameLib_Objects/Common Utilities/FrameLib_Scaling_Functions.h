@@ -42,7 +42,7 @@ template <class T> struct ScaleCoefficients
     T mMul, mSub;
 };
 
-// Lin, Log and Exp Scaling Functors
+// Lin, Log, Exp and Power Scaling Functors
 
 template <class T> struct LinScaler : public ScaleCoefficients<T>
 {
@@ -70,6 +70,27 @@ template <class T> struct ExpScaler : public ScaleCoefficients<T>
     
     template <class U> U operator()(U x) const { return exp((x * ScaleCoefficients<T>::mMul) - ScaleCoefficients<T>::mSub); }
     template <class U> void operator()(U *output, U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
+};
+
+template <class T> struct PowScaler
+{
+    PowScaler(T inLo, T inHi, T outLo, T outHi, T exponent) : mInputScaler(inLo, inHi, 0, 1), mOutputScaler(0, 1, outLo, outHi), mExponent(exponent) {}
+    PowScaler(const ScaleCoefficients<T>& inCoeff, const ScaleCoefficients<T>& outCoeff, T exponent)
+    : mInputScaler(inCoeff), mOutputScaler(outCoeff), mExponent(exponent) {}
+    
+    void getCoefficients(ScaleCoefficients<T> &inCoeff, ScaleCoefficients<T>& outCoeff, T& exponent)
+    {
+        inCoeff = mInputScaler;
+        outCoeff = mOutputScaler;
+        exponent = mExponent;
+    }
+    
+    template <class U> U operator()(U x) const { return mOutputScaler(pow(mInputScaler(x), mExponent)); }
+    template <class U> void operator()(U *output, U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
+    
+    LinScaler<T> mInputScaler;
+    LinScaler<T> mOutputScaler;
+    T mExponent;
 };
 
 // Clip After Scale
@@ -107,33 +128,57 @@ template <class T> struct ExpClipScaler : public ClipScaler<T, ExpScaler<T> >
     ExpClipScaler(const ScaleCoefficients<T>& coeff, T min, T max) : ClipScaler<T, ExpScaler<T> >(ExpScaler<T>(coeff), min, max) {}
 };
 
+template <class T> struct PowClipScaler : public ClipScaler<T, PowScaler<T> >
+{
+    PowClipScaler(T inLo, T inHi, T outLo, T outHi, T exponent)
+    : ClipScaler<T, PowScaler<T> >(PowScaler<T>(inLo, inHi, log(outLo), log(outHi)), outLo, outHi, exponent) {}
+    PowClipScaler(const ScaleCoefficients<T>& inCoeff, const ScaleCoefficients<T>& outCoeff, T exponent, T min, T max)
+    : ClipScaler<T, PowScaler<T> >(PowScaler<T>(inCoeff, outCoeff, exponent), min, max) {}
+};
+
 // Variable Lin, Log or Exp Scaling
 
 template <class T>struct VariScaler
 {
-    enum ScaleMode { kScaleLinear, kScaleExp, kScaleLog };
+    VariScaler() : mMode(kScaleLin) {}
 
-    VariScaler() : mMode(kScaleLinear) {}
-
-    void set(ScaleMode mode, T inLo, T inHi, T outLo, T outHi)
+    void setLin(T inLo, T inHi, T outLo, T outHi)
     {
-        mMode = mode;
-        
-        switch (mMode)
+        mMode = kScaleLin;
+        mCoefficients1 = LinScaler<T>(inLo, inHi, outLo, outHi);
+    }
+    
+    void setLog(T inLo, T inHi, T outLo, T outHi)
+    {
+        mMode = kScaleLog;
+        mCoefficients1 = LogScaler<T>(inLo, inHi, outLo, outHi);
+    }
+    
+    void setExp(T inLo, T inHi, T outLo, T outHi)
+    {
+        mMode = kScaleExp;
+        mCoefficients1 = ExpScaler<T>(inLo, inHi, outLo, outHi);
+    }
+    
+    void setPow(T inLo, T inHi, T outLo, T outHi, T exponent)
+    {
+        if (exponent == 1)
+            setLin(inLo, inHi, outLo, outHi);
+        else
         {
-            case kScaleLinear:  mCoefficients = LinScaler<T>(inLo, inHi, outLo, outHi);   break;
-            case kScaleLog:     mCoefficients = LogScaler<T>(inLo, inHi, outLo, outHi);   break;
-            case kScaleExp:     mCoefficients = ExpScaler<T>(inLo, inHi, outLo, outHi);   break;
+            mMode = kScalePow;
+            PowScaler<T>(inLo, inHi, outLo, outHi, exponent).getCoefficients(mCoefficients1, mCoefficients2, mExponent);
         }
     }
-  
+    
     template <class U> U scale(U x)
     {
         switch (mMode)
         {
-            case kScaleLinear:  return (LinScaler<T>(mCoefficients))(x);
-            case kScaleLog:     return (LogScaler<T>(mCoefficients))(x);
-            case kScaleExp:     return (ExpScaler<T>(mCoefficients))(x);
+            case kScaleLin:     return (LinScaler<T>(mCoefficients1))(x);
+            case kScaleLog:     return (LogScaler<T>(mCoefficients1))(x);
+            case kScaleExp:     return (ExpScaler<T>(mCoefficients1))(x);
+            case kScalePow:     return (PowScaler<T>(mCoefficients1, mCoefficients2, mExponent))(x);
         }
     }
     
@@ -141,16 +186,21 @@ template <class T>struct VariScaler
     {
         switch (mMode)
         {
-            case kScaleLinear:  (LinScaler<T>(mCoefficients))(output, input, size);       break;
-            case kScaleLog:     (LogScaler<T>(mCoefficients))(output, input, size);       break;
-            case kScaleExp:     (ExpScaler<T>(mCoefficients))(output, input, size);       break;
+            case kScaleLin:     (LinScaler<T>(mCoefficients1))(output, input, size);                                break;
+            case kScaleLog:     (LogScaler<T>(mCoefficients1))(output, input, size);                                break;
+            case kScaleExp:     (ExpScaler<T>(mCoefficients1))(output, input, size);                                break;
+            case kScalePow:     (PowScaler<T>(mCoefficients1, mCoefficients2, mExponent))(output, input, size);     break;
         }
     }
     
 protected:
     
+    enum ScaleMode { kScaleLin, kScaleExp, kScaleLog, kScalePow };
+
     ScaleMode mMode;
-    ScaleCoefficients<T> mCoefficients;
+    ScaleCoefficients<T> mCoefficients1;
+    ScaleCoefficients<T> mCoefficients2;
+    T mExponent;
 };
 
 // Variable Lin, Log or Exp Scaling With or Without Clipping
@@ -159,46 +209,80 @@ template <class T> struct VariClipScaler : public VariScaler<T>
 {
     VariClipScaler() : mMin(0), mMax(1) {}
     
-    void set(typename VariScaler<T>::ScaleMode mode, T inLo, T inHi, T outLo, T outHi)
+    void setLin(T inLo, T inHi, T outLo, T outHi)
     {
-        mMin = std::min(outLo, outHi);
-        mMax = std::max(outLo, outHi);
-        VariScaler<T>::set(mode, inLo, inHi, outLo, outHi);
+        setClip(outLo, outHi);
+        Base::setLin(inLo, inHi, outLo, outHi);
     }
     
+    void setLog(T inLo, T inHi, T outLo, T outHi)
+    {
+        setClip(outLo, outHi);
+        Base::setLog(inLo, inHi, outLo, outHi);
+    }
+    
+    void setExp(T inLo, T inHi, T outLo, T outHi)
+    {
+        setClip(outLo, outHi);
+        Base::setExp(inLo, inHi, outLo, outHi);
+    }
+    
+    void setPow(T inLo, T inHi, T outLo, T outHi, T exponent)
+    {
+        setClip(outLo, outHi);
+        Base::setPow(inLo, inHi, outLo, outHi, exponent);
+    }
+
     template <class U> U scaleClip(T x) { return clip(scale(x), mMin, mMax); }
     
     template <class U> void scaleClip(U *output, U *input, unsigned long size)
     {
         switch (VariScaler<T>::mMode)
         {
-            case VariScaler<T>::kScaleLinear:
-                (LinClipScaler<T>(VariScaler<T>::mCoefficients, mMin, mMax))(output, input, size);
+            case Base::kScaleLin:
+                (LinClipScaler<T>(Base::mCoefficients1, mMin, mMax))(output, input, size);
                 break;
-            case VariScaler<T>::kScaleLog:
-                (LogClipScaler<T>(VariScaler<T>::mCoefficients, mMin, mMax))(output, input, size);
+            case Base::kScaleLog:
+                (LogClipScaler<T>(Base::mCoefficients1, mMin, mMax))(output, input, size);
                 break;
-            case VariScaler<T>::kScaleExp:
-                (ExpClipScaler<T>(VariScaler<T>::mCoefficients, mMin, mMax))(output, input, size);
+            case Base::kScaleExp:
+                (ExpClipScaler<T>(Base::mCoefficients1, mMin, mMax))(output, input, size);
+                break;
+            case Base::kScalePow:
+                (PowClipScaler<T>(Base::mCoefficients1, Base::mCoefficients2, Base::mExponent, mMin, mMax))(output, input, size);
                 break;
         }
     }
     
 protected:
     
+    void setClip(T minVal, T maxVal)
+    {
+        mMin = std::min(minVal, maxVal);
+        mMax = std::max(minVal, maxVal);
+    }
+    
     T mMin, mMax;
+    
+private:
+    
+    typedef VariScaler<T> Base;
 };
 
 // Variable Scaling and Common Conversions
 
 template <class T> struct ScaleConvert : public VariScaler<T>
 {
-    void setDBToAmplitude()     { VariScaler<T>::set(VariScaler<T>::kScaleExp, 0, 20, 1, 10); }
-    void setAmplitudeToDB()     { VariScaler<T>::set(VariScaler<T>::kScaleLog, 1, 10, 0, 20); }
-    void setMIDIToFreq()        { VariScaler<T>::set(VariScaler<T>::kScaleExp, 57, 69, 220, 440); }
-    void setFreqToMIDI()        { VariScaler<T>::set(VariScaler<T>::kScaleLog, 220, 440, 57, 69); }
-    void setSemitonesToRatio()  { VariScaler<T>::set(VariScaler<T>::kScaleExp, 0, 12, 1, 2); }
-    void setRatioToSemitones()  { VariScaler<T>::set(VariScaler<T>::kScaleLog, 1, 2, 0, 12); }
+    void setDBToAmplitude()     { Base::set(VariScaler<T>::kScaleExp, 0, 20, 1, 10); }
+    void setAmplitudeToDB()     { Base::set(VariScaler<T>::kScaleLog, 1, 10, 0, 20); }
+    void setMIDIToFreq()        { Base::set(VariScaler<T>::kScaleExp, 57, 69, 220, 440); }
+    void setFreqToMIDI()        { Base::set(VariScaler<T>::kScaleLog, 220, 440, 57, 69); }
+    void setSemitonesToRatio()  { Base::set(VariScaler<T>::kScaleExp, 0, 12, 1, 2); }
+    void setRatioToSemitones()  { Base::set(VariScaler<T>::kScaleLog, 1, 2, 0, 12); }
+    
+private:
+    
+    typedef VariScaler<T> Base;
 };
 
 // Typedefs for double precision versions
@@ -206,10 +290,12 @@ template <class T> struct ScaleConvert : public VariScaler<T>
 typedef LinScaler<double> FrameLib_LinScaler;
 typedef LogScaler<double> FrameLib_LogScaler;
 typedef ExpScaler<double> FrameLib_ExpScaler;
+typedef PowScaler<double> FrameLib_PowScaler;
 
 typedef LinClipScaler<double> FrameLib_LinClipScaler;
 typedef LogClipScaler<double> FrameLib_LogClipScaler;
 typedef ExpClipScaler<double> FrameLib_ExpClipScaler;
+typedef PowClipScaler<double> FrameLib_PowClipScaler;
 
 typedef VariScaler<double>      FrameLib_VariScaler;
 typedef VariClipScaler<double>  FrameLib_VariClipScaler;

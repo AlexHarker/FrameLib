@@ -9,11 +9,15 @@ class FrameLib_Map : public FrameLib_Processor, private FrameLib_VariClipScaler
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kMode, kInLo, kInHi, kOutLo, kOutHi, kClip };
-    enum Modes { kLinear, kLog, kExp, kDB, kInvDB, kTranspose, kInvTranspose };
+    enum ParameterList { kMode, kInLo, kInHi, kOutLo, kOutHi, kExponent, kClip };
+    enum Modes { kLinear, kLog, kExp, kPow, kDB, kInvDB, kTranspose, kInvTranspose };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
-        
+    
+    // Convenience
+    
+    typedef FrameLib_VariClipScaler Scaler;
+    
 public:
     
     // Constructor
