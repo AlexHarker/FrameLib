@@ -76,65 +76,42 @@ void FrameLib_Map::setScaling()
     double outLo = mParameters.getValue(kOutLo);
     double outHi = mParameters.getValue(kOutHi);
     
+    ScaleMode mode;
+    
     switch ((Modes) mParameters.getInt(kMode))
     {
         case kLinear:
-            mMode = kScaleLinear;
+            mode = kScaleLinear;
             break;
         case kLog:
-            mMode = kScaleLog;
+            mode = kScaleLog;
             break;
         case kExp:
-            mMode = kScaleExp;
+            mode = kScaleExp;
             break;
         case kDB:
-            mMode = kScaleExp;
-            outLo = pow(10, outLo / 20.);
-            outHi = pow(10, outHi / 20.);
+            mode = kScaleExp;
+            outLo = dbtoa(outLo);
+            outHi = dbtoa(outHi);
             break;
         case kInvDB:
-            mMode = kScaleLog;
-            inLo = pow(10, inLo / 20.);
-            inHi = pow(10, inHi / 20.);
+            mode = kScaleLog;
+            inLo = dbtoa(inLo);
+            inHi = dbtoa(inHi);
             break;
         case kTranspose:
-            mMode = kScaleExp;
-            outLo = pow(2, outLo / 12.);
-            outHi = pow(2, outHi / 12.);
+            mode = kScaleExp;
+            outLo = semitonesToRatio(outLo);
+            outHi = semitonesToRatio(outHi);
             break;
         case kInvTranspose:
-            mMode = kScaleLog;
-            inLo = pow(2, inLo / 12.);
-            inHi = pow(2, inHi / 12.);
+            mode = kScaleLog;
+            inLo = semitonesToRatio(inLo);
+            inHi = semitonesToRatio(inHi);
             break;
     }
     
-    mMin = outLo < outHi ? outLo : outHi;
-    mMax = outLo < outHi ? outHi : outLo;
-    
-    // Calculate simplified linear scaling values
-    
-    switch (mMode)
-    {
-        case kScaleLinear:
-            break;
-            
-        case kScaleLog:
-            inLo = log(inLo);
-            inHi = log(inHi);
-            break;
-            
-        case kScaleExp:
-            outLo = log(outLo);
-            outHi = log(outHi);
-            break;
-    }
-    
-    double mul = (inLo == inHi) ? 0.0 : (outHi - outLo) / (inHi - inLo);
-    double sub = (inLo * mul) - outLo;
-    
-    mMul = mul;
-    mSub = sub;
+    FrameLib_ClipScaler::set(mode, inLo, inHi, outLo, outHi);
 }
 
 // Update and Process
@@ -153,36 +130,9 @@ void FrameLib_Map::process()
     allocateOutputs();
     
     double *output = getOutput(0, &size);
-    
-    double mul = mMul;
-    double sub = mSub;
-    
-    switch (mMode)
-    {
-        case kScaleLinear:
-            
-            for (unsigned long i = 0; i < size; i++)
-                output[i] = (input[i] * mul) - sub;
-            break;
-            
-        case kScaleLog:
-            for (unsigned long i = 0; i < size; i++)
-                output[i] = log(input[i]) * mul - sub;
-            break;
-            
-        case kScaleExp:
-            for (unsigned long i = 0; i < size; i++)
-                output[i] = exp((input[i] * mul) - sub);
-            break;
-    }
-    
-    if (mParameters.getBool(kClip))
-    {
-        double min = mMin;
-        double max = mMax;
         
-        for (unsigned long i = 0; i < size; i++)
-            output[i] = (output[i] > max) ? max : (output[i] < min) ? min : output[i];
-    }
-    
+    if (mParameters.getBool(kClip))
+        scaleClip(output, input, size);
+    else
+        scale(output, input, size);
 }
