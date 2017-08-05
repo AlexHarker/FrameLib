@@ -111,7 +111,7 @@ void FrameLib_Map::setScaling()
             break;
     }
     
-    FrameLib_ClipScaler::set(mode, inLo, inHi, outLo, outHi);
+    FrameLib_VariClipScaler::set(mode, inLo, inHi, outLo, outHi);
 }
 
 // Update and Process

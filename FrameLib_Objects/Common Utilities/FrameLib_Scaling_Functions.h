@@ -3,6 +3,7 @@
 #define FRAMELIB_SCALING_FUNCTIONS_H
 
 #include <algorithm>
+#include <cmath>
 
 // Common Conversions
 
@@ -32,11 +33,11 @@ template <class T> T clip(T x, T minVal, T maxVal) { return std::max(std::min(x,
 
 template <class T> struct ScaleCoefficients
 {
-    ScaleCoefficients() : mMul(1.0), mSub(0.0) {}
+    ScaleCoefficients() : mMul(1), mSub(0) {}
     ScaleCoefficients(T mul, T sub) : mMul(mul), mSub(sub) {}
 
     ScaleCoefficients(T inLo, T inHi, T outLo, T outHi)
-    : mMul((inLo == inHi) ? 0.0 : (outHi - outLo) / (inHi - inLo)), mSub((inLo * mMul) - outLo) {}
+    : mMul((inLo == inHi) ? 0 : (outHi - outLo) / (inHi - inLo)), mSub((inLo * mMul) - outLo) {}
 
     T mMul, mSub;
 };
@@ -73,31 +74,46 @@ template <class T> struct ExpScaler : public ScaleCoefficients<T>
 
 // Clip After Scale
 
-template <typename ScaleOp>
+template <class T, typename ScaleOp>
 struct ClipScaler
 {
-    ClipScaler(ScaleOp scaler, double mMin, double mMax) : mScaler(scaler), mMin(mMin), mMax(mMax) {}
+    ClipScaler(ScaleOp scaler, T mMin, T mMax) : mScaler(scaler), mMin(mMin), mMax(mMax) {}
     
-    template <class T> T operator()(T x) const { return clip(mScaler(x), mMin, mMax); }
-    template <class T> void operator()(T *output, T *input, unsigned long size) const { scaleVector(output, input, size, *this); }
+    template <class U> T operator()(U x) const { return clip(mScaler(x), mMin, mMax); }
+    template <class U> void operator()(U *output, U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
     
-    const ScaleOp mScaler;
-    const double mMin, mMax;
+    ScaleOp mScaler;
+    T mMin, mMax;
 };
 
 // ClipScaler Definitions (add clipping to functors)
 
-typedef ClipScaler<LinScaler<double> > LinClipScaler;
-typedef ClipScaler<LogScaler<double> > LogClipScaler;
-typedef ClipScaler<ExpScaler<double> > ExpClipScaler;
+template <class T> struct LinClipScaler : public ClipScaler<T, LinScaler<T> >
+{
+    LinClipScaler() : ClipScaler<T, LinScaler<T> >(LinScaler<T>(), 0, 1) {}
+    LinClipScaler(T inLo, T inHi, T outLo, T outHi) : ClipScaler<T, LinScaler<T> >(LinScaler<T>(inLo, inHi, outLo, outHi), outLo, outHi) {}
+    LinClipScaler(const ScaleCoefficients<T>& coeff, T min, T max) : ClipScaler<T, LinScaler<T> >(LinScaler<T>(coeff), min, max) {}
+};
+
+template <class T> struct LogClipScaler : public ClipScaler<T, LogScaler<T> >
+{
+    LogClipScaler(T inLo, T inHi, T outLo, T outHi) : ClipScaler<T, LogScaler<T> >(log(inLo), log(inHi), outLo, outHi) {}
+    LogClipScaler(const ScaleCoefficients<T>& coeff, T min, T max) : ClipScaler<T, LogScaler<T> >(LogScaler<T>(coeff), min, max) {}
+};
+
+template <class T> struct ExpClipScaler : public ClipScaler<T, ExpScaler<T> >
+{
+    ExpClipScaler(T inLo, T inHi, T outLo, T outHi) : ClipScaler<T, ExpScaler<T> >(ExpScaler<T>(inLo, inHi, log(outLo), log(outHi)), outLo, outHi) {}
+    ExpClipScaler(const ScaleCoefficients<T>& coeff, T min, T max) : ClipScaler<T, ExpScaler<T> >(ExpScaler<T>(coeff), min, max) {}
+};
 
 // Variable Lin, Log or Exp Scaling
 
-template <class T>struct FrameLib_Scaler
+template <class T>struct VariScaler
 {
     enum ScaleMode { kScaleLinear, kScaleExp, kScaleLog };
 
-    FrameLib_Scaler() : mMode(kScaleLinear) {}
+    VariScaler() : mMode(kScaleLinear) {}
 
     void set(ScaleMode mode, T inLo, T inHi, T outLo, T outHi)
     {
@@ -139,50 +155,64 @@ protected:
 
 // Variable Lin, Log or Exp Scaling With or Without Clipping
 
-template <class T> struct FrameLib_ClipScaler : public FrameLib_Scaler<T>
+template <class T> struct VariClipScaler : public VariScaler<T>
 {
-    FrameLib_ClipScaler() : mMin(0.0), mMax(0.0) {}
+    VariClipScaler() : mMin(0), mMax(1) {}
     
-    void set(typename FrameLib_Scaler<T>::ScaleMode mode, T inLo, T inHi, T outLo, T outHi)
+    void set(typename VariScaler<T>::ScaleMode mode, T inLo, T inHi, T outLo, T outHi)
     {
         mMin = std::min(outLo, outHi);
         mMax = std::max(outLo, outHi);
-        FrameLib_Scaler<T>::set(mode, inLo, inHi, outLo, outHi);
+        VariScaler<T>::set(mode, inLo, inHi, outLo, outHi);
     }
     
     template <class U> U scaleClip(T x) { return clip(scale(x), mMin, mMax); }
     
     template <class U> void scaleClip(U *output, U *input, unsigned long size)
     {
-        switch (FrameLib_Scaler<T>::mMode)
+        switch (VariScaler<T>::mMode)
         {
-            case FrameLib_Scaler<T>::kScaleLinear:
-                (LinClipScaler(LinScaler<T>(FrameLib_Scaler<T>::mCoefficients), mMin, mMax))(output, input, size);
+            case VariScaler<T>::kScaleLinear:
+                (LinClipScaler<T>(VariScaler<T>::mCoefficients, mMin, mMax))(output, input, size);
                 break;
-            case FrameLib_Scaler<T>::kScaleLog:
-                (LogClipScaler(LogScaler<T>(FrameLib_Scaler<T>::mCoefficients), mMin, mMax))(output, input, size);
+            case VariScaler<T>::kScaleLog:
+                (LogClipScaler<T>(VariScaler<T>::mCoefficients, mMin, mMax))(output, input, size);
                 break;
-            case FrameLib_Scaler<T>::kScaleExp:
-                (ExpClipScaler(ExpScaler<T>(FrameLib_Scaler<T>::mCoefficients), mMin, mMax))(output, input, size);
+            case VariScaler<T>::kScaleExp:
+                (ExpClipScaler<T>(VariScaler<T>::mCoefficients, mMin, mMax))(output, input, size);
                 break;
         }
     }
     
-private:
+protected:
     
     T mMin, mMax;
 };
 
 // Variable Scaling and Common Conversions
 
-template <class T> struct FrameLib_Convert : public FrameLib_Scaler<T>
+template <class T> struct ScaleConvert : public VariScaler<T>
 {
-    void setDBToAmplitude()     { set(FrameLib_Scaler<T>::kScaleExp, 0.0, 20.0, 1.0, 10.0); }
-    void setAmplitudeToDB()     { set(FrameLib_Scaler<T>::kScaleLog, 1.0, 10.0, 0.0, 20.0); }
-    void setMIDIToFreq()        { set(FrameLib_Scaler<T>::kScaleExp, 57.0, 69.0, 220.0, 440.0); }
-    void setFreqToMIDI()        { set(FrameLib_Scaler<T>::kScaleLog, 220.0, 440.0, 57.0, 69.0); }
-    void setSemitonesToRatio()  { set(FrameLib_Scaler<T>::kScaleExp, -12.0, 12.0, 0.5, 2.0); }
-    void setRatioToSemitones()  { set(FrameLib_Scaler<T>::kScaleLog, 0.5, 2.0, -12.0, 12.0); }
+    void setDBToAmplitude()     { set(VariScaler<T>::kScaleExp, 0, 20, 1, 10); }
+    void setAmplitudeToDB()     { set(VariScaler<T>::kScaleLog, 1, 10, 0, 20); }
+    void setMIDIToFreq()        { set(VariScaler<T>::kScaleExp, 57, 69, 220, 440); }
+    void setFreqToMIDI()        { set(VariScaler<T>::kScaleLog, 220, 440, 57, 69); }
+    void setSemitonesToRatio()  { set(VariScaler<T>::kScaleExp, 0, 12, 1, 2); }
+    void setRatioToSemitones()  { set(VariScaler<T>::kScaleLog, 1, 2, 0, 12); }
 };
+
+// Typedefs for double precision versions
+
+typedef LinScaler<double> FrameLib_LinScaler;
+typedef LogScaler<double> FrameLib_LogScaler;
+typedef ExpScaler<double> FrameLib_ExpScaler;
+
+typedef LinClipScaler<double> FrameLib_LinClipScaler;
+typedef LogClipScaler<double> FrameLib_LogClipScaler;
+typedef ExpClipScaler<double> FrameLib_ExpClipScaler;
+
+typedef VariScaler<double>      FrameLib_VariScaler;
+typedef VariClipScaler<double>  FrameLib_VariClipScaler;
+typedef ScaleConvert<double>    FrameLib_ScaleConvert;
 
 #endif

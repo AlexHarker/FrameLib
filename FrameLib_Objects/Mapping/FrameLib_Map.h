@@ -5,7 +5,7 @@
 #include "FrameLib_DSP.h"
 #include "FrameLib_Scaling_Functions.h"
 
-class FrameLib_Map : public FrameLib_Processor, private FrameLib_ClipScaler<double>
+class FrameLib_Map : public FrameLib_Processor, private FrameLib_VariClipScaler
 {
     // Parameter Enums and Info
 
