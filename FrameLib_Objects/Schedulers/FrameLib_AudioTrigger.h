@@ -8,13 +8,7 @@
 
 class FrameLib_AudioTrigger : public FrameLib_Scheduler
 {
-    // Parameter Enums and Info
 
-    enum ParameterList { kMaxLength, kLength, kUnits };
-    enum Units { kSamples, kMS, kSeconds };
-    
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
-    
 public:
     
     // Constructor
