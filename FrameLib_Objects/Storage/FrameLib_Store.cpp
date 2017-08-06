@@ -22,7 +22,7 @@ FrameLib_Store::~FrameLib_Store()
 
 std::string FrameLib_Store::objectInfo(bool verbose)
 {
-    return getInfo("Stores a vector frame in named memory for recall: The output can be used to control ordering/synchronsation.",
+    return getInfo("Stores a vector frame in named memory for recall: The output can be used to control ordering/synchronisation.",
                    "Stores a vector frame in named memory for recall.", verbose);
 }
 

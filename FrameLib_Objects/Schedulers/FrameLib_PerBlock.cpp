@@ -15,7 +15,7 @@ std::string FrameLib_PerBlock::objectInfo(bool verbose)
 
 std::string FrameLib_PerBlock::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Synchronisation Input - input is ignored, but can be used for synchronsation purposes", "Synchronisation Input", verbose);
+    return getInfo("Synchronisation Input - input is ignored, but can be used for synchronisation purposes", "Synchronisation Input", verbose);
 }
 
 std::string FrameLib_PerBlock::outputInfo(unsigned long idx, bool verbose)

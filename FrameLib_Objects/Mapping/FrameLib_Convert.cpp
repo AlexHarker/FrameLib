@@ -66,14 +66,14 @@ void FrameLib_Convert::setScaling()
 {
     switch ((Modes) mParameters.getInt(kMode))
     {
-        case kDBtoA:            setDBToAmplitude();     break;
-        case kAtoDB:            setAmplitudeToDB();     break;
-        case kMtoF:             setMIDIToFreq();        break;
-        case kFtoM:             setFreqToMIDI();        break;
-        case kSemiToRatio:      setSemitonesToRatio();  break;
-        case kRatioToSemi:      setRatioToSemitones();  break;
-        case kDegToRad:         setDegreesToRadians();  break;
-        case kRadToDeg:         setRadiansToDegrees();  break;
+        case kDBtoA:            setDBToAmplitude();         break;
+        case kAtoDB:            setAmplitudeToDB();         break;
+        case kMtoF:             setMIDIToFreq();            break;
+        case kFtoM:             setFreqToMIDI();            break;
+        case kSemiToRatio:      setSemitonesToRatio();      break;
+        case kRatioToSemi:      setRatioToSemitones();      break;
+        case kDegToRad:         setDegreesToRadians();      break;
+        case kRadToDeg:         setRadiansToDegrees();      break;
     }
 }
 

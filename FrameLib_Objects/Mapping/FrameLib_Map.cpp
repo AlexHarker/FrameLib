@@ -83,14 +83,14 @@ void FrameLib_Map::setScaling()
     
     switch ((Modes) mParameters.getInt(kMode))
     {
-        case kLinear:           Scaler::setLin(inLo, inHi, outLo, outHi);                                       break;
-        case kLog:              Scaler::setLog(inLo, inHi, outLo, outHi);                                       break;
-        case kExp:              Scaler::setExp(inLo, inHi, outLo, outHi);                                       break;
-        case kPow:              Scaler::setPow(inLo, inHi, outLo, outHi, exponent);                             break;
-        case kDB:               Scaler::setExp(inLo, inHi, dbtoa(outLo), dbtoa(outHi));                         break;
-        case kInvDB:            Scaler::setLog(dbtoa(inLo), dbtoa(inHi), outLo, outHi);                         break;
-        case kTranspose:        Scaler::setExp(inLo, inHi, semitonesToRatio(outLo), semitonesToRatio(outHi));   break;
-        case kInvTranspose:     Scaler::setLog(semitonesToRatio(inLo), semitonesToRatio(inHi), outLo, outHi);   break;
+        case kLinear:           setLin(inLo, inHi, outLo, outHi);                                           break;
+        case kLog:              setLog(inLo, inHi, outLo, outHi);                                           break;
+        case kExp:              setExp(inLo, inHi, outLo, outHi);                                           break;
+        case kPow:              setPow(inLo, inHi, outLo, outHi, exponent);                                 break;
+        case kDB:               setExp(inLo, inHi, dbtoa(outLo), dbtoa(outHi));                             break;
+        case kInvDB:            setLog(dbtoa(inLo), dbtoa(inHi), outLo, outHi);                             break;
+        case kTranspose:        setExp(inLo, inHi, semitonesToRatio(outLo), semitonesToRatio(outHi));       break;
+        case kInvTranspose:     setLog(semitonesToRatio(inLo), semitonesToRatio(inHi), outLo, outHi);       break;
     }
 }
 

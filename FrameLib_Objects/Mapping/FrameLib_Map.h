@@ -14,10 +14,6 @@ class FrameLib_Map : public FrameLib_Processor, private FrameLib_VariClipScaler
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     
-    // Convenience
-    
-    typedef FrameLib_VariClipScaler Scaler;
-    
 public:
     
     // Constructor

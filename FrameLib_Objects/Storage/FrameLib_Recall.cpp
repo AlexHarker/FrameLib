@@ -22,7 +22,7 @@ FrameLib_Recall::~FrameLib_Recall()
 
 std::string FrameLib_Recall::objectInfo(bool verbose)
 {
-    return getInfo("Recall a vector frame from named memory for use: The second output can be used to control ordering/synchronsation.",
+    return getInfo("Recall a vector frame from named memory for use: The second output can be used to control ordering/synchronisation.",
                    "Recall a vector frame from named memory for use.", verbose);
 }
 
