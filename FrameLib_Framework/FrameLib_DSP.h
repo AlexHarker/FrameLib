@@ -42,16 +42,15 @@ private:
     {
         Input() : mObject(NULL), mIndex(0), mSize(0), mFixedInput(NULL), mType(kFrameNormal), mUpdate(false), mParameters(false), mTrigger(true), mSwitchable(false) {}
         
-        void setInput()
-        {
-            mObject = NULL;
-            mIndex = 0;
-        }
-        
         void setInput(FrameLib_DSP *object, unsigned long idx)
         {
             mObject = object;
             mIndex = idx;
+        }
+        
+        void setInput()
+        {
+            setInput(NULL, 0);
         }
         
         // Connection Info
