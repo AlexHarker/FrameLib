@@ -366,7 +366,7 @@ void FrameLib_DSP::dependenciesReady()
             timeUpdated = true;
         }
         
-        // Revise the input time to the end of the current frame (in order that we don't free anything we might still need)
+        // Revise the input time to take account of the end of the current frame (in order that we don't free anything we might still need)
         
         if (mValidTime < mInputTime)
             mInputTime = mValidTime;
@@ -378,25 +378,12 @@ void FrameLib_DSP::dependenciesReady()
     }
     else
     {
-        bool trigger = false;
-
-        // Check for inputs at the current frame time that trigger (after any update)
-        
-        for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
-        {
-            if (ins->mObject && ins->mTrigger && mValidTime == ins->mObject->mFrameTime)
-            {
-                trigger = true;
-                break;
-            }
-        }
-        
-        // Store previous valid till time to determine later if there has been any change
+        // Cache previous valid till time and assume no trigger
+        // Find the valid till time (the min valid time of connected inputs that can trigger) and input time (the min valid time of all inputs)
+        // Check for inputs at the current time that trigger (after any update)
         
         FrameLib_TimeFormat prevValidTime = mValidTime;
-        
-        // Find the valid till time (the min valid time of connected inputs that can trigger) and input time (the min valid time of all inputs)
-        
+        bool trigger = false;
         mInputTime = FL_Limits<FrameLib_TimeFormat>::largest();
         mValidTime = FL_Limits<FrameLib_TimeFormat>::largest();
         
@@ -406,8 +393,9 @@ void FrameLib_DSP::dependenciesReady()
                 mValidTime = ins->mObject->mValidTime;
             if (ins->mObject && ins->mObject->mValidTime < mInputTime)
                 mInputTime = ins->mObject->mValidTime;
+            trigger |= (ins->mObject && ins->mTrigger && prevValidTime == ins->mObject->mFrameTime);
         }
-        
+
         // If triggered update the frame time, process and release the inputs if we only have one dependency
         
         if (trigger)
@@ -419,25 +407,19 @@ void FrameLib_DSP::dependenciesReady()
                 (*mInputDependencies.begin())->releaseOutputMemory();
         }
         
-        // Check for the frame times updating
+        // Check for the frame times updating and if so check for completion of the frame
         
         if (mValidTime != prevValidTime)
         {
             timeUpdated = true;
             mOutputDone = true;
 
-            // Check for completion
-
             for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
             {
                 if (ins->mObject && ((ins->mTrigger && !ins->mSwitchable) || (!ins->mObject->mOutputDone && ins->mSwitchable)) && (mValidTime == ins->mObject->mValidTime))
                 {
-                    if (ins->mObject->mOutputDone)
-                    {
-                        mOutputDone = true;
+                    if ((mOutputDone = ins->mObject->mOutputDone))
                         break;
-                    }
-                    mOutputDone = false;
                 }
             }
         }
@@ -448,7 +430,7 @@ void FrameLib_DSP::dependenciesReady()
             mDependencyCount++;
     }
     
-    // Update dependency for outputs
+    // Update dependency count for outputs
     
     mDependencyCount += (timeUpdated ? mOutputDependencies.size() : 0);
     
