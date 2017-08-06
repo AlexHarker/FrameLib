@@ -51,7 +51,6 @@ public:
         
         Serial(BytePointer ptr, size_t size);
         Serial();
-        ~Serial() {};
         
         // Size Calculations
         

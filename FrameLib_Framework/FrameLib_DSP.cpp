@@ -378,15 +378,15 @@ void FrameLib_DSP::dependenciesReady()
     }
     else
     {
-        // Cache previous valid till time and assume no trigger
-        // Find the valid till time (the min valid time of connected inputs that can trigger) and input time (the min valid time of all inputs)
-        // Check for inputs at the current time that trigger (after any update)
         
+        // Find the valid till time (the min valid time of connected inputs that can trigger) and input time (the min valid time of all inputs)
+        // Check for inputs at the current time that trigger (N.B. this is done after any update)
+
         FrameLib_TimeFormat prevValidTime = mValidTime;
         bool trigger = false;
         mInputTime = FL_Limits<FrameLib_TimeFormat>::largest();
         mValidTime = FL_Limits<FrameLib_TimeFormat>::largest();
-        
+    
         for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
         {
             if (ins->mObject && (ins->mTrigger || ins->mSwitchable) && ins->mObject->mValidTime < mValidTime)
