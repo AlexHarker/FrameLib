@@ -352,7 +352,7 @@ void FrameLib_DSP::dependenciesReady()
         
         // Check if time has been updated (limiting to positive advances only), and if so set output times
                 
-        if (!upToDate && nonZeroPositive(scheduleInfo.mTimeAdvance))
+        if ((timeUpdated = !upToDate && nonZeroPositive(scheduleInfo.mTimeAdvance)))
         {
             if (scheduleInfo.mNewFrame || mOutputDone)
             {
@@ -361,9 +361,7 @@ void FrameLib_DSP::dependenciesReady()
             }
             
             mValidTime += scheduleInfo.mTimeAdvance;
-            mOutputDone = scheduleInfo.mOutputDone;
-            
-            timeUpdated = true;
+            mOutputDone = scheduleInfo.mOutputDone;            
         }
         
         // Revise the input time to take account of the end of the current frame (in order that we don't free anything we might still need)
