@@ -1,6 +1,6 @@
 
 #include "FrameLib_ConnectionQueue.h"
-#include "FrameLib_MultiChannel.h"
+#include "FrameLib_Multichannel.h"
 
 void FrameLib_ConnectionQueue::add(Item *object)
 {
