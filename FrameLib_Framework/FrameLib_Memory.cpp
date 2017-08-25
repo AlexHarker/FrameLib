@@ -354,13 +354,6 @@ void FrameLib_LocalAllocator::dealloc(void *ptr)
     {
         // If the free lists are full send the tail back to the global allocator
         
-        for (unsigned int i = 0; i < numLocalFreeBlocks; i++)
-        {
-            if (ptr && mFreeLists[i].mMemory == ptr)
-                assert("this is not good");
-        }
-
-        
         if (mTail->mMemory)
             mAllocator->dealloc(mTail->mMemory);
         
