@@ -44,6 +44,62 @@ private:
     std::vector<Function> mFunctions;
 };
 
+/*
+ switch (windowType)
+ {
+ case kHann:
+ for (unsigned long i = 0; i <= windowSize; i++)
+ mWindow[i] = 0.5 - (0.5 * cos(W_TWOPI * ((double) i / (double) windowSize)));
+ break;
+ 
+ case kHamming:
+ for (unsigned long i = 0; i <= windowSize; i++)
+ mWindow[i] = 0.54347826 - (0.45652174 * cos(W_TWOPI * ((double) i / (double) windowSize)));
+ break;
+ 
+ case kTriangle:
+ for (unsigned long i = 0; i <= (windowSize >> 1); i++)
+ mWindow[i] = (double) i / (double) (windowSize / 2.0);
+ for (unsigned long i = (windowSize >> 1) + 1; i <= windowSize; i++)
+ mWindow[i] = (double) (((double) windowSize - 1.0) - (double) i) / (double) (windowSize / 2.0);
+ break;
+ 
+ case kBlackman:
+ for (unsigned long i = 0; i <= windowSize; i++)
+ mWindow[i] = 0.42659071 - (0.49656062 * cos(W_TWOPI * ((double) i / (double) windowSize))) + (0.07684867 * cos(W_FOURPI * ((double) i / (double) windowSize)));
+ break;
+ 
+ case kBlackman62:
+ for (unsigned long i = 0; i <= windowSize; i++)
+ mWindow[i] = (0.44859f - 0.49364f * cos(W_TWOPI * ((double) i / (double) windowSize)) + 0.05677f * cos(W_FOURPI * ((double) i / (double) windowSize)));
+ break;
+ 
+ case kBlackman70:
+ for (unsigned long i = 0; i <= windowSize; i++)
+ mWindow[i] = (0.42323f - 0.49755f * cos(W_TWOPI * ((double) i / (double) windowSize)) + 0.07922f * cos(W_FOURPI * ((double) i / (double) windowSize)));
+ break;
+ 
+ case kBlackman74:
+ for (unsigned long i = 0; i <= windowSize; i++)
+ mWindow[i] = (0.402217f - 0.49703f * cos(W_TWOPI * ((double) i / (double) windowSize)) + 0.09892f * cos(W_FOURPI * ((double) i / (double) windowSize)) - 0.00188 * cos(W_THREEPI * ((double) i / (double) windowSize)));
+ break;
+ 
+ case kBlackman92:
+ for (unsigned long i = 0; i <= windowSize; i++)
+ mWindow[i] = (0.35875f - 0.48829f * cos(W_TWOPI * ((double) i / (double) windowSize)) + 0.14128f * cos(W_FOURPI * ((double) i / (double) windowSize)) - 0.01168 * cos(W_THREEPI * ((double) i / (double) windowSize)));
+ break;
+ 
+ case kBlackmanHarris:
+ for (unsigned long i = 0; i <= windowSize; i++)
+ mWindow[i] = 0.35875 - (0.48829 * cos(W_TWOPI * ((double) i / (double) windowSize))) + (0.14128 * cos(W_FOURPI * ((double) i / (double) windowSize))) - (0.01168 * cos(W_SIXPI * ((double) i / (double) windowSize)));
+ break;
+ 
+ case kFlatTop:
+ for (unsigned long i = 0; i <= windowSize; i++)
+ mWindow[i] = 0.2810639 - (0.5208972 * cos(W_TWOPI * ((double) i / (double) windowSize))) + (0.1980399 * cos(W_FOURPI * ((double) i / (double) windowSize)));
+ break;
+ }*/
+
 template <class T> void window_rect(T window, uint32_t windowSize, uint32_t generateSize)
 {
 	for (long i = 0; i < generateSize; i++)
