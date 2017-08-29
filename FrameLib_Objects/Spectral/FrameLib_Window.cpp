@@ -1,11 +1,9 @@
 
 #include "FrameLib_Window.h"
 
-#define W_PI			3.14159265358979323846
-#define W_TWOPI			6.28318530717958647692
-#define W_THREEPI		9.42477796076937971538
-#define W_FOURPI		12.56637061435817295384
-#define W_SIXPI			18.84955592153875943076
+// Window Calculator
+
+FrameLib_Window::WindowCalculator FrameLib_Window::sWindowCalculator;
 
 // Constructor / Destructor
 
@@ -118,6 +116,8 @@ void FrameLib_Window::updateWindow(unsigned long inSize, EndPoints ends)
         mWindow = (double *) mAllocator->alloc(sizeof(double) * (windowSize + 2));
     }
     
+    sWindowCalculator.calculate(windowType, mWindow, windowSize, windowSize + 2);
+    /*
     switch (windowType)
     {
         case kHann:
@@ -138,9 +138,7 @@ void FrameLib_Window::updateWindow(unsigned long inSize, EndPoints ends)
             break;
             
         case kCosine:
-            for (unsigned long i = 0; i <= windowSize; i++)
-                mWindow[i] = sin(W_PI * ((double) i / (double) windowSize));
-            break;
+            
             
         case kBlackman:
             for (unsigned long i = 0; i <= windowSize; i++)
@@ -182,8 +180,7 @@ void FrameLib_Window::updateWindow(unsigned long inSize, EndPoints ends)
                 mWindow[i] = 1.0;
             break;
     }
-    
-    mWindow[windowSize + 1] = 0.0;
+    mWindow[windowSize + 1] = 0.0;*/
     
     if (sqrtWindow == true)
     {

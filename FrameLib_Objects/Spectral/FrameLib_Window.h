@@ -3,6 +3,7 @@
 #define FRAMELIB_WINDOW_H
 
 #include "FrameLib_DSP.h"
+#include "../../FrameLib_Dependencies/WindowFunctions.hpp"
 
 // FIX - review gain calculation
 
@@ -43,8 +44,28 @@ private:
 	
 private:
 
+    struct WindowCalculator : public WindowFunctions<double *, WindowTypes>
+    {
+        WindowCalculator()
+        {
+            add(kHann, window_hann);
+            add(kHamming, window_hamming);
+            add(kTriangle, window_triangle);
+            add(kCosine, window_cosine);
+            add(kBlackman, window_blackman);
+            add(kBlackman62, window_blackman_62);
+            add(kBlackman70, window_blackman_70);
+            add(kBlackman74, window_blackman_62);
+            add(kBlackman92, window_blackman_92);
+            add(kBlackmanHarris, window_blackman_harris);
+            add(kFlatTop, window_kaiser);
+            add(kRectangle, window_rect);
+        }
+    };
+    
     // Data
     
+    static WindowCalculator sWindowCalculator;
     double *mWindow;
 
     WindowTypes mWindowType;
