@@ -2053,6 +2053,7 @@
 		B8C8568219F2A978006358DA /* fl.split~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.split~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C8569819F2A97A006358DA /* fl.join~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.join~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C89C061F55C67C00B4E700 /* WindowFunctions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WindowFunctions.hpp; sourceTree = "<group>"; };
+		B8C89C071F56D24500B4E700 /* Statistics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Statistics.h; sourceTree = "<group>"; };
 		B8CA31DA199A1F5F005F30A1 /* fl.unpack~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.unpack~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8CA31EC199A20BE005F30A1 /* fl.pack~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.pack~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8CA31EE199A20FF005F30A1 /* fl.pack~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.pack~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -3431,6 +3432,7 @@
 			isa = PBXGroup;
 			children = (
 				B8C89C061F55C67C00B4E700 /* WindowFunctions.hpp */,
+				B8C89C071F56D24500B4E700 /* Statistics.h */,
 				B87E876619C8EEB900B1D0CD /* HISSTools_FFT */,
 				B8F6E4DA199D24820073E06D /* tlsf */,
 			);
