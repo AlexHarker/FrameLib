@@ -117,22 +117,22 @@ template <class T, typename Op, typename WeightOp> double statWeightedSum(T inpu
 
 template <class T> double statWeightedSum(T input, size_t size)
 {
-    return statWeightedSum(input, size, Pass());
+    return statWeightedSum(input, size, Pass(), Pass());
 }
 
 template <class T> double statWeightedSumAbs(T input, size_t size)
 {
-    return statWeightedSum(input, size, Absolute());
+    return statWeightedSum(input, size, Absolute(), Pass());
 }
 
 template <class T> double statWeightedSumSquares(T input, size_t size)
 {
-    return statWeightedSum(input, size, Square());
+    return statWeightedSum(input, size, Square(), Pass());
 }
 
 template <class T> double statWeightedSumLogs(T input, size_t size)
 {
-    return statWeightedSum(input, size, Logarithm());
+    return statWeightedSum(input, size, Logarithm(), Pass());
 }
 
 // Weighted Sums (by weights)
@@ -181,6 +181,11 @@ template <class T> double statProduct(T input, size_t size)
 template <class T> double statMean(T input, size_t size)
 {
     return statSum(input, size) / statLength(input, size);
+}
+
+template <class T> double statMeanSquares(T input, size_t size)
+{
+    return statSumSquares(input, size) / statLength(input, size);
 }
 
 template <class T> double statGeometricMean(T input, size_t size)
@@ -237,7 +242,7 @@ template <class T> double statSkewness(T input, size_t size)
         double mValue;
     };
 
-    return statWeightedSum(input, size, Pass(), Weight(statCentroid(input, size))) / Cube(sqrt(statSpread(input, size)));
+    return statWeightedSum(input, size, Pass(), Weight(statCentroid(input, size))) / Cube()(sqrt(statSpread(input, size)));
 }
 
 template <class T> double statKurtosis(T input, size_t size)
@@ -249,7 +254,7 @@ template <class T> double statKurtosis(T input, size_t size)
         double mValue;
     };
     
-    return statWeightedSum(input, size, Pass(), Weight(statCentroid(input, size))) / square(statSpread(input, size));
+    return statWeightedSum(input, size, Pass(), Weight(statCentroid(input, size))) / Square()(statSpread(input, size));
 }
                         
 // Flatness
@@ -263,7 +268,7 @@ template <class T> double statFlatness(T input, size_t size)
 
 template <class T> double statRMS(T input, size_t size)
 {
-    return sqrt(statSumSquares(input, size));
+    return sqrt(statMeanSquares(input, size));
 }
 
 // Crest
