@@ -53,6 +53,7 @@ void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long blockS
 {
     // Update block time and process the block
     
+    mBlockStartTime = mBlockEndTime;
     mBlockEndTime += blockSize;
     blockProcess(ins, outs, blockSize);
     
@@ -60,8 +61,6 @@ void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long blockS
     
     if (requiresAudioNotification())
         dependencyNotify(false);
-    
-    mBlockStartTime = mBlockEndTime;
 }
 
 // Reset
@@ -382,26 +381,33 @@ void FrameLib_DSP::dependenciesReady()
         FrameLib_TimeFormat prevValidTime = mValidTime;
         bool trigger = false;
         mInputTime = FL_Limits<FrameLib_TimeFormat>::largest();
-        mValidTime = FL_Limits<FrameLib_TimeFormat>::largest();
     
         for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
-        {
-            if (ins->mObject && (ins->mTrigger || ins->mSwitchable) && ins->mObject->mValidTime < mValidTime)
-                mValidTime = ins->mObject->mValidTime;
             if (ins->mObject && ins->mObject->mValidTime < mInputTime)
                 mInputTime = ins->mObject->mValidTime;
-            trigger |= (ins->mObject && ins->mTrigger && prevValidTime == ins->mObject->mFrameTime);
-        }
 
-        // If triggered update the frame time, process and release the inputs if we only have one dependency
+        // Don't allow the frame to update if we are tied to the block updates
         
-        if (trigger)
+        if (!requiresAudioNotification() || mValidTime < mBlockEndTime)
         {
-            mFrameTime = prevValidTime;
-            process();
-            setOutputDependencyCount();
-            if (mInputDependencies.size() == 1)
-                (*mInputDependencies.begin())->releaseOutputMemory();
+            mValidTime = FL_Limits<FrameLib_TimeFormat>::largest();
+            for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
+            {
+                if (ins->mObject && (ins->mTrigger || ins->mSwitchable) && ins->mObject->mValidTime < mValidTime)
+                    mValidTime = ins->mObject->mValidTime;
+                trigger |= (ins->mObject && ins->mTrigger && prevValidTime == ins->mObject->mFrameTime);
+            }
+
+            // If triggered update the frame time, process and release the inputs if we only have one dependency
+        
+            if (trigger)
+            {
+                mFrameTime = prevValidTime;
+                process();
+                setOutputDependencyCount();
+                if (mInputDependencies.size() == 1)
+                    (*mInputDependencies.begin())->releaseOutputMemory();
+            }
         }
         
         // Check for the frame times updating and if so check for completion of the frame
