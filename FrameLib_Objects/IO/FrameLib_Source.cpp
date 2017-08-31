@@ -138,7 +138,10 @@ void FrameLib_Source::process()
     // Safety
     
     if (!sizeOut || (offset + sizeOut) > bufferSize())
+    {
+        zeroVector(output, sizeOut);
         return;
+    }
     
     // Calculate actual offset into buffer
     
