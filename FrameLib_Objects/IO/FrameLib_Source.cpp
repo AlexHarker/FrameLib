@@ -123,7 +123,7 @@ void FrameLib_Source::process()
 {
     unsigned long sizeOut = mLength;
     
-    FrameLib_TimeFormat inputTime = getInputFrameTime(0);
+    FrameLib_TimeFormat frameTime = getFrameTime();
     
     // Calculate output size
     
@@ -133,7 +133,7 @@ void FrameLib_Source::process()
     
     // Calculate time offset
     
-    long offset = round(getBlockEndTime() - inputTime);
+    long offset = round(getBlockEndTime() - frameTime);
     
     // Safety
     

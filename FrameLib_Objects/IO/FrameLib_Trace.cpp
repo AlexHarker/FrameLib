@@ -126,16 +126,16 @@ void FrameLib_Trace::process()
 {
     unsigned long sizeIn;
     
-    FrameLib_TimeFormat inputTime = getInputFrameTime(0);
+    FrameLib_TimeFormat frameTime = getFrameTime();
     double *input = getInput(0, &sizeIn);
     
     // Calculate time offset
     
-    unsigned long offset = round(inputTime - getBlockStartTime());
+    unsigned long offset = round(frameTime - getBlockStartTime());
     
     // Safety
     
-    if (!sizeIn || inputTime < getBlockStartTime() || (offset + sizeIn) > bufferSize())
+    if (!sizeIn || frameTime < getBlockStartTime() || (offset + sizeIn) > bufferSize())
         return;
     
     // Calculate actual offset into buffer
