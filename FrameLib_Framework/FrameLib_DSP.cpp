@@ -376,7 +376,6 @@ void FrameLib_DSP::dependenciesReady()
     }
     else
     {
-        
         // Find the valid till time (the min valid time of connected inputs that can trigger) and input time (the min valid time of all inputs)
         // Check for inputs at the current time that trigger (N.B. this is done after any update)
 
