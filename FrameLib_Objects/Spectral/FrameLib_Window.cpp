@@ -116,12 +116,12 @@ void FrameLib_Window::updateWindow(unsigned long inSize, EndPoints ends)
         mWindow = (double *) mAllocator->alloc(sizeof(double) * (windowSize + 2));
     }
     
-    sWindowCalculator.calculate(windowType, mWindow, windowSize, windowSize + 2);
+    sWindowCalculator.calculate(windowType, mWindow, windowSize, windowSize + 1);
     
-    mWindow[windowSize + 1] = 0.0;
+    mWindow[windowSize + 1] = mWindow[windowSize];
     
     if (sqrtWindow)
-        for (unsigned long i = 0; i <= windowSize; i++)
+        for (unsigned long i = 0; i <= windowSize + 1; i++)
             mWindow[i] = sqrt(mWindow[i]);
     
     // Store window parameters
