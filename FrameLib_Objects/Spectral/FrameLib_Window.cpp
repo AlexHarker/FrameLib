@@ -120,11 +120,9 @@ void FrameLib_Window::updateWindow(unsigned long inSize, EndPoints ends)
     
     mWindow[windowSize + 1] = 0.0;
     
-    if (sqrtWindow == true)
-    {
+    if (sqrtWindow)
         for (unsigned long i = 0; i <= windowSize; i++)
             mWindow[i] = sqrt(mWindow[i]);
-    }
     
     // Store window parameters
     
@@ -140,11 +138,10 @@ void FrameLib_Window::updateWindow(unsigned long inSize, EndPoints ends)
     for (unsigned long i = 0; i <= windowSize; i++)
         linearGain += mWindow[i];
     
-    mLinearGain = linearGain / (double) (windowSize + 1);
-    
     for (unsigned long i = 0; i <= windowSize; i++)
         powerGain += mWindow[i] * mWindow[i];
     
+    mLinearGain = linearGain / (double) (windowSize + 1);
     mPowerGain = powerGain / (double) (windowSize + 1);
 }
 

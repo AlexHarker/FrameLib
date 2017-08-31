@@ -11,7 +11,7 @@
 struct Pass      { template <class T> T operator()(T a) { return a; } };
 struct Square    { template <class T> T operator()(T a) { return a * a; } };
 struct Cube      { template <class T> T operator()(T a) { return a * a * a; } };
-struct Pow4      { template <class T> T operator()(T a) { return Square()(a) * Square()(a); } };
+struct Pow4      { template <class T> T operator()(T a) { return Square()(Square()(a)); } };
 struct Absolute  { template <class T> T operator()(T a) { return abs(a); } };
 struct Logarithm { template <class T> T operator()(T a) { return log(a); } };
 
@@ -230,7 +230,7 @@ template <class T> double statSpread(T input, size_t size)
         double mValue;
     };
     
-    return statWeightedSum(input, size, Pass(), Weight(statCentroid(input, size)));
+    return statWeightedSum(input, size, Pass(), Weight(statCentroid(input, size))) / statSum(input, size);
 }
 
 template <class T> double statSkewness(T input, size_t size)
@@ -242,7 +242,7 @@ template <class T> double statSkewness(T input, size_t size)
         double mValue;
     };
 
-    return statWeightedSum(input, size, Pass(), Weight(statCentroid(input, size))) / Cube()(sqrt(statSpread(input, size)));
+    return statWeightedSum(input, size, Pass(), Weight(statCentroid(input, size))) / (Cube()(sqrt(statSpread(input, size))) * statSum(input, size));
 }
 
 template <class T> double statKurtosis(T input, size_t size)
@@ -254,7 +254,7 @@ template <class T> double statKurtosis(T input, size_t size)
         double mValue;
     };
     
-    return statWeightedSum(input, size, Pass(), Weight(statCentroid(input, size))) / Square()(statSpread(input, size));
+    return statWeightedSum(input, size, Pass(), Weight(statCentroid(input, size))) / (Square()(statSpread(input, size)) * statSum(input, size));
 }
                         
 // Flatness
@@ -275,7 +275,7 @@ template <class T> double statRMS(T input, size_t size)
 
 template <class T> double statCrest(T input, size_t size)
 {
-    return statMax(input, size) / statSumSquares(input, size);
+    return statMax(input, size) / statRMS(input, size);
 }
 
 #endif /* Statistics_h */
