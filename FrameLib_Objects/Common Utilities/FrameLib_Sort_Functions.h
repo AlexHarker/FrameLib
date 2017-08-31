@@ -8,6 +8,7 @@ template <typename Compare, class T> void sortVector(T *data, unsigned long size
 {
     bool swaps = true;
     unsigned long gap = size;
+    unsigned long i;
     
     while (gap > 1 || swaps)
     {
@@ -15,7 +16,7 @@ template <typename Compare, class T> void sortVector(T *data, unsigned long size
         gap = (gap == 9 || gap == 10) ? 11 : gap;
         gap = !gap ? 1 : gap;
         
-        for (unsigned long i = 0, swaps = false; i + gap < size; i++)
+        for (i = 0, swaps = false; i + gap < size; i++)
         {
             if (Compare()(data[i], data[i + gap]))
             {
@@ -30,8 +31,9 @@ template <typename Compare, class T> void sortIndices(unsigned long *indices, T 
 {
     bool swaps = true;
     unsigned long gap = size;
+    unsigned long i;
     
-    for (unsigned long i = 0; i < size; i++)
+    for (i = 0; i < size; i++)
         indices[i] = i;
     
     while (gap > 1 || swaps)
@@ -40,7 +42,7 @@ template <typename Compare, class T> void sortIndices(unsigned long *indices, T 
         gap = (gap == 9 || gap == 10) ? 11 : gap;
         gap = !gap ? 1 : gap;
         
-        for (unsigned long i = 0, swaps = false; i + gap < size; i++)
+        for (i = 0, swaps = false; i + gap < size; i++)
         {
             unsigned long index1 = indices[i];
             unsigned long index2 = indices[i + gap];

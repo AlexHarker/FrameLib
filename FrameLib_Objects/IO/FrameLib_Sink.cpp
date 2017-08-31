@@ -112,17 +112,17 @@ void FrameLib_Sink::process()
 {
     unsigned long sizeIn;
     
-    FrameLib_TimeFormat inputTime = getInputFrameTime(0);
+    FrameLib_TimeFormat frameTime = getFrameTime();
     FrameLib_TimeFormat blockStartTime = getBlockStartTime();
     double *input = getInput(0, &sizeIn);
     
     // Calculate time offset
     
-    unsigned long offset = round(inputTime - blockStartTime);
+    unsigned long offset = round(frameTime - blockStartTime);
     
     // Safety
     
-    if (!sizeIn || inputTime < blockStartTime || (offset + sizeIn) > bufferSize())
+    if (!sizeIn || frameTime < blockStartTime || (offset + sizeIn) > bufferSize())
         return;
     
     // Calculate actual offset into buffer
