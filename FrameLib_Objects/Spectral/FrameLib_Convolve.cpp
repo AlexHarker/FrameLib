@@ -84,6 +84,7 @@ void FrameLib_Convolve::process()
     
     requestOutputSize(0, sizeOut);
     allocateOutputs();
+    
     double *output = getOutput(0, &sizeOut);
     
     spectrum1.realp = (double *) (sizeOut ? mAllocator->alloc(FFTSize * 2 * sizeof(double)) : NULL);
