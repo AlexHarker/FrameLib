@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_SetParam::FrameLib_SetParam (FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo)
+FrameLib_SetParam::FrameLib_SetParam(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo)
 {
     char nameStr[7];
     
@@ -19,7 +19,7 @@ FrameLib_SetParam::FrameLib_SetParam (FrameLib_Context context, FrameLib_Paramet
     for (int i = 0; i < mNumIns; i++)
     {
         sprintf(nameStr, "name%02d", i + 1);
-        mParameters.addString(kNames + 0, nameStr, i + 1);
+        mParameters.addString(kNames + i, nameStr, i + 1);
         mParameters.setInstantiation();
     }
     
