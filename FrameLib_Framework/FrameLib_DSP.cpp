@@ -59,7 +59,7 @@ void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long blockS
     
     // If the object is handling audio updates (but is not an output object) then notify
     
-    if (requiresAudioNotification())
+    if (requiresAudioNotification() && mInputTime < mBlockEndTime)
         dependencyNotify(false);
 }
 
@@ -367,47 +367,42 @@ void FrameLib_DSP::dependenciesReady()
         
         if (mValidTime < mInputTime)
             mInputTime = mValidTime;
-        
-        // If we are up to date with the block time (output and all inputs) add the dependency on the block update
-        
-        if (mInputTime >= mBlockEndTime)
-            mDependencyCount++;
     }
     else
     {
         // Find the valid till time (the min valid time of connected inputs that can trigger) and input time (the min valid time of all inputs)
         // Check for inputs at the current time that trigger (N.B. this is done after any update)
 
+        FrameLib_TimeFormat prevInputTime = mInputTime;
         FrameLib_TimeFormat prevValidTime = mValidTime;
         bool trigger = false;
         mInputTime = FL_Limits<FrameLib_TimeFormat>::largest();
+        mValidTime = FL_Limits<FrameLib_TimeFormat>::largest();
     
         for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
+        {
+            if (ins->mObject && (ins->mTrigger || ins->mSwitchable) && ins->mObject->mValidTime < mValidTime)
+                mValidTime = ins->mObject->mValidTime;
             if (ins->mObject && ins->mObject->mValidTime < mInputTime)
                 mInputTime = ins->mObject->mValidTime;
+            trigger |= (ins->mObject && ins->mTrigger && prevValidTime == ins->mObject->mFrameTime);
+        }
 
-        // Don't allow the frame to update if we are tied to the block updates
-        
-        if (!requiresAudioNotification() || mValidTime < mBlockEndTime)
+        if (mInputTime == prevInputTime)
         {
-            mValidTime = FL_Limits<FrameLib_TimeFormat>::largest();
-            for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
-            {
-                if (ins->mObject && (ins->mTrigger || ins->mSwitchable) && ins->mObject->mValidTime < mValidTime)
-                    mValidTime = ins->mObject->mValidTime;
-                trigger |= (ins->mObject && ins->mTrigger && prevValidTime == ins->mObject->mFrameTime);
-            }
-
-            // If triggered update the frame time, process and release the inputs if we only have one dependency
+            trigger = false;
+            mValidTime = prevValidTime;
+        }
         
-            if (trigger)
-            {
-                mFrameTime = prevValidTime;
-                process();
-                setOutputDependencyCount();
-                if (mInputDependencies.size() == 1)
-                    (*mInputDependencies.begin())->releaseOutputMemory();
-            }
+        // If triggered update the frame time, process and release the inputs if we only have one dependency
+        
+        if (trigger)
+        {
+            mFrameTime = prevValidTime;
+            process();
+            setOutputDependencyCount();
+            if (mInputDependencies.size() == 1)
+                (*mInputDependencies.begin())->releaseOutputMemory();
         }
         
         // Check for the frame times updating and if so check for completion of the frame
@@ -427,12 +422,17 @@ void FrameLib_DSP::dependenciesReady()
             }
         }
         
-        // Check for block completion for objects requiring audio notification
+        // Don't allow the inputs to advance beyond the block time for objects requiring audio notification
         
-        if (requiresAudioNotification() && mValidTime >= mBlockEndTime)
-            mDependencyCount++;
+        if (requiresAudioNotification() && mBlockEndTime < mInputTime)
+            mInputTime = mBlockEndTime;
     }
     
+    // Check for block completion for objects requiring audio notification
+
+    if (requiresAudioNotification() && mInputTime >= mBlockEndTime)
+        mDependencyCount++;
+
     // Update dependency count for outputs
     
     mDependencyCount += (timeUpdated ? mOutputDependencies.size() : 0);
@@ -448,7 +448,7 @@ void FrameLib_DSP::dependenciesReady()
         }
     }
     
-    // If time has updated then notify output dependencies (updates to inputs)
+    // If time has updated then notify output dependencies (of updates to their inputs)
     
     if (timeUpdated)
         for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
