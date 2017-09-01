@@ -88,7 +88,7 @@ void FrameLib_Multitaper::process()
     
     // Get FFT size log 2
     
-    unsigned long FFTSizelog2 = log2(sizeIn);
+    unsigned long FFTSizelog2 = ilog2(sizeIn);
     unsigned long FFTSize = 1 << FFTSizelog2;
     sizeOut = (FFTSize >> 1) + 1;
     

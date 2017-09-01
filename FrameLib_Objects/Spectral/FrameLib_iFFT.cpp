@@ -72,7 +72,7 @@ void FrameLib_iFFT::process()
     
     if (sizeIn)
     {
-        FFTSizelog2 = log2((sizeIn - 1) << 1);
+        FFTSizelog2 = ilog2((sizeIn - 1) << 1);
         sizeOut = 1 << FFTSizelog2;
     }
     else

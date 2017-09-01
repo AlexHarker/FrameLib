@@ -70,7 +70,7 @@ void FrameLib_Convolve::process()
     if (sizeIn1 && sizeIn2)
     {
         sizeOut = sizeIn1 + sizeIn2 - 1;
-        FFTSizelog2 = log2(sizeOut);
+        FFTSizelog2 = ilog2(sizeOut);
         FFTSize = 1 << FFTSizelog2;
     }
     else sizeOut = 0;
