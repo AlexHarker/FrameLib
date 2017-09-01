@@ -8,16 +8,35 @@
 
 // Helper functors
 
-struct Pass      { template <class T> T operator()(T a) { return a; } };
-struct Square    { template <class T> T operator()(T a) { return a * a; } };
-struct Cube      { template <class T> T operator()(T a) { return a * a * a; } };
-struct Pow4      { template <class T> T operator()(T a) { return Square()(Square()(a)); } };
+struct Pow2      { template <class T> T operator()(T a) { return a * a; } };
+struct Pow3      { template <class T> T operator()(T a) { return a * a * a; } };
+struct Pow4      { template <class T> T operator()(T a) { return Pow2()(Pow2()(a)); } };
 struct Absolute  { template <class T> T operator()(T a) { return abs(a); } };
 struct Logarithm { template <class T> T operator()(T a) { return log(a); } };
 
-struct AddAbs      { template <class T> T operator()(T sum, T a) { return sum + Absolute()(a); } };
-struct AddSquare   { template <class T> T operator()(T sum, T a) { return sum + Square()(a); } };
-struct AddLog      { template <class T> T operator()(T sum, T a) { return sum + Logarithm()(a); } };
+struct Index     { template <class T> double operator[](T a) { return static_cast<double>(a); } };
+
+template <class T, typename Op> struct ModifiedData
+{
+    ModifiedData(T& data) : mData(data) {}
+    double operator[](size_t i) { return Op()(mData[i]); }
+    T mData;
+};
+
+template <class T, typename Op> struct ModifiedDiffData
+{
+    ModifiedDiffData(T& data, double value) : mData(data), mValue(value) {}
+    double operator[](size_t i) { return Op()(mData[i] - mValue); }
+    T mData;
+    double mValue;
+};
+
+template <typename Op> struct IndexDiffOp
+{
+    IndexDiffOp(double value) : mValue(value) {}
+    double operator[](size_t i) { return Op()(static_cast<double>(i) - mValue); }
+    double mValue;
+};
 
 // Length
 
@@ -85,95 +104,93 @@ template <class T, class U> double statRatioBelow(T input, U threshold, size_t s
 
 template <class T> double statSum(T input, size_t size)
 {
-    return std::accumulate(input, input + size, 0.0);
+    double sum = 0.0;
+    
+    for (size_t i = 0; i < size; i++)
+        sum += input[i];
+    
+    return sum;
 }
 
 template <class T> double statSumAbs(T input, size_t size)
 {
-    return std::accumulate(input, input + size, 0.0, AddAbs());
+    return statSum(ModifiedData<T, Absolute>(input), size);
 }
 
 template <class T> double statSumSquares(T input, size_t size)
 {
-    return std::accumulate(input, input + size, 0.0, AddSquare());
+    return statSum(ModifiedData<T, Pow2>(input), size);
 }
 
 template <class T> double statSumLogs(T input, size_t size)
 {
-    return std::accumulate(input, input + size, 0.0, AddLog());
+    return statSum(ModifiedData<T, Logarithm>(input), size);
 }
 
 // Weighted Sums
 
-template <class T, typename Op, typename WeightOp> double statWeightedSum(T input, size_t size, Op op, WeightOp weight)
+template <class T, class U> double statWeightedSum(T data, U weights, size_t size)
 {
     double sum = 0.0;
     
     for (size_t i = 0; i < size; i++)
-        sum += weight(i) * op(input[i]);
+        sum += weights[i] * data[i];
     
     return sum;
 }
 
 template <class T> double statWeightedSum(T input, size_t size)
 {
-    return statWeightedSum(input, size, Pass(), Pass());
+    return statWeightedSum(Index(), input, size);
 }
 
 template <class T> double statWeightedSumAbs(T input, size_t size)
 {
-    return statWeightedSum(input, size, Absolute(), Pass());
+    return statWeightedSum(Index(), ModifiedData<T, Absolute>(input), size);
 }
 
 template <class T> double statWeightedSumSquares(T input, size_t size)
 {
-    return statWeightedSum(input, size, Square(), Pass());
+    return statWeightedSum(Index(), ModifiedData<T, Pow2>(input), size);
 }
 
 template <class T> double statWeightedSumLogs(T input, size_t size)
 {
-    return statWeightedSum(input, size, Logarithm(), Pass());
+    return statWeightedSum(Index(), ModifiedData<T, Logarithm>(input), size);
 }
 
 // Weighted Sums (by weights)
 
-template <class T, typename Op> double statWeightedSum(T input, T weights, size_t size, Op op)
-{
-    struct getWeight
-    {
-        getWeight(T weights) : mWeights(weights) {}
-        double operator()(size_t i) { return mWeights[i]; }
-        T mWeights;
-    };
-    
-    return statWeightedSum(input, size, op, getWeight(weights));
-}
-
 template <class T> double statWeightedSum(T input, T weights, size_t size)
 {
-    return statWeightedSum(input, weights, size, Pass());
+    return statWeightedSum(input, weights, size);
 }
 
 template <class T> double statWeightedSumAbs(T input, T weights, size_t size)
 {
-    return statWeightedSum(input, weights, size, Absolute());
+    return statWeightedSum(ModifiedData<T, Absolute>(input), weights, size);
 }
 
 template <class T> double statWeightedSumSquares(T input, T weights, size_t size)
 {
-    return statWeightedSum(input, weights, size, Square());
+    return statWeightedSum(ModifiedData<T, Pow2>(input), weights, size);
 }
 
 template <class T> double statWeightedSumLogs(T input, T weights, size_t size)
 {
-    return statWeightedSum(input, weights, size, Logarithm());
+    return statWeightedSum(ModifiedData<T, Logarithm>(input), weights, size);
 }
 
 // Product
 
 template <class T> double statProduct(T input, size_t size)
 {
-    return std::accumulate(input, input + size, 1, std::multiplies<double>());
+    double product = 1.0;
+    
+    for (size_t i = 0; i < size; i++)
+        product *= input[i];
+    
+    return product;
 }
 
 // Means
@@ -197,14 +214,8 @@ template <class T> double statGeometricMean(T input, size_t size)
 
 template <class T> double statVariance(T input, size_t size)
 {
-    struct AddSquareDifference
-    {
-        AddSquareDifference(double value) : mValue(value) {}
-        double operator()(double sum, double a) { return sum + Square()(a - mValue); }
-        double mValue;
-    };
-
-    return std::accumulate(input, input + size, 0.0, AddSquareDifference(statMean(input, size)));
+    double mean = statMean(input, size);
+    return statSum(ModifiedDiffData<T, Pow2>(input, mean), size);
 }
                            
 // Standard Deviation
@@ -223,38 +234,22 @@ template <class T> double statCentroid(T input, size_t size)
                         
 template <class T> double statSpread(T input, size_t size)
 {
-    struct Weight
-    {
-        Weight(double value) : mValue(value) {}
-        double operator()(size_t i) { return Square()(static_cast<double>(i) - mValue); }
-        double mValue;
-    };
-    
-    return statWeightedSum(input, size, Pass(), Weight(statCentroid(input, size))) / statSum(input, size);
+    double centroid = statCentroid(input, size);
+    return statWeightedSum(IndexDiffOp<Pow2>(centroid), input, size) / statSum(input, size);
 }
 
 template <class T> double statSkewness(T input, size_t size)
 {
-    struct Weight
-    {
-        Weight(double value) : mValue(value) {}
-        double operator()(size_t i) { return Cube()(static_cast<double>(i) - mValue); }
-        double mValue;
-    };
-
-    return statWeightedSum(input, size, Pass(), Weight(statCentroid(input, size))) / (Cube()(sqrt(statSpread(input, size))) * statSum(input, size));
+    double centroid = statCentroid(input, size);
+    double spreadNorm = Pow3()(sqrt(statSpread(input, size)));
+    return statWeightedSum(IndexDiffOp<Pow3>(centroid), input, size) / (spreadNorm * statSum(input, size));
 }
 
 template <class T> double statKurtosis(T input, size_t size)
 {
-    struct Weight
-    {
-        Weight(double value) : mValue(value) {}
-        double operator()(size_t i) { return Pow4()(static_cast<double>(i) - mValue); }
-        double mValue;
-    };
-    
-    return statWeightedSum(input, size, Pass(), Weight(statCentroid(input, size))) / (Square()(statSpread(input, size)) * statSum(input, size));
+    double centroid = statCentroid(input, size);
+    double spreadNorm = Pow2()(statSpread(input, size));
+    return statWeightedSum(IndexDiffOp<Pow4>(centroid), input, size) / (spreadNorm * statSum(input, size));
 }
                         
 // Flatness
