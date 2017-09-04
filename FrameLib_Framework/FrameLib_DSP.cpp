@@ -325,8 +325,11 @@ void FrameLib_DSP::incrementInputDependency()
 
 void FrameLib_DSP::dependenciesReady()
 {
+    
+#ifndef NDEBUG
     FrameLib_TimeFormat prevInputTime = mInputTime;
-
+#endif
+    
     bool timeUpdated = false;
     bool callUpdate = false;
     

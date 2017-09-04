@@ -264,6 +264,7 @@ void FrameLib_Parameters::Parameter::getRange(double *min, double *max) const
 const char *FrameLib_Parameters::Parameter::getItemString(unsigned long item) const
 {
     assert(0 && "cannot get enum string for non-enum parameter");
+    return NULL;
 }
 
 const double *FrameLib_Parameters::Parameter::getArray(size_t *size) const
