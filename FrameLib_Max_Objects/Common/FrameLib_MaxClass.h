@@ -946,13 +946,13 @@ private:
     {
         if (*this == dst)
         {
-            if (validInput(dstin))
-                dspchain_setbroken(dspchain_fromobject(*this));
-
             unwrapConnection(src, srcout);
             srcout -= (long) object_method(src, gensym("__fl.get_num_audio_outs"));
             dstin -= getNumAudioIns();
-                
+            
+            if (validInput(dstin))
+                dspchain_setbroken(dspchain_fromobject(*this));
+            
             switch (updatetype)
             {
                 case JPATCHLINE_CONNECT:        connect(src, srcout, dstin);        break;
