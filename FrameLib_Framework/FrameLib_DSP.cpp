@@ -59,8 +59,8 @@ void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long blockS
     
     // If the object is handling audio updates (but is not an output object) then notify
     
-    if (requiresAudioNotification() && mInputTime < mBlockEndTime)
-        dependencyNotify(false);
+    if (requiresAudioNotification())
+        dependencyNotify(false, true);
 }
 
 // Reset
@@ -293,23 +293,40 @@ FrameLib_Parameters::Serial *FrameLib_DSP::getOutput(unsigned long idx)
 
 // Dependency Notification
 
-inline void FrameLib_DSP::dependencyNotify(bool releaseMemory)
+inline void FrameLib_DSP::dependencyNotify(bool releaseMemory, bool fromInput)
 {
     if (releaseMemory)
         releaseOutputMemory();
     
     // If ready add to queue
     
-    if (--mDependencyCount == 0)
+    if (fromInput && mUpdatingInputs)
+    {
+        if (--mInputCount == 0)
+           mQueue->add(this);
+    }
+    else if (--mDependencyCount == 0)
         mQueue->add(this);
     
     // N.B. For multithreading re-entrancy needs to be avoided by increasing the dependency count before adding to the queue (with matching notification)
+}
+
+// For updating the correct input count
+
+void FrameLib_DSP::incrementInputDependency()
+{
+    if (mUpdatingInputs)
+        mInputCount++;
+    else
+        mDependencyCount++;
 }
 
 // Main code to control time flow (called when all input/output dependencies are ready)
 
 void FrameLib_DSP::dependenciesReady()
 {
+    FrameLib_TimeFormat prevInputTime = mInputTime;
+
     bool timeUpdated = false;
     bool callUpdate = false;
     
@@ -347,11 +364,13 @@ void FrameLib_DSP::dependenciesReady()
         // Schedule
         
         bool upToDate = mValidTime >= mBlockEndTime;
-        SchedulerInfo scheduleInfo = schedule(mOutputDone && !upToDate, upToDate);
+        bool canCreateNewFrame = mValidTime <= mInputTime;
+        SchedulerInfo scheduleInfo = schedule(mOutputDone && !upToDate && !canCreateNewFrame, upToDate);
+        bool allowUpdate = !mUpdatingInputs && (!(scheduleInfo.mNewFrame || mOutputDone) || canCreateNewFrame);
         
         // Check if time has been updated (limiting to positive advances only), and if so set output times
                 
-        if ((timeUpdated = !upToDate && nonZeroPositive(scheduleInfo.mTimeAdvance)))
+        if ((timeUpdated = !upToDate && nonZeroPositive(scheduleInfo.mTimeAdvance) && allowUpdate))
         {
             if (scheduleInfo.mNewFrame || mOutputDone)
             {
@@ -373,7 +392,6 @@ void FrameLib_DSP::dependenciesReady()
         // Find the valid till time (the min valid time of connected inputs that can trigger) and input time (the min valid time of all inputs)
         // Check for inputs at the current time that trigger (N.B. this is done after any update)
 
-        FrameLib_TimeFormat prevInputTime = mInputTime;
         FrameLib_TimeFormat prevValidTime = mValidTime;
         bool trigger = false;
         mInputTime = FL_Limits<FrameLib_TimeFormat>::largest();
@@ -388,12 +406,6 @@ void FrameLib_DSP::dependenciesReady()
             trigger |= (ins->mObject && ins->mTrigger && prevValidTime == ins->mObject->mFrameTime);
         }
 
-        if (mInputTime == prevInputTime)
-        {
-            trigger = false;
-            mValidTime = prevValidTime;
-        }
-        
         // If triggered update the frame time, process and release the inputs if we only have one dependency
         
         if (trigger)
@@ -421,30 +433,37 @@ void FrameLib_DSP::dependenciesReady()
                 }
             }
         }
-        
-        // Don't allow the inputs to advance beyond the block time for objects requiring audio notification
-        
-        if (requiresAudioNotification() && mBlockEndTime < mInputTime)
-            mInputTime = mBlockEndTime;
     }
+
+    // Don't allow the input time to advance beyond the block time for objects requiring audio notification
     
-    // Check for block completion for objects requiring audio notification
-
+    if (requiresAudioNotification() && mBlockEndTime < mInputTime)
+        mInputTime = mBlockEndTime;
+    
+    // Check if we are just updating inputs
+    
+    bool prevUpdatingInputs = mUpdatingInputs;
+    mUpdatingInputs = mInputTime < mValidTime;
+    
+    // Check for block completion for objects requiring audio notification (must be after we know if we are updating inputs only)
+    
     if (requiresAudioNotification() && mInputTime >= mBlockEndTime)
-        mDependencyCount++;
+        incrementInputDependency();
 
-    // Update dependency count for outputs
+    // Update dependency count for outputs and updating input state only
     
     mDependencyCount += (timeUpdated ? mOutputDependencies.size() : 0);
-    
+    if (mUpdatingInputs != prevUpdatingInputs && !prevUpdatingInputs)
+        mDependencyCount++;
+        
     // Notify input dependencies that can be released as they are up to date (releasing memory where relevant for objects with more than one input dependency)
     
     for (std::vector <FrameLib_DSP *>::iterator it = mInputDependencies.begin(); it != mInputDependencies.end(); it++)
     {
         if (mInputTime == (*it)->mValidTime)
         {
-            mDependencyCount++;
-            (*it)->dependencyNotify((getType() == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone);
+            incrementInputDependency();
+            (*it)->dependencyNotify((getType() == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone, false);
         }
     }
     
@@ -452,7 +471,19 @@ void FrameLib_DSP::dependenciesReady()
     
     if (timeUpdated)
         for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-            (*it)->dependencyNotify(false);
+            (*it)->dependencyNotify(false, true);
+    
+    // See if the updating input status has expired (must be done after resolving all other dependencies)
+    
+    if (mUpdatingInputs != prevUpdatingInputs && prevUpdatingInputs)
+        dependencyNotify(false, false);
+    
+    // DEBUG
+    
+    if (requiresAudioNotification())
+        assert(prevInputTime >= mBlockStartTime && prevInputTime < mBlockEndTime && "Out of sync with host");
+    assert(mInputTime > prevInputTime && "Failed to move time forward");
+    assert(mInputTime <= mValidTime && "Output is ahead of input dependencies");
 }
 
 void FrameLib_DSP::setOutputDependencyCount()
@@ -462,6 +493,8 @@ void FrameLib_DSP::setOutputDependencyCount()
 
 void FrameLib_DSP::resetDependencyCount()
 {
+    mUpdatingInputs = false;
+    mInputCount = 0;
     mOutputMemoryCount = 0;
     mDependencyCount = mInputDependencies.size() + ((requiresAudioNotification()) ? 1 : 0);
     

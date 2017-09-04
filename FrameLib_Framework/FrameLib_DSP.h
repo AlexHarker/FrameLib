@@ -216,9 +216,10 @@ private:
 
     // Dependency Notification
     
-    inline void dependencyNotify(bool releaseMemory);
+    inline void dependencyNotify(bool releaseMemory, bool fromInput);
     void dependenciesReady();
     void setOutputDependencyCount();
+    void incrementInputDependency();
     void resetDependencyCount();
     
     // Dependency Updating
@@ -268,6 +269,7 @@ private:
     
     // Dependency Counts
     
+    long mInputCount;
     long mDependencyCount;
     long mOutputMemoryCount;
     
@@ -279,6 +281,7 @@ private:
     FrameLib_TimeFormat mBlockStartTime;
     FrameLib_TimeFormat mBlockEndTime;
     
+    bool mUpdatingInputs;
     bool mInUpdate;
     bool mOutputDone;
 };
