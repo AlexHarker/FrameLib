@@ -11,10 +11,19 @@
 struct Pow2      { template <class T> T operator()(T a) { return a * a; } };
 struct Pow3      { template <class T> T operator()(T a) { return a * a * a; } };
 struct Pow4      { template <class T> T operator()(T a) { return Pow2()(Pow2()(a)); } };
-struct Absolute  { template <class T> T operator()(T a) { return abs(a); } };
+struct Absolute  { template <class T> T operator()(T a) { return std::abs(a); } };
 struct Logarithm { template <class T> T operator()(T a) { return log(a); } };
 
 struct Index     { template <class T> double operator[](T a) { return static_cast<double>(a); } };
+struct LogIndex  { template <class T> double operator[](T a) { return a ? log2(static_cast<double>(a)) : 0.0; } };
+
+template <class T> struct LogWidth
+{
+    LogWidth(T& data) : mData(data) {}
+    double operator[](size_t i) { return i ? mData[i] * (log2(i + 0.5) - log2(i - 0.5)) : mData[i] * 0.0; }
+    T mData;
+};
+
 
 template <class T, typename Op> struct ModifiedData
 {
@@ -35,6 +44,13 @@ template <typename Op> struct IndexDiffOp
 {
     IndexDiffOp(double value) : mValue(value) {}
     double operator[](size_t i) { return Op()(static_cast<double>(i) - mValue); }
+    double mValue;
+};
+
+template <typename Op> struct LogIndexDiffOp
+{
+    LogIndexDiffOp(double value) : mValue(value) {}
+    double operator[](size_t i) { return Op()(LogIndex()[i] - mValue); }
     double mValue;
 };
 
@@ -225,6 +241,24 @@ template <class T> double statStandardDeviation(T input, size_t size)
     return sqrt(statVariance(input, size));
 }
 
+// PDF Percentile
+
+template <class T> double statPDFPercentile(T input, double centile, size_t size)
+{
+    double target = statSum(input, size) * std::min(100.0, std::max(centile, 0.0)) / 100.0;
+    
+    double sum = 0.0;
+    
+    for (size_t i = 0; i < size; i++)
+    {
+        sum += input[i];
+        if (sum > target)
+            return static_cast<double>(i - ((sum - target) / input[i]));
+    }
+    
+    return static_cast<double>(size - 1);
+}
+
 // Shape
 
 template <class T> double statCentroid(T input, size_t size)
@@ -251,7 +285,34 @@ template <class T> double statKurtosis(T input, size_t size)
     double spreadNorm = Pow2()(statSpread(input, size));
     return statWeightedSum(IndexDiffOp<Pow4>(centroid), input, size) / (spreadNorm * statSum(input, size));
 }
-                        
+
+// Log Shape
+
+template <class T> double statLogCentroid(T input, size_t size)
+{
+    return exp2(statWeightedSum(LogIndex(), LogWidth<T>(input), size) / (statSum(LogWidth<T>(input), size)));
+}
+
+template <class T> double statLogSpread(T input, size_t size)
+{
+    double centroid = statLogCentroid(input, size);
+    return statWeightedSum(LogIndexDiffOp<Pow2>(log2(centroid)), LogWidth<T>(input), size) / (statSum(LogWidth<T>(input), size));
+}
+
+template <class T> double statLogSkewness(T input, size_t size)
+{
+    double centroid = statLogCentroid(input, size);
+    double spreadNorm = Pow3()(sqrt(statLogSpread(input, size)));
+    return statWeightedSum(LogIndexDiffOp<Pow3>(log2(centroid)), LogWidth<T>(input), size) / (spreadNorm * statSum(LogWidth<T>(input), size));
+}
+
+template <class T> double statLogKurtosis(T input, size_t size)
+{
+    double centroid = statCentroid(input, size);
+    double spreadNorm = Pow2()(statLogSpread(input, size));
+    return statWeightedSum(LogIndexDiffOp<Pow4>(log2(centroid)), LogWidth<T>(input), size) / (spreadNorm * statSum(LogWidth<T>(input), size));
+}
+
 // Flatness
 
 template <class T> double statFlatness(T input, size_t size)
