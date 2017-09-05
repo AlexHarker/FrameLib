@@ -146,7 +146,7 @@ protected:
     FrameLib_TimeFormat getValidTime()      { return mValidTime; }
     FrameLib_TimeFormat getInputTime()      { return mInputTime; }
     FrameLib_TimeFormat getCurrentTime()    { return getType() == kScheduler ? mValidTime : mFrameTime; }
-    FrameLib_TimeFormat getBlockStartTime() { return mBlockStartTime; }
+    FrameLib_TimeFormat getBlockStartTime() { return getType() == kOutput ? mBlockEndTime : mBlockStartTime; }
     FrameLib_TimeFormat getBlockEndTime()   { return mBlockEndTime; }
     
     FrameLib_TimeFormat getInputFrameTime(unsigned long idx)    { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : FrameLib_TimeFormat(0); }
