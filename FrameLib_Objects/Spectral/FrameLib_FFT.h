@@ -11,7 +11,7 @@ class FrameLib_FFT : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-	enum ParameterList { kMaxLength };
+	enum ParameterList { kMaxLength, kNormalise };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 

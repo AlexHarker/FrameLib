@@ -9,7 +9,9 @@ FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, FrameLib_Parameters::Seri
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
-    
+    mParameters.addBool(kNormalise, "normalise", false, 1);
+    mParameters.setInstantiation();
+
     mParameters.set(serialisedParameters);
     
     unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
@@ -94,7 +96,7 @@ void FrameLib_iFFT::process()
     
     if (spectrum.realp)
     {
-        double scale = 1.0 / (double) sizeOut;
+        double scale = mParameters.getBool(kNormalise) ? 1.0 : 1.0 / (double) sizeOut;
         
         // Copy Spectrum
         

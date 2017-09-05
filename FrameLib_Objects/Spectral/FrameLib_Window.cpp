@@ -135,14 +135,16 @@ void FrameLib_Window::updateWindow(unsigned long inSize, EndPoints ends)
     double linearGain = 0.0;
     double powerGain = 0.0;
     
-    for (unsigned long i = 0; i <= windowSize; i++)
+    // FIX - need to think about which ends are being used...
+    
+    for (unsigned long i = 1; i < windowSize; i++)
         linearGain += mWindow[i];
     
-    for (unsigned long i = 0; i <= windowSize; i++)
+    for (unsigned long i = 1; i < windowSize; i++)
         powerGain += mWindow[i] * mWindow[i];
     
-    mLinearGain = linearGain / (double) (windowSize + 1);
-    mPowerGain = powerGain / (double) (windowSize + 1);
+    mLinearGain = linearGain;
+    mPowerGain = powerGain;
 }
 
 double FrameLib_Window::linearInterp(double pos)
@@ -182,14 +184,30 @@ void FrameLib_Window::process()
         
         updateWindow(sizeIn, ends);
         
+        // FIX - gain when stretching??
+        
         bool preIncrement = ends == kNone || ends == kLast;
+        double linearGain = mLinearGain;
+        double powerGain = mPowerGain;
+        
+        if (ends == kFirst || ends == kBoth)
+        {
+            linearGain += mWindow[0];
+            powerGain += mWindow[0] * mWindow[0];
+        }
+            
+        if (ends == kLast || ends == kBoth)
+        {
+            linearGain += mWindow[mSize - 1];
+            powerGain += mWindow[mSize - 1] * mWindow[mSize - 1];
+        }
         
         switch (compensate)
         {
-            case kOff:                  gain = 1.0;                         break;
-            case kLinear:               gain = mLinearGain;                 break;
-            case kPower:                gain = mPowerGain;                  break;
-            case kPowerOverLinear:      gain = mPowerGain / mLinearGain;    break;
+            case kOff:                  gain = 1.0;                                     break;
+            case kLinear:               gain = (double) sizeIn / linearGain;            break;
+            case kPower:                gain = (double) sizeIn / linearGain;            break;
+            case kPowerOverLinear:      gain = linearGain / powerGain;                  break;
         }
         
         if (mSize % sizeFactor)

@@ -9,7 +9,9 @@ FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
-    
+    mParameters.addBool(kNormalise, "normalise", false, 1);
+    mParameters.setInstantiation();
+
     mParameters.set(serialisedParameters);
     
     unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
@@ -102,10 +104,12 @@ void FrameLib_FFT::process()
         
         // Scale
         
+        double scale = mParameters.getBool(kNormalise) ? 1.0 / (double) FFTSize : 0.5;
+        
         for (unsigned long i = 0; i < sizeOut; i++)
         {
-            spectrum.realp[i] *= 0.5;
-            spectrum.imagp[i] *= 0.5;
+            spectrum.realp[i] *= scale;
+            spectrum.imagp[i] *= scale;
         }
     }
 }
