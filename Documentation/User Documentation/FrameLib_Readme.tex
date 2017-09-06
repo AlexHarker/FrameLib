@@ -12,9 +12,12 @@
 \usepackage{datetime}
 \usepackage{textcomp}
 \usepackage{enumitem}
+\usepackage{hyperref}
 
-\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
-
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 % Margins
 \topmargin=-0.45in
@@ -44,34 +47,13 @@
 %	DOCUMENT STRUCTURE COMMANDS
 %	Skip this unless you know what you're doing
 %----------------------------------------------------------------------------------------
-
-% Header and footer for when a page split occurs within a problem environment
-\newcommand{\enterProblemHeader}[1]{
-\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
-\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
-}
-
-% Header and footer for when a page split occurs between problem environments
-\newcommand{\exitProblemHeader}[1]{
-\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
-\nobreak\extramarks{#1}{}\nobreak
-}
-
-\newcommand{\homeworkSectionName}{}
-\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
-\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
-\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
-\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
-}{
-\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
-}
    
 %----------------------------------------------------------------------------------------
 %	NAME AND CLASS SECTION
 %----------------------------------------------------------------------------------------
 
-%\newcommand{\hmwkAuthorName}{Alex Harker} % Your name
 \newcommand{\flobject}[1]{\textit{fl.#1$\sim$}}
+\newcommand{\fake}[1]{\leavevmode\hphantom{#1}}
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
@@ -109,7 +91,7 @@
 
 \subsection{Preliminaries}
 
-This document is designed to go with alpha releases of the Max version of FrameLib (which is currently the only extant version). The documentation is currently intended to give just enough information to get experienced Max users started and and explain basic concepts, and as such is far from fully comprehensive.
+This document is designed to go with alpha releases of the Max version of FrameLib (which is currently the only extant version). The documentation is currently intended to give just enough information to get experienced Max users started and and explain basic concepts, and as such is far from fully comprehensive. To install simply place the FrameLib folder in the your Packages folder. This isn't a full package install (just externals), but there is no need to create the inner folder structure manually.
 
 \subsection{What is FrameLib?}
 
@@ -121,7 +103,7 @@ In general the software should be relatively stable, but there are several items
 
 \subsection{How Can I Help?}
 
-Thanks for asking! Please comment on the usability of objects, features, points of confusion. Object ideas are also welcome, but are lower priority. Comments on the open questions in the alpha section are particularly welcome. Offers of help with documentation (or help patches) would be good, although most likely any help patches are a little way off yet. Obviously, let me know of any bugs you might find. Developer documentation (for those wishing to write C++ objects) will come later, via doxygen, when I get to adding the relevant comment hooks (and figure out how to get doxygen to document only the things I want in the right way).
+Thanks for asking! Please comment on the usability of objects, features, points of confusion. Object ideas are also welcome, but are lower priority. Comments on the open questions in the alpha section are particularly welcome. Offers of help with documentation (or help patches) would be good, although most likely any help patches are a little way off yet. Obviously, let me know of any bugs you might find (crash logs and repeatable steps to reproduce, please). Note that the testing builds have some asserts left in, meaning that FrameLib will crash if it detects an unexpected issue - hopefully you won't have this happen, but this lets me test my assumptions `in the wild'. Developer documentation (for those wishing to write C++ objects) will come later, via doxygen, when I get to adding the relevant comment hooks (and figure out how to get doxygen to document only the things I want in the right way).
 \pagebreak
 
 %----------------------------------------------------------------------------------------
@@ -139,7 +121,7 @@ The most important concepts to understand in FrameLib are:
 \item{Objects that act as timing sources are called \textbf{\textit{schedulers}}.}
  \end{enumerate}
 
-Schedulers trigger frames which then are then further processed by other objects. All FrameLib objects can accept inputs that are running at different rates (regular or irregular) and will resolve the timing between inputs correctly. Frames arriving at the same time are processed once only together. When frames arrive at different times they are processed against the latest arrival at other inputs.
+Schedulers trigger frames which then are then further processed by other objects. All FrameLib objects can accept inputs that are running at different rates (regular or irregular) and will resolve the timing between inputs correctly. Frames arriving at the same time are processed once only together. When frames arrive at different times they are processed against the latest arrivals at other inputs.
 
 In order for your patch to do anything at all it will need at least one scheduler. You can also connect schedulers in any combination in a network and time should be resolved correctly.
 
@@ -149,11 +131,11 @@ Note that not all inputs to a FrameLib object will necessarily trigger processin
 
 FrameLib objects have variables with state known as parameters. Parameters are referred to by name and are used for values that may not vary over a single frame  (in this way they are unlike inputs, which are used when a value can vary over a frame). However, they may take more than one value (an array), or non-numeric values (for instance a string or a enumerator, which can be set by the name of the item, or its index number). The parameter system is used to change object behaviour, without requiring an unmanageable number of inlets, and to separate `mode' type control from normal inputs. It is somewhat akin to the Max attribute system, but it operates in the strongly-timed way that FrameLib frames do.
 
-Parameters may be set at instantiation time, or at frame rate using tagged frames (details of how this works in Max are given below. Tagged frames are also described below in more detail). Importantly, for simultaneously arriving frames where one sets parameters and others trigger processing the parameter update is performed before the processing, so updates can be performed synchronously. Some parameters are available at instantiation (usually those that set the number of inputs/outputs or pre-allocate significant memory).
+Parameters may be set at instantiation time, or at frame rate using tagged frames (details of how this works in Max are given in section \ref{sec:setparams}. Tagged frames are also described in more detail in \ref{sec:frametype}). Importantly, for simultaneously arriving frames where one sets parameters and others trigger processing the parameter update is performed before the processing, so updates can be performed synchronously. Some parameters are available at instantiation (usually those that set the number of inputs/outputs or pre-allocate significant memory).
 
-Each object maintains its own set of parameters which can be detailed using the inbuilt reference system (see the section entitled ).
+Each object maintains its own set of parameters which can be detailed within Max using the inbuilt reference system (see section \ref{sec:info}).
 
-\subsection{Types of Frames}
+\subsection{\label{sec:frametype}Types of Frames}
 
 The inputs and outputs to FrameLib objects are `frames'. Frames can have two basic types in FrameLib. The first is the most common and consists of a vector of numeric values (all doubles in underlying type). The length of this vector can take any length from zero upwards (so scalars are simply a single valued frame). The frame with no values (zero length) is used as a trigger message, and has useful function (similar to a bang message in max). 
 
@@ -170,7 +152,7 @@ Technically, the objects hosted in Max objects carry not single frames, but mult
 
 \subsection{List of Current Schedulers}
 
-Whilst this document is not an object reference, it is necessary to list the objects which can act as schedulers.
+Whilst this document is not an object reference, it is worthwhile giving more detail on the objects which act as schedulers.
 
 \begin{description}[align=left, itemindent=3cm, labelwidth=3cm]
 \item [\flobject{interval}] trigger regular frame - for irregular frames vary the interval over time.
@@ -188,19 +170,19 @@ Only one object can be connected to a frame input. There is simply no one sensib
 
 The \flobject{source} object allows you to grab chunks of audio from MSP as frames. The audio you obtain suffers a latency equal to the size of the chunk you are grabbing. For output you will commonly want a \flobject{sink} object, which acts as an overlap-add buffer to the MSP signal chain. This suffers no latency. For single value outputs as control (for instance if you want to output the values of a frequency-domain analysis back in MSP) you will probably wish to use the \flobject{trace} object.
 
-\subsection{Setting Parameters}
+\subsection{\label{sec:setparams}Setting Parameters}
 
 Parameters can be set in one of two ways, either at frame rate (if the object has a Parameter Update input), or at object instantiation. At object instantiation the syntax is currently: \\ \textbf{either:}\\ 
 \-\hspace{4ex} \textit{\#parameter\_name value(s) ...} \\ 
 \textbf{or:}\\ 
 \-\hspace{4ex} \textit{/parameter\_name value(s) ...} \\ 
-within the object box. The @ sign is not used to avoid confusion with max attributes (which show in the inspector and can be set in the max thread using messages, which FrameLib parameters cannot). In addition parameters can be assigned to a given argument number in which case they can be set from object arguments.
+within the object box.The \# is used most commonly in the demos, but the slashes are also possible to see who prefers what. The @ sign is not used to avoid confusion with max attributes (which show in the inspector and can be set in the max thread using messages, which FrameLib parameters cannot). In addition parameters can be assigned to a given argument number in which case they can be set from object arguments.
 
 To set parameters at frame rate based on values in vectors, use the \flobject{setparam} object.
 
 \subsection{Setting Fixed Inputs}
 
-FrameLib objects in Max support input of fixed numeric values at object instantiation that are used for any subsequent calculations, rather than values updated at frame rate. This is accessed in one of two ways. Most binary operators (e.g. \flobject{times} or \flobject{divide}) allow you to directly type the value of either input in as one or more arguments to the object (this mimics standard max object behaviour). However, as most objects use arguments to represent parameters (for ease), other objects require a special syntax for setting the value of a specific input. This is currently:\\
+FrameLib objects in Max support input of fixed numeric values at object instantiation that are used for any subsequent calculations, rather than values updated at frame rate. This is accessed in one of two ways. Most binary operators (e.g. \flobject{times} or \flobject{divide}) allow you to directly type the value of either input in as one or more arguments to the object (this mimics standard max object behaviour). However, as most objects use arguments to represent parameters (for ease), other objects require a special syntax for setting the value of a specific input. There are currently four possible notations to do this (with slashes or square brackets most likely to make the final cut):\\
 \textbf{either:}\\ 
 \-\hspace{4ex} \textit{/input\_number/ value(s) ...} \\ 
 \textbf{or:}\\ 
@@ -217,7 +199,7 @@ As everything in max runs at frame rate you cannot just hook up max messages to 
 
 In the second mode of operation a variable number of  inputs allow for max messages to be translated into tagged frames. In this mode each input corresponds to a named parameter, and messages send to each input will be stored until the next frame is triggered. At this point \textbf{all} stored parameter changes are sent to the output in a single concatenated frame, and cleared from the object's memory (unlike numeric vectors which will be repeated on subsequent trigger inputs).
 
-\subsection{Getting Object Help}
+\subsection{\label{sec:info}Getting Object Help}
 
 There are a lot of objects and not time here to even list them. However, all objects support the \textbf{info} message. This currently prints reference type information to the max window. This is the only way to get help on individual objects, but should be compact but comprehensive.
 \\ \\
@@ -238,6 +220,195 @@ You can also use any combination of the following to customise the info given:
 
 %----------------------------------------------------------------------------------------
 
+\section{Learning More}
+\vspace{0.1in}
+
+\subsection{Demo Patches}
+
+The demo patches supplied cover a set of simple and more complex behaviours. There is far more that you could do with FrameLib and these examples are biased towards spectral processing and granulation. These are the demos I've amassed for various presentations. They are not fully documented., but hopefully offer a solid starting point for how objects can be joined together to do something useful.
+
+\subsection{The Objects}
+
+A full object listing follows, grouped by function. Currently this is the best quick reference for what is included at present. For more info use the inbuilt help/info system.
+
+\pagebreak
+
+%----------------------------------------------------------------------------------------
+
+\section{Current Object List}
+\vspace{0.1in}
+
+\renewcommand{\arraystretch}{1.2}
+
+\subsection{Schedulers}
+\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\flobject{audiotrigger} &
+\flobject{perblock} &
+\flobject{future} &
+\flobject{interval} \\
+\flobject{once} &
+\end{tabular}
+
+\subsection{Unary}
+\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\flobject{abs} &
+\flobject{acosh} &
+\flobject{acos} &
+\flobject{asinh} \\
+\flobject{asin} &
+\flobject{atanh} &
+\flobject{atan} &
+\flobject{cbrt} \\
+\flobject{ceil} &
+\flobject{cosh} &
+\flobject{cos} &
+\flobject{erfc} \\
+\flobject{erf} &
+\flobject{exp2} &
+\flobject{exp} &
+\flobject{floor} \\
+\flobject{log10} &
+\flobject{log2} &
+\flobject{log} &
+\flobject{round} \\
+\flobject{sinh} &
+\flobject{sin} &
+\flobject{sqrt} &
+\flobject{tanh} \\
+\flobject{tan} &
+\flobject{trunc} \\ 
+\end{tabular}
+
+\subsection{Binary}
+\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\flobject{atan2} &
+\flobject{copysign} &
+\flobject{diff} &
+\flobject{divide} \\
+\flobject{equals} &
+\flobject{greaterthaneq} &
+\flobject{greaterthan} &
+\flobject{hypot} \\
+\flobject{lessthaneq} &
+\flobject{lessthan} &
+\flobject{max} &
+\flobject{minus} \\
+\flobject{min} &
+\flobject{notequals} &
+\flobject{plus} &
+\flobject{pow} \\
+\flobject{times} &
+\end{tabular}
+
+\subsection{Vector}
+\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\flobject{centroid} &
+\flobject{chop} &
+\flobject{crest} &
+\flobject{flatness} \\
+\flobject{geometricmean} &
+\flobject{join} &
+\flobject{kurtosis} &
+\flobject{length} \\
+\flobject{mean} &
+\flobject{medianfilter} &
+\flobject{pad} &
+\flobject{peaks} \\
+\flobject{percentile} &
+\flobject{product} &
+\flobject{rms} &
+\flobject{shift} \\
+\flobject{skewness} &
+\flobject{sort} &
+\flobject{split} &
+\flobject{spread} \\
+\flobject{standarddeviation} &
+\flobject{subframe} &
+\flobject{sum} &
+\flobject{vmax} \\ 
+\flobject{vmin}
+\end{tabular}
+
+\subsection{Generators}
+\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\flobject{count} &
+\flobject{random}
+\end{tabular}
+
+\subsection{IO}
+\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\flobject{sink} &
+\flobject{source} &
+\flobject{trace}
+\end{tabular}
+
+\subsection{Mapping}
+\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\flobject{constant} &
+\flobject{convert} &
+\flobject{lookup} &
+\flobject{map} \\
+\flobject{samplerate}
+\end{tabular}
+
+\subsection{Max Specific}
+\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\flobject{frommax} &
+\flobject{read}
+\end{tabular}
+
+\subsection{Parameters}
+\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\flobject{setparam}
+\end{tabular}
+
+\subsection{Routing}
+\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\flobject{pack} &
+\flobject{select} &
+\flobject{unpack}
+\end{tabular}
+
+\subsection{Spectral}
+\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\flobject{convolve} &
+\flobject{fft} &
+\flobject{ifft} &
+\flobject{mutlitaper} \\
+\flobject{window}
+\end{tabular}
+
+\subsection{Storage}
+\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\flobject{recall} &
+\flobject{register} &
+\flobject{spatial} &
+\flobject{store} \\
+\end{tabular}
+
+\subsection{Timing}
+\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\flobject{now}
+\end{tabular}
+
+\subsection{Filters}
+\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\flobject{0dfsvf} &
+\flobject{onepolezero} &
+\flobject{onepole} &
+\flobject{resonant} \\
+\flobject{sallenkey}
+\end{tabular}
+
+\subsection{Spatial}
+\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\flobject{coordinatesystem} &
+\flobject{spatial}
+\end{tabular}
+
+\pagebreak
+%----------------------------------------------------------------------------------------
+
 \section{Alpha Aspects of FrameLib}
 \vspace{0.1in}
 
@@ -246,11 +417,11 @@ You can also use any combination of the following to customise the info given:
 \item{All object features are subject to change (particularly which objects have parameter inputs).}
 \item{All object parameter names are subject to change. \\
  - here input on preferred formats (with or without underscores/capitals etc. would be helpful).}
-\item{Notation for parameters / inputs are subject to change. \\
+\item{Notation for parameters/inputs are subject to change. \\
  - here input on preferences is appreciated.}
 \item{The text displayed by the info object is subject to change. \\
- - here input on clarity / wording is appreciated. \\
- - input on what should be considered quick / comprehensive would be useful.}
+ - here input on clarity/wording is appreciated. \\
+ - input on what should be considered quick/comprehensive would be useful.}
   \end{itemize}
 
 \end{document}

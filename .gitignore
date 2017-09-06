@@ -25,6 +25,7 @@ _MaxSDK_/
 *.synctex.gz
 *.toc
 *.log
+*.out
 
 ## Other
 *.moved-aside
