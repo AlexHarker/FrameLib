@@ -499,6 +499,7 @@ void FrameLib_DSP::resetDependencyCount()
     mInputCount = 0;
     mOutputMemoryCount = 0;
     mDependencyCount = mInputDependencies.size() + ((requiresAudioNotification()) ? 1 : 0);
+    mNext = NULL;
     
     freeOutputMemory();
 }

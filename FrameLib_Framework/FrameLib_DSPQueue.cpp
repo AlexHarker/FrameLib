@@ -4,8 +4,8 @@
 
 void FrameLib_DSPQueue::add(FrameLib_DSP *object)
 {
-    object->mNext = NULL;
-    
+    assert((!object->mNext || mTop == object) && "Object is already in the queue and not at the top");
+
     if (!mTop)
     {
         // Queue is empty - add and start processing the queue
