@@ -1,0 +1,101 @@
+\hypertarget{class_frame_lib___local_allocator}{}\section{Frame\+Lib\+\_\+\+Local\+Allocator Class Reference}
+\label{class_frame_lib___local_allocator}\index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+Memory.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_frame_lib___local_allocator_1_1_storage}{Storage}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_frame_lib___local_allocator_a218131bb74240289b83dc7cd0e0ad6a7}{Frame\+Lib\+\_\+\+Local\+Allocator} (\hyperlink{class_frame_lib___global_allocator}{Frame\+Lib\+\_\+\+Global\+Allocator} $\ast$allocator)
+\item 
+\hyperlink{class_frame_lib___local_allocator_a7c7bc361ea0fc016fdc7da6282c963d4}{$\sim$\+Frame\+Lib\+\_\+\+Local\+Allocator} ()
+\item 
+void $\ast$ \hyperlink{class_frame_lib___local_allocator_a47d3c43f0a7d094b7d237850523828df}{alloc} (size\+\_\+t size)
+\item 
+void \hyperlink{class_frame_lib___local_allocator_ab0e907ad680da0a20143c1fe251d0ec8}{dealloc} (void $\ast$ptr)
+\item 
+void \hyperlink{class_frame_lib___local_allocator_a5d4eef90190d3699cb2026da02749dd5}{clear} ()
+\item 
+\hyperlink{class_frame_lib___local_allocator_1_1_storage}{Storage} $\ast$ \hyperlink{class_frame_lib___local_allocator_a9659c558d40a3c5b41c1d09f293c39bf}{register\+Storage} (const char $\ast$name)
+\item 
+void \hyperlink{class_frame_lib___local_allocator_a5bbca2317e172ec8afa22be33a70d748}{release\+Storage} (const char $\ast$name)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static size\+\_\+t \hyperlink{class_frame_lib___local_allocator_a1925095d14b5f3e2b8e8638aea72258d}{get\+Alignment} ()
+\item 
+static size\+\_\+t \hyperlink{class_frame_lib___local_allocator_aecfc92521d06870cc16712a1a73ae6ee}{align\+Size} (size\+\_\+t x)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_frame_lib___local_allocator_a218131bb74240289b83dc7cd0e0ad6a7}\label{class_frame_lib___local_allocator_a218131bb74240289b83dc7cd0e0ad6a7}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}!Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
+\index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}!Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Local\+Allocator()}{FrameLib\_LocalAllocator()}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Frame\+Lib\+\_\+\+Local\+Allocator (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___global_allocator}{Frame\+Lib\+\_\+\+Global\+Allocator} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___local_allocator_a7c7bc361ea0fc016fdc7da6282c963d4}\label{class_frame_lib___local_allocator_a7c7bc361ea0fc016fdc7da6282c963d4}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}!````~Frame\+Lib\+\_\+\+Local\+Allocator@{$\sim$\+Frame\+Lib\+\_\+\+Local\+Allocator}}
+\index{````~Frame\+Lib\+\_\+\+Local\+Allocator@{$\sim$\+Frame\+Lib\+\_\+\+Local\+Allocator}!Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
+\subsubsection{\texorpdfstring{$\sim$\+Frame\+Lib\+\_\+\+Local\+Allocator()}{~FrameLib\_LocalAllocator()}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Local\+Allocator\+::$\sim$\+Frame\+Lib\+\_\+\+Local\+Allocator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_frame_lib___local_allocator_aecfc92521d06870cc16712a1a73ae6ee}\label{class_frame_lib___local_allocator_aecfc92521d06870cc16712a1a73ae6ee}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}!align\+Size@{align\+Size}}
+\index{align\+Size@{align\+Size}!Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
+\subsubsection{\texorpdfstring{align\+Size()}{alignSize()}}
+{\footnotesize\ttfamily static size\+\_\+t Frame\+Lib\+\_\+\+Local\+Allocator\+::align\+Size (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_frame_lib___local_allocator_a47d3c43f0a7d094b7d237850523828df}\label{class_frame_lib___local_allocator_a47d3c43f0a7d094b7d237850523828df}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}!alloc@{alloc}}
+\index{alloc@{alloc}!Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
+\subsubsection{\texorpdfstring{alloc()}{alloc()}}
+{\footnotesize\ttfamily void $\ast$ Frame\+Lib\+\_\+\+Local\+Allocator\+::alloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___local_allocator_a5d4eef90190d3699cb2026da02749dd5}\label{class_frame_lib___local_allocator_a5d4eef90190d3699cb2026da02749dd5}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}!clear@{clear}}
+\index{clear@{clear}!Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
+\subsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Local\+Allocator\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___local_allocator_ab0e907ad680da0a20143c1fe251d0ec8}\label{class_frame_lib___local_allocator_ab0e907ad680da0a20143c1fe251d0ec8}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}!dealloc@{dealloc}}
+\index{dealloc@{dealloc}!Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
+\subsubsection{\texorpdfstring{dealloc()}{dealloc()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Local\+Allocator\+::dealloc (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___local_allocator_a1925095d14b5f3e2b8e8638aea72258d}\label{class_frame_lib___local_allocator_a1925095d14b5f3e2b8e8638aea72258d}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}!get\+Alignment@{get\+Alignment}}
+\index{get\+Alignment@{get\+Alignment}!Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
+\subsubsection{\texorpdfstring{get\+Alignment()}{getAlignment()}}
+{\footnotesize\ttfamily static size\+\_\+t Frame\+Lib\+\_\+\+Local\+Allocator\+::get\+Alignment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_frame_lib___local_allocator_a9659c558d40a3c5b41c1d09f293c39bf}\label{class_frame_lib___local_allocator_a9659c558d40a3c5b41c1d09f293c39bf}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}!register\+Storage@{register\+Storage}}
+\index{register\+Storage@{register\+Storage}!Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
+\subsubsection{\texorpdfstring{register\+Storage()}{registerStorage()}}
+{\footnotesize\ttfamily \hyperlink{class_frame_lib___local_allocator_1_1_storage}{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage} $\ast$ Frame\+Lib\+\_\+\+Local\+Allocator\+::register\+Storage (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___local_allocator_a5bbca2317e172ec8afa22be33a70d748}\label{class_frame_lib___local_allocator_a5bbca2317e172ec8afa22be33a70d748}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}!release\+Storage@{release\+Storage}}
+\index{release\+Storage@{release\+Storage}!Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
+\subsubsection{\texorpdfstring{release\+Storage()}{releaseStorage()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Local\+Allocator\+::release\+Storage (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___memory_8h}{Frame\+Lib\+\_\+\+Memory.\+h}\item 
+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___memory_8cpp}{Frame\+Lib\+\_\+\+Memory.\+cpp}\end{DoxyCompactItemize}

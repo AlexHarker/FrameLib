@@ -1,0 +1,187 @@
+\hypertarget{class_frame_lib___expand}{}\section{Frame\+Lib\+\_\+\+Expand$<$ T $>$ Class Template Reference}
+\label{class_frame_lib___expand}\index{Frame\+Lib\+\_\+\+Expand$<$ T $>$@{Frame\+Lib\+\_\+\+Expand$<$ T $>$}}
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+Multichannel.\+h$>$}
+
+Inheritance diagram for Frame\+Lib\+\_\+\+Expand$<$ T $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_frame_lib___expand}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_frame_lib___expand_a591240aee95c812856a9835b8014a915}{Frame\+Lib\+\_\+\+Expand} (\hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} context, \hyperlink{class_frame_lib___parameters_1_1_serial}{Frame\+Lib\+\_\+\+Parameters\+::\+Serial} $\ast$serialised\+Parameters, void $\ast$owner)
+\item 
+\hyperlink{class_frame_lib___expand_a3aa2aa689e4b063fa65fe72be311c45f}{$\sim$\+Frame\+Lib\+\_\+\+Expand} ()
+\item 
+virtual void \hyperlink{class_frame_lib___expand_a73f7bf4264d45f56f249d6303b3e4c35}{set\+Fixed\+Input} (unsigned long idx, double $\ast$input, unsigned long size)
+\item 
+virtual void \hyperlink{class_frame_lib___expand_ae712d631cb99284e91c3f318534b3c03}{block\+Update} (double $\ast$$\ast$ins, double $\ast$$\ast$outs, unsigned long \hyperlink{_frame_lib___memory_8cpp_a8ef7d53a4cac28bf580a61f265fcaaa6}{block\+Size})
+\item 
+virtual void \hyperlink{class_frame_lib___expand_a579f16ec32e05ff84ee766038012fc3f}{reset} (double sampling\+Rate, unsigned long max\+Block\+Size)
+\item 
+virtual std\+::string \hyperlink{class_frame_lib___expand_ac4527eab2bfb55a38bd796d95f2a2562}{object\+Info} (bool verbose)
+\item 
+virtual std\+::string \hyperlink{class_frame_lib___expand_ab9017c7fe8562857609fcf819b7d1cdd}{input\+Info} (unsigned long idx, bool verbose)
+\item 
+virtual std\+::string \hyperlink{class_frame_lib___expand_abba12bed97c0b76095f1e1a699591b3e}{output\+Info} (unsigned long idx, bool verbose)
+\item 
+virtual std\+::string \hyperlink{class_frame_lib___expand_a94ab97ff114452551719fad428fd2d6e}{audio\+Info} (unsigned long idx, bool verbose)
+\item 
+virtual \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} \hyperlink{class_frame_lib___expand_af7de1e520ecd39d62290278235f8ff45}{input\+Type} (unsigned long idx)
+\item 
+virtual \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} \hyperlink{class_frame_lib___expand_a926ee7c8b222e018cae92ffbdecb1270}{output\+Type} (unsigned long idx)
+\item 
+virtual const \hyperlink{class_frame_lib___parameters}{Frame\+Lib\+\_\+\+Parameters} $\ast$ \hyperlink{class_frame_lib___expand_a89b4ff711b3b2772ee3ac7a6774261fb}{get\+Parameters} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{class_frame_lib___expand_a77c0e4af675ebb2ac3f47b26939ab94b}{handles\+Audio} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_frame_lib___expand_a591240aee95c812856a9835b8014a915}\label{class_frame_lib___expand_a591240aee95c812856a9835b8014a915}} 
+\index{Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}!Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}}
+\index{Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}!Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Expand()}{FrameLib\_Expand()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\hyperlink{class_frame_lib___expand}{Frame\+Lib\+\_\+\+Expand}$<$ T $>$\+::\hyperlink{class_frame_lib___expand}{Frame\+Lib\+\_\+\+Expand} (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context}}]{context,  }\item[{\hyperlink{class_frame_lib___parameters_1_1_serial}{Frame\+Lib\+\_\+\+Parameters\+::\+Serial} $\ast$}]{serialised\+Parameters,  }\item[{void $\ast$}]{owner }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___expand_a3aa2aa689e4b063fa65fe72be311c45f}\label{class_frame_lib___expand_a3aa2aa689e4b063fa65fe72be311c45f}} 
+\index{Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}!````~Frame\+Lib\+\_\+\+Expand@{$\sim$\+Frame\+Lib\+\_\+\+Expand}}
+\index{````~Frame\+Lib\+\_\+\+Expand@{$\sim$\+Frame\+Lib\+\_\+\+Expand}!Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}}
+\subsubsection{\texorpdfstring{$\sim$\+Frame\+Lib\+\_\+\+Expand()}{~FrameLib\_Expand()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\hyperlink{class_frame_lib___expand}{Frame\+Lib\+\_\+\+Expand}$<$ T $>$\+::$\sim$\hyperlink{class_frame_lib___expand}{Frame\+Lib\+\_\+\+Expand} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_frame_lib___expand_a94ab97ff114452551719fad428fd2d6e}\label{class_frame_lib___expand_a94ab97ff114452551719fad428fd2d6e}} 
+\index{Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}!audio\+Info@{audio\+Info}}
+\index{audio\+Info@{audio\+Info}!Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}}
+\subsubsection{\texorpdfstring{audio\+Info()}{audioInfo()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+virtual std\+::string \hyperlink{class_frame_lib___expand}{Frame\+Lib\+\_\+\+Expand}$<$ T $>$\+::audio\+Info (\begin{DoxyParamCaption}\item[{unsigned long}]{idx,  }\item[{bool}]{verbose }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_frame_lib___object_af618fcdec82b457911147c7c293bedd7}{Frame\+Lib\+\_\+\+Object$<$ Frame\+Lib\+\_\+\+Multi\+Channel $>$}.
+
+\mbox{\Hypertarget{class_frame_lib___expand_ae712d631cb99284e91c3f318534b3c03}\label{class_frame_lib___expand_ae712d631cb99284e91c3f318534b3c03}} 
+\index{Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}!block\+Update@{block\+Update}}
+\index{block\+Update@{block\+Update}!Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}}
+\subsubsection{\texorpdfstring{block\+Update()}{blockUpdate()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+virtual void \hyperlink{class_frame_lib___expand}{Frame\+Lib\+\_\+\+Expand}$<$ T $>$\+::block\+Update (\begin{DoxyParamCaption}\item[{double $\ast$$\ast$}]{ins,  }\item[{double $\ast$$\ast$}]{outs,  }\item[{unsigned long}]{block\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_frame_lib___multi_channel_a8ad8f1c0138f32ef0bfb7e4673b34d30}{Frame\+Lib\+\_\+\+Multi\+Channel}.
+
+\mbox{\Hypertarget{class_frame_lib___expand_a89b4ff711b3b2772ee3ac7a6774261fb}\label{class_frame_lib___expand_a89b4ff711b3b2772ee3ac7a6774261fb}} 
+\index{Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}!get\+Parameters@{get\+Parameters}}
+\index{get\+Parameters@{get\+Parameters}!Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}}
+\subsubsection{\texorpdfstring{get\+Parameters()}{getParameters()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+virtual const \hyperlink{class_frame_lib___parameters}{Frame\+Lib\+\_\+\+Parameters}$\ast$ \hyperlink{class_frame_lib___expand}{Frame\+Lib\+\_\+\+Expand}$<$ T $>$\+::get\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_frame_lib___object_aaebb53211e0617e9203d1088c2fcb9c2}{Frame\+Lib\+\_\+\+Object$<$ Frame\+Lib\+\_\+\+Multi\+Channel $>$}.
+
+\mbox{\Hypertarget{class_frame_lib___expand_a77c0e4af675ebb2ac3f47b26939ab94b}\label{class_frame_lib___expand_a77c0e4af675ebb2ac3f47b26939ab94b}} 
+\index{Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}!handles\+Audio@{handles\+Audio}}
+\index{handles\+Audio@{handles\+Audio}!Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}}
+\subsubsection{\texorpdfstring{handles\+Audio()}{handlesAudio()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+static bool \hyperlink{class_frame_lib___expand}{Frame\+Lib\+\_\+\+Expand}$<$ T $>$\+::handles\+Audio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_frame_lib___expand_ab9017c7fe8562857609fcf819b7d1cdd}\label{class_frame_lib___expand_ab9017c7fe8562857609fcf819b7d1cdd}} 
+\index{Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}!input\+Info@{input\+Info}}
+\index{input\+Info@{input\+Info}!Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}}
+\subsubsection{\texorpdfstring{input\+Info()}{inputInfo()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+virtual std\+::string \hyperlink{class_frame_lib___expand}{Frame\+Lib\+\_\+\+Expand}$<$ T $>$\+::input\+Info (\begin{DoxyParamCaption}\item[{unsigned long}]{idx,  }\item[{bool}]{verbose }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_frame_lib___object_a49abea5f18125c425b1eae8710735891}{Frame\+Lib\+\_\+\+Object$<$ Frame\+Lib\+\_\+\+Multi\+Channel $>$}.
+
+\mbox{\Hypertarget{class_frame_lib___expand_af7de1e520ecd39d62290278235f8ff45}\label{class_frame_lib___expand_af7de1e520ecd39d62290278235f8ff45}} 
+\index{Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}!input\+Type@{input\+Type}}
+\index{input\+Type@{input\+Type}!Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}}
+\subsubsection{\texorpdfstring{input\+Type()}{inputType()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+virtual \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} \hyperlink{class_frame_lib___expand}{Frame\+Lib\+\_\+\+Expand}$<$ T $>$\+::input\+Type (\begin{DoxyParamCaption}\item[{unsigned long}]{idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_frame_lib___object_a6c5d94f1577471d33204078e86f51ff3}{Frame\+Lib\+\_\+\+Object$<$ Frame\+Lib\+\_\+\+Multi\+Channel $>$}.
+
+\mbox{\Hypertarget{class_frame_lib___expand_ac4527eab2bfb55a38bd796d95f2a2562}\label{class_frame_lib___expand_ac4527eab2bfb55a38bd796d95f2a2562}} 
+\index{Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}!object\+Info@{object\+Info}}
+\index{object\+Info@{object\+Info}!Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}}
+\subsubsection{\texorpdfstring{object\+Info()}{objectInfo()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+virtual std\+::string \hyperlink{class_frame_lib___expand}{Frame\+Lib\+\_\+\+Expand}$<$ T $>$\+::object\+Info (\begin{DoxyParamCaption}\item[{bool}]{verbose }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_frame_lib___object_a10d673de9a3c59ace6a22ba1cff313c8}{Frame\+Lib\+\_\+\+Object$<$ Frame\+Lib\+\_\+\+Multi\+Channel $>$}.
+
+\mbox{\Hypertarget{class_frame_lib___expand_abba12bed97c0b76095f1e1a699591b3e}\label{class_frame_lib___expand_abba12bed97c0b76095f1e1a699591b3e}} 
+\index{Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}!output\+Info@{output\+Info}}
+\index{output\+Info@{output\+Info}!Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}}
+\subsubsection{\texorpdfstring{output\+Info()}{outputInfo()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+virtual std\+::string \hyperlink{class_frame_lib___expand}{Frame\+Lib\+\_\+\+Expand}$<$ T $>$\+::output\+Info (\begin{DoxyParamCaption}\item[{unsigned long}]{idx,  }\item[{bool}]{verbose }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_frame_lib___object_a6e6d79e8d620eedbaa50abf324cdedf5}{Frame\+Lib\+\_\+\+Object$<$ Frame\+Lib\+\_\+\+Multi\+Channel $>$}.
+
+\mbox{\Hypertarget{class_frame_lib___expand_a926ee7c8b222e018cae92ffbdecb1270}\label{class_frame_lib___expand_a926ee7c8b222e018cae92ffbdecb1270}} 
+\index{Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}!output\+Type@{output\+Type}}
+\index{output\+Type@{output\+Type}!Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}}
+\subsubsection{\texorpdfstring{output\+Type()}{outputType()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+virtual \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} \hyperlink{class_frame_lib___expand}{Frame\+Lib\+\_\+\+Expand}$<$ T $>$\+::output\+Type (\begin{DoxyParamCaption}\item[{unsigned long}]{idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_frame_lib___object_abdfca6b259f5fc7f97f4f2e016c1d80f}{Frame\+Lib\+\_\+\+Object$<$ Frame\+Lib\+\_\+\+Multi\+Channel $>$}.
+
+\mbox{\Hypertarget{class_frame_lib___expand_a579f16ec32e05ff84ee766038012fc3f}\label{class_frame_lib___expand_a579f16ec32e05ff84ee766038012fc3f}} 
+\index{Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}!reset@{reset}}
+\index{reset@{reset}!Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+virtual void \hyperlink{class_frame_lib___expand}{Frame\+Lib\+\_\+\+Expand}$<$ T $>$\+::reset (\begin{DoxyParamCaption}\item[{double}]{sampling\+Rate,  }\item[{unsigned long}]{max\+Block\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_frame_lib___multi_channel_af27f3dca507c48459452be825b4c0c72}{Frame\+Lib\+\_\+\+Multi\+Channel}.
+
+\mbox{\Hypertarget{class_frame_lib___expand_a73f7bf4264d45f56f249d6303b3e4c35}\label{class_frame_lib___expand_a73f7bf4264d45f56f249d6303b3e4c35}} 
+\index{Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}!set\+Fixed\+Input@{set\+Fixed\+Input}}
+\index{set\+Fixed\+Input@{set\+Fixed\+Input}!Frame\+Lib\+\_\+\+Expand@{Frame\+Lib\+\_\+\+Expand}}
+\subsubsection{\texorpdfstring{set\+Fixed\+Input()}{setFixedInput()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+virtual void \hyperlink{class_frame_lib___expand}{Frame\+Lib\+\_\+\+Expand}$<$ T $>$\+::set\+Fixed\+Input (\begin{DoxyParamCaption}\item[{unsigned long}]{idx,  }\item[{double $\ast$}]{input,  }\item[{unsigned long}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_frame_lib___multi_channel_a2bbd1050ff53556bf671282312857301}{Frame\+Lib\+\_\+\+Multi\+Channel}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___multichannel_8h}{Frame\+Lib\+\_\+\+Multichannel.\+h}\end{DoxyCompactItemize}

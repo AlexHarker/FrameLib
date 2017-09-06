@@ -1,0 +1,55 @@
+\hypertarget{class_frame_lib___context}{}\section{Frame\+Lib\+\_\+\+Context Class Reference}
+\label{class_frame_lib___context}\index{Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}}
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+Context.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef Managed\+Pointer$<$ \hyperlink{class_frame_lib___local_allocator}{Frame\+Lib\+\_\+\+Local\+Allocator}, \&\hyperlink{class_frame_lib___global_a31c3fae37e27c9cce286d30ed30838d3}{Global\+::get\+Allocator}, \&\hyperlink{class_frame_lib___global_a78b0ff45eb662f12c41bdd641a416539}{Global\+::release\+Allocator} $>$ \hyperlink{class_frame_lib___context_a4cfa321c8f6048211d031f05156b5b19}{Allocator}
+\item 
+typedef Managed\+Pointer$<$ \hyperlink{class_frame_lib___connection_queue}{Frame\+Lib\+\_\+\+Connection\+Queue}, \&\hyperlink{class_frame_lib___global_ae0cfe1ff49ba163758fcb66f9e94b991}{Global\+::get\+Connection\+Queue}, \&\hyperlink{class_frame_lib___global_ab461ad3b4bdd9c580018373cf1617b1b}{Global\+::release\+Connection\+Queue} $>$ \hyperlink{class_frame_lib___context_ab71b26193867cfa080362bd19a87596b}{Connection\+Queue}
+\item 
+typedef Managed\+Pointer$<$ \hyperlink{class_frame_lib___d_s_p_queue}{Frame\+Lib\+\_\+\+D\+S\+P\+Queue}, \&\hyperlink{class_frame_lib___global_a5b4e45a675ea406538781011f7ebc153}{Global\+::get\+D\+S\+P\+Queue}, \&\hyperlink{class_frame_lib___global_a118b451294a2893fa60edfb09f60002a}{Global\+::release\+D\+S\+P\+Queue} $>$ \hyperlink{class_frame_lib___context_a1a18438b08e39c370de0e5794029ba77}{D\+S\+P\+Queue}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_frame_lib___context_a2cfe1912e3e9d835de291277c8979ed8}{Frame\+Lib\+\_\+\+Context} (\hyperlink{class_frame_lib___global}{Frame\+Lib\+\_\+\+Global} $\ast$global, void $\ast$reference)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_frame_lib___context_a4cfa321c8f6048211d031f05156b5b19}\label{class_frame_lib___context_a4cfa321c8f6048211d031f05156b5b19}} 
+\index{Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}!Allocator@{Allocator}}
+\index{Allocator@{Allocator}!Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}}
+\subsubsection{\texorpdfstring{Allocator}{Allocator}}
+{\footnotesize\ttfamily typedef Managed\+Pointer$<$\hyperlink{class_frame_lib___local_allocator}{Frame\+Lib\+\_\+\+Local\+Allocator}, \&\hyperlink{class_frame_lib___global_a31c3fae37e27c9cce286d30ed30838d3}{Global\+::get\+Allocator}, \&\hyperlink{class_frame_lib___global_a78b0ff45eb662f12c41bdd641a416539}{Global\+::release\+Allocator}$>$ \hyperlink{class_frame_lib___context_a4cfa321c8f6048211d031f05156b5b19}{Frame\+Lib\+\_\+\+Context\+::\+Allocator}}
+
+\mbox{\Hypertarget{class_frame_lib___context_ab71b26193867cfa080362bd19a87596b}\label{class_frame_lib___context_ab71b26193867cfa080362bd19a87596b}} 
+\index{Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}!Connection\+Queue@{Connection\+Queue}}
+\index{Connection\+Queue@{Connection\+Queue}!Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}}
+\subsubsection{\texorpdfstring{Connection\+Queue}{ConnectionQueue}}
+{\footnotesize\ttfamily typedef Managed\+Pointer$<$\hyperlink{class_frame_lib___connection_queue}{Frame\+Lib\+\_\+\+Connection\+Queue}, \&\hyperlink{class_frame_lib___global_ae0cfe1ff49ba163758fcb66f9e94b991}{Global\+::get\+Connection\+Queue}, \&\hyperlink{class_frame_lib___global_ab461ad3b4bdd9c580018373cf1617b1b}{Global\+::release\+Connection\+Queue}$>$ \hyperlink{class_frame_lib___context_ab71b26193867cfa080362bd19a87596b}{Frame\+Lib\+\_\+\+Context\+::\+Connection\+Queue}}
+
+\mbox{\Hypertarget{class_frame_lib___context_a1a18438b08e39c370de0e5794029ba77}\label{class_frame_lib___context_a1a18438b08e39c370de0e5794029ba77}} 
+\index{Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}!D\+S\+P\+Queue@{D\+S\+P\+Queue}}
+\index{D\+S\+P\+Queue@{D\+S\+P\+Queue}!Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}}
+\subsubsection{\texorpdfstring{D\+S\+P\+Queue}{DSPQueue}}
+{\footnotesize\ttfamily typedef Managed\+Pointer$<$\hyperlink{class_frame_lib___d_s_p_queue}{Frame\+Lib\+\_\+\+D\+S\+P\+Queue}, \&\hyperlink{class_frame_lib___global_a5b4e45a675ea406538781011f7ebc153}{Global\+::get\+D\+S\+P\+Queue}, \&\hyperlink{class_frame_lib___global_a118b451294a2893fa60edfb09f60002a}{Global\+::release\+D\+S\+P\+Queue}$>$ \hyperlink{class_frame_lib___context_a1a18438b08e39c370de0e5794029ba77}{Frame\+Lib\+\_\+\+Context\+::\+D\+S\+P\+Queue}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_frame_lib___context_a2cfe1912e3e9d835de291277c8979ed8}\label{class_frame_lib___context_a2cfe1912e3e9d835de291277c8979ed8}} 
+\index{Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}!Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}}
+\index{Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}!Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Context()}{FrameLib\_Context()}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Context\+::\+Frame\+Lib\+\_\+\+Context (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___global}{Frame\+Lib\+\_\+\+Global} $\ast$}]{global,  }\item[{void $\ast$}]{reference }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___context_8h}{Frame\+Lib\+\_\+\+Context.\+h}\end{DoxyCompactItemize}

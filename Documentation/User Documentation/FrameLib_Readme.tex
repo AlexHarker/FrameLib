@@ -1,0 +1,221 @@
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{datetime}
+\usepackage{textcomp}
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+\newcommand{\version}{Alpha 0.1}
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{Alex Harker} % Top left header
+\chead{FrameLib Documentation} % Top center header
+\rhead{\version} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+%\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+   
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+%\newcommand{\hmwkAuthorName}{Alex Harker} % Your name
+\newcommand{\flobject}[1]{\textit{fl.#1$\sim$}}
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+
+\dmyyyydate
+
+\title{
+\vspace{2in}
+\textmd{\textbf{FrameLib: \version{} Documentation}}
+\vspace{0.3in}
+}
+
+\author{\textbf{Alex Harker}}
+\date{Generated on \today{} at \currenttime} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\newpage
+\tableofcontents
+\newpage
+
+%--------------------------------------------
+
+\section{Introduction}
+\vspace{0.1in}
+
+\subsection{Preliminaries}
+
+This document is designed to go with alpha releases of the Max version of FrameLib (which is currently the only extant version). The documentation is currently intended to give enough information to get experienced Max users started and and explain basic concepts, and as such is non-comprehensive.
+
+\subsection{What is FrameLib?}
+
+FrameLib is a DSP system designed to allow quick modular constructions of frame-based networks. These networks can resolve time at a highly accurate subsample level and can run at different rates, and with different frame sizes across a single network. This allows mixing of different representations (e.g. time and frequency-based representations) in a single network, efficient processing when data sizes are varying and tightly timed DSP. Most of you should already basically know what it is (otherwise you wouldn't be testing), so that will do for now...
+
+\subsection{How is this an `Alpha' Version?}
+
+In general the software should be relatively stable, but there are several items that are subject to change in terms of usage, which means \textbf{you should not use FrameLib for any large/final version projects yet!} You would do so at your own risk. The is a section later in this documentation that covers items subject to change and specific questions about these items.
+
+\subsection{How Can I Help?}
+
+Thanks for asking. Please comment on the usability of objects, features, points of confusion. Object ideas are also welcome, but are lower priority. Comments on the end questions are also welcome. Offers of help with documentation (or help patches) are also welcome, although most likely any help patches are a little way off yet. Obviously let me know of any bugs you might find. Developer documentation (for those wishing to write C++ objects) will also come later.
+\pagebreak
+
+%----------------------------------------------------------------------------------------
+
+\section{Key Concepts}
+\vspace{0.1in}
+
+\subsection{Schedulers and Timing}
+
+\lipsum[9]
+
+\subsection{Types of Frames}
+
+\lipsum[9]
+
+\subsection{Parameters}
+
+\lipsum[9]
+
+\subsection{Multi-channel Expansion}
+
+\lipsum[9]
+
+%----------------------------------------------------------------------------------------
+
+\section{Getting Started (Max Specifics)}
+\vspace{0.1in}
+
+\subsection{Connecting Inputs and Outputs}
+
+Only one object can be connected to a frame input. There is simply no one sensible way to combine two sets of frames in a generic manner.  When framelib objects are connected directly this is enforced (you are not physically able to connect two objects). When you are using abstraction or subpatching this is not possible, but you will receive an error when dsp recompiles if you've connected two objects to a single input. One output can feed any number of inputs.
+
+\subsection{Setting Parameters}
+
+Parameters can be set in one of two ways, either at frame rate (if the object has a Parameter Update input), or at object instantiation. At object instantiation the syntax is currently: \\ \textbf{either:}\\ 
+\-\hspace{4ex} \textit{\#parameter\_name value(s) ...} \\ 
+\textbf{or:}\\ 
+\-\hspace{4ex} \textit{/parameter\_name value(s) ...} \\ 
+within the object box. The @ sign is not used to avoid confusion with max attributes (which show in the inspector and can be set in the max thread using messages, which framelib parameters cannot). In addition parameters can be assigned to a given argument number in which case they can be set from object arguments.
+
+To set parameters at frame rate based on values in vectors, use the \flobject{setparam} object.
+
+\subsection{Setting Fixed Inputs}
+
+FrameLib objects in Max support input of fixed numeric values at object instantiation that are used for any subsequent calculations, rather than values updated at frame rate. This is accessed in one of two ways. Most binary operators (e.g. \flobject{times} or \flobject{divide}) allow you to directly type the value of either input in as one or more arguments to the object (this mimics standard max object behaviour). However, as most objects use arguments to represent parameters (for ease), other objects require a special syntax for setting the value of a specific input. This is currently:\\
+\textbf{either:}\\ 
+\-\hspace{4ex} \textit{/input\_number/ value(s) ...} \\ 
+\textbf{or:}\\ 
+\-\hspace{4ex} \textit{\textlangle input\_number\textrangle{} value(s) ...} \\ 
+\textbf{or:}\\ 
+\-\hspace{4ex} \textit{[input\_number] value(s) ...} \\ 
+\textbf{or:}\\ 
+\-\hspace{4ex} \textit{$\sim$input\_number value(s) ...} \\ 
+Inputs are numbered from 1 (not zero!). You can enter vectors of any length.
+
+\subsection{Control from Max}
+
+As everything in max runs at frame rate you cannot just hook up max messages to control inputs. You must go through the \flobject{frommax} object. This object allows two modes of operation. In the first you can translate single numerical values or lists of numeric values into framelib vectors. In this case you simply pass max messages into the object. The last value(s) received will be sent as a vector when the object is triggered by a frame input.
+
+In the second mode of operation a variable number of  inputs allow for max messages to be translated into parameter frames. In this mode each input corresponds to a named parameter, and messages send to each input will be stored until the next frame is triggered. At this point \textbf{all} stored parameter changes are sent to the output in a single concatenated frame, and cleared from the object's memory (unlike numeric vectors which will be repeated on subsequent trigger inputs).
+
+\subsection{Getting Object Help}
+
+All objects support the \textbf{info} message. This currently prints reference type information to the max window. This is the only way to get help on individual objects, but should be compact but comprehensive.
+\\ \\
+Without any arguments message will print a description followed by info on inputs, outputs and parameters including ranges/enum types etc.). The operation/numbering of arguments is covered in the info text.
+\\ \\
+You can also use any combination of the following to customise the info given:
+ 
+ \begin{itemize}
+ \item{description (include the description)}
+ \item{inputs (include info on the inputs)}
+ \item{outputs  (include info on the outputs)}
+ \item{io (include info on inputs and outputs)}
+ \item{parameters (include info on the objects parameters)}
+ \item{quick (give brief versions of all info)}
+  \end{itemize}
+
+\pagebreak
+
+%----------------------------------------------------------------------------------------
+
+\section{Alpha Aspects of FrameLib}
+\vspace{0.1in}
+
+ \begin{itemize}
+\item{The object set is subject to change.}
+\item{All object features are subject to change.}
+\item{All object parameter names are subject to change. \\
+ - here input on preferred formats (with or without underscores/capitals etc. would be helpful).}
+\item{Notation for parameters / inputs are subject to change. \\
+ - here input on preferences is appreciated.}
+\item{The text displayed by the info object is subject to change. \\
+ - here input on clarity / wording is appreciated. \\
+ - input on what should be considered quick / comprehensive would be useful.}
+  \end{itemize}
+
+\end{document}
