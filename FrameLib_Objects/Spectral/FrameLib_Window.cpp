@@ -28,7 +28,7 @@ FrameLib_Window::FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::
     
     mParameters.addBool(kSqrt, "sqrt", false, 2);
     
-    mParameters.addEnum(kCompensation, "compensation");
+    mParameters.addEnum(kCompensation, "compensate");
     mParameters.addEnumItem(kOff, "off");
     mParameters.addEnumItem(kLinear, "linear");
     mParameters.addEnumItem(kPower, "power");
@@ -208,7 +208,7 @@ void FrameLib_Window::process()
             case kOff:                  gain = 1.0;                         break;
             case kLinear:               gain = mLinearGain;                 break;
             case kPower:                gain = mPowerGain;                  break;
-            case kPowerOverLinear:      gain = mLinearGain / mPowerGain;    break;
+            case kPowerOverLinear:      gain = mPowerGain / mLinearGain;    break;
         }
         
         if (mSize % sizeFactor)
