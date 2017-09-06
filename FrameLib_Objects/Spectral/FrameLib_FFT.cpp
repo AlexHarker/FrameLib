@@ -55,6 +55,7 @@ FrameLib_FFT::ParameterInfo FrameLib_FFT::sParamInfo;
 FrameLib_FFT::ParameterInfo::ParameterInfo()
 {
     add("Sets the maximum input length / FFT size.");
+    add("When on the output is normalised so that sine waves produce the same level output regardless of the FFT size.");
 }
 
 // Process

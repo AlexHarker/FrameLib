@@ -54,6 +54,7 @@ FrameLib_iFFT::ParameterInfo FrameLib_iFFT::sParamInfo;
 FrameLib_iFFT::ParameterInfo::ParameterInfo()
 {
     add("Sets the maximum output length / FFT size.");
+    add("When on the input is expected to be normalised.");
 }
 
 // Process
