@@ -27,6 +27,9 @@ _MaxSDK_/
 *.log
 *.out
 
+## Binaries
+externals/
+
 ## Other
 *.moved-aside
 *.xccheckout
