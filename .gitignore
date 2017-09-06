@@ -21,10 +21,10 @@ _MaxSDK_/
 
 ## Latex
 
-.aux
-.syntex
-.toc
-.log
+*.aux
+*.synctex.gz
+*.toc
+*.log
 
 ## Other
 *.moved-aside
