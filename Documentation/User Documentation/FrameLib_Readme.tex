@@ -11,6 +11,7 @@
 \usepackage{graphicx} % Required to insert images
 \usepackage{datetime}
 \usepackage{textcomp}
+\usepackage{enumitem}
 
 \usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
 
@@ -108,11 +109,11 @@
 
 \subsection{Preliminaries}
 
-This document is designed to go with alpha releases of the Max version of FrameLib (which is currently the only extant version). The documentation is currently intended to give enough information to get experienced Max users started and and explain basic concepts, and as such is non-comprehensive.
+This document is designed to go with alpha releases of the Max version of FrameLib (which is currently the only extant version). The documentation is currently intended to give just enough information to get experienced Max users started and and explain basic concepts, and as such is far from fully comprehensive.
 
 \subsection{What is FrameLib?}
 
-FrameLib is a DSP system designed to allow quick modular constructions of frame-based networks. These networks can resolve time at a highly accurate subsample level and can run at different rates, and with different frame sizes across a single network. This allows mixing of different representations (e.g. time and frequency-based representations) in a single network, efficient processing when data sizes are varying and tightly timed DSP. Most of you should already basically know what it is (otherwise you wouldn't be testing), so that will do for now...
+FrameLib is a DSP system designed to allow quick modular constructions of frame-based networks. These networks can resolve time at a highly accurate subsample level and can run at different rates, and with different frame sizes across a single network. This allows mixing of different representations (e.g. time and frequency-based representations) in a single network, efficient processing when data sizes are varying and efficient, logical expression of tightly-timed DSP constructs. The underlying C++ framework can theoretically be hosted in any block-based DSP environment, but the current user-facing version targets only Max as a set of externals. Most of you should already basically know what it is (otherwise you wouldn't be testing), so that will do for now...
 
 \subsection{How is this an `Alpha' Version?}
 
@@ -120,7 +121,7 @@ In general the software should be relatively stable, but there are several items
 
 \subsection{How Can I Help?}
 
-Thanks for asking. Please comment on the usability of objects, features, points of confusion. Object ideas are also welcome, but are lower priority. Comments on the end questions are also welcome. Offers of help with documentation (or help patches) are also welcome, although most likely any help patches are a little way off yet. Obviously let me know of any bugs you might find. Developer documentation (for those wishing to write C++ objects) will also come later.
+Thanks for asking! Please comment on the usability of objects, features, points of confusion. Object ideas are also welcome, but are lower priority. Comments on the open questions in the alpha section are particularly welcome. Offers of help with documentation (or help patches) would be good, although most likely any help patches are a little way off yet. Obviously, let me know of any bugs you might find. Developer documentation (for those wishing to write C++ objects) will come later, via doxygen, when I get to adding the relevant comment hooks (and figure out how to get doxygen to document only the things I want in the right way).
 \pagebreak
 
 %----------------------------------------------------------------------------------------
@@ -130,28 +131,62 @@ Thanks for asking. Please comment on the usability of objects, features, points 
 
 \subsection{Schedulers and Timing}
 
-\lipsum[9]
+The most important concepts to understand in FrameLib are:
 
-\subsection{Types of Frames}
+ \begin{enumerate}
+\item{\textbf{Everything} is strongly timed (This timing is accurate to $2^{-64}$ of a sample).}
+\item{\textbf{Nothing} happens without a timing source.}
+\item{Objects that act as timing sources are called \textbf{\textit{schedulers}}.}
+ \end{enumerate}
 
-\lipsum[9]
+Schedulers trigger frames which then are then further processed by other objects. All FrameLib objects can accept inputs that are running at different rates (regular or irregular) and will resolve the timing between inputs correctly. Frames arriving at the same time are processed once only together. When frames arrive at different times they are processed against the latest arrival at other inputs.
+
+In order for your patch to do anything at all it will need at least one scheduler. You can also connect schedulers in any combination in a network and time should be resolved correctly.
+
+Note that not all inputs to a FrameLib object will necessarily trigger processing (create output). This can vary between objects, and also over time (although this is used sparingly for specific functionality, such as the \flobject{select} object). This is seen most commonly on parameter update inputs, which are used to update object paraemters....
 
 \subsection{Parameters}
 
-\lipsum[9]
+FrameLib objects have variables with state known as parameters. Parameters are referred to by name and are used for values that may not vary over a single frame  (in this way they are unlike inputs, which are used when a value can vary over a frame). However, they may take more than one value (an array), or non-numeric values (for instance a string or a enumerator, which can be set by the name of the item, or its index number). The parameter system is used to change object behaviour, without requiring an unmanageable number of inlets, and to separate `mode' type control from normal inputs. It is somewhat akin to the Max attribute system, but it operates in the strongly-timed way that FrameLib frames do.
+
+Parameters may be set at instantiation time, or at frame rate using tagged frames (details of how this works in Max are given below. Tagged frames are also described below in more detail). Importantly, for simultaneously arriving frames where one sets parameters and others trigger processing the parameter update is performed before the processing, so updates can be performed synchronously. Some parameters are available at instantiation (usually those that set the number of inputs/outputs or pre-allocate significant memory).
+
+Each object maintains its own set of parameters which can be detailed using the inbuilt reference system (see the section entitled ).
+
+\subsection{Types of Frames}
+
+The inputs and outputs to FrameLib objects are `frames'. Frames can have two basic types in FrameLib. The first is the most common and consists of a vector of numeric values (all doubles in underlying type). The length of this vector can take any length from zero upwards (so scalars are simply a single valued frame). The frame with no values (zero length) is used as a trigger message, and has useful function (similar to a bang message in max). 
+
+The second type of frame is a `tagged' frame. This is used exclusively to transfer/set parameter values in FrameLib. A single frame can contain any number of tags (parameter names) followed by their values (of whatever type). This allows you to set multiple parameters in a single frame. Internally FrameLib has functionality for concatenating tagged frames, so it is never necessary for an object to have more than one parameter update input.  
 
 \subsection{Multi-channel Expansion}
 
-\lipsum[9]
-
+Technically, the objects hosted in Max objects carry not single frames, but multichannel connections each of which can consist of an individual stream of frames running at an independent rate and size. This is done to enable multi-resolution or multi-channel processing through a single network. If you wish you can ignore this functionality and treat each object like the inputs and outputs deal with a single stream of frames only. However, if you do wish to take advantage of this you can use the \flobject{pack} object to pack frame streams together, and \flobject{unpack} object to split them into single channel streams again. Other objects will resolve multichannel inputs by internally expanding to the maximum channel count. Where there is a mismatch between different inputs the lower channel count streams will be read modulo against the maximum count (so, for example, you can take a 16-channel input on the left of a \flobject{times} object and connect a single channel input to the right-hand side. The result will be a 16-channel output that consists of the 16 left-hand inputs all multiplied by the same right-hand stream).
+\pagebreak
 %----------------------------------------------------------------------------------------
 
-\section{Getting Started (Max Specifics)}
+\section{Getting Started}
 \vspace{0.1in}
+
+\subsection{List of Current Schedulers}
+
+Whilst this document is not an object reference, it is necessary to list the objects which can act as schedulers.
+
+\begin{description}[align=left, itemindent=3cm, labelwidth=3cm]
+\item [\flobject{interval}] trigger regular frame - for irregular frames vary the interval over time.
+\item [\flobject{audiotrigger}] trigger frames using MSP non-zero values
+\item [\flobject{perblock}] trigger one frame per host audio block
+\item [\flobject{future}] schedule frames at specific points in the future
+\item [\flobject{once}] trigger one frame at the start of time, and never again
+\end{description}
 
 \subsection{Connecting Inputs and Outputs}
 
-Only one object can be connected to a frame input. There is simply no one sensible way to combine two sets of frames in a generic manner.  When framelib objects are connected directly this is enforced (you are not physically able to connect two objects). When you are using abstraction or subpatching this is not possible, but you will receive an error when dsp recompiles if you've connected two objects to a single input. One output can feed any number of inputs.
+Only one object can be connected to a frame input. There is simply no one sensible way to combine two sets of frames in a generic manner.  When FrameLib objects are connected directly this is enforced (you are not physically able to connect two objects). When you are using abstraction or subpatching this is not possible, but you will receive an error when dsp recompiles if you've connected two objects to a single input. One output can feed any number of inputs. Feedback loops are not allowed.
+
+\subsection{Getting Audio In and Out}
+
+The \flobject{source} object allows you to grab chunks of audio from MSP as frames. The audio you obtain suffers a latency equal to the size of the chunk you are grabbing. For output you will commonly want a \flobject{sink} object, which acts as an overlap-add buffer to the MSP signal chain. This suffers no latency. For single value outputs as control (for instance if you want to output the values of a frequency-domain analysis back in MSP) you will probably wish to use the \flobject{trace} object.
 
 \subsection{Setting Parameters}
 
@@ -159,7 +194,7 @@ Parameters can be set in one of two ways, either at frame rate (if the object ha
 \-\hspace{4ex} \textit{\#parameter\_name value(s) ...} \\ 
 \textbf{or:}\\ 
 \-\hspace{4ex} \textit{/parameter\_name value(s) ...} \\ 
-within the object box. The @ sign is not used to avoid confusion with max attributes (which show in the inspector and can be set in the max thread using messages, which framelib parameters cannot). In addition parameters can be assigned to a given argument number in which case they can be set from object arguments.
+within the object box. The @ sign is not used to avoid confusion with max attributes (which show in the inspector and can be set in the max thread using messages, which FrameLib parameters cannot). In addition parameters can be assigned to a given argument number in which case they can be set from object arguments.
 
 To set parameters at frame rate based on values in vectors, use the \flobject{setparam} object.
 
@@ -178,15 +213,15 @@ Inputs are numbered from 1 (not zero!). You can enter vectors of any length.
 
 \subsection{Control from Max}
 
-As everything in max runs at frame rate you cannot just hook up max messages to control inputs. You must go through the \flobject{frommax} object. This object allows two modes of operation. In the first you can translate single numerical values or lists of numeric values into framelib vectors. In this case you simply pass max messages into the object. The last value(s) received will be sent as a vector when the object is triggered by a frame input.
+As everything in max runs at frame rate you cannot just hook up max messages to control inputs. You must go through the \flobject{frommax} object. This object allows two modes of operation. In the first you can translate single numerical values or lists of numeric values into FrameLib vectors. In this case you simply pass max messages into the object. The last value(s) received will be sent as a vector when the object is triggered by a frame input.
 
-In the second mode of operation a variable number of  inputs allow for max messages to be translated into parameter frames. In this mode each input corresponds to a named parameter, and messages send to each input will be stored until the next frame is triggered. At this point \textbf{all} stored parameter changes are sent to the output in a single concatenated frame, and cleared from the object's memory (unlike numeric vectors which will be repeated on subsequent trigger inputs).
+In the second mode of operation a variable number of  inputs allow for max messages to be translated into tagged frames. In this mode each input corresponds to a named parameter, and messages send to each input will be stored until the next frame is triggered. At this point \textbf{all} stored parameter changes are sent to the output in a single concatenated frame, and cleared from the object's memory (unlike numeric vectors which will be repeated on subsequent trigger inputs).
 
 \subsection{Getting Object Help}
 
-All objects support the \textbf{info} message. This currently prints reference type information to the max window. This is the only way to get help on individual objects, but should be compact but comprehensive.
+There are a lot of objects and not time here to even list them. However, all objects support the \textbf{info} message. This currently prints reference type information to the max window. This is the only way to get help on individual objects, but should be compact but comprehensive.
 \\ \\
-Without any arguments message will print a description followed by info on inputs, outputs and parameters including ranges/enum types etc.). The operation/numbering of arguments is covered in the info text.
+Without any arguments message will print a description followed by info on inputs, outputs and parameters including ranges/enum types etc.). The operation/numbering of arguments is covered in the info text. You should note that the range and exact detail of parameters (although not the names or order) may change from one instance of an object to another. What you are receiving when you send the \textbf{info} message is technically info on the specific instance, and \textit{not} the type of object.
 \\ \\
 You can also use any combination of the following to customise the info given:
  
@@ -208,7 +243,7 @@ You can also use any combination of the following to customise the info given:
 
  \begin{itemize}
 \item{The object set is subject to change.}
-\item{All object features are subject to change.}
+\item{All object features are subject to change (particularly which objects have parameter inputs).}
 \item{All object parameter names are subject to change. \\
  - here input on preferred formats (with or without underscores/capitals etc. would be helpful).}
 \item{Notation for parameters / inputs are subject to change. \\

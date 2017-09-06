@@ -19,6 +19,13 @@ CVS/
 xcuserdata/
 _MaxSDK_/
 
+## Latex
+
+.aux
+.syntex
+.toc
+.log
+
 ## Other
 *.moved-aside
 *.xccheckout
