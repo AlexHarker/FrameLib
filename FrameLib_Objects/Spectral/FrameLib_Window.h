@@ -69,6 +69,7 @@ private:
     double *mWindow;
 
     WindowTypes mWindowType;
+    EndPoints mEnds;
     
     unsigned long mSize;
 

@@ -48,6 +48,7 @@ FrameLib_Window::FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::
     mSqrtWindow = false;
     mLinearGain = 0.0;
     mPowerGain = 0.0;
+    mEnds = kNone;
     
     setParameterInput(1);
 }
@@ -90,7 +91,7 @@ FrameLib_Window::ParameterInfo::ParameterInfo()
     add("Sets whether the window should be used directly, or the square root of the window.");
     add("Sets the gain compensation used. "
         "off - no compensation is used. linear - compensate the linear gain of the window. "
-        "power - compensate the power gain of the window. poweroverlin - compensate by the power gain divided by the linear gain");
+        "power - compensate the power gain of the window. powoverlin - compensate by the power gain divided by the linear gain");
     add("Sets which endpoints of the window used will be non-zero for windows that start and end at zero.");
 }
 
@@ -107,7 +108,7 @@ void FrameLib_Window::updateWindow(unsigned long inSize, EndPoints ends)
     windowSize = ends == kBoth ? windowSize - 1 : windowSize;
     windowSize = ends == kNone ? windowSize + 1 : windowSize;
     
-    if (windowSize == mSize && windowType == mWindowType && sqrtWindow == mSqrtWindow)
+    if (windowSize == mSize && windowType == mWindowType && sqrtWindow == mSqrtWindow && ends == mEnds)
         return;
     
     if (mSize != windowSize)
@@ -129,13 +130,12 @@ void FrameLib_Window::updateWindow(unsigned long inSize, EndPoints ends)
     mWindowType = windowType;
     mSize = windowSize;
     mSqrtWindow = sqrtWindow;
+    mEnds = ends;
     
     // Calculate the gain of the window
     
     double linearGain = 0.0;
     double powerGain = 0.0;
-    
-    // FIX - need to think about which ends are being used...
     
     for (unsigned long i = 1; i < windowSize; i++)
         linearGain += mWindow[i];
@@ -143,8 +143,26 @@ void FrameLib_Window::updateWindow(unsigned long inSize, EndPoints ends)
     for (unsigned long i = 1; i < windowSize; i++)
         powerGain += mWindow[i] * mWindow[i];
     
-    mLinearGain = linearGain;
-    mPowerGain = powerGain;
+    unsigned long sizeNorm = mSize;
+    
+    if (ends == kFirst || ends == kBoth)
+    {
+        linearGain += mWindow[0];
+        powerGain += mWindow[0] * mWindow[0];
+    }
+    
+    if (ends == kLast || ends == kBoth)
+    {
+        linearGain += mWindow[mSize - 1];
+        powerGain += mWindow[mSize - 1] * mWindow[mSize - 1];
+        sizeNorm++;
+    }
+    
+    if (ends == kNone)
+        sizeNorm--;
+    
+    mLinearGain = (double) sizeNorm / linearGain;
+    mPowerGain = (double) sizeNorm / powerGain;
 }
 
 double FrameLib_Window::linearInterp(double pos)
@@ -177,37 +195,20 @@ void FrameLib_Window::process()
         Compensation compensate = (Compensation) mParameters.getInt(kCompensation);
         EndPoints ends = (EndPoints) mParameters.getInt(kEndPoints);
         
-        double gain;
-        
         sizeFactor = ends == kBoth ? sizeIn - 1 : sizeIn;
         sizeFactor = ends == kNone ? sizeIn + 1 : sizeFactor;
         
-        updateWindow(sizeIn, ends);
-        
-        // FIX - gain when stretching??
-        
         bool preIncrement = ends == kNone || ends == kLast;
-        double linearGain = mLinearGain;
-        double powerGain = mPowerGain;
-        
-        if (ends == kFirst || ends == kBoth)
-        {
-            linearGain += mWindow[0];
-            powerGain += mWindow[0] * mWindow[0];
-        }
-            
-        if (ends == kLast || ends == kBoth)
-        {
-            linearGain += mWindow[mSize - 1];
-            powerGain += mWindow[mSize - 1] * mWindow[mSize - 1];
-        }
+        double gain;
+
+        updateWindow(sizeIn, ends);
         
         switch (compensate)
         {
-            case kOff:                  gain = 1.0;                                     break;
-            case kLinear:               gain = (double) sizeIn / linearGain;            break;
-            case kPower:                gain = (double) sizeIn / linearGain;            break;
-            case kPowerOverLinear:      gain = linearGain / powerGain;                  break;
+            case kOff:                  gain = 1.0;                         break;
+            case kLinear:               gain = mLinearGain;                 break;
+            case kPower:                gain = mPowerGain;                  break;
+            case kPowerOverLinear:      gain = mLinearGain / mPowerGain;    break;
         }
         
         if (mSize % sizeFactor)
