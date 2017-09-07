@@ -42,7 +42,7 @@ std::string FrameLib_FFT::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_FFT::outputInfo(unsigned long idx, bool verbose)
 {
-    if (idx)
+    if (!idx)
         return "Real Values";
     else
         return "Imaginary Values";

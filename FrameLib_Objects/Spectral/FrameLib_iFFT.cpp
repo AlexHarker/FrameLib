@@ -36,7 +36,7 @@ std::string FrameLib_iFFT::objectInfo(bool verbose)
 
 std::string FrameLib_iFFT::inputInfo(unsigned long idx, bool verbose)
 {
-    if (idx)
+    if (!idx)
         return getInfo("Frequency Domain Real Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Real Values", verbose);
     else
         return getInfo("Frequency Domain Imaginary Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Imag Values", verbose);
