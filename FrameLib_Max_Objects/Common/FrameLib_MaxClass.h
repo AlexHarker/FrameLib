@@ -940,6 +940,14 @@ private:
             mObject->deleteConnection(inIdx);
     }
 
+    // Patchcord Colour
+    
+    void patchLineColor(t_object *patchline)
+    {
+        double color[4] = { 0.0, 0.0, 1.0, 1.0 };
+        object_attr_setdouble_array(patchline, gensym("patchlinecolor"), 4, color);
+    }
+    
     // Patchline connections
     
     t_max_err patchLineUpdate(t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
@@ -951,7 +959,10 @@ private:
             dstin -= getNumAudioIns();
             
             if (validInput(dstin))
-                dspchain_setbroken(dspchain_fromobject(*this));
+            {
+                if (updatetype != JPATCHLINE_ORDER)
+                    dspchain_setbroken(dspchain_fromobject(*this));
+            }
             
             switch (updatetype)
             {
@@ -963,7 +974,12 @@ private:
         else
         {
             if (validOutput(srcout))
-                dspchain_setbroken(dspchain_fromobject(*this));
+            {
+                if (updatetype != JPATCHLINE_ORDER)
+                    dspchain_setbroken(dspchain_fromobject(*this));
+                if (updatetype == JPATCHLINE_CONNECT)
+                    patchLineColor(patchline);
+            }
         }
         
         return MAX_ERR_NONE;
