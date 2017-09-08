@@ -76,15 +76,15 @@ void FrameLib_DSP::reset(double samplingRate, unsigned long maxBlockSize)
     
     // Note that the first sample will be at time == 1 so that we can start the frames *before* this with non-negative values
     
+    resetDependencyCount();
+
     mFrameTime = 0.0;
     mInputTime = 1.0;
-    mValidTime = 1.0;
+    mValidTime = (mDependencyCount != 0) ? FrameLib_TimeFormat(1.0) : FL_Limits<FrameLib_TimeFormat>::largest();
     mBlockStartTime = 1.0;
     mBlockEndTime = 1.0;
     
     mOutputDone = false;
-    
-    resetDependencyCount();
 }
 
 // Connection Methods
