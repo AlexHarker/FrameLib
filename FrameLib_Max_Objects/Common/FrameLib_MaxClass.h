@@ -944,8 +944,8 @@ private:
     
     void patchLineColor(t_object *patchline)
     {
-        double color[4] = { 0.0, 0.0, 1.0, 1.0 };
-        object_attr_setdouble_array(patchline, gensym("patchlinecolor"), 4, color);
+        //double color[4] = { 0.0, 0.0, 1.0, 1.0 };
+        //object_attr_setdouble_array(patchline, gensym("patchlinecolor"), 4, color);
     }
     
     // Patchline connections
