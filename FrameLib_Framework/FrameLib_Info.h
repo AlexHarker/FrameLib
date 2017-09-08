@@ -38,8 +38,7 @@ public:
     
     std::string getInfo(const char *verboseStr, const char *briefStr, const char *replaceStr, bool verbose)
     {
-        std::string info;
-        getInfo(verboseStr, briefStr, verbose);
+        std::string info = getInfo(verboseStr, briefStr, verbose);
         
         for (size_t pos = info.find("#", 0); pos != std::string::npos;  pos = info.find("#", pos + 1))
             info.replace(pos, 1, replaceStr);
