@@ -29,7 +29,7 @@
 
 \linespread{1.1} % Line spacing
 
-\newcommand{\version}{Alpha 0.1}
+\newcommand{\version}{Alpha 0.2}
 % Set up the header and footer
 \pagestyle{fancy}
 \lhead{Alex Harker} % Top left header
@@ -423,5 +423,19 @@ A full object listing follows, grouped by function. Currently this is the best q
  - here input on clarity/wording is appreciated. \\
  - input on what should be considered quick/comprehensive would be useful.}
   \end{itemize}
+  
+\pagebreak
+%----------------------------------------------------------------------------------------
+
+\section{Changes in Alpha 0.2}
+\vspace{0.1in}
+
+\begin{itemize}
+\item Fixed documentation for FFT object outlet/inlets.
+\item Fixed object info for objects using string replacement as a method for generating strings.
+\item Fix for objects with no `live' inputs (no inputs that lead back to a scheduler).
+\item Removed unnecessary dipchain recompiles, related to patchline re-ordering.
+\end{itemize}
+
 
 \end{document}
