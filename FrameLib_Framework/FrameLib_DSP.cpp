@@ -4,7 +4,7 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
-: FrameLib_Block(type), mSamplingRate(44100.0), mMaxBlockSize(4096), mAllocator(context), mParameters(info), mQueue(context), mNext(NULL), mInUpdate(false)
+: FrameLib_Block(type), mSamplingRate(44100.0), mMaxBlockSize(4096), mAllocator(context), mParameters(info), mQueue(context), mNext(NULL), mNoLiveInputs(true), mInUpdate(false)
 {
     // Set IO
     
@@ -67,24 +67,30 @@ void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long blockS
 
 void FrameLib_DSP::reset(double samplingRate, unsigned long maxBlockSize)
 {
+    bool prevNoLiveInputs = mNoLiveInputs;
+
     // Store sample rate / max block size and call object specific reset
     
     mSamplingRate = samplingRate > 0 ? samplingRate : 44100.0;
     mMaxBlockSize = maxBlockSize;
     
     objectReset();
-    
-    // Note that the first sample will be at time == 1 so that we can start the frames *before* this with non-negative values
-    
     resetDependencyCount();
+    mNoLiveInputs = (getType() != kScheduler) && (mDependencyCount == (requiresAudioNotification() ? 1 : 0));
+
+    // Note that the first sample will be at time == 1 so that we can start the frames *before* this with non-negative values
 
     mFrameTime = 0.0;
-    mInputTime = 1.0;
-    mValidTime = (mDependencyCount != 0) ? FrameLib_TimeFormat(1.0) : FL_Limits<FrameLib_TimeFormat>::largest();
+    mInputTime = mNoLiveInputs ? FL_Limits<FrameLib_TimeFormat>::largest() : FrameLib_TimeFormat(1.0);
+    mValidTime = mNoLiveInputs ? FL_Limits<FrameLib_TimeFormat>::largest() : FrameLib_TimeFormat(1.0);
     mBlockStartTime = 1.0;
     mBlockEndTime = 1.0;
     
     mOutputDone = false;
+
+    if (mNoLiveInputs != prevNoLiveInputs)
+        for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
+            (*it)->reset(samplingRate, maxBlockSize);
 }
 
 // Connection Methods
@@ -498,7 +504,12 @@ void FrameLib_DSP::resetDependencyCount()
     mUpdatingInputs = false;
     mInputCount = 0;
     mOutputMemoryCount = 0;
-    mDependencyCount = mInputDependencies.size() + ((requiresAudioNotification()) ? 1 : 0);
+    mDependencyCount = ((requiresAudioNotification()) ? 1 : 0);
+    
+    for (std::vector <FrameLib_DSP *>::iterator it = mInputDependencies.begin(); it != mInputDependencies.end(); it++)
+        if (!(*it)->mNoLiveInputs)
+            mDependencyCount++;
+    
     mNext = NULL;
     
     freeOutputMemory();

@@ -282,6 +282,7 @@ private:
     FrameLib_TimeFormat mBlockEndTime;
     
     bool mUpdatingInputs;
+    bool mNoLiveInputs;
     bool mInUpdate;
     bool mOutputDone;
 };
