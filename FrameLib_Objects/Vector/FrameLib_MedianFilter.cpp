@@ -8,7 +8,7 @@
 FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 2, 1)
 {
     mParameters.addInt(kWidth, "width", 1, 0);
-    mParameters.setMin(0);
+    mParameters.setMin(1);
     
     mParameters.addDouble(kPadding, "padding", 0.0, 1);
     
