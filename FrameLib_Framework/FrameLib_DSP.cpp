@@ -76,7 +76,7 @@ void FrameLib_DSP::reset(double samplingRate, unsigned long maxBlockSize)
     
     objectReset();
     resetDependencyCount();
-    mNoLiveInputs = (getType() != kScheduler) && (mDependencyCount == (requiresAudioNotification() ? 1 : 0));
+    mNoLiveInputs = mDependencyCount == 0;
 
     // Note that the first sample will be at time == 1 so that we can start the frames *before* this with non-negative values
 
