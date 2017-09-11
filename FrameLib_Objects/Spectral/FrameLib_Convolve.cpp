@@ -12,13 +12,13 @@ FrameLib_Convolve::FrameLib_Convolve(FrameLib_Context context, FrameLib_Paramete
     
     unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
     
-    mFFTSetup = hisstools_create_setup_d(maxFFTSizeLog2);
+    hisstools_create_setup(&mFFTSetup, maxFFTSizeLog2);
     mMaxFFTSize = 1 << maxFFTSizeLog2;
 }
 
 FrameLib_Convolve::~FrameLib_Convolve()
 {
-    hisstools_destroy_setup_d(mFFTSetup);
+    hisstools_destroy_setup(mFFTSetup);
 }
 
 // Info
@@ -100,10 +100,8 @@ void FrameLib_Convolve::process()
         
         // Take the real ffts
         
-        hisstools_unzip_zero_d(input1, &spectrum1, sizeIn1, FFTSizelog2);
-        hisstools_rfft_d(mFFTSetup, &spectrum1, FFTSizelog2);
-        hisstools_unzip_zero_d(input2, &spectrum2, sizeIn2, FFTSizelog2);
-        hisstools_rfft_d(mFFTSetup, &spectrum2, FFTSizelog2);
+        hisstools_rfft(mFFTSetup, input1, &spectrum1, sizeIn1, FFTSizelog2);
+        hisstools_rfft(mFFTSetup, input2, &spectrum2, sizeIn2, FFTSizelog2);
         
         // Convolve
         
@@ -127,8 +125,7 @@ void FrameLib_Convolve::process()
         
         // Inverse iFFT
         
-        hisstools_rifft_d(mFFTSetup, &spectrum1, FFTSizelog2);
-        hisstools_zip_d(&spectrum1, spectrum2.realp, FFTSizelog2);
+        hisstools_rifft(mFFTSetup, &spectrum1, spectrum2.realp, FFTSizelog2);
         
         // Copy
         

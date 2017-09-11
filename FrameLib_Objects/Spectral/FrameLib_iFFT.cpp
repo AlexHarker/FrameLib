@@ -16,13 +16,13 @@ FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, FrameLib_Parameters::Seri
     
     unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
     
-    mFFTSetup = hisstools_create_setup_d(maxFFTSizeLog2);
+    hisstools_create_setup(&mFFTSetup, maxFFTSizeLog2);
     mMaxFFTSize = 1 << maxFFTSizeLog2;
 }
 
 FrameLib_iFFT::~FrameLib_iFFT()
 {
-    hisstools_destroy_setup_d(mFFTSetup);
+    hisstools_destroy_setup(mFFTSetup);
 }
 
 // Info
@@ -112,8 +112,7 @@ void FrameLib_iFFT::process()
         
         // Convert to time domain
         
-        hisstools_rifft_d(mFFTSetup, &spectrum, FFTSizelog2);
-        hisstools_zip_d(&spectrum, output, FFTSizelog2);
+        hisstools_rifft(mFFTSetup, &spectrum, output, FFTSizelog2);
         
         // Scale
         

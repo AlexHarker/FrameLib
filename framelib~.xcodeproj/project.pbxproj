@@ -459,6 +459,18 @@
 		B84BE8801C1F63E500A55F8C /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B84BE8811C1F63E500A55F8C /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B84BE88A1C1F641500A55F8C /* fl.medianfilter~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84BE8891C1F641500A55F8C /* fl.medianfilter~.cpp */; };
+		B85435751F65BF03001BA1AA /* HISSTools_FFT_Core.h in Headers */ = {isa = PBXBuildFile; fileRef = B85435721F65BF03001BA1AA /* HISSTools_FFT_Core.h */; };
+		B85435761F65BF03001BA1AA /* HISSTools_FFT_Core.h in Headers */ = {isa = PBXBuildFile; fileRef = B85435721F65BF03001BA1AA /* HISSTools_FFT_Core.h */; };
+		B85435771F65BF03001BA1AA /* HISSTools_FFT_Core.h in Headers */ = {isa = PBXBuildFile; fileRef = B85435721F65BF03001BA1AA /* HISSTools_FFT_Core.h */; };
+		B85435781F65BF03001BA1AA /* HISSTools_FFT_Core.h in Headers */ = {isa = PBXBuildFile; fileRef = B85435721F65BF03001BA1AA /* HISSTools_FFT_Core.h */; };
+		B85435791F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
+		B854357A1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
+		B854357B1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
+		B854357C1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
+		B854357D1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */ = {isa = PBXBuildFile; fileRef = B85435741F65BF03001BA1AA /* HISSTools_FFT.h */; };
+		B854357E1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */ = {isa = PBXBuildFile; fileRef = B85435741F65BF03001BA1AA /* HISSTools_FFT.h */; };
+		B854357F1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */ = {isa = PBXBuildFile; fileRef = B85435741F65BF03001BA1AA /* HISSTools_FFT.h */; };
+		B85435801F65BF03001BA1AA /* HISSTools_FFT.h in Headers */ = {isa = PBXBuildFile; fileRef = B85435741F65BF03001BA1AA /* HISSTools_FFT.h */; };
 		B85B689B19F1CEDC002D6F1D /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
 		B85B689D19F1CEDC002D6F1D /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B85B689E19F1CEDC002D6F1D /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
@@ -491,7 +503,6 @@
 		B85C8FDB1E605B2E004D7D40 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B85C8FDC1E605B2E004D7D40 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B85C8FE41E605B44004D7D40 /* fl.mutlitaper~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85C8FCD1E605B28004D7D40 /* fl.mutlitaper~.cpp */; };
-		B85C8FE51E605C9E004D7D40 /* HISSTools_FFT.c in Sources */ = {isa = PBXBuildFile; fileRef = B87E877019C8EEB900B1D0CD /* HISSTools_FFT.c */; };
 		B85C8FE61E605E5D004D7D40 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879419C8F58C00B1D0CD /* Accelerate.framework */; };
 		B861EBA819CA3E8700B89477 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
 		B861EBAB19CA3E8700B89477 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
@@ -503,9 +514,7 @@
 		B861EBC919CA404300B89477 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B87E875A19C8EE9600B1D0CD /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
 		B87E875D19C8EE9600B1D0CD /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
-		B87E877319C8EEBF00B1D0CD /* HISSTools_FFT.c in Sources */ = {isa = PBXBuildFile; fileRef = B87E877019C8EEB900B1D0CD /* HISSTools_FFT.c */; };
 		B87E877519C8EEEB00B1D0CD /* fl.fft~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87E877419C8EEEB00B1D0CD /* fl.fft~.cpp */; };
-		B87E877D19C8F4AA00B1D0CD /* HISSTools_FFT.c in Sources */ = {isa = PBXBuildFile; fileRef = B87E877019C8EEB900B1D0CD /* HISSTools_FFT.c */; };
 		B87E877F19C8F4AA00B1D0CD /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
 		B87E878219C8F4AA00B1D0CD /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B87E878B19C8F4BC00B1D0CD /* fl.ifft~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87E877719C8F45700B1D0CD /* fl.ifft~.cpp */; };
@@ -922,7 +931,6 @@
 		B88BD32C1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
 		B88BD32D1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
 		B8A1F5BE1D5370DE00FA5FFC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8A1F5BD1D5370DE00FA5FFC /* main.cpp */; };
-		B8A4757719C9DDCD0043DC65 /* HISSTools_FFT.c in Sources */ = {isa = PBXBuildFile; fileRef = B87E877019C8EEB900B1D0CD /* HISSTools_FFT.c */; };
 		B8A4757919C9DDCD0043DC65 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
 		B8A4757B19C9DDCD0043DC65 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8A4757C19C9DDCD0043DC65 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
@@ -2023,6 +2031,9 @@
 		B84BE8781C1F592400A55F8C /* FrameLib_MedianFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_MedianFilter.h; sourceTree = "<group>"; };
 		B84BE8871C1F63E500A55F8C /* fl.medianfilter~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.medianfilter~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B84BE8891C1F641500A55F8C /* fl.medianfilter~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.medianfilter~.cpp"; sourceTree = "<group>"; };
+		B85435721F65BF03001BA1AA /* HISSTools_FFT_Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HISSTools_FFT_Core.h; sourceTree = "<group>"; };
+		B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HISSTools_FFT.cpp; sourceTree = "<group>"; };
+		B85435741F65BF03001BA1AA /* HISSTools_FFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HISSTools_FFT.h; sourceTree = "<group>"; };
 		B85753511F2E1FCB00478E9F /* FrameLib_Vector_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Vector_Objects.h; sourceTree = "<group>"; };
 		B85753521F2E1FFA00478E9F /* FrameLib_Vector_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Vector_Template.h; sourceTree = "<group>"; };
 		B85753541F2E208100478E9F /* FrameLib_Binary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FrameLib_Binary_Objects.h; path = Binary/FrameLib_Binary_Objects.h; sourceTree = "<group>"; };
@@ -2066,18 +2077,6 @@
 		B878DB731D819C15001A5151 /* MaxClass_Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaxClass_Base.h; sourceTree = "<group>"; };
 		B87E875319C8EA4900B1D0CD /* FrameLib_FFT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_FFT.h; sourceTree = "<group>"; };
 		B87E876419C8EE9600B1D0CD /* fl.fft~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.fft~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B87E876719C8EEB900B1D0CD /* FFT_Calls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFT_Calls.h; sourceTree = "<group>"; };
-		B87E876819C8EEB900B1D0CD /* FFT_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFT_Header.h; sourceTree = "<group>"; };
-		B87E876919C8EEB900B1D0CD /* FFT_Main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFT_Main.h; sourceTree = "<group>"; };
-		B87E876A19C8EEB900B1D0CD /* FFT_Real.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFT_Real.h; sourceTree = "<group>"; };
-		B87E876B19C8EEB900B1D0CD /* FFT_Scalar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFT_Scalar.h; sourceTree = "<group>"; };
-		B87E876C19C8EEB900B1D0CD /* FFT_Setup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFT_Setup.h; sourceTree = "<group>"; };
-		B87E876D19C8EEB900B1D0CD /* FFT_SIMD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFT_SIMD.h; sourceTree = "<group>"; };
-		B87E876E19C8EEB900B1D0CD /* FFT_Type_Double.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFT_Type_Double.h; sourceTree = "<group>"; };
-		B87E876F19C8EEB900B1D0CD /* FFT_Type_Float.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFT_Type_Float.h; sourceTree = "<group>"; };
-		B87E877019C8EEB900B1D0CD /* HISSTools_FFT.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = HISSTools_FFT.c; sourceTree = "<group>"; };
-		B87E877119C8EEB900B1D0CD /* HISSTools_FFT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HISSTools_FFT.h; sourceTree = "<group>"; };
-		B87E877219C8EEB900B1D0CD /* HISSTools_FFT_SIMD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HISSTools_FFT_SIMD.h; sourceTree = "<group>"; };
 		B87E877419C8EEEB00B1D0CD /* fl.fft~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.fft~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B87E877719C8F45700B1D0CD /* fl.ifft~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.ifft~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B87E877819C8F47700B1D0CD /* FrameLib_iFFT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_iFFT.h; sourceTree = "<group>"; };
@@ -3598,18 +3597,9 @@
 		B87E876619C8EEB900B1D0CD /* HISSTools_FFT */ = {
 			isa = PBXGroup;
 			children = (
-				B87E876719C8EEB900B1D0CD /* FFT_Calls.h */,
-				B87E876819C8EEB900B1D0CD /* FFT_Header.h */,
-				B87E876919C8EEB900B1D0CD /* FFT_Main.h */,
-				B87E876A19C8EEB900B1D0CD /* FFT_Real.h */,
-				B87E876B19C8EEB900B1D0CD /* FFT_Scalar.h */,
-				B87E876C19C8EEB900B1D0CD /* FFT_Setup.h */,
-				B87E876D19C8EEB900B1D0CD /* FFT_SIMD.h */,
-				B87E876E19C8EEB900B1D0CD /* FFT_Type_Double.h */,
-				B87E876F19C8EEB900B1D0CD /* FFT_Type_Float.h */,
-				B87E877019C8EEB900B1D0CD /* HISSTools_FFT.c */,
-				B87E877119C8EEB900B1D0CD /* HISSTools_FFT.h */,
-				B87E877219C8EEB900B1D0CD /* HISSTools_FFT_SIMD.h */,
+				B85435721F65BF03001BA1AA /* HISSTools_FFT_Core.h */,
+				B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */,
+				B85435741F65BF03001BA1AA /* HISSTools_FFT.h */,
 			);
 			path = HISSTools_FFT;
 			sourceTree = "<group>";
@@ -4601,8 +4591,10 @@
 			files = (
 				B8C53D171F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B85C8FD01E605B2E004D7D40 /* FrameLib_Context.h in Headers */,
+				B85435801F65BF03001BA1AA /* HISSTools_FFT.h in Headers */,
 				B85C8FD11E605B2E004D7D40 /* FrameLib_Global.h in Headers */,
 				B88BD32D1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
+				B85435781F65BF03001BA1AA /* HISSTools_FFT_Core.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4634,8 +4626,10 @@
 			files = (
 				B8C53CF81F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A51D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B854357D1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */,
 				B84121591D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD30E1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
+				B85435751F65BF03001BA1AA /* HISSTools_FFT_Core.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4645,8 +4639,10 @@
 			files = (
 				B8C53CF91F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A61D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B854357E1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */,
 				B841215A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD30F1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
+				B85435761F65BF03001BA1AA /* HISSTools_FFT_Core.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4695,8 +4691,10 @@
 			files = (
 				B8C53CFA1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A71D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B854357F1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */,
 				B841215B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3101F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
+				B85435771F65BF03001BA1AA /* HISSTools_FFT_Core.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9940,11 +9938,11 @@
 				B8B961DC1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
 				B85C8FD51E605B2E004D7D40 /* tlsf.c in Sources */,
 				B8DE5DED1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
-				B85C8FE51E605C9E004D7D40 /* HISSTools_FFT.c in Sources */,
 				B85C8FD61E605B2E004D7D40 /* FrameLib_Threading.cpp in Sources */,
 				B85C8FD71E605B2E004D7D40 /* FrameLib_Memory.cpp in Sources */,
 				B85C8FD81E605B2E004D7D40 /* FrameLib_Global.cpp in Sources */,
 				B88BD2731F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
+				B854357C1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */,
 				B8C53CBB1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9998,11 +9996,11 @@
 				B8B961BD1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
 				B84121001D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B8DE5DCE1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
-				B87E877319C8EEBF00B1D0CD /* HISSTools_FFT.c in Sources */,
 				B87E877519C8EEEB00B1D0CD /* fl.fft~.cpp in Sources */,
 				B87E875A19C8EE9600B1D0CD /* tlsf.c in Sources */,
 				B8EDFD651DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B88BD2541F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
+				B85435791F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */,
 				B8C53C9C1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -10017,12 +10015,12 @@
 				B8B961BE1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
 				B84121011D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B8DE5DCF1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
-				B87E877D19C8F4AA00B1D0CD /* HISSTools_FFT.c in Sources */,
 				B87E878B19C8F4BC00B1D0CD /* fl.ifft~.cpp in Sources */,
 				B87E877F19C8F4AA00B1D0CD /* tlsf.c in Sources */,
 				B8EDFD661DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B88BD2551F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 				B8891CF41F2C9A1400C5C4F0 /* FrameLib_iFFT.cpp in Sources */,
+				B854357A1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */,
 				B8C53C9D1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -10105,11 +10103,11 @@
 				B8B961BF1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
 				B84121021D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B8DE5DD01F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
-				B8A4757719C9DDCD0043DC65 /* HISSTools_FFT.c in Sources */,
 				B8A4758519C9DDEA0043DC65 /* fl.convolve~.cpp in Sources */,
 				B8A4757919C9DDCD0043DC65 /* tlsf.c in Sources */,
 				B8EDFD671DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B88BD2561F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
+				B854357B1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */,
 				B8C53C9E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -17388,6 +17386,7 @@
 		B85A95DF1F60A56C00D6C72B /* Public Testing */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
@@ -17418,6 +17417,7 @@
 		B85A95E01F60A56C00D6C72B /* Public Testing */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
@@ -17448,6 +17448,7 @@
 		B85A95E11F60A56C00D6C72B /* Public Testing */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
@@ -18348,6 +18349,7 @@
 		B85A95FF1F60A56C00D6C72B /* Public Testing */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
@@ -19120,6 +19122,7 @@
 		B85C8FDF1E605B2E004D7D40 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUGGING_SYMBOLS = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
@@ -19151,6 +19154,7 @@
 		B85C8FE01E605B2E004D7D40 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
@@ -19181,6 +19185,7 @@
 		B85C8FE11E605B2E004D7D40 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
@@ -19381,6 +19386,7 @@
 		B87E876119C8EE9600B1D0CD /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUGGING_SYMBOLS = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
@@ -19412,6 +19418,7 @@
 		B87E876219C8EE9600B1D0CD /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
@@ -19442,6 +19449,7 @@
 		B87E876319C8EE9600B1D0CD /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
@@ -19468,6 +19476,7 @@
 		B87E878619C8F4AA00B1D0CD /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUGGING_SYMBOLS = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
@@ -19499,6 +19508,7 @@
 		B87E878719C8F4AA00B1D0CD /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
@@ -19529,6 +19539,7 @@
 		B87E878819C8F4AA00B1D0CD /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
@@ -19934,6 +19945,7 @@
 		B8A4758019C9DDCD0043DC65 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUGGING_SYMBOLS = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
@@ -19965,6 +19977,7 @@
 		B8A4758119C9DDCD0043DC65 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
@@ -19995,6 +20008,7 @@
 		B8A4758219C9DDCD0043DC65 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;

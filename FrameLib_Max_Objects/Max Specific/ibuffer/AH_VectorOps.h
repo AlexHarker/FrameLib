@@ -224,7 +224,7 @@ static const vDouble Vec_Ops_F64_One = {1.,1.};
 // Altivec has min / max intrinics for 32 bit signed integers, but on intel this must be done in software (although it is provided under windows)
 // These routines are taken directly from the apple SSE migration guide
 // The guide can be found at http://developer.apple.com/legacy/mac/library/documentation/Performance/Conceptual/Accelerate_sse_migration/Accelerate_sse_migration.pdf
-
+/*
 #ifdef __APPLE__
 static __inline vSInt32 _mm_min_epi32(vSInt32 a, vSInt32 b) FORCE_INLINE;
 static __inline vSInt32 _mm_min_epi32(vSInt32 a, vSInt32 b) 
@@ -240,7 +240,7 @@ static __inline vSInt32 _mm_max_epi32(vSInt32 a, vSInt32 b)
 	return _mm_or_si128( _mm_andnot_si128(t,b),_mm_and_si128(t,a));
 }
 #endif 
-
+*/
 // Altivec has selection intrinics for 32 bit floating point vectors, but on intel this must be done in software
 // These routines are taken directly from the apple SSE migration guide
 // The guide can be found at http://developer.apple.com/legacy/mac/library/documentation/Performance/Conceptual/Accelerate_sse_migration/Accelerate_sse_migration.pdf

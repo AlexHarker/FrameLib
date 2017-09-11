@@ -16,13 +16,13 @@ FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial
     
     unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
     
-    mFFTSetup = hisstools_create_setup_d(maxFFTSizeLog2);
+    hisstools_create_setup(&mFFTSetup, maxFFTSizeLog2);
     mMaxFFTSize = 1 << maxFFTSizeLog2;
 }
 
 FrameLib_FFT::~FrameLib_FFT()
 {
-    hisstools_destroy_setup_d(mFFTSetup);
+    hisstools_destroy_setup(mFFTSetup);
 }
 
 // Info
@@ -94,8 +94,7 @@ void FrameLib_FFT::process()
     {
         // Take the real fft
         
-        hisstools_unzip_zero_d(input, &spectrum, sizeIn, FFTSizelog2);
-        hisstools_rfft_d(mFFTSetup, &spectrum, FFTSizelog2);
+        hisstools_rfft(mFFTSetup, input, &spectrum, sizeIn, FFTSizelog2);
         
         // Move Nyquist Bin
         
