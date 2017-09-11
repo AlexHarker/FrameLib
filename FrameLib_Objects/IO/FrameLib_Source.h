@@ -37,10 +37,11 @@ private:
     unsigned long convertTimeToSamples(double time);
     void copy(double *input, unsigned long offset, unsigned long size);
     
-    // Object Reset, Block Process and Process
+    // Object Reset, Block Process, Update and Process 
     
     void objectReset();
     void blockProcess(double **ins, double **outs, unsigned long blockSize);
+    void update();
     void process();
     
     // Data

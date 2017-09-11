@@ -90,7 +90,7 @@ void FrameLib_Source::copy(double *input, unsigned long offset, unsigned long si
     }
 }
 
-// Object Reset, Block Process and Process
+// Object Reset, Block Process, Update and Process
 
 void FrameLib_Source::objectReset()
 {
@@ -117,6 +117,11 @@ void FrameLib_Source::blockProcess(double **ins, double **outs, unsigned long bl
     
     copy(ins[0], mCounter, size);
     copy(ins[0] + size, 0, blockSize - size);
+}
+
+void FrameLib_Source::update()
+{
+    mLength = convertTimeToSamples(mParameters.getValue(kLength));
 }
 
 void FrameLib_Source::process()
