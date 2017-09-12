@@ -11,7 +11,8 @@ class FrameLib_iFFT : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-	enum ParameterList { kMaxLength, kNormalise };
+    enum Mode { kReal, kComplex, kFullSpectrum };
+	enum ParameterList { kMaxLength, kNormalise, kMode };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
@@ -40,9 +41,11 @@ private:
 	
 	FFT_SETUP_D mFFTSetup;
 	
-	// Maximum FFT Size
-	
-	unsigned long mMaxFFTSize;
+    // Instantiation Params
+    
+    unsigned long mMaxFFTSize;
+    Mode mMode;
+    bool mNormalise;
     
     static ParameterInfo sParamInfo;
 };
