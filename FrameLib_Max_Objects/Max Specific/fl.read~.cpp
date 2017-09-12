@@ -90,9 +90,9 @@ void FrameLib_MaxRead::process()
     void *tempMem = NULL;
     void *bufferSamples;
     double *fracts;
-    AH_SIntPtr *offsets;
+    intptr_t *offsets;
     
-    AH_SIntPtr length;
+    intptr_t length;
     unsigned long size, vecSize, paddedSize;
     long chan, nChans, format;
     size_t tempMemSize;
@@ -121,7 +121,7 @@ void FrameLib_MaxRead::process()
             
             paddedSize = (size + 0x3) & ~0x3;
             
-            tempMemSize = (mMode == kLinear) ? paddedSize * (2 * sizeof(float) + sizeof(double) + sizeof(AH_SIntPtr)) : paddedSize * (4 * sizeof(float) + sizeof(double) + sizeof(AH_SIntPtr));
+            tempMemSize = (mMode == kLinear) ? paddedSize * (2 * sizeof(float) + sizeof(double) + sizeof(intptr_t)) : paddedSize * (4 * sizeof(float) + sizeof(double) + sizeof(intptr_t));
             tempMem = mAllocator->alloc(tempMemSize);
         }
         
@@ -136,7 +136,7 @@ void FrameLib_MaxRead::process()
         temp[2] = ((float *) temp[1]) + paddedSize;
         temp[3] = ((float *) temp[2]) + paddedSize;
         
-        offsets = (AH_SIntPtr *) ((mMode == kLinear) ? (((float *) temp[1]) + paddedSize) : (((float *) temp[3]) + paddedSize));
+        offsets = (intptr_t *) ((mMode == kLinear) ? (((float *) temp[1]) + paddedSize) : (((float *) temp[3]) + paddedSize));
         fracts = (double *) (offsets + paddedSize);
         
         double lengthM1 = length - 1.0;
@@ -167,7 +167,7 @@ void FrameLib_MaxRead::process()
             position = position > lengthM1 ? lengthM1 : position;
             position = position < 0.0 ? 0.0 : position;
             
-            AH_SIntPtr offset = position;
+            intptr_t offset = position;
             double fract = position - offset;
             
             offsets[i] = offset;

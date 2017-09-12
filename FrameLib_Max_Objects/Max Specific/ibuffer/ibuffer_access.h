@@ -100,7 +100,7 @@ void ibuffer_init ();
 // Get ibuffer and related info (note that the sample rate is in a separate call, as it is not required info for other routines
 
 static __inline void *ibuffer_get_ptr (t_symbol *s) FORCE_INLINE;
-static __inline long ibuffer_info (void *thebuffer, void **samples, AH_SIntPtr *length, long *channels, long *format) FORCE_INLINE;
+static __inline long ibuffer_info (void *thebuffer, void **samples, intptr_t *length, long *channels, long *format) FORCE_INLINE;
 static __inline double ibuffer_sample_rate (void *thebuffer) FORCE_INLINE;
 
 // Increment / decrement buffer inuse pointers
@@ -110,59 +110,59 @@ static __inline void ibuffer_decrement_inuse (void *thebuffer) FORCE_INLINE;
 
 // Get the value of an individual sample
 
-static __inline float ibuffer_float_get_samp (void *samps, AH_SIntPtr offset, long n_chans, long chan, long format)  FORCE_INLINE;
-static __inline double ibuffer_double_get_samp (void *samps, AH_SIntPtr offset, long n_chans, long chan, long format)  FORCE_INLINE;
+static __inline float ibuffer_float_get_samp (void *samps, intptr_t offset, long n_chans, long chan, long format)  FORCE_INLINE;
+static __inline double ibuffer_double_get_samp (void *samps, intptr_t offset, long n_chans, long chan, long format)  FORCE_INLINE;
 
 // Calculate an offset to the samps pointer (accounting for sample interleaving and sample format)
 
-static __inline void *ibuffer_offset (void *samps, AH_SIntPtr offset, long n_chans, long format) FORCE_INLINE;
+static __inline void *ibuffer_offset (void *samps, intptr_t offset, long n_chans, long format) FORCE_INLINE;
 
 // Process a set of offsets for use with the below routines (accounting for sample interleaving and sample format)
 
-static __inline void ibuffer_preprocess_offsets (AH_SIntPtr *offsets, AH_SIntPtr n_samps, long n_chans, long format) FORCE_INLINE;
+static __inline void ibuffer_preprocess_offsets (intptr_t *offsets, intptr_t n_samps, long n_chans, long format) FORCE_INLINE;
 
 #endif
 
 // Get consecutive samples (and in reverse)
 
-void ibuffer_get_samps (void *samps, float *out, AH_SIntPtr offset, AH_SIntPtr n_samps, long n_chans, long chan, long format);
-void ibuffer_get_samps_rev (void *samps, float *out, AH_SIntPtr offset, AH_SIntPtr n_samps, long n_chans, long chan, long format);
+void ibuffer_get_samps (void *samps, float *out, intptr_t offset, intptr_t n_samps, long n_chans, long chan, long format);
+void ibuffer_get_samps_rev (void *samps, float *out, intptr_t offset, intptr_t n_samps, long n_chans, long chan, long format);
 
 // Vectorised Interpolation: None / Linear / Cubic Bspline / Cubic Hermite / Cubic Lagrange
 
-void ibuffer_float_samps_simd_nointerp (void *samps, vFloat *out, AH_SIntPtr *offsets, AH_SIntPtr n_samps, long n_chans, long chan, long format, float mul);
-void ibuffer_float_samps_simd_linear (void *samps, vFloat *out, AH_SIntPtr *offsets, vFloat *fracts, void **temp, AH_SIntPtr n_samps, long n_chans, long chan, long format, float mul);
-void ibuffer_float_samps_simd_cubic_bspline (void *samps, vFloat *out, AH_SIntPtr *offsets, vFloat *fracts, void **temp, AH_SIntPtr n_samps, long n_chans, long chan, long format, float mul);
-void ibuffer_float_samps_simd_cubic_hermite (void *samps, vFloat *out, AH_SIntPtr *offsets, vFloat *fracts, void **temp, AH_SIntPtr n_samps, long n_chans, long chan, long format, float mul);
-void ibuffer_float_samps_simd_cubic_lagrange (void *samps, vFloat *out, AH_SIntPtr *offsets, vFloat *fracts, void **temp, AH_SIntPtr n_samps, long n_chans, long chan, long format, float mul);
+void ibuffer_float_samps_simd_nointerp (void *samps, vFloat *out, intptr_t *offsets, intptr_t n_samps, long n_chans, long chan, long format, float mul);
+void ibuffer_float_samps_simd_linear (void *samps, vFloat *out, intptr_t *offsets, vFloat *fracts, void **temp, intptr_t n_samps, long n_chans, long chan, long format, float mul);
+void ibuffer_float_samps_simd_cubic_bspline (void *samps, vFloat *out, intptr_t *offsets, vFloat *fracts, void **temp, intptr_t n_samps, long n_chans, long chan, long format, float mul);
+void ibuffer_float_samps_simd_cubic_hermite (void *samps, vFloat *out, intptr_t *offsets, vFloat *fracts, void **temp, intptr_t n_samps, long n_chans, long chan, long format, float mul);
+void ibuffer_float_samps_simd_cubic_lagrange (void *samps, vFloat *out, intptr_t *offsets, vFloat *fracts, void **temp, intptr_t n_samps, long n_chans, long chan, long format, float mul);
 
 // Scalar Interpolation: None / Linear / Cubic Bspline / Cubic Hermite / Cubic Lagrange
 
-void ibuffer_float_samps_scalar_nointerp (void *samps, float *out, AH_SIntPtr *offsets, AH_SIntPtr n_samps, long n_chans, long chan, long format, float mul);
-void ibuffer_float_samps_scalar_linear (void *samps, float *out, AH_SIntPtr *offsets, float *fracts, AH_SIntPtr n_samps, long n_chans, long chan, long format, float mul);
-void ibuffer_float_samps_scalar_cubic_bspline (void *samps, float *out, AH_SIntPtr *offsets, float *fracts, AH_SIntPtr n_samps, long n_chans, long chan, long format, float mul);
-void ibuffer_float_samps_scalar_cubic_hermite (void *samps, float *out, AH_SIntPtr *offsets, float *fracts, AH_SIntPtr n_samps, long n_chans, long chan, long format, float mul);
-void ibuffer_float_samps_scalar_cubic_lagrange (void *samps, float *out, AH_SIntPtr *offsets, float*fracts, AH_SIntPtr n_samps, long n_chans, long chan, long format, float mul);
+void ibuffer_float_samps_scalar_nointerp (void *samps, float *out, intptr_t *offsets, intptr_t n_samps, long n_chans, long chan, long format, float mul);
+void ibuffer_float_samps_scalar_linear (void *samps, float *out, intptr_t *offsets, float *fracts, intptr_t n_samps, long n_chans, long chan, long format, float mul);
+void ibuffer_float_samps_scalar_cubic_bspline (void *samps, float *out, intptr_t *offsets, float *fracts, intptr_t n_samps, long n_chans, long chan, long format, float mul);
+void ibuffer_float_samps_scalar_cubic_hermite (void *samps, float *out, intptr_t *offsets, float *fracts, intptr_t n_samps, long n_chans, long chan, long format, float mul);
+void ibuffer_float_samps_scalar_cubic_lagrange (void *samps, float *out, intptr_t *offsets, float*fracts, intptr_t n_samps, long n_chans, long chan, long format, float mul);
 
 #ifdef VECTOR_F64_128BIT
 
 // Vectorised Interpolation Double Precision: None / Linear / Cubic Bspline / Cubic Hermite / Cubic Lagrange
 
-void ibuffer_double_samps_simd_nointerp (void *samps, vDouble *out, AH_SIntPtr *offsets, AH_SIntPtr n_samps, long n_chans, long chan, long format, double mul);
-void ibuffer_double_samps_simd_linear (void *samps, vDouble *out, AH_SIntPtr *offsets, vDouble *fracts, void **temp, AH_SIntPtr n_samps, long n_chans, long chan, long format, double mul);
-void ibuffer_double_samps_simd_cubic_bspline (void *samps, vDouble *out, AH_SIntPtr *offsets, vDouble *fracts, void **temp, AH_SIntPtr n_samps, long n_chans, long chan, long format, double mul);
-void ibuffer_double_samps_simd_cubic_hermite (void *samps, vDouble *out, AH_SIntPtr *offsets, vDouble *fracts, void **temp, AH_SIntPtr n_samps, long n_chans, long chan, long format, double mul);
-void ibuffer_double_samps_simd_cubic_lagrange (void *samps, vDouble *out, AH_SIntPtr *offsets, vDouble *fracts, void **temp, AH_SIntPtr n_samps, long n_chans, long chan, long format, double mul);
+void ibuffer_double_samps_simd_nointerp (void *samps, vDouble *out, intptr_t *offsets, intptr_t n_samps, long n_chans, long chan, long format, double mul);
+void ibuffer_double_samps_simd_linear (void *samps, vDouble *out, intptr_t *offsets, vDouble *fracts, void **temp, intptr_t n_samps, long n_chans, long chan, long format, double mul);
+void ibuffer_double_samps_simd_cubic_bspline (void *samps, vDouble *out, intptr_t *offsets, vDouble *fracts, void **temp, intptr_t n_samps, long n_chans, long chan, long format, double mul);
+void ibuffer_double_samps_simd_cubic_hermite (void *samps, vDouble *out, intptr_t *offsets, vDouble *fracts, void **temp, intptr_t n_samps, long n_chans, long chan, long format, double mul);
+void ibuffer_double_samps_simd_cubic_lagrange (void *samps, vDouble *out, intptr_t *offsets, vDouble *fracts, void **temp, intptr_t n_samps, long n_chans, long chan, long format, double mul);
 
 #endif
 
 // Scalar Interpolation Double Precision: None / Linear / Cubic Bspline / Cubic Hermite / Cubic Lagrange
 
-void ibuffer_double_samps_scalar_nointerp (void *samps, double *out, AH_SIntPtr *offsets, AH_SIntPtr n_samps, long n_chans, long chan, long format, double mul);
-void ibuffer_double_samps_scalar_linear (void *samps, double *out, AH_SIntPtr *offsets, double *fracts, AH_SIntPtr n_samps, long n_chans, long chan, long format, double mul);
-void ibuffer_double_samps_scalar_cubic_bspline (void *samps, double *out, AH_SIntPtr *offsets, double *fracts, AH_SIntPtr n_samps, long n_chans, long chan, long format, double mul);
-void ibuffer_double_samps_scalar_cubic_hermite (void *samps, double *out, AH_SIntPtr *offsets, double *fracts, AH_SIntPtr n_samps, long n_chans, long chan, long format, double mul);
-void ibuffer_double_samps_scalar_cubic_lagrange (void *samps, double *out, AH_SIntPtr *offsets, double *fracts, AH_SIntPtr n_samps, long n_chans, long chan, long format, double mul);
+void ibuffer_double_samps_scalar_nointerp (void *samps, double *out, intptr_t *offsets, intptr_t n_samps, long n_chans, long chan, long format, double mul);
+void ibuffer_double_samps_scalar_linear (void *samps, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long n_chans, long chan, long format, double mul);
+void ibuffer_double_samps_scalar_cubic_bspline (void *samps, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long n_chans, long chan, long format, double mul);
+void ibuffer_double_samps_scalar_cubic_hermite (void *samps, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long n_chans, long chan, long format, double mul);
+void ibuffer_double_samps_scalar_cubic_lagrange (void *samps, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long n_chans, long chan, long format, double mul);
 
 #if defined(__cplusplus)
 }
@@ -189,7 +189,7 @@ static __inline void *ibuffer_get_ptr (t_symbol *s) FORCE_INLINE_DEFINITION
 }
 
 
-static __inline long ibuffer_info (void *thebuffer, void **samples, AH_SIntPtr *length, long *channels, long *format) FORCE_INLINE_DEFINITION
+static __inline long ibuffer_info (void *thebuffer, void **samples, intptr_t *length, long *channels, long *format) FORCE_INLINE_DEFINITION
 {
 	if (!thebuffer) 
 		return 0;
@@ -259,22 +259,22 @@ static __inline void ibuffer_decrement_inuse (void *thebuffer) FORCE_INLINE_DEFI
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-static __inline float ibuffer_float_get_samp (void *samps, AH_SIntPtr offset, long n_chans, long chan, long format) FORCE_INLINE_DEFINITION
+static __inline float ibuffer_float_get_samp (void *samps, intptr_t offset, long n_chans, long chan, long format) FORCE_INLINE_DEFINITION
 {	
-	AH_UInt32 sampleint;
+	uint32_t sampleint;
 	
 	switch (format)
 	{
 		case PCM_INT_16:
-			sampleint = ((* (AH_UInt16 *) (((AH_UInt16 *) samps) + chan + (offset * n_chans) ) ) << 16) & MASK_16_BIT;
-			return (float) *((AH_SInt32 *) &sampleint) * TWO_POW_31_RECIP;			
+			sampleint = ((* (uint16_t *) (((uint16_t *) samps) + chan + (offset * n_chans) ) ) << 16) & MASK_16_BIT;
+			return (float) *((int32_t *) &sampleint) * TWO_POW_31_RECIP;			
 			
 		case PCM_INT_24:
-			sampleint = * ( (AH_UInt32 *) ( ((AH_UInt8 *) samps) + (3 * (chan + (offset * n_chans))) - 1 )) & MASK_24_BIT;
-			return (float) *((AH_SInt32 *) &sampleint) * TWO_POW_31_RECIP;		
+			sampleint = * ( (uint32_t *) ( ((uint8_t *) samps) + (3 * (chan + (offset * n_chans))) - 1 )) & MASK_24_BIT;
+			return (float) *((int32_t *) &sampleint) * TWO_POW_31_RECIP;		
 			
 		case PCM_INT_32:
-			return (float) ( *( ((AH_SInt32 *) samps) + chan + (offset * n_chans) ) ) * TWO_POW_31_RECIP;
+			return (float) ( *( ((int32_t *) samps) + chan + (offset * n_chans) ) ) * TWO_POW_31_RECIP;
 			
 		case PCM_FLOAT:
 			return *( ((float *) samps) + chan + (offset * n_chans) );
@@ -284,22 +284,22 @@ static __inline float ibuffer_float_get_samp (void *samps, AH_SIntPtr offset, lo
 }
 
 
-static __inline double ibuffer_double_get_samp (void *samps, AH_SIntPtr offset, long n_chans, long chan, long format) FORCE_INLINE_DEFINITION
+static __inline double ibuffer_double_get_samp (void *samps, intptr_t offset, long n_chans, long chan, long format) FORCE_INLINE_DEFINITION
 {	
-	AH_UInt32 sampleint;
+	uint32_t sampleint;
 	
 	switch (format)
 	{
 		case PCM_INT_16:
-			sampleint = ((* (AH_UInt16 *) (((AH_UInt16 *) samps) + chan + (offset * n_chans) ) ) << 16) & MASK_16_BIT;
-			return (double) *((AH_SInt32 *) &sampleint) * TWO_POW_31_RECIP_DOUBLE;			
+			sampleint = ((* (uint16_t *) (((uint16_t *) samps) + chan + (offset * n_chans) ) ) << 16) & MASK_16_BIT;
+			return (double) *((int32_t *) &sampleint) * TWO_POW_31_RECIP_DOUBLE;			
 			
 		case PCM_INT_24:
-			sampleint = * ( (AH_UInt32 *) ( ((AH_UInt8 *) samps) + (3 * (chan + (offset * n_chans))) - 1 )) & MASK_24_BIT;
-			return (double) *((AH_SInt32 *) &sampleint) * TWO_POW_31_RECIP_DOUBLE;		
+			sampleint = * ( (uint32_t *) ( ((uint8_t *) samps) + (3 * (chan + (offset * n_chans))) - 1 )) & MASK_24_BIT;
+			return (double) *((int32_t *) &sampleint) * TWO_POW_31_RECIP_DOUBLE;		
 			
 		case PCM_INT_32:
-			return (double) ( *( ((AH_SInt32 *) samps) + chan + (offset * n_chans) ) ) * TWO_POW_31_RECIP_DOUBLE;
+			return (double) ( *( ((int32_t *) samps) + chan + (offset * n_chans) ) ) * TWO_POW_31_RECIP_DOUBLE;
 			
 		case PCM_FLOAT:
 			return (double) *( ((float *) samps) + chan + (offset * n_chans) );
@@ -314,9 +314,9 @@ static __inline double ibuffer_double_get_samp (void *samps, AH_SIntPtr offset, 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-static __inline void *ibuffer_offset (void *samps, AH_SIntPtr offset, long n_chans, long format) FORCE_INLINE_DEFINITION
+static __inline void *ibuffer_offset (void *samps, intptr_t offset, long n_chans, long format) FORCE_INLINE_DEFINITION
 {
-	AH_SInt8 *samps_temp = (AH_SInt8 *) samps;
+	int8_t *samps_temp = (int8_t *) samps;
 	
 	switch (format)
 	{		
@@ -342,9 +342,9 @@ static __inline void *ibuffer_offset (void *samps, AH_SIntPtr offset, long n_cha
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-static __inline void ibuffer_preprocess_offsets (AH_SIntPtr *offsets, AH_SIntPtr n_samps, long n_chans, long format) FORCE_INLINE_DEFINITION
+static __inline void ibuffer_preprocess_offsets (intptr_t *offsets, intptr_t n_samps, long n_chans, long format) FORCE_INLINE_DEFINITION
 {
-	AH_SIntPtr i;
+	intptr_t i;
 	long mul = n_chans;
 	
 	if (format == PCM_INT_24) 

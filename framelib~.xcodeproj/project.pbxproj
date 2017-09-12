@@ -2126,8 +2126,6 @@
 		B8A4757219C9DD9F0043DC65 /* fl.convolve~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.convolve~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8A4758319C9DDCD0043DC65 /* fl.convolve~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.convolve~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A54DB91F277E1700618324 /* FrameLib_Info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Info.h; sourceTree = "<group>"; };
-		B8AD883219C7C2B500FFA238 /* AH_Atomic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AH_Atomic.h; sourceTree = "<group>"; };
-		B8AD883319C7C2B500FFA238 /* AH_Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AH_Types.h; sourceTree = "<group>"; };
 		B8AD883419C7C2B500FFA238 /* AH_VectorOps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AH_VectorOps.h; sourceTree = "<group>"; };
 		B8AD883519C7C2B500FFA238 /* ibuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ibuffer.h; sourceTree = "<group>"; };
 		B8AD883619C7C2B500FFA238 /* ibuffer_access.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ibuffer_access.c; sourceTree = "<group>"; };
@@ -3725,8 +3723,6 @@
 		B8AD883119C7C2B500FFA238 /* ibuffer */ = {
 			isa = PBXGroup;
 			children = (
-				B8AD883219C7C2B500FFA238 /* AH_Atomic.h */,
-				B8AD883319C7C2B500FFA238 /* AH_Types.h */,
 				B8AD883419C7C2B500FFA238 /* AH_VectorOps.h */,
 				B8AD883519C7C2B500FFA238 /* ibuffer.h */,
 				B8AD883619C7C2B500FFA238 /* ibuffer_access.c */,

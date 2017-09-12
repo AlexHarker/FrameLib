@@ -18,8 +18,8 @@
 #include <z_dsp.h>
 #include <buffer.h>
 
-#include "AH_Atomic.h"
-#include "AH_Types.h"
+//#include "AH_Atomic.h"
+#include <stdint.h>
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -38,7 +38,7 @@ typedef struct _ibuffer
 	
 	double sr;				// sample rate of ibuffer~
 	
-	AH_SIntPtr frames;		// number of frames (N.B. - could be very large under 64bit platforms - hence the pointer sized integer - signed for backwards compatibility)
+	intptr_t frames;		// number of frames (N.B. - could be very large under 64bit platforms - hence the pointer sized integer - signed for backwards compatibility)
 	long channels;			// number of channels
 	long format;			// sample format
 	
