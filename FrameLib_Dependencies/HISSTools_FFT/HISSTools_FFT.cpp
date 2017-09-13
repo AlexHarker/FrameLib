@@ -2,7 +2,7 @@
 #include "HISSTools_FFT.h"
 #include "HISSTools_FFT_Core.h"
 
-SIMDType SIMD_Support = kNone;
+hisstools_fft_impl::SIMDType hisstools_fft_impl::SIMD_Support = hisstools_fft_impl::kNone;
 
 #ifdef USE_APPLE_FFT
 
@@ -114,86 +114,86 @@ template <class V> void unzipComplex(double *input, FFT_SPLIT_COMPLEX_D *output,
 
 void hisstools_fft(FFT_SETUP_D setup, FFT_SPLIT_COMPLEX_D *input, uintptr_t log2n)
 {
-    hisstools_fft(input, setup, log2n);
+    hisstools_fft_impl::hisstools_fft(input, setup, log2n);
 }
 
 void hisstools_fft(FFT_SETUP_F setup, FFT_SPLIT_COMPLEX_F *input, uintptr_t log2n)
 {
-    hisstools_fft(input, setup, log2n);
+    hisstools_fft_impl::hisstools_fft(input, setup, log2n);
 }
 
 void hisstools_rfft(FFT_SETUP_D setup, FFT_SPLIT_COMPLEX_D *input, uintptr_t log2n)
 {
-    hisstools_rfft(input, setup, log2n);
+    hisstools_fft_impl::hisstools_rfft(input, setup, log2n);
 }
 
 void hisstools_rfft(FFT_SETUP_F setup, FFT_SPLIT_COMPLEX_F *input, uintptr_t log2n)
 {
-    hisstools_rfft(input, setup, log2n);
+    hisstools_fft_impl::hisstools_rfft(input, setup, log2n);
 }
 
 void hisstools_ifft(FFT_SETUP_D setup, FFT_SPLIT_COMPLEX_D *input, uintptr_t log2n)
 {
-    hisstools_ifft(input, setup, log2n);
+    hisstools_fft_impl::hisstools_ifft(input, setup, log2n);
 }
 
 void hisstools_ifft(FFT_SETUP_F setup, FFT_SPLIT_COMPLEX_F *input, uintptr_t log2n)
 {
-    hisstools_ifft(input, setup, log2n);
+    hisstools_fft_impl::hisstools_ifft(input, setup, log2n);
 }
 
 void hisstools_rifft(FFT_SETUP_D setup, FFT_SPLIT_COMPLEX_D *input, uintptr_t log2n)
 {
-    hisstools_rifft(input, setup, log2n);
+    hisstools_fft_impl::hisstools_rifft(input, setup, log2n);
 }
 
 void hisstools_rifft(FFT_SETUP_F setup, FFT_SPLIT_COMPLEX_F *input, uintptr_t log2n)
 {
-    hisstools_rifft(input, setup, log2n);
+    hisstools_fft_impl::hisstools_rifft(input, setup, log2n);
 }
 
 // Zip and Unzip
 
 void hisstools_unzip(double *input, FFT_SPLIT_COMPLEX_D *output, uintptr_t log2n)
 {
-    unzip_complex<double>(input, output, (uintptr_t) 1 << (log2n - (uintptr_t) 1));
+    hisstools_fft_impl::unzip_complex<double>(input, output, (uintptr_t) 1 << (log2n - (uintptr_t) 1));
 }
 
 void hisstools_unzip(float *input, FFT_SPLIT_COMPLEX_F *output, uintptr_t log2n)
 {
-    unzip_complex<float>(input, output, (uintptr_t) 1 << (log2n - (uintptr_t) 1));
+    hisstools_fft_impl::unzip_complex<float>(input, output, (uintptr_t) 1 << (log2n - (uintptr_t) 1));
 }
 
 void hisstools_zip(FFT_SPLIT_COMPLEX_D *input, double *output, uintptr_t log2n)
 {
-    zip_complex(input, output, (uintptr_t) 1 << (log2n - (uintptr_t) 1));
+    hisstools_fft_impl::zip_complex(input, output, (uintptr_t) 1 << (log2n - (uintptr_t) 1));
 }
 
 void hisstools_zip(FFT_SPLIT_COMPLEX_F *input, float *output, uintptr_t log2n)
 {
-    zip_complex(input, output, (uintptr_t) 1 << (log2n - (uintptr_t) 1));
+    hisstools_fft_impl::zip_complex(input, output, (uintptr_t) 1 << (log2n - (uintptr_t) 1));
 }
 
 // Setup Create / Destroy
 
 void hisstools_create_setup(FFT_SETUP_D *setup, uintptr_t max_fft_log_2)
 {
-    *setup = static_cast<FFT_SETUP_D>(create_setup<double>(max_fft_log_2));
+    *setup = static_cast<FFT_SETUP_D>(hisstools_fft_impl::create_setup<double>(max_fft_log_2));
 }
 
 void hisstools_create_setup(FFT_SETUP_F *setup, uintptr_t max_fft_log_2)
 {
-    *setup = static_cast<FFT_SETUP_F>(create_setup<float>(max_fft_log_2));
+    *setup = static_cast<FFT_SETUP_F>(hisstools_fft_impl::create_setup<float>(max_fft_log_2));
 }
 
 void hisstools_destroy_setup(FFT_SETUP_D setup)
 {
-    destroy_setup(setup);
+    hisstools_fft_impl::destroy_setup(setup);
 }
 
 void hisstools_destroy_setup(FFT_SETUP_F setup)
 {
-    destroy_setup(setup);
+    hisstools_fft_impl::destroy_setup(setup);
 }
 
 #endif
@@ -202,19 +202,19 @@ void hisstools_destroy_setup(FFT_SETUP_F setup)
 
 void hisstools_unzip_zero(double *input, FFT_SPLIT_COMPLEX_D *output, uintptr_t in_length, uintptr_t log2n)
 {
-    unzip_zero<double>(input, output, in_length, log2n);
+    hisstools_fft_impl::unzip_zero<double>(input, output, in_length, log2n);
 }
 
 void hisstools_unzip_zero(float *input, FFT_SPLIT_COMPLEX_F *output, uintptr_t in_length, uintptr_t log2n)
 {
-    unzip_zero<float>(input, output, in_length, log2n);
+    hisstools_fft_impl::unzip_zero<float>(input, output, in_length, log2n);
 }
 
 // N.B This routine specifically deals with unzipping float data into a double precision complex split format
 
 void hisstools_unzip_zero(float *input, FFT_SPLIT_COMPLEX_D *output, uintptr_t in_length, uintptr_t log2n)
 {
-    unzip_zero<double>(input, output, in_length, log2n);
+    hisstools_fft_impl::unzip_zero<double>(input, output, in_length, log2n);
 }
 
 // Convenience Real FFT Functions

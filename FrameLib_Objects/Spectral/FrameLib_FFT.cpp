@@ -11,13 +11,28 @@ FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial
     mParameters.setInstantiation();
     mParameters.addBool(kNormalise, "normalise", false, 1);
     mParameters.setInstantiation();
-
+    mParameters.addEnum(kMode, "mode", 2);
+    mParameters.addEnumItem(0, "real");
+    mParameters.addEnumItem(0, "complex");
+    mParameters.addEnumItem(0, "fullspectrum");
+    mParameters.setInstantiation();
+    
     mParameters.set(serialisedParameters);
     
     unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
     
     hisstools_create_setup(&mFFTSetup, maxFFTSizeLog2);
+    
+    // Store parameters
+
     mMaxFFTSize = 1 << maxFFTSizeLog2;
+    mMode = static_cast<Mode>(mParameters.getInt(kMode));
+    mNormalise = mParameters.getBool(kNormalise);
+    
+    // If in complex mode create 2 inlets/outlets
+
+    if (mMode == kComplex)
+        setIO(2, 2);
 }
 
 FrameLib_FFT::~FrameLib_FFT()
@@ -56,6 +71,7 @@ FrameLib_FFT::ParameterInfo::ParameterInfo()
 {
     add("Sets the maximum input length / FFT size.");
     add("When on the output is normalised so that sine waves produce the same level output regardless of the FFT size.");
+    add("Sets the type of input expected / output produced.");
 }
 
 // Process
@@ -64,20 +80,26 @@ void FrameLib_FFT::process()
 {
     FFT_SPLIT_COMPLEX_D spectrum;
     
-    // Get Input
+    // Get Input(s)
     
-    unsigned long sizeIn, sizeOut;
-    double *input = getInput(0, &sizeIn);
+    unsigned long sizeInR, sizeInI, sizeOut;
+    double *inputR = getInput(0, &sizeInR);
+    double *inputI =  NULL;
+
+    sizeInI = 0;
+    
+    if (mMode == kComplex)
+        getInput(1, &sizeInI);
     
     // Get FFT size log 2
     
-    unsigned long FFTSizelog2 = ilog2(sizeIn);
+    unsigned long FFTSizelog2 = ilog2(std::max(sizeInR, sizeInI));
     unsigned long FFTSize = 1 << FFTSizelog2;
-    sizeOut = (FFTSize >> 1) + 1;
+    sizeOut = mMode == kReal ? (FFTSize >> 1) + 1 : FFTSize;
     
     // Check size
     
-    if (FFTSize > mMaxFFTSize || !sizeIn)
+    if (FFTSize > mMaxFFTSize || (!sizeInR && !sizeInI))
         sizeOut = 0;
     
     // Calculate output size
@@ -92,24 +114,51 @@ void FrameLib_FFT::process()
     
     if (sizeOut && spectrum.realp && spectrum.imagp)
     {
-        // Take the real fft
+        // Take the fft
         
-        hisstools_rfft(mFFTSetup, input, &spectrum, sizeIn, FFTSizelog2);
-        
-        // Move Nyquist Bin
-        
-        spectrum.realp[sizeOut - 1] = spectrum.imagp[0];
-        spectrum.imagp[sizeOut - 1] = 0.0;
-        spectrum.imagp[0] = 0.0;
+        if (mMode == kComplex)
+        {
+            copyVector(spectrum.realp, inputR, sizeInR);
+            zeroVector(spectrum.realp + sizeInR, sizeOut - sizeInR);
+            copyVector(spectrum.imagp, inputI, sizeInI);
+            zeroVector(spectrum.imagp + sizeInI, sizeOut - sizeInI);
+            
+            hisstools_fft(mFFTSetup, &spectrum, FFTSizelog2);
+        }
+        else
+        {
+            hisstools_rfft(mFFTSetup, inputR, &spectrum, sizeInR, FFTSizelog2);
+            
+            // Move Nyquist Bin
+            
+            spectrum.realp[FFTSize >> 1] = spectrum.imagp[0];
+            spectrum.imagp[FFTSize >> 1] = 0.0;
+            spectrum.imagp[0] = 0.0;
+            
+            // Mirror Spectrum
+            
+            if (mMode == kFullSpectrum)
+            {
+                for (unsigned long i = (FFTSize >> 1) + 1; i < sizeOut; i++)
+                {
+                    spectrum.realp[i] = spectrum.realp[FFTSize - i];
+                    spectrum.imagp[i] = -spectrum.imagp[FFTSize - i];
+                }
+            }
+
+        }
         
         // Scale
         
-        double scale = mParameters.getBool(kNormalise) ? 1.0 / (double) FFTSize : 0.5;
+        double scale = mNormalise ? 1.0 / (double) FFTSize : ((mMode == kComplex) ? 1.0 : 0.5);
         
-        for (unsigned long i = 0; i < sizeOut; i++)
+        if (scale != 1.0)
         {
-            spectrum.realp[i] *= scale;
-            spectrum.imagp[i] *= scale;
+            for (unsigned long i = 0; i < sizeOut; i++)
+            {
+                spectrum.realp[i] *= scale;
+                spectrum.imagp[i] *= scale;
+            }
         }
     }
 }

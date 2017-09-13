@@ -13,7 +13,7 @@
  The USE_APPLE_FFT_IF_AVAILABLE preprocessor command instructs the HISSTools FFT to use the Apple FFT when available. Comment out this definition if you don't wish to use the Apple FFT when available. This option is enabled by default. You must link against the Accelerate framework to compile with this functionality under Mac OS.
  */
 
-//#define USE_APPLE_FFT_IF_AVAILABLE
+#define USE_APPLE_FFT_IF_AVAILABLE
 
 // Platform check for Apple FFT selection
 
