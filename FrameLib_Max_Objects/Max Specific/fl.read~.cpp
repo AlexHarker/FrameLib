@@ -185,19 +185,19 @@ void FrameLib_MaxRead::process()
             switch (mMode)
             {
                 case kLinear:
-                    ibuffer_double_samps_simd_linear(bufferSamples, (vDouble *) output, offsets, (vDouble *) fracts, temp, vecSize, nChans, chan, format, 1.0);
+                    ibuffer_double_samps_simd_linear(bufferSamples, (SSE4Double *) output, offsets, (SSE4Double *) fracts, temp, vecSize, nChans, chan, format, 1.0);
                     ibuffer_double_samps_scalar_linear(bufferSamples, output + vecSize, offsets + vecSize, fracts + vecSize, size & 0x3, nChans, chan, format, 1.0);
                     break;
                 case kBSpline:
-                    ibuffer_double_samps_simd_cubic_bspline(bufferSamples, (vDouble *) output, offsets, (vDouble *) fracts, temp, vecSize, nChans, chan, format, 1.0);
+                    ibuffer_double_samps_simd_cubic_bspline(bufferSamples, (SSE4Double *) output, offsets, (SSE4Double *) fracts, temp, vecSize, nChans, chan, format, 1.0);
                     ibuffer_double_samps_scalar_cubic_bspline(bufferSamples, output + vecSize, offsets + vecSize, fracts + vecSize, size & 0x3, nChans, chan, format, 1.0);
                     break;
                 case kHermite:
-                    ibuffer_double_samps_simd_cubic_hermite(bufferSamples, (vDouble *) output, offsets, (vDouble *) fracts, temp, vecSize, nChans, chan, format, 1.0);
+                    ibuffer_double_samps_simd_cubic_hermite(bufferSamples, (AVX2568Double *) output, offsets, (AVX2568Double *) fracts, temp, vecSize, nChans, chan, format, 1.0);
                     ibuffer_double_samps_scalar_cubic_hermite(bufferSamples, output + vecSize, offsets + vecSize, fracts + vecSize, size & 0x3, nChans, chan, format, 1.0);
                     break;
                 case kLagrange:
-                    ibuffer_double_samps_simd_cubic_lagrange(bufferSamples, (vDouble *) output, offsets, (vDouble *) fracts, temp, vecSize, nChans, chan, format, 1.0);
+                    ibuffer_double_samps_simd_cubic_lagrange(bufferSamples, (SSE4Double *) output, offsets, (SSE4Double *) fracts, temp, vecSize, nChans, chan, format, 1.0);
                     ibuffer_double_samps_scalar_cubic_lagrange(bufferSamples, output + vecSize, offsets + vecSize, fracts + vecSize, size & 0x3, nChans, chan, format, 1.0);
                     break;
             }

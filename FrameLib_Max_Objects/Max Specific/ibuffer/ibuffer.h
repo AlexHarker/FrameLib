@@ -13,14 +13,10 @@
 #ifndef _IBUFFER_
 #define _IBUFFER_ 
 
-
 #include <ext.h>
 #include <z_dsp.h>
 #include <buffer.h>
-
-//#include "AH_Atomic.h"
 #include <stdint.h>
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////// ibuffer~ object structure ////////////////////////////////////////////
@@ -38,7 +34,7 @@ typedef struct _ibuffer
 	
 	double sr;				// sample rate of ibuffer~
 	
-	intptr_t frames;		// number of frames (N.B. - could be very large under 64bit platforms - hence the pointer sized integer - signed for backwards compatibility)
+	intptr_t frames;		// number of frames (can be large under 64bit - hence  pointer-sized integer - signed for backwards compatibility)
 	long channels;			// number of channels
 	long format;			// sample format
 	
@@ -65,9 +61,6 @@ typedef struct _ibuffer
 #define TWO_POW_31_RECIP			0.000000000465661287f
 #define TWO_POW_31_RECIP_DOUBLE		0.00000000046566128730773925
 #endif
-
-t_symbol *ps_buffer;
-t_symbol *ps_ibuffer;
 
 
 enum {

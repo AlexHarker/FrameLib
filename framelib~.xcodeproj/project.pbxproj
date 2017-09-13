@@ -939,7 +939,7 @@
 		B8AD886319C7C46B00FFA238 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
 		B8AD886719C7C46B00FFA238 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8AD887019C7C4AC00FFA238 /* fl.read~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8AD883819C7C2FA00FFA238 /* fl.read~.cpp */; };
-		B8AD887119C7C4B400FFA238 /* ibuffer_access.c in Sources */ = {isa = PBXBuildFile; fileRef = B8AD883619C7C2B500FFA238 /* ibuffer_access.c */; };
+		B8AD887119C7C4B400FFA238 /* ibuffer_access.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8AD883619C7C2B500FFA238 /* ibuffer_access.cpp */; };
 		B8AE693219F45A380040B4EE /* FrameLib_Subframe.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E819F29470002D6F1D /* FrameLib_Subframe.h */; };
 		B8AE693319F45A380040B4EE /* FrameLib_Join.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E619F29470002D6F1D /* FrameLib_Join.h */; };
 		B8AE693419F45A380040B4EE /* FrameLib_Split.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E719F29470002D6F1D /* FrameLib_Split.h */; };
@@ -2128,7 +2128,7 @@
 		B8A54DB91F277E1700618324 /* FrameLib_Info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Info.h; sourceTree = "<group>"; };
 		B8AD883419C7C2B500FFA238 /* AH_VectorOps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AH_VectorOps.h; sourceTree = "<group>"; };
 		B8AD883519C7C2B500FFA238 /* ibuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ibuffer.h; sourceTree = "<group>"; };
-		B8AD883619C7C2B500FFA238 /* ibuffer_access.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ibuffer_access.c; sourceTree = "<group>"; };
+		B8AD883619C7C2B500FFA238 /* ibuffer_access.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ibuffer_access.cpp; sourceTree = "<group>"; };
 		B8AD883719C7C2B500FFA238 /* ibuffer_access.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ibuffer_access.h; sourceTree = "<group>"; };
 		B8AD883819C7C2FA00FFA238 /* fl.read~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.read~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8AD886E19C7C46B00FFA238 /* fl.read~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.read~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3725,7 +3725,7 @@
 			children = (
 				B8AD883419C7C2B500FFA238 /* AH_VectorOps.h */,
 				B8AD883519C7C2B500FFA238 /* ibuffer.h */,
-				B8AD883619C7C2B500FFA238 /* ibuffer_access.c */,
+				B8AD883619C7C2B500FFA238 /* ibuffer_access.cpp */,
 				B8AD883719C7C2B500FFA238 /* ibuffer_access.h */,
 			);
 			path = ibuffer;
@@ -10119,7 +10119,7 @@
 				B84120FF1D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B8DE5DCD1F06A5E4007B0601 /* FrameLib_Parameters.cpp in Sources */,
 				B8AD887019C7C4AC00FFA238 /* fl.read~.cpp in Sources */,
-				B8AD887119C7C4B400FFA238 /* ibuffer_access.c in Sources */,
+				B8AD887119C7C4B400FFA238 /* ibuffer_access.cpp in Sources */,
 				B8AD886319C7C46B00FFA238 /* tlsf.c in Sources */,
 				B8EDFD641DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B88BD2531F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
@@ -17352,6 +17352,7 @@
 		B85A95DE1F60A56C00D6C72B /* Public Testing */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
@@ -20047,6 +20048,7 @@
 		B8AD886B19C7C46B00FFA238 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUGGING_SYMBOLS = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
@@ -20078,6 +20080,7 @@
 		B8AD886C19C7C46B00FFA238 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
@@ -20108,6 +20111,7 @@
 		B8AD886D19C7C46B00FFA238 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_X86_VECTOR_INSTRUCTIONS = avx;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
