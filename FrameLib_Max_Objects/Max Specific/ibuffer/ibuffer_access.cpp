@@ -23,6 +23,23 @@ t_symbol *ps_lagrange;
 t_symbol *ps_buffer;
 t_symbol *ps_ibuffer;
 
+//long IBuffer_SSE_Exists = 0;
+
+void ibuffer_init()
+{
+    ps_buffer = gensym("buffer~");
+    ps_ibuffer = gensym("ibuffer~");
+    ps_none = gensym("none");
+    ps_linear = gensym("linear");
+    ps_bspline = gensym("bspline");
+    ps_hermite = gensym("hermite");
+    ps_lagrange = gensym("lagrange");
+    
+    //IBuffer_SSE_Exists = SSE2_check();
+}
+
+typedef SizedVector<4, SSEDouble> SSE4Double;
+
 // Interpolators
 
 template <class T>struct linear_interp
@@ -88,40 +105,13 @@ template <class T> struct cubic_bspline_interp
     const T _1div2;
 };
 
-// Reading different formats
-
-template <class T, int64_t bit_scale> struct fetch
-{
-    fetch(const ibuffer_data& data, long chan)
-    : scale(1.0 / ((int64_t) 1 << (bit_scale - 1))), samples(((T *) data.samples) + chan), num_chans(data.num_chans) {}
-    
-    T operator()(intptr_t offset) { return samples[offset * num_chans]; }
-    double get(intptr_t offset) { return bit_scale != 1 ? operator()(offset) : scale * operator()(offset); }
-    
-    const double scale;
-    T *samples;
-    long num_chans;
-};
-
-typedef fetch<float, 1> fetch_float;
-typedef fetch<int16_t, 16> fetch_16bit;
-typedef fetch<int32_t, 24> fetch_24bit;
-typedef fetch<int32_t, 32> fetch_32bit;
-
-void ibuffer_fetch_samps_24(int32_t *out, int8_t *samps, intptr_t *offsets, intptr_t n_samps)
-{
-    //#if (TARGET_RT_LITTLE_ENDIAN)
-    //    IBUFFER_FETCH_LOOP_UNROLL (*out++ = (*((int32_t *) ((samps - 1) + *offsets++)) & MASK_24_BIT))
-    //#else
-    //    IBUFFER_FETCH_LOOP_UNROLL (*out++ = (*((int32_t *) (samps + *offsets++)) & MASK_24_BIT))
-    //#endif
-}
-
 // Generic types of interpolation
 
-template <class T, class U, class Ft> struct get_samp
+template <class T, class U, class Ft> struct no_interp_reader
 {
-    T operator()(Ft fetch, intptr_t*& offsets, T fract)
+    no_interp_reader(const ibuffer_data& data, long chan) : fetch(data, chan) {}
+
+    T operator()(intptr_t*& offsets, T fract)
     {
         float array[T::size];
 
@@ -130,11 +120,15 @@ template <class T, class U, class Ft> struct get_samp
 
         return U(array);
     }
+    
+    Ft fetch;
 };
 
 template <class T, class U, class Ft, typename Ip> struct interp_2samps
 {
-    T operator()(Ft fetch, intptr_t*& offsets, T fract)
+    interp_2samps(const ibuffer_data& data, long chan) : fetch(data, chan) {}
+
+    T operator()(intptr_t*& offsets, T fract)
     {
         float array[T::size * 2];
         
@@ -149,15 +143,18 @@ template <class T, class U, class Ft, typename Ip> struct interp_2samps
         const T y0 = U(array);
         const T y1 = U(array + T::size);
         
-        return interpolator(fract, y0, y1);
+        return interpolate(fract, y0, y1);
     }
     
-    Ip interpolator;
+    Ft fetch;
+    Ip interpolate;
 };
 
 template <class T, class U, class Ft, typename Ip> struct interp_4samps
 {
-    T operator()(Ft ft, intptr_t*& offsets, T fract)
+    interp_4samps(const ibuffer_data& data, long chan) : fetch(data, chan) {}
+    
+    T operator()(intptr_t*& offsets, T fract)
     {
         float array[T::size * 4];
         
@@ -165,10 +162,10 @@ template <class T, class U, class Ft, typename Ip> struct interp_4samps
         {
             intptr_t offset = *offsets++;
             
-            array[i] = ft(offset - 1);
-            array[i + T::size] = ft(offset);
-            array[i + T::size * 2] = ft(offset + 1);
-            array[i + T::size * 3] = ft(offset + 2);
+            array[i] = fetch(offset - 1);
+            array[i + T::size] = fetch(offset);
+            array[i + T::size * 2] = fetch(offset + 1);
+            array[i + T::size * 3] = fetch(offset + 2);
         }
         
         const T y0 = U(array);
@@ -176,68 +173,68 @@ template <class T, class U, class Ft, typename Ip> struct interp_4samps
         const T y2 = U(array + (T::size * 2));
         const T y3 = U(array + (T::size * 3));
         
-        return interpolator(fract, y0, y1, y2, y3);
+        return interpolate(fract, y0, y1, y2, y3);
     }
     
-    Ip interpolator;
+    Ft fetch;
+    Ip interpolate;
 };
 
-template <class T, class U, class Ft> struct no_interp_reader : public get_samp<T, U, Ft> {};
-template <class T, class U, class Ft> struct cubic_linear_reader : public interp_2samps<T, U, Ft, linear_interp<T> > {};
-template <class T, class U, class Ft> struct cubic_bspline_reader : public interp_4samps<T, U, Ft, cubic_bspline_interp<T> > {};
-template <class T, class U, class Ft> struct cubic_hermite_reader : public interp_4samps<T, U, Ft, cubic_hermite_interp<T> > {};
-template <class T, class U, class Ft> struct cubic_lagrange_reader : public interp_4samps<T, U, Ft, cubic_lagrange_interp<T> > {};
-
-
-template <class T, class U, class Ft, template <class V, class W, class Ft2> class Ip> struct ibuffer_read_loop
+template <class T, class U, class Ft>
+struct linear_reader : public interp_2samps<T, U, Ft, linear_interp<T> >
 {
-    void operator()(const ibuffer_data& data, T *out, intptr_t *offsets, T *fracts, intptr_t n_samps, long chan, typename U::scalar_type mul)
-    {
-        Ip<T, U, Ft> reader;
-        Ft fetcher(data, chan);
-        T scale = mul * fetcher.scale;
-    
-        for (intptr_t i = 0; i < (n_samps / T::size); i++)
-            *out++ = scale * reader(fetcher, offsets, *fracts++);
-    }
+    linear_reader(const ibuffer_data& data, long chan) : interp_2samps<T, U, Ft, linear_interp<T> >(data, chan) {}
 };
 
+template <class T, class U, class Ft>
+struct cubic_bspline_reader : public interp_4samps<T, U, Ft, cubic_bspline_interp<T> >
+{
+    cubic_bspline_reader(const ibuffer_data& data, long chan) : interp_4samps<T, U, Ft, cubic_bspline_interp<T> >(data, chan) {}
+};
+
+
+template <class T, class U, class Ft>
+struct cubic_hermite_reader : public interp_4samps<T, U, Ft, cubic_hermite_interp<T> >
+{
+    cubic_hermite_reader(const ibuffer_data& data, long chan) : interp_4samps<T, U, Ft, cubic_hermite_interp<T> >(data, chan) {}
+};
+
+template <class T, class U, class Ft>
+struct cubic_lagrange_reader : public interp_4samps<T, U, Ft, cubic_lagrange_interp<T> >
+{
+    cubic_lagrange_reader(const ibuffer_data& data, long chan) : interp_4samps<T, U, Ft, cubic_lagrange_interp<T> >(data, chan) {}
+};
+
+template <class T, class U, class Ft, template <class V, class W, class Ft2> class Ip>
+void ibuffer_read_loop (const ibuffer_data& data, typename T::scalar_type *out, intptr_t *offsets, typename T::scalar_type *fracts, intptr_t n_samps, long chan, typename U::scalar_type mul)
+{
+    Ip<T, U, Ft> reader(data, chan);
+    
+    T *v_out = reinterpret_cast<T *>(out);
+    T *v_fracts = reinterpret_cast<T *>(fracts);
+    T scale = mul * reader.fetch.scale;
+    
+    for (intptr_t i = 0; i < (n_samps / T::size); i++)
+        *v_out++ = scale * reader(offsets, *v_fracts++);
+}
 
 template <template <class T, class U, class Ft2> class Ip, class Ft>
 void ibuffer_read(const ibuffer_data& data, float *out, intptr_t *offsets, float *fracts, intptr_t n_samps, long chan, float mul)
 {
-    typedef Scalar<float> iType;
-    typedef Scalar<float> oType;
-    typedef AVX256Float ivType;
-    typedef AVX256Float ovType;
+    intptr_t n_vsample = (n_samps / AVX256Float::size) * AVX256Float::size;
     
-    intptr_t num_vectors = n_samps / oType::size;
-    intptr_t num_vsample = num_vectors * oType::size;
-    intptr_t num_scalars = n_samps - num_vsample;
-    
-    ibuffer_read_loop<ovType, ivType, Ft, Ip>()(data, (ovType *) out, offsets, (ovType *) fracts, num_vsample, chan, mul);
-    offsets += num_vsample;
-    fracts += num_vsample;
-    ibuffer_read_loop<oType, iType, Ft, Ip>()(data, (oType *) out, offsets, (oType *) fracts, num_scalars, chan, mul);
+    ibuffer_read_loop<AVX256Float, AVX256Float, Ft, Ip>(data, out, offsets, fracts, n_vsample, chan, mul);
+    ibuffer_read_loop<Scalar<float>, Scalar<float>, Ft, Ip>(data, out, offsets + n_vsample, fracts + n_vsample, n_samps - n_vsample, chan, mul);
 }
 
 
 template <template <class T, class U, class Ft2> class Ip, class Ft>
 void ibuffer_read(const ibuffer_data& data, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long chan, double mul)
 {
-    typedef Scalar<float> iType;
-    typedef Scalar<double> oType;
-    typedef SSEFloat ivType;
-    typedef AVX256Double ovType;
-    
-    intptr_t num_vectors = n_samps / oType::size;
-    intptr_t num_vsample = num_vectors * oType::size;
-    intptr_t num_scalars = n_samps - num_vsample;
+    intptr_t n_vsample = (n_samps / AVX256Float::size) * AVX256Float::size;
 
-    ibuffer_read_loop<ovType, ivType, Ft, Ip>()(data, (ovType *) out, offsets, (ovType *) fracts, num_vsample, chan, mul);
-    offsets += num_vsample;
-    fracts += num_vsample;
-    ibuffer_read_loop<oType, iType, Ft, Ip>()(data, (oType *) out, offsets, (oType *) fracts, num_scalars, chan, mul);
+    ibuffer_read_loop<AVX256Double, SSEFloat, Ft, Ip>(data, out, offsets, fracts, n_vsample, chan, mul);
+    ibuffer_read_loop<Scalar<double>, Scalar<float>, Ft, Ip>(data, out, offsets + n_vsample, fracts + n_vsample, n_samps - n_vsample, chan, mul);
 }
 
 template <class T> void ibuffer_read(const ibuffer_data& data, T *out, intptr_t *offsets, T *fracts, intptr_t n_samps, long chan, T mul, InterpType interp)
@@ -259,10 +256,10 @@ template <class T> void ibuffer_read(const ibuffer_data& data, T *out, intptr_t 
 
             switch(data.format)
             {
-                case PCM_FLOAT:     ibuffer_read<cubic_linear_reader, fetch_float>(data, out, offsets, fracts, n_samps, chan, mul);    break;
-                case PCM_INT_16:    ibuffer_read<cubic_linear_reader, fetch_16bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
-                case PCM_INT_24:    ibuffer_read<cubic_linear_reader, fetch_24bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
-                case PCM_INT_32:    ibuffer_read<cubic_linear_reader, fetch_32bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+                case PCM_FLOAT:     ibuffer_read<linear_reader, fetch_float>(data, out, offsets, fracts, n_samps, chan, mul);   break;
+                case PCM_INT_16:    ibuffer_read<linear_reader, fetch_16bit>(data, out, offsets, fracts, n_samps, chan, mul);   break;
+                case PCM_INT_24:    ibuffer_read<linear_reader, fetch_24bit>(data, out, offsets, fracts, n_samps, chan, mul);   break;
+                case PCM_INT_32:    ibuffer_read<linear_reader, fetch_32bit>(data, out, offsets, fracts, n_samps, chan, mul);   break;
             }
             break;
             
@@ -311,33 +308,11 @@ void ibuffer_read(const ibuffer_data& data, float *out, intptr_t *offsets, float
     ibuffer_read<float>(data, out, offsets, fracts, n_samps, chan, mul, interp);
 }
 
-long IBuffer_SSE_Exists = 0;
-
-////
-
-
-
-void ibuffer_init ()
-{
-	ps_buffer = gensym("buffer~");
-	ps_ibuffer = gensym("ibuffer~");
-	ps_none = gensym("none");
-	ps_linear = gensym("linear");
-	ps_bspline = gensym("bspline");
-	ps_hermite = gensym("hermite");
-	ps_lagrange = gensym("lagrange");
-	
-	//IBuffer_SSE_Exists = SSE2_check();
-}
-
-typedef SizedVector<4, SSEDouble> SSE4Double;
-
-
 template <class T, class Ft> void ibuffer_get_samps_loop(Ft fetch, T *out, intptr_t offset, intptr_t n_samps, bool reverse)
 {
 	if (reverse)
     {
-        for (intptr_t i = n_samps - 1; i >= n_samps; i--)
+        for (intptr_t i = n_samps - 1; i >= 0; i--)
             *out++ = fetch(offset + i);
     }
     else

@@ -3,7 +3,7 @@
  *  ibuffer_access.h
  *
  *	This header file provides an interface for accessing and interpolating samples from an ibuffer (or standard MSP buffer).
- *	You should also compile ibufffer_access.c in the project
+ *	You should also compile ibufffer_access.cpp in the project
  *
  *	Various kinds of interpolation are supported along with both SIMD calculation and both 32 bit and 64 bit floating point precision.
  *
@@ -15,21 +15,15 @@
  *	Use the ibuffer__get_ptr / ibuffer_info / ibuffer_sample_rate functions to get info about the ibuffer (or buffer).
  *	The buffer inuse field should be incremented and decremented beoore and after use using ibuffer_increment_inuse and ibuffer_decrement_inuse.
  *
- *
  *	The main routines for accessing samples are then:
  *
  *	ibuffer_get_samp							- get a single sample
- *	ibuffer_get_samps							- get a number of consecutive samples
- *	ibuffer_get_samps_rev						- get a number of consecutive samples in reverse order
+ *	ibuffer_get_samps							- get a number of consecutive samples in forward or reverse order
  *
  *	offsets is a pointer to the sample offsets
  *	fracts is a pointer to the subsample (fractional) offsets
- *	temp is a pointer to an array of non-aliasing 16-byte aligned pointers each of which is the same size as the required output.
- *		- the array should be two pointers wide for linear interpolation and four for cubic interpolation
  *	n_samps is the number of samples required.
- *	n_chans is the number of channels in the buffer (as returned by a call the ibuffer_info).
  *	chan is the channel you wish to access.
- *	format is the format of the buffer (as returned by a call the ibuffer_info).
  *
  *	Most of these routines have a mul input to multiply by a constant value.
  *	Other variables should be self-explanatory 
@@ -68,29 +62,49 @@ struct ibuffer_data {
     long format;
 };
 
+// Reading different formats
+
+template <class T, int64_t bit_scale> struct fetch
+{
+    fetch(const ibuffer_data& data, long chan)
+    : scale(1.0 / ((int64_t) 1 << (bit_scale - 1))), samples(((T *) data.samples) + chan), num_chans(data.num_chans) {}
+    
+    T operator()(intptr_t offset) { return samples[offset * num_chans]; }
+    double get(intptr_t offset) { return bit_scale != 1 ? operator()(offset) : scale * operator()(offset); }
+    
+    const double scale;
+    T *samples;
+    long num_chans;
+};
+
+template<>
+struct fetch<int32_t, 24>
+{
+    fetch(const ibuffer_data& data, long chan)
+    : scale(1.0 / ((int64_t) 1 << 7)), samples(((int8_t *) data.samples) + chan), num_chans(data.num_chans) {}
+    
+    //#if (TARGET_RT_LITTLE_ENDIAN)
+    //    IBUFFER_FETCH_LOOP_UNROLL (*out++ = (*((int32_t *) ((samps - 1) + *offsets++)) & MASK_24_BIT))
+    //#else
+    //    IBUFFER_FETCH_LOOP_UNROLL (*out++ = (*((int32_t *) (samps + *offsets++)) & MASK_24_BIT))
+    //#endif
+    
+    int32_t operator()(intptr_t offset) { return samples[offset * num_chans]; }
+    double get(intptr_t offset) { return scale * operator()(offset); }
+    
+    const double scale;
+    int8_t *samples;
+    long num_chans;
+};
+
+typedef fetch<float, 1> fetch_float;
+typedef fetch<int16_t, 16> fetch_16bit;
+typedef fetch<int32_t, 24> fetch_24bit;
+typedef fetch<int32_t, 32> fetch_32bit;
+
 // Call in main routine to initialise buffer symbols
 
 void ibuffer_init();
-
-#ifdef __APPLE__
-
-// Get ibuffer and related info (note that the sample rate is in a separate call, as it is not required info for other routines
-
-static __inline void *ibuffer_get_ptr (t_symbol *s) FORCE_INLINE;
-static __inline const ibuffer_data ibuffer_info(void *thebuffer) FORCE_INLINE;
-static __inline double ibuffer_sample_rate (void *thebuffer) FORCE_INLINE;
-
-// Increment / decrement buffer inuse pointers
-
-static __inline void ibuffer_increment_inuse(void *thebuffer) FORCE_INLINE;
-static __inline void ibuffer_decrement_inuse(void *thebuffer) FORCE_INLINE;
-
-
-// Calculate an offset to the samps pointer (accounting for sample interleaving and sample format)
-
-static __inline void *ibuffer_offset(void *samps, intptr_t offset, long n_chans, long format) FORCE_INLINE;
-
-#endif
 
 // Get the value of an individual sample
 
@@ -112,23 +126,20 @@ void ibuffer_read(const ibuffer_data& data, double *out, intptr_t *offsets, doub
 ///////////////////////////////////////////// Get ibuffer and related info //////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 static __inline void *ibuffer_get_ptr(t_symbol *s) FORCE_INLINE_DEFINITION
 {
 	t_object *b;
+
+    if (s)
+    {
+        t_object *b = s->s_thing;
 	
-	if (!s) 
-		return 0;
-	
-	b = s->s_thing;
-	
-	if (b && (ob_sym(b) == ps_ibuffer || ob_sym(b) == ps_buffer))
-		return b;
-	else 
-		return 0;
+        if (b && (ob_sym(b) == ps_ibuffer || ob_sym(b) == ps_buffer))
+            return b;
+    }
+
+	return NULL;
 }
-
-
 
 static __inline const ibuffer_data ibuffer_info(void *thebuffer) FORCE_INLINE_DEFINITION
 {
@@ -163,7 +174,6 @@ static __inline const ibuffer_data ibuffer_info(void *thebuffer) FORCE_INLINE_DE
 	return data;
 }
 
-
 static __inline double ibuffer_sample_rate(void *thebuffer) FORCE_INLINE_DEFINITION
 {
 	if (ob_sym(thebuffer) == ps_buffer)
@@ -171,12 +181,6 @@ static __inline double ibuffer_sample_rate(void *thebuffer) FORCE_INLINE_DEFINIT
 	else
 		return (double) ((t_ibuffer *)thebuffer)->sr;		
 }
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////// Inc /dec inuse counts /////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 static __inline void ibuffer_increment_inuse (void *thebuffer) FORCE_INLINE_DEFINITION
 {
@@ -195,84 +199,26 @@ static __inline void ibuffer_decrement_inuse (void *thebuffer) FORCE_INLINE_DEFI
 		ATOMIC_DECREMENT(&((t_ibuffer *)thebuffer)->inuse);
 }
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////// Get individual samples /////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+static __inline double ibuffer_double_get_samp(const ibuffer_data& data, intptr_t offset, long chan) FORCE_INLINE_DEFINITION
+{
+    switch (data.format)
+    {
+        case PCM_INT_16:    return fetch_float(data, chan)(offset);
+        case PCM_INT_24:    return fetch_24bit(data, chan)(offset);
+        case PCM_INT_32:    return fetch_32bit(data, chan)(offset);
+        case PCM_FLOAT:     return fetch_float(data, chan)(offset);
+    }
+
+    return 0.0;
+}
 
 static __inline float ibuffer_float_get_samp(const ibuffer_data& data, intptr_t offset, long chan) FORCE_INLINE_DEFINITION
-{	
-	uint32_t sampleint;
-	
-	switch (data.format)
-	{
-		case PCM_INT_16:
-			sampleint = ((* (uint16_t *) (((uint16_t *) data.samples) + chan + (offset * data.num_chans) ) ) << 16) & MASK_16_BIT;
-			return (float) *((int32_t *) &sampleint) * TWO_POW_31_RECIP;			
-			
-		case PCM_INT_24:
-			sampleint = * ( (uint32_t *) ( ((uint8_t *) data.samples) + (3 * (chan + (offset * data.num_chans))) - 1 )) & MASK_24_BIT;
-			return (float) *((int32_t *) &sampleint) * TWO_POW_31_RECIP;		
-			
-		case PCM_INT_32:
-			return (float) ( *( ((int32_t *) data.samples) + chan + (offset * data.num_chans) ) ) * TWO_POW_31_RECIP;
-			
-		case PCM_FLOAT:
-			return *( ((float *) data.samples) + chan + (offset * data.num_chans) );
-	}
-	
-	return 0.f;
-}
-
-static __inline double ibuffer_double_get_samp(const ibuffer_data& data, intptr_t offset, long chan) FORCE_INLINE_DEFINITION
-{	
-	uint32_t sampleint;
-	
-	switch (data.format)
-	{
-		case PCM_INT_16:
-			sampleint = ((* (uint16_t *) (((uint16_t *) data.samples) + chan + (offset * data.num_chans) ) ) << 16) & MASK_16_BIT;
-			return (double) *((int32_t *) &sampleint) * TWO_POW_31_RECIP_DOUBLE;			
-			
-		case PCM_INT_24:
-			sampleint = * ( (uint32_t *) ( ((uint8_t *) data.samples) + (3 * (chan + (offset * data.num_chans))) - 1 )) & MASK_24_BIT;
-			return (double) *((int32_t *) &sampleint) * TWO_POW_31_RECIP_DOUBLE;		
-			
-		case PCM_INT_32:
-			return (double) ( *( ((int32_t *) data.samples) + chan + (offset * data.num_chans) ) ) * TWO_POW_31_RECIP_DOUBLE;
-			
-		case PCM_FLOAT:
-			return (double) *( ((float *) data.samples) + chan + (offset * data.num_chans) );
-	}
-	
-	return 0.0;
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////// Add a fixed offset to the samps pointer ////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-static __inline void *ibuffer_offset(void *samps, intptr_t offset, long n_chans, long format) FORCE_INLINE_DEFINITION
 {
-	int8_t *samps_temp = (int8_t *) samps;
-	
-	switch (format)
-	{		
-		case PCM_INT_16:
-			return samps_temp + (offset * 2 * n_chans);
-			
-		case PCM_INT_24:
-			return samps_temp + (offset * 3 * n_chans);
-			
-		case PCM_INT_32:
-			return samps_temp + (offset * 4 * n_chans);
-			
-		case PCM_FLOAT:
-			return samps_temp + (offset * 4 * n_chans);
-	}
-	
-	return 0;
+    return ibuffer_double_get_samp(data, offset, chan);
 }
 
 #endif	/* _IBUFFER_ACCESS_ */
