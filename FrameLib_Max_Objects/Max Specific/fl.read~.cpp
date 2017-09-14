@@ -86,16 +86,12 @@ FrameLib_MaxRead::ParameterInfo::ParameterInfo()
 
 void FrameLib_MaxRead::process()
 {
-    void *temp[4];
     void *tempMem = NULL;
-    void *bufferSamples;
     double *fracts;
     intptr_t *offsets;
     
-    intptr_t length;
-    unsigned long size, vecSize, paddedSize;
-    long chan, nChans, format;
-    size_t tempMemSize;
+    unsigned long size, vecSize;
+    long chan;
     
     bool interp = false;
     
@@ -112,34 +108,25 @@ void FrameLib_MaxRead::process()
     void *buffer = ibuffer_get_ptr(mBufferName);
     
     if (buffer && size)
-    {
         ibuffer_increment_inuse(buffer);
         
-        if (ibuffer_info(buffer, &bufferSamples, &length, &nChans, &format))
-        {
-            chan = (mChan - 1) % nChans;
+    const ibuffer_data data = ibuffer_info(buffer);
+    
+    if (buffer && size)
+    {
+        chan = (mChan - 1) % data.n_chans;
             
-            paddedSize = (size + 0x3) & ~0x3;
-            
-            tempMemSize = (mMode == kLinear) ? paddedSize * (2 * sizeof(float) + sizeof(double) + sizeof(intptr_t)) : paddedSize * (4 * sizeof(float) + sizeof(double) + sizeof(intptr_t));
-            tempMem = mAllocator->alloc(tempMemSize);
-        }
-        
+        tempMem = mAllocator->alloc(size * (sizeof(double) + sizeof(intptr_t)));
         if (!tempMem)
             ibuffer_decrement_inuse(buffer);
     }
     
     if (tempMem)
     {
-        temp[0] = ((float *) tempMem);
-        temp[1] = ((float *) temp[0]) + paddedSize;
-        temp[2] = ((float *) temp[1]) + paddedSize;
-        temp[3] = ((float *) temp[2]) + paddedSize;
+        offsets = (intptr_t *) tempMem;
+        fracts = (double *) (offsets + size);
         
-        offsets = (intptr_t *) ((mMode == kLinear) ? (((float *) temp[1]) + paddedSize) : (((float *) temp[3]) + paddedSize));
-        fracts = (double *) (offsets + paddedSize);
-        
-        double lengthM1 = length - 1.0;
+        double lengthM1 = data.length - 1.0;
         double conversionFactor = 1.0;
         double samplingRate = ibuffer_sample_rate(buffer);
         
@@ -178,34 +165,34 @@ void FrameLib_MaxRead::process()
             interp |= (fract != 0.0);
         }
         
-        ibuffer_preprocess_offsets (offsets, vecSize, nChans, format);
+        ibuffer_preprocess_offsets(offsets, data, vecSize);
         
         if (interp)
         {
             switch (mMode)
             {
                 case kLinear:
-                    ibuffer_double_samps_simd_linear(bufferSamples, (SSE4Double *) output, offsets, (SSE4Double *) fracts, temp, vecSize, nChans, chan, format, 1.0);
-                    ibuffer_double_samps_scalar_linear(bufferSamples, output + vecSize, offsets + vecSize, fracts + vecSize, size & 0x3, nChans, chan, format, 1.0);
+                    ibuffer_double_samps_simd_linear(data, (SSE4Double *) output, offsets, (SSE4Double *) fracts, vecSize, chan, 1.0);
+                    ibuffer_double_samps_scalar_linear(data, output + vecSize, offsets + vecSize, fracts + vecSize, size & 0x3, chan, 1.0);
                     break;
                 case kBSpline:
-                    ibuffer_double_samps_simd_cubic_bspline(bufferSamples, (SSE4Double *) output, offsets, (SSE4Double *) fracts, temp, vecSize, nChans, chan, format, 1.0);
-                    ibuffer_double_samps_scalar_cubic_bspline(bufferSamples, output + vecSize, offsets + vecSize, fracts + vecSize, size & 0x3, nChans, chan, format, 1.0);
+                    ibuffer_double_samps_simd_cubic_bspline(data, (AVX256Double *) output, offsets, (AVX256Double *) fracts, vecSize, chan, 1.0);
+                    ibuffer_double_samps_scalar_cubic_bspline(data, output + vecSize, offsets + vecSize, fracts + vecSize, size & 0x3, chan, 1.0);
                     break;
                 case kHermite:
-                    ibuffer_double_samps_simd_cubic_hermite(bufferSamples, (AVX2568Double *) output, offsets, (AVX2568Double *) fracts, temp, vecSize, nChans, chan, format, 1.0);
-                    ibuffer_double_samps_scalar_cubic_hermite(bufferSamples, output + vecSize, offsets + vecSize, fracts + vecSize, size & 0x3, nChans, chan, format, 1.0);
+                    ibuffer_double_samps_simd_cubic_hermite(data, (AVX256Double *) output, offsets, (AVX256Double *) fracts, vecSize, chan, 1.0);
+                    ibuffer_double_samps_scalar_cubic_hermite(data, output + vecSize, offsets + vecSize, fracts + vecSize, size & 0x3, chan, 1.0);
                     break;
                 case kLagrange:
-                    ibuffer_double_samps_simd_cubic_lagrange(bufferSamples, (SSE4Double *) output, offsets, (SSE4Double *) fracts, temp, vecSize, nChans, chan, format, 1.0);
-                    ibuffer_double_samps_scalar_cubic_lagrange(bufferSamples, output + vecSize, offsets + vecSize, fracts + vecSize, size & 0x3, nChans, chan, format, 1.0);
+                    ibuffer_double_samps_simd_cubic_lagrange(data, (AVX256Double *) output, offsets, (AVX256Double *) fracts, vecSize, chan, 1.0);
+                    ibuffer_double_samps_scalar_cubic_lagrange(data, output + vecSize, offsets + vecSize, fracts + vecSize, size & 0x3, chan, 1.0);
                     break;
             }
         }
         else
         {
-            ibuffer_double_samps_simd_nointerp(bufferSamples, (vDouble *) output, offsets, vecSize, nChans, chan, format, 1.0);
-            ibuffer_double_samps_scalar_nointerp(bufferSamples, output + vecSize, offsets + vecSize, size & 0x3, nChans, chan, format, 1.0);
+            ibuffer_double_samps_simd_nointerp(data, (vDouble *) output, offsets, vecSize, chan, 1.0);
+            ibuffer_double_samps_scalar_nointerp(data, output + vecSize, offsets + vecSize, size & 0x3, chan, 1.0);
         }
         
         mAllocator->dealloc(tempMem);

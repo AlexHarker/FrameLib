@@ -497,6 +497,7 @@ struct SSEDouble : public SIMDVector<double, __m128d, 2>
 {
     SSEDouble() {}
     SSEDouble(const double& a) { mVal = _mm_set1_pd(a); }
+    SSEDouble(const double* a) { mVal = _mm_loadu_pd(a); }
     SSEDouble(__m128d a) : SIMDVector(a) {}
     friend SSEDouble operator + (const SSEDouble &a, const SSEDouble& b) { return _mm_add_pd(a.mVal, b.mVal); }
     friend SSEDouble operator - (const SSEDouble &a, const SSEDouble& b) { return _mm_sub_pd(a.mVal, b.mVal); }
@@ -508,10 +509,26 @@ struct SSEDouble : public SIMDVector<double, __m128d, 2>
     }
 };
 
+#if (SIMD_COMPILER_SUPPORT_LEVEL >= SIMD_COMPILER_SUPPORT_AVX256)
+
+struct AVX256Double : public SIMDVector<double, __m256d, 4>
+{
+    AVX256Double() {}
+    AVX256Double(const double& a) { mVal = _mm256_set1_pd(a); }
+    AVX256Double(const double* a) { mVal = _mm256_loadu_pd(a); }
+    AVX256Double(__m256d a) : SIMDVector(a) {}
+    friend AVX256Double operator + (const AVX256Double &a, const AVX256Double &b) { return _mm256_add_pd(a.mVal, b.mVal); }
+    friend AVX256Double operator - (const AVX256Double &a, const AVX256Double &b) { return _mm256_sub_pd(a.mVal, b.mVal); }
+    friend AVX256Double operator * (const AVX256Double &a, const AVX256Double &b) { return _mm256_mul_pd(a.mVal, b.mVal); }
+};
+
+#endif
+
 struct SSEFloat : public SIMDVector<float, __m128, 4>
 {
     SSEFloat() {}
     SSEFloat(const float& a) { mVal = _mm_set1_ps(a); }
+    SSEFloat(const float* a) { mVal = _mm_loadu_ps(a); }
     SSEFloat(__m128 a) : SIMDVector(a) {}
     friend SSEFloat operator + (const SSEFloat& a, const SSEFloat& b) { return _mm_add_ps(a.mVal, b.mVal); }
     friend SSEFloat operator - (const SSEFloat& a, const SSEFloat& b) { return _mm_sub_ps(a.mVal, b.mVal); }
@@ -522,6 +539,8 @@ struct SSEFloat : public SIMDVector<float, __m128, 4>
         return _mm_shuffle_ps(a.mVal, b.mVal, ((z<<6)|(y<<4)|(x<<2)|w));
     }
     
+    operator AVX256Double() { return _mm256_cvtps_pd(mVal); }
+
     operator SizedVector<4, SSEDouble>()
     {
         SizedVector<4, SSEDouble> vec;
@@ -533,16 +552,19 @@ struct SSEFloat : public SIMDVector<float, __m128, 4>
     }
 };
 
+
 struct SSEInt32 : public SIMDVector<float, __m128i, 4>
 {
     SSEInt32() {}
     SSEInt32(const int32_t& a) { mVal = _mm_set1_epi32(a); }
+    SSEInt32(const int32_t* a) { mVal = _mm_loadu_si128(reinterpret_cast<const __m128i *>(a)); }
     SSEInt32(__m128 a) : SIMDVector(a) {}
     friend SSEInt32 operator + (const SSEInt32& a, const SSEInt32& b) { return _mm_add_epi32(a.mVal, b.mVal); }
     friend SSEInt32 operator - (const SSEInt32& a, const SSEInt32& b) { return _mm_sub_epi32(a.mVal, b.mVal); }
     friend SSEInt32 operator * (const SSEInt32& a, const SSEInt32& b) { return _mm_mul_epi32(a.mVal, b.mVal); }
     
-    operator SSEFloat() { return SSEFloat( _mm_cvtepi32_ps(mVal)); }
+    operator SSEFloat()     { return SSEFloat( _mm_cvtepi32_ps(mVal)); }
+    operator AVX256Double() { return _mm256_cvtepi32_pd(mVal); }
     
     operator SizedVector<4, SSEDouble>()
     {
@@ -558,7 +580,7 @@ struct SSEInt32 : public SIMDVector<float, __m128i, 4>
 #endif
 
 #if (SIMD_COMPILER_SUPPORT_LEVEL >= SIMD_COMPILER_SUPPORT_AVX256)
-
+/*
 struct AVX256Double : public SIMDVector<double, __m256d, 4>
 {
     AVX256Double() {}
@@ -567,12 +589,15 @@ struct AVX256Double : public SIMDVector<double, __m256d, 4>
     friend AVX256Double operator + (const AVX256Double &a, const AVX256Double &b) { return _mm256_add_pd(a.mVal, b.mVal); }
     friend AVX256Double operator - (const AVX256Double &a, const AVX256Double &b) { return _mm256_sub_pd(a.mVal, b.mVal); }
     friend AVX256Double operator * (const AVX256Double &a, const AVX256Double &b) { return _mm256_mul_pd(a.mVal, b.mVal); }
-};
+};*/
+
+//#endif
 
 struct AVX256Float : public SIMDVector<float, __m256, 8>
 {
     AVX256Float() {}
-    AVX256Float(const float& a) {  mVal = _mm256_set1_ps(a); }
+    AVX256Float(const float& a) { mVal = _mm256_set1_ps(a); }
+    AVX256Float(const float* a) { mVal = _mm256_loadu_ps(a); }
     AVX256Float(__m256 a) : SIMDVector(a) {}
     friend AVX256Float operator + (const AVX256Float &a, const AVX256Float &b) { return _mm256_add_ps(a.mVal, b.mVal); }
     friend AVX256Float operator - (const AVX256Float &a, const AVX256Float &b) { return _mm256_sub_ps(a.mVal, b.mVal); }
@@ -593,6 +618,7 @@ struct AVX256Int32 : public SIMDVector<float, __m256i, 8>
 {
     AVX256Int32() {}
     AVX256Int32(const int32_t& a) { mVal = _mm256_set1_epi32(a); }
+    AVX256Int32(const int32_t* a) { mVal = _mm256_loadu_si256(reinterpret_cast<const __m256i *>(a)); }
     AVX256Int32(__m256i a) : SIMDVector(a) {}
     friend AVX256Int32 operator + (const AVX256Int32& a, const AVX256Int32& b) { return _mm256_add_epi32(a.mVal, b.mVal); }
     friend AVX256Int32 operator - (const AVX256Int32& a, const AVX256Int32& b) { return _mm256_sub_epi32(a.mVal, b.mVal); }
@@ -619,6 +645,7 @@ struct AVX512Double : public SIMDVector<double, __m512d, 8>
 {
     AVX512Double() {}
     AVX512Double(const double& a) { mVal = _mm512_set1_pd(a); }
+    AVX512Double(const double* a) { mVal = _mm512_loadu_pd(a); }
     AVX512Double(__m512d a) : SIMDVector(a) {}
     friend AVX512Double operator + (const AVX512Double &a, const AVX512Double &b) { return _mm512_add_pd(a.mVal, b.mVal); }
     friend AVX512Double operator - (const AVX512Double &a, const AVX512Double &b) { return _mm512_sub_pd(a.mVal, b.mVal); }
@@ -629,6 +656,7 @@ struct AVX512Float : public SIMDVector<float, __m512, 16>
 {
     AVX512Float() {}
     AVX512Float(const float& a) { mVal = _mm512_set1_ps(a); }
+    AVX512Float(const float* a) { mVal = _mm512_loadu_ps(a); }
     AVX512Float(__m512 a) : SIMDVector(a) {}
     friend AVX512Float operator + (const AVX512Float &a, const AVX512Float &b) { return _mm512_add_ps(a.mVal, b.mVal); }
     friend AVX512Float operator - (const AVX512Float &a, const AVX512Float &b) { return _mm512_sub_ps(a.mVal, b.mVal); }

@@ -88,27 +88,37 @@ enum {
 	
 };
 
+struct ibuffer_data {
+    
+    ibuffer_data() : samples(NULL), length(0), n_chans(0), format(0) {}
+    
+    void *samples;
+    long length;
+    long n_chans;
+    long format;
+};
+
 // Call in main routine to initialise buffer symbols
 
-void ibuffer_init ();
+void ibuffer_init();
 
 #ifdef __APPLE__
 
 // Get ibuffer and related info (note that the sample rate is in a separate call, as it is not required info for other routines
 
 static __inline void *ibuffer_get_ptr (t_symbol *s) FORCE_INLINE;
-static __inline long ibuffer_info (void *thebuffer, void **samples, intptr_t *length, long *channels, long *format) FORCE_INLINE;
+static __inline const ibuffer_data ibuffer_info(void *thebuffer) FORCE_INLINE;
 static __inline double ibuffer_sample_rate (void *thebuffer) FORCE_INLINE;
 
 // Increment / decrement buffer inuse pointers
 
-static __inline void ibuffer_increment_inuse (void *thebuffer) FORCE_INLINE;
-static __inline void ibuffer_decrement_inuse (void *thebuffer) FORCE_INLINE;
+static __inline void ibuffer_increment_inuse(void *thebuffer) FORCE_INLINE;
+static __inline void ibuffer_decrement_inuse(void *thebuffer) FORCE_INLINE;
 
 // Get the value of an individual sample
 
-static __inline float ibuffer_float_get_samp(void *samps, intptr_t offset, long n_chans, long chan, long format)  FORCE_INLINE;
-static __inline double ibuffer_double_get_samp(void *samps, intptr_t offset, long n_chans, long chan, long format)  FORCE_INLINE;
+static __inline float ibuffer_float_get_samp(const ibuffer_data& data, intptr_t offset, long chan)  FORCE_INLINE;
+static __inline double ibuffer_double_get_samp(const ibuffer_data& data, intptr_t offset, long chan)  FORCE_INLINE;
 
 // Calculate an offset to the samps pointer (accounting for sample interleaving and sample format)
 
@@ -126,43 +136,43 @@ void ibuffer_get_samps(void *samps, float *out, intptr_t offset, intptr_t n_samp
 void ibuffer_get_samps_rev(void *samps, float *out, intptr_t offset, intptr_t n_samps, long n_chans, long chan, long format);
 
 typedef SizedVector<4, SSEDouble> SSE4Double;
-typedef SizedVector<8, AVX256Double> AVX2568Double;
+//typedef SizedVector<8, AVX256Double> AVX2568Double;
 
 // Vectorised Interpolation: None / Linear / Cubic Bspline / Cubic Hermite / Cubic Lagrange
 
-void ibuffer_float_samps_simd_nointerp(void *samps, vFloat *out, intptr_t *offsets, intptr_t n_samps, long n_chans, long chan, long format, float mul);
-void ibuffer_float_samps_simd_linear(void *samps, SSEFloat *out, intptr_t *offsets, SSEFloat *fracts, void **temp, intptr_t n_samps, long n_chans, long chan, long format, float mul);
-void ibuffer_float_samps_simd_cubic_bspline(void *samps, SSEFloat *out, intptr_t *offsets, SSEFloat *fracts, void **temp, intptr_t n_samps, long n_chans, long chan, long format, float mul);
-void ibuffer_float_samps_simd_cubic_hermite(void *samps, SSEFloat *out, intptr_t *offsets, SSEFloat *fracts, void **temp, intptr_t n_samps, long n_chans, long chan, long format, float mul);
-void ibuffer_float_samps_simd_cubic_lagrange(void *samps, SSEFloat *out, intptr_t *offsets, SSEFloat *fracts, void **temp, intptr_t n_samps, long n_chans, long chan, long format, float mul);
+void ibuffer_float_samps_simd_nointerp(const ibuffer_data& data, vFloat *out, intptr_t *offsets, intptr_t n_samps, long chan, float mul);
+void ibuffer_float_samps_simd_linear(const ibuffer_data& data,  SSEFloat *out, intptr_t *offsets, SSEFloat *fracts, void **temp, intptr_t n_samps, long chan, float mul);
+void ibuffer_float_samps_simd_cubic_bspline(const ibuffer_data& data,  SSEFloat *out, intptr_t *offsets, SSEFloat *fracts, void **temp, intptr_t n_samps, long chan, float mul);
+void ibuffer_float_samps_simd_cubic_hermite(const ibuffer_data& data,  SSEFloat *out, intptr_t *offsets, SSEFloat *fracts, void **temp, intptr_t n_samps, long chan, float mul);
+void ibuffer_float_samps_simd_cubic_lagrange(const ibuffer_data& data, SSEFloat *out, intptr_t *offsets, SSEFloat *fracts, void **temp, intptr_t n_samps, long chan, float mul);
 
 // Scalar Interpolation: None / Linear / Cubic Bspline / Cubic Hermite / Cubic Lagrange
 
-void ibuffer_float_samps_scalar_nointerp(void *samps, float *out, intptr_t *offsets, intptr_t n_samps, long n_chans, long chan, long format, float mul);
-void ibuffer_float_samps_scalar_linear(void *samps, float *out, intptr_t *offsets, float *fracts, intptr_t n_samps, long n_chans, long chan, long format, float mul);
-void ibuffer_float_samps_scalar_cubic_bspline(void *samps, float *out, intptr_t *offsets, float *fracts, intptr_t n_samps, long n_chans, long chan, long format, float mul);
-void ibuffer_float_samps_scalar_cubic_hermite(void *samps, float *out, intptr_t *offsets, float *fracts, intptr_t n_samps, long n_chans, long chan, long format, float mul);
-void ibuffer_float_samps_scalar_cubic_lagrange(void *samps, float *out, intptr_t *offsets, float*fracts, intptr_t n_samps, long n_chans, long chan, long format, float mul);
+void ibuffer_float_samps_scalar_nointerp(const ibuffer_data& data, float *out, intptr_t *offsets, intptr_t n_samps, long chan, float mul);
+void ibuffer_float_samps_scalar_linear(const ibuffer_data& data, float *out, intptr_t *offsets, float *fracts, intptr_t n_samps, long chan, float mul);
+void ibuffer_float_samps_scalar_cubic_bspline(const ibuffer_data& data, float *out, intptr_t *offsets, float *fracts, intptr_t n_samps, long chan, float mul);
+void ibuffer_float_samps_scalar_cubic_hermite(const ibuffer_data& data, float *out, intptr_t *offsets, float *fracts, intptr_t n_samps, long chan, float mul);
+void ibuffer_float_samps_scalar_cubic_lagrange(const ibuffer_data& data, float *out, intptr_t *offsets, float*fracts, intptr_t n_samps, long chan, float mul);
 
 #ifdef VECTOR_F64_128BIT
 
 // Vectorised Interpolation Double Precision: None / Linear / Cubic Bspline / Cubic Hermite / Cubic Lagrange
 
-void ibuffer_double_samps_simd_nointerp(void *samps, vDouble *out, intptr_t *offsets, intptr_t n_samps, long n_chans, long chan, long format, double mul);
-void ibuffer_double_samps_simd_linear(void *samps, SSE4Double *out, intptr_t *offsets, SSE4Double *fracts, void **temp, intptr_t n_samps, long n_chans, long chan, long format, double mul);
-void ibuffer_double_samps_simd_cubic_bspline(void *samps, SSE4Double *out, intptr_t *offsets, SSE4Double *fracts, void **temp, intptr_t n_samps, long n_chans, long chan, long format, double mul);
-void ibuffer_double_samps_simd_cubic_hermite(void *samps, AVX2568Double *out, intptr_t *offsets, AVX2568Double *fracts, void **temp, intptr_t n_samps, long n_chans, long chan, long format, double mul);
-void ibuffer_double_samps_simd_cubic_lagrange(void *samps, SSE4Double *out, intptr_t *offsets, SSE4Double *fracts, void **temp, intptr_t n_samps, long n_chans, long chan, long format, double mul);
+void ibuffer_double_samps_simd_nointerp(const ibuffer_data& data, vDouble *out, intptr_t *offsets, intptr_t n_samps, long chan, double mul);
+void ibuffer_double_samps_simd_linear(const ibuffer_data& data, SSE4Double *out, intptr_t *offsets, SSE4Double *fracts, intptr_t n_samps, long chan, double mul);
+void ibuffer_double_samps_simd_cubic_bspline(const ibuffer_data& data, AVX256Double *out, intptr_t *offsets, AVX256Double *fracts, intptr_t n_samps, long chan, double mul);
+void ibuffer_double_samps_simd_cubic_hermite(const ibuffer_data& data, AVX256Double *out, intptr_t *offsets, AVX256Double *fracts, intptr_t n_samps, long chan, double mul);
+void ibuffer_double_samps_simd_cubic_lagrange(const ibuffer_data& data, AVX256Double *out, intptr_t *offsets, AVX256Double *fracts, intptr_t n_samps, long chan, double mul);
 
 #endif
 
 // Scalar Interpolation Double Precision: None / Linear / Cubic Bspline / Cubic Hermite / Cubic Lagrange
 
-void ibuffer_double_samps_scalar_nointerp(void *samps, double *out, intptr_t *offsets, intptr_t n_samps, long n_chans, long chan, long format, double mul);
-void ibuffer_double_samps_scalar_linear(void *samps, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long n_chans, long chan, long format, double mul);
-void ibuffer_double_samps_scalar_cubic_bspline(void *samps, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long n_chans, long chan, long format, double mul);
-void ibuffer_double_samps_scalar_cubic_hermite(void *samps, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long n_chans, long chan, long format, double mul);
-void ibuffer_double_samps_scalar_cubic_lagrange(void *samps, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long n_chans, long chan, long format, double mul);
+void ibuffer_double_samps_scalar_nointerp(const ibuffer_data& data, double *out, intptr_t *offsets, intptr_t n_samps, long chan, double mul);
+void ibuffer_double_samps_scalar_linear(const ibuffer_data& data, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long chan, double mul);
+void ibuffer_double_samps_scalar_cubic_bspline(const ibuffer_data& data, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long chan, double mul);
+void ibuffer_double_samps_scalar_cubic_hermite(const ibuffer_data& data, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long chan, double mul);
+void ibuffer_double_samps_scalar_cubic_lagrange(const ibuffer_data& data, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long chan, double mul);
 
         
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -186,21 +196,23 @@ static __inline void *ibuffer_get_ptr(t_symbol *s) FORCE_INLINE_DEFINITION
 }
 
 
-static __inline long ibuffer_info (void *thebuffer, void **samples, intptr_t *length, long *channels, long *format) FORCE_INLINE_DEFINITION
+
+static __inline const ibuffer_data ibuffer_info(void *thebuffer) FORCE_INLINE_DEFINITION
 {
+    ibuffer_data data;
+                 
 	if (!thebuffer) 
-		return 0;
+		return data;
 	
 	if (ob_sym(thebuffer) == ps_buffer)
 	{
 		t_buffer *buffer = (t_buffer *) thebuffer;
 		if (buffer->b_valid)
 		{
-			*samples = (void *) buffer->b_samples;
-			*length = buffer->b_frames;
-			*channels = buffer->b_nchans;
-			*format = PCM_FLOAT;
-			return 1;
+			data.samples = (void *) buffer->b_samples;
+			data.length = buffer->b_frames;
+			data.n_chans = buffer->b_nchans;
+			data.format = PCM_FLOAT;
 		}
 	}
 	else
@@ -208,14 +220,14 @@ static __inline long ibuffer_info (void *thebuffer, void **samples, intptr_t *le
 		t_ibuffer *buffer = (t_ibuffer *) thebuffer;
 		if (buffer->valid)
 		{
-			*samples = buffer->samples;
-			*length = buffer->frames;
-			*channels = buffer->channels;
-			*format = buffer->format;
-			return 1;
+			data.samples =  buffer->samples;
+			data.length = buffer->frames;
+			data.n_chans = buffer->channels;
+			data.format = buffer->format;
 		}
 	}
-	return 0;
+
+	return data;
 }
 
 
@@ -256,50 +268,50 @@ static __inline void ibuffer_decrement_inuse (void *thebuffer) FORCE_INLINE_DEFI
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-static __inline float ibuffer_float_get_samp (void *samps, intptr_t offset, long n_chans, long chan, long format) FORCE_INLINE_DEFINITION
+static __inline float ibuffer_float_get_samp(const ibuffer_data& data, intptr_t offset, long chan) FORCE_INLINE_DEFINITION
 {	
 	uint32_t sampleint;
 	
-	switch (format)
+	switch (data.format)
 	{
 		case PCM_INT_16:
-			sampleint = ((* (uint16_t *) (((uint16_t *) samps) + chan + (offset * n_chans) ) ) << 16) & MASK_16_BIT;
+			sampleint = ((* (uint16_t *) (((uint16_t *) data.samples) + chan + (offset * data.n_chans) ) ) << 16) & MASK_16_BIT;
 			return (float) *((int32_t *) &sampleint) * TWO_POW_31_RECIP;			
 			
 		case PCM_INT_24:
-			sampleint = * ( (uint32_t *) ( ((uint8_t *) samps) + (3 * (chan + (offset * n_chans))) - 1 )) & MASK_24_BIT;
+			sampleint = * ( (uint32_t *) ( ((uint8_t *) data.samples) + (3 * (chan + (offset * data.n_chans))) - 1 )) & MASK_24_BIT;
 			return (float) *((int32_t *) &sampleint) * TWO_POW_31_RECIP;		
 			
 		case PCM_INT_32:
-			return (float) ( *( ((int32_t *) samps) + chan + (offset * n_chans) ) ) * TWO_POW_31_RECIP;
+			return (float) ( *( ((int32_t *) data.samples) + chan + (offset * data.n_chans) ) ) * TWO_POW_31_RECIP;
 			
 		case PCM_FLOAT:
-			return *( ((float *) samps) + chan + (offset * n_chans) );
+			return *( ((float *) data.samples) + chan + (offset * data.n_chans) );
 	}
 	
 	return 0.f;
 }
 
 
-static __inline double ibuffer_double_get_samp (void *samps, intptr_t offset, long n_chans, long chan, long format) FORCE_INLINE_DEFINITION
+static __inline double ibuffer_double_get_samp(const ibuffer_data& data, intptr_t offset, long chan) FORCE_INLINE_DEFINITION
 {	
 	uint32_t sampleint;
 	
-	switch (format)
+	switch (data.format)
 	{
 		case PCM_INT_16:
-			sampleint = ((* (uint16_t *) (((uint16_t *) samps) + chan + (offset * n_chans) ) ) << 16) & MASK_16_BIT;
+			sampleint = ((* (uint16_t *) (((uint16_t *) data.samples) + chan + (offset * data.n_chans) ) ) << 16) & MASK_16_BIT;
 			return (double) *((int32_t *) &sampleint) * TWO_POW_31_RECIP_DOUBLE;			
 			
 		case PCM_INT_24:
-			sampleint = * ( (uint32_t *) ( ((uint8_t *) samps) + (3 * (chan + (offset * n_chans))) - 1 )) & MASK_24_BIT;
+			sampleint = * ( (uint32_t *) ( ((uint8_t *) data.samples) + (3 * (chan + (offset * data.n_chans))) - 1 )) & MASK_24_BIT;
 			return (double) *((int32_t *) &sampleint) * TWO_POW_31_RECIP_DOUBLE;		
 			
 		case PCM_INT_32:
-			return (double) ( *( ((int32_t *) samps) + chan + (offset * n_chans) ) ) * TWO_POW_31_RECIP_DOUBLE;
+			return (double) ( *( ((int32_t *) data.samples) + chan + (offset * data.n_chans) ) ) * TWO_POW_31_RECIP_DOUBLE;
 			
 		case PCM_FLOAT:
-			return (double) *( ((float *) samps) + chan + (offset * n_chans) );
+			return (double) *( ((float *) data.samples) + chan + (offset * data.n_chans) );
 	}
 	
 	return 0.0;
@@ -339,12 +351,12 @@ static __inline void *ibuffer_offset (void *samps, intptr_t offset, long n_chans
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-static __inline void ibuffer_preprocess_offsets (intptr_t *offsets, intptr_t n_samps, long n_chans, long format) FORCE_INLINE_DEFINITION
+static __inline void ibuffer_preprocess_offsets(intptr_t *offsets, const ibuffer_data& data, intptr_t n_samps) FORCE_INLINE_DEFINITION
 {
 	intptr_t i;
-	long mul = n_chans;
+	long mul = data.n_chans;
 	
-	if (format == PCM_INT_24) 
+	if (data.format == PCM_INT_24)
 		mul *= 3;
 	
 	if (mul != 1)
