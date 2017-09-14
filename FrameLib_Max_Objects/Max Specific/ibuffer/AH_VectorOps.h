@@ -13,12 +13,24 @@
 #ifndef _AH_CROSS_PLATFORM_VECTOR_OPS_
 #define _AH_CROSS_PLATFORM_VECTOR_OPS_ 
 
-#ifdef __APPLE__
+#include <emmintrin.h>
+#include <immintrin.h>
 
-#include <Accelerate/Accelerate.h>
+#ifdef __APPLE__
 
 #define FORCE_INLINE				__attribute__ ((always_inline))
 #define FORCE_INLINE_DEFINITION
+
+#else
+
+#define FORCE_INLINE				__forceinline
+#define FORCE_INLINE_DEFINITION		__forceinline;
+
+#endif
+/*
+#ifdef __APPLE__
+
+#include <Accelerate/Accelerate.h>
 
 #define ALIGNED_MALLOC malloc
 #define ALIGNED_FREE free
@@ -30,23 +42,8 @@
 #include <emmintrin.h>
 #include <malloc.h>
 
-#define FORCE_INLINE				__forceinline
-#define FORCE_INLINE_DEFINITION		__forceinline;
-
 #define ALIGNED_MALLOC(x)  _aligned_malloc(x, 16)
 #define ALIGNED_FREE  _aligned_free
-
-typedef	__m128i	vUInt8;
-typedef __m128i vSInt8;
-typedef	__m128i vUInt16;
-typedef __m128i vSInt16;
-typedef __m128i vUInt32;
-typedef	__m128i vSInt32;
-typedef	__m128i vBool32;
-typedef __m128i vUInt64;
-typedef __m128i vSInt64;
-typedef	__m128  vFloat;
-typedef	__m128d vDouble;
 
 #endif
 
@@ -127,10 +124,7 @@ static const vDouble Vec_Ops_F64_One = {1.,1.};
 
 #define float2vector					_mm_set1_ps
 
-#define F32_VEC_MUL_OP					_mm_mul_ps
 #define F32_VEC_DIV_OP					_mm_div_ps
-#define F32_VEC_ADD_OP					_mm_add_ps
-#define F32_VEC_SUB_OP					_mm_sub_ps
 
 #define F32_VEC_AND_OP					_mm_and_ps
 #define F32_VEC_ANDNOT_OP				_mm_andnot_ps
@@ -149,7 +143,6 @@ static const vDouble Vec_Ops_F64_One = {1.,1.};
 
 #define F32_VEC_SQRT_OP					_mm_sqrt_ps
 
-#define F32_VEC_ULOAD					_mm_loadu_ps
 #define F32_VEC_USTORE					_mm_storeu_ps
 #define F32_VEC_MOVE_LO					_mm_movelh_ps
 #define F32_VEC_MOVE_HI					_mm_movehl_ps
@@ -165,10 +158,7 @@ static const vDouble Vec_Ops_F64_One = {1.,1.};
 
 #define double2vector					_mm_set1_pd
 
-#define F64_VEC_MUL_OP					_mm_mul_pd
 #define F64_VEC_DIV_OP					_mm_div_pd
-#define F64_VEC_ADD_OP					_mm_add_pd
-#define F64_VEC_SUB_OP					_mm_sub_pd
 
 #define F64_VEC_AND_OP					_mm_and_pd
 #define F64_VEC_ANDNOT_OP				_mm_andnot_pd
@@ -187,7 +177,6 @@ static const vDouble Vec_Ops_F64_One = {1.,1.};
 
 #define F64_VEC_SQRT_OP					_mm_sqrt_pd
 
-#define F64_VEC_ULOAD					_mm_loadu_pd
 #define F64_VEC_USTORE					_mm_storeu_pd
 #define F64_VEC_UNPACK_LO				_mm_unpacklo_pd
 #define F64_VEC_UNPACK_HI				_mm_unpackhi_pd
@@ -208,11 +197,7 @@ static const vDouble Vec_Ops_F64_One = {1.,1.};
 // Integer 32 bit intrinsics
 
 #define s32int2vector					_mm_set1_epi32
-
-#define I32_VEC_ADD_OP					_mm_add_epi32
-#define I32_VEC_SUB_OP					_mm_sub_epi32
-#define I32_VEC_ADD_OP					_mm_add_epi32
-
+ 
 #define I32_VEC_MIN_OP					_mm_min_epi32
 #define I32_VEC_MAX_OP					_mm_max_epi32
 
@@ -224,7 +209,7 @@ static const vDouble Vec_Ops_F64_One = {1.,1.};
 // Altivec has min / max intrinics for 32 bit signed integers, but on intel this must be done in software (although it is provided under windows)
 // These routines are taken directly from the apple SSE migration guide
 // The guide can be found at http://developer.apple.com/legacy/mac/library/documentation/Performance/Conceptual/Accelerate_sse_migration/Accelerate_sse_migration.pdf
-/*
+
 #ifdef __APPLE__
 static __inline vSInt32 _mm_min_epi32(vSInt32 a, vSInt32 b) FORCE_INLINE;
 static __inline vSInt32 _mm_min_epi32(vSInt32 a, vSInt32 b) 
@@ -240,7 +225,7 @@ static __inline vSInt32 _mm_max_epi32(vSInt32 a, vSInt32 b)
 	return _mm_or_si128( _mm_andnot_si128(t,b),_mm_and_si128(t,a));
 }
 #endif 
-*/
+
 // Altivec has selection intrinics for 32 bit floating point vectors, but on intel this must be done in software
 // These routines are taken directly from the apple SSE migration guide
 // The guide can be found at http://developer.apple.com/legacy/mac/library/documentation/Performance/Conceptual/Accelerate_sse_migration/Accelerate_sse_migration.pdf
@@ -273,49 +258,6 @@ static __inline vDouble _mm_sel_pd(vDouble a, vDouble b, vDouble mask) FORCE_INL
 
 #else
 
-// Altivec
-
-static const vFloat Vec_Ops_F32_Zero = {0.f,0.f,0.f,0.f};
-
-// Floating point 32 bit intrinsics or local functions
-
-#define F32_VEC_MUL_OP(v1, v2)			vec_madd(v1,v2, Vec_Ops_F32_Zero)
-#define F32_VEC_DIV_OP					vdivf
-#define F32_VEC_ADD_OP					vec_add
-#define F32_VEC_SUB_OP					vec_sub
-
-#define F32_VEC_AND_OP					vec_and
-#define F32_VEC_XOR_OP					vec_xor
-#define F32_VEC_OR_OP					vec_or
-#define F32_VEC_SEL_OP					vec_sel
-
-#define F32_VEC_MIN_OP					vec_min
-#define F32_VEC_MAX_OP					vec_max
-
-#define F32_VEC_EQUAL_OP(a,b)			vec_cmpeq(a,b) 
-#define F32_VEC_NEQUAL_OP(a,b)			vec_xor(vec_cmpeq(a,b),Vec_Ops_F32_One) 
-#define F32_VEC_GT_OP(a,b)				vec_cmpgt(a,b) 
-#define F32_VEC_LT_OP(a,b)				vec_cmplt(a,b)
-
-#define F32_VEC_ULOAD(p)				vec_uload((unsigned char *)p)
-#define F32_VEC_USTORE(p, v)			vec_ustore((unsigned char *)p, (vector unsigned char)v)
-#define F32_VEC_SHUFFLE					vec_permute
-
-// Conversions from and to 32 bit floating point vectors
-
-#define F32_VEC_FROM_I32(a)				vec_ctf(a, 0)
-#define I32_VEC_FROM_F32_ROUND(a)		vec_cts(vec_round(a), 0)
-#define I32_VEC_FROM_F32_TRUNC(a)		vec_cts(a, 0)
-
-// Integer 32 bit intrinsics
-
-#define I32_VEC_ADD_OP					vec_add
-#define I32_VEC_SUB_OP					vec_sub
-
-#define I32_VEC_AND_OP					vec_and
-
-#define I32_VEC_MIN_OP					vec_min
-#define I32_VEC_MAX_OP					vec_max
 
 // Return a vector filled with a single signed integer value
 
@@ -374,8 +316,8 @@ static __inline void vec_ustore(unsigned char *target, vector unsigned char src)
     vec_ste( (vector unsigned char) src,15,(unsigned char*) target );
 }
 
-#endif	/* TARGET_INTEL */
-
+#endif
+*/
 #include <functional>
 
 #define SIMD_COMPILER_SUPPORT_SCALAR 0
@@ -473,10 +415,11 @@ template <class T> struct Scalar
     
     Scalar() {}
     Scalar(T a) : mVal(a) {}
-    friend Scalar operator + (const Scalar& a, const Scalar& b) { return Scalar(a.mVal + b.mVal); }
-    friend Scalar operator - (const Scalar& a, const Scalar& b) { return Scalar(a.mVal - b.mVal); }
-    friend Scalar operator * (const Scalar& a, const Scalar& b) { return Scalar(a.mVal * b.mVal); }
-    
+    Scalar(const T* a) { mVal = *a; }
+    template <class U> Scalar(const Scalar<U> a) { mVal = static_cast<T>(a.mVal); }
+    friend Scalar operator + (const Scalar& a, const Scalar& b) { return a.mVal + b.mVal; }
+    friend Scalar operator - (const Scalar& a, const Scalar& b) { return a.mVal - b.mVal; }
+    friend Scalar operator * (const Scalar& a, const Scalar& b) { return a.mVal * b.mVal; }
     T mVal;
 };
 

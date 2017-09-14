@@ -12,7 +12,6 @@
  *
  */
 
-
 #include "ibuffer.h"
 #include "ibuffer_access.h"
 
@@ -24,119 +23,9 @@ t_symbol *ps_lagrange;
 t_symbol *ps_buffer;
 t_symbol *ps_ibuffer;
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////// Fetch samples /////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-#define IBUFFER_FETCH_LOOP_UNROLL(x)			\
-intptr_t i;									\
-for (i = 0; i < n_samps >> 3; i++)				\
-{x; x; x; x; x; x; x; x;}						\
-for (i <<= 3; i < n_samps; i++)					\
-{x;}											\
-for (; i < ((n_samps + 3) >> 2) << 2; i++)		\
-*out++ = 0;
-
-static __inline void ibuffer_fetch_samps_float(float *out, float *samps, intptr_t *offsets, intptr_t n_samps)
-{
-    IBUFFER_FETCH_LOOP_UNROLL (*out++ = *(samps + *offsets++))
-}
-
-static __inline void ibuffer_fetch_samps_16(int32_t *out, int16_t *samps, intptr_t *offsets, intptr_t n_samps)
-{
-    IBUFFER_FETCH_LOOP_UNROLL (*out++ = (*(samps + *offsets++) << 16))
-}
-
-static __inline void ibuffer_fetch_samps_24(int32_t *out, int8_t *samps, intptr_t *offsets, intptr_t n_samps)
-{
-#if (TARGET_RT_LITTLE_ENDIAN)
-    IBUFFER_FETCH_LOOP_UNROLL (*out++ = (*((int32_t *) ((samps - 1) + *offsets++)) & MASK_24_BIT))
-#else
-    IBUFFER_FETCH_LOOP_UNROLL (*out++ = (*((int32_t *) (samps + *offsets++)) & MASK_24_BIT))
-#endif
-}
-
-static __inline void ibuffer_fetch_samps_32(int32_t *out, int32_t *samps, intptr_t *offsets, intptr_t n_samps)
-{
-    IBUFFER_FETCH_LOOP_UNROLL (*out++ = (*(samps + *offsets++)))
-}
-
-void ibuffer_fetch_samps(void *out, const ibuffer_data& data, intptr_t *offsets, intptr_t n_samps, long chan)
-{
-    switch (data.format)
-    {
-        case PCM_INT_16:
-            ibuffer_fetch_samps_16((int32_t *) out, ((int16_t *) data.samples) + chan, offsets, n_samps);
-            break;
-        case PCM_INT_24:
-            ibuffer_fetch_samps_24((int32_t *) out, (int8_t *) data.samples + (3 * chan), offsets, n_samps);
-            break;
-        case PCM_INT_32:
-            ibuffer_fetch_samps_32((int32_t *) out, ((int32_t *) data.samples) + chan, offsets, n_samps);
-            break;
-        case PCM_FLOAT:
-            ibuffer_fetch_samps_float((float *) out, (float *) data.samples + chan, offsets, n_samps);
-            break;
-    }
-}
-
-void ibuffer_fetch_samps_2(void **temp, const ibuffer_data& data, intptr_t *offsets, intptr_t n_samps, long chan)
-{
-    switch (data.format)
-    {
-        case PCM_INT_16:
-            ibuffer_fetch_samps_16((int32_t *) temp[0], ((int16_t *) data.samples) + chan, offsets, n_samps);
-            ibuffer_fetch_samps_16((int32_t *) temp[1], ((int16_t *) data.samples) + chan + data.n_chans, offsets, n_samps);
-            break;
-        case PCM_INT_24:
-            ibuffer_fetch_samps_24((int32_t *) temp[0], ((int8_t *) data.samples) + (3 * chan), offsets, n_samps);
-            ibuffer_fetch_samps_24((int32_t *) temp[1], ((int8_t *) data.samples) + (3 * (chan + data.n_chans)), offsets, n_samps);
-            break;
-        case PCM_INT_32:
-            ibuffer_fetch_samps_32((int32_t *) temp[0], ((int32_t *) data.samples) + chan, offsets, n_samps);
-            ibuffer_fetch_samps_32((int32_t *) temp[1], ((int32_t *) data.samples) + chan + data.n_chans, offsets, n_samps);
-            break;
-        case PCM_FLOAT:
-            ibuffer_fetch_samps_float((float *) temp[0], ((float *) data.samples) + chan, offsets, n_samps);
-            ibuffer_fetch_samps_float((float *) temp[1], ((float *) data.samples) + chan + data.n_chans, offsets, n_samps);
-            break;
-    }
-}
-
-void ibuffer_fetch_samps_4 (void **temp, const ibuffer_data& data, intptr_t *offsets, intptr_t n_samps, long chan)
-{
-    switch (data.format)
-    {
-        case PCM_INT_16:
-            ibuffer_fetch_samps_16((int32_t *) temp[0], ((int16_t *) data.samples) + chan - data.n_chans, offsets, n_samps);
-            ibuffer_fetch_samps_16((int32_t *) temp[1], ((int16_t *) data.samples) + chan, offsets, n_samps);
-            ibuffer_fetch_samps_16((int32_t *) temp[2], ((int16_t *) data.samples) + chan + data.n_chans, offsets, n_samps);
-            ibuffer_fetch_samps_16((int32_t *) temp[3], ((int16_t *) data.samples) + chan + (data.n_chans << 1), offsets, n_samps);
-            break;
-        case PCM_INT_24:
-            ibuffer_fetch_samps_24((int32_t *) temp[0], ((int8_t *) data.samples) + (3 * (chan - data.n_chans)), offsets, n_samps);
-            ibuffer_fetch_samps_24((int32_t *) temp[1], ((int8_t *) data.samples) + (3 * chan), offsets, n_samps);
-            ibuffer_fetch_samps_24((int32_t *) temp[2], ((int8_t *) data.samples) + (3 * (chan + data.n_chans)), offsets, n_samps);
-            ibuffer_fetch_samps_24((int32_t *) temp[3], ((int8_t *) data.samples) + (3 * (chan + (data.n_chans << 1))), offsets, n_samps);
-            break;
-        case PCM_INT_32:
-            ibuffer_fetch_samps_32((int32_t *) temp[0], ((int32_t *) data.samples) + chan - data.n_chans, offsets, n_samps);
-            ibuffer_fetch_samps_32((int32_t *) temp[1], ((int32_t *) data.samples) + chan, offsets, n_samps);
-            ibuffer_fetch_samps_32((int32_t *) temp[2], ((int32_t *) data.samples) + chan + data.n_chans, offsets, n_samps);
-            ibuffer_fetch_samps_32((int32_t *) temp[3], ((int32_t *) data.samples) + chan + (data.n_chans << 1), offsets, n_samps);
-            break;
-        case PCM_FLOAT:
-            ibuffer_fetch_samps_float((float *) temp[0], ((float *) data.samples) + chan - data.n_chans, offsets, n_samps);
-            ibuffer_fetch_samps_float((float *) temp[1], ((float *) data.samples) + chan, offsets, n_samps);
-            ibuffer_fetch_samps_float((float *) temp[2], ((float *) data.samples) + chan + data.n_chans, offsets, n_samps);
-            ibuffer_fetch_samps_float((float *) temp[3], ((float *) data.samples) + chan + (data.n_chans << 1), offsets, n_samps);
-            break;
-    }
-}
-
 // Interpolators
 
-template <class T> struct linear_interp
+template <class T>struct linear_interp
 {
     T operator()(const T& x, const T& y0, const T& y1) { return  (y0 + x * ((y1 - y0))); }
 };
@@ -199,243 +88,233 @@ template <class T> struct cubic_bspline_interp
     const T _1div2;
 };
 
-// Generic ypes of interpolation
+// Reading different formats
 
-template <class T, class U, typename Ip> void ibuffer_4point_interp(U *out,  void **inbuffers, U *fracts, intptr_t n_samps, typename U::scalar_type mul, Ip ip)
+template <class T, int64_t bit_scale> struct fetch
 {
-    T *in1 = (T *) inbuffers[0];
-    T *in2 = (T *) inbuffers[1];
-    T *in3 = (T *) inbuffers[2];
-    T *in4 = (T *) inbuffers[3];
+    fetch(const ibuffer_data& data, long chan)
+    : scale(1.0 / ((int64_t) 1 << (bit_scale - 1))), samples(((T *) data.samples) + chan), num_chans(data.num_chans) {}
     
-    U scale = mul;
+    T operator()(intptr_t offset) { return samples[offset * num_chans]; }
+    double get(intptr_t offset) { return bit_scale != 1 ? operator()(offset) : scale * operator()(offset); }
     
-    for (intptr_t i = 0; i < (n_samps / U::size); i++)
-        *out++ = scale * ip(*fracts++, static_cast<U>(*in1++), static_cast<U>(*in2++), static_cast<U>(*in3++), static_cast<U>(*in4++));
+    const double scale;
+    T *samples;
+    long num_chans;
+};
+
+typedef fetch<float, 1> fetch_float;
+typedef fetch<int16_t, 16> fetch_16bit;
+typedef fetch<int32_t, 24> fetch_24bit;
+typedef fetch<int32_t, 32> fetch_32bit;
+
+void ibuffer_fetch_samps_24(int32_t *out, int8_t *samps, intptr_t *offsets, intptr_t n_samps)
+{
+    //#if (TARGET_RT_LITTLE_ENDIAN)
+    //    IBUFFER_FETCH_LOOP_UNROLL (*out++ = (*((int32_t *) ((samps - 1) + *offsets++)) & MASK_24_BIT))
+    //#else
+    //    IBUFFER_FETCH_LOOP_UNROLL (*out++ = (*((int32_t *) (samps + *offsets++)) & MASK_24_BIT))
+    //#endif
 }
 
-template <int size> void get_4samps(float *array, const ibuffer_data& data, long chan, intptr_t offset)
+// Generic types of interpolation
+
+template <class T, class U, class Ft> struct get_samp
 {
-    const float *samples = ((float *) data.samples) + chan + ((offset) * data.n_chans);
-    
-    array[0] = *(samples - data.n_chans);
-    array[size] = *(samples);
-    array[size * 2] = *(samples + data.n_chans);
-    array[size * 3] = *(samples + 2 * data.n_chans);
-}
-
-template <class T, class U, typename Ip> T interp_4samps(const ibuffer_data& data, long chan, intptr_t*& offsets, T fract, Ip ip)
-{
-    float array[T::size * 4];
-    
-    for (int i = 0; i < T::size; i++)
-        get_4samps<T::size>(array + i, data, chan, *offsets++);
-    
-    const T y0 = U(array);
-    const T y1 = U(array + T::size);
-    const T y2 = U(array + (T::size * 2));
-    const T y3 = U(array + (T::size * 3));
-    
-    return ip(fract, y0, y1, y2, y3);
-}
-
-template <int size> void get_2samps(float *array, const ibuffer_data& data, long chan, intptr_t offset)
-{
-    const float *samples = ((float *) data.samples) + chan + ((offset) * data.n_chans);
-    
-    array[0] = *(samples );
-    array[size] = *(samples + data.n_chans);
-}
-
-template <class T, class U, typename Ip> T interp_2samps(const ibuffer_data& data, long chan, intptr_t*& offsets, T fract, Ip ip)
-{
-    float array[T::size * 2];
-    
-    for (int i = 0; i < T::size; i++)
-        get_2samps<T::size>(array + i, data, chan, *offsets++);
-    
-    const T y0 = U(array);
-    const T y1 = U(array + T::size);
-
-    return ip(fract, y0, y1);
-}
-
-
-template <class T, class U, typename Ip> void ibuffer_4point_interp(const ibuffer_data& data, U *out, intptr_t *offsets, U *fracts, intptr_t n_samps, long chan, typename U::scalar_type mul, Ip ip)
-{
-    U scale = mul;
-    
-    for (intptr_t i = 0; i < (n_samps / U::size); i++)
-        *out++ = scale * interp_4samps<U, T>(data, chan, offsets, *fracts++, ip);
-}
-
-template <class T, class U, typename Ip> void ibuffer_2point_interp(const ibuffer_data& data, U *out, intptr_t *offsets, U *fracts, intptr_t n_samps, long chan, typename U::scalar_type mul, Ip ip)
-{
-    U scale = mul;
-    
-    for (intptr_t i = 0; i < (n_samps / U::size); i++)
-        *out++ = scale * interp_2samps<U, T>(data, chan, offsets, *fracts++, ip);
-}
-
-template <class T, class V, class U, typename Ip> void ibuffer_simd_4point(const ibuffer_data& data, U *out, intptr_t *offsets, U *fracts, void **temp, intptr_t n_samps, long chan, typename U::scalar_type mul, Ip ip)
-{
-    ibuffer_fetch_samps_4(temp, data, offsets, n_samps, chan);
-    
-    if (data.format == PCM_FLOAT)
-        ibuffer_4point_interp<V>(out, temp, fracts, n_samps, mul, ip);
-    else
-        ibuffer_4point_interp<T>(out, temp, fracts, n_samps, mul * TWO_POW_31_RECIP_DOUBLE, ip);
-}
-
-template <class T, typename Ip> void ibuffer_scalar_4point(const ibuffer_data& data, T *out, intptr_t *offsets, T *fracts, intptr_t n_samps, long chan, T mul, Ip ip)
-{
-    for (intptr_t i = 0; i < n_samps; i++)
+    T operator()(Ft fetch, intptr_t*& offsets, T fract)
     {
-        intptr_t offset = offsets[i];
-        
-        const T y0 = ibuffer_float_get_samp(data, offset - 1, chan);
-        const T y1 = ibuffer_float_get_samp(data, offset, chan);
-        const T y2 = ibuffer_float_get_samp(data, offset + 1, chan);
-        const T y3 = ibuffer_float_get_samp(data, offset + 2, chan);
+        float array[T::size];
 
-        *out++ = mul * ip(*fracts++, y0, y1, y2, y3);
+        for (int i = 0; i < T::size; i++)
+            array[i] = fetch(*offsets++);
+
+        return U(array);
+    }
+};
+
+template <class T, class U, class Ft, typename Ip> struct interp_2samps
+{
+    T operator()(Ft fetch, intptr_t*& offsets, T fract)
+    {
+        float array[T::size * 2];
+        
+        for (int i = 0; i < T::size; i++)
+        {
+            intptr_t offset = *offsets++;
+            
+            array[i] = fetch(offset);
+            array[i + T::size] = fetch(offset + 1);
+        }
+        
+        const T y0 = U(array);
+        const T y1 = U(array + T::size);
+        
+        return interpolator(fract, y0, y1);
+    }
+    
+    Ip interpolator;
+};
+
+template <class T, class U, class Ft, typename Ip> struct interp_4samps
+{
+    T operator()(Ft ft, intptr_t*& offsets, T fract)
+    {
+        float array[T::size * 4];
+        
+        for (int i = 0; i < T::size; i++)
+        {
+            intptr_t offset = *offsets++;
+            
+            array[i] = ft(offset - 1);
+            array[i + T::size] = ft(offset);
+            array[i + T::size * 2] = ft(offset + 1);
+            array[i + T::size * 3] = ft(offset + 2);
+        }
+        
+        const T y0 = U(array);
+        const T y1 = U(array + T::size);
+        const T y2 = U(array + (T::size * 2));
+        const T y3 = U(array + (T::size * 3));
+        
+        return interpolator(fract, y0, y1, y2, y3);
+    }
+    
+    Ip interpolator;
+};
+
+template <class T, class U, class Ft> struct no_interp_reader : public get_samp<T, U, Ft> {};
+template <class T, class U, class Ft> struct cubic_linear_reader : public interp_2samps<T, U, Ft, linear_interp<T> > {};
+template <class T, class U, class Ft> struct cubic_bspline_reader : public interp_4samps<T, U, Ft, cubic_bspline_interp<T> > {};
+template <class T, class U, class Ft> struct cubic_hermite_reader : public interp_4samps<T, U, Ft, cubic_hermite_interp<T> > {};
+template <class T, class U, class Ft> struct cubic_lagrange_reader : public interp_4samps<T, U, Ft, cubic_lagrange_interp<T> > {};
+
+
+template <class T, class U, class Ft, template <class V, class W, class Ft2> class Ip> struct ibuffer_read_loop
+{
+    void operator()(const ibuffer_data& data, T *out, intptr_t *offsets, T *fracts, intptr_t n_samps, long chan, typename U::scalar_type mul)
+    {
+        Ip<T, U, Ft> reader;
+        Ft fetcher(data, chan);
+        T scale = mul * fetcher.scale;
+    
+        for (intptr_t i = 0; i < (n_samps / T::size); i++)
+            *out++ = scale * reader(fetcher, offsets, *fracts++);
+    }
+};
+
+
+template <template <class T, class U, class Ft2> class Ip, class Ft>
+void ibuffer_read(const ibuffer_data& data, float *out, intptr_t *offsets, float *fracts, intptr_t n_samps, long chan, float mul)
+{
+    typedef Scalar<float> iType;
+    typedef Scalar<float> oType;
+    typedef AVX256Float ivType;
+    typedef AVX256Float ovType;
+    
+    intptr_t num_vectors = n_samps / oType::size;
+    intptr_t num_vsample = num_vectors * oType::size;
+    intptr_t num_scalars = n_samps - num_vsample;
+    
+    ibuffer_read_loop<ovType, ivType, Ft, Ip>()(data, (ovType *) out, offsets, (ovType *) fracts, num_vsample, chan, mul);
+    offsets += num_vsample;
+    fracts += num_vsample;
+    ibuffer_read_loop<oType, iType, Ft, Ip>()(data, (oType *) out, offsets, (oType *) fracts, num_scalars, chan, mul);
+}
+
+
+template <template <class T, class U, class Ft2> class Ip, class Ft>
+void ibuffer_read(const ibuffer_data& data, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long chan, double mul)
+{
+    typedef Scalar<float> iType;
+    typedef Scalar<double> oType;
+    typedef SSEFloat ivType;
+    typedef AVX256Double ovType;
+    
+    intptr_t num_vectors = n_samps / oType::size;
+    intptr_t num_vsample = num_vectors * oType::size;
+    intptr_t num_scalars = n_samps - num_vsample;
+
+    ibuffer_read_loop<ovType, ivType, Ft, Ip>()(data, (ovType *) out, offsets, (ovType *) fracts, num_vsample, chan, mul);
+    offsets += num_vsample;
+    fracts += num_vsample;
+    ibuffer_read_loop<oType, iType, Ft, Ip>()(data, (oType *) out, offsets, (oType *) fracts, num_scalars, chan, mul);
+}
+
+template <class T> void ibuffer_read(const ibuffer_data& data, T *out, intptr_t *offsets, T *fracts, intptr_t n_samps, long chan, T mul, InterpType interp)
+{
+    switch(interp)
+    {
+        case kInterpNone:
+            
+            switch(data.format)
+            {
+                case PCM_FLOAT:     ibuffer_read<no_interp_reader, fetch_float>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+                case PCM_INT_16:    ibuffer_read<no_interp_reader, fetch_16bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+                case PCM_INT_24:    ibuffer_read<no_interp_reader, fetch_24bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+                case PCM_INT_32:    ibuffer_read<no_interp_reader, fetch_32bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+            }
+            break;
+            
+        case kInterpLinear:
+
+            switch(data.format)
+            {
+                case PCM_FLOAT:     ibuffer_read<cubic_linear_reader, fetch_float>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+                case PCM_INT_16:    ibuffer_read<cubic_linear_reader, fetch_16bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+                case PCM_INT_24:    ibuffer_read<cubic_linear_reader, fetch_24bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+                case PCM_INT_32:    ibuffer_read<cubic_linear_reader, fetch_32bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+            }
+            break;
+            
+        case kInterpCubicHermite:
+            
+            switch(data.format)
+            {
+                case PCM_FLOAT:     ibuffer_read<cubic_hermite_reader, fetch_float>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+                case PCM_INT_16:    ibuffer_read<cubic_hermite_reader, fetch_16bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+                case PCM_INT_24:    ibuffer_read<cubic_hermite_reader, fetch_24bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+                case PCM_INT_32:    ibuffer_read<cubic_hermite_reader, fetch_32bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+            }
+            break;
+            
+        case kInterpCubicLagrange:
+            
+            switch(data.format)
+            {
+                case PCM_FLOAT:     ibuffer_read<cubic_lagrange_reader, fetch_float>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+                case PCM_INT_16:    ibuffer_read<cubic_lagrange_reader, fetch_16bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+                case PCM_INT_24:    ibuffer_read<cubic_lagrange_reader, fetch_24bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+                case PCM_INT_32:    ibuffer_read<cubic_lagrange_reader, fetch_32bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+            }
+            break;
+            
+        case kInterpCubicBSpline:
+            
+            switch(data.format)
+            {
+                case PCM_FLOAT:     ibuffer_read<cubic_bspline_reader, fetch_float>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+                case PCM_INT_16:    ibuffer_read<cubic_bspline_reader, fetch_16bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+                case PCM_INT_24:    ibuffer_read<cubic_bspline_reader, fetch_24bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+                case PCM_INT_32:    ibuffer_read<cubic_bspline_reader, fetch_32bit>(data, out, offsets, fracts, n_samps, chan, mul);    break;
+            }
+            break;
     }
 }
 
-template <class T, class U, typename Ip> void ibuffer_2point_interp(U *out,  void **inbuffers, U *fracts, intptr_t n_samps, typename U::scalar_type mul, Ip ip)
+void ibuffer_read(const ibuffer_data& data, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long chan, double mul, InterpType interp)
 {
-    T *in1 = (T *) inbuffers[0];
-    T *in2 = (T *) inbuffers[1];
-    
-    U scale = mul;
-    
-    for (intptr_t i = 0; i < (n_samps / U::size); i++)
-        *out++ = scale * ip(*fracts++, static_cast<U>(*in1++), static_cast<U>(*in2++));
+    ibuffer_read<double>(data, out, offsets, fracts, n_samps, chan, mul, interp);
 }
 
-template <class T, class V, class U, typename Ip> void ibuffer_simd_2point(const ibuffer_data& data, U *out, intptr_t *offsets, U *fracts, void **temp, intptr_t n_samps, long chan, typename U::scalar_type mul, Ip ip)
+void ibuffer_read(const ibuffer_data& data, float *out, intptr_t *offsets, float *fracts, intptr_t n_samps, long chan, float mul, InterpType interp)
 {
-    ibuffer_fetch_samps_2(temp, data, offsets, n_samps, chan);
-    
-    if (data.format == PCM_FLOAT)
-        ibuffer_2point_interp<V>(out, temp, fracts, n_samps, mul, ip);
-    else
-        ibuffer_2point_interp<T>(out, temp, fracts, n_samps, mul * TWO_POW_31_RECIP_DOUBLE, ip);
+    ibuffer_read<float>(data, out, offsets, fracts, n_samps, chan, mul, interp);
 }
-
-template <class T, typename Ip> void ibuffer_scalar_2point(const ibuffer_data& data, T *out, intptr_t *offsets, T *fracts, intptr_t n_samps, long chan, T mul, Ip ip)
-{
-    for (intptr_t i = 0; i < n_samps; i++)
-    {
-        intptr_t offset = offsets[i];
-        
-        const T y0 = ibuffer_float_get_samp(data, offset - 1, chan);
-        const T y1 = ibuffer_float_get_samp(data, offset, chan);
-        
-        *out++ = mul * ip(*fracts++, y0, y1);
-    }
-}
-
-// SIMD
-
-
-void ibuffer_float_samps_simd_linear(const ibuffer_data& data, SSEFloat *out, intptr_t *offsets, SSEFloat *fracts, void **temp, intptr_t n_samps, long chan, float mul)
-{
-    ibuffer_simd_2point<SSEInt32, SSEFloat>(data, out, offsets, fracts, temp, n_samps, chan, mul, linear_interp<SSEFloat>());
-}
-
-void ibuffer_double_samps_simd_linear(const ibuffer_data& data, SSE4Double *out, intptr_t *offsets, SSE4Double *fracts, intptr_t n_samps,long chan, double mul)
-{
-    //ibuffer_simd_2point<SSEInt32, SSEFloat>(data, out, offsets, fracts, temp, n_samps, chan, mul, linear_interp<SSE4Double>());
-    //ibuffer_2point_interp<SSEFloat>(data, out, offsets, fracts, n_samps, chan, mul, linear_interp<AVX256Double>());
-    ibuffer_2point_interp<SSEFloat>(data, out, offsets, fracts, n_samps, chan, mul, linear_interp<SSE4Double>());
-
-}
-
-void ibuffer_float_samps_simd_cubic_bspline(const ibuffer_data& data,  SSEFloat *out, intptr_t *offsets, SSEFloat *fracts, void **temp, intptr_t n_samps, long chan, float mul)
-{
-    ibuffer_simd_4point<SSEInt32, SSEFloat>(data, out, offsets, fracts, temp, n_samps, chan, mul, cubic_bspline_interp<SSEFloat>());
-}
-
-void ibuffer_double_samps_simd_cubic_bspline(const ibuffer_data& data, AVX256Double *out, intptr_t *offsets, AVX256Double *fracts, intptr_t n_samps, long chan, double mul)
-{
-    //ibuffer_simd_4point<SSEInt32, SSEFloat>(data, out, offsets, fracts, temp, n_samps, chan, mul, cubic_bspline_interp<SSE4Double>());
-    ibuffer_4point_interp<SSEFloat>(data, out, offsets, fracts, n_samps, chan, mul, cubic_bspline_interp<AVX256Double>());
-}
-
-void ibuffer_float_samps_simd_cubic_lagrange(const ibuffer_data& data, SSEFloat *out, intptr_t *offsets, SSEFloat *fracts, void **temp, intptr_t n_samps, long chan, float mul)
-{
-    ibuffer_simd_4point<SSEInt32, SSEFloat>(data, out, offsets, fracts, temp, n_samps, chan, mul, cubic_lagrange_interp<SSEFloat>());
-}
-
-void ibuffer_double_samps_simd_cubic_lagrange(const ibuffer_data& data, AVX256Double *out, intptr_t *offsets, AVX256Double *fracts, intptr_t n_samps, long chan, double mul)
-{
-    //ibuffer_simd_4point<SSEInt32, SSEFloat>(data, out, offsets, fracts, temp, n_samps, chan, mul, cubic_lagrange_interp<SSE4Double>());
-    ibuffer_4point_interp<SSEFloat>(data, out, offsets, fracts, n_samps, chan, mul, cubic_lagrange_interp<AVX256Double>());
-
-}
-
-void ibuffer_float_samps_simd_cubic_hermite(const ibuffer_data& data, SSEFloat *out, intptr_t *offsets, SSEFloat *fracts, void **temp, intptr_t n_samps, long chan, float mul)
-{
-    //ibuffer_simd_4point<SSEInt32, SSEFloat>(data, out, offsets, fracts, temp, n_samps, chan, mul, cubic_hermite_interp<SSEFloat>());
-    ibuffer_4point_interp<SSEFloat>(data, out, offsets, fracts, n_samps, chan, mul, cubic_hermite_interp<SSEFloat>());
-
-}
-
-void ibuffer_double_samps_simd_cubic_hermite(const ibuffer_data& data, AVX256Double *out, intptr_t *offsets, AVX256Double *fracts, intptr_t n_samps, long chan, double mul)
-{
-    //ibuffer_simd_4point<SSEInt32, SSEFloat>(data, out, offsets, fracts, temp, n_samps, chan, mul, cubic_hermite_interp<AVX256Double>());
-    ibuffer_4point_interp<SSEFloat>(data, out, offsets, fracts, n_samps, chan, mul, cubic_hermite_interp<AVX256Double>());
-}
-
-// SCALAR CODE
-
-void ibuffer_float_samps_scalar_linear(const ibuffer_data& data, float *out, intptr_t *offsets, float *fracts, intptr_t n_samps, long chan, float mul)
-{
-    ibuffer_scalar_2point(data, out, offsets, fracts, n_samps, chan, mul, linear_interp<float>());
-}
-
-void ibuffer_double_samps_scalar_linear(const ibuffer_data& data, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long chan, double mul)
-{
-    ibuffer_scalar_2point(data, out, offsets, fracts, n_samps, chan, mul, linear_interp<double>());
-}
-
-void ibuffer_float_samps_scalar_cubic_bspline(const ibuffer_data& data, float *out, intptr_t *offsets, float *fracts, intptr_t n_samps, long chan, float mul)
-{
-    ibuffer_scalar_4point(data, out, offsets, fracts, n_samps, chan, mul, cubic_bspline_interp<float>());
-}
-
-void ibuffer_double_samps_scalar_cubic_bspline(const ibuffer_data& data, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long chan, double mul)
-{
-    ibuffer_scalar_4point(data, out, offsets, fracts, n_samps, chan, mul, cubic_bspline_interp<double>());
-}
-
-void ibuffer_float_samps_scalar_cubic_hermite(const ibuffer_data& data, float *out, intptr_t *offsets, float *fracts, intptr_t n_samps, long chan, float mul)
-{
-    ibuffer_scalar_4point(data, out, offsets, fracts, n_samps, chan, mul, cubic_hermite_interp<float>());
-}
-
-void ibuffer_double_samps_scalar_cubic_hermite(const ibuffer_data& data, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long chan, double mul)
-{
-    ibuffer_scalar_4point(data, out, offsets, fracts, n_samps, chan, mul, cubic_hermite_interp<double>());
-}
-
-void ibuffer_float_samps_scalar_cubic_lagrange(const ibuffer_data& data, float *out, intptr_t *offsets, float *fracts, intptr_t n_samps, long chan, float mul)
-{
-    ibuffer_scalar_4point(data, out, offsets, fracts, n_samps, chan, mul, cubic_lagrange_interp<float>());
-}
-
-void ibuffer_double_samps_scalar_cubic_lagrange(const ibuffer_data& data, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long chan, double mul)
-{
-    ibuffer_scalar_4point(data, out, offsets, fracts, n_samps, chan, mul, cubic_lagrange_interp<double>());
-}
-
 
 long IBuffer_SSE_Exists = 0;
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////// Symbols and init (for symbols) /////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////
+
 
 
 void ibuffer_init ()
@@ -448,286 +327,43 @@ void ibuffer_init ()
 	ps_hermite = gensym("hermite");
 	ps_lagrange = gensym("lagrange");
 	
-	IBuffer_SSE_Exists = SSE2_check();
+	//IBuffer_SSE_Exists = SSE2_check();
 }
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////// Convert from 32 bit integer format to 32 bit float ///////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+typedef SizedVector<4, SSEDouble> SSE4Double;
 
 
-#ifdef __APPLE__
-
-static __inline void convert_and_scale_int32_to_float (float *out, intptr_t n_samps)
+template <class T, class Ft> void ibuffer_get_samps_loop(Ft fetch, T *out, intptr_t offset, intptr_t n_samps, bool reverse)
 {
-	vFloat scale = {TWO_POW_31_RECIP, TWO_POW_31_RECIP, TWO_POW_31_RECIP, TWO_POW_31_RECIP};
-	
-	vSInt32	*ivec_ptr = (vSInt32 *) out;
-	vFloat *fvec_ptr = (vFloat *) out;
-	int32_t *temp_ptr;
-		
-	intptr_t i;
-	
-	// Do vectors
-	
-	for (i = 0; i < n_samps >> 2; i++)
-		*fvec_ptr++ = F32_VEC_MUL_OP (scale, F32_VEC_FROM_I32 (*ivec_ptr++));
-	
-	// Clean up with scalars
-	
-	for (temp_ptr = (int32_t *) ivec_ptr, out = (float *) fvec_ptr, i <<= 2; i < n_samps; i++)
-		*out++ = (float) *temp_ptr++ * TWO_POW_31_RECIP;	
+	if (reverse)
+    {
+        for (intptr_t i = n_samps - 1; i >= n_samps; i--)
+            *out++ = fetch(offset + i);
+    }
+    else
+    {
+        for (intptr_t i = 0; i < n_samps; i++)
+            *out++ = fetch(offset + i);
+    }
 }
 
-#else
-
-static __inline void convert_and_scale_int32_to_float (float *out, intptr_t n_samps)
+template <class T> void ibuffer_get_samps(const ibuffer_data& data, T *out, intptr_t offset, intptr_t n_samps, long chan, bool reverse)
 {
-	vFloat scale = {TWO_POW_31_RECIP, TWO_POW_31_RECIP, TWO_POW_31_RECIP, TWO_POW_31_RECIP};
-	
-	vSInt32	*ivec_ptr;
-	vFloat *fvec_ptr ;
-	int32_t *temp_ptr = (int32_t *) out;
-	
-	intptr_t start_offset = (16 - ((intptr_t) out % 16)) >> 2;
-	intptr_t i;
-		
-	if (start_offset == 4)
-		start_offset = 0;
-	
-	// This should avoid executing any SSE instructions - but it may not be safe - check later...
-	
-	if (!IBuffer_SSE_Exists)
-		start_offset = n_samps; 
-	
-	// Start with scalars
-	
-	for (i = 0; i < start_offset && i < n_samps; i++)
-		*out++ = (float) *temp_ptr++ * TWO_POW_31_RECIP;	
-	
-	// Do vectors
-	
-	for (ivec_ptr = (vSInt32 *) temp_ptr, fvec_ptr = (vFloat *) out; i < n_samps - 3; i += 4)
-		*fvec_ptr++ = F32_VEC_MUL_OP (scale, F32_VEC_FROM_I32 (*ivec_ptr++));
-	
-	// Clean up with scalars
-	
-	for (temp_ptr = (int32_t *) ivec_ptr, out = (float *) fvec_ptr; i < n_samps; i++)
-		*out++ = (float) *temp_ptr++ * TWO_POW_31_RECIP;	
+    switch(data.format)
+    {
+        case PCM_FLOAT:     ibuffer_get_samps_loop(fetch_float(data, chan), out, offset, n_samps, reverse);     break;
+        case PCM_INT_16:    ibuffer_get_samps_loop(fetch_16bit(data, chan), out, offset, n_samps, reverse);     break;
+        case PCM_INT_24:    ibuffer_get_samps_loop(fetch_24bit(data, chan), out, offset, n_samps, reverse);     break;
+        case PCM_INT_32:    ibuffer_get_samps_loop(fetch_32bit(data, chan), out, offset, n_samps, reverse);     break;
+    }
 }
 
-#endif
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////// Get multiple consecutive samples ////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-void ibuffer_get_samps_16 (void *samps, float *out, intptr_t offset, intptr_t n_samps, long n_chans, long chan)
+void ibuffer_get_samps(const ibuffer_data& data, float *out, intptr_t offset, intptr_t n_samps, long chan, bool reverse)
 {
-	int16_t *sampschan = ((int16_t *) samps) + chan + (offset * n_chans);
-	int32_t *temp_ptr = (int32_t *) out;
-	intptr_t i;
-	
-	for (i = 0; i < n_samps; i++)
-		*temp_ptr++ = (*(sampschan + (i * n_chans)) << 16) & MASK_16_BIT;
-		
-	convert_and_scale_int32_to_float (out, n_samps);
+    ibuffer_get_samps<float>(data, out, offset, n_samps, chan, reverse);
 }
 
-void ibuffer_get_samps_24 (void *samps, float *out, intptr_t offset, intptr_t n_samps, long n_chans, long chan)
-{	
-	int8_t *sampschan = ((int8_t *) samps) + (3 * (chan + (offset * n_chans))) - 1;
-	int32_t *temp_ptr = (int32_t *) out;
-	intptr_t i;
-	
-	for (i = 0; i < n_samps; i++)
-		*temp_ptr++ = *((int32_t *)(sampschan + (i * 3 * n_chans))) & MASK_24_BIT;
-		
-	convert_and_scale_int32_to_float (out, n_samps);
-}
-
-void ibuffer_get_samps_32 (void *samps, float *out, intptr_t offset, intptr_t n_samps, long n_chans, long chan)
+void ibuffer_get_samps(const ibuffer_data& data, double *out, intptr_t offset, intptr_t n_samps, long chan, bool reverse)
 {
-	int32_t *sampschan = ((int32_t *) samps) + chan + (offset * n_chans);
-	int32_t	*temp_ptr = (int32_t *) out;
-	intptr_t i;
-		
-	for (i = 0; i < n_samps; i++)
-		*temp_ptr++ = *(sampschan + (i * n_chans));
-	
-	convert_and_scale_int32_to_float (out, n_samps);
-}
-
-void ibuffer_get_samps_float (void *samps, float *out, intptr_t offset, intptr_t n_samps, long n_chans, long chan)
-{
-	float *sampschan = ((float *) samps) + chan + (offset * n_chans);
-	intptr_t i;
-	
-	for (i = 0; i < n_samps; i++)
-		*out++ = *(sampschan + (i * n_chans));
-}
-
-void ibuffer_get_samps(void *samps, float *out, intptr_t offset, intptr_t n_samps, long n_chans, long chan, long format)
-{
-	switch (format)
-	{
-		case PCM_INT_16:
-			ibuffer_get_samps_16 (samps, out, offset, n_samps, n_chans, chan);
-			break;
-			
-		case PCM_INT_24:
-			ibuffer_get_samps_24 (samps, out, offset, n_samps, n_chans, chan);
-			break;
-			
-		case PCM_INT_32:
-			ibuffer_get_samps_32 (samps, out, offset, n_samps, n_chans, chan);
-			break;
-		
-		case PCM_FLOAT:
-			ibuffer_get_samps_float (samps, out, offset, n_samps, n_chans, chan);
-			break;			
-	}
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////// Get multiple consecutive samples in reverse ///////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-void ibuffer_get_samps_rev_16 (void *samps, float *out, intptr_t offset, intptr_t n_samps, long n_chans, long chan)
-{
-	int16_t *sampschan = ((int16_t *) samps) + chan + (offset * n_chans);
-	int32_t *temp_ptr = (int32_t *) out;
-	intptr_t i;
-	
-	for (i = n_samps - 1; i >= 0; i--)
-		*temp_ptr++ = (*(sampschan + (i * n_chans)) << 16) & MASK_16_BIT;
-	
-	convert_and_scale_int32_to_float (out, n_samps);
-}
-
-void ibuffer_get_samps_rev_24 (void *samps, float *out, intptr_t offset, intptr_t n_samps, long n_chans, long chan)
-{
-	int8_t *sampschan = ((int8_t *) samps) + (3 * (chan + (offset * n_chans))) - 1;
-	int32_t *temp_ptr = (int32_t *) out;
-	intptr_t i;
-	
-	for (i = n_samps - 1; i >= 0; i--)
-		*temp_ptr++ = *((int32_t *)(sampschan + (i * 3 * n_chans)))  & MASK_24_BIT;;
-		
-	convert_and_scale_int32_to_float (out, n_samps);
-}
-
-void ibuffer_get_samps_rev_32 (void *samps, float *out, intptr_t offset, intptr_t n_samps, long n_chans, long chan)
-{
-	int32_t *sampschan = ((int32_t *) samps) + chan + + (offset * n_chans);
-	int32_t *temp_ptr = (int32_t *) out;
-	intptr_t i;
-	
-	for (i = 0; i < n_samps; i++)
-		*temp_ptr++ = *(sampschan + (i * n_chans));
-	
-	convert_and_scale_int32_to_float (out, n_samps);
-}
-
-void ibuffer_get_samps_rev_float (void *samps, float *out, intptr_t offset, intptr_t n_samps, long n_chans, long chan)
-{
-	float *sampschan = ((float *) samps) + chan + (offset * n_chans);
-	intptr_t i;
-	
-	for (i = n_samps - 1; i >= 0; i--)
-		*out++ = *(sampschan + (i * n_chans));
-}
-
-void ibuffer_get_samps_rev (void *samps, float *out, intptr_t offset, intptr_t n_samps, long n_chans, long chan, long format)
-{
-	switch (format)
-	{
-		case PCM_INT_16:
-			ibuffer_get_samps_rev_16 (samps, out, offset, n_samps, n_chans, chan);
-			break;
-			
-		case PCM_INT_24:
-			ibuffer_get_samps_rev_24 (samps, out, offset, n_samps, n_chans, chan);
-			break;
-			
-		case PCM_INT_32:
-			ibuffer_get_samps_rev_32 (samps, out, offset, n_samps, n_chans, chan);
-			break;
-		
-		case PCM_FLOAT:
-			ibuffer_get_samps_rev_float (samps, out, offset, n_samps, n_chans, chan);
-			break;
-	}
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// Get samples with no interpolation
-
-void ibuffer_float_samps_simd_nointerp (const ibuffer_data& data, vFloat *out, intptr_t *offsets, intptr_t n_samps, long chan, float mul)
-{
-	vFloat scale = float2vector ((data.format == PCM_FLOAT) ? mul : (mul * TWO_POW_31_RECIP));
-	vSInt32 *int_vec = (vSInt32 *) out;
-	intptr_t i;	
-
-	ibuffer_fetch_samps((void *) out, data, offsets, n_samps, chan);
-	
-	if (data.format == PCM_FLOAT)
-	{
-		for (i = 0; i < ((n_samps + 3) >> 2); i++, out++)
-			*out = F32_VEC_MUL_OP (scale, *out);
-	}
-	else 
-	{
-		for (i = 0; i < (n_samps + 3) >> 2; i++)
-			*out++ = F32_VEC_MUL_OP (scale, F32_VEC_FROM_I32 (*int_vec++));
-	}
-}
-
-void ibuffer_float_samps_scalar_nointerp (const ibuffer_data& data, float *out, intptr_t *offsets, intptr_t n_samps, long chan, float mul)
-{
-	intptr_t i;	
-		
-	for (i = 0; i < n_samps; i++)
-		*out++ = mul * ibuffer_float_get_samp(data, offsets[i], chan);
-}
-
-void ibuffer_double_samps_simd_nointerp (const ibuffer_data& data, vDouble *out, intptr_t *offsets, intptr_t n_samps, long chan, double mul)
-{
-	vDouble scale = double2vector ((data.format == PCM_FLOAT) ? mul : (mul * TWO_POW_31_RECIP));
-	vFloat *float_vec = (vFloat *) ((double *) out + (((n_samps + 3) >> 2) << 1));
-	vFloat float_temp;
-	vSInt32 *int_vec = (vSInt32 *) float_vec;
-	vSInt32 int_temp;
-	intptr_t i;	
-	
-	ibuffer_fetch_samps((void *) float_vec, data, offsets, n_samps, chan);
-	
-	if (data.format == PCM_FLOAT)
-	{
-		for (i = 0; i < ((n_samps + 3) >> 2); i++)
-		{
-			float_temp = *float_vec++;
-			*out++ = F64_VEC_MUL_OP (scale, F64_VEC_FROM_F32(float_temp));
-			*out++ = F64_VEC_MUL_OP (scale, F64_VEC_FROM_F32(F32_VEC_MOVE_HI(float_temp, float_temp)));
-		}
-	}
-	else 
-	{
-		for (i = 0; i < ((n_samps + 3) >> 2); i++)
-		{
-			int_temp = *int_vec++;
-			*out++ = F64_VEC_MUL_OP(scale, F64_VEC_FROM_I32(int_temp));
-			*out++ = F64_VEC_MUL_OP(scale, F64_VEC_FROM_I32(I32_VEC_SHUFFLE_OP(int_temp, 0xE)));
-		}
-	}
-}
-
-void ibuffer_double_samps_scalar_nointerp (const ibuffer_data& data, double *out, intptr_t *offsets, intptr_t n_samps, long chan, double mul)
-{
-	intptr_t i;	
-	
-	for (i = 0; i < n_samps; i++)
-		*out++ = mul * ibuffer_double_get_samp(data, offsets[i], chan);
+    ibuffer_get_samps<double>(data, out, offset, n_samps, chan, reverse);
 }

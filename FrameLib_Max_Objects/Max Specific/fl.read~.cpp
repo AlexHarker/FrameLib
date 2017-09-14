@@ -114,7 +114,7 @@ void FrameLib_MaxRead::process()
     
     if (buffer && size)
     {
-        chan = (mChan - 1) % data.n_chans;
+        chan = (mChan - 1) % data.num_chans;
             
         tempMem = mAllocator->alloc(size * (sizeof(double) + sizeof(intptr_t)));
         if (!tempMem)
@@ -132,17 +132,9 @@ void FrameLib_MaxRead::process()
         
         switch (mUnits)
         {
-            case kMS:
-                conversionFactor = samplingRate / 1000.0;
-                break;
-                
-            case kSeconds:
-                conversionFactor = samplingRate;
-                break;
-                
-            case kSamples:
-                conversionFactor = 1.0;
-                break;
+            case kMS:           conversionFactor = samplingRate / 1000.0;       break;
+            case kSeconds:      conversionFactor = samplingRate;                break;
+            case kSamples:      conversionFactor = 1.0;                         break;
         }
         
         for (unsigned long i = 0; i < size; i++)
@@ -164,37 +156,21 @@ void FrameLib_MaxRead::process()
             
             interp |= (fract != 0.0);
         }
-        
-        ibuffer_preprocess_offsets(offsets, data, vecSize);
+                
+        InterpType interpType = kInterpNone;
         
         if (interp)
         {
             switch (mMode)
             {
-                case kLinear:
-                    ibuffer_double_samps_simd_linear(data, (SSE4Double *) output, offsets, (SSE4Double *) fracts, vecSize, chan, 1.0);
-                    ibuffer_double_samps_scalar_linear(data, output + vecSize, offsets + vecSize, fracts + vecSize, size & 0x3, chan, 1.0);
-                    break;
-                case kBSpline:
-                    ibuffer_double_samps_simd_cubic_bspline(data, (AVX256Double *) output, offsets, (AVX256Double *) fracts, vecSize, chan, 1.0);
-                    ibuffer_double_samps_scalar_cubic_bspline(data, output + vecSize, offsets + vecSize, fracts + vecSize, size & 0x3, chan, 1.0);
-                    break;
-                case kHermite:
-                    ibuffer_double_samps_simd_cubic_hermite(data, (AVX256Double *) output, offsets, (AVX256Double *) fracts, vecSize, chan, 1.0);
-                    ibuffer_double_samps_scalar_cubic_hermite(data, output + vecSize, offsets + vecSize, fracts + vecSize, size & 0x3, chan, 1.0);
-                    break;
-                case kLagrange:
-                    ibuffer_double_samps_simd_cubic_lagrange(data, (AVX256Double *) output, offsets, (AVX256Double *) fracts, vecSize, chan, 1.0);
-                    ibuffer_double_samps_scalar_cubic_lagrange(data, output + vecSize, offsets + vecSize, fracts + vecSize, size & 0x3, chan, 1.0);
-                    break;
+                case kLinear:       interpType = kInterpLinear;             break;
+                case kLagrange:     interpType = kInterpCubicLagrange;      break;
+                case kHermite:      interpType = kInterpCubicHermite;       break;
+                case kBSpline:      interpType = kInterpCubicBSpline;       break;
             }
         }
-        else
-        {
-            ibuffer_double_samps_simd_nointerp(data, (vDouble *) output, offsets, vecSize, chan, 1.0);
-            ibuffer_double_samps_scalar_nointerp(data, output + vecSize, offsets + vecSize, size & 0x3, chan, 1.0);
-        }
         
+        ibuffer_read(data, output, offsets, fracts, vecSize, chan, 1.0, interpType);
         mAllocator->dealloc(tempMem);
         ibuffer_decrement_inuse(buffer);
     }
