@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 5,
-			"architecture" : "x64",
+			"architecture" : "x86",
 			"modernui" : 1
 		}
 ,
@@ -124,7 +124,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 5,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -162,7 +162,7 @@
 									"fontsize" : 12.0,
 									"id" : "obj-3",
 									"maxclass" : "newobj",
-									"numinlets" : 3,
+									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 563.0, 119.0, 118.0, 22.0 ],
@@ -191,7 +191,7 @@
 									"fontsize" : 12.0,
 									"id" : "obj-35",
 									"maxclass" : "newobj",
-									"numinlets" : 3,
+									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 394.0, 119.0, 124.0, 22.0 ],
@@ -207,7 +207,7 @@
 									"fontsize" : 12.0,
 									"id" : "obj-38",
 									"maxclass" : "newobj",
-									"numinlets" : 3,
+									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 225.0, 119.0, 124.0, 22.0 ],
@@ -271,7 +271,7 @@
 									"fontsize" : 12.0,
 									"id" : "obj-43",
 									"maxclass" : "newobj",
-									"numinlets" : 3,
+									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 56.0, 119.0, 124.0, 22.0 ],
@@ -355,7 +355,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-3", 1 ],
-									"midpoints" : [ 596.0, 111.0, 622.0, 111.0 ],
+									"midpoints" : [ 596.0, 111.0, 671.5, 111.0 ],
 									"source" : [ "obj-39", 0 ]
 								}
 
@@ -363,7 +363,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-35", 1 ],
-									"midpoints" : [ 431.5, 111.0, 456.0, 111.0 ],
+									"midpoints" : [ 431.5, 111.0, 508.5, 111.0 ],
 									"source" : [ "obj-40", 0 ]
 								}
 
@@ -371,7 +371,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-38", 1 ],
-									"midpoints" : [ 260.0, 111.0, 287.0, 111.0 ],
+									"midpoints" : [ 260.0, 111.0, 339.5, 111.0 ],
 									"source" : [ "obj-42", 0 ]
 								}
 
@@ -386,7 +386,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-43", 1 ],
-									"midpoints" : [ 86.5, 111.0, 118.0, 111.0 ],
+									"midpoints" : [ 86.5, 111.0, 170.5, 111.0 ],
 									"source" : [ "obj-44", 0 ]
 								}
 
@@ -461,7 +461,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 5,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -514,7 +514,7 @@
 									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 338.0, 223.0, 145.0, 22.0 ],
 									"style" : "",
-									"text" : "BandFilter 12 400 1600 1"
+									"text" : "BandFilter 12 400 1600 0"
 								}
 
 							}
@@ -527,7 +527,7 @@
 									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 188.0, 223.0, 139.0, 22.0 ],
 									"style" : "",
-									"text" : "BandFilter 12 200 400 1"
+									"text" : "BandFilter 12 200 400 0"
 								}
 
 							}
@@ -911,8 +911,8 @@
 						"followglobaltempo" : 0,
 						"formantcorrection" : 0,
 						"mode" : "basic",
-						"originallength" : [ 284044.389227, "ticks" ],
-						"originaltempo" : 119.999992,
+						"originallength" : [ 284044.40625, "ticks" ],
+						"originaltempo" : 120.0,
 						"pitchcorrection" : 0,
 						"quality" : "basic",
 						"timestretch" : [ 0 ]
@@ -1266,14 +1266,14 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "BandFilter.maxpat",
-				"bootpath" : "~/Desktop/Public Alpha Demos",
+				"bootpath" : "~/Documents/Max Externals/- Huddersfield/FrameLib/Current Test Version/Demos",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "LinFilter.maxpat",
-				"bootpath" : "~/Desktop/Public Alpha Demos",
+				"bootpath" : "~/Documents/Max Externals/- Huddersfield/FrameLib/Current Test Version/Demos",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
