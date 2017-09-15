@@ -88,105 +88,34 @@ static __inline int SSE2_check()
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////// Utility macros (non platform-specific)  //////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-// The standard compare operations return all bits on, but for use in MSP we probably want values of one
-// These routines can be used in this case
-
-static const vFloat Vec_Ops_F32_One = {1.,1.,1.,1.};
-
-#define F32_VEC_EQUAL_MSP_OP(a,b)		F32_VEC_AND_OP(Vec_Ops_F32_One, F32_VEC_EQUAL_OP(a,b)) 
-#define F32_VEC_NOTEQUAL_MSP_OP(a,b)	F32_VEC_SUB_OP(Vec_Ops_F32_One, F32_VEC_AND_OP(F32_VEC_EQUAL_OP(a,b), Vec_Ops_F32_One))
-#define F32_VEC_GT_MSP_OP(a,b)			F32_VEC_AND_OP(Vec_Ops_F32_One, F32_VEC_GT_OP(a,b))
-#define F32_VEC_LT_MSP_OP(a,b)			F32_VEC_AND_OP(Vec_Ops_F32_One, F32_VEC_LT_OP(a,b)) 
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////// Macros for platform-specific vector ops ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #ifdef TARGET_INTEL
 
-// Intel
-
-// Comparisons that return one or zero
-
-static const vDouble Vec_Ops_F64_One = {1.,1.};
-
-#define F64_VEC_EQUAL_MSP_OP(a,b)		F64_VEC_AND_OP(Vec_Ops_F64_One, F64_VEC_EQUAL_OP(a,b)) 
-#define F64_VEC_NOTEQUAL_MSP_OP(a,b)	F64_VEC_SUB_OP(Vec_Ops_F64_One, F64_VEC_AND_OP(F64_VEC_EQUAL_OP(a,b), Vec_Ops_F64_One))
-#define F64_VEC_GT_MSP_OP(a,b)			F64_VEC_AND_OP(Vec_Ops_F64_One, F64_VEC_GT_OP(a,b))
-#define F64_VEC_LT_MSP_OP(a,b)			F64_VEC_AND_OP(Vec_Ops_F64_One, F64_VEC_LT_OP(a,b)) 
-
-// Floating point single precision (32 bit) intrinsics or local functions
-
-#define float2vector					_mm_set1_ps
-
-#define F32_VEC_DIV_OP					_mm_div_ps
-
-#define F32_VEC_AND_OP					_mm_and_ps
-#define F32_VEC_ANDNOT_OP				_mm_andnot_ps
-#define F32_VEC_OR_OP					_mm_or_ps
-#define F32_VEC_XOR_OP					_mm_xor_ps
+// Select
 
 #define F32_VEC_SEL_OP					_mm_sel_ps
+#define F64_VEC_SEL_OP					_mm_sel_pd
+#define I32_VEC_SEL_OP					_mm_sel_epi32
 
-#define F32_VEC_MIN_OP					_mm_min_ps
-#define F32_VEC_MAX_OP					_mm_max_ps
-
-#define F32_VEC_EQUAL_OP(a,b)			_mm_cmpeq_ps(a,b)
-#define F32_VEC_NEQUAL_OP(a,b)			_mm_cmpneq_ps(a,b)
-#define F32_VEC_GT_OP(a,b)				_mm_cmpgt_ps(a,b)
-#define F32_VEC_LT_OP(a,b)				_mm_cmplt_ps(a,b)
-
-#define F32_VEC_SQRT_OP					_mm_sqrt_ps
-
+// Load / Store / Unpack
+ 
 #define F32_VEC_USTORE					_mm_storeu_ps
 #define F32_VEC_MOVE_LO					_mm_movelh_ps
 #define F32_VEC_MOVE_HI					_mm_movehl_ps
-#define F32_VEC_SHUFFLE					_mm_shuffle_ps
-
-// Conversions from and to 32 bit floating point vectors
-
-#define F32_VEC_FROM_I32				_mm_cvtepi32_ps
-#define I32_VEC_FROM_F32_ROUND			_mm_cvtps_epi32
-#define I32_VEC_FROM_F32_TRUNC			_mm_cvttps_epi32
-
-// Floating-point double precision (64 bit) intrinsics or local functions (only available under intel)
-
-#define double2vector					_mm_set1_pd
-
-#define F64_VEC_DIV_OP					_mm_div_pd
-
-#define F64_VEC_AND_OP					_mm_and_pd
-#define F64_VEC_ANDNOT_OP				_mm_andnot_pd
-#define F64_VEC_OR_OP					_mm_or_pd
-#define F64_VEC_XOR_OP					_mm_xor_pd
-
-#define F64_VEC_SEL_OP					_mm_sel_pd
-
-#define F64_VEC_MIN_OP					_mm_min_pd
-#define F64_VEC_MAX_OP					_mm_max_pd
-
-#define F64_VEC_EQUAL_OP(a,b)			_mm_cmpeq_pd(a,b)
-#define F64_VEC_NEQUAL_OP(a,b)			_mm_cmpneq_pd(a,b)
-#define F64_VEC_GT_OP					_mm_cmpgt_pd
-#define F64_VEC_LT_OP					_mm_cmplt_pd
-
-#define F64_VEC_SQRT_OP					_mm_sqrt_pd
-
 #define F64_VEC_USTORE					_mm_storeu_pd
 #define F64_VEC_UNPACK_LO				_mm_unpacklo_pd
 #define F64_VEC_UNPACK_HI				_mm_unpackhi_pd
 #define F64_VEC_STORE_HI				_mm_storeh_pd
 #define F64_VEC_STORE_LO				_mm_storel_pd
-#define F64_VEC_SET_BOTH				_mm_set1_pd
-#define F64_VEC_SHUFFLE					_mm_shuffle_pd
 
-// Conversions from and to 64 bit floating point vectors
+// Conversions
 
+#define F32_VEC_FROM_I32				_mm_cvtepi32_ps
+#define I32_VEC_FROM_F32_ROUND			_mm_cvtps_epi32
+#define I32_VEC_FROM_F32_TRUNC			_mm_cvttps_epi32
+ 
 #define F64_VEC_FROM_F32				_mm_cvtps_pd
 #define F32_VEC_FROM_F64				_mm_cvtpd_ps
 
@@ -194,41 +123,11 @@ static const vDouble Vec_Ops_F64_One = {1.,1.};
 #define I32_VEC_FROM_F64_ROUND			_mm_cvtpd_epi32
 #define I32_VEC_FROM_F64_TRUNC			_mm_cvttpd_epi32
 
-// Integer 32 bit intrinsics
-
-#define s32int2vector					_mm_set1_epi32
+// Shuffles
  
-#define I32_VEC_MIN_OP					_mm_min_epi32
-#define I32_VEC_MAX_OP					_mm_max_epi32
-
-#define I32_VEC_OR_OP					_mm_or_si128
-#define I32_VEC_AND_OP					_mm_and_si128
-
+#define F32_VEC_SHUFFLE					_mm_shuffle_ps
+#define F64_VEC_SHUFFLE					_mm_shuffle_pd
 #define I32_VEC_SHUFFLE_OP				_mm_shuffle_epi32
-
-// Altivec has min / max intrinics for 32 bit signed integers, but on intel this must be done in software (although it is provided under windows)
-// These routines are taken directly from the apple SSE migration guide
-// The guide can be found at http://developer.apple.com/legacy/mac/library/documentation/Performance/Conceptual/Accelerate_sse_migration/Accelerate_sse_migration.pdf
-
-#ifdef __APPLE__
-static __inline vSInt32 _mm_min_epi32(vSInt32 a, vSInt32 b) FORCE_INLINE;
-static __inline vSInt32 _mm_min_epi32(vSInt32 a, vSInt32 b) 
-{ 
-	vSInt32 t = _mm_cmpgt_epi32(a,b);
-	return _mm_or_si128( _mm_and_si128(t,b),_mm_andnot_si128(t,a));
-}
-
-static __inline vSInt32 _mm_max_epi32(vSInt32 a, vSInt32 b) FORCE_INLINE;
-static __inline vSInt32 _mm_max_epi32(vSInt32 a, vSInt32 b) 
-{ 
-	vSInt32 t = _mm_cmpgt_epi32(a,b);
-	return _mm_or_si128( _mm_andnot_si128(t,b),_mm_and_si128(t,a));
-}
-#endif 
-
-// Altivec has selection intrinics for 32 bit floating point vectors, but on intel this must be done in software
-// These routines are taken directly from the apple SSE migration guide
-// The guide can be found at http://developer.apple.com/legacy/mac/library/documentation/Performance/Conceptual/Accelerate_sse_migration/Accelerate_sse_migration.pdf
 
 #ifdef __APPLE__
 static __inline vFloat _mm_sel_ps(vFloat a, vFloat b, vFloat mask) FORCE_INLINE;
@@ -254,70 +153,10 @@ static __inline vDouble _mm_sel_pd(vDouble a, vDouble b, vDouble mask) FORCE_INL
     b = _mm_and_pd(b, mask); 
     a = _mm_andnot_pd(mask, a); 
     return _mm_or_pd(a, b); 
-} 
-
-#else
-
-
-// Return a vector filled with a single signed integer value
-
-static __inline vSInt32 s32int2vector (int s32int_val) FORCE_INLINE;
-static __inline vSInt32 s32int2vector (int s32int_val) FORCE_INLINE_DEFINITION
-{
-	vSInt32 TheVector = {s32int_val, s32int_val, s32int_val, s32int_val};
-	return TheVector;
 }
-
-// Return a vector filled with a single float value
-
-static __inline vFloat float2vector (float floatval) FORCE_INLINE;
-static __inline vFloat float2vector (float floatval) FORCE_INLINE_DEFINITION
-{
-	vFloat TheVector;
-	float *TheFloatArray = (float *) &TheVector;
-	
-	TheFloatArray[0] = floatval;
-	TheFloatArray[1] = floatval;
-	TheFloatArray[2] = floatval;
-	TheFloatArray[3] = floatval;
-	
-	return TheVector;
-}
-
-// Provide altivec safe misaligned loads and stores (not sure how fast these are)
-// These routines are taken directly from the apple SSE migration guide
-// The guide can be found at http://developer.apple.com/legacy/mac/library/documentation/Performance/Conceptual/Accelerate_sse_migration/Accelerate_sse_migration.pdf
-
-
-static inline vFloat vec_uload(unsigned char *target) FORCE_INLINE;
-static inline vFloat vec_uload(unsigned char *target)										
-{
-    vector unsigned char MSQ, LSQ;
-    vector unsigned char mask;
-
-    MSQ = vec_ld(0, target);						// most significant quadword
-    LSQ = vec_ld(15, target);						// least significant quadword
-    mask = vec_lvsl(0, target);						// create the permute mask
-    return (vFloat) vec_perm(MSQ, LSQ, mask);		// align the data
-}
-
-
-static __inline void vec_ustore(unsigned char *target, vector unsigned char src) FORCE_INLINE;
-static __inline void vec_ustore(unsigned char *target, vector unsigned char src)				
-{
-    src = vec_perm( src, src, vec_lvsr( 0, target ) );
-    vec_ste( (vector unsigned char) src, 0, (unsigned char*) target );
-    vec_ste( (vector unsigned short) src,1,(unsigned short*) target );
-    vec_ste( (vector unsigned int) src, 3, (unsigned int*) target );
-    vec_ste( (vector unsigned int) src, 4, (unsigned int*) target );
-    vec_ste( (vector unsigned int) src, 8, (unsigned int*) target );
-    vec_ste( (vector unsigned int) src, 12, (unsigned int*) target );
-    vec_ste( (vector unsigned short) src,14,(unsigned short*) target );
-    vec_ste( (vector unsigned char) src,15,(unsigned char*) target );
-}
-
-#endif
 */
+
+#include <algorithm>
 #include <functional>
 
 #define SIMD_COMPILER_SUPPORT_SCALAR 0
@@ -403,6 +242,11 @@ template <int final_size, class T> struct SizedVector
         return operate(a, b, std::multiplies<T>());
     }
     
+    friend SizedVector operator / (const SizedVector& a, const SizedVector& b)
+    {
+        return operate(a, b, std::divides<T>());
+    }
+    
     T mData[array_size];
 };
 
@@ -417,9 +261,29 @@ template <class T> struct Scalar
     Scalar(T a) : mVal(a) {}
     Scalar(const T* a) { mVal = *a; }
     template <class U> Scalar(const Scalar<U> a) { mVal = static_cast<T>(a.mVal); }
+    
     friend Scalar operator + (const Scalar& a, const Scalar& b) { return a.mVal + b.mVal; }
     friend Scalar operator - (const Scalar& a, const Scalar& b) { return a.mVal - b.mVal; }
     friend Scalar operator * (const Scalar& a, const Scalar& b) { return a.mVal * b.mVal; }
+    friend Scalar operator / (const Scalar& a, const Scalar& b) { return a.mVal / b.mVal; }
+
+    friend Scalar sqrt(const Scalar& a) { return sqrt(a.mVal); }
+  
+    friend Scalar min(const Scalar& a, const Scalar& b) { return std::min(a.mVal, b.mVal); }
+    friend Scalar max(const Scalar& a, const Scalar& b) { return std::max(a.mVal, b.mVal); }
+    
+    friend Scalar and_not(const Scalar& a, const Scalar& b) { return (~a.mVal) &  b.mVal; }
+    friend Scalar operator & (const Scalar& a, const Scalar& b) { return a.mVal & b.mVal; }
+    friend Scalar operator | (const Scalar& a, const Scalar& b) { return a.mVal | b.mVal; }
+    friend Scalar operator ^ (const Scalar& a, const Scalar& b) { return a.mVal ^ b.mVal; }
+    
+    friend Scalar operator == (const Scalar& a, const Scalar& b) { return a.mVal == b.mVal; }
+    friend Scalar operator != (const Scalar& a, const Scalar& b) { return a.mVal != b.mVal; }
+    friend Scalar operator > (const Scalar& a, const Scalar& b) { return a.mVal > b.mVal; }
+    friend Scalar operator < (const Scalar& a, const Scalar& b) { return a.mVal < b.mVal; }
+    friend Scalar operator >= (const Scalar& a, const Scalar& b) { return a.mVal >= b.mVal; }
+    friend Scalar operator <= (const Scalar& a, const Scalar& b) { return a.mVal <= b.mVal; }
+
     T mVal;
 };
 
@@ -442,10 +306,29 @@ struct SSEDouble : public SIMDVector<double, __m128d, 2>
     SSEDouble(const double& a) { mVal = _mm_set1_pd(a); }
     SSEDouble(const double* a) { mVal = _mm_loadu_pd(a); }
     SSEDouble(__m128d a) : SIMDVector(a) {}
+    
     friend SSEDouble operator + (const SSEDouble &a, const SSEDouble& b) { return _mm_add_pd(a.mVal, b.mVal); }
     friend SSEDouble operator - (const SSEDouble &a, const SSEDouble& b) { return _mm_sub_pd(a.mVal, b.mVal); }
     friend SSEDouble operator * (const SSEDouble &a, const SSEDouble& b) { return _mm_mul_pd(a.mVal, b.mVal); }
+    friend SSEDouble operator / (const SSEDouble &a, const SSEDouble& b) { return _mm_div_pd(a.mVal, b.mVal); }
     
+    friend SSEDouble sqrt(const SSEDouble& a) { return _mm_sqrt_pd(a.mVal); }
+    
+    friend SSEDouble min(const SSEDouble& a, const SSEDouble& b) { return _mm_min_pd(a.mVal, b.mVal); }
+    friend SSEDouble max(const SSEDouble& a, const SSEDouble& b) { return _mm_max_pd(a.mVal, b.mVal); }
+    
+    friend SSEDouble and_not(const SSEDouble& a, const SSEDouble& b) { return _mm_andnot_pd(a.mVal, b.mVal); }
+    friend SSEDouble operator & (const SSEDouble& a, const SSEDouble& b) { return _mm_and_pd(a.mVal, b.mVal); }
+    friend SSEDouble operator | (const SSEDouble& a, const SSEDouble& b) { return _mm_or_pd(a.mVal, b.mVal); }
+    friend SSEDouble operator ^ (const SSEDouble& a, const SSEDouble& b) { return _mm_xor_pd(a.mVal, b.mVal); }
+    
+    friend SSEDouble operator == (const SSEDouble& a, const SSEDouble& b) { return _mm_cmpeq_pd(a.mVal, b.mVal); }
+    friend SSEDouble operator != (const SSEDouble& a, const SSEDouble& b) { return _mm_cmpneq_pd(a.mVal, b.mVal); }
+    friend SSEDouble operator > (const SSEDouble& a, const SSEDouble& b) { return _mm_cmplt_pd(a.mVal, b.mVal); }
+    friend SSEDouble operator < (const SSEDouble& a, const SSEDouble& b) { return _mm_cmpgt_pd(a.mVal, b.mVal); }
+    friend SSEDouble operator >= (const SSEDouble& a, const SSEDouble& b) { return _mm_cmple_pd(a.mVal, b.mVal); }
+    friend SSEDouble operator <= (const SSEDouble& a, const SSEDouble& b) { return _mm_cmpge_pd(a.mVal, b.mVal); }
+
     template <int y, int x> static SSEDouble shuffle(const SSEDouble& a, const SSEDouble& b)
     {
         return _mm_shuffle_pd(a.mVal, b.mVal, (y<<1)|x);
@@ -460,9 +343,29 @@ struct AVX256Double : public SIMDVector<double, __m256d, 4>
     AVX256Double(const double& a) { mVal = _mm256_set1_pd(a); }
     AVX256Double(const double* a) { mVal = _mm256_loadu_pd(a); }
     AVX256Double(__m256d a) : SIMDVector(a) {}
+    
     friend AVX256Double operator + (const AVX256Double &a, const AVX256Double &b) { return _mm256_add_pd(a.mVal, b.mVal); }
     friend AVX256Double operator - (const AVX256Double &a, const AVX256Double &b) { return _mm256_sub_pd(a.mVal, b.mVal); }
     friend AVX256Double operator * (const AVX256Double &a, const AVX256Double &b) { return _mm256_mul_pd(a.mVal, b.mVal); }
+    friend AVX256Double operator / (const AVX256Double &a, const AVX256Double &b) { return _mm256_div_pd(a.mVal, b.mVal); }
+    
+    friend AVX256Double sqrt(const AVX256Double& a) { return _mm256_sqrt_pd(a.mVal); }
+    
+    friend AVX256Double min(const AVX256Double& a, const AVX256Double& b) { return _mm256_min_pd(a.mVal, b.mVal); }
+    friend AVX256Double max(const AVX256Double& a, const AVX256Double& b) { return _mm256_max_pd(a.mVal, b.mVal); }
+
+    friend AVX256Double and_not(const AVX256Double& a, const AVX256Double& b) { return _mm256_andnot_pd(a.mVal, b.mVal); }
+    friend AVX256Double operator & (const AVX256Double& a, const AVX256Double& b) { return _mm256_and_pd(a.mVal, b.mVal); }
+    friend AVX256Double operator | (const AVX256Double& a, const AVX256Double& b) { return _mm256_or_pd(a.mVal, b.mVal); }
+    friend AVX256Double operator ^ (const AVX256Double& a, const AVX256Double& b) { return _mm256_xor_pd(a.mVal, b.mVal); }
+    /*
+    friend AVX256Double operator == (const AVX256Double& a, const AVX256Double& b) { return _mm256_cmpeq_pd(a.mVal, b.mVal); }
+    friend AVX256Double operator != (const AVX256Double& a, const AVX256Double& b) { return _mm256_cmpneq_pd(a.mVal, b.mVal); }
+    friend AVX256Double operator > (const AVX256Double& a, const AVX256Double& b) { return _mm256_cmplt_pd(a.mVal, b.mVal); }
+    friend AVX256Double operator < (const AVX256Double& a, const AVX256Double& b) { return _mm256_cmpgt_pd(a.mVal, b.mVal); }
+    friend AVX256Double operator >= (const AVX256Double& a, const AVX256Double& b) { return _mm256_cmple_pd(a.mVal, b.mVal); }
+    friend AVX256Double operator <= (const AVX256Double& a, const AVX256Double& b) { return _mm256_cmpge_pd(a.mVal, b.mVal); }
+     */
 };
 
 #endif
@@ -473,10 +376,29 @@ struct SSEFloat : public SIMDVector<float, __m128, 4>
     SSEFloat(const float& a) { mVal = _mm_set1_ps(a); }
     SSEFloat(const float* a) { mVal = _mm_loadu_ps(a); }
     SSEFloat(__m128 a) : SIMDVector(a) {}
+    
     friend SSEFloat operator + (const SSEFloat& a, const SSEFloat& b) { return _mm_add_ps(a.mVal, b.mVal); }
     friend SSEFloat operator - (const SSEFloat& a, const SSEFloat& b) { return _mm_sub_ps(a.mVal, b.mVal); }
     friend SSEFloat operator * (const SSEFloat& a, const SSEFloat& b) { return _mm_mul_ps(a.mVal, b.mVal); }
+    friend SSEFloat operator / (const SSEFloat& a, const SSEFloat& b) { return _mm_div_ps(a.mVal, b.mVal); }
+
+    friend SSEFloat sqrt(const SSEFloat& a) { return _mm_sqrt_ps(a.mVal); }
     
+    friend SSEFloat min(const SSEFloat& a, const SSEFloat& b) { return _mm_min_ps(a.mVal, b.mVal); }
+    friend SSEFloat max(const SSEFloat& a, const SSEFloat& b) { return _mm_max_ps(a.mVal, b.mVal); }
+
+    friend SSEFloat and_not(const SSEFloat& a, const SSEFloat& b) { return _mm_andnot_ps(a.mVal, b.mVal); }
+    friend SSEFloat operator & (const SSEFloat& a, const SSEFloat& b) { return _mm_and_ps(a.mVal, b.mVal); }
+    friend SSEFloat operator | (const SSEFloat& a, const SSEFloat& b) { return _mm_or_ps(a.mVal, b.mVal); }
+    friend SSEFloat operator ^ (const SSEFloat& a, const SSEFloat& b) { return _mm_xor_ps(a.mVal, b.mVal); }
+
+    friend SSEFloat operator == (const SSEFloat& a, const SSEFloat& b) { return _mm_cmpeq_ps(a.mVal, b.mVal); }
+    friend SSEFloat operator != (const SSEFloat& a, const SSEFloat& b) { return _mm_cmpneq_ps(a.mVal, b.mVal); }
+    friend SSEFloat operator > (const SSEFloat& a, const SSEFloat& b) { return _mm_cmplt_ps(a.mVal, b.mVal); }
+    friend SSEFloat operator < (const SSEFloat& a, const SSEFloat& b) { return _mm_cmpgt_ps(a.mVal, b.mVal); }
+    friend SSEFloat operator >= (const SSEFloat& a, const SSEFloat& b) { return _mm_cmple_ps(a.mVal, b.mVal); }
+    friend SSEFloat operator <= (const SSEFloat& a, const SSEFloat& b) { return _mm_cmpge_ps(a.mVal, b.mVal); }
+
     template <int z, int y, int x, int w> static SSEFloat shuffle(const SSEFloat& a, const SSEFloat& b)
     {
         return _mm_shuffle_ps(a.mVal, b.mVal, ((z<<6)|(y<<4)|(x<<2)|w));
@@ -495,16 +417,19 @@ struct SSEFloat : public SIMDVector<float, __m128, 4>
     }
 };
 
-
 struct SSEInt32 : public SIMDVector<float, __m128i, 4>
 {
     SSEInt32() {}
     SSEInt32(const int32_t& a) { mVal = _mm_set1_epi32(a); }
     SSEInt32(const int32_t* a) { mVal = _mm_loadu_si128(reinterpret_cast<const __m128i *>(a)); }
     SSEInt32(__m128 a) : SIMDVector(a) {}
+    
     friend SSEInt32 operator + (const SSEInt32& a, const SSEInt32& b) { return _mm_add_epi32(a.mVal, b.mVal); }
     friend SSEInt32 operator - (const SSEInt32& a, const SSEInt32& b) { return _mm_sub_epi32(a.mVal, b.mVal); }
     friend SSEInt32 operator * (const SSEInt32& a, const SSEInt32& b) { return _mm_mul_epi32(a.mVal, b.mVal); }
+    
+    friend SSEInt32 min(const SSEInt32& a, const SSEInt32& b) { return _mm_min_epi32(a.mVal, b.mVal); }
+    friend SSEInt32 max(const SSEInt32& a, const SSEInt32& b) { return _mm_max_epi32(a.mVal, b.mVal); }
     
     operator SSEFloat()     { return SSEFloat( _mm_cvtepi32_ps(mVal)); }
     operator AVX256Double() { return _mm256_cvtepi32_pd(mVal); }
@@ -523,18 +448,6 @@ struct SSEInt32 : public SIMDVector<float, __m128i, 4>
 #endif
 
 #if (SIMD_COMPILER_SUPPORT_LEVEL >= SIMD_COMPILER_SUPPORT_AVX256)
-/*
-struct AVX256Double : public SIMDVector<double, __m256d, 4>
-{
-    AVX256Double() {}
-    AVX256Double(const double& a) { mVal = _mm256_set1_pd(a); }
-    AVX256Double(__m256d a) : SIMDVector(a) {}
-    friend AVX256Double operator + (const AVX256Double &a, const AVX256Double &b) { return _mm256_add_pd(a.mVal, b.mVal); }
-    friend AVX256Double operator - (const AVX256Double &a, const AVX256Double &b) { return _mm256_sub_pd(a.mVal, b.mVal); }
-    friend AVX256Double operator * (const AVX256Double &a, const AVX256Double &b) { return _mm256_mul_pd(a.mVal, b.mVal); }
-};*/
-
-//#endif
 
 struct AVX256Float : public SIMDVector<float, __m256, 8>
 {
@@ -542,9 +455,30 @@ struct AVX256Float : public SIMDVector<float, __m256, 8>
     AVX256Float(const float& a) { mVal = _mm256_set1_ps(a); }
     AVX256Float(const float* a) { mVal = _mm256_loadu_ps(a); }
     AVX256Float(__m256 a) : SIMDVector(a) {}
+    
     friend AVX256Float operator + (const AVX256Float &a, const AVX256Float &b) { return _mm256_add_ps(a.mVal, b.mVal); }
     friend AVX256Float operator - (const AVX256Float &a, const AVX256Float &b) { return _mm256_sub_ps(a.mVal, b.mVal); }
     friend AVX256Float operator * (const AVX256Float &a, const AVX256Float &b) { return _mm256_mul_ps(a.mVal, b.mVal); }
+    friend AVX256Float operator / (const AVX256Float &a, const AVX256Float &b) { return _mm256_div_ps(a.mVal, b.mVal); }
+    
+    friend AVX256Float sqrt(const AVX256Float& a) { return _mm256_sqrt_ps(a.mVal); }
+    
+    friend AVX256Float min(const AVX256Float& a, const AVX256Float& b) { return _mm256_min_ps(a.mVal, b.mVal); }
+    friend AVX256Float max(const AVX256Float& a, const AVX256Float& b) { return _mm256_max_ps(a.mVal, b.mVal); }
+
+    friend AVX256Float and_not(const AVX256Float& a, const AVX256Float& b) { return _mm256_andnot_ps(a.mVal, b.mVal); }
+    friend AVX256Float operator & (const AVX256Float& a, const AVX256Float& b) { return _mm256_and_ps(a.mVal, b.mVal); }
+    friend AVX256Float operator | (const AVX256Float& a, const AVX256Float& b) { return _mm256_or_ps(a.mVal, b.mVal); }
+    friend AVX256Float operator ^ (const AVX256Float& a, const AVX256Float& b) { return _mm256_xor_ps(a.mVal, b.mVal); }
+    
+    /*
+    friend AVX256Float operator == (const AVX256Float& a, const AVX256Float& b) { return _mm256_cmpeq_ps(a.mVal, b.mVal); }
+    friend AVX256Float operator != (const AVX256Float& a, const AVX256Float& b) { return _mm256_cmpneq_ps(a.mVal, b.mVal); }
+    friend AVX256Float operator > (const AVX256Float& a, const AVX256Float& b) { return _mm256_cmplt_ps(a.mVal, b.mVal); }
+    friend AVX256Float operator < (const AVX256Float& a, const AVX256Float& b) { return _mm256_cmpgt_ps(a.mVal, b.mVal); }
+    friend AVX256Float operator >= (const AVX256Float& a, const AVX256Float& b) { return _mm256_cmple_ps(a.mVal, b.mVal); }
+    friend AVX256Float operator <= (const AVX256Float& a, const AVX256Float& b) { return _mm256_cmpge_ps(a.mVal, b.mVal); }
+    */
     
     operator SizedVector<8, AVX256Double>()
     {
@@ -563,10 +497,14 @@ struct AVX256Int32 : public SIMDVector<float, __m256i, 8>
     AVX256Int32(const int32_t& a) { mVal = _mm256_set1_epi32(a); }
     AVX256Int32(const int32_t* a) { mVal = _mm256_loadu_si256(reinterpret_cast<const __m256i *>(a)); }
     AVX256Int32(__m256i a) : SIMDVector(a) {}
+    
     friend AVX256Int32 operator + (const AVX256Int32& a, const AVX256Int32& b) { return _mm256_add_epi32(a.mVal, b.mVal); }
     friend AVX256Int32 operator - (const AVX256Int32& a, const AVX256Int32& b) { return _mm256_sub_epi32(a.mVal, b.mVal); }
     friend AVX256Int32 operator * (const AVX256Int32& a, const AVX256Int32& b) { return _mm256_mul_epi32(a.mVal, b.mVal); }
     
+    friend AVX256Int32 min(const AVX256Int32& a, const AVX256Int32& b) { return _mm256_min_epi32(a.mVal, b.mVal); }
+    friend AVX256Int32 max(const AVX256Int32& a, const AVX256Int32& b) { return _mm256_max_epi32(a.mVal, b.mVal); }
+ 
     operator AVX256Float() { return AVX256Float( _mm256_cvtepi32_ps(mVal)); }
     
     operator SizedVector<8, AVX256Double>()
@@ -590,9 +528,30 @@ struct AVX512Double : public SIMDVector<double, __m512d, 8>
     AVX512Double(const double& a) { mVal = _mm512_set1_pd(a); }
     AVX512Double(const double* a) { mVal = _mm512_loadu_pd(a); }
     AVX512Double(__m512d a) : SIMDVector(a) {}
+    
     friend AVX512Double operator + (const AVX512Double &a, const AVX512Double &b) { return _mm512_add_pd(a.mVal, b.mVal); }
     friend AVX512Double operator - (const AVX512Double &a, const AVX512Double &b) { return _mm512_sub_pd(a.mVal, b.mVal); }
     friend AVX512Double operator * (const AVX512Double &a, const AVX512Double &b) { return _mm512_mul_pd(a.mVal, b.mVal); }
+    friend AVX512Double operator / (const AVX512Double &a, const AVX512Double &b) { return _mm512_div_pd(a.mVal, b.mVal); }
+    
+    friend AVX512Double sqrt(const AVX512Double& a) { return _mm512_sqrt_pd(a.mVal); }
+    
+    friend AVX512Double min(const AVX512Double& a, const AVX512Double& b) { return _mm512_min_pd(a.mVal, b.mVal); }
+    friend AVX512Double max(const AVX512Double& a, const AVX512Double& b) { return _mm512_max_pd(a.mVal, b.mVal); }
+
+    friend AVX256Double and_not(const AVX256Double& a, const AVX256Double& b) { return _mm512_andnot_pd(a.mVal, b.mVal); }
+    friend AVX256Double operator & (const AVX256Double& a, const AVX256Double& b) { return _mm512_and_pd(a.mVal, b.mVal); }
+    friend AVX256Double operator | (const AVX256Double& a, const AVX256Double& b) { return _mm512_or_pd(a.mVal, b.mVal); }
+    friend AVX256Double operator ^ (const AVX256Double& a, const AVX256Double& b) { return _mm512_xor_pd(a.mVal, b.mVal); }
+    
+    /*
+     friend AVX256Double operator == (const AVX256Double& a, const AVX256Double& b) { return _mm512_cmpeq_pd(a.mVal, b.mVal); }
+     friend AVX256Double operator != (const AVX256Double& a, const AVX256Double& b) { return _mm512_cmpneq_pd(a.mVal, b.mVal); }
+     friend AVX256Double operator > (const AVX256Double& a, const AVX256Double& b) { return _mm512_cmplt_pd(a.mVal, b.mVal); }
+     friend AVX256Double operator < (const AVX256Double& a, const AVX256Double& b) { return _mm512_cmpgt_pd(a.mVal, b.mVal); }
+     friend AVX256Double operator >= (const AVX256Double& a, const AVX256Double& b) { return _mm512_cmple_pd(a.mVal, b.mVal); }
+     friend AVX256Double operator <= (const AVX256Double& a, const AVX256Double& b) { return _mm512_cmpge_pd(a.mVal, b.mVal); }
+     */
 };
 
 struct AVX512Float : public SIMDVector<float, __m512, 16>
@@ -601,9 +560,30 @@ struct AVX512Float : public SIMDVector<float, __m512, 16>
     AVX512Float(const float& a) { mVal = _mm512_set1_ps(a); }
     AVX512Float(const float* a) { mVal = _mm512_loadu_ps(a); }
     AVX512Float(__m512 a) : SIMDVector(a) {}
+    
     friend AVX512Float operator + (const AVX512Float &a, const AVX512Float &b) { return _mm512_add_ps(a.mVal, b.mVal); }
     friend AVX512Float operator - (const AVX512Float &a, const AVX512Float &b) { return _mm512_sub_ps(a.mVal, b.mVal); }
     friend AVX512Float operator * (const AVX512Float &a, const AVX512Float &b) { return _mm512_mul_ps(a.mVal, b.mVal); }
+    friend AVX512Float operator / (const AVX512Float &a, const AVX512Float &b) { return _mm512_div_ps(a.mVal, b.mVal); }
+    
+    friend AVX512Float sqrt(const AVX512Float& a) { return _mm512_sqrt_ps(a.mVal); }
+    
+    friend AVX512Float min(const AVX512Float& a, const AVX512Float& b) { return _mm512_min_ps(a.mVal, b.mVal); }
+    friend AVX512Float max(const AVX512Float& a, const AVX512Float& b) { return _mm512_max_ps(a.mVal, b.mVal); }
+  
+    friend AVX512Float and_not(const AVX512Float& a, const AVX512Float& b) { return _mm512_andnot_ps(a.mVal, b.mVal); }
+    friend AVX512Float operator & (const AVX512Float& a, const AVX512Float& b) { return _mm512_and_ps(a.mVal, b.mVal); }
+    friend AVX512Float operator | (const AVX512Float& a, const AVX512Float& b) { return _mm512_or_ps(a.mVal, b.mVal); }
+    friend AVX512Float operator ^ (const AVX512Float& a, const AVX512Float& b) { return _mm512_xor_ps(a.mVal, b.mVal); }
+    
+    /*
+     friend AVX512Float operator == (const AVX512Float& a, const AVX512Float& b) { return _mm512_cmpeq_ps(a.mVal, b.mVal); }
+     friend AVX512Float operator != (const AVX512Float& a, const AVX512Float& b) { return _mm512_cmpneq_ps(a.mVal, b.mVal); }
+     friend AVX512Float operator > (const AVX512Float& a, const AVX512Float& b) { return _mm512_cmplt_ps(a.mVal, b.mVal); }
+     friend AVX512Float operator < (const AVX512Float& a, const AVX512Float& b) { return _mm512_cmpgt_ps(a.mVal, b.mVal); }
+     friend AVX512Float operator >= (const AVX512Float& a, const AVX512Float& b) { return _mm512_cmple_ps(a.mVal, b.mVal); }
+     friend AVX512Float operator <= (const AVX512Float& a, const AVX512Float& b) { return _mm512_cmpge_ps(a.mVal, b.mVal); }
+     */
 };
 
 #endif

@@ -108,8 +108,7 @@ void ibuffer_init();
 
 // Get the value of an individual sample
 
-static __inline float ibuffer_float_get_samp(const ibuffer_data& data, intptr_t offset, long chan)  FORCE_INLINE;
-static __inline double ibuffer_double_get_samp(const ibuffer_data& data, intptr_t offset, long chan)  FORCE_INLINE;
+static __inline double ibuffer_get_samp(const ibuffer_data& data, intptr_t offset, long chan)  FORCE_INLINE;
 
 // Get consecutive samples (and in reverse)
 
@@ -128,8 +127,6 @@ void ibuffer_read(const ibuffer_data& data, double *out, intptr_t *offsets, doub
 
 static __inline void *ibuffer_get_ptr(t_symbol *s) FORCE_INLINE_DEFINITION
 {
-	t_object *b;
-
     if (s)
     {
         t_object *b = s->s_thing;
@@ -145,31 +142,31 @@ static __inline const ibuffer_data ibuffer_info(void *thebuffer) FORCE_INLINE_DE
 {
     ibuffer_data data;
                  
-	if (!thebuffer) 
-		return data;
-	
-	if (ob_sym(thebuffer) == ps_buffer)
-	{
-		t_buffer *buffer = (t_buffer *) thebuffer;
-		if (buffer->b_valid)
-		{
-			data.samples = (void *) buffer->b_samples;
-			data.length = buffer->b_frames;
-			data.num_chans = buffer->b_nchans;
-			data.format = PCM_FLOAT;
-		}
-	}
-	else
-	{
-		t_ibuffer *buffer = (t_ibuffer *) thebuffer;
-		if (buffer->valid)
-		{
-			data.samples =  buffer->samples;
-			data.length = buffer->frames;
-			data.num_chans = buffer->channels;
-			data.format = buffer->format;
-		}
-	}
+	if (thebuffer)
+    {
+        if (ob_sym(thebuffer) == ps_buffer)
+        {
+            t_buffer *buffer = (t_buffer *) thebuffer;
+            if (buffer->b_valid)
+            {
+                data.samples = (void *) buffer->b_samples;
+                data.length = buffer->b_frames;
+                data.num_chans = buffer->b_nchans;
+                data.format = PCM_FLOAT;
+            }
+        }
+        else
+        {
+            t_ibuffer *buffer = (t_ibuffer *) thebuffer;
+            if (buffer->valid)
+            {
+                data.samples =  buffer->samples;
+                data.length = buffer->frames;
+                data.num_chans = buffer->channels;
+                data.format = buffer->format;
+            }
+        }
+    }
 
 	return data;
 }
@@ -203,7 +200,7 @@ static __inline void ibuffer_decrement_inuse (void *thebuffer) FORCE_INLINE_DEFI
 //////////////////////////////////////////////// Get individual samples /////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-static __inline double ibuffer_double_get_samp(const ibuffer_data& data, intptr_t offset, long chan) FORCE_INLINE_DEFINITION
+static __inline double ibuffer_get_samp(const ibuffer_data& data, intptr_t offset, long chan) FORCE_INLINE_DEFINITION
 {
     switch (data.format)
     {
@@ -214,11 +211,6 @@ static __inline double ibuffer_double_get_samp(const ibuffer_data& data, intptr_
     }
 
     return 0.0;
-}
-
-static __inline float ibuffer_float_get_samp(const ibuffer_data& data, intptr_t offset, long chan) FORCE_INLINE_DEFINITION
-{
-    return ibuffer_double_get_samp(data, offset, chan);
 }
 
 #endif	/* _IBUFFER_ACCESS_ */
