@@ -2166,6 +2166,7 @@
 		B8BDF0611F2D43D600264316 /* FrameLib_Select.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Select.cpp; sourceTree = "<group>"; };
 		B8BDF0631F2D446200264316 /* FrameLib_Spatial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Spatial.cpp; sourceTree = "<group>"; };
 		B8BDF0651F2D44EA00264316 /* FrameLib_CoordinateSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_CoordinateSystem.cpp; sourceTree = "<group>"; };
+		B8C2D6061F6BF933009A7C96 /* Interpolation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Interpolation.hpp; path = FrameLib_Dependencies/Interpolation.hpp; sourceTree = SOURCE_ROOT; };
 		B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_ConnectionQueue.cpp; sourceTree = "<group>"; };
 		B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_ConnectionQueue.h; sourceTree = "<group>"; };
 		B8C5EBBF1E5F979B0086E8B6 /* FrameLib_Lookup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Lookup.h; sourceTree = "<group>"; };
@@ -3650,6 +3651,7 @@
 			isa = PBXGroup;
 			children = (
 				B8C89C061F55C67C00B4E700 /* WindowFunctions.hpp */,
+				B8C2D6061F6BF933009A7C96 /* Interpolation.hpp */,
 				B8C89C071F56D24500B4E700 /* Statistics.hpp */,
 				B87E876619C8EEB900B1D0CD /* HISSTools_FFT */,
 				B8F6E4DA199D24820073E06D /* tlsf */,

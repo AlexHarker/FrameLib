@@ -77,8 +77,7 @@ template <class T, int64_t bit_scale> struct fetch
     long num_chans;
 };
 
-template<>
-struct fetch<int32_t, 24>
+template<> struct fetch<int32_t, 24>
 {
     fetch(const ibuffer_data& data, long chan)
     : scale(1.0 / ((int64_t) 1 << 7)), samples(((int8_t *) data.samples) + chan), num_chans(data.num_chans) {}
