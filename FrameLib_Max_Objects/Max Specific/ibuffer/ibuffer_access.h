@@ -111,8 +111,8 @@ void ibuffer_get_samps(const ibuffer_data& data, double *out, intptr_t offset, i
 
 // Read with various forms of interpolation
 
-void ibuffer_read(const ibuffer_data& data, float *out, intptr_t *offsets, float *fracts, intptr_t n_samps, long chan, float mul, InterpType interp);
-void ibuffer_read(const ibuffer_data& data, double *out, intptr_t *offsets, double *fracts, intptr_t n_samps, long chan, double mul, InterpType interp);
+void ibuffer_read(const ibuffer_data& data, float *out, double *positions, intptr_t n_samps, long chan, float mul, InterpType interp);
+void ibuffer_read(const ibuffer_data& data, double *out, double *positions, intptr_t n_samps, long chan, double mul, InterpType interp);
 
         
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

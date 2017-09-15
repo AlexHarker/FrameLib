@@ -26,6 +26,7 @@ FrameLib_MaxRead::FrameLib_MaxRead(FrameLib_Context context, FrameLib_Parameters
     mParameters.addEnumItem(kBSpline, "bspline");
     mParameters.addEnumItem(kLagrange, "lagrange");
     mParameters.addEnumItem(kLinear, "linear");
+    mParameters.addEnumItem(kNone, "none");
     
     mParameters.addEnum(kUnits, "units");
     mParameters.addEnumItem(kMS, "ms");
@@ -87,8 +88,6 @@ FrameLib_MaxRead::ParameterInfo::ParameterInfo()
 void FrameLib_MaxRead::process()
 {
     void *tempMem = NULL;
-    double *fracts;
-    intptr_t *offsets;
     
     unsigned long size, vecSize;
     long chan;
@@ -116,15 +115,14 @@ void FrameLib_MaxRead::process()
     {
         chan = (mChan - 1) % data.num_chans;
             
-        tempMem = mAllocator->alloc(size * (sizeof(double) + sizeof(intptr_t)));
+        tempMem = mAllocator->alloc(size * (sizeof(double)));
         if (!tempMem)
             ibuffer_decrement_inuse(buffer);
     }
     
     if (tempMem)
     {
-        offsets = (intptr_t *) tempMem;
-        fracts = (double *) (offsets + size);
+        double *positions = (double *) tempMem;
         
         double lengthM1 = data.length - 1.0;
         double conversionFactor = 1.0;
@@ -145,16 +143,12 @@ void FrameLib_MaxRead::process()
             
             position = position > lengthM1 ? lengthM1 : position;
             position = position < 0.0 ? 0.0 : position;
-            
-            intptr_t offset = position;
-            double fract = position - offset;
-            
-            offsets[i] = offset;
-            fracts[i] = fract;
+    
+            positions[i] = position;
             
             // N.B. - Assume that false is zero
             
-            interp |= (fract != 0.0);
+            interp |= ((position - ((int32_t) position)) != 0.0);
         }
                 
         InterpType interpType = kInterpNone;
@@ -163,6 +157,7 @@ void FrameLib_MaxRead::process()
         {
             switch (mMode)
             {
+                case kNone:         break;
                 case kLinear:       interpType = kInterpLinear;             break;
                 case kLagrange:     interpType = kInterpCubicLagrange;      break;
                 case kHermite:      interpType = kInterpCubicHermite;       break;
@@ -170,7 +165,7 @@ void FrameLib_MaxRead::process()
             }
         }
         
-        ibuffer_read(data, output, offsets, fracts, vecSize, chan, 1.0, interpType);
+        ibuffer_read(data, output, positions, vecSize, chan, 1.0, interpType);
         mAllocator->dealloc(tempMem);
         ibuffer_decrement_inuse(buffer);
     }

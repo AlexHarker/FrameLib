@@ -10,7 +10,7 @@ class FrameLib_MaxRead : public FrameLib_Processor
     // Parameter Info and Enums
     
     enum ParameterList { kBuffer, kChannel, kMode, kUnits };
-    enum Modes { kHermite, kBSpline, kLagrange, kLinear };
+    enum Modes { kHermite, kBSpline, kLagrange, kLinear, kNone };
     enum Units { kMS, kSeconds, kSamples };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
