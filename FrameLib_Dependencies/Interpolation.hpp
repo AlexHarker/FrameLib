@@ -2,6 +2,11 @@
 #ifndef INTERPOLATION_H
 #define INTERPOLATION_H
 
+enum InterpType
+{
+    kInterpNone, kInterpLinear, kInterpCubicHermite, kInterpCubicLagrange, kInterpCubicBSpline
+};
+
 template <class T>struct linear_interp
 {
     T operator()(const T& x, const T& y0, const T& y1) { return  (y0 + x * ((y1 - y0))); }

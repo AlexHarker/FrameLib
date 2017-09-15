@@ -37,7 +37,7 @@
 #define _IBUFFER_ACCESS_
 
 #include "ibuffer.h"
-#include "AH_VectorOps.h"
+#include "../../../FrameLib_Dependencies/Interpolation.hpp"
 
 extern t_symbol *ps_none;
 extern t_symbol *ps_linear;
@@ -46,11 +46,6 @@ extern t_symbol *ps_hermite;
 extern t_symbol *ps_lagrange;
 extern t_symbol *ps_buffer;
 extern t_symbol *ps_ibuffer;
-
-enum InterpType
-{
-    kInterpNone, kInterpLinear, kInterpCubicHermite, kInterpCubicLagrange, kInterpCubicBSpline
-};
 
 struct ibuffer_data {
     
@@ -107,7 +102,7 @@ void ibuffer_init();
 
 // Get the value of an individual sample
 
-static __inline double ibuffer_get_samp(const ibuffer_data& data, intptr_t offset, long chan)  FORCE_INLINE;
+static inline double ibuffer_get_samp(const ibuffer_data& data, intptr_t offset, long chan);
 
 // Get consecutive samples (and in reverse)
 
@@ -124,7 +119,7 @@ void ibuffer_read(const ibuffer_data& data, double *out, intptr_t *offsets, doub
 ///////////////////////////////////////////// Get ibuffer and related info //////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-static __inline void *ibuffer_get_ptr(t_symbol *s) FORCE_INLINE_DEFINITION
+static inline void *ibuffer_get_ptr(t_symbol *s)
 {
     if (s)
     {
@@ -137,7 +132,7 @@ static __inline void *ibuffer_get_ptr(t_symbol *s) FORCE_INLINE_DEFINITION
 	return NULL;
 }
 
-static __inline const ibuffer_data ibuffer_info(void *thebuffer) FORCE_INLINE_DEFINITION
+static inline const ibuffer_data ibuffer_info(void *thebuffer)
 {
     ibuffer_data data;
                  
@@ -170,7 +165,7 @@ static __inline const ibuffer_data ibuffer_info(void *thebuffer) FORCE_INLINE_DE
 	return data;
 }
 
-static __inline double ibuffer_sample_rate(void *thebuffer) FORCE_INLINE_DEFINITION
+static inline double ibuffer_sample_rate(void *thebuffer)
 {
 	if (ob_sym(thebuffer) == ps_buffer)
 		return (double) ((t_buffer *)thebuffer)->b_sr;
@@ -178,7 +173,7 @@ static __inline double ibuffer_sample_rate(void *thebuffer) FORCE_INLINE_DEFINIT
 		return (double) ((t_ibuffer *)thebuffer)->sr;		
 }
 
-static __inline void ibuffer_increment_inuse (void *thebuffer) FORCE_INLINE_DEFINITION
+static inline void ibuffer_increment_inuse (void *thebuffer)
 {
 	if (ob_sym(thebuffer) == ps_buffer)
 		ATOMIC_INCREMENT(&((t_buffer *)thebuffer)->b_inuse);
@@ -187,7 +182,7 @@ static __inline void ibuffer_increment_inuse (void *thebuffer) FORCE_INLINE_DEFI
 }
 
 
-static __inline void ibuffer_decrement_inuse (void *thebuffer) FORCE_INLINE_DEFINITION
+static inline void ibuffer_decrement_inuse (void *thebuffer)
 {
 	if (ob_sym(thebuffer) == ps_buffer)
 		ATOMIC_DECREMENT(&((t_buffer *)thebuffer)->b_inuse);
@@ -199,7 +194,7 @@ static __inline void ibuffer_decrement_inuse (void *thebuffer) FORCE_INLINE_DEFI
 //////////////////////////////////////////////// Get individual samples /////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-static __inline double ibuffer_get_samp(const ibuffer_data& data, intptr_t offset, long chan) FORCE_INLINE_DEFINITION
+static inline double ibuffer_get_samp(const ibuffer_data& data, intptr_t offset, long chan)
 {
     switch (data.format)
     {
