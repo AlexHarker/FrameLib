@@ -74,15 +74,13 @@ template <class T, int64_t bit_scale> struct fetch : public table_fetcher<float>
 template<> struct fetch<int32_t, 24> : public table_fetcher<float>
 {
     fetch(const ibuffer_data& data, long chan)
-    : table_fetcher(1.0 / ((int64_t) 1 << 7)), samples(((int8_t *) data.samples) + chan), num_chans(data.num_chans) {}
+    : table_fetcher(1.0 / ((int64_t) 1 << 23)), samples(((int8_t *) data.samples) +  3 * chan), num_chans(data.num_chans) {}
     
-    //#if (TARGET_RT_LITTLE_ENDIAN)
-    //    IBUFFER_FETCH_LOOP_UNROLL (*out++ = (*((int32_t *) ((samps - 1) + *offsets++)) & MASK_24_BIT))
-    //#else
-    //    IBUFFER_FETCH_LOOP_UNROLL (*out++ = (*((int32_t *) (samps + *offsets++)) & MASK_24_BIT))
-    //#endif
-    
-    int32_t operator()(intptr_t offset) { return samples[offset * num_chans]; }
+    int32_t operator()(intptr_t offset)
+    {
+        offset *= 3 * num_chans;
+        return ((int32_t) samples[offset]) | (((int32_t)samples[offset + 1]) << 8) | (((int32_t)samples[offset + 2]) << 16) ;
+    }
     double get(intptr_t offset) { return scale * operator()(offset); }
     
     int8_t *samples;

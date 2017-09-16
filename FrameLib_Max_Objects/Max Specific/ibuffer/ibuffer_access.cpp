@@ -22,8 +22,6 @@ t_symbol *ps_lagrange;
 t_symbol *ps_buffer;
 t_symbol *ps_ibuffer;
 
-//long IBuffer_SSE_Exists = 0;
-
 void ibuffer_init()
 {
     ps_buffer = gensym("buffer~");
@@ -32,9 +30,7 @@ void ibuffer_init()
     ps_linear = gensym("linear");
     ps_bspline = gensym("bspline");
     ps_hermite = gensym("hermite");
-    ps_lagrange = gensym("lagrange");
-    
-    //IBuffer_SSE_Exists = SSE2_check();
+    ps_lagrange = gensym("lagrange");    
 }
 
 template <class T>
