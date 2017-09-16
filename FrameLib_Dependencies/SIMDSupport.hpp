@@ -1,80 +1,11 @@
 
-/*
- *  AH_VectorOps
- *
- *	This header file provides a platform independent interface for SIMD operations (or vector operations).
- *	Code using this interface should compile for SSE or Altivec processors (and is also open to future changes in processor architecture).
- *	The list of operations here is by no means exhasutive, and is updated as needed using a consistent naming scheme.
- *
- *  Copyright 2010 Alex Harker. All rights reserved.
- *
- */
-
-#ifndef _AH_CROSS_PLATFORM_VECTOR_OPS_
-#define _AH_CROSS_PLATFORM_VECTOR_OPS_ 
+#ifndef SIMDSUPPORT
+#define SIMDSUPPORT
 
 #include <emmintrin.h>
 #include <immintrin.h>
 
-#ifdef __APPLE__
-
-#define FORCE_INLINE				__attribute__ ((always_inline))
-#define FORCE_INLINE_DEFINITION
-
-#else
-
-#define FORCE_INLINE				__forceinline
-#define FORCE_INLINE_DEFINITION		__forceinline;
-
-#endif
-
 /*
-// Test for intel compilation
-
-#ifndef TARGET_INTEL
-#if defined( __i386__ ) || defined( __x86_64__ ) || defined(WIN_VERSION)
-#define TARGET_INTEL
-#endif
-#endif
-
-// Define for 64 bit float vector in 128bits (2 doubles)
-
-#ifdef TARGET_INTEL
-#ifndef VECTOR_F64_128BIT
-#define VECTOR_F64_128BIT
-#endif
-#endif
-
-// Runtime test for SSE2
-
-static __inline int SSE2_check()
-{
-#ifdef __APPLE__
-	return 1;
-#else
-	int SSE2_flag = 0;
-	int CPUInfo[4] = {-1, 0, 0, 0};
-	int nIds;
-
-	__cpuid(CPUInfo, 0);
-	 nIds = CPUInfo[0];
-
-	if (nIds > 0)
-	{
-		__cpuid(CPUInfo, 1);
-		SSE2_flag = (CPUInfo[3] >> 26) & 0x1;
-	}
-	
-	return SSE2_flag;
-#endif
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////// Macros for platform-specific vector ops ///////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-#ifdef TARGET_INTEL
-
 // Load / Store / Unpack
  
 #define F32_VEC_USTORE					_mm_storeu_ps
@@ -119,20 +50,9 @@ template <class T> void deallocate_aligned(T *ptr)
 {
     free(ptr);
 }
-/*
-void cpuid(int32_t out[4], int32_t x)
-{
-    __cpuid_count(x, 0, out[0], out[1], out[2], out[3]);
-}
 
-uint64_t xgetbv(unsigned int index)
-{
-    uint32_t eax, edx;
-    __asm__ __volatile__("xgetbv" : "=a"(eax), "=d"(edx) : "c"(index));
-    return ((uint64_t)edx << 32) | eax;
-}
-*/
 #else
+
 #include <malloc.h>
 
 template <class T> T *allocate_aligned(size_t size)
@@ -144,17 +64,7 @@ template <class T> void deallocate_aligned(T *ptr)
 {
     _aligned_free(ptr);
 }
-/*
-void cpuid(int32_t out[4], int32_t x)
-{
-    __cpuid(out, x);
-}
 
-uint64_t xgetbv(unsigned int x)
-{
-    return _xgetbv(x);
-}
-*/
 #endif
 
 
