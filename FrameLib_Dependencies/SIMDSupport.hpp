@@ -526,4 +526,4 @@ struct SIMDType<float, 16> : public SIMDVector<float, __m512, 16>
 
 #endif
 
-#endif	/* _AH_CROSS_PLATFORM_VECTOR_OPS_ */
+#endif	
