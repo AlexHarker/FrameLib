@@ -94,5 +94,6 @@ void FrameLib_Lookup::process()
         case kZero:     table_read(FetchZero(input2, sizeIn2), output, input1, sizeIn1, 1.0, interpType);   break;
         case kClip:     table_read(FetchClip(input2, sizeIn2), output, input1, sizeIn1, 1.0, interpType);   break;
         //case kWrap:   table_read(FetchWrap(input2, sizeIn2), output, input1, sizeIn1, 1.0, interpType);   break;
+        //case kPad:   table_read(FetchPad(input2, sizeIn2, padValue), output, input1, sizeIn1, 1.0, interpType);   break;
     }
 }

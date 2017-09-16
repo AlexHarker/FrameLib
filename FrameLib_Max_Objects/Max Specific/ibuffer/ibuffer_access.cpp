@@ -13,7 +13,6 @@
  */
 
 #include "ibuffer_access.h"
-#include "../../../FrameLib_Dependencies/TableReader.hpp"
 
 t_symbol *ps_none;
 t_symbol *ps_linear;

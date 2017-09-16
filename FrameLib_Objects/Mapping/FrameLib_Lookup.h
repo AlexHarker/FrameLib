@@ -14,11 +14,10 @@ class FrameLib_Lookup : public FrameLib_Processor
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
-    struct FetchBase
+    struct FetchBase : table_fetcher<double>
     {
-        FetchBase(const double *data, intptr_t size) : mData(data), mSize(size) {}
+        FetchBase(const double *data, intptr_t size) : table_fetcher(1.0), mData(data), mSize(size) {}
         
-        const double scale = 1.0;
         const double *mData;
         const intptr_t mSize;
     };
@@ -35,6 +34,22 @@ class FrameLib_Lookup : public FrameLib_Processor
             return mData[offset];
         }
     };
+    
+    struct FetchPad : public FetchBase
+    {
+        FetchPad(const double *data, intptr_t size, double padValue) : FetchBase(data, size), mPadValue(padValue) {}
+        
+        double operator()(intptr_t offset)
+        {
+            if (offset < 0 || offset >= mSize)
+                return mPadValue;
+            
+            return mData[offset];
+        }
+        
+        const double mPadValue;
+    };
+    
     /*
     struct FetchWrap : public FetchBase
     {

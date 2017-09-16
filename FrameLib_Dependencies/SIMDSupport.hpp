@@ -310,38 +310,45 @@ template <class T, class U, int vec_size> struct SIMDVector
     U mVal;
 };
 
+template <class T, int vec_size> struct SIMDType {};
+
 #if (SIMD_COMPILER_SUPPORT_LEVEL >= SIMD_COMPILER_SUPPORT_SSE)
 
-struct SSEDouble : public SIMDVector<double, __m128d, 2>
-{
-    SSEDouble() {}
-    SSEDouble(const double& a) { mVal = _mm_set1_pd(a); }
-    SSEDouble(const double* a) { mVal = _mm_loadu_pd(a); }
-    SSEDouble(__m128d a) : SIMDVector(a) {}
-    
-    friend SSEDouble operator + (const SSEDouble &a, const SSEDouble& b) { return _mm_add_pd(a.mVal, b.mVal); }
-    friend SSEDouble operator - (const SSEDouble &a, const SSEDouble& b) { return _mm_sub_pd(a.mVal, b.mVal); }
-    friend SSEDouble operator * (const SSEDouble &a, const SSEDouble& b) { return _mm_mul_pd(a.mVal, b.mVal); }
-    friend SSEDouble operator / (const SSEDouble &a, const SSEDouble& b) { return _mm_div_pd(a.mVal, b.mVal); }
-    
-    friend SSEDouble sqrt(const SSEDouble& a) { return _mm_sqrt_pd(a.mVal); }
-    
-    friend SSEDouble min(const SSEDouble& a, const SSEDouble& b) { return _mm_min_pd(a.mVal, b.mVal); }
-    friend SSEDouble max(const SSEDouble& a, const SSEDouble& b) { return _mm_max_pd(a.mVal, b.mVal); }
-    
-    friend SSEDouble and_not(const SSEDouble& a, const SSEDouble& b) { return _mm_andnot_pd(a.mVal, b.mVal); }
-    friend SSEDouble operator & (const SSEDouble& a, const SSEDouble& b) { return _mm_and_pd(a.mVal, b.mVal); }
-    friend SSEDouble operator | (const SSEDouble& a, const SSEDouble& b) { return _mm_or_pd(a.mVal, b.mVal); }
-    friend SSEDouble operator ^ (const SSEDouble& a, const SSEDouble& b) { return _mm_xor_pd(a.mVal, b.mVal); }
-    
-    friend SSEDouble operator == (const SSEDouble& a, const SSEDouble& b) { return _mm_cmpeq_pd(a.mVal, b.mVal); }
-    friend SSEDouble operator != (const SSEDouble& a, const SSEDouble& b) { return _mm_cmpneq_pd(a.mVal, b.mVal); }
-    friend SSEDouble operator > (const SSEDouble& a, const SSEDouble& b) { return _mm_cmplt_pd(a.mVal, b.mVal); }
-    friend SSEDouble operator < (const SSEDouble& a, const SSEDouble& b) { return _mm_cmpgt_pd(a.mVal, b.mVal); }
-    friend SSEDouble operator >= (const SSEDouble& a, const SSEDouble& b) { return _mm_cmple_pd(a.mVal, b.mVal); }
-    friend SSEDouble operator <= (const SSEDouble& a, const SSEDouble& b) { return _mm_cmpge_pd(a.mVal, b.mVal); }
+typedef SIMDType<double, 2> SSEDouble;
+typedef SIMDType<float, 4> SSEFloat;
+typedef SIMDType<int32_t, 4> SSEInt32;
 
-    template <int y, int x> static SSEDouble shuffle(const SSEDouble& a, const SSEDouble& b)
+template<>
+struct SIMDType<double, 2> : public SIMDVector<double, __m128d, 2>
+{
+    SIMDType() {}
+    SIMDType(const double& a) { mVal = _mm_set1_pd(a); }
+    SIMDType(const double* a) { mVal = _mm_loadu_pd(a); }
+    SIMDType(__m128d a) : SIMDVector(a) {}
+    
+    friend SIMDType operator + (const SIMDType &a, const SIMDType& b) { return _mm_add_pd(a.mVal, b.mVal); }
+    friend SIMDType operator - (const SIMDType &a, const SIMDType& b) { return _mm_sub_pd(a.mVal, b.mVal); }
+    friend SIMDType operator * (const SIMDType &a, const SIMDType& b) { return _mm_mul_pd(a.mVal, b.mVal); }
+    friend SIMDType operator / (const SIMDType &a, const SIMDType& b) { return _mm_div_pd(a.mVal, b.mVal); }
+    
+    friend SIMDType sqrt(const SIMDType& a) { return _mm_sqrt_pd(a.mVal); }
+    
+    friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm_min_pd(a.mVal, b.mVal); }
+    friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm_max_pd(a.mVal, b.mVal); }
+    
+    friend SIMDType and_not(const SIMDType& a, const SIMDType& b) { return _mm_andnot_pd(a.mVal, b.mVal); }
+    friend SIMDType operator & (const SIMDType& a, const SIMDType& b) { return _mm_and_pd(a.mVal, b.mVal); }
+    friend SIMDType operator | (const SIMDType& a, const SIMDType& b) { return _mm_or_pd(a.mVal, b.mVal); }
+    friend SIMDType operator ^ (const SIMDType& a, const SIMDType& b) { return _mm_xor_pd(a.mVal, b.mVal); }
+    
+    friend SIMDType operator == (const SIMDType& a, const SIMDType& b) { return _mm_cmpeq_pd(a.mVal, b.mVal); }
+    friend SIMDType operator != (const SIMDType& a, const SIMDType& b) { return _mm_cmpneq_pd(a.mVal, b.mVal); }
+    friend SIMDType operator > (const SIMDType& a, const SIMDType& b) { return _mm_cmplt_pd(a.mVal, b.mVal); }
+    friend SIMDType operator < (const SIMDType& a, const SIMDType& b) { return _mm_cmpgt_pd(a.mVal, b.mVal); }
+    friend SIMDType operator >= (const SIMDType& a, const SIMDType& b) { return _mm_cmple_pd(a.mVal, b.mVal); }
+    friend SIMDType operator <= (const SIMDType& a, const SIMDType& b) { return _mm_cmpge_pd(a.mVal, b.mVal); }
+
+    template <int y, int x> static SIMDType shuffle(const SIMDType& a, const SIMDType& b)
     {
         return _mm_shuffle_pd(a.mVal, b.mVal, (y<<1)|x);
     }
@@ -349,68 +356,76 @@ struct SSEDouble : public SIMDVector<double, __m128d, 2>
 
 #if (SIMD_COMPILER_SUPPORT_LEVEL >= SIMD_COMPILER_SUPPORT_AVX256)
 
-struct AVX256Double : public SIMDVector<double, __m256d, 4>
-{
-    AVX256Double() {}
-    AVX256Double(const double& a) { mVal = _mm256_set1_pd(a); }
-    AVX256Double(const double* a) { mVal = _mm256_loadu_pd(a); }
-    AVX256Double(__m256d a) : SIMDVector(a) {}
-    
-    friend AVX256Double operator + (const AVX256Double &a, const AVX256Double &b) { return _mm256_add_pd(a.mVal, b.mVal); }
-    friend AVX256Double operator - (const AVX256Double &a, const AVX256Double &b) { return _mm256_sub_pd(a.mVal, b.mVal); }
-    friend AVX256Double operator * (const AVX256Double &a, const AVX256Double &b) { return _mm256_mul_pd(a.mVal, b.mVal); }
-    friend AVX256Double operator / (const AVX256Double &a, const AVX256Double &b) { return _mm256_div_pd(a.mVal, b.mVal); }
-    
-    friend AVX256Double sqrt(const AVX256Double& a) { return _mm256_sqrt_pd(a.mVal); }
-    
-    friend AVX256Double min(const AVX256Double& a, const AVX256Double& b) { return _mm256_min_pd(a.mVal, b.mVal); }
-    friend AVX256Double max(const AVX256Double& a, const AVX256Double& b) { return _mm256_max_pd(a.mVal, b.mVal); }
+template <class T> struct AVX256Type {};
 
-    friend AVX256Double and_not(const AVX256Double& a, const AVX256Double& b) { return _mm256_andnot_pd(a.mVal, b.mVal); }
-    friend AVX256Double operator & (const AVX256Double& a, const AVX256Double& b) { return _mm256_and_pd(a.mVal, b.mVal); }
-    friend AVX256Double operator | (const AVX256Double& a, const AVX256Double& b) { return _mm256_or_pd(a.mVal, b.mVal); }
-    friend AVX256Double operator ^ (const AVX256Double& a, const AVX256Double& b) { return _mm256_xor_pd(a.mVal, b.mVal); }
+typedef SIMDType<double, 4> AVX256Double;
+typedef SIMDType<float, 8> AVX256Float;
+typedef SIMDType<int32_t, 8> AVX256Int32;
+
+template<>
+struct SIMDType<double, 4> : public SIMDVector<double, __m256d, 4>
+{
+    SIMDType() {}
+    SIMDType(const double& a) { mVal = _mm256_set1_pd(a); }
+    SIMDType(const double* a) { mVal = _mm256_loadu_pd(a); }
+    SIMDType(__m256d a) : SIMDVector(a) {}
     
-    friend AVX256Double operator == (const AVX256Double& a, const AVX256Double& b) { return _mm256_cmp_pd(a.mVal, b.mVal, _CMP_EQ_OQ); }
-    friend AVX256Double operator != (const AVX256Double& a, const AVX256Double& b) { return _mm256_cmp_pd(a.mVal, b.mVal, _CMP_NEQ_OQ); }
-    friend AVX256Double operator > (const AVX256Double& a, const AVX256Double& b) { return _mm256_cmp_pd(a.mVal, b.mVal, _CMP_GT_OQ); }
-    friend AVX256Double operator < (const AVX256Double& a, const AVX256Double& b) { return _mm256_cmp_pd(a.mVal, b.mVal, _CMP_LT_OQ); }
-    friend AVX256Double operator >= (const AVX256Double& a, const AVX256Double& b) { return _mm256_cmp_pd(a.mVal, b.mVal, _CMP_GE_OQ); }
-    friend AVX256Double operator <= (const AVX256Double& a, const AVX256Double& b) { return _mm256_cmp_pd(a.mVal, b.mVal, _CMP_LE_OQ); }
+    friend SIMDType operator + (const SIMDType &a, const SIMDType &b) { return _mm256_add_pd(a.mVal, b.mVal); }
+    friend SIMDType operator - (const SIMDType &a, const SIMDType &b) { return _mm256_sub_pd(a.mVal, b.mVal); }
+    friend SIMDType operator * (const SIMDType &a, const SIMDType &b) { return _mm256_mul_pd(a.mVal, b.mVal); }
+    friend SIMDType operator / (const SIMDType &a, const SIMDType &b) { return _mm256_div_pd(a.mVal, b.mVal); }
+    
+    friend SIMDType sqrt(const SIMDType& a) { return _mm256_sqrt_pd(a.mVal); }
+    
+    friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm256_min_pd(a.mVal, b.mVal); }
+    friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm256_max_pd(a.mVal, b.mVal); }
+
+    friend SIMDType and_not(const SIMDType& a, const SIMDType& b) { return _mm256_andnot_pd(a.mVal, b.mVal); }
+    friend SIMDType operator & (const SIMDType& a, const SIMDType& b) { return _mm256_and_pd(a.mVal, b.mVal); }
+    friend SIMDType operator | (const SIMDType& a, const SIMDType& b) { return _mm256_or_pd(a.mVal, b.mVal); }
+    friend SIMDType operator ^ (const SIMDType& a, const SIMDType& b) { return _mm256_xor_pd(a.mVal, b.mVal); }
+    
+    friend SIMDType operator == (const SIMDType& a, const SIMDType& b) { return _mm256_cmp_pd(a.mVal, b.mVal, _CMP_EQ_OQ); }
+    friend SIMDType operator != (const SIMDType& a, const SIMDType& b) { return _mm256_cmp_pd(a.mVal, b.mVal, _CMP_NEQ_OQ); }
+    friend SIMDType operator > (const SIMDType& a, const SIMDType& b) { return _mm256_cmp_pd(a.mVal, b.mVal, _CMP_GT_OQ); }
+    friend SIMDType operator < (const SIMDType& a, const SIMDType& b) { return _mm256_cmp_pd(a.mVal, b.mVal, _CMP_LT_OQ); }
+    friend SIMDType operator >= (const SIMDType& a, const SIMDType& b) { return _mm256_cmp_pd(a.mVal, b.mVal, _CMP_GE_OQ); }
+    friend SIMDType operator <= (const SIMDType& a, const SIMDType& b) { return _mm256_cmp_pd(a.mVal, b.mVal, _CMP_LE_OQ); }
 };
 
 #endif
 
-struct SSEFloat : public SIMDVector<float, __m128, 4>
+template<>
+struct SIMDType<float, 4> : public SIMDVector<float, __m128, 4>
 {
-    SSEFloat() {}
-    SSEFloat(const float& a) { mVal = _mm_set1_ps(a); }
-    SSEFloat(const float* a) { mVal = _mm_loadu_ps(a); }
-    SSEFloat(__m128 a) : SIMDVector(a) {}
+    SIMDType() {}
+    SIMDType(const float& a) { mVal = _mm_set1_ps(a); }
+    SIMDType(const float* a) { mVal = _mm_loadu_ps(a); }
+    SIMDType(__m128 a) : SIMDVector(a) {}
     
-    friend SSEFloat operator + (const SSEFloat& a, const SSEFloat& b) { return _mm_add_ps(a.mVal, b.mVal); }
-    friend SSEFloat operator - (const SSEFloat& a, const SSEFloat& b) { return _mm_sub_ps(a.mVal, b.mVal); }
-    friend SSEFloat operator * (const SSEFloat& a, const SSEFloat& b) { return _mm_mul_ps(a.mVal, b.mVal); }
-    friend SSEFloat operator / (const SSEFloat& a, const SSEFloat& b) { return _mm_div_ps(a.mVal, b.mVal); }
+    friend SIMDType operator + (const SIMDType& a, const SIMDType& b) { return _mm_add_ps(a.mVal, b.mVal); }
+    friend SIMDType operator - (const SIMDType& a, const SIMDType& b) { return _mm_sub_ps(a.mVal, b.mVal); }
+    friend SIMDType operator * (const SIMDType& a, const SIMDType& b) { return _mm_mul_ps(a.mVal, b.mVal); }
+    friend SIMDType operator / (const SIMDType& a, const SIMDType& b) { return _mm_div_ps(a.mVal, b.mVal); }
 
-    friend SSEFloat sqrt(const SSEFloat& a) { return _mm_sqrt_ps(a.mVal); }
+    friend SIMDType sqrt(const SIMDType& a) { return _mm_sqrt_ps(a.mVal); }
     
-    friend SSEFloat min(const SSEFloat& a, const SSEFloat& b) { return _mm_min_ps(a.mVal, b.mVal); }
-    friend SSEFloat max(const SSEFloat& a, const SSEFloat& b) { return _mm_max_ps(a.mVal, b.mVal); }
+    friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm_min_ps(a.mVal, b.mVal); }
+    friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm_max_ps(a.mVal, b.mVal); }
 
-    friend SSEFloat and_not(const SSEFloat& a, const SSEFloat& b) { return _mm_andnot_ps(a.mVal, b.mVal); }
-    friend SSEFloat operator & (const SSEFloat& a, const SSEFloat& b) { return _mm_and_ps(a.mVal, b.mVal); }
-    friend SSEFloat operator | (const SSEFloat& a, const SSEFloat& b) { return _mm_or_ps(a.mVal, b.mVal); }
-    friend SSEFloat operator ^ (const SSEFloat& a, const SSEFloat& b) { return _mm_xor_ps(a.mVal, b.mVal); }
+    friend SIMDType and_not(const SIMDType& a, const SIMDType& b) { return _mm_andnot_ps(a.mVal, b.mVal); }
+    friend SIMDType operator & (const SIMDType& a, const SIMDType& b) { return _mm_and_ps(a.mVal, b.mVal); }
+    friend SIMDType operator | (const SIMDType& a, const SIMDType& b) { return _mm_or_ps(a.mVal, b.mVal); }
+    friend SIMDType operator ^ (const SIMDType& a, const SIMDType& b) { return _mm_xor_ps(a.mVal, b.mVal); }
 
-    friend SSEFloat operator == (const SSEFloat& a, const SSEFloat& b) { return _mm_cmpeq_ps(a.mVal, b.mVal); }
-    friend SSEFloat operator != (const SSEFloat& a, const SSEFloat& b) { return _mm_cmpneq_ps(a.mVal, b.mVal); }
-    friend SSEFloat operator > (const SSEFloat& a, const SSEFloat& b) { return _mm_cmplt_ps(a.mVal, b.mVal); }
-    friend SSEFloat operator < (const SSEFloat& a, const SSEFloat& b) { return _mm_cmpgt_ps(a.mVal, b.mVal); }
-    friend SSEFloat operator >= (const SSEFloat& a, const SSEFloat& b) { return _mm_cmple_ps(a.mVal, b.mVal); }
-    friend SSEFloat operator <= (const SSEFloat& a, const SSEFloat& b) { return _mm_cmpge_ps(a.mVal, b.mVal); }
+    friend SIMDType operator == (const SIMDType& a, const SIMDType& b) { return _mm_cmpeq_ps(a.mVal, b.mVal); }
+    friend SIMDType operator != (const SIMDType& a, const SIMDType& b) { return _mm_cmpneq_ps(a.mVal, b.mVal); }
+    friend SIMDType operator > (const SIMDType& a, const SIMDType& b) { return _mm_cmplt_ps(a.mVal, b.mVal); }
+    friend SIMDType operator < (const SIMDType& a, const SIMDType& b) { return _mm_cmpgt_ps(a.mVal, b.mVal); }
+    friend SIMDType operator >= (const SIMDType& a, const SIMDType& b) { return _mm_cmple_ps(a.mVal, b.mVal); }
+    friend SIMDType operator <= (const SIMDType& a, const SIMDType& b) { return _mm_cmpge_ps(a.mVal, b.mVal); }
 
-    template <int z, int y, int x, int w> static SSEFloat shuffle(const SSEFloat& a, const SSEFloat& b)
+    template <int z, int y, int x, int w> static SIMDType shuffle(const SIMDType& a, const SIMDType& b)
     {
         return _mm_shuffle_ps(a.mVal, b.mVal, ((z<<6)|(y<<4)|(x<<2)|w));
     }
@@ -428,19 +443,20 @@ struct SSEFloat : public SIMDVector<float, __m128, 4>
     }
 };
 
-struct SSEInt32 : public SIMDVector<int32_t, __m128i, 4>
+template<>
+struct SIMDType<int32_t, 4> : public SIMDVector<int32_t, __m128i, 4>
 {
-    SSEInt32() {}
-    SSEInt32(const int32_t& a) { mVal = _mm_set1_epi32(a); }
-    SSEInt32(const int32_t* a) { mVal = _mm_loadu_si128(reinterpret_cast<const __m128i *>(a)); }
-    SSEInt32(__m128 a) : SIMDVector(a) {}
+    SIMDType() {}
+    SIMDType(const int32_t& a) { mVal = _mm_set1_epi32(a); }
+    SIMDType(const int32_t* a) { mVal = _mm_loadu_si128(reinterpret_cast<const __m128i *>(a)); }
+    SIMDType(__m128 a) : SIMDVector(a) {}
     
-    friend SSEInt32 operator + (const SSEInt32& a, const SSEInt32& b) { return _mm_add_epi32(a.mVal, b.mVal); }
-    friend SSEInt32 operator - (const SSEInt32& a, const SSEInt32& b) { return _mm_sub_epi32(a.mVal, b.mVal); }
-    friend SSEInt32 operator * (const SSEInt32& a, const SSEInt32& b) { return _mm_mul_epi32(a.mVal, b.mVal); }
+    friend SIMDType operator + (const SIMDType& a, const SIMDType& b) { return _mm_add_epi32(a.mVal, b.mVal); }
+    friend SIMDType operator - (const SIMDType& a, const SIMDType& b) { return _mm_sub_epi32(a.mVal, b.mVal); }
+    friend SIMDType operator * (const SIMDType& a, const SIMDType& b) { return _mm_mul_epi32(a.mVal, b.mVal); }
     
-    friend SSEInt32 min(const SSEInt32& a, const SSEInt32& b) { return _mm_min_epi32(a.mVal, b.mVal); }
-    friend SSEInt32 max(const SSEInt32& a, const SSEInt32& b) { return _mm_max_epi32(a.mVal, b.mVal); }
+    friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm_min_epi32(a.mVal, b.mVal); }
+    friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm_max_epi32(a.mVal, b.mVal); }
     
     operator SSEFloat()     { return SSEFloat( _mm_cvtepi32_ps(mVal)); }
     operator AVX256Double() { return _mm256_cvtepi32_pd(mVal); }
@@ -460,34 +476,35 @@ struct SSEInt32 : public SIMDVector<int32_t, __m128i, 4>
 
 #if (SIMD_COMPILER_SUPPORT_LEVEL >= SIMD_COMPILER_SUPPORT_AVX256)
 
-struct AVX256Float : public SIMDVector<float, __m256, 8>
+template<>
+struct SIMDType<float, 8> : public SIMDVector<float, __m256, 8>
 {
-    AVX256Float() {}
-    AVX256Float(const float& a) { mVal = _mm256_set1_ps(a); }
-    AVX256Float(const float* a) { mVal = _mm256_loadu_ps(a); }
-    AVX256Float(__m256 a) : SIMDVector(a) {}
+    SIMDType() {}
+    SIMDType(const float& a) { mVal = _mm256_set1_ps(a); }
+    SIMDType(const float* a) { mVal = _mm256_loadu_ps(a); }
+    SIMDType(__m256 a) : SIMDVector(a) {}
     
-    friend AVX256Float operator + (const AVX256Float &a, const AVX256Float &b) { return _mm256_add_ps(a.mVal, b.mVal); }
-    friend AVX256Float operator - (const AVX256Float &a, const AVX256Float &b) { return _mm256_sub_ps(a.mVal, b.mVal); }
-    friend AVX256Float operator * (const AVX256Float &a, const AVX256Float &b) { return _mm256_mul_ps(a.mVal, b.mVal); }
-    friend AVX256Float operator / (const AVX256Float &a, const AVX256Float &b) { return _mm256_div_ps(a.mVal, b.mVal); }
+    friend SIMDType operator + (const SIMDType &a, const SIMDType &b) { return _mm256_add_ps(a.mVal, b.mVal); }
+    friend SIMDType operator - (const SIMDType &a, const SIMDType &b) { return _mm256_sub_ps(a.mVal, b.mVal); }
+    friend SIMDType operator * (const SIMDType &a, const SIMDType &b) { return _mm256_mul_ps(a.mVal, b.mVal); }
+    friend SIMDType operator / (const SIMDType &a, const SIMDType &b) { return _mm256_div_ps(a.mVal, b.mVal); }
     
-    friend AVX256Float sqrt(const AVX256Float& a) { return _mm256_sqrt_ps(a.mVal); }
+    friend SIMDType sqrt(const SIMDType& a) { return _mm256_sqrt_ps(a.mVal); }
     
-    friend AVX256Float min(const AVX256Float& a, const AVX256Float& b) { return _mm256_min_ps(a.mVal, b.mVal); }
-    friend AVX256Float max(const AVX256Float& a, const AVX256Float& b) { return _mm256_max_ps(a.mVal, b.mVal); }
+    friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm256_min_ps(a.mVal, b.mVal); }
+    friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm256_max_ps(a.mVal, b.mVal); }
 
-    friend AVX256Float and_not(const AVX256Float& a, const AVX256Float& b) { return _mm256_andnot_ps(a.mVal, b.mVal); }
-    friend AVX256Float operator & (const AVX256Float& a, const AVX256Float& b) { return _mm256_and_ps(a.mVal, b.mVal); }
-    friend AVX256Float operator | (const AVX256Float& a, const AVX256Float& b) { return _mm256_or_ps(a.mVal, b.mVal); }
-    friend AVX256Float operator ^ (const AVX256Float& a, const AVX256Float& b) { return _mm256_xor_ps(a.mVal, b.mVal); }
+    friend SIMDType and_not(const SIMDType& a, const SIMDType& b) { return _mm256_andnot_ps(a.mVal, b.mVal); }
+    friend SIMDType operator & (const SIMDType& a, const SIMDType& b) { return _mm256_and_ps(a.mVal, b.mVal); }
+    friend SIMDType operator | (const SIMDType& a, const SIMDType& b) { return _mm256_or_ps(a.mVal, b.mVal); }
+    friend SIMDType operator ^ (const SIMDType& a, const SIMDType& b) { return _mm256_xor_ps(a.mVal, b.mVal); }
     
-    friend AVX256Float operator == (const AVX256Float& a, const AVX256Float& b) { return _mm256_cmp_ps(a.mVal, b.mVal, _CMP_EQ_OQ); }
-    friend AVX256Float operator != (const AVX256Float& a, const AVX256Float& b) { return _mm256_cmp_ps(a.mVal, b.mVal, _CMP_NEQ_OQ); }
-    friend AVX256Float operator > (const AVX256Float& a, const AVX256Float& b) { return _mm256_cmp_ps(a.mVal, b.mVal, _CMP_GT_OQ); }
-    friend AVX256Float operator < (const AVX256Float& a, const AVX256Float& b) { return _mm256_cmp_ps(a.mVal, b.mVal, _CMP_LT_OQ); }
-    friend AVX256Float operator >= (const AVX256Float& a, const AVX256Float& b) { return _mm256_cmp_ps(a.mVal, b.mVal, _CMP_GE_OQ); }
-    friend AVX256Float operator <= (const AVX256Float& a, const AVX256Float& b) { return _mm256_cmp_ps(a.mVal, b.mVal, _CMP_LE_OQ); }
+    friend SIMDType operator == (const SIMDType& a, const SIMDType& b) { return _mm256_cmp_ps(a.mVal, b.mVal, _CMP_EQ_OQ); }
+    friend SIMDType operator != (const SIMDType& a, const SIMDType& b) { return _mm256_cmp_ps(a.mVal, b.mVal, _CMP_NEQ_OQ); }
+    friend SIMDType operator > (const SIMDType& a, const SIMDType& b) { return _mm256_cmp_ps(a.mVal, b.mVal, _CMP_GT_OQ); }
+    friend SIMDType operator < (const SIMDType& a, const SIMDType& b) { return _mm256_cmp_ps(a.mVal, b.mVal, _CMP_LT_OQ); }
+    friend SIMDType operator >= (const SIMDType& a, const SIMDType& b) { return _mm256_cmp_ps(a.mVal, b.mVal, _CMP_GE_OQ); }
+    friend SIMDType operator <= (const SIMDType& a, const SIMDType& b) { return _mm256_cmp_ps(a.mVal, b.mVal, _CMP_LE_OQ); }
     
     operator SizedVector<8, AVX256Double>()
     {
@@ -500,19 +517,20 @@ struct AVX256Float : public SIMDVector<float, __m256, 8>
     }
 };
 
-struct AVX256Int32 : public SIMDVector<int32_t, __m256i, 8>
+template<>
+struct SIMDType<int32_t, 8> : public SIMDVector<int32_t, __m256i, 8>
 {
-    AVX256Int32() {}
-    AVX256Int32(const int32_t& a) { mVal = _mm256_set1_epi32(a); }
-    AVX256Int32(const int32_t* a) { mVal = _mm256_loadu_si256(reinterpret_cast<const __m256i *>(a)); }
-    AVX256Int32(__m256i a) : SIMDVector(a) {}
+    SIMDType() {}
+    SIMDType(const int32_t& a) { mVal = _mm256_set1_epi32(a); }
+    SIMDType(const int32_t* a) { mVal = _mm256_loadu_si256(reinterpret_cast<const __m256i *>(a)); }
+    SIMDType(__m256i a) : SIMDVector(a) {}
     
-    friend AVX256Int32 operator + (const AVX256Int32& a, const AVX256Int32& b) { return _mm256_add_epi32(a.mVal, b.mVal); }
-    friend AVX256Int32 operator - (const AVX256Int32& a, const AVX256Int32& b) { return _mm256_sub_epi32(a.mVal, b.mVal); }
-    friend AVX256Int32 operator * (const AVX256Int32& a, const AVX256Int32& b) { return _mm256_mul_epi32(a.mVal, b.mVal); }
+    friend SIMDType operator + (const SIMDType& a, const SIMDType& b) { return _mm256_add_epi32(a.mVal, b.mVal); }
+    friend SIMDType operator - (const SIMDType& a, const SIMDType& b) { return _mm256_sub_epi32(a.mVal, b.mVal); }
+    friend SIMDType operator * (const SIMDType& a, const SIMDType& b) { return _mm256_mul_epi32(a.mVal, b.mVal); }
     
-    friend AVX256Int32 min(const AVX256Int32& a, const AVX256Int32& b) { return _mm256_min_epi32(a.mVal, b.mVal); }
-    friend AVX256Int32 max(const AVX256Int32& a, const AVX256Int32& b) { return _mm256_max_epi32(a.mVal, b.mVal); }
+    friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm256_min_epi32(a.mVal, b.mVal); }
+    friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm256_max_epi32(a.mVal, b.mVal); }
  
     operator AVX256Float() { return AVX256Float( _mm256_cvtepi32_ps(mVal)); }
     
@@ -531,64 +549,69 @@ struct AVX256Int32 : public SIMDVector<int32_t, __m256i, 8>
 
 #if (SIMD_COMPILER_SUPPORT_LEVEL >= SIMD_COMPILER_SUPPORT_AVX512)
 
-struct AVX512Double : public SIMDVector<double, __m512d, 8>
-{
-    AVX512Double() {}
-    AVX512Double(const double& a) { mVal = _mm512_set1_pd(a); }
-    AVX512Double(const double* a) { mVal = _mm512_loadu_pd(a); }
-    AVX512Double(__m512d a) : SIMDVector(a) {}
-    
-    friend AVX512Double operator + (const AVX512Double &a, const AVX512Double &b) { return _mm512_add_pd(a.mVal, b.mVal); }
-    friend AVX512Double operator - (const AVX512Double &a, const AVX512Double &b) { return _mm512_sub_pd(a.mVal, b.mVal); }
-    friend AVX512Double operator * (const AVX512Double &a, const AVX512Double &b) { return _mm512_mul_pd(a.mVal, b.mVal); }
-    friend AVX512Double operator / (const AVX512Double &a, const AVX512Double &b) { return _mm512_div_pd(a.mVal, b.mVal); }
-    
-    friend AVX512Double sqrt(const AVX512Double& a) { return _mm512_sqrt_pd(a.mVal); }
-    
-    friend AVX512Double min(const AVX512Double& a, const AVX512Double& b) { return _mm512_min_pd(a.mVal, b.mVal); }
-    friend AVX512Double max(const AVX512Double& a, const AVX512Double& b) { return _mm512_max_pd(a.mVal, b.mVal); }
+typedef SIMDType<double, 8> AVX512Double;
+typedef SIMDType<float, 16> AVX512Float;
 
-    friend AVX512Double and_not(const AVX512Double& a, const AVX512Double& b) { return _mm512_andnot_pd(a.mVal, b.mVal); }
-    friend AVX512Double operator & (const AVX512Double& a, const AVX512Double& b) { return _mm512_and_pd(a.mVal, b.mVal); }
-    friend AVX512Double operator | (const AVX512Double& a, const AVX512Double& b) { return _mm512_or_pd(a.mVal, b.mVal); }
-    friend AVX512Double operator ^ (const AVX512Double& a, const AVX512Double& b) { return _mm512_xor_pd(a.mVal, b.mVal); }
+template<>
+struct SIMDType<double, 8> : public SIMDVector<double, __m512d, 8>
+{
+    SIMDType() {}
+    SIMDType(const double& a) { mVal = _mm512_set1_pd(a); }
+    SIMDType(const double* a) { mVal = _mm512_loadu_pd(a); }
+    SIMDType(__m512d a) : SIMDVector(a) {}
     
-    friend AVX512Double operator == (const AVX512Double& a, const AVX512Double& b) { return _mm512_cmp_pd_mask(a.mVal, b.mVal, _CMP_EQ_OQ); }
-    friend AVX512Double operator != (const AVX512Double& a, const AVX512Double& b) { return _mm512_cmp_pd_mask(a.mVal, b.mVal, _CMP_NEQ_OQ); }
-    friend AVX512Double operator > (const AVX512Double& a, const AVX512Double& b) { return _mm512_cmp_pd_mask(a.mVal, b.mVal, _CMP_GT_OQ); }
-    friend AVX512Double operator < (const AVX512Double& a, const AVX512Double& b) { return _mm512_cmp_pd_mask(a.mVal, b.mVal, _CMP_LT_OQ); }
-    friend AVX512Double operator >= (const AVX512Double& a, const AVX512Double& b) { return _mm512_cmp_pd_mask(a.mVal, b.mVal, _CMP_GE_OQ); }
-    friend AVX512Double operator <= (const AVX512Double& a, const AVX512Double& b) { return _mm512_cmp_pd_mask(a.mVal, b.mVal, _CMP_LE_OQ); }
+    friend SIMDType operator + (const SIMDType &a, const SIMDType &b) { return _mm512_add_pd(a.mVal, b.mVal); }
+    friend SIMDType operator - (const SIMDType &a, const SIMDType &b) { return _mm512_sub_pd(a.mVal, b.mVal); }
+    friend SIMDType operator * (const SIMDType &a, const SIMDType &b) { return _mm512_mul_pd(a.mVal, b.mVal); }
+    friend SIMDType operator / (const SIMDType &a, const SIMDType &b) { return _mm512_div_pd(a.mVal, b.mVal); }
+    
+    friend SIMDType sqrt(const SIMDType& a) { return _mm512_sqrt_pd(a.mVal); }
+    
+    friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm512_min_pd(a.mVal, b.mVal); }
+    friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm512_max_pd(a.mVal, b.mVal); }
+
+    friend SIMDType and_not(const SIMDType& a, const SIMDType& b) { return _mm512_andnot_pd(a.mVal, b.mVal); }
+    friend SIMDType operator & (const SIMDType& a, const SIMDType& b) { return _mm512_and_pd(a.mVal, b.mVal); }
+    friend SIMDType operator | (const SIMDType& a, const SIMDType& b) { return _mm512_or_pd(a.mVal, b.mVal); }
+    friend SIMDType operator ^ (const SIMDType& a, const SIMDType& b) { return _mm512_xor_pd(a.mVal, b.mVal); }
+    
+    friend SIMDType operator == (const SIMDType& a, const SIMDType& b) { return _mm512_cmp_pd_mask(a.mVal, b.mVal, _CMP_EQ_OQ); }
+    friend SIMDType operator != (const SIMDType& a, const SIMDType& b) { return _mm512_cmp_pd_mask(a.mVal, b.mVal, _CMP_NEQ_OQ); }
+    friend SIMDType operator > (const SIMDType& a, const SIMDType& b) { return _mm512_cmp_pd_mask(a.mVal, b.mVal, _CMP_GT_OQ); }
+    friend SIMDType operator < (const SIMDType& a, const SIMDType& b) { return _mm512_cmp_pd_mask(a.mVal, b.mVal, _CMP_LT_OQ); }
+    friend SIMDType operator >= (const SIMDType& a, const SIMDType& b) { return _mm512_cmp_pd_mask(a.mVal, b.mVal, _CMP_GE_OQ); }
+    friend SIMDType operator <= (const SIMDType& a, const SIMDType& b) { return _mm512_cmp_pd_mask(a.mVal, b.mVal, _CMP_LE_OQ); }
 };
 
-struct AVX512Float : public SIMDVector<float, __m512, 16>
+template<>
+struct SIMDType<float, 16> : public SIMDVector<float, __m512, 16>
 {
-    AVX512Float() {}
-    AVX512Float(const float& a) { mVal = _mm512_set1_ps(a); }
-    AVX512Float(const float* a) { mVal = _mm512_loadu_ps(a); }
-    AVX512Float(__m512 a) : SIMDVector(a) {}
+    SIMDType() {}
+    SIMDType(const float& a) { mVal = _mm512_set1_ps(a); }
+    SIMDType(const float* a) { mVal = _mm512_loadu_ps(a); }
+    SIMDType(__m512 a) : SIMDVector(a) {}
     
-    friend AVX512Float operator + (const AVX512Float &a, const AVX512Float &b) { return _mm512_add_ps(a.mVal, b.mVal); }
-    friend AVX512Float operator - (const AVX512Float &a, const AVX512Float &b) { return _mm512_sub_ps(a.mVal, b.mVal); }
-    friend AVX512Float operator * (const AVX512Float &a, const AVX512Float &b) { return _mm512_mul_ps(a.mVal, b.mVal); }
-    friend AVX512Float operator / (const AVX512Float &a, const AVX512Float &b) { return _mm512_div_ps(a.mVal, b.mVal); }
+    friend SIMDType operator + (const SIMDType &a, const SIMDType &b) { return _mm512_add_ps(a.mVal, b.mVal); }
+    friend SIMDType operator - (const SIMDType &a, const SIMDType &b) { return _mm512_sub_ps(a.mVal, b.mVal); }
+    friend SIMDType operator * (const SIMDType &a, const SIMDType &b) { return _mm512_mul_ps(a.mVal, b.mVal); }
+    friend SIMDType operator / (const SIMDType &a, const SIMDType &b) { return _mm512_div_ps(a.mVal, b.mVal); }
     
-    friend AVX512Float sqrt(const AVX512Float& a) { return _mm512_sqrt_ps(a.mVal); }
+    friend SIMDType sqrt(const SIMDType& a) { return _mm512_sqrt_ps(a.mVal); }
     
-    friend AVX512Float min(const AVX512Float& a, const AVX512Float& b) { return _mm512_min_ps(a.mVal, b.mVal); }
-    friend AVX512Float max(const AVX512Float& a, const AVX512Float& b) { return _mm512_max_ps(a.mVal, b.mVal); }
+    friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm512_min_ps(a.mVal, b.mVal); }
+    friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm512_max_ps(a.mVal, b.mVal); }
   
-    friend AVX512Float and_not(const AVX512Float& a, const AVX512Float& b) { return _mm512_andnot_ps(a.mVal, b.mVal); }
-    friend AVX512Float operator & (const AVX512Float& a, const AVX512Float& b) { return _mm512_and_ps(a.mVal, b.mVal); }
-    friend AVX512Float operator | (const AVX512Float& a, const AVX512Float& b) { return _mm512_or_ps(a.mVal, b.mVal); }
-    friend AVX512Float operator ^ (const AVX512Float& a, const AVX512Float& b) { return _mm512_xor_ps(a.mVal, b.mVal); }
+    friend SIMDType and_not(const SIMDType& a, const SIMDType& b) { return _mm512_andnot_ps(a.mVal, b.mVal); }
+    friend SIMDType operator & (const SIMDType& a, const SIMDType& b) { return _mm512_and_ps(a.mVal, b.mVal); }
+    friend SIMDType operator | (const SIMDType& a, const SIMDType& b) { return _mm512_or_ps(a.mVal, b.mVal); }
+    friend SIMDType operator ^ (const SIMDType& a, const SIMDType& b) { return _mm512_xor_ps(a.mVal, b.mVal); }
     
-    friend AVX512Float operator == (const AVX512Float& a, const AVX512Float& b) { return _mm512_cmp_ps_mask(a.mVal, b.mVal, _CMP_EQ_OQ); }
-    friend AVX512Float operator != (const AVX512Float& a, const AVX512Float& b) { return _mm512_cmp_ps_mask(a.mVal, b.mVal, _CMP_NEQ_OQ); }
-    friend AVX512Float operator > (const AVX512Float& a, const AVX512Float& b) { return _mm512_cmp_ps_mask(a.mVal, b.mVal, _CMP_GT_OQ); }
-    friend AVX512Float operator < (const AVX512Float& a, const AVX512Float& b) { return _mm512_cmp_ps_mask(a.mVal, b.mVal, _CMP_LT_OQ); }
-    friend AVX512Float operator >= (const AVX512Float& a, const AVX512Float& b) { return _mm512_cmp_ps_mask(a.mVal, b.mVal, _CMP_GE_OQ); }
-    friend AVX512Float operator <= (const AVX512Float& a, const AVX512Float& b) { return _mm512_cmp_ps_mask(a.mVal, b.mVal, _CMP_LE_OQ); }
+    friend SIMDType operator == (const SIMDType& a, const SIMDType& b) { return _mm512_cmp_ps_mask(a.mVal, b.mVal, _CMP_EQ_OQ); }
+    friend SIMDType operator != (const SIMDType& a, const SIMDType& b) { return _mm512_cmp_ps_mask(a.mVal, b.mVal, _CMP_NEQ_OQ); }
+    friend SIMDType operator > (const SIMDType& a, const SIMDType& b) { return _mm512_cmp_ps_mask(a.mVal, b.mVal, _CMP_GT_OQ); }
+    friend SIMDType operator < (const SIMDType& a, const SIMDType& b) { return _mm512_cmp_ps_mask(a.mVal, b.mVal, _CMP_LT_OQ); }
+    friend SIMDType operator >= (const SIMDType& a, const SIMDType& b) { return _mm512_cmp_ps_mask(a.mVal, b.mVal, _CMP_GE_OQ); }
+    friend SIMDType operator <= (const SIMDType& a, const SIMDType& b) { return _mm512_cmp_ps_mask(a.mVal, b.mVal, _CMP_LE_OQ); }
 };
 
 #endif

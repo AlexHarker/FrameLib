@@ -37,7 +37,7 @@
 #define _IBUFFER_ACCESS_
 
 #include "ibuffer.h"
-#include "../../../FrameLib_Dependencies/Interpolation.hpp"
+#include "../../../FrameLib_Dependencies/TableReader.hpp"
 
 extern t_symbol *ps_none;
 extern t_symbol *ps_linear;
@@ -59,23 +59,22 @@ struct ibuffer_data {
 
 // Reading different formats
 
-template <class T, int64_t bit_scale> struct fetch
+template <class T, int64_t bit_scale> struct fetch : public table_fetcher<float>
 {
     fetch(const ibuffer_data& data, long chan)
-    : scale(1.0 / ((int64_t) 1 << (bit_scale - 1))), samples(((T *) data.samples) + chan), num_chans(data.num_chans) {}
+    : table_fetcher(1.0 / ((int64_t) 1 << (bit_scale - 1))), samples(((T *) data.samples) + chan), num_chans(data.num_chans) {}
     
     T operator()(intptr_t offset) { return samples[offset * num_chans]; }
     double get(intptr_t offset) { return bit_scale != 1 ? operator()(offset) : scale * operator()(offset); }
     
-    const double scale;
     T *samples;
     long num_chans;
 };
 
-template<> struct fetch<int32_t, 24>
+template<> struct fetch<int32_t, 24> : public table_fetcher<float>
 {
     fetch(const ibuffer_data& data, long chan)
-    : scale(1.0 / ((int64_t) 1 << 7)), samples(((int8_t *) data.samples) + chan), num_chans(data.num_chans) {}
+    : table_fetcher(1.0 / ((int64_t) 1 << 7)), samples(((int8_t *) data.samples) + chan), num_chans(data.num_chans) {}
     
     //#if (TARGET_RT_LITTLE_ENDIAN)
     //    IBUFFER_FETCH_LOOP_UNROLL (*out++ = (*((int32_t *) ((samps - 1) + *offsets++)) & MASK_24_BIT))
@@ -86,7 +85,6 @@ template<> struct fetch<int32_t, 24>
     int32_t operator()(intptr_t offset) { return samples[offset * num_chans]; }
     double get(intptr_t offset) { return scale * operator()(offset); }
     
-    const double scale;
     int8_t *samples;
     long num_chans;
 };

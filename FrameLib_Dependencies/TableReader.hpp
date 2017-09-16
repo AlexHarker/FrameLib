@@ -2,27 +2,20 @@
 #ifndef TABLEREADER_H
 #define TABLEREADER_H
 
-#include "Interpolation.hpp"
 #include "SIMDSupport.hpp"
+#include "Interpolation.hpp"
 
-// Generic types of interpolation
+// Base class for table fetchers
 
-template <class T, class U, class Table> struct no_interp_reader
+template <class T> struct table_fetcher
 {
-    no_interp_reader(Table fetcher) : fetch(fetcher) {}
+    typedef T fetch_type;
+    table_fetcher(double scale_val) : scale(scale_val) {}
     
-    T operator()(double*& positions)
-    {
-        typename U::scalar_type array[T::size];
-        
-        for (int i = 0; i < T::size; i++)
-            array[i] = fetch(static_cast<intptr_t>(*positions++));
-        
-        return U(array);
-    }
-    
-    Table fetch;
+    const double scale;
 };
+
+// Generic intepolation readers
 
 template <class T, class U, class Table, typename Interp> struct interp_2_reader
 {
@@ -86,6 +79,25 @@ template <class T, class U, class Table, typename Interp> struct interp_4_reader
     Interp interpolate;
 };
 
+// Readers with specific interpolation types
+
+template <class T, class U, class Table> struct no_interp_reader
+{
+    no_interp_reader(Table fetcher) : fetch(fetcher) {}
+    
+    T operator()(double*& positions)
+    {
+        typename U::scalar_type array[T::size];
+        
+        for (int i = 0; i < T::size; i++)
+            array[i] = fetch(static_cast<intptr_t>(*positions++));
+        
+        return U(array);
+    }
+    
+    Table fetch;
+};
+
 template <class T, class U, class Table>
 struct linear_reader : public interp_2_reader<T, U, Table, linear_interp<T> >
 {
@@ -110,6 +122,8 @@ struct cubic_lagrange_reader : public interp_4_reader<T, U, Table, cubic_lagrang
     cubic_lagrange_reader(Table fetcher) : interp_4_reader<T, U, Table, cubic_lagrange_interp<T> >(fetcher) {}
 };
 
+// Reading loop
+
 template <class T, class U, class Table, template <class V, class W, class Tb> class Reader>
 void table_read_loop(Table fetcher, typename T::scalar_type *out, double *positions, intptr_t n_samps, typename U::scalar_type mul)
 {
@@ -122,25 +136,21 @@ void table_read_loop(Table fetcher, typename T::scalar_type *out, double *positi
         *v_out++ = scale * reader(positions);
 }
 
-template <template <class T, class U, class Tb> class Reader, class Table>
-void table_read(Table fetcher, float *out, double *positions, intptr_t n_samps, float mul)
+// Template to determine vector/scalar types
+
+template <template <class T, class U, class Tb> class Reader, class Table, class V>
+void table_read(Table fetcher, V *out, double *positions, intptr_t n_samps, double mul)
 {
-    intptr_t n_vsample = (n_samps / AVX256Float::size) * AVX256Float::size;
+    typedef typename Table::fetch_type fetch_type;
+    const int vec_size = 32 / sizeof(V);
+
+    intptr_t n_vsample = (n_samps / SIMDType<V, vec_size>::size) * SIMDType<V, vec_size>::size;
     
-    // FIX - this will break for floats...
-    
-    table_read_loop<AVX256Float, AVX256Int32, Table, Reader>(fetcher, out, positions, n_vsample, mul);
-    table_read_loop<Scalar<float>, Scalar<float>, Table, Reader>(fetcher, out, positions + n_vsample, n_samps - n_vsample, mul);
+    table_read_loop<SIMDType<V, vec_size>, SIMDType<fetch_type, vec_size>, Table, Reader>(fetcher, out, positions, n_vsample, mul);
+    table_read_loop<Scalar<V>, Scalar<fetch_type>, Table, Reader>(fetcher, out, positions + n_vsample, n_samps - n_vsample, mul);
 }
 
-template <template <class T, class U, class Tb> class Reader, class Table>
-void table_read(Table fetcher, double *out, double *positions, intptr_t n_samps, double mul)
-{
-    intptr_t n_vsample = (n_samps / AVX256Float::size) * AVX256Float::size;
-    
-    table_read_loop<AVX256Double, SSEFloat, Table, Reader>(fetcher, out, positions, n_vsample, mul);
-    table_read_loop<Scalar<double>, Scalar<float>, Table, Reader>(fetcher, out, positions + n_vsample, n_samps - n_vsample, mul);
-}
+// Main reading call that switches between different types of interpolation
 
 template <class T, class Table>
 void table_read(Table fetcher, T *out, double *positions, intptr_t n_samps, T mul, InterpType interp)
@@ -149,7 +159,7 @@ void table_read(Table fetcher, T *out, double *positions, intptr_t n_samps, T mu
     {
         case kInterpNone:           table_read<no_interp_reader>(fetcher, out, positions, n_samps, mul);        break;
         case kInterpLinear:         table_read<linear_reader>(fetcher, out, positions, n_samps, mul);           break;
-        case kInterpCubicHermite:   table_read<cubic_hermite_reader>(fetcher, out,positions, n_samps, mul);    break;
+        case kInterpCubicHermite:   table_read<cubic_hermite_reader>(fetcher, out,positions, n_samps, mul);     break;
         case kInterpCubicLagrange:  table_read<cubic_lagrange_reader>(fetcher, out, positions, n_samps, mul);   break;
         case kInterpCubicBSpline:   table_read<cubic_bspline_reader>(fetcher, out, positions, n_samps, mul);    break;
     }
