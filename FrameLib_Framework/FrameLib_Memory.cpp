@@ -245,9 +245,7 @@ void FrameLib_GlobalAllocator::CoreAllocator::destroyScheduledPool()
 void *FrameLib_GlobalAllocator::alloc(size_t size)
 {
     FrameLib_SpinLockHold lock(&mLock);
-    void *ptr = mAllocator.alloc(size);
-    
-    return ptr;
+    return mAllocator.alloc(size);
 }
 
 void FrameLib_GlobalAllocator::dealloc(void *ptr)
