@@ -122,22 +122,13 @@ protected:
         for (unsigned long i = 0; i < sizeCommon; i++)
             output[i] = Op()(input1[i], input2[i]);
         
+        if (!sizeOut)
+            return;
+        
         // Clean up if sizes don't match
         
         if (sizeIn1 != sizeIn2)
         {
-            if (mode == kWrap)
-            {
-                if (!sizeOut)
-                    return;
-                
-                if (sizeOut == 1)
-                {
-                    mode = kPadIn;
-                    defaultValue = (sizeIn1 == 1) ? input1[0] : input2[0];
-                }
-            }
-            
             switch (mode)
             {
                 case kShrink:
@@ -156,7 +147,7 @@ protected:
                        else
                        {
                            for (unsigned long i = sizeCommon; i < sizeOut;)
-                               for (unsigned long j = 0; j < sizeIn2; i++, j++)
+                               for (unsigned long j = 0; j < sizeIn2 && i < sizeOut; i++, j++)
                                 output[i] = Op()(input1[i], input2[j]);
                        }
                     }
@@ -171,7 +162,7 @@ protected:
                         else
                         {
                             for (unsigned long i = sizeCommon; i < sizeOut;)
-                                for (unsigned long j = 0; j < sizeIn1; i++, j++)
+                                for (unsigned long j = 0; j < sizeIn1 && i < sizeOut; i++, j++)
                                     output[i] = Op()(input1[j], input2[i]);
                         }
                     }
