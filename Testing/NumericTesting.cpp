@@ -262,6 +262,7 @@ public:
         
         mStore2 = mStore1;
         mStore1 = elapsed;
+        mStart = mach_absolute_time();
     };
     
     void relative(const std::string& msg)
