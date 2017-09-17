@@ -281,19 +281,22 @@ FrameLib_LocalAllocator::Storage::~Storage()
 
 void FrameLib_LocalAllocator::Storage::resize(unsigned long size)
 {
-    if (mMaxSize >= size && (size <= (mMaxSize >> 1)))
+    unsigned long maxSize = size << 1;
+    
+    if (mMaxSize >= maxSize)
     {
         mSize = size;
     }
     else
     {
-        double *newData = (double *) mAllocator->alloc(size * sizeof(double));
+        double *newData = (double *) mAllocator->alloc(maxSize * sizeof(double));
         
         if (newData)
         {
             mAllocator->dealloc(mData);
             mData = newData;
-            mMaxSize = mSize = size;
+            mMaxSize = maxSize;
+            mSize = size;
         }
     }
 }
