@@ -379,17 +379,15 @@ public:
     
     static t_max_err externalPatchLineUpdate(Wrapper *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
     {
-        // Only handle destinations and account for internal sync connections
-        
         if ((t_object *) x == dst)
             return T::externalPatchLineUpdate(x->internalObject(), patchline, updatetype, src, srcout, x->mObject, dstin + 1);
-        
-        return MAX_ERR_NONE;
+        else
+            return T::externalPatchLineUpdate(x->internalObject(), patchline, updatetype, x->mObject, srcout + 1, dst, dstin);
     }
     
     static t_ptr_int externalConnectionAccept(Wrapper *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
     {
-        // Only handle sources / account for internal sync connections
+        // Only called for sources / account for internal sync connections
 
         return T::externalConnectionAccept(src->internalObject(), dst, srcout + 1, dstin, outlet, inlet);
     }
@@ -958,11 +956,8 @@ private:
             srcout -= (long) object_method(src, gensym("__fl.get_num_audio_outs"));
             dstin -= getNumAudioIns();
             
-            if (validInput(dstin))
-            {
-                if (updatetype != JPATCHLINE_ORDER)
-                    dspchain_setbroken(dspchain_fromobject(*this));
-            }
+            if (validInput(dstin) && updatetype != JPATCHLINE_ORDER)
+                dspchain_setbroken(dspchain_fromobject(*this));
             
             switch (updatetype)
             {
