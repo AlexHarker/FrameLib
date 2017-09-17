@@ -326,6 +326,41 @@ void frameLibLocalAllocTest(uintptr_t count)
     localallocator.clear();
 }
 
+void mallocAllocTest2(uintptr_t count)
+{
+    std::vector<void *> ptrs(count);
+    
+    for (uintptr_t i = 0; i < count; i++)
+        ptrs[i] = malloc(800);
+    
+    for (uintptr_t i = 0; i < count; i++)
+        free(ptrs[i]);
+}
+
+void frameLibGlobalAllocTest2(uintptr_t count)
+{
+    std::vector<void *> ptrs(count);
+    
+    for (uintptr_t i = 0; i < count; i++)
+        ptrs[i] = globalAllocator.alloc(800);
+    
+    for (uintptr_t i = 0; i < count; i++)
+        globalAllocator.dealloc(ptrs[i]);
+}
+
+void frameLibLocalAllocTest2(uintptr_t count)
+{
+    std::vector<void *> ptrs(count);
+    
+    for (uintptr_t i = 0; i < count; i++)
+        ptrs[i] = localallocator.alloc(800);
+    
+    for (uintptr_t i = 0; i < count; i++)
+        localallocator.dealloc(ptrs[i]);
+    
+    localallocator.clear();
+}
+
 
 // ************************************************************************************** //
 
@@ -347,6 +382,8 @@ int main(int argc, const char * argv[]) {
     
     runTimeCompareTest("Comparison Speed", "malloc", "global", &mallocAllocTest, &frameLibGlobalAllocTest, 200000);
     runTimeCompareTest("Comparison Speed", "malloc", "local", &mallocAllocTest, &frameLibLocalAllocTest, 200000);
+    runTimeCompareTest("Comparison Speed", "malloc 2", "global 2", &mallocAllocTest2, &frameLibGlobalAllocTest2, 200000);
+    runTimeCompareTest("Comparison Speed", "malloc 2", "local 2", &mallocAllocTest2, &frameLibLocalAllocTest2, 200000);
     
 
     testsCompleted();
