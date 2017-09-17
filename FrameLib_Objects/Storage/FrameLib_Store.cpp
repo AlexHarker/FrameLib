@@ -48,6 +48,13 @@ FrameLib_Store::ParameterInfo::ParameterInfo()
     add("Sets the name of the memory location to use.");
 }
 
+// Object Rest
+
+void FrameLib_Store::objectReset()
+{
+    mStorage->resize(0);
+}
+
 // Process
 
 void FrameLib_Store::process()

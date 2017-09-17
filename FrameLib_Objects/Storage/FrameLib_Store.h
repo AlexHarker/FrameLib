@@ -29,8 +29,9 @@ public:
     
 private:
     
-    // Process
+    // Object Reset and Process
     
+    void objectReset();
     void process();
     
     // Data
