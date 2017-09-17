@@ -89,7 +89,7 @@ FrameLib_Global *FrameLib_Global::decrement()
     
     if (--mCount < 1)
     {
-        // N.B. - The spinlock will attempt to lock itself when deleting, so we can't hold the lock on delete
+        // N.B. - The spinlock will attempt to lock itself in its deconstructor, so we can't hold the lock
         
         lock.destroy();
         delete this;
