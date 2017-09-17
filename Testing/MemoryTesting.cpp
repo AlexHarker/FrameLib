@@ -288,27 +288,42 @@ uintptr_t localAllocTest3(uintptr_t count)
 
 // Speed tests
 
+FrameLib_GlobalAllocator globalAllocator;
+FrameLib_LocalAllocator localallocator(&globalAllocator);
+
 void mallocAllocTest(uintptr_t count)
 {
+    std::vector<void *> ptrs(count);
+    
     for (uintptr_t i = 0; i < count; i++)
-        free(malloc(randomSize()));
+        ptrs[i] = malloc(randomSize());
+    
+    for (uintptr_t i = 0; i < count; i++)
+        free(ptrs[i]);
 }
 
 void frameLibGlobalAllocTest(uintptr_t count)
 {
-    FrameLib_GlobalAllocator allocator;
+    std::vector<void *> ptrs(count);
+
+    for (uintptr_t i = 0; i < count; i++)
+        ptrs[i] = globalAllocator.alloc(randomSize());
     
     for (uintptr_t i = 0; i < count; i++)
-        allocator.dealloc(allocator.alloc(randomSize()));
+        globalAllocator.dealloc(ptrs[i]);
 }
 
 void frameLibLocalAllocTest(uintptr_t count)
 {
-    FrameLib_GlobalAllocator gAllocator;
-    FrameLib_LocalAllocator allocator(&gAllocator);
+    std::vector<void *> ptrs(count);
     
     for (uintptr_t i = 0; i < count; i++)
-        allocator.dealloc(allocator.alloc(randomSize()));
+        ptrs[i] = localallocator.alloc(randomSize());
+    
+    for (uintptr_t i = 0; i < count; i++)
+        localallocator.dealloc(ptrs[i]);
+    
+    localallocator.clear();
 }
 
 
