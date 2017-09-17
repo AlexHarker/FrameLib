@@ -22,7 +22,8 @@ FrameLib_DSP::~FrameLib_DSP()
     // Delete Fixed Inputs
     
     for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
-        mAllocator->dealloc(ins->mFixedInput);
+        delete[] ins->mFixedInput;
+        //mAllocator->dealloc(ins->mFixedInput);
 }
 
 // Set Fixed Input
@@ -34,9 +35,11 @@ void FrameLib_DSP::setFixedInput(unsigned long idx, double *input, unsigned long
     mInputs[idx].mSize = 0;
     
     if (mInputs[idx].mFixedInput)
-        mAllocator->dealloc(mInputs[idx].mFixedInput);
+        delete[] mInputs[idx].mFixedInput;
+        //mAllocator->dealloc(mInputs[idx].mFixedInput);
     
-    mInputs[idx].mFixedInput = (double *) mAllocator->alloc(size * sizeof(double));
+    mInputs[idx].mFixedInput = new double[size];
+    //mInputs[idx].mFixedInput = (double *) mAllocator->alloc(size * sizeof(double));
     
     if (mInputs[idx].mFixedInput)
     {
