@@ -121,10 +121,25 @@ static inline void *ibuffer_get_ptr(t_symbol *s)
         t_object *b = s->s_thing;
 	
         if (b && (ob_sym(b) == ps_ibuffer || ob_sym(b) == ps_buffer))
+        {
+            if (ob_sym(b) == ps_buffer)
+                ATOMIC_INCREMENT(&((t_buffer *)b)->b_inuse);
+            else
+                ATOMIC_INCREMENT(&((t_ibuffer *)b)->inuse);
+    
             return b;
+        }
     }
+    
+    return NULL;
+}
 
-	return NULL;
+static inline void ibuffer_release_ptr(void *thebuffer)
+{
+    if (ob_sym(thebuffer) == ps_buffer)
+        ATOMIC_DECREMENT(&((t_buffer *)thebuffer)->b_inuse);
+    else
+        ATOMIC_DECREMENT(&((t_ibuffer *)thebuffer)->inuse);
 }
 
 static inline const ibuffer_data ibuffer_info(void *thebuffer)
@@ -166,23 +181,6 @@ static inline double ibuffer_sample_rate(void *thebuffer)
 		return (double) ((t_buffer *)thebuffer)->b_sr;
 	else
 		return (double) ((t_ibuffer *)thebuffer)->sr;		
-}
-
-static inline void ibuffer_increment_inuse (void *thebuffer)
-{
-	if (ob_sym(thebuffer) == ps_buffer)
-		ATOMIC_INCREMENT(&((t_buffer *)thebuffer)->b_inuse);
-	else
-        ATOMIC_INCREMENT(&((t_ibuffer *)thebuffer)->inuse);
-}
-
-
-static inline void ibuffer_decrement_inuse (void *thebuffer)
-{
-	if (ob_sym(thebuffer) == ps_buffer)
-		ATOMIC_DECREMENT(&((t_buffer *)thebuffer)->b_inuse);
-	else
-		ATOMIC_DECREMENT(&((t_ibuffer *)thebuffer)->inuse);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

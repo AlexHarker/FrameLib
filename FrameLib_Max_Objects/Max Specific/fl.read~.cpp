@@ -106,18 +106,13 @@ void FrameLib_MaxRead::process()
     
     void *buffer = ibuffer_get_ptr(mBufferName);
     
-    if (buffer && size)
-        ibuffer_increment_inuse(buffer);
-        
     const ibuffer_data data = ibuffer_info(buffer);
     
-    if (buffer && size)
+    if (buffer && size && data.samples)
     {
         chan = (mChan - 1) % data.num_chans;
             
         tempMem = mAllocator->alloc(size * (sizeof(double)));
-        if (!tempMem)
-            ibuffer_decrement_inuse(buffer);
     }
     
     if (tempMem)
@@ -167,7 +162,6 @@ void FrameLib_MaxRead::process()
         
         ibuffer_read(data, output, positions, vecSize, chan, 1.0, interpType);
         mAllocator->dealloc(tempMem);
-        ibuffer_decrement_inuse(buffer);
     }
     else
     {
@@ -175,6 +169,9 @@ void FrameLib_MaxRead::process()
         
         zeroVector(output, size);
     }
+    
+    ibuffer_release_ptr(buffer);
+
 }
 
 // Max Object
