@@ -114,8 +114,6 @@ ConnectionResult FrameLib_DSP::addConnection(FrameLib_DSP *object, unsigned long
         addInputDependency(object);
         object->addOutputDependency(this);
     }
-    else
-        return kConnectAlreadyConnected;
     
     // Store data about connection and reset the dependency count
     

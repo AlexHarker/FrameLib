@@ -927,9 +927,6 @@ private:
             case kConnectSelfConnection:
                 object_error(mUserObject, "direct feedback loop detected");
                 break;
-                
-            default:
-                break;
         }
     }
     

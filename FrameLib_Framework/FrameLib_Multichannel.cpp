@@ -23,9 +23,7 @@ ConnectionResult FrameLib_MultiChannel::addConnection(FrameLib_MultiChannel *obj
         removeConnection(inIdx);
         object->addOutputDependency(this);
     }
-    else
-        return kConnectAlreadyConnected;
-    
+
     // Store data about connection and update
     
     mInputs[inIdx] = MultiChannelInput(object, outIdx);
