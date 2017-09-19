@@ -5,14 +5,17 @@
 
 // Connection methods (public)
 
-void FrameLib_MultiChannel::deleteConnection(unsigned long inIdx)
+ConnectionResult FrameLib_MultiChannel::addConnection(FrameLib_MultiChannel *object, unsigned long outIdx, unsigned long inIdx)
 {
-    clearConnection(inIdx);
-    updateConnections();
-}
-
-void FrameLib_MultiChannel::addConnection(FrameLib_MultiChannel *object, unsigned long outIdx, unsigned long inIdx)
-{
+    if (object == this)
+        return kConnectSelfConnection;
+    
+    if (object->getContext() != getContext())
+        return kConnectWrongContext;
+    
+    if (detectFeedback(object))
+        return kConnectFeedbackDetected;
+    
     // Update dependencies if the connected object has changed
     
     if (mInputs[inIdx].mObject != object)
@@ -20,10 +23,20 @@ void FrameLib_MultiChannel::addConnection(FrameLib_MultiChannel *object, unsigne
         removeConnection(inIdx);
         object->addOutputDependency(this);
     }
+    else
+        return kConnectAlreadyConnected;
     
     // Store data about connection and update
     
     mInputs[inIdx] = MultiChannelInput(object, outIdx);
+    updateConnections();
+    
+    return kConnectSuccess;
+}
+
+void FrameLib_MultiChannel::deleteConnection(unsigned long inIdx)
+{
+    clearConnection(inIdx);
     updateConnections();
 }
 
@@ -132,6 +145,23 @@ void FrameLib_MultiChannel::outputUpdate()
     if (mQueue)
         for (std::vector <FrameLib_MultiChannel *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
             mQueue->add(*it);
+}
+
+// Detect Potential Feedback in a Network
+
+bool FrameLib_MultiChannel::detectFeedback(FrameLib_MultiChannel *object)
+{
+    object->setFeedback(false);
+    feedbackProbe();
+    return object->getFeedback();
+
+}
+
+void FrameLib_MultiChannel::feedbackProbe()
+{
+    setFeedback(true);
+    for (std::vector <FrameLib_MultiChannel *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
+        (*it)->feedbackProbe();
 }
 
 // ************************************************************************************** //

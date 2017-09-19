@@ -16,15 +16,25 @@ class FrameLib_Object : protected FrameLib_Info
 {
     
 public:
-     
+    
     // Constructor / Destructor
     
-    FrameLib_Object(ObjectType type) : mType(type), mNumIns(0), mNumOuts(0), mNumAudioChans(0) {}
+    FrameLib_Object(ObjectType type, FrameLib_Context context)
+    : mType(type), mContext(context), mFeedback(false), mNumIns(0), mNumOuts(0), mNumAudioChans(0) {}
     virtual ~FrameLib_Object() {}
    
     // Object Type
     
-    ObjectType getType()    { return mType; }
+    ObjectType getType() const                  { return mType; }
+    
+    // Context
+    
+    const FrameLib_Context getContext() const   { return mContext; }
+    
+    // Feedback Detection
+    
+    bool getFeedback() const                    { return mFeedback; }
+    void setFeedback(bool feedback)             { mFeedback = feedback; }
     
     // Basic IO Setup / Queries
     
@@ -58,8 +68,8 @@ public:
     
     // Connections
     
+    virtual ConnectionResult addConnection(T *object, unsigned long outIdx, unsigned long inIdx) = 0;
     virtual void deleteConnection(unsigned long inIdx) = 0;
-    virtual void addConnection(T *object, unsigned long outIdx, unsigned long inIdx) = 0;
     virtual void clearConnections() = 0;
     virtual bool isConnected(unsigned long inIdx) = 0;
 
@@ -80,6 +90,9 @@ public:
 private:
 
     const ObjectType mType;
+    FrameLib_Context mContext;
+    
+    bool mFeedback;
     
     unsigned long mNumIns;
     unsigned long mNumOuts;
@@ -99,16 +112,16 @@ public:
     
     // Constructor / Destructor
     
-    FrameLib_Block(ObjectType type) : FrameLib_Object<FrameLib_Block>(type) {}
+    FrameLib_Block(ObjectType type, FrameLib_Context context) : FrameLib_Object<FrameLib_Block>(type, context) {}
     virtual ~FrameLib_Block() {}
 
     // Connections
     
-    virtual void addConnection(class FrameLib_DSP *object, unsigned long outIdx, unsigned long inIdx) = 0;
+    virtual ConnectionResult addConnection(class FrameLib_DSP *object, unsigned long outIdx, unsigned long inIdx) = 0;
     
-    virtual void addConnection(FrameLib_Block *object, unsigned long outIdx, unsigned long inIdx)
+    virtual ConnectionResult addConnection(FrameLib_Block *object, unsigned long outIdx, unsigned long inIdx)
     {
-        addConnection(object->getOutputObject(outIdx), outIdx, inIdx);
+        return addConnection(object->getOutputObject(outIdx), outIdx, inIdx);
     }
     
 protected:

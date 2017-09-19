@@ -736,19 +736,6 @@ public:
         switch (info->mMode)
         {
             case FrameLib_MaxGlobals::ConnectionInfo::kConnect:
-
-                if (info->mObject == *this)
-                {
-                    object_error(mUserObject, "direct feedback loop detected");
-                    return;
-                }
-                
-                if (info->mTopLevelPatch != mTopLevelPatch)
-                {
-                    object_error(mUserObject, "cannot connect objects from different top level patchers");
-                    return;
-                }
-                
                 connect(info->mObject, info->mIndex, index);
                 break;
                 
@@ -920,10 +907,30 @@ private:
         if (!validInput(inIdx) || !validOutput(outIdx, object) || (mInputs[inIdx].mObject == src && mInputs[inIdx].mIndex == outIdx) || confirmConnection(inIdx, FrameLib_MaxGlobals::ConnectionInfo::kDoubleCheck))
             return;
         
-        mInputs[inIdx].mObject = src;
-        mInputs[inIdx].mIndex = outIdx;
-        
-        mObject->addConnection(object, outIdx, inIdx);
+        ConnectionResult result = mObject->addConnection(object, outIdx, inIdx);
+
+        switch (result)
+        {
+            case kConnectSuccess:
+                mInputs[inIdx].mObject = src;
+                mInputs[inIdx].mIndex = outIdx;
+                break;
+         
+            case kConnectFeedbackDetected:
+                object_error(mUserObject, "feedback loop detected");
+                break;
+                
+            case kConnectWrongContext:
+                object_error(mUserObject, "cannot connect objects from different top-level patchers");
+                break;
+                
+            case kConnectSelfConnection:
+                object_error(mUserObject, "direct feedback loop detected");
+                break;
+                
+            default:
+                break;
+        }
     }
     
     void disconnect(t_object *src, long outIdx, long inIdx)

@@ -4,7 +4,7 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
-: FrameLib_Block(type), mSamplingRate(44100.0), mMaxBlockSize(4096), mAllocator(context), mParameters(info), mQueue(context), mNext(NULL), mNoLiveInputs(true), mInUpdate(false)
+: FrameLib_Block(type, context), mSamplingRate(44100.0), mMaxBlockSize(4096), mAllocator(context), mParameters(info), mQueue(context), mNext(NULL), mNoLiveInputs(true), mInUpdate(false)
 {
     // Set IO
     
@@ -95,15 +95,17 @@ void FrameLib_DSP::reset(double samplingRate, unsigned long maxBlockSize)
 
 // Connection Methods
 
-void FrameLib_DSP::deleteConnection(unsigned long inIdx)
+ConnectionResult FrameLib_DSP::addConnection(FrameLib_DSP *object, unsigned long outIdx, unsigned long inIdx)
 {
-    removeConnection(inIdx);
-    clearConnection(inIdx);
-    resetDependencyCount();
-}
-
-void FrameLib_DSP::addConnection(FrameLib_DSP *object, unsigned long outIdx, unsigned long inIdx)
-{
+    if (object == this)
+        return kConnectSelfConnection;
+    
+    if (object->getContext() != getContext())
+        return kConnectWrongContext;
+    
+    if (detectFeedback(object))
+        return kConnectFeedbackDetected;
+    
     // Update dependencies if the connection is now from a different object
     
     if (mInputs[inIdx].mObject != object)
@@ -112,12 +114,24 @@ void FrameLib_DSP::addConnection(FrameLib_DSP *object, unsigned long outIdx, uns
         addInputDependency(object);
         object->addOutputDependency(this);
     }
+    else
+        return kConnectAlreadyConnected;
     
     // Store data about connection and reset the dependency count
     
     mInputs[inIdx].setInput(object, outIdx);
     resetDependencyCount();
+    
+    return kConnectSuccess;
 }
+
+void FrameLib_DSP::deleteConnection(unsigned long inIdx)
+{
+    removeConnection(inIdx);
+    clearConnection(inIdx);
+    resetDependencyCount();
+}
+
 
 void FrameLib_DSP::clearConnections()
 {
@@ -626,4 +640,20 @@ std::vector <FrameLib_DSP *>::iterator FrameLib_DSP::disconnect(FrameLib_DSP *ob
     
     removeInputDependency(object);
     return object->removeOutputDependency(this);
+}
+
+// Detect Potential Feedback in a Network
+
+bool FrameLib_DSP::detectFeedback(FrameLib_DSP *object)
+{
+    object->setFeedback(false);
+    feedbackProbe();
+    return object->getFeedback();
+}
+
+void FrameLib_DSP::feedbackProbe()
+{
+    setFeedback(true);
+    for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
+        (*it)->feedbackProbe();
 }

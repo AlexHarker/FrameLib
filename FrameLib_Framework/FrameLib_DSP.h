@@ -106,8 +106,8 @@ public:
     
     // N.B. - No sanity checks here to maximise speed / help debugging (better for it to crash if a mistake is made)
     
+    virtual ConnectionResult addConnection(FrameLib_DSP *object, unsigned long outIdx, unsigned long inIdx);
     virtual void deleteConnection(unsigned long inIdx);
-    virtual void addConnection(FrameLib_DSP *object, unsigned long outIdx, unsigned long inIdx);
     virtual void clearConnections();
     virtual bool isConnected(unsigned long inIdx);
     
@@ -234,6 +234,9 @@ private:
     void clearConnection(unsigned long inIdx);
     void removeConnection(unsigned long inIdx);
     std::vector <FrameLib_DSP *>::iterator disconnect(FrameLib_DSP *object);
+    
+    bool detectFeedback(FrameLib_DSP *object);
+    void feedbackProbe();
     
 protected:
    

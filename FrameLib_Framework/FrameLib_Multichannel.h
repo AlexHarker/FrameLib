@@ -48,14 +48,14 @@ private:
     };
     
 public:
-    
+        
     // Constructors
 
     FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts)
-    : FrameLib_Object(type), mQueue(context)
+    : FrameLib_Object(type, context), mQueue(context)
     { setIO(nIns, nOuts); }
     
-    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context) : FrameLib_Object(type), mQueue(context) {}
+    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context) : FrameLib_Object(type, context), mQueue(context) {}
     
     // Destructor
     
@@ -80,8 +80,8 @@ public:
     
     // N.B. - No sanity checks here to maximise speed and help debugging (better for it to crash if a mistake is made)
     
+    virtual ConnectionResult addConnection(FrameLib_MultiChannel *object, unsigned long outIdx, unsigned long inIdx);
     virtual void deleteConnection(unsigned long inIdx);
-    virtual void addConnection(FrameLib_MultiChannel *object, unsigned long outIdx, unsigned long inIdx);
     virtual void clearConnections();
     virtual bool isConnected(unsigned long inIdx);
     
@@ -124,10 +124,10 @@ private:
     std::vector <FrameLib_MultiChannel *>::iterator disconnect(FrameLib_MultiChannel *object);
     
     virtual void outputUpdate();
+    bool detectFeedback(FrameLib_MultiChannel *object);
+    void feedbackProbe();
 
 protected:
-
-    // Member Variables
 
     // Outputs
     
@@ -223,7 +223,7 @@ template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
 public:
     
     FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-    : FrameLib_MultiChannel(T::getType(), context), mContext(context), mAllocator(context), mSerialisedParameters(serialisedParameters->size()), mOwner(owner)
+    : FrameLib_MultiChannel(T::getType(), context), mAllocator(context), mSerialisedParameters(serialisedParameters->size()), mOwner(owner)
     {
         // Make first block
         
@@ -367,7 +367,7 @@ private:
                 
                 for (unsigned long i = cChannels; i < nChannels; i++)
                 {
-                    mBlocks[i] = new T(mContext, &mSerialisedParameters, mOwner);
+                    mBlocks[i] = new T(getContext(), &mSerialisedParameters, mOwner);
                     mBlocks[i]->reset(mSamplingRate, mMaxBlockSize);
                 }
             }
@@ -418,7 +418,6 @@ private:
 
     // Member Variables
     
-    FrameLib_Context mContext;
     FrameLib_Context::Allocator mAllocator;
     FrameLib_Parameters::AutoSerial mSerialisedParameters;
 
