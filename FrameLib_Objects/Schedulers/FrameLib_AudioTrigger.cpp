@@ -13,7 +13,7 @@ FrameLib_AudioTrigger::FrameLib_AudioTrigger(FrameLib_Context context, FrameLib_
 
 std::string FrameLib_AudioTrigger::objectInfo(bool verbose)
 {
-    return getInfo("Translates non-zero samples into trigger frames: The output is an empty vector. Any non-zero audio sample triggers a frame.",
+    return formatInfo("Translates non-zero samples into trigger frames: The output is an empty vector. Any non-zero audio sample triggers a frame.",
                    "Translates non-zero samples into trigger frames.", verbose);
 }
 
@@ -24,7 +24,7 @@ std::string FrameLib_AudioTrigger::outputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_AudioTrigger::audioInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Audio Input (non-zero triggers frames)", "Audio Input", verbose);
+    return formatInfo("Audio Input (non-zero triggers frames)", "Audio Input", verbose);
 }
 
 // Object Reset, Block Process and Process

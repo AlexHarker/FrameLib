@@ -22,7 +22,7 @@ FrameLib_Subframe::FrameLib_Subframe(FrameLib_Context context, FrameLib_Paramete
 
 std::string FrameLib_Subframe::objectInfo(bool verbose)
 {
-    return getInfo("Output part of an input frame: The subframe is specified by a start and end point in the input frame.",
+    return formatInfo("Output part of an input frame: The subframe is specified by a start and end point in the input frame.",
                    "Output part of an input frame.", verbose);
 }
 

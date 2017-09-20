@@ -25,14 +25,14 @@ FrameLib_Convolve::~FrameLib_Convolve()
 
 std::string FrameLib_Convolve::objectInfo(bool verbose)
 {
-    return getInfo("Convolve two real frames together, (using frequency domain processing internally): "
+    return formatInfo("Convolve two real frames together, (using frequency domain processing internally): "
                    "The result will be a frame of M + N - 1 where M and N are the sizes of the two inputs respectively",
                    "Convolve two time domain frames together, (using frequency domain processing internally).", verbose);
 }
 
 std::string FrameLib_Convolve::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Input #", "Input #", idx, verbose);
+    return formatInfo("Input #", "Input #", idx, verbose);
 }
 
 std::string FrameLib_Convolve::outputInfo(unsigned long idx, bool verbose)

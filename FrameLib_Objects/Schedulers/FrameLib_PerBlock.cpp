@@ -9,13 +9,13 @@ FrameLib_PerBlock::FrameLib_PerBlock(FrameLib_Context context, FrameLib_Paramete
 
 std::string FrameLib_PerBlock::objectInfo(bool verbose)
 {
-    return getInfo("Schedules one frame at the start of each of the hosts audio blocks: The output is an empty vector.",
+    return formatInfo("Schedules one frame at the start of each of the hosts audio blocks: The output is an empty vector.",
                    "Schedules one frame at the start of each of the hosts audio blocks.", verbose);
 }
 
 std::string FrameLib_PerBlock::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Synchronisation Input - input is ignored, but can be used for synchronisation purposes", "Synchronisation Input", verbose);
+    return formatInfo("Synchronisation Input - input is ignored, but can be used for synchronisation purposes", "Synchronisation Input", verbose);
 }
 
 std::string FrameLib_PerBlock::outputInfo(unsigned long idx, bool verbose)

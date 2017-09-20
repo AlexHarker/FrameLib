@@ -19,7 +19,7 @@ FrameLib_Sort::FrameLib_Sort(FrameLib_Context context, FrameLib_Parameters::Seri
 
 std::string FrameLib_Sort::objectInfo(bool verbose)
 {
-    return getInfo("Sorts an input frame in ascending or descending order.",
+    return formatInfo("Sorts an input frame in ascending or descending order.",
                    "Sorts an input frame in ascending or descending order.", verbose);
 }
 

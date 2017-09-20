@@ -178,18 +178,18 @@ FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Seri
 
 std::string FrameLib_Pack::objectInfo(bool verbose)
 {
-    return getInfo("Packs multiple frame streams into a multichannel output: Inputs may be single or multichannel. All inputs are concatenated in order, with blank inputs ignored.",
+    return formatInfo("Packs multiple frame streams into a multichannel output: Inputs may be single or multichannel. All inputs are concatenated in order, with blank inputs ignored.",
                    "Packs multiple frame streams into a multichannel output.", verbose);
 }
 
 std::string FrameLib_Pack::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Input # - may be single or multichannel", "Input #", idx, verbose);
+    return formatInfo("Input # - may be single or multichannel", "Input #", idx, verbose);
 }
 
 std::string FrameLib_Pack::outputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Output - packed multichannel connection consisting of all input channels", "Multichannel Output", idx, verbose);
+    return formatInfo("Output - packed multichannel connection consisting of all input channels", "Multichannel Output", idx, verbose);
 }
 
 bool FrameLib_Pack::inputUpdate()
@@ -219,18 +219,18 @@ FrameLib_Unpack::FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::
 
 std::string FrameLib_Unpack::objectInfo(bool verbose)
 {
-    return getInfo("Unpacks multichannel input into single channel frames streams: Multichannel inputs are unpacked in order across the outputs.",
+    return formatInfo("Unpacks multichannel input into single channel frames streams: Multichannel inputs are unpacked in order across the outputs.",
                    "Unpacks multichannel input into single channel frames streams.", verbose);
 }
 
 std::string FrameLib_Unpack::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Multichannel Input - to be unpacked into single channels", "Multichannel Input", idx, verbose);
+    return formatInfo("Multichannel Input - to be unpacked into single channels", "Multichannel Input", idx, verbose);
 }
 
 std::string FrameLib_Unpack::outputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Output # - single channel", "Output #", idx, verbose);
+    return formatInfo("Output # - single channel", "Output #", idx, verbose);
 }
 
 bool FrameLib_Unpack::inputUpdate()

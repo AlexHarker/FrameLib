@@ -62,16 +62,16 @@ FrameLib_Window::~FrameLib_Window()
 
 std::string FrameLib_Window::objectInfo(bool verbose)
 {
-    return getInfo("Multiplies the incoming frame against a specified window: The output length will match the input length.",
+    return formatInfo("Multiplies the incoming frame against a specified window: The output length will match the input length.",
                    "Multiplies the incoming frame against a specified window.", verbose);
 }
 
 std::string FrameLib_Window::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return getInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
+        return formatInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
     else
-        return getInfo("Input Frame", "Input Frame", idx, verbose);
+        return formatInfo("Input Frame", "Input Frame", idx, verbose);
 }
 
 std::string FrameLib_Window::outputInfo(unsigned long idx, bool verbose)

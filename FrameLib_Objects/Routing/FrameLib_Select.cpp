@@ -27,16 +27,16 @@ FrameLib_Select::FrameLib_Select(FrameLib_Context context, FrameLib_Parameters::
 
 std::string FrameLib_Select::objectInfo(bool verbose)
 {
-    return getInfo("Selects between a number of input frame streams: The number of inputs is variable. The selected input can be changed with a parameter.",
+    return formatInfo("Selects between a number of input frame streams: The number of inputs is variable. The selected input can be changed with a parameter.",
                    "Selects between a number of input frame streams.", verbose);
 }
 
 std::string FrameLib_Select::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx == mNumIns)
-        return getInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
+        return formatInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
     else
-        return getInfo("Input #", "Input #", idx, verbose);
+        return formatInfo("Input #", "Input #", idx, verbose);
 }
 
 std::string FrameLib_Select::outputInfo(unsigned long idx, bool verbose)

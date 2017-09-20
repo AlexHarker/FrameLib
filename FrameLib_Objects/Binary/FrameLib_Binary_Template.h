@@ -68,7 +68,7 @@ public:
     
     std::string objectInfo(bool verbose)
     {
-        return getInfo("#: Calculation is performed on pairs of values in turn. The result is an output frame at least as long as the smaller of the two inputs. "
+        return formatInfo("#: Calculation is performed on pairs of values in turn. The result is an output frame at least as long as the smaller of the two inputs. "
                        "When frames mismatch in size the result depends on the setting of the mode parameter. Either or both inputs may be set to trigger output.",
                        "#.", getDescriptionString(), verbose);
     }

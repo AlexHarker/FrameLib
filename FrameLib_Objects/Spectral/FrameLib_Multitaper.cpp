@@ -49,7 +49,7 @@ void FrameLib_Multitaper::getWrapped(double &rOut, double&iOut, double *real, do
 
 std::string FrameLib_Multitaper::objectInfo(bool verbose)
 {
-    return getInfo("Calculates the multitaper power spectrum of a real input using the cosinre tapers: All FFTs performed will use a power of two size. "
+    return formatInfo("Calculates the multitaper power spectrum of a real input using the cosinre tapers: All FFTs performed will use a power of two size. "
                    "Output frames will be (N / 2) + 1 in length where N is the FFT size. Inputs which are not a power of two are zero-padded to the next power of two.",
                    "Calculates the multitaper power spectrum of a real input using the cosinre tapers.", verbose);
 }
@@ -57,9 +57,9 @@ std::string FrameLib_Multitaper::objectInfo(bool verbose)
 std::string FrameLib_Multitaper::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return getInfo("Frequency Domain Real Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Real Values", verbose);
+        return formatInfo("Frequency Domain Real Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Real Values", verbose);
     else
-        return getInfo("Frequency Domain Imaginary Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Imag Values", verbose);
+        return formatInfo("Frequency Domain Imaginary Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Imag Values", verbose);
 }
 
 std::string FrameLib_Multitaper::outputInfo(unsigned long idx, bool verbose)

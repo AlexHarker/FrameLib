@@ -24,7 +24,7 @@ FrameLib_Shift::FrameLib_Shift(FrameLib_Context context, FrameLib_Parameters::Se
 
 std::string FrameLib_Shift::objectInfo(bool verbose)
 {
-    return getInfo("Shifts an input frame either with padding, or cyclically: "
+    return formatInfo("Shifts an input frame either with padding, or cyclically: "
                    "The output is the same length as the input. Output can be shifted left or right in the frame. "
                    "When in pad mode values are moved out on one side and padded on the other, otherwise the shift is cyclical.",
                    "Shifts an input frame either with padding, or cyclically.", verbose);

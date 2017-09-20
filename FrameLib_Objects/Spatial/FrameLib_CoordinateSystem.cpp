@@ -17,7 +17,7 @@ FrameLib_CoordinateSystem::FrameLib_CoordinateSystem(FrameLib_Context context, F
 
 std::string FrameLib_CoordinateSystem::objectInfo(bool verbose)
 {
-    return getInfo("Converts vectors of triples between cartesian and polar values: "
+    return formatInfo("Converts vectors of triples between cartesian and polar values: "
                    "Inputs should either be a cartesian triple (x, y, x) or polar tripe (azimuth, elevation, radius). "
                    "Missing values are assumed to be zeroes. Extra values are ignored and the output is also a triple.",
                    "Converts vectors of triples between cartesian and polar values.", verbose);
@@ -25,7 +25,7 @@ std::string FrameLib_CoordinateSystem::objectInfo(bool verbose)
 
 std::string FrameLib_CoordinateSystem::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Input Triple - cartesian or polar values to be converted.", "Input Triple", verbose);
+    return formatInfo("Input Triple - cartesian or polar values to be converted.", "Input Triple", verbose);
 }
 
 std::string FrameLib_CoordinateSystem::outputInfo(unsigned long idx, bool verbose)

@@ -26,13 +26,13 @@ FrameLib_Future::FrameLib_Future(FrameLib_Context context, FrameLib_Parameters::
 
 std::string FrameLib_Future::objectInfo(bool verbose)
 {
-    return getInfo("Schedules frames in the future at a specified time: Output frames are empty.",
+    return formatInfo("Schedules frames in the future at a specified time: Output frames are empty.",
                    "Schedules frames in the future at a specified time.", verbose);
 }
 
 std::string FrameLib_Future::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
+    return formatInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
 }
 
 std::string FrameLib_Future::outputInfo(unsigned long idx, bool verbose)

@@ -52,16 +52,16 @@ FrameLib_Resonant::FrameLib_Resonant(FrameLib_Context context, FrameLib_Paramete
 
 std::string FrameLib_Resonant::objectInfo(bool verbose)
 {
-    return getInfo("Filters input frames using a resonant filter: The size of the output is equal to the input.",
+    return formatInfo("Filters input frames using a resonant filter: The size of the output is equal to the input.",
                    "Filters input frames using a resonant filter.", verbose);
 }
 
 std::string FrameLib_Resonant::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+        return formatInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
     else
-        return getInfo("Input Frame - input to be triggered", "Input Frame", verbose);
+        return formatInfo("Input Frame - input to be triggered", "Input Frame", verbose);
 }
 
 std::string FrameLib_Resonant::outputInfo(unsigned long idx, bool verbose)

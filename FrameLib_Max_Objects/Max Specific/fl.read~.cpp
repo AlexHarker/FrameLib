@@ -53,13 +53,13 @@ FrameLib_MaxRead::FrameLib_MaxRead(FrameLib_Context context, FrameLib_Parameters
 
 std::string FrameLib_MaxRead::objectInfo(bool verbose)
 {
-    return getInfo("Reads from a buffer~ given an input frame of sample positions: There are different available interpolation types.",
+    return formatInfo("Reads from a buffer~ given an input frame of sample positions: There are different available interpolation types.",
                    "Reads from a buffer~ given an input frame of sample positions.", verbose);
 }
 
 std::string FrameLib_MaxRead::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Frame of Positions - triggers generation of output", "Frame of Positions", verbose);
+    return formatInfo("Frame of Positions - triggers generation of output", "Frame of Positions", verbose);
 }
 
 std::string FrameLib_MaxRead::outputInfo(unsigned long idx, bool verbose)

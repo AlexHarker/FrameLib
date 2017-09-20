@@ -18,13 +18,13 @@ FrameLib_Time::FrameLib_Time(FrameLib_Context context, FrameLib_Parameters::Seri
 
 std::string FrameLib_Time::objectInfo(bool verbose)
 {
-    return getInfo("Outputs the current time in the specified units: Output is a single value.",
+    return formatInfo("Outputs the current time in the specified units: Output is a single value.",
                    "Outputs the current time in the specified units.", verbose);
 }
 
 std::string FrameLib_Time::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Trigger Input - input frames generate output", "Trigger Input", verbose);
+    return formatInfo("Trigger Input - input frames generate output", "Trigger Input", verbose);
 }
 
 std::string FrameLib_Time::outputInfo(unsigned long idx, bool verbose)

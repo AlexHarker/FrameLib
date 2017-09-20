@@ -93,14 +93,14 @@ protected:
     
     // Info Helpers
     
-    const char *getInfo(const char *verboseStr, const char *briefStr, bool verbose)
+    const char *formatInfo(const char *verboseStr, const char *briefStr, bool verbose)
     {
         return verbose ? verboseStr : briefStr;
     }
     
-    std::string getInfo(const char *verboseStr, const char *briefStr, unsigned long idx, bool verbose)
+    std::string formatInfo(const char *verboseStr, const char *briefStr, unsigned long idx, bool verbose)
     {
-        std::string info = getInfo(verboseStr, briefStr, verbose);
+        std::string info = formatInfo(verboseStr, briefStr, verbose);
         std::ostringstream idxStr;
         
         idxStr << (idx + 1);
@@ -111,9 +111,9 @@ protected:
         return info;
     }
     
-    std::string getInfo(const char *verboseStr, const char *briefStr, const char *replaceStr, bool verbose)
+    std::string formatInfo(const char *verboseStr, const char *briefStr, const char *replaceStr, bool verbose)
     {
-        std::string info = getInfo(verboseStr, briefStr, verbose);
+        std::string info = formatInfo(verboseStr, briefStr, verbose);
         
         for (size_t pos = info.find("#", 0); pos != std::string::npos;  pos = info.find("#", pos + 1))
             info.replace(pos, 1, replaceStr);

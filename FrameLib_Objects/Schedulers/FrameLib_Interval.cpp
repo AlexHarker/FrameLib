@@ -23,13 +23,13 @@ FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, FrameLib_Paramete
 
 std::string FrameLib_Interval::objectInfo(bool verbose)
 {
-    return getInfo("Schedules frames at regular intervals, which can be adjusted using the interval parameter: Output frames are empty.",
+    return formatInfo("Schedules frames at regular intervals, which can be adjusted using the interval parameter: Output frames are empty.",
                    "Schedules frames at regular intervals, which can be adjusted using the interval parameter.", verbose);
 }
 
 std::string FrameLib_Interval::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
+    return formatInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
 }
 
 std::string FrameLib_Interval::outputInfo(unsigned long idx, bool verbose)

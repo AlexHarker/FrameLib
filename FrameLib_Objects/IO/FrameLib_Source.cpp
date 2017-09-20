@@ -31,7 +31,7 @@ FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::
 
 std::string FrameLib_Source::objectInfo(bool verbose)
 {
-    return getInfo("Captures audio from the host environment and outputs the most recent values as frames: The size of captured frames is variable. "
+    return formatInfo("Captures audio from the host environment and outputs the most recent values as frames: The size of captured frames is variable. "
                    "Latency is equivalent to the length of the captured frame. The length of the internal buffer determines the maximum frame length.",
                    "Captures audio from the host environment and outputs the most recent values as frames.", verbose);
 }
@@ -39,9 +39,9 @@ std::string FrameLib_Source::objectInfo(bool verbose)
 std::string FrameLib_Source::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+        return formatInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
     else
-        return getInfo("Trigger Frame - triggers capture to output", "Trigger Frame", verbose);
+        return formatInfo("Trigger Frame - triggers capture to output", "Trigger Frame", verbose);
 }
 
 std::string FrameLib_Source::outputInfo(unsigned long idx, bool verbose)

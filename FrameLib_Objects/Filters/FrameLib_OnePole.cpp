@@ -36,16 +36,16 @@ FrameLib_OnePole::FrameLib_OnePole(FrameLib_Context context, FrameLib_Parameters
 
 std::string FrameLib_OnePole::objectInfo(bool verbose)
 {
-    return getInfo("Filters input frames using a one pole filter: The size of the output is equal to the input.",
+    return formatInfo("Filters input frames using a one pole filter: The size of the output is equal to the input.",
                    "Filters input frames using a one pole  filter.", verbose);
 }
 
 std::string FrameLib_OnePole::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+        return formatInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
     else
-        return getInfo("Input Frame - input to be triggered", "Input Frame", verbose);
+        return formatInfo("Input Frame - input to be triggered", "Input Frame", verbose);
 }
 
 std::string FrameLib_OnePole::outputInfo(unsigned long idx, bool verbose)

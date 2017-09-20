@@ -20,7 +20,7 @@ FrameLib_Count::FrameLib_Count(FrameLib_Context context, FrameLib_Parameters::Se
 
 std::string FrameLib_Count::objectInfo(bool verbose)
 {
-    return getInfo("Generates frames consisting of the integers in counting order from 0 to (size - 1): The size of the output is dependent on the mode. "
+    return formatInfo("Generates frames consisting of the integers in counting order from 0 to (size - 1): The size of the output is dependent on the mode. "
                    "The output size may either be set as a parameter, or be set to match that of the triggering input.",
                    "Generates frames consisting of the integers in counting order from 0 to (size - 1).", verbose);
 }
@@ -28,9 +28,9 @@ std::string FrameLib_Count::objectInfo(bool verbose)
 std::string FrameLib_Count::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+        return formatInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
     else
-        return getInfo("Trigger Frame - triggers generation of output", "Trigger Frame", verbose);
+        return formatInfo("Trigger Frame - triggers generation of output", "Trigger Frame", verbose);
 }
 
 std::string FrameLib_Count::outputInfo(unsigned long idx, bool verbose)

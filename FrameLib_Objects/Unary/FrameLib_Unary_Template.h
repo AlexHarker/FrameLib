@@ -23,7 +23,7 @@ public:
     
     std::string objectInfo(bool verbose)
     {
-        return getInfo("Calculates the # of each value in the input frame: The result is a frame of the same size as the input.",
+        return formatInfo("Calculates the # of each value in the input frame: The result is a frame of the same size as the input.",
                        "Calculates the # of each value in the input frame.", getOpString(), verbose);
     }
 

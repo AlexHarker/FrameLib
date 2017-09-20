@@ -26,7 +26,7 @@ FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, FrameLib_
 
 std::string FrameLib_MedianFilter::objectInfo(bool verbose)
 {
-    return getInfo("Median filter an input frame: The output is the same size as the input. "
+    return formatInfo("Median filter an input frame: The output is the same size as the input. "
                    "Each output value is the median of the area surrounding the input value. "
                    "The width of the area, and the edge behaviours are controllable.",
                    "Median filter an input frame.", verbose);
@@ -35,7 +35,7 @@ std::string FrameLib_MedianFilter::objectInfo(bool verbose)
 std::string FrameLib_MedianFilter::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return getInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
+        return formatInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
     else
         return "Input Frames";
 }

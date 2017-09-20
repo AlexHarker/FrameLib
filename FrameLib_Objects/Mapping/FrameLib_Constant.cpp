@@ -23,16 +23,16 @@ FrameLib_Constant::FrameLib_Constant(FrameLib_Context context, FrameLib_Paramete
 
 std::string FrameLib_Constant::objectInfo(bool verbose)
 {
-    return getInfo("Outputs the specified useful contant: Output is a single value. The constant can be multiplied before output",
+    return formatInfo("Outputs the specified useful contant: Output is a single value. The constant can be multiplied before output",
                    "Outputs the specified useful contant.", verbose);
 }
 
 std::string FrameLib_Constant::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+        return formatInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
     else
-        return getInfo("Trigger Input - input frames generate output", "Trigger Input", verbose);
+        return formatInfo("Trigger Input - input frames generate output", "Trigger Input", verbose);
 }
 
 std::string FrameLib_Constant::outputInfo(unsigned long idx, bool verbose)

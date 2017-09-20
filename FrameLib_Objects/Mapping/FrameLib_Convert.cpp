@@ -26,14 +26,14 @@ FrameLib_Convert::FrameLib_Convert(FrameLib_Context context, FrameLib_Parameters
 
 std::string FrameLib_Convert::objectInfo(bool verbose)
 {
-    return getInfo("Converts the input vector with the specified conversion: The output size matches the input size.",
+    return formatInfo("Converts the input vector with the specified conversion: The output size matches the input size.",
                    "Converts the input vector with the specified conversion.", verbose);
 }
 
 std::string FrameLib_Convert::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+        return formatInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
     else
         return "Input Frame";
 }

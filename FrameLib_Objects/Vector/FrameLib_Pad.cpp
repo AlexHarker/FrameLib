@@ -24,7 +24,7 @@ FrameLib_Pad::FrameLib_Pad(FrameLib_Context context, FrameLib_Parameters::Serial
 
 std::string FrameLib_Pad::objectInfo(bool verbose)
 {
-    return getInfo("Pads an input frame with a fixed value at either the start the end, or both: "
+    return formatInfo("Pads an input frame with a fixed value at either the start the end, or both: "
                    "The output frame size is at least the same length as the input, plus the number of padding values. "
                    "Padding amounts may be set in samples, or as a ratio of the input length.",
                    "Pads an input frame with a fixed value at either the start the end, or both.", verbose);

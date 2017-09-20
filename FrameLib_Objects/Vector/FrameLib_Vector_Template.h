@@ -18,7 +18,7 @@ public:
     
     std::string objectInfo(bool verbose)
     {
-        return getInfo("Calculates the # of the input frame: The result is a single value.",
+        return formatInfo("Calculates the # of the input frame: The result is a single value.",
                        "Calculates the # of the input frame.", getOpString(), verbose);
     }
     

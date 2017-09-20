@@ -27,7 +27,7 @@ FrameLib_Chop::FrameLib_Chop(FrameLib_Context context, FrameLib_Parameters::Seri
 
 std::string FrameLib_Chop::objectInfo(bool verbose)
 {
-    return getInfo("Chops input frames into equally sized output frames: "
+    return formatInfo("Chops input frames into equally sized output frames: "
                    "The size can be set in samples, or as a ratio of the length of the input frame.",
                    "Chops input frames into equally sized output frames.", verbose);
 }
@@ -39,7 +39,7 @@ std::string FrameLib_Chop::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Chop::outputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Output #", "Output #", idx, verbose);
+    return formatInfo("Output #", "Output #", idx, verbose);
 }
 
 // Parameter Info
