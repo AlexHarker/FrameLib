@@ -3,16 +3,18 @@
 #define FRAMELIB_BLOCK_H
 
 #include "FrameLib_Types.h"
+#include "FrameLib_Context.h"
 #include "FrameLib_Parameters.h"
-#include "FrameLib_Info.h"
 #include <string>
+#include <sstream>
+#include <iostream>
 
 // FrameLib_Object
 
 // This abstract template class outlines the basic functionality that objects (blocks / DSP / multichannel must provide)
 
 template <class T>
-class FrameLib_Object : protected FrameLib_Info
+class FrameLib_Object 
 {
     
 public:
@@ -87,6 +89,38 @@ public:
     
     virtual const FrameLib_Parameters *getParameters()                          { return NULL;  }
     
+protected:
+    
+    // Info Helpers
+    
+    const char *getInfo(const char *verboseStr, const char *briefStr, bool verbose)
+    {
+        return verbose ? verboseStr : briefStr;
+    }
+    
+    std::string getInfo(const char *verboseStr, const char *briefStr, unsigned long idx, bool verbose)
+    {
+        std::string info = getInfo(verboseStr, briefStr, verbose);
+        std::ostringstream idxStr;
+        
+        idxStr << (idx + 1);
+        
+        for (size_t pos = info.find("#", 0); pos != std::string::npos;  pos = info.find("#", pos + 1))
+            info.replace(pos, 1, idxStr.str());
+        
+        return info;
+    }
+    
+    std::string getInfo(const char *verboseStr, const char *briefStr, const char *replaceStr, bool verbose)
+    {
+        std::string info = getInfo(verboseStr, briefStr, verbose);
+        
+        for (size_t pos = info.find("#", 0); pos != std::string::npos;  pos = info.find("#", pos + 1))
+            info.replace(pos, 1, replaceStr);
+        
+        return info;
+    }
+
 private:
 
     const ObjectType mType;

@@ -6,7 +6,6 @@
 #include "FrameLib_Object.h"
 #include "FrameLib_DSP.h"
 #include "FrameLib_ConnectionQueue.h"
-#include "FrameLib_Info.h"
 #include <algorithm>
 #include <vector>
 

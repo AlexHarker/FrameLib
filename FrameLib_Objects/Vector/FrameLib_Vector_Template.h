@@ -3,7 +3,6 @@
 #define FRAMELIB_VECTOR_TEMPLATE_H
 
 #include "FrameLib_DSP.h"
-#include "FrameLib_Info.h"
 #include <functional>
 
 template <double func(double *, unsigned long) > class FrameLib_Vector : public FrameLib_Processor

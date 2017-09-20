@@ -4,7 +4,6 @@
 #define FRAMELIB_TEMPLATES_H
 
 #include "FrameLib_DSP.h"
-#include "FrameLib_Info.h"
 #include <functional>
 
 // OPT - vectorise where appropriate

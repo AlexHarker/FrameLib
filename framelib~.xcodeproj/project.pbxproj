@@ -152,6 +152,111 @@
 		B812464B19F476D3009833F1 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B812464C19F476D3009833F1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B812465319F4781E009833F1 /* fl.join~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C8563919F2957F006358DA /* fl.join~.cpp */; };
+		B81B62081F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62091F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B620A1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B620B1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B620C1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B620D1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B620E1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B620F1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62101F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62111F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62121F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62131F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62141F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62151F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62161F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62171F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62181F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62191F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B621A1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B621B1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B621C1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B621D1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B621E1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B621F1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62201F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62211F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62221F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62231F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62241F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62251F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62261F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62271F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62281F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62291F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B622A1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B622B1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B622C1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B622D1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B622E1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B622F1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62301F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62311F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62321F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62331F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62341F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62351F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62361F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62371F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62381F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62391F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B623A1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B623B1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B623C1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B623D1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B623E1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B623F1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62401F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62411F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62421F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62431F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62441F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62451F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62461F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62471F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62481F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62491F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B624A1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B624B1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B624C1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B624D1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B624E1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B624F1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62501F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62511F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62521F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62531F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62541F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62551F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62561F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62571F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62581F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62591F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B625A1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B625B1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B625C1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B625D1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B625E1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B625F1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62601F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62611F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62621F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62631F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62641F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62651F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62661F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62671F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62681F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62691F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B626A1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B626B1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B626C1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B626D1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B626E1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B626F1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
+		B81B62701F727626002AE3A5 /* FrameLib_Connectable.h in Headers */ = {isa = PBXBuildFile; fileRef = B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */; };
 		B826E4911F3148AB00B920C8 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
 		B826E4921F3148AB00B920C8 /* FrameLib_Interval.h in Headers */ = {isa = PBXBuildFile; fileRef = B8061D501B8C0C00002C8BD2 /* FrameLib_Interval.h */; };
 		B826E4931F3148AB00B920C8 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
@@ -2017,6 +2122,7 @@
 		B812462419F475B8009833F1 /* fl.store~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.store~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B812463C19F476CB009833F1 /* fl.recall~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.recall~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B812465219F476D3009833F1 /* fl.store~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.store~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Connectable.h; sourceTree = "<group>"; };
 		B81F571D0D2422E0000D5E50 /* fl.unpack~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.unpack~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B826E4AC1F3148AB00B920C8 /* fl.once~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.once~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B826E4AE1F31490100B920C8 /* FrameLib_Once.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Once.cpp; sourceTree = "<group>"; };
@@ -2141,7 +2247,6 @@
 		B8A4757019C9D9E30043DC65 /* FrameLib_Convolve.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Convolve.h; sourceTree = "<group>"; };
 		B8A4757219C9DD9F0043DC65 /* fl.convolve~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.convolve~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8A4758319C9DDCD0043DC65 /* fl.convolve~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.convolve~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8A54DB91F277E1700618324 /* FrameLib_Info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Info.h; sourceTree = "<group>"; };
 		B8AD883419C7C2B500FFA238 /* SIMDSupport.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SIMDSupport.hpp; sourceTree = "<group>"; };
 		B8AD883519C7C2B500FFA238 /* ibuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ibuffer.h; sourceTree = "<group>"; };
 		B8AD883619C7C2B500FFA238 /* ibuffer_access.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ibuffer_access.cpp; sourceTree = "<group>"; };
@@ -3704,9 +3809,9 @@
 				B8DF3FA2198AABAD00CA8BB6 /* FrameLib_Parameters.h */,
 				B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */,
 				B8E058AE198DA34D00721359 /* FrameLib_Object.h */,
-				B8A54DB91F277E1700618324 /* FrameLib_Info.h */,
 				B8075B131979173E00EB3A35 /* FrameLib_DSP.h */,
 				B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */,
+				B81B619E1F727626002AE3A5 /* FrameLib_Connectable.h */,
 				B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */,
 				B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */,
 				B85B20E619938415004FFF22 /* FrameLib_Multichannel.h */,
@@ -3967,6 +4072,7 @@
 			files = (
 				B8C53CBD1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841206A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62091F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841211E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2D31F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -3978,6 +4084,7 @@
 			files = (
 				B8C53CC41F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120711D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62131F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121251D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2DA1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -3989,6 +4096,7 @@
 			files = (
 				B8C53CC51F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120721D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62141F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121261D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2DB1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4000,6 +4108,7 @@
 			files = (
 				B8C53CC61F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120731D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62151F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121271D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2DC1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4011,6 +4120,7 @@
 			files = (
 				B8C53CC71F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120741D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62161F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121281D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2DD1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4022,6 +4132,7 @@
 			files = (
 				B8C53CC81F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120751D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62171F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121291D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2DE1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4033,6 +4144,7 @@
 			files = (
 				B8C53CC91F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120761D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62181F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841212A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2DF1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4044,6 +4156,7 @@
 			files = (
 				B8C53CCA1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120771D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62191F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841212B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E01F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4055,6 +4168,7 @@
 			files = (
 				B8C53CCB1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120781D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B621A1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841212C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E11F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4066,6 +4180,7 @@
 			files = (
 				B8C53CCC1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120791D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B621B1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841212D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E21F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4077,6 +4192,7 @@
 			files = (
 				B8C53CCD1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841207A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B621C1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841212E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E31F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4088,6 +4204,7 @@
 			files = (
 				B8C53CCE1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841207B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B621D1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841212F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E41F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4099,6 +4216,7 @@
 			files = (
 				B8C53CCF1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841207C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B621E1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121301D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E51F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4110,6 +4228,7 @@
 			files = (
 				B8C53CD01F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841207D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B621F1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121311D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E61F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4121,6 +4240,7 @@
 			files = (
 				B8C53CD11F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841207E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62201F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121321D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E71F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4132,6 +4252,7 @@
 			files = (
 				B8C53CD21F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841207F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62211F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121331D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E81F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4143,6 +4264,7 @@
 			files = (
 				B8C53CD31F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120801D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62221F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121341D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E91F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4154,6 +4276,7 @@
 			files = (
 				B8C53CD41F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120811D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62231F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121351D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2EA1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4165,6 +4288,7 @@
 			files = (
 				B8C53CD51F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120821D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62241F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121361D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2EB1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4176,6 +4300,7 @@
 			files = (
 				B8C53CDE1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841208B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B622D1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841213F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F41F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4187,6 +4312,7 @@
 			files = (
 				B8C53CD71F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120841D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62261F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121381D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2ED1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4198,6 +4324,7 @@
 			files = (
 				B8C53CE91F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120961D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62381F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841214A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2FF1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4209,6 +4336,7 @@
 			files = (
 				B8C53CD91F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120861D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62281F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841213A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2EF1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4220,6 +4348,7 @@
 			files = (
 				B8C53CDA1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120871D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62291F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841213B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F01F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4231,6 +4360,7 @@
 			files = (
 				B8C53CDB1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120881D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B622A1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841213C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F11F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4242,6 +4372,7 @@
 			files = (
 				B8C53CDC1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120891D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B622B1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841213D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F21F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4253,6 +4384,7 @@
 			files = (
 				B8C53CDD1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841208A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B622C1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841213E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F31F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4264,6 +4396,7 @@
 			files = (
 				B8C53CD61F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120831D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62251F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121371D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2EC1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4275,6 +4408,7 @@
 			files = (
 				B8C53CDF1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841208C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B622E1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121401D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F51F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4286,6 +4420,7 @@
 			files = (
 				B8C53CE01F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841208D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B622F1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121411D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F61F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4297,6 +4432,7 @@
 			files = (
 				B8C53CE11F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841208E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62301F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121421D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F71F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4308,6 +4444,7 @@
 			files = (
 				B8C53CE21F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841208F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62311F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121431D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F81F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4319,6 +4456,7 @@
 			files = (
 				B8C53CE31F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120901D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62321F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121441D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F91F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4330,6 +4468,7 @@
 			files = (
 				B8C53CE41F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120911D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62331F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121451D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2FA1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4341,6 +4480,7 @@
 			files = (
 				B8C53CE51F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120921D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62341F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121461D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2FB1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4352,6 +4492,7 @@
 			files = (
 				B8C53CE61F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120931D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62351F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121471D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2FC1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4363,6 +4504,7 @@
 			files = (
 				B8C53CE71F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120941D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62361F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121481D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2FD1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4374,6 +4516,7 @@
 			files = (
 				B8C53CE81F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120951D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62371F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121491D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2FE1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4385,6 +4528,7 @@
 			files = (
 				B8C53CD81F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120851D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62271F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121391D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2EE1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4396,6 +4540,7 @@
 			files = (
 				B8C53CEA1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120971D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62391F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841214B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3001F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4407,6 +4552,7 @@
 			files = (
 				B8C53CEB1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120981D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B623A1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841214C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3011F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4418,6 +4564,7 @@
 			files = (
 				B8C53CEC1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120991D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B623B1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841214D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3021F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4429,6 +4576,7 @@
 			files = (
 				B8C53CED1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841209A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B623C1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841214E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3031F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4443,6 +4591,7 @@
 				B84120B51D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B88BD31E1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B812462A19F476CB009833F1 /* FrameLib_Subframe.h in Headers */,
+				B81B62571F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B812462B19F476CB009833F1 /* FrameLib_Join.h in Headers */,
 				B812462C19F476CB009833F1 /* FrameLib_Split.h in Headers */,
 			);
@@ -4457,6 +4606,7 @@
 				B84120B61D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B88BD31F1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B812464019F476D3009833F1 /* FrameLib_Subframe.h in Headers */,
+				B81B62581F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B812464119F476D3009833F1 /* FrameLib_Join.h in Headers */,
 				B812464219F476D3009833F1 /* FrameLib_Split.h in Headers */,
 			);
@@ -4466,6 +4616,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B81B620B1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B826E4911F3148AB00B920C8 /* FrameLib_Context.h in Headers */,
 				B826E4921F3148AB00B920C8 /* FrameLib_Interval.h in Headers */,
 				B826E4931F3148AB00B920C8 /* FrameLib_DSPQueue.h in Headers */,
@@ -4481,6 +4632,7 @@
 			files = (
 				B8C53CC11F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841206E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62101F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121221D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2D71F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4492,6 +4644,7 @@
 			files = (
 				B8C53CC31F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120701D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62121F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121241D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2D91F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4503,6 +4656,7 @@
 			files = (
 				B8C53CFB1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A81D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B624A1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841215C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3111F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4514,6 +4668,7 @@
 			files = (
 				B8C53D0B1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120B81D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B625A1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841216C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3211F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4525,6 +4680,7 @@
 			files = (
 				B8C53D0C1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120B91D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B625B1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841216D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3221F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4536,6 +4692,7 @@
 			files = (
 				B8C53D0D1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120BA1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B625C1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841216E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3231F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4547,6 +4704,7 @@
 			files = (
 				B8C53D141F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120C11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62641F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121751D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD32A1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4561,6 +4719,7 @@
 				B84120AF1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B88BD3181F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B85B68EB19F29470002D6F1D /* FrameLib_Subframe.h in Headers */,
+				B81B62511F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B85B68E919F29470002D6F1D /* FrameLib_Join.h in Headers */,
 				B85B68EA19F29470002D6F1D /* FrameLib_Split.h in Headers */,
 			);
@@ -4572,6 +4731,7 @@
 			files = (
 				B8C53D001F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120AD1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B624F1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121611D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3161F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4583,6 +4743,7 @@
 			files = (
 				B8C53D011F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120AE1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62501F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121621D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3171F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4594,6 +4755,7 @@
 			files = (
 				B8C53CF51F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A21D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62441F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121561D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD30B1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4605,6 +4767,7 @@
 			files = (
 				B8C53CFE1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120AB1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B624D1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841215F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3141F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4614,6 +4777,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B81B62671F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C53D171F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B85C8FD01E605B2E004D7D40 /* FrameLib_Context.h in Headers */,
 				B85435801F65BF03001BA1AA /* HISSTools_FFT.h in Headers */,
@@ -4629,6 +4793,7 @@
 			files = (
 				B8C53CFC1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A91D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B624B1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841215D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3121F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4640,6 +4805,7 @@
 			files = (
 				B8C53CFD1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120AA1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B624C1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841215E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3131F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4649,6 +4815,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B81B62471F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C53CF81F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A51D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B854357D1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */,
@@ -4662,6 +4829,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B81B62481F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C53CF91F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A61D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B854357E1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */,
@@ -4680,6 +4848,7 @@
 				B87F75381F35DF5C002B91E9 /* FrameLib_Context.h in Headers */,
 				B87F75391F35DF5C002B91E9 /* FrameLib_Global.h in Headers */,
 				B87F753A1F35DF5C002B91E9 /* FrameLib_DSPQueue.h in Headers */,
+				B81B625F1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4687,6 +4856,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B81B620E1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B87F755B1F35EAED002B91E9 /* FrameLib_ConnectionQueue.h in Headers */,
 				B87F755C1F35EAED002B91E9 /* FrameLib_Context.h in Headers */,
 				B87F757D1F35EBB5002B91E9 /* FrameLib_PerBlock.h in Headers */,
@@ -4705,6 +4875,7 @@
 				B87F75811F3678D0002B91E9 /* FrameLib_DSPQueue.h in Headers */,
 				B87F75821F3678D0002B91E9 /* FrameLib_Time.h in Headers */,
 				B87F75831F3678D0002B91E9 /* FrameLib_Once.h in Headers */,
+				B81B62681F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B87F75841F3678D0002B91E9 /* FrameLib_Global.h in Headers */,
 				B87F75851F3678D0002B91E9 /* FrameLib_ConnectionQueue.h in Headers */,
 			);
@@ -4714,6 +4885,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B81B62491F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C53CFA1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A71D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B854357F1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */,
@@ -4729,6 +4901,7 @@
 			files = (
 				B8C53CF71F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A41D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62461F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121581D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD30D1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4743,6 +4916,7 @@
 				B84120B41D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B88BD31D1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B8AE693219F45A380040B4EE /* FrameLib_Subframe.h in Headers */,
+				B81B62561F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8AE693319F45A380040B4EE /* FrameLib_Join.h in Headers */,
 				B8AE693419F45A380040B4EE /* FrameLib_Split.h in Headers */,
 			);
@@ -4752,6 +4926,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B81B620F1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8B4C87B1F33456A008E5D31 /* FrameLib_Context.h in Headers */,
 				B8B4C87D1F33456A008E5D31 /* FrameLib_DSPQueue.h in Headers */,
 				B8B4C89E1F334614008E5D31 /* FrameLib_Time.h in Headers */,
@@ -4770,6 +4945,7 @@
 				B8B4C8A31F3359F5008E5D31 /* FrameLib_DSPQueue.h in Headers */,
 				B8B4C8A41F3359F5008E5D31 /* FrameLib_Once.h in Headers */,
 				B8B4C8A51F3359F5008E5D31 /* FrameLib_Global.h in Headers */,
+				B81B620C1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8B4C8A61F3359F5008E5D31 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8B4C8C21F335A67008E5D31 /* FrameLib_Future.h in Headers */,
 			);
@@ -4784,6 +4960,7 @@
 				B8B4C8C91F33D83F008E5D31 /* FrameLib_Global.h in Headers */,
 				B8B4C8E61F33D88D008E5D31 /* FrameLib_AudioTrigger.h in Headers */,
 				B8B4C8CA1F33D83F008E5D31 /* FrameLib_DSPQueue.h in Headers */,
+				B81B620D1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4793,6 +4970,7 @@
 			files = (
 				B8C53D151F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C5EBC31E5F99A80086E8B6 /* FrameLib_Context.h in Headers */,
+				B81B62651F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C5EBC41E5F99A80086E8B6 /* FrameLib_Global.h in Headers */,
 				B88BD32B1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4804,6 +4982,7 @@
 			files = (
 				B8C53D161F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C5EBDD1E5FA6340086E8B6 /* FrameLib_Context.h in Headers */,
+				B81B62661F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C5EBDE1E5FA6340086E8B6 /* FrameLib_Global.h in Headers */,
 				B88BD32C1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4815,6 +4994,7 @@
 			files = (
 				B8C53D0A1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120B71D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62591F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841216B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3201F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4829,6 +5009,7 @@
 				B84120B01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B88BD3191F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B8C8564119F2A96C006358DA /* FrameLib_Subframe.h in Headers */,
+				B81B62521F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C8564219F2A96C006358DA /* FrameLib_Join.h in Headers */,
 				B8C8564319F2A96C006358DA /* FrameLib_Split.h in Headers */,
 			);
@@ -4843,6 +5024,7 @@
 				B84120B11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B88BD31A1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B8C8565819F2A96E006358DA /* FrameLib_Subframe.h in Headers */,
+				B81B62531F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C8565919F2A96E006358DA /* FrameLib_Join.h in Headers */,
 				B8C8565A19F2A96E006358DA /* FrameLib_Split.h in Headers */,
 			);
@@ -4857,6 +5039,7 @@
 				B84120B21D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B88BD31B1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B8C8566F19F2A978006358DA /* FrameLib_Subframe.h in Headers */,
+				B81B62541F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C8567019F2A978006358DA /* FrameLib_Join.h in Headers */,
 				B8C8567119F2A978006358DA /* FrameLib_Split.h in Headers */,
 			);
@@ -4871,6 +5054,7 @@
 				B84120B31D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B88BD31C1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B8C8568519F2A97A006358DA /* FrameLib_Subframe.h in Headers */,
+				B81B62551F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C8568619F2A97A006358DA /* FrameLib_Join.h in Headers */,
 				B8C8568719F2A97A006358DA /* FrameLib_Split.h in Headers */,
 			);
@@ -4882,6 +5066,7 @@
 			files = (
 				B8C89C0A1F571F7100B4E700 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C89C0B1F571F7100B4E700 /* FrameLib_Context.h in Headers */,
+				B81B626A1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C89C0C1F571F7100B4E700 /* FrameLib_Global.h in Headers */,
 				B8C89C0D1F571F7100B4E700 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4893,6 +5078,7 @@
 			files = (
 				B8C89C271F571F8400B4E700 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C89C281F571F8400B4E700 /* FrameLib_Context.h in Headers */,
+				B81B62691F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C89C291F571F8400B4E700 /* FrameLib_Global.h in Headers */,
 				B8C89C2A1F571F8400B4E700 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4904,6 +5090,7 @@
 			files = (
 				B8C89C441F571F8700B4E700 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C89C451F571F8700B4E700 /* FrameLib_Context.h in Headers */,
+				B81B626B1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C89C461F571F8700B4E700 /* FrameLib_Global.h in Headers */,
 				B8C89C471F571F8700B4E700 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4915,6 +5102,7 @@
 			files = (
 				B8C89C611F571F8B00B4E700 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C89C621F571F8B00B4E700 /* FrameLib_Context.h in Headers */,
+				B81B626C1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C89C631F571F8B00B4E700 /* FrameLib_Global.h in Headers */,
 				B8C89C641F571F8B00B4E700 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4926,6 +5114,7 @@
 			files = (
 				B8C89C7E1F571FC700B4E700 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C89C7F1F571FC700B4E700 /* FrameLib_Context.h in Headers */,
+				B81B626D1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C89C801F571FC700B4E700 /* FrameLib_Global.h in Headers */,
 				B8C89C811F571FC700B4E700 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4937,6 +5126,7 @@
 			files = (
 				B8C89C9B1F571FD400B4E700 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C89C9C1F571FD400B4E700 /* FrameLib_Context.h in Headers */,
+				B81B626F1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C89C9D1F571FD400B4E700 /* FrameLib_Global.h in Headers */,
 				B8C89C9E1F571FD400B4E700 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4948,6 +5138,7 @@
 			files = (
 				B8C89CB81F571FDD00B4E700 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C89CB91F571FDD00B4E700 /* FrameLib_Context.h in Headers */,
+				B81B62701F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C89CBA1F571FDD00B4E700 /* FrameLib_Global.h in Headers */,
 				B8C89CBB1F571FDD00B4E700 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4959,6 +5150,7 @@
 			files = (
 				B8C89CE31F5723E700B4E700 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C89CE41F5723E700B4E700 /* FrameLib_Context.h in Headers */,
+				B81B626E1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B8C89CE51F5723E700B4E700 /* FrameLib_Global.h in Headers */,
 				B8C89CE61F5723E700B4E700 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4970,6 +5162,7 @@
 			files = (
 				B8C53CBC1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120691D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62081F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841211D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2D21F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -4984,6 +5177,7 @@
 				B88BD2D61F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B84121211D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B8C53CC01F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
+				B81B620A1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4993,6 +5187,7 @@
 			files = (
 				B8C53CC21F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841206F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62111F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121231D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2D81F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -5004,6 +5199,7 @@
 			files = (
 				B8C53D0E1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120BB1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B625D1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841216F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3241F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -5015,6 +5211,7 @@
 			files = (
 				B8C53D0F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120BC1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B625E1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121701D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3251F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -5026,6 +5223,7 @@
 			files = (
 				B8C53D101F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120BD1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62601F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121711D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3261F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -5037,6 +5235,7 @@
 			files = (
 				B8C53D111F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120BE1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62611F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121721D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3271F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -5048,6 +5247,7 @@
 			files = (
 				B8C53D121F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120BF1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62621F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121731D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3281F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -5059,6 +5259,7 @@
 			files = (
 				B8C53D131F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120C01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62631F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121741D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3291F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -5070,6 +5271,7 @@
 			files = (
 				B8C53CFF1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120AC1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B624E1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121601D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3151F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -5081,6 +5283,7 @@
 			files = (
 				B8C53CEE1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841209B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B623D1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B841214F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3041F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -5092,6 +5295,7 @@
 			files = (
 				B8C53CEF1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841209C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B623E1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121501D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3051F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -5103,6 +5307,7 @@
 			files = (
 				B8C53CF01F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841209D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B623F1F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121511D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3061F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -5114,6 +5319,7 @@
 			files = (
 				B8C53CF11F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841209E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62401F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121521D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3071F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -5125,6 +5331,7 @@
 			files = (
 				B8C53CF21F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841209F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62411F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121531D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3081F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -5136,6 +5343,7 @@
 			files = (
 				B8C53CF31F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62421F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121541D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3091F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -5147,6 +5355,7 @@
 			files = (
 				B8C53CF41F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62431F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121551D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD30A1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
@@ -5158,6 +5367,7 @@
 			files = (
 				B8C53CF61F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A31D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
+				B81B62451F727626002AE3A5 /* FrameLib_Connectable.h in Headers */,
 				B84121571D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD30C1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 			);
