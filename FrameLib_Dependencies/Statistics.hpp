@@ -65,12 +65,12 @@ template <class T> double statLength(T input, size_t size)
 
 template <class T> double statMin(T input, size_t size)
 {
-    return *(std::min_element(input, input + size));
+    return size ? *(std::min_element(input, input + size)) : std::numeric_limits<double>::infinity();
 }
 
 template <class T> double statMax(T input, size_t size)
 {
-    return *(std::max_element(input, input + size));
+    return size ? *(std::max_element(input, input + size)) : -std::numeric_limits<double>::infinity();;
 }
 
 // Counts

@@ -32,12 +32,14 @@ protected:
     void process()
     {
         unsigned long sizeIn, sizeOut;
+        double *input = getInput(0, &sizeIn);
         
-        requestOutputSize(0, 1);
+        // FIX - what is the operation if the input is empty?
+        
+        requestOutputSize(0, sizeIn ? 1 : 0);
         allocateOutputs();
         
         double *output = getOutput(0, &sizeOut);
-        double *input = getInput(0, &sizeIn);
         
         if (sizeOut)
             output[0] = func(input, sizeIn);
