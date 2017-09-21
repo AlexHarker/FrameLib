@@ -147,7 +147,7 @@ void table_read(Table fetcher, V *out, double *positions, intptr_t n_samps, doub
     intptr_t n_vsample = (n_samps / SIMDType<V, vec_size>::size) * SIMDType<V, vec_size>::size;
     
     table_read_loop<SIMDType<V, vec_size>, SIMDType<fetch_type, vec_size>, Table, Reader>(fetcher, out, positions, n_vsample, mul);
-    table_read_loop<Scalar<V>, Scalar<fetch_type>, Table, Reader>(fetcher, out, positions + n_vsample, n_samps - n_vsample, mul);
+    table_read_loop<Scalar<V>, Scalar<fetch_type>, Table, Reader>(fetcher, out + n_vsample, positions + n_vsample, n_samps - n_vsample, mul);
 }
 
 // Main reading call that switches between different types of interpolation

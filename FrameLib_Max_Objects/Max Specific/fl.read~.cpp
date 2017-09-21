@@ -89,7 +89,7 @@ void FrameLib_MaxRead::process()
 {
     void *tempMem = NULL;
     
-    unsigned long size, vecSize;
+    unsigned long size;
     long chan;
     
     bool interp = false;
@@ -98,7 +98,6 @@ void FrameLib_MaxRead::process()
     
     requestOutputSize(0, size);
     allocateOutputs();
-    vecSize = size - (size & 0x3);
     
     double *output = getOutput(0, &size);
     
@@ -160,7 +159,7 @@ void FrameLib_MaxRead::process()
             }
         }
         
-        ibuffer_read(data, output, positions, vecSize, chan, 1.0, interpType);
+        ibuffer_read(data, output, positions, size, chan, 1.0, interpType);
         mAllocator->dealloc(tempMem);
     }
     else
