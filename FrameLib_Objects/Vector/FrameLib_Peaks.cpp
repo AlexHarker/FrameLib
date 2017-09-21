@@ -34,16 +34,18 @@ double FrameLib_Peaks::logValue(double val)
 {
     val = log(val);
     
-    return val < -200.0 ? -200.0 : val;
+    return val < -500.0 ? -500.0 : val;
 }
 
 void FrameLib_Peaks::refinePeak(double& pos, double& amp, double posUncorrected, double vm1, double v0, double vp1)
 {
+    // FIX - neg values won't work with this interpolation - problem??
+    
     // Take log values (avoiding values that are too low)
     
-    vm1 = logValue(vm1);
-    v0 = logValue(v0);
-    vp1 = logValue(vp1);
+    vm1 = logValue(std::max(vm1, 0.0));
+    v0 = logValue(std::max(vm1, 0.0));
+    vp1 = logValue(std::max(vm1, 0.0));
     
     // Parabolic interpolation
     
@@ -135,7 +137,7 @@ void FrameLib_Peaks::process()
         for (; peak < (nPeaks - 1); peak++)
         {
             long beg = output2[peak];
-            long end = output2[peak + 1];
+            long end = round(output2[peak + 1]);
             
             double minValue = input[beg];
             minPoint = beg;
