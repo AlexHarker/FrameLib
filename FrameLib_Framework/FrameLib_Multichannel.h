@@ -51,10 +51,10 @@ public:
     // Constructors
 
     FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts)
-    : FrameLib_Object(type, context), mQueue(context)
+    : FrameLib_Object(type, context, this), mQueue(context)
     { setIO(nIns, nOuts); }
     
-    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context) : FrameLib_Object(type, context), mQueue(context) {}
+    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context) : FrameLib_Object(type, context, this), mQueue(context) {}
     
     // Destructor
     
@@ -75,15 +75,6 @@ public:
 
     static bool handlesAudio() { return false; }
 
-    // Connection Methods
-    
-    // N.B. - No sanity checks here to maximise speed and help debugging (better for it to crash if a mistake is made)
-    
-    virtual ConnectionResult addConnection(FrameLib_MultiChannel *object, unsigned long outIdx, unsigned long inIdx);
-    virtual void deleteConnection(unsigned long inIdx);
-    virtual void clearConnections();
-    virtual bool isConnected(unsigned long inIdx);
-    
 protected:
     
     // IO Utilities
@@ -93,14 +84,13 @@ protected:
     void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0)
     {
         FrameLib_Object::setIO(nIns, nOuts, nAudioChans);
-        mInputs.resize(getNumIns());
         mOutputs.resize(getNumOuts());
     }
     
     // Query Input Channels
     
     unsigned long getInputNumChans(unsigned long inIdx);
-    ConnectionInfo getInputChan(unsigned long inIdx, unsigned long chan) { return mInputs[inIdx].mObject->mOutputs[mInputs[inIdx].mIndex].mConnections[chan]; }
+    ConnectionInfo getInputChan(unsigned long inIdx, unsigned long chan);
 
 private:
 
@@ -109,23 +99,11 @@ private:
     FrameLib_MultiChannel(const FrameLib_MultiChannel&);
     FrameLib_MultiChannel& operator=(const FrameLib_MultiChannel&);
     
-    // Dependency Updating
-
-    void addOutputDependency(FrameLib_MultiChannel *object);
-    std::vector <FrameLib_MultiChannel *>::iterator removeOutputDependency(FrameLib_MultiChannel *object);
-
     // Connection Methods (private)
     
-    void updateConnections() { if (mQueue) mQueue->add(this); }
-    
-    void clearConnection(unsigned long inIdx);
-    void removeConnection(unsigned long inIdx);
-    std::vector <FrameLib_MultiChannel *>::iterator disconnect(FrameLib_MultiChannel *object);
-    
+    void connectionUpdate() { if (mQueue) mQueue->add(this); }
     virtual void outputUpdate();
-    bool detectFeedback(FrameLib_MultiChannel *object);
-    void feedbackProbe();
-
+    
 protected:
 
     // Outputs
@@ -137,11 +115,6 @@ private:
     // Queue
     
     FrameLib_Context::ConnectionQueue mQueue;
-    
-    // Connection Info
-    
-    std::vector <FrameLib_MultiChannel *> mOutputDependencies;
-    std::vector <MultiChannelInput> mInputs;
 };
 
 // ************************************************************************************** //

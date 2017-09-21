@@ -16,13 +16,21 @@
 template <class T>
 class FrameLib_Object 
 {
+    struct InputConnection
+    {
+        InputConnection() : mObject(NULL), mIndex(0) {}
+        InputConnection(T *object, unsigned long index) : mObject(object), mIndex(index) {}
+        
+        T *mObject;
+        unsigned long mIndex;
+    };
     
 public:
     
     // Constructor / Destructor
     
-    FrameLib_Object(ObjectType type, FrameLib_Context context)
-    : mType(type), mContext(context), mFeedback(false), mNumIns(0), mNumOuts(0), mNumAudioChans(0) {}
+    FrameLib_Object(ObjectType type, FrameLib_Context context, T *owner)
+    : mType(type), mContext(context), mOwner(owner), mNumIns(0), mNumOuts(0), mNumAudioChans(0), mFeedback(false) {}
     virtual ~FrameLib_Object() {}
    
     // Object Type
@@ -31,21 +39,9 @@ public:
     
     // Context
     
-    const FrameLib_Context getContext() const   { return mContext; }
-    
-    // Feedback Detection
-    
-    bool getFeedback() const                    { return mFeedback; }
-    void setFeedback(bool feedback)             { mFeedback = feedback; }
-    
-    // Basic IO Setup / Queries
-    
-    void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0)
-    {
-        mNumIns = (getType() == kScheduler || nIns) ? nIns : 1;
-        mNumOuts = nOuts;
-        mNumAudioChans = nAudioChans;
-    }
+    FrameLib_Context getContext()    { return mContext; }
+
+    // Queries
     
     unsigned long getNumIns()               { return mNumIns; }
     unsigned long getNumOuts()              { return mNumOuts; }
@@ -68,13 +64,6 @@ public:
     
     static bool handlesAudio()  { return false; }
     
-    // Connections
-    
-    virtual ConnectionResult addConnection(T *object, unsigned long outIdx, unsigned long inIdx) = 0;
-    virtual void deleteConnection(unsigned long inIdx) = 0;
-    virtual void clearConnections() = 0;
-    virtual bool isConnected(unsigned long inIdx) = 0;
-
     // Info
 
     virtual std::string objectInfo(bool verbose = false)                        { return "No object info available";  }
@@ -89,8 +78,77 @@ public:
     
     virtual const FrameLib_Parameters *getParameters()                          { return NULL;  }
     
+    // Connection 
+    
+    ConnectionResult addConnection(T *object, unsigned long outIdx, unsigned long inIdx)
+    {
+        if (object == this)
+            return kConnectSelfConnection;
+        
+        if (object->mContext != mContext)
+            return kConnectWrongContext;
+        
+        if (detectFeedback(object))
+            return kConnectFeedbackDetected;
+        
+        // Update dependencies if the connection is now from a different object
+        
+        if (mInputConnections[inIdx].mObject != object)
+        {
+            removeConnection(inIdx);
+            object->addOutputDependency(mOwner);
+        }
+        
+        // Store data about connection and reset the dependency count
+        
+        mInputConnections[inIdx] = InputConnection(object, outIdx);
+        connectionUpdate();
+        
+        return kConnectSuccess;
+    }
+    
+    void deleteConnection(unsigned long inIdx)
+    {
+        clearConnection(inIdx);
+        connectionUpdate();
+    }
+    
+    void clearConnections()
+    {
+        // Remove input connections
+        
+        for (unsigned long i = 0; i < mInputConnections.size(); i++)
+            clearConnection(i);
+        
+        // Remove output connections
+        
+        for (typename std::vector< T *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); )
+        {
+            (*it)->disconnect(mOwner);
+            it = mOutputDependencies.erase(it);
+        }
+        
+        connectionUpdate();
+    }
+    
+    bool isConnected(unsigned long inIdx)
+    {
+        return mInputConnections[inIdx].mObject != NULL;
+    }
+
 protected:
     
+    // IO Setup
+    
+    void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0)
+    {
+        mNumIns = (getType() == kScheduler || nIns) ? nIns : 1;
+        mNumOuts = nOuts;
+        mNumAudioChans = nAudioChans;
+        
+        mInputConnections.resize(mNumIns);
+    }
+
     // Info Helpers
     
     const char *formatInfo(const char *verboseStr, const char *briefStr, bool verbose)
@@ -121,16 +179,117 @@ protected:
         return info;
     }
 
+    // Connection Access
+    
+    unsigned long getNumOutputDependencies()                { return mOutputDependencies.size(); }
+    T *getOutputDependency(unsigned long idx)               { return mOutputDependencies[idx]; }
+    T *getInputConnection(unsigned long idx)                { return mInputConnections[idx].mObject; }
+    unsigned long getInputConnectionIdx(unsigned long idx)  { return mInputConnections[idx].mIndex; }
+    
 private:
+    
+    // Connection Methods (private)
+    
+    virtual void connectionUpdate() = 0;
+    
+    // Dependency Updating
+    
+    void addOutputDependency(T *object)
+    {
+        for (typename std::vector<T *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
+            if (*it == object)
+                return;
+        
+        mOutputDependencies.push_back(object);
+        connectionUpdate();
+    }
+    
+    void removeOutputDependency(T *object)
+    {
+        for (typename std::vector <T *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
+        {
+            if (*it == object)
+            {
+                mOutputDependencies.erase(it);
+                connectionUpdate();
+                return;
+            }
+        }
+    }
+    
+    // Remove  one connection to this object (before replacement / deletion)
+    
+    void removeConnection(unsigned long inIdx)
+    {
+        // Check that there is an object connected and that it is not connected to another input also
+        
+        if (!mInputConnections[inIdx].mObject)
+            return;
+        
+        for (unsigned long i = 0; i < mInputConnections.size(); i++)
+            if (mInputConnections[i].mObject == mInputConnections[inIdx].mObject && i != inIdx)
+                return;
+        
+        // Update dependencies
+        
+        mInputConnections[inIdx].mObject->removeOutputDependency(mOwner);
+    }
+    
+    // Remove connection and set to defaults
+    
+    void clearConnection(unsigned long inIdx)
+    {
+        removeConnection(inIdx);
+        mInputConnections[inIdx] = InputConnection();
+    }
+    
+    // Remove all connections from a single object
+    
+    void disconnect(T *object)
+    {
+        for (unsigned long i = 0; i < mInputConnections.size(); i++)
+            if (mInputConnections[i].mObject == object)
+                mInputConnections[i] = InputConnection();
+        
+        connectionUpdate();
+    }
+    
+    // Detect Potential Feedback in a Network
+    
+    bool detectFeedback(T *object)
+    {
+        object->mFeedback = false;
+        feedbackProbe();
+        return object->mFeedback;
+    }
+    
+    void feedbackProbe()
+    {
+        mFeedback = true;
+        for (typename std::vector <T *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
+            (*it)->feedbackProbe();
+    }
 
+    // Data
+    
     const ObjectType mType;
     FrameLib_Context mContext;
+
+    T *mOwner;
     
-    bool mFeedback;
+    // IO Counts
     
     unsigned long mNumIns;
     unsigned long mNumOuts;
     unsigned long mNumAudioChans;
+    
+    // Connections
+
+    std::vector<InputConnection> mInputConnections;
+    std::vector<T *> mOutputDependencies;
+    
+    bool mFeedback;
+
 };
 
 // FrameLib_Block
@@ -146,21 +305,15 @@ public:
     
     // Constructor / Destructor
     
-    FrameLib_Block(ObjectType type, FrameLib_Context context) : FrameLib_Object<FrameLib_Block>(type, context) {}
+    FrameLib_Block(ObjectType type, FrameLib_Context context)
+    : FrameLib_Object<FrameLib_Block>(type, context, this) {}
     virtual ~FrameLib_Block() {}
 
-    // Connections
+    // Connection Queries
     
-    virtual ConnectionResult addConnection(class FrameLib_DSP *object, unsigned long outIdx, unsigned long inIdx) = 0;
-    
-    virtual ConnectionResult addConnection(FrameLib_Block *object, unsigned long outIdx, unsigned long inIdx)
-    {
-        return addConnection(object->getOutputObject(outIdx), outIdx, inIdx);
-    }
-    
-protected:
-    
-    virtual class FrameLib_DSP *getOutputObject(unsigned long outIdx) = 0;
+    virtual class FrameLib_DSP *getInputObject(unsigned long blockIdx) = 0;
+    virtual class FrameLib_DSP *getOutputObject(unsigned long blockIdx) = 0;
+    virtual unsigned long getInputObjectIdx(unsigned long blockIdx) = 0;
 };
 
 #endif

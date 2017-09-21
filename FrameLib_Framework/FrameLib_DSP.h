@@ -42,17 +42,6 @@ private:
     {
         Input() : mObject(NULL), mIndex(0), mSize(0), mFixedInput(NULL), mType(kFrameNormal), mUpdate(false), mParameters(false), mTrigger(true), mSwitchable(false) {}
         
-        void setInput(FrameLib_DSP *object, unsigned long idx)
-        {
-            mObject = object;
-            mIndex = idx;
-        }
-        
-        void setInput()
-        {
-            setInput(NULL, 0);
-        }
-        
         // Connection Info
         
         FrameLib_DSP *mObject;
@@ -101,15 +90,6 @@ public:
     
     virtual void blockUpdate(double **ins, double **outs, unsigned long blockSize);
     virtual void reset(double samplingRate, unsigned long maxBlockSize);
-    
-    // Connection Methods
-    
-    // N.B. - No sanity checks here to maximise speed / help debugging (better for it to crash if a mistake is made)
-    
-    virtual ConnectionResult addConnection(FrameLib_DSP *object, unsigned long outIdx, unsigned long inIdx);
-    virtual void deleteConnection(unsigned long inIdx);
-    virtual void clearConnections();
-    virtual bool isConnected(unsigned long inIdx);
     
     // Info (individual objects should override other methods to provide info)
     
@@ -170,10 +150,13 @@ protected:
     void copyVector(double *output, double *input, unsigned long size)      { std::copy(input, input + size, output); }
     void zeroVector(double *output, unsigned long size)                     { std::fill_n(output, size, 0.0); }
     
-    // Get DSP Object for a Given Output
-    
-    FrameLib_DSP *getOutputObject(unsigned long outIdx)     { return this; }
-    
+    // Get DSP Object for a Given Input/Output
+
+    FrameLib_DSP *getInputObject(unsigned long blockIdx)    { return this; }
+    FrameLib_DSP *getOutputObject(unsigned long blockIdx)   { return this; }
+
+    virtual unsigned long getInputObjectIdx(unsigned long blockIdx)     { return blockIdx; }
+
 private:
     
     // Deleted
@@ -222,22 +205,8 @@ private:
     void incrementInputDependency();
     void resetDependencyCount();
     
-    // Dependency Updating
-    
-    std::vector <FrameLib_DSP *>::iterator removeInputDependency(FrameLib_DSP *object);
-    std::vector <FrameLib_DSP *>::iterator removeOutputDependency(FrameLib_DSP *object);
-    void addInputDependency(FrameLib_DSP *object);
-    void addOutputDependency(FrameLib_DSP *object);
-    
-    // Connection Methods (private)
+    virtual void connectionUpdate();
 
-    void clearConnection(unsigned long inIdx);
-    void removeConnection(unsigned long inIdx);
-    std::vector <FrameLib_DSP *>::iterator disconnect(FrameLib_DSP *object);
-    
-    bool detectFeedback(FrameLib_DSP *object);
-    void feedbackProbe();
-    
 protected:
    
     // Member Variables
@@ -264,11 +233,11 @@ private:
     
     // IO Info
     
+    std::vector<FrameLib_DSP *> mInputDependencies;
+    std::vector<FrameLib_DSP *> mOutputDependencies;
+
     std::vector <Input> mInputs;
     std::vector <Output> mOutputs;
-    
-    std::vector <FrameLib_DSP *> mInputDependencies;
-    std::vector <FrameLib_DSP *> mOutputDependencies;
     
     // Dependency Counts
     

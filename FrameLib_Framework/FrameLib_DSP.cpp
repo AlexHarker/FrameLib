@@ -93,64 +93,6 @@ void FrameLib_DSP::reset(double samplingRate, unsigned long maxBlockSize)
             (*it)->reset(samplingRate, maxBlockSize);
 }
 
-// Connection Methods
-
-ConnectionResult FrameLib_DSP::addConnection(FrameLib_DSP *object, unsigned long outIdx, unsigned long inIdx)
-{
-    if (object == this)
-        return kConnectSelfConnection;
-    
-    if (object->getContext() != getContext())
-        return kConnectWrongContext;
-    
-    if (detectFeedback(object))
-        return kConnectFeedbackDetected;
-    
-    // Update dependencies if the connection is now from a different object
-    
-    if (mInputs[inIdx].mObject != object)
-    {
-        removeConnection(inIdx);
-        addInputDependency(object);
-        object->addOutputDependency(this);
-    }
-    
-    // Store data about connection and reset the dependency count
-    
-    mInputs[inIdx].setInput(object, outIdx);
-    resetDependencyCount();
-    
-    return kConnectSuccess;
-}
-
-void FrameLib_DSP::deleteConnection(unsigned long inIdx)
-{
-    removeConnection(inIdx);
-    clearConnection(inIdx);
-    resetDependencyCount();
-}
-
-
-void FrameLib_DSP::clearConnections()
-{
-    // Remove input connections
-    
-    for (unsigned long i = 0; i < mInputs.size(); i++)
-        deleteConnection(i);
-    
-    // Remove output connections
-    
-    for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); )
-        it = (*it)->disconnect(this);
-    
-    resetDependencyCount();
-}
-
-bool FrameLib_DSP::isConnected(unsigned long inIdx)
-{
-    return mInputs[inIdx].mObject != NULL;
-}
-
 // Setup and IO Modes
 
 void FrameLib_DSP::setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
@@ -553,105 +495,43 @@ inline void FrameLib_DSP::releaseOutputMemory()
         freeOutputMemory();
 }
 
-// Connection Methods (private)
+// Connection Updating
 
-// Dependency Updating
-
-std::vector <FrameLib_DSP *>::iterator FrameLib_DSP::removeInputDependency(FrameLib_DSP *object)
+void FrameLib_DSP::connectionUpdate()
 {
-    std::vector <FrameLib_DSP *>::iterator it;
+    // Clear dependencies
     
-    for (it = mInputDependencies.begin(); it != mInputDependencies.end(); it++)
-        if (*it == object)
-            return mInputDependencies.erase(it);
-    
-    return it;
-}
-
-std::vector <FrameLib_DSP *>::iterator FrameLib_DSP::removeOutputDependency(FrameLib_DSP *object)
-{
-    std::vector <FrameLib_DSP *>::iterator it;
-    
-    for (it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-        if (*it == object)
-            return mOutputDependencies.erase(it);
-    
-    return it;
-}
-
-void FrameLib_DSP::addInputDependency(FrameLib_DSP *object)
-{
-    for (std::vector <FrameLib_DSP *>::iterator it = mInputDependencies.begin(); it != mInputDependencies.end(); it++)
-        if (*it == object)
-            return;
-    
-    mInputDependencies.push_back(object);
-}
-
-void FrameLib_DSP::addOutputDependency(FrameLib_DSP *object)
-{
-    for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-        if (*it == object)
-            return;
-    
-    mOutputDependencies.push_back(object);
-}
-
-// Remove connection and set to defaults
-
-void FrameLib_DSP::clearConnection(unsigned long inIdx)
-{
-    removeConnection(inIdx);
-    mInputs[inIdx].setInput();
-}
-
-// Removal of one connection to this object (before replacement / deletion)
-
-void FrameLib_DSP::removeConnection(unsigned long inIdx)
-{
-    // Check that there is an object connected and that it is not connected to another input also
-    
-    if (!mInputs[inIdx].mObject)
-        return;
+    mInputDependencies.clear();
+    mOutputDependencies.clear();
     
     for (unsigned long i = 0; i < mInputs.size(); i++)
-        if (mInputs[i].mObject == mInputs[inIdx].mObject && i != inIdx)
-            return;
+    {
+        // Add the DSP object connection details to the input
+        
+        FrameLib_Block *blockIn = getInputConnection(i);
+        unsigned long inIdx = getInputConnectionIdx(i);
+        
+        mInputs[i].mObject = blockIn ? blockIn->getInputObject(inIdx) : NULL;
+        mInputs[i].mIndex = blockIn ? blockIn->getInputObjectIdx(inIdx) : NULL;;
+
+        // Build the input dependency list
+        
+        if (mInputs[i].mObject)
+        {
+            for (typename std::vector <FrameLib_DSP *>::iterator it = mInputDependencies.begin(); it != mInputDependencies.end(); it++)
+                if (*it == mInputs[i].mObject)
+                    continue;
+            
+            mInputDependencies.push_back(mInputs[i].mObject);
+        }
+    }
     
-    // Update dependencies
+    // Build the output dependency list
     
-    removeInputDependency(mInputs[inIdx].mObject);
-    mInputs[inIdx].mObject->removeOutputDependency(this);
-}
+    // FIX - this is ALL *wrong* - need to build the list differently...
 
-// Removal of all connections from one object to this object
-
-std::vector <FrameLib_DSP *>::iterator FrameLib_DSP::disconnect(FrameLib_DSP *object)
-{
-    // Set any inputs connected to the object to default values
+    for (unsigned long i = 0; i < getNumOutputDependencies(); i++)
+        mOutputDependencies.push_back(getOutputDependency(i)->getOutputObject(0));
     
-    for (unsigned long i = 0; i < mInputs.size(); i++)
-        if (mInputs[i].mObject == object)
-            mInputs[i].setInput();
-
-    // Update dependencies
-    
-    removeInputDependency(object);
-    return object->removeOutputDependency(this);
-}
-
-// Detect Potential Feedback in a Network
-
-bool FrameLib_DSP::detectFeedback(FrameLib_DSP *object)
-{
-    object->setFeedback(false);
-    feedbackProbe();
-    return object->getFeedback();
-}
-
-void FrameLib_DSP::feedbackProbe()
-{
-    setFeedback(true);
-    for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-        (*it)->feedbackProbe();
+    resetDependencyCount();
 }

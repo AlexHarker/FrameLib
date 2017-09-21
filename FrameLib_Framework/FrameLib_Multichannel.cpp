@@ -3,137 +3,19 @@
 
 // FrameLib_MultiChannel
 
-// Connection methods (public)
-
-ConnectionResult FrameLib_MultiChannel::addConnection(FrameLib_MultiChannel *object, unsigned long outIdx, unsigned long inIdx)
-{
-    if (object == this)
-        return kConnectSelfConnection;
-    
-    if (object->getContext() != getContext())
-        return kConnectWrongContext;
-    
-    if (detectFeedback(object))
-        return kConnectFeedbackDetected;
-    
-    // Update dependencies if the connected object has changed
-    
-    if (mInputs[inIdx].mObject != object)
-    {
-        removeConnection(inIdx);
-        object->addOutputDependency(this);
-    }
-
-    // Store data about connection and update
-    
-    mInputs[inIdx] = MultiChannelInput(object, outIdx);
-    updateConnections();
-    
-    return kConnectSuccess;
-}
-
-void FrameLib_MultiChannel::deleteConnection(unsigned long inIdx)
-{
-    clearConnection(inIdx);
-    updateConnections();
-}
-
-void FrameLib_MultiChannel::clearConnections()
-{
-    // Remove input connections and update
-    
-    for (unsigned long i = 0; i < mInputs.size(); i++)
-        clearConnection(i);
-    
-    // Remove output connections
-    
-    for (std::vector <FrameLib_MultiChannel *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); )
-        it = (*it)->disconnect(this);
-    
-    // Update
-    
-    updateConnections();
-}
-
-bool FrameLib_MultiChannel::isConnected(unsigned long inIdx)
-{
-    return mInputs[inIdx].mObject != NULL;
-}
+// Query Input Channels
 
 unsigned long FrameLib_MultiChannel::getInputNumChans(unsigned long inIdx)
 {
-    if (mInputs[inIdx].mObject)
-        return mInputs[inIdx].mObject->mOutputs[mInputs[inIdx].mIndex].mConnections.size();
+    if (getInputConnection(inIdx))
+        return getInputConnection(inIdx)->mOutputs[getInputConnectionIdx(inIdx)].mConnections.size();
     
     return 0;
 }
 
-// Dependency updating
-
-void FrameLib_MultiChannel::addOutputDependency(FrameLib_MultiChannel *object)
+FrameLib_MultiChannel::ConnectionInfo FrameLib_MultiChannel::getInputChan(unsigned long inIdx, unsigned long chan)
 {
-    for (std::vector <FrameLib_MultiChannel *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-        if (*it == object)
-            return;
-    
-    mOutputDependencies.push_back(object);
-}
-
-std::vector <FrameLib_MultiChannel *>::iterator FrameLib_MultiChannel::removeOutputDependency(FrameLib_MultiChannel *object)
-{
-    std::vector <FrameLib_MultiChannel *>::iterator it;
-    
-    for (it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-        if (*it == object)
-            return mOutputDependencies.erase(it);
-    
-    return it;
-}
-
-// Connection Methods (private)
-
-// Remove connection and set to defaults
-
-void FrameLib_MultiChannel::clearConnection(unsigned long inIdx)
-{
-    removeConnection(inIdx);
-    mInputs[inIdx] = MultiChannelInput();
-}
-
-// Removal of one connection to this object (before replacement / deletion)
-
-void FrameLib_MultiChannel::removeConnection(unsigned long inIdx)
-{
-    // Check that there is an object connected and that it is not connected to another input also
-    
-    if (!mInputs[inIdx].mObject)
-        return;
-    
-    for (unsigned long i = 0; i < mInputs.size(); i++)
-        if (mInputs[i].mObject == mInputs[inIdx].mObject && i != inIdx)
-            return;
-    
-    // Update dependencies
-    
-    mInputs[inIdx].mObject->removeOutputDependency(this);
-}
-
-// Removal of all connections from one object to this object
-
-std::vector <FrameLib_MultiChannel *>::iterator FrameLib_MultiChannel::disconnect(FrameLib_MultiChannel *object)
-{
-    // Set any inputs connected to the object to default values
-    
-    for (unsigned long i = 0; i < mInputs.size(); i++)
-        if (mInputs[i].mObject == object)
-            mInputs[i] = MultiChannelInput();
-    
-    // Update dependencies
-    
-    std::vector <FrameLib_MultiChannel *>::iterator updatedIterator = object->removeOutputDependency(this);
-    updateConnections();
-    
-    return updatedIterator;
+    return getInputConnection(inIdx)->mOutputs[getInputConnectionIdx(inIdx)].mConnections[chan];
 }
 
 // Update the inputs of all output dependencies
@@ -141,25 +23,8 @@ std::vector <FrameLib_MultiChannel *>::iterator FrameLib_MultiChannel::disconnec
 void FrameLib_MultiChannel::outputUpdate()
 {    
     if (mQueue)
-        for (std::vector <FrameLib_MultiChannel *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-            mQueue->add(*it);
-}
-
-// Detect Potential Feedback in a Network
-
-bool FrameLib_MultiChannel::detectFeedback(FrameLib_MultiChannel *object)
-{
-    object->setFeedback(false);
-    feedbackProbe();
-    return object->getFeedback();
-
-}
-
-void FrameLib_MultiChannel::feedbackProbe()
-{
-    setFeedback(true);
-    for (std::vector <FrameLib_MultiChannel *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-        (*it)->feedbackProbe();
+        for (unsigned long i = 0; i < getNumOutputDependencies(); i++)
+            mQueue->add(getOutputDependency(i));
 }
 
 // ************************************************************************************** //
@@ -168,7 +33,7 @@ void FrameLib_MultiChannel::feedbackProbe()
 
 FrameLib_Pack::ParameterInfo FrameLib_Pack::sParamInfo;
 
-FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_MultiChannel(kProcessor, context), mParameters(&sParamInfo)
+FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner): FrameLib_MultiChannel(kProcessor, context), mParameters(&sParamInfo)
 {
     mParameters.addInt(0, "inputs", 2, 0 );
     mParameters.setInstantiation();
