@@ -518,11 +518,14 @@ void FrameLib_DSP::connectionUpdate()
         
         if (mInputs[i].mObject)
         {
-            for (typename std::vector <FrameLib_DSP *>::iterator it = mInputDependencies.begin(); it != mInputDependencies.end(); it++)
-                if (*it == mInputs[i].mObject)
-                    continue;
+            std::vector <FrameLib_DSP *>::iterator it;
             
-            mInputDependencies.push_back(mInputs[i].mObject);
+            for (it = mInputDependencies.begin(); it != mInputDependencies.end(); it++)
+                if (*it == mInputs[i].mObject)
+                    break;
+            
+            if (it == mInputDependencies.end())
+                mInputDependencies.push_back(mInputs[i].mObject);
         }
     }
     
