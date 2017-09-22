@@ -180,7 +180,7 @@ public:
         
 private:
     
-    // Data (public so we can take the address)
+    // Data
     
     MaxMessage mMessages;
 };
