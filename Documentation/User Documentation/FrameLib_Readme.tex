@@ -29,7 +29,7 @@
 
 \linespread{1.1} % Line spacing
 
-\newcommand{\version}{Alpha 0.4}
+\newcommand{\version}{Alpha 0.5}
 % Set up the header and footer
 \pagestyle{fancy}
 \lhead{Alex Harker} % Top left header
@@ -354,6 +354,7 @@ A full object listing follows, grouped by function. Currently this is the best q
 \subsection{Max Specific}
 \begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
 \flobject{frommax} &
+\flobject{tomax} &
 \flobject{read}
 \end{tabular}
 
@@ -427,7 +428,9 @@ A full object listing follows, grouped by function. Currently this is the best q
 \pagebreak
 %----------------------------------------------------------------------------------------
 
-\section{Changes in Alpha 0.2}
+\section{Changes}
+
+\subsection{Changes in Alpha 0.2}
 \vspace{0.1in}
 
 \begin{itemize}
@@ -437,15 +440,15 @@ A full object listing follows, grouped by function. Currently this is the best q
 \item Removed unnecessary dspchain recompiles, related to patchline re-ordering.
 \end{itemize}
 
-\section{Changes in Alpha 0.3}
+\subsection{Changes in Alpha 0.3}
 \vspace{0.1in}
 
 \begin{itemize}
 \item Fixed testing for no live inputs to prevent crashes with audio-synced objects.
-\item {[\#12]} Fixed binary templates to prevent overwrites in wrap mode with mismatched input lengths.
 \item {[\#1 and \#14]} Fixed \flobject{medianfilter} width clipping to prevent crashes.
-\item {[\#15]} Fixed \flobject{source} to allow dynamic changing of the size.
 \item {[\#11]} Updated \flobject{fft} and \flobject{ifft} to allow complex/full spectrum FFTs and to use the new HISSTools FFT code.
+\item {[\#12]} Fixed binary templates to prevent overwrites in wrap mode with mismatched input lengths.
+\item {[\#15]} Fixed \flobject{source} to allow dynamic changing of the size.
 \item Updated \flobject{store} now clears the buffer when audio is restarted.
 \item Refactored \flobject{read} to use template based interpolation (probably requires AVX) - also allow none as a user-selectable interpolation mode.
 \item Added interpolation and end behaviours to \flobject{lookup}.
@@ -453,11 +456,23 @@ A full object listing follows, grouped by function. Currently this is the best q
 \item Fixed `wrapped' objects for patchline updates whichever end of the cable they are.
 \end{itemize}
 
-\section{Changes in Alpha 0.4}
+\subsection{Changes in Alpha 0.4}
 \vspace{0.1in}
 
 \begin{itemize}
-\item {[\#2]} Feedback loops no longer cause crashes..
+\item {[\#2]} Feedback loops no longer cause crashes.
+\end{itemize}
+
+\subsection{Changes in Alpha 0.5}
+\vspace{0.1in}
+
+\begin{itemize}
+\item {[\#18]} Fixed table reading code to account correctly for the frame size.
+\item {[\#19]} Fixed crashes with empty frames into vector template objects.
+\item {[\#20]} Fixed crashing with negative values into \flobject{peaks}.
+.\item {[\#21]} Added the \flobject{tomax} object.
+.\item Rebuilt the connection system to be shared between object types.
+
 \end{itemize}
 
 

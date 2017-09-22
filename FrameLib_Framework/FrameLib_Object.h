@@ -91,17 +91,19 @@ public:
         if (detectFeedback(object))
             return kConnectFeedbackDetected;
         
-        // Update dependencies if the connection is now from a different object
-        
-        if (mInputConnections[inIdx].mObject != object)
-        {
-            removeConnection(inIdx);
-            object->addOutputDependency(mOwner);
-        }
-        
         // Store data about connection and reset the dependency count
         
+        T *prevObject = mInputConnections[inIdx].mObject;
         mInputConnections[inIdx] = InputConnection(object, outIdx);
+        
+        // Update dependencies if the connection is now from a different object
+        
+        if (prevObject != object)
+        {
+            removeInputDependency(prevObject);
+            object->addOutputDependency(mOwner);
+        }
+       
         connectionUpdate();
         
         return kConnectSuccess;
@@ -219,28 +221,26 @@ private:
     
     // Remove  one connection to this object (before replacement / deletion)
     
-    void removeConnection(unsigned long inIdx)
+    void removeInputDependency(T * object)
     {
         // Check that there is an object connected and that it is not connected to another input also
         
-        if (!mInputConnections[inIdx].mObject)
-            return;
-        
         for (unsigned long i = 0; i < mInputConnections.size(); i++)
-            if (mInputConnections[i].mObject == mInputConnections[inIdx].mObject && i != inIdx)
+            if (!object || mInputConnections[i].mObject == object)
                 return;
         
         // Update dependencies
         
-        mInputConnections[inIdx].mObject->removeOutputDependency(mOwner);
+        object->removeOutputDependency(mOwner);
     }
     
     // Remove connection and set to defaults
     
     void clearConnection(unsigned long inIdx)
     {
-        removeConnection(inIdx);
+        T *prevObject = mInputConnections[inIdx].mObject;
         mInputConnections[inIdx] = InputConnection();
+        removeInputDependency(prevObject);
     }
     
     // Remove all connections from a single object

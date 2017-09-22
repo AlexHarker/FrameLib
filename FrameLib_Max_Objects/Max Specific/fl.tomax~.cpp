@@ -16,9 +16,8 @@ FrameLib_ToMax::FrameLib_ToMax(FrameLib_Context context, FrameLib_Parameters::Se
 
 std::string FrameLib_ToMax::objectInfo(bool verbose)
 {
-    return formatInfo("Turn max messages into frames: In values mode the output is the last receive value(s) as a vector. "
-                   "In params mode messages are collected and output as a single tagged frame for setting parameters.",
-                   "Turn max messages into frames.", verbose);
+    return formatInfo("Turn frames into max messages.",
+                   "Turn frames into max messages.", verbose);
 }
 
 std::string FrameLib_ToMax::inputInfo(unsigned long idx, bool verbose)
@@ -40,6 +39,8 @@ void FrameLib_ToMax::process()
 
     t_atom *output = (t_atom *) mAllocator->alloc(sizeof(t_atom) * sizeIn);
 
+    // FIX - support parameter frames!
+    
     if (sizeIn && output)
     {
         for (unsigned long i = 0; i < sizeIn; i++)
