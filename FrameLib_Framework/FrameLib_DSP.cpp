@@ -499,6 +499,8 @@ inline void FrameLib_DSP::releaseOutputMemory()
 
 void FrameLib_DSP::connectionUpdate()
 {
+    std::vector <FrameLib_DSP *>::iterator it;
+    
     // Clear dependencies
     
     mInputDependencies.clear();
@@ -518,8 +520,6 @@ void FrameLib_DSP::connectionUpdate()
         
         if (mInputs[i].mObject)
         {
-            std::vector <FrameLib_DSP *>::iterator it;
-            
             for (it = mInputDependencies.begin(); it != mInputDependencies.end(); it++)
                 if (*it == mInputs[i].mObject)
                     break;
@@ -530,11 +530,30 @@ void FrameLib_DSP::connectionUpdate()
     }
     
     // Build the output dependency list
-    
-    // FIX - this is ALL *wrong* - need to build the list differently...
-
+        
     for (unsigned long i = 0; i < getNumOutputDependencies(); i++)
-        mOutputDependencies.push_back(getOutputDependency(i)->getOutputObject(0));
+    {
+        FrameLib_Block *blockobject = getOutputDependency(i);
+        
+        // Look at each input for a possible match
+        
+        for (unsigned long i = 0; i < blockobject->getNumIns(); i++)
+        {
+            if (this == blockobject->getInputConnection(i))
+            {
+                // Get the underlying object and add it to the output dependencies if not already present
+                
+                FrameLib_DSP *dspObject = blockobject->getInputObject(i);
+                
+                for (it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
+                    if (*it == dspObject)
+                        break;
+                
+                if (it == mOutputDependencies.end())
+                    mOutputDependencies.push_back(dspObject);
+            }
+        }
+    }
     
     resetDependencyCount();
 }

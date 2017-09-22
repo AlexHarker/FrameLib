@@ -136,6 +136,13 @@ public:
         return mInputConnections[inIdx].mObject != NULL;
     }
 
+    // Connection Access
+    
+    unsigned long getNumOutputDependencies()                { return mOutputDependencies.size(); }
+    T *getOutputDependency(unsigned long idx)               { return mOutputDependencies[idx]; }
+    T *getInputConnection(unsigned long idx)                { return mInputConnections[idx].mObject; }
+    unsigned long getInputConnectionIdx(unsigned long idx)  { return mInputConnections[idx].mIndex; }
+    
 protected:
     
     // IO Setup
@@ -178,13 +185,6 @@ protected:
         
         return info;
     }
-
-    // Connection Access
-    
-    unsigned long getNumOutputDependencies()                { return mOutputDependencies.size(); }
-    T *getOutputDependency(unsigned long idx)               { return mOutputDependencies[idx]; }
-    T *getInputConnection(unsigned long idx)                { return mInputConnections[idx].mObject; }
-    unsigned long getInputConnectionIdx(unsigned long idx)  { return mInputConnections[idx].mIndex; }
     
 private:
     
