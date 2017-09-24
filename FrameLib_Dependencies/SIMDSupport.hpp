@@ -427,6 +427,8 @@ struct SIMDType<float, 8> : public SIMDVector<float, __m256, 8>
     }
 };
 
+/* This requires AVX2
+ 
 template<>
 struct SIMDType<int32_t, 8> : public SIMDVector<int32_t, __m256i, 8>
 {
@@ -454,6 +456,7 @@ struct SIMDType<int32_t, 8> : public SIMDVector<int32_t, __m256i, 8>
         return vec;
     }
 };
+*/
 
 #endif
 
