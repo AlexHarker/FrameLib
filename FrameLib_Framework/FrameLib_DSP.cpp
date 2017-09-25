@@ -255,6 +255,8 @@ FrameLib_Parameters::Serial *FrameLib_DSP::getOutput(unsigned long idx)
 
 inline void FrameLib_DSP::dependencyNotify(bool releaseMemory, bool fromInput)
 {
+    assert(((mDependencyCount > 0) || (mUpdatingInputs && (mInputCount > 0))) && "Dependency count is already zero");
+    
     if (releaseMemory)
         releaseOutputMemory();
     
@@ -265,7 +267,7 @@ inline void FrameLib_DSP::dependencyNotify(bool releaseMemory, bool fromInput)
         if (--mInputCount == 0)
            mQueue->add(this);
     }
-    else if (--mDependencyCount == 0)
+    else if (--mDependencyCount == 0 && !mUpdatingInputs)
         mQueue->add(this);
     
     // N.B. For multithreading re-entrancy needs to be avoided by increasing the dependency count before adding to the queue (with matching notification)
@@ -289,6 +291,8 @@ void FrameLib_DSP::dependenciesReady()
 #ifndef NDEBUG
     FrameLib_TimeFormat prevInputTime = mInputTime;
 #endif
+    
+    mDependencyCount++;
     
     bool timeUpdated = false;
     bool callUpdate = false;
@@ -438,6 +442,10 @@ void FrameLib_DSP::dependenciesReady()
     
     if (mUpdatingInputs < prevUpdatingInputs)
         dependencyNotify(false, false);
+    
+    // Allow self-triggering
+    
+    dependencyNotify(false, false);
     
     // Debug
     
