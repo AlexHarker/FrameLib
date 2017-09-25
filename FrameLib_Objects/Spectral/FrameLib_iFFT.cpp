@@ -164,7 +164,7 @@ void FrameLib_iFFT::process()
         {
             // Copy Nyquist Bin
             
-            if (sizeIn >= ((sizeOut >> 1) + 1))
+            if (sizeInR >= ((sizeOut >> 1) + 1))
                 spectrum.imagp[0] = inputR[sizeOut >> 1];
         
             // Convert to time domain
