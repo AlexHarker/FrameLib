@@ -37,6 +37,9 @@ void FrameLib_ToMax::process()
     unsigned long sizeIn;
     double *input = getInput(0, &sizeIn);
 
+    if (sizeIn > 32767)
+        sizeIn = 32767;
+    
     t_atom *output = (t_atom *) mAllocator->alloc(sizeof(t_atom) * sizeIn);
 
     // FIX - support parameter frames!
