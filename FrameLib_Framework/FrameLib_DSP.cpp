@@ -403,7 +403,7 @@ void FrameLib_DSP::dependenciesReady()
     if (hostAligned)
         mInputTime = mBlockEndTime;
     
-    // Check if we need to just updating inputs
+    // Check if we need to just update inputs
     
     bool prevUpdatingInputs = mUpdatingInputs;
     mUpdatingInputs = mInputTime < mValidTime;
