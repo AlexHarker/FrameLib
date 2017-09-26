@@ -513,13 +513,22 @@ void FrameLib_DSP::connectionUpdate()
     
     mInputDependencies.clear();
     mOutputDependencies.clear();
+
+    // Build the input list
     
-    for (unsigned long i = 0; i < mInputs.size(); i++)
+    mInputs.resize(getNumIns() + getNumDependencyConnections());
+
+    for (unsigned long i = 0; i < getNumIns() + getNumDependencyConnections(); i++)
     {
+        // Make sure that dependency inputs are set correctly
+        
+        if (i >= getNumIns())
+            inputMode(i, false, false, false);
+
         // Add the DSP object connection details to the input
         
-        FrameLib_Block *blockIn = getInputConnection(i);
-        unsigned long inIdx = getInputConnectionIdx(i);
+        FrameLib_Block *blockIn = i < getNumIns() ? getInputConnection(i) : getDependencyConnection(i - getNumIns());
+        unsigned long inIdx = i <  getNumIns() ? getInputConnectionIdx(i) : getDependencyConnectionIdx(i - getNumIns());
         
         mInputs[i].mObject = blockIn ? blockIn->getInputObject(inIdx) : NULL;
         mInputs[i].mIndex = blockIn ? blockIn->getInputObjectIdx(inIdx) : NULL;;

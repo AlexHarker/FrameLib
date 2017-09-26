@@ -116,6 +116,9 @@ public:
     
     ConnectionResult addDependencyConnection(T *object, unsigned long outIdx)
     {
+        if (!supportsDependencyConnections())
+            return kConnectNoDependencySupport;
+            
         ConnectionResult result = connectionCheck(object);
         
         if (result == kConnectSuccess)
@@ -179,10 +182,14 @@ public:
 
     // Connection Access
     
-    unsigned long getNumOutputDependencies()                { return mOutputDependencies.size(); }
-    T *getOutputDependency(unsigned long idx)               { return mOutputDependencies[idx]; }
-    T *getInputConnection(unsigned long idx)                { return mInputConnections[idx].mObject; }
-    unsigned long getInputConnectionIdx(unsigned long idx)  { return mInputConnections[idx].mIndex; }
+    bool supportsDependencyConnections()                        { return mSupportsDependencyConnections; }
+    unsigned long getNumOutputDependencies()                    { return mOutputDependencies.size(); }
+    T *getOutputDependency(unsigned long idx)                   { return mOutputDependencies[idx]; }
+    unsigned long getNumDependencyConnections()                 { return mDependencyConnections.size(); }
+    T *getDependencyConnection(unsigned long idx)               { return mDependencyConnections[idx].mObject; }
+    unsigned long getDependencyConnectionIdx(unsigned long idx) { return mDependencyConnections[idx].mIndex; }
+    T *getInputConnection(unsigned long idx)                    { return mInputConnections[idx].mObject; }
+    unsigned long getInputConnectionIdx(unsigned long idx)      { return mInputConnections[idx].mIndex; }
     
 protected:
     
@@ -196,6 +203,10 @@ protected:
         
         mInputConnections.resize(mNumIns);
     }
+    
+    // Dependency Setup
+    
+    void enableDependencyConnections()                         { mSupportsDependencyConnections = true; }
 
     // Info Helpers
     
@@ -280,12 +291,15 @@ private:
     {
         // Check that there is an object connected and that it is not connected to another input /dependency connection also
         
+         if (!object)
+             return;
+        
         for (ConnectionIterator it = mInputConnections.begin(); it != mInputConnections.end(); it++)
-            if (!object || it->mObject == object)
+            if (it->mObject == object)
                 return;
         
         for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
-            if (!object || it->mObject == object)
+            if (it->mObject == object)
                 return;
         
         // Update dependencies
