@@ -151,7 +151,13 @@ public:
         
         connectionUpdate();
     }
-
+    
+    void clearDependencyConnections()
+    {
+        deleteDependencyConnections();
+        connectionUpdate();
+    }
+    
     void clearConnections()
     {
         // Remove input connections
@@ -161,8 +167,7 @@ public:
         
         // Remove dependency connections
         
-        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
-            it = clearDependencyConnection(it);
+        deleteDependencyConnections();
         
         // Remove output connections
         
@@ -318,13 +323,19 @@ private:
     
     // Remove dependency connection
     
-    ConnectionIterator clearDependencyConnection(ConnectionIterator it)
+    ConnectionIterator deleteDependencyConnection(ConnectionIterator it)
     {
         T *object = it->mObject;
         it = mDependencyConnections.erase(it);
         removeInputDependency(object);
         
         return it;
+    }
+    
+    void deleteDependencyConnections()
+    {
+        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
+            it = deleteDependencyConnection(it);
     }
 
     // Remove all connections from a single object

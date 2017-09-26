@@ -18,6 +18,19 @@ FrameLib_MultiChannel::ConnectionInfo FrameLib_MultiChannel::getInputChan(unsign
     return getInputConnection(inIdx)->mOutputs[getInputConnectionIdx(inIdx)].mConnections[chan];
 }
 
+unsigned long FrameLib_MultiChannel::getDependencyConnectionNumChans(unsigned long idx)
+{
+    if (getDependencyConnection(idx))
+        return getDependencyConnection(idx)->mOutputs[getDependencyConnectionIdx(idx)].mConnections.size();
+    
+    return 0;
+}
+
+FrameLib_MultiChannel::ConnectionInfo FrameLib_MultiChannel::getDependencyConnectionChan(unsigned long idx, unsigned long chan)
+{
+    return getDependencyConnection(idx)->mOutputs[getDependencyConnectionIdx(idx)].mConnections[chan];
+}
+
 // Update the inputs of all output dependencies
 
 void FrameLib_MultiChannel::outputUpdate()

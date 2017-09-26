@@ -91,6 +91,8 @@ protected:
     
     unsigned long getInputNumChans(unsigned long inIdx);
     ConnectionInfo getInputChan(unsigned long inIdx, unsigned long chan);
+    unsigned long getDependencyConnectionNumChans(unsigned long idx);
+    ConnectionInfo getDependencyConnectionChan(unsigned long idx, unsigned long chan);
 
 private:
 
@@ -218,7 +220,7 @@ public:
         
         // Check for dependency support
         
-        if (mBlocks[0]->supportsDependencyConnections)
+        if (mBlocks[0]->supportsDependencyConnections())
             enableDependencyConnections();
         
         reset(0.0, 4096);
@@ -338,6 +340,8 @@ private:
         
         if (numChansChanged)
         {
+            // Change the number of hosted blocks
+            
             if (nChannels > cChannels)
             {
                 mBlocks.resize(nChannels);
@@ -387,6 +391,25 @@ private:
             {
                 for (unsigned long j = 0; j < nChannels; j++)
                     mBlocks[j]->deleteConnection(i);
+            }
+        }
+        
+        // Clear dependency connections
+        
+        for (unsigned long j = 0; j < nChannels; j++)
+            mBlocks[j]->clearDependencyConnections();
+        
+        // Make dependency connections
+        
+        for (unsigned long i = 0; i < getNumDependencyConnections(); i++)
+        {
+            if (getDependencyConnectionNumChans(i))
+            {
+                for (unsigned long j = 0; j < nChannels; j++)
+                {
+                    ConnectionInfo connection = getDependencyConnectionChan(i, j % getDependencyConnectionNumChans(i));
+                    mBlocks[j]->addDependencyConnection(connection.mObject, connection.mIndex);
+                }
             }
         }
         
