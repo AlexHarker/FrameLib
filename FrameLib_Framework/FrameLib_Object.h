@@ -25,12 +25,15 @@ class FrameLib_Object
         unsigned long mIndex;
     };
     
+    typedef typename std::vector< T *>::iterator ObjectIterator;
+    typedef typename std::vector< InputConnection>::iterator ConnectionIterator;
+    
 public:
     
     // Constructor / Destructor
     
     FrameLib_Object(ObjectType type, FrameLib_Context context, T *owner)
-    : mType(type), mContext(context), mOwner(owner), mNumIns(0), mNumOuts(0), mNumAudioChans(0), mFeedback(false) {}
+    : mType(type), mContext(context), mOwner(owner), mNumIns(0), mNumOuts(0), mNumAudioChans(0), mSupportsDependencyConnections(false), mFeedback(false) {}
     virtual ~FrameLib_Object() {}
    
     // Object Type
@@ -124,7 +127,7 @@ public:
         
         // Remove output connections
         
-        for (typename std::vector< T *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); )
+        for (ObjectIterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); )
         {
             (*it)->disconnect(mOwner);
             it = mOutputDependencies.erase(it);
@@ -198,7 +201,7 @@ private:
     
     void addOutputDependency(T *object)
     {
-        for (typename std::vector<T *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
+        for (ObjectIterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
             if (*it == object)
                 return;
         
@@ -208,7 +211,7 @@ private:
     
     void removeOutputDependency(T *object)
     {
-        for (typename std::vector <T *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
+        for (ObjectIterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
         {
             if (*it == object)
             {
@@ -223,10 +226,14 @@ private:
     
     void removeInputDependency(T * object)
     {
-        // Check that there is an object connected and that it is not connected to another input also
+        // Check that there is an object connected and that it is not connected to another input /dependency connection also
         
-        for (unsigned long i = 0; i < mInputConnections.size(); i++)
-            if (!object || mInputConnections[i].mObject == object)
+        for (ConnectionIterator it = mInputConnections.begin(); it != mInputConnections.end(); it++)
+            if (!object || it->mObject == object)
+                return;
+        
+        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
+            if (!object || it->mObject == object)
                 return;
         
         // Update dependencies
@@ -243,13 +250,28 @@ private:
         removeInputDependency(prevObject);
     }
     
+    // Remove dependency connection
+    
+    void clearDependencyConnection(T *object, unsigned long outIdx)
+    {
+        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
+            if (it->mObject == object && it->mIndex == outIdx)
+                it = mDependencyConnections.erase(it);
+
+        removeInputDependency(object);
+    }
+    
     // Remove all connections from a single object
     
     void disconnect(T *object)
     {
-        for (unsigned long i = 0; i < mInputConnections.size(); i++)
-            if (mInputConnections[i].mObject == object)
-                mInputConnections[i] = InputConnection();
+        for (ConnectionIterator it = mInputConnections.begin(); it != mInputConnections.end(); it++)
+            if (it->mObject == object)
+                *it = InputConnection();
+        
+        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
+            if (it->mObject == object)
+                it = mDependencyConnections.erase(it);
         
         connectionUpdate();
     }
@@ -285,9 +307,11 @@ private:
     
     // Connections
 
+    std::vector<InputConnection> mDependencyConnections;
     std::vector<InputConnection> mInputConnections;
     std::vector<T *> mOutputDependencies;
     
+    bool mSupportsDependencyConnections;
     bool mFeedback;
 
 };
