@@ -85,31 +85,27 @@ public:
     
     ConnectionResult addConnection(T *object, unsigned long outIdx, unsigned long inIdx)
     {
-        if (object == this)
-            return kConnectSelfConnection;
+        ConnectionResult result = connectionCheck(object);
         
-        if (object->mContext != mContext)
-            return kConnectWrongContext;
-        
-        if (detectFeedback(object))
-            return kConnectFeedbackDetected;
-        
-        // Store data about connection and reset the dependency count
-        
-        T *prevObject = mInputConnections[inIdx].mObject;
-        mInputConnections[inIdx] = InputConnection(object, outIdx);
-        
-        // Update dependencies if the connection is now from a different object
-        
-        if (prevObject != object)
+        if (result == kConnectSuccess)
         {
-            removeInputDependency(prevObject);
-            object->addOutputDependency(mOwner);
+            // Store data about connection and reset the dependency count
+            
+            T *prevObject = mInputConnections[inIdx].mObject;
+            mInputConnections[inIdx] = InputConnection(object, outIdx);
+            
+            // Update dependencies if the connection is now from a different object
+            
+            if (prevObject != object)
+            {
+                removeInputDependency(prevObject);
+                object->addOutputDependency(mOwner);
+            }
+           
+            connectionUpdate();
         }
-       
-        connectionUpdate();
         
-        return kConnectSuccess;
+        return result;
     }
     
     void deleteConnection(unsigned long inIdx)
@@ -118,12 +114,52 @@ public:
         connectionUpdate();
     }
     
+    ConnectionResult addDependencyConnection(T *object, unsigned long outIdx)
+    {
+        ConnectionResult result = connectionCheck(object);
+        
+        if (result == kConnectSuccess)
+        {
+            // If already connected there is nothing to do
+        
+            for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
+                if (it->mObject == object && it->mIndex == outIdx)
+                    return kConnectSuccess;
+
+            // Update dependencies
+            
+            object->addOutputDependency(mOwner);
+
+            // Add the dependency connection
+            
+            mDependencyConnections.push_back(InputConnection(object, outIdx));
+            
+            connectionUpdate();
+        }
+
+        return result;
+    }
+    
+    void deleteDependencyConnection(T *object, unsigned long outIdx)
+    {
+        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
+            if (it->mObject == object && it->mIndex == outIdx)
+                it = clearDependencyConnection(it);
+        
+        connectionUpdate();
+    }
+
     void clearConnections()
     {
         // Remove input connections
         
         for (unsigned long i = 0; i < mInputConnections.size(); i++)
             clearConnection(i);
+        
+        // Remove dependency connections
+        
+        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
+            it = clearDependencyConnection(it);
         
         // Remove output connections
         
@@ -197,6 +233,22 @@ private:
     
     virtual void connectionUpdate() = 0;
     
+    // Connection Check
+    
+    ConnectionResult connectionCheck(T *object)
+    {
+        if (object == this)
+            return kConnectSelfConnection;
+    
+        if (object->mContext != mContext)
+            return kConnectWrongContext;
+    
+        if (detectFeedback(object))
+            return kConnectFeedbackDetected;
+        
+        return kConnectSuccess;
+    }
+    
     // Dependency Updating
     
     void addOutputDependency(T *object)
@@ -252,15 +304,15 @@ private:
     
     // Remove dependency connection
     
-    void clearDependencyConnection(T *object, unsigned long outIdx)
+    ConnectionIterator clearDependencyConnection(ConnectionIterator it)
     {
-        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
-            if (it->mObject == object && it->mIndex == outIdx)
-                it = mDependencyConnections.erase(it);
-
+        T *object = it->mObject;
+        it = mDependencyConnections.erase(it);
         removeInputDependency(object);
+        
+        return it;
     }
-    
+
     // Remove all connections from a single object
     
     void disconnect(T *object)
