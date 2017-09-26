@@ -1,7 +1,7 @@
 
 #include "FrameLib_Peaks.h"
 
-FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, NULL, 1, 3)
+FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, NULL, 1, 3)
 {
     mParameters.set(serialisedParameters);
 }

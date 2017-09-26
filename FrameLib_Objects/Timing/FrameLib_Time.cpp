@@ -1,7 +1,7 @@
 
 #include "FrameLib_Time.h"
 
-FrameLib_Time::FrameLib_Time(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 1, 1)
+FrameLib_Time::FrameLib_Time(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 1, 1)
 {
     mParameters.addEnum(kUnits, "units", 0);
     mParameters.addEnumItem(kSamples, "samples");

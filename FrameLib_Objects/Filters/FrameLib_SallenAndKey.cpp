@@ -54,7 +54,7 @@ void FrameLib_SallenAndKey::SallenAndKey::calculateFilter(double x)
 
 // Constructor
 
-FrameLib_SallenAndKey::FrameLib_SallenAndKey(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 2, 1)
+FrameLib_SallenAndKey::FrameLib_SallenAndKey(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 2, 1)
 {
     mParameters.addDouble(kFreq, "freq", 0.0, 0);
     mParameters.setMin(0.0);

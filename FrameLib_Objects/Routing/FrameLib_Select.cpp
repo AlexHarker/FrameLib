@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Select::FrameLib_Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo)
+FrameLib_Select::FrameLib_Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo)
 {
     mParameters.addDouble(kNumIns, "numins", 2, 0);
     mParameters.setClip(2, 32);

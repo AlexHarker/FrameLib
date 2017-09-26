@@ -79,7 +79,7 @@ public:
 
     // Constructor / Destructor
 
-    FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0);
+    FrameLib_DSP(ObjectType type, FrameLib_Context context, void *owner, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0);
     ~FrameLib_DSP();
     
     // Set Fixed Inputs
@@ -268,8 +268,8 @@ class FrameLib_Processor : public FrameLib_DSP
     
 public:
     
-    FrameLib_Processor(FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0)
-    : FrameLib_DSP(kProcessor, context, info, nIns, nOuts) {}
+    FrameLib_Processor(FrameLib_Context context, void *owner, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0)
+    : FrameLib_DSP(kProcessor, context, owner, info, nIns, nOuts) {}
     
     static ObjectType getType() { return kProcessor; }
     static bool handlesAudio()  { return false; }
@@ -292,8 +292,8 @@ class FrameLib_AudioInput : public FrameLib_DSP
     
 public:
     
-    FrameLib_AudioInput(FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
-    : FrameLib_DSP(kProcessor, context, info, nIns, nOuts, nAudioIns) {}
+    FrameLib_AudioInput(FrameLib_Context context, void *owner, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
+    : FrameLib_DSP(kProcessor, context, owner, info, nIns, nOuts, nAudioIns) {}
 
     static ObjectType getType() { return kProcessor; }
     static bool handlesAudio()  { return true; }
@@ -314,8 +314,8 @@ class FrameLib_AudioOutput : public FrameLib_DSP
     
 public:
     
-    FrameLib_AudioOutput(FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioOuts = 0)
-    : FrameLib_DSP(kOutput, context, info, nIns, nOuts, nAudioOuts) {}
+    FrameLib_AudioOutput(FrameLib_Context context, void *owner, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioOuts = 0)
+    : FrameLib_DSP(kOutput, context, owner, info, nIns, nOuts, nAudioOuts) {}
     
     static ObjectType getType() { return kOutput; }
     static bool handlesAudio()  { return true; }
@@ -336,8 +336,8 @@ class FrameLib_Scheduler : public FrameLib_DSP
 
 public:
     
-    FrameLib_Scheduler(FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
-    : FrameLib_DSP(kScheduler, context, info, nIns, nOuts, nAudioIns) {}
+    FrameLib_Scheduler(FrameLib_Context context, void *owner, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
+    : FrameLib_DSP(kScheduler, context, owner, info, nIns, nOuts, nAudioIns) {}
     
     static ObjectType getType() { return kScheduler; }
     static bool handlesAudio()  { return true; }

@@ -290,7 +290,7 @@ public:
         
         T *internal = internalObject();
         
-        long numIns = internal->getNumIns();
+        long numIns = internal->getNumIns() + (internal->supportsDependencyConnections() ? 1 : 0);
         long numOuts = internal->getNumOuts();
         long numAudioIns = internal->getNumAudioIns();
         long numAudioOuts = internal->getNumAudioOuts();
@@ -491,14 +491,16 @@ public:
         mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mTopLevelPatch), &serialisedParameters, this);
         parseInputs(argc, argv);
         
-        mInputs.resize(getNumIns());
+        long numIns = getNumIns() + (supportsDependencyConnections() ? 1 : 0);
+
+        mInputs.resize(numIns);
         mOutputs.resize(getNumOuts());
         
         // Create frame inlets and outlets
         
         // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles audio)
         
-        for (long i = getNumIns() - 1; i >= 0; i--)
+        for (long i = numIns - 1; i >= 0; i--)
             mInputs[i] = Input(((i || T::handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : NULL));
         
         for (unsigned long i = getNumOuts(); i > 0; i--)
@@ -599,6 +601,8 @@ public:
                 object_post(mUserObject, "Audio Input %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
             for (long i = 0; i < mObject->getNumIns(); i++)
                 object_post(mUserObject, "Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose).c_str());
+            if (supportsDependencyConnections())
+                object_post(mUserObject, "Dependency Input [Any]: Connect to ensure ordering");
         }
         
         if (flags & kInfoOutputs)
@@ -665,6 +669,8 @@ public:
 
     // IO Helpers
     
+    bool supportsDependencyConnections()    { return mObject->supportsDependencyConnections(); }
+    
     long getNumAudioIns()   { return (long) mObject->getNumAudioIns() + (T::handlesAudio() ? 1 : 0); }
     long getNumAudioOuts()  { return (long) mObject->getNumAudioOuts() + (T::handlesAudio() ? 1 : 0); }
     long getNumIns()        { return (long) mObject->getNumIns(); }
@@ -683,7 +689,8 @@ public:
     {
         // Resolve connections and mark unresolved for next time
         
-        resolveConnections();
+        // FIX - is this necessary?
+        //resolveConnections();
         mNeedsResolve = true;
         
         // Reset DSP
@@ -718,6 +725,13 @@ public:
                 for (unsigned long i = 0; i < getNumIns(); i++)
                     if (mInputs[i].mObject && mObject->isConnected(i))
                         object_method(mInputs[i].mObject, gensym("sync"));
+                if (supportsDependencyConnections())
+                {
+                    for (unsigned long i = 0; i < mObject->getNumDependencyConnections(); i++)
+                    {
+                        
+                    }
+                }
                 mSyncChecker.restoreMode();
             }
         }
@@ -851,6 +865,8 @@ private:
         {
             // Confirm input connections
         
+            // FIX - how to handle dependency inputs?
+            
             for (unsigned long i = 0; i < getNumIns(); i++)
                 confirmConnection(i, FrameLib_MaxGlobals::ConnectionInfo::kConfirm);
             
@@ -897,23 +913,33 @@ private:
     
     bool validInput(long index, FrameLib_MultiChannel *object)      { return object && index >= 0 && index < object->getNumIns(); }
     bool validOutput(long index, FrameLib_MultiChannel *object)     { return object && index >= 0 && index < object->getNumOuts(); }
+    bool dependencyInput(long index, FrameLib_MultiChannel *object) { return object && supportsDependencyConnections() && index == object->getNumIns(); }
     bool validInput(long index)                                     { return validInput(index, mObject); }
     bool validOutput(long index)                                    { return validOutput(index, mObject); }
+    bool dependencyInput(long index)                                { return dependencyInput(index, mObject); }
     
     void connect(t_object *src, long outIdx, long inIdx)
     {
         FrameLib_MultiChannel *object = getInternalObject(src);
         
-        if (!validInput(inIdx) || !validOutput(outIdx, object) || (mInputs[inIdx].mObject == src && mInputs[inIdx].mIndex == outIdx) || confirmConnection(inIdx, FrameLib_MaxGlobals::ConnectionInfo::kDoubleCheck))
+        if (!dependencyInput(outIdx) && (!validInput(inIdx) || !validOutput(outIdx, object) || (mInputs[inIdx].mObject == src && mInputs[inIdx].mIndex == outIdx) || confirmConnection(inIdx, FrameLib_MaxGlobals::ConnectionInfo::kDoubleCheck)))
             return;
+
+        ConnectionResult result;
         
-        ConnectionResult result = mObject->addConnection(object, outIdx, inIdx);
+        if (dependencyInput(outIdx))
+            result = mObject->addDependencyConnection(object, outIdx);
+        else
+            result = mObject->addConnection(object, outIdx, inIdx);
 
         switch (result)
         {
             case kConnectSuccess:
-                mInputs[inIdx].mObject = src;
-                mInputs[inIdx].mIndex = outIdx;
+                if (!dependencyInput(outIdx))
+                {
+                    mInputs[inIdx].mObject = src;
+                    mInputs[inIdx].mIndex = outIdx;
+                }
                 break;
          
             case kConnectFeedbackDetected:
@@ -927,19 +953,29 @@ private:
             case kConnectSelfConnection:
                 object_error(mUserObject, "direct feedback loop detected");
                 break;
+                
+            case kConnectNoDependencySupport:
+                break;
         }
     }
     
     void disconnect(t_object *src, long outIdx, long inIdx)
     {
-        if (!validInput(inIdx) || mInputs[inIdx].mObject != src || mInputs[inIdx].mIndex != outIdx)
+        FrameLib_MultiChannel *object = getInternalObject(src);
+
+        if (!dependencyInput(outIdx) && (!validInput(inIdx) || mInputs[inIdx].mObject != src || mInputs[inIdx].mIndex != outIdx))
             return;
         
         mInputs[inIdx].mObject = NULL;
         mInputs[inIdx].mIndex = 0;
         
-        if (mObject->isConnected(inIdx))
-            mObject->deleteConnection(inIdx);
+        if (dependencyInput(outIdx))
+            mObject->deleteDependencyConnection(object, outIdx);
+        else
+        {
+            if (mObject->isConnected(inIdx))
+                mObject->deleteConnection(inIdx);
+        }
     }
 
     // Patchcord Colour
@@ -960,7 +996,7 @@ private:
             srcout -= (long) object_method(src, gensym("__fl.get_num_audio_outs"));
             dstin -= getNumAudioIns();
             
-            if (validInput(dstin) && updatetype != JPATCHLINE_ORDER)
+            if ((dependencyInput(dstin) || validInput(dstin)) && updatetype != JPATCHLINE_ORDER)
                 dspchain_setbroken(dspchain_fromobject(*this));
             
             switch (updatetype)
@@ -994,7 +1030,7 @@ private:
         unwrapConnection(dst, dstin);
         dstin -= (long) object_method(dst, gensym("__fl.get_num_audio_ins"));
         
-        if (validInput(dstin, getInternalObject(dst)) && !object_method(dst, gensym("__fl.is_connected"), dstin))
+        if (dependencyInput(dstin, getInternalObject(dst)) || (validInput(dstin, getInternalObject(dst)) && !object_method(dst, gensym("__fl.is_connected"), dstin)))
             return 1;
         
         return 0;

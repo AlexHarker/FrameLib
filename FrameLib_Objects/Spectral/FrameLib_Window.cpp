@@ -7,7 +7,7 @@ FrameLib_Window::WindowCalculator FrameLib_Window::sWindowCalculator;
 
 // Constructor / Destructor
 
-FrameLib_Window::FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 2, 1)
+FrameLib_Window::FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kWindowType, "window", 0);
     mParameters.addEnumItem(kHann, "hann");

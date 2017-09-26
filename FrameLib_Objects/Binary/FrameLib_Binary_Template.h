@@ -36,7 +36,7 @@ public:
     
     // Constructor
     
-    FrameLib_BinaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, getParameterInfo(), 2, 1)
+    FrameLib_BinaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, getParameterInfo(), 2, 1)
     {
         mParameters.addEnum(kMode, "mode");
         mParameters.addEnumItem(kWrap, "wrap");

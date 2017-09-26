@@ -32,8 +32,8 @@ public:
     
     // Constructor / Destructor
     
-    FrameLib_Object(ObjectType type, FrameLib_Context context, T *owner)
-    : mType(type), mContext(context), mOwner(owner), mNumIns(0), mNumOuts(0), mNumAudioChans(0), mSupportsDependencyConnections(false), mFeedback(false) {}
+    FrameLib_Object(ObjectType type, FrameLib_Context context, void *owner, T *parent)
+    : mType(type), mContext(context), mOwner(owner), mParent(parent), mNumIns(0), mNumOuts(0), mNumAudioChans(0), mSupportsDependencyConnections(false), mFeedback(false) {}
     virtual ~FrameLib_Object() {}
    
     // Object Type
@@ -42,15 +42,19 @@ public:
     
     // Context
     
-    FrameLib_Context getContext()    { return mContext; }
+    FrameLib_Context getContext() const         { return mContext; }
 
+    // Owner
+    
+    void *getOwner() const                      { return mOwner; }
+    
     // Queries
     
-    unsigned long getNumIns()               { return mNumIns; }
-    unsigned long getNumOuts()              { return mNumOuts; }
-    unsigned long getNumAudioIns()          { return getType() != kOutput ? mNumAudioChans : 0; }
-    unsigned long getNumAudioOuts()         { return getType() == kOutput ? mNumAudioChans : 0; }
-    unsigned long getNumAudioChans()        { return mNumAudioChans; }
+    unsigned long getNumIns() const             { return mNumIns; }
+    unsigned long getNumOuts() const            { return mNumOuts; }
+    unsigned long getNumAudioIns() const        { return getType() != kOutput ? mNumAudioChans : 0; }
+    unsigned long getNumAudioOuts() const       { return getType() == kOutput ? mNumAudioChans : 0; }
+    unsigned long getNumAudioChans()  const     { return mNumAudioChans; }
     
     // Set Fixed Inputs
     
@@ -99,7 +103,7 @@ public:
             if (prevObject != object)
             {
                 removeInputDependency(prevObject);
-                object->addOutputDependency(mOwner);
+                object->addOutputDependency(mParent);
             }
            
             connectionUpdate();
@@ -131,7 +135,7 @@ public:
 
             // Update dependencies
             
-            object->addOutputDependency(mOwner);
+            object->addOutputDependency(mParent);
 
             // Add the dependency connection
             
@@ -147,7 +151,7 @@ public:
     {
         for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
             if (it->mObject == object && it->mIndex == outIdx)
-                it = clearDependencyConnection(it);
+                it = deleteDependencyConnection(it);
         
         connectionUpdate();
     }
@@ -173,7 +177,7 @@ public:
         
         for (ObjectIterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); )
         {
-            (*it)->disconnect(mOwner);
+            (*it)->disconnect(mParent);
             it = mOutputDependencies.erase(it);
         }
         
@@ -187,14 +191,14 @@ public:
 
     // Connection Access
     
-    bool supportsDependencyConnections()                        { return mSupportsDependencyConnections; }
-    unsigned long getNumOutputDependencies()                    { return mOutputDependencies.size(); }
-    T *getOutputDependency(unsigned long idx)                   { return mOutputDependencies[idx]; }
-    unsigned long getNumDependencyConnections()                 { return mDependencyConnections.size(); }
-    T *getDependencyConnection(unsigned long idx)               { return mDependencyConnections[idx].mObject; }
-    unsigned long getDependencyConnectionIdx(unsigned long idx) { return mDependencyConnections[idx].mIndex; }
-    T *getInputConnection(unsigned long idx)                    { return mInputConnections[idx].mObject; }
-    unsigned long getInputConnectionIdx(unsigned long idx)      { return mInputConnections[idx].mIndex; }
+    bool supportsDependencyConnections() const                          { return mSupportsDependencyConnections; }
+    unsigned long getNumOutputDependencies() const                      { return mOutputDependencies.size(); }
+    T *getOutputDependency(unsigned long idx) const                     { return mOutputDependencies[idx]; }
+    unsigned long getNumDependencyConnections() const                   { return mDependencyConnections.size(); }
+    T *getDependencyConnection(unsigned long idx) const                 { return mDependencyConnections[idx].mObject; }
+    unsigned long getDependencyConnectionIdx(unsigned long idx) const   { return mDependencyConnections[idx].mIndex; }
+    T *getInputConnection(unsigned long idx) const                      { return mInputConnections[idx].mObject; }
+    unsigned long getInputConnectionIdx(unsigned long idx) const        { return mInputConnections[idx].mIndex; }
     
 protected:
     
@@ -309,7 +313,7 @@ private:
         
         // Update dependencies
         
-        object->removeOutputDependency(mOwner);
+        object->removeOutputDependency(mParent);
     }
     
     // Remove connection and set to defaults
@@ -374,7 +378,8 @@ private:
     const ObjectType mType;
     FrameLib_Context mContext;
 
-    T *mOwner;
+    void *mOwner;
+    T *mParent;
     
     // IO Counts
     
@@ -406,8 +411,8 @@ public:
     
     // Constructor / Destructor
     
-    FrameLib_Block(ObjectType type, FrameLib_Context context)
-    : FrameLib_Object<FrameLib_Block>(type, context, this) {}
+    FrameLib_Block(ObjectType type, FrameLib_Context context, void *owner)
+    : FrameLib_Object<FrameLib_Block>(type, context, owner, this) {}
     virtual ~FrameLib_Block() {}
 
     // Connection Queries

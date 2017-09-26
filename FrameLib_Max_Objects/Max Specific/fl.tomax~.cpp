@@ -5,7 +5,7 @@
 
 // Constructor
 
-FrameLib_ToMax::FrameLib_ToMax(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, NULL, 1, 0)
+FrameLib_ToMax::FrameLib_ToMax(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, NULL, 1, 0)
 {
     mParameters.set(serialisedParameters);
     

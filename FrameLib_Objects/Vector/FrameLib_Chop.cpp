@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Chop::FrameLib_Chop(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner): FrameLib_Processor(context, &sParamInfo)
+FrameLib_Chop::FrameLib_Chop(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner): FrameLib_Processor(context, owner, &sParamInfo)
 {
     mParameters.addInt(kNumOuts, "numouts", 1, 0);
     mParameters.setClip(2, 32);

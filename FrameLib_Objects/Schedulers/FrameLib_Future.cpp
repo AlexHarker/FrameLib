@@ -1,7 +1,7 @@
 
 #include "FrameLib_Future.h"
 
-FrameLib_Future::FrameLib_Future(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Scheduler(context, &sParamInfo, 1, 1)
+FrameLib_Future::FrameLib_Future(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Scheduler(context, owner, &sParamInfo, 1, 1)
 {
     mParameters.addDouble(kTime, "time", 0, 0);
     mParameters.setMin(0);

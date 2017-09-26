@@ -50,11 +50,11 @@ public:
         
     // Constructors
 
-    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, unsigned long nIns, unsigned long nOuts)
-    : FrameLib_Object(type, context, this), mQueue(context)
+    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long nIns, unsigned long nOuts)
+    : FrameLib_Object(type, context, owner, this), mQueue(context)
     { setIO(nIns, nOuts); }
     
-    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context) : FrameLib_Object(type, context, this), mQueue(context) {}
+    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner) : FrameLib_Object(type, context, owner, this), mQueue(context) {}
     
     // Destructor
     
@@ -197,7 +197,7 @@ template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
 public:
     
     FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-    : FrameLib_MultiChannel(T::getType(), context), mAllocator(context), mSerialisedParameters(serialisedParameters->size()), mOwner(owner)
+    : FrameLib_MultiChannel(T::getType(), context, owner), mAllocator(context), mSerialisedParameters(serialisedParameters->size())
     {
         // Make first block
         
@@ -348,7 +348,7 @@ private:
                 
                 for (unsigned long i = cChannels; i < nChannels; i++)
                 {
-                    mBlocks[i] = new T(getContext(), &mSerialisedParameters, mOwner);
+                    mBlocks[i] = new T(getContext(), &mSerialisedParameters, getOwner());
                     mBlocks[i]->reset(mSamplingRate, mMaxBlockSize);
                 }
             }
@@ -423,8 +423,6 @@ private:
 
     std::vector <FrameLib_Block *> mBlocks;
     std::vector <std::vector <double> > mFixedInputs;
-    
-    void *mOwner;
     
     unsigned long mMaxBlockSize;
     double mSamplingRate;

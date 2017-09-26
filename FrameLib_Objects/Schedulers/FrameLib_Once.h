@@ -12,7 +12,7 @@ public:
     // Constructor
     
     FrameLib_Once(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-    : FrameLib_Scheduler(context, NULL, 1, 1) {}
+    : FrameLib_Scheduler(context, owner, NULL, 1, 1) {}
     
     // Info
     
