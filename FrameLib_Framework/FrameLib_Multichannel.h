@@ -216,6 +216,11 @@ public:
         for (unsigned long i = 0; i < getNumOuts(); i++)
             mOutputs[i].mConnections.push_back(ConnectionInfo(mBlocks[0], i));
         
+        // Check for dependency support
+        
+        if (mBlocks[0]->supportsDependencyConnections)
+            enableDependencyConnections();
+        
         reset(0.0, 4096);
     }
     
