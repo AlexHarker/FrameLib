@@ -428,18 +428,7 @@ private:
 
 template <class T, bool argsSetAllInputs = false> class FrameLib_MaxClass : public MaxClass_Base
 {
-    // Input Structure
-    
-    struct Input
-    {
-        Input() : mProxy(NULL), mObject(NULL), mIndex(0) {}
-        Input(void *proxy) : mProxy((t_object *) proxy), mObject(NULL), mIndex(0) {}
-        
-        t_object *mProxy;
-        t_object *mObject;
-        unsigned long mIndex;
-    };
-    
+
 public:
     
     // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_MaxClass<>)
@@ -501,7 +490,7 @@ public:
         // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles audio)
         
         for (long i = numIns - 1; i >= 0; i--)
-            mInputs[i] = Input(((i || T::handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : NULL));
+            mInputs[i] = (t_object *) ((i || T::handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : NULL);
         
         for (unsigned long i = getNumOuts(); i > 0; i--)
             mOutputs[i - 1] = outlet_new(this, NULL);
@@ -528,8 +517,8 @@ public:
 
         delete mObject;
 
-        for (typename std::vector <Input>::iterator it = mInputs.begin(); it != mInputs.end(); it++)
-            object_free(it->mProxy);
+        for (typename std::vector <t_object *>::iterator it = mInputs.begin(); it != mInputs.end(); it++)
+            object_free(*it);
         
         object_free(mSyncIn);
     }
@@ -723,15 +712,13 @@ public:
             if (mSyncChecker.upwardsMode())
             {
                 for (unsigned long i = 0; i < getNumIns(); i++)
-                    if (mInputs[i].mObject && mObject->isConnected(i))
-                        object_method(mInputs[i].mObject, gensym("sync"));
+                    if (mObject->isConnected(i))
+                        object_method(mObject->getInputConnection(i)->getOwner(), gensym("sync"));
+                
                 if (supportsDependencyConnections())
-                {
                     for (unsigned long i = 0; i < mObject->getNumDependencyConnections(); i++)
-                    {
-                        
-                    }
-                }
+                        object_method(mObject->getDependencyConnection(i)->getOwner(), gensym("sync"));
+                
                 mSyncChecker.restoreMode();
             }
         }
@@ -756,7 +743,7 @@ public:
             case FrameLib_MaxGlobals::ConnectionInfo::kConfirm:
             case FrameLib_MaxGlobals::ConnectionInfo::kDoubleCheck:
 
-                if (index == mConfirmIndex && mInputs[index].mObject == info->mObject && mInputs[index].mIndex == info->mIndex)
+                if (index == mConfirmIndex && getInputConnection(index) == info->mObject && getInputConnectionIdx(index) == info->mIndex)
                 {
                     mConfirm = true;
                     if (info->mMode == FrameLib_MaxGlobals::ConnectionInfo::kDoubleCheck)
@@ -898,11 +885,11 @@ private:
         
         // Check for connection *only* if the internal object is connected (otherwise assume the previously connected object has been deleted)
         
-        if (mInputs[inputIndex].mObject && mObject->isConnected(inputIndex))
-            object_method(mInputs[inputIndex].mObject, gensym("__fl.connection_confirm"), mInputs[inputIndex].mIndex, mode);
+        if (mObject->isConnected(inputIndex))
+            object_method(getInputConnection(inputIndex), gensym("__fl.connection_confirm"), getInputConnectionIdx(inputIndex), mode);
         
-        if (mInputs[inputIndex].mObject && !mConfirm)
-            disconnect(mInputs[inputIndex].mObject, mInputs[inputIndex].mIndex, inputIndex);
+        if (mObject->isConnected(inputIndex) && !mConfirm)
+            disconnect(getInputConnection(inputIndex), getInputConnectionIdx(inputIndex), inputIndex);
         
         bool result = mConfirm;
         mConfirm = false;
@@ -918,11 +905,15 @@ private:
     bool validOutput(long index)                                    { return validOutput(index, mObject); }
     bool dependencyInput(long index)                                { return dependencyInput(index, mObject); }
     
+    t_object *getInputConnection(long index)                        { return (t_object *) mObject->getInputConnection(index)->getOwner(); }
+    unsigned long getInputConnectionIdx(long index)                 { return mObject->getInputConnectionIdx(index); }
+    bool matchConnection(t_object *src, long outIdx, long inIdx)    { return getInputConnection(inIdx) == src && getInputConnectionIdx(inIdx) == outIdx; }
+    
     void connect(t_object *src, long outIdx, long inIdx)
     {
         FrameLib_MultiChannel *object = getInternalObject(src);
         
-        if (!dependencyInput(outIdx) && (!validInput(inIdx) || !validOutput(outIdx, object) || (mInputs[inIdx].mObject == src && mInputs[inIdx].mIndex == outIdx) || confirmConnection(inIdx, FrameLib_MaxGlobals::ConnectionInfo::kDoubleCheck)))
+        if (!dependencyInput(outIdx) && (!validInput(inIdx) || !validOutput(outIdx, object) || matchConnection(src, outIdx, inIdx) || confirmConnection(inIdx, FrameLib_MaxGlobals::ConnectionInfo::kDoubleCheck)))
             return;
 
         ConnectionResult result;
@@ -934,14 +925,6 @@ private:
 
         switch (result)
         {
-            case kConnectSuccess:
-                if (!dependencyInput(outIdx))
-                {
-                    mInputs[inIdx].mObject = src;
-                    mInputs[inIdx].mIndex = outIdx;
-                }
-                break;
-         
             case kConnectFeedbackDetected:
                 object_error(mUserObject, "feedback loop detected");
                 break;
@@ -954,6 +937,7 @@ private:
                 object_error(mUserObject, "direct feedback loop detected");
                 break;
                 
+            case kConnectSuccess:
             case kConnectNoDependencySupport:
                 break;
         }
@@ -963,19 +947,13 @@ private:
     {
         FrameLib_MultiChannel *object = getInternalObject(src);
 
-        if (!dependencyInput(outIdx) && (!validInput(inIdx) || mInputs[inIdx].mObject != src || mInputs[inIdx].mIndex != outIdx))
+        if (!dependencyInput(outIdx) && (!validInput(inIdx) || !matchConnection(src, outIdx, inIdx)))
             return;
-        
-        mInputs[inIdx].mObject = NULL;
-        mInputs[inIdx].mIndex = 0;
         
         if (dependencyInput(outIdx))
             mObject->deleteDependencyConnection(object, outIdx);
         else
-        {
-            if (mObject->isConnected(inIdx))
-                mObject->deleteConnection(inIdx);
-        }
+            mObject->deleteConnection(inIdx);
     }
 
     // Patchcord Colour
@@ -1198,7 +1176,7 @@ private:
         {
             i = parseNumericalList(values, argv, argc, 0);
             
-            for (unsigned long j = 0; i && j < mObject->getNumIns(); j++)
+            for (unsigned long j = 0; i && j < getNumIns(); j++)
                 mObject->setFixedInput(j, &values[0], values.size());
         }
         
@@ -1225,7 +1203,7 @@ private:
     
     FrameLib_MultiChannel *mObject;
     
-    std::vector <Input> mInputs;
+    std::vector <t_object *> mInputs;
     std::vector <void *> mOutputs;
 
     long mProxyNum;
