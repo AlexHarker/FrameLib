@@ -133,14 +133,14 @@ public:
                 if (it->mObject == object && it->mIndex == outIdx)
                     return kConnectSuccess;
 
+            // Add the dependency connection
+            
+            mDependencyConnections.push_back(InputConnection(object, outIdx));
+
             // Update dependencies
             
             object->addOutputDependency(mParent);
 
-            // Add the dependency connection
-            
-            mDependencyConnections.push_back(InputConnection(object, outIdx));
-            
             connectionUpdate();
         }
 
@@ -150,8 +150,13 @@ public:
     void deleteDependencyConnection(T *object, unsigned long outIdx)
     {
         for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
+        {
             if (it->mObject == object && it->mIndex == outIdx)
-                it = deleteDependencyConnection(it);
+            {
+                deleteDependencyConnection(it);
+                break;
+            }
+        }
         
         connectionUpdate();
     }
@@ -190,6 +195,15 @@ public:
     }
 
     // Connection Access
+    
+    bool isDependencyConnection(T *object)
+    {
+        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
+            if (it->mObject == object)
+                return true;
+                
+        return false;
+    }
     
     bool supportsDependencyConnections() const                          { return mSupportsDependencyConnections; }
     unsigned long getNumOutputDependencies() const                      { return mOutputDependencies.size(); }
@@ -338,7 +352,7 @@ private:
     
     void deleteDependencyConnections()
     {
-        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
+        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); )
             it = deleteDependencyConnection(it);
     }
 
@@ -350,9 +364,13 @@ private:
             if (it->mObject == object)
                 *it = InputConnection();
         
-        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
+        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); )
+        {
             if (it->mObject == object)
                 it = mDependencyConnections.erase(it);
+            else
+                it++;
+        }
         
         connectionUpdate();
     }
@@ -420,6 +438,8 @@ public:
     virtual class FrameLib_DSP *getInputObject(unsigned long blockIdx) = 0;
     virtual class FrameLib_DSP *getOutputObject(unsigned long blockIdx) = 0;
     virtual unsigned long getInputObjectIdx(unsigned long blockIdx) = 0;
+    virtual unsigned long getNumDependencyConnectionObjects() = 0;
+    virtual class FrameLib_DSP *getDependencyConnectionObject(unsigned long idx) = 0;
 };
 
 #endif

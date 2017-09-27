@@ -550,27 +550,32 @@ void FrameLib_DSP::connectionUpdate()
         
     for (unsigned long i = 0; i < getNumOutputDependencies(); i++)
     {
-        FrameLib_Block *blockobject = getOutputDependency(i);
+        FrameLib_Block *blockObject = getOutputDependency(i);
         
         // Look at each input for a possible match
         
-        for (unsigned long i = 0; i < blockobject->getNumIns(); i++)
-        {
-            if (this == blockobject->getInputConnection(i))
-            {
-                // Get the underlying object and add it to the output dependencies if not already present
-                
-                FrameLib_DSP *dspObject = blockobject->getInputObject(i);
-                
-                for (it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-                    if (*it == dspObject)
-                        break;
-                
-                if (it == mOutputDependencies.end())
-                    mOutputDependencies.push_back(dspObject);
-            }
-        }
+        for (unsigned long i = 0; i < blockObject->getNumIns(); i++)
+            if (this == blockObject->getInputConnection(i))
+                addOutputDependency(blockObject->getInputObject(i));
+        
+        // Look at dependency connections
+        
+        if (blockObject->isDependencyConnection(this))
+            for (unsigned long i = 0; i < blockObject->getNumDependencyConnectionObjects(); i++)
+                addOutputDependency(blockObject->getDependencyConnectionObject(i));
     }
     
     resetDependencyCount();
+}
+
+void FrameLib_DSP::addOutputDependency(FrameLib_DSP *object)
+{
+    std::vector <FrameLib_DSP *>::iterator it;
+    
+    for (it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
+        if (*it == object)
+            break;
+
+    if (it == mOutputDependencies.end())
+        mOutputDependencies.push_back(object);
 }

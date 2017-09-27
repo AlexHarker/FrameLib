@@ -152,9 +152,10 @@ protected:
     
     // Get DSP Object for a Given Input/Output
 
-    FrameLib_DSP *getInputObject(unsigned long blockIdx)    { return this; }
-    FrameLib_DSP *getOutputObject(unsigned long blockIdx)   { return this; }
-
+    FrameLib_DSP *getInputObject(unsigned long blockIdx)                { return this; }
+    FrameLib_DSP *getOutputObject(unsigned long blockIdx)               { return this; }
+    unsigned long getNumDependencyConnectionObjects()                   { return 1; }
+    FrameLib_DSP *getDependencyConnectionObject(unsigned long idx)      { return this; }
     virtual unsigned long getInputObjectIdx(unsigned long blockIdx)     { return blockIdx; }
 
 private:
@@ -206,6 +207,7 @@ private:
     void resetDependencyCount();
     
     virtual void connectionUpdate();
+    void addOutputDependency(FrameLib_DSP *object);
 
 protected:
    

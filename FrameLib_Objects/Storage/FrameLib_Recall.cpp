@@ -10,6 +10,8 @@ FrameLib_Recall::FrameLib_Recall(FrameLib_Context context, FrameLib_Parameters::
         
     mParameters.set(serialisedParameters);
     
+    enableDependencyConnections();
+    
     mStorage = mAllocator->registerStorage(mParameters.getString(kName));
 }
 

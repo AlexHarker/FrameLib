@@ -913,7 +913,7 @@ private:
     
     bool validInput(long index, FrameLib_MultiChannel *object)      { return object && index >= 0 && index < object->getNumIns(); }
     bool validOutput(long index, FrameLib_MultiChannel *object)     { return object && index >= 0 && index < object->getNumOuts(); }
-    bool dependencyInput(long index, FrameLib_MultiChannel *object) { return object && supportsDependencyConnections() && index == object->getNumIns(); }
+    bool dependencyInput(long index, FrameLib_MultiChannel *object) { return object && object->supportsDependencyConnections() && index == object->getNumIns(); }
     bool validInput(long index)                                     { return validInput(index, mObject); }
     bool validOutput(long index)                                    { return validOutput(index, mObject); }
     bool dependencyInput(long index)                                { return dependencyInput(index, mObject); }
@@ -926,12 +926,12 @@ private:
     {
         FrameLib_MultiChannel *object = getInternalObject(src);
         
-        if (!dependencyInput(outIdx) && (!validInput(inIdx) || !validOutput(outIdx, object) || matchConnection(src, outIdx, inIdx) || confirmConnection(inIdx, ConnectionInfo::kDoubleCheck)))
+        if (!dependencyInput(inIdx) && (!validInput(inIdx) || !validOutput(outIdx, object) || matchConnection(src, outIdx, inIdx) || confirmConnection(inIdx, ConnectionInfo::kDoubleCheck)))
             return;
 
         ConnectionResult result;
         
-        if (dependencyInput(outIdx))
+        if (dependencyInput(inIdx))
             result = mObject->addDependencyConnection(object, outIdx);
         else
             result = mObject->addConnection(object, outIdx, inIdx);
@@ -960,7 +960,7 @@ private:
     {
         FrameLib_MultiChannel *object = getInternalObject(src);
 
-        if (!dependencyInput(outIdx) && (!validInput(inIdx) || !matchConnection(src, outIdx, inIdx)))
+        if (!dependencyInput(inIdx) && (!validInput(inIdx) || !matchConnection(src, outIdx, inIdx)))
             return;
         
         if (dependencyInput(inIdx))
