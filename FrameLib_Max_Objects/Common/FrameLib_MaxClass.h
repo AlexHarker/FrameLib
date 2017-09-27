@@ -918,7 +918,7 @@ private:
     bool validOutput(long index)                                    { return validOutput(index, mObject); }
     bool dependencyInput(long index)                                { return dependencyInput(index, mObject); }
     
-    t_object *getInputConnection(long index)                        { return (t_object *) mObject->getInputConnection(index)->getOwner(); }
+    t_object *getInputConnection(long index)                        { return (t_object *) (mObject->isConnected(index) ? mObject->getInputConnection(index)->getOwner() : NULL); }
     unsigned long getInputConnectionIdx(long index)                 { return mObject->getInputConnectionIdx(index); }
     bool matchConnection(t_object *src, long outIdx, long inIdx)    { return getInputConnection(inIdx) == src && getInputConnectionIdx(inIdx) == outIdx; }
     
