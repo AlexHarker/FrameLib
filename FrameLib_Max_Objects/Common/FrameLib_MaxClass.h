@@ -83,12 +83,10 @@ public:
     {
         enum Mode { kConnect, kConfirm, kDoubleCheck };
 
-        ConnectionInfo(t_object *object, unsigned long index, t_object *topLevelPatch, Mode mode) :
-        mObject(object), mIndex(index), mTopLevelPatch(topLevelPatch), mMode(mode) {}
+        ConnectionInfo(t_object *object, unsigned long index, Mode mode) : mObject(object), mIndex(index), mMode(mode) {}
         
         t_object *mObject;
         unsigned long mIndex;
-        t_object *mTopLevelPatch;
         Mode mMode;
         
     };
@@ -470,8 +468,7 @@ public:
 
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv)
-    : mConfirmIndex(-1), mConfirm(false), mTopLevelPatch(jpatcher_get_toppatcher(gensym("#P")->s_thing)), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
+    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv) : mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mTopLevelPatch(jpatcher_get_toppatcher(gensym("#P")->s_thing)), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -728,7 +725,7 @@ public:
     
     void frame()
     {
-        const FrameLib_MaxGlobals::ConnectionInfo *info = mGlobal->getConnectionInfo();
+        const ConnectionInfo *info = mGlobal->getConnectionInfo();
         long index = getInlet() - getNumAudioIns();
         
         if (!info)
@@ -736,17 +733,17 @@ public:
         
         switch (info->mMode)
         {
-            case FrameLib_MaxGlobals::ConnectionInfo::kConnect:
+            case ConnectionInfo::kConnect:
                 connect(info->mObject, info->mIndex, index);
                 break;
                 
-            case FrameLib_MaxGlobals::ConnectionInfo::kConfirm:
-            case FrameLib_MaxGlobals::ConnectionInfo::kDoubleCheck:
+            case ConnectionInfo::kConfirm:
+            case ConnectionInfo::kDoubleCheck:
 
-                if (index == mConfirmIndex && getInputConnection(index) == info->mObject && getInputConnectionIdx(index) == info->mIndex)
+                if (index == mConfirmInIndex && mConfirmObject == info->mObject && mConfirmOutIndex == info->mIndex)
                 {
                     mConfirm = true;
-                    if (info->mMode == FrameLib_MaxGlobals::ConnectionInfo::kDoubleCheck)
+                    if (info->mMode == ConnectionInfo::kDoubleCheck)
                         object_error(mUserObject, "extra connection to input %ld", index + 1);
                 }
                 break;
@@ -772,7 +769,7 @@ public:
     
     static t_ptr_int externalIsConnected(FrameLib_MaxClass *x, unsigned long index)
     {
-        return x->confirmConnection(index, FrameLib_MaxGlobals::ConnectionInfo::kConfirm);
+        return x->confirmConnection(index, ConnectionInfo::kConfirm);
     }
     
     static void externalConnectionConfirm(FrameLib_MaxClass *x, unsigned long index, FrameLib_MaxGlobals::ConnectionInfo::Mode mode)
@@ -801,6 +798,8 @@ public:
     }
 
 private:
+    
+    typedef FrameLib_MaxGlobals::ConnectionInfo ConnectionInfo;
     
     // Unwrapping connections
     
@@ -851,49 +850,63 @@ private:
         if (mNeedsResolve)
         {
             // Confirm input connections
-        
-            // FIX - how to handle dependency inputs?
-            
+                    
             for (unsigned long i = 0; i < getNumIns(); i++)
-                confirmConnection(i, FrameLib_MaxGlobals::ConnectionInfo::kConfirm);
+                confirmConnection(i, ConnectionInfo::kConfirm);
+            
+            // Confirm dependency connections
+            
+            for (unsigned long i = 0; i < mObject->getNumDependencyConnections(); i++)
+                confirmConnection(mObject->getDependencyConnection(i), mObject->getDependencyConnectionIdx(i), getNumIns(), ConnectionInfo::kConfirm);
             
             // Make output connections
             
             for (unsigned long i = getNumOuts(); i > 0; i--)
-                makeConnection(i - 1, FrameLib_MaxGlobals::ConnectionInfo::kConnect);
+                makeConnection(i - 1, ConnectionInfo::kConnect);
             
             mNeedsResolve = false;
         }
     }
 
-    void makeConnection(unsigned long index, FrameLib_MaxGlobals::ConnectionInfo::Mode mode)
+    void makeConnection(unsigned long index, ConnectionInfo::Mode mode)
     {
-        FrameLib_MaxGlobals::ConnectionInfo info(*this, index, mTopLevelPatch, mode);
+        ConnectionInfo info(*this, index, mode);
         
         mGlobal->setConnectionInfo(&info);
         outlet_anything(mOutputs[index], gensym("frame"), 0, NULL);
         mGlobal->setConnectionInfo();
     }
     
-    bool confirmConnection(unsigned long inputIndex, FrameLib_MaxGlobals::ConnectionInfo::Mode mode)
+    bool confirmConnection(unsigned long inIndex, ConnectionInfo::Mode mode)
     {
-        if (!validInput(inputIndex))
+        if (!validInput(inIndex))
+            return false;
+        
+        return confirmConnection(getInputConnection(inIndex), getInputConnectionIdx(inIndex), inIndex, mode);
+    }
+    
+    bool confirmConnection(void *object, unsigned long outIndex, unsigned long inIndex, ConnectionInfo::Mode mode)
+    {
+        if (!validInput(inIndex))
             return false;
         
         mConfirm = false;
-        mConfirmIndex = inputIndex;
-        
+        mConfirmObject = (t_object *) object;
+        mConfirmInIndex = inIndex;
+        mConfirmOutIndex = outIndex;
+    
         // Check for connection *only* if the internal object is connected (otherwise assume the previously connected object has been deleted)
         
-        if (mObject->isConnected(inputIndex))
-            object_method(getInputConnection(inputIndex), gensym("__fl.connection_confirm"), getInputConnectionIdx(inputIndex), mode);
+        if (mConfirmObject)
+            object_method(mConfirmObject, gensym("__fl.connection_confirm"), mConfirmOutIndex, mode);
         
-        if (mObject->isConnected(inputIndex) && !mConfirm)
-            disconnect(getInputConnection(inputIndex), getInputConnectionIdx(inputIndex), inputIndex);
+        if (mConfirmObject && !mConfirm)
+            disconnect(mConfirmObject, mConfirmOutIndex, mConfirmInIndex);
         
         bool result = mConfirm;
         mConfirm = false;
-        mConfirmIndex = -1;
+        mConfirmObject = NULL;
+        mConfirmInIndex = mConfirmOutIndex = -1;
         
         return result;
     }
@@ -913,7 +926,7 @@ private:
     {
         FrameLib_MultiChannel *object = getInternalObject(src);
         
-        if (!dependencyInput(outIdx) && (!validInput(inIdx) || !validOutput(outIdx, object) || matchConnection(src, outIdx, inIdx) || confirmConnection(inIdx, FrameLib_MaxGlobals::ConnectionInfo::kDoubleCheck)))
+        if (!dependencyInput(outIdx) && (!validInput(inIdx) || !validOutput(outIdx, object) || matchConnection(src, outIdx, inIdx) || confirmConnection(inIdx, ConnectionInfo::kDoubleCheck)))
             return;
 
         ConnectionResult result;
@@ -950,7 +963,7 @@ private:
         if (!dependencyInput(outIdx) && (!validInput(inIdx) || !matchConnection(src, outIdx, inIdx)))
             return;
         
-        if (dependencyInput(outIdx))
+        if (dependencyInput(inIdx))
             mObject->deleteDependencyConnection(object, outIdx);
         else
             mObject->deleteConnection(inIdx);
@@ -1207,7 +1220,9 @@ private:
     std::vector <void *> mOutputs;
 
     long mProxyNum;
-    long mConfirmIndex;
+    t_object *mConfirmObject;
+    long mConfirmInIndex;
+    long mConfirmOutIndex;
     bool mConfirm;
     
     t_object *mTopLevelPatch;
