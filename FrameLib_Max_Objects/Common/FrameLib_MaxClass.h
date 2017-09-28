@@ -540,7 +540,12 @@ public:
             else if (a < getNumAudioIns())
                 sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
             else
-                sprintf(s,"(frame) %s", mObject->inputInfo(a - getNumAudioIns()).c_str());
+            {
+                if (supportsDependencyConnections() && a == getNumAudioIns() + getNumIns())
+                    sprintf(s,"(frame) Dependency Input");
+                else
+                    sprintf(s,"(frame) %s", mObject->inputInfo(a - getNumAudioIns()).c_str());
+            }
         }
     }
     
@@ -590,7 +595,7 @@ public:
             for (long i = 0; i < mObject->getNumIns(); i++)
                 object_post(mUserObject, "Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose).c_str());
             if (supportsDependencyConnections())
-                object_post(mUserObject, "Dependency Input [Any]: Connect to ensure ordering");
+                object_post(mUserObject, "Dependency Input [%s]: Connect to ensure ordering", frameTypeString(kFrameAny));
         }
         
         if (flags & kInfoOutputs)
@@ -699,9 +704,9 @@ public:
        
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && T::handlesAudio && mNeedsResolve)
         {
-            traverseAllObjects(mTopLevelPatch, gensym("__fl.resolve_connections"));
-            traverseAllObjects(mTopLevelPatch, gensym("__fl.clear_auto_dependency_connect"));
-            traverseAllObjects(mTopLevelPatch, gensym("__fl.auto_dependency_connect"));
+            traversePatch(mTopLevelPatch, gensym("__fl.resolve_connections"));
+            traversePatch(mTopLevelPatch, gensym("__fl.clear_auto_dependency_connect"));
+            traversePatch(mTopLevelPatch, gensym("__fl.auto_dependency_connect"));
         }
         
         if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
@@ -839,7 +844,7 @@ private:
     
     // Private connection methods
     
-    void traverseAllObjects(t_patcher *p, t_symbol *method)
+    void traversePatch(t_patcher *p, t_symbol *method)
     {
         // Avoid recursion into a poly / pfft / etc.
         
@@ -855,7 +860,7 @@ private:
             long index = 0;
             
             while (b && (p = (t_patcher *)object_subpatcher(jbox_get_object(b), &index, this)))
-                traverseAllObjects(p, method);
+                traversePatch(p, method);
 
             object_method(jbox_get_object(b), method);
         }
