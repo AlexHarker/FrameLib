@@ -219,7 +219,8 @@ private:
     
     virtual void connectionUpdate(Queue *queue);
     void addOutputDependency(FrameLib_DSP *object);
-    void autoDependencyConnect(LocalQueue *queue);
+    virtual void autoDependencyConnect(LocalQueue *queue);
+    virtual void clearAutoDependencyConnect();
 
 protected:
    
@@ -242,7 +243,7 @@ private:
     
     // DSP Queue
     
-    FrameLib_Context::DSPQueue mQueue;
+    FrameLib_Context::DSPQueue mProcessingQueue;
     FrameLib_DSP *mNext;
     
     // IO Info

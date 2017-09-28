@@ -275,7 +275,8 @@ public:
     }
 
     virtual void autoDependencyConnect() = 0;
-    
+    virtual void clearAutoDependencyConnect() = 0;
+
     // Connection Access
     
     bool isDependencyConnection(T *object)

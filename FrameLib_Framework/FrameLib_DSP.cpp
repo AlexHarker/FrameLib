@@ -4,7 +4,7 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, void *owner, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
-: FrameLib_Block(type, context, owner), mSamplingRate(44100.0), mMaxBlockSize(4096), mAllocator(context), mParameters(info), mQueue(context), mNext(NULL), mNoLiveInputs(true), mInUpdate(false)
+: FrameLib_Block(type, context, owner), mSamplingRate(44100.0), mMaxBlockSize(4096), mAllocator(context), mParameters(info), mProcessingQueue(context), mNext(NULL), mNoLiveInputs(true), mInUpdate(false)
 {
     // Set IO
     
@@ -18,6 +18,10 @@ FrameLib_DSP::~FrameLib_DSP()
     // Clear connections before deleting
     
     clearConnections();
+    
+    // Free output
+    
+    freeOutputMemory();
     
     // Delete fixed inputs
     
@@ -292,10 +296,10 @@ inline void FrameLib_DSP::dependencyNotify(bool releaseMemory, bool fromInput)
     if (fromInput && mUpdatingInputs)
     {
         if (--mInputCount == 0)
-           mQueue->add(this);
+           mProcessingQueue->add(this);
     }
     else if (--mDependencyCount == 0 && !mUpdatingInputs)
-        mQueue->add(this);
+        mProcessingQueue->add(this);
     
     // N.B. For multithreading re-entrancy needs to be avoided by increasing the dependency count before adding to the queue (with matching notification)
 }
@@ -604,3 +608,8 @@ void FrameLib_DSP::autoDependencyConnect(LocalQueue *queue)
         queue->add(*it, &FrameLib_DSP::autoDependencyConnect);
 }
 
+void FrameLib_DSP::clearAutoDependencyConnect()
+{
+    Queue queue;
+    connectionUpdate(&queue);
+}

@@ -457,6 +457,7 @@ public:
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
         addMethod(c, (method) &externalResolveConnections, "__fl.resolve_connections");
         addMethod(c, (method) &externalAutoDependencyConnect, "__fl.auto_dependency_connect");
+        addMethod(c, (method) &externalClearAutoDependencyConnect, "__fl.clear_auto_dependency_connect");
         addMethod(c, (method) &externalIsConnected, "__fl.is_connected");
         addMethod(c, (method) &externalConnectionConfirm, "__fl.connection_confirm");
         addMethod(c, (method) &externalGetInternalObject, "__fl.get_internal_object");
@@ -699,6 +700,7 @@ public:
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && T::handlesAudio && mNeedsResolve)
         {
             traverseAllObjects(mTopLevelPatch, gensym("__fl.resolve_connections"));
+            traverseAllObjects(mTopLevelPatch, gensym("__fl.clear_auto_dependency_connect"));
             traverseAllObjects(mTopLevelPatch, gensym("__fl.auto_dependency_connect"));
         }
         
@@ -776,6 +778,11 @@ public:
         x->mObject->autoDependencyConnect();
     }
     
+    static void externalClearAutoDependencyConnect(FrameLib_MaxClass *x)
+    {
+        x->mObject->clearAutoDependencyConnect();
+    }
+
     static t_ptr_int externalIsConnected(FrameLib_MaxClass *x, unsigned long index)
     {
         return x->confirmConnection(index, ConnectionInfo::kConfirm);

@@ -148,6 +148,7 @@ public:
     virtual FrameType outputType(unsigned long idx) const { return kFrameAny; }
     
     virtual void autoDependencyConnect() {}
+    virtual void clearAutoDependencyConnect() {}
     
 private:
     
@@ -184,7 +185,8 @@ public:
     virtual FrameType outputType(unsigned long idx) const { return kFrameAny; }
     
     virtual void autoDependencyConnect() {}
-
+    virtual void clearAutoDependencyConnect() {}
+    
 private:
     
     virtual bool inputUpdate();
@@ -322,6 +324,12 @@ public:
     {
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
             (*it)->autoDependencyConnect();
+    }
+
+    virtual void clearAutoDependencyConnect()
+    {
+        for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
+            (*it)->clearAutoDependencyConnect();
     }
 
 private:
