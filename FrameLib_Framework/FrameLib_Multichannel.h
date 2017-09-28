@@ -142,10 +142,12 @@ public:
     virtual std::string inputInfo(unsigned long idx, bool verbose);
     virtual std::string outputInfo(unsigned long idx, bool verbose);
     
-    virtual const FrameLib_Parameters *getParameters() { return &mParameters; }
+    virtual const FrameLib_Parameters *getParameters() const { return &mParameters; }
 
-    virtual FrameType inputType(unsigned long idx) { return kFrameAny; }
-    virtual FrameType outputType(unsigned long idx) { return kFrameAny; }
+    virtual FrameType inputType(unsigned long idx) const { return kFrameAny; }
+    virtual FrameType outputType(unsigned long idx) const { return kFrameAny; }
+    
+    virtual void autoDependencyConnect() {}
     
 private:
     
@@ -176,11 +178,13 @@ public:
     virtual std::string inputInfo(unsigned long idx, bool verbose);
     virtual std::string outputInfo(unsigned long idx, bool verbose);
 
-    virtual const FrameLib_Parameters *getParameters() { return &mParameters; }
+    virtual const FrameLib_Parameters *getParameters() const { return &mParameters; }
 
-    virtual FrameType inputType(unsigned long idx) { return kFrameAny; }
-    virtual FrameType outputType(unsigned long idx) { return kFrameAny; }
+    virtual FrameType inputType(unsigned long idx) const { return kFrameAny; }
+    virtual FrameType outputType(unsigned long idx) const { return kFrameAny; }
     
+    virtual void autoDependencyConnect() {}
+
 private:
     
     virtual bool inputUpdate();
@@ -309,10 +313,16 @@ public:
     virtual std::string outputInfo(unsigned long idx, bool verbose) { return mBlocks[0]->outputInfo(idx, verbose); }
     virtual std::string audioInfo(unsigned long idx, bool verbose)  { return mBlocks[0]->audioInfo(idx, verbose); }
 
-    virtual FrameType inputType(unsigned long idx)                  { return mBlocks[0]->inputType(idx); }
-    virtual FrameType outputType(unsigned long idx)                 { return mBlocks[0]->outputType(idx); }
+    virtual FrameType inputType(unsigned long idx) const            { return mBlocks[0]->inputType(idx); }
+    virtual FrameType outputType(unsigned long idx) const           { return mBlocks[0]->outputType(idx); }
     
-    virtual const FrameLib_Parameters *getParameters()              { return mBlocks[0]->getParameters(); }
+    virtual const FrameLib_Parameters *getParameters()  const       { return mBlocks[0]->getParameters(); }
+
+    virtual void autoDependencyConnect()
+    {
+        for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
+            (*it)->autoDependencyConnect();
+    }
 
 private:
 

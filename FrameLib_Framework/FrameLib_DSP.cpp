@@ -19,7 +19,7 @@ FrameLib_DSP::~FrameLib_DSP()
     
     clearConnections();
     
-    // Delete Fixed Inputs
+    // Delete fixed inputs
     
     for (std::vector <Input>::iterator ins = mInputs.begin(); ins != mInputs.end(); ins++)
         delete[] ins->mFixedInput;
@@ -67,18 +67,45 @@ void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long blockS
 
 void FrameLib_DSP::reset(double samplingRate, unsigned long maxBlockSize)
 {
-    bool prevNoLiveInputs = mNoLiveInputs;
-
     // Store sample rate / max block size and call object specific reset
     
     mSamplingRate = samplingRate > 0 ? samplingRate : 44100.0;
     mMaxBlockSize = maxBlockSize;
     
+    LocalQueue(this, &FrameLib_DSP::reset);
+}
+
+void FrameLib_DSP::reset(LocalQueue *queue)
+{
+    bool prevNoLiveInputs = mNoLiveInputs;
+
+    // Object specific reset
+    
     objectReset();
-    resetDependencyCount();
+
+    // Reset dependency counts
+    
+    mUpdatingInputs = false;
+    mInputCount = 0;
+    mOutputMemoryCount = 0;
+    mDependencyCount = ((requiresAudioNotification()) ? 1 : 0);
+    
+    for (std::vector <FrameLib_DSP *>::iterator it = mInputDependencies.begin(); it != mInputDependencies.end(); it++)
+        if (!(*it)->mNoLiveInputs)
+            mDependencyCount++;
+    
     mNoLiveInputs = mDependencyCount == 0;
 
-    // Note that the first sample will be at time == 1 so that we can start the frames *before* this with non-negative values
+    // Remove info about the processing queue
+    
+    mNext = NULL;
+    
+    // Reset output
+    
+    freeOutputMemory();
+    mOutputDone = false;
+
+    // Reset times (Note that the first sample is 1 so that we can start the frames *before* this with non-negative values)
 
     mFrameTime = 0.0;
     mInputTime = mNoLiveInputs ? FL_Limits<FrameLib_TimeFormat>::largest() : FrameLib_TimeFormat(1.0);
@@ -86,11 +113,11 @@ void FrameLib_DSP::reset(double samplingRate, unsigned long maxBlockSize)
     mBlockStartTime = 1.0;
     mBlockEndTime = 1.0;
     
-    mOutputDone = false;
-
+    // Update output dependencies for changes in live input status
+    
     if (mNoLiveInputs != prevNoLiveInputs)
         for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-            (*it)->reset(samplingRate, maxBlockSize);
+            queue->add(*it, &FrameLib_DSP::reset);
 }
 
 // Setup and IO Modes
@@ -461,22 +488,6 @@ void FrameLib_DSP::setOutputDependencyCount()
     mOutputMemoryCount = mOutputDependencies.size();
 }
 
-void FrameLib_DSP::resetDependencyCount()
-{
-    mUpdatingInputs = false;
-    mInputCount = 0;
-    mOutputMemoryCount = 0;
-    mDependencyCount = ((requiresAudioNotification()) ? 1 : 0);
-    
-    for (std::vector <FrameLib_DSP *>::iterator it = mInputDependencies.begin(); it != mInputDependencies.end(); it++)
-        if (!(*it)->mNoLiveInputs)
-            mDependencyCount++;
-    
-    mNext = NULL;
-    
-    freeOutputMemory();
-}
-
 // Manage Output Memory
 
 inline void FrameLib_DSP::freeOutputMemory()
@@ -564,8 +575,6 @@ void FrameLib_DSP::connectionUpdate(Queue *queue)
             for (unsigned long i = 0; i < blockObject->getNumDependencyConnectionObjects(); i++)
                 addOutputDependency(blockObject->getDependencyConnectionObject(i));
     }
-    
-    resetDependencyCount();
 }
 
 void FrameLib_DSP::addOutputDependency(FrameLib_DSP *object)
@@ -579,3 +588,19 @@ void FrameLib_DSP::addOutputDependency(FrameLib_DSP *object)
     if (it == mOutputDependencies.end())
         mOutputDependencies.push_back(object);
 }
+
+void FrameLib_DSP::autoDependencyConnect()
+{
+     if (supportsDependencyConnections())
+         LocalQueue(this, &FrameLib_DSP::autoDependencyConnect);
+}
+
+void FrameLib_DSP::autoDependencyConnect(LocalQueue *queue)
+{
+    if (supportsDependencyConnections() && queue->getFirst())
+        addDependencyConnection(queue->getFirst(), 0);
+        
+    for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
+        queue->add(*it, &FrameLib_DSP::autoDependencyConnect);
+}
+

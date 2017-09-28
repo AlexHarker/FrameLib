@@ -14,10 +14,12 @@
 
 // This abstract class is the core of the DSP processing system and handles low level single channel connections and timing
 
-class FrameLib_DSP : public FrameLib_Block
+class FrameLib_DSP : public FrameLib_Block, public FrameLib_Traversable<FrameLib_DSP>
 {
     // Type definition for concision / Queue access
 
+    typedef FrameLib_Traversable<FrameLib_Block>::Queue Queue;
+    typedef FrameLib_Traversable<FrameLib_DSP>::Queue LocalQueue;
     typedef FrameLib_Parameters::Serial Serial;
     friend class FrameLib_DSPQueue;   
     
@@ -93,10 +95,14 @@ public:
     
     // Info (individual objects should override other methods to provide info)
     
-    virtual const FrameLib_Parameters *getParameters() { return &mParameters;  }
+    virtual const FrameLib_Parameters *getParameters() const { return &mParameters;  }
 
-    virtual FrameType inputType(unsigned long idx)  { return mInputs[idx].mType; }
-    virtual FrameType outputType(unsigned long idx) { return mOutputs[idx].mType; }
+    virtual FrameType inputType(unsigned long idx) const  { return mInputs[idx].mType; }
+    virtual FrameType outputType(unsigned long idx) const { return mOutputs[idx].mType; }
+
+    // Automatic Dependency Connections
+    
+    virtual void autoDependencyConnect();
 
 protected:
         
@@ -118,19 +124,19 @@ protected:
     
     // Test if an Input Triggered the Current Frame
     
-    bool isTrigger(unsigned long idx) { return mInputs[idx].mTrigger && mInputs[idx].mObject && (mInputs[idx].mObject->mFrameTime == mFrameTime); }
+    bool isTrigger(unsigned long idx) const { return mInputs[idx].mTrigger && mInputs[idx].mObject && (mInputs[idx].mObject->mFrameTime == mFrameTime); }
     
     // Timing
     
-    FrameLib_TimeFormat getFrameTime()      { return mFrameTime; }
-    FrameLib_TimeFormat getValidTime()      { return mValidTime; }
-    FrameLib_TimeFormat getInputTime()      { return mInputTime; }
-    FrameLib_TimeFormat getCurrentTime()    { return getType() == kScheduler ? mValidTime : mFrameTime; }
-    FrameLib_TimeFormat getBlockStartTime() { return getType() == kOutput ? mBlockEndTime : mBlockStartTime; }
-    FrameLib_TimeFormat getBlockEndTime()   { return mBlockEndTime; }
+    FrameLib_TimeFormat getFrameTime() const        { return mFrameTime; }
+    FrameLib_TimeFormat getValidTime() const        { return mValidTime; }
+    FrameLib_TimeFormat getInputTime() const        { return mInputTime; }
+    FrameLib_TimeFormat getCurrentTime() const      { return getType() == kScheduler ? mValidTime : mFrameTime; }
+    FrameLib_TimeFormat getBlockStartTime() const   { return getType() == kOutput ? mBlockEndTime : mBlockStartTime; }
+    FrameLib_TimeFormat getBlockEndTime() const     { return mBlockEndTime; }
     
-    FrameLib_TimeFormat getInputFrameTime(unsigned long idx)    { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : FrameLib_TimeFormat(0); }
-    FrameLib_TimeFormat getInputValidTime(unsigned long idx)    { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : FrameLib_TimeFormat(0); }
+    FrameLib_TimeFormat getInputFrameTime(unsigned long idx) const  { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : FrameLib_TimeFormat(0); }
+    FrameLib_TimeFormat getInputValidTime(unsigned long idx) const  { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : FrameLib_TimeFormat(0); }
     
     // Output Allocation
     
@@ -147,8 +153,8 @@ protected:
 
     // Convience methods for copying and zeroing
     
-    void copyVector(double *output, double *input, unsigned long size)      { std::copy(input, input + size, output); }
-    void zeroVector(double *output, unsigned long size)                     { std::fill_n(output, size, 0.0); }
+    static void copyVector(double *output, double *input, unsigned long size)      { std::copy(input, input + size, output); }
+    static void zeroVector(double *output, unsigned long size)                     { std::fill_n(output, size, 0.0); }
     
     // Get DSP Object for a Given Input/Output
 
@@ -165,6 +171,10 @@ private:
     FrameLib_DSP(const FrameLib_DSP&);
     FrameLib_DSP& operator=(const FrameLib_DSP&);
 
+    // Queueable Reset
+    
+    void reset(LocalQueue *queue);
+    
     // Customisable Processing
 
     // Override to handle audio at the block level
@@ -204,10 +214,12 @@ private:
     void dependenciesReady();
     void setOutputDependencyCount();
     void incrementInputDependency();
-    void resetDependencyCount();
+    
+    // Connections
     
     virtual void connectionUpdate(Queue *queue);
     void addOutputDependency(FrameLib_DSP *object);
+    void autoDependencyConnect(LocalQueue *queue);
 
 protected:
    

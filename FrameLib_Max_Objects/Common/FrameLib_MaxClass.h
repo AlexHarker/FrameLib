@@ -456,6 +456,7 @@ public:
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
         addMethod(c, (method) &externalResolveConnections, "__fl.resolve_connections");
+        addMethod(c, (method) &externalAutoDependencyConnect, "__fl.auto_dependency_connect");
         addMethod(c, (method) &externalIsConnected, "__fl.is_connected");
         addMethod(c, (method) &externalConnectionConfirm, "__fl.connection_confirm");
         addMethod(c, (method) &externalGetInternalObject, "__fl.get_internal_object");
@@ -696,7 +697,10 @@ public:
         FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, T::handlesAudio(), externalIsOutput(this));
        
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && T::handlesAudio && mNeedsResolve)
-            traverseToResolveConnections(mTopLevelPatch);
+        {
+            traverseAllObjects(mTopLevelPatch, gensym("__fl.resolve_connections"));
+            traverseAllObjects(mTopLevelPatch, gensym("__fl.auto_dependency_connect"));
+        }
         
         if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
             outlet_anything(mSyncIn, gensym("signal"), 0, NULL);
@@ -766,6 +770,11 @@ public:
     {
         x->resolveConnections();
     }
+                               
+    static void externalAutoDependencyConnect(FrameLib_MaxClass *x)
+    {
+        x->mObject->autoDependencyConnect();
+    }
     
     static t_ptr_int externalIsConnected(FrameLib_MaxClass *x, unsigned long index)
     {
@@ -823,7 +832,7 @@ private:
     
     // Private connection methods
     
-    void traverseToResolveConnections(t_patcher *p)
+    void traverseAllObjects(t_patcher *p, t_symbol *method)
     {
         // Avoid recursion into a poly / pfft / etc.
         
@@ -839,9 +848,9 @@ private:
             long index = 0;
             
             while (b && (p = (t_patcher *)object_subpatcher(jbox_get_object(b), &index, this)))
-                traverseToResolveConnections(p);
-            
-            object_method(jbox_get_object(b), gensym("__fl.resolve_connections"));
+                traverseAllObjects(p, method);
+
+            object_method(jbox_get_object(b), method);
         }
     }
 

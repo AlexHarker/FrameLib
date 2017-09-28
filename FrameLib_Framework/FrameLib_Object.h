@@ -24,38 +24,41 @@ public:
     public:
         
         Queue() : mTop(NULL), mTail(NULL) {}
+        Queue(T *object, Method method) : mTop(NULL), mTail(NULL) { add(object, method); }
         
         void add(T *object, Method method)
         {
             // Do not re-add if already in queue
             
-            if (object->FrameLib_Traversable::mNext != NULL)
+            if (object->FrameLib_Traversable<T>::mNext != NULL)
                 return;
             
             if (!mTop)
             {
                 // Queue is empty - add and start processing the queue
                 
-                mTop = mTail = object;
+                mFirst = mTop = mTail = object;
                 
                 while (mTop)
                 {
                     object = mTop;
                     (object->*method)(this);
-                    mTop = object->FrameLib_Traversable::mNext;
-                    object->FrameLib_Traversable::mNext = NULL;
+                    mTop = object->FrameLib_Traversable<T>::mNext;
+                    object->FrameLib_Traversable<T>::mNext = NULL;
                 }
                 
-                mTail = NULL;
+                mFirst = mTail = NULL;
             }
             else
             {
                 // Add to the queue (which is already processing)
                 
-                mTail->FrameLib_Traversable::mNext = object;
+                mTail->FrameLib_Traversable<T>::mNext = object;
                 mTail = object;
             }
         }
+        
+        T *getFirst() const { return mFirst; }
         
     private:
         
@@ -64,6 +67,7 @@ public:
         Queue(const Queue&);
         Queue& operator=(const Queue&);
         
+        T *mFirst;
         T *mTop;
         T *mTail;
     };
@@ -144,12 +148,12 @@ public:
     virtual std::string outputInfo(unsigned long idx, bool verbose = false)     { return "No output info available";  }
     virtual std::string audioInfo(unsigned long idx, bool verbose = false)      { return "No audio channel info available";  }
    
-    virtual FrameType inputType(unsigned long idx) = 0;
-    virtual FrameType outputType(unsigned long idx) = 0;
+    virtual FrameType inputType(unsigned long idx) const = 0;
+    virtual FrameType outputType(unsigned long idx) const = 0;
     
     // N.B. Parameter objects can be queried directly for info
     
-    virtual const FrameLib_Parameters *getParameters()                          { return NULL;  }
+    virtual const FrameLib_Parameters *getParameters() const                    { return NULL;  }
     
     // Connection 
     
@@ -270,6 +274,8 @@ public:
         return mInputConnections[inIdx].mObject != NULL;
     }
 
+    virtual void autoDependencyConnect() = 0;
+    
     // Connection Access
     
     bool isDependencyConnection(T *object)
@@ -455,9 +461,8 @@ private:
     
     bool detectFeedback(T *object)
     {
-        Queue queue;
         object->mFeedback = false;
-        queue.add(mParent, &T::feedbackProbe);
+        Queue queue(mParent, &T::feedbackProbe);
         return object->mFeedback;
     }
 
