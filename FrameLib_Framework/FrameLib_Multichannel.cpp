@@ -33,11 +33,10 @@ FrameLib_MultiChannel::ConnectionInfo FrameLib_MultiChannel::getDependencyConnec
 
 // Update the inputs of all output dependencies
 
-void FrameLib_MultiChannel::outputUpdate()
+void FrameLib_MultiChannel::outputUpdate(Queue *queue)
 {    
-    if (mQueue)
-        for (unsigned long i = 0; i < getNumOutputDependencies(); i++)
-            mQueue->add(getOutputDependency(i));
+    for (unsigned long i = 0; i < getNumOutputDependencies(); i++)
+        queue->add(getOutputDependency(i), &FrameLib_MultiChannel::connectionUpdate);
 }
 
 // ************************************************************************************** //

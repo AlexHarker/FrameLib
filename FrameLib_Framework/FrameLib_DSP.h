@@ -206,7 +206,7 @@ private:
     void incrementInputDependency();
     void resetDependencyCount();
     
-    virtual void connectionUpdate();
+    virtual void connectionUpdate(Queue *queue);
     void addOutputDependency(FrameLib_DSP *object);
 
 protected:

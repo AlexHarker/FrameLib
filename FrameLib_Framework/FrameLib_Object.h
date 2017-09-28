@@ -9,12 +9,76 @@
 #include <sstream>
 #include <iostream>
 
+template <class T>
+class FrameLib_Traversable
+{
+    
+public:
+    
+    FrameLib_Traversable() : mNext(NULL) {}
+    
+    class Queue
+    {
+        typedef void (T::*Method)(Queue *);
+        
+    public:
+        
+        Queue() : mTop(NULL), mTail(NULL) {}
+        
+        void add(T *object, Method method)
+        {
+            // Do not re-add if already in queue
+            
+            if (object->FrameLib_Traversable::mNext != NULL)
+                return;
+            
+            if (!mTop)
+            {
+                // Queue is empty - add and start processing the queue
+                
+                mTop = mTail = object;
+                
+                while (mTop)
+                {
+                    object = mTop;
+                    (object->*method)(this);
+                    mTop = object->FrameLib_Traversable::mNext;
+                    object->FrameLib_Traversable::mNext = NULL;
+                }
+                
+                mTail = NULL;
+            }
+            else
+            {
+                // Add to the queue (which is already processing)
+                
+                mTail->FrameLib_Traversable::mNext = object;
+                mTail = object;
+            }
+        }
+        
+    private:
+        
+        // Deleted
+        
+        Queue(const Queue&);
+        Queue& operator=(const Queue&);
+        
+        T *mTop;
+        T *mTail;
+    };
+    
+private:
+
+    T *mNext;
+};
+
 // FrameLib_Object
 
 // This abstract template class outlines the basic functionality that objects (blocks / DSP / multichannel must provide)
 
 template <class T>
-class FrameLib_Object 
+class FrameLib_Object : public FrameLib_Traversable<T>
 {
     struct InputConnection
     {
@@ -29,7 +93,9 @@ class FrameLib_Object
     typedef typename std::vector< InputConnection>::iterator ConnectionIterator;
     
 public:
-    
+
+    typedef typename FrameLib_Traversable<T>::Queue Queue;
+
     // Constructor / Destructor
     
     FrameLib_Object(ObjectType type, FrameLib_Context context, void *owner, T *parent)
@@ -90,6 +156,7 @@ public:
     ConnectionResult addConnection(T *object, unsigned long outIdx, unsigned long inIdx)
     {
         ConnectionResult result = connectionCheck(object);
+        Queue queue;
         
         if (result == kConnectSuccess)
         {
@@ -102,11 +169,11 @@ public:
             
             if (prevObject != object)
             {
-                removeInputDependency(prevObject);
-                object->addOutputDependency(mParent);
+                removeInputDependency(&queue, prevObject);
+                object->addOutputDependency(&queue, mParent);
             }
            
-            connectionUpdate();
+            connectionUpdate(&queue);
         }
         
         return result;
@@ -114,8 +181,10 @@ public:
     
     void deleteConnection(unsigned long inIdx)
     {
-        clearConnection(inIdx);
-        connectionUpdate();
+        Queue queue;
+        
+        clearConnection(&queue, inIdx);
+        connectionUpdate(&queue);
     }
     
     ConnectionResult addDependencyConnection(T *object, unsigned long outIdx)
@@ -124,7 +193,8 @@ public:
             return kConnectNoDependencySupport;
             
         ConnectionResult result = connectionCheck(object);
-        
+        Queue queue;
+
         if (result == kConnectSuccess)
         {
             // If already connected there is nothing to do
@@ -139,9 +209,9 @@ public:
 
             // Update dependencies
             
-            object->addOutputDependency(mParent);
+            object->addOutputDependency(&queue, mParent);
 
-            connectionUpdate();
+            connectionUpdate(&queue);
         }
 
         return result;
@@ -149,44 +219,50 @@ public:
     
     void deleteDependencyConnection(T *object, unsigned long outIdx)
     {
+        Queue queue;
+
         for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
         {
             if (it->mObject == object && it->mIndex == outIdx)
             {
-                deleteDependencyConnection(it);
+                deleteDependencyConnection(&queue, it);
                 break;
             }
         }
         
-        connectionUpdate();
+        connectionUpdate(&queue);
     }
     
     void clearDependencyConnections()
     {
-        deleteDependencyConnections();
-        connectionUpdate();
+        Queue queue;
+
+        deleteDependencyConnections(&queue);
+        connectionUpdate(&queue);
     }
     
     void clearConnections()
     {
+        Queue queue;
+
         // Remove input connections
         
         for (unsigned long i = 0; i < mInputConnections.size(); i++)
-            clearConnection(i);
+            clearConnection(&queue, i);
         
         // Remove dependency connections
         
-        deleteDependencyConnections();
+        deleteDependencyConnections(&queue);
         
         // Remove output connections
         
         for (ObjectIterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); )
         {
-            (*it)->disconnect(mParent);
+            (*it)->disconnect(&queue, mParent);
             it = mOutputDependencies.erase(it);
         }
         
-        connectionUpdate();
+        connectionUpdate(&queue);
     }
     
     bool isConnected(unsigned long inIdx)
@@ -265,7 +341,7 @@ private:
     
     // Connection Methods (private)
     
-    virtual void connectionUpdate() = 0;
+    virtual void connectionUpdate(Queue *queue) = 0;
     
     // Connection Check
     
@@ -285,24 +361,24 @@ private:
     
     // Dependency Updating
     
-    void addOutputDependency(T *object)
+    void addOutputDependency(Queue *queue, T *object)
     {
         for (ObjectIterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
             if (*it == object)
                 return;
         
         mOutputDependencies.push_back(object);
-        connectionUpdate();
+        connectionUpdate(queue);
     }
     
-    void removeOutputDependency(T *object)
+    void removeOutputDependency(Queue *queue, T *object)
     {
         for (ObjectIterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
         {
             if (*it == object)
             {
                 mOutputDependencies.erase(it);
-                connectionUpdate();
+                connectionUpdate(queue);
                 return;
             }
         }
@@ -310,7 +386,7 @@ private:
     
     // Remove  one connection to this object (before replacement / deletion)
     
-    void removeInputDependency(T * object)
+    void removeInputDependency(Queue *queue, T * object)
     {
         // Check that there is an object connected and that it is not connected to another input /dependency connection also
         
@@ -327,38 +403,38 @@ private:
         
         // Update dependencies
         
-        object->removeOutputDependency(mParent);
+        object->removeOutputDependency(queue, mParent);
     }
     
     // Remove connection and set to defaults
     
-    void clearConnection(unsigned long inIdx)
+    void clearConnection(Queue *queue, unsigned long inIdx)
     {
         T *prevObject = mInputConnections[inIdx].mObject;
         mInputConnections[inIdx] = InputConnection();
-        removeInputDependency(prevObject);
+        removeInputDependency(queue, prevObject);
     }
     
     // Remove dependency connection
     
-    ConnectionIterator deleteDependencyConnection(ConnectionIterator it)
+    ConnectionIterator deleteDependencyConnection(Queue *queue, ConnectionIterator it)
     {
         T *object = it->mObject;
         it = mDependencyConnections.erase(it);
-        removeInputDependency(object);
+        removeInputDependency(queue, object);
         
         return it;
     }
     
-    void deleteDependencyConnections()
+    void deleteDependencyConnections(Queue *queue)
     {
         for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); )
-            it = deleteDependencyConnection(it);
+            it = deleteDependencyConnection(queue, it);
     }
 
     // Remove all connections from a single object
     
-    void disconnect(T *object)
+    void disconnect(Queue *queue, T *object)
     {
         for (ConnectionIterator it = mInputConnections.begin(); it != mInputConnections.end(); it++)
             if (it->mObject == object)
@@ -372,25 +448,26 @@ private:
                 it++;
         }
         
-        connectionUpdate();
+        connectionUpdate(queue);
     }
     
     // Detect Potential Feedback in a Network
     
     bool detectFeedback(T *object)
     {
+        Queue queue;
         object->mFeedback = false;
-        feedbackProbe();
+        queue.add(mParent, &T::feedbackProbe);
         return object->mFeedback;
     }
-    
-    void feedbackProbe()
+
+    void feedbackProbe(Queue *queue)
     {
         mFeedback = true;
         for (typename std::vector <T *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-            (*it)->feedbackProbe();
+            queue->add(*it, &T::feedbackProbe);
     }
-
+    
     // Data
     
     const ObjectType mType;
@@ -413,7 +490,6 @@ private:
     
     bool mSupportsDependencyConnections;
     bool mFeedback;
-
 };
 
 // FrameLib_Block

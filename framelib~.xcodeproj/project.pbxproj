@@ -156,9 +156,7 @@
 		B826E4921F3148AB00B920C8 /* FrameLib_Interval.h in Headers */ = {isa = PBXBuildFile; fileRef = B8061D501B8C0C00002C8BD2 /* FrameLib_Interval.h */; };
 		B826E4931F3148AB00B920C8 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
 		B826E4941F3148AB00B920C8 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B826E4951F3148AB00B920C8 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
 		B826E4981F3148AB00B920C8 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
-		B826E4991F3148AB00B920C8 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B826E49A1F3148AB00B920C8 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
 		B826E49B1F3148AB00B920C8 /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
 		B826E49D1F3148AB00B920C8 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
@@ -579,11 +577,9 @@
 		B87E87D319C8F62F00B1D0CD /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B87E87D419C8F62F00B1D0CD /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B87E87D519C8F63000B1D0CD /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B87F75371F35DF5C002B91E9 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
 		B87F75381F35DF5C002B91E9 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
 		B87F75391F35DF5C002B91E9 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B87F753A1F35DF5C002B91E9 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
-		B87F753E1F35DF5C002B91E9 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B87F753F1F35DF5C002B91E9 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
 		B87F75401F35DF5C002B91E9 /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
 		B87F75421F35DF5C002B91E9 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
@@ -598,13 +594,11 @@
 		B87F75551F35DFB1002B91E9 /* FrameLib_Convert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87F75531F35DFB1002B91E9 /* FrameLib_Convert.cpp */; };
 		B87F75561F35DFB1002B91E9 /* FrameLib_Convert.h in Headers */ = {isa = PBXBuildFile; fileRef = B87F75541F35DFB1002B91E9 /* FrameLib_Convert.h */; };
 		B87F75581F35E321002B91E9 /* fl.convert~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87F75571F35E321002B91E9 /* fl.convert~.cpp */; };
-		B87F755B1F35EAED002B91E9 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
 		B87F755C1F35EAED002B91E9 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
 		B87F755D1F35EAED002B91E9 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B87F755E1F35EAED002B91E9 /* FrameLib_AudioTrigger.h in Headers */ = {isa = PBXBuildFile; fileRef = B8B4C8E41F33D88D008E5D31 /* FrameLib_AudioTrigger.h */; };
 		B87F755F1F35EAED002B91E9 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
 		B87F75621F35EAED002B91E9 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
-		B87F75641F35EAED002B91E9 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B87F75651F35EAED002B91E9 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
 		B87F75661F35EAED002B91E9 /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
 		B87F75671F35EAED002B91E9 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
@@ -623,9 +617,7 @@
 		B87F75821F3678D0002B91E9 /* FrameLib_Time.h in Headers */ = {isa = PBXBuildFile; fileRef = B8B4C89C1F334614008E5D31 /* FrameLib_Time.h */; };
 		B87F75831F3678D0002B91E9 /* FrameLib_Once.h in Headers */ = {isa = PBXBuildFile; fileRef = B826E4AF1F31490100B920C8 /* FrameLib_Once.h */; };
 		B87F75841F3678D0002B91E9 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B87F75851F3678D0002B91E9 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
 		B87F75881F3678D0002B91E9 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
-		B87F75891F3678D0002B91E9 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B87F758A1F3678D0002B91E9 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
 		B87F758B1F3678D0002B91E9 /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
 		B87F758C1F3678D0002B91E9 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
@@ -941,12 +933,10 @@
 		B8A4757C19C9DDCD0043DC65 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8A4757D19C9DDCD0043DC65 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879419C8F58C00B1D0CD /* Accelerate.framework */; };
 		B8A4758519C9DDEA0043DC65 /* fl.convolve~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8A4757219C9DD9F0043DC65 /* fl.convolve~.cpp */; };
-		B8A82A821F750FE0005CC75A /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
 		B8A82A831F750FE0005CC75A /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
 		B8A82A841F750FE0005CC75A /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B8A82A851F750FE0005CC75A /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
 		B8A82A881F750FE0005CC75A /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
-		B8A82A891F750FE0005CC75A /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B8A82A8A1F750FE0005CC75A /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
 		B8A82A8B1F750FE0005CC75A /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
 		B8A82A8C1F750FE0005CC75A /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
@@ -974,9 +964,7 @@
 		B8B4C87D1F33456A008E5D31 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
 		B8B4C87E1F33456A008E5D31 /* FrameLib_Once.h in Headers */ = {isa = PBXBuildFile; fileRef = B826E4AF1F31490100B920C8 /* FrameLib_Once.h */; };
 		B8B4C87F1F33456A008E5D31 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B8B4C8801F33456A008E5D31 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
 		B8B4C8831F33456A008E5D31 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
-		B8B4C8841F33456A008E5D31 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B8B4C8851F33456A008E5D31 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
 		B8B4C8871F33456A008E5D31 /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
 		B8B4C8891F33456A008E5D31 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
@@ -995,9 +983,7 @@
 		B8B4C8A31F3359F5008E5D31 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
 		B8B4C8A41F3359F5008E5D31 /* FrameLib_Once.h in Headers */ = {isa = PBXBuildFile; fileRef = B826E4AF1F31490100B920C8 /* FrameLib_Once.h */; };
 		B8B4C8A51F3359F5008E5D31 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B8B4C8A61F3359F5008E5D31 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
 		B8B4C8A91F3359F5008E5D31 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
-		B8B4C8AA1F3359F5008E5D31 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B8B4C8AB1F3359F5008E5D31 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
 		B8B4C8AD1F3359F5008E5D31 /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
 		B8B4C8AF1F3359F5008E5D31 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
@@ -1011,12 +997,10 @@
 		B8B4C8C11F335A67008E5D31 /* FrameLib_Future.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4C8BF1F335A67008E5D31 /* FrameLib_Future.cpp */; };
 		B8B4C8C21F335A67008E5D31 /* FrameLib_Future.h in Headers */ = {isa = PBXBuildFile; fileRef = B8B4C8C01F335A67008E5D31 /* FrameLib_Future.h */; };
 		B8B4C8C41F335D22008E5D31 /* fl.future~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4C8C31F335D22008E5D31 /* fl.future~.cpp */; };
-		B8B4C8C71F33D83F008E5D31 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
 		B8B4C8C81F33D83F008E5D31 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
 		B8B4C8C91F33D83F008E5D31 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B8B4C8CA1F33D83F008E5D31 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
 		B8B4C8CD1F33D83F008E5D31 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
-		B8B4C8CE1F33D83F008E5D31 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B8B4C8CF1F33D83F008E5D31 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
 		B8B4C8D01F33D83F008E5D31 /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
 		B8B4C8D11F33D83F008E5D31 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
@@ -1136,186 +1120,6 @@
 		B8BDF0621F2D43D600264316 /* FrameLib_Select.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF0611F2D43D600264316 /* FrameLib_Select.cpp */; };
 		B8BDF0641F2D446200264316 /* FrameLib_Spatial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF0631F2D446200264316 /* FrameLib_Spatial.cpp */; };
 		B8BDF0661F2D44EA00264316 /* FrameLib_CoordinateSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF0651F2D44EA00264316 /* FrameLib_CoordinateSystem.cpp */; };
-		B8C53C601F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C611F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C641F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C651F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C661F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C671F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C681F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C691F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C6A1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C6B1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C6C1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C6D1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C6E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C6F1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C701F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C711F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C721F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C731F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C741F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C751F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C761F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C771F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C781F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C791F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C7A1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C7B1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C7C1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C7D1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C7E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C7F1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C801F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C811F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C821F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C831F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C841F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C851F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C861F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C871F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C881F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C891F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C8A1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C8B1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C8C1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C8D1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C8E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C8F1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C901F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C911F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C921F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C931F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C941F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C951F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C961F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C971F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C981F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C991F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C9A1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C9B1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C9C1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C9D1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C9E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53C9F1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CA01F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CA11F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CA21F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CA31F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CA41F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CA51F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CA61F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CA71F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CA81F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CA91F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CAA1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CAB1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CAC1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CAD1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CAE1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CAF1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CB01F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CB11F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CB21F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CB31F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CB41F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CB51F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CB61F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CB71F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CB81F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CB91F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CBA1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CBB1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
-		B8C53CBC1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CBD1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CC01F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CC11F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CC21F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CC31F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CC41F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CC51F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CC61F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CC71F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CC81F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CC91F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CCA1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CCB1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CCC1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CCD1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CCE1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CCF1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CD01F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CD11F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CD21F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CD31F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CD41F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CD51F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CD61F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CD71F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CD81F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CD91F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CDA1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CDB1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CDC1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CDD1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CDE1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CDF1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CE01F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CE11F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CE21F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CE31F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CE41F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CE51F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CE61F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CE71F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CE81F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CE91F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CEA1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CEB1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CEC1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CED1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CEE1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CEF1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CF01F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CF11F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CF21F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CF31F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CF41F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CF51F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CF61F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CF71F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CF81F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CF91F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CFA1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CFB1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CFC1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CFD1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CFE1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53CFF1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D001F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D011F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D021F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D031F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D041F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D051F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D061F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D071F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D081F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D091F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D0A1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D0B1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D0C1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D0D1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D0E1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D0F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D101F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D111F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D121F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D131F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D141F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D151F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D161F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
-		B8C53D171F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
 		B8C5EBC31E5F99A80086E8B6 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
 		B8C5EBC41E5F99A80086E8B6 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B8C5EBC81E5F99A80086E8B6 /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
@@ -1364,11 +1168,9 @@
 		B8C8568D19F2A97A006358DA /* tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = B8F6E4C8199D247C0073E06D /* tlsf.c */; };
 		B8C8569119F2A97A006358DA /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8C8569219F2A97A006358DA /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
-		B8C89C0A1F571F7100B4E700 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
 		B8C89C0B1F571F7100B4E700 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
 		B8C89C0C1F571F7100B4E700 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B8C89C0D1F571F7100B4E700 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
-		B8C89C111F571F7100B4E700 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B8C89C121F571F7100B4E700 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
 		B8C89C131F571F7100B4E700 /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
 		B8C89C141F571F7100B4E700 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
@@ -1380,11 +1182,9 @@
 		B8C89C1A1F571F7100B4E700 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
 		B8C89C1C1F571F7100B4E700 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C89C1D1F571F7100B4E700 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8C89C271F571F8400B4E700 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
 		B8C89C281F571F8400B4E700 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
 		B8C89C291F571F8400B4E700 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B8C89C2A1F571F8400B4E700 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
-		B8C89C2E1F571F8400B4E700 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B8C89C2F1F571F8400B4E700 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
 		B8C89C301F571F8400B4E700 /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
 		B8C89C311F571F8400B4E700 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
@@ -1396,11 +1196,9 @@
 		B8C89C371F571F8400B4E700 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
 		B8C89C391F571F8400B4E700 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C89C3A1F571F8400B4E700 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8C89C441F571F8700B4E700 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
 		B8C89C451F571F8700B4E700 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
 		B8C89C461F571F8700B4E700 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B8C89C471F571F8700B4E700 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
-		B8C89C4B1F571F8700B4E700 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B8C89C4C1F571F8700B4E700 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
 		B8C89C4D1F571F8700B4E700 /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
 		B8C89C4E1F571F8700B4E700 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
@@ -1412,11 +1210,9 @@
 		B8C89C541F571F8700B4E700 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
 		B8C89C561F571F8700B4E700 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C89C571F571F8700B4E700 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8C89C611F571F8B00B4E700 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
 		B8C89C621F571F8B00B4E700 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
 		B8C89C631F571F8B00B4E700 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B8C89C641F571F8B00B4E700 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
-		B8C89C681F571F8B00B4E700 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B8C89C691F571F8B00B4E700 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
 		B8C89C6A1F571F8B00B4E700 /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
 		B8C89C6B1F571F8B00B4E700 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
@@ -1428,11 +1224,9 @@
 		B8C89C711F571F8B00B4E700 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
 		B8C89C731F571F8B00B4E700 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C89C741F571F8B00B4E700 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8C89C7E1F571FC700B4E700 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
 		B8C89C7F1F571FC700B4E700 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
 		B8C89C801F571FC700B4E700 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B8C89C811F571FC700B4E700 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
-		B8C89C851F571FC700B4E700 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B8C89C861F571FC700B4E700 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
 		B8C89C871F571FC700B4E700 /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
 		B8C89C881F571FC700B4E700 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
@@ -1444,11 +1238,9 @@
 		B8C89C8E1F571FC700B4E700 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
 		B8C89C901F571FC700B4E700 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C89C911F571FC700B4E700 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8C89C9B1F571FD400B4E700 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
 		B8C89C9C1F571FD400B4E700 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
 		B8C89C9D1F571FD400B4E700 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B8C89C9E1F571FD400B4E700 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
-		B8C89CA21F571FD400B4E700 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B8C89CA31F571FD400B4E700 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
 		B8C89CA41F571FD400B4E700 /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
 		B8C89CA51F571FD400B4E700 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
@@ -1460,11 +1252,9 @@
 		B8C89CAB1F571FD400B4E700 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
 		B8C89CAD1F571FD400B4E700 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C89CAE1F571FD400B4E700 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8C89CB81F571FDD00B4E700 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
 		B8C89CB91F571FDD00B4E700 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
 		B8C89CBA1F571FDD00B4E700 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B8C89CBB1F571FDD00B4E700 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
-		B8C89CBF1F571FDD00B4E700 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B8C89CC01F571FDD00B4E700 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
 		B8C89CC11F571FDD00B4E700 /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
 		B8C89CC21F571FDD00B4E700 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
@@ -1483,11 +1273,9 @@
 		B8C89CDC1F57214E00B4E700 /* fl.kurtosis~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C89CDB1F57214E00B4E700 /* fl.kurtosis~.cpp */; };
 		B8C89CDE1F57216700B4E700 /* fl.rms~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C89CDD1F57216700B4E700 /* fl.rms~.cpp */; };
 		B8C89CE01F57217A00B4E700 /* fl.crest~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C89CDF1F57217A00B4E700 /* fl.crest~.cpp */; };
-		B8C89CE31F5723E700B4E700 /* FrameLib_ConnectionQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */; };
 		B8C89CE41F5723E700B4E700 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
 		B8C89CE51F5723E700B4E700 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B8C89CE61F5723E700B4E700 /* FrameLib_DSPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_DSPQueue.h */; };
-		B8C89CE91F5723E700B4E700 /* FrameLib_ConnectionQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */; };
 		B8C89CEA1F5723E700B4E700 /* FrameLib_DSPQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */; };
 		B8C89CEB1F5723E700B4E700 /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
 		B8C89CEC1F5723E700B4E700 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
@@ -2204,8 +1992,6 @@
 		B8BDF0651F2D44EA00264316 /* FrameLib_CoordinateSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_CoordinateSystem.cpp; sourceTree = "<group>"; };
 		B8C2D6061F6BF933009A7C96 /* Interpolation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Interpolation.hpp; path = FrameLib_Dependencies/Interpolation.hpp; sourceTree = SOURCE_ROOT; };
 		B8C2D6071F6BFF60009A7C96 /* TableReader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = TableReader.hpp; path = FrameLib_Dependencies/TableReader.hpp; sourceTree = SOURCE_ROOT; };
-		B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_ConnectionQueue.cpp; sourceTree = "<group>"; };
-		B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_ConnectionQueue.h; sourceTree = "<group>"; };
 		B8C5EBBF1E5F979B0086E8B6 /* FrameLib_Lookup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Lookup.h; sourceTree = "<group>"; };
 		B8C5EBC01E5F998A0086E8B6 /* fl.lookup~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.lookup~.cpp"; sourceTree = "<group>"; };
 		B8C5EBD51E5F99A80086E8B6 /* fl.lookup~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.lookup~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3742,8 +3528,6 @@
 				B88BD2741F03F7830045E737 /* FrameLib_DSPQueue.cpp */,
 				B85B20E619938415004FFF22 /* FrameLib_Multichannel.h */,
 				B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */,
-				B8C53C5F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h */,
-				B8C53C5E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp */,
 			);
 			name = Framework;
 			path = FrameLib_Framework;
@@ -3996,7 +3780,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CBD1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841206A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841211E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2D31F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4007,7 +3790,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CC41F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120711D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121251D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2DA1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4018,7 +3800,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CC51F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120721D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121261D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2DB1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4029,7 +3810,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CC61F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120731D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121271D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2DC1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4040,7 +3820,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CC71F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120741D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121281D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2DD1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4051,7 +3830,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CC81F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120751D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121291D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2DE1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4062,7 +3840,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CC91F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120761D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841212A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2DF1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4073,7 +3850,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CCA1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120771D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841212B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E01F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4084,7 +3860,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CCB1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120781D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841212C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E11F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4095,7 +3870,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CCC1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120791D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841212D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E21F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4106,7 +3880,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CCD1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841207A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841212E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E31F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4117,7 +3890,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CCE1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841207B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841212F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E41F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4128,7 +3900,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CCF1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841207C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121301D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E51F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4139,7 +3910,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CD01F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841207D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121311D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E61F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4150,7 +3920,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CD11F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841207E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121321D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E71F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4161,7 +3930,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CD21F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841207F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121331D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E81F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4172,7 +3940,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CD31F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120801D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121341D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2E91F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4183,7 +3950,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CD41F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120811D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121351D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2EA1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4194,7 +3960,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CD51F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120821D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121361D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2EB1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4205,7 +3970,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CDE1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841208B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841213F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F41F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4216,7 +3980,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CD71F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120841D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121381D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2ED1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4227,7 +3990,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CE91F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120961D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841214A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2FF1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4238,7 +4000,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CD91F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120861D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841213A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2EF1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4249,7 +4010,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CDA1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120871D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841213B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F01F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4260,7 +4020,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CDB1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120881D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841213C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F11F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4271,7 +4030,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CDC1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120891D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841213D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F21F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4282,7 +4040,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CDD1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841208A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841213E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F31F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4293,7 +4050,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CD61F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120831D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121371D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2EC1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4304,7 +4060,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CDF1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841208C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121401D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F51F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4315,7 +4070,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CE01F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841208D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121411D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F61F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4326,7 +4080,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CE11F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841208E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121421D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F71F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4337,7 +4090,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CE21F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841208F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121431D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F81F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4348,7 +4100,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CE31F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120901D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121441D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2F91F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4359,7 +4110,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CE41F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120911D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121451D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2FA1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4370,7 +4120,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CE51F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120921D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121461D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2FB1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4381,7 +4130,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CE61F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120931D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121471D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2FC1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4392,7 +4140,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CE71F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120941D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121481D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2FD1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4403,7 +4150,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CE81F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120951D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121491D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2FE1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4414,7 +4160,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CD81F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120851D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121391D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2EE1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4425,7 +4170,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CEA1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120971D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841214B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3001F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4436,7 +4180,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CEB1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120981D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841214C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3011F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4447,7 +4190,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CEC1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120991D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841214D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3021F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4458,7 +4200,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CED1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841209A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841214E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3031F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4470,7 +4211,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84121691D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B8C53D081F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120B51D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B88BD31E1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B812462A19F476CB009833F1 /* FrameLib_Subframe.h in Headers */,
@@ -4484,7 +4224,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B841216A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B8C53D091F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120B61D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B88BD31F1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B812464019F476D3009833F1 /* FrameLib_Subframe.h in Headers */,
@@ -4502,7 +4241,6 @@
 				B826E4931F3148AB00B920C8 /* FrameLib_DSPQueue.h in Headers */,
 				B826E4B11F31490100B920C8 /* FrameLib_Once.h in Headers */,
 				B826E4941F3148AB00B920C8 /* FrameLib_Global.h in Headers */,
-				B826E4951F3148AB00B920C8 /* FrameLib_ConnectionQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4510,7 +4248,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CC11F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841206E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121221D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2D71F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4521,7 +4258,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CC31F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120701D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121241D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2D91F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4532,7 +4268,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CFB1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A81D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841215C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3111F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4543,7 +4278,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53D0B1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120B81D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841216C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3211F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4554,7 +4288,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53D0C1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120B91D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841216D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3221F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4565,7 +4298,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53D0D1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120BA1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841216E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3231F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4576,7 +4308,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53D141F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120C11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121751D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD32A1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4588,7 +4319,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84121631D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B8C53D021F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120AF1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B88BD3181F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B85B68EB19F29470002D6F1D /* FrameLib_Subframe.h in Headers */,
@@ -4601,7 +4331,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53D001F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120AD1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121611D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3161F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4612,7 +4341,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53D011F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120AE1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121621D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3171F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4623,7 +4351,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CF51F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A21D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121561D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD30B1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4634,7 +4361,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CFE1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120AB1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841215F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3141F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4645,7 +4371,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53D171F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B85C8FD01E605B2E004D7D40 /* FrameLib_Context.h in Headers */,
 				B85435801F65BF03001BA1AA /* HISSTools_FFT.h in Headers */,
 				B85C8FD11E605B2E004D7D40 /* FrameLib_Global.h in Headers */,
@@ -4658,7 +4383,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CFC1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A91D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841215D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3121F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4669,7 +4393,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CFD1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120AA1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841215E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3131F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4680,7 +4403,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CF81F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A51D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B854357D1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */,
 				B84121591D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
@@ -4693,7 +4415,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CF91F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A61D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B854357E1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */,
 				B841215A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
@@ -4707,7 +4428,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B87F75561F35DFB1002B91E9 /* FrameLib_Convert.h in Headers */,
-				B87F75371F35DF5C002B91E9 /* FrameLib_ConnectionQueue.h in Headers */,
 				B87F75381F35DF5C002B91E9 /* FrameLib_Context.h in Headers */,
 				B87F75391F35DF5C002B91E9 /* FrameLib_Global.h in Headers */,
 				B87F753A1F35DF5C002B91E9 /* FrameLib_DSPQueue.h in Headers */,
@@ -4718,7 +4438,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B87F755B1F35EAED002B91E9 /* FrameLib_ConnectionQueue.h in Headers */,
 				B87F755C1F35EAED002B91E9 /* FrameLib_Context.h in Headers */,
 				B87F757D1F35EBB5002B91E9 /* FrameLib_PerBlock.h in Headers */,
 				B87F755D1F35EAED002B91E9 /* FrameLib_Global.h in Headers */,
@@ -4737,7 +4456,6 @@
 				B87F75821F3678D0002B91E9 /* FrameLib_Time.h in Headers */,
 				B87F75831F3678D0002B91E9 /* FrameLib_Once.h in Headers */,
 				B87F75841F3678D0002B91E9 /* FrameLib_Global.h in Headers */,
-				B87F75851F3678D0002B91E9 /* FrameLib_ConnectionQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4745,7 +4463,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CFA1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A71D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B854357F1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */,
 				B841215B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
@@ -4758,7 +4475,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8A82A821F750FE0005CC75A /* FrameLib_ConnectionQueue.h in Headers */,
 				B8A82A831F750FE0005CC75A /* FrameLib_Context.h in Headers */,
 				B8A82A841F750FE0005CC75A /* FrameLib_Global.h in Headers */,
 				B8A82AA51F75104E005CC75A /* fl.tomax~.h in Headers */,
@@ -4770,7 +4486,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CF71F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A41D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121581D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD30D1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4782,7 +4497,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84121681D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B8C53D071F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120B41D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B88BD31D1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B8AE693219F45A380040B4EE /* FrameLib_Subframe.h in Headers */,
@@ -4800,7 +4514,6 @@
 				B8B4C89E1F334614008E5D31 /* FrameLib_Time.h in Headers */,
 				B8B4C87E1F33456A008E5D31 /* FrameLib_Once.h in Headers */,
 				B8B4C87F1F33456A008E5D31 /* FrameLib_Global.h in Headers */,
-				B8B4C8801F33456A008E5D31 /* FrameLib_ConnectionQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4813,7 +4526,6 @@
 				B8B4C8A31F3359F5008E5D31 /* FrameLib_DSPQueue.h in Headers */,
 				B8B4C8A41F3359F5008E5D31 /* FrameLib_Once.h in Headers */,
 				B8B4C8A51F3359F5008E5D31 /* FrameLib_Global.h in Headers */,
-				B8B4C8A61F3359F5008E5D31 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8B4C8C21F335A67008E5D31 /* FrameLib_Future.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4822,7 +4534,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B4C8C71F33D83F008E5D31 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8B4C8C81F33D83F008E5D31 /* FrameLib_Context.h in Headers */,
 				B8B4C8C91F33D83F008E5D31 /* FrameLib_Global.h in Headers */,
 				B8B4C8E61F33D88D008E5D31 /* FrameLib_AudioTrigger.h in Headers */,
@@ -4834,7 +4545,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53D151F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C5EBC31E5F99A80086E8B6 /* FrameLib_Context.h in Headers */,
 				B8C5EBC41E5F99A80086E8B6 /* FrameLib_Global.h in Headers */,
 				B88BD32B1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4845,7 +4555,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53D161F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C5EBDD1E5FA6340086E8B6 /* FrameLib_Context.h in Headers */,
 				B8C5EBDE1E5FA6340086E8B6 /* FrameLib_Global.h in Headers */,
 				B88BD32C1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4856,7 +4565,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53D0A1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120B71D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841216B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3201F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -4868,7 +4576,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84121641D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B8C53D031F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120B01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B88BD3191F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B8C8564119F2A96C006358DA /* FrameLib_Subframe.h in Headers */,
@@ -4882,7 +4589,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84121651D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B8C53D041F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120B11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B88BD31A1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B8C8565819F2A96E006358DA /* FrameLib_Subframe.h in Headers */,
@@ -4896,7 +4602,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84121661D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B8C53D051F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120B21D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B88BD31B1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B8C8566F19F2A978006358DA /* FrameLib_Subframe.h in Headers */,
@@ -4910,7 +4615,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84121671D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B8C53D061F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120B31D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B88BD31C1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B8C8568519F2A97A006358DA /* FrameLib_Subframe.h in Headers */,
@@ -4923,7 +4627,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89C0A1F571F7100B4E700 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C89C0B1F571F7100B4E700 /* FrameLib_Context.h in Headers */,
 				B8C89C0C1F571F7100B4E700 /* FrameLib_Global.h in Headers */,
 				B8C89C0D1F571F7100B4E700 /* FrameLib_DSPQueue.h in Headers */,
@@ -4934,7 +4637,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89C271F571F8400B4E700 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C89C281F571F8400B4E700 /* FrameLib_Context.h in Headers */,
 				B8C89C291F571F8400B4E700 /* FrameLib_Global.h in Headers */,
 				B8C89C2A1F571F8400B4E700 /* FrameLib_DSPQueue.h in Headers */,
@@ -4945,7 +4647,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89C441F571F8700B4E700 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C89C451F571F8700B4E700 /* FrameLib_Context.h in Headers */,
 				B8C89C461F571F8700B4E700 /* FrameLib_Global.h in Headers */,
 				B8C89C471F571F8700B4E700 /* FrameLib_DSPQueue.h in Headers */,
@@ -4956,7 +4657,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89C611F571F8B00B4E700 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C89C621F571F8B00B4E700 /* FrameLib_Context.h in Headers */,
 				B8C89C631F571F8B00B4E700 /* FrameLib_Global.h in Headers */,
 				B8C89C641F571F8B00B4E700 /* FrameLib_DSPQueue.h in Headers */,
@@ -4967,7 +4667,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89C7E1F571FC700B4E700 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C89C7F1F571FC700B4E700 /* FrameLib_Context.h in Headers */,
 				B8C89C801F571FC700B4E700 /* FrameLib_Global.h in Headers */,
 				B8C89C811F571FC700B4E700 /* FrameLib_DSPQueue.h in Headers */,
@@ -4978,7 +4677,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89C9B1F571FD400B4E700 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C89C9C1F571FD400B4E700 /* FrameLib_Context.h in Headers */,
 				B8C89C9D1F571FD400B4E700 /* FrameLib_Global.h in Headers */,
 				B8C89C9E1F571FD400B4E700 /* FrameLib_DSPQueue.h in Headers */,
@@ -4989,7 +4687,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89CB81F571FDD00B4E700 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C89CB91F571FDD00B4E700 /* FrameLib_Context.h in Headers */,
 				B8C89CBA1F571FDD00B4E700 /* FrameLib_Global.h in Headers */,
 				B8C89CBB1F571FDD00B4E700 /* FrameLib_DSPQueue.h in Headers */,
@@ -5000,7 +4697,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89CE31F5723E700B4E700 /* FrameLib_ConnectionQueue.h in Headers */,
 				B8C89CE41F5723E700B4E700 /* FrameLib_Context.h in Headers */,
 				B8C89CE51F5723E700B4E700 /* FrameLib_Global.h in Headers */,
 				B8C89CE61F5723E700B4E700 /* FrameLib_DSPQueue.h in Headers */,
@@ -5011,7 +4707,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CBC1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120691D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841211D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2D21F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -5026,7 +4721,6 @@
 				B8061D511B8C0C00002C8BD2 /* FrameLib_Interval.h in Headers */,
 				B88BD2D61F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
 				B84121211D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B8C53CC01F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5034,7 +4728,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CC21F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841206F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121231D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD2D81F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -5045,7 +4738,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53D0E1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120BB1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841216F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3241F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -5056,7 +4748,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53D0F1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120BC1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121701D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3251F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -5067,7 +4758,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53D101F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120BD1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121711D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3261F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -5078,7 +4768,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53D111F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120BE1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121721D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3271F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -5089,7 +4778,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53D121F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120BF1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121731D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3281F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -5100,7 +4788,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53D131F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120C01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121741D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3291F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -5111,7 +4798,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CFF1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120AC1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121601D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3151F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -5122,7 +4808,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CEE1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841209B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B841214F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3041F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -5133,7 +4818,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CEF1F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841209C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121501D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3051F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -5144,7 +4828,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CF01F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841209D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121511D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3061F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -5155,7 +4838,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CF11F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841209E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121521D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3071F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -5166,7 +4848,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CF21F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B841209F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121531D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3081F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -5177,7 +4858,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CF31F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121541D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD3091F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -5188,7 +4868,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CF41F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121551D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD30A1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -5199,7 +4878,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C53CF61F0417F100A45A56 /* FrameLib_ConnectionQueue.h in Headers */,
 				B84120A31D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
 				B84121571D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 				B88BD30C1F03F7840045E737 /* FrameLib_DSPQueue.h in Headers */,
@@ -8995,7 +8673,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F6E4CC199D247C0073E06D /* tlsf.c in Sources */,
-				B8C53C611F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2771F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FE01F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961821F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9013,7 +8690,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E22919C3AD0A007D8D8B /* tlsf.c in Sources */,
-				B8C53C681F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD27E1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FE71F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961891F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9031,7 +8707,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E23A19C3AD0C007D8D8B /* tlsf.c in Sources */,
-				B8C53C691F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD27F1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FE81F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B9618A1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9049,7 +8724,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E24B19C3AD11007D8D8B /* tlsf.c in Sources */,
-				B8C53C6A1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2801F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FE91F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B9618B1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9067,7 +8741,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E25C19C3AD14007D8D8B /* tlsf.c in Sources */,
-				B8C53C6B1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2811F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FEA1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B9618C1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9085,7 +8758,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E26D19C3AD16007D8D8B /* tlsf.c in Sources */,
-				B8C53C6C1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2821F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FEB1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B9618D1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9103,7 +8775,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E27E19C3AD18007D8D8B /* tlsf.c in Sources */,
-				B8C53C6D1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2831F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FEC1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B9618E1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9121,7 +8792,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E28F19C3AD20007D8D8B /* tlsf.c in Sources */,
-				B8C53C6E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2841F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FED1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B9618F1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9139,7 +8809,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E2A019C3AD22007D8D8B /* tlsf.c in Sources */,
-				B8C53C6F1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2851F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FEE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961901F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9157,7 +8826,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E2B119C3AD23007D8D8B /* tlsf.c in Sources */,
-				B8C53C701F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2861F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FEF1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961911F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9175,7 +8843,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E2C219C3AD25007D8D8B /* tlsf.c in Sources */,
-				B8C53C711F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2871F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FF01F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961921F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9193,7 +8860,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E2D319C3ADF5007D8D8B /* tlsf.c in Sources */,
-				B8C53C721F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2881F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FF11F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961931F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9211,7 +8877,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E2E319C3ADF7007D8D8B /* tlsf.c in Sources */,
-				B8C53C731F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2891F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FF21F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961941F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9229,7 +8894,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E2F319C3ADF9007D8D8B /* tlsf.c in Sources */,
-				B8C53C741F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD28A1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FF31F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961951F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9247,7 +8911,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E30319C3ADFC007D8D8B /* tlsf.c in Sources */,
-				B8C53C751F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD28B1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FF41F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961961F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9265,7 +8928,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E31319C3ADFE007D8D8B /* tlsf.c in Sources */,
-				B8C53C761F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD28C1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FF51F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961971F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9283,7 +8945,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B805E32319C3AE00007D8D8B /* tlsf.c in Sources */,
-				B8C53C771F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD28D1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FF61F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961981F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9301,7 +8962,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BDE419C42CDA00BA41F4 /* tlsf.c in Sources */,
-				B8C53C781F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD28E1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FF71F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961991F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9319,7 +8979,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BDF519C42CEB00BA41F4 /* tlsf.c in Sources */,
-				B8C53C791F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD28F1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FF81F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B9619A1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9337,7 +8996,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BE0519C42CEF00BA41F4 /* tlsf.c in Sources */,
-				B8C53C821F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2981F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180011F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961A31F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9355,7 +9013,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BF3619C42D5100BA41F4 /* tlsf.c in Sources */,
-				B8C53C7B1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2911F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FFA1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B9619C1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9373,7 +9030,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BF4519C42D5400BA41F4 /* tlsf.c in Sources */,
-				B8C53C8D1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2A31F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F1800C1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961AE1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9391,7 +9047,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BF5419C42D5800BA41F4 /* tlsf.c in Sources */,
-				B8C53C7D1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2931F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FFC1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B9619E1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9409,7 +9064,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BF6319C42D5A00BA41F4 /* tlsf.c in Sources */,
-				B8C53C7E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2941F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FFD1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B9619F1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9427,7 +9081,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BF7219C42D5C00BA41F4 /* tlsf.c in Sources */,
-				B8C53C7F1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2951F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FFE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961A01F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9445,7 +9098,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BF8119C42D6400BA41F4 /* tlsf.c in Sources */,
-				B8C53C801F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2961F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FFF1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961A11F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9463,7 +9115,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BF9019C42D6400BA41F4 /* tlsf.c in Sources */,
-				B8C53C811F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2971F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180001F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961A21F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9481,7 +9132,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BF9F19C42D6500BA41F4 /* tlsf.c in Sources */,
-				B8C53C7A1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2901F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FF91F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B9619B1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9499,7 +9149,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BFAE19C42D6600BA41F4 /* tlsf.c in Sources */,
-				B8C53C831F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2991F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180021F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961A41F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9517,7 +9166,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BFBD19C42D6800BA41F4 /* tlsf.c in Sources */,
-				B8C53C841F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD29A1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180031F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961A51F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9535,7 +9183,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BFCC19C42D6800BA41F4 /* tlsf.c in Sources */,
-				B8C53C851F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD29B1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180041F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961A61F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9553,7 +9200,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BFDB19C42D6900BA41F4 /* tlsf.c in Sources */,
-				B8C53C861F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD29C1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180051F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961A71F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9571,7 +9217,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BFEA19C42D7000BA41F4 /* tlsf.c in Sources */,
-				B8C53C871F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD29D1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180061F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961A81F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9589,7 +9234,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809BFF919C42D7100BA41F4 /* tlsf.c in Sources */,
-				B8C53C881F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD29E1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180071F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961A91F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9607,7 +9251,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809C00819C42D7100BA41F4 /* tlsf.c in Sources */,
-				B8C53C891F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD29F1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180081F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961AA1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9625,7 +9268,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809C01719C42D7200BA41F4 /* tlsf.c in Sources */,
-				B8C53C8A1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2A01F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180091F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961AB1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9643,7 +9285,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809C02619C42D7200BA41F4 /* tlsf.c in Sources */,
-				B8C53C8B1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2A11F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F1800A1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961AC1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9661,7 +9302,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809C03519C42D7300BA41F4 /* tlsf.c in Sources */,
-				B8C53C8C1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2A21F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F1800B1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961AD1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9679,7 +9319,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809C04419C42D7300BA41F4 /* tlsf.c in Sources */,
-				B8C53C7C1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2921F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FFB1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B9619D1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9697,7 +9336,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809C05319C42D7300BA41F4 /* tlsf.c in Sources */,
-				B8C53C8E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2A41F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F1800D1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961AF1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9715,7 +9353,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809C06219C42D7400BA41F4 /* tlsf.c in Sources */,
-				B8C53C8F1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2A51F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F1800E1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961B01F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9733,7 +9370,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B809C07119C42D7400BA41F4 /* tlsf.c in Sources */,
-				B8C53C901F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2A61F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F1800F1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961B11F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9751,7 +9387,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83E2919C78DBC00230CD4 /* fl.trunc~.cpp in Sources */,
-				B8C53C911F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2A71F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180101F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961B21F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9770,7 +9405,6 @@
 			files = (
 				B8BDF0481F2D0AA200264316 /* FrameLib_Recall.cpp in Sources */,
 				B812463219F476CB009833F1 /* fl.recall~.cpp in Sources */,
-				B8C53CAC1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2C21F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F1802B1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961CD1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9789,7 +9423,6 @@
 			files = (
 				B812464719F476D3009833F1 /* fl.store~.cpp in Sources */,
 				B8BDF04A1F2D0B3B00264316 /* FrameLib_Store.cpp in Sources */,
-				B8C53CAD1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2C31F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F1802C1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961CE1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9807,7 +9440,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B826E4981F3148AB00B920C8 /* tlsf.c in Sources */,
-				B826E4991F3148AB00B920C8 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B826E49A1F3148AB00B920C8 /* FrameLib_DSPQueue.cpp in Sources */,
 				B826E4B51F314AA800B920C8 /* fl.once~.cpp in Sources */,
 				B826E49B1F3148AB00B920C8 /* FrameLib_Multichannel.cpp in Sources */,
@@ -9826,7 +9458,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B843AAA719C07046000D3476 /* tlsf.c in Sources */,
-				B8C53C651F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD27B1F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FE41F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961861F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9845,7 +9476,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B843AABA19C08452000D3476 /* tlsf.c in Sources */,
-				B8C53C671F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD27D1F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FE61F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961881F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9863,7 +9493,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B846E62319F15A57005E9718 /* fl.window~.cpp in Sources */,
-				B8C53C9F1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2B51F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F1801E1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961C01F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9882,7 +9511,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84943B91B834AD00037DFF1 /* tlsf.c in Sources */,
-				B8C53CAF1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2C51F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F1802E1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8BDF0601F2D438000264316 /* FrameLib_SetParam.cpp in Sources */,
@@ -9901,7 +9529,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84943D01B837DB70037DFF1 /* tlsf.c in Sources */,
-				B8C53CB01F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2C61F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F1802F1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961D11F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9920,7 +9547,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84943EE1B8386100037DFF1 /* fl.spatial~.cpp in Sources */,
-				B8C53CB11F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2C71F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180301F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8BDF0641F2D446200264316 /* FrameLib_Spatial.cpp in Sources */,
@@ -9939,7 +9565,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84BE88A1C1F641500A55F8C /* fl.medianfilter~.cpp in Sources */,
-				B8C53CB81F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2CE1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180371F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961D91F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9958,7 +9583,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B85B68A719F1CF56002D6F1D /* fl.sallenkey~.cpp in Sources */,
-				B8C53CA61F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B8BDF0581F2D2A7900264316 /* FrameLib_SallenAndKey.cpp in Sources */,
 				B88BD2BC1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180251F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
@@ -9978,7 +9602,6 @@
 			files = (
 				B8BDF0541F2D2A1E00264316 /* FrameLib_OnePoleZero.cpp in Sources */,
 				B85B68BA19F1D39F002D6F1D /* fl.onepolezero~.cpp in Sources */,
-				B8C53CA41F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2BA1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180231F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961C51F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -9997,7 +9620,6 @@
 			files = (
 				B85B68CE19F1D6A9002D6F1D /* fl.resonant~.cpp in Sources */,
 				B8BDF0561F2D2A4800264316 /* FrameLib_Resonant.cpp in Sources */,
-				B8C53CA51F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2BB1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180241F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961C61F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10015,7 +9637,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B85B68E219F262A3002D6F1D /* fl.register~.cpp in Sources */,
-				B8C53C991F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2AF1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180181F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961BA1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10034,7 +9655,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B85BDDCE19F1C22400A349C5 /* fl.0dfsvf~.cpp in Sources */,
-				B8C53CA21F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B8BDF0501F2D29CD00264316 /* FrameLib_0dfSVF.cpp in Sources */,
 				B88BD2B81F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180211F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
@@ -10064,7 +9684,6 @@
 				B85C8FD81E605B2E004D7D40 /* FrameLib_Global.cpp in Sources */,
 				B88BD2731F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 				B854357C1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */,
-				B8C53CBB1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10073,7 +9692,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B861EBC819CA3F2900B89477 /* fl.sort~.cpp in Sources */,
-				B8C53CA01F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2B61F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F1801F1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961C11F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10092,7 +9710,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B861EBC719CA3F2400B89477 /* fl.percentile~.cpp in Sources */,
-				B8C53CA11F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2B71F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180201F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961C21F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10122,7 +9739,6 @@
 				B8EDFD651DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B88BD2541F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 				B85435791F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */,
-				B8C53C9C1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10142,7 +9758,6 @@
 				B88BD2551F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 				B8891CF41F2C9A1400C5C4F0 /* FrameLib_iFFT.cpp in Sources */,
 				B854357A1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */,
-				B8C53C9D1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10150,7 +9765,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B87F753E1F35DF5C002B91E9 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B87F753F1F35DF5C002B91E9 /* FrameLib_DSPQueue.cpp in Sources */,
 				B87F75401F35DF5C002B91E9 /* FrameLib_Multichannel.cpp in Sources */,
 				B87F75551F35DFB1002B91E9 /* FrameLib_Convert.cpp in Sources */,
@@ -10170,7 +9784,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B87F75621F35EAED002B91E9 /* tlsf.c in Sources */,
-				B87F75641F35EAED002B91E9 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B87F75651F35EAED002B91E9 /* FrameLib_DSPQueue.cpp in Sources */,
 				B87F75661F35EAED002B91E9 /* FrameLib_Multichannel.cpp in Sources */,
 				B87F75671F35EAED002B91E9 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10191,7 +9804,6 @@
 				B87F75A01F36796C002B91E9 /* FrameLib_Constant.cpp in Sources */,
 				B87F75A31F367F03002B91E9 /* fl.constant~.cpp in Sources */,
 				B87F75881F3678D0002B91E9 /* tlsf.c in Sources */,
-				B87F75891F3678D0002B91E9 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B87F758A1F3678D0002B91E9 /* FrameLib_DSPQueue.cpp in Sources */,
 				B87F758B1F3678D0002B91E9 /* FrameLib_Multichannel.cpp in Sources */,
 				B87F758C1F3678D0002B91E9 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10241,7 +9853,6 @@
 				B8EDFD671DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B88BD2561F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
 				B854357B1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */,
-				B8C53C9E1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10250,7 +9861,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8A82A881F750FE0005CC75A /* tlsf.c in Sources */,
-				B8A82A891F750FE0005CC75A /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B8A82A8A1F750FE0005CC75A /* FrameLib_DSPQueue.cpp in Sources */,
 				B8A82A8B1F750FE0005CC75A /* FrameLib_Multichannel.cpp in Sources */,
 				B8A82A8C1F750FE0005CC75A /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10278,7 +9888,6 @@
 				B8AD886319C7C46B00FFA238 /* tlsf.c in Sources */,
 				B8EDFD641DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B88BD2531F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
-				B8C53C9B1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10287,7 +9896,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8AE693819F45A380040B4EE /* fl.shift~.cpp in Sources */,
-				B8C53CAB1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B8891CE81F2C90E800C5C4F0 /* FrameLib_Shift.cpp in Sources */,
 				B88BD2C11F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F1802A1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
@@ -10306,7 +9914,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8B4C8831F33456A008E5D31 /* tlsf.c in Sources */,
-				B8B4C8841F33456A008E5D31 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B8B4C8851F33456A008E5D31 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8B4C8871F33456A008E5D31 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B4C8891F33456A008E5D31 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10325,7 +9932,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8B4C8A91F3359F5008E5D31 /* tlsf.c in Sources */,
-				B8B4C8AA1F3359F5008E5D31 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B8B4C8AB1F3359F5008E5D31 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8B4C8C41F335D22008E5D31 /* fl.future~.cpp in Sources */,
 				B8B4C8AD1F3359F5008E5D31 /* FrameLib_Multichannel.cpp in Sources */,
@@ -10345,7 +9951,6 @@
 			files = (
 				B8B4C8CD1F33D83F008E5D31 /* tlsf.c in Sources */,
 				B8B4C8E81F33D956008E5D31 /* fl.audiotrigger~.cpp in Sources */,
-				B8B4C8CE1F33D83F008E5D31 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B8B4C8CF1F33D83F008E5D31 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8B4C8D01F33D83F008E5D31 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B4C8D11F33D83F008E5D31 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10363,7 +9968,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8C5EBD71E5F99CD0086E8B6 /* fl.lookup~.cpp in Sources */,
-				B8C53CB91F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2CF1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180381F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961DA1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10382,7 +9986,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8C5EBF11E5FA6D20086E8B6 /* fl.peaks~.cpp in Sources */,
-				B8C53CBA1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2D01F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180391F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961DB1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10412,7 +10015,6 @@
 				B84121121D9D484800C2D5C0 /* FrameLib_Global.cpp in Sources */,
 				B8EDFD771DB0577D00833096 /* FrameLib_Threading.cpp in Sources */,
 				B88BD2661F03E40D0045E737 /* FrameLib_DSP.cpp in Sources */,
-				B8C53CAE1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10421,7 +10023,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8C8564619F2A96C006358DA /* fl.pad~.cpp in Sources */,
-				B8C53CA71F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2BD1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180261F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961C81F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10441,7 +10042,6 @@
 			files = (
 				B8891CE41F2C90B200C5C4F0 /* FrameLib_Subframe.cpp in Sources */,
 				B8C8566119F2A96E006358DA /* fl.subframe~.cpp in Sources */,
-				B8C53CA81F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2BE1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180271F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961C91F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10460,7 +10060,6 @@
 			files = (
 				B8891CDE1F2C8DAA00C5C4F0 /* FrameLib_Split.cpp in Sources */,
 				B8C8567619F2A978006358DA /* fl.split~.cpp in Sources */,
-				B8C53CA91F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2BF1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180281F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961CA1F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10478,7 +10077,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B812465319F4781E009833F1 /* fl.join~.cpp in Sources */,
-				B8C53CAA1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2C01F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8891CE61F2C90CE00C5C4F0 /* FrameLib_Join.cpp in Sources */,
 				B8F180291F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
@@ -10496,7 +10094,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89C111F571F7100B4E700 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B8C89C121F571F7100B4E700 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8C89C131F571F7100B4E700 /* FrameLib_Multichannel.cpp in Sources */,
 				B8C89C141F571F7100B4E700 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10515,7 +10112,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8C89CD41F5720E300B4E700 /* fl.standarddeviation~.cpp in Sources */,
-				B8C89C2E1F571F8400B4E700 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B8C89C2F1F571F8400B4E700 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8C89C301F571F8400B4E700 /* FrameLib_Multichannel.cpp in Sources */,
 				B8C89C311F571F8400B4E700 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10532,7 +10128,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89C4B1F571F8700B4E700 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B8C89C4C1F571F8700B4E700 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8C89C4D1F571F8700B4E700 /* FrameLib_Multichannel.cpp in Sources */,
 				B8C89C4E1F571F8700B4E700 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10550,7 +10145,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89C681F571F8B00B4E700 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B8C89CDA1F57213500B4E700 /* fl.skewness~.cpp in Sources */,
 				B8C89C691F571F8B00B4E700 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8C89C6A1F571F8B00B4E700 /* FrameLib_Multichannel.cpp in Sources */,
@@ -10568,7 +10162,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89C851F571FC700B4E700 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B8C89C861F571FC700B4E700 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8C89C871F571FC700B4E700 /* FrameLib_Multichannel.cpp in Sources */,
 				B8C89C881F571FC700B4E700 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10586,7 +10179,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89CA21F571FD400B4E700 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B8C89CA31F571FD400B4E700 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8C89CA41F571FD400B4E700 /* FrameLib_Multichannel.cpp in Sources */,
 				B8C89CA51F571FD400B4E700 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10604,7 +10196,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89CBF1F571FDD00B4E700 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B8C89CC01F571FDD00B4E700 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8C89CC11F571FDD00B4E700 /* FrameLib_Multichannel.cpp in Sources */,
 				B8C89CC21F571FDD00B4E700 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10622,7 +10213,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89CE91F5723E700B4E700 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B8C89CFF1F57242500B4E700 /* fl.flatness~.cpp in Sources */,
 				B8C89CEA1F5723E700B4E700 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8C89CEB1F5723E700B4E700 /* FrameLib_Multichannel.cpp in Sources */,
@@ -10641,7 +10231,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F6E4CB199D247C0073E06D /* tlsf.c in Sources */,
-				B8C53C601F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2761F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FDF1F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961811F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10659,7 +10248,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F6E4CF199D247C0073E06D /* tlsf.c in Sources */,
-				B8C53C641F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD27A1F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FE31F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8BDF05B1F2D40C800264316 /* FrameLib_Interval.cpp in Sources */,
@@ -10678,7 +10266,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8CACC7D19C0F4A9007434C9 /* tlsf.c in Sources */,
-				B8C53C661F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B8891CD41F2BF4CE00C5C4F0 /* FrameLib_Source.cpp in Sources */,
 				B88BD27C1F03F7830045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F17FE51F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
@@ -10697,7 +10284,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D679DF1B83E5A600519310 /* fl.trace~.cpp in Sources */,
-				B8C53CB21F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2C81F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180311F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961D31F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10716,7 +10302,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D679E71B847A3300519310 /* fl.map~.cpp in Sources */,
-				B8C53CB31F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2C91F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180321F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8891CEA1F2C94AA00C5C4F0 /* FrameLib_Map.cpp in Sources */,
@@ -10735,7 +10320,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D679FA1B84996800519310 /* tlsf.c in Sources */,
-				B8C53CB41F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2CA1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8891CEC1F2C94DF00C5C4F0 /* FrameLib_SampleRate.cpp in Sources */,
 				B8F180331F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
@@ -10754,7 +10338,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D67A0D1B84A00500519310 /* tlsf.c in Sources */,
-				B8C53CB51F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2CB1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180341F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961D61F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10772,7 +10355,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D67A201B84D88F00519310 /* tlsf.c in Sources */,
-				B8C53CB61F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2CC1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180351F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961D71F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10791,7 +10373,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D8DB831B89D74B000203E5 /* tlsf.c in Sources */,
-				B8C53CB71F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2CD1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180361F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961D81F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10811,7 +10392,6 @@
 			files = (
 				B8BDF0521F2D29EC00264316 /* FrameLib_OnePole.cpp in Sources */,
 				B8F3798B19F1C8E600EC7FDA /* fl.onepole~.cpp in Sources */,
-				B8C53CA31F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2B91F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180221F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961C41F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10829,7 +10409,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83EA819C78F9800230CD4 /* fl.vmin~.cpp in Sources */,
-				B8C53C921F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2A81F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180111F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961B31F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10847,7 +10426,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83EA719C78F9400230CD4 /* fl.vmax~.cpp in Sources */,
-				B8C53C931F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2A91F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180121F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961B41F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10865,7 +10443,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83EA619C78F9100230CD4 /* fl.sum~.cpp in Sources */,
-				B8C53C941F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2AA1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180131F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961B51F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10883,7 +10460,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83EA519C78F8800230CD4 /* fl.product~.cpp in Sources */,
-				B8C53C951F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2AB1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180141F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961B61F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10901,7 +10477,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83EA419C78F8000230CD4 /* fl.mean~.cpp in Sources */,
-				B8C53C961F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2AC1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180151F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961B71F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10919,7 +10494,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83EA319C78F7B00230CD4 /* fl.geometricmean~.cpp in Sources */,
-				B8C53C971F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2AD1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180161F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961B81F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10937,7 +10511,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83EA219C78F7700230CD4 /* fl.length~.cpp in Sources */,
-				B8C53C981F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2AE1F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8F180171F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,
 				B8B961B91F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
@@ -10955,7 +10528,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F83EB019C79CC900230CD4 /* tlsf.c in Sources */,
-				B8C53C9A1F0417F100A45A56 /* FrameLib_ConnectionQueue.cpp in Sources */,
 				B88BD2B01F03F7840045E737 /* FrameLib_DSPQueue.cpp in Sources */,
 				B8891CD21F2B5EA400C5C4F0 /* FrameLib_Count.cpp in Sources */,
 				B8F180191F05988F00CED8A1 /* FrameLib_Multichannel.cpp in Sources */,

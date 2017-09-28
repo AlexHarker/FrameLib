@@ -505,7 +505,7 @@ inline void FrameLib_DSP::releaseOutputMemory()
 
 // Connection Updating
 
-void FrameLib_DSP::connectionUpdate()
+void FrameLib_DSP::connectionUpdate(Queue *queue)
 {
     std::vector <FrameLib_DSP *>::iterator it;
     

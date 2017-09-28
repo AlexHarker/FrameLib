@@ -32,19 +32,6 @@ FrameLib_LocalAllocator *FrameLib_Global::getAllocator(void *reference)
     return allocator;
 }
 
-FrameLib_ConnectionQueue *FrameLib_Global::getConnectionQueue(void *reference)
-{
-    FrameLib_ConnectionQueue *queue = mConnectionQueues.find(reference);
-    
-    if (!queue)
-    {
-        queue = new FrameLib_ConnectionQueue();
-        mConnectionQueues.add(queue, reference);
-    }
-    
-    return queue;
-}
-
 FrameLib_DSPQueue *FrameLib_Global::getDSPQueue(void *reference)
 {
     FrameLib_DSPQueue *queue = mDSPQueues.find(reference);
@@ -63,11 +50,6 @@ FrameLib_DSPQueue *FrameLib_Global::getDSPQueue(void *reference)
 void FrameLib_Global::releaseAllocator(void *reference)
 {
     mLocalAllocators.release(reference);
-}
-
-void FrameLib_Global::releaseConnectionQueue(void *reference)
-{
-    mConnectionQueues.release(reference);
 }
 
 void FrameLib_Global::releaseDSPQueue(void *reference)

@@ -5,7 +5,6 @@
 #include "FrameLib_Context.h"
 #include "FrameLib_Object.h"
 #include "FrameLib_DSP.h"
-#include "FrameLib_ConnectionQueue.h"
 #include <algorithm>
 #include <vector>
 
@@ -13,7 +12,7 @@
 
 // This abstract class allows mulitchannel connnections and the means to update the network according to the number of channels
 
-class FrameLib_MultiChannel : public FrameLib_Object<FrameLib_MultiChannel>, private FrameLib_ConnectionQueue::Item
+class FrameLib_MultiChannel : public FrameLib_Object<FrameLib_MultiChannel>
 {
     
 protected:
@@ -51,16 +50,16 @@ public:
     // Constructors
 
     FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long nIns, unsigned long nOuts)
-    : FrameLib_Object(type, context, owner, this), mQueue(context)
+    : FrameLib_Object(type, context, owner, this), mDeleted(false)
     { setIO(nIns, nOuts); }
     
-    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner) : FrameLib_Object(type, context, owner, this), mQueue(context) {}
+    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner) : FrameLib_Object(type, context, owner, this), mDeleted(false) {}
     
     // Destructor
     
     virtual ~FrameLib_MultiChannel()
     {
-        mQueue.release();
+        mDeleted = true;
         clearConnections();
     }
     
@@ -103,20 +102,24 @@ private:
     
     // Connection Methods (private)
     
-    void connectionUpdate() { if (mQueue) mQueue->add(this); }
-    virtual void outputUpdate();
+    void connectionUpdate(Queue *queue)
+    {
+        if (!mDeleted && inputUpdate())
+            outputUpdate(queue);
+    }
+
+    virtual bool inputUpdate() = 0;
+    void outputUpdate(Queue *queue);
     
 protected:
 
     // Outputs
     
     std::vector <MultiChannelOutput> mOutputs;
-
+    
 private:
     
-    // Queue
-    
-    FrameLib_Context::ConnectionQueue mQueue;
+    bool mDeleted;
 };
 
 // ************************************************************************************** //
