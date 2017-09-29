@@ -4,8 +4,8 @@
 		"appversion" : 		{
 			"major" : 7,
 			"minor" : 3,
-			"revision" : 4,
-			"architecture" : "x86",
+			"revision" : 5,
+			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
@@ -70,12 +70,12 @@
 					"fontsize" : 12.0,
 					"id" : "obj-8",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 643.0, 139.0, 217.0, 22.0 ],
+					"patching_rect" : [ 643.0, 139.0, 210.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.random~ #mode requested #length 1"
+					"text" : "fl.random~ /mode requested /length 1"
 				}
 
 			}
@@ -205,7 +205,7 @@
 					"fontsize" : 12.0,
 					"id" : "obj-23",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 399.0, 289.0, 112.0, 22.0 ],
@@ -223,9 +223,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 399.0, 176.0, 201.0, 22.0 ],
+					"patching_rect" : [ 399.0, 176.0, 198.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.samplerate~ #mode samples->ms"
+					"text" : "fl.samplerate~ /mode samples->ms"
 				}
 
 			}
@@ -284,9 +284,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 399.0, 249.0, 230.0, 22.0 ],
+					"patching_rect" : [ 399.0, 249.0, 224.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.read~ jongles #mode hermite #units ms"
+					"text" : "fl.read~ jongles /mode hermite /units ms"
 				}
 
 			}
@@ -299,9 +299,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 399.0, 139.0, 232.0, 22.0 ],
+					"patching_rect" : [ 399.0, 139.0, 226.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.count~ #mode requested #length 10000"
+					"text" : "fl.count~ /mode requested /length 10000"
 				}
 
 			}

@@ -109,7 +109,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 90.0, 296.0, 300.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.convolve~ #maxlength 32768"
+					"text" : "fl.convolve~ /maxlength 32768"
 				}
 
 			}
@@ -123,9 +123,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 371.0, 222.0, 182.0, 22.0 ],
+					"patching_rect" : [ 371.0, 222.0, 179.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.read~ jongles2 #units samples"
+					"text" : "fl.read~ jongles2 /units samples"
 				}
 
 			}
@@ -244,9 +244,9 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 351.0, 124.0, 104.0, 22.0 ],
+					"patching_rect" : [ 351.0, 124.0, 101.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.source~ #size 1"
+					"text" : "fl.source~ /size 1"
 				}
 
 			}
@@ -290,9 +290,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 90.0, 222.0, 259.0, 22.0 ],
+					"patching_rect" : [ 90.0, 222.0, 252.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.read~ jongles #mode hermite #units samples"
+					"text" : "fl.read~ jongles /mode hermite /units samples"
 				}
 
 			}
@@ -305,9 +305,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 90.0, 129.0, 232.0, 22.0 ],
+					"patching_rect" : [ 90.0, 129.0, 226.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.count~ #mode requested #length 10000"
+					"text" : "fl.count~ /mode requested /length 10000"
 				}
 
 			}
@@ -375,7 +375,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-16", 1 ],
-					"midpoints" : [ 99.5, 118.0, 403.0, 118.0 ],
+					"midpoints" : [ 99.5, 118.0, 401.5, 118.0 ],
 					"order" : 0,
 					"source" : [ "obj-1", 0 ]
 				}

@@ -365,9 +365,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 143.0, 644.0, 233.0, 22.0 ],
+					"patching_rect" : [ 143.0, 644.0, 230.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.window~ hann #compensate powoverlin"
+					"text" : "fl.window~ hann /compensate powoverlin"
 				}
 
 			}
@@ -444,9 +444,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 144.0, 177.0, 205.0, 22.0 ],
+					"patching_rect" : [ 144.0, 177.0, 202.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.window~ hann #compensate linear"
+					"text" : "fl.window~ hann /compensate linear"
 				}
 
 			}
@@ -535,9 +535,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 144.0, 220.0, 183.0, 22.0 ],
+					"patching_rect" : [ 144.0, 220.0, 182.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.fft~ #maxlength 65536"
+					"text" : "fl.fft~ /maxlength 65536"
 				}
 
 			}
@@ -551,9 +551,9 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 144.0, 137.0, 124.0, 22.0 ],
+					"patching_rect" : [ 144.0, 137.0, 121.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.source~ #size 4096"
+					"text" : "fl.source~ /size 4096"
 				}
 
 			}
@@ -636,7 +636,7 @@
 		"lines" : [ 			{
 				"patchline" : 				{
 					"destination" : [ "obj-16", 1 ],
-					"midpoints" : [ 167.5, 112.5, 206.0, 112.5 ],
+					"midpoints" : [ 167.5, 112.5, 204.5, 112.5 ],
 					"source" : [ "obj-1", 0 ]
 				}
 
@@ -721,7 +721,7 @@
 				"patchline" : 				{
 					"color" : [ 1.0, 0.0, 0.0, 1.0 ],
 					"destination" : [ "obj-27", 1 ],
-					"midpoints" : [ 317.5, 260.0, 403.5, 260.0 ],
+					"midpoints" : [ 316.5, 260.0, 403.5, 260.0 ],
 					"order" : 2,
 					"source" : [ "obj-20", 1 ]
 				}
@@ -740,7 +740,7 @@
 				"patchline" : 				{
 					"color" : [ 1.0, 0.0, 0.0, 1.0 ],
 					"destination" : [ "obj-35", 0 ],
-					"midpoints" : [ 317.5, 260.0, 550.5, 260.0 ],
+					"midpoints" : [ 316.5, 260.0, 550.5, 260.0 ],
 					"order" : 0,
 					"source" : [ "obj-20", 1 ]
 				}
@@ -750,7 +750,7 @@
 				"patchline" : 				{
 					"color" : [ 1.0, 0.0, 0.0, 1.0 ],
 					"destination" : [ "obj-9", 0 ],
-					"midpoints" : [ 317.5, 260.0, 455.5, 260.0 ],
+					"midpoints" : [ 316.5, 260.0, 455.5, 260.0 ],
 					"order" : 1,
 					"source" : [ "obj-20", 1 ]
 				}
@@ -933,7 +933,7 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "Smoother.maxpat",
-				"bootpath" : "~/Desktop/Public Alpha Demos",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/Demos",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

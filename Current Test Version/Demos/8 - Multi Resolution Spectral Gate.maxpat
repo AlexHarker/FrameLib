@@ -5,11 +5,11 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 5,
-			"architecture" : "x86",
+			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 307.0, 143.0, 522.0, 703.0 ],
+		"rect" : [ 307.0, 143.0, 532.0, 719.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -124,7 +124,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 5,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -162,12 +162,12 @@
 									"fontsize" : 12.0,
 									"id" : "obj-3",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 563.0, 119.0, 118.0, 22.0 ],
+									"patching_rect" : [ 563.0, 119.0, 114.0, 22.0 ],
 									"style" : "",
-									"text" : "fl.source~ #size 512"
+									"text" : "fl.source~ /size 512"
 								}
 
 							}
@@ -191,12 +191,12 @@
 									"fontsize" : 12.0,
 									"id" : "obj-35",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 394.0, 119.0, 124.0, 22.0 ],
+									"patching_rect" : [ 394.0, 119.0, 121.0, 22.0 ],
 									"style" : "",
-									"text" : "fl.source~ #size 1024"
+									"text" : "fl.source~ /size 1024"
 								}
 
 							}
@@ -207,12 +207,12 @@
 									"fontsize" : 12.0,
 									"id" : "obj-38",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 225.0, 119.0, 124.0, 22.0 ],
+									"patching_rect" : [ 225.0, 119.0, 121.0, 22.0 ],
 									"style" : "",
-									"text" : "fl.source~ #size 2048"
+									"text" : "fl.source~ /size 2048"
 								}
 
 							}
@@ -271,12 +271,12 @@
 									"fontsize" : 12.0,
 									"id" : "obj-43",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 56.0, 119.0, 124.0, 22.0 ],
+									"patching_rect" : [ 56.0, 119.0, 121.0, 22.0 ],
 									"style" : "",
-									"text" : "fl.source~ #size 4096"
+									"text" : "fl.source~ /size 4096"
 								}
 
 							}
@@ -355,7 +355,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-3", 1 ],
-									"midpoints" : [ 596.0, 111.0, 671.5, 111.0 ],
+									"midpoints" : [ 596.0, 111.0, 620.0, 111.0 ],
 									"source" : [ "obj-39", 0 ]
 								}
 
@@ -363,7 +363,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-35", 1 ],
-									"midpoints" : [ 431.5, 111.0, 508.5, 111.0 ],
+									"midpoints" : [ 431.5, 111.0, 454.5, 111.0 ],
 									"source" : [ "obj-40", 0 ]
 								}
 
@@ -371,7 +371,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-38", 1 ],
-									"midpoints" : [ 260.0, 111.0, 339.5, 111.0 ],
+									"midpoints" : [ 260.0, 111.0, 285.5, 111.0 ],
 									"source" : [ "obj-42", 0 ]
 								}
 
@@ -386,7 +386,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-43", 1 ],
-									"midpoints" : [ 86.5, 111.0, 170.5, 111.0 ],
+									"midpoints" : [ 86.5, 111.0, 116.5, 111.0 ],
 									"source" : [ "obj-44", 0 ]
 								}
 
@@ -461,7 +461,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 5,
-							"architecture" : "x86",
+							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
@@ -863,9 +863,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 52.0, 444.0, 233.0, 22.0 ],
+					"patching_rect" : [ 52.0, 444.0, 230.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.window~ hann #compensate powoverlin"
+					"text" : "fl.window~ hann /compensate powoverlin"
 				}
 
 			}
@@ -930,9 +930,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 52.0, 156.0, 205.0, 22.0 ],
+					"patching_rect" : [ 52.0, 156.0, 202.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.window~ hann #compensate linear"
+					"text" : "fl.window~ hann /compensate linear"
 				}
 
 			}
@@ -1008,7 +1008,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 52.0, 408.0, 139.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.ifft~ #normalise 1"
+					"text" : "fl.ifft~ /normalise 1"
 				}
 
 			}
@@ -1021,9 +1021,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 52.0, 199.0, 211.0, 22.0 ],
+					"patching_rect" : [ 52.0, 199.0, 204.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.fft~ #maxlength 65536 #normalise 1"
+					"text" : "fl.fft~ /maxlength 65536 /normalise 1"
 				}
 
 			}
@@ -1120,7 +1120,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-23", 0 ],
-					"midpoints" : [ 253.5, 240.5, 181.5, 240.5 ],
+					"midpoints" : [ 246.5, 240.5, 181.5, 240.5 ],
 					"order" : 2,
 					"source" : [ "obj-20", 1 ]
 				}
@@ -1138,7 +1138,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-27", 1 ],
-					"midpoints" : [ 253.5, 239.0, 268.5, 239.0 ],
+					"midpoints" : [ 246.5, 239.0, 268.5, 239.0 ],
 					"order" : 1,
 					"source" : [ "obj-20", 1 ]
 				}
@@ -1157,7 +1157,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-9", 0 ],
-					"midpoints" : [ 253.5, 239.5, 315.5, 239.5 ],
+					"midpoints" : [ 246.5, 239.5, 315.5, 239.5 ],
 					"order" : 0,
 					"source" : [ "obj-20", 1 ]
 				}
@@ -1266,14 +1266,14 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "BandFilter.maxpat",
-				"bootpath" : "~/Documents/Max Externals/- Huddersfield/FrameLib/Current Test Version/Demos",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/Demos",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "LinFilter.maxpat",
-				"bootpath" : "~/Documents/Max Externals/- Huddersfield/FrameLib/Current Test Version/Demos",
+				"bootpath" : "~/Documents/Max Externals/FrameLib/Current Test Version/Demos",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
