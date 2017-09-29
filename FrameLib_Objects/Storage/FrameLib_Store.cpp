@@ -12,12 +12,13 @@ FrameLib_Store::FrameLib_Store(FrameLib_Context context, FrameLib_Parameters::Se
     
     enableOrderingConnections();
 
-    mStorage = registerStorage(mParameters.getString(kName));
+    mName = mParameters.getString(kName);
+    mStorage = registerStorage(mName.c_str());
 }
 
 FrameLib_Store::~FrameLib_Store()
 {
-    releaseStorage(mParameters.getString(kName));
+    releaseStorage(mStorage);
 }
 
 // Info
@@ -39,6 +40,14 @@ std::string FrameLib_Store::inputInfo(unsigned long idx, bool verbose)
 std::string FrameLib_Store::outputInfo(unsigned long idx, bool verbose)
 {
     return "Synchronisation Output";
+}
+
+// Channel Awareness
+
+void FrameLib_Store::setChannel(unsigned long chan)
+{
+    releaseStorage(mStorage);
+    mStorage = registerStorage(numberedString(mName.c_str(), chan).c_str());
 }
 
 // Parameter Info

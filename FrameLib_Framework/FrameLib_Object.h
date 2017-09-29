@@ -346,7 +346,12 @@ protected:
     void clearAllocator() { mAllocator->clear(); }
     
     FrameLib_LocalAllocator::Storage *registerStorage(const char *name)     { return mAllocator->registerStorage(name); }
-    void releaseStorage(const char *name)                                   { mAllocator->releaseStorage(name); }
+    
+    void releaseStorage(FrameLib_LocalAllocator::Storage *&storage)
+    {
+        mAllocator->releaseStorage(storage->getName());
+        storage = NULL;
+    }
     
     // Info Helpers
     
@@ -358,12 +363,10 @@ protected:
     static  std::string formatInfo(const char *verboseStr, const char *briefStr, unsigned long idx, bool verbose)
     {
         std::string info = formatInfo(verboseStr, briefStr, verbose);
-        std::ostringstream idxStr;
-        
-        idxStr << (idx + 1);
+        std::string idxStr = numberedString("", idx + 1);
         
         for (size_t pos = info.find("#", 0); pos != std::string::npos;  pos = info.find("#", pos + 1))
-            info.replace(pos, 1, idxStr.str());
+            info.replace(pos, 1, idxStr);
         
         return info;
     }
@@ -376,6 +379,18 @@ protected:
             info.replace(pos, 1, replaceStr);
         
         return info;
+    }
+    
+    // String With Number Helper
+    
+    static  std::string numberedString(const char *str, unsigned long idx)
+    {
+        std::ostringstream outStr;
+        
+        outStr << str;
+        outStr << idx;
+        
+        return outStr.str();
     }
     
 private:
@@ -552,6 +567,10 @@ public:
     : FrameLib_Object<FrameLib_Block>(type, context, owner, this) {}
     virtual ~FrameLib_Block() {}
 
+    // Channel Awareness
+    
+    virtual void setChannel(unsigned long chan) {}
+    
     // Connection Queries
     
     virtual class FrameLib_DSP *getInputObject(unsigned long blockIdx) = 0;

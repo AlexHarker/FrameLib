@@ -191,6 +191,7 @@ public:
         // Make first block
         
         mBlocks.push_back(new T(context, serialisedParameters, owner));
+        mBlocks[0]->setChannel(0);
         
         // Copy serialised parameters for later instantiations
 
@@ -350,6 +351,7 @@ private:
                 for (unsigned long i = cChannels; i < nChannels; i++)
                 {
                     mBlocks[i] = new T(getContext(), &mSerialisedParameters, getOwner());
+                    mBlocks[i]->setChannel(i);
                     mBlocks[i]->reset(mSamplingRate, mMaxBlockSize);
                 }
             }

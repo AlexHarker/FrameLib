@@ -27,6 +27,10 @@ public:
     std::string inputInfo(unsigned long idx, bool verbose);
     std::string outputInfo(unsigned long idx, bool verbose);
     
+    // Channel Awareness
+    
+    virtual void setChannel(unsigned long chan);
+    
 private:
     
     // Object Reset and Process
@@ -39,6 +43,8 @@ private:
     FrameLib_LocalAllocator::Storage *mStorage;
     
     static ParameterInfo sParamInfo;
+    
+    std::string mName;
 };
 
 #endif

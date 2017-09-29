@@ -12,12 +12,13 @@ FrameLib_Recall::FrameLib_Recall(FrameLib_Context context, FrameLib_Parameters::
     
     enableOrderingConnections();
     
-    mStorage = registerStorage(mParameters.getString(kName));
+    mName = mParameters.getString(kName);
+    mStorage = registerStorage(mName.c_str());
 }
 
 FrameLib_Recall::~FrameLib_Recall()
 {
-    releaseStorage(mParameters.getString(kName));
+    releaseStorage(mStorage);
 }
 
 // Info
@@ -41,6 +42,14 @@ std::string FrameLib_Recall::outputInfo(unsigned long idx, bool verbose)
     return "Frame Output";
 }
 
+// Channel Awareness
+
+void FrameLib_Recall::setChannel(unsigned long chan)
+{
+    releaseStorage(mStorage);
+    mStorage = registerStorage(numberedString(mName.c_str(), chan).c_str());
+}
+
 // Parameter Info
 
 FrameLib_Recall::ParameterInfo FrameLib_Recall::sParamInfo;
@@ -49,7 +58,6 @@ FrameLib_Recall::ParameterInfo::ParameterInfo()
 {
     add("Sets the name of the memory location to use.");
 }
-
 
 // Process
 
