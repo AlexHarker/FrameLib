@@ -10,12 +10,12 @@
 #include <iostream>
 
 template <class T>
-class FrameLib_Traversable
+class FrameLib_Queueable
 {
     
 public:
     
-    FrameLib_Traversable() : mNext(NULL) {}
+    FrameLib_Queueable() : mNext(NULL) {}
     
     class Queue
     {
@@ -30,7 +30,7 @@ public:
         {
             // Do not re-add if already in queue
             
-            if (object->FrameLib_Traversable<T>::mNext != NULL)
+            if (object->FrameLib_Queueable<T>::mNext != NULL)
                 return;
             
             if (!mTop)
@@ -44,8 +44,8 @@ public:
                 {
                     object = mTop;
                     (object->*method)(this);
-                    mTop = object->FrameLib_Traversable<T>::mNext;
-                    object->FrameLib_Traversable<T>::mNext = NULL;
+                    mTop = object->FrameLib_Queueable<T>::mNext;
+                    object->FrameLib_Queueable<T>::mNext = NULL;
                 }
                 
                 mMethod = NULL;
@@ -57,7 +57,7 @@ public:
                 
                 // Add to the queue (which is already processing)
                 
-                mTail->FrameLib_Traversable<T>::mNext = object;
+                mTail->FrameLib_Queueable<T>::mNext = object;
                 mTail = object;
             }
         }
@@ -88,29 +88,29 @@ private:
 // This abstract template class outlines the basic functionality that objects (blocks / DSP / multichannel must provide)
 
 template <class T>
-class FrameLib_Object : public FrameLib_Traversable<T>
+class FrameLib_Object : public FrameLib_Queueable<T>
 {
-    struct InputConnection
+    struct Connection
     {
-        InputConnection() : mObject(NULL), mIndex(0) {}
-        InputConnection(T *object, unsigned long index) : mObject(object), mIndex(index) {}
+        Connection() : mObject(NULL), mIndex(0) {}
+        Connection(T *object, unsigned long index) : mObject(object), mIndex(index) {}
         
         T *mObject;
         unsigned long mIndex;
     };
     
     typedef typename std::vector< T *>::iterator ObjectIterator;
-    typedef typename std::vector< InputConnection>::iterator ConnectionIterator;
-    typedef typename std::vector< InputConnection>::const_iterator ConstConnectionIterator;
+    typedef typename std::vector< Connection>::iterator ConnectionIterator;
+    typedef typename std::vector< Connection>::const_iterator ConstConnectionIterator;
     
 public:
 
-    typedef typename FrameLib_Traversable<T>::Queue Queue;
+    typedef typename FrameLib_Queueable<T>::Queue Queue;
 
     // Constructor / Destructor
     
     FrameLib_Object(ObjectType type, FrameLib_Context context, void *owner, T *parent)
-    : mType(type), mContext(context), mOwner(owner), mParent(parent), mNumIns(0), mNumOuts(0), mNumAudioChans(0), mSupportsDependencyConnections(false), mFeedback(false) {}
+    : mType(type), mContext(context), mOwner(owner), mParent(parent), mNumIns(0), mNumOuts(0), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
     virtual ~FrameLib_Object() {}
    
     // Object Type
@@ -173,14 +173,14 @@ public:
         {
             // Store data about connection and reset the dependency count
             
-            T *prevObject = mInputConnections[inIdx].mObject;
-            mInputConnections[inIdx] = InputConnection(object, outIdx);
+            T *prevObject = mConnections[inIdx].mObject;
+            mConnections[inIdx] = Connection(object, outIdx);
             
             // Update dependencies if the connection is now from a different object
             
             if (prevObject != object)
             {
-                removeInputDependency(&queue, prevObject);
+                connectionRemoved(&queue, prevObject);
                 object->addOutputDependency(&queue, mParent);
             }
            
@@ -198,10 +198,10 @@ public:
         connectionUpdate(&queue);
     }
     
-    ConnectionResult addDependencyConnection(T *object, unsigned long outIdx)
+    ConnectionResult addOrderingConnection(T *object, unsigned long outIdx)
     {
-        if (!supportsDependencyConnections())
-            return kConnectNoDependencySupport;
+        if (!supportsOrderingConnections())
+            return kConnectNoOrderingSupport;
             
         ConnectionResult result = connectionCheck(object);
         Queue queue;
@@ -210,13 +210,13 @@ public:
         {
             // If already connected there is nothing to do
         
-            for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
+            for (ConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); it++)
                 if (it->mObject == object && it->mIndex == outIdx)
                     return kConnectSuccess;
 
-            // Add the dependency connection
+            // Add the ordering connection
             
-            mDependencyConnections.push_back(InputConnection(object, outIdx));
+            mOrderingConnections.push_back(Connection(object, outIdx));
 
             // Update dependencies
             
@@ -228,15 +228,15 @@ public:
         return result;
     }
     
-    void deleteDependencyConnection(T *object, unsigned long outIdx)
+    void deleteOrderingConnection(T *object, unsigned long outIdx)
     {
         Queue queue;
 
-        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
+        for (ConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); it++)
         {
             if (it->mObject == object && it->mIndex == outIdx)
             {
-                deleteDependencyConnection(&queue, it);
+                deleteOrderingConnection(&queue, it);
                 break;
             }
         }
@@ -244,11 +244,11 @@ public:
         connectionUpdate(&queue);
     }
     
-    void clearDependencyConnections()
+    void clearOrderingConnections()
     {
         Queue queue;
 
-        deleteDependencyConnections(&queue);
+        deleteOrderingConnections(&queue);
         connectionUpdate(&queue);
     }
     
@@ -256,16 +256,16 @@ public:
     {
         Queue queue;
 
-        // Remove input connections
+        // Clear input connections
         
-        for (unsigned long i = 0; i < mInputConnections.size(); i++)
+        for (unsigned long i = 0; i < mConnections.size(); i++)
             clearConnection(&queue, i);
         
-        // Remove dependency connections
+        // Delete ordering connections
         
-        deleteDependencyConnections(&queue);
+        deleteOrderingConnections(&queue);
         
-        // Remove output connections
+        // Delete output dependencies
         
         for (ObjectIterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); )
         {
@@ -278,31 +278,34 @@ public:
     
     bool isConnected(unsigned long inIdx) const
     {
-        return mInputConnections[inIdx].mObject != NULL;
+        return mConnections[inIdx].mObject != NULL;
     }
 
-    virtual void autoDependencyConnect() = 0;
-    virtual void clearAutoDependencyConnect() = 0;
+    virtual void autoOrderingConnections() = 0;
+    virtual void clearAutoOrderingConnections() = 0;
 
     // Connection Access
     
-    bool isDependencyConnection(T *object) const
+    T *getConnection(unsigned long idx) const                           { return mConnections[idx].mObject; }
+    unsigned long getConnectionIdx(unsigned long idx) const             { return mConnections[idx].mIndex; }
+    
+    bool supportsOrderingConnections() const                            { return mSupportsOrderingConnections; }
+    unsigned long getNumOrderingConnections() const                     { return mOrderingConnections.size(); }
+    T *getOrderingConnection(unsigned long idx) const                   { return mOrderingConnections[idx].mObject; }
+    unsigned long getOrderingConnectionIdx(unsigned long idx) const     { return mOrderingConnections[idx].mIndex; }
+    
+    bool isOrderingConnection(T *object) const
     {
-        for (ConstConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
+        for (ConstConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); it++)
             if (it->mObject == object)
                 return true;
-                
+        
         return false;
     }
     
-    bool supportsDependencyConnections() const                          { return mSupportsDependencyConnections; }
     unsigned long getNumOutputDependencies() const                      { return mOutputDependencies.size(); }
     T *getOutputDependency(unsigned long idx) const                     { return mOutputDependencies[idx]; }
-    unsigned long getNumDependencyConnections() const                   { return mDependencyConnections.size(); }
-    T *getDependencyConnection(unsigned long idx) const                 { return mDependencyConnections[idx].mObject; }
-    unsigned long getDependencyConnectionIdx(unsigned long idx) const   { return mDependencyConnections[idx].mIndex; }
-    T *getInputConnection(unsigned long idx) const                      { return mInputConnections[idx].mObject; }
-    unsigned long getInputConnectionIdx(unsigned long idx) const        { return mInputConnections[idx].mIndex; }
+    
     
 protected:
     
@@ -314,12 +317,12 @@ protected:
         mNumOuts = nOuts;
         mNumAudioChans = nAudioChans;
         
-        mInputConnections.resize(mNumIns);
+        mConnections.resize(mNumIns);
     }
     
-    // Dependency Setup
+    // Ordering Setup
     
-    void enableDependencyConnections()                         { mSupportsDependencyConnections = true; }
+    void enableOrderingConnections()                         { mSupportsOrderingConnections = true; }
 
     // Info Helpers
     
@@ -385,7 +388,7 @@ private:
         connectionUpdate(queue);
     }
     
-    void removeOutputDependency(Queue *queue, T *object)
+    void deleteOutputDependency(Queue *queue, T *object)
     {
         for (ObjectIterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
         {
@@ -398,66 +401,68 @@ private:
         }
     }
     
-    // Remove  one connection to this object (before replacement / deletion)
+    // Check whether a removed object is still connected somewhere, and if not update it's output dependencies
     
-    void removeInputDependency(Queue *queue, T * object)
+    void connectionRemoved(Queue *queue, T * object)
     {
-        // Check that there is an object connected and that it is not connected to another input /dependency connection also
+        // Check that there is an object connected and that it is not connected to another input / ordering connection also
         
          if (!object)
              return;
         
-        for (ConnectionIterator it = mInputConnections.begin(); it != mInputConnections.end(); it++)
+        for (ConnectionIterator it = mConnections.begin(); it != mConnections.end(); it++)
             if (it->mObject == object)
                 return;
         
-        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
+        for (ConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); it++)
             if (it->mObject == object)
                 return;
         
         // Update dependencies
         
-        object->removeOutputDependency(queue, mParent);
+        object->deleteOutputDependency(queue, mParent);
     }
     
-    // Remove connection and set to defaults
+    // Delete connection and set to defaults
     
     void clearConnection(Queue *queue, unsigned long inIdx)
     {
-        T *prevObject = mInputConnections[inIdx].mObject;
-        mInputConnections[inIdx] = InputConnection();
-        removeInputDependency(queue, prevObject);
+        T *prevObject = mConnections[inIdx].mObject;
+        mConnections[inIdx] = Connection();
+        connectionRemoved(queue, prevObject);
     }
     
-    // Remove dependency connection
+    // Delete ordering connection
     
-    ConnectionIterator deleteDependencyConnection(Queue *queue, ConnectionIterator it)
+    ConnectionIterator deleteOrderingConnection(Queue *queue, ConnectionIterator it)
     {
         T *object = it->mObject;
-        it = mDependencyConnections.erase(it);
-        removeInputDependency(queue, object);
+        it = mOrderingConnections.erase(it);
+        connectionRemoved(queue, object);
         
         return it;
     }
     
-    void deleteDependencyConnections(Queue *queue)
+    // Delete all ordering connections
+
+    void deleteOrderingConnections(Queue *queue)
     {
-        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); )
-            it = deleteDependencyConnection(queue, it);
+        for (ConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); )
+            it = deleteOrderingConnection(queue, it);
     }
 
     // Remove all connections from a single object
     
     void disconnect(Queue *queue, T *object)
     {
-        for (ConnectionIterator it = mInputConnections.begin(); it != mInputConnections.end(); it++)
+        for (ConnectionIterator it = mConnections.begin(); it != mConnections.end(); it++)
             if (it->mObject == object)
-                *it = InputConnection();
+                *it = Connection();
         
-        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); )
+        for (ConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); )
         {
             if (it->mObject == object)
-                it = mDependencyConnections.erase(it);
+                it = mOrderingConnections.erase(it);
             else
                 it++;
         }
@@ -497,11 +502,11 @@ private:
     
     // Connections
 
-    std::vector<InputConnection> mDependencyConnections;
-    std::vector<InputConnection> mInputConnections;
+    std::vector<Connection> mOrderingConnections;
+    std::vector<Connection> mConnections;
     std::vector<T *> mOutputDependencies;
     
-    bool mSupportsDependencyConnections;
+    bool mSupportsOrderingConnections;
     bool mFeedback;
 };
 
@@ -525,10 +530,12 @@ public:
     // Connection Queries
     
     virtual class FrameLib_DSP *getInputObject(unsigned long blockIdx) = 0;
-    virtual class FrameLib_DSP *getOutputObject(unsigned long blockIdx) = 0;
     virtual unsigned long getInputObjectIdx(unsigned long blockIdx) = 0;
-    virtual unsigned long getNumDependencyConnectionObjects() = 0;
-    virtual class FrameLib_DSP *getDependencyConnectionObject(unsigned long idx) = 0;
+
+    virtual class FrameLib_DSP *getOutputObject(unsigned long blockIdx) = 0;
+
+    virtual unsigned long getNumOrderingConnectionObjects() = 0;
+    virtual class FrameLib_DSP *getOrderingConnectionObject(unsigned long idx) = 0;
 };
 
 #endif

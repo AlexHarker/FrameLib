@@ -23,6 +23,6 @@ typedef FL_FP FrameLib_TimeFormat;
 
 enum ObjectType { kOutput, kProcessor, kScheduler };
 enum FrameType { kFrameAny, kFrameNormal, kFrameTagged };
-enum ConnectionResult { kConnectSuccess, kConnectWrongContext, kConnectSelfConnection, kConnectFeedbackDetected, kConnectNoDependencySupport };
+enum ConnectionResult { kConnectSuccess, kConnectWrongContext, kConnectSelfConnection, kConnectFeedbackDetected, kConnectNoOrderingSupport };
 
 #endif

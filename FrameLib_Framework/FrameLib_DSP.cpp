@@ -531,19 +531,19 @@ void FrameLib_DSP::connectionUpdate(Queue *queue)
 
     // Build the input list
     
-    mInputs.resize(getNumIns() + getNumDependencyConnections());
+    mInputs.resize(getNumIns() + getNumOrderingConnections());
 
-    for (unsigned long i = 0; i < getNumIns() + getNumDependencyConnections(); i++)
+    for (unsigned long i = 0; i < getNumIns() + getNumOrderingConnections(); i++)
     {
-        // Make sure that dependency inputs are set correctly
+        // Make sure that ordering inputs are set correctly
         
         if (i >= getNumIns())
             inputMode(i, false, false, false);
 
         // Add the DSP object connection details to the input
         
-        FrameLib_Block *blockIn = i < getNumIns() ? getInputConnection(i) : getDependencyConnection(i - getNumIns());
-        unsigned long inIdx = i <  getNumIns() ? getInputConnectionIdx(i) : getDependencyConnectionIdx(i - getNumIns());
+        FrameLib_Block *blockIn = i < getNumIns() ? getConnection(i) : getOrderingConnection(i - getNumIns());
+        unsigned long inIdx = i <  getNumIns() ? getConnectionIdx(i) : getOrderingConnectionIdx(i - getNumIns());
         
         mInputs[i].mObject = blockIn ? blockIn->getInputObject(inIdx) : NULL;
         mInputs[i].mIndex = blockIn ? blockIn->getInputObjectIdx(inIdx) : NULL;;
@@ -570,14 +570,14 @@ void FrameLib_DSP::connectionUpdate(Queue *queue)
         // Look at each input for a possible match
         
         for (unsigned long i = 0; i < blockObject->getNumIns(); i++)
-            if (this == blockObject->getInputConnection(i))
+            if (this == blockObject->getConnection(i))
                 addOutputDependency(blockObject->getInputObject(i));
         
-        // Look at dependency connections
+        // Look at ordering connections
         
-        if (blockObject->isDependencyConnection(this))
-            for (unsigned long i = 0; i < blockObject->getNumDependencyConnectionObjects(); i++)
-                addOutputDependency(blockObject->getDependencyConnectionObject(i));
+        if (blockObject->isOrderingConnection(this))
+            for (unsigned long i = 0; i < blockObject->getNumOrderingConnectionObjects(); i++)
+                addOutputDependency(blockObject->getOrderingConnectionObject(i));
     }
 }
 
@@ -593,22 +593,22 @@ void FrameLib_DSP::addOutputDependency(FrameLib_DSP *object)
         mOutputDependencies.push_back(object);
 }
 
-void FrameLib_DSP::autoDependencyConnect()
+void FrameLib_DSP::autoOrderingConnections()
 {
-     if (supportsDependencyConnections())
-         LocalQueue(this, &FrameLib_DSP::autoDependencyConnect);
+     if (supportsOrderingConnections())
+         LocalQueue(this, &FrameLib_DSP::autoOrderingConnections);
 }
 
-void FrameLib_DSP::autoDependencyConnect(LocalQueue *queue)
+void FrameLib_DSP::autoOrderingConnections(LocalQueue *queue)
 {
-    if (supportsDependencyConnections() && queue->getFirst())
-        addDependencyConnection(queue->getFirst(), 0);
+    if (supportsOrderingConnections() && queue->getFirst())
+        addOrderingConnection(queue->getFirst(), 0);
         
     for (std::vector <FrameLib_DSP *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-        queue->add(*it, &FrameLib_DSP::autoDependencyConnect);
+        queue->add(*it, &FrameLib_DSP::autoOrderingConnections);
 }
 
-void FrameLib_DSP::clearAutoDependencyConnect()
+void FrameLib_DSP::clearAutoOrderingConnections()
 {
     Queue queue;
     connectionUpdate(&queue);

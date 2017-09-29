@@ -14,12 +14,12 @@
 
 // This abstract class is the core of the DSP processing system and handles low level single channel connections and timing
 
-class FrameLib_DSP : public FrameLib_Block, public FrameLib_Traversable<FrameLib_DSP>
+class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_DSP>
 {
     // Type definition for concision / Queue access
 
-    typedef FrameLib_Traversable<FrameLib_Block>::Queue Queue;
-    typedef FrameLib_Traversable<FrameLib_DSP>::Queue LocalQueue;
+    typedef FrameLib_Queueable<FrameLib_Block>::Queue Queue;
+    typedef FrameLib_Queueable<FrameLib_DSP>::Queue LocalQueue;
     typedef FrameLib_Parameters::Serial Serial;
     friend class FrameLib_DSPQueue;   
     
@@ -100,9 +100,9 @@ public:
     virtual FrameType inputType(unsigned long idx) const  { return mInputs[idx].mType; }
     virtual FrameType outputType(unsigned long idx) const { return mOutputs[idx].mType; }
 
-    // Automatic Dependency Connections
+    // Automatic Oredering Connections
     
-    virtual void autoDependencyConnect();
+    virtual void autoOrderingConnections();
 
 protected:
         
@@ -159,10 +159,12 @@ protected:
     // Get DSP Object for a Given Input/Output
 
     FrameLib_DSP *getInputObject(unsigned long blockIdx)                { return this; }
-    FrameLib_DSP *getOutputObject(unsigned long blockIdx)               { return this; }
-    unsigned long getNumDependencyConnectionObjects()                   { return 1; }
-    FrameLib_DSP *getDependencyConnectionObject(unsigned long idx)      { return this; }
     virtual unsigned long getInputObjectIdx(unsigned long blockIdx)     { return blockIdx; }
+    
+    FrameLib_DSP *getOutputObject(unsigned long blockIdx)               { return this; }
+    
+    unsigned long getNumOrderingConnectionObjects()                     { return 1; }
+    FrameLib_DSP *getOrderingConnectionObject(unsigned long idx)        { return this; }
 
 private:
     
@@ -219,8 +221,8 @@ private:
     
     virtual void connectionUpdate(Queue *queue);
     void addOutputDependency(FrameLib_DSP *object);
-    virtual void autoDependencyConnect(LocalQueue *queue);
-    virtual void clearAutoDependencyConnect();
+    virtual void autoOrderingConnections(LocalQueue *queue);
+    virtual void clearAutoOrderingConnections();
 
 protected:
    

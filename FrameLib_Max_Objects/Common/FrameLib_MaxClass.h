@@ -288,7 +288,7 @@ public:
         
         T *internal = internalObject();
         
-        long numIns = internal->getNumIns() + (internal->supportsDependencyConnections() ? 1 : 0);
+        long numIns = internal->getNumIns() + (internal->supportsOrderingConnections() ? 1 : 0);
         long numOuts = internal->getNumOuts();
         long numAudioIns = internal->getNumAudioIns();
         long numAudioOuts = internal->getNumAudioOuts();
@@ -456,8 +456,8 @@ public:
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
         addMethod(c, (method) &externalResolveConnections, "__fl.resolve_connections");
-        addMethod(c, (method) &externalAutoDependencyConnect, "__fl.auto_dependency_connect");
-        addMethod(c, (method) &externalClearAutoDependencyConnect, "__fl.clear_auto_dependency_connect");
+        addMethod(c, (method) &externalAutoOrderingConnections, "__fl.auto_ordering_connections");
+        addMethod(c, (method) &externalClearAutoOrderingConnections, "__fl.clear_auto_ordering_connections");
         addMethod(c, (method) &externalIsConnected, "__fl.is_connected");
         addMethod(c, (method) &externalConnectionConfirm, "__fl.connection_confirm");
         addMethod(c, (method) &externalGetInternalObject, "__fl.get_internal_object");
@@ -479,7 +479,7 @@ public:
         mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mTopLevelPatch), &serialisedParameters, this);
         parseInputs(argc, argv);
         
-        long numIns = getNumIns() + (supportsDependencyConnections() ? 1 : 0);
+        long numIns = getNumIns() + (supportsOrderingConnections() ? 1 : 0);
 
         mInputs.resize(numIns);
         mOutputs.resize(getNumOuts());
@@ -541,8 +541,8 @@ public:
                 sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
             else
             {
-                if (supportsDependencyConnections() && a == getNumAudioIns() + getNumIns())
-                    sprintf(s,"(frame) Dependency Input");
+                if (supportsOrderingConnections() && a == getNumAudioIns() + getNumIns())
+                    sprintf(s,"(frame) Ordering Input");
                 else
                     sprintf(s,"(frame) %s", mObject->inputInfo(a - getNumAudioIns()).c_str());
             }
@@ -594,8 +594,8 @@ public:
                 object_post(mUserObject, "Audio Input %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
             for (long i = 0; i < mObject->getNumIns(); i++)
                 object_post(mUserObject, "Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose).c_str());
-            if (supportsDependencyConnections())
-                object_post(mUserObject, "Dependency Input [%s]: Connect to ensure ordering", frameTypeString(kFrameAny));
+            if (supportsOrderingConnections())
+                object_post(mUserObject, "Ordering Input [%s]: Connect to ensure ordering", frameTypeString(kFrameAny));
         }
         
         if (flags & kInfoOutputs)
@@ -662,7 +662,7 @@ public:
 
     // IO Helpers
     
-    bool supportsDependencyConnections()    { return mObject->supportsDependencyConnections(); }
+    bool supportsOrderingConnections()    { return mObject->supportsOrderingConnections(); }
     
     long getNumAudioIns()   { return (long) mObject->getNumAudioIns() + (T::handlesAudio() ? 1 : 0); }
     long getNumAudioOuts()  { return (long) mObject->getNumAudioOuts() + (T::handlesAudio() ? 1 : 0); }
@@ -705,8 +705,8 @@ public:
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && T::handlesAudio && mNeedsResolve)
         {
             traversePatch(mTopLevelPatch, gensym("__fl.resolve_connections"));
-            traversePatch(mTopLevelPatch, gensym("__fl.clear_auto_dependency_connect"));
-            traversePatch(mTopLevelPatch, gensym("__fl.auto_dependency_connect"));
+            traversePatch(mTopLevelPatch, gensym("__fl.clear_auto_ordering_connections"));
+            traversePatch(mTopLevelPatch, gensym("__fl.auto_ordering_connections"));
         }
         
         if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
@@ -721,11 +721,11 @@ public:
             {
                 for (unsigned long i = 0; i < getNumIns(); i++)
                     if (mObject->isConnected(i))
-                        object_method(mObject->getInputConnection(i)->getOwner(), gensym("sync"));
+                        object_method(mObject->getConnection(i)->getOwner(), gensym("sync"));
                 
-                if (supportsDependencyConnections())
-                    for (unsigned long i = 0; i < mObject->getNumDependencyConnections(); i++)
-                        object_method(mObject->getDependencyConnection(i)->getOwner(), gensym("sync"));
+                if (supportsOrderingConnections())
+                    for (unsigned long i = 0; i < mObject->getNumOrderingConnections(); i++)
+                        object_method(mObject->getOrderingConnection(i)->getOwner(), gensym("sync"));
                 
                 mSyncChecker.restoreMode();
             }
@@ -778,14 +778,14 @@ public:
         x->resolveConnections();
     }
                                
-    static void externalAutoDependencyConnect(FrameLib_MaxClass *x)
+    static void externalAutoOrderingConnections(FrameLib_MaxClass *x)
     {
-        x->mObject->autoDependencyConnect();
+        x->mObject->autoOrderingConnections();
     }
     
-    static void externalClearAutoDependencyConnect(FrameLib_MaxClass *x)
+    static void externalClearAutoOrderingConnections(FrameLib_MaxClass *x)
     {
-        x->mObject->clearAutoDependencyConnect();
+        x->mObject->clearAutoOrderingConnections();
     }
 
     static t_ptr_int externalIsConnected(FrameLib_MaxClass *x, unsigned long index)
@@ -875,10 +875,10 @@ private:
             for (unsigned long i = 0; i < getNumIns(); i++)
                 confirmConnection(i, ConnectionInfo::kConfirm);
             
-            // Confirm dependency connections
+            // Confirm ordering connections
             
-            for (unsigned long i = 0; i < mObject->getNumDependencyConnections(); i++)
-                confirmConnection(mObject->getDependencyConnection(i), mObject->getDependencyConnectionIdx(i), getNumIns(), ConnectionInfo::kConfirm);
+            for (unsigned long i = 0; i < mObject->getNumOrderingConnections(); i++)
+                confirmConnection(mObject->getOrderingConnection(i), mObject->getOrderingConnectionIdx(i), getNumIns(), ConnectionInfo::kConfirm);
             
             // Make output connections
             
@@ -903,7 +903,7 @@ private:
         if (!validInput(inIndex))
             return false;
         
-        return confirmConnection(getInputConnection(inIndex), getInputConnectionIdx(inIndex), inIndex, mode);
+        return confirmConnection(getConnection(inIndex), getConnectionIdx(inIndex), inIndex, mode);
     }
     
     bool confirmConnection(void *object, unsigned long outIndex, unsigned long inIndex, ConnectionInfo::Mode mode)
@@ -934,26 +934,26 @@ private:
     
     bool validInput(long index, FrameLib_MultiChannel *object)      { return object && index >= 0 && index < object->getNumIns(); }
     bool validOutput(long index, FrameLib_MultiChannel *object)     { return object && index >= 0 && index < object->getNumOuts(); }
-    bool dependencyInput(long index, FrameLib_MultiChannel *object) { return object && object->supportsDependencyConnections() && index == object->getNumIns(); }
+    bool isOrderingInput(long index, FrameLib_MultiChannel *object) { return object && object->supportsOrderingConnections() && index == object->getNumIns(); }
     bool validInput(long index)                                     { return validInput(index, mObject); }
     bool validOutput(long index)                                    { return validOutput(index, mObject); }
-    bool dependencyInput(long index)                                { return dependencyInput(index, mObject); }
+    bool isOrderingInput(long index)                                { return isOrderingInput(index, mObject); }
     
-    t_object *getInputConnection(long index)                        { return (t_object *) (mObject->isConnected(index) ? mObject->getInputConnection(index)->getOwner() : NULL); }
-    unsigned long getInputConnectionIdx(long index)                 { return mObject->getInputConnectionIdx(index); }
-    bool matchConnection(t_object *src, long outIdx, long inIdx)    { return getInputConnection(inIdx) == src && getInputConnectionIdx(inIdx) == outIdx; }
+    t_object *getConnection(long index)                        { return (t_object *) (mObject->isConnected(index) ? mObject->getConnection(index)->getOwner() : NULL); }
+    unsigned long getConnectionIdx(long index)                 { return mObject->getConnectionIdx(index); }
+    bool matchConnection(t_object *src, long outIdx, long inIdx)    { return getConnection(inIdx) == src && getConnectionIdx(inIdx) == outIdx; }
     
     void connect(t_object *src, long outIdx, long inIdx)
     {
         FrameLib_MultiChannel *object = getInternalObject(src);
         
-        if (!dependencyInput(inIdx) && (!validInput(inIdx) || !validOutput(outIdx, object) || matchConnection(src, outIdx, inIdx) || confirmConnection(inIdx, ConnectionInfo::kDoubleCheck)))
+        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !validOutput(outIdx, object) || matchConnection(src, outIdx, inIdx) || confirmConnection(inIdx, ConnectionInfo::kDoubleCheck)))
             return;
 
         ConnectionResult result;
         
-        if (dependencyInput(inIdx))
-            result = mObject->addDependencyConnection(object, outIdx);
+        if (isOrderingInput(inIdx))
+            result = mObject->addOrderingConnection(object, outIdx);
         else
             result = mObject->addConnection(object, outIdx, inIdx);
 
@@ -972,7 +972,7 @@ private:
                 break;
                 
             case kConnectSuccess:
-            case kConnectNoDependencySupport:
+            case kConnectNoOrderingSupport:
                 break;
         }
     }
@@ -981,11 +981,11 @@ private:
     {
         FrameLib_MultiChannel *object = getInternalObject(src);
 
-        if (!dependencyInput(inIdx) && (!validInput(inIdx) || !matchConnection(src, outIdx, inIdx)))
+        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !matchConnection(src, outIdx, inIdx)))
             return;
         
-        if (dependencyInput(inIdx))
-            mObject->deleteDependencyConnection(object, outIdx);
+        if (isOrderingInput(inIdx))
+            mObject->deleteOrderingConnection(object, outIdx);
         else
             mObject->deleteConnection(inIdx);
     }
@@ -1008,7 +1008,7 @@ private:
             srcout -= (long) object_method(src, gensym("__fl.get_num_audio_outs"));
             dstin -= getNumAudioIns();
             
-            if ((dependencyInput(dstin) || validInput(dstin)) && updatetype != JPATCHLINE_ORDER)
+            if ((isOrderingInput(dstin) || validInput(dstin)) && updatetype != JPATCHLINE_ORDER)
                 dspchain_setbroken(dspchain_fromobject(*this));
             
             switch (updatetype)
@@ -1042,7 +1042,7 @@ private:
         unwrapConnection(dst, dstin);
         dstin -= (long) object_method(dst, gensym("__fl.get_num_audio_ins"));
         
-        if (dependencyInput(dstin, getInternalObject(dst)) || (validInput(dstin, getInternalObject(dst)) && !object_method(dst, gensym("__fl.is_connected"), dstin)))
+        if (isOrderingInput(dstin, getInternalObject(dst)) || (validInput(dstin, getInternalObject(dst)) && !object_method(dst, gensym("__fl.is_connected"), dstin)))
             return 1;
         
         return 0;

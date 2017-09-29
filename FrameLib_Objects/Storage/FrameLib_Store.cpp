@@ -10,7 +10,7 @@ FrameLib_Store::FrameLib_Store(FrameLib_Context context, FrameLib_Parameters::Se
         
     mParameters.set(serialisedParameters);
     
-    enableDependencyConnections();
+    enableOrderingConnections();
 
     mStorage = mAllocator->registerStorage(mParameters.getString(kName));
 }

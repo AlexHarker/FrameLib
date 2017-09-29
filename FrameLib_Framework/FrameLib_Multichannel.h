@@ -90,8 +90,8 @@ protected:
     
     unsigned long getInputNumChans(unsigned long inIdx);
     ConnectionInfo getInputChan(unsigned long inIdx, unsigned long chan);
-    unsigned long getDependencyConnectionNumChans(unsigned long idx);
-    ConnectionInfo getDependencyConnectionChan(unsigned long idx, unsigned long chan);
+    unsigned long getOrderingConnectionNumChans(unsigned long idx);
+    ConnectionInfo getOrderingConnectionChan(unsigned long idx, unsigned long chan);
 
 private:
 
@@ -147,8 +147,8 @@ public:
     virtual FrameType inputType(unsigned long idx) const { return kFrameAny; }
     virtual FrameType outputType(unsigned long idx) const { return kFrameAny; }
     
-    virtual void autoDependencyConnect() {}
-    virtual void clearAutoDependencyConnect() {}
+    virtual void autoOrderingConnections() {}
+    virtual void clearAutoOrderingConnections() {}
     
 private:
     
@@ -184,8 +184,8 @@ public:
     virtual FrameType inputType(unsigned long idx) const { return kFrameAny; }
     virtual FrameType outputType(unsigned long idx) const { return kFrameAny; }
     
-    virtual void autoDependencyConnect() {}
-    virtual void clearAutoDependencyConnect() {}
+    virtual void autoOrderingConnections() {}
+    virtual void clearAutoOrderingConnections() {}
     
 private:
     
@@ -227,10 +227,10 @@ public:
         for (unsigned long i = 0; i < getNumOuts(); i++)
             mOutputs[i].mConnections.push_back(ConnectionInfo(mBlocks[0], i));
         
-        // Check for dependency support
+        // Check for ordering support
         
-        if (mBlocks[0]->supportsDependencyConnections())
-            enableDependencyConnections();
+        if (mBlocks[0]->supportsOrderingConnections())
+            enableOrderingConnections();
         
         reset(0.0, 4096);
     }
@@ -320,16 +320,16 @@ public:
     
     virtual const FrameLib_Parameters *getParameters()  const       { return mBlocks[0]->getParameters(); }
 
-    virtual void autoDependencyConnect()
+    virtual void autoOrderingConnections()
     {
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
-            (*it)->autoDependencyConnect();
+            (*it)->autoOrderingConnections();
     }
 
-    virtual void clearAutoDependencyConnect()
+    virtual void clearAutoOrderingConnections()
     {
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
-            (*it)->clearAutoDependencyConnect();
+            (*it)->clearAutoOrderingConnections();
     }
 
 private:
@@ -415,21 +415,21 @@ private:
             }
         }
         
-        // Clear dependency connections
+        // Clear ordering connections
         
         for (unsigned long j = 0; j < nChannels; j++)
-            mBlocks[j]->clearDependencyConnections();
+            mBlocks[j]->clearOrderingConnections();
         
-        // Make dependency connections
+        // Make ordering connections
         
-        for (unsigned long i = 0; i < getNumDependencyConnections(); i++)
+        for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
         {
-            if (getDependencyConnectionNumChans(i))
+            if (getOrderingConnectionNumChans(i))
             {
                 for (unsigned long j = 0; j < nChannels; j++)
                 {
-                    ConnectionInfo connection = getDependencyConnectionChan(i, j % getDependencyConnectionNumChans(i));
-                    mBlocks[j]->addDependencyConnection(connection.mObject, connection.mIndex);
+                    ConnectionInfo connection = getOrderingConnectionChan(i, j % getOrderingConnectionNumChans(i));
+                    mBlocks[j]->addOrderingConnection(connection.mObject, connection.mIndex);
                 }
             }
         }
