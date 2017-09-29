@@ -126,7 +126,7 @@ void FrameLib_iFFT::process()
     }
     else
     {
-        spectrum.realp = (double *) (sizeOut ? mAllocator->alloc(sizeOut * sizeof(double)) : NULL);
+        alloc(spectrum.realp, sizeOut ? sizeOut * sizeof(double) : 0);
         spectrum.imagp = spectrum.realp + (sizeOut >> 1);
         
         spectrumSize = sizeOut >> 1;
@@ -176,7 +176,7 @@ void FrameLib_iFFT::process()
             for (unsigned long i = 0; i < sizeOut; i++)
                 outputR[i] *= scale;
         
-            mAllocator->dealloc(spectrum.realp);
+            dealloc(spectrum.realp);
         }
     }
 }

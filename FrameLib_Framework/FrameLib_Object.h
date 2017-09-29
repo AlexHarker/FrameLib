@@ -313,7 +313,6 @@ public:
     unsigned long getNumOutputDependencies() const                      { return mOutputDependencies.size(); }
     T *getOutputDependency(unsigned long idx) const                     { return mOutputDependencies[idx]; }
     
-    
 protected:
     
     // IO Setup
@@ -331,6 +330,24 @@ protected:
     
     void enableOrderingConnections()                         { mSupportsOrderingConnections = true; }
 
+    // Memory Allocation
+    
+    template <class U> void alloc(U *& ptr, size_t size)
+    {
+        ptr = reinterpret_cast<U *>(mAllocator->alloc(sizeof(U) * size));
+    }
+
+    template <class U> void dealloc(U *& ptr)
+    {
+        mAllocator->dealloc(ptr);
+        ptr = NULL;
+    }
+    
+    void clearAllocator() { mAllocator->clear(); }
+    
+    FrameLib_LocalAllocator::Storage *registerStorage(const char *name)     { return mAllocator->registerStorage(name); }
+    void releaseStorage(const char *name)                                   { mAllocator->releaseStorage(name); }
+    
     // Info Helpers
     
     static const char *formatInfo(const char *verboseStr, const char *briefStr, bool verbose)
@@ -497,10 +514,7 @@ private:
     
     const ObjectType mType;
     FrameLib_Context mContext;
-
-protected:
     FrameLib_Context::Allocator mAllocator;
-private:
     
     void *mOwner;
     T *mParent;

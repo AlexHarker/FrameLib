@@ -52,7 +52,9 @@ void FrameLib_Percentile::process()
     allocateOutputs();
     
     double *output = getOutput(0, &sizeOut);
-    double *temp = (double *) mAllocator->alloc(sizeof(double) * (sizeIn + 1));
+    double *temp;
+    
+    alloc(temp, (sizeIn + 1));
     
     if (sizeOut && temp)
     {
@@ -71,5 +73,5 @@ void FrameLib_Percentile::process()
         output[0] = input[idx] + fract * (input[idx + 1] - input[idx]);
     }
     
-    mAllocator->dealloc(temp);
+    dealloc(temp);
 }

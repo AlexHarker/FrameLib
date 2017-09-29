@@ -247,7 +247,7 @@ public:
         // Allocate temporary memory
         
         if (getNumAudioOuts())
-            mAudioTemps[0] = (double *) mAllocator->alloc(sizeof(double) * blockSize * getNumAudioOuts());
+            alloc(mAudioTemps[0], blockSize * getNumAudioOuts());
         for (unsigned long i = 1; i < getNumAudioOuts(); i++)
             mAudioTemps[i] = mAudioTemps[0] + (i * blockSize);
             
@@ -270,9 +270,9 @@ public:
         // Release temporary memory and clear allocator
         
         if (getNumAudioOuts())
-            mAllocator->dealloc(mAudioTemps[0]);
+           dealloc(mAudioTemps[0]);
                 
-        mAllocator->clear();
+        clearAllocator();
     }
    
     // Reset

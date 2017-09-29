@@ -12,12 +12,12 @@ FrameLib_Recall::FrameLib_Recall(FrameLib_Context context, FrameLib_Parameters::
     
     enableOrderingConnections();
     
-    mStorage = mAllocator->registerStorage(mParameters.getString(kName));
+    mStorage = registerStorage(mParameters.getString(kName));
 }
 
 FrameLib_Recall::~FrameLib_Recall()
 {
-    mAllocator->releaseStorage(mParameters.getString(kName));
+    releaseStorage(mParameters.getString(kName));
 }
 
 // Info

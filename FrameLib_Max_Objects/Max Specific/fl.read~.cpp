@@ -110,8 +110,7 @@ void FrameLib_MaxRead::process()
     if (buffer && size && data.samples)
     {
         chan = (mChan - 1) % data.num_chans;
-            
-        tempMem = mAllocator->alloc(size * (sizeof(double)));
+        alloc(tempMem, size);
     }
     
     if (tempMem)
@@ -160,7 +159,7 @@ void FrameLib_MaxRead::process()
         }
         
         ibuffer_read(data, output, positions, size, chan, 1.0, interpType);
-        mAllocator->dealloc(tempMem);
+        dealloc(tempMem);
     }
     else
     {

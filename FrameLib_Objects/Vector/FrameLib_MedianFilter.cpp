@@ -166,8 +166,11 @@ void FrameLib_MedianFilter::process()
     allocateOutputs();
     
     double *output = getOutput(0, &sizeOut);
-    double *temp = (double *) mAllocator->alloc(sizeof(double) * width);
-    unsigned long *indices = (unsigned long *) mAllocator->alloc(sizeof(unsigned long) * width);
+    double *temp;
+    unsigned long *indices;
+    
+    alloc(temp. width);
+    alloc(indices, width);
     
     // Do filtering
     
@@ -210,6 +213,6 @@ void FrameLib_MedianFilter::process()
         }
     }
     
-    mAllocator->dealloc(temp);
-    mAllocator->dealloc(indices);
+    dealloc(temp);
+    dealloc(indices);
 }

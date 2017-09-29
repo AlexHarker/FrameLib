@@ -55,7 +55,7 @@ FrameLib_Window::FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::
 
 FrameLib_Window::~FrameLib_Window()
 {
-    mAllocator->dealloc(mWindow);
+    dealloc(mWindow);
 }
 
 // Info
@@ -113,8 +113,8 @@ void FrameLib_Window::updateWindow(unsigned long inSize, EndPoints ends)
     
     if (mSize != windowSize)
     {
-        mAllocator->dealloc(mWindow);
-        mWindow = (double *) mAllocator->alloc(sizeof(double) * (windowSize + 2));
+        dealloc(mWindow);
+        alloc(mWindow, windowSize + 2);
     }
     
     sWindowCalculator.calculate(windowType, mWindow, windowSize, windowSize + 1);

@@ -40,7 +40,9 @@ void FrameLib_ToMax::process()
     if (sizeIn > 32767)
         sizeIn = 32767;
     
-    t_atom *output = (t_atom *) mAllocator->alloc(sizeof(t_atom) * sizeIn);
+    t_atom *output;
+    
+    alloc(output, sizeIn);
 
     // FIX - support parameter frames!
     
@@ -52,7 +54,7 @@ void FrameLib_ToMax::process()
         schedule_delay(mMaxOwner, (method) &FrameLib_MaxClass_ToMax::toOutletExternal, 0.0, NULL, sizeIn, output);
     }
     
-    mAllocator->dealloc(output);
+    dealloc(output);
 }
 
 // Max Class

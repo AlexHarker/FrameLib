@@ -239,7 +239,7 @@ protected:
 
 private:
     
-    // DSP Queue
+    // Processing Queue
     
     FrameLib_Context::ProcessingQueue mProcessingQueue;
     FrameLib_DSP *mNext;
