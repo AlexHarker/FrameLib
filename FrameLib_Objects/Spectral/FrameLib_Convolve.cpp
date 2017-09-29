@@ -80,14 +80,23 @@ void FrameLib_Convolve::process()
     if (FFTSize > mMaxFFTSize)
         sizeOut = 0;
     
-    // Get outpu and temporary memory
+    // Get output and temporary memory
     
     requestOutputSize(0, sizeOut);
     allocateOutputs();
     
     double *output = getOutput(0, &sizeOut);
     
-    spectrum1.realp = alloc<double>(sizeOut ? FFTSize * 2 * sizeof(double) : 0);
+    // Take care of single value inputs only as a special case
+    
+    if (sizeOut < 2)
+    {
+        if (sizeIn1 == 1 && sizeIn2 == 1 && output)
+            output[0] = input1[0] * input2[0];
+        return;
+    }
+    
+    spectrum1.realp = alloc<double>(FFTSize * 2 * sizeof(double));
     spectrum1.imagp = spectrum1.realp + (FFTSize >> 1);
     spectrum2.realp = spectrum1.imagp + (FFTSize >> 1);
     spectrum2.imagp = spectrum2.realp + (FFTSize >> 1);
