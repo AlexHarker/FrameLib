@@ -680,10 +680,9 @@ public:
 
     void dsp(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
     {
-        // Resolve connections and mark unresolved for next time
+        // Resolve connections (in case there are no schedulers left in the patch) and mark unresolved for next time
         
-        // FIX - is this necessary?
-        //resolveConnections();
+        resolveConnections();
         mNeedsResolve = true;
         
         // Reset DSP

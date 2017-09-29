@@ -437,8 +437,9 @@ void FrameLib_DSP::dependenciesReady()
     if (hostAligned)
         mInputTime = mBlockEndTime;
     
-    // Check if we need to just update inputs
+    // Check if we have reached the end of time or need to just update inputs
     
+    bool endOfTime = mInputTime == FL_Limits<FrameLib_TimeFormat>::largest();
     bool prevUpdatingInputs = mUpdatingInputs;
     mUpdatingInputs = mInputTime < mValidTime;
     
@@ -453,12 +454,17 @@ void FrameLib_DSP::dependenciesReady()
     
     // Notify input dependencies that can be released as they are up to date (releasing memory where relevant for objects with more than one input dependency)
     
-    for (std::vector <FrameLib_DSP *>::iterator it = mInputDependencies.begin(); it != mInputDependencies.end(); it++)
+    if (!endOfTime)
     {
-        if (mInputTime == (*it)->mValidTime)
+        // Inputs cannot move beyond the end of time...
+        
+        for (std::vector <FrameLib_DSP *>::iterator it = mInputDependencies.begin(); it != mInputDependencies.end(); it++)
         {
-            incrementInputDependency();
-            (*it)->dependencyNotify((getType() == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone, false);
+            if (mInputTime == (*it)->mValidTime)
+            {
+                incrementInputDependency();
+                (*it)->dependencyNotify((getType() == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone, false);
+            }
         }
     }
     
@@ -473,9 +479,10 @@ void FrameLib_DSP::dependenciesReady()
     if (mUpdatingInputs < prevUpdatingInputs)
         dependencyNotify(false, false);
     
-    // Allow self-triggering
+    // Allow self-triggering if we haven't reached the end of time
     
-    dependencyNotify(false, false);
+    if (!endOfTime)
+        dependencyNotify(false, false);
     
     // Debug
     

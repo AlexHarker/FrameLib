@@ -4,6 +4,7 @@
 
 void FrameLib_ProcessingQueue::add(FrameLib_DSP *object)
 {
+    assert(object->mInputTime != FL_Limits<FrameLib_TimeFormat>::largest() && "Object has already reached the end of time");
     assert((!object->mNext || mTop == object) && "Object is already in the queue and not at the top");
 
     if (!mTop)
