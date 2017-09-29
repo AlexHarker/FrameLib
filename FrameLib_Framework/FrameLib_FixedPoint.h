@@ -215,7 +215,7 @@ template <class T> struct FL_Limits
 template<> struct FL_Limits <FL_FP>
 {
     static FL_FP smallest() { return FL_FP(0,1); }
-    static FL_FP largest() { return FL_FP(std::numeric_limits<uint64_t>::max(), std::numeric_limits<uint64_t>::max()); }
+    static FL_FP largest()  { return FL_FP(std::numeric_limits<uint64_t>::max(), std::numeric_limits<uint64_t>::max()); }
 };
 
 // Double Helper Utility
