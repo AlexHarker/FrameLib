@@ -3,32 +3,32 @@
 
 // FrameLib_MultiChannel
 
-// Query Input Channels
+// Query Connections for Individual Channels
 
 unsigned long FrameLib_MultiChannel::getInputNumChans(unsigned long inIdx)
 {
     if (getConnection(inIdx))
-        return getConnection(inIdx)->mOutputs[getConnectionIdx(inIdx)].mConnections.size();
+        return getConnection(inIdx)->mOutputs[getConnectionIdx(inIdx)].size();
     
     return 0;
 }
 
-FrameLib_MultiChannel::ConnectionInfo FrameLib_MultiChannel::getInputChan(unsigned long inIdx, unsigned long chan)
+FrameLib_MultiChannel::Connection FrameLib_MultiChannel::getInputChan(unsigned long inIdx, unsigned long chan)
 {
-    return getConnection(inIdx)->mOutputs[getConnectionIdx(inIdx)].mConnections[chan];
+    return getConnection(inIdx)->mOutputs[getConnectionIdx(inIdx)][chan];
 }
 
 unsigned long FrameLib_MultiChannel::getOrderingConnectionNumChans(unsigned long idx)
 {
     if (getOrderingConnection(idx))
-        return getOrderingConnection(idx)->mOutputs[getOrderingConnectionIdx(idx)].mConnections.size();
+        return getOrderingConnection(idx)->mOutputs[getOrderingConnectionIdx(idx)].size();
     
     return 0;
 }
 
-FrameLib_MultiChannel::ConnectionInfo FrameLib_MultiChannel::getOrderingConnectionChan(unsigned long idx, unsigned long chan)
+FrameLib_MultiChannel::Connection FrameLib_MultiChannel::getOrderingConnectionChan(unsigned long idx, unsigned long chan)
 {
-    return getOrderingConnection(idx)->mOutputs[getOrderingConnectionIdx(idx)].mConnections[chan];
+    return getOrderingConnection(idx)->mOutputs[getOrderingConnectionIdx(idx)][chan];
 }
 
 // Update the inputs of all output dependencies
@@ -71,11 +71,11 @@ std::string FrameLib_Pack::outputInfo(unsigned long idx, bool verbose)
 
 bool FrameLib_Pack::inputUpdate()
 {
-    mOutputs[0].mConnections.clear();
+    mOutputs[0].clear();
     
     for (unsigned long i = 0; i < getNumIns(); i++)
         for (unsigned long j = 0; j < getInputNumChans(i); j++)
-            mOutputs[0].mConnections.push_back(getInputChan(i, j));
+            mOutputs[0].push_back(getInputChan(i, j));
     
     return true;
 }
@@ -113,10 +113,10 @@ std::string FrameLib_Unpack::outputInfo(unsigned long idx, bool verbose)
 bool FrameLib_Unpack::inputUpdate()
 {
     for (unsigned long i = 0; i < getNumOuts(); i++)
-        mOutputs[i].mConnections.clear();
+        mOutputs[i].clear();
     
     for (unsigned long i = 0; i < getInputNumChans(0) && i < getNumOuts(); i++)
-        mOutputs[i].mConnections.push_back(getInputChan(0, i));
+        mOutputs[i].push_back(getInputChan(0, i));
     
     return true;
 }

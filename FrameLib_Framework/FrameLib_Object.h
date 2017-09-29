@@ -90,18 +90,25 @@ private:
 template <class T>
 class FrameLib_Object : public FrameLib_Queueable<T>
 {
-    struct Connection
+    
+protected:
+
+    template <class U>
+    struct UntypedConnection
     {
-        Connection() : mObject(NULL), mIndex(0) {}
-        Connection(T *object, unsigned long index) : mObject(object), mIndex(index) {}
+        UntypedConnection() : mObject(NULL), mIndex(0) {}
+        UntypedConnection(U *object, unsigned long index) : mObject(object), mIndex(index) {}
         
-        T *mObject;
+        U *mObject;
         unsigned long mIndex;
     };
     
+private:
+    
+    typedef UntypedConnection<T> Connection;
     typedef typename std::vector< T *>::iterator ObjectIterator;
-    typedef typename std::vector< Connection>::iterator ConnectionIterator;
-    typedef typename std::vector< Connection>::const_iterator ConstConnectionIterator;
+    typedef typename std::vector<Connection>::iterator ConnectionIterator;
+    typedef typename std::vector<Connection>::const_iterator ConstConnectionIterator;
     
 public:
 
@@ -110,7 +117,7 @@ public:
     // Constructor / Destructor
     
     FrameLib_Object(ObjectType type, FrameLib_Context context, void *owner, T *parent)
-    : mType(type), mContext(context), mOwner(owner), mParent(parent), mNumIns(0), mNumOuts(0), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
+    : mType(type), mContext(context), mAllocator(context), mOwner(owner), mParent(parent), mNumIns(0), mNumOuts(0), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
     virtual ~FrameLib_Object() {}
    
     // Object Type
@@ -491,6 +498,10 @@ private:
     const ObjectType mType;
     FrameLib_Context mContext;
 
+protected:
+    FrameLib_Context::Allocator mAllocator;
+private:
+    
     void *mOwner;
     T *mParent;
     

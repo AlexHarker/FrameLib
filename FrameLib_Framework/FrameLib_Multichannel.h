@@ -17,33 +17,12 @@ class FrameLib_MultiChannel : public FrameLib_Object<FrameLib_MultiChannel>
     
 protected:
 
-    // Connection Info Structure
-
-    struct ConnectionInfo
-    {
-        ConnectionInfo(FrameLib_Block *object = NULL, unsigned long idx = 0) : mObject(object), mIndex(idx) {}
-        
-        FrameLib_Block *mObject;
-        unsigned long mIndex;
-    };
-
+    typedef FrameLib_Object::UntypedConnection<FrameLib_Block> Connection;
+    
 private:
     
-    // IO Structures
-
-    struct MultiChannelInput
-    {
-        MultiChannelInput() : mObject(NULL), mIndex(0) {}
-        MultiChannelInput(FrameLib_MultiChannel *object, unsigned long index) : mObject(object), mIndex(index) {}
-        
-        FrameLib_MultiChannel *mObject;
-        unsigned long mIndex;
-    };
-    
-    struct MultiChannelOutput
-    {
-        std::vector <ConnectionInfo> mConnections;
-    };
+    typedef FrameLib_Object::UntypedConnection<FrameLib_MultiChannel> MultiChannelInput;
+    typedef std::vector<Connection> MultiChannelOutput;
     
 public:
         
@@ -86,12 +65,13 @@ protected:
         mOutputs.resize(getNumOuts());
     }
     
-    // Query Input Channels
+    // Query Connections for Individual Channels
     
     unsigned long getInputNumChans(unsigned long inIdx);
-    ConnectionInfo getInputChan(unsigned long inIdx, unsigned long chan);
+    Connection getInputChan(unsigned long inIdx, unsigned long chan);
+    
     unsigned long getOrderingConnectionNumChans(unsigned long idx);
-    ConnectionInfo getOrderingConnectionChan(unsigned long idx, unsigned long chan);
+    Connection getOrderingConnectionChan(unsigned long idx, unsigned long chan);
 
 private:
 
@@ -206,7 +186,7 @@ template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
 public:
     
     FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-    : FrameLib_MultiChannel(T::getType(), context, owner), mAllocator(context), mSerialisedParameters(serialisedParameters->size())
+    : FrameLib_MultiChannel(T::getType(), context, owner), mSerialisedParameters(serialisedParameters->size())
     {
         // Make first block
         
@@ -225,7 +205,7 @@ public:
         // Make initial output connections
         
         for (unsigned long i = 0; i < getNumOuts(); i++)
-            mOutputs[i].mConnections.push_back(ConnectionInfo(mBlocks[0], i));
+            mOutputs[i].push_back(Connection(mBlocks[0], i));
         
         // Check for ordering support
         
@@ -384,11 +364,11 @@ private:
             // Redo output connection lists
             
             for (unsigned long i = 0; i < getNumOuts(); i++)
-                mOutputs[i].mConnections.clear();
+                mOutputs[i].clear();
             
             for (unsigned long i = 0; i < getNumOuts(); i++)
                 for (unsigned long j = 0; j < nChannels; j++)
-                    mOutputs[i].mConnections.push_back(ConnectionInfo(mBlocks[j], i));
+                    mOutputs[i].push_back(Connection(mBlocks[j], i));
             
             // Update Fixed Inputs
             
@@ -404,7 +384,7 @@ private:
             {
                 for (unsigned long j = 0; j < nChannels; j++)
                 {
-                    ConnectionInfo connection = getInputChan(i, j % getInputNumChans(i));
+                    Connection connection = getInputChan(i, j % getInputNumChans(i));
                     mBlocks[j]->addConnection(connection.mObject, connection.mIndex, i);
                 }
             }
@@ -428,7 +408,7 @@ private:
             {
                 for (unsigned long j = 0; j < nChannels; j++)
                 {
-                    ConnectionInfo connection = getOrderingConnectionChan(i, j % getOrderingConnectionNumChans(i));
+                    Connection connection = getOrderingConnectionChan(i, j % getOrderingConnectionNumChans(i));
                     mBlocks[j]->addOrderingConnection(connection.mObject, connection.mIndex);
                 }
             }
@@ -439,7 +419,6 @@ private:
 
     // Member Variables
     
-    FrameLib_Context::Allocator mAllocator;
     FrameLib_Parameters::AutoSerial mSerialisedParameters;
 
     std::vector <FrameLib_Block *> mBlocks;

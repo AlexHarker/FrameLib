@@ -233,10 +233,6 @@ protected:
     double mSamplingRate;
     unsigned long mMaxBlockSize;
     
-    // Memory Allocator
-    
-    FrameLib_Context::Allocator mAllocator;
-
     // Parameters
     
     FrameLib_Parameters mParameters;

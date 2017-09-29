@@ -4,7 +4,7 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, void *owner, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
-: FrameLib_Block(type, context, owner), mSamplingRate(44100.0), mMaxBlockSize(4096), mAllocator(context), mParameters(info), mProcessingQueue(context), mNext(NULL), mNoLiveInputs(true), mInUpdate(false)
+: FrameLib_Block(type, context, owner), mSamplingRate(44100.0), mMaxBlockSize(4096), mParameters(info), mProcessingQueue(context), mNext(NULL), mNoLiveInputs(true), mInUpdate(false)
 {
     // Set IO
     
