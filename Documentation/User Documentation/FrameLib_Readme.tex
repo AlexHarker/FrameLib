@@ -29,7 +29,7 @@
 
 \linespread{1.1} % Line spacing
 
-\newcommand{\version}{Alpha 0.5}
+\newcommand{\version}{Alpha 0.6}
 % Set up the header and footer
 \pagestyle{fancy}
 \lhead{Alex Harker} % Top left header
@@ -465,15 +465,27 @@ A full object listing follows, grouped by function. Currently this is the best q
 
 \subsection{Changes in Alpha 0.5}
 \vspace{0.1in}
-
+    
 \begin{itemize}
 \item {[\#18]} Fixed table reading code to account correctly for the frame size.
 \item {[\#19]} Fixed crashes with empty frames into vector template objects.
 \item {[\#20]} Fixed crashing with negative values into \flobject{peaks}.
 .\item {[\#21]} Added the \flobject{tomax} object.
 .\item Rebuilt the connection system to be shared between object types.
-
 \end{itemize}
 
+\subsection{Changes in Alpha 0.6}
+\vspace{0.1in}
+
+\begin{itemize}
+\item {[\#7]} Objects now have channel awareness and shared memory can be channel specific.
+\item {[\#13]} Added ordering connections that can take multiple connections for ordering purposes only, and also can be generated automagically.
+\item {[\#22]} Fixed crash with incorrect \flobject{ifft} input size tests.
+\item {[\#26]} Fixed crashes with over length lists and \flobject{tomax}.
+\item {[\#26]} Fixed crashes with two inputs of length 1 into \flobject{convolve}.
+\item More stringent checks for correct ordering and issues of scheduling.
+\item Significant reworking of the framework for ease of use and improved design.
+\item Move towards slashes for parameter entry in the max wrapper (demos changes).
+\end{itemize}
 
 \end{document}
