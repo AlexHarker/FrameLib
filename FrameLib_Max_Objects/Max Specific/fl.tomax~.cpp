@@ -16,7 +16,7 @@ FrameLib_ToMax::FrameLib_ToMax(FrameLib_Context context, FrameLib_Parameters::Se
 
 std::string FrameLib_ToMax::objectInfo(bool verbose)
 {
-    return formatInfo("Turn frames into max messages.",
+    return formatInfo("Turn frames into max messages. As max lists are limited to 32,767 members, for frames over this length only the first 32,767 values will be output.",
                    "Turn frames into max messages.", verbose);
 }
 
