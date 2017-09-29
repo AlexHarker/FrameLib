@@ -23,8 +23,8 @@ public:
         
     public:
         
-        Queue() : mTop(NULL), mTail(NULL) {}
-        Queue(T *object, Method method) : mTop(NULL), mTail(NULL) { add(object, method); }
+        Queue() : mMethod(NULL), mTop(NULL), mTail(NULL) {}
+        Queue(T *object, Method method) : mMethod(NULL), mTop(NULL), mTail(NULL) { add(object, method); }
         
         void add(T *object, Method method)
         {
@@ -37,6 +37,7 @@ public:
             {
                 // Queue is empty - add and start processing the queue
                 
+                mMethod = method;
                 mFirst = mTop = mTail = object;
                 
                 while (mTop)
@@ -47,10 +48,13 @@ public:
                     object->FrameLib_Traversable<T>::mNext = NULL;
                 }
                 
+                mMethod = NULL;
                 mFirst = mTail = NULL;
             }
             else
             {
+                assert (method == mMethod && "Cannot add items to open queue for another method");
+                
                 // Add to the queue (which is already processing)
                 
                 mTail->FrameLib_Traversable<T>::mNext = object;
@@ -66,6 +70,8 @@ public:
         
         Queue(const Queue&);
         Queue& operator=(const Queue&);
+        
+        Method mMethod;
         
         T *mFirst;
         T *mTop;
@@ -95,6 +101,7 @@ class FrameLib_Object : public FrameLib_Traversable<T>
     
     typedef typename std::vector< T *>::iterator ObjectIterator;
     typedef typename std::vector< InputConnection>::iterator ConnectionIterator;
+    typedef typename std::vector< InputConnection>::const_iterator ConstConnectionIterator;
     
 public:
 
@@ -269,7 +276,7 @@ public:
         connectionUpdate(&queue);
     }
     
-    bool isConnected(unsigned long inIdx)
+    bool isConnected(unsigned long inIdx) const
     {
         return mInputConnections[inIdx].mObject != NULL;
     }
@@ -279,9 +286,9 @@ public:
 
     // Connection Access
     
-    bool isDependencyConnection(T *object)
+    bool isDependencyConnection(T *object) const
     {
-        for (ConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
+        for (ConstConnectionIterator it = mDependencyConnections.begin(); it != mDependencyConnections.end(); it++)
             if (it->mObject == object)
                 return true;
                 
@@ -316,12 +323,12 @@ protected:
 
     // Info Helpers
     
-    const char *formatInfo(const char *verboseStr, const char *briefStr, bool verbose)
+    static const char *formatInfo(const char *verboseStr, const char *briefStr, bool verbose)
     {
         return verbose ? verboseStr : briefStr;
     }
     
-    std::string formatInfo(const char *verboseStr, const char *briefStr, unsigned long idx, bool verbose)
+    static  std::string formatInfo(const char *verboseStr, const char *briefStr, unsigned long idx, bool verbose)
     {
         std::string info = formatInfo(verboseStr, briefStr, verbose);
         std::ostringstream idxStr;
@@ -334,7 +341,7 @@ protected:
         return info;
     }
     
-    std::string formatInfo(const char *verboseStr, const char *briefStr, const char *replaceStr, bool verbose)
+    static std::string formatInfo(const char *verboseStr, const char *briefStr, const char *replaceStr, bool verbose)
     {
         std::string info = formatInfo(verboseStr, briefStr, verbose);
         
