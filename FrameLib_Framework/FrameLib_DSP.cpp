@@ -196,7 +196,6 @@ void FrameLib_DSP::updateTrigger(unsigned long idx, bool trigger)
 
 bool FrameLib_DSP::allocateOutputs()
 {
-    BytePointer pointer;
     size_t allocationSize = 0;
     
     for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
@@ -215,7 +214,7 @@ bool FrameLib_DSP::allocateOutputs()
     // Free then allocate memory
     
     freeOutputMemory();
-    alloc(pointer, allocationSize);
+    BytePointer pointer = alloc<Byte>(allocationSize);
     
     if (pointer)
     {

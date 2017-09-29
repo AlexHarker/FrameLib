@@ -126,7 +126,7 @@ void FrameLib_iFFT::process()
     }
     else
     {
-        alloc(spectrum.realp, sizeOut ? sizeOut * sizeof(double) : 0);
+        spectrum.realp = alloc<double>(sizeOut ? sizeOut * sizeof(double) : 0);
         spectrum.imagp = spectrum.realp + (sizeOut >> 1);
         
         spectrumSize = sizeOut >> 1;

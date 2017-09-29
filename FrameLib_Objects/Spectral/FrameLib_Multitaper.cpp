@@ -103,9 +103,7 @@ void FrameLib_Multitaper::process()
     allocateOutputs();
     
     double *output = getOutput(0, &sizeOut);
-    double *tempMem;
-    
-    alloc(tempMem, ((FFTSize + 1) << 1));
+    double *tempMem = alloc<double>((FFTSize + 1) << 1);
     
     long nTapers = mParameters.getInt(kNumTapers);
     

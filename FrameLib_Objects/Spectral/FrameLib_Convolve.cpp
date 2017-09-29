@@ -87,7 +87,7 @@ void FrameLib_Convolve::process()
     
     double *output = getOutput(0, &sizeOut);
     
-    alloc(spectrum1.realp, sizeOut ? FFTSize * 2 * sizeof(double) : 0);
+    spectrum1.realp = alloc<double>(sizeOut ? FFTSize * 2 * sizeof(double) : 0);
     spectrum1.imagp = spectrum1.realp + (FFTSize >> 1);
     spectrum2.realp = spectrum1.imagp + (FFTSize >> 1);
     spectrum2.imagp = spectrum2.realp + (FFTSize >> 1);

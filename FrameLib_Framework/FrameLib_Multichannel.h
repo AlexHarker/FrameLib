@@ -247,7 +247,7 @@ public:
         // Allocate temporary memory
         
         if (getNumAudioOuts())
-            alloc(mAudioTemps[0], blockSize * getNumAudioOuts());
+            mAudioTemps[0] = alloc<double>(blockSize * getNumAudioOuts());
         for (unsigned long i = 1; i < getNumAudioOuts(); i++)
             mAudioTemps[i] = mAudioTemps[0] + (i * blockSize);
             

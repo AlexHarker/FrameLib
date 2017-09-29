@@ -40,9 +40,7 @@ void FrameLib_ToMax::process()
     if (sizeIn > 32767)
         sizeIn = 32767;
     
-    t_atom *output;
-    
-    alloc(output, sizeIn);
+    t_atom *output = alloc<t_atom>(sizeIn);
 
     // FIX - support parameter frames!
     

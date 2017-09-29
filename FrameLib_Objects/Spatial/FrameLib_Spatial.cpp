@@ -154,8 +154,7 @@ void FrameLib_Spatial::process()
     
     if (maxSpeakers < numSpeakers)
     {
-        unsigned long *indices;
-        alloc(indices, numSpeakers);
+        unsigned long *indices = alloc<unsigned long>(numSpeakers);
         sortIndicesDescending(indices, output, numSpeakers);
         
         for (unsigned long i = maxSpeakers; i < numSpeakers; i++)

@@ -114,7 +114,7 @@ void FrameLib_Window::updateWindow(unsigned long inSize, EndPoints ends)
     if (mSize != windowSize)
     {
         dealloc(mWindow);
-        alloc(mWindow, windowSize + 2);
+        mWindow = alloc<double>(windowSize + 2);
     }
     
     sWindowCalculator.calculate(windowType, mWindow, windowSize, windowSize + 1);

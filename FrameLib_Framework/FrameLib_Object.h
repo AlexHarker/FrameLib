@@ -332,9 +332,9 @@ protected:
 
     // Memory Allocation
     
-    template <class U> void alloc(U *& ptr, size_t size)
+    template <class U> U *alloc(unsigned long N)
     {
-        ptr = reinterpret_cast<U *>(mAllocator->alloc(sizeof(U) * size));
+        return reinterpret_cast<U *>(mAllocator->alloc(sizeof(U) * N));
     }
 
     template <class U> void dealloc(U *& ptr)

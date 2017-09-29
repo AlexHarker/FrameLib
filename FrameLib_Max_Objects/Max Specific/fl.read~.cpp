@@ -87,7 +87,7 @@ FrameLib_MaxRead::ParameterInfo::ParameterInfo()
 
 void FrameLib_MaxRead::process()
 {
-    void *tempMem = NULL;
+    double *positions = NULL;
     
     unsigned long size;
     long chan;
@@ -110,13 +110,11 @@ void FrameLib_MaxRead::process()
     if (buffer && size && data.samples)
     {
         chan = (mChan - 1) % data.num_chans;
-        alloc(tempMem, size);
+        positions = alloc<double>(size);
     }
     
-    if (tempMem)
+    if (positions)
     {
-        double *positions = (double *) tempMem;
-        
         double lengthM1 = data.length - 1.0;
         double conversionFactor = 1.0;
         double samplingRate = ibuffer_sample_rate(buffer);
@@ -159,7 +157,7 @@ void FrameLib_MaxRead::process()
         }
         
         ibuffer_read(data, output, positions, size, chan, 1.0, interpType);
-        dealloc(tempMem);
+        dealloc(positions);
     }
     else
     {
