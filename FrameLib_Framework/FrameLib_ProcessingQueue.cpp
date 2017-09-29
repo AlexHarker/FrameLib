@@ -1,8 +1,8 @@
 
-#include "FrameLib_DSPQueue.h"
+#include "FrameLib_ProcessingQueue.h"
 #include "FrameLib_DSP.h"
 
-void FrameLib_DSPQueue::add(FrameLib_DSP *object)
+void FrameLib_ProcessingQueue::add(FrameLib_DSP *object)
 {
     assert((!object->mNext || mTop == object) && "Object is already in the queue and not at the top");
 

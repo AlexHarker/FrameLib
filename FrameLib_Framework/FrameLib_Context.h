@@ -80,8 +80,8 @@ public:
     
     // Construct one of these objects to retain a relevant object
     
-    typedef ManagedPointer<FrameLib_LocalAllocator, &Global::getAllocator, &Global::releaseAllocator>               Allocator;
-    typedef ManagedPointer<FrameLib_DSPQueue, &Global::getDSPQueue, &Global::releaseDSPQueue>                       DSPQueue;
+    typedef ManagedPointer<FrameLib_LocalAllocator, &Global::getAllocator, &Global::releaseAllocator>                   Allocator;
+    typedef ManagedPointer<FrameLib_ProcessingQueue, &Global::getProcessingQueue, &Global::releaseProcessingQueue>      ProcessingQueue;
 
 private:
     

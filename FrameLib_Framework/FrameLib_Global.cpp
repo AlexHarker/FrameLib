@@ -32,14 +32,14 @@ FrameLib_LocalAllocator *FrameLib_Global::getAllocator(void *reference)
     return allocator;
 }
 
-FrameLib_DSPQueue *FrameLib_Global::getDSPQueue(void *reference)
+FrameLib_ProcessingQueue *FrameLib_Global::getProcessingQueue(void *reference)
 {
-    FrameLib_DSPQueue *queue = mDSPQueues.find(reference);
+    FrameLib_ProcessingQueue *queue = mProcessingQueues.find(reference);
     
     if (!queue)
     {
-        queue = new FrameLib_DSPQueue();
-        mDSPQueues.add(queue, reference);
+        queue = new FrameLib_ProcessingQueue();
+        mProcessingQueues.add(queue, reference);
     }
     
     return queue;
@@ -52,9 +52,9 @@ void FrameLib_Global::releaseAllocator(void *reference)
     mLocalAllocators.release(reference);
 }
 
-void FrameLib_Global::releaseDSPQueue(void *reference)
+void FrameLib_Global::releaseProcessingQueue(void *reference)
 {
-    mDSPQueues.release(reference);
+    mProcessingQueues.release(reference);
 }
 
 // Reference Counting / Auto-deletion

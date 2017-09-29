@@ -5,7 +5,7 @@
 #include "FrameLib_Types.h"
 #include "FrameLib_Context.h"
 #include "FrameLib_Object.h"
-#include "FrameLib_DSPQueue.h"
+#include "FrameLib_ProcessingQueue.h"
 #include <limits>
 #include <vector>
 #include <algorithm>
@@ -21,7 +21,7 @@ class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_D
     typedef FrameLib_Queueable<FrameLib_Block>::Queue Queue;
     typedef FrameLib_Queueable<FrameLib_DSP>::Queue LocalQueue;
     typedef FrameLib_Parameters::Serial Serial;
-    friend class FrameLib_DSPQueue;   
+    friend class FrameLib_ProcessingQueue;   
     
 protected:
     
@@ -245,7 +245,7 @@ private:
     
     // DSP Queue
     
-    FrameLib_Context::DSPQueue mProcessingQueue;
+    FrameLib_Context::ProcessingQueue mProcessingQueue;
     FrameLib_DSP *mNext;
     
     // IO Info
