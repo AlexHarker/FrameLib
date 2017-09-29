@@ -288,7 +288,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 341.0, 319.0, 200.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.medianfilter~ /mode fold .width 35"
+					"text" : "fl.medianfilter~ /mode fold /width 35"
 				}
 
 			}
