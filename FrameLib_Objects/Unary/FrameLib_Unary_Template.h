@@ -36,6 +36,7 @@ protected:
     
     void process()
     {
+        Op op;
         unsigned long size;
         double *input = getInput(0, &size);
         
@@ -45,7 +46,7 @@ protected:
         double *output = getOutput(0, &size);
         
         for (unsigned long i = 0; i < size; i++)
-            output[i] = Op()(input[i]);
+            output[i] = op(input[i]);
     }
     
     // Description (specialise/override to change description)

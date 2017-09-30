@@ -83,6 +83,7 @@ protected:
     void process()
     {
         Modes mode = mMode;
+        Op op;
         
         unsigned long sizeIn1, sizeIn2, sizeCommon, sizeOut;
         
@@ -119,7 +120,7 @@ protected:
         // Do first part
         
         for (unsigned long i = 0; i < sizeCommon; i++)
-            output[i] = Op()(input1[i], input2[i]);
+            output[i] = op(input1[i], input2[i]);
         
         if (!sizeOut)
             return;
@@ -141,13 +142,13 @@ protected:
                        {
                            double value = input2[0];
                            for (unsigned long i = 1; i < sizeOut; i++)
-                               output[i] = Op()(input1[i], value);
+                               output[i] = op(input1[i], value);
                        }
                        else
                        {
                            for (unsigned long i = sizeCommon; i < sizeOut;)
                                for (unsigned long j = 0; j < sizeIn2 && i < sizeOut; i++, j++)
-                                output[i] = Op()(input1[i], input2[j]);
+                                output[i] = op(input1[i], input2[j]);
                        }
                     }
                     else
@@ -156,13 +157,13 @@ protected:
                         {
                             double value = input1[0];
                             for (unsigned long i = 1; i < sizeOut; i++)
-                                output[i] = Op()(value, input2[i]);
+                                output[i] = op(value, input2[i]);
                         }
                         else
                         {
                             for (unsigned long i = sizeCommon; i < sizeOut;)
                                 for (unsigned long j = 0; j < sizeIn1 && i < sizeOut; i++, j++)
-                                    output[i] = Op()(input1[j], input2[i]);
+                                    output[i] = op(input1[j], input2[i]);
                         }
                     }
                     break;
@@ -172,12 +173,12 @@ protected:
                     if (sizeIn1 > sizeIn2)
                     {
                         for (unsigned long i = sizeCommon; i < sizeOut; i++)
-                            output[i] = Op()(input1[i], defaultValue);
+                            output[i] = op(input1[i], defaultValue);
                     }
                     else
                     {
                         for (unsigned long i = sizeCommon; i < sizeOut; i++)
-                            output[i] = Op()(defaultValue, input2[i]);
+                            output[i] = op(defaultValue, input2[i]);
                     }
                     break;
                     
