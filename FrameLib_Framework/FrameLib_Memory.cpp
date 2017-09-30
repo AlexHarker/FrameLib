@@ -45,8 +45,9 @@ FrameLib_GlobalAllocator::CoreAllocator::~CoreAllocator()
     
     while (mPools)
     {
-        removePool(mPools);
-        destroyPool(mPools);
+        Pool *pool = mPools;
+        removePool(pool);
+        destroyPool(pool);
     }
 
     tlsf_destroy(mTLSF);
