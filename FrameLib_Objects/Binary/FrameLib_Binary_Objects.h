@@ -77,12 +77,16 @@ template<> const char *FrameLib_Binary<fmax>::getDescriptionString()
 template<> const char *FrameLib_Binary<fdim>::getDescriptionString()
 { return "Calculates the absolute difference between values in two input frames"; }
 
-typedef FrameLib_Binary<pow>        FrameLib_Pow;
-typedef FrameLib_Binary<atan2>      FrameLib_Atan2;
-typedef FrameLib_Binary<hypot>      FrameLib_Hypot;
-typedef FrameLib_Binary<copysign>   FrameLib_CopySign;
-typedef FrameLib_Binary<fmin>       FrameLib_Min;
-typedef FrameLib_Binary<fmax>       FrameLib_Max;
-typedef FrameLib_Binary<fdim>       FrameLib_Diff;
+template<> const char *FrameLib_Binary<remainder>::getDescriptionString()
+{ return "Calculates the left input frame modulo the right input frame"; }
+
+typedef FrameLib_Binary<pow>            FrameLib_Pow;
+typedef FrameLib_Binary<atan2>          FrameLib_Atan2;
+typedef FrameLib_Binary<hypot>          FrameLib_Hypot;
+typedef FrameLib_Binary<copysign>       FrameLib_CopySign;
+typedef FrameLib_Binary<fmin>           FrameLib_Min;
+typedef FrameLib_Binary<fmax>           FrameLib_Max;
+typedef FrameLib_Binary<fdim>           FrameLib_Diff;
+typedef FrameLib_Binary<remainder>      FrameLib_Modulo;
 
 #endif
