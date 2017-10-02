@@ -577,7 +577,7 @@ void FrameLib_DSP::connectionUpdate(Queue *queue)
         {
             if (this == blockObject->getConnection(i))
             {
-                for (unsigned long j = 0; i < blockObject->getNumInputObjects(i); j++)
+                for (unsigned long j = 0; j < blockObject->getNumInputObjects(i); j++)
                     addOutputDependency(blockObject->getInputObject(i, j));
             }
         }
