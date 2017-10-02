@@ -70,7 +70,7 @@ public:
     // Constructor
     
     FrameLib_Unary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-    : FrameLib_UnaryOp < Unary_Functor<func> > (context, serialisedParameters, owner) {}
+    : FrameLib_UnaryOp<Unary_Functor<func> > (context, serialisedParameters, owner) {}
 
 private:
     
