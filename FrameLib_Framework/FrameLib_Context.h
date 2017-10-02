@@ -27,7 +27,8 @@ class FrameLib_Context
     
     // Non-copyable template class for retaining reference counted pointers using RAII
     
-    template <class T, T *(Global::*getMethod)(void *), void(Global::*releaseMethod)(void *)> class ManagedPointer
+    template <class T, T *(Global::*getMethod)(void *), void(Global::*releaseMethod)(void *)>
+    class ManagedPointer
     {
         
     public:
