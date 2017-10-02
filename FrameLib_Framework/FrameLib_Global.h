@@ -7,84 +7,44 @@
 #include "FrameLib_Threading.h"
 #include <vector>
 
-// A template class for storing reference counted pointers against reference addresses (representing contexts)
-
-template <class T> class FrameLib_PointerSet
-{
-    // A simple countable pointer with a reference address
-    
-    template <class U> struct CountablePointer
-    {
-        CountablePointer(T* object, void *reference) : mObject(object), mReference(reference), mCount(1) {}
-        
-        T *mObject;
-        void *mReference;
-        long mCount;
-    };
-    
-    // Type definition for concision
-    
-    typedef std::vector<CountablePointer<T> > VectorType;
-    
-public:
-    
-    // Find a pre-existing object by reference address
-    
-    T *find(void *reference)
-    {
-        for (typename VectorType::iterator it = mPointers.begin(); it != mPointers.end(); it++)
-        {
-            if (it->mReference == reference)
-            {
-                it->mCount++;
-                return it->mObject;
-            }
-        }
-        
-        return NULL;
-    }
-    
-    // Release a pre-existing object by reference address
-    
-    void release(void *reference)
-    {
-        for (typename VectorType::iterator it = mPointers.begin(); it != mPointers.end(); it++)
-        {
-            if (it->mReference == reference)
-            {
-                if (--it->mCount < 1)
-                {
-                    delete it->mObject;
-                    mPointers.erase(it);
-                }
-                
-                return;
-            }
-        }
-    }
-    
-    // Add an object given a pointer (transferring ownership) and a reference address
-    
-    void add(T *object, void *reference)
-    {
-        mPointers.push_back(CountablePointer<T>(object, reference));
-    }
-    
-private:
-    
-    // Internal set of pointers
-    
-    std::vector<CountablePointer<T> > mPointers;
-};
-
-// ************************************************************************************** //
-
 // The Global Object
 
 class FrameLib_Global
 {
+
+    friend class FrameLib_Context;
     
 private:
+
+    template <class T> class PointerSet
+    {
+        // A simple countable pointer with a reference address
+        
+        struct CountablePointer
+        {
+            CountablePointer(T* object, void *reference) : mObject(object), mReference(reference), mCount(1) {}
+            
+            T *mObject;
+            void *mReference;
+            long mCount;
+        };
+        
+    public:
+        
+        // Add, find or release an object by reference address
+        
+        void add(T *object, void *reference);
+        T *find(void *reference);
+        void release(void *reference);
+        
+    private:
+        
+        // Type definition for concision and internal pointers
+        
+        typedef std::vector<CountablePointer> VectorType;
+        
+        VectorType mPointers;
+    };
     
     // Constructor / Destructor
     
@@ -103,6 +63,8 @@ public:
     static FrameLib_Global *get(FrameLib_Global **global);
     static void release(FrameLib_Global **global);
     
+private:
+    
     // Methods to retrieve common objects
 
     FrameLib_LocalAllocator *getAllocator(void *reference);
@@ -113,8 +75,6 @@ public:
     void releaseAllocator(void *reference);
     void releaseProcessingQueue(void *reference);
     
-private:
-    
     // Reference Counting / Auto-deletion
     
     void increment();
@@ -124,8 +84,8 @@ private:
     
     FrameLib_GlobalAllocator mAllocator;
     
-    FrameLib_PointerSet<FrameLib_LocalAllocator> mLocalAllocators;
-    FrameLib_PointerSet<FrameLib_ProcessingQueue> mProcessingQueues;
+    PointerSet<FrameLib_LocalAllocator> mLocalAllocators;
+    PointerSet<FrameLib_ProcessingQueue> mProcessingQueues;
     
     SpinLock mLock;
     long mCount;
