@@ -1,46 +1,60 @@
 
+******* CODE CLEAN-UP ******* 
 
-DONE 	1 - Methods of dealing with fixed input values (and modes related to this)
+Move to Namespaces (use only one, or multiple)?
+Move to lowercase names?
 
-DONE 	2 - Revise, refactor and cleanup
-DONE		- Global / Context
-DONE		- Memory
-DONE		- Block / DSP
-DONE		- Parameter
-DONE		- Multichannel
+******* FRAMEWORK ******* 
 
-DONE	3 - Fixed Point Division / Fixed Point Time Format
+PROGRESS 	Finalise Max Wrapper
+PROGRESS	- Review entry of inputs and parameters
+PROGRESS	- Avoid double reporting of directly patched errors when DSP is on
+		- Probing issues;
 
-DONE 	4 - Assist/Help Info (Inputs and Parameters)
-
-DONE 	5 - Review parameter inputs (how to handle, including max wrapper - do all in frame lib)
-
-PROGRESS 6 - Finalise Max Wrapper
-DONE	- Make C++ class extensible
-DONE	- Sideways Dependencies Issues
-DONE	- Safety (no direct access of other objects / thread safety / no symbol bindings)
-DONE	- Better connection issue reporting
-PROGRESS- Review entry of inputs and parameters
-
-7 - READ/WRITE Timing ISSUES!!!	
-	- (multi-chan expansion/ease of use/chance of mistakes/multiple dependencies)
-
-8 - Finalise Memory Management
-DONE		- Do variable memory management (underlying engine)
+		Finalise Memory Management
 		- Review memory management
-
-9 - Multi threading work (Attributes / Connection)
+	
+PROGRESS	Multi threading work (Attributes / Connection)
 DONE		DSP
-PROGRESS	DSP Queue
+PROGRESS	Processing Queue
 TEMP		Memory
 
-10 - Error Reporting (Realtime and push to wrapper)
+		Error Reporting (Realtime and push to wrapper)
+		- parameter errors
+		- scheduling errors
+		- connection/network errors
 
-11 - Methods of dealing with data storage and retrieval (a la coll etc.) and also buffers (abstract out?)
+******* OBJECT SUPPORT ******* 
+
+		Objects for dealing with data storage/retrieval (a la coll etc.) 
+		Abstract buffer type? 
+		Multichannel support (how should expansion work for audio?)
+
+******* OBJECT REVIEW ******* 
+
+General Wrapper
+	- Parameter naming style
+	- Parameter entry style
+	- Input entry style
+
+Unary
+Binary
+Vector
+IO
+Storage
+Schedulers
+Timing
+Parameters
+Routing
+Generators
+Mapping
+Spectral
+Filters
+Spatial/Sepcial
 
 
 
 
-Examine https://www.threadingbuildingblocks.org/
 
-Think about the use of Namespaces
+
+
