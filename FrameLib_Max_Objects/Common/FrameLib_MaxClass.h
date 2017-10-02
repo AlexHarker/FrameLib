@@ -1075,21 +1075,18 @@ private:
     // Parameter Parsing
     
     bool isParameterTag(t_symbol *sym)
-    {
-        size_t len = strlen(sym->s_name);
-        char beg = sym->s_name[0];
-        char end = sym->s_name[len - 1];
-        
-        return (beg == '#' || (beg == '/' && end != '/'))  && len > 1;
+    {        
+        return strlen(sym->s_name) > 1 && sym->s_name[0] == '/';
     }
     
     bool isInputTag(t_symbol *sym)
     {
         size_t len = strlen(sym->s_name);
-        char beg = sym->s_name[0];
-        char end = sym->s_name[len - 1];
         
-        return (((beg == '/' && end == '/') || (beg == '<' && end == '>') || (beg == '[' && end == ']'))  && len > 2) || (beg == '~' && len >1);
+        if (len > 2)
+            return (sym->s_name[0] == '[' && sym->s_name[len - 1] == ']');
+        
+        return false;
     }
     
     bool isTag(t_atom *a)
