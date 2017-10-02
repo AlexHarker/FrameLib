@@ -118,8 +118,8 @@ private:
         size_t mAllocated;
         
         size_t mLastDisposedPoolSize;
-        FrameLib_AtomicPtr<Pool> mScheduledNewPool;
-        FrameLib_AtomicPtr<Pool> mScheduledDisposePool;
+        AtomicPtr<Pool> mScheduledNewPool;
+        AtomicPtr<Pool> mScheduledDisposePool;
         NewThread mAllocThread;
         FreeThread mFreeThread;
     };
@@ -186,7 +186,7 @@ private:
     
     // Member Variables
     
-    FrameLib_SpinLock mLock;
+    SpinLock mLock;
     CoreAllocator mAllocator;
 };
 

@@ -112,7 +112,7 @@ struct MaxMessage
             mTagged[i].writeTagged(serialisedParameters);
     }
     
-    FrameLib_SpinLock mLock;
+    SpinLock mLock;
     
     List mList;
     std::vector<TaggedMessages> mTagged;

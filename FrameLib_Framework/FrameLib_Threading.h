@@ -3,73 +3,79 @@
 #define FrameLib_THREADING_H
 
 #ifdef __APPLE__
-
+    
 #include <libkern/OSAtomic.h>
 #include <pthread.h>
 #include <mach/semaphore.h>
 #include <mach/task.h>
 
-// Mac OS specific definitions
-
-typedef volatile int32_t Atomic32;
-
-static inline int32_t increment32(Atomic32 *a) { return OSAtomicIncrement32Barrier(a); }
-static inline int32_t decrement32(Atomic32 *a) { return OSAtomicDecrement32Barrier(a); }
-static inline int32_t add32(Atomic32 *a, int32_t b) { return OSAtomicAdd32Barrier(b, a); }
-static inline bool compareAndSwap32(Atomic32 *loc, int32_t comp, int32_t exch) { return OSAtomicCompareAndSwap32Barrier(comp, exch, loc); }
-
-typedef void * volatile AtomicPtr;
-
-static inline bool compareAndSwapPtr(AtomicPtr *loc, void *comp, void *exch) { return OSAtomicCompareAndSwapPtrBarrier(comp, exch, loc); }
-static inline void *swapPtr(AtomicPtr *loc, void *swap)
+namespace OS_Specific
 {
-    void *ptr = *loc;
+    // Mac OS specific definitions
     
-    while (!compareAndSwapPtr(loc, ptr, swap))
-        ptr = *loc;
+    typedef volatile int32_t Atomic32;
     
-    return ptr;
+    static inline int32_t increment32(Atomic32 *a) { return OSAtomicIncrement32Barrier(a); }
+    static inline int32_t decrement32(Atomic32 *a) { return OSAtomicDecrement32Barrier(a); }
+    static inline int32_t add32(Atomic32 *a, int32_t b) { return OSAtomicAdd32Barrier(b, a); }
+    static inline bool compareAndSwap32(Atomic32 *loc, int32_t comp, int32_t exch) { return OSAtomicCompareAndSwap32Barrier(comp, exch, loc); }
+    
+    typedef void * volatile AtomicPtr;
+    
+    static inline bool compareAndSwapPtr(AtomicPtr *loc, void *comp, void *exch) { return OSAtomicCompareAndSwapPtrBarrier(comp, exch, loc); }
+    static inline void *swapPtr(AtomicPtr *loc, void *swap)
+    {
+        void *ptr = *loc;
+        
+        while (!compareAndSwapPtr(loc, ptr, swap))
+            ptr = *loc;
+        
+        return ptr;
+    }
+    
+    typedef pthread_t OSThreadType;
+    typedef semaphore_t OSSemaphoreType;
+    typedef void *OSThreadFunctionType(void *arg);
 }
 
-typedef pthread_t OSThreadType;
-typedef semaphore_t OSSemaphoreType;
-typedef void *OSThreadFunctionType(void *arg);
-
 #else
-
-// Windows OS specific definitions
-
+    
+    // Windows OS specific definitions
+    
 #include <windows.h>
 
-typedef volatile long Atomic32;
-
-static inline long increment32(Atomic32 *a) { return InterlockedIncrement(a); }
-static inline long decrement32(Atomic32 *a) { return InterlockedDecrement(a); }
-static inline long add32(Atomic32 *a, long b) { return InterlockedAdd(a, b); }
-static inline bool compareAndSwap32(Atomic32 *loc, long comp, long exch) { return InterlockedCompareExchange(loc, exch, comp) == comp; }
-
-typedef volatile PVOID AtomicPtr;
-
-static inline bool compareAndSwapPtr(AtomicPtr *loc, void *comp, void *exch) { return InterlockedCompareExchangePointer(loc, exch, comp) == comp; }
-static inline void *swapPtr(AtomicPtr *loc, void *swap) { return InterlockedExchangePointer(loc, swap); }
-
-typedef HANDLE OSThreadType;
-typedef HANDLE OSSemaphoreType;
-typedef DWORD WINAPI OSThreadFunctionType(LPVOID arg);
+namespace OS_Specific
+{
+    typedef volatile long Atomic32;
+    
+    static inline long increment32(Atomic32 *a) { return InterlockedIncrement(a); }
+    static inline long decrement32(Atomic32 *a) { return InterlockedDecrement(a); }
+    static inline long add32(Atomic32 *a, long b) { return InterlockedAdd(a, b); }
+    static inline bool compareAndSwap32(Atomic32 *loc, long comp, long exch) { return InterlockedCompareExchange(loc, exch, comp) == comp; }
+    
+    typedef volatile PVOID AtomicPtr;
+    
+    static inline bool compareAndSwapPtr(AtomicPtr *loc, void *comp, void *exch) { return InterlockedCompareExchangePointer(loc, exch, comp) == comp; }
+    static inline void *swapPtr(AtomicPtr *loc, void *swap) { return InterlockedExchangePointer(loc, swap); }
+    
+    typedef HANDLE OSThreadType;
+    typedef HANDLE OSSemaphoreType;
+    typedef DWORD WINAPI OSThreadFunctionType(LPVOID arg);
+}
 
 #endif
 
 // An atomic 32 bit integer
 
-class FrameLib_Atomic32
+class Atomic32
 {
     
 public:
 
-    FrameLib_Atomic32(int32_t value) : mValue(value) {}
-    FrameLib_Atomic32() : mValue(0)	{}
+    Atomic32(int32_t value) : mValue(value) {}
+    Atomic32() : mValue(0)	{}
 	
-	bool compareAndSwap(int32_t comparand, int32_t exchange) { return compareAndSwap32(&mValue, comparand, exchange); }
+    bool compareAndSwap(int32_t comparand, int32_t exchange) { return OS_Specific::compareAndSwap32(&mValue, comparand, exchange); }
     
     int32_t operator = (const int32_t value)
     {
@@ -77,57 +83,57 @@ public:
         return value;
     }
     
-    int32_t operator += (const int32_t& a)      { return add32(&mValue, a); }
+    int32_t operator += (const int32_t& a)      { return OS_Specific::add32(&mValue, a); }
     
-    int32_t operator ++ ()                      { return increment32(&mValue); }
+    int32_t operator ++ ()                      { return OS_Specific::increment32(&mValue); }
     int32_t operator ++ (int)                   { return operator++() - 1; }
-    int32_t operator -- ()                      { return decrement32(&mValue); }
+    int32_t operator -- ()                      { return OS_Specific::decrement32(&mValue); }
     int32_t operator -- (int)                   { return operator--() + 1; }
     
 private:
 	
     // Deleted
     
-    FrameLib_Atomic32(const FrameLib_Atomic32&);
-    FrameLib_Atomic32& operator=(const FrameLib_Atomic32&);
+    Atomic32(const Atomic32&);
+    Atomic32& operator=(const Atomic32&);
     
-	Atomic32 mValue;
+	OS_Specific::Atomic32 mValue;
 };
 
 
 // An atomic pointer
 
-template <class T> class FrameLib_AtomicPtr
+template <class T> class AtomicPtr
 {
     
 public:
     
-    FrameLib_AtomicPtr()	{ mValue = NULL; }
+    AtomicPtr()	{ mValue = NULL; }
     
-    bool compareAndSwap(T *comparand, T *exchange) { return compareAndSwapPtr(&mValue, comparand, exchange); }
-    T *swap(T *exchange) { return (T *) swapPtr(&mValue, exchange); }
+    bool compareAndSwap(T *comparand, T *exchange) { return OS_Specific::compareAndSwapPtr(&mValue, comparand, exchange); }
+    T *swap(T *exchange) { return (T *) OS_Specific::swapPtr(&mValue, exchange); }
     T *clear() { return swap(NULL); }
     
 private:
     
     // Deleted
     
-    FrameLib_AtomicPtr(const FrameLib_AtomicPtr&);
-    FrameLib_AtomicPtr& operator=(const FrameLib_AtomicPtr&);
+    AtomicPtr(const AtomicPtr&);
+    AtomicPtr& operator=(const AtomicPtr&);
     
-    AtomicPtr mValue;
+    OS_Specific::AtomicPtr mValue;
 };
 
 
 // A spinlock that can be locked, attempted or acquired
 
-class FrameLib_SpinLock
+class SpinLock
 {
     
 public:
     
-    FrameLib_SpinLock() {}
-    ~FrameLib_SpinLock() { acquire(); }
+    SpinLock() {}
+    ~SpinLock() { acquire(); }
     
     bool attempt() { return mAtomicLock.compareAndSwap(0, 1); }
 	void acquire() { while(attempt() == false); }
@@ -137,22 +143,22 @@ private:
 	
     // Deleted
     
-    FrameLib_SpinLock(const FrameLib_SpinLock&);
-    FrameLib_SpinLock& operator=(const FrameLib_SpinLock&);
+    SpinLock(const SpinLock&);
+    SpinLock& operator=(const SpinLock&);
     
-	FrameLib_Atomic32 mAtomicLock;
+	Atomic32 mAtomicLock;
 };
 
 
 // A class for holding a lock using RAII
 
-class FrameLib_SpinLockHold
+class SpinLockHolder
 {
     
 public:
     
-    FrameLib_SpinLockHold(FrameLib_SpinLock *lock) : mLock(lock) { if (mLock) mLock->acquire(); }
-    ~FrameLib_SpinLockHold() { if (mLock) mLock->release(); }
+    SpinLockHolder(SpinLock *lock) : mLock(lock) { if (mLock) mLock->acquire(); }
+    ~SpinLockHolder() { if (mLock) mLock->release(); }
     
     void destroy()
     {
@@ -163,7 +169,7 @@ public:
     
 private:
     
-    FrameLib_SpinLock *mLock;
+    SpinLock *mLock;
 };
 
 
@@ -196,12 +202,12 @@ private:
     
     // threadStart is a quick OS-style wrapper to call the object which calls the relevant static function
     
-    static OSThreadFunctionType threadStart;
+    static OS_Specific::OSThreadFunctionType threadStart;
     void call() { mThreadFunction(mArg); }
     
     // Data
     
-    OSThreadType mInternal;
+    OS_Specific::OSThreadType mInternal;
     PriorityLevel mPriority;
     ThreadFunctionType *mThreadFunction;
     void *mArg;
@@ -232,7 +238,7 @@ private:
     
     // Data
     
-    OSSemaphoreType mInternal;
+    OS_Specific::OSSemaphoreType mInternal;
     bool mValid;
 };
 
@@ -324,7 +330,7 @@ private:
     Semaphore mSemaphore;
     
     bool mSignaled;
-    FrameLib_Atomic32 mFlag;
+    Atomic32 mFlag;
 };
 
 #endif

@@ -127,7 +127,7 @@ private:
     FrameLib_PointerSet<FrameLib_LocalAllocator> mLocalAllocators;
     FrameLib_PointerSet<FrameLib_ProcessingQueue> mProcessingQueues;
     
-    FrameLib_SpinLock mLock;
+    SpinLock mLock;
     long mCount;
 };
 
