@@ -1,7 +1,15 @@
 
 #include "FrameLib_Global.h"
 
-// A template class for storing reference counted pointers against reference addresses (representing contexts)
+// Add an object given a pointer (transferring ownership) and a reference address
+
+template <class T>
+void FrameLib_Global::PointerSet<T>::add(T *object, void *reference)
+{
+    mPointers.push_back(CountablePointer(object, reference));
+}
+
+// Find a pre-exising object by reference address
 
 template <class T>
 T *FrameLib_Global::PointerSet<T>::find(void *reference)
@@ -38,13 +46,7 @@ void FrameLib_Global::template PointerSet<T>::release(void *reference)
     }
 }
 
-// Add an object given a pointer (transferring ownership) and a reference address
 
-template <class T>
-void FrameLib_Global::PointerSet<T>::add(T *object, void *reference)
-{
-    mPointers.push_back(CountablePointer(object, reference));
-}
 
 // Retrieve and release the global object
 
