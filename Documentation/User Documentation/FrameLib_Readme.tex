@@ -29,7 +29,7 @@
 
 \linespread{1.1} % Line spacing
 
-\newcommand{\version}{Alpha 0.6}
+\newcommand{\version}{Alpha 0.7}
 % Set up the header and footer
 \pagestyle{fancy}
 \lhead{Alex Harker} % Top left header
@@ -487,5 +487,16 @@ A full object listing follows, grouped by function. Currently this is the best q
 \item Significant reworking of the framework for ease of use and improved design.
 \item Move towards slashes for parameter entry in the max wrapper (demos changes).
 \end{itemize}
+
+\subsection{Changes in Alpha 0.7}
+\vspace{0.1in}
+
+\begin{itemize}
+\item {[\#27]} Corrected median filter demo typo.
+\item {[\#28]} Fixed issue with memory pool deletion on freeing of the global object.
+\item Fixed double reporting of patching errors whilst audio is on.
+\item Internal connection system updates and corrections (issues were currently non-visible).
+\end{itemize}
+
 
 \end{document}
