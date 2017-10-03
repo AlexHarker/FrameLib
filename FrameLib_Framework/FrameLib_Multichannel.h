@@ -342,6 +342,8 @@ private:
             if (getInputNumChans(i) > nChannels)
                 nChannels = getInputNumChans(i);
         
+        nChannels = std::max(nChannels, mNumAudioStreams);
+        
         // Resize if necessary
         
         bool numChansChanged = nChannels != cChannels;
