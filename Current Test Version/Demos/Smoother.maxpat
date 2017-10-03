@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 5,
-			"architecture" : "x64",
+			"architecture" : "x86",
 			"modernui" : 1
 		}
 ,
@@ -69,9 +69,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 157.0, 149.0, 191.0, 22.0 ],
+					"patching_rect" : [ 157.0, 149.0, 196.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.minus~ /mode padin /padding 0."
+					"text" : "fl.minus~ /mismatch pad_in /pad 0."
 				}
 
 			}
@@ -108,7 +108,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 329.0, 101.0, 91.0, 22.0 ],
+					"patching_rect" : [ 334.0, 101.0, 91.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.recall~ #0last"
 				}
@@ -232,7 +232,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-49", 0 ],
-					"midpoints" : [ 89.5, 81.0, 338.5, 81.0 ],
+					"midpoints" : [ 89.5, 81.0, 343.5, 81.0 ],
 					"order" : 0,
 					"source" : [ "obj-67", 0 ]
 				}

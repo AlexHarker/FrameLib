@@ -20,10 +20,10 @@ template <typename Op> class FrameLib_BinaryOp : public FrameLib_Processor
             add("Sets the mode used when dealing with mismatched input lengths: "
                 "wrap - the smaller input is read modulo against the larger input. "
                 "shrink - the output length is set to the size of the smaller input. "
-                "padin - the smaller input is padded prior to calculation to match the size of the larger input. "
-                "padout - the output is padded to match the size of the larger input.");
-            add("Sets which input(s) trigger output.");
-            add("Sets the value used for padding (for either padin or padout modes).");
+                "pad_in - the smaller input is padded prior to calculation to match the size of the larger input. "
+                "pad_out - the output is padded to match the size of the larger input.");
+            add("Sets which inputs trigger output.");
+            add("Sets the value used for padding (for either pad_in or pad_out modes).");
         }
     };
     
@@ -37,18 +37,18 @@ public:
     
     FrameLib_BinaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, getParameterInfo(), 2, 1)
     {
-        mParameters.addEnum(kMode, "mode");
+        mParameters.addEnum(kMode, "mismatch");
         mParameters.addEnumItem(kWrap, "wrap");
         mParameters.addEnumItem(kShrink, "shrink");
-        mParameters.addEnumItem(kPadIn, "padin");
-        mParameters.addEnumItem(kPadOut, "padout");
+        mParameters.addEnumItem(kPadIn, "pad_in");
+        mParameters.addEnumItem(kPadOut, "pad_out");
         
-        mParameters.addEnum(kTriggers, "triggers");
+        mParameters.addEnum(kTriggers, "trigger_ins");
         mParameters.addEnumItem(kBoth, "both");
         mParameters.addEnumItem(kLeft, "left");
         mParameters.addEnumItem(kRight, "right");
 
-        mParameters.addDouble(kPadding, "padding", 0.0);
+        mParameters.addDouble(kPadding, "pad", 0.0);
         
         mParameters.set(serialisedParameters);
                                     
