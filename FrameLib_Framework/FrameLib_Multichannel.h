@@ -186,7 +186,7 @@ template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
 public:
     
     FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-    : FrameLib_MultiChannel(T::getType(), context, owner), mSerialisedParameters(serialisedParameters->size())
+    : FrameLib_MultiChannel(T::getType(), context, owner), mSerialisedParameters(serialisedParameters->size()), mNumAudioStreams(1)
     {
         // Make first block
         
@@ -199,9 +199,9 @@ public:
         
         // Set up IO / fixed inputs / audio temps
         
-        setIO(mBlocks[0]->getNumIns(), mBlocks[0]->getNumOuts(), mBlocks[0]->getNumAudioChans());
+        setIO(mBlocks[0]->getNumIns(), mBlocks[0]->getNumOuts(), mNumAudioStreams * mBlocks[0]->getNumAudioChans());
         mFixedInputs.resize(getNumIns());
-        mAudioTemps.resize(getNumAudioOuts());
+        mAudioTemps.resize(mBlocks[0]->getNumAudioOuts());
         
         // Make initial output connections
         
@@ -245,11 +245,14 @@ public:
     
     virtual void blockUpdate(double **ins, double **outs, unsigned long blockSize)
     {
+        unsigned long internalNumIns = mBlocks[0]->getNumAudioIns();
+        unsigned long internalNumOuts = mBlocks[0]->getNumAudioOuts();
+        
         // Allocate temporary memory
         
-        if (getNumAudioOuts())
-            mAudioTemps[0] = alloc<double>(blockSize * getNumAudioOuts());
-        for (unsigned long i = 1; i < getNumAudioOuts(); i++)
+        if (internalNumOuts)
+            mAudioTemps[0] = alloc<double>(blockSize * internalNumOuts);
+        for (unsigned long i = 1; i < internalNumOuts; i++)
             mAudioTemps[i] = mAudioTemps[0] + (i * blockSize);
             
         // Zero outputs
@@ -259,13 +262,16 @@ public:
 
         // Process and sum to outputs
 
-        for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
+        for (unsigned long i = 0; i < mBlocks.size(); i++)
         {
-            (*it)->blockUpdate(ins, &mAudioTemps[0], blockSize);
+            unsigned long inStreamOffset = internalNumIns * (i % mNumAudioStreams);
+            unsigned long outStreamOffset = internalNumOuts * (i % mNumAudioStreams);
             
-            for (unsigned long i = 0; i < getNumAudioOuts(); i++)
-                for (unsigned long j = 0; j < blockSize; j++)
-                    outs[i][j] += mAudioTemps[i][j];
+            mBlocks[i]->blockUpdate(ins + inStreamOffset, &mAudioTemps[0], blockSize);
+            
+            for (unsigned long j = 0; j < internalNumOuts; j++)
+                for (unsigned long k = 0; k < blockSize; k++)
+                    outs[outStreamOffset + j][k] += mAudioTemps[j][k];
         }
 
         // Release temporary memory and clear allocator
@@ -425,7 +431,8 @@ private:
 
     std::vector <FrameLib_Block *> mBlocks;
     std::vector <std::vector <double> > mFixedInputs;
-    
+
+    unsigned long mNumAudioStreams;
     unsigned long mMaxBlockSize;
     double mSamplingRate;
     
