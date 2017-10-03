@@ -410,6 +410,16 @@ public:
         return -1;
     }
 
+    long maxArgument() const
+    {
+        long argument = -1;
+        
+        for (unsigned long i = 0; i < mParameters.size(); i++)
+            argument = std::max(mParameters[i]->argumentIdx(), argument);
+        
+        return argument;
+    }
+    
     // Add Parameters
     
     void addBool(unsigned long index, const char *name, bool defaultValue = false, long argumentIdx = -1)
