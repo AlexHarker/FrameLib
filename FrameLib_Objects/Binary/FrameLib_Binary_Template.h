@@ -27,8 +27,8 @@ template <typename Op> class FrameLib_BinaryOp : public FrameLib_Processor
         }
     };
     
-    enum ParameterList { kMode, kTriggers, kPadding };
-    enum Modes { kWrap, kShrink, kPadIn, kPadOut };
+    enum ParameterList { kMismatchMode, kTriggers, kPadding };
+    enum MismatchModes { kWrap, kShrink, kPadIn, kPadOut };
     enum TriggerModes { kBoth, kLeft, kRight };
     
 public:
@@ -37,7 +37,7 @@ public:
     
     FrameLib_BinaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, getParameterInfo(), 2, 1)
     {
-        mParameters.addEnum(kMode, "mismatch");
+        mParameters.addEnum(kMismatchMode, "mismatch");
         mParameters.addEnumItem(kWrap, "wrap");
         mParameters.addEnumItem(kShrink, "shrink");
         mParameters.addEnumItem(kPadIn, "pad_in");
@@ -52,7 +52,7 @@ public:
         
         mParameters.set(serialisedParameters);
                                     
-        mMode = (Modes) mParameters.getInt(kMode);
+        mMismatchMode = (MismatchModes) mParameters.getInt(kMismatchMode);
         mPadValue = mParameters.getValue(kPadding);
         
         TriggerModes triggers = (TriggerModes) mParameters.getInt(kTriggers);
@@ -68,7 +68,7 @@ public:
     std::string objectInfo(bool verbose)
     {
         return formatInfo("#: Calculation is performed on pairs of values in turn. The result is an output frame at least as long as the smaller of the two inputs. "
-                       "When frames mismatch in size the result depends on the setting of the mode parameter. Either or both inputs may be set to trigger output.",
+                       "When frames mismatch in size the result depends on the setting of the mismatch parameter. Either or both inputs may be set to trigger output.",
                        "#.", getDescriptionString(), verbose);
     }
     
@@ -81,7 +81,7 @@ protected:
     
     void process()
     {
-        Modes mode = mMode;
+        MismatchModes mode = mMismatchMode;
         Op op;
         
         unsigned long sizeIn1, sizeIn2, sizeCommon, sizeOut;
@@ -205,7 +205,7 @@ private:
     // Data
     
     double mPadValue;
-    Modes mMode;
+    MismatchModes mMismatchMode;
 };
 
 // Binary (Function Version)
