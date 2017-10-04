@@ -29,9 +29,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.7</span>
    </div>
-   <div id="projectbrief">Arbitrarily timed and sized frame-based DSP</div>
+   <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
  </tr>
  </tbody>
@@ -96,6 +96,9 @@ $(document).ready(function(){initNavTree('functions_o.html','');});
 <li>operator!
 : <a class="el" href="class_f_l___f_p.html#a14d7541c865b9e57eaaca1c3fd2c6240">FL_FP</a>
 </li>
+<li>operator!=
+: <a class="el" href="class_frame_lib___context.html#a7aed82ce3d334858032a3c45e3c70169">FrameLib_Context</a>
+</li>
 <li>operator*
 : <a class="el" href="class_f_l___f_p.html#a7c9e13210a3e8f9ef270a4895b1fc0d3">FL_FP</a>
 , <a class="el" href="struct_f_l___s_p.html#a871a8c7c5ecf72cb21a348b1e86dd17b">FL_SP</a>
@@ -104,25 +107,25 @@ $(document).ready(function(){initNavTree('functions_o.html','');});
 : <a class="el" href="class_f_l___f_p.html#a04123cec30a145c37cfdaa2030ecba5e">FL_FP</a>
 </li>
 <li>operator+
-: <a class="el" href="class_f_l___f_p.html#a96dfe1fef405deebcdd77739a80baf4e">FL_FP</a>
+: <a class="el" href="class_f_l___f_p.html#a4934b87fe91ceefeb77cc0fbf926329c">FL_FP</a>
 </li>
 <li>operator++()
-: <a class="el" href="class_f_l___f_p.html#a883f8d6a0d34a3af9a35654b25f0ba7c">FL_FP</a>
-, <a class="el" href="class_frame_lib___atomic32.html#a7da4bebfda8f03dd478fb7917824ebb5">FrameLib_Atomic32</a>
+: <a class="el" href="class_atomic32.html#a65db178dc93ef4f57535a9eecbab0046">Atomic32</a>
+, <a class="el" href="class_f_l___f_p.html#a883f8d6a0d34a3af9a35654b25f0ba7c">FL_FP</a>
 </li>
 <li>operator+=()
-: <a class="el" href="class_f_l___f_p.html#ab07d8c341752a6668a3a8a6e0d8ba2c7">FL_FP</a>
-, <a class="el" href="class_frame_lib___atomic32.html#ab41cfcc652ed307755c41af7b30562e9">FrameLib_Atomic32</a>
+: <a class="el" href="class_atomic32.html#a73b03eb7fb83b21ea4e20aa23240d561">Atomic32</a>
+, <a class="el" href="class_f_l___f_p.html#ab07d8c341752a6668a3a8a6e0d8ba2c7">FL_FP</a>
 </li>
 <li>operator-
 : <a class="el" href="class_f_l___f_p.html#a29c8d46e78c5c3a20fdfbf9904f0a25d">FL_FP</a>
 </li>
 <li>operator--()
-: <a class="el" href="class_f_l___f_p.html#a3e9f6cc369b21fe2d188ebeca60a3df4">FL_FP</a>
-, <a class="el" href="class_frame_lib___atomic32.html#aebb48565023d6cefbaa9bacd797dd9e2">FrameLib_Atomic32</a>
+: <a class="el" href="class_atomic32.html#a038730a76fcb5108d0909956fd55dbf2">Atomic32</a>
+, <a class="el" href="class_f_l___f_p.html#a3e9f6cc369b21fe2d188ebeca60a3df4">FL_FP</a>
 </li>
 <li>operator-=()
-: <a class="el" href="class_f_l___f_p.html#a494e954f36fbfd791dfc2117e0de4baa">FL_FP</a>
+: <a class="el" href="class_f_l___f_p.html#a43876e6b2d9ce28d6c230e75dfbe8cd5">FL_FP</a>
 </li>
 <li>operator/
 : <a class="el" href="class_f_l___f_p.html#a746b7c97a3194b33df5e6e04ce0ce5e8">FL_FP</a>
@@ -137,14 +140,15 @@ $(document).ready(function(){initNavTree('functions_o.html','');});
 : <a class="el" href="class_f_l___f_p.html#a420177af32f27b84621b1bdc1db5d29a">FL_FP</a>
 </li>
 <li>operator=()
-: <a class="el" href="class_f_l___f_p.html#a676730a35c5b8e87c672336a34fa684d">FL_FP</a>
-, <a class="el" href="class_frame_lib___atomic32.html#ac7565158777f53ff5e859f190b80648f">FrameLib_Atomic32</a>
+: <a class="el" href="class_atomic32.html#a73e8f378cbe329c11f9f954a3a1c13e4">Atomic32</a>
+, <a class="el" href="class_f_l___f_p.html#a676730a35c5b8e87c672336a34fa684d">FL_FP</a>
 </li>
 <li>operator==
-: <a class="el" href="class_f_l___f_p.html#a8b8fd18407f83f9bbf63012179eb694d">FL_FP</a>
+: <a class="el" href="class_f_l___f_p.html#a7f68a65590040b22d55e29f700a70090">FL_FP</a>
+, <a class="el" href="class_frame_lib___context.html#ab0382454ba28ee3ff302be24ffc861c0">FrameLib_Context</a>
 </li>
 <li>operator&gt;
-: <a class="el" href="class_f_l___f_p.html#aed84a1784274a020d95f2c01746f2b5c">FL_FP</a>
+: <a class="el" href="class_f_l___f_p.html#ab237b013e66f2d39a3bb466e36741baf">FL_FP</a>
 </li>
 <li>operator&gt;=
 : <a class="el" href="class_f_l___f_p.html#a496bb5bc687d589a5ec23c0b81dc5fb2">FL_FP</a>
@@ -159,11 +163,11 @@ $(document).ready(function(){initNavTree('functions_o.html','');});
 : <a class="el" href="class_frame_lib___d_s_p.html#a82ba080c4038eede7bae208555df1780">FrameLib_DSP</a>
 </li>
 <li>outputType()
-: <a class="el" href="class_frame_lib___d_s_p.html#aaffa4da5531641a7da9f85e93d3440f0">FrameLib_DSP</a>
-, <a class="el" href="class_frame_lib___expand.html#a926ee7c8b222e018cae92ffbdecb1270">FrameLib_Expand&lt; T &gt;</a>
-, <a class="el" href="class_frame_lib___object.html#abdfca6b259f5fc7f97f4f2e016c1d80f">FrameLib_Object&lt; T &gt;</a>
-, <a class="el" href="class_frame_lib___pack.html#a59f695dc513fda6afa6bc0948c002533">FrameLib_Pack</a>
-, <a class="el" href="class_frame_lib___unpack.html#a7a88aeaeeaa657858c014a685ef901e7">FrameLib_Unpack</a>
+: <a class="el" href="class_frame_lib___d_s_p.html#a17b4529624dd9219d502570f81d88b27">FrameLib_DSP</a>
+, <a class="el" href="class_frame_lib___expand.html#a5ab23cdee5ca51ed5098b8a99164aa6a">FrameLib_Expand&lt; T &gt;</a>
+, <a class="el" href="class_frame_lib___object.html#a03eb408844f15d8f73cee67f43149b9d">FrameLib_Object&lt; T &gt;</a>
+, <a class="el" href="class_frame_lib___pack.html#a48e9118d038396653928116b5c69077f">FrameLib_Pack</a>
+, <a class="el" href="class_frame_lib___unpack.html#aa065a393363c5cc93d7d21dd4b1e6e1a">FrameLib_Unpack</a>
 </li>
 </ul>
 </div><!-- contents -->

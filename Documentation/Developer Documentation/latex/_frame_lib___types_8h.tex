@@ -1,5 +1,5 @@
-\hypertarget{_frame_lib___types_8h}{}\section{Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Types.h File Reference}
-\label{_frame_lib___types_8h}\index{Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Types.\+h}}
+\hypertarget{_frame_lib___types_8h}{}\section{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Types.h File Reference}
+\label{_frame_lib___types_8h}\index{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Types.\+h@{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Types.\+h}}
 {\ttfamily \#include $<$stdint.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}Frame\+Lib\+\_\+\+Fixed\+Point.\+h\char`\"{}}\newline
 \subsection*{Typedefs}
@@ -22,6 +22,15 @@ enum \hyperlink{_frame_lib___types_8h_a842c5e2e69277690b064bf363c017980}{Object\
 enum \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} \{ \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854af38f588c15f42faf6da474016124079c}{k\+Frame\+Any}, 
 \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854a4bc2388cbdd721f5039a32f95cd92b03}{k\+Frame\+Normal}, 
 \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854a5aee2d6178ee23e61651d75ebc9b21c3}{k\+Frame\+Tagged}
+ \}
+\item 
+enum \hyperlink{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722}{Connection\+Result} \{ \newline
+\hyperlink{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722acbb7410537aa828b1bd79f9f482c4f58}{k\+Connect\+Success}, 
+\hyperlink{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722aa60bde05fabf20fadbc9383756c0eb79}{k\+Connect\+Wrong\+Context}, 
+\hyperlink{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722ab9d26eda5af349a5999d6dfe4ebfdc40}{k\+Connect\+Self\+Connection}, 
+\hyperlink{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722a9d2a53b28aad91bf56798bb950e093b0}{k\+Connect\+Feedback\+Detected}, 
+\newline
+\hyperlink{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722ae8d1018327af38e058cd3b7a92284248}{k\+Connect\+No\+Ordering\+Support}
  \}
 \end{DoxyCompactItemize}
 
@@ -48,6 +57,34 @@ enum \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+
 
 
 \subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722}\label{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722}} 
+\index{Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}!Connection\+Result@{Connection\+Result}}
+\index{Connection\+Result@{Connection\+Result}!Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}}
+\subsubsection{\texorpdfstring{Connection\+Result}{ConnectionResult}}
+{\footnotesize\ttfamily enum \hyperlink{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722}{Connection\+Result}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Connect\+Success@{k\+Connect\+Success}!Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}}\index{Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}!k\+Connect\+Success@{k\+Connect\+Success}}}\mbox{\Hypertarget{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722acbb7410537aa828b1bd79f9f482c4f58}\label{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722acbb7410537aa828b1bd79f9f482c4f58}} 
+k\+Connect\+Success&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Connect\+Wrong\+Context@{k\+Connect\+Wrong\+Context}!Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}}\index{Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}!k\+Connect\+Wrong\+Context@{k\+Connect\+Wrong\+Context}}}\mbox{\Hypertarget{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722aa60bde05fabf20fadbc9383756c0eb79}\label{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722aa60bde05fabf20fadbc9383756c0eb79}} 
+k\+Connect\+Wrong\+Context&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Connect\+Self\+Connection@{k\+Connect\+Self\+Connection}!Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}}\index{Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}!k\+Connect\+Self\+Connection@{k\+Connect\+Self\+Connection}}}\mbox{\Hypertarget{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722ab9d26eda5af349a5999d6dfe4ebfdc40}\label{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722ab9d26eda5af349a5999d6dfe4ebfdc40}} 
+k\+Connect\+Self\+Connection&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Connect\+Feedback\+Detected@{k\+Connect\+Feedback\+Detected}!Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}}\index{Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}!k\+Connect\+Feedback\+Detected@{k\+Connect\+Feedback\+Detected}}}\mbox{\Hypertarget{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722a9d2a53b28aad91bf56798bb950e093b0}\label{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722a9d2a53b28aad91bf56798bb950e093b0}} 
+k\+Connect\+Feedback\+Detected&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Connect\+No\+Ordering\+Support@{k\+Connect\+No\+Ordering\+Support}!Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}}\index{Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}!k\+Connect\+No\+Ordering\+Support@{k\+Connect\+No\+Ordering\+Support}}}\mbox{\Hypertarget{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722ae8d1018327af38e058cd3b7a92284248}\label{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722ae8d1018327af38e058cd3b7a92284248}} 
+k\+Connect\+No\+Ordering\+Support&\\
+\hline
+
+\end{DoxyEnumFields}
 \mbox{\Hypertarget{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}\label{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}} 
 \index{Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}!Frame\+Type@{Frame\+Type}}
 \index{Frame\+Type@{Frame\+Type}!Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}}

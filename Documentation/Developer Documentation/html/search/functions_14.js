@@ -1,21 +1,5 @@
 var searchData=
 [
-  ['_7eautoserial',['~AutoSerial',['../class_frame_lib___parameters_1_1_auto_serial.html#a8332e640a34eca6f4c39dc0bd135fdab',1,'FrameLib_Parameters::AutoSerial']]],
-  ['_7edelegatethread',['~DelegateThread',['../class_delegate_thread.html#a19c74ae776c205e9f0ea77119d11cb20',1,'DelegateThread']]],
-  ['_7eframelib_5fblock',['~FrameLib_Block',['../class_frame_lib___block.html#a17c0048595334cb8d63abfcbb77c980d',1,'FrameLib_Block']]],
-  ['_7eframelib_5fdsp',['~FrameLib_DSP',['../class_frame_lib___d_s_p.html#a2cf489678b72fe7e46956e69fac182ed',1,'FrameLib_DSP']]],
-  ['_7eframelib_5fexpand',['~FrameLib_Expand',['../class_frame_lib___expand.html#a3aa2aa689e4b063fa65fe72be311c45f',1,'FrameLib_Expand']]],
-  ['_7eframelib_5fglobalallocator',['~FrameLib_GlobalAllocator',['../class_frame_lib___global_allocator.html#a20fa9b3b84bb54eefffb8f30a70883d5',1,'FrameLib_GlobalAllocator']]],
-  ['_7eframelib_5flocalallocator',['~FrameLib_LocalAllocator',['../class_frame_lib___local_allocator.html#a7c7bc361ea0fc016fdc7da6282c963d4',1,'FrameLib_LocalAllocator']]],
-  ['_7eframelib_5fmultichannel',['~FrameLib_MultiChannel',['../class_frame_lib___multi_channel.html#ab6c1272cacfc7bf3cad1e2430d4c7020',1,'FrameLib_MultiChannel']]],
-  ['_7eframelib_5fobject',['~FrameLib_Object',['../class_frame_lib___object.html#ab88bcc3fe9e1c9da41a4afebb3d05005',1,'FrameLib_Object']]],
-  ['_7eframelib_5fparameters',['~FrameLib_Parameters',['../class_frame_lib___parameters.html#a5bb469337e8a213ba9f397bc6af269c8',1,'FrameLib_Parameters']]],
-  ['_7eframelib_5fspinlock',['~FrameLib_SpinLock',['../class_frame_lib___spin_lock.html#abfd0b5b37c9f8a3255648b9cac20ef05',1,'FrameLib_SpinLock']]],
-  ['_7eframelib_5fspinlockhold',['~FrameLib_SpinLockHold',['../class_frame_lib___spin_lock_hold.html#af83ca9fe6b02e885647704fe14f22dcd',1,'FrameLib_SpinLockHold']]],
-  ['_7eitem',['~Item',['../class_frame_lib___connection_queue_1_1_item.html#ac9363ad9ab0ad0ed00037e27c691ee8d',1,'FrameLib_ConnectionQueue::Item']]],
-  ['_7epruner',['~Pruner',['../class_frame_lib___global_allocator_1_1_pruner.html#af1b947e70e93d005e5a996ea2010e51a',1,'FrameLib_GlobalAllocator::Pruner']]],
-  ['_7esemaphore',['~Semaphore',['../class_semaphore.html#a633658a6fde276bffc912028725c6ade',1,'Semaphore']]],
-  ['_7estorage',['~Storage',['../class_frame_lib___local_allocator_1_1_storage.html#a562e98ee56a7fcff07f90621572688b1',1,'FrameLib_LocalAllocator::Storage']]],
-  ['_7ethread',['~Thread',['../class_thread.html#a37d9edd3a1a776cbc27dedff949c9726',1,'Thread']]],
-  ['_7etriggerablethread',['~TriggerableThread',['../class_triggerable_thread.html#abd45768172a989fca203f476ad2124bb',1,'TriggerableThread']]]
+  ['wait',['wait',['../class_semaphore.html#a496aae0d0eceef9385c9dcae4c3d9b36',1,'Semaphore']]],
+  ['write',['write',['../class_frame_lib___parameters_1_1_serial.html#ac06dc6d9539d62ec2a292263e6322e62',1,'FrameLib_Parameters::Serial::write(Serial *serialised)'],['../class_frame_lib___parameters_1_1_serial.html#ac28ddf8524a2f0124ed8b6585a59fe10',1,'FrameLib_Parameters::Serial::write(const char *tag, const char *str)'],['../class_frame_lib___parameters_1_1_serial.html#a27af79a7ed1e500511e36731ec10b910',1,'FrameLib_Parameters::Serial::write(const char *tag, const double *values, size_t N)'],['../class_frame_lib___parameters_1_1_auto_serial.html#a23c1eded5d1a25f81a6bda199ab522f0',1,'FrameLib_Parameters::AutoSerial::write(Serial *serialised)'],['../class_frame_lib___parameters_1_1_auto_serial.html#a9e6caad3d1e7d6176c2cb84bbe859b58',1,'FrameLib_Parameters::AutoSerial::write(const char *tag, char *str)'],['../class_frame_lib___parameters_1_1_auto_serial.html#a3066854fc6c246174b311f3849426a36',1,'FrameLib_Parameters::AutoSerial::write(const char *tag, double *values, size_t N)']]]
 ];

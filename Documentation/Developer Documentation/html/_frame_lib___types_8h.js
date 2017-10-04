@@ -3,6 +3,13 @@ var _frame_lib___types_8h =
     [ "Byte", "_frame_lib___types_8h.html#ae3a497195d617519e5353ea7b417940f", null ],
     [ "BytePointer", "_frame_lib___types_8h.html#a2c5689a997a12479b7d925e565428141", null ],
     [ "FrameLib_TimeFormat", "_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0", null ],
+    [ "ConnectionResult", "_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722", [
+      [ "kConnectSuccess", "_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722acbb7410537aa828b1bd79f9f482c4f58", null ],
+      [ "kConnectWrongContext", "_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722aa60bde05fabf20fadbc9383756c0eb79", null ],
+      [ "kConnectSelfConnection", "_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722ab9d26eda5af349a5999d6dfe4ebfdc40", null ],
+      [ "kConnectFeedbackDetected", "_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722a9d2a53b28aad91bf56798bb950e093b0", null ],
+      [ "kConnectNoOrderingSupport", "_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722ae8d1018327af38e058cd3b7a92284248", null ]
+    ] ],
     [ "FrameType", "_frame_lib___types_8h.html#ad495a9f61af7fff07d7e97979d1ab854", [
       [ "kFrameAny", "_frame_lib___types_8h.html#ad495a9f61af7fff07d7e97979d1ab854af38f588c15f42faf6da474016124079c", null ],
       [ "kFrameNormal", "_frame_lib___types_8h.html#ad495a9f61af7fff07d7e97979d1ab854a4bc2388cbdd721f5039a32f95cd92b03", null ],

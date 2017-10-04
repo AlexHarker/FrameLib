@@ -1,16 +1,16 @@
-\hypertarget{_frame_lib___threading_8h}{}\section{Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Threading.h File Reference}
-\label{_frame_lib___threading_8h}\index{Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Threading.\+h@{Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Threading.\+h}}
+\hypertarget{_frame_lib___threading_8h}{}\section{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Threading.h File Reference}
+\label{_frame_lib___threading_8h}\index{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Threading.\+h@{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Threading.\+h}}
 {\ttfamily \#include $<$windows.\+h$>$}\newline
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{class_frame_lib___atomic32}{Frame\+Lib\+\_\+\+Atomic32}
+class \hyperlink{class_atomic32}{Atomic32}
 \item 
-class \hyperlink{class_frame_lib___atomic_ptr}{Frame\+Lib\+\_\+\+Atomic\+Ptr$<$ T $>$}
+class \hyperlink{class_atomic_ptr}{Atomic\+Ptr$<$ T $>$}
 \item 
-class \hyperlink{class_frame_lib___spin_lock}{Frame\+Lib\+\_\+\+Spin\+Lock}
+class \hyperlink{class_spin_lock}{Spin\+Lock}
 \item 
-class \hyperlink{class_frame_lib___spin_lock_hold}{Frame\+Lib\+\_\+\+Spin\+Lock\+Hold}
+class \hyperlink{class_spin_lock_holder}{Spin\+Lock\+Holder}
 \item 
 class \hyperlink{class_thread}{Thread}
 \item 
@@ -20,49 +20,21 @@ class \hyperlink{class_triggerable_thread}{Triggerable\+Thread}
 \item 
 class \hyperlink{class_delegate_thread}{Delegate\+Thread}
 \end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespace_o_s___specific}{O\+S\+\_\+\+Specific}
+\end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef volatile long \hyperlink{_frame_lib___threading_8h_aed681d885c9ec2bd85817f099851ae1e}{Atomic32}
+typedef volatile long \hyperlink{namespace_o_s___specific_ae0c154d740b3e6f81b245ff564b7d0ad}{O\+S\+\_\+\+Specific\+::\+Atomic32}
 \item 
-typedef volatile P\+V\+O\+ID \hyperlink{_frame_lib___threading_8h_ab9bb2dadfff70925c7444dffa62048e5}{Atomic\+Ptr}
+typedef volatile P\+V\+O\+ID \hyperlink{namespace_o_s___specific_ad9a39cdf74334e1457fda6bb1c4cb505}{O\+S\+\_\+\+Specific\+::\+Atomic\+Ptr}
 \item 
-typedef H\+A\+N\+D\+LE \hyperlink{_frame_lib___threading_8h_a23d46994ccecb2d2cdd2cd19e1be5d8b}{O\+S\+Thread\+Type}
+typedef H\+A\+N\+D\+LE \hyperlink{namespace_o_s___specific_a965d89d27f3b632fa8d2d1b593bf2bd6}{O\+S\+\_\+\+Specific\+::\+O\+S\+Thread\+Type}
 \item 
-typedef H\+A\+N\+D\+LE \hyperlink{_frame_lib___threading_8h_ac1f3f30b0db8d33c2f2545d10ca53022}{O\+S\+Semaphore\+Type}
+typedef H\+A\+N\+D\+LE \hyperlink{namespace_o_s___specific_a11a242d06d0e59bcf9525303bd7b3b57}{O\+S\+\_\+\+Specific\+::\+O\+S\+Semaphore\+Type}
 \item 
-typedef D\+W\+O\+RD W\+I\+N\+A\+PI \hyperlink{_frame_lib___threading_8h_a5e95688da54d445d695f59082795e4df}{O\+S\+Thread\+Function\+Type}(L\+P\+V\+O\+ID arg)
+typedef D\+W\+O\+RD W\+I\+N\+A\+PI \hyperlink{namespace_o_s___specific_a4a422b5e92e59f05440b9f9439cd349d}{O\+S\+\_\+\+Specific\+::\+O\+S\+Thread\+Function\+Type}(L\+P\+V\+O\+ID arg)
 \end{DoxyCompactItemize}
-
-
-\subsection{Typedef Documentation}
-\mbox{\Hypertarget{_frame_lib___threading_8h_aed681d885c9ec2bd85817f099851ae1e}\label{_frame_lib___threading_8h_aed681d885c9ec2bd85817f099851ae1e}} 
-\index{Frame\+Lib\+\_\+\+Threading.\+h@{Frame\+Lib\+\_\+\+Threading.\+h}!Atomic32@{Atomic32}}
-\index{Atomic32@{Atomic32}!Frame\+Lib\+\_\+\+Threading.\+h@{Frame\+Lib\+\_\+\+Threading.\+h}}
-\subsubsection{\texorpdfstring{Atomic32}{Atomic32}}
-{\footnotesize\ttfamily typedef volatile long \hyperlink{_frame_lib___threading_8h_aed681d885c9ec2bd85817f099851ae1e}{Atomic32}}
-
-\mbox{\Hypertarget{_frame_lib___threading_8h_ab9bb2dadfff70925c7444dffa62048e5}\label{_frame_lib___threading_8h_ab9bb2dadfff70925c7444dffa62048e5}} 
-\index{Frame\+Lib\+\_\+\+Threading.\+h@{Frame\+Lib\+\_\+\+Threading.\+h}!Atomic\+Ptr@{Atomic\+Ptr}}
-\index{Atomic\+Ptr@{Atomic\+Ptr}!Frame\+Lib\+\_\+\+Threading.\+h@{Frame\+Lib\+\_\+\+Threading.\+h}}
-\subsubsection{\texorpdfstring{Atomic\+Ptr}{AtomicPtr}}
-{\footnotesize\ttfamily typedef volatile P\+V\+O\+ID \hyperlink{_frame_lib___threading_8h_ab9bb2dadfff70925c7444dffa62048e5}{Atomic\+Ptr}}
-
-\mbox{\Hypertarget{_frame_lib___threading_8h_ac1f3f30b0db8d33c2f2545d10ca53022}\label{_frame_lib___threading_8h_ac1f3f30b0db8d33c2f2545d10ca53022}} 
-\index{Frame\+Lib\+\_\+\+Threading.\+h@{Frame\+Lib\+\_\+\+Threading.\+h}!O\+S\+Semaphore\+Type@{O\+S\+Semaphore\+Type}}
-\index{O\+S\+Semaphore\+Type@{O\+S\+Semaphore\+Type}!Frame\+Lib\+\_\+\+Threading.\+h@{Frame\+Lib\+\_\+\+Threading.\+h}}
-\subsubsection{\texorpdfstring{O\+S\+Semaphore\+Type}{OSSemaphoreType}}
-{\footnotesize\ttfamily typedef H\+A\+N\+D\+LE \hyperlink{_frame_lib___threading_8h_ac1f3f30b0db8d33c2f2545d10ca53022}{O\+S\+Semaphore\+Type}}
-
-\mbox{\Hypertarget{_frame_lib___threading_8h_a5e95688da54d445d695f59082795e4df}\label{_frame_lib___threading_8h_a5e95688da54d445d695f59082795e4df}} 
-\index{Frame\+Lib\+\_\+\+Threading.\+h@{Frame\+Lib\+\_\+\+Threading.\+h}!O\+S\+Thread\+Function\+Type@{O\+S\+Thread\+Function\+Type}}
-\index{O\+S\+Thread\+Function\+Type@{O\+S\+Thread\+Function\+Type}!Frame\+Lib\+\_\+\+Threading.\+h@{Frame\+Lib\+\_\+\+Threading.\+h}}
-\subsubsection{\texorpdfstring{O\+S\+Thread\+Function\+Type}{OSThreadFunctionType}}
-{\footnotesize\ttfamily typedef D\+W\+O\+RD W\+I\+N\+A\+PI O\+S\+Thread\+Function\+Type(L\+P\+V\+O\+ID arg)}
-
-\mbox{\Hypertarget{_frame_lib___threading_8h_a23d46994ccecb2d2cdd2cd19e1be5d8b}\label{_frame_lib___threading_8h_a23d46994ccecb2d2cdd2cd19e1be5d8b}} 
-\index{Frame\+Lib\+\_\+\+Threading.\+h@{Frame\+Lib\+\_\+\+Threading.\+h}!O\+S\+Thread\+Type@{O\+S\+Thread\+Type}}
-\index{O\+S\+Thread\+Type@{O\+S\+Thread\+Type}!Frame\+Lib\+\_\+\+Threading.\+h@{Frame\+Lib\+\_\+\+Threading.\+h}}
-\subsubsection{\texorpdfstring{O\+S\+Thread\+Type}{OSThreadType}}
-{\footnotesize\ttfamily typedef H\+A\+N\+D\+LE \hyperlink{_frame_lib___threading_8h_a23d46994ccecb2d2cdd2cd19e1be5d8b}{O\+S\+Thread\+Type}}
-

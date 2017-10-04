@@ -29,9 +29,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.7</span>
    </div>
-   <div id="projectbrief">Arbitrarily timed and sized frame-based DSP</div>
+   <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
  </tr>
  </tbody>
@@ -82,8 +82,12 @@ $(document).ready(function(){initNavTree('class_frame_lib___object.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
 <a href="class_frame_lib___object-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">FrameLib_Object&lt; T &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -97,44 +101,48 @@ Inheritance diagram for FrameLib_Object&lt; T &gt;:</div>
  <div class="center">
   <img src="class_frame_lib___object.png" usemap="#FrameLib_5FObject_3C_20T_20_3E_map" alt=""/>
   <map id="FrameLib_5FObject_3C_20T_20_3E_map" name="FrameLib_5FObject_3C_20T_20_3E_map">
-<area href="class_frame_lib___info.html" alt="FrameLib_Info" shape="rect" coords="0,0,140,24"/>
+<area href="class_frame_lib___queueable.html" alt="FrameLib_Queueable&lt; T &gt;" shape="rect" coords="0,0,165,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_frame_lib___object_1_1_untyped_connection.html">UntypedConnection</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a481c704666e7bd901f64b2b255f79784"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="class_frame_lib___queueable.html">FrameLib_Queueable</a>&lt; T &gt;::<a class="el" href="class_frame_lib___object.html#a481c704666e7bd901f64b2b255f79784">Queue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a481c704666e7bd901f64b2b255f79784">Queue</a></td></tr>
+<tr class="separator:a481c704666e7bd901f64b2b255f79784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a81d840729ed8fc0e86ec33969a5a5a85"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a81d840729ed8fc0e86ec33969a5a5a85">FrameLib_Object</a> (<a class="el" href="_frame_lib___types_8h.html#a842c5e2e69277690b064bf363c017980">ObjectType</a> type)</td></tr>
-<tr class="separator:a81d840729ed8fc0e86ec33969a5a5a85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a73dc92ffde31164b54f1b1f5889b77"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a2a73dc92ffde31164b54f1b1f5889b77">FrameLib_Object</a> (<a class="el" href="_frame_lib___types_8h.html#a842c5e2e69277690b064bf363c017980">ObjectType</a> type, <a class="el" href="class_frame_lib___context.html">FrameLib_Context</a> context, void *owner, T *parent)</td></tr>
+<tr class="separator:a2a73dc92ffde31164b54f1b1f5889b77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab88bcc3fe9e1c9da41a4afebb3d05005"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ab88bcc3fe9e1c9da41a4afebb3d05005">~FrameLib_Object</a> ()</td></tr>
 <tr class="separator:ab88bcc3fe9e1c9da41a4afebb3d05005"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e535510b8445958f5f5a95ecb11a588"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a842c5e2e69277690b064bf363c017980">ObjectType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a8e535510b8445958f5f5a95ecb11a588">getType</a> ()</td></tr>
-<tr class="separator:a8e535510b8445958f5f5a95ecb11a588"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c34227ace795af7da847fff3f2b300d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a5c34227ace795af7da847fff3f2b300d">setIO</a> (unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans=0)</td></tr>
-<tr class="separator:a5c34227ace795af7da847fff3f2b300d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9ab064d9390417fde0644ed413e1c5c"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ad9ab064d9390417fde0644ed413e1c5c">getNumIns</a> ()</td></tr>
-<tr class="separator:ad9ab064d9390417fde0644ed413e1c5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6be2c4c3faf10ce732347b2e59f51508"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a6be2c4c3faf10ce732347b2e59f51508">getNumOuts</a> ()</td></tr>
-<tr class="separator:a6be2c4c3faf10ce732347b2e59f51508"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa57fd96d292e25d91f107c6bec292ed0"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#aa57fd96d292e25d91f107c6bec292ed0">getNumAudioIns</a> ()</td></tr>
-<tr class="separator:aa57fd96d292e25d91f107c6bec292ed0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8304968cf5473f22804d46950d88256a"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a8304968cf5473f22804d46950d88256a">getNumAudioOuts</a> ()</td></tr>
-<tr class="separator:a8304968cf5473f22804d46950d88256a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3b9c6438cc170618c221fc96612d19b"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ae3b9c6438cc170618c221fc96612d19b">getNumAudioChans</a> ()</td></tr>
-<tr class="separator:ae3b9c6438cc170618c221fc96612d19b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d96d1f55054e583a99891ad65f84a3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a842c5e2e69277690b064bf363c017980">ObjectType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a8d96d1f55054e583a99891ad65f84a3a">getType</a> () const</td></tr>
+<tr class="separator:a8d96d1f55054e583a99891ad65f84a3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f636902888847c78cf16d74717bd861"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___context.html">FrameLib_Context</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a8f636902888847c78cf16d74717bd861">getContext</a> () const</td></tr>
+<tr class="separator:a8f636902888847c78cf16d74717bd861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1a0a288f1da02f9ac7199ac9f96acce"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ac1a0a288f1da02f9ac7199ac9f96acce">getOwner</a> () const</td></tr>
+<tr class="separator:ac1a0a288f1da02f9ac7199ac9f96acce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a310416236585b52c2de1c47a9aa64b02"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a310416236585b52c2de1c47a9aa64b02">getNumIns</a> () const</td></tr>
+<tr class="separator:a310416236585b52c2de1c47a9aa64b02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a255f6ae814dbb946d445ef244dd39975"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a255f6ae814dbb946d445ef244dd39975">getNumOuts</a> () const</td></tr>
+<tr class="separator:a255f6ae814dbb946d445ef244dd39975"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad29b6281916a933c5baa43cbb7d11efd"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ad29b6281916a933c5baa43cbb7d11efd">getNumAudioIns</a> () const</td></tr>
+<tr class="separator:ad29b6281916a933c5baa43cbb7d11efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a430c0531a4c38ad49a556af1cca0af88"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a430c0531a4c38ad49a556af1cca0af88">getNumAudioOuts</a> () const</td></tr>
+<tr class="separator:a430c0531a4c38ad49a556af1cca0af88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59e6e7dba2d18444be6d5fbee15c73f2"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a59e6e7dba2d18444be6d5fbee15c73f2">getNumAudioChans</a> () const</td></tr>
+<tr class="separator:a59e6e7dba2d18444be6d5fbee15c73f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d3bed42a21ebf248366f4457722beff"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a0d3bed42a21ebf248366f4457722beff">setFixedInput</a> (unsigned long idx, double *input, unsigned long size)=0</td></tr>
 <tr class="separator:a0d3bed42a21ebf248366f4457722beff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6efd81ab386e62400960471fa3cc94e7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a6efd81ab386e62400960471fa3cc94e7">blockUpdate</a> (double **ins, double **outs, unsigned long <a class="el" href="_frame_lib___memory_8cpp.html#a8ef7d53a4cac28bf580a61f265fcaaa6">blockSize</a>)=0</td></tr>
 <tr class="separator:a6efd81ab386e62400960471fa3cc94e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb02311ab422dd569aeb982e31a66893"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#aeb02311ab422dd569aeb982e31a66893">reset</a> (double samplingRate, unsigned long maxBlockSize)=0</td></tr>
 <tr class="separator:aeb02311ab422dd569aeb982e31a66893"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ed6892941c7b68c885b38c202f336b3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a4ed6892941c7b68c885b38c202f336b3">deleteConnection</a> (unsigned long inIdx)=0</td></tr>
-<tr class="separator:a4ed6892941c7b68c885b38c202f336b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab276c500466359bb43494ff2b7c94cc6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ab276c500466359bb43494ff2b7c94cc6">addConnection</a> (T *object, unsigned long outIdx, unsigned long inIdx)=0</td></tr>
-<tr class="separator:ab276c500466359bb43494ff2b7c94cc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b219c0cb96a7b6b1f0c471f665337ec"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a5b219c0cb96a7b6b1f0c471f665337ec">clearConnections</a> ()=0</td></tr>
-<tr class="separator:a5b219c0cb96a7b6b1f0c471f665337ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a773123ebc7b3571e607cb1a6c4296d20"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a773123ebc7b3571e607cb1a6c4296d20">isConnected</a> (unsigned long inIdx)=0</td></tr>
-<tr class="separator:a773123ebc7b3571e607cb1a6c4296d20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10d673de9a3c59ace6a22ba1cff313c8"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a10d673de9a3c59ace6a22ba1cff313c8">objectInfo</a> (bool verbose=false)</td></tr>
 <tr class="separator:a10d673de9a3c59ace6a22ba1cff313c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49abea5f18125c425b1eae8710735891"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a49abea5f18125c425b1eae8710735891">inputInfo</a> (unsigned long idx, bool verbose=false)</td></tr>
@@ -143,31 +151,107 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6e6d79e8d620eedbaa50abf324cdedf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af618fcdec82b457911147c7c293bedd7"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#af618fcdec82b457911147c7c293bedd7">audioInfo</a> (unsigned long idx, bool verbose=false)</td></tr>
 <tr class="separator:af618fcdec82b457911147c7c293bedd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c5d94f1577471d33204078e86f51ff3"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_frame_lib___types_8h.html#ad495a9f61af7fff07d7e97979d1ab854">FrameType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a6c5d94f1577471d33204078e86f51ff3">inputType</a> (unsigned long idx)=0</td></tr>
-<tr class="separator:a6c5d94f1577471d33204078e86f51ff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdfca6b259f5fc7f97f4f2e016c1d80f"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_frame_lib___types_8h.html#ad495a9f61af7fff07d7e97979d1ab854">FrameType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#abdfca6b259f5fc7f97f4f2e016c1d80f">outputType</a> (unsigned long idx)=0</td></tr>
-<tr class="separator:abdfca6b259f5fc7f97f4f2e016c1d80f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaebb53211e0617e9203d1088c2fcb9c2"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="class_frame_lib___parameters.html">FrameLib_Parameters</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#aaebb53211e0617e9203d1088c2fcb9c2">getParameters</a> ()</td></tr>
-<tr class="separator:aaebb53211e0617e9203d1088c2fcb9c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1ab1ae8180bb8b7e881aac6a4e1066c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_frame_lib___types_8h.html#ad495a9f61af7fff07d7e97979d1ab854">FrameType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ab1ab1ae8180bb8b7e881aac6a4e1066c">inputType</a> (unsigned long idx) const =0</td></tr>
+<tr class="separator:ab1ab1ae8180bb8b7e881aac6a4e1066c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03eb408844f15d8f73cee67f43149b9d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_frame_lib___types_8h.html#ad495a9f61af7fff07d7e97979d1ab854">FrameType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a03eb408844f15d8f73cee67f43149b9d">outputType</a> (unsigned long idx) const =0</td></tr>
+<tr class="separator:a03eb408844f15d8f73cee67f43149b9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac90a6770aeef26ee1601889dc16dba56"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="class_frame_lib___parameters.html">FrameLib_Parameters</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ac90a6770aeef26ee1601889dc16dba56">getParameters</a> () const</td></tr>
+<tr class="separator:ac90a6770aeef26ee1601889dc16dba56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a216a018651f08f5779d40fd243921527"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722">ConnectionResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a216a018651f08f5779d40fd243921527">addConnection</a> (T *object, unsigned long outIdx, unsigned long inIdx)</td></tr>
+<tr class="separator:a216a018651f08f5779d40fd243921527"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7dbc1735ebd68008abd939d50edce49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#aa7dbc1735ebd68008abd939d50edce49">deleteConnection</a> (unsigned long inIdx)</td></tr>
+<tr class="separator:aa7dbc1735ebd68008abd939d50edce49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e403445d93444a203604fcb3bfd8fe6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722">ConnectionResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a3e403445d93444a203604fcb3bfd8fe6">addOrderingConnection</a> (T *object, unsigned long outIdx)</td></tr>
+<tr class="separator:a3e403445d93444a203604fcb3bfd8fe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62c0bd0e7ab5c0be547692711128a611"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a62c0bd0e7ab5c0be547692711128a611">deleteOrderingConnection</a> (T *object, unsigned long outIdx)</td></tr>
+<tr class="separator:a62c0bd0e7ab5c0be547692711128a611"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd548d2e3899a1a8738a71b3824ac039"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#abd548d2e3899a1a8738a71b3824ac039">clearOrderingConnections</a> ()</td></tr>
+<tr class="separator:abd548d2e3899a1a8738a71b3824ac039"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fa6add369fd21ddc5250efd740d0285"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a4fa6add369fd21ddc5250efd740d0285">clearConnections</a> ()</td></tr>
+<tr class="separator:a4fa6add369fd21ddc5250efd740d0285"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b4ed60a6032ff9fab191fcb492ef404"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a2b4ed60a6032ff9fab191fcb492ef404">isConnected</a> (unsigned long inIdx) const</td></tr>
+<tr class="separator:a2b4ed60a6032ff9fab191fcb492ef404"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa5bb93302a641c23b5eac7ab0dfe516"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#afa5bb93302a641c23b5eac7ab0dfe516">autoOrderingConnections</a> ()=0</td></tr>
+<tr class="separator:afa5bb93302a641c23b5eac7ab0dfe516"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac43ebfacb59081f7f60957380df7481"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#aac43ebfacb59081f7f60957380df7481">clearAutoOrderingConnections</a> ()=0</td></tr>
+<tr class="separator:aac43ebfacb59081f7f60957380df7481"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad660fd98d11c9a91bf9131f35ba365a6"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ad660fd98d11c9a91bf9131f35ba365a6">getConnection</a> (unsigned long idx) const</td></tr>
+<tr class="separator:ad660fd98d11c9a91bf9131f35ba365a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40383ebb4672e2bb1bd7ad41da14e967"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a40383ebb4672e2bb1bd7ad41da14e967">getConnectionIdx</a> (unsigned long idx) const</td></tr>
+<tr class="separator:a40383ebb4672e2bb1bd7ad41da14e967"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f0baead3c4ca259a6b4e7a417f45735"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a0f0baead3c4ca259a6b4e7a417f45735">supportsOrderingConnections</a> () const</td></tr>
+<tr class="separator:a0f0baead3c4ca259a6b4e7a417f45735"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace330616fd3334122babc5901b758d28"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ace330616fd3334122babc5901b758d28">getNumOrderingConnections</a> () const</td></tr>
+<tr class="separator:ace330616fd3334122babc5901b758d28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a368084d4df3cfe02487d47e436a125"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a6a368084d4df3cfe02487d47e436a125">getOrderingConnection</a> (unsigned long idx) const</td></tr>
+<tr class="separator:a6a368084d4df3cfe02487d47e436a125"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06858c0d70dfd61e03442fc17e224d5c"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a06858c0d70dfd61e03442fc17e224d5c">getOrderingConnectionIdx</a> (unsigned long idx) const</td></tr>
+<tr class="separator:a06858c0d70dfd61e03442fc17e224d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a4ce727ae1b9e9bb11162a9bf99e601"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a4a4ce727ae1b9e9bb11162a9bf99e601">isOrderingConnection</a> (T *object) const</td></tr>
+<tr class="separator:a4a4ce727ae1b9e9bb11162a9bf99e601"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80ca53cc96b35c672b82d175840da496"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a80ca53cc96b35c672b82d175840da496">getNumOutputDependencies</a> () const</td></tr>
+<tr class="separator:a80ca53cc96b35c672b82d175840da496"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a1f27bd291ff08dbb9324815078ca85"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a3a1f27bd291ff08dbb9324815078ca85">getOutputDependency</a> (unsigned long idx) const</td></tr>
+<tr class="separator:a3a1f27bd291ff08dbb9324815078ca85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_frame_lib___queueable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_frame_lib___queueable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_frame_lib___queueable.html">FrameLib_Queueable&lt; T &gt;</a></td></tr>
+<tr class="memitem:ae851e341082e42b5d9f35fce31f51870 inherit pub_methods_class_frame_lib___queueable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___queueable.html#ae851e341082e42b5d9f35fce31f51870">FrameLib_Queueable</a> ()</td></tr>
+<tr class="separator:ae851e341082e42b5d9f35fce31f51870 inherit pub_methods_class_frame_lib___queueable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a3d8517596d7598585c08af375dae79b9"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a3d8517596d7598585c08af375dae79b9">handlesAudio</a> ()</td></tr>
 <tr class="separator:a3d8517596d7598585c08af375dae79b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pro_methods_class_frame_lib___info"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_frame_lib___info')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_frame_lib___info.html">FrameLib_Info</a></td></tr>
-<tr class="memitem:a22a5afed75b8f072b79278dd230c5952 inherit pro_methods_class_frame_lib___info"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___info.html#a22a5afed75b8f072b79278dd230c5952">getInfo</a> (const char *verboseStr, const char *briefStr, bool verbose)</td></tr>
-<tr class="separator:a22a5afed75b8f072b79278dd230c5952 inherit pro_methods_class_frame_lib___info"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25dcefc87f96b26a1cd17592b9b09f6f inherit pro_methods_class_frame_lib___info"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___info.html#a25dcefc87f96b26a1cd17592b9b09f6f">getInfo</a> (const char *verboseStr, const char *briefStr, unsigned long idx, bool verbose)</td></tr>
-<tr class="separator:a25dcefc87f96b26a1cd17592b9b09f6f inherit pro_methods_class_frame_lib___info"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac2ae7aa23772c4580d68ed6b4b493fb inherit pro_methods_class_frame_lib___info"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___info.html#aac2ae7aa23772c4580d68ed6b4b493fb">getInfo</a> (const char *verboseStr, const char *briefStr, const char *replaceStr, bool verbose)</td></tr>
-<tr class="separator:aac2ae7aa23772c4580d68ed6b4b493fb inherit pro_methods_class_frame_lib___info"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a5c34227ace795af7da847fff3f2b300d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a5c34227ace795af7da847fff3f2b300d">setIO</a> (unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans=0)</td></tr>
+<tr class="separator:a5c34227ace795af7da847fff3f2b300d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60dba6cd7148c3223adb4197d6712839"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a60dba6cd7148c3223adb4197d6712839">enableOrderingConnections</a> ()</td></tr>
+<tr class="separator:a60dba6cd7148c3223adb4197d6712839"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32ba9cf8b728317fc92c10310ab83e67"><td class="memTemplParams" colspan="2">template&lt;class U &gt; </td></tr>
+<tr class="memitem:a32ba9cf8b728317fc92c10310ab83e67"><td class="memTemplItemLeft" align="right" valign="top">U *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a32ba9cf8b728317fc92c10310ab83e67">alloc</a> (unsigned long N)</td></tr>
+<tr class="separator:a32ba9cf8b728317fc92c10310ab83e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab42be79621db7363ca4a34f63704d04f"><td class="memTemplParams" colspan="2">template&lt;class U &gt; </td></tr>
+<tr class="memitem:ab42be79621db7363ca4a34f63704d04f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ab42be79621db7363ca4a34f63704d04f">dealloc</a> (U *&amp;ptr)</td></tr>
+<tr class="separator:ab42be79621db7363ca4a34f63704d04f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33b99de2c7a35227bc8a40d4c3b2ee76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a33b99de2c7a35227bc8a40d4c3b2ee76">clearAllocator</a> ()</td></tr>
+<tr class="separator:a33b99de2c7a35227bc8a40d4c3b2ee76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a316d15b17757ddfef4341d0f8afe443e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html">FrameLib_LocalAllocator::Storage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a316d15b17757ddfef4341d0f8afe443e">registerStorage</a> (const char *name)</td></tr>
+<tr class="separator:a316d15b17757ddfef4341d0f8afe443e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c131dff9d634f17696fb3ae6be06e9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a4c131dff9d634f17696fb3ae6be06e9b">releaseStorage</a> (<a class="el" href="class_frame_lib___local_allocator_1_1_storage.html">FrameLib_LocalAllocator::Storage</a> *&amp;storage)</td></tr>
+<tr class="separator:a4c131dff9d634f17696fb3ae6be06e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-methods"></a>
+Static Protected Member Functions</h2></td></tr>
+<tr class="memitem:a2cb965a15f4634a5fdddc2b009005211"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a2cb965a15f4634a5fdddc2b009005211">formatInfo</a> (const char *verboseStr, const char *briefStr, bool verbose)</td></tr>
+<tr class="separator:a2cb965a15f4634a5fdddc2b009005211"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa30676408b8f8161894eb0e533a8522b"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#aa30676408b8f8161894eb0e533a8522b">formatInfo</a> (const char *verboseStr, const char *briefStr, unsigned long idx, bool verbose)</td></tr>
+<tr class="separator:aa30676408b8f8161894eb0e533a8522b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7babe2dd654fbd0c8c05eb7f7ea31550"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a7babe2dd654fbd0c8c05eb7f7ea31550">formatInfo</a> (const char *verboseStr, const char *briefStr, const char *replaceStr, bool verbose)</td></tr>
+<tr class="separator:a7babe2dd654fbd0c8c05eb7f7ea31550"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26307f11e68962614da4178115e665b7"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a26307f11e68962614da4178115e665b7">numberedString</a> (const char *str, unsigned long idx)</td></tr>
+<tr class="separator:a26307f11e68962614da4178115e665b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a481c704666e7bd901f64b2b255f79784"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a481c704666e7bd901f64b2b255f79784">&#9670;&nbsp;</a></span>Queue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="class_frame_lib___queueable.html">FrameLib_Queueable</a>&lt;T&gt;::<a class="el" href="class_frame_lib___object.html#a481c704666e7bd901f64b2b255f79784">Queue</a> <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::<a class="el" href="class_frame_lib___object.html#a481c704666e7bd901f64b2b255f79784">Queue</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a81d840729ed8fc0e86ec33969a5a5a85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a81d840729ed8fc0e86ec33969a5a5a85">&#9670;&nbsp;</a></span>FrameLib_Object()</h2>
+<a id="a2a73dc92ffde31164b54f1b1f5889b77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a73dc92ffde31164b54f1b1f5889b77">&#9670;&nbsp;</a></span>FrameLib_Object()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -181,8 +265,30 @@ template&lt;class T&gt; </div>
           <td class="memname"><a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::<a class="el" href="class_frame_lib___object.html">FrameLib_Object</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="_frame_lib___types_8h.html#a842c5e2e69277690b064bf363c017980">ObjectType</a>&#160;</td>
-          <td class="paramname"><em>type</em></td><td>)</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="class_frame_lib___context.html">FrameLib_Context</a>&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>owner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>parent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -222,8 +328,8 @@ template&lt;class T&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab276c500466359bb43494ff2b7c94cc6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab276c500466359bb43494ff2b7c94cc6">&#9670;&nbsp;</a></span>addConnection()</h2>
+<a id="a216a018651f08f5779d40fd243921527"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a216a018651f08f5779d40fd243921527">&#9670;&nbsp;</a></span>addConnection()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -234,7 +340,7 @@ template&lt;class T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::addConnection </td>
+          <td class="memname"><a class="el" href="_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722">ConnectionResult</a> <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::addConnection </td>
           <td>(</td>
           <td class="paramtype">T *&#160;</td>
           <td class="paramname"><em>object</em>, </td>
@@ -259,12 +365,78 @@ template&lt;class T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="class_frame_lib___block.html#a88e998ec661b9afd001e40e68bb52f61">FrameLib_Block</a>, and <a class="el" href="class_frame_lib___multi_channel.html#ab610f5adf0eb5b287a4a81806ce9b528">FrameLib_MultiChannel</a>.</p>
+</div>
+</div>
+<a id="a3e403445d93444a203604fcb3bfd8fe6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e403445d93444a203604fcb3bfd8fe6">&#9670;&nbsp;</a></span>addOrderingConnection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722">ConnectionResult</a> <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::addOrderingConnection </td>
+          <td>(</td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>outIdx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a32ba9cf8b728317fc92c10310ab83e67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32ba9cf8b728317fc92c10310ab83e67">&#9670;&nbsp;</a></span>alloc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<div class="memtemplate">
+template&lt;class U &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">U* <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::alloc </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>N</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -305,6 +477,35 @@ template&lt;class T&gt; </div>
 </div><div class="memdoc">
 
 <p>Reimplemented in <a class="el" href="class_frame_lib___expand.html#a94ab97ff114452551719fad428fd2d6e">FrameLib_Expand&lt; T &gt;</a>.</p>
+
+</div>
+</div>
+<a id="afa5bb93302a641c23b5eac7ab0dfe516"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa5bb93302a641c23b5eac7ab0dfe516">&#9670;&nbsp;</a></span>autoOrderingConnections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::autoOrderingConnections </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="class_frame_lib___expand.html#ab3f908391944bd2d6f5492cc67c19cba">FrameLib_Expand&lt; T &gt;</a>, <a class="el" href="class_frame_lib___unpack.html#a4bbf83c7d4bd8c96acd2283afa0ed2c2">FrameLib_Unpack</a>, <a class="el" href="class_frame_lib___pack.html#aacf276d3ed114e4aa03b8e640164d116">FrameLib_Pack</a>, and <a class="el" href="class_frame_lib___d_s_p.html#a8dfb9b1855cc6a829acc1a03dcc4776b">FrameLib_DSP</a>.</p>
 
 </div>
 </div>
@@ -354,8 +555,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a5b219c0cb96a7b6b1f0c471f665337ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b219c0cb96a7b6b1f0c471f665337ec">&#9670;&nbsp;</a></span>clearConnections()</h2>
+<a id="a33b99de2c7a35227bc8a40d4c3b2ee76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33b99de2c7a35227bc8a40d4c3b2ee76">&#9670;&nbsp;</a></span>clearAllocator()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -366,7 +567,34 @@ template&lt;class T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::clearConnections </td>
+          <td class="memname">void <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::clearAllocator </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aac43ebfacb59081f7f60957380df7481"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac43ebfacb59081f7f60957380df7481">&#9670;&nbsp;</a></span>clearAutoOrderingConnections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::clearAutoOrderingConnections </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -379,12 +607,12 @@ template&lt;class T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="class_frame_lib___d_s_p.html#a42ab6ff22056a188a33ecadcd2ea477d">FrameLib_DSP</a>, and <a class="el" href="class_frame_lib___multi_channel.html#aa7dfda2331a430b0db3f43d3bde293aa">FrameLib_MultiChannel</a>.</p>
+<p>Implemented in <a class="el" href="class_frame_lib___expand.html#adbf3c1e77474e23eacabb395409424e5">FrameLib_Expand&lt; T &gt;</a>, <a class="el" href="class_frame_lib___unpack.html#a99d42ef7daadceeda8e3aa34afb249f5">FrameLib_Unpack</a>, and <a class="el" href="class_frame_lib___pack.html#af0b40307726462df7754ead87c7c8a9c">FrameLib_Pack</a>.</p>
 
 </div>
 </div>
-<a id="a4ed6892941c7b68c885b38c202f336b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4ed6892941c7b68c885b38c202f336b3">&#9670;&nbsp;</a></span>deleteConnection()</h2>
+<a id="a4fa6add369fd21ddc5250efd740d0285"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fa6add369fd21ddc5250efd740d0285">&#9670;&nbsp;</a></span>clearConnections()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -395,7 +623,91 @@ template&lt;class T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::deleteConnection </td>
+          <td class="memname">void <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::clearConnections </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abd548d2e3899a1a8738a71b3824ac039"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd548d2e3899a1a8738a71b3824ac039">&#9670;&nbsp;</a></span>clearOrderingConnections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::clearOrderingConnections </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab42be79621db7363ca4a34f63704d04f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab42be79621db7363ca4a34f63704d04f">&#9670;&nbsp;</a></span>dealloc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<div class="memtemplate">
+template&lt;class U &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::dealloc </td>
+          <td>(</td>
+          <td class="paramtype">U *&amp;&#160;</td>
+          <td class="paramname"><em>ptr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa7dbc1735ebd68008abd939d50edce49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7dbc1735ebd68008abd939d50edce49">&#9670;&nbsp;</a></span>deleteConnection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::deleteConnection </td>
           <td>(</td>
           <td class="paramtype">unsigned long&#160;</td>
           <td class="paramname"><em>inIdx</em></td><td>)</td>
@@ -404,17 +716,307 @@ template&lt;class T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="class_frame_lib___d_s_p.html#ad828d2b359466e9ff2f0f6002d580d18">FrameLib_DSP</a>, and <a class="el" href="class_frame_lib___multi_channel.html#ad8b21345a7b864a48060d2475af2fe1e">FrameLib_MultiChannel</a>.</p>
+</div>
+</div>
+<a id="a62c0bd0e7ab5c0be547692711128a611"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62c0bd0e7ab5c0be547692711128a611">&#9670;&nbsp;</a></span>deleteOrderingConnection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::deleteOrderingConnection </td>
+          <td>(</td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>outIdx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
-<a id="ae3b9c6438cc170618c221fc96612d19b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3b9c6438cc170618c221fc96612d19b">&#9670;&nbsp;</a></span>getNumAudioChans()</h2>
+<a id="a60dba6cd7148c3223adb4197d6712839"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60dba6cd7148c3223adb4197d6712839">&#9670;&nbsp;</a></span>enableOrderingConnections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::enableOrderingConnections </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2cb965a15f4634a5fdddc2b009005211"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cb965a15f4634a5fdddc2b009005211">&#9670;&nbsp;</a></span>formatInfo() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const char* <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::formatInfo </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>verboseStr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>briefStr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>verbose</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa30676408b8f8161894eb0e533a8522b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa30676408b8f8161894eb0e533a8522b">&#9670;&nbsp;</a></span>formatInfo() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::string <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::formatInfo </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>verboseStr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>briefStr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>verbose</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7babe2dd654fbd0c8c05eb7f7ea31550"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7babe2dd654fbd0c8c05eb7f7ea31550">&#9670;&nbsp;</a></span>formatInfo() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::string <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::formatInfo </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>verboseStr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>briefStr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>replaceStr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>verbose</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad660fd98d11c9a91bf9131f35ba365a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad660fd98d11c9a91bf9131f35ba365a6">&#9670;&nbsp;</a></span>getConnection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T* <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::getConnection </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a40383ebb4672e2bb1bd7ad41da14e967"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40383ebb4672e2bb1bd7ad41da14e967">&#9670;&nbsp;</a></span>getConnectionIdx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::getConnectionIdx </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8f636902888847c78cf16d74717bd861"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f636902888847c78cf16d74717bd861">&#9670;&nbsp;</a></span>getContext()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_frame_lib___context.html">FrameLib_Context</a> <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::getContext </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a59e6e7dba2d18444be6d5fbee15c73f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59e6e7dba2d18444be6d5fbee15c73f2">&#9670;&nbsp;</a></span>getNumAudioChans()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -428,7 +1030,7 @@ template&lt;class T&gt; </div>
           <td class="memname">unsigned long <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::getNumAudioChans </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -440,8 +1042,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="aa57fd96d292e25d91f107c6bec292ed0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa57fd96d292e25d91f107c6bec292ed0">&#9670;&nbsp;</a></span>getNumAudioIns()</h2>
+<a id="ad29b6281916a933c5baa43cbb7d11efd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad29b6281916a933c5baa43cbb7d11efd">&#9670;&nbsp;</a></span>getNumAudioIns()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -455,7 +1057,7 @@ template&lt;class T&gt; </div>
           <td class="memname">unsigned long <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::getNumAudioIns </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -467,8 +1069,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a8304968cf5473f22804d46950d88256a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8304968cf5473f22804d46950d88256a">&#9670;&nbsp;</a></span>getNumAudioOuts()</h2>
+<a id="a430c0531a4c38ad49a556af1cca0af88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a430c0531a4c38ad49a556af1cca0af88">&#9670;&nbsp;</a></span>getNumAudioOuts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -482,7 +1084,7 @@ template&lt;class T&gt; </div>
           <td class="memname">unsigned long <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::getNumAudioOuts </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -494,8 +1096,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="ad9ab064d9390417fde0644ed413e1c5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad9ab064d9390417fde0644ed413e1c5c">&#9670;&nbsp;</a></span>getNumIns()</h2>
+<a id="a310416236585b52c2de1c47a9aa64b02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a310416236585b52c2de1c47a9aa64b02">&#9670;&nbsp;</a></span>getNumIns()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -509,7 +1111,7 @@ template&lt;class T&gt; </div>
           <td class="memname">unsigned long <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::getNumIns </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -521,8 +1123,62 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a6be2c4c3faf10ce732347b2e59f51508"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6be2c4c3faf10ce732347b2e59f51508">&#9670;&nbsp;</a></span>getNumOuts()</h2>
+<a id="ace330616fd3334122babc5901b758d28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace330616fd3334122babc5901b758d28">&#9670;&nbsp;</a></span>getNumOrderingConnections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::getNumOrderingConnections </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a80ca53cc96b35c672b82d175840da496"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80ca53cc96b35c672b82d175840da496">&#9670;&nbsp;</a></span>getNumOutputDependencies()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::getNumOutputDependencies </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a255f6ae814dbb946d445ef244dd39975"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a255f6ae814dbb946d445ef244dd39975">&#9670;&nbsp;</a></span>getNumOuts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -536,7 +1192,7 @@ template&lt;class T&gt; </div>
           <td class="memname">unsigned long <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::getNumOuts </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -548,8 +1204,119 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="aaebb53211e0617e9203d1088c2fcb9c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaebb53211e0617e9203d1088c2fcb9c2">&#9670;&nbsp;</a></span>getParameters()</h2>
+<a id="a6a368084d4df3cfe02487d47e436a125"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a368084d4df3cfe02487d47e436a125">&#9670;&nbsp;</a></span>getOrderingConnection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T* <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::getOrderingConnection </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a06858c0d70dfd61e03442fc17e224d5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06858c0d70dfd61e03442fc17e224d5c">&#9670;&nbsp;</a></span>getOrderingConnectionIdx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::getOrderingConnectionIdx </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a1f27bd291ff08dbb9324815078ca85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a1f27bd291ff08dbb9324815078ca85">&#9670;&nbsp;</a></span>getOutputDependency()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T* <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::getOutputDependency </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac1a0a288f1da02f9ac7199ac9f96acce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1a0a288f1da02f9ac7199ac9f96acce">&#9670;&nbsp;</a></span>getOwner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::getOwner </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac90a6770aeef26ee1601889dc16dba56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac90a6770aeef26ee1601889dc16dba56">&#9670;&nbsp;</a></span>getParameters()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -563,7 +1330,7 @@ template&lt;class T&gt; </div>
           <td class="memname">virtual const <a class="el" href="class_frame_lib___parameters.html">FrameLib_Parameters</a>* <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::getParameters </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -573,12 +1340,12 @@ template&lt;class T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="class_frame_lib___expand.html#a89b4ff711b3b2772ee3ac7a6774261fb">FrameLib_Expand&lt; T &gt;</a>, <a class="el" href="class_frame_lib___unpack.html#aa9da91c13a8e4d648bdef0037973dc56">FrameLib_Unpack</a>, <a class="el" href="class_frame_lib___pack.html#a878bce4df2ece362d86cd03f742bc646">FrameLib_Pack</a>, and <a class="el" href="class_frame_lib___d_s_p.html#ac871e4980da27cbd5238b8780a357217">FrameLib_DSP</a>.</p>
+<p>Reimplemented in <a class="el" href="class_frame_lib___expand.html#ae399eee75f1f0d854505eb67f8fb4dd0">FrameLib_Expand&lt; T &gt;</a>, <a class="el" href="class_frame_lib___unpack.html#a10013cfecf3463d8961d65042e735055">FrameLib_Unpack</a>, <a class="el" href="class_frame_lib___pack.html#af3f27c6065dc2e5c8106de50c42d63c3">FrameLib_Pack</a>, and <a class="el" href="class_frame_lib___d_s_p.html#a06325d53b4212e692079b748b82bad86">FrameLib_DSP</a>.</p>
 
 </div>
 </div>
-<a id="a8e535510b8445958f5f5a95ecb11a588"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e535510b8445958f5f5a95ecb11a588">&#9670;&nbsp;</a></span>getType()</h2>
+<a id="a8d96d1f55054e583a99891ad65f84a3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d96d1f55054e583a99891ad65f84a3a">&#9670;&nbsp;</a></span>getType()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -592,7 +1359,7 @@ template&lt;class T&gt; </div>
           <td class="memname"><a class="el" href="_frame_lib___types_8h.html#a842c5e2e69277690b064bf363c017980">ObjectType</a> <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::getType </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -671,8 +1438,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="a6c5d94f1577471d33204078e86f51ff3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c5d94f1577471d33204078e86f51ff3">&#9670;&nbsp;</a></span>inputType()</h2>
+<a id="ab1ab1ae8180bb8b7e881aac6a4e1066c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1ab1ae8180bb8b7e881aac6a4e1066c">&#9670;&nbsp;</a></span>inputType()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -687,7 +1454,7 @@ template&lt;class T&gt; </div>
           <td>(</td>
           <td class="paramtype">unsigned long&#160;</td>
           <td class="paramname"><em>idx</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -697,12 +1464,12 @@ template&lt;class T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="class_frame_lib___expand.html#af7de1e520ecd39d62290278235f8ff45">FrameLib_Expand&lt; T &gt;</a>, <a class="el" href="class_frame_lib___unpack.html#a003ea8257f11fe375cc9bf2e6b5a8db1">FrameLib_Unpack</a>, <a class="el" href="class_frame_lib___pack.html#aba6a4e0ebdf5c40134f39f03cae80b29">FrameLib_Pack</a>, and <a class="el" href="class_frame_lib___d_s_p.html#abbd266dacec0eb86acaf584f737338b7">FrameLib_DSP</a>.</p>
+<p>Implemented in <a class="el" href="class_frame_lib___expand.html#abfe5f5550062e7cb351d45111dd2958c">FrameLib_Expand&lt; T &gt;</a>, <a class="el" href="class_frame_lib___unpack.html#ac5053983d308b6c715ca2a59d4115ec8">FrameLib_Unpack</a>, <a class="el" href="class_frame_lib___pack.html#af516c48cb7d0e685c6572dbdd1377b66">FrameLib_Pack</a>, and <a class="el" href="class_frame_lib___d_s_p.html#a774197b0f41e1f78671fab6112a41ed9">FrameLib_DSP</a>.</p>
 
 </div>
 </div>
-<a id="a773123ebc7b3571e607cb1a6c4296d20"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a773123ebc7b3571e607cb1a6c4296d20">&#9670;&nbsp;</a></span>isConnected()</h2>
+<a id="a2b4ed60a6032ff9fab191fcb492ef404"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b4ed60a6032ff9fab191fcb492ef404">&#9670;&nbsp;</a></span>isConnected()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -713,21 +1480,85 @@ template&lt;class T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::isConnected </td>
+          <td class="memname">bool <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::isConnected </td>
           <td>(</td>
           <td class="paramtype">unsigned long&#160;</td>
           <td class="paramname"><em>inIdx</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="class_frame_lib___d_s_p.html#a6c0e00484c67ea160cf87ec644807cac">FrameLib_DSP</a>, and <a class="el" href="class_frame_lib___multi_channel.html#a25159857f4088cf179c1d7c3d62cac76">FrameLib_MultiChannel</a>.</p>
+</div>
+</div>
+<a id="a4a4ce727ae1b9e9bb11162a9bf99e601"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a4ce727ae1b9e9bb11162a9bf99e601">&#9670;&nbsp;</a></span>isOrderingConnection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::isOrderingConnection </td>
+          <td>(</td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>object</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a26307f11e68962614da4178115e665b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26307f11e68962614da4178115e665b7">&#9670;&nbsp;</a></span>numberedString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::string <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::numberedString </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>idx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -801,8 +1632,8 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<a id="abdfca6b259f5fc7f97f4f2e016c1d80f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abdfca6b259f5fc7f97f4f2e016c1d80f">&#9670;&nbsp;</a></span>outputType()</h2>
+<a id="a03eb408844f15d8f73cee67f43149b9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03eb408844f15d8f73cee67f43149b9d">&#9670;&nbsp;</a></span>outputType()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -817,7 +1648,7 @@ template&lt;class T&gt; </div>
           <td>(</td>
           <td class="paramtype">unsigned long&#160;</td>
           <td class="paramname"><em>idx</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -827,7 +1658,63 @@ template&lt;class T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="class_frame_lib___expand.html#a926ee7c8b222e018cae92ffbdecb1270">FrameLib_Expand&lt; T &gt;</a>, <a class="el" href="class_frame_lib___unpack.html#a7a88aeaeeaa657858c014a685ef901e7">FrameLib_Unpack</a>, <a class="el" href="class_frame_lib___pack.html#a59f695dc513fda6afa6bc0948c002533">FrameLib_Pack</a>, and <a class="el" href="class_frame_lib___d_s_p.html#aaffa4da5531641a7da9f85e93d3440f0">FrameLib_DSP</a>.</p>
+<p>Implemented in <a class="el" href="class_frame_lib___expand.html#a5ab23cdee5ca51ed5098b8a99164aa6a">FrameLib_Expand&lt; T &gt;</a>, <a class="el" href="class_frame_lib___unpack.html#aa065a393363c5cc93d7d21dd4b1e6e1a">FrameLib_Unpack</a>, <a class="el" href="class_frame_lib___pack.html#a48e9118d038396653928116b5c69077f">FrameLib_Pack</a>, and <a class="el" href="class_frame_lib___d_s_p.html#a17b4529624dd9219d502570f81d88b27">FrameLib_DSP</a>.</p>
+
+</div>
+</div>
+<a id="a316d15b17757ddfef4341d0f8afe443e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a316d15b17757ddfef4341d0f8afe443e">&#9670;&nbsp;</a></span>registerStorage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html">FrameLib_LocalAllocator::Storage</a>* <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::registerStorage </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4c131dff9d634f17696fb3ae6be06e9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c131dff9d634f17696fb3ae6be06e9b">&#9670;&nbsp;</a></span>releaseStorage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::releaseStorage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html">FrameLib_LocalAllocator::Storage</a> *&amp;&#160;</td>
+          <td class="paramname"><em>storage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -954,6 +1841,33 @@ template&lt;class T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0f0baead3c4ca259a6b4e7a417f45735"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f0baead3c4ca259a6b4e7a417f45735">&#9670;&nbsp;</a></span>supportsOrderingConnections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_frame_lib___object.html">FrameLib_Object</a>&lt; T &gt;::supportsOrderingConnections </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
@@ -962,7 +1876,7 @@ template&lt;class T&gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>FrameLib_Framework/<a class="el" href="_frame_lib___object_8h_source.html">FrameLib_Object.h</a></li>
+<li>/Users/alexharker/Documents/Max Externals/FrameLib/FrameLib_Framework/<a class="el" href="_frame_lib___object_8h_source.html">FrameLib_Object.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

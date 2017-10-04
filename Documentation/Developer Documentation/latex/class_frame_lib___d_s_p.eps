@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 107.758621
+%%BoundingBox: 0 0 500 97.276265
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,7 +19,7 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 4.640000 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 5.140000 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
@@ -175,8 +175,9 @@ boxfont setfont
 1 boundaspect scale
 (FrameLib_DSP) cw
 (FrameLib_Block) cw
+(FrameLib_Queueable< FrameLib_DSP >) cw
 (FrameLib_Object< FrameLib_Block >) cw
-(FrameLib_Info) cw
+(FrameLib_Queueable< FrameLib_Block >) cw
 (FrameLib_AudioInput) cw
 (FrameLib_AudioOutput) cw
 (FrameLib_Processor) cw
@@ -193,9 +194,10 @@ boundx scalefactor div boundy scalefactor div scale
 % ----- classes -----
 
  (FrameLib_DSP) 1.500000 1.000000 box
- (FrameLib_Block) 1.500000 2.000000 box
- (FrameLib_Object< FrameLib_Block >) 1.500000 3.000000 box
- (FrameLib_Info) 1.500000 4.000000 box
+ (FrameLib_Block) 1.000000 2.000000 box
+ (FrameLib_Queueable< FrameLib_DSP >) 2.000000 2.000000 box
+ (FrameLib_Object< FrameLib_Block >) 1.000000 3.000000 box
+ (FrameLib_Queueable< FrameLib_Block >) 1.000000 4.000000 box
  (FrameLib_AudioInput) 0.000000 0.000000 box
  (FrameLib_AudioOutput) 1.000000 0.000000 box
  (FrameLib_Processor) 2.000000 0.000000 box
@@ -206,15 +208,19 @@ boundx scalefactor div boundy scalefactor div scale
 solid
 0 1.500000 1.000000 out
 solid
-1 1.500000 2.000000 in
+1.000000 2.000000 2.000000 conn
 solid
-0 1.500000 2.000000 out
+1 1.000000 2.000000 in
 solid
-1 1.500000 3.000000 in
-dashed
-0 1.500000 3.000000 out
-dashed
-1 1.500000 4.000000 in
+0 1.000000 2.000000 out
+solid
+1 2.000000 2.000000 in
+solid
+1 1.000000 3.000000 in
+solid
+0 1.000000 3.000000 out
+solid
+1 1.000000 4.000000 in
 solid
 1 1.500000 0.250000 out
 solid

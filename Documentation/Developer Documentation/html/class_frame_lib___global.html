@@ -29,9 +29,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.7</span>
    </div>
-   <div id="projectbrief">Arbitrarily timed and sized frame-based DSP</div>
+   <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
  </tr>
  </tbody>
@@ -82,8 +82,9 @@ $(document).ready(function(){initNavTree('class_frame_lib___global.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="class_frame_lib___global-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">FrameLib_Global Class Reference</div>  </div>
@@ -92,27 +93,17 @@ $(document).ready(function(){initNavTree('class_frame_lib___global.html','');});
 
 <p><code>#include &lt;<a class="el" href="_frame_lib___global_8h_source.html">FrameLib_Global.h</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a31c3fae37e27c9cce286d30ed30838d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___local_allocator.html">FrameLib_LocalAllocator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global.html#a31c3fae37e27c9cce286d30ed30838d3">getAllocator</a> (void *reference)</td></tr>
-<tr class="separator:a31c3fae37e27c9cce286d30ed30838d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0cfe1ff49ba163758fcb66f9e94b991"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___connection_queue.html">FrameLib_ConnectionQueue</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global.html#ae0cfe1ff49ba163758fcb66f9e94b991">getConnectionQueue</a> (void *reference)</td></tr>
-<tr class="separator:ae0cfe1ff49ba163758fcb66f9e94b991"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b4e45a675ea406538781011f7ebc153"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___d_s_p_queue.html">FrameLib_DSPQueue</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global.html#a5b4e45a675ea406538781011f7ebc153">getDSPQueue</a> (void *reference)</td></tr>
-<tr class="separator:a5b4e45a675ea406538781011f7ebc153"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78b0ff45eb662f12c41bdd641a416539"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global.html#a78b0ff45eb662f12c41bdd641a416539">releaseAllocator</a> (void *reference)</td></tr>
-<tr class="separator:a78b0ff45eb662f12c41bdd641a416539"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab461ad3b4bdd9c580018373cf1617b1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global.html#ab461ad3b4bdd9c580018373cf1617b1b">releaseConnectionQueue</a> (void *reference)</td></tr>
-<tr class="separator:ab461ad3b4bdd9c580018373cf1617b1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a118b451294a2893fa60edfb09f60002a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global.html#a118b451294a2893fa60edfb09f60002a">releaseDSPQueue</a> (void *reference)</td></tr>
-<tr class="separator:a118b451294a2893fa60edfb09f60002a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ac9a895677da386e8fde525c061a854e4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_frame_lib___global.html">FrameLib_Global</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global.html#ac9a895677da386e8fde525c061a854e4">get</a> (<a class="el" href="class_frame_lib___global.html">FrameLib_Global</a> **global)</td></tr>
 <tr class="separator:ac9a895677da386e8fde525c061a854e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a079e2b866b66d477ae551e0b0e12ea11"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global.html#a079e2b866b66d477ae551e0b0e12ea11">release</a> (<a class="el" href="class_frame_lib___global.html">FrameLib_Global</a> **global)</td></tr>
 <tr class="separator:a079e2b866b66d477ae551e0b0e12ea11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a6a4d0dd2956393d740d97600370f6ef8"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global.html#a6a4d0dd2956393d740d97600370f6ef8">FrameLib_Context</a></td></tr>
+<tr class="separator:a6a4d0dd2956393d740d97600370f6ef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="ac9a895677da386e8fde525c061a854e4"></a>
@@ -137,60 +128,6 @@ Static Public Member Functions</h2></td></tr>
 <span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a31c3fae37e27c9cce286d30ed30838d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31c3fae37e27c9cce286d30ed30838d3">&#9670;&nbsp;</a></span>getAllocator()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_frame_lib___local_allocator.html">FrameLib_LocalAllocator</a> * FrameLib_Global::getAllocator </td>
-          <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>reference</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ae0cfe1ff49ba163758fcb66f9e94b991"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae0cfe1ff49ba163758fcb66f9e94b991">&#9670;&nbsp;</a></span>getConnectionQueue()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_frame_lib___connection_queue.html">FrameLib_ConnectionQueue</a> * FrameLib_Global::getConnectionQueue </td>
-          <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>reference</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5b4e45a675ea406538781011f7ebc153"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b4e45a675ea406538781011f7ebc153">&#9670;&nbsp;</a></span>getDSPQueue()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_frame_lib___d_s_p_queue.html">FrameLib_DSPQueue</a> * FrameLib_Global::getDSPQueue </td>
-          <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>reference</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
 </div><div class="memdoc">
 
 </div>
@@ -221,63 +158,32 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a78b0ff45eb662f12c41bdd641a416539"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78b0ff45eb662f12c41bdd641a416539">&#9670;&nbsp;</a></span>releaseAllocator()</h2>
+<h2 class="groupheader">Friends And Related Function Documentation</h2>
+<a id="a6a4d0dd2956393d740d97600370f6ef8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a4d0dd2956393d740d97600370f6ef8">&#9670;&nbsp;</a></span>FrameLib_Context</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void FrameLib_Global::releaseAllocator </td>
-          <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>reference</em></td><td>)</td>
-          <td></td>
+          <td class="memname">friend class <a class="el" href="class_frame_lib___context.html">FrameLib_Context</a></td>
         </tr>
       </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ab461ad3b4bdd9c580018373cf1617b1b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab461ad3b4bdd9c580018373cf1617b1b">&#9670;&nbsp;</a></span>releaseConnectionQueue()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FrameLib_Global::releaseConnectionQueue </td>
-          <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>reference</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a118b451294a2893fa60edfb09f60002a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a118b451294a2893fa60edfb09f60002a">&#9670;&nbsp;</a></span>releaseDSPQueue()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FrameLib_Global::releaseDSPQueue </td>
-          <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>reference</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>FrameLib_Framework/<a class="el" href="_frame_lib___global_8h_source.html">FrameLib_Global.h</a></li>
-<li>FrameLib_Framework/<a class="el" href="_frame_lib___global_8cpp.html">FrameLib_Global.cpp</a></li>
+<li>/Users/alexharker/Documents/Max Externals/FrameLib/FrameLib_Framework/<a class="el" href="_frame_lib___global_8h_source.html">FrameLib_Global.h</a></li>
+<li>/Users/alexharker/Documents/Max Externals/FrameLib/FrameLib_Framework/<a class="el" href="_frame_lib___global_8cpp.html">FrameLib_Global.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

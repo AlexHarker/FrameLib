@@ -1,6 +1,13 @@
 var NAVTREE =
 [
   [ "FrameLib", "index.html", [
+    [ "Namespaces", null, [
+      [ "Namespace List", "namespaces.html", "namespaces" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Typedefs", "namespacemembers_type.html", null ]
+      ] ]
+    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -30,9 +37,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_frame_lib___connection_queue_8cpp.html",
-"class_frame_lib___local_allocator.html#a5bbca2317e172ec8afa22be33a70d748",
-"functions_func_h.html"
+"_frame_lib___context_8h.html",
+"class_frame_lib___local_allocator_1_1_storage.html#aa4c7c5b51de2b88770a5de6f273cfd26",
+"class_triggerable_thread.html#ab0ce124fac1a131bdc27b0a757470820"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

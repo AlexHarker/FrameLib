@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['process',['process',['../class_frame_lib___scheduler.html#aa5c10907d7d11e1beef86d19b8e93601',1,'FrameLib_Scheduler']]],
-  ['pruner',['Pruner',['../class_frame_lib___global_allocator_1_1_pruner.html#aaeef6460d559456c61e25854f016625c',1,'FrameLib_GlobalAllocator::Pruner']]]
+  ['newinplace',['newInPlace',['../class_frame_lib___parameters_1_1_serial.html#a10da741b93f9798f86a97240fd4b33e8',1,'FrameLib_Parameters::Serial']]],
+  ['nonzeropositive',['nonZeroPositive',['../_frame_lib___fixed_point_8h.html#ad635e490db2d598944f6911c558509d0',1,'FrameLib_FixedPoint.h']]],
+  ['numberedstring',['numberedString',['../class_frame_lib___object.html#a26307f11e68962614da4178115e665b7',1,'FrameLib_Object']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pruner',['Pruner',['../class_frame_lib___global_allocator_1_1_pruner.html',1,'FrameLib_GlobalAllocator']]]
+  ['queue',['Queue',['../class_frame_lib___queueable_1_1_queue.html',1,'FrameLib_Queueable']]]
 ];

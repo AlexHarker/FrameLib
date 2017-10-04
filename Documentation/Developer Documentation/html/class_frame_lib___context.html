@@ -29,9 +29,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.7</span>
    </div>
-   <div id="projectbrief">Arbitrarily timed and sized frame-based DSP</div>
+   <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
  </tr>
  </tbody>
@@ -85,6 +85,7 @@ $(document).ready(function(){initNavTree('class_frame_lib___context.html','');})
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="class_frame_lib___context-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">FrameLib_Context Class Reference</div>  </div>
@@ -95,17 +96,22 @@ $(document).ready(function(){initNavTree('class_frame_lib___context.html','');})
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a4cfa321c8f6048211d031f05156b5b19"><td class="memItemLeft" align="right" valign="top">typedef ManagedPointer&lt; <a class="el" href="class_frame_lib___local_allocator.html">FrameLib_LocalAllocator</a>, &amp;<a class="el" href="class_frame_lib___global.html#a31c3fae37e27c9cce286d30ed30838d3">Global::getAllocator</a>, &amp;<a class="el" href="class_frame_lib___global.html#a78b0ff45eb662f12c41bdd641a416539">Global::releaseAllocator</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___context.html#a4cfa321c8f6048211d031f05156b5b19">Allocator</a></td></tr>
+<tr class="memitem:a4cfa321c8f6048211d031f05156b5b19"><td class="memItemLeft" align="right" valign="top">typedef ManagedPointer&lt; <a class="el" href="class_frame_lib___local_allocator.html">FrameLib_LocalAllocator</a>, &amp;Global::getAllocator, &amp;Global::releaseAllocator &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___context.html#a4cfa321c8f6048211d031f05156b5b19">Allocator</a></td></tr>
 <tr class="separator:a4cfa321c8f6048211d031f05156b5b19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab71b26193867cfa080362bd19a87596b"><td class="memItemLeft" align="right" valign="top">typedef ManagedPointer&lt; <a class="el" href="class_frame_lib___connection_queue.html">FrameLib_ConnectionQueue</a>, &amp;<a class="el" href="class_frame_lib___global.html#ae0cfe1ff49ba163758fcb66f9e94b991">Global::getConnectionQueue</a>, &amp;<a class="el" href="class_frame_lib___global.html#ab461ad3b4bdd9c580018373cf1617b1b">Global::releaseConnectionQueue</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___context.html#ab71b26193867cfa080362bd19a87596b">ConnectionQueue</a></td></tr>
-<tr class="separator:ab71b26193867cfa080362bd19a87596b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a18438b08e39c370de0e5794029ba77"><td class="memItemLeft" align="right" valign="top">typedef ManagedPointer&lt; <a class="el" href="class_frame_lib___d_s_p_queue.html">FrameLib_DSPQueue</a>, &amp;<a class="el" href="class_frame_lib___global.html#a5b4e45a675ea406538781011f7ebc153">Global::getDSPQueue</a>, &amp;<a class="el" href="class_frame_lib___global.html#a118b451294a2893fa60edfb09f60002a">Global::releaseDSPQueue</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___context.html#a1a18438b08e39c370de0e5794029ba77">DSPQueue</a></td></tr>
-<tr class="separator:a1a18438b08e39c370de0e5794029ba77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af25ffc646e2a2062cd126357acd714df"><td class="memItemLeft" align="right" valign="top">typedef ManagedPointer&lt; <a class="el" href="class_frame_lib___processing_queue.html">FrameLib_ProcessingQueue</a>, &amp;Global::getProcessingQueue, &amp;Global::releaseProcessingQueue &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___context.html#af25ffc646e2a2062cd126357acd714df">ProcessingQueue</a></td></tr>
+<tr class="separator:af25ffc646e2a2062cd126357acd714df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2cfe1912e3e9d835de291277c8979ed8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___context.html#a2cfe1912e3e9d835de291277c8979ed8">FrameLib_Context</a> (<a class="el" href="class_frame_lib___global.html">FrameLib_Global</a> *global, void *reference)</td></tr>
 <tr class="separator:a2cfe1912e3e9d835de291277c8979ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:ab0382454ba28ee3ff302be24ffc861c0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___context.html#ab0382454ba28ee3ff302be24ffc861c0">operator==</a> (const <a class="el" href="class_frame_lib___context.html">FrameLib_Context</a> &amp;a, const <a class="el" href="class_frame_lib___context.html">FrameLib_Context</a> &amp;b)</td></tr>
+<tr class="separator:ab0382454ba28ee3ff302be24ffc861c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aed82ce3d334858032a3c45e3c70169"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___context.html#a7aed82ce3d334858032a3c45e3c70169">operator!=</a> (const <a class="el" href="class_frame_lib___context.html">FrameLib_Context</a> &amp;a, const <a class="el" href="class_frame_lib___context.html">FrameLib_Context</a> &amp;b)</td></tr>
+<tr class="separator:a7aed82ce3d334858032a3c45e3c70169"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a4cfa321c8f6048211d031f05156b5b19"></a>
@@ -115,35 +121,21 @@ Public Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef ManagedPointer&lt;<a class="el" href="class_frame_lib___local_allocator.html">FrameLib_LocalAllocator</a>, &amp;<a class="el" href="class_frame_lib___global.html#a31c3fae37e27c9cce286d30ed30838d3">Global::getAllocator</a>, &amp;<a class="el" href="class_frame_lib___global.html#a78b0ff45eb662f12c41bdd641a416539">Global::releaseAllocator</a>&gt; <a class="el" href="class_frame_lib___context.html#a4cfa321c8f6048211d031f05156b5b19">FrameLib_Context::Allocator</a></td>
+          <td class="memname">typedef ManagedPointer&lt;<a class="el" href="class_frame_lib___local_allocator.html">FrameLib_LocalAllocator</a>, &amp;Global::getAllocator, &amp;Global::releaseAllocator&gt; <a class="el" href="class_frame_lib___context.html#a4cfa321c8f6048211d031f05156b5b19">FrameLib_Context::Allocator</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="ab71b26193867cfa080362bd19a87596b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab71b26193867cfa080362bd19a87596b">&#9670;&nbsp;</a></span>ConnectionQueue</h2>
+<a id="af25ffc646e2a2062cd126357acd714df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af25ffc646e2a2062cd126357acd714df">&#9670;&nbsp;</a></span>ProcessingQueue</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef ManagedPointer&lt;<a class="el" href="class_frame_lib___connection_queue.html">FrameLib_ConnectionQueue</a>, &amp;<a class="el" href="class_frame_lib___global.html#ae0cfe1ff49ba163758fcb66f9e94b991">Global::getConnectionQueue</a>, &amp;<a class="el" href="class_frame_lib___global.html#ab461ad3b4bdd9c580018373cf1617b1b">Global::releaseConnectionQueue</a>&gt; <a class="el" href="class_frame_lib___context.html#ab71b26193867cfa080362bd19a87596b">FrameLib_Context::ConnectionQueue</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a1a18438b08e39c370de0e5794029ba77"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a18438b08e39c370de0e5794029ba77">&#9670;&nbsp;</a></span>DSPQueue</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef ManagedPointer&lt;<a class="el" href="class_frame_lib___d_s_p_queue.html">FrameLib_DSPQueue</a>, &amp;<a class="el" href="class_frame_lib___global.html#a5b4e45a675ea406538781011f7ebc153">Global::getDSPQueue</a>, &amp;<a class="el" href="class_frame_lib___global.html#a118b451294a2893fa60edfb09f60002a">Global::releaseDSPQueue</a>&gt; <a class="el" href="class_frame_lib___context.html#a1a18438b08e39c370de0e5794029ba77">FrameLib_Context::DSPQueue</a></td>
+          <td class="memname">typedef ManagedPointer&lt;<a class="el" href="class_frame_lib___processing_queue.html">FrameLib_ProcessingQueue</a>, &amp;Global::getProcessingQueue, &amp;Global::releaseProcessingQueue&gt; <a class="el" href="class_frame_lib___context.html#af25ffc646e2a2062cd126357acd714df">FrameLib_Context::ProcessingQueue</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -187,8 +179,81 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Friends And Related Function Documentation</h2>
+<a id="a7aed82ce3d334858032a3c45e3c70169"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aed82ce3d334858032a3c45e3c70169">&#9670;&nbsp;</a></span>operator!=</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_frame_lib___context.html">FrameLib_Context</a> &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_frame_lib___context.html">FrameLib_Context</a> &amp;&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab0382454ba28ee3ff302be24ffc861c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0382454ba28ee3ff302be24ffc861c0">&#9670;&nbsp;</a></span>operator==</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_frame_lib___context.html">FrameLib_Context</a> &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_frame_lib___context.html">FrameLib_Context</a> &amp;&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>FrameLib_Framework/<a class="el" href="_frame_lib___context_8h_source.html">FrameLib_Context.h</a></li>
+<li>/Users/alexharker/Documents/Max Externals/FrameLib/FrameLib_Framework/<a class="el" href="_frame_lib___context_8h_source.html">FrameLib_Context.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

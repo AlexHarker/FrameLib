@@ -29,9 +29,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.7</span>
    </div>
-   <div id="projectbrief">Arbitrarily timed and sized frame-based DSP</div>
+   <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
  </tr>
  </tbody>
@@ -85,6 +85,7 @@ $(document).ready(function(){initNavTree('class_frame_lib___d_s_p.html','');});
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="class_frame_lib___d_s_p-members.html">List of all members</a>  </div>
@@ -100,13 +101,14 @@ Inheritance diagram for FrameLib_DSP:</div>
  <div class="center">
   <img src="class_frame_lib___d_s_p.png" usemap="#FrameLib_5FDSP_map" alt=""/>
   <map id="FrameLib_5FDSP_map" name="FrameLib_5FDSP_map">
-<area href="class_frame_lib___block.html" alt="FrameLib_Block" shape="rect" coords="351,112,575,136"/>
-<area href="class_frame_lib___object.html" alt="FrameLib_Object&lt; FrameLib_Block &gt;" shape="rect" coords="351,56,575,80"/>
-<area href="class_frame_lib___info.html" alt="FrameLib_Info" shape="rect" coords="351,0,575,24"/>
-<area href="class_frame_lib___audio_input.html" alt="FrameLib_AudioInput" shape="rect" coords="0,224,224,248"/>
-<area href="class_frame_lib___audio_output.html" alt="FrameLib_AudioOutput" shape="rect" coords="234,224,458,248"/>
-<area href="class_frame_lib___processor.html" alt="FrameLib_Processor" shape="rect" coords="468,224,692,248"/>
-<area href="class_frame_lib___scheduler.html" alt="FrameLib_Scheduler" shape="rect" coords="702,224,926,248"/>
+<area href="class_frame_lib___block.html" alt="FrameLib_Block" shape="rect" coords="259,112,508,136"/>
+<area href="class_frame_lib___queueable.html" alt="FrameLib_Queueable&lt; FrameLib_DSP &gt;" shape="rect" coords="518,112,767,136"/>
+<area href="class_frame_lib___object.html" alt="FrameLib_Object&lt; FrameLib_Block &gt;" shape="rect" coords="259,56,508,80"/>
+<area href="class_frame_lib___queueable.html" alt="FrameLib_Queueable&lt; FrameLib_Block &gt;" shape="rect" coords="259,0,508,24"/>
+<area href="class_frame_lib___audio_input.html" alt="FrameLib_AudioInput" shape="rect" coords="0,224,249,248"/>
+<area href="class_frame_lib___audio_output.html" alt="FrameLib_AudioOutput" shape="rect" coords="259,224,508,248"/>
+<area href="class_frame_lib___processor.html" alt="FrameLib_Processor" shape="rect" coords="518,224,767,248"/>
+<area href="class_frame_lib___scheduler.html" alt="FrameLib_Scheduler" shape="rect" coords="777,224,1026,248"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -117,8 +119,8 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a404abe3f4d147a34a16e9b2077b66dd9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a404abe3f4d147a34a16e9b2077b66dd9">FrameLib_DSP</a> (<a class="el" href="_frame_lib___types_8h.html#a842c5e2e69277690b064bf363c017980">ObjectType</a> type, <a class="el" href="class_frame_lib___context.html">FrameLib_Context</a> context, <a class="el" href="class_frame_lib___parameters_1_1_info.html">FrameLib_Parameters::Info</a> *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans=0)</td></tr>
-<tr class="separator:a404abe3f4d147a34a16e9b2077b66dd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f5e89a0ad938ff8e928ec3374b6cf3c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a3f5e89a0ad938ff8e928ec3374b6cf3c">FrameLib_DSP</a> (<a class="el" href="_frame_lib___types_8h.html#a842c5e2e69277690b064bf363c017980">ObjectType</a> type, <a class="el" href="class_frame_lib___context.html">FrameLib_Context</a> context, void *owner, <a class="el" href="class_frame_lib___parameters_1_1_info.html">FrameLib_Parameters::Info</a> *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans=0)</td></tr>
+<tr class="separator:a3f5e89a0ad938ff8e928ec3374b6cf3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cf489678b72fe7e46956e69fac182ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a2cf489678b72fe7e46956e69fac182ed">~FrameLib_DSP</a> ()</td></tr>
 <tr class="separator:a2cf489678b72fe7e46956e69fac182ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad15333614446257796e75db254efac78"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#ad15333614446257796e75db254efac78">setFixedInput</a> (unsigned long idx, double *input, unsigned long size)</td></tr>
@@ -127,46 +129,42 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aafa57c93417ced3d5610ca9f6b0f0913"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad253c096a1c7cc236804dfd1f2e650ec"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#ad253c096a1c7cc236804dfd1f2e650ec">reset</a> (double samplingRate, unsigned long maxBlockSize)</td></tr>
 <tr class="separator:ad253c096a1c7cc236804dfd1f2e650ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad828d2b359466e9ff2f0f6002d580d18"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#ad828d2b359466e9ff2f0f6002d580d18">deleteConnection</a> (unsigned long inIdx)</td></tr>
-<tr class="separator:ad828d2b359466e9ff2f0f6002d580d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a835fc24bc4224279fa53b15bde7a824f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a835fc24bc4224279fa53b15bde7a824f">addConnection</a> (<a class="el" href="class_frame_lib___d_s_p.html">FrameLib_DSP</a> *object, unsigned long outIdx, unsigned long inIdx)</td></tr>
-<tr class="separator:a835fc24bc4224279fa53b15bde7a824f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42ab6ff22056a188a33ecadcd2ea477d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a42ab6ff22056a188a33ecadcd2ea477d">clearConnections</a> ()</td></tr>
-<tr class="separator:a42ab6ff22056a188a33ecadcd2ea477d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c0e00484c67ea160cf87ec644807cac"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a6c0e00484c67ea160cf87ec644807cac">isConnected</a> (unsigned long inIdx)</td></tr>
-<tr class="separator:a6c0e00484c67ea160cf87ec644807cac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac871e4980da27cbd5238b8780a357217"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="class_frame_lib___parameters.html">FrameLib_Parameters</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#ac871e4980da27cbd5238b8780a357217">getParameters</a> ()</td></tr>
-<tr class="separator:ac871e4980da27cbd5238b8780a357217"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbd266dacec0eb86acaf584f737338b7"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_frame_lib___types_8h.html#ad495a9f61af7fff07d7e97979d1ab854">FrameType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#abbd266dacec0eb86acaf584f737338b7">inputType</a> (unsigned long idx)</td></tr>
-<tr class="separator:abbd266dacec0eb86acaf584f737338b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaffa4da5531641a7da9f85e93d3440f0"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_frame_lib___types_8h.html#ad495a9f61af7fff07d7e97979d1ab854">FrameType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#aaffa4da5531641a7da9f85e93d3440f0">outputType</a> (unsigned long idx)</td></tr>
-<tr class="separator:aaffa4da5531641a7da9f85e93d3440f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06325d53b4212e692079b748b82bad86"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="class_frame_lib___parameters.html">FrameLib_Parameters</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a06325d53b4212e692079b748b82bad86">getParameters</a> () const</td></tr>
+<tr class="separator:a06325d53b4212e692079b748b82bad86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a774197b0f41e1f78671fab6112a41ed9"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_frame_lib___types_8h.html#ad495a9f61af7fff07d7e97979d1ab854">FrameType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a774197b0f41e1f78671fab6112a41ed9">inputType</a> (unsigned long idx) const</td></tr>
+<tr class="separator:a774197b0f41e1f78671fab6112a41ed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17b4529624dd9219d502570f81d88b27"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_frame_lib___types_8h.html#ad495a9f61af7fff07d7e97979d1ab854">FrameType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a17b4529624dd9219d502570f81d88b27">outputType</a> (unsigned long idx) const</td></tr>
+<tr class="separator:a17b4529624dd9219d502570f81d88b27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dfb9b1855cc6a829acc1a03dcc4776b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a8dfb9b1855cc6a829acc1a03dcc4776b">autoOrderingConnections</a> ()</td></tr>
+<tr class="separator:a8dfb9b1855cc6a829acc1a03dcc4776b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_frame_lib___block"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_frame_lib___block')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_frame_lib___block.html">FrameLib_Block</a></td></tr>
-<tr class="memitem:ab56169e5918fe77c1cfa7ddd0a6520a3 inherit pub_methods_class_frame_lib___block"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___block.html#ab56169e5918fe77c1cfa7ddd0a6520a3">FrameLib_Block</a> (<a class="el" href="_frame_lib___types_8h.html#a842c5e2e69277690b064bf363c017980">ObjectType</a> type)</td></tr>
-<tr class="separator:ab56169e5918fe77c1cfa7ddd0a6520a3 inherit pub_methods_class_frame_lib___block"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99b10eba9f8f598c6ffdebd4a493489d inherit pub_methods_class_frame_lib___block"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___block.html#a99b10eba9f8f598c6ffdebd4a493489d">FrameLib_Block</a> (<a class="el" href="_frame_lib___types_8h.html#a842c5e2e69277690b064bf363c017980">ObjectType</a> type, <a class="el" href="class_frame_lib___context.html">FrameLib_Context</a> context, void *owner)</td></tr>
+<tr class="separator:a99b10eba9f8f598c6ffdebd4a493489d inherit pub_methods_class_frame_lib___block"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17c0048595334cb8d63abfcbb77c980d inherit pub_methods_class_frame_lib___block"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___block.html#a17c0048595334cb8d63abfcbb77c980d">~FrameLib_Block</a> ()</td></tr>
 <tr class="separator:a17c0048595334cb8d63abfcbb77c980d inherit pub_methods_class_frame_lib___block"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88e998ec661b9afd001e40e68bb52f61 inherit pub_methods_class_frame_lib___block"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___block.html#a88e998ec661b9afd001e40e68bb52f61">addConnection</a> (<a class="el" href="class_frame_lib___block.html">FrameLib_Block</a> *object, unsigned long outIdx, unsigned long inIdx)</td></tr>
-<tr class="separator:a88e998ec661b9afd001e40e68bb52f61 inherit pub_methods_class_frame_lib___block"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a730aaf9204244afd2c40da0c40bb1ba8 inherit pub_methods_class_frame_lib___block"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___block.html#a730aaf9204244afd2c40da0c40bb1ba8">setChannel</a> (unsigned long chan)</td></tr>
+<tr class="separator:a730aaf9204244afd2c40da0c40bb1ba8 inherit pub_methods_class_frame_lib___block"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_frame_lib___object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_frame_lib___object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_frame_lib___object.html">FrameLib_Object&lt; FrameLib_Block &gt;</a></td></tr>
-<tr class="memitem:a81d840729ed8fc0e86ec33969a5a5a85 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a81d840729ed8fc0e86ec33969a5a5a85">FrameLib_Object</a> (<a class="el" href="_frame_lib___types_8h.html#a842c5e2e69277690b064bf363c017980">ObjectType</a> type)</td></tr>
-<tr class="separator:a81d840729ed8fc0e86ec33969a5a5a85 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a73dc92ffde31164b54f1b1f5889b77 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a2a73dc92ffde31164b54f1b1f5889b77">FrameLib_Object</a> (<a class="el" href="_frame_lib___types_8h.html#a842c5e2e69277690b064bf363c017980">ObjectType</a> type, <a class="el" href="class_frame_lib___context.html">FrameLib_Context</a> context, void *owner, <a class="el" href="class_frame_lib___block.html">FrameLib_Block</a> *parent)</td></tr>
+<tr class="separator:a2a73dc92ffde31164b54f1b1f5889b77 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab88bcc3fe9e1c9da41a4afebb3d05005 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ab88bcc3fe9e1c9da41a4afebb3d05005">~FrameLib_Object</a> ()</td></tr>
 <tr class="separator:ab88bcc3fe9e1c9da41a4afebb3d05005 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e535510b8445958f5f5a95ecb11a588 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a842c5e2e69277690b064bf363c017980">ObjectType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a8e535510b8445958f5f5a95ecb11a588">getType</a> ()</td></tr>
-<tr class="separator:a8e535510b8445958f5f5a95ecb11a588 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c34227ace795af7da847fff3f2b300d inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a5c34227ace795af7da847fff3f2b300d">setIO</a> (unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans=0)</td></tr>
-<tr class="separator:a5c34227ace795af7da847fff3f2b300d inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9ab064d9390417fde0644ed413e1c5c inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ad9ab064d9390417fde0644ed413e1c5c">getNumIns</a> ()</td></tr>
-<tr class="separator:ad9ab064d9390417fde0644ed413e1c5c inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6be2c4c3faf10ce732347b2e59f51508 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a6be2c4c3faf10ce732347b2e59f51508">getNumOuts</a> ()</td></tr>
-<tr class="separator:a6be2c4c3faf10ce732347b2e59f51508 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa57fd96d292e25d91f107c6bec292ed0 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#aa57fd96d292e25d91f107c6bec292ed0">getNumAudioIns</a> ()</td></tr>
-<tr class="separator:aa57fd96d292e25d91f107c6bec292ed0 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8304968cf5473f22804d46950d88256a inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a8304968cf5473f22804d46950d88256a">getNumAudioOuts</a> ()</td></tr>
-<tr class="separator:a8304968cf5473f22804d46950d88256a inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3b9c6438cc170618c221fc96612d19b inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ae3b9c6438cc170618c221fc96612d19b">getNumAudioChans</a> ()</td></tr>
-<tr class="separator:ae3b9c6438cc170618c221fc96612d19b inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d96d1f55054e583a99891ad65f84a3a inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a842c5e2e69277690b064bf363c017980">ObjectType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a8d96d1f55054e583a99891ad65f84a3a">getType</a> () const</td></tr>
+<tr class="separator:a8d96d1f55054e583a99891ad65f84a3a inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f636902888847c78cf16d74717bd861 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___context.html">FrameLib_Context</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a8f636902888847c78cf16d74717bd861">getContext</a> () const</td></tr>
+<tr class="separator:a8f636902888847c78cf16d74717bd861 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1a0a288f1da02f9ac7199ac9f96acce inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ac1a0a288f1da02f9ac7199ac9f96acce">getOwner</a> () const</td></tr>
+<tr class="separator:ac1a0a288f1da02f9ac7199ac9f96acce inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a310416236585b52c2de1c47a9aa64b02 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a310416236585b52c2de1c47a9aa64b02">getNumIns</a> () const</td></tr>
+<tr class="separator:a310416236585b52c2de1c47a9aa64b02 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a255f6ae814dbb946d445ef244dd39975 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a255f6ae814dbb946d445ef244dd39975">getNumOuts</a> () const</td></tr>
+<tr class="separator:a255f6ae814dbb946d445ef244dd39975 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad29b6281916a933c5baa43cbb7d11efd inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ad29b6281916a933c5baa43cbb7d11efd">getNumAudioIns</a> () const</td></tr>
+<tr class="separator:ad29b6281916a933c5baa43cbb7d11efd inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a430c0531a4c38ad49a556af1cca0af88 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a430c0531a4c38ad49a556af1cca0af88">getNumAudioOuts</a> () const</td></tr>
+<tr class="separator:a430c0531a4c38ad49a556af1cca0af88 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59e6e7dba2d18444be6d5fbee15c73f2 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a59e6e7dba2d18444be6d5fbee15c73f2">getNumAudioChans</a> () const</td></tr>
+<tr class="separator:a59e6e7dba2d18444be6d5fbee15c73f2 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10d673de9a3c59ace6a22ba1cff313c8 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a10d673de9a3c59ace6a22ba1cff313c8">objectInfo</a> (bool verbose=false)</td></tr>
 <tr class="separator:a10d673de9a3c59ace6a22ba1cff313c8 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49abea5f18125c425b1eae8710735891 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a49abea5f18125c425b1eae8710735891">inputInfo</a> (unsigned long idx, bool verbose=false)</td></tr>
@@ -175,6 +173,44 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6e6d79e8d620eedbaa50abf324cdedf5 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af618fcdec82b457911147c7c293bedd7 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#af618fcdec82b457911147c7c293bedd7">audioInfo</a> (unsigned long idx, bool verbose=false)</td></tr>
 <tr class="separator:af618fcdec82b457911147c7c293bedd7 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a216a018651f08f5779d40fd243921527 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722">ConnectionResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a216a018651f08f5779d40fd243921527">addConnection</a> (<a class="el" href="class_frame_lib___block.html">FrameLib_Block</a> *object, unsigned long outIdx, unsigned long inIdx)</td></tr>
+<tr class="separator:a216a018651f08f5779d40fd243921527 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7dbc1735ebd68008abd939d50edce49 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#aa7dbc1735ebd68008abd939d50edce49">deleteConnection</a> (unsigned long inIdx)</td></tr>
+<tr class="separator:aa7dbc1735ebd68008abd939d50edce49 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e403445d93444a203604fcb3bfd8fe6 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722">ConnectionResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a3e403445d93444a203604fcb3bfd8fe6">addOrderingConnection</a> (<a class="el" href="class_frame_lib___block.html">FrameLib_Block</a> *object, unsigned long outIdx)</td></tr>
+<tr class="separator:a3e403445d93444a203604fcb3bfd8fe6 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62c0bd0e7ab5c0be547692711128a611 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a62c0bd0e7ab5c0be547692711128a611">deleteOrderingConnection</a> (<a class="el" href="class_frame_lib___block.html">FrameLib_Block</a> *object, unsigned long outIdx)</td></tr>
+<tr class="separator:a62c0bd0e7ab5c0be547692711128a611 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd548d2e3899a1a8738a71b3824ac039 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#abd548d2e3899a1a8738a71b3824ac039">clearOrderingConnections</a> ()</td></tr>
+<tr class="separator:abd548d2e3899a1a8738a71b3824ac039 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fa6add369fd21ddc5250efd740d0285 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a4fa6add369fd21ddc5250efd740d0285">clearConnections</a> ()</td></tr>
+<tr class="separator:a4fa6add369fd21ddc5250efd740d0285 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b4ed60a6032ff9fab191fcb492ef404 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a2b4ed60a6032ff9fab191fcb492ef404">isConnected</a> (unsigned long inIdx) const</td></tr>
+<tr class="separator:a2b4ed60a6032ff9fab191fcb492ef404 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad660fd98d11c9a91bf9131f35ba365a6 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___block.html">FrameLib_Block</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ad660fd98d11c9a91bf9131f35ba365a6">getConnection</a> (unsigned long idx) const</td></tr>
+<tr class="separator:ad660fd98d11c9a91bf9131f35ba365a6 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40383ebb4672e2bb1bd7ad41da14e967 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a40383ebb4672e2bb1bd7ad41da14e967">getConnectionIdx</a> (unsigned long idx) const</td></tr>
+<tr class="separator:a40383ebb4672e2bb1bd7ad41da14e967 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f0baead3c4ca259a6b4e7a417f45735 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a0f0baead3c4ca259a6b4e7a417f45735">supportsOrderingConnections</a> () const</td></tr>
+<tr class="separator:a0f0baead3c4ca259a6b4e7a417f45735 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace330616fd3334122babc5901b758d28 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ace330616fd3334122babc5901b758d28">getNumOrderingConnections</a> () const</td></tr>
+<tr class="separator:ace330616fd3334122babc5901b758d28 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a368084d4df3cfe02487d47e436a125 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___block.html">FrameLib_Block</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a6a368084d4df3cfe02487d47e436a125">getOrderingConnection</a> (unsigned long idx) const</td></tr>
+<tr class="separator:a6a368084d4df3cfe02487d47e436a125 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06858c0d70dfd61e03442fc17e224d5c inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a06858c0d70dfd61e03442fc17e224d5c">getOrderingConnectionIdx</a> (unsigned long idx) const</td></tr>
+<tr class="separator:a06858c0d70dfd61e03442fc17e224d5c inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a4ce727ae1b9e9bb11162a9bf99e601 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a4a4ce727ae1b9e9bb11162a9bf99e601">isOrderingConnection</a> (<a class="el" href="class_frame_lib___block.html">FrameLib_Block</a> *object) const</td></tr>
+<tr class="separator:a4a4ce727ae1b9e9bb11162a9bf99e601 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80ca53cc96b35c672b82d175840da496 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a80ca53cc96b35c672b82d175840da496">getNumOutputDependencies</a> () const</td></tr>
+<tr class="separator:a80ca53cc96b35c672b82d175840da496 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a1f27bd291ff08dbb9324815078ca85 inherit pub_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___block.html">FrameLib_Block</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a3a1f27bd291ff08dbb9324815078ca85">getOutputDependency</a> (unsigned long idx) const</td></tr>
+<tr class="separator:a3a1f27bd291ff08dbb9324815078ca85 inherit pub_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_frame_lib___queueable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_frame_lib___queueable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_frame_lib___queueable.html">FrameLib_Queueable&lt; FrameLib_Block &gt;</a></td></tr>
+<tr class="memitem:ae851e341082e42b5d9f35fce31f51870 inherit pub_methods_class_frame_lib___queueable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___queueable.html#ae851e341082e42b5d9f35fce31f51870">FrameLib_Queueable</a> ()</td></tr>
+<tr class="separator:ae851e341082e42b5d9f35fce31f51870 inherit pub_methods_class_frame_lib___queueable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_frame_lib___queueable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_frame_lib___queueable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_frame_lib___queueable.html">FrameLib_Queueable&lt; FrameLib_DSP &gt;</a></td></tr>
+<tr class="memitem:ae851e341082e42b5d9f35fce31f51870 inherit pub_methods_class_frame_lib___queueable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___queueable.html#ae851e341082e42b5d9f35fce31f51870">FrameLib_Queueable</a> ()</td></tr>
+<tr class="separator:ae851e341082e42b5d9f35fce31f51870 inherit pub_methods_class_frame_lib___queueable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -190,24 +226,24 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a82ba080c4038eede7bae208555df1780"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e3084ad267a330ec021bd558edd3f57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a2e3084ad267a330ec021bd558edd3f57">updateTrigger</a> (unsigned long idx, bool trigger)</td></tr>
 <tr class="separator:a2e3084ad267a330ec021bd558edd3f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acdcd85278b8cf1e80d50a7890d6975f9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#acdcd85278b8cf1e80d50a7890d6975f9">isTrigger</a> (unsigned long idx)</td></tr>
-<tr class="separator:acdcd85278b8cf1e80d50a7890d6975f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a094f901b21cd50ddef100f2d58cdbbfb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a094f901b21cd50ddef100f2d58cdbbfb">getFrameTime</a> ()</td></tr>
-<tr class="separator:a094f901b21cd50ddef100f2d58cdbbfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0c0353bfbac1d75bc789f96382d6637"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#ac0c0353bfbac1d75bc789f96382d6637">getValidTime</a> ()</td></tr>
-<tr class="separator:ac0c0353bfbac1d75bc789f96382d6637"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0ad1eb78dcdbb6b624c223079e9695e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#ae0ad1eb78dcdbb6b624c223079e9695e">getInputTime</a> ()</td></tr>
-<tr class="separator:ae0ad1eb78dcdbb6b624c223079e9695e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40651d3b4ea9017d4c399b962d900645"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a40651d3b4ea9017d4c399b962d900645">getCurrentTime</a> ()</td></tr>
-<tr class="separator:a40651d3b4ea9017d4c399b962d900645"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a198525cf76c51488a37b9fac8e2a21ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a198525cf76c51488a37b9fac8e2a21ed">getBlockStartTime</a> ()</td></tr>
-<tr class="separator:a198525cf76c51488a37b9fac8e2a21ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f80e7fbe15189dc9c16323dcf654cbd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a5f80e7fbe15189dc9c16323dcf654cbd">getBlockEndTime</a> ()</td></tr>
-<tr class="separator:a5f80e7fbe15189dc9c16323dcf654cbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab50bdad21f69e0ed9d33ef25ee830b0c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#ab50bdad21f69e0ed9d33ef25ee830b0c">getInputFrameTime</a> (unsigned long idx)</td></tr>
-<tr class="separator:ab50bdad21f69e0ed9d33ef25ee830b0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3ea3b2eb636656ee7dd13d99d351e85"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#ae3ea3b2eb636656ee7dd13d99d351e85">getInputValidTime</a> (unsigned long idx)</td></tr>
-<tr class="separator:ae3ea3b2eb636656ee7dd13d99d351e85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13e269a66e0b9fb40ead089530e49eaa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a13e269a66e0b9fb40ead089530e49eaa">isTrigger</a> (unsigned long idx) const</td></tr>
+<tr class="separator:a13e269a66e0b9fb40ead089530e49eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2eedff2474f665b5bf7d2f2fa7a1cdc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a2eedff2474f665b5bf7d2f2fa7a1cdc4">getFrameTime</a> () const</td></tr>
+<tr class="separator:a2eedff2474f665b5bf7d2f2fa7a1cdc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa420e10b7ea7a300bf106631167cac0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#afa420e10b7ea7a300bf106631167cac0">getValidTime</a> () const</td></tr>
+<tr class="separator:afa420e10b7ea7a300bf106631167cac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd7cae225f75c8cd4bd773bf188961b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#afd7cae225f75c8cd4bd773bf188961b2">getInputTime</a> () const</td></tr>
+<tr class="separator:afd7cae225f75c8cd4bd773bf188961b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5734f973e603be4a85764d5f77fa4004"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a5734f973e603be4a85764d5f77fa4004">getCurrentTime</a> () const</td></tr>
+<tr class="separator:a5734f973e603be4a85764d5f77fa4004"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c34c56420ff9da196150e8a5307e812"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a9c34c56420ff9da196150e8a5307e812">getBlockStartTime</a> () const</td></tr>
+<tr class="separator:a9c34c56420ff9da196150e8a5307e812"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cd169b635307807b29f1d02ea23635e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a8cd169b635307807b29f1d02ea23635e">getBlockEndTime</a> () const</td></tr>
+<tr class="separator:a8cd169b635307807b29f1d02ea23635e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a705ddc874bc5643f81a0f71894f1ae0c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a705ddc874bc5643f81a0f71894f1ae0c">getInputFrameTime</a> (unsigned long idx) const</td></tr>
+<tr class="separator:a705ddc874bc5643f81a0f71894f1ae0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a699dda68553ddebd5ca8c70326fb40a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a699dda68553ddebd5ca8c70326fb40a5">getInputValidTime</a> (unsigned long idx) const</td></tr>
+<tr class="separator:a699dda68553ddebd5ca8c70326fb40a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a018be5346f473c3c21d5251d6acb85c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a018be5346f473c3c21d5251d6acb85c7">requestOutputSize</a> (unsigned long idx, size_t size)</td></tr>
 <tr class="separator:a018be5346f473c3c21d5251d6acb85c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbf404ed95c61cfa713c988b10f76202"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#abbf404ed95c61cfa713c988b10f76202">allocateOutputs</a> ()</td></tr>
@@ -220,19 +256,51 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a0b93f60dad1696bfbb80cedb5d406c40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a614a975377a289f8bdaa2eba0c1c41b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___parameters_1_1_serial.html">FrameLib_Parameters::Serial</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a614a975377a289f8bdaa2eba0c1c41b6">getOutput</a> (unsigned long idx)</td></tr>
 <tr class="separator:a614a975377a289f8bdaa2eba0c1c41b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a811ee9a6e985621da2f849ce4a96b7ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a811ee9a6e985621da2f849ce4a96b7ba">copyVector</a> (double *output, double *input, unsigned long size)</td></tr>
-<tr class="separator:a811ee9a6e985621da2f849ce4a96b7ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73f63a346affb7c00123a99643f36de3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a73f63a346affb7c00123a99643f36de3">zeroVector</a> (double *output, unsigned long size)</td></tr>
-<tr class="separator:a73f63a346affb7c00123a99643f36de3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a867822cfa9e3ca491c886cff9f79001d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___d_s_p.html">FrameLib_DSP</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a867822cfa9e3ca491c886cff9f79001d">getOutputObject</a> (unsigned long outIdx)</td></tr>
-<tr class="separator:a867822cfa9e3ca491c886cff9f79001d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_methods_class_frame_lib___info"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_frame_lib___info')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_frame_lib___info.html">FrameLib_Info</a></td></tr>
-<tr class="memitem:a22a5afed75b8f072b79278dd230c5952 inherit pro_methods_class_frame_lib___info"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___info.html#a22a5afed75b8f072b79278dd230c5952">getInfo</a> (const char *verboseStr, const char *briefStr, bool verbose)</td></tr>
-<tr class="separator:a22a5afed75b8f072b79278dd230c5952 inherit pro_methods_class_frame_lib___info"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25dcefc87f96b26a1cd17592b9b09f6f inherit pro_methods_class_frame_lib___info"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___info.html#a25dcefc87f96b26a1cd17592b9b09f6f">getInfo</a> (const char *verboseStr, const char *briefStr, unsigned long idx, bool verbose)</td></tr>
-<tr class="separator:a25dcefc87f96b26a1cd17592b9b09f6f inherit pro_methods_class_frame_lib___info"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac2ae7aa23772c4580d68ed6b4b493fb inherit pro_methods_class_frame_lib___info"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___info.html#aac2ae7aa23772c4580d68ed6b4b493fb">getInfo</a> (const char *verboseStr, const char *briefStr, const char *replaceStr, bool verbose)</td></tr>
-<tr class="separator:aac2ae7aa23772c4580d68ed6b4b493fb inherit pro_methods_class_frame_lib___info"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3864d31866672734f27c80d6eff15d47"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a3864d31866672734f27c80d6eff15d47">getNumInputObjects</a> (unsigned long blockIdx)</td></tr>
+<tr class="separator:a3864d31866672734f27c80d6eff15d47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11c7de51dabca61ca89e5fc178144725"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___d_s_p.html">FrameLib_DSP</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a11c7de51dabca61ca89e5fc178144725">getInputObject</a> (unsigned long blockIdx, unsigned long idx)</td></tr>
+<tr class="separator:a11c7de51dabca61ca89e5fc178144725"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6da5977366587bbab7532a8d4ab7d2f5"><td class="memItemLeft" align="right" valign="top">virtual unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a6da5977366587bbab7532a8d4ab7d2f5">getInputObjectIdx</a> (unsigned long blockIdx, unsigned long idx)</td></tr>
+<tr class="separator:a6da5977366587bbab7532a8d4ab7d2f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdf6c94e0cef2f714bdfd90aea517faf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___d_s_p.html">FrameLib_DSP</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#afdf6c94e0cef2f714bdfd90aea517faf">getOutputObject</a> (unsigned long blockIdx)</td></tr>
+<tr class="separator:afdf6c94e0cef2f714bdfd90aea517faf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eedfc5c69502c9bea3a0c1586a3ac57"><td class="memItemLeft" align="right" valign="top">virtual unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a9eedfc5c69502c9bea3a0c1586a3ac57">getOutputObjectIdx</a> (unsigned long blockIdx)</td></tr>
+<tr class="separator:a9eedfc5c69502c9bea3a0c1586a3ac57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a36587f32b2f7a49e0737934dc8a59b"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a5a36587f32b2f7a49e0737934dc8a59b">getNumOrderingConnectionObjects</a> ()</td></tr>
+<tr class="separator:a5a36587f32b2f7a49e0737934dc8a59b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ecd5acbe59bf34b514c6e3b73cb518c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___d_s_p.html">FrameLib_DSP</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a8ecd5acbe59bf34b514c6e3b73cb518c">getOrderingConnectionObject</a> (unsigned long idx)</td></tr>
+<tr class="separator:a8ecd5acbe59bf34b514c6e3b73cb518c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_class_frame_lib___object"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_frame_lib___object')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_frame_lib___object.html">FrameLib_Object&lt; FrameLib_Block &gt;</a></td></tr>
+<tr class="memitem:a5c34227ace795af7da847fff3f2b300d inherit pro_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a5c34227ace795af7da847fff3f2b300d">setIO</a> (unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans=0)</td></tr>
+<tr class="separator:a5c34227ace795af7da847fff3f2b300d inherit pro_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60dba6cd7148c3223adb4197d6712839 inherit pro_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a60dba6cd7148c3223adb4197d6712839">enableOrderingConnections</a> ()</td></tr>
+<tr class="separator:a60dba6cd7148c3223adb4197d6712839 inherit pro_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32ba9cf8b728317fc92c10310ab83e67 inherit pro_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">U *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a32ba9cf8b728317fc92c10310ab83e67">alloc</a> (unsigned long N)</td></tr>
+<tr class="separator:a32ba9cf8b728317fc92c10310ab83e67 inherit pro_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab42be79621db7363ca4a34f63704d04f inherit pro_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#ab42be79621db7363ca4a34f63704d04f">dealloc</a> (U *&amp;ptr)</td></tr>
+<tr class="separator:ab42be79621db7363ca4a34f63704d04f inherit pro_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33b99de2c7a35227bc8a40d4c3b2ee76 inherit pro_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a33b99de2c7a35227bc8a40d4c3b2ee76">clearAllocator</a> ()</td></tr>
+<tr class="separator:a33b99de2c7a35227bc8a40d4c3b2ee76 inherit pro_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a316d15b17757ddfef4341d0f8afe443e inherit pro_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html">FrameLib_LocalAllocator::Storage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a316d15b17757ddfef4341d0f8afe443e">registerStorage</a> (const char *name)</td></tr>
+<tr class="separator:a316d15b17757ddfef4341d0f8afe443e inherit pro_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c131dff9d634f17696fb3ae6be06e9b inherit pro_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a4c131dff9d634f17696fb3ae6be06e9b">releaseStorage</a> (<a class="el" href="class_frame_lib___local_allocator_1_1_storage.html">FrameLib_LocalAllocator::Storage</a> *&amp;storage)</td></tr>
+<tr class="separator:a4c131dff9d634f17696fb3ae6be06e9b inherit pro_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-methods"></a>
+Static Protected Member Functions</h2></td></tr>
+<tr class="memitem:aaa7b3e5f55db4a6cf13d37958f08b17f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#aaa7b3e5f55db4a6cf13d37958f08b17f">copyVector</a> (double *output, double *input, unsigned long size)</td></tr>
+<tr class="separator:aaa7b3e5f55db4a6cf13d37958f08b17f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9da9216b727050afef88ff8e1ec01ba0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a9da9216b727050afef88ff8e1ec01ba0">zeroVector</a> (double *output, unsigned long size)</td></tr>
+<tr class="separator:a9da9216b727050afef88ff8e1ec01ba0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_static_methods_class_frame_lib___object"><td colspan="2" onclick="javascript:toggleInherit('pro_static_methods_class_frame_lib___object')"><img src="closed.png" alt="-"/>&#160;Static Protected Member Functions inherited from <a class="el" href="class_frame_lib___object.html">FrameLib_Object&lt; FrameLib_Block &gt;</a></td></tr>
+<tr class="memitem:a2cb965a15f4634a5fdddc2b009005211 inherit pro_static_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a2cb965a15f4634a5fdddc2b009005211">formatInfo</a> (const char *verboseStr, const char *briefStr, bool verbose)</td></tr>
+<tr class="separator:a2cb965a15f4634a5fdddc2b009005211 inherit pro_static_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa30676408b8f8161894eb0e533a8522b inherit pro_static_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#aa30676408b8f8161894eb0e533a8522b">formatInfo</a> (const char *verboseStr, const char *briefStr, unsigned long idx, bool verbose)</td></tr>
+<tr class="separator:aa30676408b8f8161894eb0e533a8522b inherit pro_static_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7babe2dd654fbd0c8c05eb7f7ea31550 inherit pro_static_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a7babe2dd654fbd0c8c05eb7f7ea31550">formatInfo</a> (const char *verboseStr, const char *briefStr, const char *replaceStr, bool verbose)</td></tr>
+<tr class="separator:a7babe2dd654fbd0c8c05eb7f7ea31550 inherit pro_static_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26307f11e68962614da4178115e665b7 inherit pro_static_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a26307f11e68962614da4178115e665b7">numberedString</a> (const char *str, unsigned long idx)</td></tr>
+<tr class="separator:a26307f11e68962614da4178115e665b7 inherit pro_static_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -240,25 +308,26 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:ad638dccde211f80eedca3d898f2c6ff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92c6d7101aee042e778fc8e09d5c8f77"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a92c6d7101aee042e778fc8e09d5c8f77">mMaxBlockSize</a></td></tr>
 <tr class="separator:a92c6d7101aee042e778fc8e09d5c8f77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4dd06a3e750380c0d89015d1648a0907"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___context.html#a4cfa321c8f6048211d031f05156b5b19">FrameLib_Context::Allocator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a4dd06a3e750380c0d89015d1648a0907">mAllocator</a></td></tr>
-<tr class="separator:a4dd06a3e750380c0d89015d1648a0907"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01fec01b8ecbf2a80b98f989a568105c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___parameters.html">FrameLib_Parameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a01fec01b8ecbf2a80b98f989a568105c">mParameters</a></td></tr>
 <tr class="separator:a01fec01b8ecbf2a80b98f989a568105c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:a0d8e87d113fd295c3797b6f66442ccf8"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a0d8e87d113fd295c3797b6f66442ccf8">FrameLib_DSPQueue</a></td></tr>
-<tr class="separator:a0d8e87d113fd295c3797b6f66442ccf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71376d0a2e88daa0b12d080d6b5184a5"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html#a71376d0a2e88daa0b12d080d6b5184a5">FrameLib_ProcessingQueue</a></td></tr>
+<tr class="separator:a71376d0a2e88daa0b12d080d6b5184a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_types_class_frame_lib___object"><td colspan="2" onclick="javascript:toggleInherit('pub_types_class_frame_lib___object')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="class_frame_lib___object.html">FrameLib_Object&lt; FrameLib_Block &gt;</a></td></tr>
+<tr class="memitem:a481c704666e7bd901f64b2b255f79784 inherit pub_types_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="class_frame_lib___queueable.html">FrameLib_Queueable</a>&lt; <a class="el" href="class_frame_lib___block.html">FrameLib_Block</a> &gt;::<a class="el" href="class_frame_lib___object.html#a481c704666e7bd901f64b2b255f79784">Queue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a481c704666e7bd901f64b2b255f79784">Queue</a></td></tr>
+<tr class="separator:a481c704666e7bd901f64b2b255f79784 inherit pub_types_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_methods_class_frame_lib___object"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_frame_lib___object')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="class_frame_lib___object.html">FrameLib_Object&lt; FrameLib_Block &gt;</a></td></tr>
 <tr class="memitem:a3d8517596d7598585c08af375dae79b9 inherit pub_static_methods_class_frame_lib___object"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html#a3d8517596d7598585c08af375dae79b9">handlesAudio</a> ()</td></tr>
 <tr class="separator:a3d8517596d7598585c08af375dae79b9 inherit pub_static_methods_class_frame_lib___object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a404abe3f4d147a34a16e9b2077b66dd9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a404abe3f4d147a34a16e9b2077b66dd9">&#9670;&nbsp;</a></span>FrameLib_DSP()</h2>
+<a id="a3f5e89a0ad938ff8e928ec3374b6cf3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f5e89a0ad938ff8e928ec3374b6cf3c">&#9670;&nbsp;</a></span>FrameLib_DSP()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -274,6 +343,12 @@ Additional Inherited Members</h2></td></tr>
           <td></td>
           <td class="paramtype"><a class="el" href="class_frame_lib___context.html">FrameLib_Context</a>&#160;</td>
           <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>owner</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -327,50 +402,6 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a835fc24bc4224279fa53b15bde7a824f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a835fc24bc4224279fa53b15bde7a824f">&#9670;&nbsp;</a></span>addConnection()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FrameLib_DSP::addConnection </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_frame_lib___d_s_p.html">FrameLib_DSP</a> *&#160;</td>
-          <td class="paramname"><em>object</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned long&#160;</td>
-          <td class="paramname"><em>outIdx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned long&#160;</td>
-          <td class="paramname"><em>inIdx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implements <a class="el" href="class_frame_lib___block.html#a58ad49f15453e8214a298ef0992b00a1">FrameLib_Block</a>.</p>
-
-</div>
-</div>
 <a id="aa000b56c19ad1fbdc4f3fe56b0ca762d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa000b56c19ad1fbdc4f3fe56b0ca762d">&#9670;&nbsp;</a></span>addParameterInput()</h2>
 
@@ -421,6 +452,33 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a8dfb9b1855cc6a829acc1a03dcc4776b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dfb9b1855cc6a829acc1a03dcc4776b">&#9670;&nbsp;</a></span>autoOrderingConnections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FrameLib_DSP::autoOrderingConnections </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_frame_lib___object.html#afa5bb93302a641c23b5eac7ab0dfe516">FrameLib_Object&lt; FrameLib_Block &gt;</a>.</p>
+
+</div>
+</div>
 <a id="aafa57c93417ced3d5610ca9f6b0f0913"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aafa57c93417ced3d5610ca9f6b0f0913">&#9670;&nbsp;</a></span>blockUpdate()</h2>
 
@@ -465,8 +523,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a42ab6ff22056a188a33ecadcd2ea477d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a42ab6ff22056a188a33ecadcd2ea477d">&#9670;&nbsp;</a></span>clearConnections()</h2>
+<a id="aaa7b3e5f55db4a6cf13d37958f08b17f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa7b3e5f55db4a6cf13d37958f08b17f">&#9670;&nbsp;</a></span>copyVector()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -475,34 +533,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void FrameLib_DSP::clearConnections </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implements <a class="el" href="class_frame_lib___object.html#a5b219c0cb96a7b6b1f0c471f665337ec">FrameLib_Object&lt; FrameLib_Block &gt;</a>.</p>
-
-</div>
-</div>
-<a id="a811ee9a6e985621da2f849ce4a96b7ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a811ee9a6e985621da2f849ce4a96b7ba">&#9670;&nbsp;</a></span>copyVector()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FrameLib_DSP::copyVector </td>
+          <td class="memname">static void FrameLib_DSP::copyVector </td>
           <td>(</td>
           <td class="paramtype">double *&#160;</td>
           <td class="paramname"><em>output</em>, </td>
@@ -527,43 +558,15 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="ad828d2b359466e9ff2f0f6002d580d18"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad828d2b359466e9ff2f0f6002d580d18">&#9670;&nbsp;</a></span>deleteConnection()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FrameLib_DSP::deleteConnection </td>
-          <td>(</td>
-          <td class="paramtype">unsigned long&#160;</td>
-          <td class="paramname"><em>inIdx</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implements <a class="el" href="class_frame_lib___object.html#a4ed6892941c7b68c885b38c202f336b3">FrameLib_Object&lt; FrameLib_Block &gt;</a>.</p>
-
-</div>
-</div>
-<a id="a5f80e7fbe15189dc9c16323dcf654cbd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f80e7fbe15189dc9c16323dcf654cbd">&#9670;&nbsp;</a></span>getBlockEndTime()</h2>
+<a id="a8cd169b635307807b29f1d02ea23635e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cd169b635307807b29f1d02ea23635e">&#9670;&nbsp;</a></span>getBlockEndTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -575,7 +578,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a> FrameLib_DSP::getBlockEndTime </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -587,8 +590,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a198525cf76c51488a37b9fac8e2a21ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a198525cf76c51488a37b9fac8e2a21ed">&#9670;&nbsp;</a></span>getBlockStartTime()</h2>
+<a id="a9c34c56420ff9da196150e8a5307e812"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c34c56420ff9da196150e8a5307e812">&#9670;&nbsp;</a></span>getBlockStartTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -600,7 +603,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a> FrameLib_DSP::getBlockStartTime </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -612,8 +615,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a40651d3b4ea9017d4c399b962d900645"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40651d3b4ea9017d4c399b962d900645">&#9670;&nbsp;</a></span>getCurrentTime()</h2>
+<a id="a5734f973e603be4a85764d5f77fa4004"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5734f973e603be4a85764d5f77fa4004">&#9670;&nbsp;</a></span>getCurrentTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -625,7 +628,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a> FrameLib_DSP::getCurrentTime </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -637,8 +640,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a094f901b21cd50ddef100f2d58cdbbfb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a094f901b21cd50ddef100f2d58cdbbfb">&#9670;&nbsp;</a></span>getFrameTime()</h2>
+<a id="a2eedff2474f665b5bf7d2f2fa7a1cdc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2eedff2474f665b5bf7d2f2fa7a1cdc4">&#9670;&nbsp;</a></span>getFrameTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -650,7 +653,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a> FrameLib_DSP::getFrameTime </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -724,8 +727,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ab50bdad21f69e0ed9d33ef25ee830b0c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab50bdad21f69e0ed9d33ef25ee830b0c">&#9670;&nbsp;</a></span>getInputFrameTime()</h2>
+<a id="a705ddc874bc5643f81a0f71894f1ae0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a705ddc874bc5643f81a0f71894f1ae0c">&#9670;&nbsp;</a></span>getInputFrameTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -738,7 +741,7 @@ Additional Inherited Members</h2></td></tr>
           <td>(</td>
           <td class="paramtype">unsigned long&#160;</td>
           <td class="paramname"><em>idx</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -750,8 +753,84 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ae0ad1eb78dcdbb6b624c223079e9695e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae0ad1eb78dcdbb6b624c223079e9695e">&#9670;&nbsp;</a></span>getInputTime()</h2>
+<a id="a11c7de51dabca61ca89e5fc178144725"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11c7de51dabca61ca89e5fc178144725">&#9670;&nbsp;</a></span>getInputObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_frame_lib___d_s_p.html">FrameLib_DSP</a>* FrameLib_DSP::getInputObject </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>blockIdx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>idx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_frame_lib___block.html#a762b56f0e53163b7b4fabc90febc814e">FrameLib_Block</a>.</p>
+
+</div>
+</div>
+<a id="a6da5977366587bbab7532a8d4ab7d2f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6da5977366587bbab7532a8d4ab7d2f5">&#9670;&nbsp;</a></span>getInputObjectIdx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual unsigned long FrameLib_DSP::getInputObjectIdx </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>blockIdx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>idx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_frame_lib___block.html#a65748f72b840fd90bee87591446b9b50">FrameLib_Block</a>.</p>
+
+</div>
+</div>
+<a id="afd7cae225f75c8cd4bd773bf188961b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd7cae225f75c8cd4bd773bf188961b2">&#9670;&nbsp;</a></span>getInputTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -763,7 +842,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a> FrameLib_DSP::getInputTime </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -775,8 +854,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ae3ea3b2eb636656ee7dd13d99d351e85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3ea3b2eb636656ee7dd13d99d351e85">&#9670;&nbsp;</a></span>getInputValidTime()</h2>
+<a id="a699dda68553ddebd5ca8c70326fb40a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a699dda68553ddebd5ca8c70326fb40a5">&#9670;&nbsp;</a></span>getInputValidTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -789,7 +868,7 @@ Additional Inherited Members</h2></td></tr>
           <td>(</td>
           <td class="paramtype">unsigned long&#160;</td>
           <td class="paramname"><em>idx</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -798,6 +877,89 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3864d31866672734f27c80d6eff15d47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3864d31866672734f27c80d6eff15d47">&#9670;&nbsp;</a></span>getNumInputObjects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long FrameLib_DSP::getNumInputObjects </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>blockIdx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_frame_lib___block.html#ab16af33ec9eb40711590cb90a927706c">FrameLib_Block</a>.</p>
+
+</div>
+</div>
+<a id="a5a36587f32b2f7a49e0737934dc8a59b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a36587f32b2f7a49e0737934dc8a59b">&#9670;&nbsp;</a></span>getNumOrderingConnectionObjects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long FrameLib_DSP::getNumOrderingConnectionObjects </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_frame_lib___block.html#a4a3be26fea03fcea53ef482cda07de56">FrameLib_Block</a>.</p>
+
+</div>
+</div>
+<a id="a8ecd5acbe59bf34b514c6e3b73cb518c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ecd5acbe59bf34b514c6e3b73cb518c">&#9670;&nbsp;</a></span>getOrderingConnectionObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_frame_lib___d_s_p.html">FrameLib_DSP</a>* FrameLib_DSP::getOrderingConnectionObject </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_frame_lib___block.html#a783373d2348b0d96b1c731041ba4fb0f">FrameLib_Block</a>.</p>
 
 </div>
 </div>
@@ -863,8 +1025,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a867822cfa9e3ca491c886cff9f79001d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a867822cfa9e3ca491c886cff9f79001d">&#9670;&nbsp;</a></span>getOutputObject()</h2>
+<a id="afdf6c94e0cef2f714bdfd90aea517faf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdf6c94e0cef2f714bdfd90aea517faf">&#9670;&nbsp;</a></span>getOutputObject()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -876,7 +1038,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="class_frame_lib___d_s_p.html">FrameLib_DSP</a>* FrameLib_DSP::getOutputObject </td>
           <td>(</td>
           <td class="paramtype">unsigned long&#160;</td>
-          <td class="paramname"><em>outIdx</em></td><td>)</td>
+          <td class="paramname"><em>blockIdx</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -887,12 +1049,40 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="class_frame_lib___block.html#a9e8bb5dcd9954618de9a8e3ad27c16a9">FrameLib_Block</a>.</p>
+<p>Implements <a class="el" href="class_frame_lib___block.html#add0b4f01447203f0ffaecb59cfe2c271">FrameLib_Block</a>.</p>
 
 </div>
 </div>
-<a id="ac871e4980da27cbd5238b8780a357217"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac871e4980da27cbd5238b8780a357217">&#9670;&nbsp;</a></span>getParameters()</h2>
+<a id="a9eedfc5c69502c9bea3a0c1586a3ac57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9eedfc5c69502c9bea3a0c1586a3ac57">&#9670;&nbsp;</a></span>getOutputObjectIdx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual unsigned long FrameLib_DSP::getOutputObjectIdx </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>blockIdx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_frame_lib___block.html#ad9e6ffbcf895c3eedc9e9b9c17dd013c">FrameLib_Block</a>.</p>
+
+</div>
+</div>
+<a id="a06325d53b4212e692079b748b82bad86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06325d53b4212e692079b748b82bad86">&#9670;&nbsp;</a></span>getParameters()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -904,7 +1094,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">virtual const <a class="el" href="class_frame_lib___parameters.html">FrameLib_Parameters</a>* FrameLib_DSP::getParameters </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -914,12 +1104,12 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_frame_lib___object.html#aaebb53211e0617e9203d1088c2fcb9c2">FrameLib_Object&lt; FrameLib_Block &gt;</a>.</p>
+<p>Reimplemented from <a class="el" href="class_frame_lib___object.html#ac90a6770aeef26ee1601889dc16dba56">FrameLib_Object&lt; FrameLib_Block &gt;</a>.</p>
 
 </div>
 </div>
-<a id="ac0c0353bfbac1d75bc789f96382d6637"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0c0353bfbac1d75bc789f96382d6637">&#9670;&nbsp;</a></span>getValidTime()</h2>
+<a id="afa420e10b7ea7a300bf106631167cac0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa420e10b7ea7a300bf106631167cac0">&#9670;&nbsp;</a></span>getValidTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -931,7 +1121,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a> FrameLib_DSP::getValidTime </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -997,8 +1187,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="abbd266dacec0eb86acaf584f737338b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abbd266dacec0eb86acaf584f737338b7">&#9670;&nbsp;</a></span>inputType()</h2>
+<a id="a774197b0f41e1f78671fab6112a41ed9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a774197b0f41e1f78671fab6112a41ed9">&#9670;&nbsp;</a></span>inputType()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1011,7 +1201,7 @@ Additional Inherited Members</h2></td></tr>
           <td>(</td>
           <td class="paramtype">unsigned long&#160;</td>
           <td class="paramname"><em>idx</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -1021,40 +1211,12 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="class_frame_lib___object.html#a6c5d94f1577471d33204078e86f51ff3">FrameLib_Object&lt; FrameLib_Block &gt;</a>.</p>
+<p>Implements <a class="el" href="class_frame_lib___object.html#ab1ab1ae8180bb8b7e881aac6a4e1066c">FrameLib_Object&lt; FrameLib_Block &gt;</a>.</p>
 
 </div>
 </div>
-<a id="a6c0e00484c67ea160cf87ec644807cac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c0e00484c67ea160cf87ec644807cac">&#9670;&nbsp;</a></span>isConnected()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool FrameLib_DSP::isConnected </td>
-          <td>(</td>
-          <td class="paramtype">unsigned long&#160;</td>
-          <td class="paramname"><em>inIdx</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implements <a class="el" href="class_frame_lib___object.html#a773123ebc7b3571e607cb1a6c4296d20">FrameLib_Object&lt; FrameLib_Block &gt;</a>.</p>
-
-</div>
-</div>
-<a id="acdcd85278b8cf1e80d50a7890d6975f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdcd85278b8cf1e80d50a7890d6975f9">&#9670;&nbsp;</a></span>isTrigger()</h2>
+<a id="a13e269a66e0b9fb40ead089530e49eaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13e269a66e0b9fb40ead089530e49eaa">&#9670;&nbsp;</a></span>isTrigger()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1067,7 +1229,7 @@ Additional Inherited Members</h2></td></tr>
           <td>(</td>
           <td class="paramtype">unsigned long&#160;</td>
           <td class="paramname"><em>idx</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -1115,8 +1277,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aaffa4da5531641a7da9f85e93d3440f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaffa4da5531641a7da9f85e93d3440f0">&#9670;&nbsp;</a></span>outputType()</h2>
+<a id="a17b4529624dd9219d502570f81d88b27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17b4529624dd9219d502570f81d88b27">&#9670;&nbsp;</a></span>outputType()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1129,7 +1291,7 @@ Additional Inherited Members</h2></td></tr>
           <td>(</td>
           <td class="paramtype">unsigned long&#160;</td>
           <td class="paramname"><em>idx</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -1139,7 +1301,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="class_frame_lib___object.html#abdfca6b259f5fc7f97f4f2e016c1d80f">FrameLib_Object&lt; FrameLib_Block &gt;</a>.</p>
+<p>Implements <a class="el" href="class_frame_lib___object.html#a03eb408844f15d8f73cee67f43149b9d">FrameLib_Object&lt; FrameLib_Block &gt;</a>.</p>
 
 </div>
 </div>
@@ -1365,8 +1527,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a73f63a346affb7c00123a99643f36de3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73f63a346affb7c00123a99643f36de3">&#9670;&nbsp;</a></span>zeroVector()</h2>
+<a id="a9da9216b727050afef88ff8e1ec01ba0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9da9216b727050afef88ff8e1ec01ba0">&#9670;&nbsp;</a></span>zeroVector()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1375,7 +1537,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void FrameLib_DSP::zeroVector </td>
+          <td class="memname">static void FrameLib_DSP::zeroVector </td>
           <td>(</td>
           <td class="paramtype">double *&#160;</td>
           <td class="paramname"><em>output</em>, </td>
@@ -1394,7 +1556,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1402,8 +1564,8 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Friends And Related Function Documentation</h2>
-<a id="a0d8e87d113fd295c3797b6f66442ccf8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d8e87d113fd295c3797b6f66442ccf8">&#9670;&nbsp;</a></span>FrameLib_DSPQueue</h2>
+<a id="a71376d0a2e88daa0b12d080d6b5184a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71376d0a2e88daa0b12d080d6b5184a5">&#9670;&nbsp;</a></span>FrameLib_ProcessingQueue</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1412,7 +1574,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">friend class <a class="el" href="class_frame_lib___d_s_p_queue.html">FrameLib_DSPQueue</a></td>
+          <td class="memname">friend class <a class="el" href="class_frame_lib___processing_queue.html">FrameLib_ProcessingQueue</a></td>
         </tr>
       </table>
   </td>
@@ -1425,28 +1587,6 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a4dd06a3e750380c0d89015d1648a0907"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4dd06a3e750380c0d89015d1648a0907">&#9670;&nbsp;</a></span>mAllocator</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_frame_lib___context.html#a4cfa321c8f6048211d031f05156b5b19">FrameLib_Context::Allocator</a> FrameLib_DSP::mAllocator</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a92c6d7101aee042e778fc8e09d5c8f77"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a92c6d7101aee042e778fc8e09d5c8f77">&#9670;&nbsp;</a></span>mMaxBlockSize</h2>
 
@@ -1514,8 +1654,8 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>FrameLib_Framework/<a class="el" href="_frame_lib___d_s_p_8h_source.html">FrameLib_DSP.h</a></li>
-<li>FrameLib_Framework/<a class="el" href="_frame_lib___d_s_p_8cpp.html">FrameLib_DSP.cpp</a></li>
+<li>/Users/alexharker/Documents/Max Externals/FrameLib/FrameLib_Framework/<a class="el" href="_frame_lib___d_s_p_8h_source.html">FrameLib_DSP.h</a></li>
+<li>/Users/alexharker/Documents/Max Externals/FrameLib/FrameLib_Framework/<a class="el" href="_frame_lib___d_s_p_8cpp.html">FrameLib_DSP.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

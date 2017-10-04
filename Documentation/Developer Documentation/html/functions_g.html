@@ -29,9 +29,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.7</span>
    </div>
-   <div id="projectbrief">Arbitrarily timed and sized frame-based DSP</div>
+   <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
  </tr>
  </tbody>
@@ -92,14 +92,11 @@ $(document).ready(function(){initNavTree('functions_g.html','');});
 : <a class="el" href="class_frame_lib___global_allocator.html#aebae4f9f17b2d460f7d27e2a68eb9ae8">FrameLib_GlobalAllocator</a>
 , <a class="el" href="class_frame_lib___local_allocator.html#a1925095d14b5f3e2b8e8638aea72258d">FrameLib_LocalAllocator</a>
 </li>
-<li>getAllocator()
-: <a class="el" href="class_frame_lib___global.html#a31c3fae37e27c9cce286d30ed30838d3">FrameLib_Global</a>
-</li>
 <li>getArgumentIdx()
 : <a class="el" href="class_frame_lib___parameters.html#a9dd267fcd72252b366d7f0fd5112e668">FrameLib_Parameters</a>
 </li>
 <li>getArray()
-: <a class="el" href="class_frame_lib___parameters.html#adc277fde0bbaa9250076b58efc9428e6">FrameLib_Parameters</a>
+: <a class="el" href="class_frame_lib___parameters.html#a4a5ff203e9384ca2fb73b7589a6de74e">FrameLib_Parameters</a>
 </li>
 <li>getArrayMaxSize()
 : <a class="el" href="class_frame_lib___parameters.html#ac65d6b2f5cee3b3c95b321c67de6fadb">FrameLib_Parameters</a>
@@ -108,10 +105,10 @@ $(document).ready(function(){initNavTree('functions_g.html','');});
 : <a class="el" href="class_frame_lib___parameters.html#a393371aad3079281d84150f9343b8e88">FrameLib_Parameters</a>
 </li>
 <li>getBlockEndTime()
-: <a class="el" href="class_frame_lib___d_s_p.html#a5f80e7fbe15189dc9c16323dcf654cbd">FrameLib_DSP</a>
+: <a class="el" href="class_frame_lib___d_s_p.html#a8cd169b635307807b29f1d02ea23635e">FrameLib_DSP</a>
 </li>
 <li>getBlockStartTime()
-: <a class="el" href="class_frame_lib___d_s_p.html#a198525cf76c51488a37b9fac8e2a21ed">FrameLib_DSP</a>
+: <a class="el" href="class_frame_lib___d_s_p.html#a9c34c56420ff9da196150e8a5307e812">FrameLib_DSP</a>
 </li>
 <li>getBool()
 : <a class="el" href="class_frame_lib___parameters.html#ad27a46c31a31f42a6efb7c29c6937595">FrameLib_Parameters</a>
@@ -119,11 +116,17 @@ $(document).ready(function(){initNavTree('functions_g.html','');});
 <li>getClipMode()
 : <a class="el" href="class_frame_lib___parameters.html#ac574f7fd7e17b4d5df393c84b81b4431">FrameLib_Parameters</a>
 </li>
-<li>getConnectionQueue()
-: <a class="el" href="class_frame_lib___global.html#ae0cfe1ff49ba163758fcb66f9e94b991">FrameLib_Global</a>
+<li>getConnection()
+: <a class="el" href="class_frame_lib___object.html#ad660fd98d11c9a91bf9131f35ba365a6">FrameLib_Object&lt; T &gt;</a>
+</li>
+<li>getConnectionIdx()
+: <a class="el" href="class_frame_lib___object.html#a40383ebb4672e2bb1bd7ad41da14e967">FrameLib_Object&lt; T &gt;</a>
+</li>
+<li>getContext()
+: <a class="el" href="class_frame_lib___object.html#a8f636902888847c78cf16d74717bd861">FrameLib_Object&lt; T &gt;</a>
 </li>
 <li>getCurrentTime()
-: <a class="el" href="class_frame_lib___d_s_p.html#a40651d3b4ea9017d4c399b962d900645">FrameLib_DSP</a>
+: <a class="el" href="class_frame_lib___d_s_p.html#a5734f973e603be4a85764d5f77fa4004">FrameLib_DSP</a>
 </li>
 <li>getData()
 : <a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#ac6fa172155e0314dda315378a34ab574">FrameLib_LocalAllocator::Storage</a>
@@ -134,42 +137,49 @@ $(document).ready(function(){initNavTree('functions_g.html','');});
 <li>getDefaultString()
 : <a class="el" href="class_frame_lib___parameters.html#aa6544b983343464c17299ab6f1874bce">FrameLib_Parameters</a>
 </li>
-<li>getDSPQueue()
-: <a class="el" href="class_frame_lib___global.html#a5b4e45a675ea406538781011f7ebc153">FrameLib_Global</a>
+<li>getFirst()
+: <a class="el" href="class_frame_lib___queueable_1_1_queue.html#a57e16be316a37b9b6d0d5cf7267e4d12">FrameLib_Queueable&lt; T &gt;::Queue</a>
 </li>
 <li>getFrameTime()
-: <a class="el" href="class_frame_lib___d_s_p.html#a094f901b21cd50ddef100f2d58cdbbfb">FrameLib_DSP</a>
+: <a class="el" href="class_frame_lib___d_s_p.html#a2eedff2474f665b5bf7d2f2fa7a1cdc4">FrameLib_DSP</a>
 </li>
 <li>getIdx()
 : <a class="el" href="class_frame_lib___parameters.html#a6188f2b27de6850129ea084c99aa4669">FrameLib_Parameters</a>
 </li>
 <li>getInfo()
-: <a class="el" href="class_frame_lib___info.html#a22a5afed75b8f072b79278dd230c5952">FrameLib_Info</a>
-, <a class="el" href="class_frame_lib___parameters.html#a6e90c72b4f3ece2ab4fe7dd893d399e3">FrameLib_Parameters</a>
+: <a class="el" href="class_frame_lib___parameters.html#a6e90c72b4f3ece2ab4fe7dd893d399e3">FrameLib_Parameters</a>
 </li>
 <li>getInput()
 : <a class="el" href="class_frame_lib___d_s_p.html#a1d139d046d9269f9f6ac34c8ee8ab516">FrameLib_DSP</a>
 </li>
 <li>getInputChan()
-: <a class="el" href="class_frame_lib___multi_channel.html#a484bbcd67d139f4166c1b731e63d3b92">FrameLib_MultiChannel</a>
+: <a class="el" href="class_frame_lib___multi_channel.html#aa23b173b4bea788c2c348a34c29efebc">FrameLib_MultiChannel</a>
 </li>
 <li>getInputFrameTime()
-: <a class="el" href="class_frame_lib___d_s_p.html#ab50bdad21f69e0ed9d33ef25ee830b0c">FrameLib_DSP</a>
+: <a class="el" href="class_frame_lib___d_s_p.html#a705ddc874bc5643f81a0f71894f1ae0c">FrameLib_DSP</a>
 </li>
 <li>getInputNumChans()
 : <a class="el" href="class_frame_lib___multi_channel.html#a8ba357b72ac5103d936e7416384294e0">FrameLib_MultiChannel</a>
 </li>
+<li>getInputObject()
+: <a class="el" href="class_frame_lib___block.html#a762b56f0e53163b7b4fabc90febc814e">FrameLib_Block</a>
+, <a class="el" href="class_frame_lib___d_s_p.html#a11c7de51dabca61ca89e5fc178144725">FrameLib_DSP</a>
+</li>
+<li>getInputObjectIdx()
+: <a class="el" href="class_frame_lib___block.html#a65748f72b840fd90bee87591446b9b50">FrameLib_Block</a>
+, <a class="el" href="class_frame_lib___d_s_p.html#a6da5977366587bbab7532a8d4ab7d2f5">FrameLib_DSP</a>
+</li>
 <li>getInputTime()
-: <a class="el" href="class_frame_lib___d_s_p.html#ae0ad1eb78dcdbb6b624c223079e9695e">FrameLib_DSP</a>
+: <a class="el" href="class_frame_lib___d_s_p.html#afd7cae225f75c8cd4bd773bf188961b2">FrameLib_DSP</a>
 </li>
 <li>getInputValidTime()
-: <a class="el" href="class_frame_lib___d_s_p.html#ae3ea3b2eb636656ee7dd13d99d351e85">FrameLib_DSP</a>
+: <a class="el" href="class_frame_lib___d_s_p.html#a699dda68553ddebd5ca8c70326fb40a5">FrameLib_DSP</a>
 </li>
 <li>getInt()
 : <a class="el" href="class_frame_lib___parameters.html#adc9dcbcbf2ac23f0e15a35db8090aa88">FrameLib_Parameters</a>
 </li>
 <li>getItemString()
-: <a class="el" href="class_frame_lib___parameters.html#a5cda6528deb6a8a306b6de6f7eeaa2fb">FrameLib_Parameters</a>
+: <a class="el" href="class_frame_lib___parameters.html#a19f6d2862f0b6c2a9fffa496362beef1">FrameLib_Parameters</a>
 </li>
 <li>getMax()
 : <a class="el" href="class_frame_lib___parameters.html#a6d18778368a98852e2d710748ecea5fb">FrameLib_Parameters</a>
@@ -182,36 +192,76 @@ $(document).ready(function(){initNavTree('functions_g.html','');});
 , <a class="el" href="class_frame_lib___parameters.html#a525cfe083e686bc5de04aee1004f3bfe">FrameLib_Parameters</a>
 </li>
 <li>getNumAudioChans()
-: <a class="el" href="class_frame_lib___object.html#ae3b9c6438cc170618c221fc96612d19b">FrameLib_Object&lt; T &gt;</a>
+: <a class="el" href="class_frame_lib___object.html#a59e6e7dba2d18444be6d5fbee15c73f2">FrameLib_Object&lt; T &gt;</a>
 </li>
 <li>getNumAudioIns()
-: <a class="el" href="class_frame_lib___object.html#aa57fd96d292e25d91f107c6bec292ed0">FrameLib_Object&lt; T &gt;</a>
+: <a class="el" href="class_frame_lib___object.html#ad29b6281916a933c5baa43cbb7d11efd">FrameLib_Object&lt; T &gt;</a>
 </li>
 <li>getNumAudioOuts()
-: <a class="el" href="class_frame_lib___object.html#a8304968cf5473f22804d46950d88256a">FrameLib_Object&lt; T &gt;</a>
+: <a class="el" href="class_frame_lib___object.html#a430c0531a4c38ad49a556af1cca0af88">FrameLib_Object&lt; T &gt;</a>
 </li>
 <li>getNumericType()
 : <a class="el" href="class_frame_lib___parameters.html#a57052803e8a3ab34c40bf4dedd33e196">FrameLib_Parameters</a>
 </li>
+<li>getNumInputObjects()
+: <a class="el" href="class_frame_lib___block.html#ab16af33ec9eb40711590cb90a927706c">FrameLib_Block</a>
+, <a class="el" href="class_frame_lib___d_s_p.html#a3864d31866672734f27c80d6eff15d47">FrameLib_DSP</a>
+</li>
 <li>getNumIns()
-: <a class="el" href="class_frame_lib___object.html#ad9ab064d9390417fde0644ed413e1c5c">FrameLib_Object&lt; T &gt;</a>
+: <a class="el" href="class_frame_lib___object.html#a310416236585b52c2de1c47a9aa64b02">FrameLib_Object&lt; T &gt;</a>
+</li>
+<li>getNumOrderingConnectionObjects()
+: <a class="el" href="class_frame_lib___block.html#a4a3be26fea03fcea53ef482cda07de56">FrameLib_Block</a>
+, <a class="el" href="class_frame_lib___d_s_p.html#a5a36587f32b2f7a49e0737934dc8a59b">FrameLib_DSP</a>
+</li>
+<li>getNumOrderingConnections()
+: <a class="el" href="class_frame_lib___object.html#ace330616fd3334122babc5901b758d28">FrameLib_Object&lt; T &gt;</a>
+</li>
+<li>getNumOutputDependencies()
+: <a class="el" href="class_frame_lib___object.html#a80ca53cc96b35c672b82d175840da496">FrameLib_Object&lt; T &gt;</a>
 </li>
 <li>getNumOuts()
-: <a class="el" href="class_frame_lib___object.html#a6be2c4c3faf10ce732347b2e59f51508">FrameLib_Object&lt; T &gt;</a>
+: <a class="el" href="class_frame_lib___object.html#a255f6ae814dbb946d445ef244dd39975">FrameLib_Object&lt; T &gt;</a>
+</li>
+<li>getOrderingConnection()
+: <a class="el" href="class_frame_lib___object.html#a6a368084d4df3cfe02487d47e436a125">FrameLib_Object&lt; T &gt;</a>
+</li>
+<li>getOrderingConnectionChan()
+: <a class="el" href="class_frame_lib___multi_channel.html#ab2d63ddcd522f31102519ba04204b554">FrameLib_MultiChannel</a>
+</li>
+<li>getOrderingConnectionIdx()
+: <a class="el" href="class_frame_lib___object.html#a06858c0d70dfd61e03442fc17e224d5c">FrameLib_Object&lt; T &gt;</a>
+</li>
+<li>getOrderingConnectionNumChans()
+: <a class="el" href="class_frame_lib___multi_channel.html#a04fc2468a6e61cefa7579d0d470b2a6e">FrameLib_MultiChannel</a>
+</li>
+<li>getOrderingConnectionObject()
+: <a class="el" href="class_frame_lib___block.html#a783373d2348b0d96b1c731041ba4fb0f">FrameLib_Block</a>
+, <a class="el" href="class_frame_lib___d_s_p.html#a8ecd5acbe59bf34b514c6e3b73cb518c">FrameLib_DSP</a>
 </li>
 <li>getOutput()
 : <a class="el" href="class_frame_lib___d_s_p.html#a614a975377a289f8bdaa2eba0c1c41b6">FrameLib_DSP</a>
 </li>
+<li>getOutputDependency()
+: <a class="el" href="class_frame_lib___object.html#a3a1f27bd291ff08dbb9324815078ca85">FrameLib_Object&lt; T &gt;</a>
+</li>
 <li>getOutputObject()
-: <a class="el" href="class_frame_lib___block.html#a9e8bb5dcd9954618de9a8e3ad27c16a9">FrameLib_Block</a>
-, <a class="el" href="class_frame_lib___d_s_p.html#a867822cfa9e3ca491c886cff9f79001d">FrameLib_DSP</a>
+: <a class="el" href="class_frame_lib___block.html#add0b4f01447203f0ffaecb59cfe2c271">FrameLib_Block</a>
+, <a class="el" href="class_frame_lib___d_s_p.html#afdf6c94e0cef2f714bdfd90aea517faf">FrameLib_DSP</a>
+</li>
+<li>getOutputObjectIdx()
+: <a class="el" href="class_frame_lib___block.html#ad9e6ffbcf895c3eedc9e9b9c17dd013c">FrameLib_Block</a>
+, <a class="el" href="class_frame_lib___d_s_p.html#a9eedfc5c69502c9bea3a0c1586a3ac57">FrameLib_DSP</a>
+</li>
+<li>getOwner()
+: <a class="el" href="class_frame_lib___object.html#ac1a0a288f1da02f9ac7199ac9f96acce">FrameLib_Object&lt; T &gt;</a>
 </li>
 <li>getParameters()
-: <a class="el" href="class_frame_lib___d_s_p.html#ac871e4980da27cbd5238b8780a357217">FrameLib_DSP</a>
-, <a class="el" href="class_frame_lib___expand.html#a89b4ff711b3b2772ee3ac7a6774261fb">FrameLib_Expand&lt; T &gt;</a>
-, <a class="el" href="class_frame_lib___object.html#aaebb53211e0617e9203d1088c2fcb9c2">FrameLib_Object&lt; T &gt;</a>
-, <a class="el" href="class_frame_lib___pack.html#a878bce4df2ece362d86cd03f742bc646">FrameLib_Pack</a>
-, <a class="el" href="class_frame_lib___unpack.html#aa9da91c13a8e4d648bdef0037973dc56">FrameLib_Unpack</a>
+: <a class="el" href="class_frame_lib___d_s_p.html#a06325d53b4212e692079b748b82bad86">FrameLib_DSP</a>
+, <a class="el" href="class_frame_lib___expand.html#ae399eee75f1f0d854505eb67f8fb4dd0">FrameLib_Expand&lt; T &gt;</a>
+, <a class="el" href="class_frame_lib___object.html#ac90a6770aeef26ee1601889dc16dba56">FrameLib_Object&lt; T &gt;</a>
+, <a class="el" href="class_frame_lib___pack.html#af3f27c6065dc2e5c8106de50c42d63c3">FrameLib_Pack</a>
+, <a class="el" href="class_frame_lib___unpack.html#a10013cfecf3463d8961d65042e735055">FrameLib_Unpack</a>
 </li>
 <li>getRange()
 : <a class="el" href="class_frame_lib___parameters.html#a3287eb6847370554758129162e5eff11">FrameLib_Parameters</a>
@@ -220,24 +270,24 @@ $(document).ready(function(){initNavTree('functions_g.html','');});
 : <a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#a4d02d9eb9cab22dab7fe058fab38b00f">FrameLib_LocalAllocator::Storage</a>
 </li>
 <li>getString()
-: <a class="el" href="class_frame_lib___parameters.html#acee2bbf4822572b7b37447462f50c44b">FrameLib_Parameters</a>
+: <a class="el" href="class_frame_lib___parameters.html#a9853e712e3ee11410175d6e3028d862a">FrameLib_Parameters</a>
 </li>
 <li>getType()
 : <a class="el" href="class_frame_lib___audio_input.html#a8a6f94b1530b3fd5b604d3151fad5220">FrameLib_AudioInput</a>
 , <a class="el" href="class_frame_lib___audio_output.html#a99908793774ac5046c3e369bc9a19259">FrameLib_AudioOutput</a>
-, <a class="el" href="class_frame_lib___object.html#a8e535510b8445958f5f5a95ecb11a588">FrameLib_Object&lt; T &gt;</a>
-, <a class="el" href="class_frame_lib___parameters.html#ae81f3bf43c6301b1abadd5b2539f8925">FrameLib_Parameters</a>
+, <a class="el" href="class_frame_lib___object.html#a8d96d1f55054e583a99891ad65f84a3a">FrameLib_Object&lt; T &gt;</a>
+, <a class="el" href="class_frame_lib___parameters.html#a705bba592b790d1b884b2ea4dd4bdbd4">FrameLib_Parameters</a>
 , <a class="el" href="class_frame_lib___processor.html#a9cf7b310f4d1ca8843b201d692fcf544">FrameLib_Processor</a>
 , <a class="el" href="class_frame_lib___scheduler.html#a7d93c185e4d7b2d13852dad251dc769b">FrameLib_Scheduler</a>
 </li>
 <li>getTypeString()
-: <a class="el" href="class_frame_lib___parameters.html#a75457679ab4b67d5d438bf8619544d94">FrameLib_Parameters</a>
+: <a class="el" href="class_frame_lib___parameters.html#a7531a5e8e9ea19a84dd8314ed2ebe4f3">FrameLib_Parameters</a>
 </li>
 <li>getValidTime()
-: <a class="el" href="class_frame_lib___d_s_p.html#ac0c0353bfbac1d75bc789f96382d6637">FrameLib_DSP</a>
+: <a class="el" href="class_frame_lib___d_s_p.html#afa420e10b7ea7a300bf106631167cac0">FrameLib_DSP</a>
 </li>
 <li>getValue()
-: <a class="el" href="class_frame_lib___parameters.html#a64dc41237eccad96a857b4f675f4054d">FrameLib_Parameters</a>
+: <a class="el" href="class_frame_lib___parameters.html#afa54042c7a35164482fcba5112bd3e24">FrameLib_Parameters</a>
 </li>
 </ul>
 </div><!-- contents -->

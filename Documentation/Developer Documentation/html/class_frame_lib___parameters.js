@@ -82,6 +82,7 @@ var class_frame_lib___parameters =
     [ "getTypeString", "class_frame_lib___parameters.html#a7531a5e8e9ea19a84dd8314ed2ebe4f3", null ],
     [ "getValue", "class_frame_lib___parameters.html#a64dc41237eccad96a857b4f675f4054d", null ],
     [ "getValue", "class_frame_lib___parameters.html#afa54042c7a35164482fcba5112bd3e24", null ],
+    [ "maxArgument", "class_frame_lib___parameters.html#a79b95cc8a0494356b12fa2ac51ece583", null ],
     [ "set", "class_frame_lib___parameters.html#a1028e3913b7f38000f71ce4b172143a7", null ],
     [ "set", "class_frame_lib___parameters.html#ac6f06219212d719bdbebfd71ef8af498", null ],
     [ "set", "class_frame_lib___parameters.html#a9dad319808446724cecb563e73468f44", null ],

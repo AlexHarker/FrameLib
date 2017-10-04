@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>FrameLib: FrameLib_Framework/FrameLib_Threading.h File Reference</title>
+<title>FrameLib: /Users/alexharker/Documents/Max Externals/FrameLib/FrameLib_Framework/FrameLib_Threading.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,9 +29,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.7</span>
    </div>
-   <div id="projectbrief">Arbitrarily timed and sized frame-based DSP</div>
+   <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
  </tr>
  </tbody>
@@ -83,6 +83,7 @@ $(document).ready(function(){initNavTree('_frame_lib___threading_8h.html','');})
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
 <a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
 <div class="title">FrameLib_Threading.h File Reference</div>  </div>
@@ -94,13 +95,13 @@ $(document).ready(function(){initNavTree('_frame_lib___threading_8h.html','');})
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___atomic32.html">FrameLib_Atomic32</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_atomic32.html">Atomic32</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___atomic_ptr.html">FrameLib_AtomicPtr&lt; T &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_atomic_ptr.html">AtomicPtr&lt; T &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___spin_lock.html">FrameLib_SpinLock</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spin_lock.html">SpinLock</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___spin_lock_hold.html">FrameLib_SpinLockHold</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spin_lock_holder.html">SpinLockHolder</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_thread.html">Thread</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -111,90 +112,24 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_delegate_thread.html">DelegateThread</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespace_o_s___specific"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_s___specific.html">OS_Specific</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:aed681d885c9ec2bd85817f099851ae1e"><td class="memItemLeft" align="right" valign="top">typedef volatile long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_frame_lib___threading_8h.html#aed681d885c9ec2bd85817f099851ae1e">Atomic32</a></td></tr>
-<tr class="separator:aed681d885c9ec2bd85817f099851ae1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9bb2dadfff70925c7444dffa62048e5"><td class="memItemLeft" align="right" valign="top">typedef volatile PVOID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_frame_lib___threading_8h.html#ab9bb2dadfff70925c7444dffa62048e5">AtomicPtr</a></td></tr>
-<tr class="separator:ab9bb2dadfff70925c7444dffa62048e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23d46994ccecb2d2cdd2cd19e1be5d8b"><td class="memItemLeft" align="right" valign="top">typedef HANDLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_frame_lib___threading_8h.html#a23d46994ccecb2d2cdd2cd19e1be5d8b">OSThreadType</a></td></tr>
-<tr class="separator:a23d46994ccecb2d2cdd2cd19e1be5d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1f3f30b0db8d33c2f2545d10ca53022"><td class="memItemLeft" align="right" valign="top">typedef HANDLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_frame_lib___threading_8h.html#ac1f3f30b0db8d33c2f2545d10ca53022">OSSemaphoreType</a></td></tr>
-<tr class="separator:ac1f3f30b0db8d33c2f2545d10ca53022"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e95688da54d445d695f59082795e4df"><td class="memItemLeft" align="right" valign="top">typedef DWORD WINAPI&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_frame_lib___threading_8h.html#a5e95688da54d445d695f59082795e4df">OSThreadFunctionType</a>(LPVOID arg)</td></tr>
-<tr class="separator:a5e95688da54d445d695f59082795e4df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0c154d740b3e6f81b245ff564b7d0ad"><td class="memItemLeft" align="right" valign="top">typedef volatile long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_s___specific.html#ae0c154d740b3e6f81b245ff564b7d0ad">OS_Specific::Atomic32</a></td></tr>
+<tr class="separator:ae0c154d740b3e6f81b245ff564b7d0ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9a39cdf74334e1457fda6bb1c4cb505"><td class="memItemLeft" align="right" valign="top">typedef volatile PVOID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_s___specific.html#ad9a39cdf74334e1457fda6bb1c4cb505">OS_Specific::AtomicPtr</a></td></tr>
+<tr class="separator:ad9a39cdf74334e1457fda6bb1c4cb505"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a965d89d27f3b632fa8d2d1b593bf2bd6"><td class="memItemLeft" align="right" valign="top">typedef HANDLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_s___specific.html#a965d89d27f3b632fa8d2d1b593bf2bd6">OS_Specific::OSThreadType</a></td></tr>
+<tr class="separator:a965d89d27f3b632fa8d2d1b593bf2bd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11a242d06d0e59bcf9525303bd7b3b57"><td class="memItemLeft" align="right" valign="top">typedef HANDLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_s___specific.html#a11a242d06d0e59bcf9525303bd7b3b57">OS_Specific::OSSemaphoreType</a></td></tr>
+<tr class="separator:a11a242d06d0e59bcf9525303bd7b3b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a422b5e92e59f05440b9f9439cd349d"><td class="memItemLeft" align="right" valign="top">typedef DWORD WINAPI&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_s___specific.html#a4a422b5e92e59f05440b9f9439cd349d">OS_Specific::OSThreadFunctionType</a>(LPVOID arg)</td></tr>
+<tr class="separator:a4a422b5e92e59f05440b9f9439cd349d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a id="aed681d885c9ec2bd85817f099851ae1e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed681d885c9ec2bd85817f099851ae1e">&#9670;&nbsp;</a></span>Atomic32</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef volatile long <a class="el" href="_frame_lib___threading_8h.html#aed681d885c9ec2bd85817f099851ae1e">Atomic32</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ab9bb2dadfff70925c7444dffa62048e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab9bb2dadfff70925c7444dffa62048e5">&#9670;&nbsp;</a></span>AtomicPtr</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef volatile PVOID <a class="el" href="_frame_lib___threading_8h.html#ab9bb2dadfff70925c7444dffa62048e5">AtomicPtr</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac1f3f30b0db8d33c2f2545d10ca53022"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1f3f30b0db8d33c2f2545d10ca53022">&#9670;&nbsp;</a></span>OSSemaphoreType</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef HANDLE <a class="el" href="_frame_lib___threading_8h.html#ac1f3f30b0db8d33c2f2545d10ca53022">OSSemaphoreType</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5e95688da54d445d695f59082795e4df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e95688da54d445d695f59082795e4df">&#9670;&nbsp;</a></span>OSThreadFunctionType</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef DWORD WINAPI OSThreadFunctionType(LPVOID arg)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a23d46994ccecb2d2cdd2cd19e1be5d8b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a23d46994ccecb2d2cdd2cd19e1be5d8b">&#9670;&nbsp;</a></span>OSThreadType</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef HANDLE <a class="el" href="_frame_lib___threading_8h.html#a23d46994ccecb2d2cdd2cd19e1be5d8b">OSThreadType</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

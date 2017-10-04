@@ -29,9 +29,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.7</span>
    </div>
-   <div id="projectbrief">Arbitrarily timed and sized frame-based DSP</div>
+   <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
  </tr>
  </tbody>
@@ -84,14 +84,14 @@ $(document).ready(function(){initNavTree('functions_func_f.html','');});
 &#160;
 
 <h3><a id="index_f"></a>- f -</h3><ul>
-<li>find()
-: <a class="el" href="class_frame_lib___pointer_set.html#ae088998b19a4ad6bc3940c92a1599793">FrameLib_PointerSet&lt; T &gt;</a>
-</li>
 <li>FL_FP()
 : <a class="el" href="class_f_l___f_p.html#a2db44ca3f010e72af1a0ba97f443fe93">FL_FP</a>
 </li>
 <li>FL_SP()
 : <a class="el" href="struct_f_l___s_p.html#a862ed441d9da9edd82d368ee09686d63">FL_SP</a>
+</li>
+<li>formatInfo()
+: <a class="el" href="class_frame_lib___object.html#aa30676408b8f8161894eb0e533a8522b">FrameLib_Object&lt; T &gt;</a>
 </li>
 <li>fracHiVal()
 : <a class="el" href="struct_f_l___s_p.html#a8717bf668103c1de5dfa31cdfabe1b8f">FL_SP</a>
@@ -102,32 +102,20 @@ $(document).ready(function(){initNavTree('functions_func_f.html','');});
 <li>fracVal()
 : <a class="el" href="class_f_l___f_p.html#a4d17ff88a771402857fa22e94e502efe">FL_FP</a>
 </li>
-<li>FrameLib_Atomic32()
-: <a class="el" href="class_frame_lib___atomic32.html#ab200aaee62212517202f4ce930dee1d8">FrameLib_Atomic32</a>
-</li>
-<li>FrameLib_AtomicPtr()
-: <a class="el" href="class_frame_lib___atomic_ptr.html#a42e760fcef9c2bf28dce2a736c9d045f">FrameLib_AtomicPtr&lt; T &gt;</a>
-</li>
 <li>FrameLib_AudioInput()
-: <a class="el" href="class_frame_lib___audio_input.html#ae4d7b6fccecd6cb0de7884f89ab7875e">FrameLib_AudioInput</a>
+: <a class="el" href="class_frame_lib___audio_input.html#a5fcacfa38f33f949e76d046117835ace">FrameLib_AudioInput</a>
 </li>
 <li>FrameLib_AudioOutput()
-: <a class="el" href="class_frame_lib___audio_output.html#a80e661b08a8daa5a18b44df01f8d4226">FrameLib_AudioOutput</a>
+: <a class="el" href="class_frame_lib___audio_output.html#aa63caeed1cdb5887b1a81f1de2b300a1">FrameLib_AudioOutput</a>
 </li>
 <li>FrameLib_Block()
-: <a class="el" href="class_frame_lib___block.html#ab56169e5918fe77c1cfa7ddd0a6520a3">FrameLib_Block</a>
-</li>
-<li>FrameLib_ConnectionQueue()
-: <a class="el" href="class_frame_lib___connection_queue.html#ac7a10924c61ed46c6670eeda655877b4">FrameLib_ConnectionQueue</a>
+: <a class="el" href="class_frame_lib___block.html#a99b10eba9f8f598c6ffdebd4a493489d">FrameLib_Block</a>
 </li>
 <li>FrameLib_Context()
 : <a class="el" href="class_frame_lib___context.html#a2cfe1912e3e9d835de291277c8979ed8">FrameLib_Context</a>
 </li>
 <li>FrameLib_DSP()
-: <a class="el" href="class_frame_lib___d_s_p.html#a404abe3f4d147a34a16e9b2077b66dd9">FrameLib_DSP</a>
-</li>
-<li>FrameLib_DSPQueue()
-: <a class="el" href="class_frame_lib___d_s_p_queue.html#a2d024c34bb9a458d759b9ec2decb7bc9">FrameLib_DSPQueue</a>
+: <a class="el" href="class_frame_lib___d_s_p.html#a3f5e89a0ad938ff8e928ec3374b6cf3c">FrameLib_DSP</a>
 </li>
 <li>FrameLib_Expand()
 : <a class="el" href="class_frame_lib___expand.html#a591240aee95c812856a9835b8014a915">FrameLib_Expand&lt; T &gt;</a>
@@ -139,10 +127,10 @@ $(document).ready(function(){initNavTree('functions_func_f.html','');});
 : <a class="el" href="class_frame_lib___local_allocator.html#a218131bb74240289b83dc7cd0e0ad6a7">FrameLib_LocalAllocator</a>
 </li>
 <li>FrameLib_MultiChannel()
-: <a class="el" href="class_frame_lib___multi_channel.html#a77a5841c9d5efaae5bba85e23279a0de">FrameLib_MultiChannel</a>
+: <a class="el" href="class_frame_lib___multi_channel.html#aa16395513324c73e7be8d1d8a5db87e7">FrameLib_MultiChannel</a>
 </li>
 <li>FrameLib_Object()
-: <a class="el" href="class_frame_lib___object.html#a81d840729ed8fc0e86ec33969a5a5a85">FrameLib_Object&lt; T &gt;</a>
+: <a class="el" href="class_frame_lib___object.html#a2a73dc92ffde31164b54f1b1f5889b77">FrameLib_Object&lt; T &gt;</a>
 </li>
 <li>FrameLib_Pack()
 : <a class="el" href="class_frame_lib___pack.html#aded2a9815261f73a8231f5df6c647ac2">FrameLib_Pack</a>
@@ -150,17 +138,17 @@ $(document).ready(function(){initNavTree('functions_func_f.html','');});
 <li>FrameLib_Parameters()
 : <a class="el" href="class_frame_lib___parameters.html#a901d16f8654b147d21cf2b87d3ed8a14">FrameLib_Parameters</a>
 </li>
+<li>FrameLib_ProcessingQueue()
+: <a class="el" href="class_frame_lib___processing_queue.html#aebaf74090b8be2322111dec5e61de3a4">FrameLib_ProcessingQueue</a>
+</li>
 <li>FrameLib_Processor()
-: <a class="el" href="class_frame_lib___processor.html#aaa48ccb4d8b92b2d51408499e2d52e8c">FrameLib_Processor</a>
+: <a class="el" href="class_frame_lib___processor.html#acd8ddc4d9b3d10ef8cd6b63716979711">FrameLib_Processor</a>
+</li>
+<li>FrameLib_Queueable()
+: <a class="el" href="class_frame_lib___queueable.html#ae851e341082e42b5d9f35fce31f51870">FrameLib_Queueable&lt; T &gt;</a>
 </li>
 <li>FrameLib_Scheduler()
-: <a class="el" href="class_frame_lib___scheduler.html#a53005f7b96deb4074efcffecf1d39548">FrameLib_Scheduler</a>
-</li>
-<li>FrameLib_SpinLock()
-: <a class="el" href="class_frame_lib___spin_lock.html#a1fdaf90d7d7fdc4efbbd46319f019b91">FrameLib_SpinLock</a>
-</li>
-<li>FrameLib_SpinLockHold()
-: <a class="el" href="class_frame_lib___spin_lock_hold.html#a74b3e01778937f97f6bbffdec5717b88">FrameLib_SpinLockHold</a>
+: <a class="el" href="class_frame_lib___scheduler.html#adf967edcf371c60833c9c4dfb0daff1a">FrameLib_Scheduler</a>
 </li>
 <li>FrameLib_Unpack()
 : <a class="el" href="class_frame_lib___unpack.html#a987b9186fb9ec69664610f3893063dcc">FrameLib_Unpack</a>
