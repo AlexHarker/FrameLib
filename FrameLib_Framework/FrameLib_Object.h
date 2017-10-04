@@ -360,9 +360,9 @@ protected:
         return verbose ? verboseStr : briefStr;
     }
     
-    static  std::string formatInfo(const char *verboseStr, const char *briefStr, unsigned long idx, bool verbose)
+    static  std::string formatInfo(const char *str, unsigned long idx)
     {
-        std::string info = formatInfo(verboseStr, briefStr, verbose);
+        std::string info = str;
         std::string idxStr = numberedString("", idx + 1);
         
         for (size_t pos = info.find("#", 0); pos != std::string::npos;  pos = info.find("#", pos + 1))
@@ -370,15 +370,25 @@ protected:
         
         return info;
     }
-    
-    static std::string formatInfo(const char *verboseStr, const char *briefStr, const char *replaceStr, bool verbose)
+
+    static  std::string formatInfo(const char *verboseStr, const char *briefStr, unsigned long idx, bool verbose)
     {
-        std::string info = formatInfo(verboseStr, briefStr, verbose);
+        return formatInfo(formatInfo(verboseStr, briefStr, verbose).c_str(), idx);
+    }
+    
+    static std::string formatInfo(const char *str, const char *replaceStr)
+    {
+        std::string info = str;
         
         for (size_t pos = info.find("#", 0); pos != std::string::npos;  pos = info.find("#", pos + 1))
             info.replace(pos, 1, replaceStr);
         
         return info;
+    }
+
+    static std::string formatInfo(const char *verboseStr, const char *briefStr, const char *replaceStr, bool verbose)
+    {
+        return formatInfo(formatInfo(verboseStr, briefStr, verbose).c_str(), replaceStr);
     }
     
     // String With Number Helper
