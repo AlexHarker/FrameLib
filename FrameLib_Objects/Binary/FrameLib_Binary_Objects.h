@@ -38,6 +38,12 @@ template<> const char *FrameLib_BinaryOp<std::greater_equal<double> >::getDescri
 template<> const char *FrameLib_BinaryOp<std::less_equal<double> >::getDescriptionString()
 { return "Calculates if left input frame values are greater than or equal to right input frame values (output is 1 for true and 0 for false)"; }
 
+template<> const char *FrameLib_BinaryOp<std::logical_and<double> >::getDescriptionString()
+{ return "Calculates the logical and of the left and right input frames"; }
+
+template<> const char *FrameLib_BinaryOp<std::logical_or<double> >::getDescriptionString()
+{ return "Calculates the logical or of the left and right input frames"; }
+
 // Type definitions
 
 typedef FrameLib_BinaryOp<std::plus<double> >           FrameLib_Plus;
@@ -51,6 +57,9 @@ typedef FrameLib_BinaryOp<std::greater<double> >        FrameLib_GreaterThan;
 typedef FrameLib_BinaryOp<std::less<double> >           FrameLib_LessThan;
 typedef FrameLib_BinaryOp<std::greater_equal<double> >  FrameLib_GreaterThanEqual;
 typedef FrameLib_BinaryOp<std::less_equal<double> >     FrameLib_LessThanEqual;
+
+typedef FrameLib_BinaryOp<std::logical_and<double> >    FrameLib_LogicalAnd;
+typedef FrameLib_BinaryOp<std::logical_or<double> >     FrameLib_LogicalOr;
 
 // Binary (functions)
 

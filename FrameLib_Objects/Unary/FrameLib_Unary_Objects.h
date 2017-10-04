@@ -4,6 +4,18 @@
 
 #include "FrameLib_Unary_Template.h"
 
+// Binary (operators)
+
+// Info specialisations
+
+template<> const char *FrameLib_UnaryOp<std::logical_not<double> >::getOpString()  { return "logical not"; }
+
+// Type definitions
+
+typedef FrameLib_UnaryOp<std::logical_not<double> >    FrameLib_LogicalNot;
+
+// Binary (functions)
+
 // Info specialisations
 
 template<> const char *FrameLib_Unary<acos>::getOpString()  { return "arccosine (in radians)"; }
