@@ -29,7 +29,7 @@
 
 \linespread{1.1} % Line spacing
 
-\newcommand{\version}{Alpha 0.7}
+\newcommand{\version}{Alpha 0.8}
 % Set up the header and footer
 \pagestyle{fancy}
 \lhead{Alex Harker} % Top left header
@@ -144,6 +144,10 @@ The second type of frame is a `tagged' frame. This is used exclusively to transf
 \subsection{Multi-channel Expansion}
 
 Technically, the objects hosted in Max objects carry not single frames, but multichannel connections each of which can consist of an individual stream of frames running at an independent rate and size. This is done to enable multi-resolution or multi-channel processing through a single network. If you wish you can ignore this functionality and treat each object like the inputs and outputs deal with a single stream of frames only. However, if you do wish to take advantage of this you can use the \flobject{pack} object to pack frame streams together, and \flobject{unpack} object to split them into single channel streams again. Other objects will resolve multichannel inputs by internally expanding to the maximum channel count. Where there is a mismatch between different inputs the lower channel count streams will be read modulo against the maximum count (so, for example, you can take a 16-channel input on the left of a \flobject{times} object and connect a single channel input to the right-hand side. The result will be a 16-channel output that consists of the 16 left-hand inputs all multiplied by the same right-hand stream).
+
+You can specify the minimum number of channels/streams regardless of the inputs by making the first argument to the object something like this:
+\-\hspace{4ex} \textit{$\sim$N} where N is the minimum number of channels/streams.\\ 
+For audio objects this will determine how many copies of the audio ins/outs you see, so it can be used for multichannel IO using a single max object.
 \pagebreak
 %----------------------------------------------------------------------------------------
 
@@ -172,25 +176,16 @@ The \flobject{source} object allows you to grab chunks of audio from MSP as fram
 
 \subsection{\label{sec:setparams}Setting Parameters}
 
-Parameters can be set in one of two ways, either at frame rate (if the object has a Parameter Update input), or at object instantiation. At object instantiation the syntax is currently: \\ \textbf{either:}\\ 
-\-\hspace{4ex} \textit{\#parameter\_name value(s) ...} \\ 
-\textbf{or:}\\ 
+Parameters can be set in one of two ways, either at frame rate (if the object has a Parameter Update input), or at object instantiation. At object instantiation the syntax is: \\
 \-\hspace{4ex} \textit{/parameter\_name value(s) ...} \\ 
-within the object box.The \# is used most commonly in the demos, but the slashes are also possible to see who prefers what. The @ sign is not used to avoid confusion with max attributes (which show in the inspector and can be set in the max thread using messages, which FrameLib parameters cannot). In addition parameters can be assigned to a given argument number in which case they can be set from object arguments.
+within the object box. The @ sign is not used to avoid confusion with max attributes (which show in the inspector and can be set in the max thread using messages, which FrameLib parameters cannot). In addition parameters can be assigned to a given argument number in which case they can be set from object arguments.
 
 To set parameters at frame rate based on values in vectors, use the \flobject{setparam} object.
 
 \subsection{Setting Fixed Inputs}
 
-FrameLib objects in Max support input of fixed numeric values at object instantiation that are used for any subsequent calculations, rather than values updated at frame rate. This is accessed in one of two ways. Most binary operators (e.g. \flobject{times} or \flobject{divide}) allow you to directly type the value of either input in as one or more arguments to the object (this mimics standard max object behaviour). However, as most objects use arguments to represent parameters (for ease), other objects require a special syntax for setting the value of a specific input. There are currently four possible notations to do this (with slashes or square brackets most likely to make the final cut):\\
-\textbf{either:}\\ 
-\-\hspace{4ex} \textit{/input\_number/ value(s) ...} \\ 
-\textbf{or:}\\ 
-\-\hspace{4ex} \textit{\textlangle input\_number\textrangle{} value(s) ...} \\ 
-\textbf{or:}\\ 
+FrameLib objects in Max support input of fixed numeric values at object instantiation that are used for any subsequent calculations, rather than values updated at frame rate. This is accessed in one of two ways. Most binary operators (e.g. \flobject{times} or \flobject{divide}) allow you to directly type the value of either input in as one or more arguments to the object (this mimics standard max object behaviour). However, as most objects use arguments to represent parameters (for ease), other objects require a special syntax for setting the value of a specific input. This is:\\
 \-\hspace{4ex} \textit{[input\_number] value(s) ...} \\ 
-\textbf{or:}\\ 
-\-\hspace{4ex} \textit{$\sim$input\_number value(s) ...} \\ 
 Inputs are numbered from 1 (not zero!). You can enter vectors of any length.
 
 \subsection{Control from Max}
@@ -270,34 +265,38 @@ A full object listing follows, grouped by function. Currently this is the best q
 \flobject{log10} &
 \flobject{log2} &
 \flobject{log} &
-\flobject{round} \\
+\flobject{not} \\
+\flobject{round} &
 \flobject{sinh} &
 \flobject{sin} &
-\flobject{sqrt} &
-\flobject{tanh} \\
+\flobject{sqrt} \\
+\flobject{tanh} &
 \flobject{tan} &
-\flobject{trunc} \\ 
+\flobject{trunc}  
 \end{tabular}
 
 \subsection{Binary}
 \begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\flobject{and} &
 \flobject{atan2} &
 \flobject{copysign} &
-\flobject{diff} &
-\flobject{divide} \\
+\flobject{diff}\\
+\flobject{divide} &
 \flobject{equals} &
 \flobject{greaterthaneq} &
-\flobject{greaterthan} &
-\flobject{hypot} \\
+\flobject{greaterthan} \\
+\flobject{hypot} &
 \flobject{lessthaneq} &
 \flobject{lessthan} &
-\flobject{max} &
-\flobject{minus} \\
+\flobject{max} \\
+\flobject{minus} &
 \flobject{min} &
-\flobject{notequals} &
+\flobject{modulo} &
+\flobject{notequals} \\
+\flobject{or} &
 \flobject{plus} &
-\flobject{pow} \\
-\flobject{times} &
+\flobject{pow} &
+\flobject{times} \\
 \end{tabular}
 
 \subsection{Vector}
@@ -365,6 +364,7 @@ A full object listing follows, grouped by function. Currently this is the best q
 
 \subsection{Routing}
 \begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\flobject{channel} &
 \flobject{pack} &
 \flobject{select} &
 \flobject{unpack}
@@ -498,5 +498,15 @@ A full object listing follows, grouped by function. Currently this is the best q
 \item Internal connection system updates and corrections (issues were currently non-visible).
 \end{itemize}
 
+\subsection{Changes in Alpha 0.8}
+\vspace{0.1in}
 
+\begin{itemize}
+\item {\#29} Removed support for multiple methods for entering parameters/inputs.
+\item {\#29} and {\#31} Updated binary object parameter naming scheme.
+\item {\#31} Added init folder to allow aliasing to symbol-based names for binary ops.
+\item {\#32} Added support for better multichannel control, including multichannel audio in and out (plus a demo patch).
+\item {\#32} Minor info string updates for binary objects.
+\item Added new objects (\flobject{not}, \flobject{and}, \flobject{or}, \flobject{modulo}, \flobject{channel}.
+\end{itemize}
 \end{document}

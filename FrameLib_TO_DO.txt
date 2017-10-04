@@ -37,17 +37,20 @@ DONE	- Parameter naming style
 DONE	- Parameter entry style
 DONE	- Input entry style
 
-Unary
-Binary
+PROGRESS Unary (trig and degrees)
+PROGRESS Binary (symbols)
+
+Parameters
+Routing
+Mapping
+Timing
+
 Vector
 IO
 Storage
 Schedulers
-Timing
-Parameters
-Routing
+
 Generators
-Mapping
 Spectral
 Filters
 Spatial/Special
