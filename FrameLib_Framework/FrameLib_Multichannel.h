@@ -28,11 +28,12 @@ public:
         
     // Constructors
 
-    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long nIns, unsigned long nOuts)
-    : FrameLib_Object(type, context, owner, this), mDeleted(false)
+    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long  nStreams, unsigned long nIns, unsigned long nOuts)
+    : FrameLib_Object(type, context, owner, this), mNumStreams(nStreams), mDeleted(false)
     { setIO(nIns, nOuts); }
     
-    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner) : FrameLib_Object(type, context, owner, this), mDeleted(false) {}
+    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long  nStreams)
+    : FrameLib_Object(type, context, owner, this), mNumStreams(nStreams), mDeleted(false) {}
     
     // Destructor
     
@@ -64,6 +65,10 @@ protected:
         FrameLib_Object::setIO(nIns, nOuts, nAudioChans);
         mOutputs.resize(getNumOuts());
     }
+    
+    // Number of Streams
+    
+    unsigned long getNumStreams() { return mNumStreams; }
     
     // Query Connections for Individual Channels
     
@@ -99,6 +104,7 @@ protected:
     
 private:
     
+    unsigned long mNumStreams;
     bool mDeleted;
 };
 
@@ -114,7 +120,7 @@ class FrameLib_Pack : public FrameLib_MultiChannel
     
 public:
     
-    FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, unsigned long nStreams);
     
     // Info
     
@@ -151,7 +157,7 @@ class FrameLib_Unpack : public FrameLib_MultiChannel
 
 public:
 
-    FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, unsigned long nStreams);
     
     // Info
     
@@ -185,8 +191,8 @@ template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
 
 public:
     
-    FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-    : FrameLib_MultiChannel(T::getType(), context, owner), mSerialisedParameters(serialisedParameters->size()), mNumAudioStreams(1)
+    FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, unsigned long nStreams)
+    : FrameLib_MultiChannel(T::getType(), context, owner, nStreams), mSerialisedParameters(serialisedParameters->size())
     {
         // Make first block
         
@@ -199,7 +205,7 @@ public:
         
         // Set up IO / fixed inputs / audio temps
         
-        setIO(mBlocks[0]->getNumIns(), mBlocks[0]->getNumOuts(), mNumAudioStreams * mBlocks[0]->getNumAudioChans());
+        setIO(mBlocks[0]->getNumIns(), mBlocks[0]->getNumOuts(), getNumStreams() * mBlocks[0]->getNumAudioChans());
         mFixedInputs.resize(getNumIns());
         mAudioTemps.resize(mBlocks[0]->getNumAudioOuts());
         
@@ -264,8 +270,8 @@ public:
 
         for (unsigned long i = 0; i < mBlocks.size(); i++)
         {
-            unsigned long inStreamOffset = internalNumIns * (i % mNumAudioStreams);
-            unsigned long outStreamOffset = internalNumOuts * (i % mNumAudioStreams);
+            unsigned long inStreamOffset = internalNumIns * (i % getNumStreams());
+            unsigned long outStreamOffset = internalNumOuts * (i % getNumStreams());
             
             mBlocks[i]->blockUpdate(ins + inStreamOffset, &mAudioTemps[0], blockSize);
             
@@ -300,7 +306,11 @@ public:
     virtual std::string objectInfo(bool verbose)                    { return mBlocks[0]->objectInfo(verbose); }
     virtual std::string inputInfo(unsigned long idx, bool verbose)  { return mBlocks[0]->inputInfo(idx, verbose); }
     virtual std::string outputInfo(unsigned long idx, bool verbose) { return mBlocks[0]->outputInfo(idx, verbose); }
-    virtual std::string audioInfo(unsigned long idx, bool verbose)  { return mBlocks[0]->audioInfo(idx, verbose); }
+    
+    virtual std::string audioInfo(unsigned long idx, bool verbose)
+    {
+        return formatInfo((mBlocks[0]->audioInfo(idx % mBlocks[0]->getNumAudioChans(), verbose) + " [#]").c_str(), idx / mBlocks[0]->getNumAudioChans());
+    }
 
     virtual FrameType inputType(unsigned long idx) const            { return mBlocks[0]->inputType(idx); }
     virtual FrameType outputType(unsigned long idx) const           { return mBlocks[0]->outputType(idx); }
@@ -342,7 +352,7 @@ private:
             if (getInputNumChans(i) > nChannels)
                 nChannels = getInputNumChans(i);
         
-        nChannels = std::max(nChannels, mNumAudioStreams);
+        nChannels = std::max(nChannels, getNumStreams());
         
         // Resize if necessary
         
@@ -434,7 +444,6 @@ private:
     std::vector <FrameLib_Block *> mBlocks;
     std::vector <std::vector <double> > mFixedInputs;
 
-    unsigned long mNumAudioStreams;
     unsigned long mMaxBlockSize;
     double mSamplingRate;
     

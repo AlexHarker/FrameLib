@@ -360,7 +360,7 @@ protected:
         return verbose ? verboseStr : briefStr;
     }
     
-    static  std::string formatInfo(const char *str, unsigned long idx)
+    static std::string formatInfo(const char *str, unsigned long idx)
     {
         std::string info = str;
         std::string idxStr = numberedString("", idx + 1);
@@ -371,9 +371,9 @@ protected:
         return info;
     }
 
-    static  std::string formatInfo(const char *verboseStr, const char *briefStr, unsigned long idx, bool verbose)
+    static std::string formatInfo(const char *verboseStr, const char *briefStr, unsigned long idx, bool verbose)
     {
-        return formatInfo(formatInfo(verboseStr, briefStr, verbose).c_str(), idx);
+        return formatInfo(formatInfo(verboseStr, briefStr, verbose), idx);
     }
     
     static std::string formatInfo(const char *str, const char *replaceStr)
@@ -388,7 +388,7 @@ protected:
 
     static std::string formatInfo(const char *verboseStr, const char *briefStr, const char *replaceStr, bool verbose)
     {
-        return formatInfo(formatInfo(verboseStr, briefStr, verbose).c_str(), replaceStr);
+        return formatInfo(formatInfo(verboseStr, briefStr, verbose), replaceStr);
     }
     
     // String With Number Helper

@@ -474,9 +474,18 @@ public:
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
+        unsigned long nStreams = 1;
+        
+        if (argc && (getStreamCount(argv) > 1))
+        {
+            nStreams = getStreamCount(argv);
+            argv++;
+            argc--;
+        }
+        
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mTopLevelPatch), &serialisedParameters, this);
+        mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mTopLevelPatch), &serialisedParameters, this, nStreams);
         parseInputs(argc, argv);
         
         long numIns = getNumIns() + (supportsOrderingConnections() ? 1 : 0);
@@ -1073,6 +1082,19 @@ private:
     }
     
     // Parameter Parsing
+    
+    long getStreamCount(t_atom *a)
+    {
+        if (atom_gettype(a) == A_SYM)
+        {
+            t_symbol *sym = atom_getsym(a);
+            
+            if (strlen(sym->s_name) > 1 && sym->s_name[0] == '~');
+                return atoi(sym->s_name + 1);
+        }
+        
+        return -1;
+    }
     
     bool isParameterTag(t_symbol *sym)
     {        
