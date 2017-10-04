@@ -1955,11 +1955,8 @@
 		B861EBC519CA3EF100B89477 /* fl.percentile~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.percentile~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B861EBC619CA3EF100B89477 /* fl.sort~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.sort~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B866858A1F84F25C0079568F /* fl.or~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.or~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B866858B1F84F25D0079568F /* fl.atan2~ copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "fl.atan2~ copy-Info.plist"; path = "/Users/alexharker/Documents/Max Externals/- Huddersfield/FrameLib/fl.atan2~ copy-Info.plist"; sourceTree = "<absolute>"; };
 		B86685A61F84F2610079568F /* fl.and~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.and~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B86685A71F84F2620079568F /* fl.atan2~ copy copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "fl.atan2~ copy copy-Info.plist"; path = "/Users/alexharker/Documents/Max Externals/- Huddersfield/FrameLib/fl.atan2~ copy copy-Info.plist"; sourceTree = "<absolute>"; };
 		B86685C21F84F2670079568F /* fl.not~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.not~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B86685C31F84F2680079568F /* fl.atan2~ copy copy copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "fl.atan2~ copy copy copy-Info.plist"; path = "/Users/alexharker/Documents/Max Externals/- Huddersfield/FrameLib/fl.atan2~ copy copy copy-Info.plist"; sourceTree = "<absolute>"; };
 		B86685C41F84F30B0079568F /* fl.and~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.and~.cpp"; sourceTree = "<group>"; };
 		B86685C61F84F31B0079568F /* fl.not~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.not~.cpp"; sourceTree = "<group>"; };
 		B86685C81F84F3300079568F /* fl.or~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.or~.cpp"; sourceTree = "<group>"; };
@@ -3179,9 +3176,6 @@
 				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
 				B8A1F5BC1D5370DE00FA5FFC /* Testing */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
-				B866858B1F84F25D0079568F /* fl.atan2~ copy-Info.plist */,
-				B86685A71F84F2620079568F /* fl.atan2~ copy copy-Info.plist */,
-				B86685C31F84F2680079568F /* fl.atan2~ copy copy copy-Info.plist */,
 			);
 			name = "plus~";
 			sourceTree = "<group>";

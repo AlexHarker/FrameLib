@@ -7,7 +7,6 @@ Move to lowercase names?
 ******* FRAMEWORK ******* 
 
 PROGRESS 	Finalise Max Wrapper
-PROGRESS	- Review entry of inputs and parameters
 PROGRESS	- Avoid double reporting of directly patched errors when DSP is on
 		- Probing issues;
 
@@ -29,13 +28,14 @@ TEMP		Memory
 		Objects for dealing with data storage/retrieval (a la coll etc.) 
 		Abstract buffer type? 
 		Multichannel support (how should expansion work for audio?)
+		Adding parameters via inheritance/wrapping
 
 ******* OBJECT REVIEW ******* 
 
-General Wrapper
-	- Parameter naming style
-	- Parameter entry style
-	- Input entry style
+DONE General Wrapper
+DONE	- Parameter naming style
+DONE	- Parameter entry style
+DONE	- Input entry style
 
 Unary
 Binary
@@ -50,7 +50,7 @@ Generators
 Mapping
 Spectral
 Filters
-Spatial/Sepcial
+Spatial/Special
 
 
 

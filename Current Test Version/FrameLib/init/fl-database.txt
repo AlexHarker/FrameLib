@@ -1,0 +1,14 @@
+max db.addvirtual alias fl./~ fl.divide~;
+max db.addvirtual alias fl.==~ fl.equals~;
+max db.addvirtual alias fl.>~ fl.greaterthan~;
+max db.addvirtual alias fl.>=~ fl.greaterthaneq~;
+max db.addvirtual alias fl.<~ fl.lessthan~;
+max db.addvirtual alias fl.<=~ fl.lessthaneq~;
+max db.addvirtual alias fl.-~ fl.minus~;
+max db.addvirtual alias fl.!=~ fl.notequal~;
+max db.addvirtual alias fl.+~ fl.plus~;
+max db.addvirtual alias fl.*~ fl.times~;
+max db.addvirtual alias fl.%~ fl.modulo~;
+max db.addvirtual alias fl.!~ fl.not~;
+max db.addvirtual alias fl.&&~ fl.and~;
+max db.addvirtual alias fl.||~ fl.or~;
