@@ -172,8 +172,8 @@ void FrameLib_DSP::addParameterInput()
     unsigned long nOuts = getNumOuts();
     unsigned long nAudioChans = getNumAudioChans();
     
-    setIO(nIns, nOuts + 1, nAudioChans);
-    setParameterInput(nOuts);
+    setIO(nIns + 1, nOuts, nAudioChans);
+    setParameterInput(nIns);
 }
 
 // Call this from your constructor only (unsafe elsewhere)
@@ -573,20 +573,20 @@ void FrameLib_DSP::connectionUpdate(Queue *queue)
         
         // Look at each input for a possible match
         
-        for (unsigned long i = 0; i < blockObject->getNumIns(); i++)
+        for (unsigned long j = 0; j < blockObject->getNumIns(); j++)
         {
-            if (this == blockObject->getConnection(i))
+            if (this == blockObject->getConnection(j))
             {
-                for (unsigned long j = 0; j < blockObject->getNumInputObjects(i); j++)
-                    addOutputDependency(blockObject->getInputObject(i, j));
+                for (unsigned long k = 0; k < blockObject->getNumInputObjects(j); k++)
+                    addOutputDependency(blockObject->getInputObject(j, k));
             }
         }
         
         // Look at ordering connections
         
         if (blockObject->isOrderingConnection(this))
-            for (unsigned long i = 0; i < blockObject->getNumOrderingConnectionObjects(); i++)
-                addOutputDependency(blockObject->getOrderingConnectionObject(i));
+            for (unsigned long j = 0; j < blockObject->getNumOrderingConnectionObjects(); j++)
+                addOutputDependency(blockObject->getOrderingConnectionObject(j));
     }
 }
 
