@@ -17,9 +17,9 @@ FrameLib_Register::FrameLib_Register(FrameLib_Context context, FrameLib_Paramete
     Modes mode = (Modes) mParameters.getInt(kMode);
     
     if (mode == kStore)
-        inputMode(1, false, false, false, kFrameAny);
+        setInputMode(1, false, false, false, kFrameAny);
     else
-        inputMode(1, false, true, false);
+        setInputMode(1, false, true, false);
 }
 
 // Info

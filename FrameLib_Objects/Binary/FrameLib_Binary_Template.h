@@ -58,9 +58,9 @@ public:
         TriggerModes triggers = (TriggerModes) mParameters.getInt(kTriggers);
         
         if (triggers == kLeft)
-            inputMode(1, false, false, false);
+            setInputMode(1, false, false, false);
         if (triggers == kRight)
-            inputMode(0, false, false, false);
+            setInputMode(0, false, false, false);
     }
     
     // Info

@@ -15,7 +15,7 @@ FrameLib_FromMax::FrameLib_FromMax(FrameLib_Context context, FrameLib_Parameters
     
     mMode = (Modes) mParameters.getValue(kMode);
     
-    outputMode(0, mMode == kValues ? kFrameNormal : kFrameTagged);
+    setOutputMode(0, mMode == kValues ? kFrameNormal : kFrameTagged);
     
     mMessages = ((FrameLib_MaxClass_FromMax *) owner)->getMessages();
 }

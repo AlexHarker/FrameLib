@@ -44,6 +44,8 @@ private:
     {
         Input() : mObject(NULL), mIndex(0), mSize(0), mFixedInput(NULL), mType(kFrameNormal), mUpdate(false), mParameters(false), mTrigger(true), mSwitchable(false) {}
         
+        FrameType getCurrentType() { return mObject ? mObject->mOutputs[mIndex].mCurrentType : kFrameNormal; }
+        
         // Connection Info
         
         FrameLib_DSP *mObject;
@@ -66,11 +68,13 @@ private:
    
     struct Output
     {
-        Output() : mMemory(NULL), mType(kFrameNormal), mCurrentSize(0), mRequestedSize(0), mPointerOffset(0) {}
+        Output() : mMemory(NULL), mType(kFrameNormal), mCurrentType(kFrameNormal), mRequestedType(kFrameNormal), mCurrentSize(0), mRequestedSize(0), mPointerOffset(0) {}
         
         void *mMemory;
         
         FrameType mType;
+        FrameType mCurrentType;
+        FrameType mRequestedType;
         
         size_t mCurrentSize;
         size_t mRequestedSize;
@@ -111,11 +115,15 @@ protected:
     // Call these from your constructor only (unsafe elsewhere)
    
     void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0);
-    void inputMode(unsigned long idx, bool update, bool trigger, bool switchable, FrameType type = kFrameNormal);
+    void setInputMode(unsigned long idx, bool update, bool trigger, bool switchable, FrameType type = kFrameNormal);
     void setParameterInput(unsigned long idx);
     void addParameterInput();
-    void outputMode(unsigned long idx, FrameType type);
-    
+    void setOutputMode(unsigned long idx, FrameType type);
+
+    // You should only call this from your process method (it is unsafe anywhere else)
+
+    void setCurrentOutputMode(unsigned long idx, FrameType type);
+
     // You should only call this from your update method (it is unsafe anywhere else)
     
     void updateTrigger(unsigned long idx, bool trigger);
@@ -152,7 +160,10 @@ protected:
     FrameLib_Parameters::Serial *getOutput(unsigned long idx);
 
     // Convience methods for copying and zeroing
-    
+
+    void prepareCopyInputToOutput(unsigned long inIdx, unsigned long outIdx);
+    void copyInputToOutput(unsigned long inIdx, unsigned long outIdx);
+
     static void copyVector(double *output, double *input, unsigned long size)      { std::copy(input, input + size, output); }
     static void zeroVector(double *output, unsigned long size)                     { std::fill_n(output, size, 0.0); }
     

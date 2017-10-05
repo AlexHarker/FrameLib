@@ -23,7 +23,7 @@ FrameLib_Join::FrameLib_Join(FrameLib_Context context, FrameLib_Parameters::Seri
     // Set up triggers
     
     for (unsigned long i = 0; i < getNumIns(); i++)
-        inputMode(i, false, triggers[i], false);
+        setInputMode(i, false, triggers[i], false);
 }
 
 // Info

@@ -22,7 +22,7 @@ FrameLib_Lookup::FrameLib_Lookup(FrameLib_Context context, FrameLib_Parameters::
     mMode = mParameters.getInt(kMode);
     mInterpMode = mParameters.getInt(kInterpolation);
     
-    inputMode(1, false, false, false);
+    setInputMode(1, false, false, false);
 }
 
 // Info

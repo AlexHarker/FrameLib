@@ -30,8 +30,8 @@ FrameLib_SetParam::FrameLib_SetParam(FrameLib_Context context, FrameLib_Paramete
     
     setIO(mNumIns + 1, 1);
     
-    inputMode(mNumIns, false, true, false, kFrameTagged);
-    outputMode(0, kFrameTagged);
+    setInputMode(mNumIns, false, true, false, kFrameTagged);
+    setOutputMode(0, kFrameTagged);
 }
 
 // Info

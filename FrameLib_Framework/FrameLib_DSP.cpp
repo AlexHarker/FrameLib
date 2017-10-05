@@ -148,7 +148,7 @@ void FrameLib_DSP::setIO(unsigned long nIns, unsigned long nOuts, unsigned long 
 
 // Call this from your constructor only (unsafe elsewhere)
 
-void FrameLib_DSP::inputMode(unsigned long idx, bool update, bool trigger, bool switchable, FrameType type)
+void FrameLib_DSP::setInputMode(unsigned long idx, bool update, bool trigger, bool switchable, FrameType type)
 {
     mInputs[idx].mUpdate = update;
     mInputs[idx].mTrigger = trigger;
@@ -160,7 +160,7 @@ void FrameLib_DSP::inputMode(unsigned long idx, bool update, bool trigger, bool 
 
 void FrameLib_DSP::setParameterInput(unsigned long idx)
 {
-    inputMode(idx, true, false, false, kFrameTagged);
+    setInputMode(idx, true, false, false, kFrameTagged);
     mInputs[idx].mParameters = true;
 }
 
@@ -178,9 +178,18 @@ void FrameLib_DSP::addParameterInput()
 
 // Call this from your constructor only (unsafe elsewhere)
 
-void FrameLib_DSP::outputMode(unsigned long idx, FrameType type)
+void FrameLib_DSP::setOutputMode(unsigned long idx, FrameType type)
 {
     mOutputs[idx].mType = type;
+    mOutputs[idx].mCurrentType = type != kFrameAny ? type : kFrameNormal;
+    mOutputs[idx].mRequestedType = mOutputs[idx].mCurrentType;
+}
+
+// You should only call this from your process method (it is unsafe anywhere else)
+
+void FrameLib_DSP::setCurrentOutputMode(unsigned long idx, FrameType type)
+{
+    mOutputs[idx].mRequestedType = type;
 }
 
 // You should only call this from your update method
@@ -200,9 +209,18 @@ bool FrameLib_DSP::allocateOutputs()
     
     for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
     {
+        // Update type
+        
+        if (outs->mRequestedType != outs->mCurrentType)
+        {
+            if (outs->mType == kFrameAny)
+                outs->mCurrentType = outs->mRequestedType;
+            else
+                outs->mRequestedSize = 0;
+        }
         // Calculate allocation size, including necessary alignment padding and assuming success
         
-        size_t unalignedSize = outs->mType == kFrameNormal ? outs->mRequestedSize * sizeof(double) : Serial::inPlaceSize(outs->mRequestedSize);
+        size_t unalignedSize = outs->mCurrentType == kFrameNormal ? outs->mRequestedSize * sizeof(double) : Serial::inPlaceSize(outs->mRequestedSize);
         size_t alignedSize = FrameLib_LocalAllocator::alignSize(unalignedSize);
         
         outs->mCurrentSize = outs->mRequestedSize;
@@ -224,7 +242,7 @@ bool FrameLib_DSP::allocateOutputs()
         {
             outs->mMemory = pointer + outs->mPointerOffset;
             
-            if (outs->mType == kFrameTagged)
+            if (outs->mCurrentType == kFrameTagged)
                 Serial::newInPlace(outs->mMemory, outs->mCurrentSize);
         }
     
@@ -263,7 +281,7 @@ FrameLib_Parameters::Serial *FrameLib_DSP::getInput(unsigned long idx)
 
 double *FrameLib_DSP::getOutput(unsigned long idx, size_t *size)
 {
-    if (mOutputs[0].mMemory && mOutputs[idx].mType == kFrameNormal)
+    if (mOutputs[0].mMemory && mOutputs[idx].mCurrentType == kFrameNormal)
     {
         *size = mOutputs[idx].mCurrentSize;
         return (double *) mOutputs[idx].mMemory;
@@ -275,10 +293,49 @@ double *FrameLib_DSP::getOutput(unsigned long idx, size_t *size)
 
 FrameLib_Parameters::Serial *FrameLib_DSP::getOutput(unsigned long idx)
 {
-    if (mOutputs[0].mMemory && mOutputs[idx].mType == kFrameTagged)
+    if (mOutputs[0].mMemory && mOutputs[idx].mCurrentType == kFrameTagged)
         return (Serial *) mOutputs[idx].mMemory;
     
     return NULL;
+}
+
+// Convience methods for copying and zeroing
+
+void FrameLib_DSP::prepareCopyInputToOutput(unsigned long inIdx, unsigned long outIdx)
+{
+    FrameType requestType = mInputs[inIdx].getCurrentType();
+    
+    unsigned long size = 0;
+    
+    setCurrentOutputMode(outIdx, requestType);
+    
+    if (mInputs[inIdx].mObject)
+    {
+        if (requestType == kFrameNormal)
+            getInput(inIdx, &size);
+        else
+            size = getInput(inIdx)->size();
+    }
+    
+    requestOutputSize(outIdx, size);
+}
+
+void FrameLib_DSP::copyInputToOutput(unsigned long inIdx, unsigned long outIdx)
+{
+    if (mOutputs[outIdx].mCurrentType == kFrameNormal)
+    {
+        unsigned long inSize, outSize;
+        
+        double *input = getInput(inIdx, &inSize);
+        double *output = getOutput(outIdx, &outSize);
+        
+        copyVector(output, input, std::min(inSize, outSize));
+    }
+    else
+    {
+        FrameLib_Parameters::Serial *output = getOutput(outIdx);
+        output->write(getInput(inIdx));
+    }
 }
 
 // Dependency Notification
@@ -507,7 +564,7 @@ inline void FrameLib_DSP::freeOutputMemory()
         // Call the destructor for any serial outputs
         
         for (std::vector <Output>::iterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
-            if (outs->mType == kFrameTagged)
+            if (outs->mCurrentType == kFrameTagged)
                 ((Serial *)outs->mMemory)->Serial::~Serial();
 
         // Then deallocate (will also set to NULL)
@@ -542,7 +599,7 @@ void FrameLib_DSP::connectionUpdate(Queue *queue)
         // Make sure that ordering inputs are set correctly
         
         if (i >= getNumIns())
-            inputMode(i, false, false, false);
+            setInputMode(i, false, false, false);
 
         // Add the DSP object connection details to the input
         
