@@ -1,10 +1,10 @@
 
-#ifndef FRAMELIB_TIME_H
-#define FRAMELIB_TIME_H
+#ifndef FRAMELIB_NOW_H
+#define FRAMELIB_NOW_H
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_Time : public FrameLib_Processor
+class FrameLib_Now : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
@@ -17,7 +17,7 @@ public:
     
     // Constructor
     
-    FrameLib_Time(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_Now(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
     // Info
     

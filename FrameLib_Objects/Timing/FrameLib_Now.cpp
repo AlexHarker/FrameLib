@@ -1,7 +1,7 @@
 
-#include "FrameLib_Time.h"
+#include "FrameLib_Now.h"
 
-FrameLib_Time::FrameLib_Time(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 1, 1)
+FrameLib_Now::FrameLib_Now(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 1, 1)
 {
     mParameters.addEnum(kUnits, "units", 0);
     mParameters.addEnumItem(kSamples, "samples");
@@ -16,34 +16,34 @@ FrameLib_Time::FrameLib_Time(FrameLib_Context context, FrameLib_Parameters::Seri
 
 // Info
 
-std::string FrameLib_Time::objectInfo(bool verbose)
+std::string FrameLib_Now::objectInfo(bool verbose)
 {
     return formatInfo("Outputs the current time in the specified units: Output is a single value.",
                    "Outputs the current time in the specified units.", verbose);
 }
 
-std::string FrameLib_Time::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Now::inputInfo(unsigned long idx, bool verbose)
 {
     return formatInfo("Trigger Input - input frames generate output", "Trigger Input", verbose);
 }
 
-std::string FrameLib_Time::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Now::outputInfo(unsigned long idx, bool verbose)
 {
     return "Output Values";
 }
 
 // Parameter Info
 
-FrameLib_Time::ParameterInfo FrameLib_Time::sParamInfo;
+FrameLib_Now::ParameterInfo FrameLib_Now::sParamInfo;
 
-FrameLib_Time::ParameterInfo::ParameterInfo()
+FrameLib_Now::ParameterInfo::ParameterInfo()
 {
     add("Sets the time units used to for output.");
 }
 
 // Calculate Multiplier
 
-void FrameLib_Time::calculateMultiplier()
+void FrameLib_Now::calculateMultiplier()
 {
     switch ((Units) (mParameters.getValue(kUnits)))
     {
@@ -55,13 +55,13 @@ void FrameLib_Time::calculateMultiplier()
 
 // Update and Process
 
-void FrameLib_Time::update()
+void FrameLib_Now::update()
 {
     if (mParameters.changed(kUnits))
         calculateMultiplier();
 }
 
-void FrameLib_Time::process()
+void FrameLib_Now::process()
 {
     requestOutputSize(0, 1);
     
