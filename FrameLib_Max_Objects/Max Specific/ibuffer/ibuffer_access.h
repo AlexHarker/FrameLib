@@ -136,6 +136,9 @@ static inline void *ibuffer_get_ptr(t_symbol *s)
 
 static inline void ibuffer_release_ptr(void *thebuffer)
 {
+    if (!thebuffer)
+        return;
+    
     if (ob_sym(thebuffer) == ps_buffer)
         ATOMIC_DECREMENT(&((t_buffer *)thebuffer)->b_inuse);
     else
