@@ -8,7 +8,7 @@ class FrameLib_Select : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-    enum ParameterList {kNumIns, kActiveIn};
+    enum ParameterList { kNumIns, kActiveIn };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 

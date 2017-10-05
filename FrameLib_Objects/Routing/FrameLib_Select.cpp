@@ -5,7 +5,7 @@
 
 FrameLib_Select::FrameLib_Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo)
 {
-    mParameters.addDouble(kNumIns, "numins", 2, 0);
+    mParameters.addDouble(kNumIns, "num_ins", 2, 0);
     mParameters.setClip(2, 32);
     mParameters.setInstantiation();
     mParameters.addInt(kActiveIn, "input", 0, 1);
@@ -13,14 +13,15 @@ FrameLib_Select::FrameLib_Select(FrameLib_Context context, FrameLib_Parameters::
     mParameters.set(serialisedParameters);
     
     mNumIns = mParameters.getInt(kNumIns);
-    mActiveIn = mParameters.getInt(kActiveIn);
+    mActiveIn = floor(mParameters.getInt(kActiveIn));
     
-    setIO(mNumIns + 1, 1);
+    setIO(mNumIns, 1);
     
     for (unsigned long i = 0; i < mNumIns; i++)
-        inputMode(i, false, i == mActiveIn, true, kFrameAny);
+        setInputMode(i, false, i == mActiveIn, true, kFrameAny);
     
-    setParameterInput(mNumIns);
+    setOutputMode(0, kFrameAny);
+    addParameterInput();
 }
 
 // Info
@@ -71,14 +72,9 @@ void FrameLib_Select::update()
 
 void FrameLib_Select::process()
 {
-    unsigned long size;
+    // Copy active input to output
     
-    double *input = getInput(mActiveIn, &size);
-    
-    requestOutputSize(0, size);
+    prepareCopyInputToOutput(mActiveIn, 0);
     allocateOutputs();
-    
-    double *output = getOutput(0, &size);
-    
-    copyVector(output, input, size);
+    copyInputToOutput(mActiveIn, 0);
 }
