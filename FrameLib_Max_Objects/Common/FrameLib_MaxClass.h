@@ -476,7 +476,7 @@ public:
         
         unsigned long nStreams = 1;
         
-        if (argc && (getStreamCount(argv) > 1))
+        if (argc && (getStreamCount(argv) > 0))
         {
             nStreams = getStreamCount(argv);
             argv++;
@@ -1089,11 +1089,13 @@ private:
         {
             t_symbol *sym = atom_getsym(a);
             
-            if (strlen(sym->s_name) > 1 && sym->s_name[0] == '~');
+            // FIX - need to check better here!
+            
+            if (strlen(sym->s_name) > 1 && sym->s_name[0] == '~')
                 return atoi(sym->s_name + 1);
         }
         
-        return -1;
+        return 0;
     }
     
     bool isParameterTag(t_symbol *sym)
