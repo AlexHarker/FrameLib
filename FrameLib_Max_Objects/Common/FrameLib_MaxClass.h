@@ -728,12 +728,12 @@ public:
             if (mSyncChecker.upwardsMode())
             {
                 for (unsigned long i = 0; i < getNumIns(); i++)
-                    if (mObject->isConnected(i))
-                        object_method(mObject->getConnection(i)->getOwner(), gensym("sync"));
+                    if (isConnected(i))
+                        object_method(getConnection(i), gensym("sync"));
                 
                 if (supportsOrderingConnections())
-                    for (unsigned long i = 0; i < mObject->getNumOrderingConnections(); i++)
-                        object_method(mObject->getOrderingConnection(i)->getOwner(), gensym("sync"));
+                    for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
+                        object_method(getOrderingConnection(i), gensym("sync"));
                 
                 mSyncChecker.restoreMode();
             }
@@ -885,8 +885,8 @@ private:
             
             // Confirm ordering connections
             
-            for (unsigned long i = 0; i < mObject->getNumOrderingConnections(); i++)
-                confirmConnection(mObject->getOrderingConnection(i), mObject->getOrderingConnectionIdx(i), getNumIns(), ConnectionInfo::kConfirm);
+            for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
+                confirmConnection(getOrderingConnection(i), getOrderingConnectionIdx(i), getNumIns(), ConnectionInfo::kConfirm);
             
             // Make output connections
             
@@ -914,13 +914,13 @@ private:
         return confirmConnection(getConnection(inIndex), getConnectionIdx(inIndex), inIndex, mode);
     }
     
-    bool confirmConnection(void *object, unsigned long outIndex, unsigned long inIndex, ConnectionInfo::Mode mode)
+    bool confirmConnection(t_object *object, unsigned long outIndex, unsigned long inIndex, ConnectionInfo::Mode mode)
     {
         if (!validInput(inIndex))
             return false;
         
         mConfirm = false;
-        mConfirmObject = (t_object *) object;
+        mConfirmObject = object;
         mConfirmInIndex = inIndex;
         mConfirmOutIndex = outIndex;
     
@@ -940,16 +940,20 @@ private:
         return result;
     }
     
-    bool validInput(long index, FrameLib_MultiChannel *object)      { return object && index >= 0 && index < object->getNumIns(); }
-    bool validOutput(long index, FrameLib_MultiChannel *object)     { return object && index >= 0 && index < object->getNumOuts(); }
-    bool isOrderingInput(long index, FrameLib_MultiChannel *object) { return object && object->supportsOrderingConnections() && index == object->getNumIns(); }
-    bool validInput(long index)                                     { return validInput(index, mObject); }
-    bool validOutput(long index)                                    { return validOutput(index, mObject); }
-    bool isOrderingInput(long index)                                { return isOrderingInput(index, mObject); }
+    bool validInput(long index, FrameLib_MultiChannel *object) const        { return object && index >= 0 && index < object->getNumIns(); }
+    bool validOutput(long index, FrameLib_MultiChannel *object) const       { return object && index >= 0 && index < object->getNumOuts(); }
+    bool isOrderingInput(long index, FrameLib_MultiChannel *object) const   { return object && object->supportsOrderingConnections() && index == object->getNumIns(); }
+    bool validInput(long index) const                                       { return validInput(index, mObject); }
+    bool validOutput(long index) const                                      { return validOutput(index, mObject); }
+    bool isOrderingInput(long index) const                                  { return isOrderingInput(index, mObject); }
     
-    t_object *getConnection(long index)                        { return (t_object *) (mObject->isConnected(index) ? mObject->getConnection(index)->getOwner() : NULL); }
-    unsigned long getConnectionIdx(long index)                 { return mObject->getConnectionIdx(index); }
-    bool matchConnection(t_object *src, long outIdx, long inIdx)    { return getConnection(inIdx) == src && getConnectionIdx(inIdx) == outIdx; }
+    bool isConnected(long index) const                                      { return mObject->isConnected(index); }
+    t_object *getConnection(long index) const                               { return (t_object *) (isConnected(index) ? mObject->getConnection(index)->getOwner() : NULL); }
+    unsigned long getConnectionIdx(long index) const                        { return mObject->getConnectionIdx(index); }
+    unsigned long getNumOrderingConnections() const                         { return mObject->getNumOrderingConnections(); }
+    t_object *getOrderingConnection(long index) const                       { return (t_object *) mObject->getOrderingConnection(index)->getOwner(); }
+    unsigned long getOrderingConnectionIdx(long index) const                { return mObject->getOrderingConnectionIdx(index); }
+    bool matchConnection(t_object *src, long outIdx, long inIdx) const      { return getConnection(inIdx) == src && getConnectionIdx(inIdx) == outIdx; }
     
     void connect(t_object *src, long outIdx, long inIdx)
     {
