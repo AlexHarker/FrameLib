@@ -167,7 +167,7 @@ public:
     
     // N.B. Parameter objects can be queried directly for info
     
-    virtual const FrameLib_Parameters *getParameters() const                    { return NULL;  }
+    virtual const FrameLib_Parameters *getParameters() const                    { return NULL; }
     
     // Connection 
     
