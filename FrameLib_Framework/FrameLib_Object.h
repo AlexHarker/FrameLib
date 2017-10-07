@@ -567,6 +567,10 @@ private:
 class FrameLib_Block : public FrameLib_Object<FrameLib_Block>
 {
     
+protected:
+    
+    typedef FrameLib_Object::UntypedConnection<class FrameLib_DSP> DSPConnection;
+    
 public:
     
     // Constructor / Destructor
@@ -582,11 +586,9 @@ public:
     // Connection Queries
     
     virtual unsigned long getNumInputObjects(unsigned long blockIdx) = 0;
-    virtual class FrameLib_DSP *getInputObject(unsigned long blockIdx, unsigned long idx) = 0;
-    virtual unsigned long getInputObjectIdx(unsigned long blockIdx, unsigned long idx) = 0;
+    virtual DSPConnection getInputConnection(unsigned long blockIdx, unsigned long idx) = 0;
 
-    virtual class FrameLib_DSP *getOutputObject(unsigned long blockIdx) = 0;
-    virtual unsigned long getOutputObjectIdx(unsigned long blockIdx) = 0;
+    virtual DSPConnection getOutputConnection(unsigned long blockIdx) = 0;
 
     virtual unsigned long getNumOrderingConnectionObjects() = 0;
     virtual class FrameLib_DSP *getOrderingConnectionObject(unsigned long idx) = 0;

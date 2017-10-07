@@ -172,11 +172,9 @@ protected:
     // Get DSP Object for a Given Input/Output
 
     unsigned long getNumInputObjects(unsigned long blockIdx)                                { return 1; }
-    FrameLib_DSP *getInputObject(unsigned long blockIdx, unsigned long idx)                 { return this; }
-    virtual unsigned long getInputObjectIdx(unsigned long blockIdx, unsigned long idx)      { return blockIdx; }
+    DSPConnection getInputConnection(unsigned long blockIdx, unsigned long idx)             { return DSPConnection(this, blockIdx); }
     
-    FrameLib_DSP *getOutputObject(unsigned long blockIdx)                                   { return this; }
-    virtual unsigned long getOutputObjectIdx(unsigned long blockIdx)                        { return blockIdx; }
+    DSPConnection getOutputConnection(unsigned long blockIdx)                               { return DSPConnection(this, blockIdx); }
 
     unsigned long getNumOrderingConnectionObjects()                                         { return 1; }
     FrameLib_DSP *getOrderingConnectionObject(unsigned long idx)                            { return this; }

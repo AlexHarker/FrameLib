@@ -64,11 +64,9 @@ public:
     // Connection Queries
     
     virtual unsigned long getNumInputObjects(unsigned long blockIdx)                        { return mNumOuts; }
-    virtual FrameLib_DSP *getInputObject(unsigned long blockIdx, unsigned long idx)         { return mValves[idx]; }
-    virtual unsigned long getInputObjectIdx(unsigned long blockIdx, unsigned long idx)      { return blockIdx; }
+    virtual DSPConnection getInputConnection(unsigned long blockIdx, unsigned long idx)     { return DSPConnection(mValves[idx], blockIdx); }
     
-    virtual FrameLib_DSP *getOutputObject(unsigned long blockIdx)                           { return mValves[blockIdx]; }
-    virtual unsigned long getOutputObjectIdx(unsigned long blockIdx)                        { return 0; }
+    virtual DSPConnection getOutputConnection(unsigned long blockIdx)                       { return DSPConnection(mValves[blockIdx], 0); }
     
     virtual unsigned long getNumOrderingConnectionObjects()                                 { return 0; }
     virtual FrameLib_DSP *getOrderingConnectionObject(unsigned long idx)                    { return NULL; }
