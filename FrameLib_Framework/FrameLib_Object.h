@@ -91,7 +91,7 @@ template <class T>
 class FrameLib_Object : public FrameLib_Queueable<T>
 {
     
-protected:
+public:
 
     template <class U>
     struct UntypedConnection
@@ -293,13 +293,11 @@ public:
 
     // Connection Access
     
-    T *getConnection(unsigned long idx) const                           { return mConnections[idx].mObject; }
-    unsigned long getConnectionIdx(unsigned long idx) const             { return mConnections[idx].mIndex; }
+    Connection getConnection(unsigned long idx) const                   { return mConnections[idx]; }
     
     bool supportsOrderingConnections() const                            { return mSupportsOrderingConnections; }
     unsigned long getNumOrderingConnections() const                     { return mOrderingConnections.size(); }
-    T *getOrderingConnection(unsigned long idx) const                   { return mOrderingConnections[idx].mObject; }
-    unsigned long getOrderingConnectionIdx(unsigned long idx) const     { return mOrderingConnections[idx].mIndex; }
+    Connection getOrderingConnection(unsigned long idx) const           { return mOrderingConnections[idx]; }
     
     bool isOrderingConnection(T *object) const
     {

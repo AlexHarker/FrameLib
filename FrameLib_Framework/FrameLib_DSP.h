@@ -21,7 +21,9 @@ class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_D
     typedef FrameLib_Queueable<FrameLib_Block>::Queue Queue;
     typedef FrameLib_Queueable<FrameLib_DSP>::Queue LocalQueue;
     typedef FrameLib_Parameters::Serial Serial;
-    friend class FrameLib_ProcessingQueue;   
+    typedef FrameLib_Object::UntypedConnection<FrameLib_Block> BlockConnection;
+
+    friend class FrameLib_ProcessingQueue;
     
 protected:
     

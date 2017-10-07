@@ -427,6 +427,8 @@ private:
 template <class T, bool argsSetAllInputs = false> class FrameLib_MaxClass : public MaxClass_Base
 {
 
+    typedef FrameLib_Object<t_object *>::UntypedConnection<t_object> ObjectConnection;
+
 public:
     
     // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_MaxClass<>)
@@ -729,11 +731,11 @@ public:
             {
                 for (unsigned long i = 0; i < getNumIns(); i++)
                     if (isConnected(i))
-                        object_method(getConnection(i), gensym("sync"));
+                        object_method(getConnection(i).mObject, gensym("sync"));
                 
                 if (supportsOrderingConnections())
                     for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
-                        object_method(getOrderingConnection(i), gensym("sync"));
+                        object_method(getOrderingConnection(i).mObject, gensym("sync"));
                 
                 mSyncChecker.restoreMode();
             }
@@ -886,7 +888,7 @@ private:
             // Confirm ordering connections
             
             for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
-                confirmConnection(getOrderingConnection(i), getOrderingConnectionIdx(i), getNumIns(), ConnectionInfo::kConfirm);
+                confirmConnection(getOrderingConnection(i), getNumIns(), ConnectionInfo::kConfirm);
             
             // Make output connections
             
@@ -911,18 +913,18 @@ private:
         if (!validInput(inIndex))
             return false;
         
-        return confirmConnection(getConnection(inIndex), getConnectionIdx(inIndex), inIndex, mode);
+        return confirmConnection(getConnection(inIndex), inIndex, mode);
     }
     
-    bool confirmConnection(t_object *object, unsigned long outIndex, unsigned long inIndex, ConnectionInfo::Mode mode)
+    bool confirmConnection(ObjectConnection connection, unsigned long inIndex, ConnectionInfo::Mode mode)
     {
         if (!validInput(inIndex))
             return false;
         
         mConfirm = false;
-        mConfirmObject = object;
+        mConfirmObject = connection.mObject;
         mConfirmInIndex = inIndex;
-        mConfirmOutIndex = outIndex;
+        mConfirmOutIndex = connection.mIndex;
     
         // Check for connection *only* if the internal object is connected (otherwise assume the previously connected object has been deleted)
         
@@ -948,12 +950,23 @@ private:
     bool isOrderingInput(long index) const                                  { return isOrderingInput(index, mObject); }
     
     bool isConnected(long index) const                                      { return mObject->isConnected(index); }
-    t_object *getConnection(long index) const                               { return (t_object *) (isConnected(index) ? mObject->getConnection(index)->getOwner() : NULL); }
-    unsigned long getConnectionIdx(long index) const                        { return mObject->getConnectionIdx(index); }
+    
+    ObjectConnection getConnection(long index) const
+    {
+        if (isConnected(index))
+            return ObjectConnection((t_object *) mObject->getConnection(index).mObject->getOwner(), mObject->getConnection(index).mIndex);
+        else
+            return ObjectConnection();
+    }
+    
     unsigned long getNumOrderingConnections() const                         { return mObject->getNumOrderingConnections(); }
-    t_object *getOrderingConnection(long index) const                       { return (t_object *) mObject->getOrderingConnection(index)->getOwner(); }
-    unsigned long getOrderingConnectionIdx(long index) const                { return mObject->getOrderingConnectionIdx(index); }
-    bool matchConnection(t_object *src, long outIdx, long inIdx) const      { return getConnection(inIdx) == src && getConnectionIdx(inIdx) == outIdx; }
+    
+    ObjectConnection getOrderingConnection(long index) const      
+    {
+        return ObjectConnection((t_object *) mObject->getOrderingConnection(index).mObject->getOwner(), mObject->getOrderingConnection(index).mIndex);
+    }
+    
+    bool matchConnection(t_object *src, long outIdx, long inIdx) const      { return getConnection(inIdx).mObject == src && getConnection(inIdx).mIndex == outIdx; }
     
     void connect(t_object *src, long outIdx, long inIdx)
     {

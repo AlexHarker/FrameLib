@@ -603,11 +603,10 @@ void FrameLib_DSP::connectionUpdate(Queue *queue)
 
         // Add the DSP object connection details to the input
         
-        FrameLib_Block *blockIn = i < getNumIns() ? getConnection(i) : getOrderingConnection(i - getNumIns());
-        unsigned long outIdx = i <  getNumIns() ? getConnectionIdx(i) : getOrderingConnectionIdx(i - getNumIns());
+        BlockConnection connection = i < getNumIns() ? getConnection(i) : getOrderingConnection(i - getNumIns());
         
-        mInputs[i].mObject = blockIn ? blockIn->getOutputObject(outIdx) : NULL;
-        mInputs[i].mIndex = blockIn ? blockIn->getOutputObjectIdx(outIdx) : NULL;;
+        mInputs[i].mObject = connection.mObject ? connection.mObject->getOutputObject(connection.mIndex) : NULL;
+        mInputs[i].mIndex = connection.mObject ? connection.mObject->getOutputObjectIdx(connection.mIndex) : NULL;;
 
         // Build the input dependency list
         
@@ -632,7 +631,7 @@ void FrameLib_DSP::connectionUpdate(Queue *queue)
         
         for (unsigned long j = 0; j < blockObject->getNumIns(); j++)
         {
-            if (this == blockObject->getConnection(j))
+            if (this == blockObject->getConnection(j).mObject)
             {
                 for (unsigned long k = 0; k < blockObject->getNumInputObjects(j); k++)
                     addOutputDependency(blockObject->getInputObject(j, k));

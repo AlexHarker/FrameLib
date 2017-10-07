@@ -7,28 +7,30 @@
 
 unsigned long FrameLib_MultiChannel::getInputNumChans(unsigned long inIdx)
 {
-    if (getConnection(inIdx))
-        return getConnection(inIdx)->mOutputs[getConnectionIdx(inIdx)].size();
+    MultiChannelConnection connection = getConnection(inIdx);
     
-    return 0;
+    return connection.mObject ? connection.mObject->mOutputs[connection.mIndex].size() : 0;
 }
 
-FrameLib_MultiChannel::Connection FrameLib_MultiChannel::getInputChan(unsigned long inIdx, unsigned long chan)
+FrameLib_MultiChannel::BlockConnection FrameLib_MultiChannel::getInputChan(unsigned long inIdx, unsigned long chan)
 {
-    return getConnection(inIdx)->mOutputs[getConnectionIdx(inIdx)][chan];
+    MultiChannelConnection connection = getConnection(inIdx);
+
+    return connection.mObject->mOutputs[connection.mIndex][chan];
 }
 
 unsigned long FrameLib_MultiChannel::getOrderingConnectionNumChans(unsigned long idx)
 {
-    if (getOrderingConnection(idx))
-        return getOrderingConnection(idx)->mOutputs[getOrderingConnectionIdx(idx)].size();
-    
-    return 0;
+    MultiChannelConnection connection = getOrderingConnection(idx);
+
+    return connection.mObject ? connection.mObject->mOutputs[connection.mIndex].size() : 0;
 }
 
-FrameLib_MultiChannel::Connection FrameLib_MultiChannel::getOrderingConnectionChan(unsigned long idx, unsigned long chan)
+FrameLib_MultiChannel::BlockConnection FrameLib_MultiChannel::getOrderingConnectionChan(unsigned long idx, unsigned long chan)
 {
-    return getOrderingConnection(idx)->mOutputs[getOrderingConnectionIdx(idx)][chan];
+    MultiChannelConnection connection = getOrderingConnection(idx);
+    
+    return connection.mObject->mOutputs[connection.mIndex][chan];
 }
 
 // Update the inputs of all output dependencies

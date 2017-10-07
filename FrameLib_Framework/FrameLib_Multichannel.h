@@ -17,12 +17,12 @@ class FrameLib_MultiChannel : public FrameLib_Object<FrameLib_MultiChannel>
     
 protected:
 
-    typedef FrameLib_Object::UntypedConnection<FrameLib_Block> Connection;
+    typedef FrameLib_Object::UntypedConnection<FrameLib_Block> BlockConnection;
     
 private:
-    
-    typedef FrameLib_Object::UntypedConnection<FrameLib_MultiChannel> MultiChannelInput;
-    typedef std::vector<Connection> MultiChannelOutput;
+
+    typedef FrameLib_Object::UntypedConnection<FrameLib_MultiChannel> MultiChannelConnection;
+    typedef std::vector<BlockConnection> MultiChannelOutput;
     
 public:
         
@@ -73,10 +73,10 @@ protected:
     // Query Connections for Individual Channels
     
     unsigned long getInputNumChans(unsigned long inIdx);
-    Connection getInputChan(unsigned long inIdx, unsigned long chan);
+    BlockConnection getInputChan(unsigned long inIdx, unsigned long chan);
     
     unsigned long getOrderingConnectionNumChans(unsigned long idx);
-    Connection getOrderingConnectionChan(unsigned long idx, unsigned long chan);
+    BlockConnection getOrderingConnectionChan(unsigned long idx, unsigned long chan);
 
 private:
 
@@ -212,7 +212,7 @@ public:
         // Make initial output connections
         
         for (unsigned long i = 0; i < getNumOuts(); i++)
-            mOutputs[i].push_back(Connection(mBlocks[0], i));
+            mOutputs[i].push_back(BlockConnection(mBlocks[0], i));
         
         // Check for ordering support
         
@@ -388,7 +388,7 @@ private:
             
             for (unsigned long i = 0; i < getNumOuts(); i++)
                 for (unsigned long j = 0; j < nChannels; j++)
-                    mOutputs[i].push_back(Connection(mBlocks[j], i));
+                    mOutputs[i].push_back(BlockConnection(mBlocks[j], i));
             
             // Update Fixed Inputs
             
@@ -404,7 +404,7 @@ private:
             {
                 for (unsigned long j = 0; j < nChannels; j++)
                 {
-                    Connection connection = getInputChan(i, j % getInputNumChans(i));
+                    BlockConnection connection = getInputChan(i, j % getInputNumChans(i));
                     mBlocks[j]->addConnection(connection.mObject, connection.mIndex, i);
                 }
             }
@@ -428,7 +428,7 @@ private:
             {
                 for (unsigned long j = 0; j < nChannels; j++)
                 {
-                    Connection connection = getOrderingConnectionChan(i, j % getOrderingConnectionNumChans(i));
+                    BlockConnection connection = getOrderingConnectionChan(i, j % getOrderingConnectionNumChans(i));
                     mBlocks[j]->addOrderingConnection(connection.mObject, connection.mIndex);
                 }
             }
