@@ -569,7 +569,7 @@ class FrameLib_Block : public FrameLib_Object<FrameLib_Block>
     
 protected:
     
-    typedef FrameLib_Object::UntypedConnection<class FrameLib_DSP> DSPConnection;
+    typedef FrameLib_Object::UntypedConnection<FrameLib_Block> Connection;
     
 public:
     
@@ -582,16 +582,15 @@ public:
     // Channel Awareness
     
     virtual void setChannel(unsigned long chan) {}
-    
-    // Connection Queries
-    
-    virtual unsigned long getNumInputObjects(unsigned long blockIdx) = 0;
-    virtual DSPConnection getInputConnection(unsigned long blockIdx, unsigned long idx) = 0;
 
-    virtual DSPConnection getOutputConnection(unsigned long blockIdx) = 0;
+    
+    virtual unsigned long getNumInputObjects(unsigned long blockIdx)                        { return 1; }
+    virtual Connection getInputConnection(unsigned long blockIdx, unsigned long idx)        { return Connection(this, blockIdx); }
 
-    virtual unsigned long getNumOrderingConnectionObjects() = 0;
-    virtual class FrameLib_DSP *getOrderingConnectionObject(unsigned long idx) = 0;
+    virtual Connection getOutputConnection(unsigned long blockIdx)                          { return Connection(this, blockIdx); }
+
+    virtual unsigned long getNumOrderingConnectionObjects()                                 { return 1; }
+    virtual FrameLib_Block *getOrderingConnectionObject(unsigned long idx)                  { return this; }
 };
 
 #endif

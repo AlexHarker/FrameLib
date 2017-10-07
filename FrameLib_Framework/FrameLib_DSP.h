@@ -21,7 +21,6 @@ class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_D
     typedef FrameLib_Queueable<FrameLib_Block>::Queue Queue;
     typedef FrameLib_Queueable<FrameLib_DSP>::Queue LocalQueue;
     typedef FrameLib_Parameters::Serial Serial;
-    typedef FrameLib_Object::UntypedConnection<FrameLib_Block> BlockConnection;
 
     friend class FrameLib_ProcessingQueue;
     
@@ -169,16 +168,6 @@ protected:
     static void copyVector(double *output, double *input, unsigned long size)      { std::copy(input, input + size, output); }
     static void zeroVector(double *output, unsigned long size)                     { std::fill_n(output, size, 0.0); }
     
-    // Get DSP Object for a Given Input/Output
-
-    unsigned long getNumInputObjects(unsigned long blockIdx)                                { return 1; }
-    DSPConnection getInputConnection(unsigned long blockIdx, unsigned long idx)             { return DSPConnection(this, blockIdx); }
-    
-    DSPConnection getOutputConnection(unsigned long blockIdx)                               { return DSPConnection(this, blockIdx); }
-
-    unsigned long getNumOrderingConnectionObjects()                                         { return 1; }
-    FrameLib_DSP *getOrderingConnectionObject(unsigned long idx)                            { return this; }
-
 private:
     
     // Deleted

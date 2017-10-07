@@ -64,12 +64,12 @@ public:
     // Connection Queries
     
     virtual unsigned long getNumInputObjects(unsigned long blockIdx)                        { return mNumOuts; }
-    virtual DSPConnection getInputConnection(unsigned long blockIdx, unsigned long idx)     { return DSPConnection(mValves[idx], blockIdx); }
+    virtual Connection getInputConnection(unsigned long blockIdx, unsigned long idx)        { return Connection(mValves[idx], blockIdx); }
     
-    virtual DSPConnection getOutputConnection(unsigned long blockIdx)                       { return DSPConnection(mValves[blockIdx], 0); }
+    virtual Connection getOutputConnection(unsigned long blockIdx)                          { return Connection(mValves[blockIdx], 0); }
     
     virtual unsigned long getNumOrderingConnectionObjects()                                 { return 0; }
-    virtual FrameLib_DSP *getOrderingConnectionObject(unsigned long idx)                    { return NULL; }
+    virtual FrameLib_Block *getOrderingConnectionObject(unsigned long idx)                  { return NULL; }
     
     // N.B. - Nothing can be acheived by setting a fixed input, so ignore this
     

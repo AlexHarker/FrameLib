@@ -603,11 +603,11 @@ void FrameLib_DSP::connectionUpdate(Queue *queue)
 
         // Add the DSP object connection details to the input
         
-        BlockConnection connection = i < getNumIns() ? getConnection(i) : getOrderingConnection(i - getNumIns());
-        DSPConnection dspConnection = connection.mObject ? connection.mObject->getOutputConnection(connection.mIndex) : DSPConnection();
+        Connection connection = i < getNumIns() ? getConnection(i) : getOrderingConnection(i - getNumIns());
+        Connection dspConnection = connection.mObject ? connection.mObject->getOutputConnection(connection.mIndex) : Connection();
         
-        mInputs[i].mObject = dspConnection.mObject;
-        mInputs[i].mIndex = dspConnection.mIndex;
+        mInputs[i].mObject = dynamic_cast<FrameLib_DSP *>(dspConnection.mObject);
+        mInputs[i].mIndex = mInputs[i].mObject ? dspConnection.mIndex : 0;
 
         // Build the input dependency list
         
@@ -635,15 +635,25 @@ void FrameLib_DSP::connectionUpdate(Queue *queue)
             if (this == blockObject->getConnection(j).mObject)
             {
                 for (unsigned long k = 0; k < blockObject->getNumInputObjects(j); k++)
-                    addOutputDependency(blockObject->getInputConnection(j, k).mObject);
+                {
+                    FrameLib_DSP *dspObject = dynamic_cast<FrameLib_DSP *>(blockObject->getInputConnection(j, k).mObject);
+                    if (dspObject)
+                        addOutputDependency(dspObject);
+                }
             }
         }
         
         // Look at ordering connections
         
         if (blockObject->isOrderingConnection(this))
+        {
             for (unsigned long j = 0; j < blockObject->getNumOrderingConnectionObjects(); j++)
-                addOutputDependency(blockObject->getOrderingConnectionObject(j));
+            {
+                FrameLib_DSP *dspObject = dynamic_cast<FrameLib_DSP *>(blockObject->getOrderingConnectionObject(j));
+                if (dspObject)
+                    addOutputDependency(dspObject);
+            }
+        }
     }
 }
 
