@@ -132,7 +132,7 @@ public:
     
     void *getOwner() const                      { return mOwner; }
     
-    // Queries
+    // IO Queries
     
     unsigned long getNumIns() const             { return mNumIns; }
     unsigned long getNumOuts() const            { return mNumOuts; }
@@ -283,21 +283,20 @@ public:
         connectionUpdate(&queue);
     }
     
+    // Connection Queries
+
     bool isConnected(unsigned long inIdx) const
     {
-        return mConnections[inIdx].mObject != NULL;
+        return getConnection(inIdx).mObject != NULL;
     }
 
-    virtual void autoOrderingConnections() = 0;
-    virtual void clearAutoOrderingConnections() = 0;
-
-    // Connection Access
-    
     Connection getConnection(unsigned long idx) const                   { return mConnections[idx]; }
     
     bool supportsOrderingConnections() const                            { return mSupportsOrderingConnections; }
     unsigned long getNumOrderingConnections() const                     { return mOrderingConnections.size(); }
     Connection getOrderingConnection(unsigned long idx) const           { return mOrderingConnections[idx]; }
+    
+    // FIX - try to remove by refactoring DSP to minimise complexity...
     
     bool isOrderingConnection(T *object) const
     {
@@ -310,6 +309,11 @@ public:
     
     unsigned long getNumOutputDependencies() const                      { return mOutputDependencies.size(); }
     T *getOutputDependency(unsigned long idx) const                     { return mOutputDependencies[idx]; }
+    
+    // Automatic Dependency Connections
+    
+    virtual void autoOrderingConnections() = 0;
+    virtual void clearAutoOrderingConnections() = 0;
     
 protected:
     
@@ -583,6 +587,7 @@ public:
     
     virtual void setChannel(unsigned long chan) {}
 
+    // Connection Queries
     
     virtual unsigned long getNumInputObjects(unsigned long blockIdx)                        { return 1; }
     virtual Connection getInputConnection(unsigned long blockIdx, unsigned long idx)        { return Connection(this, blockIdx); }
