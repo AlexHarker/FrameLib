@@ -109,7 +109,7 @@ private:
     
     typedef UntypedConnection<FrameLib_Object> Connection;
     typedef UntypedConnection<const FrameLib_Object> ConstConnection;
-    typedef UntypedConnection<T> ObjectConnection;
+    typedef UntypedConnection<T> ObjectTypeConnection;
     typedef typename std::vector<Connection>::iterator ConnectionIterator;
     typedef typename std::vector<Connection>::const_iterator ConstConnectionIterator;
     
@@ -301,7 +301,7 @@ public:
     
     // Aliasing
     
-    void setInputAlias(ObjectConnection alias, unsigned long inIdx)
+    void setInputAlias(ObjectTypeConnection alias, unsigned long inIdx)
     {
         if (!mInputConnections[inIdx].mAliased && alias.mObject)
             changeConnection(inIdx, Connection(), false);
@@ -309,7 +309,7 @@ public:
         changeInputAlias(Connection(alias.mObject, alias.mIndex), inIdx, true);
     }
     
-    void setOutputAlias(ObjectConnection alias, unsigned long outIdx)
+    void setOutputAlias(ObjectTypeConnection alias, unsigned long outIdx)
     {
         if (!mOutputConnections[outIdx].mAliased && alias.mObject)
             clearOutput(outIdx);
@@ -328,38 +328,14 @@ public:
         changeOrderingAlias(alias, true);
     }
     
-    // Connection Queries
+    // Input Connection Queries
 
-    bool isConnected(unsigned long inIdx) const                         { return getConnection(inIdx).mObject != NULL; }
+    bool isConnected(unsigned long inIdx) const                             { return getConnection(inIdx).mObject != NULL; }
+    ObjectTypeConnection getConnection(unsigned long inIdx) const           { return getConnection(inIdx, false); }
     
-    ObjectConnection getConnection(unsigned long inIdx, bool resolveAliases = false) const
-    {
-        ConstConnection connection = traverseInputAliasesOutwards(inIdx);
-        if (resolveAliases && connection.mObject)
-            connection = connection.mObject->traverseOutputAliasesInwards(connection.mIndex);
-        return ObjectConnection(connection.mObject->mParent, connection.mIndex);
-    }
-    
-    bool supportsOrderingConnections() const                            { return mSupportsOrderingConnections; }
-    
-    unsigned long getNumOrderingConnections() const
-    {
-        const FrameLib_Object *object = traverseOrderingAliasesOutwards();
-        return object->mOrderingConnections.size();
-    }
-    
-    ObjectConnection getOrderingConnection(unsigned long idx, bool resolveAliases = false) const
-    {
-        const FrameLib_Object *object = traverseOrderingAliasesOutwards();
-        ConstConnection connection = ConstConnection(object->mOrderingConnections[idx].mObject, object->mOrderingConnections[idx].mIndex);
-        if (resolveAliases && connection.mObject)
-            connection = connection.mObject->traverseOutputAliasesInwards(connection.mIndex);
-        return ObjectConnection(connection.mObject->mParent, connection.mIndex);
-    }
-    
-    // FIX
-    unsigned long getNumOutputDependencies() const                      { return 0;}//mOutputDependencies.size(); }
-    T *getOutputDependency(unsigned long idx) const                     { return NULL;}//mOutputDependencies[idx]; }
+    bool supportsOrderingConnections() const                                { return mSupportsOrderingConnections; }
+    unsigned long getNumOrderingConnections() const                         { return traverseOrderingAliasesOutwards()->mOrderingConnections.size(); }
+    ObjectTypeConnection getOrderingConnection(unsigned long idx) const     { return getOrderingConnection(idx, false); }
     
     // Automatic Dependency Connections
     
@@ -368,6 +344,15 @@ public:
     
 protected:
     
+    // FIX
+    
+    // IO Connection Queries (protected)
+    
+    ObjectTypeConnection getConnectionInternal(unsigned long inIdx)         { return getConnection(inIdx, true); }
+    ObjectTypeConnection getOrderingConnectionInternal(unsigned long idx)   { return getOrderingConnection(idx, true); }
+    unsigned long getNumOutputDependencies() const                          { return 0;}//mOutputDependencies.size(); }
+    T *getOutputDependency(unsigned long idx) const                         { return NULL;}//mOutputDependencies[idx]; }
+   
     // IO Setup
     
     void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0)
@@ -461,6 +446,25 @@ private:
     
     virtual void connectionUpdate(Queue *queue) = 0;
     
+    // Input Connection Queries (with and without alias resolution
+    
+    ObjectTypeConnection getConnection(unsigned long inIdx, bool resolveAliases) const
+    {
+        ConstConnection connection = traverseInputAliasesOutwards(inIdx);
+        if (resolveAliases && connection.mObject)
+            connection = connection.mObject->traverseOutputAliasesInwards(connection.mIndex);
+        return ObjectTypeConnection(connection.mObject->mParent, connection.mIndex);
+    }
+    
+    ObjectTypeConnection getOrderingConnection(unsigned long idx, bool resolveAliases) const
+    {
+        const FrameLib_Object *object = traverseOrderingAliasesOutwards();
+        ConstConnection connection = ConstConnection(object->mOrderingConnections[idx].mObject, object->mOrderingConnections[idx].mIndex);
+        if (resolveAliases && connection.mObject)
+            connection = connection.mObject->traverseOutputAliasesInwards(connection.mIndex);
+        return ObjectTypeConnection(connection.mObject->mParent, connection.mIndex);
+    }
+
     // Connection Check
     
     ConnectionResult connectionCheck(T *object)

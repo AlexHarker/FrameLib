@@ -599,7 +599,7 @@ void FrameLib_DSP::connectionUpdate(Queue *queue)
 
         // Add the DSP object connection details to the input
         
-        Connection connection = i < getNumIns() ? getConnection(i, true) : getOrderingConnection(i - getNumIns(), true);
+        Connection connection = i < getNumIns() ? getConnectionInternal(i) : getOrderingConnectionInternal(i - getNumIns());
         
         mInputs[i].mObject = dynamic_cast<FrameLib_DSP *>(connection.mObject);
         mInputs[i].mIndex = mInputs[i].mObject ? connection.mIndex : 0;
