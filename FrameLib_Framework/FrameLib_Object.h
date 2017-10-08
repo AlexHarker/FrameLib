@@ -344,13 +344,20 @@ public:
     
 protected:
     
-    // FIX
-    
     // IO Connection Queries (protected)
     
-    ObjectTypeConnection getConnectionInternal(unsigned long inIdx)         { return getConnection(inIdx, true); }
-    ObjectTypeConnection getOrderingConnectionInternal(unsigned long idx)   { return getOrderingConnection(idx, true); }
-    std::vector<T *> getOutputDependencies() const                          { return std::vector<T *>();}
+    ObjectTypeConnection getConnectionInternal(unsigned long inIdx) const           { return getConnection(inIdx, true); }
+    ObjectTypeConnection getOrderingConnectionInternal(unsigned long idx) const     { return getOrderingConnection(idx, true); }
+    
+    std::vector<T *> getOutputDependencies() const
+    {
+        std::vector<T *> dependencies;
+        
+        for (unsigned long i = 0; i < getNumOuts(); i++)
+            addDependencies(dependencies, i);
+        
+        return dependencies;
+    }
    
     // IO Setup
     
@@ -607,6 +614,31 @@ private:
         
         if (notify)
             connectionUpdate(&queue);
+    }
+
+    // Add dependencies
+    
+    void addDependencies(std::vector<T *> &dependencies, unsigned long outIdx) const
+    {
+        if (mOutputConnections[outIdx].mAliased)
+        {
+            for (ConstConnectionIterator it = mOutputConnections[outIdx].mOut.begin(); it != mOutputConnections[outIdx].mOut.end(); it++)
+                it->mObject->addDependencies(dependencies, it->mIndex);
+        }
+        else
+        {
+            for (ConstConnectionIterator it = mOutputConnections[outIdx].mOut.begin(); it != mOutputConnections[outIdx].mOut.end(); it++)
+            {
+                typename std::vector<T *>::iterator jt;
+                
+                for (jt = dependencies.begin(); jt != dependencies.end(); jt++)
+                    if (*jt == it->mObject)
+                        break;
+                
+                if (jt == dependencies.end())
+                    dependencies.push_back(it->mObject->mParent);
+            }
+        }
     }
 
     // Aliasing
