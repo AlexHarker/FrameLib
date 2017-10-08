@@ -108,6 +108,7 @@ public:
     // Automatic Oredering Connections
     
     virtual void autoOrderingConnections();
+    virtual void clearAutoOrderingConnections();
 
 protected:
         
@@ -222,9 +223,7 @@ private:
     // Connections
     
     virtual void connectionUpdate(Queue *queue);
-    void addOutputDependency(FrameLib_DSP *object);
     virtual void autoOrderingConnections(LocalQueue *queue);
-    virtual void clearAutoOrderingConnections();
 
 protected:
    

@@ -15,10 +15,6 @@ FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, void *owne
 
 FrameLib_DSP::~FrameLib_DSP()
 {
-    // Clear connections before deleting
-    
-    clearConnections();
-    
     // Free output
     
     freeOutputMemory();
@@ -604,10 +600,9 @@ void FrameLib_DSP::connectionUpdate(Queue *queue)
         // Add the DSP object connection details to the input
         
         Connection connection = i < getNumIns() ? getConnection(i) : getOrderingConnection(i - getNumIns());
-        Connection dspConnection = connection.mObject ? connection.mObject->getOutputConnection(connection.mIndex) : Connection();
         
-        mInputs[i].mObject = dynamic_cast<FrameLib_DSP *>(dspConnection.mObject);
-        mInputs[i].mIndex = mInputs[i].mObject ? dspConnection.mIndex : 0;
+        mInputs[i].mObject = dynamic_cast<FrameLib_DSP *>(connection.mObject);
+        mInputs[i].mIndex = mInputs[i].mObject ? connection.mIndex : 0;
 
         // Build the input dependency list
         
@@ -626,47 +621,18 @@ void FrameLib_DSP::connectionUpdate(Queue *queue)
         
     for (unsigned long i = 0; i < getNumOutputDependencies(); i++)
     {
-        FrameLib_Block *blockObject = getOutputDependency(i);
+        FrameLib_DSP *object = dynamic_cast<FrameLib_DSP *>(getOutputDependency(i));
         
-        // Look at each input for a possible match
-        
-        for (unsigned long j = 0; j < blockObject->getNumIns(); j++)
+        if (object)
         {
-            if (this == blockObject->getConnection(j).mObject)
-            {
-                for (unsigned long k = 0; k < blockObject->getNumInputObjects(j); k++)
-                {
-                    FrameLib_DSP *dspObject = dynamic_cast<FrameLib_DSP *>(blockObject->getInputConnection(j, k).mObject);
-                    if (dspObject)
-                        addOutputDependency(dspObject);
-                }
-            }
-        }
-        
-        // Look at ordering connections
-        
-        if (blockObject->isOrderingConnection(this))
-        {
-            for (unsigned long j = 0; j < blockObject->getNumOrderingConnectionObjects(); j++)
-            {
-                FrameLib_DSP *dspObject = dynamic_cast<FrameLib_DSP *>(blockObject->getOrderingConnectionObject(j));
-                if (dspObject)
-                    addOutputDependency(dspObject);
-            }
+            for (it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
+                if (*it == object)
+                    break;
+            
+            if (it == mOutputDependencies.end())
+                mOutputDependencies.push_back(object);
         }
     }
-}
-
-void FrameLib_DSP::addOutputDependency(FrameLib_DSP *object)
-{
-    std::vector <FrameLib_DSP *>::iterator it;
-    
-    for (it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-        if (*it == object)
-            break;
-
-    if (it == mOutputDependencies.end())
-        mOutputDependencies.push_back(object);
 }
 
 void FrameLib_DSP::autoOrderingConnections()

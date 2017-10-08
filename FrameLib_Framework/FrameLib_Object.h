@@ -99,6 +99,8 @@ public:
         UntypedConnection() : mObject(NULL), mIndex(0) {}
         UntypedConnection(U *object, unsigned long index) : mObject(object), mIndex(index) {}
         
+        bool equal(const UntypedConnection& connection) { return connection.mObject == mObject && connection.mIndex == mIndex; }
+        
         U *mObject;
         unsigned long mIndex;
     };
@@ -110,6 +112,33 @@ private:
     typedef typename std::vector<Connection>::iterator ConnectionIterator;
     typedef typename std::vector<Connection>::const_iterator ConstConnectionIterator;
     
+    // A connector is a thing with one input and many outputs
+    
+    struct Connector
+    {
+        Connector() : mAliased(false) {}
+        
+        void addOut(Connection connection)
+        {
+            for (ConnectionIterator it = mOut.begin(); it != mOut.end(); it++)
+                if (it->equal(connection))
+                    return;
+            
+            mOut.push_back(connection);
+        }
+        
+        void deleteOut(Connection connection)
+        {
+            for (ConnectionIterator it = mOut.begin(); it != mOut.end(); it++)
+                if (it->equal(connection))
+                    mOut.erase(it);
+        }
+
+        bool mAliased;
+        Connection mIn;
+        std::vector<Connection> mOut;
+    };
+        
 public:
 
     typedef typename FrameLib_Queueable<T>::Queue Queue;
@@ -117,8 +146,9 @@ public:
     // Constructor / Destructor
     
     FrameLib_Object(ObjectType type, FrameLib_Context context, void *owner, T *parent)
-    : mType(type), mContext(context), mAllocator(context), mOwner(owner), mParent(parent), mNumIns(0), mNumOuts(0), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
-    virtual ~FrameLib_Object() {}
+    : mType(type), mContext(context), mAllocator(context), mOwner(owner), mParent(parent), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
+    
+    virtual ~FrameLib_Object() { deleteConnections(false); }
    
     // Object Type
     
@@ -134,8 +164,8 @@ public:
     
     // IO Queries
     
-    unsigned long getNumIns() const             { return mNumIns; }
-    unsigned long getNumOuts() const            { return mNumOuts; }
+    unsigned long getNumIns() const             { return mInputConnections.size(); }
+    unsigned long getNumOuts() const            { return mOutputConnections.size(); }
     unsigned long getNumAudioIns() const        { return getType() != kOutput ? mNumAudioChans : 0; }
     unsigned long getNumAudioOuts() const       { return getType() == kOutput ? mNumAudioChans : 0; }
     unsigned long getNumAudioChans()  const     { return mNumAudioChans; }
@@ -173,63 +203,60 @@ public:
     
     ConnectionResult addConnection(T *object, unsigned long outIdx, unsigned long inIdx)
     {
-        ConnectionResult result = connectionCheck(object);
-        Queue queue;
+        Connection thisConnection = traverseInputAliases(inIdx);
         
+        if (!thisConnection.equal(Connection(this, inIdx)))
+            return thisConnection.mObject->addConnection(object, outIdx, thisConnection.mIndex);
+
+        Connection connection = object->traverseOutputAliases(outIdx);
+        ConnectionResult result = connectionCheck(object);
+
         if (result == kConnectSuccess)
-        {
-            // Store data about connection and reset the dependency count
-            
-            T *prevObject = mConnections[inIdx].mObject;
-            mConnections[inIdx] = Connection(object, outIdx);
-            
-            // Update dependencies if the connection is now from a different object
-            
-            if (prevObject != object)
-            {
-                connectionRemoved(&queue, prevObject);
-                object->addOutputDependency(&queue, mParent);
-            }
-           
-            connectionUpdate(&queue);
-        }
+            changeConnection(inIdx, connection, true);
         
         return result;
     }
     
     void deleteConnection(unsigned long inIdx)
     {
-        Queue queue;
+        Connection thisConnection = traverseInputAliases(inIdx);
         
-        clearConnection(&queue, inIdx);
-        connectionUpdate(&queue);
+        if (!thisConnection.equal(Connection(this, inIdx)))
+            thisConnection.mObject->deleteConnection(thisConnection.mIndex);
+        else
+            changeConnection(inIdx, Connection(), true);
     }
-    
+        
     ConnectionResult addOrderingConnection(T *object, unsigned long outIdx)
     {
         if (!supportsOrderingConnections())
             return kConnectNoOrderingSupport;
-            
+        
+        Connection thisConnection = traverseOrderingAliases();
+        
+        if (!thisConnection.equal(Connection(this, -1)))
+            return thisConnection.mObject->addOrderingConnection(object, outIdx);
+        
+        Connection connection = object->traverseOutputAliases(outIdx);
         ConnectionResult result = connectionCheck(object);
-        Queue queue;
-
+        
         if (result == kConnectSuccess)
         {
             // If already connected there is nothing to do
         
             for (ConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); it++)
-                if (it->mObject == object && it->mIndex == outIdx)
+                if (it->equal(connection))
                     return kConnectSuccess;
 
-            // Add the ordering connection
+            // Add the ordering connections
             
-            mOrderingConnections.push_back(Connection(object, outIdx));
-
-            // Update dependencies
+            connection.mObject->mOutputConnections[connection.mIndex].addOut(Connection(this, -1));
+            mOrderingConnections.push_back(connection);
             
-            object->addOutputDependency(&queue, mParent);
-
-            connectionUpdate(&queue);
+            // Notify
+            
+            connection.mObject->connectionUpdate(&Queue());
+            connectionUpdate(&Queue());
         }
 
         return result;
@@ -237,75 +264,81 @@ public:
     
     void deleteOrderingConnection(T *object, unsigned long outIdx)
     {
-        Queue queue;
-
-        for (ConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); it++)
-        {
-            if (it->mObject == object && it->mIndex == outIdx)
-            {
-                deleteOrderingConnection(&queue, it);
-                break;
-            }
-        }
+        if (!supportsOrderingConnections())
+            return;
         
-        connectionUpdate(&queue);
+        Connection thisConnection = traverseOrderingAliases();
+        
+        if (!thisConnection.equal(Connection(this, -1)))
+            thisConnection.mObject->deleteOrderingConnection(object, outIdx);
+        else
+        {
+            for (ConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); it++)
+                if (it->equal(Connection(object, outIdx)))
+                    return deleteOrderingConnection(it, true);
+        }
     }
     
     void clearOrderingConnections()
     {
-        Queue queue;
-
-        deleteOrderingConnections(&queue);
-        connectionUpdate(&queue);
+        if (!supportsOrderingConnections())
+            return;
+        
+        Connection thisConnection = traverseOrderingAliases();
+        
+        if (!thisConnection.equal(Connection(this, -1)))
+            thisConnection.mObject->clearOrderingConnections();
+        else
+            deleteOrderingConnections(true);
     }
     
     void clearConnections()
     {
-        Queue queue;
-
-        // Clear input connections
+        deleteConnections(true);
+    }
+    
+    // Aliasing
+    
+    void setInputAlias(Connector alias, unsigned long inIdx)
+    {
+        if (!mInputConnections[inIdx].mAliased)
+            changeConnection(inIdx, Connection(), false);
         
-        for (unsigned long i = 0; i < mConnections.size(); i++)
-            clearConnection(&queue, i);
+        changeInputAlias(alias, inIdx, true);
+    }
+    
+    void setOutputAlias(Connector alias, unsigned long outIdx)
+    {
+        if (!mOutputConnections[outIdx].mAliased)
+            clearOutput(outIdx);
+        changeOutputAlias(alias, outIdx, true);
+    }
+    
+    void setOrderingAlias(T *alias)
+    {
+        if (!supportsOrderingConnections())
+            return;
         
-        // Delete ordering connections
-        
-        deleteOrderingConnections(&queue);
-        
-        // Delete output dependencies
-        
-        for (ObjectIterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); )
-        {
-            (*it)->disconnect(&queue, mParent);
-            it = mOutputDependencies.erase(it);
-        }
-        
-        connectionUpdate(&queue);
+        if (!mOrderingConnector.mAliased)
+            deleteOrderingConnections(false);
+        changeOrderingAlias(alias, true);
     }
     
     // Connection Queries
 
-    bool isConnected(unsigned long inIdx) const
+    bool isConnected(unsigned long inIdx) const                         { return getConnection(inIdx).mObject != NULL; }
+    Connection getConnection(unsigned long idx) const
     {
-        return getConnection(inIdx).mObject != NULL;
+        Connection connection = mInputConnections[idx].mIn;
+        
+        while (connection.mObject && connection.mObject->mOutputConnections[connection].mIn != NULL);
+        
+        return connection;
     }
-
-    Connection getConnection(unsigned long idx) const                   { return mConnections[idx]; }
     
     bool supportsOrderingConnections() const                            { return mSupportsOrderingConnections; }
     unsigned long getNumOrderingConnections() const                     { return mOrderingConnections.size(); }
     Connection getOrderingConnection(unsigned long idx) const           { return mOrderingConnections[idx]; }
-    
-    // FIX - try to remove by refactoring DSP to minimise complexity...
-    
-    bool isOrderingConnection(T *object) const
-    {
-        for (ConstConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); it++)
-            if (it->mObject == object)
-                return true;
-        
-        return false;
-    }
     
     unsigned long getNumOutputDependencies() const                      { return mOutputDependencies.size(); }
     T *getOutputDependency(unsigned long idx) const                     { return mOutputDependencies[idx]; }
@@ -321,11 +354,10 @@ protected:
     
     void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0)
     {
-        mNumIns = (getType() == kScheduler || nIns) ? nIns : 1;
-        mNumOuts = nOuts;
         mNumAudioChans = nAudioChans;
         
-        mConnections.resize(mNumIns);
+        mInputConnections.resize((getType() == kScheduler || nIns) ? nIns : 1);
+        mOutputConnections.resize(nOuts);
     }
     
     // Ordering Setup
@@ -427,100 +459,204 @@ private:
         return kConnectSuccess;
     }
     
-    // Dependency Updating
+    // Change input connection
     
-    void addOutputDependency(Queue *queue, T *object)
+    void changeConnection(unsigned long inIdx, Connection connection, bool notify)
     {
-        for (ObjectIterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-            if (*it == object)
-                return;
+        Queue queue;
         
-        mOutputDependencies.push_back(object);
-        connectionUpdate(queue);
-    }
-    
-    void deleteOutputDependency(Queue *queue, T *object)
-    {
-        for (ObjectIterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
+        if (!mInputConnections[inIdx].mIn.equal(connection))
         {
-            if (*it == object)
-            {
-                mOutputDependencies.erase(it);
-                connectionUpdate(queue);
-                return;
-            }
+            // Update all values
+            
+            Connection prevConnection = mInputConnections[inIdx].mIn;
+            
+            mInputConnections[inIdx].mIn = connection;
+            if (prevConnection.mObject)
+                prevConnection.mObject->mOutputConnections[prevConnection.mIndex].deleteOut(Connection(mParent, inIdx));
+            if (connection.mObject)
+                connection.mObject->mOutputConnections[connection.mIndex].addOut(Connection(mParent, inIdx));
+            
+            // Notify of updates
+            
+            if (prevConnection.mObject)
+                prevConnection.mObject->connectionUpdate(&queue);
+            if (connection.mObject)
+                connection.mObject->connectionUpdate(&queue);
+            if (notify)
+                connectionUpdate(&queue);
         }
-    }
-    
-    // Check whether a removed object is still connected somewhere, and if not update it's output dependencies
-    
-    void connectionRemoved(Queue *queue, T * object)
-    {
-        // Check that there is an object connected and that it is not connected to another input / ordering connection also
-        
-         if (!object)
-             return;
-        
-        for (ConnectionIterator it = mConnections.begin(); it != mConnections.end(); it++)
-            if (it->mObject == object)
-                return;
-        
-        for (ConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); it++)
-            if (it->mObject == object)
-                return;
-        
-        // Update dependencies
-        
-        object->deleteOutputDependency(queue, mParent);
-    }
-    
-    // Delete connection and set to defaults
-    
-    void clearConnection(Queue *queue, unsigned long inIdx)
-    {
-        T *prevObject = mConnections[inIdx].mObject;
-        mConnections[inIdx] = Connection();
-        connectionRemoved(queue, prevObject);
     }
     
     // Delete ordering connection
     
-    ConnectionIterator deleteOrderingConnection(Queue *queue, ConnectionIterator it)
+    ConnectionIterator deleteOrderingConnection(ConnectionIterator it, bool notify)
     {
-        T *object = it->mObject;
+        Connection connection = *it;
+        Queue queue;
+        
+        connection.mObject->mOutputConnections[connection.mIndex].deleteOut(Connection(mParent, -1));
         it = mOrderingConnections.erase(it);
-        connectionRemoved(queue, object);
+        
+        // Notify
+        
+        connection.mObject->connectionUpdate(&queue);
+        
+        if (notify)
+            connectionUpdate(&queue);
         
         return it;
     }
     
     // Delete all ordering connections
-
-    void deleteOrderingConnections(Queue *queue)
-    {
-        for (ConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); )
-            it = deleteOrderingConnection(queue, it);
-    }
-
-    // Remove all connections from a single object
     
-    void disconnect(Queue *queue, T *object)
+    ConnectionIterator deleteOrderingConnections(bool notify)
     {
-        for (ConnectionIterator it = mConnections.begin(); it != mConnections.end(); it++)
-            if (it->mObject == object)
-                *it = Connection();
+        Queue queue;
+
+        // Delete
         
         for (ConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); )
+            it = deleteOrderingConnection(it, false);
+        
+        // Notify
+        
+        if (notify)
+            connectionUpdate(&queue);
+    }
+    
+    // Clear output
+    
+    void clearOutput(unsigned long outIdx)
+    {
+        Queue queue;
+        
+        for (ConnectionIterator it = mOutputConnections[outIdx].mOut.begin(); it != mOutputConnections[outIdx].mOut.end(); )
         {
-            if (it->mObject == object)
-                it = mOrderingConnections.erase(it);
+            // Update all values
+
+            Connection prevConnection = *it;
+            
+            it = mOutputConnections[outIdx].mOut.erase(it);
+            prevConnection.mObject->mInputConnections[prevConnection.mIndex].mIn = Connection();
+            
+            // Notify
+
+            prevConnection.mObject->connectionUpdate(&queue);
+        }
+    }
+    
+    // Delete all connections
+    
+    void deleteConnections(bool notify)
+    {
+        Queue queue;
+
+        // Clear input connections
+        
+        for (unsigned long i = 0; i < getNumIns(); i++)
+        {
+            if (mInputConnections[i].mAliased)
+                changeInputAlias(Connection(), i, false);
             else
-                it++;
+                changeConnection(i, Connection(), false);
         }
         
-        connectionUpdate(queue);
+        // Clear ordering connections
+        
+        if (mOrderingConnector.mAliased)
+            changeOrderingAlias(NULL, false);
+        else
+            deleteOrderingConnections(false);
+        
+        // Clear outputs
+        
+        for (unsigned long i = 0; i < getNumOuts(); i++)
+        {
+            if (mOutputConnections[i].mAliased)
+                changeOutputAlias(Connection(), i, false);
+            else
+                clearOutput(i);
+        }
+        
+        // Notify
+        
+        if (notify)
+            connectionUpdate(&queue);
+    }
+
+    // Aliasing
+    
+    typedef Connector& (FrameLib_Object::*getConnectorMethod)(unsigned long);
+    
+    Connector& getInputConnector(unsigned long idx)       { return mInputConnections[idx]; }
+    Connector& getOutputConnector(unsigned long idx)      { return mOutputConnections[idx]; }
+    Connector& getOrderingConnector(unsigned long idx)    { return mOrderingConnector; }
+    
+    Connection traverseAliases(getConnectorMethod method, unsigned long idx) const
+    {
+        const Connector& connector = *method(idx);
+        
+        if (connector.mAliased)
+            connector.mIn.mObject->traverseAliases(connector.mIn.mIndex);
+        
+        return Connection(this, idx);
     }
     
+    void changeAlias(getConnectorMethod method, Connection alias, unsigned long idx, bool notify)
+    {
+        Connector& connector = *method(idx);
+        Connection prevConnection = connector.mIn;
+        Queue queue;
+        
+        // Update all values
+        
+        if (connector.mAliased && connector.mIn.mObject)
+            connector.mIn.mObject->method(connector.mIn.mIndex).deleteOut(Connector(this, idx));
+        if (alias.mObject)
+            alias.mObject->*method(alias.mIndex).addOut(Connector(mParent, idx));
+        
+        connector.mAliased = alias.mIn.mObject;
+        connector = alias;
+        
+        // Notify of updates
+        
+        if (prevConnection.mObject)
+            prevConnection.mObject->connectionUpdate(&queue);
+        if (alias.mObject)
+            alias.mObject->connectionUpdate(&queue);
+        if (notify)
+            connectionUpdate(&queue);
+    }
+
+    Connection traverseInputAliases(unsigned long inIdx) const      { return traverseAliases(&FrameLib_Object::getInputConnector, inIdx); }
+    Connection traverseOutputAliases(unsigned long outIdx) const    { return traverseAliases(&FrameLib_Object::getOutputConnector, outIdx); }
+    Connection traverseOrderingAliases() const                      { return traverseAliases(&FrameLib_Object::getOrderingConnector, -1); }
+    
+    void changeInputAlias(Connection alias, unsigned long inIdx, bool notify)    { changeAlias(&FrameLib_Object::getInputConnector, alias, inIdx, notify); }
+    void changeOutputAlias(Connection alias, unsigned long outIdx, bool notify)  { changeAlias(&FrameLib_Object::getOutputConnector, alias, outIdx, notify); }
+    void changeOrderingAlias(T *alias, bool notify)                           { changeAlias(&FrameLib_Object::getOrderingConnector, Connector(alias, -1), -1, notify); }
+    
+    /*
+    Connection findLatestOutConnection(unsigned long inIdx) const
+    {
+        // Start at the input, roll back until we are at an output
+        
+        Connection connection = traverseInputAliases(inIdx);
+        
+        return connection.mObject->mOutputConnections[connection.mIndex];
+    }
+    
+    Connection findEarliestOutConnection(unsigned long inIdx) const
+    {
+        // Start at the input, roll back until we are at an output, then resolve output aliases
+
+        Connection connection = findLatestOutConnection(inIdx);
+        
+        return connection.mObject->traverseOutputAliases(connection.mIndex);
+    }
+    */
+
     // Detect Potential Feedback in a Network
     
     bool detectFeedback(T *object)
@@ -533,8 +669,9 @@ private:
     void feedbackProbe(Queue *queue)
     {
         mFeedback = true;
-        for (typename std::vector <T *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-            queue->add(*it, &T::feedbackProbe);
+        // FIX!!!
+        //for (typename std::vector <T *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
+        //    queue->add(*it, &T::feedbackProbe);
     }
     
     // Data
@@ -546,17 +683,17 @@ private:
     void *mOwner;
     T *mParent;
     
-    // IO Counts
+    // Aidop IO Counts
     
-    unsigned long mNumIns;
-    unsigned long mNumOuts;
     unsigned long mNumAudioChans;
     
     // Connections
 
+    std::vector<Connector> mInputConnections;
+    std::vector<Connector> mOutputConnections;
+    
+    Connector mOrderingConnector;
     std::vector<Connection> mOrderingConnections;
-    std::vector<Connection> mConnections;
-    std::vector<T *> mOutputDependencies;
     
     bool mSupportsOrderingConnections;
     bool mFeedback;
@@ -586,16 +723,6 @@ public:
     // Channel Awareness
     
     virtual void setChannel(unsigned long chan) {}
-
-    // Connection Queries
-    
-    virtual unsigned long getNumInputObjects(unsigned long blockIdx)                        { return 1; }
-    virtual Connection getInputConnection(unsigned long blockIdx, unsigned long idx)        { return Connection(this, blockIdx); }
-
-    virtual Connection getOutputConnection(unsigned long blockIdx)                          { return Connection(this, blockIdx); }
-
-    virtual unsigned long getNumOrderingConnectionObjects()                                 { return 1; }
-    virtual FrameLib_Block *getOrderingConnectionObject(unsigned long idx)                  { return this; }
 };
 
 #endif

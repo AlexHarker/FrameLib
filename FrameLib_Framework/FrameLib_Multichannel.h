@@ -29,19 +29,15 @@ public:
     // Constructors
 
     FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long  nStreams, unsigned long nIns, unsigned long nOuts)
-    : FrameLib_Object(type, context, owner, this), mNumStreams(nStreams), mDeleted(false)
+    : FrameLib_Object(type, context, owner, this), mNumStreams(nStreams)
     { setIO(nIns, nOuts); }
     
     FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long  nStreams)
-    : FrameLib_Object(type, context, owner, this), mNumStreams(nStreams), mDeleted(false) {}
+    : FrameLib_Object(type, context, owner, this), mNumStreams(nStreams) {}
     
     // Destructor
     
-    virtual ~FrameLib_MultiChannel()
-    {
-        mDeleted = true;
-        clearConnections();
-    }
+    virtual ~FrameLib_MultiChannel() {}
     
     // Set Fixed Inputs
     
@@ -89,7 +85,7 @@ private:
     
     void connectionUpdate(Queue *queue)
     {
-        if (!mDeleted && inputUpdate())
+        if (inputUpdate())
             outputUpdate(queue);
     }
 
@@ -105,7 +101,6 @@ protected:
 private:
     
     unsigned long mNumStreams;
-    bool mDeleted;
 };
 
 // ************************************************************************************** //
