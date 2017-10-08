@@ -618,20 +618,15 @@ void FrameLib_DSP::connectionUpdate(Queue *queue)
     }
     
     // Build the output dependency list
-        
-    for (unsigned long i = 0; i < getNumOutputDependencies(); i++)
+    
+    std::vector<FrameLib_Block *> dependencies = getOutputDependencies();
+    
+    for (std::vector<FrameLib_Block *>::iterator it = dependencies.begin(); it != dependencies.end(); it++)
     {
-        FrameLib_DSP *object = dynamic_cast<FrameLib_DSP *>(getOutputDependency(i));
+        FrameLib_DSP *object = dynamic_cast<FrameLib_DSP *>(*it);
         
         if (object)
-        {
-            for (it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-                if (*it == object)
-                    break;
-            
-            if (it == mOutputDependencies.end())
-                mOutputDependencies.push_back(object);
-        }
+            mOutputDependencies.push_back(object);
     }
 }
 

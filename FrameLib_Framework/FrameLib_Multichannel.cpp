@@ -36,9 +36,11 @@ FrameLib_MultiChannel::BlockConnection FrameLib_MultiChannel::getOrderingConnect
 // Update the inputs of all output dependencies
 
 void FrameLib_MultiChannel::outputUpdate(Queue *queue)
-{    
-    for (unsigned long i = 0; i < getNumOutputDependencies(); i++)
-        queue->add(getOutputDependency(i), &FrameLib_MultiChannel::connectionUpdate);
+{
+    std::vector<FrameLib_MultiChannel *> dependencies = getOutputDependencies();
+    
+    for (std::vector<FrameLib_MultiChannel *>::iterator it = dependencies.begin(); it != dependencies.end(); it++)
+        queue->add(*it, &FrameLib_MultiChannel::connectionUpdate);
 }
 
 // ************************************************************************************** //

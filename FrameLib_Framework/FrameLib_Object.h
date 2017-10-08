@@ -350,8 +350,7 @@ protected:
     
     ObjectTypeConnection getConnectionInternal(unsigned long inIdx)         { return getConnection(inIdx, true); }
     ObjectTypeConnection getOrderingConnectionInternal(unsigned long idx)   { return getOrderingConnection(idx, true); }
-    unsigned long getNumOutputDependencies() const                          { return 0;}//mOutputDependencies.size(); }
-    T *getOutputDependency(unsigned long idx) const                         { return NULL;}//mOutputDependencies[idx]; }
+    std::vector<T *> getOutputDependencies() const                          { return std::vector<T *>();}
    
     // IO Setup
     
