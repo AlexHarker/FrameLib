@@ -29,11 +29,11 @@ public:
     // Constructors
 
     FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long  nStreams, unsigned long nIns, unsigned long nOuts)
-    : FrameLib_Object(type, context, owner, this), mNumStreams(nStreams)
+    : FrameLib_Object(type, context, owner), mNumStreams(nStreams)
     { setIO(nIns, nOuts); }
     
     FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long  nStreams)
-    : FrameLib_Object(type, context, owner, this), mNumStreams(nStreams) {}
+    : FrameLib_Object(type, context, owner), mNumStreams(nStreams) {}
     
     // Destructor
     

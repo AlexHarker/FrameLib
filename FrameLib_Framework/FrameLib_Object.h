@@ -159,8 +159,8 @@ public:
 
     // Constructor / Destructor
     
-    FrameLib_Object(ObjectType type, FrameLib_Context context, void *owner, T *parent)
-    : mType(type), mContext(context), mAllocator(context), mOwner(owner), mParent(parent), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
+    FrameLib_Object(ObjectType type, FrameLib_Context context, void *owner)
+    : mType(type), mContext(context), mAllocator(context), mOwner(owner), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
     
     virtual ~FrameLib_Object() { deleteConnections(false); }
    
@@ -456,21 +456,20 @@ private:
     
     ObjectTypeConnection getConnection(unsigned long inIdx, bool resolveAliases) const
     {
-        ConstConnection inputConnection = traverseInputAliasesOutwards(inIdx);
-        Connection outputConnection = inputConnection.mObject->mInputConnections[inputConnection.mIndex].mIn;
-        ConstConnection connection = ConstConnection(outputConnection.mObject, outputConnection.mIndex);
+        Connection inputConnection = traverseInputAliasesOutwards(inIdx);
+        Connection connection = inputConnection.mObject->mInputConnections[inputConnection.mIndex].mIn;
         if (resolveAliases && connection.mObject)
             connection = connection.mObject->traverseOutputAliasesInwards(connection.mIndex);
-        return ObjectTypeConnection(connection.mObject->mParent, connection.mIndex);
+        return ObjectTypeConnection(dynamic_cast<T*>(connection.mObject), connection.mIndex);
     }
     
     ObjectTypeConnection getOrderingConnection(unsigned long idx, bool resolveAliases) const
     {
         const FrameLib_Object *object = traverseOrderingAliasesOutwards();
-        ConstConnection connection = ConstConnection(object->mOrderingConnections[idx].mObject, object->mOrderingConnections[idx].mIndex);
+        Connection connection = Connection(object->mOrderingConnections[idx].mObject, object->mOrderingConnections[idx].mIndex);
         if (resolveAliases && connection.mObject)
             connection = connection.mObject->traverseOutputAliasesInwards(connection.mIndex);
-        return ObjectTypeConnection(connection.mObject->mParent, connection.mIndex);
+        return ObjectTypeConnection(dynamic_cast<T*>(connection.mObject), connection.mIndex);
     }
 
     // Connection Check
@@ -638,19 +637,19 @@ private:
                         break;
                 
                 if (jt == dependencies.end())
-                    dependencies.push_back(it->mObject->mParent);
+                    dependencies.push_back(dynamic_cast<T*>(it->mObject));
             }
         }
     }
 
     // Aliasing
     
-    ConstConnection traverseInputAliasesOutwards(unsigned long inIdx) const
+    Connection traverseInputAliasesOutwards(unsigned long inIdx) const
     {
         if (mInputConnections[inIdx].mAliased)
             return mInputConnections[inIdx].mIn.mObject->traverseInputAliasesOutwards(mInputConnections[inIdx].mIn.mIndex);
         
-        return ConstConnection(this, inIdx);
+        return Connection(const_cast<FrameLib_Object *>(this), inIdx);
     }
     
     const FrameLib_Object *traverseOrderingAliasesOutwards() const
@@ -661,12 +660,12 @@ private:
         return this;
     }
     
-    ConstConnection traverseOutputAliasesInwards(unsigned long outIdx) const
+    Connection traverseOutputAliasesInwards(unsigned long outIdx) const
     {
         if (mOutputConnections[outIdx].mIn.mObject)
             return mOutputConnections[outIdx].mIn.mObject->traverseOutputAliasesInwards(mOutputConnections[outIdx].mIn.mIndex);
         
-        return ConstConnection(this, outIdx);
+        return Connection(const_cast<FrameLib_Object *>(this), outIdx);
     }
     
     typedef Connector& (FrameLib_Object::*ConnectorMethod)(unsigned long);
@@ -731,7 +730,7 @@ private:
     bool detectFeedback(T *object)
     {
         object->mFeedback = false;
-        Queue queue(mParent, &T::feedbackProbe);
+        Queue queue(dynamic_cast<T*>(this), &T::feedbackProbe);
         return object->mFeedback;
     }
 
@@ -750,7 +749,6 @@ private:
     FrameLib_Context::Allocator mAllocator;
     
     void *mOwner;
-    T *mParent;
     
     // Audio IO Counts
     
@@ -786,7 +784,7 @@ public:
     // Constructor / Destructor
     
     FrameLib_Block(ObjectType type, FrameLib_Context context, void *owner)
-    : FrameLib_Object<FrameLib_Block>(type, context, owner, this) {}
+    : FrameLib_Object<FrameLib_Block>(type, context, owner) {}
     virtual ~FrameLib_Block() {}
 
     // Channel Awareness
