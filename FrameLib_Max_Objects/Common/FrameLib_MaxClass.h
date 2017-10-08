@@ -998,6 +998,7 @@ private:
                 
             case kConnectSuccess:
             case kConnectNoOrderingSupport:
+            case kConnectAliased:
                 break;
         }
     }

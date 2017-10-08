@@ -61,16 +61,6 @@ public:
     virtual FrameType inputType(unsigned long idx) const    { return kFrameAny; }
     virtual FrameType outputType(unsigned long idx) const   { return kFrameAny; }
     
-    // Connection Queries
-    
-    virtual unsigned long getNumInputObjects(unsigned long blockIdx)                        { return mNumOuts; }
-    virtual Connection getInputConnection(unsigned long blockIdx, unsigned long idx)        { return Connection(mValves[idx], blockIdx); }
-    
-    virtual Connection getOutputConnection(unsigned long blockIdx)                          { return Connection(mValves[blockIdx], 0); }
-    
-    virtual unsigned long getNumOrderingConnectionObjects()                                 { return 0; }
-    virtual FrameLib_Block *getOrderingConnectionObject(unsigned long idx)                  { return NULL; }
-    
     // N.B. - Nothing can be acheived by setting a fixed input, so ignore this
     
     virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) {}
