@@ -456,7 +456,9 @@ private:
     
     ObjectTypeConnection getConnection(unsigned long inIdx, bool resolveAliases) const
     {
-        ConstConnection connection = traverseInputAliasesOutwards(inIdx);
+        ConstConnection inputConnection = traverseInputAliasesOutwards(inIdx);
+        Connection outputConnection = inputConnection.mObject->mInputConnections[inputConnection.mIndex].mIn;
+        ConstConnection connection = ConstConnection(outputConnection.mObject, outputConnection.mIndex);
         if (resolveAliases && connection.mObject)
             connection = connection.mObject->traverseOutputAliasesInwards(connection.mIndex);
         return ObjectTypeConnection(connection.mObject->mParent, connection.mIndex);
@@ -646,7 +648,7 @@ private:
     ConstConnection traverseInputAliasesOutwards(unsigned long inIdx) const
     {
         if (mInputConnections[inIdx].mAliased)
-            mInputConnections[inIdx].mIn.mObject->traverseInputAliasesOutwards(mInputConnections[inIdx].mIn.mIndex);
+            return mInputConnections[inIdx].mIn.mObject->traverseInputAliasesOutwards(mInputConnections[inIdx].mIn.mIndex);
         
         return ConstConnection(this, inIdx);
     }
@@ -654,7 +656,7 @@ private:
     const FrameLib_Object *traverseOrderingAliasesOutwards() const
     {
         if (mOrderingConnector.mAliased)
-            mOrderingConnector.mIn.mObject->traverseOrderingAliasesOutwards();
+            return mOrderingConnector.mIn.mObject->traverseOrderingAliasesOutwards();
         
         return this;
     }
@@ -662,7 +664,7 @@ private:
     ConstConnection traverseOutputAliasesInwards(unsigned long outIdx) const
     {
         if (mOutputConnections[outIdx].mIn.mObject)
-            mOutputConnections[outIdx].mIn.mObject->traverseOutputAliasesInwards(mOutputConnections[outIdx].mIn.mIndex);
+            return mOutputConnections[outIdx].mIn.mObject->traverseOutputAliasesInwards(mOutputConnections[outIdx].mIn.mIndex);
         
         return ConstConnection(this, outIdx);
     }
