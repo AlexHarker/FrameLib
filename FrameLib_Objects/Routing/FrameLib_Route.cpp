@@ -56,13 +56,13 @@ FrameLib_Route::FrameLib_Route(FrameLib_Context context, FrameLib_Parameters::Se
     {
         mValves.push_back(new Valve(context, serialisedParameters, owner, i));
         mValves[i]->setInputAlias(Connection(this, 0), 0);
-        mValves[i]->setInputAlias(Connection(this, 0), 1);
+        mValves[i]->setInputAlias(Connection(this, 1), 1);
         mValves[i]->setOutputAlias(Connection(this, i), 0);
     }
 }
 
 FrameLib_Route::~FrameLib_Route()
-{
+{    
     for (std::vector<Valve *>::iterator it = mValves.begin(); it != mValves.end(); it++)
         delete (*it);
 }
