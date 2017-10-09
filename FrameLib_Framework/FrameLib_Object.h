@@ -108,9 +108,9 @@ public:
     
 private:
     
+    typedef UntypedConnection<T> ObjectTypeConnection;
     typedef UntypedConnection<FrameLib_Object> Connection;
     typedef UntypedConnection<const FrameLib_Object> ConstConnection;
-    typedef UntypedConnection<T> ObjectTypeConnection;
     typedef typename std::vector<Connection>::iterator ConnectionIterator;
     typedef typename std::vector<Connection>::const_iterator ConstConnectionIterator;
     
@@ -767,9 +767,10 @@ private:
     void feedbackProbe(Queue *queue)
     {
         mFeedback = true;
-        // FIX!!!
-        //for (typename std::vector <T *>::iterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-        //    queue->add(*it, &T::feedbackProbe);
+        
+        for (typename std::vector<Connector>::iterator it = mOutputConnections.begin(); it != mOutputConnections.end(); it++)
+            for (ConnectionIterator jt = it->mOut.begin(); jt != it->mOut.end(); jt++)
+                queue->add(static_cast<T *>(jt->mObject), &T::feedbackProbe);
     }
     
     // Data
