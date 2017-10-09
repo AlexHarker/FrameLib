@@ -237,9 +237,7 @@ public:
     }
     
     // Audio Processing
-    
-    // FIX - allow the expand object to write/read different blocks from different audio IO (auto multichannel)
-    
+        
     virtual void blockUpdate(double **ins, double **outs, unsigned long blockSize)
     {
         unsigned long internalNumIns = mBlocks[0]->getNumAudioIns();

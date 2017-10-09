@@ -264,6 +264,8 @@ public:
         FrameLib_LocalAllocator *mAllocator;
     };
     
+    typedef std::vector<Storage *>::iterator StorageIterator;
+
     // ************************************************************************************** //
 
     // Constructor / Destructor

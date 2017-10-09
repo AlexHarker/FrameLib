@@ -210,7 +210,8 @@ private:
 
 template <class T> class Wrapper : public MaxClass_Base
 {
-    
+    typedef std::vector<t_object *>::iterator ObjectIterator;
+
 public:
     
     // Initialise Class
@@ -339,10 +340,10 @@ public:
     {
         // Delete ins and proxies
         
-        for (std::vector <t_object *>::iterator it = mProxyIns.begin(); it != mProxyIns.end(); it++)
+        for (ObjectIterator it = mProxyIns.begin(); it != mProxyIns.end(); it++)
             object_free(*it);
         
-        for (std::vector <t_object *>::iterator it = mInOutlets.begin(); it != mInOutlets.end(); it++)
+        for (ObjectIterator it = mInOutlets.begin(); it != mInOutlets.end(); it++)
             object_free(*it);
         
         // Free objects - N.B. - free the patch, but not the object within it (which will be freed by deleting the patch)
@@ -407,13 +408,13 @@ private:
     
     // Inlets (must be freed)
     
-    std::vector <t_object *> mInOutlets;
-    std::vector <t_object *> mProxyIns;
+    std::vector<t_object *> mInOutlets;
+    std::vector<t_object *> mProxyIns;
     
     // Outlets (don't need to free)
     
-    std::vector <t_object *> mAudioOuts;
-    std::vector <t_object *> mOuts;
+    std::vector<t_object *> mAudioOuts;
+    std::vector<t_object *> mOuts;
     
     // Dummy for stuffloc on proxies
     
@@ -428,6 +429,8 @@ template <class T, bool argsSetAllInputs = false> class FrameLib_MaxClass : publ
 {
 
     typedef FrameLib_Object<t_object *>::UntypedConnection<t_object> ObjectConnection;
+    typedef std::vector<t_object *>::iterator ObjectIterator;
+    typedef FrameLib_MaxGlobals::ConnectionInfo ConnectionInfo;
 
 public:
     
@@ -527,7 +530,7 @@ public:
 
         delete mObject;
 
-        for (typename std::vector <t_object *>::iterator it = mInputs.begin(); it != mInputs.end(); it++)
+        for (ObjectIterator it = mInputs.begin(); it != mInputs.end(); it++)
             object_free(*it);
         
         object_free(mSyncIn);
@@ -829,8 +832,6 @@ public:
     }
 
 private:
-    
-    typedef FrameLib_MaxGlobals::ConnectionInfo ConnectionInfo;
     
     // Unwrapping connections
     
@@ -1275,8 +1276,8 @@ private:
     
     FrameLib_MultiChannel *mObject;
     
-    std::vector <t_object *> mInputs;
-    std::vector <void *> mOutputs;
+    std::vector<t_object *> mInputs;
+    std::vector<void *> mOutputs;
 
     long mProxyNum;
     t_object *mConfirmObject;

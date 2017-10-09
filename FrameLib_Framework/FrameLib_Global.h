@@ -41,9 +41,10 @@ private:
         
         // Type definition for concision and internal pointers
         
-        typedef std::vector<CountablePointer> VectorType;
+        typedef std::vector<CountablePointer> PointerVector;
+        typedef typename PointerVector::iterator Iterator;
         
-        VectorType mPointers;
+        PointerVector mPointers;
     };
     
     // Constructor / Destructor

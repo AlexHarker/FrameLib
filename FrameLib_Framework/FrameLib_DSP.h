@@ -82,6 +82,12 @@ private:
         size_t mPointerOffset;
     };
     
+    // Typedefs for concision
+    
+    typedef std::vector<Input>::iterator InputIterator;
+    typedef std::vector<Output>::iterator OutputIterator;
+    typedef std::vector<FrameLib_DSP *>::iterator ObjectIterator;
+
 public:
 
     // Constructor / Destructor
