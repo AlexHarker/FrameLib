@@ -91,6 +91,7 @@ private:
 template <class T>
 class FrameLib_Object : public FrameLib_Queueable<T>
 {
+    const unsigned long kOrdering = -1;
     
 public:
 
@@ -481,8 +482,8 @@ private:
     
     Connection getConnection(unsigned long inIdx, bool resolveAliases) const
     {
-        Connection inputConnection = traverseAliases(&FrameLib_Object::getInputConnector, inIdx);
-        Connection connection = inputConnection.mObject->mInputConnections[inputConnection.mIndex].mIn;
+        Connection connection = traverseAliases(&FrameLib_Object::getInputConnector, inIdx);
+        connection = connection.mObject->mInputConnections[connection.mIndex].mIn;
         if (resolveAliases && connection.mObject)
             connection = connection.mObject->traverseAliases(&FrameLib_Object::getOutputConnector, connection.mIndex);
         return connection;
@@ -531,8 +532,22 @@ private:
     
     void notifyAliasChanged(ConnectorMethod method, Connection connection)
     {
-        if (connection.mObject)
-            notifyConnectionsChanged(connection.mObject->traverseAliases(method, connection.mIndex));
+        if (!connection.mObject)
+            return;
+        
+        if (method == &FrameLib_Object::getOrderingConnector)
+        {
+            FrameLib_Object *object = connection.mObject->traverseOrderingAliases();
+            std::vector<Connection> &connections = object->mOrderingConnections;
+            
+            for (ConnectionIterator it = connections.begin(); it != connections.end(); it++)
+                notifyConnectionsChanged(*it);
+        }
+        else
+        {
+            connection = connection.mObject->traverseAliases(method, connection.mIndex);
+            notifyConnectionsChanged((connection.mObject->*method)(connection.mIndex).mIn);
+        }
     }
 
     // Change Input Connection
@@ -575,7 +590,7 @@ private:
         if (!listUpdate(mOrderingConnections, connection))
             return kConnectSuccess;
         
-        (this->*alterConnector)(&FrameLib_Object::getOutputConnector, connection, -1, false);
+        (this->*alterConnector)(&FrameLib_Object::getOutputConnector, connection, kOrdering, false);
         
         // Notify
         
@@ -598,7 +613,7 @@ private:
             
             Connection connection = mOrderingConnections.back();
             mOrderingConnections.pop_back();
-            deleteFromConnector(&FrameLib_Object::getOutputConnector, connection, -1);
+            deleteFromConnector(&FrameLib_Object::getOutputConnector, connection, kOrdering);
             
             // Notify
             
@@ -645,7 +660,7 @@ private:
         
         clearOrderingConnections(false);
         changeOrderingAlias(NULL, false);
-        clearAliases(&FrameLib_Object::getOrderingConnector, -1);
+        clearAliases(&FrameLib_Object::getOrderingConnector, kOrdering);
         
         // Clear outputs
         
@@ -679,12 +694,12 @@ private:
     
     void unwrapDependencies(std::vector<T *> &dependencies, unsigned long inIdx) const
     {
-        if (inIdx == -1 && mOrderingConnector.mOut.size())
+        if (inIdx == kOrdering && mOrderingConnector.mOut.size())
         {
             for (ConstConnectionIterator it = mOrderingConnector.mOut.begin(); it != mOrderingConnector.mOut.end(); it++)
                 it->mObject->unwrapDependencies(dependencies, it->mIndex);
         }
-        else if (mInputConnections[inIdx].mOut.size())
+        else if (inIdx != kOrdering && mInputConnections[inIdx].mOut.size())
         {
             for (ConstConnectionIterator it = mInputConnections[inIdx].mOut.begin(); it != mInputConnections[inIdx].mOut.end(); it++)
                 it->mObject->unwrapDependencies(dependencies, it->mIndex);
@@ -741,8 +756,10 @@ private:
         else
             unwrapDependencies(dependencies, idx);
         
-        // Clear
+        // Remove from aliased objects and clear
 
+        for (ConnectionIterator it = connector.mOut.begin(); it != connector.mOut.end(); it++)
+            (it->mObject->*method)(it->mIndex).mIn = Connection();
         connector.clearOuts(isOutput(method));
         
         // Notify
@@ -751,10 +768,10 @@ private:
             (*it)->notifySelf();
     }
 
-    // Simply Ordering Calls
+    // Simpler Ordering Calls
     
-    const FrameLib_Object *traverseOrderingAliases() const      { return traverseAliases(&FrameLib_Object::getOrderingConnector, -1).mObject; }
-    void changeOrderingAlias(T *alias, bool notify)             { changeAlias(&FrameLib_Object::getOrderingConnector, Connection(alias, -1), -1, notify); }
+    FrameLib_Object *traverseOrderingAliases() const      { return traverseAliases(&FrameLib_Object::getOrderingConnector, kOrdering).mObject; }
+    void changeOrderingAlias(T *alias, bool notify)       { changeAlias(&FrameLib_Object::getOrderingConnector, Connection(alias, kOrdering), kOrdering, notify); }
     
     // Detect Potential Feedback in a Network
     

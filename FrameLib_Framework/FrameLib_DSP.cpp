@@ -632,7 +632,7 @@ void FrameLib_DSP::autoOrderingConnections()
 void FrameLib_DSP::autoOrderingConnections(LocalQueue *queue)
 {
     if (supportsOrderingConnections() && queue->getFirst())
-        addOrderingConnection(Connection(queue->getFirst(), -1));
+        addOrderingConnection(Connection(queue->getFirst(), 0));
         
     for (ObjectIterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
         queue->add(*it, &FrameLib_DSP::autoOrderingConnections);
