@@ -19,12 +19,13 @@ public:
     
     class Queue
     {
-        typedef void (T::*Method)(Queue *);
         
     public:
         
-        Queue() : mMethod(NULL), mTop(NULL), mTail(NULL) {}
-        Queue(T *object, Method method) : mMethod(NULL), mTop(NULL), mTail(NULL) { add(object, method); }
+        typedef void (T::*Method)(Queue *);
+
+        Queue() : mMethod(NULL), mFirst(NULL), mTop(NULL), mTail(NULL) {}
+        Queue(T *object, Method method) : mMethod(NULL), mFirst(NULL), mTop(NULL), mTail(NULL) { add(object, method); }
         
         void add(T *object, Method method)
         {
@@ -117,12 +118,12 @@ private:
     
     struct Connector
     {
-        Connector() : mAliased(false) {}
+        Connector() : mInternal(false) {}
         
-        void addOut(Connection connection, bool setAlias)
+        void addOut(Connection connection, bool setInternal)
         {
-            if (setAlias)
-                mAliased = true;
+            if (setInternal)
+                mInternal = true;
             
             for (ConnectionIterator it = mOut.begin(); it != mOut.end(); it++)
                 if (it->equal(connection))
@@ -131,24 +132,29 @@ private:
             mOut.push_back(connection);
         }
         
-        void deleteOut(Connection connection, bool setAlias)
+        void deleteOut(Connection connection, bool setInternal)
         {
             for (ConnectionIterator it = mOut.begin(); it != mOut.end(); it++)
+            {
                 if (it->equal(connection))
+                {
                     mOut.erase(it);
+                    break;
+                }
+            }
             
-            if (setAlias && !mOut.size())
-                mAliased = false;
+            if (setInternal && !mOut.size())
+                mInternal = false;
         }
         
-        void clearOuts(bool setAlias)
+        void clearOuts(bool setInternal)
         {
             mOut.clear();
-            if (setAlias)
-                mAliased = false;
+            if (setInternal)
+                mInternal = false;
         }
 
-        bool mAliased;
+        bool mInternal;
         Connection mIn;
         std::vector<Connection> mOut;
     };
@@ -162,7 +168,10 @@ public:
     FrameLib_Object(ObjectType type, FrameLib_Context context, void *owner)
     : mType(type), mContext(context), mAllocator(context), mOwner(owner), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
     
-    virtual ~FrameLib_Object() { deleteConnections(false); }
+    virtual ~FrameLib_Object()
+    {
+        deleteConnections(false);
+    }
    
     // Object Type
     
@@ -217,7 +226,7 @@ public:
     
     ConnectionResult addConnection(T *object, unsigned long outIdx, unsigned long inIdx)
     {
-        if (mInputConnections[inIdx].mAliased || object->mOutputConnections[outIdx].mAliased)
+        if (mInputConnections[inIdx].mInternal || object->mOutputConnections[outIdx].mInternal)
             return kConnectAliased;
         
         Connection connection = Connection(object, outIdx);
@@ -232,7 +241,7 @@ public:
     
     void deleteConnection(unsigned long inIdx)
     {
-        if (mInputConnections[inIdx].mAliased)
+        if (mInputConnections[inIdx].mInternal)
             return;
         
         changeConnection(inIdx, Connection(), true);
@@ -242,7 +251,7 @@ public:
     {
         if (!supportsOrderingConnections())
             return kConnectNoOrderingSupport;
-        if (mOrderingConnector.mAliased || object->mOutputConnections[outIdx].mAliased)
+        if (mOrderingConnector.mInternal || object->mOutputConnections[outIdx].mInternal)
             return kConnectAliased;
 
         Connection connection = Connection(object, outIdx);
@@ -273,7 +282,7 @@ public:
     
     void deleteOrderingConnection(T *object, unsigned long outIdx)
     {
-        if (!supportsOrderingConnections() || mOrderingConnector.mAliased)
+        if (!supportsOrderingConnections() || mOrderingConnector.mInternal)
             return;
 
         for (ConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); it++)
@@ -288,7 +297,7 @@ public:
     
     void clearOrderingConnections()
     {
-        if (!supportsOrderingConnections() || mOrderingConnector.mAliased)
+        if (!supportsOrderingConnections() || mOrderingConnector.mInternal)
             return;
         
         deleteOrderingConnections(true);
@@ -303,7 +312,7 @@ public:
     
     void setInputAlias(ObjectTypeConnection alias, unsigned long inIdx)
     {
-        if (!mInputConnections[inIdx].mAliased && alias.mObject)
+        if (!mInputConnections[inIdx].mInternal && alias.mObject)
             changeConnection(inIdx, Connection(), false);
         
         changeInputAlias(Connection(alias.mObject, alias.mIndex), inIdx, true);
@@ -311,7 +320,7 @@ public:
     
     void setOutputAlias(ObjectTypeConnection alias, unsigned long outIdx)
     {
-        if (!mOutputConnections[outIdx].mAliased && alias.mObject)
+        if (!mOutputConnections[outIdx].mInternal && alias.mObject)
             clearOutput(outIdx);
         if (alias.mObject)
             alias.mObject->changeOutputAlias(Connection(this, outIdx), alias.mIndex, true);
@@ -323,7 +332,7 @@ public:
         if (!supportsOrderingConnections())
             return;
         
-        if (!mOrderingConnector.mAliased && alias)
+        if (!mOrderingConnector.mInternal && alias)
             deleteOrderingConnections(false);
         changeOrderingAlias(alias, true);
     }
@@ -450,7 +459,7 @@ private:
     
     // Connection Methods (private)
     
-    virtual void connectionUpdate(Queue *queue) = 0;
+    virtual void connectionUpdate(Queue *queue) {};
     
     // Input Connection Queries (with and without alias resolution
     
@@ -460,7 +469,7 @@ private:
         Connection connection = inputConnection.mObject->mInputConnections[inputConnection.mIndex].mIn;
         if (resolveAliases && connection.mObject)
             connection = connection.mObject->traverseOutputAliasesInwards(connection.mIndex);
-        return ObjectTypeConnection(dynamic_cast<T*>(connection.mObject), connection.mIndex);
+        return ObjectTypeConnection(static_cast<T*>(connection.mObject), connection.mIndex);
     }
     
     ObjectTypeConnection getOrderingConnection(unsigned long idx, bool resolveAliases) const
@@ -469,7 +478,7 @@ private:
         Connection connection = Connection(object->mOrderingConnections[idx].mObject, object->mOrderingConnections[idx].mIndex);
         if (resolveAliases && connection.mObject)
             connection = connection.mObject->traverseOutputAliasesInwards(connection.mIndex);
-        return ObjectTypeConnection(dynamic_cast<T*>(connection.mObject), connection.mIndex);
+        return ObjectTypeConnection(static_cast<T*>(connection.mObject), connection.mIndex);
     }
 
     // Connection Check
@@ -586,7 +595,7 @@ private:
         for (unsigned long i = 0; i < getNumIns(); i++)
         {
             clearInputAliases(i);
-            if (mInputConnections[i].mAliased)
+            if (mInputConnections[i].mInternal)
                 changeInputAlias(Connection(), i, false);
             else
                 changeConnection(i, Connection(), false);
@@ -595,7 +604,7 @@ private:
         // Clear ordering connections
         
         clearOrderingAliases();
-        if (mOrderingConnector.mAliased)
+        if (mOrderingConnector.mInternal)
             changeOrderingAlias(NULL, false);
         else
             deleteOrderingConnections(false);
@@ -604,8 +613,9 @@ private:
         
         for (unsigned long i = 0; i < getNumOuts(); i++)
         {
-            changeOutputAlias(Connection(), i, false);
-            if (mOutputConnections[i].mAliased)
+            if (mOutputConnections[i].mIn.mObject)
+                changeOutputAlias(Connection(), i, false);
+            if (mOutputConnections[i].mInternal)
                 clearOutputAliases(i);
             else
                 clearOutput(i);
@@ -621,7 +631,7 @@ private:
     
     void addDependencies(std::vector<T *> &dependencies, unsigned long outIdx) const
     {
-        if (mOutputConnections[outIdx].mAliased)
+        if (mOutputConnections[outIdx].mInternal)
         {
             for (ConstConnectionIterator it = mOutputConnections[outIdx].mOut.begin(); it != mOutputConnections[outIdx].mOut.end(); it++)
                 it->mObject->addDependencies(dependencies, it->mIndex);
@@ -629,24 +639,43 @@ private:
         else
         {
             for (ConstConnectionIterator it = mOutputConnections[outIdx].mOut.begin(); it != mOutputConnections[outIdx].mOut.end(); it++)
-            {
-                typename std::vector<T *>::iterator jt;
-                
-                for (jt = dependencies.begin(); jt != dependencies.end(); jt++)
-                    if (*jt == it->mObject)
-                        break;
-                
-                if (jt == dependencies.end())
-                    dependencies.push_back(dynamic_cast<T*>(it->mObject));
-            }
+                it->mObject->unwrapDependencies(dependencies, it->mIndex);
         }
     }
-
+    
+    void unwrapDependencies(std::vector<T *> &dependencies, unsigned long inIdx) const
+    {
+        if (inIdx == -1 && mOrderingConnector.mOut.size())
+        {
+            for (ConstConnectionIterator it = mOrderingConnector.mOut.begin(); it != mOrderingConnector.mOut.end(); it++)
+                it->mObject->unwrapDependencies(dependencies, it->mIndex);
+        }
+        else if (mInputConnections[inIdx].mOut.size())
+        {
+            for (ConstConnectionIterator it = mInputConnections[inIdx].mOut.begin(); it != mInputConnections[inIdx].mOut.end(); it++)
+                it->mObject->unwrapDependencies(dependencies, it->mIndex);
+        }
+        else
+            addDependency(dependencies, static_cast<T *>(const_cast<FrameLib_Object *>(this)));
+    }
+    
+    static void addDependency(std::vector<T *> &dependencies, T *object)
+    {
+        typename std::vector<T *>::iterator jt;
+        
+        for (jt = dependencies.begin(); jt != dependencies.end(); jt++)
+            if (*jt == object)
+                break;
+        
+        if (jt == dependencies.end())
+            dependencies.push_back(dynamic_cast<T*>(object));
+    }
+    
     // Aliasing
     
     Connection traverseInputAliasesOutwards(unsigned long inIdx) const
     {
-        if (mInputConnections[inIdx].mAliased)
+        if (mInputConnections[inIdx].mInternal)
             return mInputConnections[inIdx].mIn.mObject->traverseInputAliasesOutwards(mInputConnections[inIdx].mIn.mIndex);
         
         return Connection(const_cast<FrameLib_Object *>(this), inIdx);
@@ -654,7 +683,7 @@ private:
     
     const FrameLib_Object *traverseOrderingAliasesOutwards() const
     {
-        if (mOrderingConnector.mAliased)
+        if (mOrderingConnector.mInternal)
             return mOrderingConnector.mIn.mObject->traverseOrderingAliasesOutwards();
         
         return this;
@@ -682,20 +711,20 @@ private:
         
         // Update all values
         
-        if (connector.mAliased && connector.mIn.mObject)
-            (connector.mIn.mObject->*method)(connector.mIn.mIndex).deleteOut(Connection(this, idx), output);
+        if (prevConnection.mObject)
+            (prevConnection.mObject->*method)(prevConnection.mIndex).deleteOut(Connection(this, idx), output);
         if (alias.mObject)
             (alias.mObject->*method)(alias.mIndex).addOut(Connection(this, idx), output);
         
-        connector.mAliased = alias.mObject;
+        connector.mIn = alias;
         if (!output)
-            connector.mIn = alias;
+            connector.mInternal = alias.mObject;
         
         // Notify of updates
         
-        if (prevConnection.mObject)
+        if (notify && prevConnection.mObject)
             prevConnection.mObject->connectionUpdate(&queue);
-        if (alias.mObject)
+        if (notify && alias.mObject)
             alias.mObject->connectionUpdate(&queue);
         if (notify)
             connectionUpdate(&queue);
@@ -706,15 +735,16 @@ private:
         Connector& connector = (this->*method)(idx);
         Queue queue;
         
-        if (output != connector.mAliased)
+        if (output && !connector.mInternal)
             return;
         
-        // Remove alias and notify
+        // Remove alias without notification (avoid re-entrancy (expect that the host is in the destructor
 
-        for (ConnectionIterator it = connector.mOut.begin(); it != connector.mOut.begin(); it++)
-            it->mObject->changeAlias(method, Connection(), it->mIndex, output, true);
-        
-        connector.clearOuts(output);
+        for (ConnectionIterator it = connector.mOut.begin(); it != connector.mOut.end(); )
+        {
+            (it->mObject->*method)(it->mIndex).mIn = Connection();
+            it = connector.mOut.erase(it);
+        }
     }
 
     void changeInputAlias(Connection alias, unsigned long inIdx, bool notify)    { changeAlias(&FrameLib_Object::getInputConnector, alias, inIdx, false, notify); }
@@ -790,6 +820,15 @@ public:
     // Channel Awareness
     
     virtual void setChannel(unsigned long chan) {}
+    
+    static Queue::Method getConnectionUpdate() { return &FrameLib_Block::connectionUpdate; }
+
+private:
+    
+    // Bring into the Block Namespace
+    
+    virtual void connectionUpdate(Queue *queue){};
+
 };
 
 #endif

@@ -219,10 +219,6 @@ public:
     
     ~FrameLib_Expand()
     {
-        // Clear connections before deleting internal objects
-        
-        clearConnections();
-        
         // Delete blocks
         
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
