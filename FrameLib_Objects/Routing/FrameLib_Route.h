@@ -79,12 +79,6 @@ public:
     
 private:
     
-    virtual void connectionUpdate(Queue *queue)
-    {
-        for (std::vector<Valve *>::iterator it = mValves.begin(); it != mValves.end(); it++)
-            queue->add(*it, FrameLib_Block::getConnectionUpdate());
-    }
-
     // Data
     
     long mNumOuts;

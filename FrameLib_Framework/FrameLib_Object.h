@@ -19,19 +19,19 @@ public:
     
     class Queue
     {
-        
-    public:
-        
+
         typedef void (T::*Method)(Queue *);
 
+    public:
+        
         Queue() : mMethod(NULL), mFirst(NULL), mTop(NULL), mTail(NULL) {}
         Queue(T *object, Method method) : mMethod(NULL), mFirst(NULL), mTop(NULL), mTail(NULL) { add(object, method); }
         
         void add(T *object, Method method)
         {
-            // Do not re-add if already in queue
+            // Do not add if NULL or re-add if already in queue
             
-            if (object->FrameLib_Queueable<T>::mNext != NULL)
+            if (!object || object->FrameLib_Queueable<T>::mNext != NULL)
                 return;
             
             if (!mTop)
@@ -108,6 +108,8 @@ public:
     
 private:
     
+    // Typedefs for concision
+    
     typedef UntypedConnection<T> ObjectTypeConnection;
     typedef UntypedConnection<FrameLib_Object> Connection;
     typedef UntypedConnection<const FrameLib_Object> ConstConnection;
@@ -158,7 +160,9 @@ private:
         Connection mIn;
         std::vector<Connection> mOut;
     };
-        
+    
+    typedef typename std::vector<Connector>::iterator  ConnectorIterator;
+
 public:
 
     typedef typename FrameLib_Queueable<T>::Queue Queue;
@@ -256,7 +260,6 @@ public:
 
         Connection connection = Connection(object, outIdx);
         ConnectionResult result = connectionCheck(object);
-        Queue queue;
 
         if (result == kConnectSuccess)
         {
@@ -273,8 +276,8 @@ public:
             
             // Notify
             
-            connection.mObject->connectionUpdate(&queue);
-            connectionUpdate(&queue);
+            connection.mObject->callConnectionUpdate();
+            callConnectionUpdate();
         }
 
         return result;
@@ -459,7 +462,20 @@ private:
     
     // Connection Methods (private)
     
-    virtual void connectionUpdate(Queue *queue) {};
+    virtual void connectionUpdate(Queue *queue)
+    {
+        for (ConnectorIterator it = mInputConnections.begin(); it != mInputConnections.end(); it++)
+            for (ConnectionIterator jt = it->mOut.begin(); jt != it->mOut.end(); jt++)
+                queue->add(static_cast<T *>(jt->mObject), &T::FrameLib_Object::connectionUpdate);
+        
+        for (ConnectorIterator it = mOutputConnections.begin(); it != mOutputConnections.end(); it++)
+                queue->add(static_cast<T *>(it->mIn.mObject), &T::FrameLib_Object::connectionUpdate);
+    };
+    
+    void callConnectionUpdate()
+    {
+        Queue queue(static_cast<T *>(this), &T::FrameLib_Object::connectionUpdate);
+    }
     
     // Input Connection Queries (with and without alias resolution
     
@@ -501,8 +517,6 @@ private:
     
     void changeConnection(unsigned long inIdx, Connection connection, bool notify)
     {
-        Queue queue;
-        
         if (!mInputConnections[inIdx].mIn.equal(connection))
         {
             // Update all values
@@ -518,11 +532,11 @@ private:
             // Notify of updates
             
             if (prevConnection.mObject)
-                prevConnection.mObject->connectionUpdate(&queue);
+                prevConnection.mObject->callConnectionUpdate();
             if (connection.mObject)
-                connection.mObject->connectionUpdate(&queue);
+                connection.mObject->callConnectionUpdate();
             if (notify)
-                connectionUpdate(&queue);
+                callConnectionUpdate();
         }
     }
     
@@ -531,17 +545,16 @@ private:
     ConnectionIterator deleteOrderingConnection(ConnectionIterator it, bool notify)
     {
         Connection connection = *it;
-        Queue queue;
         
         connection.mObject->mOutputConnections[connection.mIndex].deleteOut(Connection(this, -1), false);
         it = mOrderingConnections.erase(it);
         
         // Notify
         
-        connection.mObject->connectionUpdate(&queue);
+        connection.mObject->callConnectionUpdate();
         
         if (notify)
-            connectionUpdate(&queue);
+            callConnectionUpdate();
         
         return it;
     }
@@ -550,8 +563,6 @@ private:
     
     void deleteOrderingConnections(bool notify)
     {
-        Queue queue;
-
         // Delete
         
         for (ConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); )
@@ -560,15 +571,13 @@ private:
         // Notify
         
         if (notify)
-            connectionUpdate(&queue);
+            callConnectionUpdate();
     }
     
     // Clear output
     
     void clearOutput(unsigned long outIdx)
     {
-        Queue queue;
-        
         for (ConnectionIterator it = mOutputConnections[outIdx].mOut.begin(); it != mOutputConnections[outIdx].mOut.end(); )
         {
             // Update all values
@@ -580,7 +589,7 @@ private:
             
             // Notify
 
-            prevConnection.mObject->connectionUpdate(&queue);
+            prevConnection.mObject->callConnectionUpdate();
         }
     }
     
@@ -588,8 +597,6 @@ private:
     
     void deleteConnections(bool notify)
     {
-        Queue queue;
-
         // Clear input connections
         
         for (unsigned long i = 0; i < getNumIns(); i++)
@@ -624,7 +631,7 @@ private:
         // Notify
         
         if (notify)
-            connectionUpdate(&queue);
+            callConnectionUpdate();
     }
 
     // Add dependencies
@@ -707,7 +714,6 @@ private:
     {
         Connector& connector = (this->*method)(idx);
         Connection prevConnection = connector.mIn;
-        Queue queue;
         
         // Update all values
         
@@ -722,18 +728,17 @@ private:
         
         // Notify of updates
         
-        if (notify && prevConnection.mObject)
-            prevConnection.mObject->connectionUpdate(&queue);
-        if (notify && alias.mObject)
-            alias.mObject->connectionUpdate(&queue);
+        if ((notify || output) && prevConnection.mObject)
+            prevConnection.mObject->callConnectionUpdate();
+        if (alias.mObject)
+            alias.mObject->callConnectionUpdate();
         if (notify)
-            connectionUpdate(&queue);
+            callConnectionUpdate();
     }
 
     void clearAliases(ConnectorMethod method, unsigned long idx, bool output)
     {
         Connector& connector = (this->*method)(idx);
-        Queue queue;
         
         if (output && !connector.mInternal)
             return;
@@ -742,8 +747,11 @@ private:
 
         for (ConnectionIterator it = connector.mOut.begin(); it != connector.mOut.end(); )
         {
+            Connection prevConnection = *it;
             (it->mObject->*method)(it->mIndex).mIn = Connection();
             it = connector.mOut.erase(it);
+            if (!output)
+                prevConnection.mObject->callConnectionUpdate();
         }
     }
 
@@ -768,7 +776,7 @@ private:
     {
         mFeedback = true;
         
-        for (typename std::vector<Connector>::iterator it = mOutputConnections.begin(); it != mOutputConnections.end(); it++)
+        for (ConnectorIterator it = mOutputConnections.begin(); it != mOutputConnections.end(); it++)
             for (ConnectionIterator jt = it->mOut.begin(); jt != it->mOut.end(); jt++)
                 queue->add(static_cast<T *>(jt->mObject), &T::feedbackProbe);
     }
@@ -821,15 +829,6 @@ public:
     // Channel Awareness
     
     virtual void setChannel(unsigned long chan) {}
-    
-    static Queue::Method getConnectionUpdate() { return &FrameLib_Block::connectionUpdate; }
-
-private:
-    
-    // Bring into the Block Namespace
-    
-    virtual void connectionUpdate(Queue *queue){};
-
 };
 
 #endif
