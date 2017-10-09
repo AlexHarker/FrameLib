@@ -607,14 +607,7 @@ void FrameLib_DSP::connectionUpdate(Queue *queue)
         // Build the input dependency list
         
         if (mInputs[i].mObject)
-        {
-            for (it = mInputDependencies.begin(); it != mInputDependencies.end(); it++)
-                if (*it == mInputs[i].mObject)
-                    break;
-            
-            if (it == mInputDependencies.end())
-                mInputDependencies.push_back(mInputs[i].mObject);
-        }
+            addUniqueItem(mInputDependencies, mInputs[i].mObject);
     }
     
     // Build the output dependency list
@@ -639,7 +632,7 @@ void FrameLib_DSP::autoOrderingConnections()
 void FrameLib_DSP::autoOrderingConnections(LocalQueue *queue)
 {
     if (supportsOrderingConnections() && queue->getFirst())
-        addOrderingConnection(queue->getFirst(), 0);
+        addOrderingConnection(Connection(queue->getFirst(), -1));
         
     for (ObjectIterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
         queue->add(*it, &FrameLib_DSP::autoOrderingConnections);
@@ -647,6 +640,5 @@ void FrameLib_DSP::autoOrderingConnections(LocalQueue *queue)
 
 void FrameLib_DSP::clearAutoOrderingConnections()
 {
-    Queue queue;
-    connectionUpdate(&queue);
+    callConnectionUpdate();
 }

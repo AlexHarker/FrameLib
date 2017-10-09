@@ -16,7 +16,7 @@
 
 class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_DSP>
 {
-    // Type definition for concision / Queue access
+    // Typedefs for concision / Queue access
 
     typedef FrameLib_Queueable<FrameLib_Block>::Queue Queue;
     typedef FrameLib_Queueable<FrameLib_DSP>::Queue LocalQueue;

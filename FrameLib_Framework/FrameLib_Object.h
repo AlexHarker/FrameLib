@@ -5,6 +5,7 @@
 #include "FrameLib_Types.h"
 #include "FrameLib_Context.h"
 #include "FrameLib_Parameters.h"
+#include <algorithm>
 #include <string>
 #include <sstream>
 #include <iostream>
@@ -19,7 +20,6 @@ public:
     
     class Queue
     {
-
         typedef void (T::*Method)(Queue *);
 
     public:
@@ -100,22 +100,27 @@ public:
         UntypedConnection() : mObject(NULL), mIndex(0) {}
         UntypedConnection(U *object, unsigned long index) : mObject(object), mIndex(index) {}
         
-        bool equal(const UntypedConnection& connection) { return connection.mObject == mObject && connection.mIndex == mIndex; }
+        friend bool operator == (const UntypedConnection& a, const UntypedConnection& b) { return a.mObject == b.mObject && a.mIndex == b.mIndex; }
+        friend bool operator != (const UntypedConnection& a, const UntypedConnection& b) { return !(a == b); }
         
         U *mObject;
         unsigned long mIndex;
     };
     
+    // Typedefs for concision
+
+    typedef typename FrameLib_Queueable<T>::Queue Queue;
+    typedef UntypedConnection<T> Connection;
+
 private:
-    
+
     // Typedefs for concision
     
-    typedef UntypedConnection<T> ObjectTypeConnection;
-    typedef UntypedConnection<FrameLib_Object> Connection;
-    typedef UntypedConnection<const FrameLib_Object> ConstConnection;
+    typedef typename std::vector<T *>::iterator ObjectIterator;
+    typedef UntypedConnection<const T> ConstConnection;
     typedef typename std::vector<Connection>::iterator ConnectionIterator;
     typedef typename std::vector<Connection>::const_iterator ConstConnectionIterator;
-    
+
     // A connector is a thing with one input and many outputs
     
     struct Connector
@@ -124,58 +129,42 @@ private:
         
         void addOut(Connection connection, bool setInternal)
         {
-            if (setInternal)
-                mInternal = true;
-            
-            for (ConnectionIterator it = mOut.begin(); it != mOut.end(); it++)
-                if (it->equal(connection))
-                    return;
-            
-            mOut.push_back(connection);
+            mInternal = setInternal ? true : mInternal;
+            addUniqueItem(mOut, connection);
         }
         
         void deleteOut(Connection connection, bool setInternal)
         {
-            for (ConnectionIterator it = mOut.begin(); it != mOut.end(); it++)
-            {
-                if (it->equal(connection))
-                {
-                    mOut.erase(it);
-                    break;
-                }
-            }
-            
-            if (setInternal && !mOut.size())
-                mInternal = false;
+            deleteUniqueItem(mOut, connection);
+            mInternal = setInternal && !mOut.size() ? false : mInternal;
         }
         
         void clearOuts(bool setInternal)
         {
             mOut.clear();
-            if (setInternal)
-                mInternal = false;
+            mInternal = setInternal ? false : mInternal;
         }
-
+        
         bool mInternal;
         Connection mIn;
         std::vector<Connection> mOut;
     };
     
+    // Typedefs for concision
+    
     typedef typename std::vector<Connector>::iterator  ConnectorIterator;
-
+    typedef Connector& (FrameLib_Object::*ConnectorMethod)(unsigned long);
+    typedef bool ListMethod(std::vector<Connection>&, Connection);
+    typedef void (FrameLib_Object::*AlterMethod)(ConnectorMethod, Connection, unsigned long, bool);
+    
 public:
-
-    typedef typename FrameLib_Queueable<T>::Queue Queue;
 
     // Constructor / Destructor
     
     FrameLib_Object(ObjectType type, FrameLib_Context context, void *owner)
     : mType(type), mContext(context), mAllocator(context), mOwner(owner), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
     
-    virtual ~FrameLib_Object()
-    {
-        deleteConnections(false);
-    }
+    virtual ~FrameLib_Object()                  { clearConnections(false); }
    
     // Object Type
     
@@ -228,138 +217,108 @@ public:
     
     // Connection 
     
-    ConnectionResult addConnection(T *object, unsigned long outIdx, unsigned long inIdx)
+    ConnectionResult addConnection(Connection connection, unsigned long inIdx)
     {
-        if (mInputConnections[inIdx].mInternal || object->mOutputConnections[outIdx].mInternal)
-            return kConnectAliased;
-        
-        Connection connection = Connection(object, outIdx);
-        
-        ConnectionResult result = connectionCheck(object);
-
-        if (result == kConnectSuccess)
-            changeConnection(inIdx, connection, true);
-        
-        return result;
+        ConnectionResult result = connectionCheck(connection, false);
+        return (result == kConnectSuccess) ? changeConnection(connection, inIdx, true) : result;
     }
     
     void deleteConnection(unsigned long inIdx)
     {
-        if (mInputConnections[inIdx].mInternal)
-            return;
-        
-        changeConnection(inIdx, Connection(), true);
+        changeConnection(Connection(), inIdx, true);
     }
         
-    ConnectionResult addOrderingConnection(T *object, unsigned long outIdx)
+    ConnectionResult addOrderingConnection(Connection connection)
     {
-        if (!supportsOrderingConnections())
-            return kConnectNoOrderingSupport;
-        if (mOrderingConnector.mInternal || object->mOutputConnections[outIdx].mInternal)
-            return kConnectAliased;
-
-        Connection connection = Connection(object, outIdx);
-        ConnectionResult result = connectionCheck(object);
+        ConnectionResult result = connectionCheck(connection, true);
 
         if (result == kConnectSuccess)
-        {
-            // If already connected there is nothing to do
-        
-            for (ConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); it++)
-                if (it->equal(connection))
-                    return kConnectSuccess;
-
-            // Add the ordering connections
-            
-            connection.mObject->mOutputConnections[connection.mIndex].addOut(Connection(this, -1), false);
-            mOrderingConnections.push_back(connection);
-            
-            // Notify
-            
-            connection.mObject->callConnectionUpdate();
-            callConnectionUpdate();
-        }
+            return changeOrderingConnection(connection, &addUniqueItem<Connection>, &FrameLib_Object::addToConnector);
 
         return result;
     }
     
-    void deleteOrderingConnection(T *object, unsigned long outIdx)
+    void deleteOrderingConnection(Connection connection)
     {
-        if (!supportsOrderingConnections() || mOrderingConnector.mInternal)
-            return;
-
-        for (ConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); it++)
-        {
-            if (it->equal(Connection(object, outIdx)))
-            {
-                deleteOrderingConnection(it, true);
-                return;
-            }
-        }
+        changeOrderingConnection(connection, &deleteUniqueItem<Connection>, &FrameLib_Object::deleteFromConnector);
     }
     
     void clearOrderingConnections()
     {
-        if (!supportsOrderingConnections() || mOrderingConnector.mInternal)
-            return;
-        
-        deleteOrderingConnections(true);
+        clearOrderingConnections(true);
     }
     
     void clearConnections()
     {
-        deleteConnections(true);
+        clearConnections(true);
     }
     
     // Aliasing
     
-    void setInputAlias(ObjectTypeConnection alias, unsigned long inIdx)
+    ConnectionResult setInputAlias(Connection alias, unsigned long inIdx)
     {
-        if (!mInputConnections[inIdx].mInternal && alias.mObject)
-            changeConnection(inIdx, Connection(), false);
+        ConnectionResult result = connectionCheck(alias, false);
         
-        changeInputAlias(Connection(alias.mObject, alias.mIndex), inIdx, true);
+        if (result == kConnectSuccess)
+        {
+            changeConnection(Connection(), inIdx, false);
+            changeAlias(&FrameLib_Object::getInputConnector, alias, inIdx, true);
+        }
+        
+        return result;
     }
     
-    void setOutputAlias(ObjectTypeConnection alias, unsigned long outIdx)
+    ConnectionResult setOrderingAlias(T *alias)
     {
-        if (!mOutputConnections[outIdx].mInternal && alias.mObject)
+        ConnectionResult result = connectionCheck(alias, true);
+
+        if (result == kConnectSuccess)
+        {
+            clearOrderingConnections(false);
+            changeOrderingAlias(alias, true);
+        }
+        
+        return result;
+    }
+
+    ConnectionResult setOutputAlias(Connection alias, unsigned long outIdx)
+    {
+        ConnectionResult result = alias.mObject->connectionCheck(thisConnection(outIdx), false);
+
+        if (result == kConnectSuccess)
+        {
             clearOutput(outIdx);
-        if (alias.mObject)
-            alias.mObject->changeOutputAlias(Connection(this, outIdx), alias.mIndex, true);
+            if (alias.mObject)
+                alias.mObject->changeAlias(&FrameLib_Object::getOutputConnector, thisConnection(outIdx), alias.mIndex, true);
+        }
         
-    }
-    
-    void setOrderingAlias(T *alias)
-    {
-        if (!supportsOrderingConnections())
-            return;
-        
-        if (!mOrderingConnector.mInternal && alias)
-            deleteOrderingConnections(false);
-        changeOrderingAlias(alias, true);
+        return result;
     }
     
     // Input Connection Queries
 
     bool isConnected(unsigned long inIdx) const                             { return getConnection(inIdx).mObject != NULL; }
-    ObjectTypeConnection getConnection(unsigned long inIdx) const           { return getConnection(inIdx, false); }
+    Connection getConnection(unsigned long inIdx) const                     { return getConnection(inIdx, false); }
     
     bool supportsOrderingConnections() const                                { return mSupportsOrderingConnections; }
-    unsigned long getNumOrderingConnections() const                         { return traverseOrderingAliasesOutwards()->mOrderingConnections.size(); }
-    ObjectTypeConnection getOrderingConnection(unsigned long idx) const     { return getOrderingConnection(idx, false); }
+    unsigned long getNumOrderingConnections() const                         { return traverseOrderingAliases()->mOrderingConnections.size(); }
+    Connection getOrderingConnection(unsigned long idx) const               { return getOrderingConnection(idx, false); }
     
     // Automatic Dependency Connections
     
     virtual void autoOrderingConnections() = 0;
     virtual void clearAutoOrderingConnections() = 0;
     
+    // Connection Update
+    
+    void callConnectionUpdate()                                            { Queue queue(static_cast<T *>(this), &T::FrameLib_Object::connectionUpdate); }
+    
 protected:
     
     // IO Connection Queries (protected)
     
-    ObjectTypeConnection getConnectionInternal(unsigned long inIdx) const           { return getConnection(inIdx, true); }
-    ObjectTypeConnection getOrderingConnectionInternal(unsigned long idx) const     { return getOrderingConnection(idx, true); }
+    Connection getConnectionInternal(unsigned long inIdx) const             { return getConnection(inIdx, true); }
+    Connection getOrderingConnectionInternal(unsigned long idx) const       { return getOrderingConnection(idx, true); }
     
     std::vector<T *> getOutputDependencies() const
     {
@@ -458,180 +417,248 @@ protected:
         return outStr.str();
     }
     
+    // Unique List Helpers
+    
+    template <class U> static bool addUniqueItem(std::vector<U>& list, U item)
+    {
+        if (std::find(list.begin(), list.end(), item) != list.end())
+            return false;
+        
+        list.push_back(item);
+        return true;
+    }
+    
+    template <class U> static bool deleteUniqueItem(std::vector<U>& list, U item)
+    {
+        typename std::vector<U>::iterator it = std::find(list.begin(), list.end(), item);
+        
+        if (it == list.end())
+            return false;
+
+        list.erase(it);
+        return true;
+    }
+    
 private:
     
     // Connection Methods (private)
     
+    Connector& getInputConnector(unsigned long idx)     { return mInputConnections[idx]; }
+    Connector& getOutputConnector(unsigned long idx)    { return mOutputConnections[idx]; }
+    Connector& getOrderingConnector(unsigned long idx)  { return mOrderingConnector; }
+
+    static bool isOutput(ConnectorMethod method) { return method == &FrameLib_Object::getOutputConnector; }
+
+    Connection thisConnection(unsigned long idx) const  { return Connection(static_cast<T *>(const_cast<FrameLib_Object *>(this)), idx); }
+    
+    // Add to / Delete from a Connectors Output List
+    
+    void addToConnector(ConnectorMethod method, Connection connection, unsigned long idx, bool setInternal = false)
+    {
+        if (connection.mObject)
+            (connection.mObject->*method)(connection.mIndex).addOut(thisConnection(idx), setInternal);
+    }
+    
+    void deleteFromConnector(ConnectorMethod method, Connection connection, unsigned long idx, bool setInternal = false)
+    {
+        if (connection.mObject)
+            (connection.mObject->*method)(connection.mIndex).deleteOut(thisConnection(idx), setInternal);
+    }
+    
+    // Default Connection Update
+                                                                                         
     virtual void connectionUpdate(Queue *queue)
     {
         for (ConnectorIterator it = mInputConnections.begin(); it != mInputConnections.end(); it++)
             for (ConnectionIterator jt = it->mOut.begin(); jt != it->mOut.end(); jt++)
-                queue->add(static_cast<T *>(jt->mObject), &T::FrameLib_Object::connectionUpdate);
+                queue->add(jt->mObject, &T::FrameLib_Object::connectionUpdate);
         
         for (ConnectorIterator it = mOutputConnections.begin(); it != mOutputConnections.end(); it++)
-                queue->add(static_cast<T *>(it->mIn.mObject), &T::FrameLib_Object::connectionUpdate);
+                queue->add(it->mIn.mObject, &T::FrameLib_Object::connectionUpdate);
     };
     
-    void callConnectionUpdate()
-    {
-        Queue queue(static_cast<T *>(this), &T::FrameLib_Object::connectionUpdate);
-    }
+    // Input Connection Queries (with and without alias resolution)
     
-    // Input Connection Queries (with and without alias resolution
-    
-    ObjectTypeConnection getConnection(unsigned long inIdx, bool resolveAliases) const
+    Connection getConnection(unsigned long inIdx, bool resolveAliases) const
     {
-        Connection inputConnection = traverseInputAliasesOutwards(inIdx);
+        Connection inputConnection = traverseAliases(&FrameLib_Object::getInputConnector, inIdx);
         Connection connection = inputConnection.mObject->mInputConnections[inputConnection.mIndex].mIn;
         if (resolveAliases && connection.mObject)
-            connection = connection.mObject->traverseOutputAliasesInwards(connection.mIndex);
-        return ObjectTypeConnection(static_cast<T*>(connection.mObject), connection.mIndex);
+            connection = connection.mObject->traverseAliases(&FrameLib_Object::getOutputConnector, connection.mIndex);
+        return connection;
     }
     
-    ObjectTypeConnection getOrderingConnection(unsigned long idx, bool resolveAliases) const
+    Connection getOrderingConnection(unsigned long idx, bool resolveAliases) const
     {
-        const FrameLib_Object *object = traverseOrderingAliasesOutwards();
-        Connection connection = Connection(object->mOrderingConnections[idx].mObject, object->mOrderingConnections[idx].mIndex);
+        Connection connection = traverseOrderingAliases()->mOrderingConnections[idx];
         if (resolveAliases && connection.mObject)
-            connection = connection.mObject->traverseOutputAliasesInwards(connection.mIndex);
-        return ObjectTypeConnection(static_cast<T*>(connection.mObject), connection.mIndex);
+            connection = connection.mObject->traverseAliases(&FrameLib_Object::getOutputConnector, connection.mIndex);
+        return connection;
     }
 
     // Connection Check
     
-    ConnectionResult connectionCheck(T *object)
+    ConnectionResult connectionCheck(Connection connection, bool ordering)
     {
-        if (object == this)
+        if (ordering && !supportsOrderingConnections())
+            return kConnectNoOrderingSupport;
+    
+        if (connection.mObject == this)
             return kConnectSelfConnection;
     
-        if (object->mContext != mContext)
+        if (connection.mObject->mContext != mContext)
             return kConnectWrongContext;
     
-        if (detectFeedback(object))
+        if (detectFeedback(connection.mObject))
             return kConnectFeedbackDetected;
         
         return kConnectSuccess;
     }
     
-    // Change input connection
+    // Notifications
     
-    void changeConnection(unsigned long inIdx, Connection connection, bool notify)
+    void notifySelf(bool notify = true)
     {
-        if (!mInputConnections[inIdx].mIn.equal(connection))
+        if (notify)
+            callConnectionUpdate();
+    }
+
+    void notifyConnectionsChanged(Connection connection)
+    {
+        if (connection.mObject)
+            connection.mObject->notifySelf();
+    }
+    
+    void notifyAliasChanged(ConnectorMethod method, Connection connection)
+    {
+        if (connection.mObject)
+            notifyConnectionsChanged(connection.mObject->traverseAliases(method, connection.mIndex));
+    }
+
+    // Change Input Connection
+
+    ConnectionResult changeConnection(Connection connection, unsigned long inIdx, bool notify)
+    {
+        if (mInputConnections[inIdx].mIn == connection)
+            return kConnectSuccess;
+     
+        if (mInputConnections[inIdx].mInternal || (connection.mObject && connection.mObject->mOutputConnections[connection.mIndex].mInternal))
+            return kConnectAliased;
+        
+        // Update all values (note the swap)
+            
+        std::swap(mInputConnections[inIdx].mIn, connection);
+        deleteFromConnector(&FrameLib_Object::getOutputConnector, connection, inIdx);
+        addToConnector(&FrameLib_Object::getOutputConnector, mInputConnections[inIdx].mIn, inIdx);
+        
+        // Notify of updates
+            
+        notifyConnectionsChanged(connection);
+        notifyConnectionsChanged(mInputConnections[inIdx].mIn);
+        notifySelf();
+        
+        return kConnectSuccess;
+    }
+    
+    // Change Ordering Connection
+    
+    ConnectionResult changeOrderingConnection(Connection connection, ListMethod listUpdate, AlterMethod alterConnector)
+    {
+        if (!supportsOrderingConnections())
+            return kConnectNoOrderingSupport;
+        
+        if (mOrderingConnector.mInternal || connection.mObject->mOutputConnections[connection.mIndex].mInternal)
+            return kConnectAliased;
+        
+        // Add / Delete and update all values
+        
+        if (!listUpdate(mOrderingConnections, connection))
+            return kConnectSuccess;
+        
+        (this->*alterConnector)(&FrameLib_Object::getOutputConnector, connection, -1, false);
+        
+        // Notify
+        
+        notifyConnectionsChanged(connection);
+        notifySelf();
+        
+        return kConnectSuccess;
+    }
+    
+    // Clear Ordering Connections
+    
+    void clearOrderingConnections(bool notify)
+    {
+        if (!supportsOrderingConnections() || mOrderingConnector.mInternal)
+            return;
+        
+        while (mOrderingConnections.size())
         {
             // Update all values
             
-            Connection prevConnection = mInputConnections[inIdx].mIn;
+            Connection connection = mOrderingConnections.back();
+            mOrderingConnections.pop_back();
+            deleteFromConnector(&FrameLib_Object::getOutputConnector, connection, -1);
             
-            mInputConnections[inIdx].mIn = connection;
-            if (prevConnection.mObject)
-                prevConnection.mObject->mOutputConnections[prevConnection.mIndex].deleteOut(Connection(this, inIdx), false);
-            if (connection.mObject)
-                connection.mObject->mOutputConnections[connection.mIndex].addOut(Connection(this, inIdx), false);
+            // Notify
             
-            // Notify of updates
-            
-            if (prevConnection.mObject)
-                prevConnection.mObject->callConnectionUpdate();
-            if (connection.mObject)
-                connection.mObject->callConnectionUpdate();
-            if (notify)
-                callConnectionUpdate();
+            notifyConnectionsChanged(connection);
         }
-    }
-    
-    // Delete ordering connection
-    
-    ConnectionIterator deleteOrderingConnection(ConnectionIterator it, bool notify)
-    {
-        Connection connection = *it;
-        
-        connection.mObject->mOutputConnections[connection.mIndex].deleteOut(Connection(this, -1), false);
-        it = mOrderingConnections.erase(it);
         
         // Notify
         
-        connection.mObject->callConnectionUpdate();
-        
-        if (notify)
-            callConnectionUpdate();
-        
-        return it;
-    }
-    
-    // Delete all ordering connections
-    
-    void deleteOrderingConnections(bool notify)
-    {
-        // Delete
-        
-        for (ConnectionIterator it = mOrderingConnections.begin(); it != mOrderingConnections.end(); )
-            it = deleteOrderingConnection(it, false);
-        
-        // Notify
-        
-        if (notify)
-            callConnectionUpdate();
+        notifySelf(notify);
     }
     
     // Clear output
     
     void clearOutput(unsigned long outIdx)
     {
-        for (ConnectionIterator it = mOutputConnections[outIdx].mOut.begin(); it != mOutputConnections[outIdx].mOut.end(); )
+        while (!mOutputConnections[outIdx].mInternal && mOutputConnections[outIdx].mOut.size())
         {
             // Update all values
 
-            Connection prevConnection = *it;
-            
-            it = mOutputConnections[outIdx].mOut.erase(it);
-            prevConnection.mObject->mInputConnections[prevConnection.mIndex].mIn = Connection();
+            Connection connection = mOutputConnections[outIdx].mOut.back();
+            mOutputConnections[outIdx].mOut.pop_back();
+            connection.mObject->mInputConnections[connection.mIndex].mIn = Connection();
             
             // Notify
 
-            prevConnection.mObject->callConnectionUpdate();
+            notifyConnectionsChanged(connection);
         }
     }
     
-    // Delete all connections
+    // Clear All Connections
     
-    void deleteConnections(bool notify)
+    void clearConnections(bool notify)
     {
         // Clear input connections
         
         for (unsigned long i = 0; i < getNumIns(); i++)
         {
-            clearInputAliases(i);
-            if (mInputConnections[i].mInternal)
-                changeInputAlias(Connection(), i, false);
-            else
-                changeConnection(i, Connection(), false);
+            changeConnection(Connection(), i, false);
+            changeAlias(&FrameLib_Object::getInputConnector, Connection(), i, false);
+            clearAliases(&FrameLib_Object::getInputConnector, i);
         }
         
         // Clear ordering connections
         
-        clearOrderingAliases();
-        if (mOrderingConnector.mInternal)
-            changeOrderingAlias(NULL, false);
-        else
-            deleteOrderingConnections(false);
+        clearOrderingConnections(false);
+        changeOrderingAlias(NULL, false);
+        clearAliases(&FrameLib_Object::getOrderingConnector, -1);
         
         // Clear outputs
         
         for (unsigned long i = 0; i < getNumOuts(); i++)
         {
-            if (mOutputConnections[i].mIn.mObject)
-                changeOutputAlias(Connection(), i, false);
-            if (mOutputConnections[i].mInternal)
-                clearOutputAliases(i);
-            else
-                clearOutput(i);
+            clearOutput(i);
+            changeAlias(&FrameLib_Object::getOutputConnector, Connection(), i, false);
+            clearAliases(&FrameLib_Object::getOutputConnector, i);
         }
         
         // Notify
         
-        if (notify)
-            callConnectionUpdate();
+        notifySelf(notify);
     }
 
     // Add dependencies
@@ -663,105 +690,71 @@ private:
                 it->mObject->unwrapDependencies(dependencies, it->mIndex);
         }
         else
-            addDependency(dependencies, static_cast<T *>(const_cast<FrameLib_Object *>(this)));
+            addUniqueItem(dependencies, static_cast<T *>(const_cast<FrameLib_Object *>(this)));
     }
     
-    static void addDependency(std::vector<T *> &dependencies, T *object)
+    // Aliasing Methods
+    
+    Connection traverseAliases(ConnectorMethod method, unsigned long idx) const
     {
-        typename std::vector<T *>::iterator jt;
-        
-        for (jt = dependencies.begin(); jt != dependencies.end(); jt++)
-            if (*jt == object)
-                break;
-        
-        if (jt == dependencies.end())
-            dependencies.push_back(dynamic_cast<T*>(object));
+        const Connector& connector = (const_cast<FrameLib_Object *>(this)->*method)(idx);
+
+        if ((!isOutput(method) && connector.mInternal) || (isOutput(method) && connector.mIn.mObject))
+            return connector.mIn.mObject->traverseAliases(method, connector.mIn.mIndex);
+    
+        return thisConnection(idx);
     }
     
-    // Aliasing
-    
-    Connection traverseInputAliasesOutwards(unsigned long inIdx) const
-    {
-        if (mInputConnections[inIdx].mInternal)
-            return mInputConnections[inIdx].mIn.mObject->traverseInputAliasesOutwards(mInputConnections[inIdx].mIn.mIndex);
-        
-        return Connection(const_cast<FrameLib_Object *>(this), inIdx);
-    }
-    
-    const FrameLib_Object *traverseOrderingAliasesOutwards() const
-    {
-        if (mOrderingConnector.mInternal)
-            return mOrderingConnector.mIn.mObject->traverseOrderingAliasesOutwards();
-        
-        return this;
-    }
-    
-    Connection traverseOutputAliasesInwards(unsigned long outIdx) const
-    {
-        if (mOutputConnections[outIdx].mIn.mObject)
-            return mOutputConnections[outIdx].mIn.mObject->traverseOutputAliasesInwards(mOutputConnections[outIdx].mIn.mIndex);
-        
-        return Connection(const_cast<FrameLib_Object *>(this), outIdx);
-    }
-    
-    typedef Connector& (FrameLib_Object::*ConnectorMethod)(unsigned long);
-    
-    Connector& getInputConnector(unsigned long idx)       { return mInputConnections[idx]; }
-    Connector& getOutputConnector(unsigned long idx)      { return mOutputConnections[idx]; }
-    Connector& getOrderingConnector(unsigned long idx)    { return mOrderingConnector; }
-    
-    void changeAlias(ConnectorMethod method, Connection alias, unsigned long idx, bool output, bool notify)
+    void changeAlias(ConnectorMethod method, Connection alias, unsigned long idx, bool notify)
     {
         Connector& connector = (this->*method)(idx);
-        Connection prevConnection = connector.mIn;
         
-        // Update all values
+        if (connector.mIn.mObject && !isOutput(method) && !connector.mInternal)
+            return;
         
-        if (prevConnection.mObject)
-            (prevConnection.mObject->*method)(prevConnection.mIndex).deleteOut(Connection(this, idx), output);
-        if (alias.mObject)
-            (alias.mObject->*method)(alias.mIndex).addOut(Connection(this, idx), output);
+        // Update all values (note the swap)
         
-        connector.mIn = alias;
-        if (!output)
-            connector.mInternal = alias.mObject;
+        std::swap(connector.mIn, alias);
+        connector.mInternal = isOutput(method) ? connector.mInternal : (bool) connector.mIn.mObject;
+        deleteFromConnector(method, alias, idx, isOutput(method));
+        addToConnector(method, connector.mIn, idx, isOutput(method));
         
         // Notify of updates
         
-        if ((notify || output) && prevConnection.mObject)
-            prevConnection.mObject->callConnectionUpdate();
-        if (alias.mObject)
-            alias.mObject->callConnectionUpdate();
-        if (notify)
-            callConnectionUpdate();
+        notifyAliasChanged(method, alias);
+        notifyAliasChanged(method, connector.mIn);
+        notifySelf(notify);
     }
-
-    void clearAliases(ConnectorMethod method, unsigned long idx, bool output)
+    
+    void clearAliases(ConnectorMethod method, unsigned long idx)
     {
+        std::vector<T *> dependencies;
         Connector& connector = (this->*method)(idx);
-        
-        if (output && !connector.mInternal)
+
+        if (isOutput(method) && !connector.mInternal)
             return;
         
-        // Remove alias without notification (avoid re-entrancy (expect that the host is in the destructor
+        // Create a list of dependencies
+        
+        if (isOutput(method))
+            addDependencies(dependencies, idx);
+        else
+            unwrapDependencies(dependencies, idx);
+        
+        // Clear
 
-        for (ConnectionIterator it = connector.mOut.begin(); it != connector.mOut.end(); )
-        {
-            Connection prevConnection = *it;
-            (it->mObject->*method)(it->mIndex).mIn = Connection();
-            it = connector.mOut.erase(it);
-            if (!output)
-                prevConnection.mObject->callConnectionUpdate();
-        }
+        connector.clearOuts(isOutput(method));
+        
+        // Notify
+        
+        for (ObjectIterator it = dependencies.begin(); it != dependencies.end(); it++)
+            (*it)->notifySelf();
     }
 
-    void changeInputAlias(Connection alias, unsigned long inIdx, bool notify)    { changeAlias(&FrameLib_Object::getInputConnector, alias, inIdx, false, notify); }
-    void changeOutputAlias(Connection alias, unsigned long outIdx, bool notify)  { changeAlias(&FrameLib_Object::getOutputConnector, alias, outIdx, true, notify); }
-    void changeOrderingAlias(T *alias, bool notify)                              { changeAlias(&FrameLib_Object::getOrderingConnector, Connection(alias, -1), -1, false, notify); }
+    // Simply Ordering Calls
     
-    void clearInputAliases(unsigned long inIdx)     { clearAliases(&FrameLib_Object::getInputConnector, inIdx, false); }
-    void clearOutputAliases(unsigned long outIdx)   { clearAliases(&FrameLib_Object::getOutputConnector, outIdx, true); }
-    void clearOrderingAliases()                     { clearAliases(&FrameLib_Object::getOrderingConnector, -1, false); }
+    const FrameLib_Object *traverseOrderingAliases() const      { return traverseAliases(&FrameLib_Object::getOrderingConnector, -1).mObject; }
+    void changeOrderingAlias(T *alias, bool notify)             { changeAlias(&FrameLib_Object::getOrderingConnector, Connection(alias, -1), -1, notify); }
     
     // Detect Potential Feedback in a Network
     
@@ -809,21 +802,16 @@ private:
 
 // This abstract class provides a connectivity interface to FrameLib_DSP objects or blocks (groups of FrameLib_DSP objects).
 // Standard objects inherit this in the FrameLib_DSP class.
-// Objects that have asynchronous outputs can use this class to host multiple FrameLib_DSP objects and connect them correctly.
+// Objects that have asynchronous outputs can use this class to host multiple FrameLib_DSP objects and alias the connections correctly.
 
 class FrameLib_Block : public FrameLib_Object<FrameLib_Block>
 {
-    
-protected:
-    
-    typedef FrameLib_Object::UntypedConnection<FrameLib_Block> Connection;
     
 public:
     
     // Constructor / Destructor
     
-    FrameLib_Block(ObjectType type, FrameLib_Context context, void *owner)
-    : FrameLib_Object<FrameLib_Block>(type, context, owner) {}
+    FrameLib_Block(ObjectType type, FrameLib_Context context, void *owner) : FrameLib_Object<FrameLib_Block>(type, context, owner) {}
     virtual ~FrameLib_Block() {}
 
     // Channel Awareness

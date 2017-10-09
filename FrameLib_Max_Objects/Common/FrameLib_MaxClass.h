@@ -210,7 +210,7 @@ private:
 
 template <class T> class Wrapper : public MaxClass_Base
 {
-    typedef std::vector<t_object *>::iterator ObjectIterator;
+    typedef std::vector<t_object *>::iterator MaxObjectIterator;
 
 public:
     
@@ -340,10 +340,10 @@ public:
     {
         // Delete ins and proxies
         
-        for (ObjectIterator it = mProxyIns.begin(); it != mProxyIns.end(); it++)
+        for (MaxObjectIterator it = mProxyIns.begin(); it != mProxyIns.end(); it++)
             object_free(*it);
         
-        for (ObjectIterator it = mInOutlets.begin(); it != mInOutlets.end(); it++)
+        for (MaxObjectIterator it = mInOutlets.begin(); it != mInOutlets.end(); it++)
             object_free(*it);
         
         // Free objects - N.B. - free the patch, but not the object within it (which will be freed by deleting the patch)
@@ -427,10 +427,10 @@ private:
 
 template <class T, bool argsSetAllInputs = false> class FrameLib_MaxClass : public MaxClass_Base
 {
-
-    typedef FrameLib_Object<t_object *>::UntypedConnection<t_object> ObjectConnection;
-    typedef std::vector<t_object *>::iterator ObjectIterator;
+    typedef FrameLib_Object<FrameLib_MultiChannel>::Connection FrameLibConnection;
+    typedef FrameLib_Object<t_object>::Connection MaxConnection;
     typedef FrameLib_MaxGlobals::ConnectionInfo ConnectionInfo;
+    typedef std::vector<t_object *>::iterator MaxObjectIterator;
 
 public:
     
@@ -530,7 +530,7 @@ public:
 
         delete mObject;
 
-        for (ObjectIterator it = mInputs.begin(); it != mInputs.end(); it++)
+        for (MaxObjectIterator it = mInputs.begin(); it != mInputs.end(); it++)
             object_free(*it);
         
         object_free(mSyncIn);
@@ -917,7 +917,7 @@ private:
         return confirmConnection(getConnection(inIndex), inIndex, mode);
     }
     
-    bool confirmConnection(ObjectConnection connection, unsigned long inIndex, ConnectionInfo::Mode mode)
+    bool confirmConnection(MaxConnection connection, unsigned long inIndex, ConnectionInfo::Mode mode)
     {
         if (!validInput(inIndex))
             return false;
@@ -952,22 +952,33 @@ private:
     
     bool isConnected(long index) const                                      { return mObject->isConnected(index); }
     
-    ObjectConnection getConnection(long index) const
+    MaxConnection getConnection(long index) const
     {
         if (isConnected(index))
-            return ObjectConnection((t_object *) mObject->getConnection(index).mObject->getOwner(), mObject->getConnection(index).mIndex);
+        {
+            FrameLibConnection connection = mObject->getConnection(index);
+            return MaxConnection((t_object *) connection.mObject->getOwner(), connection.mIndex);
+        }
         else
-            return ObjectConnection();
+            return MaxConnection();
     }
     
-    unsigned long getNumOrderingConnections() const                         { return mObject->getNumOrderingConnections(); }
-    
-    ObjectConnection getOrderingConnection(long index) const      
+    unsigned long getNumOrderingConnections() const
     {
-        return ObjectConnection((t_object *) mObject->getOrderingConnection(index).mObject->getOwner(), mObject->getOrderingConnection(index).mIndex);
+        return mObject->getNumOrderingConnections();
     }
     
-    bool matchConnection(t_object *src, long outIdx, long inIdx) const      { return getConnection(inIdx).mObject == src && getConnection(inIdx).mIndex == outIdx; }
+    MaxConnection getOrderingConnection(long index) const
+    {
+        FrameLibConnection connection = mObject->getOrderingConnection(index);
+        return MaxConnection((t_object *) connection.mObject->getOwner(), connection.mIndex);
+    }
+    
+    bool matchConnection(t_object *src, long outIdx, long inIdx) const
+    {
+        MaxConnection connection = getConnection(inIdx);
+        return connection.mObject == src && connection.mIndex == outIdx;
+    }
     
     void connect(t_object *src, long outIdx, long inIdx)
     {
@@ -979,9 +990,9 @@ private:
         ConnectionResult result;
         
         if (isOrderingInput(inIdx))
-            result = mObject->addOrderingConnection(object, outIdx);
+            result = mObject->addOrderingConnection(FrameLibConnection(object, outIdx));
         else
-            result = mObject->addConnection(object, outIdx, inIdx);
+            result = mObject->addConnection(FrameLibConnection(object, outIdx), inIdx);
 
         switch (result)
         {
@@ -1012,7 +1023,7 @@ private:
             return;
         
         if (isOrderingInput(inIdx))
-            mObject->deleteOrderingConnection(object, outIdx);
+            mObject->deleteOrderingConnection(FrameLibConnection(object, outIdx));
         else
             mObject->deleteConnection(inIdx);
     }

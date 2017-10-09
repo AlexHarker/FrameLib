@@ -17,12 +17,9 @@ class FrameLib_MultiChannel : public FrameLib_Object<FrameLib_MultiChannel>
     
 protected:
 
-    typedef FrameLib_Object::UntypedConnection<FrameLib_Block> BlockConnection;
-    
-private:
-
-    typedef FrameLib_Object::UntypedConnection<FrameLib_MultiChannel> MultiChannelConnection;
+    typedef FrameLib_Object<FrameLib_Block>::Connection BlockConnection;
     typedef std::vector<BlockConnection> MultiChannelOutput;
+    typedef FrameLib_Object::Connection MultiChannelConnection;
     
 public:
         
@@ -96,7 +93,7 @@ protected:
 
     // Outputs
     
-    std::vector <MultiChannelOutput> mOutputs;
+    std::vector<MultiChannelOutput> mOutputs;
     
 private:
     
@@ -392,10 +389,7 @@ private:
             if (getInputNumChans(i))
             {
                 for (unsigned long j = 0; j < nChannels; j++)
-                {
-                    BlockConnection connection = getInputChan(i, j % getInputNumChans(i));
-                    mBlocks[j]->addConnection(connection.mObject, connection.mIndex, i);
-                }
+                    mBlocks[j]->addConnection(getInputChan(i, j % getInputNumChans(i)), i);
             }
             else
             {
@@ -414,13 +408,8 @@ private:
         for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
         {
             if (getOrderingConnectionNumChans(i))
-            {
                 for (unsigned long j = 0; j < nChannels; j++)
-                {
-                    BlockConnection connection = getOrderingConnectionChan(i, j % getOrderingConnectionNumChans(i));
-                    mBlocks[j]->addOrderingConnection(connection.mObject, connection.mIndex);
-                }
-            }
+                    mBlocks[j]->addOrderingConnection(getOrderingConnectionChan(i, j % getOrderingConnectionNumChans(i)));
         }
         
         return numChansChanged;
