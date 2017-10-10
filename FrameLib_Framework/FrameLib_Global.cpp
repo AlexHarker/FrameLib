@@ -1,6 +1,8 @@
 
 #include "FrameLib_Global.h"
 
+// The PointerSet Template
+
 // Add an object given a pointer (transferring ownership) and a reference address
 
 template <class T>
@@ -46,7 +48,7 @@ void FrameLib_Global::template PointerSet<T>::release(void *reference)
     }
 }
 
-
+// The Main Global Class
 
 // Retrieve and release the global object
 
