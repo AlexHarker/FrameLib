@@ -93,36 +93,27 @@ private:
 template <class T>
 class FrameLib_Object : public FrameLib_Queueable<T>
 {
-    const unsigned long kOrdering = -1;
     
 public:
 
-    template <class U>
-    struct UntypedConnection
+    // Typedef for concision
+    
+    typedef typename FrameLib_Queueable<T>::Queue Queue;
+    
+    struct Connection
     {
-        UntypedConnection() : mObject(NULL), mIndex(0) {}
-        UntypedConnection(U *object, unsigned long index) : mObject(object), mIndex(index) {}
+        Connection() : mObject(NULL), mIndex(0) {}
+        Connection(T *object, unsigned long index) : mObject(object), mIndex(index) {}
         
-        friend bool operator == (const UntypedConnection& a, const UntypedConnection& b) { return a.mObject == b.mObject && a.mIndex == b.mIndex; }
-        friend bool operator != (const UntypedConnection& a, const UntypedConnection& b) { return !(a == b); }
+        friend bool operator == (const Connection& a, const Connection& b) { return a.mObject == b.mObject && a.mIndex == b.mIndex; }
+        friend bool operator != (const Connection& a, const Connection& b) { return !(a == b); }
         
-        U *mObject;
+        T *mObject;
         unsigned long mIndex;
     };
-    
-    // Typedefs for concision
 
-    typedef typename FrameLib_Queueable<T>::Queue Queue;
-    typedef UntypedConnection<T> Connection;
 
 private:
-
-    // Typedefs for concision
-    
-    typedef typename std::vector<T *>::iterator ObjectIterator;
-    typedef UntypedConnection<const T> ConstConnection;
-    typedef typename std::vector<Connection>::iterator ConnectionIterator;
-    typedef typename std::vector<Connection>::const_iterator ConstConnectionIterator;
 
     // A connector is a thing with one input and many outputs
     
@@ -155,11 +146,12 @@ private:
     
     // Typedefs for concision
     
-    typedef typename std::vector<Connector>::iterator  ConnectorIterator;
+    typedef typename std::vector<Connection>::const_iterator ConstConnectionIterator;
+    typedef typename std::vector<Connector>::const_iterator ConstConnectorIterator;
     typedef Connector& (FrameLib_Object::*ConnectorMethod)(unsigned long);
-    typedef bool ListMethod(std::vector<Connection>&, Connection);
-    typedef void (FrameLib_Object::*AlterMethod)(ConnectorMethod, Connection, unsigned long, bool);
-    
+
+    const unsigned long kOrdering = -1;
+
 public:
 
     // Constructor / Destructor
@@ -456,7 +448,7 @@ private:
 
     Connection thisConnection(unsigned long idx) const  { return Connection(static_cast<T *>(const_cast<FrameLib_Object *>(this)), idx); }
     
-    // Add to / Delete from a Connectors Output List
+    // Add to / Delete from a Connector's Output List
     
     void addToConnector(ConnectorMethod method, Connection connection, unsigned long idx, bool setInternal = false)
     {
@@ -470,16 +462,23 @@ private:
             (connection.mObject->*method)(connection.mIndex).deleteOut(thisConnection(idx), setInternal);
     }
     
+    // Queue the Dependencies of a Vector of Connectors
+    
+    void queueConnectorVectorDependencies(Queue *queue, const std::vector<Connector>& connectors) const
+    {
+        for (ConstConnectorIterator it = connectors.begin(); it != connectors.end(); it++)
+            for (ConstConnectionIterator jt = it->mOut.begin(); jt != it->mOut.end(); jt++)
+                queue->add(jt->mObject);
+    }
+    
     // Default Connection Update
                                                                                          
     virtual void connectionUpdate(Queue *queue)
     {
-        for (ConnectorIterator it = mInputConnections.begin(); it != mInputConnections.end(); it++)
-            for (ConnectionIterator jt = it->mOut.begin(); jt != it->mOut.end(); jt++)
-                queue->add(jt->mObject);
+        queueConnectorVectorDependencies(queue, mInputConnections);
         
-        for (ConnectorIterator it = mOutputConnections.begin(); it != mOutputConnections.end(); it++)
-                queue->add(it->mIn.mObject);
+        for (ConstConnectorIterator it = mOutputConnections.begin(); it != mOutputConnections.end(); it++)
+            queue->add(it->mIn.mObject);
     };
     
     // Input Connection Queries (with and without alias resolution)
@@ -544,7 +543,7 @@ private:
             FrameLib_Object *object = connection.mObject->traverseOrderingAliases();
             std::vector<Connection> &connections = object->mOrderingConnections;
             
-            for (ConnectionIterator it = connections.begin(); it != connections.end(); it++)
+            for (ConstConnectionIterator it = connections.begin(); it != connections.end(); it++)
                 notifyConnectionsChanged(*it);
         }
         else
@@ -580,6 +579,9 @@ private:
     }
     
     // Change Ordering Connection
+    
+    typedef bool ListMethod(std::vector<Connection>&, Connection);
+    typedef void (FrameLib_Object::*AlterMethod)(ConnectorMethod, Connection, unsigned long, bool);
     
     ConnectionResult changeOrderingConnection(Connection connection, ListMethod listUpdate, AlterMethod alterConnector)
     {
@@ -687,40 +689,35 @@ private:
         queue->add(dynamic_cast<T *>(const_cast<FrameLib_Object *>(this)));
     }
     
-    template <class U> void addDependency(std::vector<U *> &dependencies) const
+    template <class U> void addDependency(std::vector<U *>& dependencies) const
     {
         U *object = dynamic_cast<U *>(const_cast<FrameLib_Object *>(this));
 
         if (object)
-            dependencies.push_back(object);
+            addUniqueItem(dependencies, object);
+    }
+    
+    template <class U>
+    void traverseDependencies(U& dependencies, const Connector& connector, void (FrameLib_Object::*method)(U&, unsigned long) const) const
+    {
+        for (ConstConnectionIterator it = connector.mOut.begin(); it != connector.mOut.end(); it++)
+            (it->mObject->*method)(dependencies, it->mIndex);
     }
     
     template <class U> void addOutputDependencies(U &dependencies, unsigned long outIdx) const
     {
         if (mOutputConnections[outIdx].mInternal)
-        {
-            for (ConstConnectionIterator it = mOutputConnections[outIdx].mOut.begin(); it != mOutputConnections[outIdx].mOut.end(); it++)
-                it->mObject->addOutputDependencies(dependencies, it->mIndex);
-        }
+            traverseDependencies(dependencies, mOutputConnections[outIdx], &FrameLib_Object::addOutputDependencies<U>);
         else
-        {
-            for (ConstConnectionIterator it = mOutputConnections[outIdx].mOut.begin(); it != mOutputConnections[outIdx].mOut.end(); it++)
-                it->mObject->unwrapInputAliases(dependencies, it->mIndex);
-        }
+            traverseDependencies(dependencies, mOutputConnections[outIdx], &FrameLib_Object::unwrapInputAliases<U>);
     }
     
-    template <class U> void unwrapInputAliases(U &dependencies, unsigned long inIdx) const
+    template <class U> void unwrapInputAliases(U& dependencies, unsigned long inIdx) const
     {
         if (inIdx == kOrdering && mOrderingConnector.mOut.size())
-        {
-            for (ConstConnectionIterator it = mOrderingConnector.mOut.begin(); it != mOrderingConnector.mOut.end(); it++)
-                it->mObject->unwrapInputAliases(dependencies, it->mIndex);
-        }
+            traverseDependencies(dependencies, mOrderingConnector, &FrameLib_Object::unwrapInputAliases<U>);
         else if (inIdx != kOrdering && mInputConnections[inIdx].mOut.size())
-        {
-            for (ConstConnectionIterator it = mInputConnections[inIdx].mOut.begin(); it != mInputConnections[inIdx].mOut.end(); it++)
-                it->mObject->unwrapInputAliases(dependencies, it->mIndex);
-        }
+            traverseDependencies(dependencies, mInputConnections[inIdx], &FrameLib_Object::unwrapInputAliases<U>);
         else
             addDependency(dependencies);
     }
@@ -778,7 +775,7 @@ private:
         
         // Remove from aliased objects and clear
 
-        for (ConnectionIterator it = connector.mOut.begin(); it != connector.mOut.end(); it++)
+        for (ConstConnectionIterator it = connector.mOut.begin(); it != connector.mOut.end(); it++)
             (it->mObject->*method)(it->mIndex).mIn = Connection();
         connector.clearOuts(isOutput(method));
         
@@ -800,14 +797,11 @@ private:
         Queue queue(static_cast<T*>(this), &T::feedbackProbe);
         return object->mFeedback;
     }
-
+    
     void feedbackProbe(Queue *queue)
     {
         mFeedback = true;
-        
-        for (ConnectorIterator it = mOutputConnections.begin(); it != mOutputConnections.end(); it++)
-            for (ConnectionIterator jt = it->mOut.begin(); jt != it->mOut.end(); jt++)
-                queue->add(static_cast<T *>(jt->mObject));
+        queueConnectorVectorDependencies(queue, mOutputConnections);
     }
     
     // Data
