@@ -531,7 +531,7 @@ private:
     void notifyConnectionsChanged(Connection connection)
     {
         if (connection.mObject)
-            connection.mObject->notifySelf();
+            connection.mObject->callConnectionUpdate();
     }
     
     void notifyAliasChanged(ConnectorMethod method, Connection connection)
