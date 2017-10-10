@@ -29,7 +29,7 @@
 
 \linespread{1.1} % Line spacing
 
-\newcommand{\version}{Alpha 0.8}
+\newcommand{\version}{Alpha 0.9}
 % Set up the header and footer
 \pagestyle{fancy}
 \lhead{Alex Harker} % Top left header
@@ -508,5 +508,15 @@ A full object listing follows, grouped by function. Currently this is the best q
 \item {\#32} Added support for better multichannel control, including multichannel audio in and out (plus a demo patch).
 \item {\#32} Minor info string updates for binary objects.
 \item Added new objects (\flobject{not}, \flobject{and}, \flobject{or}, \flobject{modulo}, \flobject{channel}).
+\end{itemize}
+
+\subsection{Changes in Alpha 0.9}
+\vspace{0.1in}
+
+\begin{itemize}
+\item {\#36} Changed \flobject{select} parameter naming ("num\_ins").
+\item {\#38} Fixed \flobject{read} crash with non-existent buffer or buffer names including numbers.
+\item Added new object \flobject{route}.
+\item Added new demos for the \flobject{route} object.
 \end{itemize}
 \end{document}
