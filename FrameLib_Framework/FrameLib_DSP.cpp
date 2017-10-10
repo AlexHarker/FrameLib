@@ -117,7 +117,7 @@ void FrameLib_DSP::reset(LocalQueue *queue)
     
     if (mNoLiveInputs != prevNoLiveInputs)
         for (ObjectIterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-            queue->add(*it, &FrameLib_DSP::reset);
+            queue->add(*it);
 }
 
 // Setup and IO Modes
@@ -612,15 +612,7 @@ void FrameLib_DSP::connectionUpdate(Queue *queue)
     
     // Build the output dependency list
     
-    std::vector<FrameLib_Block *> dependencies = getOutputDependencies();
-    
-    for (std::vector<FrameLib_Block *>::iterator it = dependencies.begin(); it != dependencies.end(); it++)
-    {
-        FrameLib_DSP *object = dynamic_cast<FrameLib_DSP *>(*it);
-        
-        if (object)
-            mOutputDependencies.push_back(object);
-    }
+    addOutputDependencies(mOutputDependencies);
 }
 
 void FrameLib_DSP::autoOrderingConnections()
@@ -635,7 +627,7 @@ void FrameLib_DSP::autoOrderingConnections(LocalQueue *queue)
         addOrderingConnection(Connection(queue->getFirst(), 0));
         
     for (ObjectIterator it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-        queue->add(*it, &FrameLib_DSP::autoOrderingConnections);
+        queue->add(*it);
 }
 
 void FrameLib_DSP::clearAutoOrderingConnections()

@@ -24,43 +24,47 @@ public:
 
     public:
         
-        Queue() : mMethod(NULL), mFirst(NULL), mTop(NULL), mTail(NULL) {}
-        Queue(T *object, Method method) : mMethod(NULL), mFirst(NULL), mTop(NULL), mTail(NULL) { add(object, method); }
+        Queue() : mFirst(NULL), mTop(NULL), mTail(NULL) {}
+
+        Queue(T *object, Method method) : mFirst(NULL), mTop(NULL), mTail(NULL)
+        {
+            add(object);
+            start(method);
+        }
         
-        void add(T *object, Method method)
+        void add(T *object)
         {
             // Do not add if NULL or re-add if already in queue
             
             if (!object || object->FrameLib_Queueable<T>::mNext != NULL)
                 return;
             
-            if (!mTop)
+            // Add to the top /tail of the queue depending on whether the queue is open
+            
+            if (mTop)
             {
-                // Queue is empty - add and start processing the queue
-                
-                mMethod = method;
-                mFirst = mTop = mTail = object;
-                
-                while (mTop)
-                {
-                    object = mTop;
-                    (object->*method)(this);
-                    mTop = object->FrameLib_Queueable<T>::mNext;
-                    object->FrameLib_Queueable<T>::mNext = NULL;
-                }
-                
-                mMethod = NULL;
-                mFirst = mTail = NULL;
-            }
-            else
-            {
-                assert (method == mMethod && "Cannot add items to open queue for another method");
-                
-                // Add to the queue (which is already processing)
-                
                 mTail->FrameLib_Queueable<T>::mNext = object;
                 mTail = object;
             }
+            else
+                mTop = mTail = object;
+        }
+        
+        void start(Method method)
+        {
+            assert(!mFirst && "Can't restart queue");
+            
+            mFirst = mTop;
+            
+            while (mTop)
+            {
+                T *object = mTop;
+                (object->*method)(this);
+                mTop = object->FrameLib_Queueable<T>::mNext;
+                object->FrameLib_Queueable<T>::mNext = NULL;
+            }
+            
+            mFirst = mTail = NULL;
         }
         
         T *getFirst() const { return mFirst; }
@@ -71,8 +75,6 @@ public:
         
         Queue(const Queue&);
         Queue& operator=(const Queue&);
-        
-        Method mMethod;
         
         T *mFirst;
         T *mTop;
@@ -321,14 +323,16 @@ protected:
     Connection getConnectionInternal(unsigned long inIdx) const             { return getConnection(inIdx, true); }
     Connection getOrderingConnectionInternal(unsigned long idx) const       { return getOrderingConnection(idx, true); }
     
-    std::vector<T *> getOutputDependencies() const
+    template <class U> void addOutputDependencies(typename FrameLib_Queueable<U>::Queue *queue)
     {
-        std::vector<T *> dependencies;
-        
         for (unsigned long i = 0; i < getNumOuts(); i++)
-            addDependencies(dependencies, i);
-        
-        return dependencies;
+            addOutputDependencies(queue, i);
+    }
+
+    template <class U> void addOutputDependencies(std::vector<U *> &dependencies)
+    {
+        for (unsigned long i = 0; i < getNumOuts(); i++)
+            addOutputDependencies(dependencies, i);
     }
    
     // IO Setup
@@ -472,10 +476,10 @@ private:
     {
         for (ConnectorIterator it = mInputConnections.begin(); it != mInputConnections.end(); it++)
             for (ConnectionIterator jt = it->mOut.begin(); jt != it->mOut.end(); jt++)
-                queue->add(jt->mObject, &T::FrameLib_Object::connectionUpdate);
+                queue->add(jt->mObject);
         
         for (ConnectorIterator it = mOutputConnections.begin(); it != mOutputConnections.end(); it++)
-                queue->add(it->mIn.mObject, &T::FrameLib_Object::connectionUpdate);
+                queue->add(it->mIn.mObject);
     };
     
     // Input Connection Queries (with and without alias resolution)
@@ -676,36 +680,49 @@ private:
         notifySelf(notify);
     }
 
-    // Add dependencies
+    // Add Output Dependencies
+        
+    void addDependency(typename FrameLib_Queueable<T>::Queue *queue) const
+    {
+        queue->add(dynamic_cast<T *>(const_cast<FrameLib_Object *>(this)));
+    }
     
-    void addDependencies(std::vector<T *> &dependencies, unsigned long outIdx) const
+    template <class U> void addDependency(std::vector<U *> &dependencies) const
+    {
+        U *object = dynamic_cast<U *>(const_cast<FrameLib_Object *>(this));
+
+        if (object)
+            dependencies.push_back(object);
+    }
+    
+    template <class U> void addOutputDependencies(U dependencies, unsigned long outIdx) const
     {
         if (mOutputConnections[outIdx].mInternal)
         {
             for (ConstConnectionIterator it = mOutputConnections[outIdx].mOut.begin(); it != mOutputConnections[outIdx].mOut.end(); it++)
-                it->mObject->addDependencies(dependencies, it->mIndex);
+                it->mObject->addOutputDependencies(dependencies, it->mIndex);
         }
         else
         {
             for (ConstConnectionIterator it = mOutputConnections[outIdx].mOut.begin(); it != mOutputConnections[outIdx].mOut.end(); it++)
-                it->mObject->unwrapDependencies(dependencies, it->mIndex);
+                it->mObject->unwrapInputAliases(dependencies, it->mIndex);
         }
     }
     
-    void unwrapDependencies(std::vector<T *> &dependencies, unsigned long inIdx) const
+    template <class U> void unwrapInputAliases(U dependencies, unsigned long inIdx) const
     {
         if (inIdx == kOrdering && mOrderingConnector.mOut.size())
         {
             for (ConstConnectionIterator it = mOrderingConnector.mOut.begin(); it != mOrderingConnector.mOut.end(); it++)
-                it->mObject->unwrapDependencies(dependencies, it->mIndex);
+                it->mObject->unwrapInputAliases(dependencies, it->mIndex);
         }
         else if (inIdx != kOrdering && mInputConnections[inIdx].mOut.size())
         {
             for (ConstConnectionIterator it = mInputConnections[inIdx].mOut.begin(); it != mInputConnections[inIdx].mOut.end(); it++)
-                it->mObject->unwrapDependencies(dependencies, it->mIndex);
+                it->mObject->unwrapInputAliases(dependencies, it->mIndex);
         }
         else
-            addUniqueItem(dependencies, static_cast<T *>(const_cast<FrameLib_Object *>(this)));
+            addDependency(dependencies);
     }
     
     // Aliasing Methods
@@ -743,7 +760,7 @@ private:
     
     void clearAliases(ConnectorMethod method, unsigned long idx)
     {
-        std::vector<T *> dependencies;
+        Queue queue;
         Connector& connector = (this->*method)(idx);
 
         if (isOutput(method) && !connector.mInternal)
@@ -752,9 +769,9 @@ private:
         // Create a list of dependencies
         
         if (isOutput(method))
-            addDependencies(dependencies, idx);
+            addOutputDependencies(&queue, idx);
         else
-            unwrapDependencies(dependencies, idx);
+            unwrapInputAliases(&queue, idx);
         
         // Remove from aliased objects and clear
 
@@ -764,8 +781,7 @@ private:
         
         // Notify
         
-        for (ObjectIterator it = dependencies.begin(); it != dependencies.end(); it++)
-            (*it)->notifySelf();
+        queue.start(&T::FrameLib_Object::connectionUpdate);
     }
 
     // Simpler Ordering Calls
@@ -778,7 +794,7 @@ private:
     bool detectFeedback(T *object)
     {
         object->mFeedback = false;
-        Queue queue(dynamic_cast<T*>(this), &T::feedbackProbe);
+        Queue queue(static_cast<T*>(this), &T::feedbackProbe);
         return object->mFeedback;
     }
 
@@ -788,7 +804,7 @@ private:
         
         for (ConnectorIterator it = mOutputConnections.begin(); it != mOutputConnections.end(); it++)
             for (ConnectionIterator jt = it->mOut.begin(); jt != it->mOut.end(); jt++)
-                queue->add(static_cast<T *>(jt->mObject), &T::feedbackProbe);
+                queue->add(static_cast<T *>(jt->mObject));
     }
     
     // Data
@@ -807,9 +823,8 @@ private:
 
     std::vector<Connector> mInputConnections;
     std::vector<Connector> mOutputConnections;
-    
-    Connector mOrderingConnector;
     std::vector<Connection> mOrderingConnections;
+    Connector mOrderingConnector;
     
     bool mSupportsOrderingConnections;
     bool mFeedback;
