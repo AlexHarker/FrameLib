@@ -695,7 +695,7 @@ private:
             dependencies.push_back(object);
     }
     
-    template <class U> void addOutputDependencies(U dependencies, unsigned long outIdx) const
+    template <class U> void addOutputDependencies(U &dependencies, unsigned long outIdx) const
     {
         if (mOutputConnections[outIdx].mInternal)
         {
@@ -709,7 +709,7 @@ private:
         }
     }
     
-    template <class U> void unwrapInputAliases(U dependencies, unsigned long inIdx) const
+    template <class U> void unwrapInputAliases(U &dependencies, unsigned long inIdx) const
     {
         if (inIdx == kOrdering && mOrderingConnector.mOut.size())
         {
@@ -760,7 +760,10 @@ private:
     
     void clearAliases(ConnectorMethod method, unsigned long idx)
     {
+        // N.B. Queue pointer allows the pointer to be passed by reference (as required for the vector versions)
+        
         Queue queue;
+        Queue *queuePtr = &queue;
         Connector& connector = (this->*method)(idx);
 
         if (isOutput(method) && !connector.mInternal)
@@ -769,9 +772,9 @@ private:
         // Create a list of dependencies
         
         if (isOutput(method))
-            addOutputDependencies(&queue, idx);
+            addOutputDependencies(queuePtr, idx);
         else
-            unwrapInputAliases(&queue, idx);
+            unwrapInputAliases(queuePtr, idx);
         
         // Remove from aliased objects and clear
 
