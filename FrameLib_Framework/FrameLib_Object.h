@@ -323,7 +323,7 @@ protected:
     Connection getConnectionInternal(unsigned long inIdx) const             { return getConnection(inIdx, true); }
     Connection getOrderingConnectionInternal(unsigned long idx) const       { return getOrderingConnection(idx, true); }
     
-    template <class U> void addOutputDependencies(typename FrameLib_Queueable<U>::Queue *queue)
+    void addOutputDependencies(Queue *queue)
     {
         for (unsigned long i = 0; i < getNumOuts(); i++)
             addOutputDependencies(queue, i);
@@ -682,7 +682,7 @@ private:
 
     // Add Output Dependencies
         
-    void addDependency(typename FrameLib_Queueable<T>::Queue *queue) const
+    void addDependency(Queue *queue) const
     {
         queue->add(dynamic_cast<T *>(const_cast<FrameLib_Object *>(this)));
     }
