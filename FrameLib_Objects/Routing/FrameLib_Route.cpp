@@ -5,12 +5,11 @@
 
 // Constructor
 
-FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, long num) : FrameLib_Processor(context, owner, NULL, 1, 1)
+FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, long num) : FrameLib_Processor(context, owner, NULL, 1, 1), mValveNumber(num)
 {
     mParameters.addInt(kActiveValve, "output", 0);
     mParameters.set(serialisedParameters);
     
-    mValveNumber = num;
     mActiveValve = floor(mParameters.getInt(kActiveValve));
     
     setInputMode(0, false, mValveNumber == mActiveValve, true, kFrameAny);
