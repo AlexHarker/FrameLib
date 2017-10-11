@@ -1,10 +1,10 @@
 
-#ifndef FRAMELIB_NOW_H
-#define FRAMELIB_NOW_H
+#ifndef FRAMELIB_TIMEDELTA_H
+#define FRAMELIB_TIMEDELTA_H
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_Now : public FrameLib_Processor
+class FrameLib_TimeDelta : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
@@ -17,7 +17,7 @@ public:
     
     // Constructor
     
-    FrameLib_Now(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_TimeDelta(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
     // Info
     
@@ -33,7 +33,7 @@ private:
     
     // Object Reset
     
-    void objectReset() { calculateMultiplier(); }
+    void objectReset();
     
     // Update and Process
     
@@ -43,6 +43,7 @@ private:
     // Data
 
     FrameLib_TimeFormat mMultiplier;
+    FrameLib_TimeFormat mLastTime;
     
     static ParameterInfo sParamInfo;
 };
