@@ -12,7 +12,7 @@ FrameLib_Sort::FrameLib_Sort(FrameLib_Context context, FrameLib_Parameters::Seri
     
     mParameters.set(serialisedParameters);
     
-    mOrder = (Orders) mParameters.getInt(kOrder);
+    addParameterInput();
 }
 
 // Info
@@ -54,7 +54,7 @@ void FrameLib_Sort::process()
     
     double *output = getOutput(0, &size);
     
-    switch (mOrder)
+    switch ((Orders) mParameters.getInt(kOrder))
     {
         case kUp:
             sortAscending(output, input, size);

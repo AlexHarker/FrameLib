@@ -3,7 +3,6 @@
 #define FRAMELIB_VECTOR_TEMPLATE_H
 
 #include "FrameLib_DSP.h"
-#include <functional>
 
 template <double func(double *, unsigned long) > class FrameLib_Vector : public FrameLib_Processor
 {
@@ -45,7 +44,7 @@ protected:
             output[0] = func(input, sizeIn);
     }
     
-    // Operator description (specialise to change description)
+    // Operator Description (specialise to change description)
 
     const char *getOpString() { return "<vector operation>"; }
 };

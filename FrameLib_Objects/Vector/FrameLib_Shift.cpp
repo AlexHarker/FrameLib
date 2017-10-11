@@ -7,7 +7,7 @@ FrameLib_Shift::FrameLib_Shift(FrameLib_Context context, FrameLib_Parameters::Se
 {
     mParameters.addDouble(kShift, "shift", 0.0, 0);
     
-    mParameters.addDouble(kPadding, "padding", 0.0, 1);
+    mParameters.addDouble(kPadding, "pad", 0.0, 1);
     
     mParameters.addEnum(kMode, "mode", 2);
     mParameters.addEnumItem(kPad, "pad");
@@ -18,6 +18,8 @@ FrameLib_Shift::FrameLib_Shift(FrameLib_Context context, FrameLib_Parameters::Se
     mParameters.addEnumItem(kRatio, "ratios");
     
     mParameters.set(serialisedParameters);
+    
+    addParameterInput();
 }
 
 // Info

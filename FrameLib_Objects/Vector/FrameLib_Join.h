@@ -4,7 +4,7 @@
 
 #include "FrameLib_DSP.h"
 
-// FIX - time variable triggers
+// FIX - time variable triggers?
 
 class FrameLib_Join : public FrameLib_Processor
 {

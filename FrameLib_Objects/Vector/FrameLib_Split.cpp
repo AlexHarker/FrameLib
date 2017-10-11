@@ -13,6 +13,8 @@ FrameLib_Split::FrameLib_Split(FrameLib_Context context, FrameLib_Parameters::Se
     mParameters.addEnumItem(kRatio, "ratios");
     
     mParameters.set(serialisedParameters);
+    
+    addParameterInput();
 }
 
 // Info

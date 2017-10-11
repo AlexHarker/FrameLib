@@ -31,8 +31,6 @@ private:
     void process();
     
     // Data
-
-    double mPercentile;
     
     static ParameterInfo sParamInfo;
 };

@@ -5,7 +5,7 @@
 
 FrameLib_Pad::FrameLib_Pad(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 1, 1)
 {
-    mParameters.addDouble(kPadding, "padding", 0.0, 0);
+    mParameters.addDouble(kPadding, "pad", 0.0, 0);
     
     mParameters.addDouble(kStart, "start", 0.0, 1);
     mParameters.setMin(0.0);
@@ -18,6 +18,8 @@ FrameLib_Pad::FrameLib_Pad(FrameLib_Context context, FrameLib_Parameters::Serial
     mParameters.addEnumItem(kRatio, "ratios");
     
     mParameters.set(serialisedParameters);
+    
+    addParameterInput();
 }
 
 // Info
@@ -54,7 +56,7 @@ FrameLib_Pad::ParameterInfo::ParameterInfo()
 
 // Process
 
-void FrameLib_Pad::process ()
+void FrameLib_Pad::process()
 {
     // Get Input
     

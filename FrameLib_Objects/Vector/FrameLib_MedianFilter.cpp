@@ -5,12 +5,12 @@
 
 // Constructor
 
-FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 2, 1)
+FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 1, 1)
 {
     mParameters.addInt(kWidth, "width", 1, 0);
     mParameters.setMin(1);
     
-    mParameters.addDouble(kPadding, "padding", 0.0, 1);
+    mParameters.addDouble(kPadding, "pad", 0.0, 1);
     
     mParameters.addEnum(kMode, "mode", 3);
     mParameters.addEnumItem(kPad, "pad");
@@ -19,7 +19,7 @@ FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, FrameLib_
     
     mParameters.set(serialisedParameters);
     
-    setParameterInput(1);
+    addParameterInput();
 }
 
 // Info

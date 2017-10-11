@@ -5,7 +5,7 @@
 
 FrameLib_Chop::FrameLib_Chop(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner): FrameLib_Processor(context, owner, &sParamInfo)
 {
-    mParameters.addInt(kNumOuts, "numouts", 1, 0);
+    mParameters.addInt(kNumOuts, "num_outs", 1, 0);
     mParameters.setClip(2, 32);
     mParameters.setInstantiation();
     
@@ -21,6 +21,8 @@ FrameLib_Chop::FrameLib_Chop(FrameLib_Context context, FrameLib_Parameters::Seri
     mNumOuts = mParameters.getInt(kNumOuts);
     
     setIO(1, mNumOuts);
+    
+    addParameterInput();
 }
 
 // Info

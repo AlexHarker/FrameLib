@@ -5,13 +5,13 @@
 
 FrameLib_Join::FrameLib_Join(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo)
 {
-    mParameters.addInt(kNumIns, "numins", 2, 0);
+    mParameters.addInt(kNumIns, "num_ins", 2, 0);
     mParameters.setClip(2, 32);
     mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
 
-    mParameters.addBoolArray(kTriggers, "triggers", 1.0, mParameters.getInt(kNumIns));
+    mParameters.addBoolArray(kTriggers, "trigger_ins", 1.0, mParameters.getInt(kNumIns));
     mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);

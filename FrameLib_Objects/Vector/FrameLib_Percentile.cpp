@@ -11,7 +11,7 @@ FrameLib_Percentile::FrameLib_Percentile(FrameLib_Context context, FrameLib_Para
     
     mParameters.set(serialisedParameters);
     
-    mPercentile = mParameters.getValue(kPercentile);
+    addParameterInput();
 }
 
 // Info
@@ -64,7 +64,7 @@ void FrameLib_Percentile::process()
         
         // Linearly interpolate output
         
-        double position = (mPercentile * (sizeIn - 1) / 100.0);
+        double position = (mParameters.getValue(kPercentile) * (sizeIn - 1) / 100.0);
         unsigned long idx = position;
         double fract = position - idx;
         

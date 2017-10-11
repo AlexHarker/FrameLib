@@ -32,8 +32,6 @@ private:
     void process();
     
     // Data
-
-    Orders mOrder;
     
     static ParameterInfo sParamInfo;
 };

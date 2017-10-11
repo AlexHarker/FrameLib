@@ -16,6 +16,8 @@ FrameLib_Subframe::FrameLib_Subframe(FrameLib_Context context, FrameLib_Paramete
     mParameters.addEnumItem(kRatio, "ratios");
     
     mParameters.set(serialisedParameters);
+    
+    addParameterInput();
 }
 
 // Info
