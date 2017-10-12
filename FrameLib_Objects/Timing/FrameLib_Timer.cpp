@@ -19,13 +19,16 @@ FrameLib_Timer::FrameLib_Timer(FrameLib_Context context, FrameLib_Parameters::Se
 
 std::string FrameLib_Timer::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs the current time in the specified units: Output is a single value.",
-                   "Outputs the current time in the specified units.", verbose);
+    return formatInfo("Calculates the time elapsed between trigger frame inputs and the subsequent reset frame: Time is reported in the specified units. Output is a single value.",
+                   "Calculates the time elapsed between the last reset and each trigger.", verbose);
 }
 
 std::string FrameLib_Timer::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Trigger Input - input frames generate output", "Trigger Input", verbose);
+    if (idx)
+        return formatInfo("Trigger Input - input frames generate output", "Trigger Input", verbose);
+    else
+        return formatInfo("Reset Input - input frames do not generate output", "Reset Input", verbose);
 }
 
 std::string FrameLib_Timer::outputInfo(unsigned long idx, bool verbose)

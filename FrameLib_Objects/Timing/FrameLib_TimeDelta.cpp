@@ -18,8 +18,8 @@ FrameLib_TimeDelta::FrameLib_TimeDelta(FrameLib_Context context, FrameLib_Parame
 
 std::string FrameLib_TimeDelta::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs the current time in the specified units: Output is a single value.",
-                   "Outputs the current time in the specified units.", verbose);
+    return formatInfo("Calculates the time interval between consecutive incoming frames: Time is reported in the specified units. Output is a single value.",
+                   "Outputs the time interval between consecutive incoming frames.", verbose);
 }
 
 std::string FrameLib_TimeDelta::inputInfo(unsigned long idx, bool verbose)
