@@ -1,10 +1,10 @@
 
-#ifndef FRAMELIB_MULTISELECT_H
-#define FRAMELIB_MULTISELECT_H
+#ifndef FRAMELIB_DISPATCH_H
+#define FRAMELIB_DISPATCH_H
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_MultiSelect : public FrameLib_Block
+class FrameLib_Dispatch : public FrameLib_Block
 {
     // Internal valve class
     
@@ -43,8 +43,8 @@ public:
     
     // Constructor / Destructor
     
-    FrameLib_MultiSelect(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
-    ~FrameLib_MultiSelect();
+    FrameLib_Dispatch(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    ~FrameLib_Dispatch();
     
     // Object Type
     

@@ -1,42 +1,42 @@
 
-#include "FrameLib_Channel.h"
+#include "FrameLib_StreamID.h"
 
 // Constructor
 
-FrameLib_Channel::FrameLib_Channel(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-: FrameLib_Processor(context, owner, NULL, 1, 1), mChan(1)
+FrameLib_StreamID::FrameLib_StreamID(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
+: FrameLib_Processor(context, owner, NULL, 1, 1), mStream(1)
 {
     mParameters.set(serialisedParameters);
 }
 
 // Info
 
-std::string FrameLib_Channel::objectInfo(bool verbose)
+std::string FrameLib_StreamID::objectInfo(bool verbose)
 {
     return formatInfo("Outputs the channel number on each channel of a multichannel stream when triggered: Any input frame outputs the channel number (counting from one) on the relevant frame stream.",
                    "Outputs the channel number on each channel of a multichannel stream when triggered.", verbose);
 }
 
-std::string FrameLib_Channel::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_StreamID::inputInfo(unsigned long idx, bool verbose)
 {
     return formatInfo("Trigger Input - triggers output channel numbers", "Trigger Input", verbose);
 }
 
-std::string FrameLib_Channel::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_StreamID::outputInfo(unsigned long idx, bool verbose)
 {
     return "Channel Numbers Output";
 }
 
-// Channel Awareness
+// Stream Awareness
 
-void FrameLib_Channel::setChannel(unsigned long chan)
+void FrameLib_StreamID::setStream(unsigned long stream)
 {
-    mChan = chan;
+    mStream = stream;
 }
 
 // Process
 
-void FrameLib_Channel::process()
+void FrameLib_StreamID::process()
 {
     unsigned long size;
     
@@ -46,5 +46,5 @@ void FrameLib_Channel::process()
     double *output = getOutput(0, &size);
     
     if (size)
-        output[0] = mChan;
+        output[0] = mStream;
 }

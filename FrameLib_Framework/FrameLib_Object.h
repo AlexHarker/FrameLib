@@ -843,9 +843,9 @@ public:
     FrameLib_Block(ObjectType type, FrameLib_Context context, void *owner) : FrameLib_Object<FrameLib_Block>(type, context, owner) {}
     virtual ~FrameLib_Block() {}
 
-    // Channel Awareness
+    // Stream Awareness
     
-    virtual void setChannel(unsigned long chan) {}
+    virtual void setStream(unsigned long stream) {}
 };
 
 #endif

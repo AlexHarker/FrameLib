@@ -42,12 +42,12 @@ std::string FrameLib_Store::outputInfo(unsigned long idx, bool verbose)
     return "Synchronisation Output";
 }
 
-// Channel Awareness
+// Stream Awareness
 
-void FrameLib_Store::setChannel(unsigned long chan)
+void FrameLib_Store::setStream(unsigned long stream)
 {
     releaseStorage(mStorage);
-    mStorage = registerStorage(numberedString(mName.c_str(), chan).c_str());
+    mStorage = registerStorage(numberedString(mName.c_str(), stream).c_str());
 }
 
 // Parameter Info

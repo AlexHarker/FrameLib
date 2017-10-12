@@ -1,16 +1,16 @@
 
-#ifndef FRAMELIB_CHANNEL_H
-#define FRAMELIB_CHANNEL_H
+#ifndef FRAMELIB_STREAMID_H
+#define FRAMELIB_STREAMID_H
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_Channel : public FrameLib_Processor
+class FrameLib_StreamID : public FrameLib_Processor
 {
     public:
     
     // Constructor
     
-    FrameLib_Channel(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_StreamID(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
     // Info
     
@@ -18,9 +18,9 @@ class FrameLib_Channel : public FrameLib_Processor
     std::string inputInfo(unsigned long idx, bool verbose);
     std::string outputInfo(unsigned long idx, bool verbose);
     
-    // Channel Awareness
+    // Stream Awareness
     
-    void setChannel(unsigned long chan);
+    void setStream(unsigned long stream);
     
 private:
 
@@ -28,7 +28,7 @@ private:
 
     void process();
     
-    unsigned long mChan;
+    unsigned long mStream;
 };
 
 #endif

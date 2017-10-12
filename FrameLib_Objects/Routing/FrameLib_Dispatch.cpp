@@ -1,11 +1,11 @@
 
-#include "FrameLib_MultiSelect.h"
+#include "FrameLib_Dispatch.h"
 
 // Internal Valve Class
 
 // Constructor
 
-FrameLib_MultiSelect::Select::Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, long numIns, long num) : FrameLib_Processor(context, owner, NULL, 1, 1), mNumIns(numIns)
+FrameLib_Dispatch::Select::Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, long numIns, long num) : FrameLib_Processor(context, owner, NULL, 1, 1), mNumIns(numIns)
 {
     char name[32];
     sprintf(name, "input_%2ld", num);
@@ -24,7 +24,7 @@ FrameLib_MultiSelect::Select::Select(FrameLib_Context context, FrameLib_Paramete
 
 // Update and Process
 
-void FrameLib_MultiSelect::Select::update()
+void FrameLib_Dispatch::Select::update()
 {
     if (mParameters.changed(kActiveIn))
     {
@@ -37,7 +37,7 @@ void FrameLib_MultiSelect::Select::update()
     }
 }
 
-void FrameLib_MultiSelect::Select::process()
+void FrameLib_Dispatch::Select::process()
 {
     // Copy active input to output
     
@@ -51,7 +51,7 @@ void FrameLib_MultiSelect::Select::process()
 
 // Constructor
 
-FrameLib_MultiSelect::FrameLib_MultiSelect(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
+FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
 : FrameLib_Block(kProcessor, context, owner), mParameters(&sParamInfo)
 {
     mParameters.addDouble(kNumIns, "num_ins", 2, 0);
@@ -86,7 +86,7 @@ FrameLib_MultiSelect::FrameLib_MultiSelect(FrameLib_Context context, FrameLib_Pa
     }
 }
 
-FrameLib_MultiSelect::~FrameLib_MultiSelect()
+FrameLib_Dispatch::~FrameLib_Dispatch()
 {    
     for (std::vector<Select *>::iterator it = mSelects.begin(); it != mSelects.end(); it++)
         delete (*it);
@@ -94,13 +94,13 @@ FrameLib_MultiSelect::~FrameLib_MultiSelect()
     
 // Info
 
-std::string FrameLib_MultiSelect::objectInfo(bool verbose)
+std::string FrameLib_Dispatch::objectInfo(bool verbose)
 {
     return formatInfo("Routes input frames to one of a number of outputs: The number of outputs is variable. The selected output can be changed with a parameter.",
                       "Routes input frames to one of a number of outputs.", verbose);
 }
 
-std::string FrameLib_MultiSelect::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Dispatch::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx == mNumOuts)
         return formatInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
@@ -108,16 +108,16 @@ std::string FrameLib_MultiSelect::inputInfo(unsigned long idx, bool verbose)
         return "Input Frames";
 }
 
-std::string FrameLib_MultiSelect::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Dispatch::outputInfo(unsigned long idx, bool verbose)
 {
     return formatInfo("Output #", "Output #", idx, verbose);
 }
 
 // Parameter Info
 
-FrameLib_MultiSelect::ParameterInfo FrameLib_MultiSelect::sParamInfo;
+FrameLib_Dispatch::ParameterInfo FrameLib_Dispatch::sParamInfo;
 
-FrameLib_MultiSelect::ParameterInfo::ParameterInfo()
+FrameLib_Dispatch::ParameterInfo::ParameterInfo()
 {
     add("Sets the number of object outputs.");
     add("Sets the current output (or off if out of range).");
@@ -125,7 +125,7 @@ FrameLib_MultiSelect::ParameterInfo::ParameterInfo()
 
 // Reset
 
-void FrameLib_MultiSelect::reset(double samplingRate, unsigned long maxBlockSize)
+void FrameLib_Dispatch::reset(double samplingRate, unsigned long maxBlockSize)
 {
     for (std::vector<Select *>::iterator it = mSelects.begin(); it != mSelects.end(); it++)
         (*it)->reset(samplingRate, maxBlockSize);

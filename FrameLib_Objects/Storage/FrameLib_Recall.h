@@ -27,9 +27,9 @@ public:
     std::string inputInfo(unsigned long idx, bool verbose);
     std::string outputInfo(unsigned long idx, bool verbose);
     
-    // Channel Awareness
+    // Stream Awareness
     
-    virtual void setChannel(unsigned long chan);
+    virtual void setStream(unsigned long stream);
 
 private:
     
