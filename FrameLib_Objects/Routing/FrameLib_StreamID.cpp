@@ -13,18 +13,18 @@ FrameLib_StreamID::FrameLib_StreamID(FrameLib_Context context, FrameLib_Paramete
 
 std::string FrameLib_StreamID::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs the channel number on each channel of a multichannel stream when triggered: Any input frame outputs the channel number (counting from one) on the relevant frame stream.",
-                   "Outputs the channel number on each channel of a multichannel stream when triggered.", verbose);
+    return formatInfo("Outputs consecutively numbered stream ids for each stream in of a multichannel connection when triggered: Any input frame outputs the stream number (counting from one) on the relevant frame stream.",
+                   "Outputs consecutively numbered stream ids for each stream in of a multichannel connection when triggered.", verbose);
 }
 
 std::string FrameLib_StreamID::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Trigger Input - triggers output channel numbers", "Trigger Input", verbose);
+    return formatInfo("Trigger Input - triggers output stream numbers", "Trigger Input", verbose);
 }
 
 std::string FrameLib_StreamID::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Channel Numbers Output";
+    return "Stream Number Output";
 }
 
 // Stream Awareness
