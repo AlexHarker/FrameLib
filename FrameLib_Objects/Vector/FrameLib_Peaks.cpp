@@ -44,8 +44,8 @@ void FrameLib_Peaks::refinePeak(double& pos, double& amp, double posUncorrected,
     // Take log values (avoiding values that are too low)
     
     vm1 = logValue(std::max(vm1, 0.0));
-    v0 = logValue(std::max(vm1, 0.0));
-    vp1 = logValue(std::max(vm1, 0.0));
+    v0 = logValue(std::max(v0, 0.0));
+    vp1 = logValue(std::max(vp1, 0.0));
     
     // Parabolic interpolation
     
