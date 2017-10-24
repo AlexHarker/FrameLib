@@ -163,8 +163,8 @@ void FrameLib_Multitaper::process()
                 
                 // FIX - possible these should be flipped...
                 
-                r3 = (r1 - r2);
-                i3 = (i1 - i2);
+                r3 = (i1 - i2);
+                i3 = (r2 - r1);
                 
                 output[j] += ((r3 * r3) + (i3 * i3)) * taperScale;
             }
