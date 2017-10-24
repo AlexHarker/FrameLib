@@ -5,10 +5,10 @@
 
 // Constructor
 
-FrameLib_Dispatch::Select::Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, long numIns, long num) : FrameLib_Processor(context, owner, NULL, 1, 1), mNumIns(numIns)
+FrameLib_Dispatch::Select::Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, long numIns, long num) : FrameLib_Processor(context, owner, NULL, numIns, 1), mNumIns(numIns)
 {
     char name[32];
-    sprintf(name, "input_%2ld", num);
+    sprintf(name, "input_%2ld", num + 1);
     mParameters.addInt(kActiveIn, name, 0);
     
     mParameters.set(serialisedParameters);
@@ -63,19 +63,19 @@ FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Paramete
     
     mParameters.set(serialisedParameters);
     
-    mNumOuts = mParameters.getInt(kNumIns);
+    mNumIns = mParameters.getInt(kNumIns);
     mNumOuts = mParameters.getInt(kNumOuts);
     
     for (long i = 0; i < mNumOuts; i++)
     {
         char name[32];
-        sprintf(name, "input_%2ld", i);
+        sprintf(name, "input_%2ld", i + 1);
         mParameters.addInt(kActiveIn1 + i, name, 0);
     }
               
     mParameters.set(serialisedParameters);
               
-    setIO(kNumIns + 1, kNumOuts);
+    setIO(mNumIns + 1, mNumOuts);
 
     for (int i = 0; i < mNumOuts; i++)
     {
