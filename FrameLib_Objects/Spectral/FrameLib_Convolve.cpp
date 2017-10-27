@@ -105,7 +105,7 @@ void FrameLib_Convolve::process()
     
     if (spectrum1.realp)
     {
-        double scale = 0.5 / (double) FFTSize;
+        double scale = 0.25 / (double) FFTSize;
         
         // Take the real ffts
         
