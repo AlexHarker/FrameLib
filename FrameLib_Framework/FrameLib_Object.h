@@ -228,14 +228,14 @@ public:
         ConnectionResult result = connectionCheck(connection, true);
 
         if (result == kConnectSuccess)
-            return changeOrderingConnection(connection, &addUniqueItem<Connection>, &FrameLib_Object::addToConnector);
+            return addOrderingConnection(connection, true);
 
         return result;
     }
     
     void deleteOrderingConnection(Connection connection)
     {
-        changeOrderingConnection(connection, &deleteUniqueItem<Connection>, &FrameLib_Object::deleteFromConnector);
+        deleteOrderingConnection(connection, true);
     }
     
     void clearOrderingConnections()
@@ -265,7 +265,7 @@ public:
     
     ConnectionResult setOrderingAlias(T *alias)
     {
-        ConnectionResult result = connectionCheck(alias, true);
+        ConnectionResult result = connectionCheck(Connection(alias, 0), true);
 
         if (result == kConnectSuccess)
         {
@@ -521,19 +521,29 @@ private:
     
     // Notifications
     
-    void notifySelf(bool notify = true)
+    void notifySelf(bool notify, Queue *queue = NULL)
     {
         if (notify)
-            callConnectionUpdate();
+        {
+            if (queue)
+                queue->add(dynamic_cast<T *>(const_cast<FrameLib_Object *>(this)));
+            else
+                callConnectionUpdate();
+        }
     }
 
-    void notifyConnectionsChanged(Connection connection)
+    void notifyConnectionsChanged(Connection connection, Queue *queue = NULL)
     {
         if (connection.mObject)
-            connection.mObject->callConnectionUpdate();
+        {
+            if (queue)
+                queue->add(connection.mObject);
+            else
+                connection.mObject->callConnectionUpdate();
+        }
     }
     
-    void notifyAliasChanged(ConnectorMethod method, Connection connection)
+    void notifyAliasChanged(ConnectorMethod method, Connection connection, Queue *queue)
     {
         if (!connection.mObject)
             return;
@@ -544,18 +554,18 @@ private:
             std::vector<Connection> &connections = object->mOrderingConnections;
             
             for (ConstConnectionIterator it = connections.begin(); it != connections.end(); it++)
-                notifyConnectionsChanged(*it);
+                notifyConnectionsChanged(*it, queue);
         }
         else
         {
             connection = connection.mObject->traverseAliases(method, connection.mIndex);
-            notifyConnectionsChanged((connection.mObject->*method)(connection.mIndex).mIn);
+            notifyConnectionsChanged((connection.mObject->*method)(connection.mIndex).mIn, queue);
         }
     }
 
     // Change Input Connection
 
-    ConnectionResult changeConnection(Connection connection, unsigned long inIdx, bool notify)
+    ConnectionResult changeConnection(Connection connection, unsigned long inIdx, bool notify, Queue *queue = NULL)
     {
         if (mInputConnections[inIdx].mIn == connection)
             return kConnectSuccess;
@@ -571,9 +581,9 @@ private:
         
         // Notify of updates
             
-        notifyConnectionsChanged(connection);
-        notifyConnectionsChanged(mInputConnections[inIdx].mIn);
-        notifySelf();
+        notifyConnectionsChanged(connection, queue);
+        notifyConnectionsChanged(mInputConnections[inIdx].mIn, queue);
+        notifySelf(notify, queue);
         
         return kConnectSuccess;
     }
@@ -583,7 +593,7 @@ private:
     typedef bool ListMethod(std::vector<Connection>&, Connection);
     typedef void (FrameLib_Object::*AlterMethod)(ConnectorMethod, Connection, unsigned long, bool);
     
-    ConnectionResult changeOrderingConnection(Connection connection, ListMethod listUpdate, AlterMethod alterConnector)
+    ConnectionResult changeOrderingConnection(Connection connection, ListMethod listUpdate, AlterMethod alterConnector, bool notify, Queue *queue)
     {
         if (!supportsOrderingConnections())
             return kConnectNoOrderingSupport;
@@ -598,17 +608,27 @@ private:
         
         (this->*alterConnector)(&FrameLib_Object::getOutputConnector, connection, kOrdering, false);
         
-        // Notify
+        // Notify (use queue to minimise calls, and ensure all changes are already complete)
         
-        notifyConnectionsChanged(connection);
-        notifySelf();
+        notifyConnectionsChanged(connection, queue);
+        notifySelf(notify, queue);
         
         return kConnectSuccess;
     }
     
+    ConnectionResult addOrderingConnection(Connection connection, bool notify, Queue *queue = NULL)
+    {
+        return changeOrderingConnection(connection, &addUniqueItem<Connection>, &FrameLib_Object::addToConnector, notify, queue);
+    }
+    
+    void deleteOrderingConnection(Connection connection, bool notify, Queue *queue = NULL)
+    {
+        changeOrderingConnection(connection, &deleteUniqueItem<Connection>, &FrameLib_Object::deleteFromConnector, notify, queue);
+    }
+    
     // Clear Ordering Connections
     
-    void clearOrderingConnections(bool notify)
+    void clearOrderingConnections(bool notify, Queue *queue = NULL)
     {
         if (!supportsOrderingConnections() || mOrderingConnector.mInternal)
             return;
@@ -623,17 +643,17 @@ private:
             
             // Notify
             
-            notifyConnectionsChanged(connection);
+            notifyConnectionsChanged(connection, queue);
         }
         
         // Notify
         
-        notifySelf(notify);
+        notifySelf(notify, queue);
     }
     
     // Clear output
     
-    void clearOutput(unsigned long outIdx)
+    void clearOutput(unsigned long outIdx, Queue *queue = NULL)
     {
         while (!mOutputConnections[outIdx].mInternal && mOutputConnections[outIdx].mOut.size())
         {
@@ -641,11 +661,15 @@ private:
 
             Connection connection = mOutputConnections[outIdx].mOut.back();
             mOutputConnections[outIdx].mOut.pop_back();
-            connection.mObject->mInputConnections[connection.mIndex].mIn = Connection();
+            
+            if (connection.mIndex == kOrdering)
+                connection.mObject->deleteOrderingConnection(thisConnection(outIdx), false, queue);
+            else
+                connection.mObject->mInputConnections[connection.mIndex].mIn = Connection();
             
             // Notify
 
-            notifyConnectionsChanged(connection);
+            notifyConnectionsChanged(connection, queue);
         }
     }
     
@@ -655,31 +679,35 @@ private:
     {
         // Clear input connections
         
+        Queue queue;
+        
         for (unsigned long i = 0; i < getNumIns(); i++)
         {
-            changeConnection(Connection(), i, false);
-            changeAlias(&FrameLib_Object::getInputConnector, Connection(), i, false);
-            clearAliases(&FrameLib_Object::getInputConnector, i);
+            changeConnection(Connection(), i, false, &queue);
+            changeAlias(&FrameLib_Object::getInputConnector, Connection(), i, false, &queue);
+            clearAliases(&FrameLib_Object::getInputConnector, i, &queue);
         }
         
         // Clear ordering connections
         
-        clearOrderingConnections(false);
-        changeOrderingAlias(NULL, false);
-        clearAliases(&FrameLib_Object::getOrderingConnector, kOrdering);
+        clearOrderingConnections(false, &queue);
+        changeOrderingAlias(NULL, false, &queue);
+        clearAliases(&FrameLib_Object::getOrderingConnector, kOrdering, &queue);
         
         // Clear outputs
         
         for (unsigned long i = 0; i < getNumOuts(); i++)
         {
-            clearOutput(i);
-            changeAlias(&FrameLib_Object::getOutputConnector, Connection(), i, false);
-            clearAliases(&FrameLib_Object::getOutputConnector, i);
+            clearOutput(i, &queue);
+            changeAlias(&FrameLib_Object::getOutputConnector, Connection(), i, false, &queue);
+            clearAliases(&FrameLib_Object::getOutputConnector, i, &queue);
         }
         
         // Notify
         
-        notifySelf(notify);
+        notifySelf(notify, &queue);
+        
+        queue.start(&T::FrameLib_Object::connectionUpdate);
     }
 
     // Add Output Dependencies
@@ -734,7 +762,7 @@ private:
         return thisConnection(idx);
     }
     
-    void changeAlias(ConnectorMethod method, Connection alias, unsigned long idx, bool notify)
+    void changeAlias(ConnectorMethod method, Connection alias, unsigned long idx, bool notify, Queue *queue = NULL)
     {
         Connector& connector = (this->*method)(idx);
         
@@ -750,17 +778,15 @@ private:
         
         // Notify of updates
         
-        notifyAliasChanged(method, alias);
-        notifyAliasChanged(method, connector.mIn);
-        notifySelf(notify);
+        notifyAliasChanged(method, alias, queue);
+        notifyAliasChanged(method, connector.mIn, queue);
+        notifySelf(notify, queue);
     }
     
-    void clearAliases(ConnectorMethod method, unsigned long idx)
+    void clearAliases(ConnectorMethod method, unsigned long idx, Queue *queue)
     {
         // N.B. Queue pointer allows the pointer to be passed by reference (as required for the vector versions)
-        
-        Queue queue;
-        Queue *queuePtr = &queue;
+    
         Connector& connector = (this->*method)(idx);
 
         if (isOutput(method) && !connector.mInternal)
@@ -769,25 +795,25 @@ private:
         // Create a list of dependencies
         
         if (isOutput(method))
-            addOutputDependencies(queuePtr, idx);
+            addOutputDependencies(queue, idx);
         else
-            unwrapInputAliases(queuePtr, idx);
+            unwrapInputAliases(queue, idx);
         
         // Remove from aliased objects and clear
 
         for (ConstConnectionIterator it = connector.mOut.begin(); it != connector.mOut.end(); it++)
             (it->mObject->*method)(it->mIndex).mIn = Connection();
         connector.clearOuts(isOutput(method));
-        
-        // Notify
-        
-        queue.start(&T::FrameLib_Object::connectionUpdate);
     }
 
     // Simpler Ordering Calls
     
     FrameLib_Object *traverseOrderingAliases() const      { return traverseAliases(&FrameLib_Object::getOrderingConnector, kOrdering).mObject; }
-    void changeOrderingAlias(T *alias, bool notify)       { changeAlias(&FrameLib_Object::getOrderingConnector, Connection(alias, kOrdering), kOrdering, notify); }
+    
+    void changeOrderingAlias(T *alias, bool notify, Queue *queue = NULL)
+    {
+        changeAlias(&FrameLib_Object::getOrderingConnector, Connection(alias, kOrdering), kOrdering, notify, queue);
+    }
     
     // Detect Potential Feedback in a Network
     
