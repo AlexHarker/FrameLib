@@ -1056,15 +1056,14 @@ private:
         else
         {
             /*
-            unwrapConnection(dst, dstin);
-            dstin -= (long) object_method(dst, gensym("__fl.get_num_audio_ins"));
             srcout -= getNumAudioOuts();
             
-            if (isOrderingInput(dstin, getInternalObject(dst)) || (validOutput(srcout) && updatetype == JPATCHLINE_CONNECT))
+            if (validOutput(srcout) && == JPATCHLINE_CONNECT)
             {
                 double color[4] = { 0.0, 0.0, 1.0, 1.0 };
                 object_attr_setdouble_array(patchline, gensym("patchlinecolor"), 4, color);
-            }*/
+            }
+             */
         }
         
         return MAX_ERR_NONE;
