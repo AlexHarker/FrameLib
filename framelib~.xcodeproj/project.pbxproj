@@ -42,7 +42,6 @@
 		B805E34D19C3AFCB007D8D8B /* fl.copysign~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B805E33019C3AF69007D8D8B /* fl.copysign~.cpp */; };
 		B805E34E19C3AFCF007D8D8B /* fl.min~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B805E33A19C3AF69007D8D8B /* fl.min~.cpp */; };
 		B805E34F19C3AFD3007D8D8B /* fl.max~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B805E33919C3AF69007D8D8B /* fl.max~.cpp */; };
-		B8061D511B8C0C00002C8BD2 /* FrameLib_Interval.h in Headers */ = {isa = PBXBuildFile; fileRef = B8061D501B8C0C00002C8BD2 /* FrameLib_Interval.h */; };
 		B809BDE819C42CDA00BA41F4 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B809BDF919C42CEB00BA41F4 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B809BE0919C42CEF00BA41F4 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
@@ -95,208 +94,25 @@
 		B809C0A119C4305D00BA41F4 /* fl.sqrt~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B809BDDC19C42CC500BA41F4 /* fl.sqrt~.cpp */; };
 		B809C0A219C4306000BA41F4 /* fl.tan~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B809BDDD19C42CC500BA41F4 /* fl.tan~.cpp */; };
 		B809C0A319C4306400BA41F4 /* fl.tanh~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B809BDDE19C42CC500BA41F4 /* fl.tanh~.cpp */; };
-		B812462A19F476CB009833F1 /* FrameLib_Subframe.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E819F29470002D6F1D /* FrameLib_Subframe.h */; };
-		B812462B19F476CB009833F1 /* FrameLib_Join.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E619F29470002D6F1D /* FrameLib_Join.h */; };
-		B812462C19F476CB009833F1 /* FrameLib_Split.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E719F29470002D6F1D /* FrameLib_Split.h */; };
 		B812463219F476CB009833F1 /* fl.recall~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B812462219F475B8009833F1 /* fl.recall~.cpp */; };
 		B812463519F476CB009833F1 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B812463619F476CB009833F1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
-		B812464019F476D3009833F1 /* FrameLib_Subframe.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E819F29470002D6F1D /* FrameLib_Subframe.h */; };
-		B812464119F476D3009833F1 /* FrameLib_Join.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E619F29470002D6F1D /* FrameLib_Join.h */; };
-		B812464219F476D3009833F1 /* FrameLib_Split.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E719F29470002D6F1D /* FrameLib_Split.h */; };
 		B812464719F476D3009833F1 /* fl.store~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B812462419F475B8009833F1 /* fl.store~.cpp */; };
 		B812464B19F476D3009833F1 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B812464C19F476D3009833F1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B812465319F4781E009833F1 /* fl.join~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C8563919F2957F006358DA /* fl.join~.cpp */; };
-		B826E4911F3148AB00B920C8 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B826E4921F3148AB00B920C8 /* FrameLib_Interval.h in Headers */ = {isa = PBXBuildFile; fileRef = B8061D501B8C0C00002C8BD2 /* FrameLib_Interval.h */; };
-		B826E4931F3148AB00B920C8 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B826E4941F3148AB00B920C8 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
+		B8213A271FA758F50013E31F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
+		B8213A281FA758F50013E31F /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		B8213A291FA758F50013E31F /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		B8213A401FA793F90013E31F /* fl.ticks~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8213A3F1FA793F90013E31F /* fl.ticks~.cpp */; };
+		B8213A431FA794160013E31F /* FrameLib_Ticks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8213A411FA794160013E31F /* FrameLib_Ticks.cpp */; };
 		B826E4A51F3148AB00B920C8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B826E4A61F3148AB00B920C8 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B826E4B01F31490100B920C8 /* FrameLib_Once.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B826E4AE1F31490100B920C8 /* FrameLib_Once.cpp */; };
-		B826E4B11F31490100B920C8 /* FrameLib_Once.h in Headers */ = {isa = PBXBuildFile; fileRef = B826E4AF1F31490100B920C8 /* FrameLib_Once.h */; };
 		B826E4B51F314AA800B920C8 /* fl.once~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B826E4B41F314AA800B920C8 /* fl.once~.cpp */; };
-		B82CC22C1F851CCD00077ECB /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B82CC22D1F851CCD00077ECB /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B82CC22E1F851CCD00077ECB /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B82CC23C1F851CCD00077ECB /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B82CC23D1F851CCD00077ECB /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B82CC24B1F851DBC00077ECB /* fl.streamid~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B82CC24A1F851DBC00077ECB /* fl.streamid~.cpp */; };
-		B84120691D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841206A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841206D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841206E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841206F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120701D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120711D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120721D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120731D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120741D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120751D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120761D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120771D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120781D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120791D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841207A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841207B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841207C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841207D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841207E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841207F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120801D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120811D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120821D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120831D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120841D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120851D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120861D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120871D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120881D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120891D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841208A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841208B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841208C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841208D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841208E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841208F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120901D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120911D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120921D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120931D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120941D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120951D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120961D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120971D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120981D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120991D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841209A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841209B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841209C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841209D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841209E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841209F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120A01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120A11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120A21D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120A31D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120A41D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120A51D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120A61D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120A71D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120A81D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120A91D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120AA1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120AB1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120AC1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120AD1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120AE1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120AF1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120B01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120B11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120B21D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120B31D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120B41D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120B51D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120B61D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120B71D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120B81D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120B91D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120BA1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120BB1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120BC1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120BD1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120BE1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120BF1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120C01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B84120C11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B841211D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841211E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121211D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121221D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121231D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121241D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121251D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121261D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121271D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121281D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121291D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841212A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841212B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841212C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841212D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841212E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841212F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121301D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121311D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121321D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121331D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121341D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121351D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121361D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121371D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121381D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121391D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841213A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841213B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841213C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841213D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841213E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841213F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121401D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121411D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121421D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121431D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121441D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121451D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121461D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121471D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121481D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121491D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841214A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841214B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841214C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841214D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841214E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841214F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121501D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121511D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121521D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121531D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121541D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121551D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121561D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121571D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121581D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121591D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841215A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841215B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841215C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841215D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841215E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841215F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121601D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121611D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121621D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121631D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121641D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121651D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121661D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121671D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121681D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121691D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841216A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841216B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841216C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841216D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841216E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B841216F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121701D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121711D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121721D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121731D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121741D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B84121751D9D484800C2D5C0 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B843AAAB19C07046000D3476 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B843AAB519C070A1000D3476 /* fl.sink~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B843AAB419C070A1000D3476 /* fl.sink~.cpp */; };
 		B843AABE19C08452000D3476 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
@@ -316,18 +132,10 @@
 		B84BE8801C1F63E500A55F8C /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B84BE8811C1F63E500A55F8C /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B84BE88A1C1F641500A55F8C /* fl.medianfilter~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84BE8891C1F641500A55F8C /* fl.medianfilter~.cpp */; };
-		B85435751F65BF03001BA1AA /* HISSTools_FFT_Core.h in Headers */ = {isa = PBXBuildFile; fileRef = B85435721F65BF03001BA1AA /* HISSTools_FFT_Core.h */; };
-		B85435761F65BF03001BA1AA /* HISSTools_FFT_Core.h in Headers */ = {isa = PBXBuildFile; fileRef = B85435721F65BF03001BA1AA /* HISSTools_FFT_Core.h */; };
-		B85435771F65BF03001BA1AA /* HISSTools_FFT_Core.h in Headers */ = {isa = PBXBuildFile; fileRef = B85435721F65BF03001BA1AA /* HISSTools_FFT_Core.h */; };
-		B85435781F65BF03001BA1AA /* HISSTools_FFT_Core.h in Headers */ = {isa = PBXBuildFile; fileRef = B85435721F65BF03001BA1AA /* HISSTools_FFT_Core.h */; };
 		B85435791F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
 		B854357A1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
 		B854357B1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
 		B854357C1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
-		B854357D1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */ = {isa = PBXBuildFile; fileRef = B85435741F65BF03001BA1AA /* HISSTools_FFT.h */; };
-		B854357E1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */ = {isa = PBXBuildFile; fileRef = B85435741F65BF03001BA1AA /* HISSTools_FFT.h */; };
-		B854357F1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */ = {isa = PBXBuildFile; fileRef = B85435741F65BF03001BA1AA /* HISSTools_FFT.h */; };
-		B85435801F65BF03001BA1AA /* HISSTools_FFT.h in Headers */ = {isa = PBXBuildFile; fileRef = B85435741F65BF03001BA1AA /* HISSTools_FFT.h */; };
 		B85B689D19F1CEDC002D6F1D /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B85B689E19F1CEDC002D6F1D /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B85B68A719F1CF56002D6F1D /* fl.sallenkey~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85B689519F1CEB7002D6F1D /* fl.sallenkey~.cpp */; };
@@ -340,14 +148,9 @@
 		B85B68D919F2628C002D6F1D /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B85B68DA19F2628C002D6F1D /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B85B68E219F262A3002D6F1D /* fl.register~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85B68CF19F26146002D6F1D /* fl.register~.cpp */; };
-		B85B68E919F29470002D6F1D /* FrameLib_Join.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E619F29470002D6F1D /* FrameLib_Join.h */; };
-		B85B68EA19F29470002D6F1D /* FrameLib_Split.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E719F29470002D6F1D /* FrameLib_Split.h */; };
-		B85B68EB19F29470002D6F1D /* FrameLib_Subframe.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E819F29470002D6F1D /* FrameLib_Subframe.h */; };
 		B85BDDC519F1C21400A349C5 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B85BDDC619F1C21400A349C5 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B85BDDCE19F1C22400A349C5 /* fl.0dfsvf~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85BDDBD19F1C1FF00A349C5 /* fl.0dfsvf~.cpp */; };
-		B85C8FD01E605B2E004D7D40 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B85C8FD11E605B2E004D7D40 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B85C8FDB1E605B2E004D7D40 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B85C8FDC1E605B2E004D7D40 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B85C8FE41E605B44004D7D40 /* fl.mutlitaper~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85C8FCD1E605B28004D7D40 /* fl.mutlitaper~.cpp */; };
@@ -358,27 +161,14 @@
 		B861EBC719CA3F2400B89477 /* fl.percentile~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B861EBC519CA3EF100B89477 /* fl.percentile~.cpp */; };
 		B861EBC819CA3F2900B89477 /* fl.sort~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B861EBC619CA3EF100B89477 /* fl.sort~.cpp */; };
 		B861EBC919CA404300B89477 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B86387B91F8DB48900D31E15 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B86387BA1F8DB48900D31E15 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B86387BB1F8DB48900D31E15 /* FrameLib_Route.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2F8171F863A9800075677 /* FrameLib_Route.h */; };
-		B86387BC1F8DB48900D31E15 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B86387CB1F8DB48900D31E15 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B86387CC1F8DB48900D31E15 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B86387D71F8DB52400D31E15 /* FrameLib_Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B86387D51F8DB4DE00D31E15 /* FrameLib_Timer.cpp */; };
 		B86387D81F8DB52800D31E15 /* fl.timer~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B86387B61F8DB45D00D31E15 /* fl.timer~.cpp */; };
-		B86685721F84F25C0079568F /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B86685731F84F25C0079568F /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B86685741F84F25C0079568F /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B86685821F84F25C0079568F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B86685831F84F25C0079568F /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B866858E1F84F2610079568F /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B866858F1F84F2610079568F /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B86685901F84F2610079568F /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B866859E1F84F2610079568F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B866859F1F84F2610079568F /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B86685AA1F84F2670079568F /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B86685AB1F84F2670079568F /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B86685AC1F84F2670079568F /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B86685BA1F84F2670079568F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B86685BB1F84F2670079568F /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B86685C51F84F30B0079568F /* fl.and~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B86685C41F84F30B0079568F /* fl.and~.cpp */; };
@@ -449,48 +239,25 @@
 		B87E87D319C8F62F00B1D0CD /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B87E87D419C8F62F00B1D0CD /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B87E87D519C8F63000B1D0CD /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B87E9DD31F8DAE820000886E /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B87E9DD41F8DAE820000886E /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B87E9DD51F8DAE820000886E /* FrameLib_Route.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2F8171F863A9800075677 /* FrameLib_Route.h */; };
-		B87E9DD61F8DAE820000886E /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B87E9DE51F8DAE820000886E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B87E9DE61F8DAE820000886E /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B87E9DEF1F8DAED00000886E /* FrameLib_Dispatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87E9DCF1F8DA9660000886E /* FrameLib_Dispatch.cpp */; };
 		B87E9DF11F8DAFF80000886E /* fl.dispatch~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87E9DF01F8DAF000000886E /* fl.dispatch~.cpp */; };
-		B87E9DF71F8DB1E50000886E /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B87E9DF81F8DB1E50000886E /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B87E9DF91F8DB1E50000886E /* FrameLib_Route.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2F8171F863A9800075677 /* FrameLib_Route.h */; };
-		B87E9DFA1F8DB1E50000886E /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B87E9E091F8DB1E50000886E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B87E9E0A1F8DB1E50000886E /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B87E9E131F8DB2330000886E /* fl.timedelta~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87E9DF41F8DB1B90000886E /* fl.timedelta~.cpp */; };
 		B87E9E141F8DB2410000886E /* FrameLib_TimeDelta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87E9DF21F8DB1020000886E /* FrameLib_TimeDelta.cpp */; };
-		B87F75381F35DF5C002B91E9 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B87F75391F35DF5C002B91E9 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B87F753A1F35DF5C002B91E9 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B87F754A1F35DF5C002B91E9 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B87F754B1F35DF5C002B91E9 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B87F75551F35DFB1002B91E9 /* FrameLib_Convert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87F75531F35DFB1002B91E9 /* FrameLib_Convert.cpp */; };
-		B87F75561F35DFB1002B91E9 /* FrameLib_Convert.h in Headers */ = {isa = PBXBuildFile; fileRef = B87F75541F35DFB1002B91E9 /* FrameLib_Convert.h */; };
 		B87F75581F35E321002B91E9 /* fl.convert~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87F75571F35E321002B91E9 /* fl.convert~.cpp */; };
-		B87F755C1F35EAED002B91E9 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B87F755D1F35EAED002B91E9 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B87F755E1F35EAED002B91E9 /* FrameLib_AudioTrigger.h in Headers */ = {isa = PBXBuildFile; fileRef = B8B4C8E41F33D88D008E5D31 /* FrameLib_AudioTrigger.h */; };
-		B87F755F1F35EAED002B91E9 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B87F756F1F35EAED002B91E9 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B87F75701F35EAED002B91E9 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B87F75791F35EB71002B91E9 /* fl.perblock~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87F75781F35EB71002B91E9 /* fl.perblock~.cpp */; };
 		B87F757C1F35EBB5002B91E9 /* FrameLib_PerBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87F757A1F35EBB5002B91E9 /* FrameLib_PerBlock.cpp */; };
-		B87F757D1F35EBB5002B91E9 /* FrameLib_PerBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = B87F757B1F35EBB5002B91E9 /* FrameLib_PerBlock.h */; };
-		B87F75801F3678D0002B91E9 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B87F75811F3678D0002B91E9 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B87F75821F3678D0002B91E9 /* FrameLib_Now.h in Headers */ = {isa = PBXBuildFile; fileRef = B8B4C89C1F334614008E5D31 /* FrameLib_Now.h */; };
-		B87F75831F3678D0002B91E9 /* FrameLib_Once.h in Headers */ = {isa = PBXBuildFile; fileRef = B826E4AF1F31490100B920C8 /* FrameLib_Once.h */; };
-		B87F75841F3678D0002B91E9 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B87F75951F3678D0002B91E9 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B87F75961F3678D0002B91E9 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B87F75A01F36796C002B91E9 /* FrameLib_Constant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87F759E1F36796C002B91E9 /* FrameLib_Constant.cpp */; };
-		B87F75A11F36796C002B91E9 /* FrameLib_Constant.h in Headers */ = {isa = PBXBuildFile; fileRef = B87F759F1F36796C002B91E9 /* FrameLib_Constant.h */; };
 		B87F75A31F367F03002B91E9 /* fl.constant~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87F75A21F367F03002B91E9 /* fl.constant~.cpp */; };
 		B8891CD01F2B5CDC00C5C4F0 /* FrameLib_Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CCF1F2B5CDC00C5C4F0 /* FrameLib_Random.cpp */; };
 		B8891CD21F2B5EA400C5C4F0 /* FrameLib_Count.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CD11F2B5EA400C5C4F0 /* FrameLib_Count.cpp */; };
@@ -513,96 +280,6 @@
 		B8891CF41F2C9A1400C5C4F0 /* FrameLib_iFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CF31F2C9A1400C5C4F0 /* FrameLib_iFFT.cpp */; };
 		B8891CF61F2C9A3100C5C4F0 /* FrameLib_Multitaper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CF51F2C9A3100C5C4F0 /* FrameLib_Multitaper.cpp */; };
 		B8891CF81F2C9A4600C5C4F0 /* FrameLib_Convolve.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CF71F2C9A4600C5C4F0 /* FrameLib_Convolve.cpp */; };
-		B88BD2D21F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2D31F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2D61F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2D71F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2D81F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2D91F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2DA1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2DB1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2DC1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2DD1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2DE1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2DF1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2E01F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2E11F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2E21F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2E31F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2E41F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2E51F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2E61F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2E71F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2E81F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2E91F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2EA1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2EB1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2EC1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2ED1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2EE1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2EF1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2F01F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2F11F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2F21F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2F31F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2F41F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2F51F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2F61F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2F71F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2F81F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2F91F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2FA1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2FB1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2FC1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2FD1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2FE1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD2FF1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3001F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3011F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3021F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3031F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3041F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3051F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3061F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3071F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3081F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3091F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD30A1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD30B1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD30C1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD30D1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD30E1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD30F1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3101F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3111F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3121F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3131F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3141F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3151F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3161F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3171F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3181F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3191F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD31A1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD31B1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD31C1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD31D1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD31E1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD31F1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3201F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3211F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3221F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3231F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3241F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3251F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3261F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3271F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3281F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD3291F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD32A1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD32B1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD32C1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B88BD32D1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B89ABA961FA734C1006DAD53 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
 		B89ABA971FA734C2006DAD53 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
 		B89ABA981FA734C4006DAD53 /* FrameLib_Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84120C21D9D484700C2D5C0 /* FrameLib_Global.cpp */; };
@@ -611,9 +288,6 @@
 		B89ABA9B1FA734CA006DAD53 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
 		B89ABA9C1FA734CC006DAD53 /* FrameLib_ProcessingQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_ProcessingQueue.cpp */; };
 		B89ABA9D1FA734D0006DAD53 /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
-		B89F14D11F829F3C00315736 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B89F14D21F829F3C00315736 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B89F14D31F829F3C00315736 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B89F14E11F829F3C00315736 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B89F14E21F829F3C00315736 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B89F14EC1F829FA800315736 /* fl.modulo~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B89F14EB1F829FA800315736 /* fl.modulo~.cpp */; };
@@ -627,48 +301,26 @@
 		B8A4757C19C9DDCD0043DC65 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8A4757D19C9DDCD0043DC65 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879419C8F58C00B1D0CD /* Accelerate.framework */; };
 		B8A4758519C9DDEA0043DC65 /* fl.convolve~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8A4757219C9DD9F0043DC65 /* fl.convolve~.cpp */; };
-		B8A82A831F750FE0005CC75A /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B8A82A841F750FE0005CC75A /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B8A82A851F750FE0005CC75A /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B8A82A941F750FE0005CC75A /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8A82A951F750FE0005CC75A /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8A82AA51F75104E005CC75A /* fl.tomax~.h in Headers */ = {isa = PBXBuildFile; fileRef = B8A82AA31F75104E005CC75A /* fl.tomax~.h */; };
 		B8A82AA61F75107B005CC75A /* fl.tomax~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8A82AA21F75104E005CC75A /* fl.tomax~.cpp */; };
 		B8AD886719C7C46B00FFA238 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8AD887019C7C4AC00FFA238 /* fl.read~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8AD883819C7C2FA00FFA238 /* fl.read~.cpp */; };
 		B8AD887119C7C4B400FFA238 /* ibuffer_access.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8AD883619C7C2B500FFA238 /* ibuffer_access.cpp */; };
-		B8AE693219F45A380040B4EE /* FrameLib_Subframe.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E819F29470002D6F1D /* FrameLib_Subframe.h */; };
-		B8AE693319F45A380040B4EE /* FrameLib_Join.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E619F29470002D6F1D /* FrameLib_Join.h */; };
-		B8AE693419F45A380040B4EE /* FrameLib_Split.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E719F29470002D6F1D /* FrameLib_Split.h */; };
 		B8AE693819F45A380040B4EE /* fl.shift~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8AE692E19F45A2E0040B4EE /* fl.shift~.cpp */; };
 		B8AE693B19F45A380040B4EE /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8AE693C19F45A380040B4EE /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
-		B8B4C87B1F33456A008E5D31 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B8B4C87D1F33456A008E5D31 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B8B4C87E1F33456A008E5D31 /* FrameLib_Once.h in Headers */ = {isa = PBXBuildFile; fileRef = B826E4AF1F31490100B920C8 /* FrameLib_Once.h */; };
-		B8B4C87F1F33456A008E5D31 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B8B4C8901F33456A008E5D31 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8B4C8911F33456A008E5D31 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8B4C89A1F3345A7008E5D31 /* fl.now~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4C8991F3345A7008E5D31 /* fl.now~.cpp */; };
 		B8B4C89D1F334614008E5D31 /* FrameLib_Now.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4C89B1F334614008E5D31 /* FrameLib_Now.cpp */; };
-		B8B4C89E1F334614008E5D31 /* FrameLib_Now.h in Headers */ = {isa = PBXBuildFile; fileRef = B8B4C89C1F334614008E5D31 /* FrameLib_Now.h */; };
-		B8B4C8A11F3359F5008E5D31 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B8B4C8A21F3359F5008E5D31 /* FrameLib_Interval.h in Headers */ = {isa = PBXBuildFile; fileRef = B8061D501B8C0C00002C8BD2 /* FrameLib_Interval.h */; };
-		B8B4C8A31F3359F5008E5D31 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
-		B8B4C8A41F3359F5008E5D31 /* FrameLib_Once.h in Headers */ = {isa = PBXBuildFile; fileRef = B826E4AF1F31490100B920C8 /* FrameLib_Once.h */; };
-		B8B4C8A51F3359F5008E5D31 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B8B4C8B61F3359F5008E5D31 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8B4C8B71F3359F5008E5D31 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8B4C8C11F335A67008E5D31 /* FrameLib_Future.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4C8BF1F335A67008E5D31 /* FrameLib_Future.cpp */; };
-		B8B4C8C21F335A67008E5D31 /* FrameLib_Future.h in Headers */ = {isa = PBXBuildFile; fileRef = B8B4C8C01F335A67008E5D31 /* FrameLib_Future.h */; };
 		B8B4C8C41F335D22008E5D31 /* fl.future~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4C8C31F335D22008E5D31 /* fl.future~.cpp */; };
-		B8B4C8C81F33D83F008E5D31 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B8B4C8C91F33D83F008E5D31 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B8B4C8CA1F33D83F008E5D31 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B8B4C8DA1F33D83F008E5D31 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8B4C8DB1F33D83F008E5D31 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8B4C8E51F33D88D008E5D31 /* FrameLib_AudioTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4C8E31F33D88D008E5D31 /* FrameLib_AudioTrigger.cpp */; };
-		B8B4C8E61F33D88D008E5D31 /* FrameLib_AudioTrigger.h in Headers */ = {isa = PBXBuildFile; fileRef = B8B4C8E41F33D88D008E5D31 /* FrameLib_AudioTrigger.h */; };
 		B8B4C8E81F33D956008E5D31 /* fl.audiotrigger~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4C8E71F33D956008E5D31 /* fl.audiotrigger~.cpp */; };
 		B8B961DD1F1000D500D174F2 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
 		B8BDF0461F2D0A3700264316 /* FrameLib_Register.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF0451F2D0A3600264316 /* FrameLib_Register.cpp */; };
@@ -803,82 +455,41 @@
 		B8BEEB851FA737C800ED26F4 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8BEEB861FA737C900ED26F4 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8C2F7F61F851FFF00075677 /* FrameLib_StreamID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B82CC2461F851D6F00077ECB /* FrameLib_StreamID.cpp */; };
-		B8C2F7F91F863A2A00075677 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B8C2F7FA1F863A2A00075677 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B8C2F7FB1F863A2A00075677 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B8C2F80A1F863A2A00075677 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C2F80B1F863A2A00075677 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8C2F8151F863A6700075677 /* fl.route~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C2F8141F863A6700075677 /* fl.route~.cpp */; };
 		B8C2F8181F863A9800075677 /* FrameLib_Route.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C2F8161F863A9800075677 /* FrameLib_Route.cpp */; };
-		B8C2F8191F863A9800075677 /* FrameLib_Route.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C2F8171F863A9800075677 /* FrameLib_Route.h */; };
-		B8C5EBC31E5F99A80086E8B6 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B8C5EBC41E5F99A80086E8B6 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B8C5EBCE1E5F99A80086E8B6 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C5EBCF1E5F99A80086E8B6 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8C5EBD71E5F99CD0086E8B6 /* fl.lookup~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EBC01E5F998A0086E8B6 /* fl.lookup~.cpp */; };
-		B8C5EBDD1E5FA6340086E8B6 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B8C5EBDE1E5FA6340086E8B6 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
 		B8C5EBE81E5FA6340086E8B6 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C5EBE91E5FA6340086E8B6 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8C5EBF11E5FA6D20086E8B6 /* fl.peaks~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C5EBDA1E5FA6180086E8B6 /* fl.peaks~.cpp */; };
 		B8C6803F1B80F62300B74B90 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C680401B80F62300B74B90 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8C8564119F2A96C006358DA /* FrameLib_Subframe.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E819F29470002D6F1D /* FrameLib_Subframe.h */; };
-		B8C8564219F2A96C006358DA /* FrameLib_Join.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E619F29470002D6F1D /* FrameLib_Join.h */; };
-		B8C8564319F2A96C006358DA /* FrameLib_Split.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E719F29470002D6F1D /* FrameLib_Split.h */; };
 		B8C8564619F2A96C006358DA /* fl.pad~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85B68E419F28F27002D6F1D /* fl.pad~.cpp */; };
 		B8C8564D19F2A96C006358DA /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8C8564E19F2A96C006358DA /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
-		B8C8565819F2A96E006358DA /* FrameLib_Subframe.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E819F29470002D6F1D /* FrameLib_Subframe.h */; };
-		B8C8565919F2A96E006358DA /* FrameLib_Join.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E619F29470002D6F1D /* FrameLib_Join.h */; };
-		B8C8565A19F2A96E006358DA /* FrameLib_Split.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E719F29470002D6F1D /* FrameLib_Split.h */; };
 		B8C8566119F2A96E006358DA /* fl.subframe~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C8563B19F2957F006358DA /* fl.subframe~.cpp */; };
 		B8C8566419F2A96E006358DA /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8C8566519F2A96E006358DA /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
-		B8C8566F19F2A978006358DA /* FrameLib_Subframe.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E819F29470002D6F1D /* FrameLib_Subframe.h */; };
-		B8C8567019F2A978006358DA /* FrameLib_Join.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E619F29470002D6F1D /* FrameLib_Join.h */; };
-		B8C8567119F2A978006358DA /* FrameLib_Split.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E719F29470002D6F1D /* FrameLib_Split.h */; };
 		B8C8567619F2A978006358DA /* fl.split~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C8563A19F2957F006358DA /* fl.split~.cpp */; };
 		B8C8567B19F2A978006358DA /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8C8567C19F2A978006358DA /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
-		B8C8568519F2A97A006358DA /* FrameLib_Subframe.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E819F29470002D6F1D /* FrameLib_Subframe.h */; };
-		B8C8568619F2A97A006358DA /* FrameLib_Join.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E619F29470002D6F1D /* FrameLib_Join.h */; };
-		B8C8568719F2A97A006358DA /* FrameLib_Split.h in Headers */ = {isa = PBXBuildFile; fileRef = B85B68E719F29470002D6F1D /* FrameLib_Split.h */; };
 		B8C8569119F2A97A006358DA /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8C8569219F2A97A006358DA /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
-		B8C89C0B1F571F7100B4E700 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B8C89C0C1F571F7100B4E700 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B8C89C0D1F571F7100B4E700 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B8C89C1C1F571F7100B4E700 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C89C1D1F571F7100B4E700 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8C89C281F571F8400B4E700 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B8C89C291F571F8400B4E700 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B8C89C2A1F571F8400B4E700 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B8C89C391F571F8400B4E700 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C89C3A1F571F8400B4E700 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8C89C451F571F8700B4E700 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B8C89C461F571F8700B4E700 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B8C89C471F571F8700B4E700 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B8C89C561F571F8700B4E700 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C89C571F571F8700B4E700 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8C89C621F571F8B00B4E700 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B8C89C631F571F8B00B4E700 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B8C89C641F571F8B00B4E700 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B8C89C731F571F8B00B4E700 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C89C741F571F8B00B4E700 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8C89C7F1F571FC700B4E700 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B8C89C801F571FC700B4E700 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B8C89C811F571FC700B4E700 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B8C89C901F571FC700B4E700 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C89C911F571FC700B4E700 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8C89C9C1F571FD400B4E700 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B8C89C9D1F571FD400B4E700 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B8C89C9E1F571FD400B4E700 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B8C89CAD1F571FD400B4E700 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C89CAE1F571FD400B4E700 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8C89CB91F571FDD00B4E700 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B8C89CBA1F571FDD00B4E700 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B8C89CBB1F571FDD00B4E700 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B8C89CCA1F571FDD00B4E700 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C89CCB1F571FDD00B4E700 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8C89CD41F5720E300B4E700 /* fl.standarddeviation~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C89CD31F5720E300B4E700 /* fl.standarddeviation~.cpp */; };
@@ -888,9 +499,6 @@
 		B8C89CDC1F57214E00B4E700 /* fl.kurtosis~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C89CDB1F57214E00B4E700 /* fl.kurtosis~.cpp */; };
 		B8C89CDE1F57216700B4E700 /* fl.rms~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C89CDD1F57216700B4E700 /* fl.rms~.cpp */; };
 		B8C89CE01F57217A00B4E700 /* fl.crest~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C89CDF1F57217A00B4E700 /* fl.crest~.cpp */; };
-		B8C89CE41F5723E700B4E700 /* FrameLib_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = B841200F1D9D469E00C2D5C0 /* FrameLib_Context.h */; };
-		B8C89CE51F5723E700B4E700 /* FrameLib_Global.h in Headers */ = {isa = PBXBuildFile; fileRef = B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */; };
-		B8C89CE61F5723E700B4E700 /* FrameLib_ProcessingQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */; };
 		B8C89CF51F5723E700B4E700 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8C89CF61F5723E700B4E700 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8C89CFF1F57242500B4E700 /* fl.flatness~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C89CFE1F57242500B4E700 /* fl.flatness~.cpp */; };
@@ -942,6 +550,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B8213A1C1FA758F50013E31F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
+			remoteInfo = framelib;
+		};
 		B89ABA9E1FA734E7006DAD53 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
@@ -1865,6 +1480,10 @@
 		B812463C19F476CB009833F1 /* fl.recall~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.recall~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B812465219F476D3009833F1 /* fl.store~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.store~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B81F571D0D2422E0000D5E50 /* fl.unpack~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.unpack~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8213A301FA758F60013E31F /* fl.ticks~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.ticks~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8213A3F1FA793F90013E31F /* fl.ticks~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.ticks~.cpp"; sourceTree = "<group>"; };
+		B8213A411FA794160013E31F /* FrameLib_Ticks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Ticks.cpp; sourceTree = "<group>"; };
+		B8213A421FA794160013E31F /* FrameLib_Ticks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ticks.h; sourceTree = "<group>"; };
 		B826E4AC1F3148AB00B920C8 /* fl.once~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.once~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B826E4AE1F31490100B920C8 /* FrameLib_Once.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Once.cpp; sourceTree = "<group>"; };
 		B826E4AF1F31490100B920C8 /* FrameLib_Once.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Once.h; sourceTree = "<group>"; };
@@ -2605,6 +2224,16 @@
 				B812464B19F476D3009833F1 /* MaxAudioAPI.framework in Frameworks */,
 				B8BEEB811FA737C500ED26F4 /* libframelib.a in Frameworks */,
 				B812464C19F476D3009833F1 /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8213A261FA758F50013E31F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8213A271FA758F50013E31F /* Carbon.framework in Frameworks */,
+				B8213A281FA758F50013E31F /* libframelib.a in Frameworks */,
+				B8213A291FA758F50013E31F /* MaxAudioAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3499,6 +3128,7 @@
 				B87E9E111F8DB1E50000886E /* fl.timedelta~.mxo */,
 				B86387D31F8DB48900D31E15 /* fl.timer~.mxo */,
 				B89ABA901FA73483006DAD53 /* libframelib.a */,
+				B8213A301FA758F60013E31F /* fl.ticks~.mxo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3887,6 +3517,8 @@
 				B87E9DF21F8DB1020000886E /* FrameLib_TimeDelta.cpp */,
 				B86387D61F8DB4DE00D31E15 /* FrameLib_Timer.h */,
 				B86387D51F8DB4DE00D31E15 /* FrameLib_Timer.cpp */,
+				B8213A421FA794160013E31F /* FrameLib_Ticks.h */,
+				B8213A411FA794160013E31F /* FrameLib_Ticks.cpp */,
 			);
 			path = Timing;
 			sourceTree = "<group>";
@@ -3897,6 +3529,7 @@
 				B8B4C8991F3345A7008E5D31 /* fl.now~.cpp */,
 				B87E9DF41F8DB1B90000886E /* fl.timedelta~.cpp */,
 				B86387B61F8DB45D00D31E15 /* fl.timer~.cpp */,
+				B8213A3F1FA793F90013E31F /* fl.ticks~.cpp */,
 			);
 			path = Timing;
 			sourceTree = "<group>";
@@ -4082,9 +3715,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841206A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841211E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2D31F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4092,9 +3722,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120711D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121251D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2DA1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4102,9 +3729,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120721D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121261D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2DB1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4112,9 +3736,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120731D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121271D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2DC1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4122,9 +3743,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120741D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121281D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2DD1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4132,9 +3750,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120751D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121291D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2DE1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4142,9 +3757,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120761D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841212A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2DF1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4152,9 +3764,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120771D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841212B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2E01F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4162,9 +3771,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120781D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841212C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2E11F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4172,9 +3778,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120791D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841212D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2E21F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4182,9 +3785,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841207A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841212E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2E31F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4192,9 +3792,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841207B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841212F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2E41F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4202,9 +3799,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841207C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121301D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2E51F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4212,9 +3806,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841207D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121311D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2E61F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4222,9 +3813,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841207E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121321D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2E71F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4232,9 +3820,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841207F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121331D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2E81F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4242,9 +3827,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120801D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121341D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2E91F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4252,9 +3834,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120811D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121351D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2EA1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4262,9 +3841,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120821D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121361D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2EB1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4272,9 +3848,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841208B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841213F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2F41F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4282,9 +3855,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120841D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121381D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2ED1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4292,9 +3862,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120961D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841214A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2FF1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4302,9 +3869,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120861D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841213A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2EF1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4312,9 +3876,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120871D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841213B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2F01F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4322,9 +3883,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120881D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841213C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2F11F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4332,9 +3890,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120891D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841213D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2F21F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4342,9 +3897,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841208A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841213E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2F31F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4352,9 +3904,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120831D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121371D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2EC1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4362,9 +3911,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841208C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121401D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2F51F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4372,9 +3918,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841208D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121411D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2F61F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4382,9 +3925,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841208E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121421D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2F71F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4392,9 +3932,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841208F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121431D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2F81F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4402,9 +3939,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120901D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121441D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2F91F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4412,9 +3946,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120911D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121451D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2FA1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4422,9 +3953,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120921D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121461D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2FB1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4432,9 +3960,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120931D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121471D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2FC1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4442,9 +3967,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120941D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121481D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2FD1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4452,9 +3974,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120951D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121491D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2FE1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4462,9 +3981,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120851D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121391D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2EE1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4472,9 +3988,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120971D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841214B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3001F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4482,9 +3995,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120981D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841214C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3011F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4492,9 +4002,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120991D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841214D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3021F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4502,9 +4009,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841209A1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841214E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3031F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4512,12 +4016,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84121691D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B84120B51D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B88BD31E1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
-				B812462A19F476CB009833F1 /* FrameLib_Subframe.h in Headers */,
-				B812462B19F476CB009833F1 /* FrameLib_Join.h in Headers */,
-				B812462C19F476CB009833F1 /* FrameLib_Split.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4525,12 +4023,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841216A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B84120B61D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B88BD31F1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
-				B812464019F476D3009833F1 /* FrameLib_Subframe.h in Headers */,
-				B812464119F476D3009833F1 /* FrameLib_Join.h in Headers */,
-				B812464219F476D3009833F1 /* FrameLib_Split.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8213A1D1FA758F50013E31F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4538,11 +4037,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B826E4911F3148AB00B920C8 /* FrameLib_Context.h in Headers */,
-				B826E4921F3148AB00B920C8 /* FrameLib_Interval.h in Headers */,
-				B826E4931F3148AB00B920C8 /* FrameLib_ProcessingQueue.h in Headers */,
-				B826E4B11F31490100B920C8 /* FrameLib_Once.h in Headers */,
-				B826E4941F3148AB00B920C8 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4550,9 +4044,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B82CC22C1F851CCD00077ECB /* FrameLib_Context.h in Headers */,
-				B82CC22D1F851CCD00077ECB /* FrameLib_Global.h in Headers */,
-				B82CC22E1F851CCD00077ECB /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4560,9 +4051,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841206E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121221D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2D71F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4570,9 +4058,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120701D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121241D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2D91F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4580,9 +4065,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120A81D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841215C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3111F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4590,9 +4072,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120B81D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841216C1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3211F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4600,9 +4079,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120B91D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841216D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3221F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4610,9 +4086,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120BA1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841216E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3231F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4620,9 +4093,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120C11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121751D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD32A1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4630,12 +4100,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84121631D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B84120AF1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B88BD3181F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
-				B85B68EB19F29470002D6F1D /* FrameLib_Subframe.h in Headers */,
-				B85B68E919F29470002D6F1D /* FrameLib_Join.h in Headers */,
-				B85B68EA19F29470002D6F1D /* FrameLib_Split.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4643,9 +4107,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120AD1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121611D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3161F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4653,9 +4114,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120AE1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121621D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3171F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4663,9 +4121,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120A21D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121561D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD30B1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4673,9 +4128,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120AB1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841215F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3141F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4683,11 +4135,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B85C8FD01E605B2E004D7D40 /* FrameLib_Context.h in Headers */,
-				B85435801F65BF03001BA1AA /* HISSTools_FFT.h in Headers */,
-				B85C8FD11E605B2E004D7D40 /* FrameLib_Global.h in Headers */,
-				B88BD32D1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
-				B85435781F65BF03001BA1AA /* HISSTools_FFT_Core.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4695,9 +4142,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120A91D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841215D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3121F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4705,9 +4149,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120AA1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841215E1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3131F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4715,10 +4156,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B86387B91F8DB48900D31E15 /* FrameLib_Context.h in Headers */,
-				B86387BA1F8DB48900D31E15 /* FrameLib_Global.h in Headers */,
-				B86387BB1F8DB48900D31E15 /* FrameLib_Route.h in Headers */,
-				B86387BC1F8DB48900D31E15 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4726,9 +4163,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B86685721F84F25C0079568F /* FrameLib_Context.h in Headers */,
-				B86685731F84F25C0079568F /* FrameLib_Global.h in Headers */,
-				B86685741F84F25C0079568F /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4736,9 +4170,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B866858E1F84F2610079568F /* FrameLib_Context.h in Headers */,
-				B866858F1F84F2610079568F /* FrameLib_Global.h in Headers */,
-				B86685901F84F2610079568F /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4746,9 +4177,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B86685AA1F84F2670079568F /* FrameLib_Context.h in Headers */,
-				B86685AB1F84F2670079568F /* FrameLib_Global.h in Headers */,
-				B86685AC1F84F2670079568F /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4756,11 +4184,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120A51D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B854357D1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */,
-				B84121591D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD30E1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
-				B85435751F65BF03001BA1AA /* HISSTools_FFT_Core.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4768,11 +4191,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120A61D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B854357E1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */,
-				B841215A1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD30F1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
-				B85435761F65BF03001BA1AA /* HISSTools_FFT_Core.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4780,10 +4198,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B87E9DD31F8DAE820000886E /* FrameLib_Context.h in Headers */,
-				B87E9DD41F8DAE820000886E /* FrameLib_Global.h in Headers */,
-				B87E9DD51F8DAE820000886E /* FrameLib_Route.h in Headers */,
-				B87E9DD61F8DAE820000886E /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4791,10 +4205,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B87E9DF71F8DB1E50000886E /* FrameLib_Context.h in Headers */,
-				B87E9DF81F8DB1E50000886E /* FrameLib_Global.h in Headers */,
-				B87E9DF91F8DB1E50000886E /* FrameLib_Route.h in Headers */,
-				B87E9DFA1F8DB1E50000886E /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4802,10 +4212,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B87F75561F35DFB1002B91E9 /* FrameLib_Convert.h in Headers */,
-				B87F75381F35DF5C002B91E9 /* FrameLib_Context.h in Headers */,
-				B87F75391F35DF5C002B91E9 /* FrameLib_Global.h in Headers */,
-				B87F753A1F35DF5C002B91E9 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4813,11 +4219,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B87F755C1F35EAED002B91E9 /* FrameLib_Context.h in Headers */,
-				B87F757D1F35EBB5002B91E9 /* FrameLib_PerBlock.h in Headers */,
-				B87F755D1F35EAED002B91E9 /* FrameLib_Global.h in Headers */,
-				B87F755E1F35EAED002B91E9 /* FrameLib_AudioTrigger.h in Headers */,
-				B87F755F1F35EAED002B91E9 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4825,12 +4226,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B87F75801F3678D0002B91E9 /* FrameLib_Context.h in Headers */,
-				B87F75A11F36796C002B91E9 /* FrameLib_Constant.h in Headers */,
-				B87F75811F3678D0002B91E9 /* FrameLib_ProcessingQueue.h in Headers */,
-				B87F75821F3678D0002B91E9 /* FrameLib_Now.h in Headers */,
-				B87F75831F3678D0002B91E9 /* FrameLib_Once.h in Headers */,
-				B87F75841F3678D0002B91E9 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4845,9 +4240,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B89F14D11F829F3C00315736 /* FrameLib_Context.h in Headers */,
-				B89F14D21F829F3C00315736 /* FrameLib_Global.h in Headers */,
-				B89F14D31F829F3C00315736 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4855,11 +4247,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120A71D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B854357F1F65BF03001BA1AA /* HISSTools_FFT.h in Headers */,
-				B841215B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3101F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
-				B85435771F65BF03001BA1AA /* HISSTools_FFT_Core.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4867,10 +4254,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8A82A831F750FE0005CC75A /* FrameLib_Context.h in Headers */,
-				B8A82A841F750FE0005CC75A /* FrameLib_Global.h in Headers */,
-				B8A82AA51F75104E005CC75A /* fl.tomax~.h in Headers */,
-				B8A82A851F750FE0005CC75A /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4878,9 +4261,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120A41D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121581D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD30D1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4888,12 +4268,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84121681D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B84120B41D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B88BD31D1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
-				B8AE693219F45A380040B4EE /* FrameLib_Subframe.h in Headers */,
-				B8AE693319F45A380040B4EE /* FrameLib_Join.h in Headers */,
-				B8AE693419F45A380040B4EE /* FrameLib_Split.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4901,11 +4275,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B4C87B1F33456A008E5D31 /* FrameLib_Context.h in Headers */,
-				B8B4C87D1F33456A008E5D31 /* FrameLib_ProcessingQueue.h in Headers */,
-				B8B4C89E1F334614008E5D31 /* FrameLib_Now.h in Headers */,
-				B8B4C87E1F33456A008E5D31 /* FrameLib_Once.h in Headers */,
-				B8B4C87F1F33456A008E5D31 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4913,12 +4282,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B4C8A11F3359F5008E5D31 /* FrameLib_Context.h in Headers */,
-				B8B4C8A21F3359F5008E5D31 /* FrameLib_Interval.h in Headers */,
-				B8B4C8A31F3359F5008E5D31 /* FrameLib_ProcessingQueue.h in Headers */,
-				B8B4C8A41F3359F5008E5D31 /* FrameLib_Once.h in Headers */,
-				B8B4C8A51F3359F5008E5D31 /* FrameLib_Global.h in Headers */,
-				B8B4C8C21F335A67008E5D31 /* FrameLib_Future.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4926,10 +4289,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B4C8C81F33D83F008E5D31 /* FrameLib_Context.h in Headers */,
-				B8B4C8C91F33D83F008E5D31 /* FrameLib_Global.h in Headers */,
-				B8B4C8E61F33D88D008E5D31 /* FrameLib_AudioTrigger.h in Headers */,
-				B8B4C8CA1F33D83F008E5D31 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4937,10 +4296,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C2F7F91F863A2A00075677 /* FrameLib_Context.h in Headers */,
-				B8C2F7FA1F863A2A00075677 /* FrameLib_Global.h in Headers */,
-				B8C2F8191F863A9800075677 /* FrameLib_Route.h in Headers */,
-				B8C2F7FB1F863A2A00075677 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4948,9 +4303,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C5EBC31E5F99A80086E8B6 /* FrameLib_Context.h in Headers */,
-				B8C5EBC41E5F99A80086E8B6 /* FrameLib_Global.h in Headers */,
-				B88BD32B1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4958,9 +4310,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C5EBDD1E5FA6340086E8B6 /* FrameLib_Context.h in Headers */,
-				B8C5EBDE1E5FA6340086E8B6 /* FrameLib_Global.h in Headers */,
-				B88BD32C1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4968,9 +4317,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120B71D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841216B1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3201F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4978,12 +4324,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84121641D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B84120B01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B88BD3191F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
-				B8C8564119F2A96C006358DA /* FrameLib_Subframe.h in Headers */,
-				B8C8564219F2A96C006358DA /* FrameLib_Join.h in Headers */,
-				B8C8564319F2A96C006358DA /* FrameLib_Split.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4991,12 +4331,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84121651D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B84120B11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B88BD31A1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
-				B8C8565819F2A96E006358DA /* FrameLib_Subframe.h in Headers */,
-				B8C8565919F2A96E006358DA /* FrameLib_Join.h in Headers */,
-				B8C8565A19F2A96E006358DA /* FrameLib_Split.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5004,12 +4338,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84121661D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B84120B21D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B88BD31B1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
-				B8C8566F19F2A978006358DA /* FrameLib_Subframe.h in Headers */,
-				B8C8567019F2A978006358DA /* FrameLib_Join.h in Headers */,
-				B8C8567119F2A978006358DA /* FrameLib_Split.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5017,12 +4345,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84121671D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B84120B31D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B88BD31C1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
-				B8C8568519F2A97A006358DA /* FrameLib_Subframe.h in Headers */,
-				B8C8568619F2A97A006358DA /* FrameLib_Join.h in Headers */,
-				B8C8568719F2A97A006358DA /* FrameLib_Split.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5030,9 +4352,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89C0B1F571F7100B4E700 /* FrameLib_Context.h in Headers */,
-				B8C89C0C1F571F7100B4E700 /* FrameLib_Global.h in Headers */,
-				B8C89C0D1F571F7100B4E700 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5040,9 +4359,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89C281F571F8400B4E700 /* FrameLib_Context.h in Headers */,
-				B8C89C291F571F8400B4E700 /* FrameLib_Global.h in Headers */,
-				B8C89C2A1F571F8400B4E700 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5050,9 +4366,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89C451F571F8700B4E700 /* FrameLib_Context.h in Headers */,
-				B8C89C461F571F8700B4E700 /* FrameLib_Global.h in Headers */,
-				B8C89C471F571F8700B4E700 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5060,9 +4373,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89C621F571F8B00B4E700 /* FrameLib_Context.h in Headers */,
-				B8C89C631F571F8B00B4E700 /* FrameLib_Global.h in Headers */,
-				B8C89C641F571F8B00B4E700 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5070,9 +4380,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89C7F1F571FC700B4E700 /* FrameLib_Context.h in Headers */,
-				B8C89C801F571FC700B4E700 /* FrameLib_Global.h in Headers */,
-				B8C89C811F571FC700B4E700 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5080,9 +4387,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89C9C1F571FD400B4E700 /* FrameLib_Context.h in Headers */,
-				B8C89C9D1F571FD400B4E700 /* FrameLib_Global.h in Headers */,
-				B8C89C9E1F571FD400B4E700 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5090,9 +4394,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89CB91F571FDD00B4E700 /* FrameLib_Context.h in Headers */,
-				B8C89CBA1F571FDD00B4E700 /* FrameLib_Global.h in Headers */,
-				B8C89CBB1F571FDD00B4E700 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5100,9 +4401,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89CE41F5723E700B4E700 /* FrameLib_Context.h in Headers */,
-				B8C89CE51F5723E700B4E700 /* FrameLib_Global.h in Headers */,
-				B8C89CE61F5723E700B4E700 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5110,9 +4408,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120691D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841211D1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2D21F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5120,10 +4415,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841206D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B8061D511B8C0C00002C8BD2 /* FrameLib_Interval.h in Headers */,
-				B88BD2D61F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
-				B84121211D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5131,9 +4422,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841206F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121231D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD2D81F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5141,9 +4429,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120BB1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841216F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3241F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5151,9 +4436,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120BC1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121701D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3251F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5161,9 +4443,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120BD1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121711D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3261F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5171,9 +4450,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120BE1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121721D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3271F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5181,9 +4457,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120BF1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121731D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3281F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5191,9 +4464,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120C01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121741D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3291F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5201,9 +4471,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120AC1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121601D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3151F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5211,9 +4478,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841209B1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B841214F1D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3041F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5221,9 +4485,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841209C1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121501D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3051F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5231,9 +4492,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841209D1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121511D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3061F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5241,9 +4499,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841209E1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121521D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3071F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5251,9 +4506,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B841209F1D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121531D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3081F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5261,9 +4513,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120A01D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121541D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD3091F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5271,9 +4520,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120A11D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121551D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD30A1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5281,9 +4527,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84120A31D9D469E00C2D5C0 /* FrameLib_Context.h in Headers */,
-				B84121571D9D484800C2D5C0 /* FrameLib_Global.h in Headers */,
-				B88BD30C1F03F7840045E737 /* FrameLib_ProcessingQueue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6233,6 +5476,27 @@
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B812465219F476D3009833F1 /* fl.store~.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		B8213A1A1FA758F50013E31F /* fl.ticks~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8213A2B1FA758F50013E31F /* Build configuration list for PBXNativeTarget "fl.ticks~" */;
+			buildPhases = (
+				B8213A1D1FA758F50013E31F /* Headers */,
+				B8213A221FA758F50013E31F /* Resources */,
+				B8213A231FA758F50013E31F /* Sources */,
+				B8213A261FA758F50013E31F /* Frameworks */,
+				B8213A2A1FA758F50013E31F /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8213A1B1FA758F50013E31F /* PBXTargetDependency */,
+			);
+			name = "fl.ticks~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = B8213A301FA758F60013E31F /* fl.ticks~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B826E48F1F3148AB00B920C8 /* fl.once~ */ = {
@@ -7902,6 +7166,7 @@
 				B87E9DD11F8DAE820000886E /* fl.multiselect~ */,
 				B87E9DF51F8DB1E50000886E /* fl.timedelta~ */,
 				B86387B71F8DB48900D31E15 /* fl.timer~ */,
+				B8213A1A1FA758F50013E31F /* fl.ticks~ */,
 			);
 		};
 /* End PBXProject section */
@@ -8216,6 +7481,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B812464319F476D3009833F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8213A221FA758F50013E31F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -9024,6 +8296,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B812464D19F476D3009833F1 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8213A2A1FA758F50013E31F /* Rez */ = {
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -9885,6 +9164,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B8213A231FA758F50013E31F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8213A401FA793F90013E31F /* fl.ticks~.cpp in Sources */,
+				B8213A431FA794160013E31F /* FrameLib_Ticks.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B826E4971F3148AB00B920C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -10538,6 +9826,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B8213A1B1FA758F50013E31F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89ABA8F1FA73483006DAD53 /* framelib */;
+			targetProxy = B8213A1C1FA758F50013E31F /* PBXContainerItemProxy */;
+		};
 		B89ABA9F1FA734E7006DAD53 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B89ABA8F1FA73483006DAD53 /* framelib */;
@@ -14919,6 +14212,119 @@
 			name = Deployment;
 		};
 		B812465119F476D3009833F1 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_PPC64 = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
+		B8213A2C1FA758F50013E31F /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		B8213A2D1FA758F50013E31F /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		B8213A2E1FA758F50013E31F /* Public Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = "Public Testing";
+		};
+		B8213A2F1FA758F50013E31F /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -25152,6 +24558,17 @@
 				B812465019F476D3009833F1 /* Deployment */,
 				B85A95F01F60A56C00D6C72B /* Public Testing */,
 				B812465119F476D3009833F1 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		B8213A2B1FA758F50013E31F /* Build configuration list for PBXNativeTarget "fl.ticks~" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8213A2C1FA758F50013E31F /* Development */,
+				B8213A2D1FA758F50013E31F /* Deployment */,
+				B8213A2E1FA758F50013E31F /* Public Testing */,
+				B8213A2F1FA758F50013E31F /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
