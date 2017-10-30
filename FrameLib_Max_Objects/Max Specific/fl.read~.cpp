@@ -40,6 +40,8 @@ FrameLib_MaxRead::FrameLib_MaxRead(FrameLib_Context context, FrameLib_Parameters
     mMode = (Modes) mParameters.getInt(kMode);
     mUnits = (Units) mParameters.getInt(kUnits);
     
+    addParameterInput();
+    
     assert(false == 0 && "False does not equal zero");
     
     if (!sInit)
