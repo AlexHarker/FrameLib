@@ -6,7 +6,10 @@
 
 class FrameLib_Ticks : public FrameLib_Processor
 {
-    enum ParameterList {kLimit, kLimitMode, kPause, kStop};
+    enum ParameterList {kLimit, kSetValue, kLimitMode, kRunMode};
+    enum ModesLimit {kProgress, kRestart};
+    enum ModesRun {kRun, kPause, kStop};
+    
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
@@ -25,7 +28,11 @@ public:
 private:
     unsigned long counter;
     unsigned long previousLimit;
-    // Update and Process
+    unsigned long previousValue;
+    bool valueInPause;
+    bool limitInPause;
+    
+    // Process
     
     void process();
     
