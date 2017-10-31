@@ -28,7 +28,10 @@ std::string FrameLib_Split::objectInfo(bool verbose)
 
 std::string FrameLib_Split::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Frame to Split";
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Frame to Split";
 }
 
 std::string FrameLib_Split::outputInfo(unsigned long idx, bool verbose)

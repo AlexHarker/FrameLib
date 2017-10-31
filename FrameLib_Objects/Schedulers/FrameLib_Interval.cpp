@@ -29,7 +29,7 @@ std::string FrameLib_Interval::objectInfo(bool verbose)
 
 std::string FrameLib_Interval::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
+    return parameterInputInfo(verbose);
 }
 
 std::string FrameLib_Interval::outputInfo(unsigned long idx, bool verbose)

@@ -37,7 +37,7 @@ std::string FrameLib_Ticks::objectInfo(bool verbose)
 std::string FrameLib_Ticks::inputInfo(unsigned long idx, bool verbose)
 {
     if(idx)
-        return formatInfo("Parameter Input", "Parameter Input", verbose);
+        return parameterInputInfo(verbose);
     else
         return formatInfo("Trigger Input", "Trigger Input", verbose);
 }

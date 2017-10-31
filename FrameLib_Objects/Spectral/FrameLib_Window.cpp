@@ -69,7 +69,7 @@ std::string FrameLib_Window::objectInfo(bool verbose)
 std::string FrameLib_Window::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return formatInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
+        return parameterInputInfo(verbose);
     else
         return formatInfo("Input Frame", "Input Frame", idx, verbose);
 }

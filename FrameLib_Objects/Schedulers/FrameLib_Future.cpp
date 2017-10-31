@@ -32,7 +32,7 @@ std::string FrameLib_Future::objectInfo(bool verbose)
 
 std::string FrameLib_Future::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
+    return parameterInputInfo(verbose);
 }
 
 std::string FrameLib_Future::outputInfo(unsigned long idx, bool verbose)

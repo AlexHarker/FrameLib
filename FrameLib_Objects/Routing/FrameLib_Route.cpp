@@ -77,7 +77,7 @@ std::string FrameLib_Route::objectInfo(bool verbose)
 std::string FrameLib_Route::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx == mNumOuts)
-        return formatInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
+        return parameterInputInfo(verbose);
     else
         return "Input Frames";
 }

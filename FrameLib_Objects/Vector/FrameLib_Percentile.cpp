@@ -24,7 +24,10 @@ std::string FrameLib_Percentile::objectInfo(bool verbose)
 
 std::string FrameLib_Percentile::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Input Frame";
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Input Frame";
 }
 
 std::string FrameLib_Percentile::outputInfo(unsigned long idx, bool verbose)

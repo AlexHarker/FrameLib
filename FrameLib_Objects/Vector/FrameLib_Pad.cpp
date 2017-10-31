@@ -34,7 +34,10 @@ std::string FrameLib_Pad::objectInfo(bool verbose)
 
 std::string FrameLib_Pad::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Frames to Pad";
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Frames to Pad";
 }
 
 std::string FrameLib_Pad::outputInfo(unsigned long idx, bool verbose)

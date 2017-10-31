@@ -28,7 +28,7 @@ std::string FrameLib_Count::objectInfo(bool verbose)
 std::string FrameLib_Count::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return formatInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+        return parameterInputInfo(verbose);
     else
         return formatInfo("Trigger Frame - triggers generation of output", "Trigger Frame", verbose);
 }

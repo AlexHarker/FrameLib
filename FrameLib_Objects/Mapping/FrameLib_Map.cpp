@@ -43,7 +43,7 @@ std::string FrameLib_Map::objectInfo(bool verbose)
 std::string FrameLib_Map::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return formatInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+        return parameterInputInfo(verbose);
     else
         return "Input Frame";
 }

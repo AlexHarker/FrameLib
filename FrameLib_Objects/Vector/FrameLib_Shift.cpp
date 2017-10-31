@@ -34,7 +34,10 @@ std::string FrameLib_Shift::objectInfo(bool verbose)
 
 std::string FrameLib_Shift::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Frames to Shift";
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Frames to Shift";
 }
 
 std::string FrameLib_Shift::outputInfo(unsigned long idx, bool verbose)

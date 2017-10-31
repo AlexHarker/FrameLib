@@ -83,7 +83,7 @@ std::string FrameLib_0dfSVF::objectInfo(bool verbose)
 std::string FrameLib_0dfSVF::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return formatInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+        return parameterInputInfo(verbose);
     else
         return formatInfo("Input Frame - input to be triggered", "Input Frame", verbose);
 }

@@ -39,7 +39,7 @@ std::string FrameLib_Source::objectInfo(bool verbose)
 std::string FrameLib_Source::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return formatInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+        return parameterInputInfo(verbose);
     else
         return formatInfo("Trigger Frame - triggers capture to output", "Trigger Frame", verbose);
 }

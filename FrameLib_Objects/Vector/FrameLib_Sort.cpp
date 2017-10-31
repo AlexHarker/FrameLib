@@ -25,7 +25,10 @@ std::string FrameLib_Sort::objectInfo(bool verbose)
 
 std::string FrameLib_Sort::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Frames to Sort";
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Frames to Sort";
 }
 
 std::string FrameLib_Sort::outputInfo(unsigned long idx, bool verbose)

@@ -61,7 +61,10 @@ std::string FrameLib_MaxRead::objectInfo(bool verbose)
 
 std::string FrameLib_MaxRead::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Frame of Positions - triggers generation of output", "Frame of Positions", verbose);
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return formatInfo("Frame of Positions - triggers generation of output", "Frame of Positions", verbose);
 }
 
 std::string FrameLib_MaxRead::outputInfo(unsigned long idx, bool verbose)

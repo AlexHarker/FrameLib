@@ -35,7 +35,7 @@ std::string FrameLib_MedianFilter::objectInfo(bool verbose)
 std::string FrameLib_MedianFilter::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return formatInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
+        return parameterInputInfo(verbose);
     else
         return "Input Frames";
 }

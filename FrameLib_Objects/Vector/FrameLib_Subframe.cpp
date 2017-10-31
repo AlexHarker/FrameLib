@@ -30,7 +30,10 @@ std::string FrameLib_Subframe::objectInfo(bool verbose)
 
 std::string FrameLib_Subframe::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Input Frames";
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Input Frames";
 }
 
 std::string FrameLib_Subframe::outputInfo(unsigned long idx, bool verbose)
