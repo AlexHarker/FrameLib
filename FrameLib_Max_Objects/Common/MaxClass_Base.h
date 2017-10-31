@@ -104,10 +104,10 @@ public:
     
     static void dspInit(t_class *c) { class_dspinit(c); }
     
-    void dspSetup(long numAudioIns)
+    void dspSetup(long numAudioIns, short flags = 0)
     {
         dsp_setup(&mObject, numAudioIns);
-        mObject.z_misc = Z_NO_INPLACE;
+        mObject.z_misc = Z_NO_INPLACE | flags;
     }
     
     void dspFree() { dsp_free(&mObject); }

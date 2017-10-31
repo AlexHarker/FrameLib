@@ -45,8 +45,6 @@ public:
     virtual void blockUpdate(double **ins, double **outs, unsigned long blockSize) {}
     virtual void reset(double samplingRate, unsigned long maxBlockSize) {}
 
-    static bool handlesAudio() { return false; }
-
 protected:
     
     // IO Utilities
@@ -285,9 +283,7 @@ public:
             (*it)->reset(samplingRate, maxBlockSize);
     }
     
-    // Handles Audio
-    
-    static bool handlesAudio() { return T::handlesAudio(); }
+    // Info
     
     virtual std::string objectInfo(bool verbose)                    { return mBlocks[0]->objectInfo(verbose); }
     virtual std::string inputInfo(unsigned long idx, bool verbose)  { return mBlocks[0]->inputInfo(idx, verbose); }
@@ -303,6 +299,8 @@ public:
     
     virtual const FrameLib_Parameters *getParameters()  const       { return mBlocks[0]->getParameters(); }
 
+    // Ordering Connections
+    
     virtual void autoOrderingConnections()
     {
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)

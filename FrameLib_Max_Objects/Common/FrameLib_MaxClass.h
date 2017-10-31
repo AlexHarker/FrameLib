@@ -18,64 +18,6 @@ class FrameLib_MaxGlobals : public MaxClass_Base
 {
     
 public:
-    
-    // Sync Check Class
-    
-    class SyncCheck
-    {
-        
-    public:
-        
-        enum Mode { kDownOnly, kDown, kAcross };
-        enum Action { kSyncComplete, kSync, kAttachAndSync };
-        
-        SyncCheck() : mGlobal(get()), mObject(NULL), mTime(-1), mMode(kDownOnly) {}
-        ~SyncCheck() { mGlobal->release(); }
-        
-        Action operator()(void *object, bool handlesAudio, bool isOutput)
-        {
-            const SyncCheck *info = mGlobal->getSyncCheck();
-            
-            if (info && (info->mTime != mTime || info->mObject != mObject))
-            {
-                set(info->mObject, info->mTime, info->mMode);
-                return handlesAudio && object != mObject && (mMode != kAcross || isOutput) ? kAttachAndSync : kSync;
-            }
-            
-            if (info && mMode == kAcross && info->mMode == kDown)
-            {
-                mMode = kDown;
-                return handlesAudio && object != mObject && !isOutput ? kAttachAndSync : kSync;
-            }
-            
-            return kSyncComplete;
-        }
-        
-        void sync(void *object = NULL, long time = -1, Mode mode = kDownOnly)
-        {
-            set(object, time, mode);
-            mGlobal->setSyncCheck(object ? this : NULL);
-        }
-        
-        bool upwardsMode()  { return setMode(mGlobal->getSyncCheck(), kAcross); }
-        void restoreMode()  { setMode(mGlobal->getSyncCheck(), mMode); }
-        
-    private:
-        
-        void set(void *object, long time, Mode mode)
-        {
-            mObject = object;
-            mTime = time;
-            mMode = mode;
-        }
-    
-        bool setMode(SyncCheck *info, Mode mode)    { return info && info->mMode != kDownOnly && ((info->mMode = mode) == mode); }
-        
-        FrameLib_MaxGlobals *mGlobal;
-        void *mObject;
-        long mTime;
-        Mode mMode;
-    };
 
     // ConnectionInfo Struct
     
@@ -113,7 +55,7 @@ public:
     // Constructor and Destructor (public for the max API, but use the ManagedPointer for use from outside this class)
     
     FrameLib_MaxGlobals(t_symbol *sym, long ac, t_atom *av)
-    : mGlobal(NULL), mConnectionInfo(NULL), mSyncCheck(NULL), mCount(0) { FrameLib_Global::get(&mGlobal); }
+    : mGlobal(NULL), mConnectionInfo(NULL), mCount(0) { FrameLib_Global::get(&mGlobal); }
     ~FrameLib_MaxGlobals() { FrameLib_Global::release(&mGlobal); }
 
     // Getters and setters for max global items
@@ -122,10 +64,7 @@ public:
     
     const ConnectionInfo *getConnectionInfo() const         { return mConnectionInfo; }
     void setConnectionInfo(ConnectionInfo *info = NULL)     { mConnectionInfo = info; }
-    
-    SyncCheck *getSyncCheck() const                         { return mSyncCheck; }
-    void setSyncCheck(SyncCheck *check = NULL)              { mSyncCheck = check; }
-    
+
 private:
     
     // Get and release the max global items (singleton)
@@ -166,259 +105,7 @@ private:
     
     FrameLib_Global *mGlobal;
     ConnectionInfo *mConnectionInfo;
-    SyncCheck *mSyncCheck;
     long mCount;
-};
-
-//////////////////////////////////////////////////////////////////////////
-////////////////////// Mutator for Synchronisation ///////////////////////
-//////////////////////////////////////////////////////////////////////////
-
-class Mutator : public MaxClass_Base
-{
-    
-public:
-    
-    Mutator(t_symbol *sym, long ac, t_atom *av)
-    {
-        mObject = ac ? atom_getobj(av) : NULL;
-        mMode = object_method(mObject, gensym("__fl.is_output")) ? FrameLib_MaxGlobals::SyncCheck::kDownOnly : FrameLib_MaxGlobals::SyncCheck::kDown;
-    }
-    
-    static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
-    {
-        addMethod<Mutator, &Mutator::mutate>(c, "signal");
-    }
-    
-    void mutate(t_symbol *sym, long ac, t_atom *av)
-    {
-        mSyncChecker.sync(mObject, gettime(), mMode);
-        object_method(mObject, gensym("sync"));
-        mSyncChecker.sync();
-    }
-    
-private:
-    
-    FrameLib_MaxGlobals::SyncCheck mSyncChecker;
-    FrameLib_MaxGlobals::SyncCheck::Mode mMode;
-    void *mObject;
-};
-
-//////////////////////////////////////////////////////////////////////////
-////////////////////// Wrapper for Synchronisation ///////////////////////
-//////////////////////////////////////////////////////////////////////////
-
-template <class T> class Wrapper : public MaxClass_Base
-{
-    typedef std::vector<t_object *>::iterator MaxObjectIterator;
-
-public:
-    
-    // Initialise Class
-    
-    static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
-    {
-        addMethod<Wrapper<T>, &Wrapper<T>::subpatcher>(c, "subpatcher");
-        addMethod<Wrapper<T>, &Wrapper<T>::assist>(c, "assist");
-        addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "anything");
-        addMethod<Wrapper<T>, &Wrapper<T>::sync>(c, "sync");
-        addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
-        addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
-        addMethod(c, (method) &externalWrapperInternalObject, "__fl.wrapper_internal_object");
-        
-        // N.B. MUST add signal handling after dspInit to override the builtin responses
-        
-        dspInit(c);
-        addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "signal");
-        
-        // Make sure the mutator class exists
-        
-        const char mutatorClassName[] = "__fl.signal.mutator";
-        
-        if (!class_findbyname(CLASS_NOBOX, gensym(mutatorClassName)))
-            Mutator::makeClass<Mutator>(CLASS_NOBOX, mutatorClassName);
-    }
-
-    // Constructor and Destructor
-    
-    Wrapper(t_symbol *s, long argc, t_atom *argv)
-    {
-        // Create patcher (you must report this as a subpatcher to get audio working)
-        
-        t_dictionary *d = dictionary_new();
-        t_atom a;
-        t_atom *av = NULL;
-        long ac = 0;
-        
-        atom_setparse(&ac, &av, "@defrect 0 0 300 300");
-        attr_args_dictionary(d, ac, av);
-        atom_setobj(&a, d);
-        mPatch = (t_object *)object_new_typed(CLASS_NOBOX, gensym("jpatcher"),1, &a);
-        
-        // Get box text (and strip object name from the top - relace with stored name in case the object name is an alias)
-        
-        t_object *textfield = NULL;
-        const char *text = NULL;
-        std::string newObjectText = accessClassName<Wrapper>()->c_str();
-
-        object_obex_lookup(this, gensym("#B"), &textfield);
-        
-        if ((textfield = jbox_get_textfield(textfield)))
-        {
-            text = (char *)object_method(textfield, gensym("getptr"));
-            text = strchr(text, ' ');
-            
-            if (text)
-                newObjectText += text;
-        }
-        
-        // Make internal object
-
-        mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch, "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", newObjectText.c_str()));
-        
-        // Make Mutator (with argument referencing the internal object)
-        
-        atom_setobj(&a, mObject);
-        mMutator = (t_object *) object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 1, &a);
-        
-        // Free the dictionary
-    
-        object_free(d);
-        
-        // Get the object itself (typed)
-        
-        T *internal = internalObject();
-        
-        long numIns = internal->getNumIns() + (internal->supportsOrderingConnections() ? 1 : 0);
-        long numOuts = internal->getNumOuts();
-        long numAudioIns = internal->getNumAudioIns();
-        long numAudioOuts = internal->getNumAudioOuts();
-        
-        internal->mUserObject = *this;
-        
-        // Create I/O
-        
-        mInOutlets.resize(numIns + numAudioIns - 1);
-        mProxyIns.resize(numIns + numAudioIns - 1);
-        mAudioOuts.resize(numAudioOuts - 1);
-        mOuts.resize(numOuts);
-        
-        // Inlets for messages/signals
-        
-        for (long i = numIns + numAudioIns - 2; i >= 0 ; i--)
-        {
-            mInOutlets[i] = (t_object *) outlet_new(NULL, NULL);
-            mProxyIns[i] = (t_object *)  (i ? proxy_new(this, i, &mProxyNum) : NULL);
-        }
-        
-        // Outlets for messages/signals
-        
-        for (long i = numOuts - 1; i >= 0 ; i--)
-            mOuts[i] = (t_object *) outlet_new(this, NULL);
-        for (long i = numAudioOuts - 2; i >= 0 ; i--)
-            mAudioOuts[i] = (t_object *) outlet_new(this, "signal");
-        
-        // Connect first signal outlet to the mutator
-        
-        outlet_add(outlet_nth(mObject, 0), inlet_nth(mMutator, 0));
-        
-        // Connect inlets (all types)
-        
-        for (long i = 0; i < numAudioIns + numIns - 1; i++)
-            outlet_add(mInOutlets[i], inlet_nth(mObject, i + 1));
-        
-        // Connect other outlets (audio then frame and sync message outlets)
-        
-        for (long i = 0; i < numAudioOuts - 1; i++)
-            outlet_add(outlet_nth(mObject, i + 1), mAudioOuts[i]);
-        
-        for (long i = 0; i < numOuts; i++)
-            outlet_add(outlet_nth(mObject, i + numAudioOuts), mOuts[i]);
-    }
-    
-    ~Wrapper()
-    {
-        // Delete ins and proxies
-        
-        for (MaxObjectIterator it = mProxyIns.begin(); it != mProxyIns.end(); it++)
-            object_free(*it);
-        
-        for (MaxObjectIterator it = mInOutlets.begin(); it != mInOutlets.end(); it++)
-            object_free(*it);
-        
-        // Free objects - N.B. - free the patch, but not the object within it (which will be freed by deleting the patch)
-        
-        object_free(mMutator);
-        object_free(mPatch);
-    }
-    
-    // Standard methods
-    
-    void *subpatcher(long index, void *arg)
-    {
-        return ((t_ptr_uint) arg > 1 && !NOGOOD(arg) && index == 0) ? (void *) mPatch : NULL;
-    }
-    
-    void assist(void *b, long m, long a, char *s)
-    {
-        internalObject()->assist(b, m, a + 1, s);
-    }
-    
-    void sync()
-    {
-        internalObject()->sync();
-    }
-    
-    void anything(t_symbol *sym, long ac, t_atom *av)
-    {
-        outlet_anything(mInOutlets[getInlet()], sym, ac, av);
-    }
-    
-    // External methods (A_CANT)
-    
-    static t_max_err externalPatchLineUpdate(Wrapper *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
-    {
-        if ((t_object *) x == dst)
-            return T::externalPatchLineUpdate(x->internalObject(), patchline, updatetype, src, srcout, x->mObject, dstin + 1);
-        else
-            return T::externalPatchLineUpdate(x->internalObject(), patchline, updatetype, x->mObject, srcout + 1, dst, dstin);
-    }
-    
-    static t_ptr_int externalConnectionAccept(Wrapper *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
-    {
-        // Only called for sources / account for internal sync connections
-
-        return T::externalConnectionAccept(src->internalObject(), dst, srcout + 1, dstin, outlet, inlet);
-    }
-    
-    static void *externalWrapperInternalObject(Wrapper *x)
-    {
-        return x->mObject;
-    }
-    
-private:
-    
-    T *internalObject() { return (T *) mObject; }
-    
-    // Objects (need freeing except the internal object which is owned by the patch)
-    
-    t_object *mPatch;
-    t_object *mObject;
-    t_object *mMutator;
-    
-    // Inlets (must be freed)
-    
-    std::vector<t_object *> mInOutlets;
-    std::vector<t_object *> mProxyIns;
-    
-    // Outlets (don't need to free)
-    
-    std::vector<t_object *> mAudioOuts;
-    std::vector<t_object *> mOuts;
-    
-    // Dummy for stuffloc on proxies
-    
-    long mProxyNum;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -438,25 +125,15 @@ public:
     
     template <class U = FrameLib_MaxClass<T, argsSetAllInputs> > static void makeClass(t_symbol *nameSpace, const char *className)
     {
-        // If handles audio/scheduler then make wrapper class and name the inner object differently..
-        
-        std::string internalClassName = className;
-        
-        if (T::handlesAudio())
-        {
-            Wrapper<U>:: template makeClass<Wrapper<U> >(CLASS_BOX, className);
-            internalClassName.insert(0, "unsynced.");
-        }
-        
-        MaxClass_Base::makeClass<U>(nameSpace, internalClassName.c_str());
+        MaxClass_Base::makeClass<U>(nameSpace, className);
     }
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
+        addMethod(c, (method) dspstate, "dspstate");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::assist>(c, "assist");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::info>(c, "info");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
@@ -466,7 +143,6 @@ public:
         addMethod(c, (method) &externalIsConnected, "__fl.is_connected");
         addMethod(c, (method) &externalConnectionConfirm, "__fl.connection_confirm");
         addMethod(c, (method) &externalGetInternalObject, "__fl.get_internal_object");
-        addMethod(c, (method) &externalIsOutput, "__fl.is_output");
         addMethod(c, (method) &externalGetNumAudioIns, "__fl.get_num_audio_ins");
         addMethod(c, (method) &externalGetNumAudioOuts, "__fl.get_num_audio_outs");
         
@@ -475,7 +151,7 @@ public:
 
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv) : mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mTopLevelPatch(jpatcher_get_toppatcher(gensym("#P")->s_thing)), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
+    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv) : mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mNeedsResolve(true), mTopLevelPatch(jpatcher_get_toppatcher(gensym("#P")->s_thing)), mUserObject(*this)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -503,25 +179,17 @@ public:
         // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles audio)
         
         for (long i = numIns - 1; i >= 0; i--)
-            mInputs[i] = (t_object *) ((i || T::handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : NULL);
+            mInputs[i] = (t_object *) ((i || handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : NULL);
         
         for (unsigned long i = getNumOuts(); i > 0; i--)
             mOutputs[i - 1] = outlet_new(this, NULL);
         
         // Setup for audio, even if the object doesn't handle it, so that dsp recompile works correctly
         
-        dspSetup(getNumAudioIns());
+        dspSetup(getNumAudioIns(), mObject->getType() == kOutput ? Z_PUT_LAST : Z_PUT_FIRST);
  
         for (unsigned long i = 0; i < getNumAudioOuts(); i++)
             outlet_new(this, "signal");
-        
-        // Add a sync outlet if we need to handle audio
-        
-        if (T::handlesAudio())
-        {
-            mSyncIn = (t_object *) outlet_new(NULL, NULL);
-            outlet_add(mSyncIn, inlet_nth(*this, 0));
-        }
     }
 
     ~FrameLib_MaxClass()
@@ -532,26 +200,20 @@ public:
 
         for (MaxObjectIterator it = mInputs.begin(); it != mInputs.end(); it++)
             object_free(*it);
-        
-        object_free(mSyncIn);
     }
-
+    
     void assist(void *b, long m, long a, char *s)
     {
         if (m == ASSIST_OUTLET)
         {
-            if (a == 0 && T::handlesAudio())
-                 sprintf(s,"(signal) Audio Synchronisation Output" );
-            else if (a < getNumAudioOuts())
+            if (a < getNumAudioOuts())
                 sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
             else
                 sprintf(s,"(frame) %s", mObject->outputInfo(a - getNumAudioOuts()).c_str());
         }
         else
         {
-            if (a == 0 && T::handlesAudio())
-                sprintf(s,"(signal) Audio Synchronisation Input");
-            else if (a < getNumAudioIns())
+            if (a < getNumAudioIns())
                 sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
             else
             {
@@ -676,10 +338,11 @@ public:
 
     // IO Helpers
     
-    bool supportsOrderingConnections()    { return mObject->supportsOrderingConnections(); }
+    bool supportsOrderingConnections()      { return mObject->supportsOrderingConnections(); }
+    bool handlesAudio()                     { return mObject->handlesAudio(); }
     
-    long getNumAudioIns()   { return (long) mObject->getNumAudioIns() + (T::handlesAudio() ? 1 : 0); }
-    long getNumAudioOuts()  { return (long) mObject->getNumAudioOuts() + (T::handlesAudio() ? 1 : 0); }
+    long getNumAudioIns()   { return (long) mObject->getNumAudioIns(); }
+    long getNumAudioOuts()  { return (long) mObject->getNumAudioOuts(); }
     long getNumIns()        { return (long) mObject->getNumIns(); }
     long getNumOuts()       { return (long) mObject->getNumOuts(); }
     
@@ -687,17 +350,19 @@ public:
 
     void perform(t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam)
     {
-        // N.B. Plus one due to sync inputs
-        
-        mObject->blockUpdate(ins + 1, outs + 1, vec_size);
+        mObject->blockUpdate(ins, outs, vec_size);
     }
 
     void dsp(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
     {
-        // Resolve connections (in case there are no schedulers left in the patch) and mark unresolved for next time
+        // Resolve connections
         
-        resolveConnections();
-        mNeedsResolve = true;
+        if (mNeedsResolve)
+        {
+            traversePatch(mTopLevelPatch, gensym("__fl.resolve_connections"));
+            traversePatch(mTopLevelPatch, gensym("__fl.clear_auto_ordering_connections"));
+            traversePatch(mTopLevelPatch, gensym("__fl.auto_ordering_connections"));
+        }
         
         // Reset DSP
         
@@ -705,44 +370,15 @@ public:
         
         // Add a perform routine to the chain if the object handles audio
         
-        if (T::handlesAudio())
+        if (handlesAudio())
             addPerform<FrameLib_MaxClass, &FrameLib_MaxClass<T>::perform>(dsp64);
     }
-
-    // Audio Synchronisation
     
-    void sync()
+    static void dspstate(FrameLib_MaxClass *x, long n)
     {
-        FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, T::handlesAudio(), externalIsOutput(this));
-       
-        if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && T::handlesAudio && mNeedsResolve)
-        {
-            traversePatch(mTopLevelPatch, gensym("__fl.resolve_connections"));
-            traversePatch(mTopLevelPatch, gensym("__fl.clear_auto_ordering_connections"));
-            traversePatch(mTopLevelPatch, gensym("__fl.auto_ordering_connections"));
-        }
+        // Object needs resolving
         
-        if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
-            outlet_anything(mSyncIn, gensym("signal"), 0, NULL);
-        
-        if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete)
-        {
-            for (unsigned long i = getNumOuts(); i > 0; i--)
-                outlet_anything(mOutputs[i - 1], gensym("sync"), 0, NULL);
-            
-            if (mSyncChecker.upwardsMode())
-            {
-                for (unsigned long i = 0; i < getNumIns(); i++)
-                    if (isConnected(i))
-                        object_method(getConnection(i).mObject, gensym("sync"));
-                
-                if (supportsOrderingConnections())
-                    for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
-                        object_method(getOrderingConnection(i).mObject, gensym("sync"));
-                
-                mSyncChecker.restoreMode();
-            }
-        }
+        x->mNeedsResolve = true;
     }
     
     // Connection Routines
@@ -816,11 +452,6 @@ public:
         return x->mObject;
     }
     
-    static t_ptr_int externalIsOutput(FrameLib_MaxClass *x)
-    {
-        return T::handlesAudio() && (x->getNumAudioOuts() > 1);
-    }
-    
     static t_ptr_int externalGetNumAudioIns(FrameLib_MaxClass *x)
     {
         return x->getNumAudioIns();
@@ -832,20 +463,7 @@ public:
     }
 
 private:
-    
-    // Unwrapping connections
-    
-    void unwrapConnection(t_object *& object, long& connection)
-    {
-        t_object *wrapped = (t_object *) object_method(object, gensym("__fl.wrapper_internal_object"));
-        
-        if (wrapped)
-        {
-            object = wrapped;
-            connection++;
-        }
-    }
-    
+
     // Get an internal object from a generic pointer safely
     
     FrameLib_MultiChannel *getInternalObject(t_object *x)
@@ -885,14 +503,14 @@ private:
                     
             for (unsigned long i = 0; i < getNumIns(); i++)
                 confirmConnection(i, ConnectionInfo::kConfirm);
-            
+                
             // Confirm ordering connections
             
             for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
                 confirmConnection(getOrderingConnection(i), getNumIns(), ConnectionInfo::kConfirm);
-            
+                
             // Make output connections
-            
+                
             for (unsigned long i = getNumOuts(); i > 0; i--)
                 makeConnection(i - 1, ConnectionInfo::kConnect);
             
@@ -1034,7 +652,6 @@ private:
     {
         if (*this == dst)
         {
-            unwrapConnection(src, srcout);
             srcout -= (long) object_method(src, gensym("__fl.get_num_audio_outs"));
             dstin -= getNumAudioIns();
             
@@ -1076,7 +693,6 @@ private:
         if (!validOutput(srcout - getNumAudioOuts()) || className == gensym("outlet") || className == gensym("jpatcher"))
             return 1;
 
-        unwrapConnection(dst, dstin);
         dstin -= (long) object_method(dst, gensym("__fl.get_num_audio_ins"));
         
         if (isOrderingInput(dstin, getInternalObject(dst)) || (validInput(dstin, getInternalObject(dst)) && !object_method(dst, gensym("__fl.is_connected"), dstin)))
@@ -1294,14 +910,12 @@ private:
     long mConfirmInIndex;
     long mConfirmOutIndex;
     bool mConfirm;
+    bool mNeedsResolve;
     
+    method mSignalMethod;
     t_object *mTopLevelPatch;
-    t_object *mSyncIn;
     
     FrameLib_MaxGlobals::ManagedPointer mGlobal;
-    FrameLib_MaxGlobals::SyncCheck mSyncChecker;
-    
-    bool mNeedsResolve;
     
 public:
 
