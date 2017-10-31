@@ -123,7 +123,7 @@ void FrameLib_MaxClass_FromMax::list(t_symbol *s, long argc, t_atom *argv)
 void FrameLib_MaxClass_FromMax::anything(t_symbol *s, long argc, t_atom *argv)
 {
     if (argc > 1 && atom_gettype(argv) == A_SYM)
-        object_error(mUserObject, "too many arguments for string value");
+        object_error(*this, "too many arguments for string value");
     
     mMessages.mLock.acquire();
     if (mMessages.mTagsNeedClear)

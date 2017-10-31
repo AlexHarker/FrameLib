@@ -151,7 +151,7 @@ public:
 
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv) : mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mNeedsResolve(true), mTopLevelPatch(jpatcher_get_toppatcher(gensym("#P")->s_thing)), mUserObject(*this)
+    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv) : mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mNeedsResolve(true), mTopLevelPatch(jpatcher_get_toppatcher(gensym("#P")->s_thing))
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -249,13 +249,13 @@ public:
         
         // Start Tag
         
-        object_post(mUserObject, "********* %s *********", object_classname(mUserObject)->s_name);
+        object_post(*this, "********* %s *********", object_classname(*this)->s_name);
 
         // Description
         
         if (flags & kInfoDesciption)
         {
-            object_post(mUserObject, "--- Description ---");
+            object_post(*this, "--- Description ---");
             postSplit(mObject->objectInfo(verbose).c_str(), "", "-");
         }
         
@@ -263,34 +263,34 @@ public:
         
         if (flags & kInfoInputs)
         {
-            object_post(mUserObject, "--- Input List ---");
+            object_post(*this, "--- Input List ---");
             if (argsSetAllInputs)
-                object_post(mUserObject, "N.B. - arguments set the fixed array values for all inputs.");
+                object_post(*this, "N.B. - arguments set the fixed array values for all inputs.");
             for (long i = 0; i < mObject->getNumAudioIns(); i++)
-                object_post(mUserObject, "Audio Input %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
+                object_post(*this, "Audio Input %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
             for (long i = 0; i < mObject->getNumIns(); i++)
-                object_post(mUserObject, "Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose).c_str());
+                object_post(*this, "Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose).c_str());
             if (supportsOrderingConnections())
-                object_post(mUserObject, "Ordering Input [%s]: Connect to ensure ordering", frameTypeString(kFrameAny));
+                object_post(*this, "Ordering Input [%s]: Connect to ensure ordering", frameTypeString(kFrameAny));
         }
         
         if (flags & kInfoOutputs)
         {
-            object_post(mUserObject, "--- Output List ---");
+            object_post(*this, "--- Output List ---");
             for (long i = 0; i < mObject->getNumAudioOuts(); i++)
-                object_post(mUserObject, "Audio Output %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
+                object_post(*this, "Audio Output %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
             for (long i = 0; i < mObject->getNumOuts(); i++)
-                object_post(mUserObject, "Frame Output %ld [%s]: %s", i + 1, frameTypeString(mObject->outputType(i)), mObject->outputInfo(i, verbose).c_str());
+                object_post(*this, "Frame Output %ld [%s]: %s", i + 1, frameTypeString(mObject->outputType(i)), mObject->outputInfo(i, verbose).c_str());
         }
         
         // Parameters
         
         if (flags & kInfoParameters)
         {
-            object_post(mUserObject, "--- Parameter List ---");
+            object_post(*this, "--- Parameter List ---");
             
             const FrameLib_Parameters *params = mObject->getParameters();
-            if (!params || !params->size()) object_post(mUserObject, "< No Parameters >");
+            if (!params || !params->size()) object_post(*this, "< No Parameters >");
             
             // Loop over parameters
             
@@ -303,33 +303,33 @@ public:
                 // Name, type and default value
                 
                 if (defaultStr.size())
-                    object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str(), defaultStr.c_str());
+                    object_post(*this, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str(), defaultStr.c_str());
                 else
-                    object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str());
+                    object_post(*this, "Parameter %ld: %s [%s]", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str());
 
                 // Verbose - arguments, range (for numeric types), enum items (for enums), array sizes (for arrays), description
                 
                 if (verbose)
                 {
                     if (!argsSetAllInputs && params->getArgumentIdx(i) >= 0)
-                        object_post(mUserObject, "- Argument: %ld", params->getArgumentIdx(i) + 1);
+                        object_post(*this, "- Argument: %ld", params->getArgumentIdx(i) + 1);
                     if (numericType == FrameLib_Parameters::kNumericInteger || numericType == FrameLib_Parameters::kNumericDouble)
                     {
                         switch (params->getClipMode(i))
                         {
                             case FrameLib_Parameters::kNone:    break;
-                            case FrameLib_Parameters::kMin:     object_post(mUserObject, "- Min Value: %lg", params->getMin(i));                        break;
-                            case FrameLib_Parameters::kMax:     object_post(mUserObject, "- Max Value: %lg", params->getMax(i));                        break;
-                            case FrameLib_Parameters::kClip:    object_post(mUserObject, "- Clipped: %lg-%lg", params->getMin(i), params->getMax(i));   break;
+                            case FrameLib_Parameters::kMin:     object_post(*this, "- Min Value: %lg", params->getMin(i));                        break;
+                            case FrameLib_Parameters::kMax:     object_post(*this, "- Max Value: %lg", params->getMax(i));                        break;
+                            case FrameLib_Parameters::kClip:    object_post(*this, "- Clipped: %lg-%lg", params->getMin(i), params->getMax(i));   break;
                         }
                     }
                     if (type == FrameLib_Parameters::kEnum)
                         for (long j = 0; j <= params->getMax(i); j++)
-                            object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j).c_str());
+                            object_post(*this, "   [%ld] - %s", j, params->getItemString(i, j).c_str());
                     else if (type == FrameLib_Parameters::kArray)
-                        object_post(mUserObject, "- Array Size: %ld", params->getArraySize(i));
+                        object_post(*this, "- Array Size: %ld", params->getArraySize(i));
                     else if (type == FrameLib_Parameters::kVariableArray)
-                        object_post(mUserObject, "- Array Max Size: %ld", params->getArrayMaxSize(i));
+                        object_post(*this, "- Array Max Size: %ld", params->getArrayMaxSize(i));
                     postSplit(params->getInfo(i).c_str(), "- ", "-");
                 }
             }
@@ -404,7 +404,7 @@ public:
                 {
                     mConfirm = true;
                     if (info->mMode == ConnectionInfo::kDoubleCheck)
-                        object_error(mUserObject, "extra connection to input %ld", index + 1);
+                        object_error(*this, "extra connection to input %ld", index + 1);
                 }
                 break;
         }
@@ -615,15 +615,15 @@ private:
         switch (result)
         {
             case kConnectFeedbackDetected:
-                object_error(mUserObject, "feedback loop detected");
+                object_error(*this, "feedback loop detected");
                 break;
                 
             case kConnectWrongContext:
-                object_error(mUserObject, "cannot connect objects from different top-level patchers");
+                object_error(*this, "cannot connect objects from different top-level patchers");
                 break;
                 
             case kConnectSelfConnection:
-                object_error(mUserObject, "direct feedback loop detected");
+                object_error(*this, "direct feedback loop detected");
                 break;
                 
             case kConnectSuccess:
@@ -711,7 +711,7 @@ private:
         for (oldPos = 0, pos = str.find_first_of(":."); oldPos < str.size(); pos = str.find_first_of(":.", pos + 1))
         {
             pos = pos == std::string::npos ? str.size() : pos;
-            object_post(mUserObject, "%s%s", oldPos ? lineTag : firstLineTag, str.substr(oldPos, (pos - oldPos) + 1).c_str());
+            object_post(*this, "%s%s", oldPos ? lineTag : firstLineTag, str.substr(oldPos, (pos - oldPos) + 1).c_str());
             oldPos = pos + 1;
         }
     }
@@ -776,7 +776,7 @@ private:
                 break;
             
             if (atom_gettype(argv + idx) == A_SYM)
-                object_error(mUserObject, "string %s in entry list where value expected", atom_getsym(argv + idx)->s_name);
+                object_error(*this, "string %s in entry list where value expected", atom_getsym(argv + idx)->s_name);
             
             values.push_back(atom_getfloat(argv + idx));
         }
@@ -830,7 +830,7 @@ private:
                 }
                 
                 if (j == 0)
-                    object_error(mUserObject, "stray items after entry %s", sym->s_name);
+                    object_error(*this, "stray items after entry %s", sym->s_name);
             }
             
             // Check for lack of values or end of list
@@ -838,7 +838,7 @@ private:
             if ((++i >= argc) || isTag(argv + i))
             {
                 if (i < (argc + 1))
-                    object_error(mUserObject, "no values given for entry %s", sym->s_name);
+                    object_error(*this, "no values given for entry %s", sym->s_name);
                 continue;
             }
             
@@ -912,14 +912,9 @@ private:
     bool mConfirm;
     bool mNeedsResolve;
     
-    method mSignalMethod;
     t_object *mTopLevelPatch;
     
     FrameLib_MaxGlobals::ManagedPointer mGlobal;
-    
-public:
-
-    t_object *mUserObject;
 };
 
 // Convenience for Objects Using FrameLib_Expand (use FrameLib_MaxClass_Expand<T>::makeClass() to create)
