@@ -69,7 +69,7 @@ template<> const char *FrameLib_Binary<pow>::getDescriptionString()
 { return "Calculates left input frame values to the power of right input frame values"; }
 
 template<> const char *FrameLib_Binary<atan2>::getDescriptionString()
-{ return "For each pair of input values calculates the arctangent using two arguments"; }
+{ return "For each pair of input values calculates the arctangent using two arguments (left operand is y, right operand is x)"; }
 
 template<> const char *FrameLib_Binary<hypot>::getDescriptionString()
 { return "For each pair of input values calculates the hypotenuse of a right-angled triangle with sides of the given lengths"; }
