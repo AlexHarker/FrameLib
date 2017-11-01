@@ -13,6 +13,37 @@ FrameLib_Parameters::Serial::Serial() : mPtr(NULL), mSize(0), mMaxSize(0)
     alignmentChecks();
 }
 
+// Size Calculation
+
+size_t FrameLib_Parameters::Serial::calcSize(FrameLib_Parameters *parameters)
+{
+    size_t size = 0;
+    
+    for (unsigned long i = 0; i < parameters->size(); i++)
+    {
+        Type type = parameters->getType(i);
+        
+        switch(type)
+        {
+            case kString:
+                size += calcSize(parameters->getName(i).c_str(), parameters->getString(i));
+                break;
+                
+            case kValue:
+            case kEnum:
+                size += calcSize(parameters->getName(i).c_str(), 1);
+                break;
+                
+            case kArray:
+            case kVariableArray:
+                size += calcSize(parameters->getName(i).c_str(), parameters->getArraySize(i));
+
+        }
+    }
+    
+    return size;
+}
+
 // Public Writes
 
 void FrameLib_Parameters::Serial::write(Serial *serialised)
@@ -24,12 +55,40 @@ void FrameLib_Parameters::Serial::write(Serial *serialised)
     mSize += serialised->mSize;
 }
 
+void FrameLib_Parameters::Serial::write(FrameLib_Parameters *parameters)
+{
+    double value;
+    
+    for (unsigned long i = 0; i < parameters->size(); i++)
+    {
+        Type type = parameters->getType(i);
+        
+        switch(type)
+        {
+            case kString:
+                write(parameters->getName(i).c_str(), parameters->getString(i));
+                break;
+                
+            case kValue:
+            case kEnum:
+                value = parameters->getValue(i);
+                write(parameters->getName(i).c_str(), &value, 1);
+                break;
+                
+            case kArray:
+            case kVariableArray:
+                write(parameters->getName(i).c_str(), parameters->getArray(i), parameters->getArraySize(i));
+                
+        }
+    }
+}
+
 void FrameLib_Parameters::Serial::write(const char *tag, const char *str)
 {
     if (!checkSize(calcSize(tag, str)))
         return;
     
-    writeType(kString);
+    writeType(kSingleString);
     writeString(tag);
     writeString(str);
 }
@@ -63,7 +122,7 @@ void FrameLib_Parameters::Serial::read(FrameLib_Parameters *parameters) const
                 parameters->set(tag, values, N);
                 break;
                 
-            case kString:
+            case kSingleString:
                 readString(&readPtr, &tag);
                 readString(&readPtr, &str);
                 parameters->set(tag, str);
