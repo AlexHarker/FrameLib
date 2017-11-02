@@ -1,5 +1,6 @@
 
 #include "FrameLib_Parameters.h"
+#include <algorithm>
 
 // Constructors / Destructor
 
@@ -15,28 +16,28 @@ FrameLib_Parameters::Serial::Serial() : mPtr(NULL), mSize(0), mMaxSize(0)
 
 // Size Calculation
 
-size_t FrameLib_Parameters::Serial::calcSize(FrameLib_Parameters *parameters)
+size_t FrameLib_Parameters::Serial::calcSize(const FrameLib_Parameters *params)
 {
     size_t size = 0;
     
-    for (unsigned long i = 0; i < parameters->size(); i++)
+    for (unsigned long i = 0; i < params->size(); i++)
     {
-        Type type = parameters->getType(i);
+        Type type = params->getType(i);
         
         switch(type)
         {
             case kString:
-                size += calcSize(parameters->getName(i).c_str(), parameters->getString(i));
+                size += calcSize(params->getName(i).c_str(), params->getString(i));
                 break;
                 
             case kValue:
             case kEnum:
-                size += calcSize(parameters->getName(i).c_str(), 1);
+                size += calcSize(params->getName(i).c_str(), 1);
                 break;
                 
             case kArray:
             case kVariableArray:
-                size += calcSize(parameters->getName(i).c_str(), parameters->getArraySize(i));
+                size += calcSize(params->getName(i).c_str(), params->getArraySize(i));
 
         }
     }
@@ -55,29 +56,29 @@ void FrameLib_Parameters::Serial::write(Serial *serialised)
     mSize += serialised->mSize;
 }
 
-void FrameLib_Parameters::Serial::write(FrameLib_Parameters *parameters)
+void FrameLib_Parameters::Serial::write(const FrameLib_Parameters *params)
 {
     double value;
     
-    for (unsigned long i = 0; i < parameters->size(); i++)
+    for (unsigned long i = 0; i < params->size(); i++)
     {
-        Type type = parameters->getType(i);
+        Type type = params->getType(i);
         
         switch(type)
         {
             case kString:
-                write(parameters->getName(i).c_str(), parameters->getString(i));
+                write(params->getName(i).c_str(), params->getString(i));
                 break;
                 
             case kValue:
             case kEnum:
-                value = parameters->getValue(i);
-                write(parameters->getName(i).c_str(), &value, 1);
+                value = params->getValue(i);
+                write(params->getName(i).c_str(), &value, 1);
                 break;
                 
             case kArray:
             case kVariableArray:
-                write(parameters->getName(i).c_str(), parameters->getArray(i), parameters->getArraySize(i));
+                write(params->getName(i).c_str(), params->getArray(i), params->getArraySize(i));
                 
         }
     }
@@ -98,7 +99,7 @@ void FrameLib_Parameters::Serial::write(const char *tag, const double *values, s
     if (!checkSize(calcSize(tag, N)))
         return;
     
-    writeType(kDoubleArray);
+    writeType(kVector);
     writeString(tag);
     writeDoubles(values, N);
 }
@@ -116,7 +117,7 @@ void FrameLib_Parameters::Serial::read(FrameLib_Parameters *parameters) const
     {
         switch (readType(&readPtr))
         {
-            case kDoubleArray:
+            case kVector:
                 readString(&readPtr, &tag);
                 readDoubles(&readPtr, &values, &N);
                 parameters->set(tag, values, N);
@@ -130,6 +131,39 @@ void FrameLib_Parameters::Serial::read(FrameLib_Parameters *parameters) const
         }
     }
 }
+
+// Find Item
+
+bool FrameLib_Parameters::Serial::find(const char *tag, DataType *type, size_t *size)
+{
+    DataType localType;
+    size_t localSize;
+    double *values;
+    char *str;
+
+    type = !type ? &localType : type;
+    size = !size ? &localSize : size;
+    
+    return find(tag, &values, &str, *type, *size);
+}
+
+// Copy Vector
+
+size_t FrameLib_Parameters::Serial::copyVector(double *output, const char *tag, unsigned long size)
+{
+    DataType type;
+    size_t localSize;
+    double *values;
+    char *str;
+    
+    find(tag, &values, &str, type, localSize);
+        
+    localSize = std::min(localSize, size);
+    std::copy(values, values + localSize, output);
+    
+    return localSize;
+}
+
 
 // Implementation
 
@@ -196,12 +230,64 @@ void FrameLib_Parameters::Serial::readDoubles(BytePointer *readPtr, double **val
     *readPtr += alignSize(*N * sizeof(double));
 }
 
-void FrameLib_Parameters::Serial::readString(BytePointer *readPtr, char **str) const
+void FrameLib_Parameters::Serial::readString(BytePointer *readPtr, char **str, size_t *len) const
 {
     size_t size;
     readSize(readPtr, &size);
     *str = ((char *) *readPtr);
     *readPtr += alignSize(size);
+    if (len)
+        *len = size - 1;
+}
+
+// Find Item (with read)
+
+bool FrameLib_Parameters::Serial::find(const char *tag, double **values, char **str, DataType& type, size_t& size)
+{
+    BytePointer readPtr = mPtr;
+    char *nextTag;
+    
+    while (readPtr < mPtr + mSize)
+    {
+        type = readType(&readPtr);
+        readString(&readPtr, &nextTag);
+        
+        switch (type)
+        {
+            case kVector:           readDoubles(&readPtr, values, &size);      break;
+            case kSingleString:     readString(&readPtr, str, &size);          break;
+        }
+        
+        if (!strcmp(nextTag, tag))
+            return true;
+    }
+    
+    size = 0;
+    
+    return false;
+}
+
+// Get Size
+
+size_t FrameLib_Parameters::Serial::getSize(const char *tag, DataType *type, bool allowVector, bool allowString)
+{
+    DataType localType;
+    double *values;
+    char *str;
+    size_t size;
+    
+    type = !type ? &localType : type;
+
+    if (!find(tag, &values, &str, *type, size))
+        return 0;
+    
+    if (allowVector && *type == kVector)
+        return size;
+    
+    if (allowString && *type == kSingleString)
+        return calcSize(tag, str);
+    
+    return 0;
 }
 
 // Size Check

@@ -41,9 +41,7 @@ public:
         static const size_t alignment = sizeof(double);
         static const size_t minGrowSize = 512;
         
-    private:
-        
-        enum DataType { kDoubleArray, kSingleString };
+        enum DataType { kVector, kSingleString };
         
     public:
         
@@ -55,20 +53,34 @@ public:
         // Size Calculations
         
         static size_t calcSize(Serial *serialised)                  { return serialised != NULL ? serialised->mSize : 0; }
-        static size_t calcSize(FrameLib_Parameters *parameters);
+        static size_t calcSize(const FrameLib_Parameters *params);
         static size_t calcSize(const char *tag, const char *str)    { return sizeType() + sizeString(tag) + sizeString(str); }
         static size_t calcSize(const char *tag, size_t N)           { return sizeType() + sizeString(tag) + sizeArray(N); }
+        
+        // Get Sizes
+        
+        size_t getSize(const char *tag, DataType *type)     { return getSize(tag, type, true, true); }
+        size_t getStringSize(const char *tag)               { return getSize(tag, NULL, false, true); }
+        size_t getVectorSize(const char *tag)               { return getSize(tag, NULL, true, false); }
         
         // Write Items
         
         void write(Serial *serialised);
-        void write(FrameLib_Parameters *parameters);
+        void write(const FrameLib_Parameters *params);
         void write(const char *tag, const char *str);
         void write(const char *tag, const double *values, size_t N);
         
         // Read into Parameters
         
         void read(FrameLib_Parameters *parameters) const;
+        
+        // Find Item
+        
+        bool find(const char *tag, DataType *type = NULL, size_t *size = NULL);
+        
+        // Copy Vector
+        
+        size_t copyVector(double *output, const char *tag, unsigned long size);
         
         // Utility
         
@@ -115,8 +127,16 @@ public:
         DataType readType(BytePointer *readPtr) const;
         void readSize(BytePointer *readPtr, size_t *size) const;
         void readDoubles(BytePointer *readPtr, double **values, size_t *N) const;
-        void readString(BytePointer *readPtr, char **str) const;
+        void readString(BytePointer *readPtr, char **str, size_t *len = NULL) const;
         
+        // Find Item (with read)
+
+        bool find(const char *tag, double **values, char **str, DataType& type, size_t& size);
+
+        // Get Size
+        
+        size_t getSize(const char *tag, DataType *type, bool allowVector, bool allowString);
+
     protected:
         
         // Member Variables
