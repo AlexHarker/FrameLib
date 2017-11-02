@@ -5,29 +5,48 @@
 
 FrameLib_SetParam::FrameLib_SetParam(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo)
 {
-    char nameStr[7];
+    char argStr[10];
+    char nameStr[10];
     
-    mParameters.addInt(kNumIns, "numins", 1, 0);
+    mParameters.addInt(kNumIns, "num_ins", 1);
     mParameters.setClip(1, maxNumIns);
     mParameters.setInstantiation();
     
     // Read in once to get number of strings needed
     
     mParameters.set(serialisedParameters);
-    mNumIns = mParameters.getInt(kNumIns);
 
+    // If no number of inputs is specified explicityly then examine the serialised parameters to determine the number needed
+    
+    if (!mParameters.changed(kNumIns))
+    {
+        for (int i = 0; i < maxNumIns; i++)
+        {
+            sprintf(argStr, "%d", i);
+            sprintf(nameStr, "param_%02d", i + 1);
+            if (serialisedParameters->find(argStr) || serialisedParameters->find(nameStr))
+                mParameters.set(kNumIns, (long) (i + 1));
+        }
+    }
+    
+    // Read number of ins and setup parameters
+    
+    mNumIns = mParameters.getInt(kNumIns);
+    
     for (int i = 0; i < mNumIns; i++)
     {
-        sprintf(nameStr, "name%02d", i + 1);
-        mParameters.addString(kNames + i, nameStr, i + 1);
+        sprintf(nameStr, "param_%02d", i + 1);
+        mParameters.addString(kNames + i, nameStr, i);
         mParameters.setInstantiation();
     }
     
-    // Read in again to get names
+    // Read in again to get parameter names
     
     mParameters.set(serialisedParameters);
     mNumIns = mParameters.getInt(kNumIns);
     
+    // Setup IO
+
     setIO(mNumIns + 1, 1);
     
     setInputMode(mNumIns, false, true, false, kFrameTagged);
