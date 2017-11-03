@@ -39,11 +39,117 @@ public:
         // N.B. the assumption is that double is the largest type in use
         
         static const size_t alignment = sizeof(double);
-        static const size_t minGrowSize = 512;
         
         enum DataType { kVector, kSingleString };
         
+        class Iterator
+        {
+            struct Entry
+            {
+                DataType mType;
+                BytePointer mData;
+                char *mTag;
+                size_t mSize;
+                
+                template <class T> T *data() { return reinterpret_cast<T *>(mData); }
+            };
+            
+        public:
+            
+            // Constructor
+            
+            Iterator(const Serial *serial, bool end) : mPtr(serial->mPtr + (end ? serial->mSize : 0)) {}
+            
+            // Operators
+            
+            bool operator ==(const Iterator& it) const { return mPtr == it.mPtr; }
+            bool operator !=(const Iterator& it) const { return !(*this == it); }
+
+            void operator ++()
+            {
+                DataType type = Serial::readType(&mPtr);
+                Serial::skipItem(&mPtr, kSingleString);
+                Serial::skipItem(&mPtr, type);
+            }
+            
+            // Get Type and Size
+            
+            DataType getType() const    { return *(reinterpret_cast<DataType *>(mPtr)); }
+            
+            size_t getSize() const
+            {
+                Entry entry = getEntry();
+                
+                switch (entry.mType)
+                {
+                    case kVector:           return entry.mSize;
+                    case kSingleString:     return calcSize(entry.mTag, entry.data<char>());
+                }
+            }
+            
+            // Match Tag
+            
+            bool matchTag(const char *tag) const
+            {
+                char *localTag = reinterpret_cast<char *>(mPtr + sizeType() + sizeSize());
+                return !strcmp(tag, localTag);
+            }
+
+            // Reads
+            
+            void read(FrameLib_Parameters *parameters) const
+            {
+                Entry entry = getEntry();
+                
+                switch (entry.mType)
+                {
+                    case kVector:           parameters->set(entry.mTag, entry.data<double>(), entry.mSize);     break;
+                    case kSingleString:     parameters->set(entry.mTag, entry.data<char>());                    break;
+                }
+            }
+                        
+            size_t read(double *output, unsigned long size) const
+            {
+                Entry entry = getEntry();
+                
+                if (entry.mType == kVector)
+                {
+                    size = std::min(entry.mSize, size);
+                    std::copy(entry.data<double>(), entry.data<double>() + entry.mSize, output);
+                    return size;
+                }
+                
+                return 0;
+            }
+            
+        private:
+            
+            // Get Entry
+            
+            Entry getEntry() const
+            {
+                Entry entry;
+                BytePointer ptr = mPtr;
+                BytePointer tagRaw;
+                
+                entry.mType = Serial::readType(&ptr);
+                Serial::readItem(&ptr, kSingleString, &tagRaw, &entry.mSize);
+                Serial::readItem(&ptr, entry.mType, &entry.mData, &entry.mSize);
+                
+                entry.mTag = reinterpret_cast<char *>(tagRaw);
+                
+                return entry;
+            }
+
+            // Data
+            
+            BytePointer mPtr;
+        };
+        
     public:
+        
+        Iterator begin() const  { return Iterator(this, false); }
+        Iterator end() const    { return Iterator(this, true); }
         
         // Constructors and Destructor
         
@@ -63,25 +169,23 @@ public:
         size_t getStringSize(const char *tag)               { return getSize(tag, NULL, false, true); }
         size_t getVectorSize(const char *tag)               { return getSize(tag, NULL, true, false); }
         
-        // Write Items
+        // Writes
         
-        void write(Serial *serialised);
+        void write(const Serial *serialised);
         void write(const FrameLib_Parameters *params);
         void write(const char *tag, const char *str);
         void write(const char *tag, const double *values, size_t N);
         
-        // Read into Parameters
+        // Reads
         
         void read(FrameLib_Parameters *parameters) const;
+        size_t read(const char *tag, double *output, unsigned long size) const;
+        bool read(const char *tag, FrameLib_Parameters *parameters) const;
         
         // Find Item
         
-        bool find(const char *tag, DataType *type = NULL, size_t *size = NULL);
-        
-        // Copy Vector
-        
-        size_t copyVector(double *output, const char *tag, unsigned long size);
-        
+        Iterator find(const char *tag)  const;
+
         // Utility
         
         size_t size() const     { return mSize; }
@@ -90,7 +194,7 @@ public:
         static size_t alignSize(size_t size)                    { return (size + (alignment - 1)) & ~(alignment - 1); }
         static size_t inPlaceSize(size_t size)                  { return alignSize(sizeof(Serial)) + alignSize(size); }
 
-        static Serial *newInPlace(void *ptr, size_t size)   { return new (ptr) Serial(((BytePointer) ptr) + alignSize(sizeof(Serial)), size); }
+        static Serial *newInPlace(void *ptr, size_t size)       { return new (ptr) Serial(((BytePointer) ptr) + alignSize(sizeof(Serial)), size); }
 
     protected:
         
@@ -112,8 +216,9 @@ public:
         // Size Calculators
         
         static size_t sizeType()                    { return alignSize(sizeof(DataType)); }
-        static size_t sizeString(const char *str)   { return alignSize(sizeof(size_t)) + alignSize(strlen(str) + 1); }
-        static size_t sizeArray(size_t N)           { return alignSize(sizeof(size_t)) + alignSize((N * sizeof(double))); }
+        static size_t sizeSize()                    { return alignSize(sizeof(size_t)); }
+        static size_t sizeString(const char *str)   { return sizeSize() + alignSize(strlen(str) + 1); }
+        static size_t sizeArray(size_t N)           { return sizeSize() + alignSize((N * sizeof(double))); }
 
         // Write Item
         
@@ -124,15 +229,14 @@ public:
         
         // Read Item
         
-        DataType readType(BytePointer *readPtr) const;
-        void readSize(BytePointer *readPtr, size_t *size) const;
-        void readDoubles(BytePointer *readPtr, double **values, size_t *N) const;
-        void readString(BytePointer *readPtr, char **str, size_t *len = NULL) const;
+        static DataType readType(BytePointer *readPtr);
+        static void readSize(BytePointer *readPtr, size_t *size);
+        static void readItem(BytePointer *readPtr, DataType type, BytePointer *data, size_t *size);
+
+        // Skip Item
         
-        // Find Item (with read)
-
-        bool find(const char *tag, double **values, char **str, DataType& type, size_t& size);
-
+        static void skipItem(BytePointer *readPtr, DataType typ);
+        
         // Get Size
         
         size_t getSize(const char *tag, DataType *type, bool allowVector, bool allowString);
@@ -150,7 +254,8 @@ public:
     
     class AutoSerial : public Serial
     {
-        
+        static const size_t minGrowSize = 512;
+
     public:
 
         AutoSerial() {};

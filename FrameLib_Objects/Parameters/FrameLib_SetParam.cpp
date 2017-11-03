@@ -24,7 +24,7 @@ FrameLib_SetParam::FrameLib_SetParam(FrameLib_Context context, FrameLib_Paramete
         {
             sprintf(argStr, "%d", i);
             sprintf(nameStr, "param_%02d", i + 1);
-            if (serialisedParameters->find(argStr) || serialisedParameters->find(nameStr))
+            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(nameStr) != serialisedParameters->end())
                 mParameters.set(kNumIns, (long) (i + 1));
         }
     }

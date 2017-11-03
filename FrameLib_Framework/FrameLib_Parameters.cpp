@@ -47,7 +47,7 @@ size_t FrameLib_Parameters::Serial::calcSize(const FrameLib_Parameters *params)
 
 // Public Writes
 
-void FrameLib_Parameters::Serial::write(Serial *serialised)
+void FrameLib_Parameters::Serial::write(const Serial *serialised)
 {
     if (!serialised || !checkSize(serialised->mSize))
         return;
@@ -79,7 +79,6 @@ void FrameLib_Parameters::Serial::write(const FrameLib_Parameters *params)
             case kArray:
             case kVariableArray:
                 write(params->getName(i).c_str(), params->getArray(i), params->getArraySize(i));
-                
         }
     }
 }
@@ -104,66 +103,44 @@ void FrameLib_Parameters::Serial::write(const char *tag, const double *values, s
     writeDoubles(values, N);
 }
 
-// Public Read
+// Public Reads
 
 void FrameLib_Parameters::Serial::read(FrameLib_Parameters *parameters) const
 {
-    BytePointer readPtr = mPtr;
-    char *tag, *str;
-    double *values;
-    size_t N;
+    for (Iterator it = begin(); it != end(); ++it)
+        it.read(parameters);
+}
+
+bool FrameLib_Parameters::Serial::read(const char *tag, FrameLib_Parameters *parameters) const
+{
+    Iterator it = find(tag);
     
-    while (readPtr < mPtr + mSize)
-    {
-        switch (readType(&readPtr))
-        {
-            case kVector:
-                readString(&readPtr, &tag);
-                readDoubles(&readPtr, &values, &N);
-                parameters->set(tag, values, N);
-                break;
-                
-            case kSingleString:
-                readString(&readPtr, &tag);
-                readString(&readPtr, &str);
-                parameters->set(tag, str);
-                break;
-        }
-    }
+    if (it != end())
+        it.read(parameters);
+    
+    return it != end();
+}
+
+size_t FrameLib_Parameters::Serial::read(const char *tag, double *output, unsigned long size) const
+{
+    Iterator it = find(tag);
+    
+    if (it != end())
+        return it.read(output, size);
+    
+    return 0;
 }
 
 // Find Item
 
-bool FrameLib_Parameters::Serial::find(const char *tag, DataType *type, size_t *size)
+FrameLib_Parameters::Serial::Iterator FrameLib_Parameters::Serial::find(const char *tag) const
 {
-    DataType localType;
-    size_t localSize;
-    double *values;
-    char *str;
-
-    type = !type ? &localType : type;
-    size = !size ? &localSize : size;
+    for (Iterator it = begin(); it != end(); ++it)
+        if (it.matchTag(tag))
+            return it;
     
-    return find(tag, &values, &str, *type, *size);
+    return end();
 }
-
-// Copy Vector
-
-size_t FrameLib_Parameters::Serial::copyVector(double *output, const char *tag, unsigned long size)
-{
-    DataType type;
-    size_t localSize;
-    double *values;
-    char *str;
-    
-    find(tag, &values, &str, type, localSize);
-        
-    localSize = std::min(localSize, size);
-    std::copy(values, values + localSize, output);
-    
-    return localSize;
-}
-
 
 // Implementation
 
@@ -183,13 +160,13 @@ void FrameLib_Parameters::Serial::alignmentChecks() const
 void FrameLib_Parameters::Serial::writeType(DataType type)
 {
     *((DataType *) (mPtr + mSize)) = type;
-    mSize += alignSize(sizeof(DataType));
+    mSize += sizeType();
 }
 
 void FrameLib_Parameters::Serial::writeSize(size_t size)
 {
     *((size_t *) (mPtr + mSize)) = size;
-    mSize += alignSize(sizeof(size_t));
+    mSize += sizeSize();
 }
 
 void FrameLib_Parameters::Serial::writeString(const char *str)
@@ -210,84 +187,43 @@ void FrameLib_Parameters::Serial::writeDoubles(const double *ptr, size_t N)
 
 // Reads (private)
 
-FrameLib_Parameters::Serial::DataType FrameLib_Parameters::Serial::readType(BytePointer *readPtr) const
+FrameLib_Parameters::Serial::DataType FrameLib_Parameters::Serial::readType(BytePointer *readPtr)
 {
-    DataType type = *((DataType *) *readPtr);
-    *readPtr += alignSize(sizeof(DataType));
+    DataType type = *reinterpret_cast<DataType *>(*readPtr);
+    *readPtr += sizeType();
     return type;
 }
 
-void FrameLib_Parameters::Serial::readSize(BytePointer *readPtr, size_t *size) const
+void FrameLib_Parameters::Serial::readSize(BytePointer *readPtr, size_t *size)
 {
-    *size = *((size_t *) *readPtr);
-    *readPtr += alignSize(sizeof(size_t));
+    *size = *reinterpret_cast<size_t *>(*readPtr);
+    *readPtr += sizeSize();
 }
 
-void FrameLib_Parameters::Serial::readDoubles(BytePointer *readPtr, double **values, size_t *N) const
+void FrameLib_Parameters::Serial::readItem(BytePointer *readPtr, DataType type, BytePointer *data, size_t *size)
 {
-    readSize(readPtr, N);
-    *values = ((double *) *readPtr);
-    *readPtr += alignSize(*N * sizeof(double));
+    readSize(readPtr, size);
+    *data = *readPtr;
+    *readPtr += alignSize(*size * (type == kVector ? sizeof(double) : sizeof(char)));
 }
 
-void FrameLib_Parameters::Serial::readString(BytePointer *readPtr, char **str, size_t *len) const
+void FrameLib_Parameters::Serial::skipItem(BytePointer *readPtr, DataType type)
 {
     size_t size;
-    readSize(readPtr, &size);
-    *str = ((char *) *readPtr);
-    *readPtr += alignSize(size);
-    if (len)
-        *len = size - 1;
-}
-
-// Find Item (with read)
-
-bool FrameLib_Parameters::Serial::find(const char *tag, double **values, char **str, DataType& type, size_t& size)
-{
-    BytePointer readPtr = mPtr;
-    char *nextTag;
-    
-    while (readPtr < mPtr + mSize)
-    {
-        type = readType(&readPtr);
-        readString(&readPtr, &nextTag);
-        
-        switch (type)
-        {
-            case kVector:           readDoubles(&readPtr, values, &size);      break;
-            case kSingleString:     readString(&readPtr, str, &size);          break;
-        }
-        
-        if (!strcmp(nextTag, tag))
-            return true;
-    }
-    
-    size = 0;
-    
-    return false;
+    Serial::readSize(readPtr, &size);
+    *readPtr += size * (type == kVector ? sizeof(double) : sizeof(char));
 }
 
 // Get Size
 
 size_t FrameLib_Parameters::Serial::getSize(const char *tag, DataType *type, bool allowVector, bool allowString)
 {
-    DataType localType;
-    double *values;
-    char *str;
-    size_t size;
-    
-    type = !type ? &localType : type;
+    Iterator it = find(tag);
 
-    if (!find(tag, &values, &str, *type, size))
-        return 0;
+    if (it != end() && ((allowVector && it.getType() == kVector) || (allowString && it.getType() ==  kSingleString)))
+        return it.getSize();;
     
-    if (allowVector && *type == kVector)
-        return size;
-    
-    if (allowString && *type == kSingleString)
-        return calcSize(tag, str);
-    
-    return 0;
+      return 0;
 }
 
 // Size Check

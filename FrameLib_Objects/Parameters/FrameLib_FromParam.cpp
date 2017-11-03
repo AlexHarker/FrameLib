@@ -24,7 +24,7 @@ FrameLib_FromParam::FrameLib_FromParam(FrameLib_Context context, FrameLib_Parame
         {
             sprintf(argStr, "%d", i);
             sprintf(nameStr, "param_%02d", i + 1);
-            if (serialisedParameters->find(argStr) || serialisedParameters->find(nameStr))
+            if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(nameStr) != serialisedParameters->end())
                 mParameters.set(kNumOuts, (long) (i + 1));
         }
     }
@@ -104,6 +104,6 @@ void FrameLib_FromParam::process()
     for (unsigned long i = 0; i < mNumOuts; i++)
     {
         double *output = getOutput(i, &sizeOut);
-        input->copyVector(output, mParameters.getString(kNames + i), sizeOut);
+        input->read(mParameters.getString(kNames + i), output, sizeOut);
     }
 }
