@@ -736,7 +736,7 @@ private:
             
             // FIX - need to check better here!
             
-            if (strlen(sym->s_name) > 1 && sym->s_name[0] == '~')
+            if (strlen(sym->s_name) > 1 && sym->s_name[0] == '=')
                 return atoi(sym->s_name + 1);
         }
         
