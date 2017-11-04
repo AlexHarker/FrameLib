@@ -111,6 +111,11 @@
 		B8213A521FA88FA20013E31F /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8213A5B1FA8909F0013E31F /* FrameLib_NonZero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8213A451FA88F5D0013E31F /* FrameLib_NonZero.cpp */; };
 		B8213A5D1FA891030013E31F /* fl.nonzero~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8213A5C1FA891030013E31F /* fl.nonzero~.cpp */; };
+		B822F4281FAE15DD003DC4CB /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
+		B822F4291FAE15DD003DC4CB /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		B822F42A1FAE15DD003DC4CB /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		B822F4341FAE162D003DC4CB /* fl.filterparam~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B822F4331FAE162D003DC4CB /* fl.filterparam~.cpp */; };
+		B822F4361FAE1685003DC4CB /* FrameLib_FilterParam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B822F4351FAE1685003DC4CB /* FrameLib_FilterParam.cpp */; };
 		B826E4A51F3148AB00B920C8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B826E4A61F3148AB00B920C8 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B826E4B01F31490100B920C8 /* FrameLib_Once.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B826E4AE1F31490100B920C8 /* FrameLib_Once.cpp */; };
@@ -578,6 +583,13 @@
 			remoteInfo = framelib;
 		};
 		B8213A491FA88FA20013E31F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
+			remoteInfo = framelib;
+		};
+		B822F4211FAE15DD003DC4CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
 			proxyType = 1;
@@ -1536,6 +1548,10 @@
 		B8213A461FA88F5D0013E31F /* FrameLib_NonZero.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_NonZero.h; sourceTree = "<group>"; };
 		B8213A591FA88FA20013E31F /* fl.nonzero~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.nonzero~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8213A5C1FA891030013E31F /* fl.nonzero~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.nonzero~.cpp"; sourceTree = "<group>"; };
+		B822F41E1FAE15CC003DC4CB /* FrameLib_FilterParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_FilterParam.h; sourceTree = "<group>"; };
+		B822F4311FAE15DD003DC4CB /* fl.filterparam~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.filterparam~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B822F4331FAE162D003DC4CB /* fl.filterparam~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.filterparam~.cpp"; sourceTree = "<group>"; };
+		B822F4351FAE1685003DC4CB /* FrameLib_FilterParam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_FilterParam.cpp; sourceTree = "<group>"; };
 		B826E4AC1F3148AB00B920C8 /* fl.once~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.once~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B826E4AE1F31490100B920C8 /* FrameLib_Once.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Once.cpp; sourceTree = "<group>"; };
 		B826E4AF1F31490100B920C8 /* FrameLib_Once.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Once.h; sourceTree = "<group>"; };
@@ -2308,6 +2324,16 @@
 				B8213A501FA88FA20013E31F /* Carbon.framework in Frameworks */,
 				B8213A511FA88FA20013E31F /* libframelib.a in Frameworks */,
 				B8213A521FA88FA20013E31F /* MaxAudioAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B822F4271FAE15DD003DC4CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B822F4281FAE15DD003DC4CB /* Carbon.framework in Frameworks */,
+				B822F4291FAE15DD003DC4CB /* libframelib.a in Frameworks */,
+				B822F42A1FAE15DD003DC4CB /* MaxAudioAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3237,6 +3263,7 @@
 				B8985E821FAA41410006B7E0 /* fl.getparam~.mxo */,
 				B8985E9A1FAB2F3C0006B7E0 /* fl.fromparam~.mxo */,
 				B8985EB41FAB3F190006B7E0 /* fl.combineparam~.mxo */,
+				B822F4311FAE15DD003DC4CB /* fl.filterparam~.mxo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3410,6 +3437,7 @@
 				B8985E861FAA436D0006B7E0 /* fl.getparam~.cpp */,
 				B8985E9C1FAB2F690006B7E0 /* fl.fromparam~.cpp */,
 				B8985EB51FAB3FAB0006B7E0 /* fl.combineparam~.cpp */,
+				B822F4331FAE162D003DC4CB /* fl.filterparam~.cpp */,
 			);
 			path = Parameters;
 			sourceTree = "<group>";
@@ -3675,6 +3703,8 @@
 				B8985E9E1FAB2F740006B7E0 /* FrameLib_FromParam.cpp */,
 				B8985EA11FAB3F100006B7E0 /* FrameLib_CombineParam.h */,
 				B8985EB71FAB3FD90006B7E0 /* FrameLib_CombineParam.cpp */,
+				B822F41E1FAE15CC003DC4CB /* FrameLib_FilterParam.h */,
+				B822F4351FAE1685003DC4CB /* FrameLib_FilterParam.cpp */,
 			);
 			path = Parameters;
 			sourceTree = "<group>";
@@ -4154,6 +4184,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B8213A4A1FA88FA20013E31F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B822F4221FAE15DD003DC4CB /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -5666,6 +5703,27 @@
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B8213A591FA88FA20013E31F /* fl.nonzero~.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		B822F41F1FAE15DD003DC4CB /* fl.filterparam~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B822F42C1FAE15DD003DC4CB /* Build configuration list for PBXNativeTarget "fl.filterparam~" */;
+			buildPhases = (
+				B822F4221FAE15DD003DC4CB /* Headers */,
+				B822F4231FAE15DD003DC4CB /* Resources */,
+				B822F4241FAE15DD003DC4CB /* Sources */,
+				B822F4271FAE15DD003DC4CB /* Frameworks */,
+				B822F42B1FAE15DD003DC4CB /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B822F4201FAE15DD003DC4CB /* PBXTargetDependency */,
+			);
+			name = "fl.filterparam~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = B822F4311FAE15DD003DC4CB /* fl.filterparam~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B826E48F1F3148AB00B920C8 /* fl.once~ */ = {
@@ -7403,6 +7461,7 @@
 				B8985E701FAA41410006B7E0 /* fl.getparam~ */,
 				B8985E881FAB2F3C0006B7E0 /* fl.fromparam~ */,
 				B8985EA21FAB3F190006B7E0 /* fl.combineparam~ */,
+				B822F41F1FAE15DD003DC4CB /* fl.filterparam~ */,
 			);
 		};
 /* End PBXProject section */
@@ -7731,6 +7790,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B8213A4B1FA88FA20013E31F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B822F4231FAE15DD003DC4CB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -8574,6 +8640,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B8213A531FA88FA20013E31F /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B822F42B1FAE15DD003DC4CB /* Rez */ = {
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -9474,6 +9547,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B822F4241FAE15DD003DC4CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B822F4361FAE1685003DC4CB /* FrameLib_FilterParam.cpp in Sources */,
+				B822F4341FAE162D003DC4CB /* fl.filterparam~.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B826E4971F3148AB00B920C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -10163,6 +10245,11 @@
 			isa = PBXTargetDependency;
 			target = B89ABA8F1FA73483006DAD53 /* framelib */;
 			targetProxy = B8213A491FA88FA20013E31F /* PBXContainerItemProxy */;
+		};
+		B822F4201FAE15DD003DC4CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89ABA8F1FA73483006DAD53 /* framelib */;
+			targetProxy = B822F4211FAE15DD003DC4CB /* PBXContainerItemProxy */;
 		};
 		B8985E711FAA41410006B7E0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -14786,6 +14873,119 @@
 			name = "Public Testing";
 		};
 		B8213A581FA88FA20013E31F /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_PPC64 = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
+		B822F42D1FAE15DD003DC4CB /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		B822F42E1FAE15DD003DC4CB /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		B822F42F1FAE15DD003DC4CB /* Public Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = "Public Testing";
+		};
+		B822F4301FAE15DD003DC4CB /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -25384,6 +25584,17 @@
 				B8213A561FA88FA20013E31F /* Deployment */,
 				B8213A571FA88FA20013E31F /* Public Testing */,
 				B8213A581FA88FA20013E31F /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		B822F42C1FAE15DD003DC4CB /* Build configuration list for PBXNativeTarget "fl.filterparam~" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B822F42D1FAE15DD003DC4CB /* Development */,
+				B822F42E1FAE15DD003DC4CB /* Deployment */,
+				B822F42F1FAE15DD003DC4CB /* Public Testing */,
+				B822F4301FAE15DD003DC4CB /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;

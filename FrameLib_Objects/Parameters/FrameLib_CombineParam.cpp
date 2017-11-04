@@ -48,7 +48,7 @@ FrameLib_CombineParam::ParameterInfo FrameLib_CombineParam::sParamInfo;
 
 FrameLib_CombineParam::ParameterInfo::ParameterInfo()
 {
-    add("Sets the number of object inputs");
+    add("Sets the number of object inputs.");
 }
 
 // Process
