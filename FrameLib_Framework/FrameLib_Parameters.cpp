@@ -2,6 +2,109 @@
 #include "FrameLib_Parameters.h"
 #include <algorithm>
 
+// Serial Iterator
+
+// Operators
+
+FrameLib_Parameters::Serial::Iterator& FrameLib_Parameters::Serial::Iterator::operator ++ ()
+{
+    DataType type = Serial::readType(&mPtr);
+    Serial::skipItem(&mPtr, kSingleString);
+    Serial::skipItem(&mPtr, type);
+    
+    return *this;
+}
+
+FrameLib_Parameters::Serial::Iterator& FrameLib_Parameters::Serial::Iterator::operator ++ (int)
+{
+    Iterator& result = *this;
+    operator ++();
+    return result;
+}
+// Get Underlying data
+
+double *FrameLib_Parameters::Serial::Iterator::getVector(unsigned long *size) const
+{
+    Entry entry = getEntry();
+    
+    if (entry.mType == kVector)
+    {
+        *size = entry.mSize;
+        return entry.data<double>();
+    }
+        
+    *size = 0;
+    return NULL;
+}
+
+char *FrameLib_Parameters::Serial::Iterator::getString() const
+{
+    Entry entry = getEntry();
+    
+    return entry.mType == kSingleString ? entry.data<char>() : NULL;
+}
+
+// Get Size
+
+size_t FrameLib_Parameters::Serial::Iterator::getSize() const
+{
+    Entry entry = getEntry();
+    
+    switch (entry.mType)
+    {
+        case kVector:           return entry.mSize;
+        case kSingleString:     return calcSize(entry.mTag, entry.data<char>());
+    }
+}
+
+// Reads
+
+void FrameLib_Parameters::Serial::Iterator::read(FrameLib_Parameters *parameters) const
+{
+    Entry entry = getEntry();
+    
+    switch (entry.mType)
+    {
+        case kVector:           parameters->set(entry.mTag, entry.data<double>(), entry.mSize);     break;
+        case kSingleString:     parameters->set(entry.mTag, entry.data<char>());                    break;
+    }
+}
+
+size_t FrameLib_Parameters::Serial::Iterator::read(double *output, unsigned long size) const
+{
+    Entry entry = getEntry();
+    
+    if (entry.mType == kVector)
+    {
+        size = std::min(entry.mSize, size);
+        std::copy(entry.data<double>(), entry.data<double>() + entry.mSize, output);
+        return size;
+    }
+    
+    return 0;
+}
+
+// Get Entry
+
+FrameLib_Parameters::Serial::Iterator::Entry FrameLib_Parameters::Serial::Iterator::getEntry() const
+{
+    Entry entry;
+    BytePointer ptr = mPtr;
+    BytePointer tagRaw;
+    
+    entry.mType = Serial::readType(&ptr);
+    Serial::readItem(&ptr, kSingleString, &tagRaw, &entry.mSize);
+    Serial::readItem(&ptr, entry.mType, &entry.mData, &entry.mSize);
+    
+    entry.mTag = reinterpret_cast<char *>(tagRaw);
+    
+    return entry;
+}
+
+// ************************************************************************************** //
+
+// Serial Class
+
 // Constructors / Destructor
 
 FrameLib_Parameters::Serial::Serial(BytePointer ptr, size_t size) : mPtr(ptr), mSize(0), mMaxSize(size)
@@ -221,9 +324,13 @@ size_t FrameLib_Parameters::Serial::getSize(const char *tag, DataType *type, boo
     Iterator it = find(tag);
 
     if (it != end() && ((allowVector && it.getType() == kVector) || (allowString && it.getType() ==  kSingleString)))
-        return it.getSize();;
+    {
+        if (type)
+            *type = it.getType();
+        return it.getSize();
+    }
     
-      return 0;
+    return 0;
 }
 
 // Size Check

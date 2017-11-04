@@ -47,8 +47,8 @@ public:
             struct Entry
             {
                 DataType mType;
-                BytePointer mData;
                 char *mTag;
+                BytePointer mData;
                 size_t mSize;
                 
                 template <class T> T *data() { return reinterpret_cast<T *>(mData); }
@@ -62,85 +62,37 @@ public:
             
             // Operators
             
-            bool operator ==(const Iterator& it) const { return mPtr == it.mPtr; }
-            bool operator !=(const Iterator& it) const { return !(*this == it); }
+            bool operator == (const Iterator& it) const { return mPtr == it.mPtr; }
+            bool operator != (const Iterator& it) const { return !(*this == it); }
 
-            void operator ++()
-            {
-                DataType type = Serial::readType(&mPtr);
-                Serial::skipItem(&mPtr, kSingleString);
-                Serial::skipItem(&mPtr, type);
-            }
+            Iterator& operator ++ ();
+            Iterator& operator ++ (int);
             
-            // Get Type and Size
+            // Getters
             
             DataType getType() const    { return *(reinterpret_cast<DataType *>(mPtr)); }
+            char *getTag() const        { return reinterpret_cast<char *>(mPtr + sizeType() + sizeSize()); }
+
+            double *getVector(unsigned long *size) const;
+            char *getString() const;
             
-            size_t getSize() const
-            {
-                Entry entry = getEntry();
-                
-                switch (entry.mType)
-                {
-                    case kVector:           return entry.mSize;
-                    case kSingleString:     return calcSize(entry.mTag, entry.data<char>());
-                }
-            }
+            size_t getSize() const;
             
             // Match Tag
             
-            bool matchTag(const char *tag) const
-            {
-                char *localTag = reinterpret_cast<char *>(mPtr + sizeType() + sizeSize());
-                return !strcmp(tag, localTag);
-            }
-
+            bool matchTag(const char *tag) const    {return !strcmp(tag, getTag()); }
+            
             // Reads
             
-            void read(FrameLib_Parameters *parameters) const
-            {
-                Entry entry = getEntry();
-                
-                switch (entry.mType)
-                {
-                    case kVector:           parameters->set(entry.mTag, entry.data<double>(), entry.mSize);     break;
-                    case kSingleString:     parameters->set(entry.mTag, entry.data<char>());                    break;
-                }
-            }
-                        
-            size_t read(double *output, unsigned long size) const
-            {
-                Entry entry = getEntry();
-                
-                if (entry.mType == kVector)
-                {
-                    size = std::min(entry.mSize, size);
-                    std::copy(entry.data<double>(), entry.data<double>() + entry.mSize, output);
-                    return size;
-                }
-                
-                return 0;
-            }
+            void read(FrameLib_Parameters *parameters) const;
+            size_t read(double *output, unsigned long size) const;
             
         private:
             
             // Get Entry
             
-            Entry getEntry() const
-            {
-                Entry entry;
-                BytePointer ptr = mPtr;
-                BytePointer tagRaw;
-                
-                entry.mType = Serial::readType(&ptr);
-                Serial::readItem(&ptr, kSingleString, &tagRaw, &entry.mSize);
-                Serial::readItem(&ptr, entry.mType, &entry.mData, &entry.mSize);
-                
-                entry.mTag = reinterpret_cast<char *>(tagRaw);
-                
-                return entry;
-            }
-
+            Entry getEntry() const;
+            
             // Data
             
             BytePointer mPtr;
