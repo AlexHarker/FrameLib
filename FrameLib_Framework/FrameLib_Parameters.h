@@ -72,10 +72,9 @@ public:
             
             DataType getType() const    { return *(reinterpret_cast<DataType *>(mPtr)); }
             char *getTag() const        { return reinterpret_cast<char *>(mPtr + sizeType() + sizeSize()); }
-
             double *getVector(unsigned long *size) const;
+            unsigned long getVectorSize() const;
             char *getString() const;
-            
             size_t getSize() const;
             
             // Match Tag
@@ -83,7 +82,8 @@ public:
             bool matchTag(const char *tag) const    {return !strcmp(tag, getTag()); }
             
             // Reads
-            
+
+            void read(Serial *serial) const;
             void read(FrameLib_Parameters *parameters) const;
             size_t read(double *output, unsigned long size) const;
             
@@ -117,14 +117,14 @@ public:
         
         // Get Sizes
         
-        size_t getSize(const char *tag, DataType *type)     { return getSize(tag, type, true, true); }
-        size_t getStringSize(const char *tag)               { return getSize(tag, NULL, false, true); }
-        size_t getVectorSize(const char *tag)               { return getSize(tag, NULL, true, false); }
+        size_t getSize(const char *tag) const;     
+        size_t getVectorSize(const char *tag) const;
         
         // Writes
         
         void write(const Serial *serialised);
         void write(const FrameLib_Parameters *params);
+        void write(const Serial::Iterator& it);
         void write(const char *tag, const char *str);
         void write(const char *tag, const double *values, size_t N);
         
@@ -189,10 +189,6 @@ public:
         
         static void skipItem(BytePointer *readPtr, DataType typ);
         
-        // Get Size
-        
-        size_t getSize(const char *tag, DataType *type, bool allowVector, bool allowString);
-
     protected:
         
         // Member Variables

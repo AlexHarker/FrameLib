@@ -37,6 +37,15 @@ double *FrameLib_Parameters::Serial::Iterator::getVector(unsigned long *size) co
     return NULL;
 }
 
+unsigned long FrameLib_Parameters::Serial::Iterator::getVectorSize() const
+{
+    unsigned long size;
+    
+    getVector(&size);
+    
+    return size;
+}
+
 char *FrameLib_Parameters::Serial::Iterator::getString() const
 {
     Entry entry = getEntry();
@@ -52,12 +61,23 @@ size_t FrameLib_Parameters::Serial::Iterator::getSize() const
     
     switch (entry.mType)
     {
-        case kVector:           return entry.mSize;
+        case kVector:           return calcSize(entry.mTag, entry.mSize);
         case kSingleString:     return calcSize(entry.mTag, entry.data<char>());
     }
 }
 
 // Reads
+
+void FrameLib_Parameters::Serial::Iterator::read(Serial *serial) const
+{
+    Entry entry = getEntry();
+    
+    switch (entry.mType)
+    {
+        case kVector:           serial->write(entry.mTag, entry.data<double>(), entry.mSize);       break;
+        case kSingleString:     serial->write(entry.mTag, entry.data<char>());                      break;
+    }
+}
 
 void FrameLib_Parameters::Serial::Iterator::read(FrameLib_Parameters *parameters) const
 {
@@ -148,6 +168,28 @@ size_t FrameLib_Parameters::Serial::calcSize(const FrameLib_Parameters *params)
     return size;
 }
 
+// Get Sizes
+
+size_t FrameLib_Parameters::Serial::getSize(const char *tag) const
+{
+    Iterator it = find(tag);
+    
+    if (it != end())
+        return it.getSize();
+    
+    return 0;
+}
+
+size_t FrameLib_Parameters::Serial::getVectorSize(const char *tag) const
+{
+    Iterator it = find(tag);
+    
+    if (it != end())
+        return it.getVectorSize();
+    
+    return 0;
+}
+
 // Public Writes
 
 void FrameLib_Parameters::Serial::write(const Serial *serialised)
@@ -184,6 +226,11 @@ void FrameLib_Parameters::Serial::write(const FrameLib_Parameters *params)
                 write(params->getName(i).c_str(), params->getArray(i), params->getArraySize(i));
         }
     }
+}
+
+void FrameLib_Parameters::Serial::write(const Serial::Iterator& it)
+{
+    it.read(this);
 }
 
 void FrameLib_Parameters::Serial::write(const char *tag, const char *str)
@@ -315,22 +362,6 @@ void FrameLib_Parameters::Serial::skipItem(BytePointer *readPtr, DataType type)
     size_t size;
     Serial::readSize(readPtr, &size);
     *readPtr += size * (type == kVector ? sizeof(double) : sizeof(char));
-}
-
-// Get Size
-
-size_t FrameLib_Parameters::Serial::getSize(const char *tag, DataType *type, bool allowVector, bool allowString)
-{
-    Iterator it = find(tag);
-
-    if (it != end() && ((allowVector && it.getType() == kVector) || (allowString && it.getType() ==  kSingleString)))
-    {
-        if (type)
-            *type = it.getType();
-        return it.getSize();
-    }
-    
-    return 0;
 }
 
 // Size Check
