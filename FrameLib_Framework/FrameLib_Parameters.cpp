@@ -174,20 +174,14 @@ size_t FrameLib_Parameters::Serial::getSize(const char *tag) const
 {
     Iterator it = find(tag);
     
-    if (it != end())
-        return it.getSize();
-    
-    return 0;
+    return (it != end()) ? it.getSize() : 0;
 }
 
 size_t FrameLib_Parameters::Serial::getVectorSize(const char *tag) const
 {
     Iterator it = find(tag);
     
-    if (it != end())
-        return it.getVectorSize();
-    
-    return 0;
+    return (it != end()) ? it.getVectorSize() : 0;
 }
 
 // Public Writes
@@ -257,7 +251,7 @@ void FrameLib_Parameters::Serial::write(const char *tag, const double *values, s
 
 void FrameLib_Parameters::Serial::read(FrameLib_Parameters *parameters) const
 {
-    for (Iterator it = begin(); it != end(); ++it)
+    for (Iterator it = begin(); it != end(); it++)
         it.read(parameters);
 }
 
@@ -275,17 +269,14 @@ size_t FrameLib_Parameters::Serial::read(const char *tag, double *output, unsign
 {
     Iterator it = find(tag);
     
-    if (it != end())
-        return it.read(output, size);
-    
-    return 0;
+    return (it != end()) ? it.read(output, size) : 0;
 }
 
 // Find Item
 
 FrameLib_Parameters::Serial::Iterator FrameLib_Parameters::Serial::find(const char *tag) const
 {
-    for (Iterator it = begin(); it != end(); ++it)
+    for (Iterator it = begin(); it != end(); it++)
         if (it.matchTag(tag))
             return it;
     
