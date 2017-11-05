@@ -71,6 +71,8 @@ void FrameLib_TimeDelta::update()
 
 void FrameLib_TimeDelta::process()
 {
+    FrameLib_TimeFormat now = getCurrentTime();
+
     requestOutputSize(0, 1);
     
     if (allocateOutputs())
@@ -78,9 +80,9 @@ void FrameLib_TimeDelta::process()
         unsigned long size;
         double *output = getOutput(0, &size);
         
-        FrameLib_TimeFormat now = getCurrentTime();
-        
         output[0] = (now - mLastTime) * mMultiplier;
-        mLastTime = now;
     }
+    
+    mLastTime = now;
+
 }
