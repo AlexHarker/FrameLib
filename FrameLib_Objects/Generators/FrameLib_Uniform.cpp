@@ -7,10 +7,10 @@
 FrameLib_Uniform::FrameLib_Uniform(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 2, 1)
 {
     mParameters.addDouble(kValue, "value", 0, 0);
-    mParameters.addEnum(kMode, "mode", 0);
+    mParameters.addEnum(kMode, "mode", 1);
     mParameters.addEnumItem(kRequestedLength, "requested");
     mParameters.addEnumItem(kInLength, "input");
-    mParameters.addInt(kLength, "length", 1, 1);
+    mParameters.addInt(kLength, "length", 1, 2);
     mParameters.setMin(0);
     
     mParameters.set(serialisedParameters);
