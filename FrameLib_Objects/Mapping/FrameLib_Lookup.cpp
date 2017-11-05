@@ -7,7 +7,7 @@ FrameLib_Lookup::FrameLib_Lookup(FrameLib_Context context, FrameLib_Parameters::
     
     mParameters.addEnum(kMode, "mode");
     mParameters.addEnumItem(kZero, "zero");
-    mParameters.addEnumItem(kZero, "zero");
+    mParameters.addEnumItem(kClip, "clip");
     mParameters.setInstantiation();
     mParameters.addEnum(kInterpolation, "interp");
     mParameters.addEnumItem(kHermite, "hermite");
