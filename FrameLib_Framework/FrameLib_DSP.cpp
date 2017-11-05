@@ -330,7 +330,8 @@ void FrameLib_DSP::copyInputToOutput(unsigned long inIdx, unsigned long outIdx)
     else
     {
         FrameLib_Parameters::Serial *output = getOutput(outIdx);
-        output->write(getInput(inIdx));
+        if (output)
+            output->write(getInput(inIdx));
     }
 }
 
