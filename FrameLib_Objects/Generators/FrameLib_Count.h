@@ -8,8 +8,8 @@ class FrameLib_Count : public FrameLib_Processor
 {
     // Parameter Enums and Info
     
-    enum ParameterList { kLength, kMode };
-    enum Modes { kInLength, kRequestedLength };
+    enum ParameterList { kMode, kLength };
+    enum Modes { kRequestedLength, kInLength };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 

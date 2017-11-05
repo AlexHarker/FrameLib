@@ -5,11 +5,11 @@
 
 FrameLib_Count::FrameLib_Count(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 2, 1)
 {
+    mParameters.addEnum(kMode, "mode", 1);
+    mParameters.addEnumItem(kRequestedLength, "requested");
+    mParameters.addEnumItem(kInLength, "input");
     mParameters.addInt(kLength, "length", 1, 0);
     mParameters.setMin(0);
-    mParameters.addEnum(kMode, "mode", 1);
-    mParameters.addEnumItem(kInLength, "input");
-    mParameters.addEnumItem(kRequestedLength, "requested");
     
     mParameters.set(serialisedParameters);
         
