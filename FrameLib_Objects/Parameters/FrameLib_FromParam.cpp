@@ -43,7 +43,6 @@ FrameLib_FromParam::FrameLib_FromParam(FrameLib_Context context, FrameLib_Parame
     // Read in again to get parameter names
     
     mParameters.set(serialisedParameters);
-    mNumOuts = mParameters.getInt(kNumOuts);
     
     // Setup IO
 
@@ -104,6 +103,7 @@ void FrameLib_FromParam::process()
     for (unsigned long i = 0; i < mNumOuts; i++)
     {
         double *output = getOutput(i, &sizeOut);
-        input->read(mParameters.getString(kNames + i), output, sizeOut);
+        if (output)
+            input->read(mParameters.getString(kNames + i), output, sizeOut);
     }
 }

@@ -14,7 +14,7 @@ bool FrameLib_MaxRead::sInit = false;
 
 // Constructor
 
-FrameLib_MaxRead::FrameLib_MaxRead(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 1, 1)
+FrameLib_MaxRead::FrameLib_MaxRead(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 2, 1)
 {
     mParameters.addString(kBuffer, "buffer", 0);
     
@@ -40,7 +40,7 @@ FrameLib_MaxRead::FrameLib_MaxRead(FrameLib_Context context, FrameLib_Parameters
     mMode = (Modes) mParameters.getInt(kMode);
     mUnits = (Units) mParameters.getInt(kUnits);
     
-    addParameterInput();
+    setParameterInput(1);
     
     assert(false == 0 && "False does not equal zero");
     

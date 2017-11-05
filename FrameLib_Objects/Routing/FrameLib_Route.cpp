@@ -5,7 +5,7 @@
 
 // Constructor
 
-FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, long num) : FrameLib_Processor(context, owner, NULL, 1, 1), mValveNumber(num)
+FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, long num) : FrameLib_Processor(context, owner, NULL, 2, 1), mValveNumber(num)
 {
     mParameters.addInt(kActiveValve, "output", 0);
     mParameters.set(serialisedParameters);
@@ -15,7 +15,7 @@ FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Seri
     setInputMode(0, false, mValveNumber == mActiveValve, true, kFrameAny);
     setOutputMode(0, kFrameAny);
     
-    addParameterInput();
+    setParameterInput(1);
 }
 
 // Update and Process

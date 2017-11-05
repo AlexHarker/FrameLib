@@ -7,7 +7,7 @@
 
 // Constructor
 
-FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioOutput(context, owner, &sParamInfo, 1, 0, 1)
+FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioOutput(context, owner, &sParamInfo, 2, 0, 1)
 {
     mParameters.addDouble(kLength, "length", 8000, 0);
     mParameters.setMin(0.0);
@@ -17,9 +17,13 @@ FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, FrameLib_Parameters::Se
     mParameters.addEnumItem(kSeconds, "seconds");
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.setInstantiation();
+    mParameters.addDouble(kDelay, "delay", 0, 2);
+    mParameters.setMin(0);
     
     mParameters.set(serialisedParameters);
-        
+    
+    setParameterInput(1);
+    
     objectReset();
 }
 
@@ -35,7 +39,10 @@ std::string FrameLib_Trace::objectInfo(bool verbose)
 
 std::string FrameLib_Trace::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Frames to Output - overlapped to the output", "Frames to Output", verbose);
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return formatInfo("Frames to Output - overlapped to the output", "Frames to Output", verbose);
 }
 
 std::string FrameLib_Trace::audioInfo(unsigned long idx, bool verbose)
@@ -51,6 +58,7 @@ FrameLib_Trace::ParameterInfo::ParameterInfo()
 {
     add("Sets the internal buffer length in the units specified by the units parameter.");
     add("Sets the time units used to determine the buffer length.");
+    add("Sets the delay before output.");
 }
 
 // Helpers
@@ -127,11 +135,13 @@ void FrameLib_Trace::process()
     unsigned long sizeIn;
     
     FrameLib_TimeFormat frameTime = getFrameTime();
+    FrameLib_TimeFormat delayTime = mParameters.getValue(kDelay);
+
     double *input = getInput(0, &sizeIn);
     
     // Calculate time offset
     
-    unsigned long offset = round(frameTime - getBlockStartTime());
+    unsigned long offset = round(delayTime + frameTime - getBlockStartTime());
     
     // Safety
     

@@ -8,8 +8,8 @@ FrameLib_FilterParam::FrameLib_FilterParam(FrameLib_Context context, FrameLib_Pa
     char argStr[10];
     char nameStr[10];
     
-    mParameters.addInt(kNumFilters, "num_filters", 2, 0);
-    mParameters.setClip(2, maxNumFilters);
+    mParameters.addInt(kNumFilters, "num_filters", 1);
+    mParameters.setClip(1, maxNumFilters);
     mParameters.setInstantiation();
     
     // Read in once to get number of strings needed
@@ -43,13 +43,12 @@ FrameLib_FilterParam::FrameLib_FilterParam(FrameLib_Context context, FrameLib_Pa
     // Read in again to get parameter names
     
     mParameters.set(serialisedParameters);
-    mNumFilters = mParameters.getInt(kNumFilters);
     
     // Setup IO
     
-    for (int i = 0; i < 2; i++)
-        setInputMode(i, false, true, false, kFrameTagged);
+    setInputMode(0, false, true, false, kFrameTagged);
     setOutputMode(0, kFrameTagged);
+    setOutputMode(1, kFrameTagged);
 }
 
 // Info
@@ -123,9 +122,9 @@ void FrameLib_FilterParam::process()
     
     for (FrameLib_Parameters::Serial::Iterator it = input->begin(); it != input->end(); it++)
     {
-        if (filter(it))
+        if (filter(it) && output1)
             output1->write(it);
-        else
+        else if (output2)
             output2->write(it);
     }
 }

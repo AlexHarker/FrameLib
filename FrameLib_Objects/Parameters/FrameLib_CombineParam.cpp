@@ -67,6 +67,9 @@ void FrameLib_CombineParam::process()
     
     FrameLib_Parameters::Serial *output = getOutput(0);
     
-    for (unsigned long i = 0; i < mNumIns; i++)
-        output->write(getInput(i));    
+    if (output)
+    {
+        for (unsigned long i = 0; i < mNumIns; i++)
+            output->write(getInput(i));
+    }
 }

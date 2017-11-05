@@ -43,7 +43,6 @@ FrameLib_SetParam::FrameLib_SetParam(FrameLib_Context context, FrameLib_Paramete
     // Read in again to get parameter names
     
     mParameters.set(serialisedParameters);
-    mNumIns = mParameters.getInt(kNumIns);
     
     // Setup IO
 
@@ -116,11 +115,14 @@ void FrameLib_SetParam::process()
     
     FrameLib_Parameters::Serial *output = getOutput(0);
     
-    for (unsigned long i = 0; i < mNumIns; i++)
+    if (output)
     {
-        double *input = getInput(i, &sizeIn);
-        output->write(mParameters.getString(kNames + i), input, sizeIn);
+        for (unsigned long i = 0; i < mNumIns; i++)
+        {
+            double *input = getInput(i, &sizeIn);
+            output->write(mParameters.getString(kNames + i), input, sizeIn);
+        }
+        
+        output->write(preTagged);
     }
-    
-    output->write(preTagged);
 }

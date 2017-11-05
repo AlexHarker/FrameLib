@@ -8,7 +8,7 @@
 
 class FrameLib_Sink : public FrameLib_AudioOutput
 {
-    enum ParameterList { kLength, kUnits };
+    enum ParameterList { kLength, kUnits, kDelay };
     enum Units { kMS, kSeconds, kSamples };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };

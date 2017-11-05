@@ -20,9 +20,9 @@ FrameLib_Chop::FrameLib_Chop(FrameLib_Context context, FrameLib_Parameters::Seri
     
     mNumOuts = mParameters.getInt(kNumOuts);
     
-    setIO(1, mNumOuts);
+    setIO(2, mNumOuts);
     
-    addParameterInput();
+    setParameterInput(1);
 }
 
 // Info
