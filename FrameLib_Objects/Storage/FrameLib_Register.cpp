@@ -1,8 +1,6 @@
 
 #include "FrameLib_Register.h"
 
-// FIX - needs to work for either frame type...
-
 // Constructor
 
 FrameLib_Register::FrameLib_Register(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 2, 1)
@@ -58,17 +56,9 @@ FrameLib_Register::ParameterInfo::ParameterInfo()
 
 void FrameLib_Register::process()
 {
-    // Get Register Input (we can ignore the first input as it is just a trigger)
+    // Copy register input (we can ignore the first input as it is just a trigger)
     
-    unsigned long sizeIn, sizeOut;
-    double *input = getInput(1, &sizeIn);
-    
-    requestOutputSize(0, sizeIn);
+    prepareCopyInputToOutput(1, 0);
     allocateOutputs();
-    
-    double *output = getOutput(0, &sizeOut);
-    
-    // Copy to output
-    
-    copyVector(output, input, sizeOut);
+    copyInputToOutput(1, 0);
 }
