@@ -352,7 +352,7 @@ void FrameLib_Parameters::Serial::skipItem(BytePointer *readPtr, DataType type)
 {
     size_t size;
     Serial::readSize(readPtr, &size);
-    *readPtr += size * (type == kVector ? sizeof(double) : sizeof(char));
+    *readPtr += alignSize(size * (type == kVector ? sizeof(double) : sizeof(char)));
 }
 
 // Size Check
