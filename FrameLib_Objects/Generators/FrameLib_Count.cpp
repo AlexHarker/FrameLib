@@ -5,10 +5,10 @@
 
 FrameLib_Count::FrameLib_Count(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 2, 1)
 {
-    mParameters.addEnum(kMode, "mode", 1);
+    mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kRequestedLength, "requested");
     mParameters.addEnumItem(kInLength, "input");
-    mParameters.addInt(kLength, "length", 1, 0);
+    mParameters.addInt(kLength, "length", 1, 1);
     mParameters.setMin(0);
     
     mParameters.set(serialisedParameters);
@@ -44,10 +44,10 @@ FrameLib_Count::ParameterInfo FrameLib_Count::sParamInfo;
 
 FrameLib_Count::ParameterInfo::ParameterInfo()
 {
-    add("Sets the length of the output when the mode is set to requested.");
     add("Controls how the output length is determined: "
-        "input - the output frame size will match the input size. "
-        "requested - the output frame size is set by the length parameter.");
+        "requested - the output frame size is set by the length parameter. "
+        "input - the output frame size will match the input size.");
+    add("Sets the length of the output when the mode is set to requested.");
 }
 
 // Process
