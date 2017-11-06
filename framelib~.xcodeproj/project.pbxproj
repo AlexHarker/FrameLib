@@ -275,7 +275,7 @@
 		B88189361FAF8A2800FD2E7B /* FrameLib_Uniform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88189341FAF8A2300FD2E7B /* FrameLib_Uniform.cpp */; };
 		B88189381FAF8A5A00FD2E7B /* fl.uniform~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88189371FAF8A5A00FD2E7B /* fl.uniform~.cpp */; };
 		B8891CD01F2B5CDC00C5C4F0 /* FrameLib_Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CCF1F2B5CDC00C5C4F0 /* FrameLib_Random.cpp */; };
-		B8891CD21F2B5EA400C5C4F0 /* FrameLib_Count.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CD11F2B5EA400C5C4F0 /* FrameLib_Count.cpp */; };
+		B8891CD21F2B5EA400C5C4F0 /* FrameLib_Ramp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CD11F2B5EA400C5C4F0 /* FrameLib_Ramp.cpp */; };
 		B8891CD41F2BF4CE00C5C4F0 /* FrameLib_Source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CD31F2BF4CE00C5C4F0 /* FrameLib_Source.cpp */; };
 		B8891CD61F2BF4E000C5C4F0 /* FrameLib_Sink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CD51F2BF4E000C5C4F0 /* FrameLib_Sink.cpp */; };
 		B8891CD81F2BF4F500C5C4F0 /* FrameLib_Trace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CD71F2BF4F500C5C4F0 /* FrameLib_Trace.cpp */; };
@@ -576,7 +576,7 @@
 		B8F83EA719C78F9400230CD4 /* fl.vmax~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83E2B19C78E0000230CD4 /* fl.vmax~.cpp */; };
 		B8F83EA819C78F9800230CD4 /* fl.vmin~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83E2A19C78DF600230CD4 /* fl.vmin~.cpp */; };
 		B8F83EB319C79CC900230CD4 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
-		B8F83EBD19C79D0200230CD4 /* fl.count~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83EBC19C79D0200230CD4 /* fl.count~.cpp */; };
+		B8F83EBD19C79D0200230CD4 /* fl.ramp~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83EBC19C79D0200230CD4 /* fl.ramp~.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1678,12 +1678,11 @@
 		B87F759F1F36796C002B91E9 /* FrameLib_Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Constant.h; sourceTree = "<group>"; };
 		B87F75A21F367F03002B91E9 /* fl.constant~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.constant~.cpp"; sourceTree = "<group>"; };
 		B88189321FAF89EC00FD2E7B /* fl.uniform~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.uniform~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B88189331FAF89EC00FD2E7B /* fl.filterparam~ copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "fl.filterparam~ copy-Info.plist"; path = "/Users/alexharker/Documents/Max Externals/FrameLib/fl.filterparam~ copy-Info.plist"; sourceTree = "<absolute>"; };
 		B88189341FAF8A2300FD2E7B /* FrameLib_Uniform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Uniform.cpp; sourceTree = "<group>"; };
 		B88189351FAF8A2300FD2E7B /* FrameLib_Uniform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Uniform.h; sourceTree = "<group>"; };
 		B88189371FAF8A5A00FD2E7B /* fl.uniform~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.uniform~.cpp"; sourceTree = "<group>"; };
 		B8891CCF1F2B5CDC00C5C4F0 /* FrameLib_Random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Random.cpp; sourceTree = "<group>"; };
-		B8891CD11F2B5EA400C5C4F0 /* FrameLib_Count.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Count.cpp; sourceTree = "<group>"; };
+		B8891CD11F2B5EA400C5C4F0 /* FrameLib_Ramp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Ramp.cpp; sourceTree = "<group>"; };
 		B8891CD31F2BF4CE00C5C4F0 /* FrameLib_Source.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Source.cpp; sourceTree = "<group>"; };
 		B8891CD51F2BF4E000C5C4F0 /* FrameLib_Sink.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Sink.cpp; sourceTree = "<group>"; };
 		B8891CD71F2BF4F500C5C4F0 /* FrameLib_Trace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Trace.cpp; sourceTree = "<group>"; };
@@ -1866,9 +1865,9 @@
 		B8F83E8119C78EAE00230CD4 /* fl.mean~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.mean~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F83E9119C78EAF00230CD4 /* fl.geometricmean~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.geometricmean~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F83EA119C78EB100230CD4 /* fl.length~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.length~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8F83EAA19C79C8900230CD4 /* FrameLib_Count.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Count.h; sourceTree = "<group>"; };
-		B8F83EBA19C79CC900230CD4 /* fl.count~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.count~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8F83EBC19C79D0200230CD4 /* fl.count~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.count~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B8F83EAA19C79C8900230CD4 /* FrameLib_Ramp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ramp.h; sourceTree = "<group>"; };
+		B8F83EBA19C79CC900230CD4 /* fl.ramp~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.ramp~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8F83EBC19C79D0200230CD4 /* fl.ramp~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.ramp~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8FD919D197F0F6C00437EB5 /* FrameLib_FixedPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_FixedPoint.h; sourceTree = "<group>"; };
 		B8FD919E197F40B200437EB5 /* FrameLib_Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Types.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -3131,7 +3130,6 @@
 				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
 				B8A1F5BC1D5370DE00FA5FFC /* Testing */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
-				B88189331FAF89EC00FD2E7B /* fl.filterparam~ copy-Info.plist */,
 			);
 			name = "plus~";
 			sourceTree = "<group>";
@@ -3223,7 +3221,7 @@
 				B8F83E8119C78EAE00230CD4 /* fl.mean~.mxo */,
 				B8F83E9119C78EAF00230CD4 /* fl.geometricmean~.mxo */,
 				B8F83EA119C78EB100230CD4 /* fl.length~.mxo */,
-				B8F83EBA19C79CC900230CD4 /* fl.count~.mxo */,
+				B8F83EBA19C79CC900230CD4 /* fl.ramp~.mxo */,
 				B8AD886E19C7C46B00FFA238 /* fl.read~.mxo */,
 				B87E876419C8EE9600B1D0CD /* fl.fft~.mxo */,
 				B87E878919C8F4AA00B1D0CD /* fl.ifft~.mxo */,
@@ -3801,8 +3799,8 @@
 			children = (
 				B8C680351B80EF0D00B74B90 /* FrameLib_Random.h */,
 				B8891CCF1F2B5CDC00C5C4F0 /* FrameLib_Random.cpp */,
-				B8F83EAA19C79C8900230CD4 /* FrameLib_Count.h */,
-				B8891CD11F2B5EA400C5C4F0 /* FrameLib_Count.cpp */,
+				B8F83EAA19C79C8900230CD4 /* FrameLib_Ramp.h */,
+				B8891CD11F2B5EA400C5C4F0 /* FrameLib_Ramp.cpp */,
 				B88189351FAF8A2300FD2E7B /* FrameLib_Uniform.h */,
 				B88189341FAF8A2300FD2E7B /* FrameLib_Uniform.cpp */,
 			);
@@ -3842,7 +3840,7 @@
 			isa = PBXGroup;
 			children = (
 				B8C680481B80F65700B74B90 /* fl.random~.cpp */,
-				B8F83EBC19C79D0200230CD4 /* fl.count~.cpp */,
+				B8F83EBC19C79D0200230CD4 /* fl.ramp~.cpp */,
 				B88189371FAF8A5A00FD2E7B /* fl.uniform~.cpp */,
 			);
 			path = Generators;
@@ -7349,9 +7347,9 @@
 			productReference = B8F83EA119C78EB100230CD4 /* fl.length~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8F83EAB19C79CC900230CD4 /* fl.count~ */ = {
+		B8F83EAB19C79CC900230CD4 /* fl.ramp~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8F83EB619C79CC900230CD4 /* Build configuration list for PBXNativeTarget "fl.count~" */;
+			buildConfigurationList = B8F83EB619C79CC900230CD4 /* Build configuration list for PBXNativeTarget "fl.ramp~" */;
 			buildPhases = (
 				B8F83EAC19C79CC900230CD4 /* Headers */,
 				B8F83EAD19C79CC900230CD4 /* Resources */,
@@ -7364,10 +7362,10 @@
 			dependencies = (
 				B8BEEC481FA7419600ED26F4 /* PBXTargetDependency */,
 			);
-			name = "fl.count~";
+			name = "fl.ramp~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8F83EBA19C79CC900230CD4 /* fl.count~.mxo */;
+			productReference = B8F83EBA19C79CC900230CD4 /* fl.ramp~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -7463,7 +7461,7 @@
 				B8F83E8219C78EAF00230CD4 /* fl.geometricmean~ */,
 				B8F83E9219C78EB100230CD4 /* fl.length~ */,
 				B85B68D219F2628C002D6F1D /* fl.register~ */,
-				B8F83EAB19C79CC900230CD4 /* fl.count~ */,
+				B8F83EAB19C79CC900230CD4 /* fl.ramp~ */,
 				B8AD885F19C7C46B00FFA238 /* fl.read~ */,
 				B87E875419C8EE9600B1D0CD /* fl.fft~ */,
 				B87E877919C8F4AA00B1D0CD /* fl.ifft~ */,
@@ -10312,8 +10310,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8891CD21F2B5EA400C5C4F0 /* FrameLib_Count.cpp in Sources */,
-				B8F83EBD19C79D0200230CD4 /* fl.count~.cpp in Sources */,
+				B8891CD21F2B5EA400C5C4F0 /* FrameLib_Ramp.cpp in Sources */,
+				B8F83EBD19C79D0200230CD4 /* fl.ramp~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26637,7 +26635,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		B8F83EB619C79CC900230CD4 /* Build configuration list for PBXNativeTarget "fl.count~" */ = {
+		B8F83EB619C79CC900230CD4 /* Build configuration list for PBXNativeTarget "fl.ramp~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8F83EB719C79CC900230CD4 /* Development */,

@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 5,
-			"architecture" : "x86",
+			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
@@ -491,9 +491,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 101.0, 207.0, 226.0, 22.0 ],
+					"patching_rect" : [ 101.0, 207.0, 224.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.count~ /mode requested /length 10000"
+					"text" : "fl.ramp~ /mode requested /length 10000"
 				}
 
 			}
@@ -847,7 +847,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-13", 1 ],
-					"midpoints" : [ 163.5, 186.5, 317.5, 186.5 ],
+					"midpoints" : [ 163.5, 186.5, 315.5, 186.5 ],
 					"source" : [ "obj-36", 0 ]
 				}
 
@@ -923,7 +923,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.count~.mxo",
+				"name" : "fl.ramp~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

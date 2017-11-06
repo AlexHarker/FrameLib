@@ -827,8 +827,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8F83EAB19C79CC900230CD4"
-               BuildableName = "fl.count~.mxo"
-               BlueprintName = "fl.count~"
+               BuildableName = "fl.ramp~.mxo"
+               BlueprintName = "fl.ramp~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

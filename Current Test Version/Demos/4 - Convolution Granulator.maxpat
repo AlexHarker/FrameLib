@@ -120,7 +120,7 @@
 					"fontsize" : 12.0,
 					"id" : "obj-30",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 371.0, 222.0, 179.0, 22.0 ],
@@ -287,7 +287,7 @@
 					"fontsize" : 12.0,
 					"id" : "obj-9",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 90.0, 222.0, 252.0, 22.0 ],
@@ -305,9 +305,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 90.0, 129.0, 226.0, 22.0 ],
+					"patching_rect" : [ 90.0, 129.0, 224.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.count~ /mode requested /length 10000"
+					"text" : "fl.ramp~ /mode requested /length 10000"
 				}
 
 			}
@@ -339,7 +339,7 @@
 					"fontsize" : 12.0,
 					"id" : "obj-3",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 90.0, 374.0, 48.0, 22.0 ],
@@ -521,19 +521,11 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "fl.sink~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.count~.mxo",
+				"name" : "fl.ramp~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -542,10 +534,6 @@
 			}
 , 			{
 				"name" : "fl.plus~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

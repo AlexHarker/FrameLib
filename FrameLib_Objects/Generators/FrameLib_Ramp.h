@@ -1,15 +1,16 @@
 
-#ifndef FRAMELIB_COUNT_H
-#define FRAMELIB_COUNT_H
+#ifndef FRAMELIB_RAMP_H
+#define FRAMELIB_RAMP_H
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_Count : public FrameLib_Processor
+class FrameLib_Ramp : public FrameLib_Processor
 {
     // Parameter Enums and Info
     
-    enum ParameterList { kMode, kLength };
+    enum ParameterList { kMode, kLength, kScale };
     enum Modes { kRequestedLength, kInLength };
+    enum Scales { kSamples, kMS, kSeconds, kNormalised };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
@@ -17,7 +18,7 @@ public:
     
     // Constructor
     
-    FrameLib_Count(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_Ramp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
     // Info
     
