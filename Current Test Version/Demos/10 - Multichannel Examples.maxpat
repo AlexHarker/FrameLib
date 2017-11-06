@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 5,
-			"architecture" : "x64",
+			"architecture" : "x86",
 			"modernui" : 1
 		}
 ,
@@ -176,9 +176,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 798.0, 377.0, 68.0, 22.0 ],
+					"patching_rect" : [ 798.0, 377.0, 80.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.tag~ size"
+					"text" : "fl.tag~ length"
 				}
 
 			}

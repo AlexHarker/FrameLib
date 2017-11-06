@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 5,
-			"architecture" : "x64",
+			"architecture" : "x86",
 			"modernui" : 1
 		}
 ,
@@ -244,9 +244,9 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 351.0, 124.0, 101.0, 22.0 ],
+					"patching_rect" : [ 351.0, 124.0, 112.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.source~ /size 1"
+					"text" : "fl.source~ /length 1"
 				}
 
 			}
@@ -375,7 +375,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-16", 1 ],
-					"midpoints" : [ 99.5, 118.0, 401.5, 118.0 ],
+					"midpoints" : [ 99.5, 118.0, 407.0, 118.0 ],
 					"order" : 0,
 					"source" : [ "obj-1", 0 ]
 				}

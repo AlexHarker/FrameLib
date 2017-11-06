@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 5,
-			"architecture" : "x64",
+			"architecture" : "x86",
 			"modernui" : 1
 		}
 ,
@@ -551,9 +551,9 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 144.0, 137.0, 121.0, 22.0 ],
+					"patching_rect" : [ 144.0, 137.0, 132.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.source~ /size 4096"
+					"text" : "fl.source~ /length 4096"
 				}
 
 			}
@@ -589,7 +589,7 @@
 					"fontsize" : 12.0,
 					"id" : "obj-3",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 143.0, 705.5, 48.0, 22.0 ],
@@ -608,7 +608,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 158.0, 82.0, 96.0, 22.0 ],
+					"patching_rect" : [ 200.5, 82.0, 96.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.interval~ 1024"
 				}
@@ -636,7 +636,6 @@
 		"lines" : [ 			{
 				"patchline" : 				{
 					"destination" : [ "obj-16", 1 ],
-					"midpoints" : [ 167.5, 112.5, 204.5, 112.5 ],
 					"source" : [ "obj-1", 0 ]
 				}
 
@@ -943,19 +942,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

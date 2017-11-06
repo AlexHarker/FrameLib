@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 5,
-			"architecture" : "x64",
+			"architecture" : "x86",
 			"modernui" : 1
 		}
 ,
@@ -181,7 +181,7 @@
 							"major" : 7,
 							"minor" : 3,
 							"revision" : 5,
-							"architecture" : "x64",
+							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
@@ -337,7 +337,7 @@
 											"major" : 7,
 											"minor" : 3,
 											"revision" : 5,
-											"architecture" : "x64",
+											"architecture" : "x86",
 											"modernui" : 1
 										}
 ,
@@ -1878,9 +1878,9 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 48.0, 135.0, 121.0, 22.0 ],
+					"patching_rect" : [ 48.0, 135.0, 132.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.source~ /size 4096"
+					"text" : "fl.source~ /length 4096"
 				}
 
 			}
@@ -1945,7 +1945,7 @@
 		"lines" : [ 			{
 				"patchline" : 				{
 					"destination" : [ "obj-16", 1 ],
-					"midpoints" : [ 71.5, 110.5, 108.5, 110.5 ],
+					"midpoints" : [ 71.5, 110.5, 114.0, 110.5 ],
 					"source" : [ "obj-1", 0 ]
 				}
 

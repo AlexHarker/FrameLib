@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 5,
-			"architecture" : "x64",
+			"architecture" : "x86",
 			"modernui" : 1
 		}
 ,
@@ -496,7 +496,7 @@
 						"followglobaltempo" : 0,
 						"formantcorrection" : 0,
 						"mode" : "basic",
-						"originallength" : [ 249203.216614, "ticks" ],
+						"originallength" : [ 249203.21875, "ticks" ],
 						"originaltempo" : 120.000008,
 						"pitchcorrection" : 0,
 						"quality" : "basic",
@@ -622,9 +622,9 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 118.0, 120.0, 121.0, 22.0 ],
+					"patching_rect" : [ 118.0, 120.0, 132.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.source~ /size 4096"
+					"text" : "fl.source~ /length 4096"
 				}
 
 			}
@@ -707,7 +707,7 @@
 		"lines" : [ 			{
 				"patchline" : 				{
 					"destination" : [ "obj-16", 1 ],
-					"midpoints" : [ 132.5, 95.0, 178.5, 95.0 ],
+					"midpoints" : [ 132.5, 95.0, 184.0, 95.0 ],
 					"source" : [ "obj-1", 0 ]
 				}
 

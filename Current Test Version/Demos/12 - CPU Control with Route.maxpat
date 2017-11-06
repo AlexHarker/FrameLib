@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 5,
-			"architecture" : "x64",
+			"architecture" : "x86",
 			"modernui" : 1
 		}
 ,
@@ -43,7 +43,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 393.0, 142.0, 44.0, 22.0 ],
+					"patching_rect" : [ 422.0, 142.0, 44.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.+~ 1"
 				}
@@ -93,7 +93,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 263.5, 45.0, 96.0, 22.0 ],
+					"patching_rect" : [ 282.0, 45.0, 96.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.interval~ 1000"
 				}
@@ -193,7 +193,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 393.0, 109.0, 42.0, 22.0 ],
+					"patching_rect" : [ 422.0, 109.0, 42.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.*~ 2"
 				}
@@ -206,7 +206,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 393.0, 78.0, 161.0, 22.0 ],
+					"patching_rect" : [ 422.0, 78.0, 161.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.random~ /mode requested"
 				}
@@ -219,7 +219,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 352.0, 180.0, 80.0, 22.0 ],
+					"patching_rect" : [ 381.0, 180.0, 80.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.tag~ output"
 				}
@@ -232,9 +232,9 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 171.0, 83.0, 204.0, 22.0 ],
+					"patching_rect" : [ 171.0, 83.0, 241.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.source~ /length 44100 /size 44100"
+					"text" : "fl.source~ /buffer_size 44100 /length 44100"
 				}
 
 			}
@@ -245,7 +245,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 393.0, 41.0, 102.0, 22.0 ],
+					"patching_rect" : [ 422.0, 41.0, 102.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.interval~ 44100"
 				}
@@ -468,7 +468,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-12", 0 ],
-					"midpoints" : [ 402.5, 171.5, 361.5, 171.5 ],
+					"midpoints" : [ 431.5, 171.5, 390.5, 171.5 ],
 					"order" : 1,
 					"source" : [ "obj-3", 0 ]
 				}
@@ -477,7 +477,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-30", 0 ],
-					"midpoints" : [ 402.5, 171.0, 542.5, 171.0 ],
+					"midpoints" : [ 431.5, 171.0, 542.5, 171.0 ],
 					"order" : 0,
 					"source" : [ "obj-3", 0 ]
 				}
