@@ -49,11 +49,11 @@ FrameLib_Timer::ParameterInfo::ParameterInfo()
 
 void FrameLib_Timer::calculateMultiplier()
 {
-    switch ((Units) (mParameters.getValue(kUnits)))
+    switch (static_cast<Units>(mParameters.getValue(kUnits)))
     {
-        case kMS:       mMultiplier = 1000.0 / FrameLib_TimeFormat(mSamplingRate);   break;
-        case kSeconds:  mMultiplier = 1.0 / FrameLib_TimeFormat(mSamplingRate);      break;
-        case kSamples:  mMultiplier = FrameLib_TimeFormat(1);                       break;
+        case kMS:       mMultiplier = 1000.0 / FrameLib_TimeFormat(mSamplingRate);      break;
+        case kSeconds:  mMultiplier = 1.0 / FrameLib_TimeFormat(mSamplingRate);         break;
+        case kSamples:  mMultiplier = FrameLib_TimeFormat(1);                           break;
     }
 }
 

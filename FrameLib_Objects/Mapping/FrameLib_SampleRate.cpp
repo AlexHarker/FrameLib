@@ -69,7 +69,7 @@ void FrameLib_SampleRate::process()
     
     double *input = getInput(0, &sizeIn);
     
-    Modes mode = (Modes) mParameters.getInt(kMode);
+    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
     bool outputValue = mode == kValue || mode == kNyquist;
     
     sizeOut = outputValue ? 1 : sizeIn;

@@ -68,10 +68,8 @@ FrameLib_Source::ParameterInfo::ParameterInfo()
 // Helpers
 
 unsigned long FrameLib_Source::convertTimeToSamples(double time)
-{
-    Units units = (Units) mParameters.getInt(kUnits);
-    
-    switch (units)
+{    
+    switch (static_cast<Units>(mParameters.getInt(kUnits)))
     {
         case kSamples:  break;
         case kMS:       time *= mSamplingRate / 1000.0;     break;

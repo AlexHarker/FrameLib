@@ -68,7 +68,7 @@ FrameLib_OnePole::ParameterInfo::ParameterInfo()
 void FrameLib_OnePole::process()
 {
     OnePole filter;
-    Modes mode = (Modes) mParameters.getValue(kMode);
+    Modes mode = static_cast<Modes>(mParameters.getValue(kMode));
     
     bool staticParams = true;
     

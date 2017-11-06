@@ -85,7 +85,7 @@ FrameLib_Resonant::ParameterInfo::ParameterInfo()
 void FrameLib_Resonant::process()
 {
     Resonant filter;
-    Modes mode = (Modes) mParameters.getValue(kMode);
+    Modes mode = static_cast<Modes>(mParameters.getValue(kMode));
     
     bool staticParams = true;
     

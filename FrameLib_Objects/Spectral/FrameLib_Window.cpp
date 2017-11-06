@@ -192,7 +192,7 @@ void FrameLib_Window::process()
     
     if (sizeOut)
     {
-        Compensation compensate = (Compensation) mParameters.getInt(kCompensation);
+        Compensation compensate = static_cast<Compensation>(mParameters.getInt(kCompensation));
         EndPoints ends = (EndPoints) mParameters.getInt(kEndPoints);
         
         sizeFactor = ends == kBoth ? sizeIn - 1 : sizeIn;

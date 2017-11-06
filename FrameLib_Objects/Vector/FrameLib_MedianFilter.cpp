@@ -160,7 +160,7 @@ void FrameLib_MedianFilter::process()
     unsigned long sizeIn, sizeOut;
     double *input = getInput(0, &sizeIn);
     double padValue = mParameters.getValue(kPadding);
-    Modes mode = (Modes) mParameters.getInt(kMode);
+    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
     
     requestOutputSize(0, sizeIn);
     allocateOutputs();

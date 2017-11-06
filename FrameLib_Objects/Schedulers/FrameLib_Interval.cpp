@@ -53,7 +53,7 @@ void FrameLib_Interval::calculateInterval()
 {
     FrameLib_TimeFormat interval = mParameters.getValue(kInterval);
     
-    switch ((Units) (mParameters.getValue(kUnits)))
+    switch (static_cast<Units>(mParameters.getValue(kUnits)))
     {
         case kHz:           interval = mSamplingRate / interval;    break;
         case kMS:           interval *= mSamplingRate / 1000.0;     break;

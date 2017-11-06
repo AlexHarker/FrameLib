@@ -81,7 +81,7 @@ void FrameLib_Map::setScaling()
     double outHi = mParameters.getValue(kOutHi);
     double exponent = mParameters.getValue(kExponent);
     
-    switch ((Modes) mParameters.getInt(kMode))
+    switch (static_cast<Modes>(mParameters.getInt(kMode)))
     {
         case kLinear:           setLin(inLo, inHi, outLo, outHi);                                           break;
         case kLog:              setLog(inLo, inHi, outLo, outHi);                                           break;

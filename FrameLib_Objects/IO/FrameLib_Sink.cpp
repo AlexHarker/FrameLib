@@ -81,10 +81,9 @@ void FrameLib_Sink::addToBuffer(double *input, unsigned long offset, unsigned lo
 
 void FrameLib_Sink::objectReset()
 {
-    Units units = (Units) mParameters.getInt(kUnits);
     double size = mParameters.getValue(kLength);
     
-    switch (units)
+    switch (static_cast<Units>(mParameters.getInt(kUnits)))
     {
         case kSamples:  break;
         case kMS:       size *= mSamplingRate / 1000.0;     break;

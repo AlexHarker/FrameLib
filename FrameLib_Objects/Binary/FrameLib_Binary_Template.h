@@ -52,7 +52,7 @@ public:
         
         mParameters.set(serialisedParameters);
                                     
-        mMismatchMode = (MismatchModes) mParameters.getInt(kMismatchMode);
+        mMismatchMode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
         mPadValue = mParameters.getValue(kPadding);
         
         TriggerModes triggers = (TriggerModes) mParameters.getInt(kTriggers);

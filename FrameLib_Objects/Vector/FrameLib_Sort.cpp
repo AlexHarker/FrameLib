@@ -57,7 +57,7 @@ void FrameLib_Sort::process()
     
     double *output = getOutput(0, &size);
     
-    switch ((Orders) mParameters.getInt(kOrder))
+    switch (static_cast<Orders>(mParameters.getInt(kOrder)))
     {
         case kUp:
             sortAscending(output, input, size);

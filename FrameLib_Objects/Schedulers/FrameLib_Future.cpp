@@ -55,7 +55,7 @@ void FrameLib_Future::calculateTime()
     FrameLib_TimeFormat time = mParameters.getValue(kTime);
     FrameLib_TimeFormat now = getCurrentTime();
     
-    switch ((Units) (mParameters.getValue(kUnits)))
+    switch (static_cast<Units>(mParameters.getValue(kUnits)))
     {
         case kMS:       time *= mSamplingRate / 1000.0;     break;
         case kSeconds:  time *= mSamplingRate;              break;
