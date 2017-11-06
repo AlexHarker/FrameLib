@@ -8,15 +8,20 @@
 
 FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioInput(context, owner, &sParamInfo, 2, 1, 1)
 {
-    mParameters.addDouble(kMaxLength, "length", 16384, 0);
+    mParameters.addDouble(kBufferSize, "buffer_size", 16384, 0);
     mParameters.setMin(0.0);
     mParameters.setInstantiation();
-    mParameters.addInt(kLength, "size", 4096, 1);
+    
+    mParameters.addInt(kLength, "length", 4096, 1);
     mParameters.setMin(0);
+    
     mParameters.addEnum(kUnits, "units", 2);
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
+    
+    mParameters.addDouble(kDelay, "delay", 0);
+    mParameters.setMin(0);
     
     mParameters.set(serialisedParameters);
         
@@ -60,9 +65,11 @@ FrameLib_Source::ParameterInfo FrameLib_Source::sParamInfo;
 
 FrameLib_Source::ParameterInfo::ParameterInfo()
 {
-    add("Sets the internal buffer length in the units specified by the units parameter.");
-    add("Sets the size of output frames.");
-    add("Sets the time units used to determine the buffer length and output size.");
+    add("Sets the internal buffer size in the units specified by the units parameter.");
+    add("Sets the length of output frames in the units specified by the units parameter.");
+    add("Sets the time units used to determine the buffer size and output length.");
+    add("Sets the input delay in the units specified by the units parameter: "
+        "N.B. - there is a minimum delay or latency of the output length.");
 }
 
 // Helpers
@@ -92,7 +99,7 @@ void FrameLib_Source::copy(double *input, unsigned long offset, unsigned long si
 
 void FrameLib_Source::objectReset()
 {
-    unsigned long size = convertTimeToSamples(mParameters.getValue(kMaxLength)) + mMaxBlockSize;
+    unsigned long size = convertTimeToSamples(mParameters.getValue(kBufferSize)) + mMaxBlockSize;
     
     if (size != bufferSize())
         mBuffer.resize(size);
@@ -127,6 +134,8 @@ void FrameLib_Source::process()
     unsigned long sizeOut = mLength;
     
     FrameLib_TimeFormat frameTime = getFrameTime();
+    unsigned long delayTime = convertTimeToSamples(mParameters.getValue(kDelay));
+    delayTime = std::max(sizeOut, delayTime);
     
     // Calculate output size
     
@@ -140,7 +149,7 @@ void FrameLib_Source::process()
     
     // Safety
     
-    if (!sizeOut || (offset + sizeOut) > bufferSize())
+    if (!sizeOut || (offset + delayTime) > bufferSize())
     {
         zeroVector(output, sizeOut);
         return;
@@ -148,7 +157,7 @@ void FrameLib_Source::process()
     
     // Calculate actual offset into buffer
     
-    offset += sizeOut;
+    offset += delayTime;
     offset = (offset <= mCounter) ? mCounter - offset : mCounter + bufferSize() - offset;
     
     // Calculate first segment size and copy segments

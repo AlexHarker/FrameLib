@@ -10,7 +10,7 @@ class FrameLib_Source : public FrameLib_AudioInput
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kMaxLength, kLength, kUnits };
+    enum ParameterList { kBufferSize, kLength, kUnits, kDelay };
     enum Units { kSamples, kMS, kSeconds };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
@@ -35,6 +35,7 @@ private:
     size_t bufferSize() const { return mBuffer.size(); }
     
     unsigned long convertTimeToSamples(double time);
+    
     void copy(double *input, unsigned long offset, unsigned long size);
     
     // Object Reset, Block Process, Update and Process 

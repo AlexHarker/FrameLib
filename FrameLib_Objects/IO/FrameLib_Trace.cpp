@@ -14,21 +14,23 @@ FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, FrameLib_Parameters::Se
     mParameters.addEnumItem(kLast, "last");
     mParameters.addEnumItem(kSpecified, "specified");
     mParameters.addEnumItem(kRatio, "ratio");
-    mParameters.addDouble(kLength, "length", 8000, 1);
+    
+    mParameters.addDouble(kBufferSize, "buffer_size", 250000, 1);
     mParameters.setMin(0.0);
     mParameters.setInstantiation();
+    
     mParameters.addEnum(kUnits, "units", 2);
+    mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
-    mParameters.addEnumItem(kSamples, "samples");
     mParameters.setInstantiation();
+    
     mParameters.addDouble(kPosition, "position", 0.0);
     mParameters.setMin(0.0);
+    
     mParameters.addDouble(kDelay, "delay", 0);
     mParameters.setMin(0);
     
-    enum Modes { kFull, kFirst, kLast, kSpecified, kRatio };
-
     mParameters.set(serialisedParameters);
     
     setParameterInput(1);
@@ -72,13 +74,25 @@ FrameLib_Trace::ParameterInfo::ParameterInfo()
         "last - output the last sample of the frame only"
         "specified - output the sample specified directly by the position parameter (clipped into the frame size). "
         "ratio - output the sample specified by the position parameter as a ratio to the frame length (clipped into the frame size). ");
-    add("Sets the internal buffer length in the units specified by the units parameter.");
-    add("Sets the time units used to determine the buffer length and delay.");
+    add("Sets the internal buffer size in the units specified by the units parameter.");
+    add("Sets the time units used to determine the buffer size and delay.");
     add("Sets the position of the output sample in specified mode (in samples) or ratio mode (as a ratio of the position in the frame).");
-    add("Sets the delay before output.");
+    add("Sets the delay before output in the units specified by the units parameter.");
 }
 
 // Helpers
+
+unsigned long FrameLib_Trace::convertTimeToSamples(double time)
+{
+    switch (static_cast<Units>(mParameters.getInt(kUnits)))
+    {
+        case kSamples:  break;
+        case kMS:       time *= mSamplingRate / 1000.0;     break;
+        case kSeconds:  time *= mSamplingRate;              break;
+    }
+    
+    return round(time);
+}
 
 void FrameLib_Trace::copyAndZero(double *output, unsigned long offset, unsigned long size)
 {
@@ -107,24 +121,9 @@ void FrameLib_Trace::writeToBuffer(double *input, unsigned long offset, unsigned
 
 void FrameLib_Trace::objectReset()
 {
-    double size = mParameters.getValue(kLength);
+    double size = mParameters.getValue(kBufferSize);
     
-    switch (static_cast<Units>(mParameters.getInt(kUnits)))
-    {
-        case kSamples:
-            mTimeMultiplier = FrameLib_TimeFormat(1);
-            break;
-        case kMS:
-            mTimeMultiplier = FrameLib_TimeFormat(mSamplingRate / 1000.0);
-            size *= mSamplingRate / 1000.0;
-            break;
-        case kSeconds:
-            mTimeMultiplier = FrameLib_TimeFormat(mSamplingRate);
-            size *= mSamplingRate;
-            break;
-    }
-    
-    size = round(size) + mMaxBlockSize;
+    size = round(convertTimeToSamples(size)) + mMaxBlockSize;
     
     if (size != bufferSize())
     {
@@ -160,7 +159,7 @@ void FrameLib_Trace::process()
     double inputOffset = mParameters.getValue(kPosition);
     
     FrameLib_TimeFormat frameTime = getFrameTime();
-    FrameLib_TimeFormat delayTime = mParameters.getValue(kDelay) * mTimeMultiplier;
+    FrameLib_TimeFormat delayTime = convertTimeToSamples(mParameters.getValue(kDelay));
 
     Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
     

@@ -10,9 +10,9 @@ class FrameLib_Trace : public FrameLib_AudioOutput
 {
     // Paramter Enums and Info
 
-    enum ParameterList { kMode, kLength, kUnits, kPosition, kDelay };
+    enum ParameterList { kMode, kBufferSize, kUnits, kPosition, kDelay };
     enum Modes { kFull, kFirst, kLast, kSpecified, kRatio };
-    enum Units { kMS, kSeconds, kSamples };
+    enum Units { kSamples, kMS, kSeconds };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     
@@ -34,6 +34,8 @@ private:
     
     size_t bufferSize() const { return mBuffer.size(); }
 
+    unsigned long convertTimeToSamples(double time);
+
     void copyAndZero(double *output, unsigned long offset, unsigned long size);
     void writeToBuffer(double *input, unsigned long offset, unsigned long size);
     
@@ -49,7 +51,6 @@ private:
     std::vector<bool> mFlags;
     double mLastValue;
     unsigned long mCounter;
-    FrameLib_TimeFormat mTimeMultiplier;
     
     static ParameterInfo sParamInfo;
 };

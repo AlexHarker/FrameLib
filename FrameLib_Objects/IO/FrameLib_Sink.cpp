@@ -7,15 +7,17 @@
 
 FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioOutput(context, owner, &sParamInfo, 2, 0, 1)
 {
-    mParameters.addDouble(kLength, "length", 8000, 0);
+    mParameters.addDouble(kBufferSize, "buffer_size", 250000, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
+    
     mParameters.addEnum(kUnits, "units", 1);
+    mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
-    mParameters.addEnumItem(kSamples, "samples");
     mParameters.setInstantiation();
-    mParameters.addDouble(kDelay, "delay", 0, 2);
+    
+    mParameters.addDouble(kDelay, "delay", 0);
     mParameters.setMin(0);
     
     mParameters.set(serialisedParameters);
@@ -53,12 +55,24 @@ FrameLib_Sink::ParameterInfo FrameLib_Sink::sParamInfo;
 
 FrameLib_Sink::ParameterInfo::ParameterInfo()
 {
-    add("Sets the internal buffer length in the units specified by the units parameter.");
-    add("Sets the time units used to determine the buffer length.");
-    add("Sets the delay before output.");
+    add("Sets the internal buffer size in the units specified by the units parameter.");
+    add("Sets the time units used to determine the buffer size and delay.");
+    add("Sets the delay before output in the units specified by the units parameter.");
 }
 
 // Helpers
+
+unsigned long FrameLib_Sink::convertTimeToSamples(double time)
+{
+    switch (static_cast<Units>(mParameters.getInt(kUnits)))
+    {
+        case kSamples:  break;
+        case kMS:       time *= mSamplingRate / 1000.0;     break;
+        case kSeconds:  time *= mSamplingRate;              break;
+    }
+    
+    return round(time);
+}
 
 void FrameLib_Sink::copyAndZero(double *output, unsigned long offset, unsigned long size)
 {
@@ -81,16 +95,9 @@ void FrameLib_Sink::addToBuffer(double *input, unsigned long offset, unsigned lo
 
 void FrameLib_Sink::objectReset()
 {
-    double size = mParameters.getValue(kLength);
+    double size = mParameters.getValue(kBufferSize);
     
-    switch (static_cast<Units>(mParameters.getInt(kUnits)))
-    {
-        case kSamples:  break;
-        case kMS:       size *= mSamplingRate / 1000.0;     break;
-        case kSeconds:  size *= mSamplingRate;              break;
-    }
-    
-    size = round(size) + mMaxBlockSize;
+    size = round(convertTimeToSamples(size)) + mMaxBlockSize;
     
     if (size != bufferSize())
         mBuffer.resize(size);
@@ -120,7 +127,7 @@ void FrameLib_Sink::process()
     unsigned long sizeIn;
     
     FrameLib_TimeFormat frameTime = getFrameTime();
-    FrameLib_TimeFormat delayTime = mParameters.getValue(kDelay);
+    FrameLib_TimeFormat delayTime = convertTimeToSamples(mParameters.getValue(kDelay));
     FrameLib_TimeFormat blockStartTime = getBlockStartTime();
     double *input = getInput(0, &sizeIn);
     
