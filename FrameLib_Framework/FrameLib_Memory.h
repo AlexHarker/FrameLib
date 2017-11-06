@@ -3,6 +3,7 @@
 #define FRAMELIB_MEMORY_H
 
 #include "tlsf.h"
+#include "FrameLib_Parameters.h"
 #include "FrameLib_Threading.h"
 
 #include <vector>
@@ -219,19 +220,23 @@ public:
     
     class Storage
     {
+        typedef FrameLib_Parameters::Serial Serial;
         friend class FrameLib_LocalAllocator;
 
     public:
         
         // Getters
         
-        double *getData() const         { return mData; }
-        unsigned long getSize() const   { return mSize; }
-        const char *getName() const     { return mName.c_str(); }
+        const char *getName() const             { return mName.c_str(); }
+        FrameType getType() const               { return mType; }
+        double *getVector() const               { return mType == kFrameNormal ? static_cast<double *>(mData) : NULL; }
+        unsigned long getVectorSize() const     { return mType == kFrameNormal ? mSize : 0; }
+        unsigned long getTaggedSize() const     { return mType == kFrameTagged ? mSize : 0; }
+        Serial *getTagged() const               { return mType == kFrameTagged ? static_cast<Serial *>(mData) : NULL; }
         
         // Resize the storage
         
-        void resize(unsigned long size);
+        void resize(bool tagged, size_t size);
 
     protected:
         
@@ -255,10 +260,10 @@ public:
         // Member Variables
         
         std::string mName;
-        
-        double *mData;
-        unsigned long mSize;
-        unsigned long mMaxSize;
+        FrameType mType;
+        void *mData;
+        size_t mSize;
+        size_t mMaxSize;
         unsigned long mCount;
         
         FrameLib_LocalAllocator *mAllocator;

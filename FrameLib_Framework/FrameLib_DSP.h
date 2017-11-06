@@ -45,7 +45,7 @@ private:
     {
         Input() : mObject(NULL), mIndex(0), mSize(0), mFixedInput(NULL), mType(kFrameNormal), mUpdate(false), mParameters(false), mTrigger(true), mSwitchable(false) {}
         
-        FrameType getCurrentType() { return mObject ? mObject->mOutputs[mIndex].mCurrentType : kFrameNormal; }
+        FrameType getCurrentType() const { return mObject ? mObject->mOutputs[mIndex].mCurrentType : kFrameNormal; }
         
         // Connection Info
         
@@ -126,11 +126,11 @@ protected:
     void setInputMode(unsigned long idx, bool update, bool trigger, bool switchable, FrameType type = kFrameNormal);
     void setParameterInput(unsigned long idx);
     void addParameterInput();
-    void setOutputMode(unsigned long idx, FrameType type);
+    void setOutputType(unsigned long idx, FrameType type);
 
     // You should only call this from your process method (it is unsafe anywhere else)
 
-    void setCurrentOutputMode(unsigned long idx, FrameType type);
+    void setCurrentOutputType(unsigned long idx, FrameType type);
 
     // You should only call this from your update method (it is unsafe anywhere else)
     
@@ -161,19 +161,21 @@ protected:
     
     // Get Inputs and Outputs
     
-    double *getInput(unsigned long idx, size_t *size);
-    FrameLib_Parameters::Serial *getInput(unsigned long idx);
+    FrameType getInputCurrentType(unsigned long idx) const                          { return mInputs[idx].getCurrentType(); }
+    double *getInput(unsigned long idx, size_t *size)  const;
+    FrameLib_Parameters::Serial *getInput(unsigned long idx)  const;
     
-    double *getOutput(unsigned long idx, size_t *size);
-    FrameLib_Parameters::Serial *getOutput(unsigned long idx);
+    FrameType getOutputCurrentType(unsigned long idx) const                         { return mOutputs[idx].mCurrentType; }
+    double *getOutput(unsigned long idx, size_t *size)  const;
+    FrameLib_Parameters::Serial *getOutput(unsigned long idx)  const;
 
     // Convience methods for copying and zeroing
 
     void prepareCopyInputToOutput(unsigned long inIdx, unsigned long outIdx);
     void copyInputToOutput(unsigned long inIdx, unsigned long outIdx);
 
-    static void copyVector(double *output, double *input, unsigned long size)      { std::copy(input, input + size, output); }
-    static void zeroVector(double *output, unsigned long size)                     { std::fill_n(output, size, 0.0); }
+    static void copyVector(double *output, double *input, unsigned long size)       { std::copy(input, input + size, output); }
+    static void zeroVector(double *output, unsigned long size)                      { std::fill_n(output, size, 0.0); }
     
 private:
     

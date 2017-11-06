@@ -14,6 +14,9 @@ FrameLib_Store::FrameLib_Store(FrameLib_Context context, FrameLib_Parameters::Se
 
     mName = mParameters.getString(kName);
     mStorage = registerStorage(mName.c_str());
+    
+    setInputMode(0, false, true, false, kFrameAny);
+    setOutputType(0, kFrameAny);
 }
 
 FrameLib_Store::~FrameLib_Store()
@@ -63,29 +66,46 @@ FrameLib_Store::ParameterInfo::ParameterInfo()
 
 void FrameLib_Store::objectReset()
 {
-    mStorage->resize(0);
+    mStorage->resize(false, 0);
 }
 
 // Process
 
 void FrameLib_Store::process()
 {
-    // Get Input
+    // Resize storage
     
-    unsigned long sizeIn, sizeOut;
-    double *input = getInput(0, &sizeIn);
+    FrameType type = getInputCurrentType(0);
+    unsigned long size;
     
-    mStorage->resize(sizeIn);
+    if (type == kFrameTagged)
+        size = getInput(0)->size();
+    else
+        getInput(0, &size);
     
-    requestOutputSize(0, sizeIn);
+    mStorage->resize(type == kFrameTagged, size);
+    
+    // Prepare and allocate outputs
+    
+    prepareCopyInputToOutput(0, 0);
     allocateOutputs();
     
-    double *output = getOutput(0, &sizeOut);
+    // Copy to storage
     
-    // Copy to storage and output
+    if (type == kFrameNormal)
+    {
+        double *input = getInput(0, &size);
+        double *storage = mStorage->getVector();
+        copyVector(storage, input, std::min(mStorage->getVectorSize(), size));
+    }
+    else
+    {
+        FrameLib_Parameters::Serial *storage = mStorage->getTagged();
+        if (storage)
+            storage->write(getInput(0));
+    }
     
-    if (mStorage->getSize() == sizeOut)
-        copyVector(mStorage->getData(), input, sizeOut);
+    // Copy to output
     
-    copyVector(output, input, sizeOut);
+    copyInputToOutput(0, 0);
 }

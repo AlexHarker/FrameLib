@@ -1,5 +1,6 @@
 
 #include "FrameLib_Parameters.h"
+#include "FrameLib_Memory.h"
 #include <algorithm>
 
 // Serial Iterator
@@ -328,7 +329,7 @@ void FrameLib_Parameters::Serial::writeDoubles(const double *ptr, size_t N)
 
 // Reads (private)
 
-FrameLib_Parameters::Serial::DataType FrameLib_Parameters::Serial::readType(BytePointer *readPtr)
+DataType FrameLib_Parameters::Serial::readType(BytePointer *readPtr)
 {
     DataType type = *reinterpret_cast<DataType *>(*readPtr);
     *readPtr += sizeType();

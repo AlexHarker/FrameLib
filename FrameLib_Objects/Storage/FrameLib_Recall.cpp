@@ -14,6 +14,8 @@ FrameLib_Recall::FrameLib_Recall(FrameLib_Context context, FrameLib_Parameters::
     
     mName = mParameters.getString(kName);
     mStorage = registerStorage(mName.c_str());
+    
+    setOutputType(0, kFrameAny);
 }
 
 FrameLib_Recall::~FrameLib_Recall()
@@ -63,14 +65,35 @@ FrameLib_Recall::ParameterInfo::ParameterInfo()
 
 void FrameLib_Recall::process()
 {
-    unsigned long sizeOut;
+    // N.B. Ignore input (it is for triggers only)
     
-    // Ignore input (it is for triggers only)
+    // Get types and size
     
-    requestOutputSize(0, mStorage->getSize());
+    FrameType requestType = mStorage->getType();
+    unsigned long size = 0;
+
+    if (requestType == kFrameNormal)
+        size = mStorage->getVectorSize();
+    else
+        size = mStorage->getTaggedSize();
+    
+    // Setup outputs
+    
+    setCurrentOutputType(0, requestType);
+    requestOutputSize(0, size);
     allocateOutputs();
     
-    double *output = getOutput(0, &sizeOut);
+    // Copy from storage to output
     
-    copyVector(output, mStorage->getData(), sizeOut);
+    if (getOutputCurrentType(0) == kFrameNormal)
+    {
+        double *output = getOutput(0, &size);
+        copyVector(output, mStorage->getVector(), std::min(mStorage->getVectorSize(), size));
+    }
+    else
+    {
+        FrameLib_Parameters::Serial *output = getOutput(0);
+        if (output)
+            output->write(mStorage->getTagged());
+    }
 }

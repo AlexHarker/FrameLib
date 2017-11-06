@@ -3,7 +3,6 @@
 #define FRAMELIB_PARAMETERS_H
 
 #include "FrameLib_Types.h"
-#include "FrameLib_Memory.h"
 #include <vector>
 #include <cstring>
 #include <cassert>
@@ -39,9 +38,7 @@ public:
         // N.B. the assumption is that double is the largest type in use
         
         static const size_t alignment = sizeof(double);
-        
-        enum DataType { kVector, kSingleString };
-        
+                
         class Iterator
         {
             struct Entry

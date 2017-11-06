@@ -272,30 +272,57 @@ size_t FrameLib_GlobalAllocator::alignSize(size_t x)
 // Local Storage
 
 FrameLib_LocalAllocator::Storage::Storage(const char *name, FrameLib_LocalAllocator *allocator)
-:  mName(name), mData(NULL), mSize(0), mMaxSize(0), mCount(1), mAllocator(allocator)
+:  mName(name), mType(kFrameNormal), mData(NULL), mSize(0), mMaxSize(0), mCount(1), mAllocator(allocator)
 {}
 
 FrameLib_LocalAllocator::Storage::~Storage()
 {
+    if (mType == kFrameTagged)
+        getTagged()->~Serial();
+
     mAllocator->dealloc(mData);
 }
 
-void FrameLib_LocalAllocator::Storage::resize(unsigned long size)
+void FrameLib_LocalAllocator::Storage::resize(bool tagged, size_t size)
 {
-    unsigned long maxSize = size << 1;
+    size_t actualSize = tagged ? Serial::inPlaceSize(size) : size * sizeof(double);
+    unsigned long maxSize = actualSize << 1;
     
     if (mMaxSize >= maxSize)
     {
+        // Reallocate for tagged frames
+        
+        if (mType == kFrameTagged)
+            getTagged()->~Serial();
+        if (tagged)
+            Serial::newInPlace(mData, size);
+        
+        // Set Parameters
+        
+        mType = tagged ? kFrameTagged : kFrameNormal;
         mSize = size;
     }
     else
     {
-        double *newData = (double *) mAllocator->alloc(maxSize * sizeof(double));
+        void *newData = mAllocator->alloc(maxSize);
         
         if (newData)
         {
+            // Deallocate
+            
+            if (mType == kFrameTagged)
+                getTagged()->~Serial();
             mAllocator->dealloc(mData);
+            
+            // Allocate
+            
             mData = newData;
+            if (tagged)
+                Serial::newInPlace(newData, size);
+            
+            // Set parameters
+            
+            mType = tagged ? kFrameTagged : kFrameNormal;
             mMaxSize = maxSize;
             mSize = size;
         }

@@ -13,7 +13,7 @@ FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Seri
     mActiveValve = floor(mParameters.getInt(kActiveValve));
     
     setInputMode(0, false, mValveNumber == mActiveValve, true, kFrameAny);
-    setOutputMode(0, kFrameAny);
+    setOutputType(0, kFrameAny);
     
     setParameterInput(1);
 }

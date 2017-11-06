@@ -20,7 +20,7 @@ FrameLib_CombineParam::FrameLib_CombineParam(FrameLib_Context context, FrameLib_
     
     for (int i = 0; i < mNumIns; i++)
         setInputMode(i, false, true, false, kFrameTagged);
-    setOutputMode(0, kFrameTagged);
+    setOutputType(0, kFrameTagged);
 }
 
 // Info

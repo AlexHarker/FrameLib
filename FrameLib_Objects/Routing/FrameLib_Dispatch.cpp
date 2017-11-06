@@ -18,7 +18,7 @@ FrameLib_Dispatch::Select::Select(FrameLib_Context context, FrameLib_Parameters:
     for (unsigned long i = 0; i < mNumIns; i++)
         setInputMode(i, false, i == mActiveIn, true, kFrameAny);
     
-    setOutputMode(0, kFrameAny);
+    setOutputType(0, kFrameAny);
     addParameterInput();
 }
 

@@ -174,7 +174,7 @@ void FrameLib_DSP::addParameterInput()
 
 // Call this from your constructor only (unsafe elsewhere)
 
-void FrameLib_DSP::setOutputMode(unsigned long idx, FrameType type)
+void FrameLib_DSP::setOutputType(unsigned long idx, FrameType type)
 {
     mOutputs[idx].mType = type;
     mOutputs[idx].mCurrentType = type != kFrameAny ? type : kFrameNormal;
@@ -183,7 +183,7 @@ void FrameLib_DSP::setOutputMode(unsigned long idx, FrameType type)
 
 // You should only call this from your process method (it is unsafe anywhere else)
 
-void FrameLib_DSP::setCurrentOutputMode(unsigned long idx, FrameType type)
+void FrameLib_DSP::setCurrentOutputType(unsigned long idx, FrameType type)
 {
     mOutputs[idx].mRequestedType = type;
 }
@@ -258,7 +258,7 @@ bool FrameLib_DSP::allocateOutputs()
 
 // Get Inputs and Outputs
 
-double *FrameLib_DSP::getInput(unsigned long idx, size_t *size)
+double *FrameLib_DSP::getInput(unsigned long idx, size_t *size) const
 {
     if (mInputs[idx].mObject)
         return mInputs[idx].mObject->getOutput(mInputs[idx].mIndex, size);
@@ -267,7 +267,7 @@ double *FrameLib_DSP::getInput(unsigned long idx, size_t *size)
     return mInputs[idx].mFixedInput;
 }
 
-FrameLib_Parameters::Serial *FrameLib_DSP::getInput(unsigned long idx)
+FrameLib_Parameters::Serial *FrameLib_DSP::getInput(unsigned long idx) const
 {
     if (mInputs[idx].mObject)
         return mInputs[idx].mObject->getOutput(mInputs[idx].mIndex);
@@ -275,7 +275,7 @@ FrameLib_Parameters::Serial *FrameLib_DSP::getInput(unsigned long idx)
     return NULL;
 }
 
-double *FrameLib_DSP::getOutput(unsigned long idx, size_t *size)
+double *FrameLib_DSP::getOutput(unsigned long idx, size_t *size) const
 {
     if (mOutputs[0].mMemory && mOutputs[idx].mCurrentType == kFrameNormal)
     {
@@ -287,7 +287,7 @@ double *FrameLib_DSP::getOutput(unsigned long idx, size_t *size)
     return NULL;
 }
 
-FrameLib_Parameters::Serial *FrameLib_DSP::getOutput(unsigned long idx)
+FrameLib_Parameters::Serial *FrameLib_DSP::getOutput(unsigned long idx) const
 {
     if (mOutputs[0].mMemory && mOutputs[idx].mCurrentType == kFrameTagged)
         return (Serial *) mOutputs[idx].mMemory;
@@ -303,7 +303,7 @@ void FrameLib_DSP::prepareCopyInputToOutput(unsigned long inIdx, unsigned long o
     
     unsigned long size = 0;
     
-    setCurrentOutputMode(outIdx, requestType);
+    setCurrentOutputType(outIdx, requestType);
     
     if (mInputs[inIdx].mObject)
     {

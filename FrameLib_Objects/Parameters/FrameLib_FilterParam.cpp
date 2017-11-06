@@ -47,8 +47,8 @@ FrameLib_FilterParam::FrameLib_FilterParam(FrameLib_Context context, FrameLib_Pa
     // Setup IO
     
     setInputMode(0, false, true, false, kFrameTagged);
-    setOutputMode(0, kFrameTagged);
-    setOutputMode(1, kFrameTagged);
+    setOutputType(0, kFrameTagged);
+    setOutputType(1, kFrameTagged);
 }
 
 // Info
