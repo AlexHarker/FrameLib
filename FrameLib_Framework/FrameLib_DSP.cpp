@@ -245,7 +245,7 @@ bool FrameLib_DSP::allocateOutputs()
         return true;
     }
     
-    // Reset outputs on failure of zero size
+    // Reset outputs on failure or zero size
     
     for (OutputIterator outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
     {
