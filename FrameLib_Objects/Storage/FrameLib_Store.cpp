@@ -66,13 +66,19 @@ FrameLib_Store::ParameterInfo::ParameterInfo()
 
 void FrameLib_Store::objectReset()
 {
-    mStorage->resize(false, 0);
+    FrameLib_LocalAllocator::Storage::Access access(mStorage);
+
+    access.resize(false, 0);
 }
 
 // Process
 
 void FrameLib_Store::process()
 {
+    // Threadsafety
+    
+    FrameLib_LocalAllocator::Storage::Access access(mStorage);
+
     // Resize storage
     
     FrameType type = getInputCurrentType(0);
@@ -83,7 +89,7 @@ void FrameLib_Store::process()
     else
         getInput(0, &size);
     
-    mStorage->resize(type == kFrameTagged, size);
+    access.resize(type == kFrameTagged, size);
     
     // Prepare and allocate outputs
     
@@ -95,12 +101,12 @@ void FrameLib_Store::process()
     if (type == kFrameNormal)
     {
         double *input = getInput(0, &size);
-        double *storage = mStorage->getVector();
-        copyVector(storage, input, std::min(mStorage->getVectorSize(), size));
+        double *storage = access.getVector();
+        copyVector(storage, input, std::min(access.getVectorSize(), size));
     }
     else
     {
-        FrameLib_Parameters::Serial *storage = mStorage->getTagged();
+        FrameLib_Parameters::Serial *storage = access.getTagged();
         if (storage)
             storage->write(getInput(0));
     }

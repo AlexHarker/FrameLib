@@ -225,9 +225,48 @@ public:
 
     public:
         
+        // The Access Class Enforces Thread Safety for Storage
+        
+        class Access
+        {
+            
+        public:
+            
+            // Constructor and Destructor
+            
+            Access(Storage *storage) : mStorage(storage)    { mStorage->mLock.acquire(); }
+            ~Access()                                       { mStorage->mLock.release(); }
+            
+            // Getters
+            
+            FrameType getType() const               { return mStorage->getType(); }
+            double *getVector() const               { return mStorage->getVector(); }
+            unsigned long getVectorSize() const     { return mStorage->getVectorSize(); }
+            unsigned long getTaggedSize() const     { return mStorage->getTaggedSize(); }
+            Serial *getTagged() const               { return mStorage->getTagged(); }
+            
+            // Resize
+            
+            void resize(bool tagged, size_t size);
+            
+        private:
+            
+            // Deleted
+            
+            Access(const Access&);
+            Access& operator=(const Access&);
+            
+            // Data
+            
+            Storage *mStorage;
+        };
+      
+        const char *getName() const             { return mName.c_str(); }
+        
+    protected:
+
         // Getters
         
-        const char *getName() const             { return mName.c_str(); }
         FrameType getType() const               { return mType; }
         double *getVector() const               { return mType == kFrameNormal ? static_cast<double *>(mData) : NULL; }
         unsigned long getVectorSize() const     { return mType == kFrameNormal ? mSize : 0; }
@@ -238,8 +277,6 @@ public:
         
         void resize(bool tagged, size_t size);
 
-    protected:
-        
         // Constructor / Destructor
         
         Storage(const char *name, FrameLib_LocalAllocator *allocator);
@@ -266,6 +303,7 @@ public:
         size_t mMaxSize;
         unsigned long mCount;
         
+        SpinLock mLock;
         FrameLib_LocalAllocator *mAllocator;
     };
     

@@ -66,16 +66,20 @@ FrameLib_Recall::ParameterInfo::ParameterInfo()
 void FrameLib_Recall::process()
 {
     // N.B. Ignore input (it is for triggers only)
+
+    // Threadsafety
     
+    FrameLib_LocalAllocator::Storage::Access access(mStorage);
+
     // Get types and size
     
-    FrameType requestType = mStorage->getType();
+    FrameType requestType = access.getType();
     unsigned long size = 0;
 
     if (requestType == kFrameNormal)
-        size = mStorage->getVectorSize();
+        size = access.getVectorSize();
     else
-        size = mStorage->getTaggedSize();
+        size = access.getTaggedSize();
     
     // Setup outputs
     
@@ -88,12 +92,12 @@ void FrameLib_Recall::process()
     if (getOutputCurrentType(0) == kFrameNormal)
     {
         double *output = getOutput(0, &size);
-        copyVector(output, mStorage->getVector(), std::min(mStorage->getVectorSize(), size));
+        copyVector(output, access.getVector(), std::min(access.getVectorSize(), size));
     }
     else
     {
         FrameLib_Parameters::Serial *output = getOutput(0);
         if (output)
-            output->write(mStorage->getTagged());
+            output->write(access.getTagged());
     }
 }
