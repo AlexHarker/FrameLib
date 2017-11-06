@@ -1555,8 +1555,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B82CC22A1F851CCD00077ECB"
-               BuildableName = "fl.channel~.mxo"
-               BlueprintName = "fl.channel~"
+               BuildableName = "fl.streamid~.mxo"
+               BlueprintName = "fl.streamid~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

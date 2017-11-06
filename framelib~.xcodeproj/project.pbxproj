@@ -5786,9 +5786,9 @@
 			productReference = B826E4AC1F3148AB00B920C8 /* fl.once~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B82CC22A1F851CCD00077ECB /* fl.channel~ */ = {
+		B82CC22A1F851CCD00077ECB /* fl.streamid~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B82CC23F1F851CCD00077ECB /* Build configuration list for PBXNativeTarget "fl.channel~" */;
+			buildConfigurationList = B82CC23F1F851CCD00077ECB /* Build configuration list for PBXNativeTarget "fl.streamid~" */;
 			buildPhases = (
 				B82CC22B1F851CCD00077ECB /* Headers */,
 				B82CC22F1F851CCD00077ECB /* Resources */,
@@ -5801,7 +5801,7 @@
 			dependencies = (
 				B8BEEBEE1FA740B700ED26F4 /* PBXTargetDependency */,
 			);
-			name = "fl.channel~";
+			name = "fl.streamid~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B82CC2441F851CCD00077ECB /* fl.channel~.mxo */;
@@ -7511,7 +7511,7 @@
 				B86685701F84F25C0079568F /* fl.or~ */,
 				B866858C1F84F2610079568F /* fl.and~ */,
 				B86685A81F84F2670079568F /* fl.not~ */,
-				B82CC22A1F851CCD00077ECB /* fl.channel~ */,
+				B82CC22A1F851CCD00077ECB /* fl.streamid~ */,
 				B8C2F7F71F863A2A00075677 /* fl.route~ */,
 				B87E9DD11F8DAE820000886E /* fl.multiselect~ */,
 				B87E9DF51F8DB1E50000886E /* fl.timedelta~ */,
@@ -25812,7 +25812,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		B82CC23F1F851CCD00077ECB /* Build configuration list for PBXNativeTarget "fl.channel~" */ = {
+		B82CC23F1F851CCD00077ECB /* Build configuration list for PBXNativeTarget "fl.streamid~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B82CC2401F851CCD00077ECB /* Development */,
