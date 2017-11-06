@@ -247,7 +247,7 @@ public:
             
             // Resize
             
-            void resize(bool tagged, size_t size);
+            void resize(bool tagged, size_t size)   { mStorage->resize(tagged, size); }
             
         private:
             
