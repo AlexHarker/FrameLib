@@ -13,7 +13,7 @@ FrameLib_Dispatch::Select::Select(FrameLib_Context context, FrameLib_Parameters:
     
     mParameters.set(serialisedParameters);
     
-    mActiveIn = floor(mParameters.getInt(kActiveIn));
+    mActiveIn = floor(mParameters.getValue(kActiveIn) - 1.0);
     
     for (unsigned long i = 0; i < mNumIns; i++)
         setInputMode(i, false, i == mActiveIn, true, kFrameAny);
@@ -28,9 +28,7 @@ void FrameLib_Dispatch::Select::update()
 {
     if (mParameters.changed(kActiveIn))
     {
-        // FIX - which way to index the inputs?
-        
-        mActiveIn = floor(mParameters.getValue(kActiveIn));
+        mActiveIn = floor(mParameters.getValue(kActiveIn) - 1.0);
         
         for (unsigned long i = 0; i < mNumIns; i++)
             updateTrigger(i, i == mActiveIn);
@@ -97,7 +95,7 @@ FrameLib_Dispatch::~FrameLib_Dispatch()
 std::string FrameLib_Dispatch::objectInfo(bool verbose)
 {
     return formatInfo("Dispatches multuple input frame streams dynamically to multuple outputs. WEach output can be independently connected to any one (or none) pf a number of incoming input frame streams, or turned off: The number of inputs and outputs is variable. The selected input for each output is changed with a parameter.",
-                      "Dispatches multuple input frame streams dynamically to multuple outputs.", verbose);
+                      "Dispatches multuple input frame streams dynamically to multiple outputs.", verbose);
 }
 
 std::string FrameLib_Dispatch::inputInfo(unsigned long idx, bool verbose)
@@ -119,8 +117,10 @@ FrameLib_Dispatch::ParameterInfo FrameLib_Dispatch::sParamInfo;
 
 FrameLib_Dispatch::ParameterInfo::ParameterInfo()
 {
+    add("Sets the number of object inputs.");
     add("Sets the number of object outputs.");
-    add("Sets the current output (or off if out of range).");
+    for (long i = 0; i < 32; i++)
+        add(formatInfo("Sets the current input for output # counting from 1 (off if out of range).", "", i, false));
 }
 
 // Reset

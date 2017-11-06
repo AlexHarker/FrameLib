@@ -13,7 +13,7 @@ FrameLib_Select::FrameLib_Select(FrameLib_Context context, FrameLib_Parameters::
     mParameters.set(serialisedParameters);
     
     mNumIns = mParameters.getInt(kNumIns);
-    mActiveIn = floor(mParameters.getInt(kActiveIn));
+    mActiveIn = floor(mParameters.getValue(kActiveIn) - 1.0);
     
     setIO(mNumIns, 1);
     
@@ -52,7 +52,7 @@ FrameLib_Select::ParameterInfo FrameLib_Select::sParamInfo;
 FrameLib_Select::ParameterInfo::ParameterInfo()
 {
     add("Sets the number of object inputs.");
-    add("Sets the current input (or off if out of range).");
+    add("Sets the current input counting from 1 (or off if out of range).");
 }
 
 // Update and Process
@@ -60,10 +60,8 @@ FrameLib_Select::ParameterInfo::ParameterInfo()
 void FrameLib_Select::update()
 {
     if (mParameters.changed(kActiveIn))
-    {
-        // FIX - which way to index the inputs?
-        
-        mActiveIn = floor(mParameters.getValue(kActiveIn));
+    {        
+        mActiveIn = floor(mParameters.getValue(kActiveIn) - 1.0);
         
         for (unsigned long i = 0; i < mNumIns; i++)
             updateTrigger(i, i == mActiveIn);

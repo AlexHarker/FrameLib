@@ -10,7 +10,7 @@ FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Seri
     mParameters.addInt(kActiveValve, "output", 0);
     mParameters.set(serialisedParameters);
     
-    mActiveValve = floor(mParameters.getInt(kActiveValve));
+    mActiveValve = floor(mParameters.getValue(kActiveValve) - 1.0);
     
     setInputMode(0, false, mValveNumber == mActiveValve, true, kFrameAny);
     setOutputType(0, kFrameAny);
@@ -22,7 +22,7 @@ FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Seri
 
 void FrameLib_Route::Valve::update()
 {
-    mActiveValve = floor(mParameters.getValue(kActiveValve));
+    mActiveValve = floor(mParameters.getValue(kActiveValve) - 1.0);
     updateTrigger(0, mValveNumber == mActiveValve);
 }
 
@@ -94,7 +94,7 @@ FrameLib_Route::ParameterInfo FrameLib_Route::sParamInfo;
 FrameLib_Route::ParameterInfo::ParameterInfo()
 {
     add("Sets the number of object outputs.");
-    add("Sets the current output (or off if out of range).");
+    add("Sets the current output counting from 1 (off if out of range).");
 }
 
 // Reset
