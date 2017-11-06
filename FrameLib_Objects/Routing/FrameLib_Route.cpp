@@ -93,7 +93,7 @@ FrameLib_Route::ParameterInfo FrameLib_Route::sParamInfo;
 
 FrameLib_Route::ParameterInfo::ParameterInfo()
 {
-    add("Sets the number of object outputs.");
+    add("Sets the number of outputs.");
     add("Sets the current output counting from 1 (off if out of range).");
 }
 

@@ -117,8 +117,8 @@ FrameLib_Dispatch::ParameterInfo FrameLib_Dispatch::sParamInfo;
 
 FrameLib_Dispatch::ParameterInfo::ParameterInfo()
 {
-    add("Sets the number of object inputs.");
-    add("Sets the number of object outputs.");
+    add("Sets the number of inputs.");
+    add("Sets the number of outputs.");
     for (long i = 0; i < 32; i++)
         add(formatInfo("Sets the current input for output # counting from 1 (off if out of range).", "", i, false));
 }

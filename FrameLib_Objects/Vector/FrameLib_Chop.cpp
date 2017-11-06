@@ -53,7 +53,7 @@ FrameLib_Chop::ParameterInfo FrameLib_Chop::sParamInfo;
 
 FrameLib_Chop::ParameterInfo::ParameterInfo()
 {
-    add("Sets the number of object outputs.");
+    add("Sets the number of outputs.");
     add("Sets the size of the output frames.");
     add("Sets units for the chop size (samples or ratio of the input length [0-1]).");
 }
