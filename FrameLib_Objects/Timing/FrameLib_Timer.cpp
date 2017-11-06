@@ -67,13 +67,15 @@ void FrameLib_Timer::update()
 
 void FrameLib_Timer::process()
 {
-    requestOutputSize(0, 1);
+    FrameLib_TimeFormat previousTime = getInputFrameTime(0);
+    
+    requestOutputSize(0, nonZeroPositive(previousTime) ? 1 : 0);
     
     if (allocateOutputs())
     {
         unsigned long size;
         double *output = getOutput(0, &size);
         
-        output[0] = (getCurrentTime() - getInputFrameTime(0)) * mMultiplier;
+        output[0] = (getCurrentTime() - previousTime * mMultiplier);
     }
 }

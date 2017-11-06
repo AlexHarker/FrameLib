@@ -57,7 +57,7 @@ void FrameLib_TimeDelta::calculateMultiplier()
 
 void FrameLib_TimeDelta::objectReset()
 {
-    mLastTime = FrameLib_TimeFormat(1);
+    mLastTime = FrameLib_TimeFormat(0);
     calculateMultiplier();
 }
 
@@ -73,7 +73,7 @@ void FrameLib_TimeDelta::process()
 {
     FrameLib_TimeFormat now = getCurrentTime();
 
-    requestOutputSize(0, 1);
+    requestOutputSize(0, nonZeroPositive(mLastTime) ? 1 : 0);
     
     if (allocateOutputs())
     {
