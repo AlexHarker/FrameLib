@@ -103,14 +103,17 @@ void FrameLib_FilterParam::process()
     
     FrameLib_Parameters::Serial *input = getInput(0);
     
-    for (FrameLib_Parameters::Serial::Iterator it = input->begin(); it != input->end(); it++)
+    if (input)
     {
-        unsigned long size = it.getSize();
+        for (FrameLib_Parameters::Serial::Iterator it = input->begin(); it != input->end(); it++)
+        {
+            unsigned long size = it.getSize();
         
-        if (filter(it))
-            sizeOut1 += size;
-        else
-            sizeOut2 += size;
+            if (filter(it))
+                sizeOut1 += size;
+            else
+                sizeOut2 += size;
+        }
     }
     
     requestOutputSize(0, sizeOut1);
@@ -120,11 +123,14 @@ void FrameLib_FilterParam::process()
     FrameLib_Parameters::Serial *output1 = getOutput(0);
     FrameLib_Parameters::Serial *output2 = getOutput(1);
     
-    for (FrameLib_Parameters::Serial::Iterator it = input->begin(); it != input->end(); it++)
+    if (input)
     {
-        if (filter(it) && output1)
-            output1->write(it);
-        else if (output2)
-            output2->write(it);
+        for (FrameLib_Parameters::Serial::Iterator it = input->begin(); it != input->end(); it++)
+        {
+            if (filter(it) && output1)
+                output1->write(it);
+            else if (output2)
+                output2->write(it);
+        }
     }
 }

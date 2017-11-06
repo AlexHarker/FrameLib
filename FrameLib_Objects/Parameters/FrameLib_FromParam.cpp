@@ -95,8 +95,16 @@ void FrameLib_FromParam::process()
     
     FrameLib_Parameters::Serial *input = getInput(0);
 
-    for (unsigned long i = 0; i < mNumOuts; i++)
-        requestOutputSize(i, input->getVectorSize(mParameters.getString(kNames + i)));
+    if (input)
+    {
+        for (unsigned long i = 0; i < mNumOuts; i++)
+            requestOutputSize(i, input->getVectorSize(mParameters.getString(kNames + i)));
+    }
+    else
+    {
+        for (unsigned long i = 0; i < mNumOuts; i++)
+            requestOutputSize(i, 0);
+    }
     
     allocateOutputs();
     
