@@ -3,23 +3,32 @@
 #include <algorithm>
 
 // FIX - trace is only sample accurate (not subsample) - double the buffer and add a function to interpolate if neceesary
-// FIX - trace writes whole vectors then traces, would it be better to specify which index to use?
 
 // Constructor
 
 FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioOutput(context, owner, &sParamInfo, 2, 0, 1)
 {
-    mParameters.addDouble(kLength, "length", 8000, 0);
+    mParameters.addEnum(kMode, "mode", 0);
+    mParameters.addEnumItem(kFull, "full");
+    mParameters.addEnumItem(kFirst, "first");
+    mParameters.addEnumItem(kLast, "last");
+    mParameters.addEnumItem(kSpecified, "specified");
+    mParameters.addEnumItem(kRatio, "ratio");
+    mParameters.addDouble(kLength, "length", 8000, 1);
     mParameters.setMin(0.0);
     mParameters.setInstantiation();
-    mParameters.addEnum(kUnits, "units", 1);
+    mParameters.addEnum(kUnits, "units", 2);
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.setInstantiation();
-    mParameters.addDouble(kDelay, "delay", 0, 2);
+    mParameters.addDouble(kPosition, "position", 0.0);
+    mParameters.setMin(0.0);
+    mParameters.addDouble(kDelay, "delay", 0);
     mParameters.setMin(0);
     
+    enum Modes { kFull, kFirst, kLast, kSpecified, kRatio };
+
     mParameters.set(serialisedParameters);
     
     setParameterInput(1);
@@ -31,10 +40,11 @@ FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, FrameLib_Parameters::Se
 
 std::string FrameLib_Trace::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs audio frames to the host environment without overlapping, continuing the final value till a new frame arrives: "
-                   "This is intended for tracking control type values. The length of the internal buffer determines the maximum frame length. "
+    return formatInfo("Outputs audio frames (or values from the frame) to the host environment without overlapping, continuing the last value till a new frame arrives: "
+                   "The mode parameter determines the value(s) that are output. "
+                    "This is intended for tracking control type values. The length of the internal buffer determines the maximum frame length. "
                    "Output suffers no latency.",
-                   "Outputs audio frames to the host environment without overlapping, continuing the final value till a new frame arrives.", verbose);
+                   "Outputs audio frames  (or values from the frame) to the host environment without overlapping, continuing the final value till a new frame arrives.", verbose);
 }
 
 std::string FrameLib_Trace::inputInfo(unsigned long idx, bool verbose)
@@ -56,8 +66,15 @@ FrameLib_Trace::ParameterInfo FrameLib_Trace::sParamInfo;
 
 FrameLib_Trace::ParameterInfo::ParameterInfo()
 {
+    add("Sets the mode used for output: ."
+        "full - outputs the entire frame in full. "
+        "first - output the first sample of the frame only. "
+        "last - output the last sample of the frame only"
+        "specified - output the sample specified directly by the position parameter (clipped into the frame size). "
+        "ratio - output the sample specified by the position parameter as a ratio to the frame length (clipped into the frame size). ");
     add("Sets the internal buffer length in the units specified by the units parameter.");
-    add("Sets the time units used to determine the buffer length.");
+    add("Sets the time units used to determine the buffer length and delay.");
+    add("Sets the position of the output sample in specified mode (in samples) or ratio mode (as a ratio of the position in the frame).");
     add("Sets the delay before output.");
 }
 
@@ -90,14 +107,21 @@ void FrameLib_Trace::writeToBuffer(double *input, unsigned long offset, unsigned
 
 void FrameLib_Trace::objectReset()
 {
-    Units units = (Units) mParameters.getInt(kUnits);
     double size = mParameters.getValue(kLength);
     
-    switch (units)
+    switch (static_cast<Units>(mParameters.getInt(kUnits)))
     {
-        case kSamples:  break;
-        case kMS:       size *= mSamplingRate / 1000.0;     break;
-        case kSeconds:  size *= mSamplingRate;              break;
+        case kSamples:
+            mTimeMultiplier = FrameLib_TimeFormat(1);
+            break;
+        case kMS:
+            mTimeMultiplier = FrameLib_TimeFormat(mSamplingRate / 1000.0);
+            size *= mSamplingRate / 1000.0;
+            break;
+        case kSeconds:
+            mTimeMultiplier = FrameLib_TimeFormat(mSamplingRate);
+            size *= mSamplingRate;
+            break;
     }
     
     size = round(size) + mMaxBlockSize;
@@ -133,11 +157,15 @@ void FrameLib_Trace::blockProcess(double **ins, double **outs, unsigned long blo
 void FrameLib_Trace::process()
 {
     unsigned long sizeIn;
+    double inputOffset = mParameters.getValue(kPosition);
     
     FrameLib_TimeFormat frameTime = getFrameTime();
-    FrameLib_TimeFormat delayTime = mParameters.getValue(kDelay);
+    FrameLib_TimeFormat delayTime = mParameters.getValue(kDelay) * mTimeMultiplier;
 
+    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
+    
     double *input = getInput(0, &sizeIn);
+    unsigned long sizeToWrite = mode != kFull ? std::min(sizeIn, 1UL) : sizeIn;
     
     // Calculate time offset
     
@@ -145,8 +173,22 @@ void FrameLib_Trace::process()
     
     // Safety
     
-    if (!sizeIn || frameTime < getBlockStartTime() || (offset + sizeIn) > bufferSize())
+    if (!sizeIn || frameTime < getBlockStartTime() || (offset + sizeToWrite) > bufferSize())
         return;
+    
+    switch (mode)
+    {
+        case kFull:         inputOffset = 0.0;                  break;
+        case kFirst:        inputOffset = 0.0;                  break;
+        case kLast:         inputOffset = sizeIn - 1;           break;
+        case kSpecified:                                        break;
+        case kRatio:        inputOffset *= (sizeIn - 1);        break;
+    }
+
+    // Clip to a sensible range
+    
+    inputOffset = std::max(0.0, std::min(static_cast<double>(sizeIn - 1), inputOffset));
+    input += static_cast<unsigned long>(inputOffset);
     
     // Calculate actual offset into buffer
     
@@ -155,8 +197,8 @@ void FrameLib_Trace::process()
     
     // Calculate first segment size and copy segments
     
-    unsigned long size = ((offset + sizeIn) > bufferSize()) ? bufferSize() - offset : sizeIn;
+    unsigned long size = ((offset + sizeToWrite) > bufferSize()) ? bufferSize() - offset : sizeToWrite;
     
     writeToBuffer(input, offset, size);
-    writeToBuffer(input + size, 0, sizeIn - size);
+    writeToBuffer(input + size, 0, sizeToWrite - size);
 }

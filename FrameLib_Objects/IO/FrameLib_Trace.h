@@ -9,8 +9,9 @@
 class FrameLib_Trace : public FrameLib_AudioOutput
 {
     // Paramter Enums and Info
-    
-    enum ParameterList { kLength, kUnits, kDelay };
+
+    enum ParameterList { kMode, kLength, kUnits, kPosition, kDelay };
+    enum Modes { kFull, kFirst, kLast, kSpecified, kRatio };
     enum Units { kMS, kSeconds, kSamples };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
@@ -48,6 +49,7 @@ private:
     std::vector<bool> mFlags;
     double mLastValue;
     unsigned long mCounter;
+    FrameLib_TimeFormat mTimeMultiplier;
     
     static ParameterInfo sParamInfo;
 };
