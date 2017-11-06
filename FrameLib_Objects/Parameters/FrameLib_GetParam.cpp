@@ -9,7 +9,7 @@ FrameLib_GetParam::FrameLib_GetParam(FrameLib_Context context, FrameLib_Paramete
     // Setup IO
 
     setInputMode(0, false, false, false);
-    setOutputMode(0, kFrameTagged);
+    setOutputType(0, kFrameTagged);
 }
 
 // Info
