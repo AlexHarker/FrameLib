@@ -95,7 +95,7 @@
 					"maxclass" : "scope~",
 					"numinlets" : 2,
 					"numoutlets" : 0,
-					"patching_rect" : [ 981.0, 518.0, 130.0, 130.0 ],
+					"patching_rect" : [ 975.25, 522.0, 130.0, 130.0 ],
 					"range" : [ -3.0, 3.0 ],
 					"style" : ""
 				}
@@ -176,9 +176,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 798.0, 377.0, 102.0, 22.0 ],
+					"patching_rect" : [ 798.0, 377.0, 68.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.setparam~ size"
+					"text" : "fl.tag~ size"
 				}
 
 			}
@@ -202,9 +202,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 654.0, 344.0, 119.0, 22.0 ],
+					"patching_rect" : [ 654.0, 344.0, 86.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.setparam~ interval"
+					"text" : "fl.tag~ interval"
 				}
 
 			}
@@ -749,7 +749,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.channel~.mxo",
+				"name" : "fl.streamid~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -761,7 +761,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.setparam~.mxo",
+				"name" : "fl.tag~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

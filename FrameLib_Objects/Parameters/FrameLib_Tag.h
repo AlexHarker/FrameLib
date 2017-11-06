@@ -1,16 +1,16 @@
 
-#ifndef FRAMELIB_FILTERPARAM_H
-#define FRAMELIB_FILTERPARAM_H
+#ifndef FRAMELIB_TAG_H
+#define FRAMELIB_TAG_H
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_FilterParam : public FrameLib_Processor
+class FrameLib_Tag : public FrameLib_Processor
 {
-    const static int maxNumFilters = 10;
+    const static int maxNumIns = 10;
     
     // Parameter Enums and Info
 
-    enum ParameterList { kNumFilters, kFilters };
+    enum ParameterList { kNumIns, kNames };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
@@ -18,7 +18,7 @@ public:
     
     // Constructor
     
-    FrameLib_FilterParam(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_Tag(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
     // Info
     
@@ -28,17 +28,13 @@ public:
     
 private:
     
-    // Filter
-    
-    bool filter(FrameLib_Parameters::Serial::Iterator &it);
-    
     // Process
     
     void process();
     
     // Data
     
-    unsigned long mNumFilters;
+    unsigned long mNumIns;
     
     static ParameterInfo sParamInfo;
 };

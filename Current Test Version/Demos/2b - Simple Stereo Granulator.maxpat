@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 207.0, 85.0, 1157.0, 840.0 ],
+		"rect" : [ 207.0, 85.0, 811.0, 840.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -69,9 +69,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 663.0, 144.0, 101.0, 22.0 ],
+					"patching_rect" : [ 663.0, 144.0, 68.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.setparam~ freq"
+					"text" : "fl.tag~ freq"
 				}
 
 			}
@@ -111,9 +111,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 154.0, 144.0, 113.0, 22.0 ],
+					"patching_rect" : [ 154.0, 144.0, 80.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.setparam~ length"
+					"text" : "fl.tag~ length"
 				}
 
 			}
@@ -967,7 +967,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.setparam~.mxo",
+				"name" : "fl.tag~.mxo",
 				"type" : "iLaX"
 			}
  ],

@@ -1,9 +1,9 @@
 
-#include "FrameLib_FilterParam.h"
+#include "FrameLib_FilterTags.h"
 
 // Constructor
 
-FrameLib_FilterParam::FrameLib_FilterParam(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 1, 2)
+FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 1, 2)
 {
     char argStr[10];
     char nameStr[10];
@@ -23,7 +23,7 @@ FrameLib_FilterParam::FrameLib_FilterParam(FrameLib_Context context, FrameLib_Pa
         for (int i = 0; i < maxNumFilters; i++)
         {
             sprintf(argStr, "%d", i);
-            sprintf(nameStr, "param_%02d", i + 1);
+            sprintf(nameStr, "tag_%02d", i + 1);
             if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(nameStr) != serialisedParameters->end())
                 mParameters.set(kNumFilters, (long) (i + 1));
         }
@@ -35,7 +35,7 @@ FrameLib_FilterParam::FrameLib_FilterParam(FrameLib_Context context, FrameLib_Pa
     
     for (int i = 0; i < mNumFilters; i++)
     {
-        sprintf(nameStr, "param_%02d", i + 1);
+        sprintf(nameStr, "tag_%02d", i + 1);
         mParameters.addString(kFilters + i, nameStr, i);
         mParameters.setInstantiation();
     }
@@ -53,20 +53,21 @@ FrameLib_FilterParam::FrameLib_FilterParam(FrameLib_Context context, FrameLib_Pa
 
 // Info
 
-std::string FrameLib_FilterParam::objectInfo(bool verbose)
+std::string FrameLib_FilterTags::objectInfo(bool verbose)
 {
-    return formatInfo("Filters tagged frames into two parts given a number of parameter names: "
-                      "The filtered output contains any items from the input that match the given parameterparameter namesnames. "
+    return formatInfo("Filters tagged frames into two parts given a number of tags: "
+                      "The number of tags is specified either explicitly with a parameter or implicitly by which arguments or tag parameters are present. "
+                      "The filtered output contains any items from the input that match the given tags. "
                       "The residual output contains any items from the input that do not match the given tags",
-                      "Filters tagged frames into two parts given a number of parameter names.", verbose);
+                      "Filters tagged frames into two parts given a number of tags.", verbose);
 }
 
-std::string FrameLib_FilterParam::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_FilterTags::inputInfo(unsigned long idx, bool verbose)
 {
     return formatInfo("Parameter Input # - takes tagged input", "Parameter Input #", idx, verbose);
 }
 
-std::string FrameLib_FilterParam::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_FilterTags::outputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
         return formatInfo("Residual Output", "Residual Output", verbose);
@@ -76,16 +77,16 @@ std::string FrameLib_FilterParam::outputInfo(unsigned long idx, bool verbose)
 
 // Parameter Info
 
-FrameLib_FilterParam::ParameterInfo FrameLib_FilterParam::sParamInfo;
+FrameLib_FilterTags::ParameterInfo FrameLib_FilterTags::sParamInfo;
 
-FrameLib_FilterParam::ParameterInfo::ParameterInfo()
+FrameLib_FilterTags::ParameterInfo::ParameterInfo()
 {
     add("Sets the number of parameter names.");
 }
 
 // Filter
 
-bool FrameLib_FilterParam::filter(FrameLib_Parameters::Serial::Iterator &it)
+bool FrameLib_FilterTags::filter(FrameLib_Parameters::Serial::Iterator &it)
 {
     for (int i = 0; i < mNumFilters; i++)
         if (it.matchTag(mParameters.getString(kFilters + i)))
@@ -96,7 +97,7 @@ bool FrameLib_FilterParam::filter(FrameLib_Parameters::Serial::Iterator &it)
 
 // Process
 
-void FrameLib_FilterParam::process()
+void FrameLib_FilterTags::process()
 {
     unsigned long sizeOut1 = 0;
     unsigned long sizeOut2 = 0;

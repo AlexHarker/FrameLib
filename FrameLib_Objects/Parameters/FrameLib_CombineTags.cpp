@@ -1,9 +1,9 @@
 
-#include "FrameLib_CombineParam.h"
+#include "FrameLib_CombineTags.h"
 
 // Constructor
 
-FrameLib_CombineParam::FrameLib_CombineParam(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo)
+FrameLib_CombineTags::FrameLib_CombineTags(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo)
 {
     mParameters.addInt(kNumIns, "num_ins", 2, 0);
     mParameters.setClip(2, maxNumIns);
@@ -25,35 +25,35 @@ FrameLib_CombineParam::FrameLib_CombineParam(FrameLib_Context context, FrameLib_
 
 // Info
 
-std::string FrameLib_CombineParam::objectInfo(bool verbose)
+std::string FrameLib_CombineTags::objectInfo(bool verbose)
 {
-    return formatInfo("Separates vectors from a tagged frame according to parameter names: "
-                   "A variable number of outputs is available, each of which deal will a specific parameter name.",
-                   "Separates vectors from a tagged frame according to parameter names.", verbose);
+    return formatInfo("Combines a number of tagged input frames into a single tagged output frame: "
+                   "The number of inputs is set using a parameter.",
+                   "Combines a number of tagged input frames into a single tagged output frame.", verbose);
 }
 
-std::string FrameLib_CombineParam::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_CombineTags::inputInfo(unsigned long idx, bool verbose)
 {
     return formatInfo("Parameter Input # - takes tagged input", "Parameter Input #", idx, verbose);
 }
 
-std::string FrameLib_CombineParam::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_CombineTags::outputInfo(unsigned long idx, bool verbose)
 {
     return "Tagged Output Frames";
 }
 
 // Parameter Info
 
-FrameLib_CombineParam::ParameterInfo FrameLib_CombineParam::sParamInfo;
+FrameLib_CombineTags::ParameterInfo FrameLib_CombineTags::sParamInfo;
 
-FrameLib_CombineParam::ParameterInfo::ParameterInfo()
+FrameLib_CombineTags::ParameterInfo::ParameterInfo()
 {
-    add("Sets the number of object inputs.");
+    add("Sets the number of inputs.");
 }
 
 // Process
 
-void FrameLib_CombineParam::process()
+void FrameLib_CombineTags::process()
 {
     unsigned long sizeOut;
     

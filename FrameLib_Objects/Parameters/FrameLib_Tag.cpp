@@ -1,9 +1,9 @@
 
-#include "FrameLib_SetParam.h"
+#include "FrameLib_Tag.h"
 
 // Constructor
 
-FrameLib_SetParam::FrameLib_SetParam(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo)
+FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo)
 {
     char argStr[10];
     char nameStr[10];
@@ -23,7 +23,7 @@ FrameLib_SetParam::FrameLib_SetParam(FrameLib_Context context, FrameLib_Paramete
         for (int i = 0; i < maxNumIns; i++)
         {
             sprintf(argStr, "%d", i);
-            sprintf(nameStr, "param_%02d", i + 1);
+            sprintf(nameStr, "tag_%02d", i + 1);
             if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(nameStr) != serialisedParameters->end())
                 mParameters.set(kNumIns, (long) (i + 1));
         }
@@ -35,7 +35,7 @@ FrameLib_SetParam::FrameLib_SetParam(FrameLib_Context context, FrameLib_Paramete
     
     for (int i = 0; i < mNumIns; i++)
     {
-        sprintf(nameStr, "param_%02d", i + 1);
+        sprintf(nameStr, "tag_%02d", i + 1);
         mParameters.addString(kNames + i, nameStr, i);
         mParameters.setInstantiation();
     }
@@ -54,48 +54,49 @@ FrameLib_SetParam::FrameLib_SetParam(FrameLib_Context context, FrameLib_Paramete
 
 // Info
 
-std::string FrameLib_SetParam::objectInfo(bool verbose)
+std::string FrameLib_Tag::objectInfo(bool verbose)
 {
-    return formatInfo("Tags vectors with parameter names ready to send to the parameter input of an object: "
-                   "A variable number of inputs is available, each of which deal will a specific parameter name. "
-                   "The final input takes tagged input which is concatanated with other inputs after tagging. All inputs trigger output.",
-                   "Tags vectors with parameter names ready to send to the parameter input of an object.", verbose);
+    return formatInfo("Tags vectors with names ready to send to the parameter input of an object, or for routing purposes: "
+                      "A variable number of inputs is available, each of which deal will a specific tag. "
+                      "The number of inputs is specified either explicitly with a parameter or implicitly by which arguments or tag parameters are present."
+                      "The final input takes tagged input which is concatanated with other inputs after tagging. All inputs trigger output.",
+                      "Tags vectors with names ready to send to the parameter input of an object or for routing purposes.", verbose);
 }
 
-std::string FrameLib_SetParam::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Tag::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx == mNumIns)
         return formatInfo("Parameter Input - takes tagged input for concatenation with other inputs", "Parameter Input", verbose);
     else
-        return formatInfo("Input for Parameter #", "Input  for Parameter #", idx, verbose);
+        return formatInfo("Input for Tag #", "Input  for Tag #", idx, verbose);
 
 }
 
-std::string FrameLib_SetParam::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Tag::outputInfo(unsigned long idx, bool verbose)
 {
     return "Tagged Output Frames";
 }
 
 // Parameter Info
 
-FrameLib_SetParam::ParameterInfo FrameLib_SetParam::sParamInfo;
+FrameLib_Tag::ParameterInfo FrameLib_Tag::sParamInfo;
 
-FrameLib_SetParam::ParameterInfo::ParameterInfo()
+FrameLib_Tag::ParameterInfo::ParameterInfo()
 {
     char str[256];
     
-    add("Sets the number of object inputs (and hence the number of parameters.");
+    add("Sets the number of inputs (and hence the number of tags).");
     
     for (int i = 0; i < maxNumIns; i++)
     {
-        sprintf(str, "Sets the parameter name for input %d.", i + 1);
+        sprintf(str, "Sets the tag for input %d.", i + 1);
         add(str);
     }
 }
 
 // Process
 
-void FrameLib_SetParam::process()
+void FrameLib_Tag::process()
 {    
     unsigned long sizeIn, sizeOut;
     

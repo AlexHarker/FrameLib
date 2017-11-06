@@ -1093,8 +1093,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B84943B51B834AD00037DFF1"
-               BuildableName = "fl.setparam~.mxo"
-               BlueprintName = "fl.setparam~"
+               BuildableName = "fl.tag~.mxo"
+               BlueprintName = "fl.tag~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -1667,8 +1667,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8985E881FAB2F3C0006B7E0"
-               BuildableName = "fl.fromparam~.mxo"
-               BlueprintName = "fl.fromparam~"
+               BuildableName = "fl.untag~.mxo"
+               BlueprintName = "fl.untag~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -1681,8 +1681,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8985EA21FAB3F190006B7E0"
-               BuildableName = "fl.combineparam~.mxo"
-               BlueprintName = "fl.combineparam~"
+               BuildableName = "fl.combinetags~.mxo"
+               BlueprintName = "fl.combinetags~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -1695,8 +1695,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B822F41F1FAE15DD003DC4CB"
-               BuildableName = "fl.filterparam~.mxo"
-               BlueprintName = "fl.filterparam~"
+               BuildableName = "fl.filtertags~.mxo"
+               BlueprintName = "fl.filtertags~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

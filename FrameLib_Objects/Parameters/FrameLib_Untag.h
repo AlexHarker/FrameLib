@@ -1,16 +1,16 @@
 
-#ifndef FRAMELIB_COMBINEPARAM_H
-#define FRAMELIB_COMBINEPARAM_H
+#ifndef FRAMELIB_UNTAG_H
+#define FRAMELIB_UNTAG_H
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_CombineParam : public FrameLib_Processor
+class FrameLib_Untag : public FrameLib_Processor
 {
-    const static int maxNumIns = 10;
+    const static int maxNumOuts = 10;
     
     // Parameter Enums and Info
 
-    enum ParameterList { kNumIns };
+    enum ParameterList { kNumOuts, kNames };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
@@ -18,7 +18,7 @@ public:
     
     // Constructor
     
-    FrameLib_CombineParam(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_Untag(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
     // Info
     
@@ -34,7 +34,7 @@ private:
     
     // Data
     
-    unsigned long mNumIns;
+    unsigned long mNumOuts;
     
     static ParameterInfo sParamInfo;
 };

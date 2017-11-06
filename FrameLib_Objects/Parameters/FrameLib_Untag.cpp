@@ -1,9 +1,9 @@
 
-#include "FrameLib_FromParam.h"
+#include "FrameLib_Untag.h"
 
 // Constructor
 
-FrameLib_FromParam::FrameLib_FromParam(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo)
+FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo)
 {
     char argStr[10];
     char nameStr[10];
@@ -23,7 +23,7 @@ FrameLib_FromParam::FrameLib_FromParam(FrameLib_Context context, FrameLib_Parame
         for (int i = 0; i < maxNumOuts; i++)
         {
             sprintf(argStr, "%d", i);
-            sprintf(nameStr, "param_%02d", i + 1);
+            sprintf(nameStr, "tag_%02d", i + 1);
             if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(nameStr) != serialisedParameters->end())
                 mParameters.set(kNumOuts, (long) (i + 1));
         }
@@ -35,7 +35,7 @@ FrameLib_FromParam::FrameLib_FromParam(FrameLib_Context context, FrameLib_Parame
     
     for (int i = 0; i < mNumOuts; i++)
     {
-        sprintf(nameStr, "param_%02d", i + 1);
+        sprintf(nameStr, "tag_%02d", i + 1);
         mParameters.addString(kNames + i, nameStr, i);
         mParameters.setInstantiation();
     }
@@ -53,43 +53,44 @@ FrameLib_FromParam::FrameLib_FromParam(FrameLib_Context context, FrameLib_Parame
 
 // Info
 
-std::string FrameLib_FromParam::objectInfo(bool verbose)
+std::string FrameLib_Untag::objectInfo(bool verbose)
 {
-    return formatInfo("Separates vectors from a tagged frame according to parameter names: "
-                   "A variable number of outputs is available, each of which deal will a specific parameter name.",
-                   "Separates vectors from a tagged frame according to parameter names.", verbose);
+    return formatInfo("Separates vectors from a tagged frame according to a given set of tags: "
+                      "A variable number of outputs is available, each of which deal will a specific tag. "
+                      "The number of outputs is specified either explicitly with a parameter or implicitly by which arguments or tag parameters are present.",
+                      "Separates vectors from a tagged frame according to a given set of names.", verbose);
 }
 
-std::string FrameLib_FromParam::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Untag::inputInfo(unsigned long idx, bool verbose)
 {
     return formatInfo("Parameter Input - takes tagged input", "Parameter Input", verbose);
 }
 
-std::string FrameLib_FromParam::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Untag::outputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Vector Ouput #", "Vector Ouput #", idx, verbose);
+    return formatInfo("Vector Output #", "Vector Output #", idx, verbose);
 }
 
 // Parameter Info
 
-FrameLib_FromParam::ParameterInfo FrameLib_FromParam::sParamInfo;
+FrameLib_Untag::ParameterInfo FrameLib_Untag::sParamInfo;
 
-FrameLib_FromParam::ParameterInfo::ParameterInfo()
+FrameLib_Untag::ParameterInfo::ParameterInfo()
 {
     char str[256];
     
-    add("Sets the number of object outputs (and hence the number of parameters.");
+    add("Sets the number of outputs (and hence the number of tags.");
     
     for (int i = 0; i < maxNumOuts; i++)
     {
-        sprintf(str, "Sets the parameter name for output %d.", i + 1);
+        sprintf(str, "Sets the tag related to output %d.", i + 1);
         add(str);
     }
 }
 
 // Process
 
-void FrameLib_FromParam::process()
+void FrameLib_Untag::process()
 {    
     unsigned long sizeOut;
     

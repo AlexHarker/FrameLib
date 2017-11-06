@@ -170,9 +170,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 615.5, 181.0, 114.0, 22.0 ],
+					"patching_rect" : [ 615.5, 181.0, 80.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.setparam~ output"
+					"text" : "fl.tag~ output"
 				}
 
 			}
@@ -598,7 +598,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.setparam~.mxo",
+				"name" : "fl.tag~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

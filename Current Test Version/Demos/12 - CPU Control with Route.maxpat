@@ -143,9 +143,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 533.0, 180.0, 106.0, 22.0 ],
+					"patching_rect" : [ 533.0, 180.0, 73.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.setparam~ input"
+					"text" : "fl.tag~ input"
 				}
 
 			}
@@ -219,9 +219,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 352.0, 180.0, 114.0, 22.0 ],
+					"patching_rect" : [ 352.0, 180.0, 80.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.setparam~ output"
+					"text" : "fl.tag~ output"
 				}
 
 			}
@@ -545,7 +545,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.setparam~.mxo",
+				"name" : "fl.tag~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
