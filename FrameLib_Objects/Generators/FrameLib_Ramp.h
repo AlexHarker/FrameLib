@@ -8,9 +8,10 @@ class FrameLib_Ramp : public FrameLib_Processor
 {
     // Parameter Enums and Info
     
-    enum ParameterList { kMode, kLength, kScale };
+    enum ParameterList { kMode, kLength, kUnits, kScale };
     enum Modes { kRequestedLength, kInLength };
-    enum Scales { kSamples, kMS, kSeconds, kNormalised };
+    enum Units { kSamples, kMS, kSeconds };
+    enum Scales { kScaleSamples, kScaleMS, kScaleSeconds, kScaleNormalised };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
@@ -28,6 +29,10 @@ public:
 
 private:
     
+    // Helpers
+    
+    unsigned long getLength();
+
     // Process
     
     void process();

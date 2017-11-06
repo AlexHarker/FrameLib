@@ -8,8 +8,14 @@ FrameLib_Random::FrameLib_Random(FrameLib_Context context, FrameLib_Parameters::
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kRequestedLength, "requested");
     mParameters.addEnumItem(kInLength, "input");
+    
     mParameters.addInt(kLength, "length", 1, 1);
     mParameters.setMin(0);
+    
+    mParameters.addEnum(kUnits, "units", 2);
+    mParameters.addEnumItem(kSamples, "samples");
+    mParameters.addEnumItem(kMS, "ms");
+    mParameters.addEnumItem(kSeconds, "seconds");
     
     mParameters.set(serialisedParameters);
         
@@ -47,7 +53,24 @@ FrameLib_Random::ParameterInfo::ParameterInfo()
     add("Controls how the output length is determined: "
         "requested - the output frame size is set by the length parameter. "
         "input - the output frame size will match the input size.");
-    add("Sets the length of the output when the mode is set to requested.");
+    add("Sets the length of the output when the mode is set to requested. Set in the units specified by the units parameter.");
+    add("Sets the units for specified output lengths.");
+}
+
+// Helpers
+
+unsigned long FrameLib_Random::getLength()
+{
+    double time = mParameters.getValue(kLength);
+    
+    switch (static_cast<Units>(mParameters.getInt(kUnits)))
+    {
+        case kSamples:  break;
+        case kMS:       time *= mSamplingRate / 1000.0;     break;
+        case kSeconds:  time *= mSamplingRate;              break;
+    }
+    
+    return round(time);
 }
 
 // Process
@@ -58,7 +81,7 @@ void FrameLib_Random::process()
     
     getInput(0, &sizeIn);
     
-    sizeOut = ((Modes) mParameters.getInt(kMode)) == kInLength ? sizeIn : mParameters.getInt(kLength);
+    sizeOut = ((Modes) mParameters.getInt(kMode)) == kInLength ? sizeIn : getLength();
     requestOutputSize(0, sizeOut);
     allocateOutputs();
     
