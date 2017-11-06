@@ -5,9 +5,7 @@
 
 FrameLib_StreamID::FrameLib_StreamID(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
 : FrameLib_Processor(context, owner, NULL, 1, 1), mStream(1)
-{
-    mParameters.set(serialisedParameters);
-}
+{}
 
 // Info
 

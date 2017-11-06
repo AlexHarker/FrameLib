@@ -8,6 +8,7 @@
 FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, long num) : FrameLib_Processor(context, owner, NULL, 2, 1), mValveNumber(num)
 {
     mParameters.addInt(kActiveValve, "output", 0);
+    
     mParameters.set(serialisedParameters);
     
     mActiveValve = floor(mParameters.getValue(kActiveValve) - 1.0);
@@ -43,6 +44,7 @@ FrameLib_Route::FrameLib_Route(FrameLib_Context context, FrameLib_Parameters::Se
     mParameters.addDouble(kNumOuts, "num_outs", 2, 0);
     mParameters.setClip(2, 32);
     mParameters.setInstantiation();
+    
     mParameters.addInt(kActiveOut, "output", 0, 1);
     
     mParameters.set(serialisedParameters);
