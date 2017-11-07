@@ -4,8 +4,6 @@
 
 #include "FrameLib_DSP.h"
 
-// FIX - Threadsafety (is threadsafe for now because is scoped within same thread for now)
-
 class FrameLib_Recall : public FrameLib_Processor
 {
     // Parameter Enums and Info

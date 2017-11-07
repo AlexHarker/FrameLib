@@ -2,7 +2,6 @@
 #include "FrameLib_Source.h"
 
 // FIX - source is only sample accurate (not subsample) - add a function to interpolate if neceesary
-// FIX - add delay for alignment purposes
 
 // Constructor
 
