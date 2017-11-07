@@ -157,7 +157,7 @@ public:
         
         unsigned long nStreams = 1;
         
-        if (argc && (getStreamCount(argv) > 0))
+        if (argc && getStreamCount(argv))
         {
             nStreams = getStreamCount(argv);
             argv++;
@@ -728,16 +728,21 @@ private:
     
     // Parameter Parsing
     
+    unsigned long safeCount(char *str, unsigned long maxCount)
+    {
+        unsigned long number = std::max(1, atoi(str));
+        return std::min(maxCount, number);
+    }
+    
     long getStreamCount(t_atom *a)
     {
         if (atom_gettype(a) == A_SYM)
         {
             t_symbol *sym = atom_getsym(a);
             
-            // FIX - need to check better here!
             
             if (strlen(sym->s_name) > 1 && sym->s_name[0] == '=')
-                return atoi(sym->s_name + 1);
+                return safeCount(sym->s_name + 1, 1024);
         }
         
         return 0;
@@ -861,7 +866,7 @@ private:
     
     unsigned long inputNumber(t_symbol *sym)
     {
-        return atoi(sym->s_name + 1) - 1;
+        return safeCount(sym->s_name + 1, 16384) - 1;
     }
     
     void parseInputs(long argc, t_atom *argv)
