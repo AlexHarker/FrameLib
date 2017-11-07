@@ -29,7 +29,7 @@
 
 \linespread{1.1} % Line spacing
 
-\newcommand{\version}{Alpha 0.9}
+\newcommand{\version}{Alpha 1.0}
 % Set up the header and footer
 \pagestyle{fancy}
 \lhead{Alex Harker} % Top left header
@@ -53,6 +53,8 @@
 %----------------------------------------------------------------------------------------
 
 \newcommand{\flobject}[1]{\textit{fl.#1$\sim$}}
+\newcommand{\flobjectb}[1]{\textbf{\flobject{#1}}}
+
 \newcommand{\fake}[1]{\leavevmode\hphantom{#1}}
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -139,14 +141,15 @@ Each object maintains its own set of parameters which can be detailed within Max
 
 The inputs and outputs to FrameLib objects are `frames'. Frames can have two basic types in FrameLib. The first is the most common and consists of a vector of numeric values (all doubles in underlying type). The length of this vector can take any length from zero upwards (so scalars are simply a single valued frame). The frame with no values (zero length) is used as a trigger message, and has useful function (similar to a bang message in max). 
 
-The second type of frame is a `tagged' frame. This is used exclusively to transfer/set parameter values in FrameLib. A single frame can contain any number of tags (parameter names) followed by their values (of whatever type). This allows you to set multiple parameters in a single frame. Internally FrameLib has functionality for concatenating tagged frames, so it is never necessary for an object to have more than one parameter update input.  
+The second type of frame is a `tagged' frame. This is used primarily to transfer/set parameter values in FrameLib. A single frame can contain any number of tags (parameter names) followed by their values (of whatever type). This allows you to set multiple parameters in a single frame. Internally FrameLib has functionality for concatenating tagged frames, so it is never necessary for an object to have more than one parameter update input.  It's also possible to use tagged frames to concatenate information into a form which is easier to deal with until a point in the patch where one wishes to split the information apart again.
 
-\subsection{Multi-channel Expansion}
+\subsection{Multistream Expansion}
 
-Technically, the objects hosted in Max objects carry not single frames, but multichannel connections each of which can consist of an individual stream of frames running at an independent rate and size. This is done to enable multi-resolution or multi-channel processing through a single network. If you wish you can ignore this functionality and treat each object like the inputs and outputs deal with a single stream of frames only. However, if you do wish to take advantage of this you can use the \flobject{pack} object to pack frame streams together, and \flobject{unpack} object to split them into single channel streams again. Other objects will resolve multichannel inputs by internally expanding to the maximum channel count. Where there is a mismatch between different inputs the lower channel count streams will be read modulo against the maximum count (so, for example, you can take a 16-channel input on the left of a \flobject{times} object and connect a single channel input to the right-hand side. The result will be a 16-channel output that consists of the 16 left-hand inputs all multiplied by the same right-hand stream).
+Technically, the objects hosted in Max objects carry not single frames, but multistream connections each of which can consist of an individual stream of frames running at an independent rate and size. This is done to enable multi-resolution or multi-channel processing through a single network. If you wish you can ignore this functionality and treat each object like the inputs and outputs deal with a single stream of frames only. However, if you do wish to take advantage of this you can use the \flobject{pack} object to pack frame streams together, and \flobject{unpack} object to split them into single channel streams again. Other objects will resolve multistream inputs by internally expanding to the maximum stream count. Where there is a mismatch between different inputs the lower stream count inputs will be read modulo against the maximum count (so, for example, you can take a 16-channel input on the left of a \flobject{times} object and connect a single channel input to the right-hand side. The result will be a 16-channel output that consists of the 16 left-hand inputs all multiplied by the same right-hand stream).
 
-You can specify the minimum number of channels/streams regardless of the inputs by making the first argument to the object something like this:
-\-\hspace{4ex} \textit{$\sim$N} where N is the minimum number of channels/streams.\\ 
+You can specify the minimum number of streams regardless of the inputs by making the first argument to the object something like this:
+
+\-\hspace{4ex} \textit{=N} where N is the minimum number of streams.\\ 
 For audio objects this will determine how many copies of the audio ins/outs you see, so it can be used for multichannel IO using a single max object.
 \pagebreak
 %----------------------------------------------------------------------------------------
@@ -233,19 +236,21 @@ A full object listing follows, grouped by function. Currently this is the best q
 \section{Current Object List}
 \vspace{0.1in}
 
+Objects in bold are yet to be finalised by review.
+
 \renewcommand{\arraystretch}{1.2}
 
 \subsection{Schedulers}
-\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
-\flobject{audiotrigger} &
-\flobject{perblock} &
-\flobject{future} &
-\flobject{interval} \\
-\flobject{once} &
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobjectb{audiotrigger} &
+\flobjectb{perblock} &
+\flobjectb{future} &
+\flobjectb{interval} \\
+\flobjectb{once} & 
 \end{tabular}
 
 \subsection{Unary}
-\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
 \flobject{abs} &
 \flobject{acosh} &
 \flobject{acos} &
@@ -276,7 +281,7 @@ A full object listing follows, grouped by function. Currently this is the best q
 \end{tabular}
 
 \subsection{Binary}
-\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
 \flobject{and} &
 \flobject{atan2} &
 \flobject{copysign} &
@@ -300,112 +305,125 @@ A full object listing follows, grouped by function. Currently this is the best q
 \end{tabular}
 
 \subsection{Vector}
-\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
-\flobject{centroid} &
-\flobject{chop} &
-\flobject{crest} &
-\flobject{flatness} \\
-\flobject{geometricmean} &
-\flobject{join} &
-\flobject{kurtosis} &
-\flobject{length} \\
-\flobject{mean} &
-\flobject{medianfilter} &
-\flobject{pad} &
-\flobject{peaks} \\
-\flobject{percentile} &
-\flobject{product} &
-\flobject{rms} &
-\flobject{shift} \\
-\flobject{skewness} &
-\flobject{sort} &
-\flobject{split} &
-\flobject{spread} \\
-\flobject{standarddeviation} &
-\flobject{subframe} &
-\flobject{sum} &
-\flobject{vmax} \\ 
-\flobject{vmin}
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobjectb{centroid} &
+\flobjectb{chop} &
+\flobjectb{crest} &
+\flobjectb{flatness} \\
+\flobjectb{geometricmean} &
+\flobjectb{join} &
+\flobjectb{kurtosis} &
+\flobjectb{length} \\
+\flobjectb{mean} &
+\flobjectb{medianfilter} &
+\flobjectb{nonzero} &
+\flobjectb{pad} \\
+\flobjectb{peaks} &
+\flobjectb{percentile} &
+\flobjectb{product} &
+\flobjectb{rms} \\
+\flobjectb{shift} &
+\flobjectb{skewness} &
+\flobjectb{sort} &
+\flobjectb{split} \\
+\flobjectb{spread} &
+\flobjectb{standarddeviation} &
+\flobjectb{subframe} &
+\flobjectb{sum} \\
+\flobjectb{vmax} & 
+\flobjectb{vmin}
 \end{tabular}
 
 \subsection{Generators}
-\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
-\flobject{count} &
-\flobject{random}
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobject{ramp} &
+\flobject{random} &
+\flobject{uniform}
 \end{tabular}
 
 \subsection{IO}
-\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
 \flobject{sink} &
 \flobject{source} &
 \flobject{trace}
 \end{tabular}
 
 \subsection{Mapping}
-\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
-\flobject{constant} &
-\flobject{convert} &
-\flobject{lookup} &
-\flobject{map} \\
-\flobject{samplerate}
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobjectb{constant} &
+\flobjectb{convert} &
+\flobjectb{lookup} &
+\flobjectb{map} \\
+\flobjectb{samplerate}
 \end{tabular}
 
 \subsection{Max Specific}
-\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
-\flobject{frommax} &
-\flobject{tomax} &
-\flobject{read}
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobjectb{frommax} &
+\flobjectb{tomax} &
+\flobjectb{read}
 \end{tabular}
 
 \subsection{Parameters}
-\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
-\flobject{setparam}
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobject{combinetags} &
+\flobject{filtertags} &
+\flobjectb{getparam} &
+\flobject{tag} \\
+\flobject{untag} &
 \end{tabular}
 
 \subsection{Routing}
-\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
-\flobject{channel} &
-\flobject{pack} &
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobject{dispatch} &
+\flobject{route} &
 \flobject{select} &
-\flobject{route} \\
+\end{tabular}
+
+\subsection{Streaming}
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobject{pack} &
+\flobject{streamid} &
 \flobject{unpack}
 \end{tabular}
 
 \subsection{Spectral}
-\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
-\flobject{convolve} &
-\flobject{fft} &
-\flobject{ifft} &
-\flobject{mutlitaper} \\
-\flobject{window}
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobjectb{convolve} &
+\flobjectb{fft} &
+\flobjectb{ifft} &
+\flobjectb{mutlitaper} \\
+\flobjectb{window}
 \end{tabular}
 
 \subsection{Storage}
-\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
 \flobject{recall} &
 \flobject{register} &
-\flobject{spatial} &
 \flobject{store} \\
 \end{tabular}
 
 \subsection{Timing}
-\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
-\flobject{now}
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobject{now} &
+\flobjectb{ticks} &
+\flobject{timer} &
+\flobject{timedelta} \\
 \end{tabular}
 
 \subsection{Filters}
-\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
-\flobject{0dfsvf} &
-\flobject{onepolezero} &
-\flobject{onepole} &
-\flobject{resonant} \\
-\flobject{sallenkey}
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobjectb{0dfsvf} &
+\flobjectb{onepolezero} &
+\flobjectb{onepole} &
+\flobjectb{resonant} \\
+\flobjectb{sallenkey}
 \end{tabular}
 
 \subsection{Spatial}
-\begin{tabular}{L{3.7cm} L {3.7cm} L {3.7cm} L {3.7cm} }
-\flobject{coordinatesystem} &
-\flobject{spatial}
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobjectb{coordinatesystem} &
+\flobjectb{spatial}
 \end{tabular}
 
 \pagebreak
@@ -520,4 +538,68 @@ A full object listing follows, grouped by function. Currently this is the best q
 \item Added new object \flobject{route}.
 \item Added new demos for the \flobject{route} object.
 \end{itemize}
+
+\subsection{Changes in Alpha 1.0}
+\vspace{0.1in}
+
+\subsubsection{Bug fixes}
+
+\begin{itemize}
+\item {\#4} Probing on audio outs now works.
+\item {\#41 and \#43} Added a parameter input to \flobject{read} and \flobject{subframe} (as well as many other objects).
+\item {\#42} \flobject{modulo} now works correctly.
+\item {\#45} Fixed crash with \flobject{store}.
+\item \flobject{convolve} output is now scaled correctly.
+\item Crash fixes for the connection system and further reworking (dependencies now handled by Max API).
+\item Corrected mode setting for \flobject{lookup}.
+\item Improved documentation for the \flobject{atan2} object.
+\end{itemize}
+
+\subsubsection{New objects}
+
+\begin{itemize}
+\item {\#34} New timing objects \flobject{timer}, flobject{timedelta} and \flobject{ticks} (by Francesco Cameli).
+\item {\#35} New parameter objects \flobject{untag}, \flobject{filtertags}, \flobject{combinetags} and \flobject{getparam}.
+\item {\#36} New routing object \flobject{dispatch}.
+\item New generator object \flobject{uniform}.
+\item New vector object \flobject{nonzero} (by Francesco Cameli).
+\end{itemize}
+
+\subsubsection{Renamed objects}
+
+\begin{itemize}
+\item Object \flobject{count} is renamed as \flobject{ramp}.
+\item Object \flobject{channel} is renamed as \flobject{streamid}.
+\item Object \flobject{setparam} is renamed as \flobject{tag}.
+\end{itemize}
+
+\subsubsection{New object features}
+
+\begin{itemize}
+\item \flobject{ramp} supports different output scalings for ease.
+\item \flobject{trace} now supports different modes for which sample(s) to trace.
+\item All IO objects support setting the delay at input/output.
+\end{itemize}
+
+\subsubsection{Parameter changes}
+
+\begin{itemize}
+\item Parameter naming consistent for setting number of ins/out ("num\_ins" and "num\_outs").
+\item Parameter name is always "length" for output length - internal buffers use "buffer\_size".
+\item IO objects have revised parameters/arguments and support units for length.
+\item Generator objects have revised parameters/arguments and support units for length.
+\item {\#35} Parameter objects now don't need an argument for the number of tags.
+\item {\#36} Routing objects now index inputs/outputs from 1 (for consistency) and default to off/non-routed.
+\item Storage objects can now deal with both vectors and tagged frames correctly.
+\end{itemize}
+
+\subsubsection{Other changes}
+
+\begin{itemize}
+\item {\#32} Multi-stream expansion syntax changed to =.
+\item Binary size reduced.
+\item All demos updated to reflect object changes.
+\item New demos added.
+\end{itemize}
+
 \end{document}
