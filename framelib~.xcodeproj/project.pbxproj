@@ -163,7 +163,7 @@
 		B85BDDCE19F1C22400A349C5 /* fl.0dfsvf~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85BDDBD19F1C1FF00A349C5 /* fl.0dfsvf~.cpp */; };
 		B85C8FDB1E605B2E004D7D40 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B85C8FDC1E605B2E004D7D40 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B85C8FE41E605B44004D7D40 /* fl.mutlitaper~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85C8FCD1E605B28004D7D40 /* fl.mutlitaper~.cpp */; };
+		B85C8FE41E605B44004D7D40 /* fl.multitaper~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85C8FCD1E605B28004D7D40 /* fl.multitaper~.cpp */; };
 		B85C8FE61E605E5D004D7D40 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879419C8F58C00B1D0CD /* Accelerate.framework */; };
 		B861EBAB19CA3E8700B89477 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B861EBBC19CA3E9500B89477 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
@@ -1629,7 +1629,7 @@
 		B85BDDBD19F1C1FF00A349C5 /* fl.0dfsvf~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.0dfsvf~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B85BDDCC19F1C21400A349C5 /* fl.0dfsvf~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.0dfsvf~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B85C8FCC1E604F19004D7D40 /* FrameLib_Multitaper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Multitaper.h; sourceTree = "<group>"; };
-		B85C8FCD1E605B28004D7D40 /* fl.mutlitaper~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.mutlitaper~.cpp"; sourceTree = "<group>"; };
+		B85C8FCD1E605B28004D7D40 /* fl.multitaper~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.multitaper~.cpp"; sourceTree = "<group>"; };
 		B85C8FE21E605B2E004D7D40 /* fl.multitaper~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.multitaper~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B861EB9F19CA2DCE00B89477 /* FrameLib_Sort_Functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Sort_Functions.h; sourceTree = "<group>"; };
 		B861EBA019CA389E00B89477 /* FrameLib_Sort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Sort.h; sourceTree = "<group>"; };
@@ -3564,7 +3564,7 @@
 			children = (
 				B846E62219F15A57005E9718 /* fl.window~.cpp */,
 				B8A4757219C9DD9F0043DC65 /* fl.convolve~.cpp */,
-				B85C8FCD1E605B28004D7D40 /* fl.mutlitaper~.cpp */,
+				B85C8FCD1E605B28004D7D40 /* fl.multitaper~.cpp */,
 				B87E877419C8EEEB00B1D0CD /* fl.fft~.cpp */,
 				B87E877719C8F45700B1D0CD /* fl.ifft~.cpp */,
 			);
@@ -9775,7 +9775,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8891CF61F2C9A3100C5C4F0 /* FrameLib_Multitaper.cpp in Sources */,
-				B85C8FE41E605B44004D7D40 /* fl.mutlitaper~.cpp in Sources */,
+				B85C8FE41E605B44004D7D40 /* fl.multitaper~.cpp in Sources */,
 				B854357C1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
