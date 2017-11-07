@@ -7,7 +7,7 @@
 
 // Info specialisations
 
-template<> const char *FrameLib_Vector<statLength>::getOpString()               { return "length"; }
+template<> const char *FrameLib_Vector<statLength, true>::getOpString()         { return "length"; }
 template<> const char *FrameLib_Vector<statMin>::getOpString()                  { return "minimum"; }
 template<> const char *FrameLib_Vector<statMax>::getOpString()                  { return "maximum"; }
 template<> const char *FrameLib_Vector<statSum>::getOpString()                  { return "sum"; }
@@ -24,7 +24,7 @@ template<> const char *FrameLib_Vector<statCrest>::getOpString()                
 
 // Type definitions
 
-typedef FrameLib_Vector<statLength>             FrameLib_Length;
+typedef FrameLib_Vector<statLength, true>       FrameLib_Length;
 typedef FrameLib_Vector<statMin>                FrameLib_VectorMin;
 typedef FrameLib_Vector<statMax>                FrameLib_VectorMax;
 typedef FrameLib_Vector<statSum>                FrameLib_Sum;

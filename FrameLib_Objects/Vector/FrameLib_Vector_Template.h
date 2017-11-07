@@ -4,7 +4,7 @@
 
 #include "FrameLib_DSP.h"
 
-template <double func(double *, unsigned long) > class FrameLib_Vector : public FrameLib_Processor
+template <double func(double *, unsigned long), bool calcZeroLength = false> class FrameLib_Vector : public FrameLib_Processor
 {
     
 public:
@@ -35,7 +35,10 @@ protected:
         
         // FIX - what is the operation if the input is empty?
         
-        requestOutputSize(0, sizeIn ? 1 : 0);
+        if (calcZeroLength)
+            requestOutputSize(0, 1);
+        else
+            requestOutputSize(0, sizeIn ? 1 : 0);
         allocateOutputs();
         
         double *output = getOutput(0, &sizeOut);
