@@ -1,6 +1,6 @@
 
-#ifndef FRAMELIB_Ticks_H
-#define FRAMELIB_Ticks_H
+#ifndef FRAMELIB_TICKS_H
+#define FRAMELIB_TICKS_H
 
 #include "FrameLib_DSP.h"
 
