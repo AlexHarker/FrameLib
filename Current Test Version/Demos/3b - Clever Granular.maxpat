@@ -43,9 +43,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 31.0, 521.0, 32.0, 22.0 ],
+					"patching_rect" : [ 31.0, 521.0, 114.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.*~"
+					"text" : "fl.*~ /trigger_ins left"
 				}
 
 			}
@@ -877,7 +877,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-42", 1 ],
-					"midpoints" : [ 558.5, 516.5, 53.5, 516.5 ],
+					"midpoints" : [ 558.5, 516.5, 135.5, 516.5 ],
 					"source" : [ "obj-41", 0 ]
 				}
 
