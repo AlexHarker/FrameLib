@@ -76,6 +76,6 @@ void FrameLib_Timer::process()
         unsigned long size;
         double *output = getOutput(0, &size);
         
-        output[0] = (getCurrentTime() - previousTime * mMultiplier);
+        output[0] = ((getCurrentTime() - previousTime) * mMultiplier);
     }
 }

@@ -6,14 +6,14 @@ FrameLib_Ticks::FrameLib_Ticks(FrameLib_Context context, FrameLib_Parameters::Se
     mParameters.addInt(kLimit, "limit", 10, 0);
     mParameters.setMin(0);
     
-    mParameters.addInt(kSetValue, "value", 0, 0);
+    mParameters.addInt(kSetValue, "value", 0, 1);
     mParameters.setMin(0);
     
-    mParameters.addEnum(kLimitMode, "limitmode", 1);
+    mParameters.addEnum(kLimitMode, "limit_mode", 2);
     mParameters.addEnumItem(kProgress, "progress");
     mParameters.addEnumItem(kRestart, "restart");
     
-    mParameters.addEnum(kRunMode, "runmode", 2);
+    mParameters.addEnum(kRunMode, "run_mode", 3);
     mParameters.addEnumItem(kRun, "run");
     mParameters.addEnumItem(kPause, "pause");
     mParameters.addEnumItem(kStop, "stop");
