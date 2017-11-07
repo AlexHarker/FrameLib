@@ -15,7 +15,7 @@ template<> const char *FrameLib_BinaryOp<std::minus<double> >::getDescriptionStr
 { return "Subtracts the right input frame values from the left input frame values"; }
 
 template<> const char *FrameLib_BinaryOp<std::multiplies<double> >::getDescriptionString()
-{ return "Multiplies values frames in the two inputframes"; }
+{ return "Multiplies values in the two input frames"; }
 
 template<> const char *FrameLib_BinaryOp<std::divides<double> >::getDescriptionString()
 { return "Divides the left input frame values by the right input frame values"; }
