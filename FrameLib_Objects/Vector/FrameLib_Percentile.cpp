@@ -71,7 +71,7 @@ void FrameLib_Percentile::process()
         unsigned long idx = position;
         double fract = position - idx;
         
-        output[0] = input[idx] + fract * (input[idx + 1] - input[idx]);
+        output[0] = temp[idx] + fract * (temp[idx + 1] - temp[idx]);
     }
     
     dealloc(temp);
