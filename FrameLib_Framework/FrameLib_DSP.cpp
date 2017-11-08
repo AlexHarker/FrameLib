@@ -305,13 +305,10 @@ void FrameLib_DSP::prepareCopyInputToOutput(unsigned long inIdx, unsigned long o
     
     setCurrentOutputType(outIdx, requestType);
     
-    if (mInputs[inIdx].mObject)
-    {
-        if (requestType == kFrameNormal)
-            getInput(inIdx, &size);
-        else
-            size = getInput(inIdx)->size();
-    }
+    if (requestType == kFrameNormal)
+        getInput(inIdx, &size);
+    else
+        size = getInput(inIdx)->size();
     
     requestOutputSize(outIdx, size);
 }
