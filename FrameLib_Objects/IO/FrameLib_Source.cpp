@@ -7,6 +7,8 @@
 
 FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioInput(context, owner, &sParamInfo, 2, 1, 1)
 {
+    // FIX - defaults when the untis are in samples!
+    
     mParameters.addDouble(kBufferSize, "buffer_size", 16384, 0);
     mParameters.setMin(0.0);
     mParameters.setInstantiation();
