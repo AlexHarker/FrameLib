@@ -29,7 +29,7 @@ public:
     std::string inputInfo(unsigned long idx, bool verbose)      { return "Input"; }
     std::string outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
 
-protected:
+private:
     
     // Process
     

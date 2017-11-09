@@ -75,7 +75,7 @@ public:
     std::string inputInfo(unsigned long idx, bool verbose)      { return idx ? "Right Operand" : "Left Operand"; }
     std::string outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
     
-protected:
+private:
     
     // Process
     
