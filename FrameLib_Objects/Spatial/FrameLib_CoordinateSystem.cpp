@@ -68,7 +68,7 @@ FrameLib_CoordinateSystem::Polar FrameLib_CoordinateSystem::convertToPolar(Carte
 void FrameLib_CoordinateSystem::process()
 {
     unsigned long sizeIn, sizeOut;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     requestOutputSize(0, 3);
     allocateOutputs();

@@ -67,7 +67,7 @@ void FrameLib_Peaks::process()
     unsigned long sizeIn, sizeOut1, sizeOut2, sizeOut3;
     unsigned long nPeaks = 0;
     
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     if (!sizeIn)
         return;

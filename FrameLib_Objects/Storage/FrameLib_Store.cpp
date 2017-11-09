@@ -100,7 +100,7 @@ void FrameLib_Store::process()
     
     if (type == kFrameNormal)
     {
-        double *input = getInput(0, &size);
+        const double *input = getInput(0, &size);
         double *storage = access.getVector();
         copyVector(storage, input, std::min(access.getVectorSize(), size));
     }

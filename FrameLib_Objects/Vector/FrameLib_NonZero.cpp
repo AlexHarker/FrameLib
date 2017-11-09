@@ -39,7 +39,7 @@ void FrameLib_NonZero::process()
     unsigned long sizeIn;
     unsigned long sizeOut = 0;
     
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     // Having more memory allocated just not to loop two times to get and set the size.
     

@@ -108,7 +108,7 @@ void FrameLib_Tag::process()
         sizeOut += FrameLib_Parameters::Serial::calcSize(mParameters.getString(kNames + i), sizeIn);
     }
     
-    FrameLib_Parameters::Serial *preTagged = getInput(mNumIns);
+    const FrameLib_Parameters::Serial *preTagged = getInput(mNumIns);
     sizeOut += FrameLib_Parameters::Serial::calcSize(preTagged);
     
     requestOutputSize(0, sizeOut);
@@ -120,7 +120,7 @@ void FrameLib_Tag::process()
     {
         for (unsigned long i = 0; i < mNumIns; i++)
         {
-            double *input = getInput(i, &sizeIn);
+            const double *input = getInput(i, &sizeIn);
             output->write(mParameters.getString(kNames + i), input, sizeIn);
         }
         

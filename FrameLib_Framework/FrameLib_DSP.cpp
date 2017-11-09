@@ -258,7 +258,7 @@ bool FrameLib_DSP::allocateOutputs()
 
 // Get Inputs and Outputs
 
-double *FrameLib_DSP::getInput(unsigned long idx, size_t *size) const
+const double *FrameLib_DSP::getInput(unsigned long idx, size_t *size) const
 {
     if (mInputs[idx].mObject)
         return mInputs[idx].mObject->getOutput(mInputs[idx].mIndex, size);
@@ -267,7 +267,7 @@ double *FrameLib_DSP::getInput(unsigned long idx, size_t *size) const
     return mInputs[idx].mFixedInput;
 }
 
-FrameLib_Parameters::Serial *FrameLib_DSP::getInput(unsigned long idx) const
+const FrameLib_Parameters::Serial *FrameLib_DSP::getInput(unsigned long idx) const
 {
     if (mInputs[idx].mObject)
         return mInputs[idx].mObject->getOutput(mInputs[idx].mIndex);
@@ -319,7 +319,7 @@ void FrameLib_DSP::copyInputToOutput(unsigned long inIdx, unsigned long outIdx)
     {
         unsigned long inSize, outSize;
         
-        double *input = getInput(inIdx, &inSize);
+        const double *input = getInput(inIdx, &inSize);
         double *output = getOutput(outIdx, &outSize);
         
         copyVector(output, input, std::min(inSize, outSize));

@@ -71,8 +71,8 @@ void FrameLib_Lookup::process()
 {
     unsigned long sizeIn1, sizeIn2, sizeOut;
     
-    double *input1 = getInput(0, &sizeIn1);
-    double *input2 = getInput(1, &sizeIn2);
+    const double *input1 = getInput(0, &sizeIn1);
+    const double *input2 = getInput(1, &sizeIn2);
     
     requestOutputSize(0, sizeIn1);
     allocateOutputs();

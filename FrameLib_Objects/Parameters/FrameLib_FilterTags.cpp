@@ -102,7 +102,7 @@ void FrameLib_FilterTags::process()
     unsigned long sizeOut1 = 0;
     unsigned long sizeOut2 = 0;
     
-    FrameLib_Parameters::Serial *input = getInput(0);
+    const FrameLib_Parameters::Serial *input = getInput(0);
     
     if (input)
     {

@@ -65,7 +65,7 @@ void FrameLib_Chop::process()
     // Get Input
     
     unsigned long sizeIn, sizeOut, sizeCalc, chop, i;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     Units units = (Units) mParameters.getInt(kUnits);
     
     // Calculate chop sizes

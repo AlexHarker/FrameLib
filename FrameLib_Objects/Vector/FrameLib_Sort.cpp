@@ -50,7 +50,7 @@ FrameLib_Sort::ParameterInfo::ParameterInfo()
 void FrameLib_Sort::process()
 {
     unsigned long size;
-    double *input = getInput(0, &size);
+    const double *input = getInput(0, &size);
     
     requestOutputSize(0, size);
     allocateOutputs();

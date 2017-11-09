@@ -64,7 +64,7 @@ void FrameLib_Pad::process()
     // Get Input
     
     unsigned long sizeIn, sizeOut, padStart, padEnd;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     double padValue = mParameters.getValue(kPadding);
     Units units = (Units) mParameters.getInt(kUnits);
     

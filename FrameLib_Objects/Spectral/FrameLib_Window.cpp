@@ -183,7 +183,7 @@ void FrameLib_Window::process()
     // Get Input
     
     unsigned long sizeIn, sizeOut, sizeFactor;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     requestOutputSize(0, sizeIn);
     allocateOutputs();

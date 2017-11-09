@@ -107,7 +107,7 @@ public:
         
         // Size Calculations
         
-        static size_t calcSize(Serial *serialised)                  { return serialised != NULL ? serialised->mSize : 0; }
+        static size_t calcSize(const Serial *serialised)            { return serialised != NULL ? serialised->mSize : 0; }
         static size_t calcSize(const FrameLib_Parameters *params);
         static size_t calcSize(const char *tag, const char *str)    { return sizeType() + sizeString(tag) + sizeString(str); }
         static size_t calcSize(const char *tag, size_t N)           { return sizeType() + sizeString(tag) + sizeArray(N); }

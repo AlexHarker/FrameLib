@@ -129,12 +129,12 @@ double FrameLib_MedianFilter::median(double *temp, unsigned long *indices, long 
     return temp[indices[width >> 1]];
 }
 
-double FrameLib_MedianFilter::getPad(double *input, long index, long sizeIn, long width, double padValue)
+double FrameLib_MedianFilter::getPad(const double *input, long index, long sizeIn, long width, double padValue)
 {
     return (index >= 0 && index < sizeIn) ? input[index] : padValue;
 }
 
-double FrameLib_MedianFilter::getWrap(double *input, long index, long sizeIn, long width)
+double FrameLib_MedianFilter::getWrap(const  double *input, long index, long sizeIn, long width)
 {
     index %= sizeIn;
     index = index < 0 ? index + sizeIn : index;
@@ -142,7 +142,7 @@ double FrameLib_MedianFilter::getWrap(double *input, long index, long sizeIn, lo
     return input[index];
 }
 
-double FrameLib_MedianFilter::getFold(double *input, long index, long sizeIn, long width)
+double FrameLib_MedianFilter::getFold(const double *input, long index, long sizeIn, long width)
 {
     index = std::abs(index) % ((sizeIn - 1) * 2);
     index = index > (sizeIn - 1) ? ((sizeIn - 1) * 2) - sizeIn : index;
@@ -158,7 +158,7 @@ void FrameLib_MedianFilter::process()
     
     unsigned long width = mParameters.getInt(kWidth);
     unsigned long sizeIn, sizeOut;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     double padValue = mParameters.getValue(kPadding);
     Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
     

@@ -19,7 +19,7 @@ template <class T> T ratioToSemitones(T x) { return log2(x) * 12.0; }
 // Scaling of Vectors
 
 template <class T, typename ScaleOp>
-void scaleVector(T *output, T *input, unsigned long size, ScaleOp scaler)
+void scaleVector(T *output, const T *input, unsigned long size, ScaleOp scaler)
 {
     for (unsigned long i = 0; i < size; i++)
         output[i] = scaler(input[i]);
@@ -51,7 +51,7 @@ template <class T> struct LinScaler : public ScaleCoefficients<T>
     LinScaler(const ScaleCoefficients<T>& coeff) : ScaleCoefficients<T>(coeff) {}
     
     template <class U> U operator()(U x) const { return (x * ScaleCoefficients<T>::mMul) - ScaleCoefficients<T>::mSub; }
-    template <class U> void operator()(U *output, U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
+    template <class U> void operator()(U *output, const U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
 };
 
 template <class T> struct LogScaler : public ScaleCoefficients<T>
@@ -60,7 +60,7 @@ template <class T> struct LogScaler : public ScaleCoefficients<T>
     LogScaler(const ScaleCoefficients<T>& coeff) : ScaleCoefficients<T>(coeff) {}
     
     template <class U> U operator()(U x) const { return log(x) * ScaleCoefficients<T>::mMul - ScaleCoefficients<T>::mSub; }
-    template <class U> void operator()(U *output, U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
+    template <class U> void operator()(U *output, const U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
 };
 
 template <class T> struct ExpScaler : public ScaleCoefficients<T>
@@ -69,7 +69,7 @@ template <class T> struct ExpScaler : public ScaleCoefficients<T>
     ExpScaler(const ScaleCoefficients<T>& coeff) : ScaleCoefficients<T>(coeff) {}
     
     template <class U> U operator()(U x) const { return exp((x * ScaleCoefficients<T>::mMul) - ScaleCoefficients<T>::mSub); }
-    template <class U> void operator()(U *output, U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
+    template <class U> void operator()(U *output, const U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
 };
 
 template <class T> struct PowScaler
@@ -86,7 +86,7 @@ template <class T> struct PowScaler
     }
     
     template <class U> U operator()(U x) const { return mOutputScaler(pow(mInputScaler(x), mExponent)); }
-    template <class U> void operator()(U *output, U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
+    template <class U> void operator()(U *output, const U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
     
     LinScaler<T> mInputScaler;
     LinScaler<T> mOutputScaler;
@@ -101,7 +101,7 @@ struct ClipScaler
     ClipScaler(ScaleOp scaler, T mMin, T mMax) : mScaler(scaler), mMin(mMin), mMax(mMax) {}
     
     template <class U> T operator()(U x) const { return clip(mScaler(x), mMin, mMax); }
-    template <class U> void operator()(U *output, U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
+    template <class U> void operator()(U *output, const U *input, unsigned long size) const { scaleVector(output, input, size, *this); }
     
     ScaleOp mScaler;
     T mMin, mMax;
@@ -171,7 +171,7 @@ template <class T>struct VariableScaler
         }
     }
     
-    template <class U> U scale(U x)
+    template <class U> U scale(const U x)
     {
         switch (mMode)
         {
@@ -182,7 +182,7 @@ template <class T>struct VariableScaler
         }
     }
     
-    template <class U> void scale(U *output, U*input, unsigned long size)
+    template <class U> void scale(U *output, const U* input, unsigned long size)
     {
         switch (mMode)
         {
@@ -235,7 +235,7 @@ template <class T> struct VariClipScaler : public VariableScaler<T>
 
     template <class U> U scaleClip(T x) { return clip(scale(x), mMin, mMax); }
     
-    template <class U> void scaleClip(U *output, U *input, unsigned long size)
+    template <class U> void scaleClip(U *output, const U *input, unsigned long size)
     {
         switch (VariableScaler<T>::mMode)
         {

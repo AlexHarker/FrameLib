@@ -83,7 +83,7 @@ void FrameLib_Join::process()
     {
         for (unsigned long i = 0; i < getNumIns(); i++)
         {
-            double *input = getInput(i, &sizeIn);
+            const double *input = getInput(i, &sizeIn);
             copyVector(output + offset, input, sizeIn);
             offset += sizeIn;
         }

@@ -59,7 +59,7 @@ void FrameLib_Subframe::process()
     // Get Input
     
     unsigned long sizeIn, sizeOut;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     unsigned long start, end;
     

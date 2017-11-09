@@ -84,7 +84,7 @@ void FrameLib_Multitaper::process()
     // Get Input
     
     unsigned long sizeIn, sizeOut;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     // Get FFT size log 2
     

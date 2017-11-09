@@ -32,9 +32,9 @@ private:
     double insertMedian(double *temp, unsigned long *indices, double value, long index, long width);
     double median(double *temp, unsigned long *indices, long width);
     
-    double getPad(double *input, long index, long sizeIn, long width, double padValue);
-    double getWrap(double *input, long index, long sizeIn, long width);
-    double getFold(double *input, long index, long sizeIn, long width);
+    double getPad(const double *input, long index, long sizeIn, long width, double padValue);
+    double getWrap(const double *input, long index, long sizeIn, long width);
+    double getFold(const double *input, long index, long sizeIn, long width);
     
     // Process
     

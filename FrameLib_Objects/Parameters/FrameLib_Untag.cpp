@@ -94,7 +94,7 @@ void FrameLib_Untag::process()
 {    
     unsigned long sizeOut;
     
-    FrameLib_Parameters::Serial *input = getInput(0);
+    const FrameLib_Parameters::Serial *input = getInput(0);
 
     if (input)
     {

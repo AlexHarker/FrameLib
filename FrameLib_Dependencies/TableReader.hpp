@@ -21,7 +21,7 @@ template <class T, class U, class Table, typename Interp> struct interp_2_reader
 {
     interp_2_reader(Table fetcher) : fetch(fetcher) {}
     
-    T operator()(double*& positions)
+    T operator()(const double*& positions)
     {
         typename T::scalar_type fract_array[T::size];
         typename U::scalar_type array[T::size * 2];
@@ -50,7 +50,7 @@ template <class T, class U, class Table, typename Interp> struct interp_4_reader
 {
     interp_4_reader(Table fetcher) : fetch(fetcher) {}
     
-    T operator()(double*& positions)
+    T operator()(const double*& positions)
     {
         typename U::scalar_type array[T::size * 4];
         typename T::scalar_type fract_array[T::size];
@@ -85,7 +85,7 @@ template <class T, class U, class Table> struct no_interp_reader
 {
     no_interp_reader(Table fetcher) : fetch(fetcher) {}
     
-    T operator()(double*& positions)
+    T operator()(const double*& positions)
     {
         typename U::scalar_type array[T::size];
         
@@ -125,7 +125,7 @@ struct cubic_lagrange_reader : public interp_4_reader<T, U, Table, cubic_lagrang
 // Reading loop
 
 template <class T, class U, class Table, template <class V, class W, class Tb> class Reader>
-void table_read_loop(Table fetcher, typename T::scalar_type *out, double *positions, intptr_t n_samps, typename U::scalar_type mul)
+void table_read_loop(Table fetcher, typename T::scalar_type *out, const double *positions, intptr_t n_samps, typename U::scalar_type mul)
 {
     Reader<T, U, Table> reader(fetcher);
     
@@ -139,7 +139,7 @@ void table_read_loop(Table fetcher, typename T::scalar_type *out, double *positi
 // Template to determine vector/scalar types
 
 template <template <class T, class U, class Tb> class Reader, class Table, class V>
-void table_read(Table fetcher, V *out, double *positions, intptr_t n_samps, double mul)
+void table_read(Table fetcher, V *out, const double *positions, intptr_t n_samps, double mul)
 {
     typedef typename Table::fetch_type fetch_type;
     const int vec_size = 32 / sizeof(V);
@@ -153,7 +153,7 @@ void table_read(Table fetcher, V *out, double *positions, intptr_t n_samps, doub
 // Main reading call that switches between different types of interpolation
 
 template <class T, class Table>
-void table_read(Table fetcher, T *out, double *positions, intptr_t n_samps, T mul, InterpType interp)
+void table_read(Table fetcher, T *out, const double *positions, intptr_t n_samps, T mul, InterpType interp)
 {
     switch(interp)
     {

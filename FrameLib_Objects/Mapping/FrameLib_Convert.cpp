@@ -88,7 +88,7 @@ void FrameLib_Convert::update()
 void FrameLib_Convert::process()
 {
     unsigned long size;
-    double *input = getInput(0, &size);
+    const double *input = getInput(0, &size);
     
     requestOutputSize(0, size);
     allocateOutputs();

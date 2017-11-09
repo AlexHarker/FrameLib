@@ -85,7 +85,7 @@ void FrameLib_Sink::copyAndZero(double *output, unsigned long offset, unsigned l
     }
 }
 
-void FrameLib_Sink::addToBuffer(double *input, unsigned long offset, unsigned long size)
+void FrameLib_Sink::addToBuffer(const double *input, unsigned long offset, unsigned long size)
 {
     for (unsigned long i = 0; i < size; i++)
         mBuffer[i + offset] += input[i];
@@ -129,7 +129,7 @@ void FrameLib_Sink::process()
     FrameLib_TimeFormat frameTime = getFrameTime();
     FrameLib_TimeFormat delayTime = convertTimeToSamples(mParameters.getValue(kDelay));
     FrameLib_TimeFormat blockStartTime = getBlockStartTime();
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     // Calculate time offset
     

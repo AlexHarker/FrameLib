@@ -56,7 +56,7 @@ void FrameLib_Split::process()
     // Get Input
     
     unsigned long sizeIn, sizeOut1, sizeOut2, split;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     Units units = (Units) mParameters.getInt(kUnits);
     
     // Calculate split point

@@ -104,7 +104,7 @@ void FrameLib_Map::update()
 void FrameLib_Map::process()
 {
     unsigned long size;
-    double *input = getInput(0, &size);
+    const double *input = getInput(0, &size);
     
     requestOutputSize(0, size);
     allocateOutputs();

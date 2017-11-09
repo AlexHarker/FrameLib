@@ -162,8 +162,8 @@ protected:
     // Get Inputs and Outputs
     
     FrameType getInputCurrentType(unsigned long idx) const                          { return mInputs[idx].getCurrentType(); }
-    double *getInput(unsigned long idx, size_t *size)  const;
-    FrameLib_Parameters::Serial *getInput(unsigned long idx)  const;
+    const double *getInput(unsigned long idx, size_t *size)  const;
+    const FrameLib_Parameters::Serial *getInput(unsigned long idx)  const;
     
     FrameType getOutputCurrentType(unsigned long idx) const                         { return mOutputs[idx].mCurrentType; }
     double *getOutput(unsigned long idx, size_t *size)  const;
@@ -174,8 +174,8 @@ protected:
     void prepareCopyInputToOutput(unsigned long inIdx, unsigned long outIdx);
     void copyInputToOutput(unsigned long inIdx, unsigned long outIdx);
 
-    static void copyVector(double *output, double *input, unsigned long size)       { std::copy(input, input + size, output); }
-    static void zeroVector(double *output, unsigned long size)                      { std::fill_n(output, size, 0.0); }
+    static void copyVector(double *output, const double *input, unsigned long size)     { std::copy(input, input + size, output); }
+    static void zeroVector(double *output, unsigned long size)                          { std::fill_n(output, size, 0.0); }
     
 private:
     

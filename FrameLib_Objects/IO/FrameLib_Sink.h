@@ -34,7 +34,7 @@ private:
     unsigned long convertTimeToSamples(double time);
 
     void copyAndZero(double *output, unsigned long offset, unsigned long size);
-    void addToBuffer(double *input, unsigned long offset, unsigned long size);
+    void addToBuffer(const double *input, unsigned long offset, unsigned long size);
     
     // Object Reset, Block Process and Process
 

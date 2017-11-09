@@ -49,7 +49,7 @@ FrameLib_Percentile::ParameterInfo::ParameterInfo()
 void FrameLib_Percentile::process()
 {
     unsigned long sizeIn, sizeOut;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     requestOutputSize(0, sizeIn ? 1 : 0);
     allocateOutputs();

@@ -8,74 +8,74 @@
 
 // Helper functors
 
-struct Pow2      { template <class T> T operator()(T a) { return a * a; } };
-struct Pow3      { template <class T> T operator()(T a) { return a * a * a; } };
-struct Pow4      { template <class T> T operator()(T a) { return Pow2()(Pow2()(a)); } };
-struct Absolute  { template <class T> T operator()(T a) { return std::abs(a); } };
-struct Logarithm { template <class T> T operator()(T a) { return log(a); } };
+struct Pow2      { template <class T> T operator()(T a) const { return a * a; } };
+struct Pow3      { template <class T> T operator()(T a) const { return a * a * a; } };
+struct Pow4      { template <class T> T operator()(T a) const { return Pow2()(Pow2()(a)); } };
+struct Absolute  { template <class T> T operator()(T a) const { return std::abs(a); } };
+struct Logarithm { template <class T> T operator()(T a) const { return log(a); } };
 
-struct Index     { template <class T> double operator[](T a) { return static_cast<double>(a); } };
-struct LogIndex  { template <class T> double operator[](T a) { return a ? log2(static_cast<double>(a)) : 0.0; } };
+struct Index     { template <class T> double operator[](T a) const { return static_cast<double>(a); } };
+struct LogIndex  { template <class T> double operator[](T a) const { return a ? log2(static_cast<double>(a)) : 0.0; } };
 
 template <class T> struct LogWidth
 {
     LogWidth(T& data) : mData(data) {}
-    double operator[](size_t i) { return i ? mData[i] * (log2(i + 0.5) - log2(i - 0.5)) : mData[i] * 0.0; }
-    T mData;
+    double operator[](size_t i) const { return i ? mData[i] * (log2(i + 0.5) - log2(i - 0.5)) : mData[i] * 0.0; }
+    const T mData;
 };
 
 
 template <class T, typename Op> struct ModifiedData
 {
     ModifiedData(T& data) : mData(data) {}
-    double operator[](size_t i) { return Op()(mData[i]); }
-    T mData;
+    double operator[](size_t i) const { return Op()(mData[i]); }
+    const T mData;
 };
 
 template <class T, typename Op> struct ModifiedDiffData
 {
     ModifiedDiffData(T& data, double value) : mData(data), mValue(value) {}
-    double operator[](size_t i) { return Op()(mData[i] - mValue); }
-    T mData;
+    double operator[](size_t i) const { return Op()(mData[i] - mValue); }
+    const T mData;
     double mValue;
 };
 
 template <typename Op> struct IndexDiffOp
 {
     IndexDiffOp(double value) : mValue(value) {}
-    double operator[](size_t i) { return Op()(static_cast<double>(i) - mValue); }
+    double operator[](size_t i) const { return Op()(static_cast<double>(i) - mValue); }
     double mValue;
 };
 
 template <typename Op> struct LogIndexDiffOp
 {
     LogIndexDiffOp(double value) : mValue(value) {}
-    double operator[](size_t i) { return Op()(LogIndex()[i] - mValue); }
+    double operator[](size_t i) const { return Op()(LogIndex()[i] - mValue); }
     double mValue;
 };
 
 // Length
 
-template <class T> double statLength(T input, size_t size)
+template <class T> double statLength(const T input, size_t size)
 {
     return static_cast<double>(size);
 }
 
 // Min / Max Values
 
-template <class T> double statMin(T input, size_t size)
+template <class T> double statMin(const T input, size_t size)
 {
     return size ? *(std::min_element(input, input + size)) : std::numeric_limits<double>::infinity();
 }
 
-template <class T> double statMax(T input, size_t size)
+template <class T> double statMax(const T input, size_t size)
 {
     return size ? *(std::max_element(input, input + size)) : -std::numeric_limits<double>::infinity();;
 }
 
 // Counts
 
-template <class T, typename CountOp> double statCount(T input, size_t size, CountOp op)
+template <class T, typename CountOp> double statCount(const T input, size_t size, CountOp op)
 {
     size_t count = 0;
     
@@ -94,31 +94,31 @@ struct FixedCompare
     T mValue;
 };
 
-template <class T, class U> double statCountAbove(T input, U threshold, size_t size)
+template <class T, class U> double statCountAbove(const T input, U threshold, size_t size)
 {
     return statCount(input, size, FixedCompare<U, std::greater<U> >(threshold));
 }
 
-template <class T, class U> double statCountBelow(T input, U threshold, size_t size)
+template <class T, class U> double statCountBelow(const T input, U threshold, size_t size)
 {
     return statCount(input, size, FixedCompare<U, std::less<U> >(threshold));
 }
 
 // Ratios
 
-template <class T, class U> double statRatioAbove(T input, U threshold, size_t size)
+template <class T, class U> double statRatioAbove(const T input, U threshold, size_t size)
 {
     return statCountAbove(input, threshold, size) / statLength(input, size);
 }
 
-template <class T, class U> double statRatioBelow(T input, U threshold, size_t size)
+template <class T, class U> double statRatioBelow(const T input, U threshold, size_t size)
 {
     return statCountBelow(input, threshold, size) / statLength(input, size);
 }
 
 // Sums
 
-template <class T> double statSum(T input, size_t size)
+template <class T> double statSum(const T input, size_t size)
 {
     double sum = 0.0;
     
@@ -128,24 +128,24 @@ template <class T> double statSum(T input, size_t size)
     return sum;
 }
 
-template <class T> double statSumAbs(T input, size_t size)
+template <class T> double statSumAbs(const T input, size_t size)
 {
     return statSum(ModifiedData<T, Absolute>(input), size);
 }
 
-template <class T> double statSumSquares(T input, size_t size)
+template <class T> double statSumSquares(const T input, size_t size)
 {
-    return statSum(ModifiedData<T, Pow2>(input), size);
+    return statSum(ModifiedData<const T, Pow2>(input), size);
 }
 
-template <class T> double statSumLogs(T input, size_t size)
+template <class T> double statSumLogs(const T input, size_t size)
 {
-    return statSum(ModifiedData<T, Logarithm>(input), size);
+    return statSum(ModifiedData<const T, Logarithm>(input), size);
 }
 
 // Weighted Sums
 
-template <class T, class U> double statWeightedSum(T data, U weights, size_t size)
+template <class T, class U> double statWeightedSum(const T data, const U weights, size_t size)
 {
     double sum = 0.0;
     
@@ -155,51 +155,51 @@ template <class T, class U> double statWeightedSum(T data, U weights, size_t siz
     return sum;
 }
 
-template <class T> double statWeightedSum(T input, size_t size)
+template <class T> double statWeightedSum(const T input, size_t size)
 {
     return statWeightedSum(Index(), input, size);
 }
 
-template <class T> double statWeightedSumAbs(T input, size_t size)
+template <class T> double statWeightedSumAbs(const T input, size_t size)
 {
     return statWeightedSum(Index(), ModifiedData<T, Absolute>(input), size);
 }
 
-template <class T> double statWeightedSumSquares(T input, size_t size)
+template <class T> double statWeightedSumSquares(const T input, size_t size)
 {
     return statWeightedSum(Index(), ModifiedData<T, Pow2>(input), size);
 }
 
-template <class T> double statWeightedSumLogs(T input, size_t size)
+template <class T> double statWeightedSumLogs(const T input, size_t size)
 {
     return statWeightedSum(Index(), ModifiedData<T, Logarithm>(input), size);
 }
 
 // Weighted Sums (by weights)
 
-template <class T> double statWeightedSum(T input, T weights, size_t size)
+template <class T> double statWeightedSum(const T input, const T weights, size_t size)
 {
     return statWeightedSum(input, weights, size);
 }
 
-template <class T> double statWeightedSumAbs(T input, T weights, size_t size)
+template <class T> double statWeightedSumAbs(const T input, const T weights, size_t size)
 {
-    return statWeightedSum(ModifiedData<T, Absolute>(input), weights, size);
+    return statWeightedSum(ModifiedData<const T, Absolute>(input), weights, size);
 }
 
-template <class T> double statWeightedSumSquares(T input, T weights, size_t size)
+template <class T> double statWeightedSumSquares(const T input, const T weights, size_t size)
 {
-    return statWeightedSum(ModifiedData<T, Pow2>(input), weights, size);
+    return statWeightedSum(ModifiedData<const T, Pow2>(input), weights, size);
 }
 
-template <class T> double statWeightedSumLogs(T input, T weights, size_t size)
+template <class T> double statWeightedSumLogs(const T input, const T weights, size_t size)
 {
-    return statWeightedSum(ModifiedData<T, Logarithm>(input), weights, size);
+    return statWeightedSum(ModifiedData<const T, Logarithm>(input), weights, size);
 }
 
 // Product
 
-template <class T> double statProduct(T input, size_t size)
+template <class T> double statProduct(const T input, size_t size)
 {
     double product = 1.0;
     
@@ -211,39 +211,39 @@ template <class T> double statProduct(T input, size_t size)
 
 // Means
 
-template <class T> double statMean(T input, size_t size)
+template <class T> double statMean(const T input, size_t size)
 {
     return statSum(input, size) / statLength(input, size);
 }
 
-template <class T> double statMeanSquares(T input, size_t size)
+template <class T> double statMeanSquares(const T input, size_t size)
 {
     return statSumSquares(input, size) / statLength(input, size);
 }
 
-template <class T> double statGeometricMean(T input, size_t size)
+template <class T> double statGeometricMean(const T input, size_t size)
 {
     return exp(statSumLogs(input, size) / statLength(input, size));
 }
 
 // Variance
 
-template <class T> double statVariance(T input, size_t size)
+template <class T> double statVariance(const T input, size_t size)
 {
     double mean = statMean(input, size);
-    return statSum(ModifiedDiffData<T, Pow2>(input, mean), size);
+    return statSum(ModifiedDiffData<const T, Pow2>(input, mean), size);
 }
                            
 // Standard Deviation
 
-template <class T> double statStandardDeviation(T input, size_t size)
+template <class T> double statStandardDeviation(const T input, size_t size)
 {
     return sqrt(statVariance(input, size));
 }
 
 // PDF Percentile
 
-template <class T> double statPDFPercentile(T input, double centile, size_t size)
+template <class T> double statPDFPercentile(const T input, double centile, size_t size)
 {
     double target = statSum(input, size) * std::min(100.0, std::max(centile, 0.0)) / 100.0;
     
@@ -261,25 +261,25 @@ template <class T> double statPDFPercentile(T input, double centile, size_t size
 
 // Shape
 
-template <class T> double statCentroid(T input, size_t size)
+template <class T> double statCentroid(const T input, size_t size)
 {
     return statWeightedSum(input, size) / statSum(input, size);
 }
                         
-template <class T> double statSpread(T input, size_t size)
+template <class T> double statSpread(const T input, size_t size)
 {
     double centroid = statCentroid(input, size);
     return statWeightedSum(IndexDiffOp<Pow2>(centroid), input, size) / statSum(input, size);
 }
 
-template <class T> double statSkewness(T input, size_t size)
+template <class T> double statSkewness(const T input, size_t size)
 {
     double centroid = statCentroid(input, size);
     double spreadNorm = Pow3()(sqrt(statSpread(input, size)));
     return statWeightedSum(IndexDiffOp<Pow3>(centroid), input, size) / (spreadNorm * statSum(input, size));
 }
 
-template <class T> double statKurtosis(T input, size_t size)
+template <class T> double statKurtosis(const T input, size_t size)
 {
     double centroid = statCentroid(input, size);
     double spreadNorm = Pow2()(statSpread(input, size));
@@ -288,25 +288,25 @@ template <class T> double statKurtosis(T input, size_t size)
 
 // Log Shape
 
-template <class T> double statLogCentroid(T input, size_t size)
+template <class T> double statLogCentroid(const T input, size_t size)
 {
     return exp2(statWeightedSum(LogIndex(), LogWidth<T>(input), size) / (statSum(LogWidth<T>(input), size)));
 }
 
-template <class T> double statLogSpread(T input, size_t size)
+template <class T> double statLogSpread(const T input, size_t size)
 {
     double centroid = statLogCentroid(input, size);
     return statWeightedSum(LogIndexDiffOp<Pow2>(log2(centroid)), LogWidth<T>(input), size) / (statSum(LogWidth<T>(input), size));
 }
 
-template <class T> double statLogSkewness(T input, size_t size)
+template <class T> double statLogSkewness(const T input, size_t size)
 {
     double centroid = statLogCentroid(input, size);
     double spreadNorm = Pow3()(sqrt(statLogSpread(input, size)));
     return statWeightedSum(LogIndexDiffOp<Pow3>(log2(centroid)), LogWidth<T>(input), size) / (spreadNorm * statSum(LogWidth<T>(input), size));
 }
 
-template <class T> double statLogKurtosis(T input, size_t size)
+template <class T> double statLogKurtosis(const T input, size_t size)
 {
     double centroid = statCentroid(input, size);
     double spreadNorm = Pow2()(statLogSpread(input, size));
@@ -315,21 +315,21 @@ template <class T> double statLogKurtosis(T input, size_t size)
 
 // Flatness
 
-template <class T> double statFlatness(T input, size_t size)
+template <class T> double statFlatness(const T input, size_t size)
 {
     return statGeometricMean(input, size) / statMean(input, size);
 }
 
 // RMS
 
-template <class T> double statRMS(T input, size_t size)
+template <class T> double statRMS(const T input, size_t size)
 {
     return sqrt(statMeanSquares(input, size));
 }
 
 // Crest
 
-template <class T> double statCrest(T input, size_t size)
+template <class T> double statCrest(const T input, size_t size)
 {
     return statMax(input, size) / statRMS(input, size);
 }

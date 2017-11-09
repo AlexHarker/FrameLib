@@ -91,7 +91,7 @@ FrameLib_Spatial::Cartesian FrameLib_Spatial::convertToCartesian(Polar position)
 void FrameLib_Spatial::process()
 {
     unsigned long sizeIn, weightsSize;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     const double *weights = mParameters.getArray(kWeights, &weightsSize);
     unsigned long numSpeakers = mSpeakers.size();

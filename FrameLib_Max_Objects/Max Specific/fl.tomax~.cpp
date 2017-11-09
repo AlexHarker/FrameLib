@@ -35,7 +35,7 @@ std::string FrameLib_ToMax::outputInfo(unsigned long idx, bool verbose)
 void FrameLib_ToMax::process()
 {
     unsigned long sizeIn;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
 
     if (sizeIn > 32767)
         sizeIn = 32767;

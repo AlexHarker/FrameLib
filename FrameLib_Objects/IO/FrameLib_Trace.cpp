@@ -111,7 +111,7 @@ void FrameLib_Trace::copyAndZero(double *output, unsigned long offset, unsigned 
     }
 }
 
-void FrameLib_Trace::writeToBuffer(double *input, unsigned long offset, unsigned long size)
+void FrameLib_Trace::writeToBuffer(const double *input, unsigned long offset, unsigned long size)
 {
     copyVector(&mBuffer[offset], input, size);
     std::fill_n(mFlags.begin() + offset, size, true);
@@ -163,7 +163,7 @@ void FrameLib_Trace::process()
 
     Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
     
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     unsigned long sizeToWrite = mode != kFull ? std::min(sizeIn, 1UL) : sizeIn;
     
     // Calculate time offset

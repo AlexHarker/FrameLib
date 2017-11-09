@@ -83,8 +83,8 @@ void FrameLib_FFT::process()
     // Get Input(s)
     
     unsigned long sizeInR, sizeInI, sizeOut;
-    double *inputR = getInput(0, &sizeInR);
-    double *inputI =  NULL;
+    const double *inputR = getInput(0, &sizeInR);
+    const double *inputI =  NULL;
 
     sizeInI = 0;
     

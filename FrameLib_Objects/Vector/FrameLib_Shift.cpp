@@ -65,7 +65,7 @@ void FrameLib_Shift::process()
     
     long shift;
     unsigned long sizeIn, sizeOut;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     double padValue = mParameters.getValue(kPadding);
     Units units = (Units) mParameters.getInt(kUnits);
     
