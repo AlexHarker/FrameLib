@@ -38,7 +38,7 @@ void FrameLib_SmoothMedian::resetSize(unsigned long size)
 {
     dealloc(mOrdered);
     mOrdered = alloc<double>(size * getNumFrames());
-    zeroVector(mOrdered, size);
+    zeroVector(mOrdered, size * getNumFrames());
 }
 
 unsigned long find(double input, double *channel, unsigned long numFrames)
