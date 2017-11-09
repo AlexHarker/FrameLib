@@ -11234,7 +11234,6 @@
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				LLVM_LTO = NO;
-				SDKROOT = macosx10.12;
 			};
 			name = Development;
 		};
@@ -11253,7 +11252,6 @@
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				LLVM_LTO = NO;
-				SDKROOT = macosx10.12;
 			};
 			name = Deployment;
 		};
@@ -11267,7 +11265,6 @@
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				LLVM_LTO = NO;
-				SDKROOT = macosx10.12;
 			};
 			name = Default;
 		};
@@ -16218,7 +16215,6 @@
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				LLVM_LTO = NO;
-				SDKROOT = macosx10.12;
 			};
 			name = "Public Testing";
 		};
