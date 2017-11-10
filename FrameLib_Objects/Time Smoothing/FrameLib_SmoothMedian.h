@@ -34,9 +34,14 @@ public:
 
     void resetSize(unsigned long size);
 
-    void smooth(double *output, const double *newFrame, const double *oldestFrame, unsigned long size);
-    
 private:
+
+    double *getChannel(unsigned long idx) const { return mOrdered + (idx * getMaxFrames()); }
+
+    virtual void add(const double *newFrame, unsigned long size);
+    virtual void remove(const double *oldFrame, unsigned long size);
+    virtual void exchange(const double *newFrame, const double *oldFrame, unsigned long size);
+    virtual void result(double *output, unsigned long size);
     
     // Object Reset
     
@@ -47,6 +52,7 @@ private:
     static ParameterInfo sParamInfo;
     
     double *mOrdered;
+    unsigned long mNumFrames;
 };
 
 #endif

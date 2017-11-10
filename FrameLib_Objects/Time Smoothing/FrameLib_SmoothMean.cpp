@@ -46,7 +46,7 @@ void FrameLib_SmoothMean::resetSize(unsigned long size)
 
 // High Precision Sum
 
-double neumaierSum(double in, double &sum, double &c)
+void neumaierSum(double in, double &sum, double &c)
 {
     double t = sum + in;
     
@@ -56,19 +56,27 @@ double neumaierSum(double in, double &sum, double &c)
         c += (in - t) + sum;
     
     sum = t;
-    
-    return sum + c;
 }
 
 // Process
 
-void FrameLib_SmoothMean::smooth(double *output, const double *newFrame, const double *oldestFrame, unsigned long size)
+void FrameLib_SmoothMean::add(const double *newFrame, unsigned long size)
+{
+    for (unsigned long i = 0; i < size; i++)
+        neumaierSum(newFrame[i], mSum[i], mCompensate[i]);
+}
+
+void FrameLib_SmoothMean::remove(const double *oldFrame, unsigned long size)
+{
+    for (unsigned long i = 0; i < size; i++)
+        neumaierSum(-oldFrame[i], mSum[i], mCompensate[i]);
+}
+
+
+void FrameLib_SmoothMean::result(double *output, unsigned long size)
 {
     double recip = 1.0 / getNumFrames();
     
     for (unsigned long i = 0; i < size; i++)
-    {
-        neumaierSum(-oldestFrame[i], mSum[i], mCompensate[i]);
-        output[i] = neumaierSum(newFrame[i], mSum[i], mCompensate[i]) * recip;
-    }
+        output[i] = (mSum[i] + mCompensate[i]) * recip;
 }

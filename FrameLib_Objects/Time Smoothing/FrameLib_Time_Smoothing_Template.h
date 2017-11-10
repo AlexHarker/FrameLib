@@ -6,17 +6,24 @@
 
 template <class T> class FrameLib_TimeSmoothing : public FrameLib_Processor
 {
-    const int sNumFrames = 0;
+    const int sMaxFrames = 0;
+    const int sNumFrames = 1;
     
 public:
     
     // Constructor
     
-    FrameLib_TimeSmoothing(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, NULL, 1, 1), mLastLength(0), mLastNumFrames(0), mCounter(0), mFrames(NULL)
+    FrameLib_TimeSmoothing(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, NULL, 2, 1), mLastLength(0), mLastNumFrames(0), mLastMaxFrames(0), mCounter(0), mFrames(NULL)
     {
-        mParameters.addInt(sNumFrames, "num_frames", 10, 0);
-        
+        mParameters.addInt(sMaxFrames, "max_frames", 10, 0);
+        mParameters.setMin(1);
         serialisedParameters->read(&mParameters);
+    
+        mParameters.addInt(sNumFrames, "num_frames", 10, 1);
+        mParameters.setClip(1, mParameters.getInt(sMaxFrames));
+        serialisedParameters->read(&mParameters);
+
+        setParameterInput(1);
     }
     
     ~FrameLib_TimeSmoothing()
@@ -44,12 +51,36 @@ protected:
     }
     
     unsigned long getNumFrames() const { return mLastNumFrames; }
+    unsigned long getMaxFrames() const { return mLastMaxFrames; }
+    
+    void incrementCounter(unsigned long& counter)
+    {
+        counter = (++counter >= getMaxFrames()) ? 0 : counter;
+    }
+    
+    unsigned long calcFrameCount(unsigned long nFrames)
+    {
+        unsigned long maxCount = getMaxFrames();
+        unsigned long count = mCounter + maxCount - nFrames;
+        
+        return count >= maxCount ? count - maxCount : count;
+    }
     
 private:
     
     // Smooth
     
-    virtual void smooth(double *output, const double *newFrame, const double *oldestFrame, unsigned long size) = 0;
+    virtual void add(const double *newFrame, unsigned long size) = 0;
+    virtual void remove(const double *oldFrame, unsigned long size) = 0;
+
+    virtual void exchange(const double *newFrame, const double *oldFrame, unsigned long size)
+    {
+        remove(oldFrame, size);
+        add(newFrame, size);
+    }
+    
+    virtual void result(double *output, unsigned long size) = 0;
+    
     virtual void resetSize(unsigned long size) = 0;
 
     // Process
@@ -57,13 +88,15 @@ private:
     void process()
     {
         unsigned long sizeIn, sizeOut;
+        unsigned long maxFrames = mParameters.getInt(sMaxFrames);
         unsigned long numFrames = mParameters.getInt(sNumFrames);
         
         const double *input = getInput(0, &sizeIn);
-        
-        if (mLastLength != sizeIn || mLastNumFrames != numFrames)
+        const double *frame;
+
+        if (mLastLength != sizeIn || mLastMaxFrames != maxFrames)
         {
-            unsigned long totalSize = sizeIn * numFrames;
+            unsigned long totalSize = sizeIn * maxFrames;
             
             dealloc(mFrames);
             mFrames = alloc<double>(totalSize);
@@ -72,24 +105,49 @@ private:
             
             mCounter = 0;
             mLastLength = sizeIn;
-            mLastNumFrames = numFrames;
-            
+            mLastMaxFrames = maxFrames;
             resetSize(sizeIn);
         }
-        
+
+        mLastNumFrames = numFrames;
+
         requestOutputSize(0, sizeIn);
         allocateOutputs();
         double *output = getOutput(0, &sizeOut);
         
         if (!mFrames)
             return;
-            
-        // Object must deal with NULL outputs
         
-        double *oldestFrame = mFrames + (mCounter * sizeIn);
-        smooth(output, input, oldestFrame, sizeIn);
-        copyVector(oldestFrame, input, sizeIn);
-        mCounter = (++mCounter >= numFrames) ? 0 : mCounter;
+        if (numFrames > mLastNumFrames)
+        {
+            unsigned long frameCount = calcFrameCount(numFrames - 1);
+            
+            for (unsigned long i = 0; i < (numFrames - mLastNumFrames) - 1; i++)
+            {
+                frame = mFrames + (frameCount * sizeIn);
+                add(frame, sizeIn);
+                incrementCounter(frameCount);
+            }
+            
+            add(input, sizeIn);
+        }
+        else
+        {
+            unsigned long frameCount = calcFrameCount(numFrames);
+
+            for (unsigned long i = 1; i < (mLastNumFrames - numFrames); i++)
+            {
+                frame = mFrames + (frameCount * sizeIn);
+                remove(frame, sizeIn);
+                incrementCounter(frameCount);
+            }
+            
+            exchange(input, mFrames + (frameCount * sizeIn), sizeIn);
+        }
+        
+        result(output, sizeOut);
+        copyVector(mFrames + (mCounter * sizeIn), input, sizeIn);
+        incrementCounter(mCounter);
     }
     
     // Operator Description (specialise to change description)
@@ -98,6 +156,7 @@ private:
     
     unsigned long mLastLength;
     unsigned long mLastNumFrames;
+    unsigned long mLastMaxFrames;
     unsigned long mCounter;
 
     unsigned long mFrameSize;

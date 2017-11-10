@@ -1,10 +1,10 @@
 
-#ifndef FRAMELIB_SMOOTHMEAN_H
-#define FRAMELIB_SMOOTHMEAN_H
+#ifndef FRAMELIB_LAG_H
+#define FRAMELIB_LAG_H
 
 #include "FrameLib_Time_Smoothing_Template.h"
 
-class FrameLib_SmoothMean : public FrameLib_TimeSmoothing<FrameLib_SmoothMean>
+class FrameLib_Lag : public FrameLib_TimeSmoothing<FrameLib_Lag>
 {
     // Parameter Enums and Info
 
@@ -17,14 +17,13 @@ public:
     
     // Constructor
     
-    FrameLib_SmoothMean(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_Lag(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
 
-    ~FrameLib_SmoothMean()
+    ~FrameLib_Lag()
     {
-        dealloc(mSum);
-        dealloc(mCompensate);
+        dealloc(mFrameCopy);
     }
-
+    
     // Info
     
     std::string objectInfo(bool verbose);
@@ -35,7 +34,7 @@ public:
 
     void resetSize(unsigned long size);
 
-    virtual void add(const double *newFrame, unsigned long size);
+    virtual void add(const double *newFrame, unsigned long size) {}
     virtual void remove(const double *oldFrame, unsigned long size);
     virtual void result(double *output, unsigned long size);
     
@@ -49,8 +48,7 @@ private:
     
     static ParameterInfo sParamInfo;
     
-    double *mSum;
-    double *mCompensate;    
+    double *mFrameCopy;
 };
 
 #endif
