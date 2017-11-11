@@ -231,7 +231,7 @@ template <class T> double statGeometricMean(const T input, size_t size)
 template <class T> double statVariance(const T input, size_t size)
 {
     double mean = statMean(input, size);
-    return statSum(ModifiedDiffData<const T, Pow2>(input, mean), size);
+    return statSum(ModifiedDiffData<const T, Pow2>(input, mean), size) / statLength(input, size);
 }
                            
 // Standard Deviation
