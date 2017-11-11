@@ -68,12 +68,12 @@ FrameLib_Trace::ParameterInfo FrameLib_Trace::sParamInfo;
 
 FrameLib_Trace::ParameterInfo::ParameterInfo()
 {
-    add("Sets the mode used for output: ."
+    add("Sets the mode used for output: "
         "full - outputs the entire frame in full. "
         "first - output the first sample of the frame only. "
-        "last - output the last sample of the frame only"
+        "last - output the last sample of the frame only. "
         "specified - output the sample specified directly by the position parameter (clipped into the frame size). "
-        "ratio - output the sample specified by the position parameter as a ratio to the frame length (clipped into the frame size). ");
+        "ratio - output the sample specified by the position parameter as a ratio to the frame length (clipped into the frame size).");
     add("Sets the internal buffer size in the units specified by the units parameter.");
     add("Sets the time units used to determine the buffer size and delay.");
     add("Sets the position of the output sample in specified mode (in samples) or ratio mode (as a ratio of the position in the frame).");
