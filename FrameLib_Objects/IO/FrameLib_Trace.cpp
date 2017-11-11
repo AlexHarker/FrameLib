@@ -138,7 +138,7 @@ void FrameLib_Trace::objectReset()
     mCounter = 0;
 }
 
-void FrameLib_Trace::blockProcess(double **ins, double **outs, unsigned long blockSize)
+void FrameLib_Trace::blockProcess(const double * const *ins, double **outs, unsigned long blockSize)
 {    
     // Safety
     

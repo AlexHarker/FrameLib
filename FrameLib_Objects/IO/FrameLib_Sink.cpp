@@ -107,7 +107,7 @@ void FrameLib_Sink::objectReset()
     mCounter = 0;
 }
 
-void FrameLib_Sink::blockProcess(double **ins, double **outs, unsigned long blockSize)
+void FrameLib_Sink::blockProcess(const double * const *ins, double **outs, unsigned long blockSize)
 {    
     // Safety
     

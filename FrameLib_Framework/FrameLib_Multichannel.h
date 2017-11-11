@@ -42,7 +42,7 @@ public:
 
     // Audio Processing
     
-    virtual void blockUpdate(double **ins, double **outs, unsigned long blockSize) {}
+    virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) {}
     virtual void reset(double samplingRate, unsigned long maxBlockSize) {}
 
 protected:
@@ -233,7 +233,7 @@ public:
     
     // Audio Processing
         
-    virtual void blockUpdate(double **ins, double **outs, unsigned long blockSize)
+    virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize)
     {
         unsigned long internalNumIns = mBlocks[0]->getNumAudioIns();
         unsigned long internalNumOuts = mBlocks[0]->getNumAudioOuts();

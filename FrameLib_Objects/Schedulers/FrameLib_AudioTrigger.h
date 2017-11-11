@@ -30,7 +30,7 @@ private:
     // Object Reset and Block Process
     
     void objectReset();
-    void blockProcess(double **ins, double **outs, unsigned long blockSize);
+    void blockProcess(const double * const *ins, double **outs, unsigned long blockSize);
     
     // Schedule
     

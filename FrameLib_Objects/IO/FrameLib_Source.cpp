@@ -87,7 +87,7 @@ unsigned long FrameLib_Source::convertTimeToSamples(double time)
     return round(time);
 }
 
-void FrameLib_Source::copy(double *input, unsigned long offset, unsigned long size)
+void FrameLib_Source::copy(const double *input, unsigned long offset, unsigned long size)
 {
     if (size)
     {
@@ -110,7 +110,7 @@ void FrameLib_Source::objectReset()
     mCounter = 0;
 }
 
-void FrameLib_Source::blockProcess(double **ins, double **outs, unsigned long blockSize)
+void FrameLib_Source::blockProcess(const double * const *ins, double **outs, unsigned long blockSize)
 {    
     // Safety
     

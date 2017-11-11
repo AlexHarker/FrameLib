@@ -39,7 +39,7 @@ void FrameLib_AudioTrigger::objectReset()
     mBlockSize = 0;
 }
 
-void FrameLib_AudioTrigger::blockProcess(double **ins, double **outs, unsigned long blockSize)
+void FrameLib_AudioTrigger::blockProcess(const double * const *ins, double **outs, unsigned long blockSize)
 {    
     // Safety
     

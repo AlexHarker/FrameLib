@@ -189,7 +189,7 @@ public:
 
     // Override to handle audio at the block level (reset called with the audio engine resets)
     
-    virtual void blockUpdate(double **ins, double **outs, unsigned long blockSize) = 0;
+    virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) = 0;
     virtual void reset(double samplingRate, unsigned long maxBlockSize) = 0;
     
     // Return to host to request to be passed audio

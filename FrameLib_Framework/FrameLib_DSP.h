@@ -101,7 +101,7 @@ public:
 
     // Audio Processing
     
-    virtual void blockUpdate(double **ins, double **outs, unsigned long blockSize);
+    virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize);
     virtual void reset(double samplingRate, unsigned long maxBlockSize);
     
     // Info (individual objects should override other methods to provide info)
@@ -192,7 +192,7 @@ private:
 
     // Override to handle audio at the block level
     
-    virtual void blockProcess(double **ins, double **outs, unsigned long blockSize) {}
+    virtual void blockProcess(const double * const *ins, double **outs, unsigned long blockSize) {}
 
     // Override to get called on audio reset
     

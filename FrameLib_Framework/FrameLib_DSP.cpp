@@ -49,7 +49,7 @@ void FrameLib_DSP::setFixedInput(unsigned long idx, double *input, unsigned long
 
 // Block updates for objects with audio IO
 
-void FrameLib_DSP::blockUpdate(double **ins, double **outs, unsigned long blockSize)
+void FrameLib_DSP::blockUpdate(const double * const *ins, double **outs, unsigned long blockSize)
 {
     // Update block time and process the block
     
