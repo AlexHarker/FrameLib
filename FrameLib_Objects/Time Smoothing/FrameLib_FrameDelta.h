@@ -1,11 +1,10 @@
 
-#ifndef FRAMELIB_LAG_H
-#define FRAMELIB_LAG_H
+#ifndef FRAMELIB_FRAMEDELTA_H
+#define FRAMELIB_FRAMEDELTA_H
 
 #include "FrameLib_DSP.h"
-#include "FrameLib_FrameSet.h"
 
-class FrameLib_Lag : public FrameLib_Processor, private FrameLib_RingBuffer
+class FrameLib_FrameDelta : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
@@ -17,7 +16,12 @@ public:
     
     // Constructor
     
-    FrameLib_Lag(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_FrameDelta(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    
+    ~FrameLib_FrameDelta()
+    {
+        dealloc(mLastFrame);
+    }
     
     // Info
     
@@ -29,7 +33,7 @@ private:
 
     // Object Reset
     
-    void objectReset() { FrameLib_RingBuffer::reset(); }
+    void objectReset() { mFrameSize = 0; }
     
     // Process
     
@@ -38,6 +42,9 @@ private:
     // Data
     
     static ParameterInfo sParamInfo;
+    
+    double *mLastFrame;
+    unsigned long mFrameSize;
 };
 
 #endif

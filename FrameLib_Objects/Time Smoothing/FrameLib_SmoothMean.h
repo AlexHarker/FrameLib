@@ -33,7 +33,7 @@ public:
     
     // Smooth
 
-    void resetSize(unsigned long size);
+    void resetSize(unsigned long maxFrames, unsigned long size);
 
     virtual void add(const double *newFrame, unsigned long size);
     virtual void remove(const double *oldFrame, unsigned long size);

@@ -33,18 +33,20 @@ FrameLib_SmoothMedian::ParameterInfo::ParameterInfo()
 
 // Update size
 
-void FrameLib_SmoothMedian::resetSize(unsigned long size)
+void FrameLib_SmoothMedian::resetSize(unsigned long maxFrames, unsigned long size)
 {
     dealloc(mOrdered);
-    mOrdered = alloc<double>(size * getMaxFrames());
-    zeroVector(mOrdered, size * getMaxFrames());
-    mNumFrames = getNumFrames();
+    mOrdered = alloc<double>(size * maxFrames);
+    zeroVector(mOrdered, size * maxFrames);
+    mNumFrames = 0;
 }
 
 unsigned long find(double input, double *channel, unsigned long numFrames)
 {
     unsigned long gap = numFrames >> 1;
     unsigned long i = gap;
+    
+    gap = gap < 1 ? 1 : gap;
     
     while (gap && i < numFrames)
     {
@@ -71,8 +73,6 @@ unsigned long find(double input, double *channel, unsigned long numFrames)
 
 void FrameLib_SmoothMedian::exchange(const double *newFrame, const double *oldFrame, unsigned long size)
 {
-    mNumFrames = getNumFrames();
-    
     for (unsigned long i = 0; i < size; i++)
     {
         // Find insertion points
@@ -95,8 +95,19 @@ void FrameLib_SmoothMedian::exchange(const double *newFrame, const double *oldFr
     }
 }
 
+bool checkArray(const double *array, unsigned long size)
+{
+    for (unsigned long i = 1; i < size; i++)
+        if (array[i] < array[i - 1])
+            return false;
+            
+    return true;
+}
+
 void FrameLib_SmoothMedian::add(const double *newFrame, unsigned long size)
 {
+    assert(mNumFrames < getMaxFrames() && "Number of frames cannot be increased above the maximum");
+    
     for (unsigned long i = 0; i < size; i++)
     {
         // Find insertion point
@@ -108,6 +119,8 @@ void FrameLib_SmoothMedian::add(const double *newFrame, unsigned long size)
         
         std::copy_backward(channel + j, channel + mNumFrames, channel + mNumFrames + 1);
         channel[j] = newFrame[i];
+        
+        //assert(checkArray(channel, mNumFrames + 1) && "Array out of order");
     }
     
     mNumFrames++;
@@ -115,6 +128,8 @@ void FrameLib_SmoothMedian::add(const double *newFrame, unsigned long size)
 
 void FrameLib_SmoothMedian::remove(const double *oldFrame, unsigned long size)
 {
+    assert(mNumFrames && "Number of frames cannot be reduced to zero!");
+    
     for (unsigned long i = 0; i < size; i++)
     {
         // Find removal point
@@ -122,9 +137,13 @@ void FrameLib_SmoothMedian::remove(const double *oldFrame, unsigned long size)
         double *channel = getChannel(i);
         unsigned long j = find(oldFrame[i], channel, mNumFrames);
         
+        assert(j < mNumFrames && "value out of place");
+
         // Copy
        
         std::copy(channel + j + 1, channel + mNumFrames, channel + j);
+        
+        assert(checkArray(channel, mNumFrames - 1) && "Array out of order");
     }
     
     mNumFrames--;

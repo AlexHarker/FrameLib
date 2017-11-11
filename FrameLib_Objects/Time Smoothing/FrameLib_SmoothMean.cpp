@@ -34,7 +34,7 @@ FrameLib_SmoothMean::ParameterInfo::ParameterInfo()
 
 // Update size
 
-void FrameLib_SmoothMean::resetSize(unsigned long size)
+void FrameLib_SmoothMean::resetSize(unsigned long maxFrames, unsigned long size)
 {
     dealloc(mSum);
     dealloc(mCompensate);

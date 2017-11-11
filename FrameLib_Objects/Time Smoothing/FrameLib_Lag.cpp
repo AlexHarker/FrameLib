@@ -1,8 +1,17 @@
 
 #include "FrameLib_Lag.h"
 
-FrameLib_Lag::FrameLib_Lag(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_TimeSmoothing<FrameLib_Lag>(context, serialisedParameters, owner), mFrameCopy(NULL)
+FrameLib_Lag::FrameLib_Lag(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 2, 1), FrameLib_RingBuffer(context)
 {
+    mParameters.addInt(kMaxFrames, "max_frames", 10, 0);
+    mParameters.setMin(1);
+    serialisedParameters->read(&mParameters);
+    
+    mParameters.addInt(kNumFrames, "num_frames", 10, 1);
+    mParameters.setMin(0);
+    serialisedParameters->read(&mParameters);
+    
+    setParameterInput(1);
 }
 
 // Info
@@ -32,23 +41,27 @@ FrameLib_Lag::ParameterInfo::ParameterInfo()
     add("Sets the time units used to for output.");
 }
 
-// Update size
-
-void FrameLib_Lag::resetSize(unsigned long size)
-{
-    dealloc(mFrameCopy);
-    mFrameCopy = alloc<double>(size);
-    zeroVector(mFrameCopy, size);
-}
-
 // Process
 
-void FrameLib_Lag::remove(const double *oldFrame, unsigned long size)
+void FrameLib_Lag::process()
 {
-    copyVector(mFrameCopy, oldFrame, size);
-}
+    unsigned long maxFrames = mParameters.getInt(kMaxFrames);
+    unsigned long numFrames = mParameters.getInt(kNumFrames);
+    
+    numFrames = numFrames > maxFrames ? maxFrames : numFrames;
+    
+    unsigned long sizeIn, sizeOut;
+    const double *input = getInput(0, &sizeIn);
+    
+    if (getFrameLength() != sizeIn || getNumFrames() != maxFrames)
+        resize(maxFrames, sizeIn);
+    
+    requestOutputSize(0, getFrameLength());
+    allocateOutputs();
+    double *output = getOutput(0, &sizeOut);
+    
+    const double *frame = numFrames ? getFrame(numFrames) : input;
 
-void FrameLib_Lag::result(double *output, unsigned long size)
-{
-    copyVector(output, mFrameCopy, size);
+    copyVector(output, frame, sizeOut);
+    write(input, sizeIn);
 }

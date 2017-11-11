@@ -1,10 +1,10 @@
 
-#ifndef FRAMELIB_SMOOTHMEDIAN_H
-#define FRAMELIB_SMOOTHMEDIAN_H
+#ifndef FRAMELIB_SMOOTHSTDDEV_H
+#define FRAMELIB_SMOOTHSTDDEV_H
 
 #include "FrameLib_Time_Smoothing_Template.h"
 
-class FrameLib_SmoothMedian : public FrameLib_TimeSmoothing<FrameLib_SmoothMedian>
+class FrameLib_SmoothStdDev : public FrameLib_TimeSmoothing<FrameLib_SmoothStdDev>
 {
     // Parameter Enums and Info
 
@@ -17,11 +17,14 @@ public:
     
     // Constructor
     
-    FrameLib_SmoothMedian(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_SmoothStdDev(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
 
-    ~FrameLib_SmoothMedian()
+    ~FrameLib_SmoothStdDev()
     {
-        dealloc(mOrdered);
+        dealloc(mSum);
+        dealloc(mCompensate);
+        dealloc(mSqSum);
+        dealloc(mSqCompensate);
     }
 
     // Info
@@ -34,14 +37,11 @@ public:
 
     void resetSize(unsigned long maxFrames, unsigned long size);
 
-private:
-
-    double *getChannel(unsigned long idx) const { return mOrdered + (idx * getMaxFrames()); }
-
     virtual void add(const double *newFrame, unsigned long size);
     virtual void remove(const double *oldFrame, unsigned long size);
-    virtual void exchange(const double *newFrame, const double *oldFrame, unsigned long size);
     virtual void result(double *output, unsigned long size);
+    
+private:
     
     // Object Reset
     
@@ -51,8 +51,10 @@ private:
     
     static ParameterInfo sParamInfo;
     
-    double *mOrdered;
-    unsigned long mNumFrames;
+    double *mSum;
+    double *mCompensate;
+    double *mSqSum;
+    double *mSqCompensate;
 };
 
 #endif
