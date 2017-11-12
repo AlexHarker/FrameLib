@@ -6,13 +6,7 @@
 
 class FrameLib_TimeMedian : public FrameLib_TimeBuffer<FrameLib_TimeMedian>
 {
-    // Parameter Enums and Info
-
-    enum ParameterList { kUnits };
-    enum Units { kSamples, kMS, kSeconds };
-
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
-
+   
 public:
     
     // Constructor
@@ -48,9 +42,7 @@ private:
     void objectReset() { smoothReset(); }
     
     // Data
-    
-    static ParameterInfo sParamInfo;
-    
+        
     double *mOrdered;
     unsigned long mNumFrames;
 };

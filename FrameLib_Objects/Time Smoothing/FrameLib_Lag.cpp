@@ -7,7 +7,7 @@ FrameLib_Lag::FrameLib_Lag(FrameLib_Context context, FrameLib_Parameters::Serial
     mParameters.setMin(1);
     serialisedParameters->read(&mParameters);
     
-    mParameters.addInt(kNumFrames, "num_frames", 10, 1);
+    mParameters.addInt(kNumFrames, "num_frames", 1, 1);
     mParameters.setMin(0);
     serialisedParameters->read(&mParameters);
     
@@ -18,13 +18,16 @@ FrameLib_Lag::FrameLib_Lag(FrameLib_Context context, FrameLib_Parameters::Serial
 
 std::string FrameLib_Lag::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs the current time: Time is reported in the specified units. Output is a single value.",
-                   "Outputs the current time.", verbose);
+    return formatInfo("Outputs vector-type frames with a lag set as an integer number of frames: Frames are expected to be of a uniform size, else the buffer is reset. The output is the same size as the input.",
+                   "Outputs vector-type frames with a lag set as an integer number of frames.", verbose);
 }
 
 std::string FrameLib_Lag::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Trigger Input - input frames generate output", "Trigger Input", verbose);
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return formatInfo("Frames to Lag - output depends on previous inputs", "Frames to Lag", verbose);
 }
 
 std::string FrameLib_Lag::outputInfo(unsigned long idx, bool verbose)
@@ -38,7 +41,8 @@ FrameLib_Lag::ParameterInfo FrameLib_Lag::sParamInfo;
 
 FrameLib_Lag::ParameterInfo::ParameterInfo()
 {
-    add("Sets the time units used to for output.");
+    add("Sets the maximum number of frames that can be set as a lag time.");
+    add("Sets the current lag as an integer number of frames.");
 }
 
 // Process

@@ -10,11 +10,22 @@ template <class T> class FrameLib_TimeBuffer : public FrameLib_Processor, privat
     const int sMaxFrames = 0;
     const int sNumFrames = 1;
     
+    // Parameter Info
+
+    struct ParameterInfo : public FrameLib_Parameters::Info
+    {
+        ParameterInfo()
+        {
+            add("Sets the maximum number of frames that can be set as a time period - changing resets the buffer.");
+            add("Sets the current integer number of frames for calculation.");
+        }
+    };
+    
 public:
     
     // Constructor
     
-    FrameLib_TimeBuffer(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, NULL, 2, 1), FrameLib_RingBuffer(context), mLastNumFrames(0)
+    FrameLib_TimeBuffer(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 2, 1), FrameLib_RingBuffer(context), mLastNumFrames(0)
     {
         mParameters.addInt(sMaxFrames, "max_frames", 10, 0);
         mParameters.setMin(1);
@@ -27,17 +38,6 @@ public:
         setParameterInput(1);
     }
     
-    // Info
-    
-    std::string objectInfo(bool verbose)
-    {
-        return formatInfo("Calculates the # of the input frame: The result is a single value.",
-                       "Calculates the # of the input frame.", getOpString(), verbose);
-    }
-    
-    std::string inputInfo(unsigned long idx, bool verbose)      { return "Input"; }
-    std::string outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
-
 protected:
     
     void smoothReset()
@@ -113,11 +113,11 @@ private:
         mLastNumFrames = numFrames;
     }
     
-    // Operator Description (specialise to change description)
+    static ParameterInfo sParamInfo;
 
-    const char *getOpString() { return "<vector operation>"; }
-    
     unsigned long mLastNumFrames;
 };
+
+template<class T> typename FrameLib_TimeBuffer<T>::ParameterInfo FrameLib_TimeBuffer<T>::sParamInfo;
 
 #endif

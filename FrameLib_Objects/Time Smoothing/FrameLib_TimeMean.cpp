@@ -2,34 +2,27 @@
 #include "FrameLib_TimeMean.h"
 
 FrameLib_TimeMean::FrameLib_TimeMean(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_TimeBuffer<FrameLib_TimeMean>(context, serialisedParameters, owner), mSum(NULL), mCompensate(NULL)
-{
-}
+{}
 
 // Info
 
 std::string FrameLib_TimeMean::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs the current time: Time is reported in the specified units. Output is a single value.",
-                   "Outputs the current time.", verbose);
+    return formatInfo("Outputs the mean per sample over a given number of frames: Frames are expected to be of uniform size, otherwise the buffer is reset. The number of frames (as well as the maximum number of frames) can be set as parameters. The output is the same size as the input.",
+                   "Outputs the mean per sample over a given number of frames.", verbose);
 }
 
 std::string FrameLib_TimeMean::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Trigger Input - input frames generate output", "Trigger Input", verbose);
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return formatInfo("Input Values", "Input Values", verbose);
 }
 
 std::string FrameLib_TimeMean::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output Values";
-}
-
-// Parameter Info
-
-FrameLib_TimeMean::ParameterInfo FrameLib_TimeMean::sParamInfo;
-
-FrameLib_TimeMean::ParameterInfo::ParameterInfo()
-{
-    add("Sets the time units used to for output.");
+    return "Means Over Time";
 }
 
 // Update size
@@ -80,3 +73,4 @@ void FrameLib_TimeMean::result(double *output, unsigned long size)
     for (unsigned long i = 0; i < size; i++)
         output[i] = (mSum[i] + mCompensate[i]) * recip;
 }
+

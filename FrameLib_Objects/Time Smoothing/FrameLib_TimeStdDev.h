@@ -6,13 +6,7 @@
 
 class FrameLib_TimeStdDev : public FrameLib_TimeBuffer<FrameLib_TimeStdDev>
 {
-    // Parameter Enums and Info
-
-    enum ParameterList { kUnits };
-    enum Units { kSamples, kMS, kSeconds };
-
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
-
+    
 public:
     
     // Constructor
@@ -48,8 +42,6 @@ private:
     void objectReset() { smoothReset(); }
     
     // Data
-    
-    static ParameterInfo sParamInfo;
     
     double *mSum;
     double *mCompensate;

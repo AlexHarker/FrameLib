@@ -8,27 +8,21 @@ FrameLib_TimeMedian::FrameLib_TimeMedian(FrameLib_Context context, FrameLib_Para
 
 std::string FrameLib_TimeMedian::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs the current time: Time is reported in the specified units. Output is a single value.",
-                   "Outputs the current time.", verbose);
+    return formatInfo("Outputs the median per sample over a given number of frames: Frames are expected to be of uniform size, otherwise the buffer is reset. The number of frames (as well as the maximum number of frames) can be set as parameters. The output is the same size as the input.",
+                      "Outputs the median per sample over a given number of frames.", verbose);
 }
 
 std::string FrameLib_TimeMedian::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Trigger Input - input frames generate output", "Trigger Input", verbose);
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return formatInfo("Input Values", "Input Values", verbose);
 }
 
 std::string FrameLib_TimeMedian::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output Values";
-}
-
-// Parameter Info
-
-FrameLib_TimeMedian::ParameterInfo FrameLib_TimeMedian::sParamInfo;
-
-FrameLib_TimeMedian::ParameterInfo::ParameterInfo()
-{
-    add("Sets the time units used to for output.");
+    return "Medians Over Time";
 }
 
 // Update size

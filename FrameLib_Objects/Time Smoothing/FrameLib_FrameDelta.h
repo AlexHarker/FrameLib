@@ -6,12 +6,7 @@
 
 class FrameLib_FrameDelta : public FrameLib_Processor
 {
-    // Parameter Enums and Info
-
-    enum ParameterList { kMaxFrames, kNumFrames };
-
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
-
+    
 public:
     
     // Constructor
@@ -40,8 +35,6 @@ private:
     void process();
     
     // Data
-    
-    static ParameterInfo sParamInfo;
     
     double *mLastFrame;
     unsigned long mFrameSize;
