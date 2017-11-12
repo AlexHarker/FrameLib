@@ -1,10 +1,10 @@
 
-#ifndef FRAMELIB_SMOOTHMEAN_H
-#define FRAMELIB_SMOOTHMEAN_H
+#ifndef FrameLib_TimeMean_H
+#define FrameLib_TimeMean_H
 
-#include "FrameLib_Time_Smoothing_Template.h"
+#include "FrameLib_TimeBuffer_Template.h"
 
-class FrameLib_SmoothMean : public FrameLib_TimeSmoothing<FrameLib_SmoothMean>
+class FrameLib_TimeMean : public FrameLib_TimeBuffer<FrameLib_TimeMean>
 {
     // Parameter Enums and Info
 
@@ -17,9 +17,9 @@ public:
     
     // Constructor
     
-    FrameLib_SmoothMean(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_TimeMean(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
 
-    ~FrameLib_SmoothMean()
+    ~FrameLib_TimeMean()
     {
         dealloc(mSum);
         dealloc(mCompensate);

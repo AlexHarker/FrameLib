@@ -3,7 +3,7 @@
 #define FRAMELIB_LAG_H
 
 #include "FrameLib_DSP.h"
-#include "FrameLib_FrameSet.h"
+#include "FrameLib_RingBuffer.h"
 
 class FrameLib_Lag : public FrameLib_Processor, private FrameLib_RingBuffer
 {

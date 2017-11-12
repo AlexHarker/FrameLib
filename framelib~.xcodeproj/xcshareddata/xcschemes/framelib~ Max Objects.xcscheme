@@ -1723,8 +1723,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B847EB411FB4749D00CFA52D"
-               BuildableName = "fl.smoothmean~.mxo"
-               BlueprintName = "fl.smoothmean~"
+               BuildableName = "fl.timemean~.mxo"
+               BlueprintName = "fl.timemean~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -1737,8 +1737,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B233F41FB4A9F000C18783"
-               BuildableName = "fl.smoothmedian~.mxo"
-               BlueprintName = "fl.smoothmedian~"
+               BuildableName = "fl.timemedian~.mxo"
+               BlueprintName = "fl.timemedian~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -1779,8 +1779,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8886F641FB76665001C843E"
-               BuildableName = "fl.smoothstddev~.mxo"
-               BlueprintName = "fl.smoothstddev~"
+               BuildableName = "fl.timestddev~.mxo"
+               BlueprintName = "fl.timestddev~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

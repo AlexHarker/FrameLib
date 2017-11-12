@@ -1,10 +1,10 @@
 
-#ifndef FRAMELIB_SMOOTHSTDDEV_H
-#define FRAMELIB_SMOOTHSTDDEV_H
+#ifndef FRAMELIB_TIMESTDDEV_H
+#define FRAMELIB_TIMESTDDEV_H
 
-#include "FrameLib_Time_Smoothing_Template.h"
+#include "FrameLib_TimeBuffer_Template.h"
 
-class FrameLib_SmoothStdDev : public FrameLib_TimeSmoothing<FrameLib_SmoothStdDev>
+class FrameLib_TimeStdDev : public FrameLib_TimeBuffer<FrameLib_TimeStdDev>
 {
     // Parameter Enums and Info
 
@@ -17,9 +17,9 @@ public:
     
     // Constructor
     
-    FrameLib_SmoothStdDev(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_TimeStdDev(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
 
-    ~FrameLib_SmoothStdDev()
+    ~FrameLib_TimeStdDev()
     {
         dealloc(mSum);
         dealloc(mCompensate);

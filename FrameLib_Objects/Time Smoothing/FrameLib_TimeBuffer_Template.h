@@ -1,11 +1,11 @@
 
-#ifndef FRAMELIB_TIMESMOOTHING_TEMPLATE_H
-#define FRAMELIB_TIMESMOOTHING_TEMPLATE_H
+#ifndef FRAMELIB_TIMEBUFFER_TEMPLATE_H
+#define FRAMELIB_TIMEBUFFER_TEMPLATE_H
 
-#include "FrameLib_FrameSet.h"
+#include "FrameLib_RingBuffer.h"
 #include "FrameLib_DSP.h"
 
-template <class T> class FrameLib_TimeSmoothing : public FrameLib_Processor, private FrameLib_RingBuffer
+template <class T> class FrameLib_TimeBuffer : public FrameLib_Processor, private FrameLib_RingBuffer
 {
     const int sMaxFrames = 0;
     const int sNumFrames = 1;
@@ -14,7 +14,7 @@ public:
     
     // Constructor
     
-    FrameLib_TimeSmoothing(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, NULL, 2, 1), FrameLib_RingBuffer(context), mLastNumFrames(0)
+    FrameLib_TimeBuffer(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, NULL, 2, 1), FrameLib_RingBuffer(context), mLastNumFrames(0)
     {
         mParameters.addInt(sMaxFrames, "max_frames", 10, 0);
         mParameters.setMin(1);

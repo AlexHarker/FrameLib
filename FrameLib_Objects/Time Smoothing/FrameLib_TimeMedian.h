@@ -1,10 +1,10 @@
 
-#ifndef FRAMELIB_SMOOTHMEDIAN_H
-#define FRAMELIB_SMOOTHMEDIAN_H
+#ifndef FRAMELIB_TIMEMEDIAN_H
+#define FRAMELIB_TIMEMEDIAN_H
 
-#include "FrameLib_Time_Smoothing_Template.h"
+#include "FrameLib_TimeBuffer_Template.h"
 
-class FrameLib_SmoothMedian : public FrameLib_TimeSmoothing<FrameLib_SmoothMedian>
+class FrameLib_TimeMedian : public FrameLib_TimeBuffer<FrameLib_TimeMedian>
 {
     // Parameter Enums and Info
 
@@ -17,9 +17,9 @@ public:
     
     // Constructor
     
-    FrameLib_SmoothMedian(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_TimeMedian(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
 
-    ~FrameLib_SmoothMedian()
+    ~FrameLib_TimeMedian()
     {
         dealloc(mOrdered);
     }

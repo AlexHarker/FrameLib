@@ -1,39 +1,39 @@
 
-#include "FrameLib_SmoothMedian.h"
+#include "FrameLib_TimeMedian.h"
 
-FrameLib_SmoothMedian::FrameLib_SmoothMedian(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_TimeSmoothing<FrameLib_SmoothMedian>(context, serialisedParameters, owner), mOrdered(NULL), mNumFrames(0)
+FrameLib_TimeMedian::FrameLib_TimeMedian(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_TimeBuffer<FrameLib_TimeMedian>(context, serialisedParameters, owner), mOrdered(NULL), mNumFrames(0)
 {}
 
 // Info
 
-std::string FrameLib_SmoothMedian::objectInfo(bool verbose)
+std::string FrameLib_TimeMedian::objectInfo(bool verbose)
 {
     return formatInfo("Outputs the current time: Time is reported in the specified units. Output is a single value.",
                    "Outputs the current time.", verbose);
 }
 
-std::string FrameLib_SmoothMedian::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_TimeMedian::inputInfo(unsigned long idx, bool verbose)
 {
     return formatInfo("Trigger Input - input frames generate output", "Trigger Input", verbose);
 }
 
-std::string FrameLib_SmoothMedian::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_TimeMedian::outputInfo(unsigned long idx, bool verbose)
 {
     return "Output Values";
 }
 
 // Parameter Info
 
-FrameLib_SmoothMedian::ParameterInfo FrameLib_SmoothMedian::sParamInfo;
+FrameLib_TimeMedian::ParameterInfo FrameLib_TimeMedian::sParamInfo;
 
-FrameLib_SmoothMedian::ParameterInfo::ParameterInfo()
+FrameLib_TimeMedian::ParameterInfo::ParameterInfo()
 {
     add("Sets the time units used to for output.");
 }
 
 // Update size
 
-void FrameLib_SmoothMedian::resetSize(unsigned long maxFrames, unsigned long size)
+void FrameLib_TimeMedian::resetSize(unsigned long maxFrames, unsigned long size)
 {
     dealloc(mOrdered);
     mOrdered = alloc<double>(size * maxFrames);
@@ -71,7 +71,7 @@ unsigned long find(double input, double *channel, unsigned long numFrames)
 
 // Process
 
-void FrameLib_SmoothMedian::exchange(const double *newFrame, const double *oldFrame, unsigned long size)
+void FrameLib_TimeMedian::exchange(const double *newFrame, const double *oldFrame, unsigned long size)
 {
     for (unsigned long i = 0; i < size; i++)
     {
@@ -104,7 +104,7 @@ bool checkArray(const double *array, unsigned long size)
     return true;
 }
 
-void FrameLib_SmoothMedian::add(const double *newFrame, unsigned long size)
+void FrameLib_TimeMedian::add(const double *newFrame, unsigned long size)
 {
     assert(mNumFrames < getMaxFrames() && "Number of frames cannot be increased above the maximum");
     
@@ -126,7 +126,7 @@ void FrameLib_SmoothMedian::add(const double *newFrame, unsigned long size)
     mNumFrames++;
 }
 
-void FrameLib_SmoothMedian::remove(const double *oldFrame, unsigned long size)
+void FrameLib_TimeMedian::remove(const double *oldFrame, unsigned long size)
 {
     assert(mNumFrames && "Number of frames cannot be reduced to zero!");
     
@@ -149,7 +149,7 @@ void FrameLib_SmoothMedian::remove(const double *oldFrame, unsigned long size)
     mNumFrames--;
 }
 
-void FrameLib_SmoothMedian::result(double *output, unsigned long size)
+void FrameLib_TimeMedian::result(double *output, unsigned long size)
 {
     for (unsigned long i = 0; i < size; i++)
         output[i] = getChannel(i)[mNumFrames >> 1];
