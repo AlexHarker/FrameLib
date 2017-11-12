@@ -30,6 +30,10 @@ public:
     double randDouble(double n);
     double randDouble(double lo, double hi);
 
+    // Generate a 32 bit Random Double of Gaussian Distribution with given Mean / Deviation
+    
+    double randGaussian(double mean, double dev);
+    
 private:
     
     // Methods Specific to the RNG Algorithm
