@@ -4,7 +4,7 @@
 
 #include "FrameLib_Unary_Template.h"
 
-// Binary (operators)
+// Unary (operators)
 
 // Info specialisations
 
@@ -14,7 +14,7 @@ template<> const char *FrameLib_UnaryOp<std::logical_not<double> >::getOpString(
 
 typedef FrameLib_UnaryOp<std::logical_not<double> >    FrameLib_LogicalNot;
 
-// Binary (functions)
+// Unary (functions)
 
 // Info specialisations
 

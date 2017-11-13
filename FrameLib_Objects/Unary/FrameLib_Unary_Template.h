@@ -1,7 +1,6 @@
 
-
-#ifndef FRAMELIB_TEMPLATES_H
-#define FRAMELIB_TEMPLATES_H
+#ifndef FRAMELIB_UNARY_TEMPLATE_H
+#define FRAMELIB_UNARY_TEMPLATE_H
 
 #include "FrameLib_DSP.h"
 
