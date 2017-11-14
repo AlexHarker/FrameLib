@@ -84,12 +84,12 @@ void FrameLib_FFT::process()
     
     unsigned long sizeInR, sizeInI, sizeOut;
     const double *inputR = getInput(0, &sizeInR);
-    const double *inputI =  NULL;
+    const double *inputI = NULL;
 
     sizeInI = 0;
     
     if (mMode == kComplex)
-        getInput(1, &sizeInI);
+        inputI = getInput(1, &sizeInI);
     
     // Get FFT size log 2
     
