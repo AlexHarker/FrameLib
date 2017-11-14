@@ -88,7 +88,6 @@ private:
         const double *input1 = getInput(0, &sizeIn1);
         const double *input2 = getInput(1, &sizeIn2);
         double defaultValue = mPadValue;
-        double *output;
         
         // Get common size
         
@@ -112,16 +111,16 @@ private:
         
         requestOutputSize(0, sizeOut);
         allocateOutputs();
-        output = getOutput(0, &sizeOut);
+        double *output = getOutput(0, &sizeOut);
         sizeCommon = sizeCommon > sizeOut ? sizeOut : sizeCommon;
+        
+        if (!sizeOut)
+            return;
         
         // Do first part
         
         for (unsigned long i = 0; i < sizeCommon; i++)
             output[i] = op(input1[i], input2[i]);
-        
-        if (!sizeOut)
-            return;
         
         // Clean up if sizes don't match
         

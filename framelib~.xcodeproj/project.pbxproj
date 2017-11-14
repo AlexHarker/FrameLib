@@ -433,6 +433,26 @@
 		B8B402BE1FB9B18A006EE056 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8B402CA1FB9B23D006EE056 /* fl.poltocar~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402C81FB9B1FD006EE056 /* fl.poltocar~.cpp */; };
 		B8B402CB1FB9B23F006EE056 /* fl.cartopol~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402C71FB9B1F2006EE056 /* fl.cartopol~.cpp */; };
+		B8B402E01FB9DF8B006EE056 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
+		B8B402E11FB9DF8B006EE056 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		B8B402E21FB9DF8B006EE056 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		B8B402EB1FB9DFA7006EE056 /* fl.complexpow~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402D61FB9DF4A006EE056 /* fl.complexpow~.cpp */; };
+		B8B402F41FB9E743006EE056 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
+		B8B402F51FB9E743006EE056 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		B8B402F61FB9E743006EE056 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		B8B403071FB9E747006EE056 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
+		B8B403081FB9E747006EE056 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		B8B403091FB9E747006EE056 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		B8B4031A1FB9E74E006EE056 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
+		B8B4031B1FB9E74E006EE056 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		B8B4031C1FB9E74E006EE056 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		B8B4032D1FB9E752006EE056 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
+		B8B4032E1FB9E752006EE056 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		B8B4032F1FB9E752006EE056 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		B8B403381FB9E7B4006EE056 /* fl.complexmultiply~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402D71FB9DF4A006EE056 /* fl.complexmultiply~.cpp */; };
+		B8B403391FB9E7B6006EE056 /* fl.complexdivide~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402D11FB9DF4A006EE056 /* fl.complexdivide~.cpp */; };
+		B8B4033A1FB9E7B9006EE056 /* fl.complexplus~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402D51FB9DF4A006EE056 /* fl.complexplus~.cpp */; };
+		B8B4033B1FB9E7BC006EE056 /* fl.complexminus~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402D31FB9DF4A006EE056 /* fl.complexminus~.cpp */; };
 		B8B4C8901F33456A008E5D31 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8B4C8911F33456A008E5D31 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8B4C89A1F3345A7008E5D31 /* fl.now~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4C8991F3345A7008E5D31 /* fl.now~.cpp */; };
@@ -870,6 +890,41 @@
 			remoteInfo = framelib;
 		};
 		B8B402B61FB9B18A006EE056 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
+			remoteInfo = framelib;
+		};
+		B8B402DA1FB9DF8B006EE056 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
+			remoteInfo = framelib;
+		};
+		B8B402EE1FB9E743006EE056 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
+			remoteInfo = framelib;
+		};
+		B8B403011FB9E747006EE056 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
+			remoteInfo = framelib;
+		};
+		B8B403141FB9E74E006EE056 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
+			remoteInfo = framelib;
+		};
+		B8B403271FB9E752006EE056 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
 			proxyType = 1;
@@ -2047,8 +2102,18 @@
 		B8B402C71FB9B1F2006EE056 /* fl.cartopol~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.cartopol~.cpp"; sourceTree = "<group>"; };
 		B8B402C81FB9B1FD006EE056 /* fl.poltocar~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.poltocar~.cpp"; sourceTree = "<group>"; };
 		B8B402C91FB9B231006EE056 /* FrameLib_Poltocar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Poltocar.h; sourceTree = "<group>"; };
-		B8B402CD1FB9C053006EE056 /* FrameLib__Complex_Binary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib__Complex_Binary_Template.h; sourceTree = "<group>"; };
+		B8B402CD1FB9C053006EE056 /* FrameLib_Complex_Binary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Complex_Binary_Template.h; sourceTree = "<group>"; };
 		B8B402CE1FB9C053006EE056 /* FrameLib_Complex_Binary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Complex_Binary_Objects.h; sourceTree = "<group>"; };
+		B8B402D11FB9DF4A006EE056 /* fl.complexdivide~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexdivide~.cpp"; sourceTree = "<group>"; };
+		B8B402D31FB9DF4A006EE056 /* fl.complexminus~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexminus~.cpp"; sourceTree = "<group>"; };
+		B8B402D51FB9DF4A006EE056 /* fl.complexplus~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexplus~.cpp"; sourceTree = "<group>"; };
+		B8B402D61FB9DF4A006EE056 /* fl.complexpow~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexpow~.cpp"; sourceTree = "<group>"; };
+		B8B402D71FB9DF4A006EE056 /* fl.complexmultiply~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexmultiply~.cpp"; sourceTree = "<group>"; };
+		B8B402E91FB9DF8B006EE056 /* fl.complexpow~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexpow~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B402FD1FB9E743006EE056 /* fl.complexmultiply~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexmultiply~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B403101FB9E747006EE056 /* fl.complexdivide~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexdivide~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B403231FB9E74E006EE056 /* fl.complexplus~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexplus~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B403361FB9E752006EE056 /* fl.complexminus~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexminus~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B4C8971F33456A008E5D31 /* fl.now~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.now~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B4C8991F3345A7008E5D31 /* fl.now~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.now~.cpp"; sourceTree = "<group>"; };
 		B8B4C89B1F334614008E5D31 /* FrameLib_Now.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Now.cpp; sourceTree = "<group>"; };
@@ -3265,6 +3330,56 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B8B402DF1FB9DF8B006EE056 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8B402E01FB9DF8B006EE056 /* Carbon.framework in Frameworks */,
+				B8B402E11FB9DF8B006EE056 /* libframelib.a in Frameworks */,
+				B8B402E21FB9DF8B006EE056 /* MaxAudioAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B402F31FB9E743006EE056 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8B402F41FB9E743006EE056 /* Carbon.framework in Frameworks */,
+				B8B402F51FB9E743006EE056 /* libframelib.a in Frameworks */,
+				B8B402F61FB9E743006EE056 /* MaxAudioAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B403061FB9E747006EE056 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8B403071FB9E747006EE056 /* Carbon.framework in Frameworks */,
+				B8B403081FB9E747006EE056 /* libframelib.a in Frameworks */,
+				B8B403091FB9E747006EE056 /* MaxAudioAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B403191FB9E74E006EE056 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8B4031A1FB9E74E006EE056 /* Carbon.framework in Frameworks */,
+				B8B4031B1FB9E74E006EE056 /* libframelib.a in Frameworks */,
+				B8B4031C1FB9E74E006EE056 /* MaxAudioAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B4032C1FB9E752006EE056 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8B4032D1FB9E752006EE056 /* Carbon.framework in Frameworks */,
+				B8B4032E1FB9E752006EE056 /* libframelib.a in Frameworks */,
+				B8B4032F1FB9E752006EE056 /* MaxAudioAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B8B4C88F1F33456A008E5D31 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -3829,6 +3944,11 @@
 				B8B402991FB9AE76006EE056 /* fl.complexsqrt~.mxo */,
 				B8B402B21FB9B186006EE056 /* fl.cartopol~.mxo */,
 				B8B402C51FB9B18B006EE056 /* fl.poltorcar~.mxo */,
+				B8B402E91FB9DF8B006EE056 /* fl.complexpow~.mxo */,
+				B8B402FD1FB9E743006EE056 /* fl.complexmultiply~.mxo */,
+				B8B403101FB9E747006EE056 /* fl.complexdivide~.mxo */,
+				B8B403231FB9E74E006EE056 /* fl.complexplus~.mxo */,
+				B8B403361FB9E752006EE056 /* fl.complexminus~.mxo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4155,6 +4275,7 @@
 				B85BDDBC19F1C1E300A349C5 /* Filters */,
 				B8F5A4DF1F2A619200D4777C /* Spatial */,
 				B8B402141FB9A960006EE056 /* Complex Unary */,
+				B8B402CF1FB9DF4A006EE056 /* Complex Binary */,
 				B85753591F2E92E300478E9F /* Max Specific */,
 			);
 			name = "Objects Max";
@@ -4310,8 +4431,20 @@
 		B8B402CC1FB9C053006EE056 /* Complex Binary */ = {
 			isa = PBXGroup;
 			children = (
-				B8B402CD1FB9C053006EE056 /* FrameLib__Complex_Binary_Template.h */,
+				B8B402CD1FB9C053006EE056 /* FrameLib_Complex_Binary_Template.h */,
 				B8B402CE1FB9C053006EE056 /* FrameLib_Complex_Binary_Objects.h */,
+			);
+			path = "Complex Binary";
+			sourceTree = "<group>";
+		};
+		B8B402CF1FB9DF4A006EE056 /* Complex Binary */ = {
+			isa = PBXGroup;
+			children = (
+				B8B402D11FB9DF4A006EE056 /* fl.complexdivide~.cpp */,
+				B8B402D31FB9DF4A006EE056 /* fl.complexminus~.cpp */,
+				B8B402D51FB9DF4A006EE056 /* fl.complexplus~.cpp */,
+				B8B402D61FB9DF4A006EE056 /* fl.complexpow~.cpp */,
+				B8B402D71FB9DF4A006EE056 /* fl.complexmultiply~.cpp */,
 			);
 			path = "Complex Binary";
 			sourceTree = "<group>";
@@ -5275,6 +5408,41 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B8B402B71FB9B18A006EE056 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B402DB1FB9DF8B006EE056 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B402EF1FB9E743006EE056 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B403021FB9E747006EE056 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B403151FB9E74E006EE056 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B403281FB9E752006EE056 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -7799,9 +7967,9 @@
 			productReference = B8B402B21FB9B186006EE056 /* fl.cartopol~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8B402B41FB9B18A006EE056 /* fl.poltorcar~ */ = {
+		B8B402B41FB9B18A006EE056 /* fl.poltocar~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B402C01FB9B18A006EE056 /* Build configuration list for PBXNativeTarget "fl.poltorcar~" */;
+			buildConfigurationList = B8B402C01FB9B18A006EE056 /* Build configuration list for PBXNativeTarget "fl.poltocar~" */;
 			buildPhases = (
 				B8B402B71FB9B18A006EE056 /* Headers */,
 				B8B402B81FB9B18A006EE056 /* Resources */,
@@ -7814,10 +7982,115 @@
 			dependencies = (
 				B8B402B51FB9B18A006EE056 /* PBXTargetDependency */,
 			);
-			name = "fl.poltorcar~";
+			name = "fl.poltocar~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B8B402C51FB9B18B006EE056 /* fl.poltorcar~.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		B8B402D81FB9DF8B006EE056 /* fl.complexpow~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8B402E41FB9DF8B006EE056 /* Build configuration list for PBXNativeTarget "fl.complexpow~" */;
+			buildPhases = (
+				B8B402DB1FB9DF8B006EE056 /* Headers */,
+				B8B402DC1FB9DF8B006EE056 /* Resources */,
+				B8B402DD1FB9DF8B006EE056 /* Sources */,
+				B8B402DF1FB9DF8B006EE056 /* Frameworks */,
+				B8B402E31FB9DF8B006EE056 /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8B402D91FB9DF8B006EE056 /* PBXTargetDependency */,
+			);
+			name = "fl.complexpow~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = B8B402E91FB9DF8B006EE056 /* fl.complexpow~.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		B8B402EC1FB9E743006EE056 /* fl.complexmultiply~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8B402F81FB9E743006EE056 /* Build configuration list for PBXNativeTarget "fl.complexmultiply~" */;
+			buildPhases = (
+				B8B402EF1FB9E743006EE056 /* Headers */,
+				B8B402F01FB9E743006EE056 /* Resources */,
+				B8B402F11FB9E743006EE056 /* Sources */,
+				B8B402F31FB9E743006EE056 /* Frameworks */,
+				B8B402F71FB9E743006EE056 /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8B402ED1FB9E743006EE056 /* PBXTargetDependency */,
+			);
+			name = "fl.complexmultiply~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = B8B402FD1FB9E743006EE056 /* fl.complexmultiply~.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		B8B402FF1FB9E747006EE056 /* fl.complexdivide~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8B4030B1FB9E747006EE056 /* Build configuration list for PBXNativeTarget "fl.complexdivide~" */;
+			buildPhases = (
+				B8B403021FB9E747006EE056 /* Headers */,
+				B8B403031FB9E747006EE056 /* Resources */,
+				B8B403041FB9E747006EE056 /* Sources */,
+				B8B403061FB9E747006EE056 /* Frameworks */,
+				B8B4030A1FB9E747006EE056 /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8B403001FB9E747006EE056 /* PBXTargetDependency */,
+			);
+			name = "fl.complexdivide~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = B8B403101FB9E747006EE056 /* fl.complexdivide~.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		B8B403121FB9E74E006EE056 /* fl.complexplus~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8B4031E1FB9E74E006EE056 /* Build configuration list for PBXNativeTarget "fl.complexplus~" */;
+			buildPhases = (
+				B8B403151FB9E74E006EE056 /* Headers */,
+				B8B403161FB9E74E006EE056 /* Resources */,
+				B8B403171FB9E74E006EE056 /* Sources */,
+				B8B403191FB9E74E006EE056 /* Frameworks */,
+				B8B4031D1FB9E74E006EE056 /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8B403131FB9E74E006EE056 /* PBXTargetDependency */,
+			);
+			name = "fl.complexplus~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = B8B403231FB9E74E006EE056 /* fl.complexplus~.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		B8B403251FB9E752006EE056 /* fl.complexminus~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8B403311FB9E752006EE056 /* Build configuration list for PBXNativeTarget "fl.complexminus~" */;
+			buildPhases = (
+				B8B403281FB9E752006EE056 /* Headers */,
+				B8B403291FB9E752006EE056 /* Resources */,
+				B8B4032A1FB9E752006EE056 /* Sources */,
+				B8B4032C1FB9E752006EE056 /* Frameworks */,
+				B8B403301FB9E752006EE056 /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8B403261FB9E752006EE056 /* PBXTargetDependency */,
+			);
+			name = "fl.complexminus~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = B8B403361FB9E752006EE056 /* fl.complexminus~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8B4C8791F33456A008E5D31 /* fl.now~ */ = {
@@ -8770,7 +9043,12 @@
 				B8B4023C1FB9AE69006EE056 /* fl.complexlog10~ */,
 				B8B402881FB9AE76006EE056 /* fl.complexsqrt~ */,
 				B8B402A11FB9B186006EE056 /* fl.cartopol~ */,
-				B8B402B41FB9B18A006EE056 /* fl.poltorcar~ */,
+				B8B402B41FB9B18A006EE056 /* fl.poltocar~ */,
+				B8B402D81FB9DF8B006EE056 /* fl.complexpow~ */,
+				B8B402EC1FB9E743006EE056 /* fl.complexmultiply~ */,
+				B8B402FF1FB9E747006EE056 /* fl.complexdivide~ */,
+				B8B403121FB9E74E006EE056 /* fl.complexplus~ */,
+				B8B403251FB9E752006EE056 /* fl.complexminus~ */,
 			);
 		};
 /* End PBXProject section */
@@ -9512,6 +9790,41 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B8B402B81FB9B18A006EE056 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B402DC1FB9DF8B006EE056 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B402F01FB9E743006EE056 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B403031FB9E747006EE056 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B403161FB9E74E006EE056 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B403291FB9E752006EE056 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -10516,6 +10829,41 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B8B402BF1FB9B18A006EE056 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B402E31FB9DF8B006EE056 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B402F71FB9E743006EE056 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B4030A1FB9E747006EE056 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B4031D1FB9E74E006EE056 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B403301FB9E752006EE056 /* Rez */ = {
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -11719,6 +12067,46 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B8B402DD1FB9DF8B006EE056 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8B402EB1FB9DFA7006EE056 /* fl.complexpow~.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B402F11FB9E743006EE056 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8B403381FB9E7B4006EE056 /* fl.complexmultiply~.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B403041FB9E747006EE056 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8B403391FB9E7B6006EE056 /* fl.complexdivide~.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B403171FB9E74E006EE056 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8B4033A1FB9E7B9006EE056 /* fl.complexplus~.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8B4032A1FB9E752006EE056 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8B4033B1FB9E7BC006EE056 /* fl.complexminus~.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B8B4C8821F33456A008E5D31 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -12183,6 +12571,31 @@
 			isa = PBXTargetDependency;
 			target = B89ABA8F1FA73483006DAD53 /* framelib */;
 			targetProxy = B8B402B61FB9B18A006EE056 /* PBXContainerItemProxy */;
+		};
+		B8B402D91FB9DF8B006EE056 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89ABA8F1FA73483006DAD53 /* framelib */;
+			targetProxy = B8B402DA1FB9DF8B006EE056 /* PBXContainerItemProxy */;
+		};
+		B8B402ED1FB9E743006EE056 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89ABA8F1FA73483006DAD53 /* framelib */;
+			targetProxy = B8B402EE1FB9E743006EE056 /* PBXContainerItemProxy */;
+		};
+		B8B403001FB9E747006EE056 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89ABA8F1FA73483006DAD53 /* framelib */;
+			targetProxy = B8B403011FB9E747006EE056 /* PBXContainerItemProxy */;
+		};
+		B8B403131FB9E74E006EE056 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89ABA8F1FA73483006DAD53 /* framelib */;
+			targetProxy = B8B403141FB9E74E006EE056 /* PBXContainerItemProxy */;
+		};
+		B8B403261FB9E752006EE056 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89ABA8F1FA73483006DAD53 /* framelib */;
+			targetProxy = B8B403271FB9E752006EE056 /* PBXContainerItemProxy */;
 		};
 		B8BEEB941FA7400600ED26F4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -26312,6 +26725,571 @@
 			};
 			name = Default;
 		};
+		B8B402E51FB9DF8B006EE056 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		B8B402E61FB9DF8B006EE056 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		B8B402E71FB9DF8B006EE056 /* Public Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = "Public Testing";
+		};
+		B8B402E81FB9DF8B006EE056 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_PPC64 = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
+		B8B402F91FB9E743006EE056 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		B8B402FA1FB9E743006EE056 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		B8B402FB1FB9E743006EE056 /* Public Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = "Public Testing";
+		};
+		B8B402FC1FB9E743006EE056 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_PPC64 = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
+		B8B4030C1FB9E747006EE056 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		B8B4030D1FB9E747006EE056 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		B8B4030E1FB9E747006EE056 /* Public Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = "Public Testing";
+		};
+		B8B4030F1FB9E747006EE056 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_PPC64 = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
+		B8B4031F1FB9E74E006EE056 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		B8B403201FB9E74E006EE056 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		B8B403211FB9E74E006EE056 /* Public Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = "Public Testing";
+		};
+		B8B403221FB9E74E006EE056 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_PPC64 = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
+		B8B403321FB9E752006EE056 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		B8B403331FB9E752006EE056 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		B8B403341FB9E752006EE056 /* Public Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = "Public Testing";
+		};
+		B8B403351FB9E752006EE056 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_PPC64 = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_REZFLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
 		B8B4C8941F33456A008E5D31 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -30654,13 +31632,68 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		B8B402C01FB9B18A006EE056 /* Build configuration list for PBXNativeTarget "fl.poltorcar~" */ = {
+		B8B402C01FB9B18A006EE056 /* Build configuration list for PBXNativeTarget "fl.poltocar~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B402C11FB9B18A006EE056 /* Development */,
 				B8B402C21FB9B18A006EE056 /* Deployment */,
 				B8B402C31FB9B18A006EE056 /* Public Testing */,
 				B8B402C41FB9B18A006EE056 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		B8B402E41FB9DF8B006EE056 /* Build configuration list for PBXNativeTarget "fl.complexpow~" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8B402E51FB9DF8B006EE056 /* Development */,
+				B8B402E61FB9DF8B006EE056 /* Deployment */,
+				B8B402E71FB9DF8B006EE056 /* Public Testing */,
+				B8B402E81FB9DF8B006EE056 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		B8B402F81FB9E743006EE056 /* Build configuration list for PBXNativeTarget "fl.complexmultiply~" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8B402F91FB9E743006EE056 /* Development */,
+				B8B402FA1FB9E743006EE056 /* Deployment */,
+				B8B402FB1FB9E743006EE056 /* Public Testing */,
+				B8B402FC1FB9E743006EE056 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		B8B4030B1FB9E747006EE056 /* Build configuration list for PBXNativeTarget "fl.complexdivide~" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8B4030C1FB9E747006EE056 /* Development */,
+				B8B4030D1FB9E747006EE056 /* Deployment */,
+				B8B4030E1FB9E747006EE056 /* Public Testing */,
+				B8B4030F1FB9E747006EE056 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		B8B4031E1FB9E74E006EE056 /* Build configuration list for PBXNativeTarget "fl.complexplus~" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8B4031F1FB9E74E006EE056 /* Development */,
+				B8B403201FB9E74E006EE056 /* Deployment */,
+				B8B403211FB9E74E006EE056 /* Public Testing */,
+				B8B403221FB9E74E006EE056 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		B8B403311FB9E752006EE056 /* Build configuration list for PBXNativeTarget "fl.complexminus~" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8B403321FB9E752006EE056 /* Development */,
+				B8B403331FB9E752006EE056 /* Deployment */,
+				B8B403341FB9E752006EE056 /* Public Testing */,
+				B8B403351FB9E752006EE056 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
