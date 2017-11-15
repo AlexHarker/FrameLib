@@ -96,6 +96,8 @@ void FrameLib_Convolve::process()
         return;
     }
     
+    // Assign temporary memory
+    
     spectrum1.realp = alloc<double>(FFTSize * 2 * sizeof(double));
     spectrum1.imagp = spectrum1.realp + (FFTSize >> 1);
     spectrum2.realp = spectrum1.imagp + (FFTSize >> 1);
@@ -105,8 +107,6 @@ void FrameLib_Convolve::process()
     
     if (spectrum1.realp)
     {
-        double scale = 0.25 / (double) FFTSize;
-        
         // Take the real ffts
         
         hisstools_rfft(mFFTSetup, input1, &spectrum1, sizeIn1, FFTSizelog2);
@@ -114,6 +114,8 @@ void FrameLib_Convolve::process()
         
         // Convolve
         
+        double scale = 0.25 / (double) FFTSize;
+
         // Do DC and Nyquist bins
         
         spectrum1.realp[0] *= scale * spectrum2.realp[0];
@@ -138,8 +140,7 @@ void FrameLib_Convolve::process()
         
         // Copy
         
-        for (unsigned long i = 0; i < sizeOut; i++)
-            output[i] = spectrum2.realp[i];
+        copyVector(output, spectrum2.realp, sizeOut);
         
         dealloc(spectrum1.realp);
     }
