@@ -12,11 +12,11 @@ FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, FrameLib_Parameters::Seri
     mParameters.addBool(kNormalise, "normalise", false, 1);
     mParameters.setInstantiation();
     mParameters.addEnum(kMode, "mode", 2);
-    mParameters.addEnumItem(0, "real");
-    mParameters.addEnumItem(0, "complex");
-    mParameters.addEnumItem(0, "fullspectrum");
+    mParameters.addEnumItem(kReal, "real");
+    mParameters.addEnumItem(kComplex, "complex");
+    mParameters.addEnumItem(kFullSpectrum, "fullspectrum");
     mParameters.setInstantiation();
-    
+
     mParameters.set(serialisedParameters);
     
     unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));

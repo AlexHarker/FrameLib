@@ -12,9 +12,9 @@ FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial
     mParameters.addBool(kNormalise, "normalise", false, 1);
     mParameters.setInstantiation();
     mParameters.addEnum(kMode, "mode", 2);
-    mParameters.addEnumItem(0, "real");
-    mParameters.addEnumItem(0, "complex");
-    mParameters.addEnumItem(0, "fullspectrum");
+    mParameters.addEnumItem(kReal, "real");
+    mParameters.addEnumItem(kComplex, "complex");
+    mParameters.addEnumItem(kFullSpectrum, "fullspectrum");
     mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
