@@ -26,19 +26,36 @@ FrameLib_Convolve::FrameLib_Convolve(FrameLib_Context context, FrameLib_Paramete
 
 std::string FrameLib_Convolve::objectInfo(bool verbose)
 {
-    return formatInfo("Convolve two real frames together, (using frequency domain processing internally): "
+    return formatInfo("Convolve two time domain frames together together, (using frequency domain processing internally): "
                    "The result will be a frame of M + N - 1 where M and N are the sizes of the two inputs respectively",
                    "Convolve two time domain frames together, (using frequency domain processing internally).", verbose);
 }
 
 std::string FrameLib_Convolve::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Input #", "Input #", idx, verbose);
+    if (mMode == kReal)
+        return formatInfo("Input #", "Input #", idx, verbose);
+    else
+    {
+        unsigned long inIdx = idx / 2;
+        
+        if (idx % 2)
+            return formatInfo("Imaginary Input #", "Imag Input #", inIdx, verbose);
+        else
+            return formatInfo("Real Input #", "Real Input #", inIdx, verbose);
+    }
 }
 
 std::string FrameLib_Convolve::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Convolved Output";
+    if (mMode == kReal)
+        return "Correlated Output";
+    
+    if (idx)
+        return formatInfo("Correlated Imaginary Output", "Correlated Imag Output", idx, verbose);
+    else
+        
+        return formatInfo("Correlated Real Output", "Correlated Real Output", idx, verbose);
 }
 
 // Parameter Info
@@ -48,6 +65,7 @@ FrameLib_Convolve::ParameterInfo FrameLib_Convolve::sParamInfo;
 FrameLib_Convolve::ParameterInfo::ParameterInfo()
 {
     add("Sets the maximum output length. The output length will be M + N - 1 where M and N are the sizes of the two inputs respectively");
+    add("Sets the type of input expected / output produced.");
 }
 
 // Process

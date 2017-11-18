@@ -26,19 +26,36 @@ FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, FrameLib_Parame
 
 std::string FrameLib_Correlate::objectInfo(bool verbose)
 {
-    return formatInfo("Correlate two real frames together, (using frequency domain processing internally): "
+    return formatInfo("Correlate two time domain frames together together, (using frequency domain processing internally): "
                    "The result will be a frame of M + N - 1 where M and N are the sizes of the two inputs respectively",
                    "Correlate two time domain frames together, (using frequency domain processing internally).", verbose);
 }
 
 std::string FrameLib_Correlate::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Input #", "Input #", idx, verbose);
+    if (mMode == kReal)
+        return formatInfo("Input #", "Input #", idx, verbose);
+    else
+    {
+        unsigned long inIdx = idx / 2;
+        
+        if (idx % 2)
+            return formatInfo("Imaginary Input #", "Imag Input #", inIdx, verbose);
+        else
+            return formatInfo("Real Input #", "Real Input #", inIdx, verbose);
+    }
 }
 
 std::string FrameLib_Correlate::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Correlated Output";
+    if (mMode == kReal)
+        return "Correlated Output";
+    
+    if (idx)
+        return formatInfo("Correlated Imaginary Output", "Correlated Imag Output", idx, verbose);
+    else
+        
+        return formatInfo("Correlated Real Output", "Correlated Real Output", idx, verbose);
 }
 
 // Parameter Info
@@ -48,6 +65,7 @@ FrameLib_Correlate::ParameterInfo FrameLib_Correlate::sParamInfo;
 FrameLib_Correlate::ParameterInfo::ParameterInfo()
 {
     add("Sets the maximum output length. The output length will be M + N - 1 where M and N are the sizes of the two inputs respectively");
+    add("Sets the type of input expected / output produced.");
 }
 
 // Process
