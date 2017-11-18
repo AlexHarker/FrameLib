@@ -1,15 +1,15 @@
 
-#ifndef FRAMELIB_CONVOLVE_H
-#define FRAMELIB_CONVOLVE_H
+#ifndef FRAMELIB_CORRELATE_H
+#define FRAMELIB_CORRELATE_H
 
 #include "FrameLib_DSP.h"
 #include "FrameLib_Convolution_Tools.h"
 
-class FrameLib_Convolve : public FrameLib_Processor, private Spectral
+class FrameLib_Correlate : public FrameLib_Processor, private Spectral
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kMaxLength, kMode };
+	enum ParameterList { kMaxLength, kMode };
     enum Mode { kReal, kComplex };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
@@ -18,7 +18,7 @@ public:
 	
     // Constructor / Destructor
     
-    FrameLib_Convolve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_Correlate(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
     
     // Info
     

@@ -1,8 +1,8 @@
 
-#include "FrameLib_Convolve.h"
+#include "FrameLib_Correlate.h"
 #include "FrameLib_Spectral_Functions.h"
 
-FrameLib_Convolve::FrameLib_Convolve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 2, 1), Spectral(context)
+FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 2, 1), Spectral(context)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -24,35 +24,35 @@ FrameLib_Convolve::FrameLib_Convolve(FrameLib_Context context, FrameLib_Paramete
 
 // Info
 
-std::string FrameLib_Convolve::objectInfo(bool verbose)
+std::string FrameLib_Correlate::objectInfo(bool verbose)
 {
-    return formatInfo("Convolve two real frames together, (using frequency domain processing internally): "
+    return formatInfo("Correlate two real frames together, (using frequency domain processing internally): "
                    "The result will be a frame of M + N - 1 where M and N are the sizes of the two inputs respectively",
-                   "Convolve two time domain frames together, (using frequency domain processing internally).", verbose);
+                   "Correlate two time domain frames together, (using frequency domain processing internally).", verbose);
 }
 
-std::string FrameLib_Convolve::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Correlate::inputInfo(unsigned long idx, bool verbose)
 {
     return formatInfo("Input #", "Input #", idx, verbose);
 }
 
-std::string FrameLib_Convolve::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Correlate::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Convolved Output";
+    return "Correlated Output";
 }
 
 // Parameter Info
 
-FrameLib_Convolve::ParameterInfo FrameLib_Convolve::sParamInfo;
+FrameLib_Correlate::ParameterInfo FrameLib_Correlate::sParamInfo;
 
-FrameLib_Convolve::ParameterInfo::ParameterInfo()
+FrameLib_Correlate::ParameterInfo::ParameterInfo()
 {
     add("Sets the maximum output length. The output length will be M + N - 1 where M and N are the sizes of the two inputs respectively");
 }
 
 // Process
 
-void FrameLib_Convolve::process()
+void FrameLib_Correlate::process()
 {
     if (mMode == kReal)
     {
@@ -74,7 +74,7 @@ void FrameLib_Convolve::process()
         requestOutputSize(0, sizeOut);
         
         if (allocateOutputs())
-            convolveReal(getOutput(0, &sizeOut), input1, sizeIn1, input2, sizeIn2);
+            correlateReal(getOutput(0, &sizeOut), input1, sizeIn1, input2, sizeIn2);
     }
     else
     {
@@ -100,8 +100,8 @@ void FrameLib_Convolve::process()
         
         requestOutputSize(0, sizeOut);
         requestOutputSize(1, sizeOut);
-
+        
         if (allocateOutputs())
-            convolve(getOutput(0, &sizeOut), getOutput(1, &sizeOut), inR1, sizeR1, inI1, sizeI1, inR2, sizeR2, inI2, sizeI2);
+            correlate(getOutput(0, &sizeOut), getOutput(1, &sizeOut), inR1, sizeR1, inI1, sizeI1, inR2, sizeR2, inI2, sizeI2);
     }
 }
