@@ -3,6 +3,7 @@
 #define FRAMELIB_CONVOLUTION_TOOLS_H
 
 #include <algorithm>
+#include "SIMDSupport.hpp"
 #include "../../FrameLib_Dependencies/HISSTools_FFT/HISSTools_FFT.h"
 #include "FrameLib_Spectral_Functions.h"
 
@@ -133,14 +134,40 @@ public:
     {
         // FIX - vectorise here (with appropriate changes to ops)
         
-        for (unsigned long i = 0; i < dataLength; i++)
-            op(io1.realp[i], io1.imagp[i], io1.realp[i], io1.imagp[i], in2.realp[i], in2.imagp[i], scale);
+        if (dataLength == 1)
+            op(io1.realp[0], io1.imagp[0], io1.realp[0], io1.imagp[0], in2.realp[0], in2.imagp[0], scale);
+        
+        if (dataLength < 4)
+        {
+            SIMDType<double, 2> *real1 = reinterpret_cast<SIMDType<double, 2> *>(io1.realp);
+            SIMDType<double, 2> *imag1 = reinterpret_cast<SIMDType<double, 2> *>(io1.imagp);
+            SIMDType<double, 2> *real2 = reinterpret_cast<SIMDType<double, 2> *>(in2.realp);
+            SIMDType<double, 2> *imag2 = reinterpret_cast<SIMDType<double, 2> *>(in2.imagp);
+            
+            SIMDType<double, 2> scaleVec(scale);
+            
+            for (unsigned long i = 0; i < (dataLength >> 1); i++)
+                op(real1[i], imag1[i], real1[i], imag1[i], real2[i], imag2[i], scaleVec);
+        }
+        
+        if (dataLength >= 4)
+        {
+            SIMDType<double, 4> *real1 = reinterpret_cast<SIMDType<double, 4> *>(io1.realp);
+            SIMDType<double, 4> *imag1 = reinterpret_cast<SIMDType<double, 4> *>(io1.imagp);
+            SIMDType<double, 4> *real2 = reinterpret_cast<SIMDType<double, 4> *>(in2.realp);
+            SIMDType<double, 4> *imag2 = reinterpret_cast<SIMDType<double, 4> *>(in2.imagp);
+            
+            SIMDType<double, 4> scaleVec(scale);
+
+            for (unsigned long i = 0; i < (dataLength >> 2); i++)
+                op(real1[i], imag1[i], real1[i], imag1[i], real2[i], imag2[i], scaleVec);
+        }
     }
         
     template<typename Op>
     void binaryOpReal(FFT_SPLIT_COMPLEX_D &spectrum1, FFT_SPLIT_COMPLEX_D &spectrum2, unsigned long dataLength, double scale, Op op)
     {
-        // Store DC and Nyquist
+        // Store DC and Nyquist Results
         
         const double DC = spectrum1.realp[0] * spectrum2.realp[0] * scale;
         const double Nyquist = spectrum1.imagp[0] * spectrum2.imagp[0] * scale;
@@ -173,6 +200,8 @@ public:
         transformInverse(io1, FFTSizelog2);
     }
     
+    // Memory manipulation (complex)
+    
     void copyZero(double *output, const double *input, unsigned long inSize, unsigned long outSize)
     {
         std::copy(input, input + inSize, output);
@@ -203,6 +232,52 @@ public:
         }
     }
 
+    // Memory manipulation (real)
+
+    struct assign { void operator()(double *output, const double *ptr) { *output = *ptr; } };
+    struct accum { void operator()(double *output, const double *ptr) { *output += *ptr; } };
+    struct increment { template<class T> T *operator()(T *&ptr) { return ptr++; } };
+    struct decrement { template<class T> T *operator()(T *&ptr) { return ptr--; } };
+    
+    template <typename Op, typename PtrOp>
+    void zip(double *output, const double *p1, const double *p2, unsigned long size, Op op, PtrOp pOp)
+    {
+        for (unsigned long i = 0; i < (size >> 1); i++)
+        {
+            op(pOp(output), pOp(p1));
+            op(pOp(output), pOp(p2));
+        }
+        
+        if (size & 1U)
+            op(pOp(output), pOp(p1));
+    }
+    
+    void copy(double *output, const FFT_SPLIT_COMPLEX_D spectrum, unsigned long outOffset, unsigned long offset, unsigned long size)
+    {
+        const double *p1 = (offset & 1U) ? spectrum.imagp + (offset >> 1) : spectrum.realp + (offset >> 1);
+        const double *p2 = (offset & 1U) ? spectrum.realp + (offset >> 1) + 1 : spectrum.imagp + (offset >> 1);
+        
+        zip(output + outOffset, p1, p2, size, assign(), increment());
+    }
+    
+    void wrap(double *output, const FFT_SPLIT_COMPLEX_D spectrum, unsigned long outOffset, unsigned long offset, unsigned long size)
+    {
+        const double *p1 = (offset & 1U) ? spectrum.imagp + (offset >> 1) : spectrum.realp + (offset >> 1);
+        const double *p2 = (offset & 1U) ? spectrum.realp + (offset >> 1) + 1 : spectrum.imagp + (offset >> 1);
+        
+        zip(output + outOffset, p1, p2, size, accum(), increment());
+    }
+    
+    void fold(double *output, const FFT_SPLIT_COMPLEX_D spectrum, unsigned long outOffset, unsigned long endOffset, unsigned long size)
+    {
+        const double *p1 = (endOffset & 1U) ? spectrum.realp + (endOffset >> 1) : spectrum.imagp + (endOffset >> 1) - 1;
+        const double *p2 = (endOffset & 1U) ? spectrum.imagp + (endOffset >> 1) - 1 : spectrum.realp + (endOffset >> 1) - 1;
+        
+        zip(output + outOffset, p1, p2, size, accum(), decrement());
+    }
+    
+    // Temporary Memory
+    
     void tempSpectra(FFT_SPLIT_COMPLEX_D &spectrum1, FFT_SPLIT_COMPLEX_D &spectrum2, unsigned long dataSize)
     {
         spectrum1.realp = allocTemp(dataSize * 4 * sizeof(double));
@@ -267,7 +342,7 @@ public:
 
         if (mode == kEdgeLinear || mode == kEdgeWrap)
         {
-            unsigned long extraSize = linearSize - maxSize;
+            unsigned long extraSize = minSize - 1;
             
             copy(output, spectrum, 0, 0, maxSize);
             
@@ -347,57 +422,6 @@ public:
         // Deallocate
         
         deallocTemp(spectrum1.realp);
-    }
-    
-    void copy(double *output, const FFT_SPLIT_COMPLEX_D spectrum, unsigned long outOffset, unsigned long offset, unsigned long size)
-    {
-        const double *p1 = (offset & 1U) ? spectrum.imagp + (offset >> 1) : spectrum.realp + (offset >> 1);
-        const double *p2 = (offset & 1U) ? spectrum.realp + (offset >> 1) + 1 : spectrum.imagp + (offset >> 1);
-        
-        output += outOffset;
-
-        for (unsigned long i = 0; i < (size >> 1); i++)
-        {
-            *output++ = *p1++;
-            *output++ = *p2++;
-        }
-        
-        if (size & 1U)
-            *output++ = *p1++;
-    }
-    
-    void wrap(double *output, const FFT_SPLIT_COMPLEX_D spectrum, unsigned long outOffset, unsigned long offset, unsigned long size)
-    {
-        const double *p1 = (offset & 1U) ? spectrum.imagp + (offset >> 1) : spectrum.realp + (offset >> 1);
-        const double *p2 = (offset & 1U) ? spectrum.realp + (offset >> 1) + 1 : spectrum.imagp + (offset >> 1);
-        
-        output += outOffset;
-
-        for (unsigned long i = 0; i < (size >> 1); i++)
-        {
-            *output++ += *p1++;
-            *output++ += *p2++;
-        }
-        
-        if (size & 1U)
-            *output++ += *p1++;
-    }
-    
-    void fold(double *output, const FFT_SPLIT_COMPLEX_D spectrum, unsigned long outOffset, unsigned long endOffset, unsigned long size)
-    {
-        const double *p1 = (endOffset & 1U) ? spectrum.realp + (endOffset >> 1) : spectrum.imagp + (endOffset >> 1) - 1;
-        const double *p2 = (endOffset & 1U) ? spectrum.imagp + (endOffset >> 1) - 1 : spectrum.realp + (endOffset >> 1) - 1;
-        
-        output += outOffset;
-
-        for (unsigned long i = 0; i < (size >> 1); i++)
-        {
-            *output++ += *p1--;
-            *output++ += *p2--;
-        }
-        
-        if (size & 1U)
-            *output++ += *p1--;
     }
     
     template<typename Op>
