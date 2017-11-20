@@ -11,7 +11,13 @@ FrameLib_Convolve::FrameLib_Convolve(FrameLib_Context context, FrameLib_Paramete
     mParameters.addEnumItem(kReal, "real");
     mParameters.addEnumItem(kComplex, "complex");
     mParameters.setInstantiation();
-    
+    mParameters.addEnum(kEdgeMode, "edges");
+    mParameters.addEnumItem(kEdgeLinear, "linear");
+    mParameters.addEnumItem(kEdgeWrap, "circular");
+    mParameters.addEnumItem(kEdgeWrapCentre, "wrap");
+    mParameters.addEnumItem(kEdgeFold, "fold");
+    mParameters.setInstantiation();
+
     mParameters.set(serialisedParameters);
         
     setMaxFFTSize(mParameters.getInt(kMaxLength));
@@ -72,6 +78,8 @@ FrameLib_Convolve::ParameterInfo::ParameterInfo()
 
 void FrameLib_Convolve::process()
 {
+    EdgeMode edgeMode = static_cast<EdgeMode>(mParameters.getInt(kEdgeMode));
+    
     if (mMode == kReal)
     {
         // Get Inputs
@@ -82,17 +90,14 @@ void FrameLib_Convolve::process()
         
         // Get Output Size
         
-        unsigned long sizeOut = sizeIn1 + sizeIn2 - 1;
-        
-        if (!sizeIn1 || !sizeIn2 || !checkSize(sizeOut))
-            sizeOut = 0;
+        unsigned long sizeOut = calcSize(sizeIn1, sizeIn2, edgeMode);
         
         // Get output
         
         requestOutputSize(0, sizeOut);
         
         if (allocateOutputs())
-            convolveReal(getOutput(0, &sizeOut), input1, sizeIn1, input2, sizeIn2);
+            convolveReal(getOutput(0, &sizeOut), input1, sizeIn1, input2, sizeIn2, edgeMode);
     }
     else
     {
@@ -102,17 +107,12 @@ void FrameLib_Convolve::process()
         
         const double *inR1 = getInput(0, &sizeR1);
         const double *inI1 = getInput(1, &sizeI1);
-        const double *inR2 = getInput(0, &sizeR2);
-        const double *inI2 = getInput(1, &sizeI2);
+        const double *inR2 = getInput(2, &sizeR2);
+        const double *inI2 = getInput(3, &sizeI2);
         
         // Get Output Size
-        
-        unsigned long sizeIn1 = std::max(sizeR1, sizeI1);
-        unsigned long sizeIn2 = std::max(sizeR2, sizeI2);
-        unsigned long sizeOut = sizeIn1 + sizeIn2 - 1;
-        
-        if (!sizeIn1 || !sizeIn2 || !checkSize(sizeOut))
-            sizeOut = 0;
+
+        unsigned long sizeOut = calcSize(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edgeMode);
         
         // Get output
         
@@ -120,6 +120,6 @@ void FrameLib_Convolve::process()
         requestOutputSize(1, sizeOut);
 
         if (allocateOutputs())
-            convolve(getOutput(0, &sizeOut), getOutput(1, &sizeOut), inR1, sizeR1, inI1, sizeI1, inR2, sizeR2, inI2, sizeI2);
+            convolve(getOutput(0, &sizeOut), getOutput(1, &sizeOut), inR1, sizeR1, inI1, sizeI1, inR2, sizeR2, inI2, sizeI2, edgeMode);
     }
 }

@@ -11,6 +11,12 @@ FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, FrameLib_Parame
     mParameters.addEnumItem(kReal, "real");
     mParameters.addEnumItem(kComplex, "complex");
     mParameters.setInstantiation();
+    mParameters.addEnum(kEdgeMode, "edges");
+    mParameters.addEnumItem(kEdgeLinear, "linear");
+    mParameters.addEnumItem(kEdgeWrap, "circular");
+    mParameters.addEnumItem(kEdgeWrapCentre, "wrap");
+    mParameters.addEnumItem(kEdgeFold, "fold");
+    mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
         
@@ -72,27 +78,27 @@ FrameLib_Correlate::ParameterInfo::ParameterInfo()
 
 void FrameLib_Correlate::process()
 {
+    EdgeMode edgeMode = static_cast<EdgeMode>(mParameters.getInt(kEdgeMode));
+
     if (mMode == kReal)
     {
         // Get Inputs
         
         unsigned long sizeIn1, sizeIn2;
+        
         const double *input1 = getInput(0, &sizeIn1);
         const double *input2 = getInput(1, &sizeIn2);
         
         // Get Output Size
         
-        unsigned long sizeOut = sizeIn1 + sizeIn2 - 1;
-        
-        if (!sizeIn1 || !sizeIn2 || !checkSize(sizeOut))
-            sizeOut = 0;
+        unsigned long sizeOut = calcSize(sizeIn1, sizeIn2, edgeMode);
         
         // Get output
         
         requestOutputSize(0, sizeOut);
         
         if (allocateOutputs())
-            correlateReal(getOutput(0, &sizeOut), input1, sizeIn1, input2, sizeIn2);
+            correlateReal(getOutput(0, &sizeOut), input1, sizeIn1, input2, sizeIn2, edgeMode);
     }
     else
     {
@@ -102,24 +108,19 @@ void FrameLib_Correlate::process()
         
         const double *inR1 = getInput(0, &sizeR1);
         const double *inI1 = getInput(1, &sizeI1);
-        const double *inR2 = getInput(0, &sizeR2);
-        const double *inI2 = getInput(1, &sizeI2);
+        const double *inR2 = getInput(2, &sizeR2);
+        const double *inI2 = getInput(3, &sizeI2);
         
         // Get Output Size
-        
-        unsigned long sizeIn1 = std::max(sizeR1, sizeI1);
-        unsigned long sizeIn2 = std::max(sizeR2, sizeI2);
-        unsigned long sizeOut = sizeIn1 + sizeIn2 - 1;
-        
-        if (!sizeIn1 || !sizeIn2 || !checkSize(sizeOut))
-            sizeOut = 0;
-        
+
+        unsigned long sizeOut = calcSize(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edgeMode);
+
         // Get output
         
         requestOutputSize(0, sizeOut);
         requestOutputSize(1, sizeOut);
         
         if (allocateOutputs())
-            correlate(getOutput(0, &sizeOut), getOutput(1, &sizeOut), inR1, sizeR1, inI1, sizeI1, inR2, sizeR2, inI2, sizeI2);
+            correlate(getOutput(0, &sizeOut), getOutput(1, &sizeOut), inR1, sizeR1, inI1, sizeI1, inR2, sizeR2, inI2, sizeI2, edgeMode);
     }
 }

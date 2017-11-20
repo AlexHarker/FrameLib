@@ -9,7 +9,7 @@ class FrameLib_Correlate : public FrameLib_Processor, private Spectral
 {
     // Parameter Enums and Info
 
-	enum ParameterList { kMaxLength, kMode };
+    enum ParameterList { kMaxLength, kMode, kEdgeMode };
     enum Mode { kReal, kComplex };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };

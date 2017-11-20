@@ -6,6 +6,8 @@
 #include "../../FrameLib_Dependencies/HISSTools_FFT/HISSTools_FFT.h"
 #include "FrameLib_Spectral_Functions.h"
 
+enum EdgeMode { kEdgeLinear, kEdgeWrap, kEdgeWrapCentre, kEdgeFold };
+
 class Spectral
 {
     
@@ -104,34 +106,26 @@ public:
         hisstools_rifft(mFFTSetup, &input, output, FFTSizelog2);
     }
     
-    bool checkSize(unsigned long size)
-    {
-        unsigned long FFTSizelog2 = ilog2(size);
-        unsigned long FFTSize = 1 << FFTSizelog2;
-        
-        return FFTSize <= mMaxFFTSize;
-    }
+    
     
     struct CorrelateOp
     {
-        void operator()(double &outR, double &outI, const double a, const double b, const double c, const double d, double scale)
+        template<class T>
+        void operator()(T &outR, T &outI, const T a, const T b, const T c, const T d, T scale)
         {
             outR = scale * (a * c + b * d);
             outI = scale * (b * c - a * d);
         }
-      
-        double operator()(const double r1, const double r2, double scale) { return scale * (r1 * r2); }
     };
     
     struct ConvolveOp
     {
-        void operator()(double &outR, double &outI, const double a, const double b, const double c, const double d, double scale)
+        template<class T>
+        void operator()(T &outR, T &outI, const T a, const T b, const T c, const T d, T scale)
         {
             outR = scale * (a * c - b * d);
             outI = scale * (a * d + b * c);
         }
-        
-        double operator()(const double r1, const double r2, double scale) { return scale * (r1 * r2); }
     };
     
     template<typename Op>
@@ -148,8 +142,8 @@ public:
     {
         // Store DC and Nyquist
         
-        const double DC = op(spectrum1.realp[0], spectrum2.realp[0], scale);
-        const double Nyquist = op(spectrum1.imagp[0], spectrum2.imagp[0], scale);
+        const double DC = spectrum1.realp[0] * spectrum2.realp[0] * scale;
+        const double Nyquist = spectrum1.imagp[0] * spectrum2.imagp[0] * scale;
         
         binaryOp(spectrum1, spectrum2, dataLength, scale, op);
         
@@ -179,58 +173,175 @@ public:
         transformInverse(io1, FFTSizelog2);
     }
     
-    void copy(double *output, const double *input, unsigned long inSize, unsigned long outSize)
+    void copyZero(double *output, const double *input, unsigned long inSize, unsigned long outSize)
     {
         std::copy(input, input + inSize, output);
         std::fill_n(output + inSize, outSize - inSize, 0.0);
     }
     
+    void copy(FFT_SPLIT_COMPLEX_D output, const FFT_SPLIT_COMPLEX_D spectrum, unsigned long outOffset, unsigned long offset, unsigned long size)
+    {
+        std::copy(spectrum.realp + offset, spectrum.realp + size + offset, output.realp + outOffset);
+        std::copy(spectrum.imagp + offset, spectrum.imagp + size + offset, output.imagp + outOffset);
+    }
+    
+    void wrap(FFT_SPLIT_COMPLEX_D output, const FFT_SPLIT_COMPLEX_D spectrum, unsigned long outOffset, unsigned long offset, unsigned long size)
+    {
+        for (unsigned long i = 0; i < size; i++)
+        {
+            output.realp[i + outOffset] += spectrum.realp[i + offset];
+            output.imagp[i + outOffset] += spectrum.imagp[i + offset];
+        }
+    }
+    
+    void fold(FFT_SPLIT_COMPLEX_D output, const FFT_SPLIT_COMPLEX_D spectrum, unsigned long outOffset, unsigned long endOffset, unsigned long size)
+    {
+        for (unsigned long i = 1; i <= size; i++)
+        {
+            output.realp[i + outOffset - 1] += spectrum.realp[endOffset - i];
+            output.imagp[i + outOffset - 1] += spectrum.imagp[endOffset - i];
+        }
+    }
+
+    void tempSpectra(FFT_SPLIT_COMPLEX_D &spectrum1, FFT_SPLIT_COMPLEX_D &spectrum2, unsigned long dataSize)
+    {
+        spectrum1.realp = allocTemp(dataSize * 4 * sizeof(double));
+        spectrum1.imagp = spectrum1.realp + dataSize;
+        spectrum2.realp = spectrum1.imagp + dataSize;
+        spectrum2.imagp = spectrum2.realp + dataSize;
+    }
+    
+    unsigned long calcLinearSize(unsigned long size1, unsigned long size2)
+    {
+        return size1 + size2 - 1;
+    }
+    
+    unsigned long calcSize(unsigned long size1, unsigned long size2, EdgeMode mode)
+    {
+        unsigned long linearSize = size1 + size2 - 1;
+        unsigned long sizeOut = mode != kEdgeLinear ? std::max(size1, size2) : linearSize;
+        unsigned long FFTSizelog2 = ilog2(linearSize);
+        unsigned long FFTSize = 1 << FFTSizelog2;
+        
+        if (mode == kEdgeFold && !(std::min(size1, size2) & 1U))
+            sizeOut++;
+        
+        if ((FFTSize > mMaxFFTSize) || !size1 || !size2)
+            return 0;
+        
+        return sizeOut;
+    }
+    
+    template <class T>
+    void arrangeOutput(T output, FFT_SPLIT_COMPLEX_D spectrum, unsigned long minSize, unsigned long sizeOut, unsigned long linearSize, unsigned long FFTSize, EdgeMode mode, ConvolveOp op)
+    {
+        unsigned long offset = (mode == kEdgeFold || mode == kEdgeWrapCentre) ? (minSize - 1) / 2: 0;
+        
+        copy(output, spectrum, 0, offset, sizeOut);
+        
+        if (mode == kEdgeWrap)
+            wrap(output, spectrum, 0, sizeOut, linearSize - sizeOut);
+        
+        if (mode == kEdgeWrapCentre)
+        {
+            unsigned long endWrap = (minSize - 1) - offset;
+            
+            wrap(output, spectrum, 0, linearSize - endWrap, endWrap);
+            wrap(output, spectrum, sizeOut - offset, 0, offset);
+        }
+        
+        if (mode == kEdgeFold)
+        {
+            unsigned long foldSize = minSize / 2;
+            unsigned long foldOffset = sizeOut - foldSize;
+            
+            fold(output, spectrum, 0, foldSize, foldSize);
+            fold(output, spectrum, foldOffset, linearSize, foldSize);
+        }
+    }
+
+    template <class T>
+    void arrangeOutput(T output, FFT_SPLIT_COMPLEX_D spectrum, unsigned long minSize, unsigned long sizeOut, unsigned long linearSize, unsigned long FFTSize, EdgeMode mode, CorrelateOp op)
+    {
+        unsigned long maxSize = (linearSize - minSize) + 1;
+
+        if (mode == kEdgeLinear || mode == kEdgeWrap)
+        {
+            unsigned long extraSize = linearSize - maxSize;
+            
+            copy(output, spectrum, 0, 0, maxSize);
+            
+            if (mode == kEdgeLinear)
+                copy(output, spectrum, maxSize, FFTSize - extraSize, extraSize);
+            else
+                wrap(output, spectrum, (linearSize - (2 * (minSize - 1))), FFTSize - extraSize, extraSize);
+        }
+        else
+        {
+            unsigned long offset = minSize / 2;
+            
+            copy(output, spectrum, 0, FFTSize - offset, offset);
+            copy(output, spectrum, offset, 0, sizeOut - offset);
+            
+            if (mode == kEdgeWrapCentre)
+            {
+                unsigned long endWrap = minSize - offset - 1;
+
+                wrap(output, spectrum, 0, maxSize - offset, offset);
+                wrap(output, spectrum, sizeOut - endWrap, FFTSize - (minSize - 1), endWrap);
+            }
+            else
+            {
+                fold(output, spectrum, 0, FFTSize - (offset - 1), offset);
+                fold(output, spectrum, sizeOut - offset, maxSize, offset);
+            }
+        }
+    }
+   
     template<typename Op>
     void binarySpectralOperation(double *rOut, double *iOut, const double *rIn1, unsigned long sizeR1, const double *iIn1, unsigned long sizeI1,
-                                 const double *rIn2, unsigned long sizeR2, const double *iIn2, unsigned long sizeI2, Op op)
+                                 const double *rIn2, unsigned long sizeR2, const double *iIn2, unsigned long sizeI2, EdgeMode mode,  Op op)
     {
         FFT_SPLIT_COMPLEX_D spectrum1;
         FFT_SPLIT_COMPLEX_D spectrum2;
         unsigned long size1 = std::max(sizeR1, sizeI1);
         unsigned long size2 = std::max(sizeR2, sizeI2);
-        unsigned long sizeOut = size1 + size2 - 1;
-        unsigned long FFTSizelog2 = ilog2(sizeOut);
+        
+        unsigned long linearSize = calcLinearSize(size1, size2);
+        unsigned long sizeOut = calcSize(size1, size2, mode);
+        unsigned long FFTSizelog2 = ilog2(linearSize);
         unsigned long FFTSize = 1 << FFTSizelog2;
         
-        // Special case for short inputs
+        // Special cases for short inputs
         
-        if (sizeOut < 2)
+        if (!sizeOut)
+            return;
+            
+        if (sizeOut == 1)
         {
-            if (size1 == 1 && size2 == 1)
-            {
-                // FIX THIS
-                //output[0] = in1[0] * in2[0];
-            }
+            ConvolveOp()(rOut[0], iOut[0], rIn1[0], iIn1[0], rIn2[0], iIn2[0], 1.0);
             return;
         }
         
         // Assign temporary memory
         
-        spectrum1.realp = allocTemp(FFTSize * 4 * sizeof(double));
-        spectrum1.imagp = spectrum1.realp + FFTSize;
-        spectrum2.realp = spectrum1.imagp + FFTSize;
-        spectrum2.imagp = spectrum2.realp + FFTSize;
+        tempSpectra(spectrum1, spectrum2, FFTSize);
         
         if (spectrum1.realp)
         {
+            FFT_SPLIT_COMPLEX_D output;
+            output.realp = rOut;
+            output.imagp = iOut;
+            
             // Copy to the inputs
             
-            copy(spectrum1.realp, rIn1, sizeR1, FFTSize);
-            copy(spectrum1.imagp, iIn1, sizeI1, FFTSize);
-            copy(spectrum2.realp, rIn2, sizeR2, FFTSize);
-            copy(spectrum2.imagp, iIn2, sizeI2, FFTSize);
+            copyZero(spectrum1.realp, rIn1, sizeR1, FFTSize);
+            copyZero(spectrum1.imagp, iIn1, sizeI1, FFTSize);
+            copyZero(spectrum2.realp, rIn2, sizeR2, FFTSize);
+            copyZero(spectrum2.imagp, iIn2, sizeI2, FFTSize);
             
             binarySpectralOperation(spectrum1, spectrum2, FFTSizelog2, op);
-            
-            // Copy to the output
-            
-            std::copy(spectrum1.realp, spectrum1.realp + sizeOut, rOut);
-            std::copy(spectrum2.realp, spectrum2.realp + sizeOut, iOut);
+            arrangeOutput(output, spectrum1, std::min(size1, size2), sizeOut, linearSize, FFTSize, mode, op);
         }
         
         // Deallocate
@@ -238,30 +349,82 @@ public:
         deallocTemp(spectrum1.realp);
     }
     
+    void copy(double *output, const FFT_SPLIT_COMPLEX_D spectrum, unsigned long outOffset, unsigned long offset, unsigned long size)
+    {
+        const double *p1 = (offset & 1U) ? spectrum.imagp + (offset >> 1) : spectrum.realp + (offset >> 1);
+        const double *p2 = (offset & 1U) ? spectrum.realp + (offset >> 1) + 1 : spectrum.imagp + (offset >> 1);
+        
+        output += outOffset;
+
+        for (unsigned long i = 0; i < (size >> 1); i++)
+        {
+            *output++ = *p1++;
+            *output++ = *p2++;
+        }
+        
+        if (size & 1U)
+            *output++ = *p1++;
+    }
+    
+    void wrap(double *output, const FFT_SPLIT_COMPLEX_D spectrum, unsigned long outOffset, unsigned long offset, unsigned long size)
+    {
+        const double *p1 = (offset & 1U) ? spectrum.imagp + (offset >> 1) : spectrum.realp + (offset >> 1);
+        const double *p2 = (offset & 1U) ? spectrum.realp + (offset >> 1) + 1 : spectrum.imagp + (offset >> 1);
+        
+        output += outOffset;
+
+        for (unsigned long i = 0; i < (size >> 1); i++)
+        {
+            *output++ += *p1++;
+            *output++ += *p2++;
+        }
+        
+        if (size & 1U)
+            *output++ += *p1++;
+    }
+    
+    void fold(double *output, const FFT_SPLIT_COMPLEX_D spectrum, unsigned long outOffset, unsigned long endOffset, unsigned long size)
+    {
+        const double *p1 = (endOffset & 1U) ? spectrum.realp + (endOffset >> 1) : spectrum.imagp + (endOffset >> 1) - 1;
+        const double *p2 = (endOffset & 1U) ? spectrum.imagp + (endOffset >> 1) - 1 : spectrum.realp + (endOffset >> 1) - 1;
+        
+        output += outOffset;
+
+        for (unsigned long i = 0; i < (size >> 1); i++)
+        {
+            *output++ += *p1--;
+            *output++ += *p2--;
+        }
+        
+        if (size & 1U)
+            *output++ += *p1--;
+    }
+    
     template<typename Op>
-    void binarySpectralOperationReal(double *output, const double *in1, unsigned long size1, const double *in2, unsigned long size2, Op op)
+    void binarySpectralOperationReal(double *output, const double *in1, unsigned long size1, const double *in2, unsigned long size2, EdgeMode mode, Op op)
     {
         FFT_SPLIT_COMPLEX_D spectrum1;
         FFT_SPLIT_COMPLEX_D spectrum2;
-        unsigned long sizeOut = size1 + size2 - 1;
-        unsigned long FFTSizelog2 = ilog2(sizeOut);
+        
+        unsigned long linearSize = calcLinearSize(size1, size2);
+        unsigned long sizeOut = calcSize(size1, size2, mode);
+        unsigned long FFTSizelog2 = ilog2(linearSize);
         unsigned long FFTSize = 1 << FFTSizelog2;
 
-        // Special case for short inputs
+        // Special cases for short inputs
         
-        if (sizeOut < 2)
+        if (!sizeOut)
+            return;
+            
+        if (sizeOut == 1)
         {
-            if (size1 == 1 && size2 == 1)
-                output[0] = in1[0] * in2[0];
+            output[0] = in1[0] * in2[0];
             return;
         }
         
         // Assign temporary memory
         
-        spectrum1.realp = allocTemp(FFTSize * 2 * sizeof(double));
-        spectrum1.imagp = spectrum1.realp + (FFTSize >> 1);
-        spectrum2.realp = spectrum1.imagp + (FFTSize >> 1);
-        spectrum2.imagp = spectrum2.realp + (FFTSize >> 1);
+        tempSpectra(spectrum1, spectrum2, FFTSize >> 1);
         
         if (spectrum1.realp)
         {
@@ -278,17 +441,7 @@ public:
             // Inverse iFFT
             
             transformInverseReal(spectrum1, FFTSizelog2);
-           
-            // Copy to the output with zipping
-            
-            for (unsigned long i = 0; i < (sizeOut >> 1); i++)
-            {
-                *output++ = spectrum1.realp[i];
-                *output++ = spectrum1.imagp[i];
-            }
-            
-            if (sizeOut | 1U)
-                *output++ = spectrum1.realp[sizeOut >> 1];
+            arrangeOutput(output, spectrum1, std::min(size1, size2), sizeOut, linearSize, FFTSize, mode, op);
         }
         
         // Deallocate
@@ -296,26 +449,26 @@ public:
         deallocTemp(spectrum1.realp);
     }
     
-    void convolveReal(double *output, const double *in1, unsigned long size1, const double *in2, unsigned long size2)
+    void convolveReal(double *output, const double *in1, unsigned long size1, const double *in2, unsigned long size2, EdgeMode mode)
     {
-        binarySpectralOperationReal(output, in1, size1, in2, size2, ConvolveOp());
+        binarySpectralOperationReal(output, in1, size1, in2, size2, mode, ConvolveOp());
     }
     
-    void correlateReal(double *output, const double *in1, unsigned long size1, const double *in2, unsigned long size2)
+    void correlateReal(double *output, const double *in1, unsigned long size1, const double *in2, unsigned long size2, EdgeMode mode)
     {
-        binarySpectralOperationReal(output, in1, size1, in2, size2, CorrelateOp());
+        binarySpectralOperationReal(output, in1, size1, in2, size2, mode, CorrelateOp());
     }
     
     void convolve(double *rOut, double *iOut, const double *rIn1, unsigned long sizeR1, const double *iIn1, unsigned long sizeI1,
-                  const double *rIn2, unsigned long sizeR2, const double *iIn2, unsigned long sizeI2)
+                  const double *rIn2, unsigned long sizeR2, const double *iIn2, unsigned long sizeI2, EdgeMode mode)
     {
-        binarySpectralOperation(rOut, iOut, rIn1, sizeR1, iIn1, sizeI1, rIn2, sizeR2, iIn2, sizeI2, ConvolveOp());
+        binarySpectralOperation(rOut, iOut, rIn1, sizeR1, iIn1, sizeI1, rIn2, sizeR2, iIn2, sizeI2, mode, ConvolveOp());
     }
     
     void correlate(double *rOut, double *iOut, const double *rIn1, unsigned long sizeR1, const double *iIn1, unsigned long sizeI1,
-                  const double *rIn2, unsigned long sizeR2, const double *iIn2, unsigned long sizeI2)
+                  const double *rIn2, unsigned long sizeR2, const double *iIn2, unsigned long sizeI2, EdgeMode mode)
     {
-        binarySpectralOperation(rOut, iOut, rIn1, sizeR1, iIn1, sizeI1, rIn2, sizeR2, iIn2, sizeI2, CorrelateOp());
+        binarySpectralOperation(rOut, iOut, rIn1, sizeR1, iIn1, sizeI1, rIn2, sizeR2, iIn2, sizeI2, mode, CorrelateOp());
     }
 
 private:
