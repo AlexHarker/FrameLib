@@ -294,6 +294,7 @@ public:
     : FrameLib_DSP(kProcessor, context, owner, info, nIns, nOuts) {}
     
     static ObjectType getType() { return kProcessor; }
+    static bool handlesAudio()  { return false; }
 
 protected:
     
@@ -317,6 +318,7 @@ public:
     : FrameLib_DSP(kProcessor, context, owner, info, nIns, nOuts, nAudioIns) {}
 
     static ObjectType getType() { return kProcessor; }
+    static bool handlesAudio()  { return true; }
     
 protected:
     
@@ -338,6 +340,7 @@ public:
     : FrameLib_DSP(kOutput, context, owner, info, nIns, nOuts, nAudioOuts) {}
     
     static ObjectType getType() { return kOutput; }
+    static bool handlesAudio()  { return true; }
     
 protected:
     
@@ -359,6 +362,7 @@ public:
     : FrameLib_DSP(kScheduler, context, owner, info, nIns, nOuts, nAudioIns) {}
     
     static ObjectType getType() { return kScheduler; }
+    static bool handlesAudio()  { return true; }
     
 protected:
 

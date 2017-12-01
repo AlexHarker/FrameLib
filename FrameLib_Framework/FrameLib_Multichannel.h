@@ -45,6 +45,8 @@ public:
     virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) {}
     virtual void reset(double samplingRate, unsigned long maxBlockSize) {}
 
+    static bool handlesAudio() { return false; }
+
 protected:
     
     // IO Utilities
@@ -282,6 +284,10 @@ public:
         for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
             (*it)->reset(samplingRate, maxBlockSize);
     }
+    
+    // Handles Audio
+    
+    static bool handlesAudio() { return T::handlesAudio(); }
     
     // Info
     

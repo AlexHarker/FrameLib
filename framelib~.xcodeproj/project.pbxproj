@@ -652,6 +652,7 @@
 		B8CA3225199A29D5005F30A1 /* fl.interval~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8CA3214199A29C3005F30A1 /* fl.interval~.cpp */; };
 		B8CACC8119C0F4A9007434C9 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8CACC8B19C0F5D1007434C9 /* fl.source~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8CACC8A19C0F5D1007434C9 /* fl.source~.cpp */; };
+		B8CAD5681FC7278C00F7E28B /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
 		B8D679D41B83E51A00519310 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8D679D51B83E51A00519310 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8D679DF1B83E5A600519310 /* fl.trace~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D679DD1B83E55900519310 /* fl.trace~.cpp */; };
@@ -11979,6 +11980,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8CAD5681FC7278C00F7E28B /* FrameLib_Parameters.cpp in Sources */,
 				B8A46E061F6EB3A10032F831 /* FrameLib_Memory.cpp in Sources */,
 				B8A46E041F6EB3770032F831 /* MemoryTesting.cpp in Sources */,
 				B8A46DF91F6EB3060032F831 /* FrameLib_RandGen.cpp in Sources */,

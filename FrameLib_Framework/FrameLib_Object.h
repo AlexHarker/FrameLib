@@ -194,7 +194,7 @@ public:
     
     // Return to host to request to be passed audio
     
-    bool handlesAudio()  { return getType() != kProcessor || getNumAudioChans(); }
+    static bool handlesAudio()  { return false; }
     
     // Info
 
