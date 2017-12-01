@@ -64,7 +64,8 @@ double FrameLib_RandGen::randDouble(double lo, double hi)
 
 double FrameLib_RandGen::randGaussian(double mean, double dev)
 {
-    double x, y;
+    double x = 0.0;
+    double y = 0.0;
     double R = 0.0;
     
     while (R >= 1.0 || R == 0.0)
