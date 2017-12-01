@@ -74,9 +74,9 @@ unsigned long FrameLib_Ramp::getLength()
     
     switch (static_cast<Units>(mParameters.getInt(kUnits)))
     {
-        case kSamples:  break;
-        case kMS:       time *= mSamplingRate / 1000.0;     break;
-        case kSeconds:  time *= mSamplingRate;              break;
+        case kScaleSamples:  break;
+        case kScaleMS:       time *= mSamplingRate / 1000.0;     break;
+        case kScaleSeconds:  time *= mSamplingRate;              break;
     }
     
     return round(time);

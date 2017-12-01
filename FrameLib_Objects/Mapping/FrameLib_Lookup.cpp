@@ -17,12 +17,19 @@ FrameLib_Lookup::FrameLib_Lookup(FrameLib_Context context, FrameLib_Parameters::
     mParameters.addEnumItem(kLinear, "linear");
     mParameters.addEnumItem(kNone, "none");
     mParameters.setInstantiation();
+
+    mParameters.addEnum(kScaling, "scale");
+    mParameters.addEnumItem(kSamples, "samples");
+    mParameters.addEnumItem(kNormalised, "normalised");
+    mParameters.addEnumItem(kBipolar, "bipolar");
+    mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
     
     mMode = mParameters.getInt(kMode);
     mInterpMode = mParameters.getInt(kInterpolation);
-    
+    mScaling = mParameters.getInt(kScaling);
+
     setInputMode(1, false, false, false);
 }
 
@@ -78,6 +85,9 @@ void FrameLib_Lookup::process()
     allocateOutputs();
     
     double *output = getOutput(0, &sizeOut);
+    const double *positions = input1;
+    double *temp = NULL;
+    double scaleFactor;
     
     enum InterpType interpType;
     
@@ -90,11 +100,46 @@ void FrameLib_Lookup::process()
         case kBSpline:      interpType = kInterpCubicBSpline;       break;
     }
     
+    if (mScaling != kSamples)
+    {
+        temp = alloc<double>(sizeIn1);
+        positions = temp;
+        
+        if (!temp)
+        {
+            zeroVector(output, sizeOut);
+            return;
+        }
+    }
+    
+    switch (mScaling)
+    {
+        case kSamples:
+            break;
+            
+        case kNormalised:
+            scaleFactor = static_cast<double>(sizeIn2 - 1);
+            
+            for (unsigned long i = 0; i < sizeIn1; i++)
+                temp[i] = input1[i] * scaleFactor;
+            break;
+            
+        case kBipolar:
+            scaleFactor = static_cast<double>(sizeIn2 - 1) / 2.0;
+            
+            for (unsigned long i = 0; i < sizeIn1; i++)
+                temp[i] = (input1[i] + 1.0) * scaleFactor;
+            break;
+    }
+    
     switch (mMode)
     {
-        case kZero:     table_read(FetchZero(input2, sizeIn2), output, input1, sizeIn1, 1.0, interpType);   break;
-        case kClip:     table_read(FetchClip(input2, sizeIn2), output, input1, sizeIn1, 1.0, interpType);   break;
+        case kZero:     table_read(FetchZero(input2, sizeIn2), output, positions, sizeIn1, 1.0, interpType);   break;
+        case kClip:     table_read(FetchClip(input2, sizeIn2), output, positions, sizeIn1, 1.0, interpType);   break;
         //case kWrap:   table_read(FetchWrap(input2, sizeIn2), output, input1, sizeIn1, 1.0, interpType);   break;
         //case kPad:   table_read(FetchPad(input2, sizeIn2, padValue), output, input1, sizeIn1, 1.0, interpType);   break;
     }
+    
+     if (mScaling != kSamples)
+         dealloc(temp);
 }

@@ -8,10 +8,11 @@
 
 class FrameLib_Lookup : public FrameLib_Processor
 {
-    enum ParameterList { kMode, kInterpolation };
+    enum ParameterList { kMode, kInterpolation, kScaling };
     enum Mode { kZero, kClip, kWrap, kPad };
     enum Interpolation { kHermite, kBSpline, kLagrange, kLinear, kNone };
-    
+    enum Scaling { kSamples, kNormalised, kBipolar };
+
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
     struct FetchBase : table_fetcher<double>
@@ -87,6 +88,7 @@ private:
     
     long mMode;
     long mInterpMode;
+    long mScaling;
     
     static ParameterInfo sParamInfo;
 };
