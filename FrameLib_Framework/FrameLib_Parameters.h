@@ -210,7 +210,7 @@ public:
         // Write Items
         
         void write(Serial *serialised)                          { if (checkSize(calcSize(serialised))) Serial::write(serialised); }
-        void write(const char *tag, char *str)                  { if (checkSize(calcSize(tag, str))) Serial::write(tag, str); }
+        void write(const char *tag, const char *str)            { if (checkSize(calcSize(tag, str))) Serial::write(tag, str); }
         void write(const char *tag, double *values, size_t N)   { if (checkSize(calcSize(tag, N))) Serial::write(tag, values, N); }
         
     private:
