@@ -89,7 +89,7 @@ void FrameLib_Lookup::process()
     double *temp = NULL;
     double scaleFactor;
     
-    enum InterpType interpType;
+    enum InterpType interpType = kInterpNone;
     
     switch (mInterpMode)
     {

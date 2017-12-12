@@ -54,8 +54,7 @@ void FrameLib_AudioTrigger::blockProcess(const double * const *ins, double **out
 
 FrameLib_AudioTrigger::SchedulerInfo FrameLib_AudioTrigger::schedule(bool newFrame, bool noAdvance)
 {
-    unsigned long time = getCurrentTime().intVal();
-    unsigned long offset = time - getBlockStartTime().intVal();
+    unsigned long offset = static_cast<unsigned long>(getCurrentTime().intVal() - getBlockStartTime().intVal());
     unsigned long i;
     
     // Find next trigger

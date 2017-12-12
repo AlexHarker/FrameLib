@@ -512,7 +512,7 @@ void FrameLib_Parameters::Enum::addEnumItem(const char *str)
 
 void FrameLib_Parameters::Enum::set(double value)
 {
-    mValue = ((value >= mItems.size()) ? (mItems.size() - 1) : (value < 0 ? 0 : value));
+    mValue = static_cast<unsigned long>((value >= mItems.size()) ? (mItems.size() - 1) : (value < 0.0 ? 0.0 : value));
     mChanged = true;
 }
 

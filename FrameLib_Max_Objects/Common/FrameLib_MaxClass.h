@@ -374,7 +374,7 @@ public:
     
     void sync()
     {
-        // Must for the order of the wrapper after the internal object before calling internal sync
+        // Must set the order of the wrapper after the internal object before calling internal sync
         
         (*sigMethodCache())(this);
         
@@ -1225,7 +1225,7 @@ private:
     
     void parseParameters(FrameLib_Parameters::AutoSerial& serialisedParameters, long argc, t_atom *argv)
     {
-        t_symbol *sym;
+        t_symbol *sym = NULL;
         std::vector<double> values;
         long i;
         

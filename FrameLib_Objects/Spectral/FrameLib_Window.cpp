@@ -101,9 +101,9 @@ void FrameLib_Window::updateWindow(unsigned long inSize, EndPoints ends)
 {
     WindowTypes windowType = (WindowTypes) mParameters.getInt(kWindowType);
     bool sqrtWindow = mParameters.getBool(kSqrt);
-    unsigned long windowSize = mParameters.getInt(kSize);
+    uint32_t windowSize = static_cast<uint32_t>(mParameters.getInt(kSize));
     
-    windowSize = !windowSize ? inSize : windowSize;
+    windowSize = !windowSize ? static_cast<uint32_t>(inSize) : windowSize;
     
     windowSize = ends == kBoth ? windowSize - 1 : windowSize;
     windowSize = ends == kNone ? windowSize + 1 : windowSize;

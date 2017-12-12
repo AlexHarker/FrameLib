@@ -279,8 +279,8 @@ FL_FP::FL_FP(const double& val)
         mInt = mFrac = std::numeric_limits<uint64_t>::max();
     else
     {
-        mInt = absVal;
-        mFrac = round((absVal - floor(absVal)) * 18446744073709551616.0);
+        mInt = static_cast<uint64_t>(absVal);
+        mFrac = static_cast<uint64_t>(round((absVal - floor(absVal)) * 18446744073709551616.0));
     }
 }
 
