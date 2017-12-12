@@ -111,7 +111,7 @@ void FrameLib_Spatial::process()
     double *output = getOutput(0, &numSpeakers);
     
     double norm = 0.0;
-    double minDistance;
+    double minDistance = 0.0;
     int nearestIdx = 0;
     
     Cartesian panPosition;
@@ -133,7 +133,7 @@ void FrameLib_Spatial::process()
         panPosition = Cartesian(x, y, z);;
     }
     
-    for (unsigned long i = 0; i < numSpeakers; i++)
+    for (int i = 0; i < numSpeakers; i++)
     {
         double xDelta = panPosition.x - mSpeakers[i].x;
         double yDelta = panPosition.y - mSpeakers[i].y;
