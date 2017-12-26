@@ -8,7 +8,7 @@ class FrameLib_Sort : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kOrder };
+    enum ParameterList { kOrder, kOutputIndices };
     enum Orders { kUp, kDown };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };

@@ -10,6 +10,8 @@ FrameLib_Sort::FrameLib_Sort(FrameLib_Context context, FrameLib_Parameters::Seri
     mParameters.addEnumItem(kUp, "up");
     mParameters.addEnumItem(kDown, "down");
     
+    mParameters.addBool(kOutputIndices, "indices_mode");
+    
     mParameters.set(serialisedParameters);
     
     setParameterInput(1);
@@ -57,14 +59,34 @@ void FrameLib_Sort::process()
     
     double *output = getOutput(0, &size);
     
-    switch (static_cast<Orders>(mParameters.getInt(kOrder)))
+    if (!mParameters.getBool(kOutputIndices))
     {
-        case kUp:
-            sortAscending(output, input, size);
-            break;
+        switch (static_cast<Orders>(mParameters.getInt(kOrder)))
+        {
+            case kUp:       sortAscending(output, input, size);     break;
+            case kDown:     sortDescending(output, input, size);    break;
+        }
+    }
+    else
+    {
+        unsigned long *indices = alloc<unsigned long>(size);
+        
+        if (indices)
+        {
+            switch (static_cast<Orders>(mParameters.getInt(kOrder)))
+            {
+                case kUp:       sortIndicesAscending(indices, input, size);     break;
+                case kDown:     sortIndicesDescending(indices, input, size);    break;
+            }
             
-        case kDown:
-            sortDescending(output, input, size);
-            break;
+            for (unsigned long i = 0; i < size; i++)
+                output[i] = static_cast<double>(indices[i]);
+        }
+        else
+        {
+            zeroVector(output, size);
+        }
+        
+        dealloc(indices);
     }
 }
