@@ -1,7 +1,7 @@
 
 #include "fl.read~.h"
 #include "FrameLib_MaxClass.h"
-#include "ibuffer/ibuffer_access.h"
+#include "ibuffer/ibuffer_access.hpp"
 
 // FIX - abstract out max buffer interaction (buffer name / channel)
 // FIX - consider adding anti-alising later....
@@ -108,21 +108,19 @@ void FrameLib_MaxRead::process()
     
     // Get buffer
     
-    void *buffer = ibuffer_get_ptr(mBufferName);
+    ibuffer_data buffer(mBufferName);
     
-    const ibuffer_data data = ibuffer_info(buffer);
-    
-    if (buffer && size && data.samples)
+    if (size && buffer.get_samples())
     {
-        chan = (mChan - 1) % data.num_chans;
+        chan = (mChan - 1) % buffer.get_num_chans();
         positions = alloc<double>(size);
     }
     
     if (positions)
     {
-        double lengthM1 = data.length - 1.0;
+        double lengthM1 = buffer.get_length() - 1.0;
         double conversionFactor = 1.0;
-        double samplingRate = ibuffer_sample_rate(buffer);
+        double samplingRate = buffer.get_sample_rate();
         
         switch (mUnits)
         {
@@ -161,7 +159,7 @@ void FrameLib_MaxRead::process()
             }
         }
         
-        ibuffer_read(data, output, positions, size, chan, 1.0, interpType);
+        ibuffer_read(buffer, output, positions, size, chan, 1.0, interpType);
         dealloc(positions);
     }
     else
@@ -170,9 +168,6 @@ void FrameLib_MaxRead::process()
         
         zeroVector(output, size);
     }
-    
-    ibuffer_release_ptr(buffer);
-
 }
 
 // Max Object

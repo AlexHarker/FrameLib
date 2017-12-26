@@ -4,14 +4,13 @@
 
 #include <emmintrin.h>
 #include <immintrin.h>
+#include <stdint.h>
 
 /*
 // Load / Store / Unpack
  
-#define F32_VEC_USTORE					_mm_storeu_ps
 #define F32_VEC_MOVE_LO					_mm_movelh_ps
 #define F32_VEC_MOVE_HI					_mm_movehl_ps
-#define F64_VEC_USTORE					_mm_storeu_pd
 #define F64_VEC_UNPACK_LO				_mm_unpacklo_pd
 #define F64_VEC_UNPACK_HI				_mm_unpackhi_pd
 #define F64_VEC_STORE_HI				_mm_storeh_pd
@@ -32,8 +31,6 @@
 
 // Shuffles
  
-#define F32_VEC_SHUFFLE					_mm_shuffle_ps
-#define F64_VEC_SHUFFLE					_mm_shuffle_pd
 #define I32_VEC_SHUFFLE_OP				_mm_shuffle_epi32
 */
 
@@ -76,12 +73,57 @@ template <class T> void deallocate_aligned(T *ptr)
 #define SIMD_COMPILER_SUPPORT_AVX256 2
 #define SIMD_COMPILER_SUPPORT_AVX512 3
 
+template<class T> struct SIMDLimits
+{
+    static const int max_size = 1;
+    static const int byte_width = sizeof(T);
+};
+
 #if defined(__AVX512F__)
 #define SIMD_COMPILER_SUPPORT_LEVEL SIMD_COMPILER_SUPPORT_AVX512
+
+template<> struct SIMDLimits<double>
+{
+    static const int max_size = 8;
+    static const int byte_width = 64;
+};
+
+template<> struct SIMDLimits<float>
+{
+    static const int max_size = 16;
+    static const int byte_width = 64;
+};
+
 #elif defined(__AVX__)
 #define SIMD_COMPILER_SUPPORT_LEVEL SIMD_COMPILER_SUPPORT_AVX256
+
+template<> struct SIMDLimits<double>
+{
+    static const int max_size = 4;
+    static const int byte_width = 32;
+};
+
+template<> struct SIMDLimits<float>
+{
+    static const int max_size = 8;
+    static const int byte_width = 32;
+};
+
 #elif defined(__SSE__)
 #define SIMD_COMPILER_SUPPORT_LEVEL SIMD_COMPILER_SUPPORT_SSE128
+
+template<> struct SIMDLimits<double>
+{
+    static const int max_size = 2;
+    static const int byte_width = 16;
+};
+
+template<> struct SIMDLimits<float>
+{
+    static const int max_size = 4;
+    static const int byte_width = 16;
+};
+
 #else
 #define SIMD_COMPILER_SUPPORT_LEVEL SIMD_COMPILER_SUPPORT_SCALAR
 #endif
@@ -152,11 +194,17 @@ template <int final_size, class T> struct SizedVector
     friend SV operator * (const SV& a, const SV& b) { return op(a, b, std::multiplies<T>()); }
     friend SV operator / (const SV& a, const SV& b) { return op(a, b, std::divides<T>()); }
     
+    SV& operator += (const SV& b)   { return (*this = *this + b); }
+    SV& operator -= (const SV& b)   { return (*this = *this - b); }
+    SV& operator *= (const SV& b)   { return (*this = *this * b); }
+    SV& operator /= (const SV& b)   { return (*this = *this / b); }
+    
     //friend SV sqrt(const SV& a) { return sqrt(a.mVal); }
     
     friend SV min(const SV& a, const SV& b) { return op(a, b, std::min<T>()); }
     friend SV max(const SV& a, const SV& b) { return op(a, b, std::max<T>()); }
-    
+    //friend SV sel(const SV& a, const SV& b) { return op(a, b, std::sel<T>()); }
+
     //friend SV and_not(const SV& a, const SV& b) { return (~a.mVal) &  b.mVal; }
     //friend SV operator & (const SV& a, const SV& b) { return a.mVal & b.mVal; }
     //friend SV operator | (const SV& a, const SV& b) { return a.mVal | b.mVal; }
@@ -184,16 +232,24 @@ template <class T> struct Scalar
     Scalar(const T* a) { mVal = *a; }
     template <class U> Scalar(const Scalar<U> a) { mVal = static_cast<T>(a.mVal); }
     
+    void store(T *a) { *a = mVal; }
+    
     friend Scalar operator + (const Scalar& a, const Scalar& b) { return a.mVal + b.mVal; }
     friend Scalar operator - (const Scalar& a, const Scalar& b) { return a.mVal - b.mVal; }
     friend Scalar operator * (const Scalar& a, const Scalar& b) { return a.mVal * b.mVal; }
     friend Scalar operator / (const Scalar& a, const Scalar& b) { return a.mVal / b.mVal; }
 
+    Scalar& operator += (const Scalar& b)   { return (*this = *this + b); }
+    Scalar& operator -= (const Scalar& b)   { return (*this = *this - b); }
+    Scalar& operator *= (const Scalar& b)   { return (*this = *this * b); }
+    Scalar& operator /= (const Scalar& b)   { return (*this = *this / b); }
+    
     friend Scalar sqrt(const Scalar& a) { return sqrt(a.mVal); }
   
     friend Scalar min(const Scalar& a, const Scalar& b) { return std::min(a.mVal, b.mVal); }
     friend Scalar max(const Scalar& a, const Scalar& b) { return std::max(a.mVal, b.mVal); }
-    
+    friend Scalar sel(const Scalar& a, const Scalar& b, const Scalar& c) { return c ? b : a; }
+
     friend Scalar and_not(const Scalar& a, const Scalar& b) { return (~a.mVal) &  b.mVal; }
     friend Scalar operator & (const Scalar& a, const Scalar& b) { return a.mVal & b.mVal; }
     friend Scalar operator | (const Scalar& a, const Scalar& b) { return a.mVal | b.mVal; }
@@ -222,6 +278,139 @@ template <class T, class U, int vec_size> struct SIMDVector
 
 template <class T, int vec_size> struct SIMDType {};
 
+template<>
+struct SIMDType<double, 1>
+{
+    static const int size = 1;
+    typedef float scalar_type;
+    
+    SIMDType() {}
+    SIMDType(double a) : mVal(a) {}
+    SIMDType(const double* a) { mVal = *a; }
+    
+    void store(double *a) { *a = mVal; }
+
+    friend SIMDType operator + (const SIMDType& a, const SIMDType& b) { return a.mVal + b.mVal; }
+    friend SIMDType operator - (const SIMDType& a, const SIMDType& b) { return a.mVal - b.mVal; }
+    friend SIMDType operator * (const SIMDType& a, const SIMDType& b) { return a.mVal * b.mVal; }
+    friend SIMDType operator / (const SIMDType& a, const SIMDType& b) { return a.mVal / b.mVal; }
+    
+    SIMDType& operator += (const SIMDType& b)   { return (*this = *this + b); }
+    SIMDType& operator -= (const SIMDType& b)   { return (*this = *this - b); }
+    SIMDType& operator *= (const SIMDType& b)   { return (*this = *this * b); }
+    SIMDType& operator /= (const SIMDType& b)   { return (*this = *this / b); }
+    
+    friend SIMDType sqrt(const SIMDType& a) { return sqrt(a.mVal); }
+    
+    friend SIMDType min(const SIMDType& a, const SIMDType& b) { return std::min(a.mVal, b.mVal); }
+    friend SIMDType max(const SIMDType& a, const SIMDType& b) { return std::max(a.mVal, b.mVal); }
+    friend SIMDType sel(const SIMDType& a, const SIMDType& b, const SIMDType& c) { return c.mVal ? b.mVal : a.mVal; }
+
+    friend SIMDType operator == (const SIMDType& a, const SIMDType& b) { return a.mVal == b.mVal; }
+    friend SIMDType operator != (const SIMDType& a, const SIMDType& b) { return a.mVal != b.mVal; }
+    friend SIMDType operator > (const SIMDType& a, const SIMDType& b) { return a.mVal > b.mVal; }
+    friend SIMDType operator < (const SIMDType& a, const SIMDType& b) { return a.mVal < b.mVal; }
+    friend SIMDType operator >= (const SIMDType& a, const SIMDType& b) { return a.mVal >= b.mVal; }
+    friend SIMDType operator <= (const SIMDType& a, const SIMDType& b) { return a.mVal <= b.mVal; }
+    
+    double mVal;
+};
+
+template<>
+struct SIMDType<float, 1>
+{
+    static const int size = 1;
+    typedef float scalar_type;
+    
+    SIMDType() {}
+    SIMDType(float a) : mVal(a) {}
+    SIMDType(const float* a) { mVal = *a; }
+    
+    void store(float *a) { *a = mVal; }
+    
+    friend SIMDType operator + (const SIMDType& a, const SIMDType& b) { return a.mVal + b.mVal; }
+    friend SIMDType operator - (const SIMDType& a, const SIMDType& b) { return a.mVal - b.mVal; }
+    friend SIMDType operator * (const SIMDType& a, const SIMDType& b) { return a.mVal * b.mVal; }
+    friend SIMDType operator / (const SIMDType& a, const SIMDType& b) { return a.mVal / b.mVal; }
+    
+    SIMDType& operator += (const SIMDType& b)   { return (*this = *this + b); }
+    SIMDType& operator -= (const SIMDType& b)   { return (*this = *this - b); }
+    SIMDType& operator *= (const SIMDType& b)   { return (*this = *this * b); }
+    SIMDType& operator /= (const SIMDType& b)   { return (*this = *this / b); }
+    
+    friend SIMDType sqrt(const SIMDType& a) { return sqrtf(a.mVal); }
+    
+    friend SIMDType min(const SIMDType& a, const SIMDType& b) { return std::min(a.mVal, b.mVal); }
+    friend SIMDType max(const SIMDType& a, const SIMDType& b) { return std::max(a.mVal, b.mVal); }
+    friend SIMDType sel(const SIMDType& a, const SIMDType& b, const SIMDType& c) { return c.mVal ? b.mVal : a.mVal; }
+    
+    friend SIMDType operator == (const SIMDType& a, const SIMDType& b) { return a.mVal == b.mVal; }
+    friend SIMDType operator != (const SIMDType& a, const SIMDType& b) { return a.mVal != b.mVal; }
+    friend SIMDType operator > (const SIMDType& a, const SIMDType& b) { return a.mVal > b.mVal; }
+    friend SIMDType operator < (const SIMDType& a, const SIMDType& b) { return a.mVal < b.mVal; }
+    friend SIMDType operator >= (const SIMDType& a, const SIMDType& b) { return a.mVal >= b.mVal; }
+    friend SIMDType operator <= (const SIMDType& a, const SIMDType& b) { return a.mVal <= b.mVal; }
+    
+    operator SIMDType<double, 1>() { return static_cast<double>(mVal); }
+    
+    float mVal;
+};
+
+template<>
+struct SIMDType<float, 2>
+{
+    static const int size = 1;
+    typedef float scalar_type;
+    
+    SIMDType() {}
+    
+    SIMDType(float a)
+    {
+        mVals[0] = a;
+        mVals[1] = a;
+    }
+    
+    SIMDType(const float* a)
+    {
+        mVals[0] = a[0];
+        mVals[1] = a[1];
+    }
+    
+    void store(float *a)
+    {
+        a[0] = mVals[0];
+        a[1] = mVals[1];
+    }
+    
+    // No Ops for now..
+    
+    /*
+    friend SIMDType operator + (const SIMDType& a, const SIMDType& b) { return a.mVal + b.mVal; }
+    friend SIMDType operator - (const SIMDType& a, const SIMDType& b) { return a.mVal - b.mVal; }
+    friend SIMDType operator * (const SIMDType& a, const SIMDType& b) { return a.mVal * b.mVal; }
+    friend SIMDType operator / (const SIMDType& a, const SIMDType& b) { return a.mVal / b.mVal; }
+    
+    SIMDType& operator += (const SIMDType& b)   { return (*this = *this + b); }
+    SIMDType& operator -= (const SIMDType& b)   { return (*this = *this - b); }
+    SIMDType& operator *= (const SIMDType& b)   { return (*this = *this * b); }
+    SIMDType& operator /= (const SIMDType& b)   { return (*this = *this / b); }
+     
+    friend SIMDType sqrt(const SIMDType& a) { return sqrt(a.mVal); }
+    
+    friend SIMDType min(const SIMDType& a, const SIMDType& b) { return std::min(a.mVal, b.mVal); }
+    friend SIMDType max(const SIMDType& a, const SIMDType& b) { return std::max(a.mVal, b.mVal); }
+    friend SIMDType sel(const SIMDType& a, const SIMDType& b, const SIMDType& c) { return c.mVal ? b.mVal : a.mVal; }
+    
+    friend SIMDType operator == (const SIMDType& a, const SIMDType& b) { return a.mVal == b.mVal; }
+    friend SIMDType operator != (const SIMDType& a, const SIMDType& b) { return a.mVal != b.mVal; }
+    friend SIMDType operator > (const SIMDType& a, const SIMDType& b) { return a.mVal > b.mVal; }
+    friend SIMDType operator < (const SIMDType& a, const SIMDType& b) { return a.mVal < b.mVal; }
+    friend SIMDType operator >= (const SIMDType& a, const SIMDType& b) { return a.mVal >= b.mVal; }
+    friend SIMDType operator <= (const SIMDType& a, const SIMDType& b) { return a.mVal <= b.mVal; }
+    */
+    float mVals[2];
+};
+
 #if (SIMD_COMPILER_SUPPORT_LEVEL >= SIMD_COMPILER_SUPPORT_SSE)
 
 typedef SIMDType<double, 2> SSEDouble;
@@ -236,15 +425,35 @@ struct SIMDType<double, 2> : public SIMDVector<double, __m128d, 2>
     SIMDType(const double* a) { mVal = _mm_loadu_pd(a); }
     SIMDType(__m128d a) : SIMDVector(a) {}
     
+    SIMDType(const SIMDType<float, 2> a)
+    {
+        // FIX - this might be able to be made nicer...
+        
+        double vals[2];
+        
+        vals[0] = a.mVals[0];
+        vals[1] = a.mVals[1];
+        
+        _mm_loadu_pd(vals);
+    }
+    
+    void store(double *a) { _mm_storeu_pd(a, mVal); }
+
     friend SIMDType operator + (const SIMDType &a, const SIMDType& b) { return _mm_add_pd(a.mVal, b.mVal); }
     friend SIMDType operator - (const SIMDType &a, const SIMDType& b) { return _mm_sub_pd(a.mVal, b.mVal); }
     friend SIMDType operator * (const SIMDType &a, const SIMDType& b) { return _mm_mul_pd(a.mVal, b.mVal); }
     friend SIMDType operator / (const SIMDType &a, const SIMDType& b) { return _mm_div_pd(a.mVal, b.mVal); }
     
+    SIMDType& operator += (const SIMDType& b)   { return (*this = *this + b); }
+    SIMDType& operator -= (const SIMDType& b)   { return (*this = *this - b); }
+    SIMDType& operator *= (const SIMDType& b)   { return (*this = *this * b); }
+    SIMDType& operator /= (const SIMDType& b)   { return (*this = *this / b); }
+    
     friend SIMDType sqrt(const SIMDType& a) { return _mm_sqrt_pd(a.mVal); }
     
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm_min_pd(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm_max_pd(a.mVal, b.mVal); }
+    friend SIMDType sel(const SIMDType& a, const SIMDType& b, const SIMDType& c) { return and_not(c, a) | (b & c); }
     
     friend SIMDType and_not(const SIMDType& a, const SIMDType& b) { return _mm_andnot_pd(a.mVal, b.mVal); }
     friend SIMDType operator & (const SIMDType& a, const SIMDType& b) { return _mm_and_pd(a.mVal, b.mVal); }
@@ -280,15 +489,23 @@ struct SIMDType<double, 4> : public SIMDVector<double, __m256d, 4>
     SIMDType(const double* a) { mVal = _mm256_loadu_pd(a); }
     SIMDType(__m256d a) : SIMDVector(a) {}
     
+    void store(double *a) { _mm256_storeu_pd(a, mVal); }
+
     friend SIMDType operator + (const SIMDType &a, const SIMDType &b) { return _mm256_add_pd(a.mVal, b.mVal); }
     friend SIMDType operator - (const SIMDType &a, const SIMDType &b) { return _mm256_sub_pd(a.mVal, b.mVal); }
     friend SIMDType operator * (const SIMDType &a, const SIMDType &b) { return _mm256_mul_pd(a.mVal, b.mVal); }
     friend SIMDType operator / (const SIMDType &a, const SIMDType &b) { return _mm256_div_pd(a.mVal, b.mVal); }
     
+    SIMDType& operator += (const SIMDType& b)   { return (*this = *this + b); }
+    SIMDType& operator -= (const SIMDType& b)   { return (*this = *this - b); }
+    SIMDType& operator *= (const SIMDType& b)   { return (*this = *this * b); }
+    SIMDType& operator /= (const SIMDType& b)   { return (*this = *this / b); }
+
     friend SIMDType sqrt(const SIMDType& a) { return _mm256_sqrt_pd(a.mVal); }
     
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm256_min_pd(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm256_max_pd(a.mVal, b.mVal); }
+    friend SIMDType sel(const SIMDType& a, const SIMDType& b, const SIMDType& c) { return and_not(c, a) | (b & c); }
 
     friend SIMDType and_not(const SIMDType& a, const SIMDType& b) { return _mm256_andnot_pd(a.mVal, b.mVal); }
     friend SIMDType operator & (const SIMDType& a, const SIMDType& b) { return _mm256_and_pd(a.mVal, b.mVal); }
@@ -313,15 +530,23 @@ struct SIMDType<float, 4> : public SIMDVector<float, __m128, 4>
     SIMDType(const float* a) { mVal = _mm_loadu_ps(a); }
     SIMDType(__m128 a) : SIMDVector(a) {}
     
+    void store(float *a) { _mm_storeu_ps(a, mVal); }
+
     friend SIMDType operator + (const SIMDType& a, const SIMDType& b) { return _mm_add_ps(a.mVal, b.mVal); }
     friend SIMDType operator - (const SIMDType& a, const SIMDType& b) { return _mm_sub_ps(a.mVal, b.mVal); }
     friend SIMDType operator * (const SIMDType& a, const SIMDType& b) { return _mm_mul_ps(a.mVal, b.mVal); }
     friend SIMDType operator / (const SIMDType& a, const SIMDType& b) { return _mm_div_ps(a.mVal, b.mVal); }
 
+    SIMDType& operator += (const SIMDType& b)   { return (*this = *this + b); }
+    SIMDType& operator -= (const SIMDType& b)   { return (*this = *this - b); }
+    SIMDType& operator *= (const SIMDType& b)   { return (*this = *this * b); }
+    SIMDType& operator /= (const SIMDType& b)   { return (*this = *this / b); }
+    
     friend SIMDType sqrt(const SIMDType& a) { return _mm_sqrt_ps(a.mVal); }
     
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm_min_ps(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm_max_ps(a.mVal, b.mVal); }
+    friend SIMDType sel(const SIMDType& a, const SIMDType& b, const SIMDType& c) { return and_not(c, a) | (b & c); }
 
     friend SIMDType and_not(const SIMDType& a, const SIMDType& b) { return _mm_andnot_ps(a.mVal, b.mVal); }
     friend SIMDType operator & (const SIMDType& a, const SIMDType& b) { return _mm_and_ps(a.mVal, b.mVal); }
@@ -340,8 +565,10 @@ struct SIMDType<float, 4> : public SIMDVector<float, __m128, 4>
         return _mm_shuffle_ps(a.mVal, b.mVal, ((z<<6)|(y<<4)|(x<<2)|w));
     }
     
+#if (SIMD_COMPILER_SUPPORT_LEVEL >= SIMD_COMPILER_SUPPORT_AVX256)
     operator AVX256Double() { return _mm256_cvtps_pd(mVal); }
-
+#endif
+    
     operator SizedVector<4, SSEDouble>()
     {
         SizedVector<4, SSEDouble> vec;
@@ -359,17 +586,26 @@ struct SIMDType<int32_t, 4> : public SIMDVector<int32_t, __m128i, 4>
     SIMDType() {}
     SIMDType(const int32_t& a) { mVal = _mm_set1_epi32(a); }
     SIMDType(const int32_t* a) { mVal = _mm_loadu_si128(reinterpret_cast<const __m128i *>(a)); }
-    SIMDType(__m128 a) : SIMDVector(a) {}
+    SIMDType(__m128i a) : SIMDVector(a) {}
     
+    void store(int32_t *a) { _mm_storeu_si128(reinterpret_cast<__m128i *>(a), mVal); }
+
     friend SIMDType operator + (const SIMDType& a, const SIMDType& b) { return _mm_add_epi32(a.mVal, b.mVal); }
     friend SIMDType operator - (const SIMDType& a, const SIMDType& b) { return _mm_sub_epi32(a.mVal, b.mVal); }
     friend SIMDType operator * (const SIMDType& a, const SIMDType& b) { return _mm_mul_epi32(a.mVal, b.mVal); }
     
+    SIMDType& operator += (const SIMDType& b)   { return (*this = *this + b); }
+    SIMDType& operator -= (const SIMDType& b)   { return (*this = *this - b); }
+    SIMDType& operator *= (const SIMDType& b)   { return (*this = *this * b); }
+    
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm_min_epi32(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm_max_epi32(a.mVal, b.mVal); }
-    
+
     operator SSEFloat()     { return SSEFloat( _mm_cvtepi32_ps(mVal)); }
+    
+#if (SIMD_COMPILER_SUPPORT_LEVEL >= SIMD_COMPILER_SUPPORT_AVX256)
     operator AVX256Double() { return _mm256_cvtepi32_pd(mVal); }
+#endif
     
     operator SizedVector<4, SSEDouble>()
     {
@@ -394,15 +630,23 @@ struct SIMDType<float, 8> : public SIMDVector<float, __m256, 8>
     SIMDType(const float* a) { mVal = _mm256_loadu_ps(a); }
     SIMDType(__m256 a) : SIMDVector(a) {}
     
+    void store(float *a) { _mm256_storeu_ps(a, mVal); }
+
     friend SIMDType operator + (const SIMDType &a, const SIMDType &b) { return _mm256_add_ps(a.mVal, b.mVal); }
     friend SIMDType operator - (const SIMDType &a, const SIMDType &b) { return _mm256_sub_ps(a.mVal, b.mVal); }
     friend SIMDType operator * (const SIMDType &a, const SIMDType &b) { return _mm256_mul_ps(a.mVal, b.mVal); }
     friend SIMDType operator / (const SIMDType &a, const SIMDType &b) { return _mm256_div_ps(a.mVal, b.mVal); }
     
+    SIMDType& operator += (const SIMDType& b)   { return (*this = *this + b); }
+    SIMDType& operator -= (const SIMDType& b)   { return (*this = *this - b); }
+    SIMDType& operator *= (const SIMDType& b)   { return (*this = *this * b); }
+    SIMDType& operator /= (const SIMDType& b)   { return (*this = *this / b); }
+    
     friend SIMDType sqrt(const SIMDType& a) { return _mm256_sqrt_ps(a.mVal); }
     
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm256_min_ps(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm256_max_ps(a.mVal, b.mVal); }
+    friend SIMDType sel(const SIMDType& a, const SIMDType& b, const SIMDType& c) { return and_not(c, a) | (b & c); }
 
     friend SIMDType and_not(const SIMDType& a, const SIMDType& b) { return _mm256_andnot_ps(a.mVal, b.mVal); }
     friend SIMDType operator & (const SIMDType& a, const SIMDType& b) { return _mm256_and_ps(a.mVal, b.mVal); }
@@ -436,14 +680,20 @@ struct SIMDType<int32_t, 8> : public SIMDVector<int32_t, __m256i, 8>
     SIMDType(const int32_t& a) { mVal = _mm256_set1_epi32(a); }
     SIMDType(const int32_t* a) { mVal = _mm256_loadu_si256(reinterpret_cast<const __m256i *>(a)); }
     SIMDType(__m256i a) : SIMDVector(a) {}
-    
+ 
+    void store(int32_t *a) { _mm256_storeu_epi32(a, mVal); }
+
     friend SIMDType operator + (const SIMDType& a, const SIMDType& b) { return _mm256_add_epi32(a.mVal, b.mVal); }
     friend SIMDType operator - (const SIMDType& a, const SIMDType& b) { return _mm256_sub_epi32(a.mVal, b.mVal); }
     friend SIMDType operator * (const SIMDType& a, const SIMDType& b) { return _mm256_mul_epi32(a.mVal, b.mVal); }
-    
+ 
+    SIMDType& operator += (const SIMDType& b)   { return (*this = *this + b); }
+    SIMDType& operator -= (const SIMDType& b)   { return (*this = *this - b); }
+    SIMDType& operator *= (const SIMDType& b)   { return (*this = *this * b); }
+ 
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm256_min_epi32(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm256_max_epi32(a.mVal, b.mVal); }
- 
+
     operator AVX256Float() { return AVX256Float( _mm256_cvtepi32_ps(mVal)); }
     
     operator SizedVector<8, AVX256Double>()
@@ -473,15 +723,23 @@ struct SIMDType<double, 8> : public SIMDVector<double, __m512d, 8>
     SIMDType(const double* a) { mVal = _mm512_loadu_pd(a); }
     SIMDType(__m512d a) : SIMDVector(a) {}
     
+    void store(double *a) { _mm512_storeu_pd(a, mVal); }
+
     friend SIMDType operator + (const SIMDType &a, const SIMDType &b) { return _mm512_add_pd(a.mVal, b.mVal); }
     friend SIMDType operator - (const SIMDType &a, const SIMDType &b) { return _mm512_sub_pd(a.mVal, b.mVal); }
     friend SIMDType operator * (const SIMDType &a, const SIMDType &b) { return _mm512_mul_pd(a.mVal, b.mVal); }
     friend SIMDType operator / (const SIMDType &a, const SIMDType &b) { return _mm512_div_pd(a.mVal, b.mVal); }
     
+    SIMDType& operator += (const SIMDType& b)   { return (*this = *this + b); }
+    SIMDType& operator -= (const SIMDType& b)   { return (*this = *this - b); }
+    SIMDType& operator *= (const SIMDType& b)   { return (*this = *this * b); }
+    SIMDType& operator /= (const SIMDType& b)   { return (*this = *this / b); }
+    
     friend SIMDType sqrt(const SIMDType& a) { return _mm512_sqrt_pd(a.mVal); }
     
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm512_min_pd(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm512_max_pd(a.mVal, b.mVal); }
+    friend SIMDType sel(const SIMDType& a, const SIMDType& b, const SIMDType& c) { return and_not(c, a) | (b & c); }
 
     friend SIMDType and_not(const SIMDType& a, const SIMDType& b) { return _mm512_andnot_pd(a.mVal, b.mVal); }
     friend SIMDType operator & (const SIMDType& a, const SIMDType& b) { return _mm512_and_pd(a.mVal, b.mVal); }
@@ -504,16 +762,24 @@ struct SIMDType<float, 16> : public SIMDVector<float, __m512, 16>
     SIMDType(const float* a) { mVal = _mm512_loadu_ps(a); }
     SIMDType(__m512 a) : SIMDVector(a) {}
     
+    void store(float *a) { _mm512_storeu_ps(a, mVal); }
+
     friend SIMDType operator + (const SIMDType &a, const SIMDType &b) { return _mm512_add_ps(a.mVal, b.mVal); }
     friend SIMDType operator - (const SIMDType &a, const SIMDType &b) { return _mm512_sub_ps(a.mVal, b.mVal); }
     friend SIMDType operator * (const SIMDType &a, const SIMDType &b) { return _mm512_mul_ps(a.mVal, b.mVal); }
     friend SIMDType operator / (const SIMDType &a, const SIMDType &b) { return _mm512_div_ps(a.mVal, b.mVal); }
     
+    SIMDType& operator += (const SIMDType& b)   { return (*this = *this + b); }
+    SIMDType& operator -= (const SIMDType& b)   { return (*this = *this - b); }
+    SIMDType& operator *= (const SIMDType& b)   { return (*this = *this * b); }
+    SIMDType& operator /= (const SIMDType& b)   { return (*this = *this / b); }
+    
     friend SIMDType sqrt(const SIMDType& a) { return _mm512_sqrt_ps(a.mVal); }
     
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm512_min_ps(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm512_max_ps(a.mVal, b.mVal); }
-  
+    friend SIMDType sel(const SIMDType& a, const SIMDType& b, const SIMDType& c) { return and_not(c, a) | (b & c); }
+
     friend SIMDType and_not(const SIMDType& a, const SIMDType& b) { return _mm512_andnot_ps(a.mVal, b.mVal); }
     friend SIMDType operator & (const SIMDType& a, const SIMDType& b) { return _mm512_and_ps(a.mVal, b.mVal); }
     friend SIMDType operator | (const SIMDType& a, const SIMDType& b) { return _mm512_or_ps(a.mVal, b.mVal); }
@@ -528,5 +794,39 @@ struct SIMDType<float, 16> : public SIMDVector<float, __m512, 16>
 };
 
 #endif
+
+// abs functions
+
+static inline SIMDType<double, 1> abs(const SIMDType<double, 1> a)
+{
+    const static uint64_t bit_mask_64 = 0x7FFFFFFFFFFFFFFFU;
+    
+    uint64_t temp = *(reinterpret_cast<const uint64_t *>(&a)) & bit_mask_64;
+    return *(reinterpret_cast<double *>(&temp));
+}
+
+static inline SIMDType<float, 1> abs(const SIMDType<float, 1> a)
+{
+    const static uint32_t bit_mask_32 = 0x7FFFFFFFU;
+    
+    uint32_t temp = *(reinterpret_cast<const uint32_t *>(&a)) & bit_mask_32;
+    return *(reinterpret_cast<float *>(&temp));
+}
+
+template <int N> SIMDType<double, N> abs(const SIMDType<double, N> a)
+{
+    const static uint64_t bit_mask_64 = 0x7FFFFFFFFFFFFFFFU;
+    const double bit_mask_64d = *(reinterpret_cast<const double *>(&bit_mask_64));
+
+    return a & SIMDType<double, N>(bit_mask_64d);
+}
+
+template <int N> SIMDType<float, N> abs(const SIMDType<float, N> a)
+{
+    const static uint32_t bit_mask_32 = 0x7FFFFFFFU;
+    const float bit_mask_32f = *(reinterpret_cast<const double *>(&bit_mask_32));
+    
+    return a & SIMDType<float, N>(bit_mask_32f);
+}
 
 #endif	
