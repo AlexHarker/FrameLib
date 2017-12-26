@@ -1,6 +1,6 @@
 
-#ifndef FRAMELIB_PRECENTILE_H
-#define FRAMELIB_PRECENTILE_H
+#ifndef FRAMELIB_PERCENTILE_H
+#define FRAMELIB_PERCENTILE_H
 
 #include "FrameLib_DSP.h"
 
