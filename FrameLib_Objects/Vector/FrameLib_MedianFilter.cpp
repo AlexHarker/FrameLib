@@ -129,12 +129,12 @@ double FrameLib_MedianFilter::median(double *temp, unsigned long *indices, long 
     return temp[indices[width >> 1]];
 }
 
-double FrameLib_MedianFilter::getPad(const double *input, long index, long sizeIn, long width, double padValue)
+double FrameLib_MedianFilter::getPad(const double *input, long index, long sizeIn, double padValue)
 {
     return (index >= 0 && index < sizeIn) ? input[index] : padValue;
 }
 
-double FrameLib_MedianFilter::getWrap(const  double *input, long index, long sizeIn, long width)
+double FrameLib_MedianFilter::getWrap(const  double *input, long index, long sizeIn)
 {
     index %= sizeIn;
     index = index < 0 ? index + sizeIn : index;
@@ -142,10 +142,10 @@ double FrameLib_MedianFilter::getWrap(const  double *input, long index, long siz
     return input[index];
 }
 
-double FrameLib_MedianFilter::getFold(const double *input, long index, long sizeIn, long width)
+double FrameLib_MedianFilter::getFold(const double *input, long index, long sizeIn)
 {
     index = std::abs(index) % ((sizeIn - 1) * 2);
-    index = index > (sizeIn - 1) ? ((sizeIn - 1) * 2) - sizeIn : index;
+    index = index > (sizeIn - 1) ? ((sizeIn - 1) * 2) - index : index;
     
     return input[index];
 }
@@ -177,33 +177,33 @@ void FrameLib_MedianFilter::process()
         {
             case kWrap:
                 for (long i = 0; i < width; i++)
-                    temp[i] = getWrap(input, i - (width >> 1), sizeIn, width);
+                    temp[i] = getWrap(input, i - (width >> 1), sizeIn);
                 output[0] = median(temp, indices, width);
                 for (long i = 1; i < sizeIn; i++)
                 {
-                    double newValue = getWrap(input, i + (width >> 1) - 1, sizeIn, width);
+                    double newValue = getWrap(input, i + (width >> 1) - 1, sizeIn);
                     output[i] = insertMedian(temp, indices, newValue, (i - 1) % width, width);
                 }
                 break;
                 
             case kPad:
                 for (long i = 0; i < width; i++)
-                    temp[i] = getPad(input, i - (width >> 1), sizeIn, width, padValue);
+                    temp[i] = getPad(input, i - (width >> 1), sizeIn, padValue);
                 output[0] = median(temp, indices, width);
                 for (long i = 1; i < sizeIn; i++)
                 {
-                    double newValue = getPad(input, i + (width >> 1) - 1, sizeIn, width, padValue);
+                    double newValue = getPad(input, i + (width >> 1) - 1, sizeIn, padValue);
                     output[i] = insertMedian(temp, indices, newValue, (i - 1) % width, width);
                 }
                 break;
                 
             case kFold:
                 for (long i = 0; i < width; i++)
-                    temp[i] = getFold(input, i - (width >> 1), sizeIn, width);
+                    temp[i] = getFold(input, i - (width >> 1), sizeIn);
                 output[0] = median(temp, indices, width);
                 for (long i = 1; i < sizeIn; i++)
                 {
-                    double newValue = getFold(input, i + (width >> 1) - 1, sizeIn, width);
+                    double newValue = getFold(input, i + (width >> 1) - 1, sizeIn);
                     output[i] = insertMedian(temp, indices, newValue, (i - 1) % width, width);
                 }
                 break;
