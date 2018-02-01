@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Atan2, true>::makeClass(CLASS_BOX, "fl.atan2~");
+    FrameLib_MaxClass_Expand<FrameLib_Atan2, kAllInputs>::makeClass(CLASS_BOX, "fl.atan2~");
 }
