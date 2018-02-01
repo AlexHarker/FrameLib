@@ -39,6 +39,7 @@ typedef FrameLib_Vector<statKurtosis>           FrameLib_Kurtosis;
 typedef FrameLib_Vector<statFlatness>           FrameLib_Flatness;
 typedef FrameLib_Vector<statRMS>                FrameLib_RMS;
 typedef FrameLib_Vector<statCrest>              FrameLib_Crest;
-
+typedef FrameLib_Vector<statArgMax>             FrameLib_VectorArgMax;
+typedef FrameLib_Vector<statArgMin>             FrameLib_VectorArgMin;
 
 #endif
