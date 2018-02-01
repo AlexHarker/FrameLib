@@ -765,7 +765,7 @@ public:
     {
         FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, T::handlesAudio(), externalIsOutput(this));
        
-        if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && T::handlesAudio && mNeedsResolve)
+        if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && T::handlesAudio() && mNeedsResolve)
         {
             traversePatch(mTopLevelPatch, gensym("__fl.resolve_connections"));
             traversePatch(mTopLevelPatch, gensym("__fl.clear_auto_ordering_connections"));
