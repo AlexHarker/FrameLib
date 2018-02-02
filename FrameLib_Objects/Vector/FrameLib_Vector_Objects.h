@@ -21,6 +21,8 @@ template<> const char *FrameLib_Vector<statKurtosis>::getOpString()             
 template<> const char *FrameLib_Vector<statFlatness>::getOpString()             { return "flatness"; }
 template<> const char *FrameLib_Vector<statRMS>::getOpString()                  { return "rms"; }
 template<> const char *FrameLib_Vector<statCrest>::getOpString()                { return "crest factor"; }
+template<> const char *FrameLib_Vector<statArgMin>::getOpString()               { return "index of minimum"; }
+template<> const char *FrameLib_Vector<statArgMax>::getOpString()               { return "index of maximum"; }
 
 // Type definitions
 
@@ -39,6 +41,8 @@ typedef FrameLib_Vector<statKurtosis>           FrameLib_Kurtosis;
 typedef FrameLib_Vector<statFlatness>           FrameLib_Flatness;
 typedef FrameLib_Vector<statRMS>                FrameLib_RMS;
 typedef FrameLib_Vector<statCrest>              FrameLib_Crest;
+typedef FrameLib_Vector<statArgMin>             FrameLib_VectorArgMin;
+typedef FrameLib_Vector<statArgMax>             FrameLib_VectorArgMax;
 
 
 #endif
