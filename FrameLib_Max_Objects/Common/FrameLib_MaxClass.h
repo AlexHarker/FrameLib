@@ -453,7 +453,9 @@ private:
 /////////////////////// FrameLib Max Object Class ////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-template <class T, bool argsSetAllInputs = false> class FrameLib_MaxClass : public MaxClass_Base
+enum MaxObjectArgsMode {kAsParams, kAllInputs, kDistribute};
+
+template <class T, MaxObjectArgsMode argsSetAllInputs = kAsParams> class FrameLib_MaxClass : public MaxClass_Base
 {
     typedef FrameLib_Object<FrameLib_MultiChannel>::Connection FrameLibConnection;
     typedef FrameLib_Object<t_object>::Connection MaxConnection;
@@ -630,8 +632,10 @@ public:
         if (flags & kInfoInputs)
         {
             object_post(mUserObject, "--- Input List ---");
-            if (argsSetAllInputs)
+            if (argsSetAllInputs == kAllInputs)
                 object_post(mUserObject, "N.B. - arguments set the fixed array values for all inputs.");
+            if (argsSetAllInputs == kDistribute)
+                object_post(mUserObject, "N.B - arguments are distributed one per input.");
             for (long i = 0; i < mObject->getNumAudioIns(); i++)
                 object_post(mUserObject, "Audio Input %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
             for (long i = 0; i < mObject->getNumIns(); i++)
@@ -677,7 +681,7 @@ public:
                 
                 if (verbose)
                 {
-                    if (!argsSetAllInputs && params->getArgumentIdx(i) >= 0)
+                    if (argsSetAllInputs == kAsParams && params->getArgumentIdx(i) >= 0)
                         object_post(mUserObject, "- Argument: %ld", params->getArgumentIdx(i) + 1);
                     if (numericType == FrameLib_Parameters::kNumericInteger || numericType == FrameLib_Parameters::kNumericDouble)
                     {
@@ -1236,7 +1240,7 @@ private:
             if (isTag(argv + i))
                 break;
             
-            if (!argsSetAllInputs)
+            if (argsSetAllInputs == kAsParams)
             {
                 char argNames[64];
                 sprintf(argNames, "%ld", i);
@@ -1310,12 +1314,19 @@ private:
         
         // Parse arguments if used to set inputs
         
-        if (argsSetAllInputs)
+        if (argsSetAllInputs == kAllInputs || argsSetAllInputs == kDistribute)
         {
             i = parseNumericalList(values, argv, argc, 0);
-            
-            for (unsigned long j = 0; i && j < getNumIns(); j++)
-                mObject->setFixedInput(j, &values[0], values.size());
+            if(argsSetAllInputs == kAllInputs)
+            {
+                for (unsigned long j = 0; i && j < getNumIns(); j++)
+                    mObject->setFixedInput(j, &values[0], values.size());
+            }
+            else
+            {
+                for (unsigned long j = 0; j < i && j < getNumIns(); j++)
+                    mObject->setFixedInput(j, &values[j], 1);
+            }
         }
         
         // Parse tags
@@ -1366,5 +1377,5 @@ public:
 
 // Convenience for Objects Using FrameLib_Expand (use FrameLib_MaxClass_Expand<T>::makeClass() to create)
 
-template <class T, bool argsSetAllInputs = false>
+template <class T, MaxObjectArgsMode argsSetAllInputs = kAsParams>
 class FrameLib_MaxClass_Expand : public FrameLib_MaxClass<FrameLib_Expand<T>, argsSetAllInputs> {};
