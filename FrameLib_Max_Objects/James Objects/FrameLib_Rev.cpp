@@ -1,4 +1,5 @@
 #include "FrameLib_Rev.h"
+#include <algorithm> // std::reverse_copy
 
 // Constructor
 
@@ -49,8 +50,24 @@ void FrameLib_Rev::process()
 
 	double *output = getOutput(0, &size);
 
-	for (unsigned long i = size; i > 0; i--) {
-        output[i - 1] = input[size - i];
-	}
+    std::reverse_copy (input, input+size, output);
 
 }
+
+// Old for loop method
+//void FrameLib_Rev::process()
+//{
+//    unsigned long size;
+//    const double *input = getInput(0, &size);
+//
+//    requestOutputSize(0, size);
+//    allocateOutputs();
+//
+//    double *output = getOutput(0, &size);
+//
+//    for (unsigned long i = size; i > 0; i--) {
+//        output[i - 1] = input[size - i];
+//    }
+//
+//}
+
