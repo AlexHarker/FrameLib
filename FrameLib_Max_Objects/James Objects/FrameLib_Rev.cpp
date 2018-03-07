@@ -19,7 +19,7 @@ std::string FrameLib_Rev::objectInfo(bool verbose)
 
 std::string FrameLib_Rev::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Input Frames", "Input Frames", verbose);
+    return formatInfo("Input Frame", "Input Frame", verbose);
 }
 
 // Output Frames
