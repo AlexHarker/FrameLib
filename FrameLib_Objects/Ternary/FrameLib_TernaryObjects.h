@@ -81,6 +81,7 @@ template<class T> T fold(T v, T lo, T hi)
             returnval = diff + lo;
         }
     }
+    return returnval; 
 }
 
 typedef FrameLib_Ternary<clip<double> >         FrameLib_Clip;
@@ -88,3 +89,4 @@ typedef FrameLib_Ternary<wrap<double> >         FrameLib_Wrap;
 typedef FrameLib_Ternary<fold<double> >         FrameLib_Fold; 
 
 #endif /* Header_h */
+
