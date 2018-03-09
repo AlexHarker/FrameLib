@@ -1803,6 +1803,8 @@
 
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		5A3CAB132052E67E001082E3 /* FrameLib_TernaryObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_TernaryObjects.h; sourceTree = "<group>"; };
+		5A3CAB142052E67E001082E3 /* FrameLib_TernaryTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_TernaryTemplate.h; sourceTree = "<group>"; };
 		B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_RandGen.cpp; sourceTree = "<group>"; };
 		B805E23419C3AD0A007D8D8B /* fl.minus~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.minus~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B805E24519C3AD0C007D8D8B /* fl.times~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.times~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4060,6 +4062,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		5A3CAB102052E625001082E3 /* Ternary */ = {
+			isa = PBXGroup;
+			children = (
+				5A3CAB132052E67E001082E3 /* FrameLib_TernaryObjects.h */,
+				5A3CAB142052E67E001082E3 /* FrameLib_TernaryTemplate.h */,
+			);
+			path = Ternary;
+			sourceTree = "<group>";
+		};
 		B805E22419C3ABB6007D8D8B /* Binary */ = {
 			isa = PBXGroup;
 			children = (
@@ -4440,6 +4451,7 @@
 		B8A70CE019C11255005BA4E3 /* Objects FrameLib */ = {
 			isa = PBXGroup;
 			children = (
+				5A3CAB102052E625001082E3 /* Ternary */,
 				B85753501F2E1ED200478E9F /* Common Utilities */,
 				B8BDF0591F2D406300264316 /* Schedulers */,
 				B8B4C8771F334536008E5D31 /* Timing */,
