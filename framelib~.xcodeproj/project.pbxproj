@@ -10,8 +10,11 @@
 		2676EC72204FFD5800008F82 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		2676EC73204FFD5800008F82 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		2676EC74204FFD5800008F82 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		2676EC81204FFE8A00008F82 /* fl.rev~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2676EC7E204FFE8900008F82 /* fl.rev~.cpp */; };
-		2676EC82204FFE8A00008F82 /* FrameLib_Rev.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2676EC7F204FFE8900008F82 /* FrameLib_Rev.cpp */; };
+		26C2416B2053F39B0064A3D6 /* fl.rev~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26C2416A2053F39A0064A3D6 /* fl.rev~.cpp */; };
+		26C2416C2053F39B0064A3D6 /* fl.rev~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26C2416A2053F39A0064A3D6 /* fl.rev~.cpp */; };
+		26C2416F2053F3B80064A3D6 /* FrameLib_Rev.h in Headers */ = {isa = PBXBuildFile; fileRef = 26C2416D2053F3B70064A3D6 /* FrameLib_Rev.h */; };
+		26C241702053F3B80064A3D6 /* FrameLib_Rev.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26C2416E2053F3B80064A3D6 /* FrameLib_Rev.cpp */; };
+		26C241712053F3B80064A3D6 /* FrameLib_Rev.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26C2416E2053F3B80064A3D6 /* FrameLib_Rev.cpp */; };
 		8D01CCCE0486CAD60068D4B7 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B80059BE1DAF96340073A866 /* FrameLib_RandGen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */; };
 		B80059BF1DAF96340073A866 /* FrameLib_RandGen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */; };
@@ -1816,9 +1819,9 @@
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		2676EC7B204FFD5800008F82 /* fl.rev~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.rev~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2676EC7E204FFE8900008F82 /* fl.rev~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.rev~.cpp"; sourceTree = "<group>"; };
-		2676EC7F204FFE8900008F82 /* FrameLib_Rev.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Rev.cpp; sourceTree = "<group>"; };
-		2676EC80204FFE8900008F82 /* FrameLib_Rev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Rev.h; sourceTree = "<group>"; };
+		26C2416A2053F39A0064A3D6 /* fl.rev~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.rev~.cpp"; sourceTree = "<group>"; };
+		26C2416D2053F3B70064A3D6 /* FrameLib_Rev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Rev.h; sourceTree = "<group>"; };
+		26C2416E2053F3B80064A3D6 /* FrameLib_Rev.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Rev.cpp; sourceTree = "<group>"; };
 		B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_RandGen.cpp; sourceTree = "<group>"; };
 		B805E23419C3AD0A007D8D8B /* fl.minus~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.minus~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B805E24519C3AD0C007D8D8B /* fl.times~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.times~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4087,17 +4090,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2676EC7D204FFE4300008F82 /* James Objects */ = {
-			isa = PBXGroup;
-			children = (
-				2676EC7E204FFE8900008F82 /* fl.rev~.cpp */,
-				2676EC7F204FFE8900008F82 /* FrameLib_Rev.cpp */,
-				2676EC80204FFE8900008F82 /* FrameLib_Rev.h */,
-			);
-			name = "James Objects";
-			path = "FrameLib_Max_Objects/James Objects";
-			sourceTree = SOURCE_ROOT;
-		};
 		B805E22419C3ABB6007D8D8B /* Binary */ = {
 			isa = PBXGroup;
 			children = (
@@ -4312,6 +4304,8 @@
 		B85B68D019F26185002D6F1D /* Vector */ = {
 			isa = PBXGroup;
 			children = (
+				26C2416E2053F3B80064A3D6 /* FrameLib_Rev.cpp */,
+				26C2416D2053F3B70064A3D6 /* FrameLib_Rev.h */,
 				B85753521F2E1FFA00478E9F /* FrameLib_Vector_Template.h */,
 				B85753511F2E1FCB00478E9F /* FrameLib_Vector_Objects.h */,
 				B85B68E319F28EE5002D6F1D /* FrameLib_Pad.h */,
@@ -4408,7 +4402,6 @@
 		B8A70CDD19C11084005BA4E3 /* Objects Max */ = {
 			isa = PBXGroup;
 			children = (
-				2676EC7D204FFE4300008F82 /* James Objects */,
 				B8A70CE119C11303005BA4E3 /* Common */,
 				B857535C1F2E933300478E9F /* Schedulers */,
 				B8B4C8781F334547008E5D31 /* Timing */,
@@ -4784,6 +4777,7 @@
 		B8F83E2719C78D7A00230CD4 /* Vector */ = {
 			isa = PBXGroup;
 			children = (
+				26C2416A2053F39A0064A3D6 /* fl.rev~.cpp */,
 				B8CEFC0A2019EA1800F5F5A0 /* fl_argmin~.cpp */,
 				B8CEFC092019EA1700F5F5A0 /* fl.argmax~.cpp */,
 				B8F83E2A19C78DF600230CD4 /* fl.vmin~.cpp */,
@@ -4824,6 +4818,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26C2416F2053F3B80064A3D6 /* FrameLib_Rev.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11506,8 +11501,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2676EC82204FFE8A00008F82 /* FrameLib_Rev.cpp in Sources */,
-				2676EC81204FFE8A00008F82 /* fl.rev~.cpp in Sources */,
+				26C2416C2053F39B0064A3D6 /* fl.rev~.cpp in Sources */,
+				26C241712053F3B80064A3D6 /* FrameLib_Rev.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12282,6 +12277,8 @@
 				B8A1F5BE1D5370DE00FA5FFC /* NumericTesting.cpp in Sources */,
 				B8B961DD1F1000D500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
 				B80059BF1DAF96340073A866 /* FrameLib_RandGen.cpp in Sources */,
+				26C241702053F3B80064A3D6 /* FrameLib_Rev.cpp in Sources */,
+				26C2416B2053F39B0064A3D6 /* fl.rev~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
