@@ -24,7 +24,7 @@ public:
     
     enum NumericType { kNumericBool, kNumericInteger, kNumericDouble, kNumericNone };
     enum Type { kValue, kEnum, kString, kArray, kVariableArray };
-    enum ClipMode {kNone, kMin, kMax, kClip};
+    enum ClipMode { kNone, kMin, kMax, kClip };
     
 public:
     
