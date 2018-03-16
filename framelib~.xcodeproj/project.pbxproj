@@ -101,6 +101,7 @@
 		B812464B19F476D3009833F1 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B812464C19F476D3009833F1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B812465319F4781E009833F1 /* fl.join~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C8563919F2957F006358DA /* fl.join~.cpp */; };
+		B81C72DF205A92F10073CBF4 /* FrameLib_ParamAlias.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B81C72DD205A92F10073CBF4 /* FrameLib_ParamAlias.cpp */; };
 		B8213A271FA758F50013E31F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B8213A281FA758F50013E31F /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8213A291FA758F50013E31F /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
@@ -1895,6 +1896,8 @@
 		B812462419F475B8009833F1 /* fl.store~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.store~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B812463C19F476CB009833F1 /* fl.recall~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.recall~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B812465219F476D3009833F1 /* fl.store~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.store~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B81C72DD205A92F10073CBF4 /* FrameLib_ParamAlias.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_ParamAlias.cpp; sourceTree = "<group>"; };
+		B81C72DE205A92F10073CBF4 /* FrameLib_ParamAlias.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_ParamAlias.h; sourceTree = "<group>"; };
 		B81F571D0D2422E0000D5E50 /* fl.unpack~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.unpack~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8213A301FA758F60013E31F /* fl.ticks~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.ticks~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8213A3F1FA793F90013E31F /* fl.ticks~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.ticks~.cpp"; sourceTree = "<group>"; };
@@ -4608,6 +4611,8 @@
 		B8BDF05C1F2D412900264316 /* Parameters */ = {
 			isa = PBXGroup;
 			children = (
+				B81C72DE205A92F10073CBF4 /* FrameLib_ParamAlias.h */,
+				B81C72DD205A92F10073CBF4 /* FrameLib_ParamAlias.cpp */,
 				B84943B41B8349D40037DFF1 /* FrameLib_Tag.h */,
 				B8BDF05F1F2D438000264316 /* FrameLib_Tag.cpp */,
 				B8985EA01FAB2F810006B7E0 /* FrameLib_Untag.h */,
@@ -12607,6 +12612,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B81C72DF205A92F10073CBF4 /* FrameLib_ParamAlias.cpp in Sources */,
 				B8CEFC342019EAA600F5F5A0 /* fl.argmax~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
