@@ -31,6 +31,7 @@ private:
     
     // Process
     
+    void update() { mBufferName = gensym(mParameters.getString(kBuffer)); }
     void process();
     
     // Data
