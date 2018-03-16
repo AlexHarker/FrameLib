@@ -55,7 +55,7 @@ public:
             
             // Constructor
             
-            Iterator(const Serial *serial, bool end) : mPtr(serial->mPtr + (end ? serial->mSize : 0)) {}
+            Iterator(const Serial *serial, bool end) : mPtr(serial->mPtr + (end ? serial->mSize : 0)), mIndex(end ? 0 : serial->mNumTags) {}
             
             // Operators
             
@@ -73,7 +73,8 @@ public:
             unsigned long getVectorSize() const;
             char *getString() const;
             size_t getSize() const;
-            
+            unsigned long getIndex() const { return mIndex; }
+
             // Match Tag
             
             bool matchTag(const char *tag) const    {return !strcmp(tag, getTag()); }
@@ -93,6 +94,7 @@ public:
             // Data
             
             BytePointer mPtr;
+            unsigned long mIndex;
         };
         
     public:
@@ -137,6 +139,7 @@ public:
 
         // Utility
         
+        unsigned long numTags() const { return mNumTags; };
         size_t size() const     { return mSize; }
         void clear()            { mSize = 0; }
         
@@ -193,6 +196,7 @@ public:
         BytePointer mPtr;
         size_t mSize;
         size_t mMaxSize;
+        unsigned long mNumTags;
     };
 
     // Extends Serial (with memory ownership)

@@ -12,6 +12,7 @@ FrameLib_Parameters::Serial::Iterator& FrameLib_Parameters::Serial::Iterator::op
     DataType type = Serial::readType(&mPtr);
     Serial::skipItem(&mPtr, kSingleString);
     Serial::skipItem(&mPtr, type);
+    mIndex++;
     
     return *this;
 }
@@ -194,6 +195,7 @@ void FrameLib_Parameters::Serial::write(const Serial *serialised)
     
     memcpy(mPtr + mSize, serialised->mPtr, serialised->mSize);
     mSize += serialised->mSize;
+    mNumTags += serialised->mNumTags;
 }
 
 void FrameLib_Parameters::Serial::write(const FrameLib_Parameters *params)
@@ -236,6 +238,7 @@ void FrameLib_Parameters::Serial::write(const char *tag, const char *str)
     writeType(kSingleString);
     writeString(tag);
     writeString(str);
+    mNumTags++;
 }
 
 void FrameLib_Parameters::Serial::write(const char *tag, const double *values, size_t N)
@@ -246,6 +249,7 @@ void FrameLib_Parameters::Serial::write(const char *tag, const double *values, s
     writeType(kVector);
     writeString(tag);
     writeDoubles(values, N);
+    mNumTags++;
 }
 
 // Public Reads
