@@ -320,11 +320,21 @@ protected:
         for (unsigned long i = 0; i < getNumOuts(); i++)
             addOutputDependencies(queue, i);
     }
+    
+    void addOutputDependencies(Queue *queue, unsigned long outIdx)
+    {
+        addOutputDependencies<Queue *>(queue, outIdx);
+    }
 
     template <class U> void addOutputDependencies(std::vector<U *> &dependencies)
     {
         for (unsigned long i = 0; i < getNumOuts(); i++)
             addOutputDependencies(dependencies, i);
+    }
+    
+    template <class U> void addOutputDependencies(std::vector<U *> &dependencies, unsigned long outIdx)
+    {
+        addOutputDependencies<std::vector<U *> >(dependencies, outIdx);
     }
    
     // IO Setup
