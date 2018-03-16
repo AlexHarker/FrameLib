@@ -55,20 +55,15 @@ FrameLib_CombineTags::ParameterInfo::ParameterInfo()
 
 void FrameLib_CombineTags::process()
 {
-    unsigned long sizeOut;
-    
-    sizeOut = 0;
+    requestOutputSize(0, 0);
     
     for (unsigned long i = 0; i < mNumIns; i++)
-        sizeOut += FrameLib_Parameters::Serial::calcSize(getInput(i));
+        requestAddedOutputSize(0, FrameLib_Parameters::Serial::calcSize(getInput(i)));
     
-    requestOutputSize(0, sizeOut);
-    allocateOutputs();
-    
-    FrameLib_Parameters::Serial *output = getOutput(0);
-    
-    if (output)
+    if (allocateOutputs())
     {
+        FrameLib_Parameters::Serial *output = getOutput(0);
+        
         for (unsigned long i = 0; i < mNumIns; i++)
             output->write(getInput(i));
     }

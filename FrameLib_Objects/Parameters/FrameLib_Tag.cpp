@@ -98,26 +98,23 @@ FrameLib_Tag::ParameterInfo::ParameterInfo()
 
 void FrameLib_Tag::process()
 {    
-    unsigned long sizeIn, sizeOut;
+    const Serial *preTagged = getInput(mNumIns);
+    unsigned long sizeIn;
     
-    sizeOut = 0;
+    requestOutputSize(0, 0);
     
     for (unsigned long i = 0; i < mNumIns; i++)
     {
         getInput(i, &sizeIn);
-        sizeOut += FrameLib_Parameters::Serial::calcSize(mParameters.getString(kNames + i), sizeIn);
+        requestAddedOutputSize(0, Serial::calcSize(mParameters.getString(kNames + i), sizeIn));
     }
     
-    const FrameLib_Parameters::Serial *preTagged = getInput(mNumIns);
-    sizeOut += FrameLib_Parameters::Serial::calcSize(preTagged);
+    requestAddedOutputSize(0, Serial::calcSize(preTagged));
     
-    requestOutputSize(0, sizeOut);
-    allocateOutputs();
-    
-    FrameLib_Parameters::Serial *output = getOutput(0);
-    
-    if (output)
+    if (allocateOutputs())
     {
+        FrameLib_Parameters::Serial *output = getOutput(0);
+        
         for (unsigned long i = 0; i < mNumIns; i++)
         {
             const double *input = getInput(i, &sizeIn);

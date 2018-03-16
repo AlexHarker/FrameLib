@@ -30,7 +30,7 @@ private:
     
     // Filter
     
-    bool filter(FrameLib_Parameters::Serial::Iterator &it);
+    int filterIndex(FrameLib_Parameters::Serial::Iterator &it);
     
     // Process
     

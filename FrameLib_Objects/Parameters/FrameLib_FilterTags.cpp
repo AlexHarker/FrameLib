@@ -86,52 +86,38 @@ FrameLib_FilterTags::ParameterInfo::ParameterInfo()
 
 // Filter
 
-bool FrameLib_FilterTags::filter(FrameLib_Parameters::Serial::Iterator &it)
+int FrameLib_FilterTags::filterIndex(FrameLib_Parameters::Serial::Iterator &it)
 {
     for (int i = 0; i < mNumFilters; i++)
         if (it.matchTag(mParameters.getString(kFilters + i)))
-            return true;
+            return 0;
     
-    return false;
+    return 1;
 }
 
 // Process
 
 void FrameLib_FilterTags::process()
 {
-    unsigned long sizeOut1 = 0;
-    unsigned long sizeOut2 = 0;
-    
     const FrameLib_Parameters::Serial *input = getInput(0);
+
+    requestOutputSize(0, 0);
+    requestOutputSize(1, 0);
     
-    if (input)
+    if (!input)
     {
-        for (FrameLib_Parameters::Serial::Iterator it = input->begin(); it != input->end(); it++)
-        {
-            unsigned long size = it.getSize();
-        
-            if (filter(it))
-                sizeOut1 += size;
-            else
-                sizeOut2 += size;
-        }
+        allocateOutputs();
+        return;
     }
     
-    requestOutputSize(0, sizeOut1);
-    requestOutputSize(1, sizeOut2);
-    allocateOutputs();
+    for (FrameLib_Parameters::Serial::Iterator it = input->begin(); it != input->end(); it++)
+        requestAddedOutputSize(filterIndex(it), it.getSize());
     
-    FrameLib_Parameters::Serial *output1 = getOutput(0);
-    FrameLib_Parameters::Serial *output2 = getOutput(1);
-    
-    if (input)
+    if (allocateOutputs())
     {
+        FrameLib_Parameters::Serial *outputs[2] = {getOutput(0), getOutput(1)};
+
         for (FrameLib_Parameters::Serial::Iterator it = input->begin(); it != input->end(); it++)
-        {
-            if (filter(it) && output1)
-                output1->write(it);
-            else if (output2)
-                output2->write(it);
-        }
+            outputs[filterIndex(it)]->write(it);
     }
 }
