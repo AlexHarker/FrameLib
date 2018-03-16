@@ -114,7 +114,7 @@ public:
         
         // Get Sizes
         
-        size_t getSize(const char *tag) const;     
+        size_t getSize(const char *tag) const;
         size_t getVectorSize(const char *tag) const;
         
         // Writes
@@ -527,7 +527,7 @@ public:
         mParameters.back()->addEnumItem(str);
     }
     
-    void addBoolArray(unsigned long index, const char *name, long defaultValue, size_t size, long argumentIdx = -1)
+    void addBoolArray(unsigned long index, const char *name, bool defaultValue, size_t size, long argumentIdx = -1)
     {
         addParameter(index, new Array(name, argumentIdx, defaultValue, size));
         mParameters.back()->setBoolOnly();
