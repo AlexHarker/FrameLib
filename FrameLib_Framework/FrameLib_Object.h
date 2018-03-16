@@ -404,7 +404,7 @@ protected:
     
     static std::string parameterInputInfo(bool verbose)
     {
-        return formatInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+        return formatInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
     }
     
     // String With Number Helper
