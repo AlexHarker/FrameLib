@@ -55,7 +55,7 @@ public:
             
             // Constructor
             
-            Iterator(const Serial *serial, bool end) : mPtr(serial->mPtr + (end ? serial->mSize : 0)), mIndex(end ? 0 : serial->mNumTags) {}
+            Iterator(const Serial *serial, bool end) : mPtr(serial->mPtr + (end ? serial->mSize : 0)), mIndex(end ? serial->mNumTags : 0) {}
             
             // Operators
             
