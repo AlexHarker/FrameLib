@@ -8,7 +8,9 @@ FrameLib_ParamAlias::FrameLib_ParamAlias(FrameLib_Context context, unsigned long
     setIO(0, numOuts);
     addParameterInput();
     setInputMode(0, true, true, false, kFrameTagged);
-    mAliases.resize(numOuts);
+    
+    for (unsigned long i = 0; i < numOuts; i++)
+        setOutputType(i, kFrameTagged);
 }
 
 void FrameLib_ParamAlias::addAlias(unsigned long idx, const char* inTag, const char* outTag)
@@ -47,10 +49,11 @@ void FrameLib_ParamAlias::initialise(Parameters::Serial *serialisedParameters)
             const char *tag = it->mInTag.c_str();
             const Parameters *params = (*jt)->getParameters();
             unsigned paramIdx = -1;
-            double value = params->getDefault(paramIdx);
     
             if ((paramIdx = params->getIdx(it->mOutTag.c_str())) != -1)
             {
+                double value = params->getDefault(paramIdx);
+
                 switch(params->getType(paramIdx))
                 {
                     case Parameters::kValue:
@@ -101,12 +104,15 @@ void FrameLib_ParamAlias::initialise(Parameters::Serial *serialisedParameters)
                     }
                 }
                 
-                switch (params->getClipMode(paramIdx))
+                if (params->getNumericType(paramIdx) == Parameters::kNumericInteger || params->getNumericType(paramIdx) == Parameters::kNumericDouble)
                 {
-                    case Parameters::kNone: break;
-                    case Parameters::kMin:  mParameters.setMin(params->getMin(paramIdx));      break;
-                    case Parameters::kMax:  mParameters.setMax(params->getMax(paramIdx));      break;
-                    case Parameters::kClip: mParameters.setClip(params->getMin(paramIdx), params->getMax(paramIdx));    break;
+                    switch (params->getClipMode(paramIdx))
+                    {
+                        case Parameters::kNone: break;
+                        case Parameters::kMin:  mParameters.setMin(params->getMin(paramIdx));      break;
+                        case Parameters::kMax:  mParameters.setMax(params->getMax(paramIdx));      break;
+                        case Parameters::kClip: mParameters.setClip(params->getMin(paramIdx), params->getMax(paramIdx));    break;
+                    }
                 }
                 
                 // FIX!!
