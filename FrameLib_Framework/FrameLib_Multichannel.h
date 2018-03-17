@@ -10,7 +10,7 @@
 
 // FrameLib_MultiChannel
 
-// This abstract class allows mulitchannel connnections and the means to update the network according to the number of channels
+// This abstract class allows multichannel connnections and the means to update the network according to the number of channels
 
 class FrameLib_MultiChannel : public FrameLib_Object<FrameLib_MultiChannel>
 {
