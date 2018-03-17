@@ -129,12 +129,12 @@ FrameLib_Parameters::Serial::Iterator::Entry FrameLib_Parameters::Serial::Iterat
 
 // Constructors / Destructor
 
-FrameLib_Parameters::Serial::Serial(BytePointer ptr, size_t size) : mPtr(ptr), mSize(0), mMaxSize(size)
+FrameLib_Parameters::Serial::Serial(BytePointer ptr, size_t size) : mPtr(ptr), mSize(0), mMaxSize(size), mNumTags(0)
 {
     alignmentChecks();
 }
 
-FrameLib_Parameters::Serial::Serial() : mPtr(NULL), mSize(0), mMaxSize(0)
+FrameLib_Parameters::Serial::Serial() : mPtr(NULL), mSize(0), mMaxSize(0), mNumTags(0)
 {
     alignmentChecks();
 }
