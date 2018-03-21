@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_LogicalAnd, true>::makeClass(CLASS_BOX, "fl.and~");
+    FrameLib_MaxClass_Expand<FrameLib_LogicalAnd, kAllInputs>::makeClass(CLASS_BOX, "fl.and~");
 }
