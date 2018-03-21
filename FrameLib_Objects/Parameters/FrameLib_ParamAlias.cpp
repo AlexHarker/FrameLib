@@ -13,9 +13,9 @@ FrameLib_ParamAlias::FrameLib_ParamAlias(FrameLib_Context context, unsigned long
         setOutputType(i, kFrameTagged);
 }
 
-void FrameLib_ParamAlias::addAlias(unsigned long idx, const char* inTag, const char* outTag)
+void FrameLib_ParamAlias::addAlias(unsigned long idx, const char* inTag, const char* outTag, long argumentIdx)
 {
-    mAliases.push_back(Alias(idx, inTag, outTag));
+    mAliases.push_back(Alias(idx, inTag, outTag, argumentIdx));
 }
 
 FrameLib_Parameters::Serial *FrameLib_ParamAlias::aliasForConstruction(FrameLib_Parameters::Serial *parametersIn, unsigned long idx)
@@ -26,10 +26,13 @@ FrameLib_Parameters::Serial *FrameLib_ParamAlias::aliasForConstruction(FrameLib_
     {
         for (std::vector<Alias>::iterator jt = mAliases.begin(); jt != mAliases.end(); jt++)
         {
-            if ((!strcmp(jt->mInTag.c_str(), it.getTag())) && jt->mIndex == idx)
+            if (jt->mIndex == idx)
             {
-                it.alias(&mSerial, jt->mOutTag.c_str());
-                break;
+                if (!strcmp(jt->mInTag.c_str(), it.getTag()) || !strcmp(jt->mArgumentStr.c_str(), it.getTag()))
+                {
+                    it.alias(&mSerial, jt->mOutTag.c_str());
+                    break;
+                }
             }
         }
     }

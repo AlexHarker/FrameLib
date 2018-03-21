@@ -12,9 +12,18 @@ class FrameLib_ParamAlias : public FrameLib_Processor
     struct Alias
     {
         Alias() : mIndex(0) {}
-        Alias(unsigned long idx, const char* inTag, const char* outTag) : mIndex(idx), mInTag(inTag), mOutTag(outTag) {}
+        Alias(unsigned long idx, const char* inTag, const char* outTag, long argumentIdx) : mIndex(idx), mInTag(inTag), mOutTag(outTag)
+        {
+            if (argumentIdx >= 0)
+            {
+                char argumentStr[64];
+                sprintf(argumentStr, "%ld", argumentIdx);
+                mArgumentStr = argumentStr;
+            }
+        }
         
         unsigned long mIndex;
+        std::string mArgumentStr;
         std::string mInTag;
         std::string mOutTag;
     };
@@ -36,7 +45,7 @@ public:
     
 protected:
     
-    void addAlias(unsigned long idx, const char* inTag, const char* outTag);
+    void addAlias(unsigned long idx, const char* inTag, const char* outTag, long argumentIdx = -1);
     
 private:
     
