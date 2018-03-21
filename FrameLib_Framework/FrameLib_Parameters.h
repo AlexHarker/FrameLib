@@ -85,6 +85,11 @@ public:
             void read(FrameLib_Parameters *parameters) const;
             size_t read(double *output, unsigned long size) const;
             
+            // Aliases (read but aliasing to a new tag)
+            
+            void alias(Serial *serial, const char *tag) const;
+            void alias(FrameLib_Parameters *serial, const char *tag) const;
+
         private:
             
             // Get Entry

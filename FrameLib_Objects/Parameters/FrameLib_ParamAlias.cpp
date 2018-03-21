@@ -1,4 +1,4 @@
-
+    
 #include "FrameLib_ParamAlias.h"
 
 // Constructor
@@ -16,7 +16,25 @@ FrameLib_ParamAlias::FrameLib_ParamAlias(FrameLib_Context context, unsigned long
 void FrameLib_ParamAlias::addAlias(unsigned long idx, const char* inTag, const char* outTag)
 {
     mAliases.push_back(Alias(idx, inTag, outTag));
+}
+
+FrameLib_Parameters::Serial *FrameLib_ParamAlias::aliasForConstruction(FrameLib_Parameters::Serial *parametersIn, unsigned long idx)
+{
+    mSerial.clear();
     
+    for (Parameters::Serial::Iterator it = parametersIn->begin(); it != parametersIn->end(); it++)
+    {
+        for (std::vector<Alias>::iterator jt = mAliases.begin(); jt != mAliases.end(); jt++)
+        {
+            if ((!strcmp(jt->mInTag.c_str(), it.getTag())) && jt->mIndex == idx)
+            {
+                it.alias(&mSerial, jt->mOutTag.c_str());
+                break;
+            }
+        }
+    }
+    
+    return &mSerial;
 }
 
 void FrameLib_ParamAlias::initialise(Parameters::Serial *serialisedParameters)
@@ -28,14 +46,10 @@ void FrameLib_ParamAlias::initialise(Parameters::Serial *serialisedParameters)
     std::vector<std::vector<FrameLib_DSP *> > dependencies;
     dependencies.resize(getNumOuts());
     
-    // For each output
+    // For each output get a list of output dependencies
     
     for (unsigned long i = 0; i < getNumOuts(); i++)
-    {
-        // Get a list of output dependencies
-
         addOutputDependencies(dependencies[i], i);
-    }
     
     // Now get each alias in turn and duplicate the parameter characteristics
     
@@ -182,17 +196,8 @@ void FrameLib_ParamAlias::process()
         {
             Alias *alias = matches[it.getIndex()];
             
-            if (!alias)
-                continue;
-            
-            if (it.getType() == kVector)
-            {
-                unsigned long vectorSize;
-                double *vector = it.getVector(&vectorSize);
-                getOutput(alias->mIndex)->write(alias->mOutTag.c_str(), vector, vectorSize);
-            }
-            else
-                getOutput(alias->mIndex)->write(alias->mOutTag.c_str(), it.getString());
+            if (alias)
+                it.alias(getOutput(alias->mIndex), alias->mOutTag.c_str());
         }
     }
     

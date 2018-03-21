@@ -106,6 +106,30 @@ size_t FrameLib_Parameters::Serial::Iterator::read(double *output, unsigned long
     return 0;
 }
 
+// Aliases (read but aliasing to a new tag)
+
+void FrameLib_Parameters::Serial::Iterator::alias(Serial *serial, const char *tag) const
+{
+    Entry entry = getEntry();
+    
+    switch (entry.mType)
+    {
+        case kVector:           serial->write(tag, entry.data<double>(), entry.mSize);       break;
+        case kSingleString:     serial->write(tag, entry.data<char>());                      break;
+    }
+}
+
+void FrameLib_Parameters::Serial::Iterator::alias(FrameLib_Parameters *parameters, const char *tag) const
+{
+    Entry entry = getEntry();
+    
+    switch (entry.mType)
+    {
+        case kVector:           parameters->set(tag, entry.data<double>(), entry.mSize);     break;
+        case kSingleString:     parameters->set(tag, entry.data<char>());                    break;
+    }
+}
+
 // Get Entry
 
 FrameLib_Parameters::Serial::Iterator::Entry FrameLib_Parameters::Serial::Iterator::getEntry() const
