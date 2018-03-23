@@ -20,12 +20,12 @@ namespace OS_Specific
     static inline int32_t increment32(Atomic32 *a) { return std::atomic_fetch_add(a, 1) + 1; }
     static inline int32_t decrement32(Atomic32 *a) { return std::atomic_fetch_sub(a, 1) - 1; }
     static inline int32_t add32(Atomic32 *a, int32_t b) { return std::atomic_fetch_add(a, b) + b; }
-    static inline bool compareAndSwap32(Atomic32 *loc, int32_t comp, int32_t exch) { return compare_exchange_strong(loc, comp, exch); }
+    static inline bool compareAndSwap32(Atomic32 *loc, int32_t comp, int32_t exch) { return std::compare_exchange_strong(loc, comp, exch); }
     
     typedef std::atomic<void *> AtomicPtr;
     
-    static inline bool compareAndSwapPtr(AtomicPtr *loc, void *comp, void *exch) { return compare_exchange_strong(loc, comp, exch); }
-    static inline void *swapPtr(AtomicPtr *loc, void *swap) { return atomic_exchange(loc, swap); }
+    static inline bool compareAndSwapPtr(AtomicPtr *loc, void *comp, void *exch) { return std::compare_exchange_strong(loc, comp, exch); }
+    static inline void *swapPtr(AtomicPtr *loc, void *swap) { return std::atomic_exchange(loc, swap); }
    
     typedef pthread_t OSThreadType;
     typedef sem_t OSSemaphoreType;
