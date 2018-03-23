@@ -288,7 +288,7 @@ FL_FP::FL_FP(const FL_SP& val) : mInt(val.intVal()), mFrac(val.fracHiVal())
 {
     // Complete rounding
     
-    if (checkHighBit(val.fracLoVal()) & !(mInt == std::numeric_limits<uint64>::max() & mFrac == std::numeric_limits<uint64>::max()))
+    if (checkHighBit(val.fracLoVal()) & !(mInt == std::numeric_limits<uint64_t>::max() & mFrac == std::numeric_limits<uint64_t>::max()))
         *this += FL_FP(0, 1);
 }
 
