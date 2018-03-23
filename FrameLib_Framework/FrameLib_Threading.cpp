@@ -99,7 +99,7 @@ void Semaphore::close()
 
 void Semaphore::signal(long n)
 {
-    OSMemoryBarrier();
+    std::atomic_thread_fence(std::memory_order_acquire);
     for (long i = 0; i < n; i++)
         sem_post(&mInternal);
 }
