@@ -3,7 +3,116 @@
 
 #include <assert.h>
 
-#ifdef __APPLE__
+#ifdef __linux__
+
+
+// Thread Mac OS implementation
+
+Thread::~Thread()
+{
+    assert(!mValid && "Thread not joined before deletion");
+}
+
+void Thread::start()
+{
+    // Valid
+    
+    mValid = true;
+    
+    // Create thread
+    
+    pthread_attr_t threadAttributes;
+    sched_param schedulingParameters;
+    
+    // Get default attributes and scheduling parameters
+    
+    pthread_attr_init(&threadAttributes);
+    pthread_attr_getschedparam(&threadAttributes, &schedulingParameters);
+    
+    // Set detach state and policy
+    
+    pthread_attr_setdetachstate(&threadAttributes, PTHREAD_CREATE_JOINABLE);
+    pthread_attr_setschedpolicy(&threadAttributes, (mPriority == kAudioPriority) ? SCHED_FIFO : SCHED_OTHER);
+    
+    // Set the priority of the thread before we create it
+    
+    switch (mPriority)
+    {
+        case kAudioPriority:        schedulingParameters.sched_priority = 75;       break;
+        case kHighPriority:         schedulingParameters.sched_priority = 52;       break;
+        case kMediumPriority:       schedulingParameters.sched_priority = 31;       break;
+        case kLowPriority:          schedulingParameters.sched_priority = 15;       break;
+    }
+    
+    // Set the scheduling attributes and create the thread
+    
+    pthread_attr_setschedparam(&threadAttributes, &schedulingParameters);
+    pthread_create(&mInternal, &threadAttributes, threadStart, this);
+}
+
+void Thread::join()
+{
+    if (mValid)
+    {
+        mValid = false;
+        std::atomic_thread_fence(std::memory_order_acquire);
+        
+        // Wait for thread to join before we allow the program to continue
+        
+        pthread_join(mInternal, NULL);
+    }
+}
+
+void *Thread::threadStart(void *arg)
+{
+    static_cast<Thread *>(arg)->call();
+    
+    return NULL;
+}
+
+// Semaphore Mac OS implementation
+
+Semaphore::Semaphore(long maxCount) : mValid(true)
+{
+    sem_init( &mInternal, 0, 0);
+}
+
+Semaphore::~Semaphore()
+{
+    assert(!mValid && "Semaphore not closed before deletion");
+    sem_destroy(&mInternal);
+}
+
+void Semaphore::close()
+{
+    if (mValid)
+    {
+        mValid = false;
+        std::atomic_thread_fence(std::memory_order_acquire);
+        
+        // Signal until the count is zero (only reliable way to signal all waiting threads
+        
+        for (long releaseCount = 1; releaseCount; --releaseCount)
+            sem_wait(&mInternal);
+    }
+}
+
+void Semaphore::signal(long n)
+{
+    OSMemoryBarrier();
+    for (long i = 0; i < n; i++)
+        sem_post(&mInternal);
+}
+
+bool Semaphore::wait()
+{
+    if (mValid)
+        sem_wait(&mInternal);
+    
+    return mValid;
+}
+
+#elif defined(__APPLE__)
 
 // Thread Mac OS implementation
 
@@ -179,7 +288,7 @@ void Semaphore::close()
         mValid = false;
         MemoryBarrier();
         
-        // Signal until the count is zero (only realiable way to signal all waiting threads
+        // Signal until the count is zero (only reliable way to signal all waiting threads
         
         for (long releaseCount = 1; releaseCount; --releaseCount)
             ReleaseSemaphore(mInternal, 1, &releaseCount);
