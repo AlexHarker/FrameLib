@@ -2,10 +2,40 @@
 #ifndef FrameLib_THREADING_H
 #define FrameLib_THREADING_H
 
-#ifdef __APPLE__
-    
-#include <libkern/OSAtomic.h>
+#ifdef __linux__
+
+// Linux Specific things
+
 #include <pthread.h>
+#include <semaphore.h>
+#include <atomic>
+#include <stdint.h>
+
+namespace OS_Specific
+{
+    // Mac OS specific definitions
+    
+    typedef std::atomic<int32_t> Atomic32;
+    
+    static inline int32_t increment32(Atomic32 *a) { return std::atomic_fetch_add(a, 1) + 1; }
+    static inline int32_t decrement32(Atomic32 *a) { return std::atomic_fetch_sub(a, 1) - 1; }
+    static inline int32_t add32(Atomic32 *a, int32_t b) { return std::atomic_fetch_add(a, b) + b; }
+    static inline bool compareAndSwap32(Atomic32 *loc, int32_t comp, int32_t exch) { return compare_exchange_strong(loc, comp, exch); }
+    
+    typedef std::atomic<void *> AtomicPtr;
+    
+    static inline bool compareAndSwapPtr(AtomicPtr *loc, void *comp, void *exch) { return compare_exchange_strong(loc, comp, exch); }
+    static inline void *swapPtr(AtomicPtr *loc, void *swap) { return atomic_exchange(loc, swap); }
+   
+    typedef pthread_t OSThreadType;
+    typedef sem_t OSSemaphoreType;
+    typedef void *OSThreadFunctionType(void *arg);
+}
+
+#elif defined(__APPLE__)
+    
+#include <pthread.h>
+#include <libkern/OSAtomic.h>
 #include <mach/semaphore.h>
 #include <mach/task.h>
 
