@@ -2,7 +2,7 @@
 #ifndef FrameLib_THREADING_H
 #define FrameLib_THREADING_H
 
-#define __linux__
+#include "FrameLib_Types.h"
 
 #ifdef __linux__
 

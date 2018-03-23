@@ -2,6 +2,7 @@
 #ifndef FRAMELIB_MULTICHANNEL_H
 #define FRAMELIB_MULTICHANNEL_H
 
+#include "FrameLib_Types.h"
 #include "FrameLib_Context.h"
 #include "FrameLib_Object.h"
 #include "FrameLib_DSP.h"

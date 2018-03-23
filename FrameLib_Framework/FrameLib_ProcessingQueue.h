@@ -2,6 +2,8 @@
 #ifndef FRAMELIB_PROCESSINGQUEUE_H
 #define FRAMELIB_PROCESSINGQUEUE_H
 
+#include "FrameLib_Types.h"
+
 // Forward Declarations
 
 class FrameLib_DSP;

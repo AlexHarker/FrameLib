@@ -2,6 +2,7 @@
 #ifndef FRAMELIB_GLOBAL_H
 #define FRAMELIB_GLOBAL_H
 
+#include "FrameLib_Types.h"
 #include "FrameLib_Memory.h"
 #include "FrameLib_ProcessingQueue.h"
 #include "FrameLib_Threading.h"

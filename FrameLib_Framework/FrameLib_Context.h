@@ -2,6 +2,7 @@
 #ifndef FRAMELIB_CONTEXT_H
 #define FRAMELIB_CONTEXT_H
 
+#include "FrameLib_Types.h"
 #include "FrameLib_Global.h"
 
 // The Context Object (used to define non-connectable areas in the host environment)

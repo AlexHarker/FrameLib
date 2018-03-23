@@ -26,4 +26,8 @@ enum FrameType { kFrameAny, kFrameNormal, kFrameTagged };
 enum DataType { kVector, kSingleString };
 enum ConnectionResult { kConnectSuccess, kConnectWrongContext, kConnectSelfConnection, kConnectFeedbackDetected, kConnectNoOrderingSupport, kConnectAliased };
 
+#ifdef __linux__
+#define NULL 0
+#endif
+
 #endif
