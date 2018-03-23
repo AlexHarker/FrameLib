@@ -5,6 +5,7 @@
 #include "FrameLib_Types.h"
 #include "FrameLib_Context.h"
 #include "FrameLib_Parameters.h"
+
 #include <algorithm>
 #include <string>
 #include <sstream>

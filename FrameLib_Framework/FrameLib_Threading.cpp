@@ -1,7 +1,7 @@
 
-#include <assert.h>
-
 #include "FrameLib_Threading.h"
+
+#include <assert.h>
 
 #ifdef __APPLE__
 

@@ -2,7 +2,7 @@
 #ifndef FRAMELIB_MEMORY_H
 #define FRAMELIB_MEMORY_H
 
-#include "tlsf.h"
+#include "../FrameLib_Dependencies/tlsf/tlsf.h"
 #include "FrameLib_Parameters.h"
 #include "FrameLib_Threading.h"
 

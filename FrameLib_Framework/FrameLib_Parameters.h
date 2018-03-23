@@ -3,6 +3,7 @@
 #define FRAMELIB_PARAMETERS_H
 
 #include "FrameLib_Types.h"
+
 #include <vector>
 #include <cstring>
 #include <cassert>
