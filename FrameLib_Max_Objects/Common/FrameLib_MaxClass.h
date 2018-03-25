@@ -1178,7 +1178,6 @@ private:
         {
             t_symbol *sym = atom_getsym(a);
             
-            
             if (strlen(sym->s_name) > 1 && sym->s_name[0] == '=')
                 return safeCount(sym->s_name + 1, 1024);
         }
