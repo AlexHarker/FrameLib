@@ -53,9 +53,14 @@ public:
         ((x)->*F)();
         return w + 2;
     }
-    template <class T, typename Perform<T>::MethodPerform F> void addPerform()
+    template <class T, typename Perform<T>::MethodPerform F> void addPerform(t_signal **sp)
     {
-        // FIX - store pointers and do stuff with them...
+        for (size_t i = 0; i < mSigIns.size(); i++)
+            mSigIns[i] = sp[i]->s_vec;
+        
+        for (size_t i = 0; i < mSigOuts.size(); i++)
+            mSigOuts[i] = sp[i + mSigIns.size()]->s_vec;
+        
         dsp_add(callPerform<T, F>, 1, this);
     }
     
@@ -103,8 +108,21 @@ public:
     
     static void dspInit(t_class *c) { class_addmethod(c, nullfn, gensym("signal"), A_NULL); }
     
-    // FIX - not sure how this is done
-    //long getInlet() { return proxy_getinlet(*this); }
+    void dspSetup(unsigned long numSigIns, unsigned long numSigOuts)
+    {
+        mSigIns.resize(numSigIns);
+        mSigOuts.resize(numSigOuts);
+        
+        // Create signal inlets
+        
+        for (unsigned long i = 0; i < numSigIns; i++)
+            signalinlet_new(*this, 0.0);
+        
+        // Create signal outlets
+        
+        for (unsigned long i = 0; i < numSigOuts; i++)
+            outlet_new(*this, gensym("signal"));
+    }
     
     // Allows type conversion to a t_object
     
@@ -124,8 +142,8 @@ private:
     // The object structure
     
     t_object mObject;
-    //std::vector<t_sample>
-    //std::vector<t_sample>
+    std::vector<t_sample *> mSigIns;
+    std::vector<t_sample *> mSigOuts;
 };
     
 #endif

@@ -565,28 +565,21 @@ public:
         mInputs.resize(numIns);
         mOutputs.resize(getNumOuts());
         
-        // Create frame inlets and outlets
+        dspSetup(getNumAudioIns(), getNumAudioOuts());
         
-        // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles audio)
-        
-        for (unsigned long i = 0; i < getNumOuts(); i++)
-            inlet_new(*this, (t_pd *)this, gensym("signal"), gensym("signal"));
-        
+        // Create frame inlets - N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles audio)
+
         for (long i = 0; i < (numIns - 1); i++)
         {
             mInputs[i] = ((i || T::handlesAudio()) ? PDProxy::create(this, getNumAudioIns() + i) : NULL);
             inlet_new(*this, mInputs[i], gensym("frame"), gensym("frame"));
         }
         
-        // Create signal inlets
+        // Create frame outlets
         
-        for (unsigned long i = 0; i < getNumIns(); i++)
-            mOutputs[i] = outlet_new(*this, NULL);
+        for (unsigned long i = 0; i < getNumOuts(); i++)
+            mOutputs[i] = outlet_new(*this, gensym("frame"));
         
-        // Create signal outlets
-        
-        for (unsigned long i = 0; i < getNumAudioOuts(); i++)
-            outlet_new(*this, gensym("signal"));
         
         // Add a sync outlet if we need to handle audio
         
@@ -767,7 +760,7 @@ public:
         // Add a perform routine to the chain if the object handles audio
         
         if (T::handlesAudio())
-            addPerform<FrameLib_PDClass, &FrameLib_PDClass<T>::perform>();
+            addPerform<FrameLib_PDClass, &FrameLib_PDClass<T>::perform>(sp);
     }
 
     // Get Audio Outputs
