@@ -728,6 +728,8 @@ public:
 
     void perform(int vec_size)
     {
+        // FIX - use alloc
+        
         // Copy Audio In
         
         for (int i = 0; i < (getNumAudioIns() - 1); i++)
@@ -999,10 +1001,12 @@ private:
     
     void iterateCanvas(t_glist *gl, t_symbol *method)
     {
+        char nullStr = 0;
+        
         // Search for subpatchers, and call method on objects that don't have subpatchers
         
         for (t_gobj *g = gl->gl_list; g; g = g->g_next)
-            vmess((t_pd *) g, method, "");
+            vmess((t_pd *) g, method, &nullStr);
     }
 
     void resolveConnections()
