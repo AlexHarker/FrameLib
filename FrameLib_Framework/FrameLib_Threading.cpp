@@ -91,8 +91,9 @@ void Semaphore::close()
         
         // It appears we get the opposite value to the one we want...
     
+        int value = 0;
+        
         do {
-            int value = 0;
             sem_post(&mInternal);
             sem__getvalue(&mInternal, &value);
         } while (value < 1);
