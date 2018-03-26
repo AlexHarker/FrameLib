@@ -94,6 +94,9 @@ void Semaphore::close()
         int releaseCount = 0;
         sem_getvalue(&mInternal, &releaseCount);
         
+        // It appears we get the opposite value to the one we want...
+    
+        releaseCount = -releaseCount;
         for (; releaseCount; --releaseCount)
             sem_post(&mInternal);
     }
