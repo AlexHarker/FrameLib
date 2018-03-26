@@ -91,11 +91,11 @@ void Semaphore::close()
         
         // It appears we get the opposite value to the one we want...
     
-        int released = 0;
-        
         do {
-            released = sem_post(&mInternal);
-        } while (!released);
+            int value = 0;
+            sem_post(&mInternal);
+            sem__getvalue(&mInternal, &value);
+        } while (value < 1);
     }
 }
 
