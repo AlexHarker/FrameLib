@@ -595,7 +595,8 @@ public:
         delete mObject;
 
         for (PDObjectIterator it = mInputs.begin(); it != mInputs.end(); it++)
-            pd_free(*it);
+            if (*it)
+                pd_free(*it);
       
         //object_free(mSyncIn);
     }
@@ -728,7 +729,7 @@ public:
 
     void perform(int vec_size)
     {
-        // FIX - use alloc
+        // FIX - use alloca
         
         // Copy Audio In
         
