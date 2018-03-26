@@ -309,6 +309,17 @@ public:
     
     void callConnectionUpdate()                                            { Queue queue(static_cast<T *>(this), &T::FrameLib_Object::connectionUpdate); }
     
+    template <class U> void addOutputDependencies(std::vector<U *> &dependencies)
+    {
+        for (unsigned long i = 0; i < getNumOuts(); i++)
+            addOutputDependencies(dependencies, i);
+    }
+    
+    template <class U> void addOutputDependencies(std::vector<U *> &dependencies, unsigned long outIdx)
+    {
+        addOutputDependencies<std::vector<U *> >(dependencies, outIdx);
+    }
+    
 protected:
     
     // IO Connection Queries (protected)
@@ -327,17 +338,6 @@ protected:
         addOutputDependencies<Queue *>(queue, outIdx);
     }
 
-    template <class U> void addOutputDependencies(std::vector<U *> &dependencies)
-    {
-        for (unsigned long i = 0; i < getNumOuts(); i++)
-            addOutputDependencies(dependencies, i);
-    }
-    
-    template <class U> void addOutputDependencies(std::vector<U *> &dependencies, unsigned long outIdx)
-    {
-        addOutputDependencies<std::vector<U *> >(dependencies, outIdx);
-    }
-   
     // IO Setup
     
     void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0)

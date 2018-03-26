@@ -1,12 +1,11 @@
 
-#include "MaxClass_Base.h"
+#include "PDClass_Base.h"
 
 #include "FrameLib_Global.h"
 #include "FrameLib_Context.h"
 #include "FrameLib_Parameters.h"
 #include "FrameLib_DSP.h"
 #include "FrameLib_Multichannel.h"
-#include "FrameLib_SerialiseGraph.h"
 
 #include <string>
 #include <vector>
@@ -15,7 +14,7 @@
 //////////////////////////// Max Globals Class ///////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-class FrameLib_MaxGlobals : public MaxClass_Base
+class FrameLib_PDGlobals : public PDClass_Base
 {
     
 public:
@@ -72,7 +71,7 @@ public:
     
         bool setMode(SyncCheck *info, Mode mode)    { return info && info->mMode != kDownOnly && ((info->mMode = mode) == mode); }
         
-        FrameLib_MaxGlobals *mGlobal;
+        FrameLib_PDGlobals *mGlobal;
         void *mObject;
         long mTime;
         Mode mMode;
@@ -99,7 +98,7 @@ public:
         ManagedPointer() : mPointer(get()) {}
         ~ManagedPointer() { mPointer->release(); }
         
-        FrameLib_MaxGlobals *operator->() { return mPointer; }
+        FrameLib_PDGlobals *operator->() { return mPointer; }
         
     private:
         
@@ -108,14 +107,14 @@ public:
         ManagedPointer(const ManagedPointer&);
         ManagedPointer& operator=(const ManagedPointer&);
 
-        FrameLib_MaxGlobals *mPointer;
+        FrameLib_PDGlobals *mPointer;
     };
     
     // Constructor and Destructor (public for the max API, but use the ManagedPointer for use from outside this class)
     
-    FrameLib_MaxGlobals(t_symbol *sym, long ac, t_atom *av)
+    FrameLib_PDGlobals(t_symbol *sym, long ac, t_atom *av)
     : mGlobal(NULL), mConnectionInfo(NULL), mSyncCheck(NULL), mCount(0) { FrameLib_Global::get(&mGlobal); }
-    ~FrameLib_MaxGlobals() { FrameLib_Global::release(&mGlobal); }
+    ~FrameLib_PDGlobals() { FrameLib_Global::release(&mGlobal); }
 
     // Getters and setters for max global items
     
@@ -131,7 +130,7 @@ private:
     
     // Get and release the max global items (singleton)
     
-    static FrameLib_MaxGlobals *get()
+    static FrameLib_PDGlobals *get()
     {
         const char maxGlobalClass[] = "__fl.max_global_items";
         t_symbol *nameSpace = gensym("__fl.framelib_private");
@@ -140,14 +139,14 @@ private:
         // Make sure the max globals class exists
 
         if (!class_findbyname(CLASS_NOBOX, gensym(maxGlobalClass)))
-            makeClass<FrameLib_MaxGlobals>(CLASS_NOBOX, maxGlobalClass);
+            makeClass<FrameLib_PDGlobals>(maxGlobalClass);
         
         // See if an object is registered (otherwise make object and register it...)
         
-        FrameLib_MaxGlobals *x = (FrameLib_MaxGlobals *) object_findregistered(nameSpace, globalTag);
+        FrameLib_PDGlobals *x = (FrameLib_PDGlobals *) object_findregistered(nameSpace, globalTag);
         
         if (!x)
-            x = (FrameLib_MaxGlobals *) object_register(nameSpace, globalTag, object_new_typed(CLASS_NOBOX, gensym(maxGlobalClass), 0, NULL));
+            x = (FrameLib_PDGlobals *) object_register(nameSpace, globalTag, object_new_typed(CLASS_NOBOX, gensym(maxGlobalClass), 0, NULL));
             
         x->mCount++;
         
@@ -175,7 +174,7 @@ private:
 ////////////////////// Mutator for Synchronisation ///////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-class Mutator : public MaxClass_Base
+class Mutator : public PDClass_Base
 {
     
 public:
@@ -183,7 +182,7 @@ public:
     Mutator(t_symbol *sym, long ac, t_atom *av)
     {
         mObject = ac ? atom_getobj(av) : NULL;
-        mMode = object_method(mObject, gensym("__fl.is_output")) ? FrameLib_MaxGlobals::SyncCheck::kDownOnly : FrameLib_MaxGlobals::SyncCheck::kDown;
+        mMode = object_method(mObject, gensym("__fl.is_output")) ? FrameLib_PDGlobals::SyncCheck::kDownOnly : FrameLib_PDGlobals::SyncCheck::kDown;
     }
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
@@ -193,6 +192,7 @@ public:
     
     void mutate(t_symbol *sym, long ac, t_atom *av)
     {
+        // FIX - clock_getlogicaltime??
         mSyncChecker.sync(mObject, gettime(), mMode);
         object_method(mObject, gensym("sync"));
         mSyncChecker.sync();
@@ -200,26 +200,26 @@ public:
     
 private:
     
-    FrameLib_MaxGlobals::SyncCheck mSyncChecker;
-    FrameLib_MaxGlobals::SyncCheck::Mode mMode;
+    FrameLib_PDGlobals::SyncCheck mSyncChecker;
+    FrameLib_PDGlobals::SyncCheck::Mode mMode;
     void *mObject;
 };
 
 //////////////////////////////////////////////////////////////////////////
 ////////////////////// Wrapper for Synchronisation ///////////////////////
 //////////////////////////////////////////////////////////////////////////
-
-template <class T> class Wrapper : public MaxClass_Base
+/*
+template <class T> class Wrapper : public PDClass_Base
 {
-    typedef std::vector<t_object *>::iterator MaxObjectIterator;
+    typedef std::vector<t_object *>::iterator PDObjectIterator;
 
 public:
     
     // Initialise Class
     
-    static method *sigMethodCache()
+    static t_method *sigMethodCache()
     {
-        static method sigMethod;
+        static t_method sigMethod;
         
         return &sigMethod;
     }
@@ -231,9 +231,9 @@ public:
         addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "anything");
         addMethod<Wrapper<T>, &Wrapper<T>::sync>(c, "sync");
         addMethod<Wrapper<T>, &Wrapper<T>::dsp>(c);
-        addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
-        addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
-        addMethod(c, (method) &externalWrapperInternalObject, "__fl.wrapper_internal_object");
+        addMethod(c, (t_method) &externalPatchLineUpdate, "patchlineupdate");
+        addMethod(c, (t_method) &externalConnectionAccept, "connectionaccept");
+        addMethod(c, (t_method) &externalWrapperInternalObject, "__fl.wrapper_internal_object");
         
         // N.B. MUST add signal handling after dspInit to override the builtin responses
         
@@ -349,10 +349,10 @@ public:
     {
         // Delete ins and proxies
         
-        for (MaxObjectIterator it = mProxyIns.begin(); it != mProxyIns.end(); it++)
+        for (PDObjectIterator it = mProxyIns.begin(); it != mProxyIns.end(); it++)
             object_free(*it);
         
-        for (MaxObjectIterator it = mInOutlets.begin(); it != mInOutlets.end(); it++)
+        for (PDObjectIterator it = mInOutlets.begin(); it != mInOutlets.end(); it++)
             object_free(*it);
         
         // Free objects - N.B. - free the patch, but not the object within it (which will be freed by deleting the patch)
@@ -449,25 +449,25 @@ private:
     
     long mProxyNum;
 };
-
+*/
 //////////////////////////////////////////////////////////////////////////
-/////////////////////// FrameLib Max Object Class ////////////////////////
+/////////////////////// FrameLib PD Object Class /////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-enum MaxObjectArgsMode {kAsParams, kAllInputs, kDistribute};
+enum PDObjectArgsMode {kAsParams, kAllInputs, kDistribute};
 
-template <class T, MaxObjectArgsMode argsSetAllInputs = kAsParams> class FrameLib_MaxClass : public MaxClass_Base
+template <class T, PDObjectArgsMode argsSetAllInputs = kAsParams> class FrameLib_PDClass : public PDClass_Base
 {
     typedef FrameLib_Object<FrameLib_MultiChannel>::Connection FrameLibConnection;
-    typedef FrameLib_Object<t_object>::Connection MaxConnection;
-    typedef FrameLib_MaxGlobals::ConnectionInfo ConnectionInfo;
-    typedef std::vector<t_object *>::iterator MaxObjectIterator;
+    typedef FrameLib_Object<t_object>::Connection PDConnection;
+    typedef FrameLib_PDGlobals::ConnectionInfo ConnectionInfo;
+    typedef std::vector<t_object *>::iterator PDObjectIterator;
 
 public:
     
-    // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_MaxClass<>)
+    // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_PDClass<>)
     
-    template <class U = FrameLib_MaxClass<T, argsSetAllInputs> > static void makeClass(t_symbol *nameSpace, const char *className)
+    template <class U = FrameLib_PDClass<T, argsSetAllInputs> > static void makeClass(t_symbol *nameSpace, const char *className)
     {
         // If handles audio/scheduler then make wrapper class and name the inner object differently..
         
@@ -479,17 +479,16 @@ public:
             internalClassName.insert(0, "unsynced.");
         }
         
-        MaxClass_Base::makeClass<U>(nameSpace, internalClassName.c_str());
+        PDClass_Base::makeClass<U>(nameSpace, internalClassName.c_str());
     }
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::assist>(c, "assist");
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::info>(c, "info");
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::serialise>(c, "serialise");
+        addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::assist>(c, "assist");
+        addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::info>(c, "info");
+        addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::frame>(c, "frame");
+        addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::sync>(c, "sync");
+        addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::dsp>(c);
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
         addMethod(c, (method) &externalResolveConnections, "__fl.resolve_connections");
@@ -507,7 +506,7 @@ public:
 
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv) : mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mTopLevelPatch(jpatcher_get_toppatcher(gensym("#P")->s_thing)), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
+    FrameLib_PDClass(t_symbol *s, long argc, t_atom *argv) : mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mTopLevelPatch(jpatcher_get_toppatcher(gensym("#P")->s_thing)), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -556,33 +555,16 @@ public:
         }
     }
 
-    ~FrameLib_MaxClass()
+    ~FrameLib_PDClass()
     {
-        dspFree();
-
         delete mObject;
 
-        for (MaxObjectIterator it = mInputs.begin(); it != mInputs.end(); it++)
+        for (PDObjectIterator it = mInputs.begin(); it != mInputs.end(); it++)
             object_free(*it);
         
         object_free(mSyncIn);
     }
-    
-    void serialise()
-    {
-        std::string str;
-        size_t oldPos, pos;
-        
-        serialiseGraph(str, mObject);
-        
-        for (oldPos = 0, pos = str.find_first_of("\n"); oldPos < str.size(); pos = str.find_first_of("\n", pos + 1))
-        {
-            pos = pos == std::string::npos ? str.size() : pos;
-            post("%s", str.substr(oldPos, (pos - oldPos) + 1).c_str());
-            oldPos = pos + 1;
-        }
-    }
-    
+
     void assist(void *b, long m, long a, char *s)
     {
         if (m == ASSIST_OUTLET)
@@ -763,7 +745,7 @@ public:
         // Add a perform routine to the chain if the object handles audio
         
         if (T::handlesAudio())
-            addPerform<FrameLib_MaxClass, &FrameLib_MaxClass<T>::perform>(dsp64);
+            addPerform<FrameLib_PDClass, &FrameLib_PDClass<T>::perform>(dsp64);
     }
 
     // Get Audio Outputs
@@ -784,19 +766,19 @@ public:
     
     void sync()
     {
-        FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, T::handlesAudio(), externalIsOutput(this));
+        FrameLib_PDGlobals::SyncCheck::Action action = mSyncChecker(this, T::handlesAudio(), externalIsOutput(this));
        
-        if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && T::handlesAudio() && mNeedsResolve)
+        if (action != FrameLib_PDGlobals::SyncCheck::kSyncComplete && T::handlesAudio() && mNeedsResolve)
         {
             traversePatch(mTopLevelPatch, gensym("__fl.resolve_connections"));
             traversePatch(mTopLevelPatch, gensym("__fl.clear_auto_ordering_connections"));
             traversePatch(mTopLevelPatch, gensym("__fl.auto_ordering_connections"));
         }
         
-        if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
+        if (action == FrameLib_PDGlobals::SyncCheck::kAttachAndSync)
             outlet_anything(mSyncIn, gensym("signal"), 0, NULL);
         
-        if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete)
+        if (action != FrameLib_PDGlobals::SyncCheck::kSyncComplete)
         {
             for (unsigned long i = getNumOuts(); i > 0; i--)
                 outlet_anything(mOutputs[i - 1], gensym("sync"), 0, NULL);
@@ -847,57 +829,57 @@ public:
 
     // External methods (A_CANT)
     
-    static t_ptr_int externalConnectionAccept(FrameLib_MaxClass *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
+    static t_ptr_int externalConnectionAccept(FrameLib_PDClass *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
     {
         return src->connectionAccept(dst, srcout, dstin, outlet, inlet);
     }
     
-    static t_max_err externalPatchLineUpdate(FrameLib_MaxClass *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
+    static t_max_err externalPatchLineUpdate(FrameLib_PDClass *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
     {
         return x->patchLineUpdate(patchline, updatetype, src, srcout, dst, dstin);
     }
 
-    static void externalResolveConnections(FrameLib_MaxClass *x)
+    static void externalResolveConnections(FrameLib_PDClass *x)
     {
         x->resolveConnections();
     }
                                
-    static void externalAutoOrderingConnections(FrameLib_MaxClass *x)
+    static void externalAutoOrderingConnections(FrameLib_PDClass *x)
     {
         x->mObject->autoOrderingConnections();
     }
     
-    static void externalClearAutoOrderingConnections(FrameLib_MaxClass *x)
+    static void externalClearAutoOrderingConnections(FrameLib_PDClass *x)
     {
         x->mObject->clearAutoOrderingConnections();
     }
 
-    static t_ptr_int externalIsConnected(FrameLib_MaxClass *x, unsigned long index)
+    static t_ptr_int externalIsConnected(FrameLib_PDClass *x, unsigned long index)
     {
         return x->confirmConnection(index, ConnectionInfo::kConfirm);
     }
     
-    static void externalConnectionConfirm(FrameLib_MaxClass *x, unsigned long index, FrameLib_MaxGlobals::ConnectionInfo::Mode mode)
+    static void externalConnectionConfirm(FrameLib_PDClass *x, unsigned long index, FrameLib_PDGlobals::ConnectionInfo::Mode mode)
     {
         x->makeConnection(index, mode);
     }
     
-    static FrameLib_MultiChannel *externalGetInternalObject(FrameLib_MaxClass *x)
+    static FrameLib_MultiChannel *externalGetInternalObject(FrameLib_PDClass *x)
     {
         return x->mObject;
     }
     
-    static t_ptr_int externalIsOutput(FrameLib_MaxClass *x)
+    static t_ptr_int externalIsOutput(FrameLib_PDClass *x)
     {
         return T::handlesAudio() && (x->getNumAudioOuts() > 1);
     }
     
-    static t_ptr_int externalGetNumAudioIns(FrameLib_MaxClass *x)
+    static t_ptr_int externalGetNumAudioIns(FrameLib_PDClass *x)
     {
         return x->getNumAudioIns();
     }
     
-    static t_ptr_int externalGetNumAudioOuts(FrameLib_MaxClass *x)
+    static t_ptr_int externalGetNumAudioOuts(FrameLib_PDClass *x)
     {
         return x->getNumAudioOuts();
     }
@@ -988,7 +970,7 @@ private:
         return confirmConnection(getConnection(inIndex), inIndex, mode);
     }
     
-    bool confirmConnection(MaxConnection connection, unsigned long inIndex, ConnectionInfo::Mode mode)
+    bool confirmConnection(PDConnection connection, unsigned long inIndex, ConnectionInfo::Mode mode)
     {
         if (!validInput(inIndex))
             return false;
@@ -1023,15 +1005,15 @@ private:
     
     bool isConnected(long index) const                                      { return mObject->isConnected(index); }
     
-    MaxConnection getConnection(long index) const
+    PDConnection getConnection(long index) const
     {
         if (isConnected(index))
         {
             FrameLibConnection connection = mObject->getConnection(index);
-            return MaxConnection((t_object *) connection.mObject->getOwner(), connection.mIndex);
+            return PDConnection((t_object *) connection.mObject->getOwner(), connection.mIndex);
         }
         else
-            return MaxConnection();
+            return PDConnection();
     }
     
     unsigned long getNumOrderingConnections() const
@@ -1039,15 +1021,15 @@ private:
         return mObject->getNumOrderingConnections();
     }
     
-    MaxConnection getOrderingConnection(long index) const
+    PDConnection getOrderingConnection(long index) const
     {
         FrameLibConnection connection = mObject->getOrderingConnection(index);
-        return MaxConnection((t_object *) connection.mObject->getOwner(), connection.mIndex);
+        return PDConnection((t_object *) connection.mObject->getOwner(), connection.mIndex);
     }
     
     bool matchConnection(t_object *src, long outIdx, long inIdx) const
     {
-        MaxConnection connection = getConnection(inIdx);
+        PDConnection connection = getConnection(inIdx);
         return connection.mObject == src && connection.mIndex == outIdx;
     }
     
@@ -1381,8 +1363,8 @@ private:
     t_object *mTopLevelPatch;
     t_object *mSyncIn;
     
-    FrameLib_MaxGlobals::ManagedPointer mGlobal;
-    FrameLib_MaxGlobals::SyncCheck mSyncChecker;
+    FrameLib_PDGlobals::ManagedPointer mGlobal;
+    FrameLib_PDGlobals::SyncCheck mSyncChecker;
     
     bool mNeedsResolve;
     
@@ -1391,7 +1373,7 @@ public:
     t_object *mUserObject;
 };
 
-// Convenience for Objects Using FrameLib_Expand (use FrameLib_MaxClass_Expand<T>::makeClass() to create)
+// Convenience for Objects Using FrameLib_Expand (use FrameLib_PDClass_Expand<T>::makeClass() to create)
 
 template <class T, MaxObjectArgsMode argsSetAllInputs = kAsParams>
-class FrameLib_MaxClass_Expand : public FrameLib_MaxClass<FrameLib_Expand<T>, argsSetAllInputs> {};
+class FrameLib_PDClass_Expand : public FrameLib_PDClass<FrameLib_Expand<T>, argsSetAllInputs> {};
