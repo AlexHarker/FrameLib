@@ -7,8 +7,16 @@
 #include "FrameLib_DSP.h"
 #include "FrameLib_Multichannel.h"
 
+#include "g_canvas.h"
+
 #include <string>
 #include <vector>
+
+extern "C"
+{
+    t_signal *signal_newfromcontext(int borrowed);
+    void signal_makereusable(t_signal *sig);
+}
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////// Max Globals Class ///////////////////////////
@@ -110,15 +118,18 @@ public:
         FrameLib_PDGlobals *mPointer;
     };
     
-    // Constructor and Destructor (public for the max API, but use the ManagedPointer for use from outside this class)
+    // Constructor and Destructor (public for the PD API, but use the ManagedPointer for use from outside this class)
     
     FrameLib_PDGlobals(t_symbol *sym, long ac, t_atom *av)
-    : mGlobal(NULL), mConnectionInfo(NULL), mSyncCheck(NULL), mCount(0) { FrameLib_Global::get(&mGlobal); }
-    ~FrameLib_PDGlobals() { FrameLib_Global::release(&mGlobal); }
+    : mGlobal(NULL), mConnectionInfo(NULL), mSyncCheck(NULL) {}
+    ~FrameLib_PDGlobals() { if (mGlobal) FrameLib_Global::release(&mGlobal); }
 
     // Getters and setters for max global items
     
     FrameLib_Global *getGlobal() const                      { return mGlobal; }
+    
+    void retain()                                           { FrameLib_Global::get(&mGlobal); }
+    void release()                                          { FrameLib_Global::release(&mGlobal); }
     
     const ConnectionInfo *getConnectionInfo() const         { return mConnectionInfo; }
     void setConnectionInfo(ConnectionInfo *info = NULL)     { mConnectionInfo = info; }
@@ -128,38 +139,30 @@ public:
     
 private:
     
+    static FrameLib_PDGlobals **getPDGlobalsPtr()
+    {
+        return (FrameLib_PDGlobals **) &gensym("__fl.pd_global_items")->s_thing;
+    }
+    
     // Get and release the max global items (singleton)
     
     static FrameLib_PDGlobals *get()
     {
-        const char maxGlobalClass[] = "__fl.max_global_items";
-        t_symbol *nameSpace = gensym("__fl.framelib_private");
-        t_symbol *globalTag = gensym("__fl.max_global_tag");
-     
         // Make sure the max globals class exists
 
-        if (!class_findbyname(CLASS_NOBOX, gensym(maxGlobalClass)))
-            makeClass<FrameLib_PDGlobals>(maxGlobalClass);
-        
-        // See if an object is registered (otherwise make object and register it...)
-        
-        FrameLib_PDGlobals *x = (FrameLib_PDGlobals *) object_findregistered(nameSpace, globalTag);
+        FrameLib_PDGlobals *x = *getPDGlobalsPtr();
         
         if (!x)
-            x = (FrameLib_PDGlobals *) object_register(nameSpace, globalTag, object_new_typed(CLASS_NOBOX, gensym(maxGlobalClass), 0, NULL));
-            
-        x->mCount++;
+        {
+            makeClass<FrameLib_PDGlobals>("__fl.pd_global_items");
+            x = (FrameLib_PDGlobals *) pd_new(*FrameLib_PDGlobals::getClassPointer<FrameLib_PDGlobals>());
+            *getPDGlobalsPtr() = x;
+        }
+        
+        if (x)
+            x->retain();
         
         return x;
-    }
-    
-    void release()
-    {
-        if (--mCount == 0)
-        {
-            object_unregister(this);
-            object_free(this);
-        }
     }
     
     // Pointers
@@ -167,13 +170,12 @@ private:
     FrameLib_Global *mGlobal;
     ConnectionInfo *mConnectionInfo;
     SyncCheck *mSyncCheck;
-    long mCount;
 };
 
 //////////////////////////////////////////////////////////////////////////
 ////////////////////// Mutator for Synchronisation ///////////////////////
 //////////////////////////////////////////////////////////////////////////
-
+/*
 class Mutator : public PDClass_Base
 {
     
@@ -185,7 +187,7 @@ public:
         mMode = object_method(mObject, gensym("__fl.is_output")) ? FrameLib_PDGlobals::SyncCheck::kDownOnly : FrameLib_PDGlobals::SyncCheck::kDown;
     }
     
-    static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
+    static void classInit(t_class *c, const char *classname)
     {
         addMethod<Mutator, &Mutator::mutate>(c, "signal");
     }
@@ -204,7 +206,7 @@ private:
     FrameLib_PDGlobals::SyncCheck::Mode mMode;
     void *mObject;
 };
-
+*/
 //////////////////////////////////////////////////////////////////////////
 ////////////////////// Wrapper for Synchronisation ///////////////////////
 //////////////////////////////////////////////////////////////////////////
@@ -224,7 +226,7 @@ public:
         return &sigMethod;
     }
     
-    static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
+    static void classInit(t_class *c, const char *classname)
     {
         addMethod<Wrapper<T>, &Wrapper<T>::subpatcher>(c, "subpatcher");
         addMethod<Wrapper<T>, &Wrapper<T>::assist>(c, "assist");
@@ -461,13 +463,50 @@ template <class T, PDObjectArgsMode argsSetAllInputs = kAsParams> class FrameLib
     typedef FrameLib_Object<FrameLib_MultiChannel>::Connection FrameLibConnection;
     typedef FrameLib_Object<t_object>::Connection PDConnection;
     typedef FrameLib_PDGlobals::ConnectionInfo ConnectionInfo;
-    typedef std::vector<t_object *>::iterator PDObjectIterator;
+    typedef std::vector<t_pd *>::iterator PDObjectIterator;
 
+    static t_atomtype atom_gettype(t_atom* a) { return a->a_type; }
+    
+    struct PDProxy : public PDClass_Base
+    {
+        static t_pd *create(FrameLib_PDClass *owner, long index)
+        {
+            t_atom args[2];
+            
+            SETSYMBOL(args + 0, (t_symbol *) owner);
+            SETFLOAT(args + 1, index);
+            
+            return pd_new(*PDProxy::getClassPointer<PDProxy>());
+        }
+        
+        static void classInit(t_class *c, const char *classname)
+        {
+            addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::frame>(c, "frame");
+        }
+        
+        PDProxy(t_symbol *sym, long ac, t_atom *av) : mOwner(NULL), mIndex(-1)
+        {
+            if (ac == 2)
+            {
+                mOwner = atom_getsymbol(av + 0);
+                mIndex = atom_getint(av + 1);
+            }
+        }
+        
+        void frame()
+        {
+            mOwner->frameInlet(mIndex);
+        }
+        
+        FrameLib_PDClass *mOwner;
+        int mIndex;
+    };
+    
 public:
     
     // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_PDClass<>)
     
-    template <class U = FrameLib_PDClass<T, argsSetAllInputs> > static void makeClass(t_symbol *nameSpace, const char *className)
+    template <class U = FrameLib_PDClass<T, argsSetAllInputs> > static void makeClass(const char *className)
     {
         // If handles audio/scheduler then make wrapper class and name the inner object differently..
         
@@ -475,38 +514,35 @@ public:
         
         if (T::handlesAudio())
         {
-            Wrapper<U>:: template makeClass<Wrapper<U> >(CLASS_BOX, className);
+            //Wrapper<U>:: template makeClass<Wrapper<U> >(CLASS_BOX, className);
             internalClassName.insert(0, "unsynced.");
         }
         
-        PDClass_Base::makeClass<U>(nameSpace, internalClassName.c_str());
+        PDClass_Base::makeClass<U>(internalClassName.c_str());
     }
     
-    static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
+    static void classInit(t_class *c, const char *classname)
     {
-        addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::assist>(c, "assist");
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::info>(c, "info");
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::frame>(c, "frame");
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::sync>(c, "sync");
         addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::dsp>(c);
-        addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
-        addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
-        addMethod(c, (method) &externalResolveConnections, "__fl.resolve_connections");
-        addMethod(c, (method) &externalAutoOrderingConnections, "__fl.auto_ordering_connections");
-        addMethod(c, (method) &externalClearAutoOrderingConnections, "__fl.clear_auto_ordering_connections");
-        addMethod(c, (method) &externalIsConnected, "__fl.is_connected");
-        addMethod(c, (method) &externalConnectionConfirm, "__fl.connection_confirm");
-        addMethod(c, (method) &externalGetInternalObject, "__fl.get_internal_object");
-        addMethod(c, (method) &externalIsOutput, "__fl.is_output");
-        addMethod(c, (method) &externalGetNumAudioIns, "__fl.get_num_audio_ins");
-        addMethod(c, (method) &externalGetNumAudioOuts, "__fl.get_num_audio_outs");
+        addMethod(c, (t_method) &externalResolveConnections, "__fl.resolve_connections");
+        addMethod(c, (t_method) &externalAutoOrderingConnections, "__fl.auto_ordering_connections");
+        addMethod(c, (t_method) &externalClearAutoOrderingConnections, "__fl.clear_auto_ordering_connections");
+        addMethod(c, (t_method) &externalIsConnected, "__fl.is_connected");
+        addMethod(c, (t_method) &externalConnectionConfirm, "__fl.connection_confirm");
+        addMethod(c, (t_method) &externalGetInternalObject, "__fl.get_internal_object");
+        addMethod(c, (t_method) &externalIsOutput, "__fl.is_output");
+        addMethod(c, (t_method) &externalGetNumAudioIns, "__fl.get_num_audio_ins");
+        addMethod(c, (t_method) &externalGetNumAudioOuts, "__fl.get_num_audio_outs");
         
         dspInit(c);
     }
 
     // Constructor and Destructor
     
-    FrameLib_PDClass(t_symbol *s, long argc, t_atom *argv) : mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mTopLevelPatch(jpatcher_get_toppatcher(gensym("#P")->s_thing)), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
+    FrameLib_PDClass(t_symbol *s, long argc, t_atom *argv) : mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mCanvas(canvas_getcurrent()), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -521,7 +557,7 @@ public:
         
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mTopLevelPatch), &serialisedParameters, this, nStreams);
+        mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mCanvas), &serialisedParameters, this, nStreams);
         parseInputs(argc, argv);
         
         long numIns = getNumIns() + (supportsOrderingConnections() ? 1 : 0);
@@ -533,25 +569,31 @@ public:
         
         // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles audio)
         
-        for (long i = numIns - 1; i >= 0; i--)
-            mInputs[i] = (t_object *) ((i || T::handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : NULL);
+        for (unsigned long i = 0; i < getNumOuts(); i++)
+            inlet_new(*this, (t_pd *)this, gensym("signal"), gensym("signal"));
         
-        for (unsigned long i = getNumOuts(); i > 0; i--)
-            mOutputs[i - 1] = outlet_new(this, NULL);
+        for (long i = 0; i < (numIns - 1); i++)
+        {
+            mInputs[i] = ((i || T::handlesAudio()) ? PDProxy::create(this, getNumAudioIns() + i) : NULL);
+            inlet_new(*this, mInputs[i], gensym("frame"), gensym("frame"));
+        }
         
-        // Setup for audio, even if the object doesn't handle it, so that dsp recompile works correctly
+        // Create signal inlets
         
-        dspSetup(getNumAudioIns());
+        for (unsigned long i = 0; i < getNumIns(); i++)
+            mOutputs[i] = outlet_new(*this, NULL);
+        
+        // Create signal outlets
         
         for (unsigned long i = 0; i < getNumAudioOuts(); i++)
-            outlet_new(this, "signal");
+            outlet_new(*this, gensym("signal"));
         
         // Add a sync outlet if we need to handle audio
         
         if (T::handlesAudio())
         {
-            mSyncIn = (t_object *) outlet_new(NULL, NULL);
-            outlet_add(mSyncIn, inlet_nth(*this, 0));
+            //mSyncIn = (t_object *) outlet_new(NULL, NULL);
+            //outlet_add(mSyncIn, inlet_nth(*this, 0));
         }
     }
 
@@ -560,36 +602,9 @@ public:
         delete mObject;
 
         for (PDObjectIterator it = mInputs.begin(); it != mInputs.end(); it++)
-            object_free(*it);
-        
-        object_free(mSyncIn);
-    }
-
-    void assist(void *b, long m, long a, char *s)
-    {
-        if (m == ASSIST_OUTLET)
-        {
-            if (a == 0 && T::handlesAudio())
-                 sprintf(s,"(signal) Audio Synchronisation Output" );
-            else if (a < getNumAudioOuts())
-                sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
-            else
-                sprintf(s,"(frame) %s", mObject->outputInfo(a - getNumAudioOuts()).c_str());
-        }
-        else
-        {
-            if (a == 0 && T::handlesAudio())
-                sprintf(s,"(signal) Audio Synchronisation Input");
-            else if (a < getNumAudioIns())
-                sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
-            else
-            {
-                if (supportsOrderingConnections() && a == getNumAudioIns() + getNumIns())
-                    sprintf(s,"(frame) Ordering Input");
-                else
-                    sprintf(s,"(frame) %s", mObject->inputInfo(a - getNumAudioIns()).c_str());
-            }
-        }
+            pd_free(*it);
+      
+        //object_free(mSyncIn);
     }
     
     void info(t_symbol *sym, long ac, t_atom *av)
@@ -602,7 +617,7 @@ public:
         
         while (ac--)
         {
-            t_symbol *type = atom_getsym(av++);
+            t_symbol *type = atom_getsymbol(av++);
             
             if (type == gensym("description"))          flags |= kInfoDesciption;
             else if (type == gensym("inputs"))          flags |= kInfoInputs;
@@ -616,13 +631,15 @@ public:
         
         // Start Tag
         
-        object_post(mUserObject, "********* %s *********", object_classname(mUserObject)->s_name);
+        // FIX - user object should be used here....
+        
+        post("********* %s *********", class_getname(*getClassPointer<FrameLib_PDClass>()));
 
         // Description
         
         if (flags & kInfoDesciption)
         {
-            object_post(mUserObject, "--- Description ---");
+            post("--- Description ---");
             postSplit(mObject->objectInfo(verbose).c_str(), "", "-");
         }
         
@@ -630,36 +647,36 @@ public:
         
         if (flags & kInfoInputs)
         {
-            object_post(mUserObject, "--- Input List ---");
+            post("--- Input List ---");
             if (argsSetAllInputs == kAllInputs)
-                object_post(mUserObject, "N.B. - arguments set the fixed array values for all inputs.");
+                post("N.B. - arguments set the fixed array values for all inputs.");
             if (argsSetAllInputs == kDistribute)
-                object_post(mUserObject, "N.B - arguments are distributed one per input.");
+                post("N.B - arguments are distributed one per input.");
             for (long i = 0; i < mObject->getNumAudioIns(); i++)
-                object_post(mUserObject, "Audio Input %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
+                post("Audio Input %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
             for (long i = 0; i < mObject->getNumIns(); i++)
-                object_post(mUserObject, "Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose).c_str());
+                post("Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose).c_str());
             if (supportsOrderingConnections())
-                object_post(mUserObject, "Ordering Input [%s]: Connect to ensure ordering", frameTypeString(kFrameAny));
+                post("Ordering Input [%s]: Connect to ensure ordering", frameTypeString(kFrameAny));
         }
         
         if (flags & kInfoOutputs)
         {
-            object_post(mUserObject, "--- Output List ---");
+            post("--- Output List ---");
             for (long i = 0; i < mObject->getNumAudioOuts(); i++)
-                object_post(mUserObject, "Audio Output %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
+                post("Audio Output %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
             for (long i = 0; i < mObject->getNumOuts(); i++)
-                object_post(mUserObject, "Frame Output %ld [%s]: %s", i + 1, frameTypeString(mObject->outputType(i)), mObject->outputInfo(i, verbose).c_str());
+                post("Frame Output %ld [%s]: %s", i + 1, frameTypeString(mObject->outputType(i)), mObject->outputInfo(i, verbose).c_str());
         }
         
         // Parameters
         
         if (flags & kInfoParameters)
         {
-            object_post(mUserObject, "--- Parameter List ---");
+            post("--- Parameter List ---");
             
             const FrameLib_Parameters *params = mObject->getParameters();
-            if (!params || !params->size()) object_post(mUserObject, "< No Parameters >");
+            if (!params || !params->size()) post("< No Parameters >");
             
             // Loop over parameters
             
@@ -672,33 +689,33 @@ public:
                 // Name, type and default value
                 
                 if (defaultStr.size())
-                    object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str(), defaultStr.c_str());
+                    post("Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str(), defaultStr.c_str());
                 else
-                    object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str());
+                    post("Parameter %ld: %s [%s]", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str());
 
                 // Verbose - arguments, range (for numeric types), enum items (for enums), array sizes (for arrays), description
                 
                 if (verbose)
                 {
                     if (argsSetAllInputs == kAsParams && params->getArgumentIdx(i) >= 0)
-                        object_post(mUserObject, "- Argument: %ld", params->getArgumentIdx(i) + 1);
+                        post("- Argument: %ld", params->getArgumentIdx(i) + 1);
                     if (numericType == FrameLib_Parameters::kNumericInteger || numericType == FrameLib_Parameters::kNumericDouble)
                     {
                         switch (params->getClipMode(i))
                         {
                             case FrameLib_Parameters::kNone:    break;
-                            case FrameLib_Parameters::kMin:     object_post(mUserObject, "- Min Value: %lg", params->getMin(i));                        break;
-                            case FrameLib_Parameters::kMax:     object_post(mUserObject, "- Max Value: %lg", params->getMax(i));                        break;
-                            case FrameLib_Parameters::kClip:    object_post(mUserObject, "- Clipped: %lg-%lg", params->getMin(i), params->getMax(i));   break;
+                            case FrameLib_Parameters::kMin:     post("- Min Value: %lg", params->getMin(i));                        break;
+                            case FrameLib_Parameters::kMax:     post("- Max Value: %lg", params->getMax(i));                        break;
+                            case FrameLib_Parameters::kClip:    post("- Clipped: %lg-%lg", params->getMin(i), params->getMax(i));   break;
                         }
                     }
                     if (type == FrameLib_Parameters::kEnum)
                         for (long j = 0; j <= params->getMax(i); j++)
-                            object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j).c_str());
+                            post("   [%ld] - %s", j, params->getItemString(i, j).c_str());
                     else if (type == FrameLib_Parameters::kArray)
-                        object_post(mUserObject, "- Array Size: %ld", params->getArraySize(i));
+                        post("- Array Size: %ld", params->getArraySize(i));
                     else if (type == FrameLib_Parameters::kVariableArray)
-                        object_post(mUserObject, "- Array Max Size: %ld", params->getArrayMaxSize(i));
+                        post("- Array Max Size: %ld", params->getArrayMaxSize(i));
                     postSplit(params->getInfo(i).c_str(), "- ", "-");
                 }
             }
@@ -716,8 +733,10 @@ public:
     
     // Perform and DSP
 
-    void perform(t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam)
+    void perform()
     {
+        // FIX
+        /*
         if (mSigOuts.size() != (numouts - 1))
         {
             for (long i = 1; i < numouts; i++)
@@ -727,9 +746,10 @@ public:
         // N.B. Plus one due to sync inputs
         
         mObject->blockUpdate(ins + 1, outs + 1, vec_size);
+        */
     }
 
-    void dsp(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
+    void dsp(t_signal **sp)
     {
         mSigOuts.clear();
         
@@ -740,12 +760,14 @@ public:
         
         // Reset DSP
         
-        mObject->reset(samplerate, maxvectorsize);
-        
+        t_signal *temp = signal_newfromcontext(0);
+        mObject->reset(temp->s_sr, temp->s_vecsize);
+        signal_makereusable(temp);
+
         // Add a perform routine to the chain if the object handles audio
         
         if (T::handlesAudio())
-            addPerform<FrameLib_PDClass, &FrameLib_PDClass<T>::perform>(dsp64);
+            addPerform<FrameLib_PDClass, &FrameLib_PDClass<T>::perform>();
     }
 
     // Get Audio Outputs
@@ -770,13 +792,15 @@ public:
        
         if (action != FrameLib_PDGlobals::SyncCheck::kSyncComplete && T::handlesAudio() && mNeedsResolve)
         {
-            traversePatch(mTopLevelPatch, gensym("__fl.resolve_connections"));
-            traversePatch(mTopLevelPatch, gensym("__fl.clear_auto_ordering_connections"));
-            traversePatch(mTopLevelPatch, gensym("__fl.auto_ordering_connections"));
+            iterateCanvas(mCanvas, gensym("__fl.resolve_connections"));
+            iterateCanvas(mCanvas, gensym("__fl.clear_auto_ordering_connections"));
+            iterateCanvas(mCanvas, gensym("__fl.auto_ordering_connections"));
         }
         
-        if (action == FrameLib_PDGlobals::SyncCheck::kAttachAndSync)
-            outlet_anything(mSyncIn, gensym("signal"), 0, NULL);
+        // FIX
+        
+        //if (action == FrameLib_PDGlobals::SyncCheck::kAttachAndSync)
+        //    outlet_anything(mSyncIn, gensym("signal"), 0, NULL);
         
         if (action != FrameLib_PDGlobals::SyncCheck::kSyncComplete)
         {
@@ -787,11 +811,11 @@ public:
             {
                 for (unsigned long i = 0; i < getNumIns(); i++)
                     if (isConnected(i))
-                        object_method(getConnection(i).mObject, gensym("sync"));
+                        callMethod(getConnection(i).mObject, gensym("sync"));
                 
                 if (supportsOrderingConnections())
                     for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
-                        object_method(getOrderingConnection(i).mObject, gensym("sync"));
+                        callMethod(getOrderingConnection(i).mObject, gensym("sync"));
                 
                 mSyncChecker.restoreMode();
             }
@@ -799,11 +823,15 @@ public:
     }
     
     // Connection Routines
-    
+
     void frame()
     {
+        frameInlet(0);
+    }
+    
+    void frameInlet(long index)
+    {
         const ConnectionInfo *info = mGlobal->getConnectionInfo();
-        long index = getInlet() - getNumAudioIns();
         
         if (!info)
             return;
@@ -821,7 +849,7 @@ public:
                 {
                     mConfirm = true;
                     if (info->mMode == ConnectionInfo::kDoubleCheck)
-                        object_error(mUserObject, "extra connection to input %ld", index + 1);
+                        pd_error(mUserObject, "extra connection to input %ld", index + 1);
                 }
                 break;
         }
@@ -829,16 +857,6 @@ public:
 
     // External methods (A_CANT)
     
-    static t_ptr_int externalConnectionAccept(FrameLib_PDClass *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
-    {
-        return src->connectionAccept(dst, srcout, dstin, outlet, inlet);
-    }
-    
-    static t_max_err externalPatchLineUpdate(FrameLib_PDClass *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
-    {
-        return x->patchLineUpdate(patchline, updatetype, src, srcout, dst, dstin);
-    }
-
     static void externalResolveConnections(FrameLib_PDClass *x)
     {
         x->resolveConnections();
@@ -854,7 +872,7 @@ public:
         x->mObject->clearAutoOrderingConnections();
     }
 
-    static t_ptr_int externalIsConnected(FrameLib_PDClass *x, unsigned long index)
+    static uintptr_t externalIsConnected(FrameLib_PDClass *x, unsigned long index)
     {
         return x->confirmConnection(index, ConnectionInfo::kConfirm);
     }
@@ -869,65 +887,115 @@ public:
         return x->mObject;
     }
     
-    static t_ptr_int externalIsOutput(FrameLib_PDClass *x)
+    static uintptr_t externalIsOutput(FrameLib_PDClass *x)
     {
         return T::handlesAudio() && (x->getNumAudioOuts() > 1);
     }
     
-    static t_ptr_int externalGetNumAudioIns(FrameLib_PDClass *x)
+    static uintptr_t externalGetNumAudioIns(FrameLib_PDClass *x)
     {
         return x->getNumAudioIns();
     }
     
-    static t_ptr_int externalGetNumAudioOuts(FrameLib_PDClass *x)
+    static uintptr_t externalGetNumAudioOuts(FrameLib_PDClass *x)
     {
         return x->getNumAudioOuts();
     }
+    
+    static uintptr_t intMethod(t_object *object, t_symbol *methodName)
+    {
+        // FIX - look at vmess
+        
+        typedef uintptr_t (*func)(t_object *);
 
+        t_gotfn f = zgetfn(&object->ob_pd, methodName);
+        
+        if (!f)
+            return 0;
+        
+        func f2 = (func)f;
+        return f2(object);
+    }
+    
+    static void *ptrMethod(t_object *object, t_symbol *methodName)
+    {
+        // FIX - look at vmess
+
+        typedef void *(*func)(t_object *);
+        
+        t_gotfn f = zgetfn(&object->ob_pd, methodName);
+        
+        if (!f)
+            return 0;
+        
+        func f2 = (func)f;
+        return f2(object);
+    }
+    
+    static void callMethod(t_object *object, t_symbol *methodName)
+    {
+        //vmess((t_pd *) g, method, "");
+
+        // FIX - look at vmess
+        
+        typedef void (*func)(t_object *);
+        
+        t_gotfn f = zgetfn(&object->ob_pd, methodName);
+        
+        if (!f)
+            return;
+        
+        func f2 = (func)f;
+        return f2(object);
+    }
+    
+    static void confirmMethod(t_object *object, t_symbol *methodName, long index, ConnectionInfo::Mode mode)
+    {
+        //vmess((t_pd *) g, method, "");
+        
+        // FIX - look at vmess
+        
+        typedef void (*func)(t_object *, long, ConnectionInfo::Mode);
+        
+        t_gotfn f = zgetfn(&object->ob_pd, methodName);
+        
+        if (!f)
+            return;
+        
+        func f2 = (func)f;
+        return f2(object, index, mode);
+    }
+    
 private:
     
     // Unwrapping connections
     
     void unwrapConnection(t_object *& object, long& connection)
     {
-        t_object *wrapped = (t_object *) object_method(object, gensym("__fl.wrapper_internal_object"));
+        /*t_object *wrapped = (t_object *) object_method(object, gensym("__fl.wrapper_internal_object"));
         
         if (wrapped)
         {
             object = wrapped;
             connection++;
-        }
+        }*/
     }
     
     // Get an internal object from a generic pointer safely
     
     FrameLib_MultiChannel *getInternalObject(t_object *x)
     {
-        return (FrameLib_MultiChannel *) object_method(x, gensym("__fl.get_internal_object"));
+        return (FrameLib_MultiChannel *) ptrMethod(x, gensym("__fl.get_internal_object"));
     }
     
     // Private connection methods
     
-    void traversePatch(t_patcher *p, t_symbol *method)
+    void iterateCanvas(t_glist *gl, t_symbol *method)
     {
-        // Avoid recursion into a poly / pfft / etc.
-        
-        t_object *assoc = 0;
-        object_method(p, gensym("getassoc"), &assoc);
-        if (assoc)
-            return;
-        
         // Search for subpatchers, and call method on objects that don't have subpatchers
         
-        for (t_box *b = jpatcher_get_firstobject(p); b; b = jbox_get_nextobject(b))
-        {
-            long index = 0;
-            
-            while (b && (p = (t_patcher *)object_subpatcher(jbox_get_object(b), &index, this)))
-                traversePatch(p, method);
-
-            object_method(jbox_get_object(b), method);
-        }
+        for (t_gobj *g = gl->gl_list; g; g = g->g_next)
+            vmess((t_pd *) g, method, "");
     }
 
     void resolveConnections()
@@ -983,7 +1051,7 @@ private:
         // Check for connection *only* if the internal object is connected (otherwise assume the previously connected object has been deleted)
         
         if (mConfirmObject)
-            object_method(mConfirmObject, gensym("__fl.connection_confirm"), mConfirmOutIndex, mode);
+            confirmMethod(mConfirmObject, gensym("__fl.connection_confirm"), mConfirmOutIndex, mode);
         
         if (mConfirmObject && !mConfirm)
             disconnect(mConfirmObject, mConfirmOutIndex, mConfirmInIndex);
@@ -1050,15 +1118,15 @@ private:
         switch (result)
         {
             case kConnectFeedbackDetected:
-                object_error(mUserObject, "feedback loop detected");
+                pd_error(mUserObject, "feedback loop detected");
                 break;
                 
             case kConnectWrongContext:
-                object_error(mUserObject, "cannot connect objects from different top-level patchers");
+                pd_error(mUserObject, "cannot connect objects from different top-level patchers");
                 break;
                 
             case kConnectSelfConnection:
-                object_error(mUserObject, "direct feedback loop detected");
+                pd_error(mUserObject, "direct feedback loop detected");
                 break;
                 
             case kConnectSuccess:
@@ -1081,63 +1149,6 @@ private:
             mObject->deleteConnection(inIdx);
     }
 
-    // Patchline connections
-    
-    t_max_err patchLineUpdate(t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
-    {
-        if (*this == dst)
-        {
-            unwrapConnection(src, srcout);
-            srcout -= (long) object_method(src, gensym("__fl.get_num_audio_outs"));
-            dstin -= getNumAudioIns();
-            
-            if (sys_getdspobjdspstate(*this))
-            {
-                if ((isOrderingInput(dstin) || validInput(dstin)) && updatetype != JPATCHLINE_ORDER)
-                    dspchain_setbroken(dspchain_fromobject(*this));
-            }
-            else
-            {
-                switch (updatetype)
-                {
-                    case JPATCHLINE_CONNECT:        connect(src, srcout, dstin);        break;
-                    case JPATCHLINE_DISCONNECT:     disconnect(src, srcout, dstin);     break;
-                    case JPATCHLINE_ORDER:                                              break;
-                }
-            }
-        }
-        else
-        {
-            /*
-            srcout -= getNumAudioOuts();
-            
-            if (validOutput(srcout) && == JPATCHLINE_CONNECT)
-            {
-                double color[4] = { 0.0, 0.0, 1.0, 1.0 };
-                object_attr_setdouble_array(patchline, gensym("patchlinecolor"), 4, color);
-            }
-             */
-        }
-        
-        return MAX_ERR_NONE;
-    }
-    
-    long connectionAccept(t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
-    {
-        t_symbol *className = object_classname(dst);
-        
-        if (!validOutput(srcout - getNumAudioOuts()) || className == gensym("outlet") || className == gensym("jpatcher"))
-            return 1;
-
-        unwrapConnection(dst, dstin);
-        dstin -= (long) object_method(dst, gensym("__fl.get_num_audio_ins"));
-        
-        if (isOrderingInput(dstin, getInternalObject(dst)) || (validInput(dstin, getInternalObject(dst)) && !object_method(dst, gensym("__fl.is_connected"), dstin)))
-            return 1;
-        
-        return 0;
-    }
-
     // Info Utilities
     
     void postSplit(const char *text, const char *firstLineTag, const char *lineTag)
@@ -1148,7 +1159,7 @@ private:
         for (oldPos = 0, pos = str.find_first_of(":."); oldPos < str.size(); pos = str.find_first_of(":.", pos + 1))
         {
             pos = pos == std::string::npos ? str.size() : pos;
-            object_post(mUserObject, "%s%s", oldPos ? lineTag : firstLineTag, str.substr(oldPos, (pos - oldPos) + 1).c_str());
+            post("%s%s", oldPos ? lineTag : firstLineTag, str.substr(oldPos, (pos - oldPos) + 1).c_str());
             oldPos = pos + 1;
         }
     }
@@ -1173,9 +1184,9 @@ private:
     
     long getStreamCount(t_atom *a)
     {
-        if (atom_gettype(a) == A_SYM)
+        if (atom_gettype(a) == A_SYMBOL)
         {
-            t_symbol *sym = atom_getsym(a);
+            t_symbol *sym = atom_getsymbol(a);
             
             if (strlen(sym->s_name) > 1 && sym->s_name[0] == '=')
                 return safeCount(sym->s_name + 1, 1024);
@@ -1201,7 +1212,7 @@ private:
     
     bool isTag(t_atom *a)
     {
-        t_symbol *sym = atom_getsym(a);
+        t_symbol *sym = atom_getsymbol(a);
         return isParameterTag(sym) || isInputTag(sym);
     }
     
@@ -1216,8 +1227,8 @@ private:
             if (isTag(argv + idx))
                 break;
             
-            if (atom_gettype(argv + idx) == A_SYM)
-                object_error(mUserObject, "string %s in entry list where value expected", atom_getsym(argv + idx)->s_name);
+            if (atom_gettype(argv + idx) == A_SYMBOL)
+                pd_error(mUserObject, "string %s in entry list where value expected", atom_getsymbol(argv + idx)->s_name);
             
             values.push_back(atom_getfloat(argv + idx));
         }
@@ -1243,9 +1254,9 @@ private:
                 char argNames[64];
                 sprintf(argNames, "%ld", i);
                 
-                if (atom_gettype(argv + i) == A_SYM)
+                if (atom_gettype(argv + i) == A_SYMBOL)
                 {
-                    t_symbol *str = atom_getsym(argv + i);
+                    t_symbol *str = atom_getsymbol(argv + i);
                     serialisedParameters.write(argNames, str->s_name);
                 }
                 else
@@ -1266,12 +1277,12 @@ private:
             {
                 if (isTag(argv + i))
                 {
-                    sym = atom_getsym(argv + i);
+                    sym = atom_getsymbol(argv + i);
                     break;
                 }
                 
                 if (j == 0)
-                    object_error(mUserObject, "stray items after entry %s", sym->s_name);
+                    pd_error(mUserObject, "stray items after entry %s", sym->s_name);
             }
             
             // Check for lack of values or end of list
@@ -1279,7 +1290,7 @@ private:
             if ((++i >= argc) || isTag(argv + i))
             {
                 if (i < (argc + 1))
-                    object_error(mUserObject, "no values given for entry %s", sym->s_name);
+                    pd_error(mUserObject, "no values given for entry %s", sym->s_name);
                 continue;
             }
             
@@ -1287,8 +1298,8 @@ private:
             {
                 // Do strings or values
                 
-                if (atom_getsym(argv + i) != gensym(""))
-                    serialisedParameters.write(sym->s_name + 1, atom_getsym(argv + i++)->s_name);
+                if (atom_getsymbol(argv + i) != gensym(""))
+                    serialisedParameters.write(sym->s_name + 1, atom_getsymbol(argv + i++)->s_name);
                 else
                 {
                     i = parseNumericalList(values, argv, argc, i);
@@ -1333,13 +1344,13 @@ private:
         {
             // Advance to next input tag
             
-            for ( ; i < argc && !isInputTag(atom_getsym(argv + i)); i++);
+            for ( ; i < argc && !isInputTag(atom_getsymbol(argv + i)); i++);
             
             // If there are values to read then do so
             
             if ((i + 1) < argc && !isTag(argv + i + 1))
             {
-                t_symbol *sym = atom_getsym(argv + i);
+                t_symbol *sym = atom_getsymbol(argv + i);
                 i = parseNumericalList(values, argv, argc, i + 1);
                 mObject->setFixedInput(inputNumber(sym), &values[0], values.size());
             }
@@ -1350,8 +1361,8 @@ private:
     
     FrameLib_MultiChannel *mObject;
     
-    std::vector<t_object *> mInputs;
-    std::vector<void *> mOutputs;
+    std::vector<t_pd *> mInputs;
+    std::vector<t_outlet *> mOutputs;
     std::vector<double *> mSigOuts;
 
     long mProxyNum;
@@ -1360,7 +1371,7 @@ private:
     long mConfirmOutIndex;
     bool mConfirm;
     
-    t_object *mTopLevelPatch;
+    t_glist *mCanvas;
     t_object *mSyncIn;
     
     FrameLib_PDGlobals::ManagedPointer mGlobal;
@@ -1375,5 +1386,5 @@ public:
 
 // Convenience for Objects Using FrameLib_Expand (use FrameLib_PDClass_Expand<T>::makeClass() to create)
 
-template <class T, MaxObjectArgsMode argsSetAllInputs = kAsParams>
+template <class T, PDObjectArgsMode argsSetAllInputs = kAsParams>
 class FrameLib_PDClass_Expand : public FrameLib_PDClass<FrameLib_Expand<T>, argsSetAllInputs> {};

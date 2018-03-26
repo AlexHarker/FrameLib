@@ -18731,6 +18731,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_CFLAGS = (
+					"-fvisibility=hidden",
+					"-ferror-limit=0",
+				);
 				OTHER_REZFLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -18760,6 +18764,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_CFLAGS = (
+					"-fvisibility=hidden",
+					"-ferror-limit=0",
+				);
 				OTHER_REZFLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -18789,6 +18797,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_CFLAGS = (
+					"-fvisibility=hidden",
+					"-ferror-limit=0",
+				);
 				OTHER_REZFLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -18815,6 +18827,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				OTHER_CFLAGS = (
+					"-fvisibility=hidden",
+					"-ferror-limit=0",
+				);
 				OTHER_REZFLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",

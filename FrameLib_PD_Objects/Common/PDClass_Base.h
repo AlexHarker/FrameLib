@@ -37,10 +37,6 @@ public:
     template <class T, typename Sym<T>::MethodSym F> static void call(T *x, t_symbol *s) { ((x)->*F)(s); }
     template <class T, typename Sym<T>::MethodSym F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (t_method) call<T, F>, gensym(name), A_DEFSYM, 0); }
     
-    template <class T> struct Assist { typedef void (T::*MethodAssist)(void *b, long msg, long a, char *dst); };
-    template <class T, typename Assist<T>::MethodAssist F> static void call(T *x, void *b, long msg, long a, char *dst) { ((x)->*F)(b, msg, a, dst); }
-    template <class T, typename Assist<T>::MethodAssist F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (t_method) call<T, F>, gensym(name), A_CANT, 0); }
-    
     // FIX - is this a meaningful thing in PD?
     template <class T> struct Subpatch { typedef void *(T::*MethodSubPatch)(long index, void *arg); };
     template <class T, typename Subpatch<T>::MethodSubPatch F> static void *call(T *x, long index, void *arg) { return ((x)->*F)(index, arg); }
@@ -50,16 +46,18 @@ public:
     template <class T, typename DSP<T>::MethodDSP F> static void call(T *x, t_signal **sp) { ((x)->*F)(sp); }
     template <class T, typename DSP<T>::MethodDSP F> static void addMethod(t_class *c) { class_addmethod(c, (t_method) call<T, F>, gensym("dsp"), A_CANT, 0); }
     
-    // FIX - broken
-    /*
-    template <class T>  struct Perform { typedef void (T::*MethodPerform)(t_int *w); };
-    template <class T, typename Perform<T>::MethodPerform F> static void call(T *x, t_signal **sp) { ((x)->*F)(sp); }
-    template <class T, typename Perform<T>::MethodPerform F> void addPerform(t_object *dsp64)
+    template <class T>  struct Perform { typedef void (T::*MethodPerform)(); };
+    template <class T, typename Perform<T>::MethodPerform F> static t_int *callPerform(t_int *w)
     {
-        // FIX - needs to use va_args - how??
-        object_method(dsp64, gensym("dsp_add64"), this, ((t_method) call<T, F>), 0, NULL);
-    }*/
-    
+        T *x = (T *) w[1];
+        ((x)->*F)();
+        return w + 2;
+    }
+    template <class T, typename Perform<T>::MethodPerform F> void addPerform()
+    {
+        // FIX - store pointers and do stuff with them...
+        dsp_add(callPerform<T, F>, 1, this);
+    }
     
     // Static Methods for class initialisation, object creation and deletion
     
@@ -89,7 +87,7 @@ public:
     
     template <class T> static void *create(t_symbol *sym, long ac, t_atom *av)
     {
-        void *x = object_alloc(*getClassPointer<T>());
+        void *x = pd_new(*getClassPointer<T>());
         new(x) T(sym, ac, av);
         return (T *)x;
     }
@@ -104,13 +102,6 @@ public:
     static void classInit(t_class *c, const char *classname) {}
     
     static void dspInit(t_class *c) { class_addmethod(c, nullfn, gensym("signal"), A_NULL); }
-    
-    void dspSetup(long numAudioIns, short flags = 0)
-    {
-        // FIX - whose responsibility is this? Do I need to store inlets (and/or outlets)?
-        //dsp_setup(&mObject, numAudioIns);
-        //mObject.z_misc = Z_NO_INPLACE | flags;
-    }
     
     // FIX - not sure how this is done
     //long getInlet() { return proxy_getinlet(*this); }
@@ -133,6 +124,8 @@ private:
     // The object structure
     
     t_object mObject;
+    //std::vector<t_sample>
+    //std::vector<t_sample>
 };
     
 #endif
