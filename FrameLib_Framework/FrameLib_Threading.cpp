@@ -92,7 +92,7 @@ void Semaphore::close()
         // Signal until the count is zero (only reliable way to signal all waiting threads
         
         long releaseCount = 0;
-        sem_getvalue(&mInternal, &relaaseCount);
+        sem_getvalue(&mInternal, &releaseCount);
         
         for (; releaseCount; --releaseCount)
             sem_post(&mInternal);
