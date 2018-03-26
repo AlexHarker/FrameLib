@@ -95,7 +95,7 @@ void Semaphore::close()
         
         do {
             sem_post(&mInternal);
-            sem__getvalue(&mInternal, &value);
+            sem_getvalue(&mInternal, &value);
         } while (value < 1);
     }
 }
