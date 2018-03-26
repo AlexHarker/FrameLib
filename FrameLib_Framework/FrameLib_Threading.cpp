@@ -5,8 +5,7 @@
 
 #ifdef __linux__
 
-
-// Thread Mac OS implementation
+// Thread Linux OS implementation
 
 Thread::~Thread()
 {
@@ -92,8 +91,11 @@ void Semaphore::close()
         
         // Signal until the count is zero (only reliable way to signal all waiting threads
         
-        for (long releaseCount = 1; releaseCount; --releaseCount)
-            sem_wait(&mInternal);
+        long releaseCount = 0;
+        sem_getvalue(&mInternal, &relaaseCount);
+        
+        for (; releaseCount; --releaseCount)
+            sem_post(&mInternal);
     }
 }
 
