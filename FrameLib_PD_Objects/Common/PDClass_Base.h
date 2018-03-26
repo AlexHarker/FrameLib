@@ -46,12 +46,13 @@ public:
     template <class T, typename DSP<T>::MethodDSP F> static void call(T *x, t_signal **sp) { ((x)->*F)(sp); }
     template <class T, typename DSP<T>::MethodDSP F> static void addMethod(t_class *c) { class_addmethod(c, (t_method) call<T, F>, gensym("dsp"), A_CANT, 0); }
     
-    template <class T>  struct Perform { typedef void (T::*MethodPerform)(); };
+    template <class T>  struct Perform { typedef void (T::*MethodPerform)(int vec_size); };
     template <class T, typename Perform<T>::MethodPerform F> static t_int *callPerform(t_int *w)
     {
         T *x = (T *) w[1];
-        ((x)->*F)();
-        return w + 2;
+        int vec_size = (int) w[2];
+        ((x)->*F)(vec_size);
+        return w + 3;
     }
     template <class T, typename Perform<T>::MethodPerform F> void addPerform(t_signal **sp)
     {
@@ -61,7 +62,7 @@ public:
         for (size_t i = 0; i < mSigOuts.size(); i++)
             mSigOuts[i] = sp[i + mSigIns.size()]->s_vec;
         
-        dsp_add(callPerform<T, F>, 1, this);
+        dsp_add(callPerform<T, F>, 1, this, sp[0]->s_vecsize);
     }
     
     // Static Methods for class initialisation, object creation and deletion

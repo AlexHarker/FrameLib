@@ -726,26 +726,20 @@ public:
     
     // Perform and DSP
 
-    void perform()
+    void perform(int vec_size)
     {
-        // FIX
-        /*
-        if (mSigOuts.size() != (numouts - 1))
-        {
-            for (long i = 1; i < numouts; i++)
-                mSigOuts.push_back(outs[i]);
-        }
-            
+        // FIX - build these with offset of 1
+        
+        double **ins;
+        double **outs;
+        
         // N.B. Plus one due to sync inputs
         
-        mObject->blockUpdate(ins + 1, outs + 1, vec_size);
-        */
+        mObject->blockUpdate(ins, outs, vec_size);
     }
 
     void dsp(t_signal **sp)
     {
-        mSigOuts.clear();
-        
         // Resolve connections (in case there are no schedulers left in the patch) and mark unresolved for next time
         
         resolveConnections();
