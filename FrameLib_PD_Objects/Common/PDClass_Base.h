@@ -125,6 +125,9 @@ public:
             outlet_new(*this, gensym("signal"));
     }
     
+    const t_sample *getAudioIn(unsigned long idx) { return mSigIns[idx]; }
+    t_sample *getAudioOut(unsigned long idx) { return mSigOuts[idx]; }
+    
     // Allows type conversion to a t_object
     
     operator t_object&() { return mObject; }

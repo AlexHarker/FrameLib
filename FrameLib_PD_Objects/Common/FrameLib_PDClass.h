@@ -728,14 +728,19 @@ public:
 
     void perform(int vec_size)
     {
-        // FIX - build these with offset of 1
+        // Copy Audio In
         
-        double **ins;
-        double **outs;
+        for (int i = 0; i < (getNumAudioIns() - 1); i++)
+            for (int j = 0; j < vec_size; j++)
+                mSigIns[i][j] = getAudioIn(i - 1)[j];
         
         // N.B. Plus one due to sync inputs
         
-        mObject->blockUpdate(ins, outs, vec_size);
+        mObject->blockUpdate(&mSigIns[0], &mSigOuts[0], vec_size);
+        
+        for (int i = 0; i < (getNumAudioOuts() - 1); i++)
+            for (int j = 0; j < vec_size; j++)
+                getAudioOut(i - 1)[j] = mSigOuts[i][j];
     }
 
     void dsp(t_signal **sp)
@@ -748,13 +753,28 @@ public:
         // Reset DSP
         
         t_signal *temp = signal_newfromcontext(0);
-        mObject->reset(temp->s_sr, temp->s_vecsize);
+        double samplingRate = temp->s_sr;
+        int vec_size = temp->s_vecsize;
         signal_makereusable(temp);
-
+        
+        mObject->reset(samplingRate, vec_size);
+    
         // Add a perform routine to the chain if the object handles audio
         
         if (T::handlesAudio())
             addPerform<FrameLib_PDClass, &FrameLib_PDClass<T>::perform>(sp);
+        
+        mTemp.resize(vec_size * (getNumAudioIns() + getNumAudioOuts() -2));
+        mSigIns.resize(getNumAudioIns() - 1);
+        mSigOuts.resize(getNumAudioOuts() - 1);
+        
+        double *inVecs = &mTemp[0];
+        double *outVecs = inVecs + ((getNumAudioIns() - 1) * vec_size);
+        
+        for (int i = 0; i < getNumAudioIns() - 1; i++)
+            mSigIns[i] = inVecs + (i * vec_size);
+        for (int i = 0; i < getNumAudioOuts() - 1; i++)
+            mSigOuts[i] = outVecs + (i * vec_size);
     }
 
     // Get Audio Outputs
@@ -1350,8 +1370,11 @@ private:
     
     std::vector<t_pd *> mInputs;
     std::vector<t_outlet *> mOutputs;
+    
+    std::vector<double *> mSigIns;
     std::vector<double *> mSigOuts;
-
+    std::vector<double> mTemp;
+    
     long mProxyNum;
     t_object *mConfirmObject;
     long mConfirmInIndex;
