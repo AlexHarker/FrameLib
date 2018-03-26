@@ -6,7 +6,7 @@
 #include "FrameLib_Binary_Objects.h"
 #include "FrameLib_PDClass.h"
 
-extern "C" int main(void)
+extern "C" void framelib_pd_setup(void)
 {
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Interval> >::makeClass("fl.interval~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Sink> >::makeClass("fl.sink~");
