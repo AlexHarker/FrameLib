@@ -69,7 +69,7 @@ void *Thread::threadStart(void *arg)
     return NULL;
 }
 
-// Semaphore Mac OS implementation
+// Semaphore Linux OS implementation
 
 Semaphore::Semaphore(long maxCount) : mValid(true)
 {
@@ -89,16 +89,13 @@ void Semaphore::close()
         mValid = false;
         std::atomic_thread_fence(std::memory_order_acquire);
         
-        // Signal until the count is zero (only reliable way to signal all waiting threads
-        
-        int releaseCount = 0;
-        sem_getvalue(&mInternal, &releaseCount);
-        
         // It appears we get the opposite value to the one we want...
     
-        releaseCount = -releaseCount;
-        for (; releaseCount; --releaseCount)
-            sem_post(&mInternal);
+        int released = 0;
+        
+        do {
+            released = sem_post(&mInternal);
+        } while (!released);
     }
 }
 
