@@ -488,7 +488,7 @@ template <class T, PDObjectArgsMode argsSetAllInputs = kAsParams> class FrameLib
         {
             if (ac == 2)
             {
-                mOwner = atom_getsymbol(av + 0);
+                mOwner = (FrameLib_PDClass *) atom_getsymbol(av + 0);
                 mIndex = atom_getint(av + 1);
             }
         }
@@ -511,14 +511,17 @@ public:
         // If handles audio/scheduler then make wrapper class and name the inner object differently..
         
         std::string internalClassName = className;
-        
+        std::string proxyClassName;
+
         if (T::handlesAudio())
         {
             //Wrapper<U>:: template makeClass<Wrapper<U> >(CLASS_BOX, className);
             internalClassName.insert(0, "unsynced.");
         }
         
+        proxyClassName.append(".proxy");
         PDClass_Base::makeClass<U>(internalClassName.c_str());
+        PDClass_Base::makeClass<PDProxy>(proxyClassName.c_str());
     }
     
     static void classInit(t_class *c, const char *classname)
