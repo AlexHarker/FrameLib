@@ -62,7 +62,7 @@ public:
         for (size_t i = 0; i < mSigOuts.size(); i++)
             mSigOuts[i] = sp[i + mSigIns.size()]->s_vec;
         
-        dsp_add(callPerform<T, F>, 1, this, sp[0]->s_vecsize);
+        dsp_add(callPerform<T, F>, 2, this, sp[0]->s_vecsize);
     }
     
     // Static Methods for class initialisation, object creation and deletion
@@ -116,7 +116,7 @@ public:
         
         // Create signal inlets
         
-        for (unsigned long i = 0; i < numSigIns; i++)
+        for (unsigned long i = 0; numSigIns && i < (numSigIns - 1); i++)
             signalinlet_new(*this, 0.0);
         
         // Create signal outlets
