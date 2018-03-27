@@ -54,7 +54,7 @@ void Thread::join()
     if (mValid)
     {
         mValid = false;
-        std::atomic_thread_fence(std::memory_order_acquire);
+        std::atomic_thread_fence(std::memory_order_seq_cst);
         
         // Wait for thread to join before we allow the program to continue
         
@@ -73,7 +73,7 @@ void *Thread::threadStart(void *arg)
 
 Semaphore::Semaphore(long maxCount) : mValid(true)
 {
-    sem_init( &mInternal, 0, 0);
+    sem_init(&mInternal, 0, 0);
 }
 
 Semaphore::~Semaphore()
@@ -87,7 +87,7 @@ void Semaphore::close()
     if (mValid)
     {
         mValid = false;
-        std::atomic_thread_fence(std::memory_order_acquire);
+        std::atomic_thread_fence(std::memory_order_seq_cst);
         
         // It appears we get the opposite value to the one we want...
     
@@ -102,7 +102,7 @@ void Semaphore::close()
 
 void Semaphore::signal(long n)
 {
-    std::atomic_thread_fence(std::memory_order_acquire);
+    std::atomic_thread_fence(std::memory_order_seq_cst);
     for (long i = 0; i < n; i++)
         sem_post(&mInternal);
 }

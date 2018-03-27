@@ -38,8 +38,7 @@ namespace OS_Specific
     
 #include <pthread.h>
 #include <libkern/OSAtomic.h>
-#include <mach/semaphore.h>
-#include <mach/task.h>
+#include <mach/mach.h>
 
 namespace OS_Specific
 {
