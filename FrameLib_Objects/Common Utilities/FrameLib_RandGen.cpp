@@ -1,7 +1,11 @@
 
-#if !defined(__APPLE__) && !defined (__linux__)
-#define __NOT_UNIX__
+#ifndef __APPLE__
+#ifdef (__linux__)
+#include <stdlib.h>
+#include <ctime>
+#else
 #include "windows.h"
+#endif
 #endif
 
 #include "FrameLib_RandGen.h"
@@ -126,9 +130,13 @@ void FrameLib_RandGen::randSeedCMWC()
 {
     uint32_t seeds[CMWC_LAG_SIZE];
     
-#ifndef __NOT_UNIX__
+#ifdef __APPLE__
     for (uint32_t i = 0; i < CMWC_LAG_SIZE; i++)
         seeds[i] = arc4random();
+#elif defined (__linux__)
+    srandom(time(NULL));
+    for (uint32_t i = 0; i < CMWC_LAG_SIZE; i++)
+        seeds[i] = random();
 #else
     HCRYPTPROV hProvider = 0;
     const DWORD dwLength = 4 * CMWC_LAG_SIZE;
