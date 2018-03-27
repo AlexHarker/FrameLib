@@ -128,9 +128,6 @@ public:
     
     FrameLib_Global *getGlobal() const                      { return mGlobal; }
     
-    void retain()                                           { FrameLib_Global::get(&mGlobal); }
-    void release()                                          { FrameLib_Global::release(&mGlobal); }
-    
     const ConnectionInfo *getConnectionInfo() const         { return mConnectionInfo; }
     void setConnectionInfo(ConnectionInfo *info = NULL)     { mConnectionInfo = info; }
     
@@ -139,6 +136,9 @@ public:
     
 private:
     
+    void retain()                                           { FrameLib_Global::get(&mGlobal); }
+    void release()                                          { FrameLib_Global::release(&mGlobal); }
+
     static FrameLib_PDGlobals **getPDGlobalsPtr()
     {
         return (FrameLib_PDGlobals **) &gensym("__fl.pd_global_items")->s_thing;
