@@ -1,5 +1,6 @@
 
-#ifndef __APPLE__
+#if !defined(__APPLE__) && !defined (__linux__)
+#define __NOT_UNIX__
 #include "windows.h"
 #endif
 
@@ -125,7 +126,7 @@ void FrameLib_RandGen::randSeedCMWC()
 {
     uint32_t seeds[CMWC_LAG_SIZE];
     
-#ifdef __APPLE__
+#ifndef __NOT_UNIX__
     for (uint32_t i = 0; i < CMWC_LAG_SIZE; i++)
         seeds[i] = arc4random();
 #else
