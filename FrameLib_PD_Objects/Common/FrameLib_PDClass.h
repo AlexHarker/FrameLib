@@ -471,27 +471,20 @@ template <class T, PDObjectArgsMode argsSetAllInputs = kAsParams> class FrameLib
     {
         static t_pd *create(FrameLib_PDClass *owner, long index)
         {
-            t_atom args[2];
-            
-            SETSYMBOL(args + 0, (t_symbol *) owner);
-            SETFLOAT(args + 1, index);
-            
-            return pd_new(*PDProxy::getClassPointer<PDProxy>());
+            t_pd *proxy = pd_new(*PDProxy::getClassPointer<PDProxy>());
+           
+            ((PDProxy *)proxy)->mOwner = owner;
+            ((PDProxy *)proxy)->mIndex = index;
+
+            return proxy;
         }
         
         static void classInit(t_class *c, const char *classname)
         {
-            addMethod<FrameLib_PDClass<T>, &FrameLib_PDClass<T>::frame>(c, "frame");
+            addMethod<PDProxy, &PDProxy::frame>(c, "frame");
         }
         
-        PDProxy(t_symbol *sym, long ac, t_atom *av) : mOwner(NULL), mIndex(-1)
-        {
-            if (ac == 2)
-            {
-                mOwner = (FrameLib_PDClass *) atom_getsymbol(av + 0);
-                mIndex = atom_getint(av + 1);
-            }
-        }
+        PDProxy(t_symbol *sym, long ac, t_atom *av) : mOwner(NULL), mIndex(-1) {}
         
         void frame()
         {
