@@ -565,7 +565,7 @@ public:
         
         // Create frame inlets - N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles audio)
 
-        for (long i = 0; i < (numIns - 1); i++)
+        for (long i = 0; i < numIns; i++)
         {
             mInputs[i] = ((i || T::handlesAudio()) ? PDProxy::create(this, getNumAudioIns() + i) : NULL);
             inlet_new(*this, mInputs[i], gensym("frame"), gensym("frame"));
@@ -575,7 +575,6 @@ public:
         
         for (unsigned long i = 0; i < getNumOuts(); i++)
             mOutputs[i] = outlet_new(*this, gensym("frame"));
-        
         
         // Add a sync outlet if we need to handle audio
         
@@ -731,7 +730,7 @@ public:
         
         for (int i = 0; i < (getNumAudioIns() - 1); i++)
             for (int j = 0; j < vec_size; j++)
-                mSigIns[i][j] = getAudioIn(i - 1)[j];
+                mSigIns[i][j] = getAudioIn(i + 1)[j];
         
         // N.B. Plus one due to sync inputs
         
@@ -739,7 +738,7 @@ public:
         
         for (int i = 0; i < (getNumAudioOuts() - 1); i++)
             for (int j = 0; j < vec_size; j++)
-                getAudioOut(i - 1)[j] = mSigOuts[i][j];
+                getAudioOut(i + 1)[j] = mSigOuts[i][j];
     }
 
     void dsp(t_signal **sp)
