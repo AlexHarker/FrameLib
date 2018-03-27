@@ -1,6 +1,6 @@
 
 #ifndef __APPLE__
-#ifdef (__linux__)
+#ifdef __linux__
 #include <stdlib.h>
 #include <ctime>
 #else
