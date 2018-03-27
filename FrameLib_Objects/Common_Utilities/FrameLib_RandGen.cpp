@@ -1,11 +1,11 @@
 
-#ifndef __APPLE__
-#ifdef __linux__
+#ifdef __APPLE__
+#include <stdlib.h>
+#elif defined (__linux__)
 #include <stdlib.h>
 #include <ctime>
 #else
 #include "windows.h"
-#endif
 #endif
 
 #include "FrameLib_RandGen.h"
