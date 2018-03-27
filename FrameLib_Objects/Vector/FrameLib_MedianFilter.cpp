@@ -181,7 +181,7 @@ void FrameLib_MedianFilter::process()
                 output[0] = median(temp, indices, width);
                 for (long i = 1; i < sizeIn; i++)
                 {
-                    double newValue = getWrap(input, i + (width >> 1) - 1, sizeIn);
+                    double newValue = getWrap(input, i + (width >> 1), sizeIn);
                     output[i] = insertMedian(temp, indices, newValue, (i - 1) % width, width);
                 }
                 break;
@@ -192,7 +192,7 @@ void FrameLib_MedianFilter::process()
                 output[0] = median(temp, indices, width);
                 for (long i = 1; i < sizeIn; i++)
                 {
-                    double newValue = getPad(input, i + (width >> 1) - 1, sizeIn, padValue);
+                    double newValue = getPad(input, i + (width >> 1), sizeIn, padValue);
                     output[i] = insertMedian(temp, indices, newValue, (i - 1) % width, width);
                 }
                 break;
@@ -203,7 +203,7 @@ void FrameLib_MedianFilter::process()
                 output[0] = median(temp, indices, width);
                 for (long i = 1; i < sizeIn; i++)
                 {
-                    double newValue = getFold(input, i + (width >> 1) - 1, sizeIn);
+                    double newValue = getFold(input, i + (width >> 1), sizeIn);
                     output[i] = insertMedian(temp, indices, newValue, (i - 1) % width, width);
                 }
                 break;
