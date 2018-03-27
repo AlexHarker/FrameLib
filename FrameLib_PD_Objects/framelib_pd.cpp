@@ -25,6 +25,6 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_PDRead>::makeClass("fl.read~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Ramp> >::makeClass("fl.ramp~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Random> >::makeClass("fl.random~");
-    FrameLib_PDClass<FrameLib_Expand <FrameLib_SampleRate> >::makeClass("fl.samplrate~");
+    FrameLib_PDClass<FrameLib_Expand <FrameLib_SampleRate> >::makeClass("fl.samplerate~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Window> >::makeClass("fl.window~");
 }
