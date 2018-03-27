@@ -750,7 +750,8 @@ public:
     {
         // Resolve connections (in case there are no schedulers left in the patch) and mark unresolved for next time
         
-        resolveConnections();
+        iterateCanvas(mCanvas, gensym("__fl.resolve_connections"));
+        //resolveConnections();
         mNeedsResolve = true;
         
         // Reset DSP
@@ -1004,13 +1005,14 @@ private:
     // Private connection methods
     
     void iterateCanvas(t_glist *gl, t_symbol *method)
-    {
-        char nullStr = 0;
-        
+    {        
         // Search for subpatchers, and call method on objects that don't have subpatchers
         
         for (t_gobj *g = gl->gl_list; g; g = g->g_next)
-            vmess((t_pd *) g, method, &nullStr);
+        {
+            if (zgetfn((t_pd *) g, method))
+                mess0((t_pd *) g, method);
+        }
     }
 
     void resolveConnections()
@@ -1228,7 +1230,7 @@ private:
     bool isTag(t_atom *a)
     {
         t_symbol *sym = atom_getsymbol(a);
-        return isParameterTag(sym) || isInputTag(sym);
+        return atom_gettype(a) == A_SYMBOL && (isParameterTag(sym) || isInputTag(sym));
     }
     
     long parseNumericalList(std::vector<double> &values, t_atom *argv, long argc, long idx)
@@ -1313,7 +1315,7 @@ private:
             {
                 // Do strings or values
                 
-                if (atom_getsymbol(argv + i) != gensym(""))
+                if (atom_gettype(argv + i) == A_SYMBOL && atom_getsymbol(argv + i))
                     serialisedParameters.write(sym->s_name + 1, atom_getsymbol(argv + i++)->s_name);
                 else
                 {
