@@ -842,7 +842,7 @@ public:
     void frameInlet(long index)
     {
         const ConnectionInfo *info = mGlobal->getConnectionInfo();
-        index -=  - getNumAudioIns();
+        index -= getNumAudioIns();
         
         if (!info)
             return;
