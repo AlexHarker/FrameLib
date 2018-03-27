@@ -48,6 +48,22 @@ template <class T> void deallocate_aligned(T *ptr)
     free(ptr);
 }
 
+#elif defined(__linux__)
+
+#include <stdlib.h>
+
+template <class T> T *allocate_aligned(size_t size)
+{
+    void *mem;
+    posix_memalign(&mem, 16, size * sizeof(T));
+    return static_cast<T *>(mem);
+}
+
+template <class T> void deallocate_aligned(T *ptr)
+{
+    free(ptr);
+}
+
 #else
 
 #include <malloc.h>
