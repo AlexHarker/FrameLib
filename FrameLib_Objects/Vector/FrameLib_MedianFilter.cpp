@@ -84,11 +84,11 @@ double FrameLib_MedianFilter::insertMedian(double *temp, unsigned long *indices,
     
     // Search right
     
-    for (insert = current, std::max(1L, gap = (width - current) >> 1); gap; gap >>= 1)
+    for (insert = current, gap = std::max(1L, (width - current) >> 1); gap; gap >>= 1)
     {
         for (long i = insert + gap; i < width; i += gap)
         {
-            if (temp[indices[i]] > value)
+            if (temp[indices[i]] >= value)
                 break;
             else
                 insert = i;
@@ -103,11 +103,11 @@ double FrameLib_MedianFilter::insertMedian(double *temp, unsigned long *indices,
     
     // Search left
     
-    for (current = insert, std::max(1L, gap = current >> 1); gap; gap >>= 1)
+    for (current = insert, gap = std::max(1L, current >> 1); gap; gap >>= 1)
     {
         for (long i = insert - gap; i >= 0; i -= gap)
         {
-            if (temp[indices[i]] < value)
+            if (temp[indices[i]] <= value)
                 break;
             else
                 insert = i;
