@@ -4344,8 +4344,7 @@
 				B87E5C551FB8EE0F00C63385 /* FrameLib_EWMSD.h */,
 				B87E5C541FB8EE0F00C63385 /* FrameLib_EWMSD.cpp */,
 			);
-			name = Time_Smoothing;
-			path = "Time Smoothing";
+			path = Time_Smoothing;
 			sourceTree = "<group>";
 		};
 		B850749519F1BB61002315F4 /* Filters */ = {
@@ -4843,8 +4842,7 @@
 				B8C2F8171F863A9800075677 /* FrameLib_Route.h */,
 				B8C2F8161F863A9800075677 /* FrameLib_Route.cpp */,
 			);
-			name = Routing;
-			path = Time_Smoothing;
+			path = Routing;
 			sourceTree = "<group>";
 		};
 		B8BDF05E1F2D426800264316 /* Spatial */ = {
