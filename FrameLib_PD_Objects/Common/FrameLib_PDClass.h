@@ -765,19 +765,21 @@ public:
         // Add a perform routine to the chain if the object handles audio
         
         if (T::handlesAudio())
+        {
             addPerform<FrameLib_PDClass, &FrameLib_PDClass<T>::perform>(sp);
         
-        mTemp.resize(vec_size * (getNumAudioIns() + getNumAudioOuts() -2));
-        mSigIns.resize(getNumAudioIns() - 1);
-        mSigOuts.resize(getNumAudioOuts() - 1);
+            mTemp.resize(vec_size * (getNumAudioIns() + getNumAudioOuts() -2));
+            mSigIns.resize(getNumAudioIns() - 1);
+            mSigOuts.resize(getNumAudioOuts() - 1);
         
-        double *inVecs = &mTemp[0];
-        double *outVecs = inVecs + ((getNumAudioIns() - 1) * vec_size);
+            double *inVecs = &mTemp[0];
+            double *outVecs = inVecs + ((getNumAudioIns() - 1) * vec_size);
         
-        for (int i = 0; i < getNumAudioIns() - 1; i++)
-            mSigIns[i] = inVecs + (i * vec_size);
-        for (int i = 0; i < getNumAudioOuts() - 1; i++)
-            mSigOuts[i] = outVecs + (i * vec_size);
+            for (int i = 0; i < getNumAudioIns() - 1; i++)
+                mSigIns[i] = inVecs + (i * vec_size);
+            for (int i = 0; i < getNumAudioOuts() - 1; i++)
+                mSigOuts[i] = outVecs + (i * vec_size);
+        }
     }
 
     // Get Audio Outputs
