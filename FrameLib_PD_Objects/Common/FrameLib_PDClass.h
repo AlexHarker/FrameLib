@@ -567,8 +567,13 @@ public:
 
         for (long i = 0; i < numIns; i++)
         {
-            mInputs[i] = ((i || T::handlesAudio()) ? PDProxy::create(this, getNumAudioIns() + i) : NULL);
-            inlet_new(*this, mInputs[i], gensym("frame"), gensym("frame"));
+            if (i || T::handlesAudio())
+            {
+                mInputs[i] = PDProxy::create(this, getNumAudioIns() + i);
+                inlet_new(*this, mInputs[i], gensym("frame"), gensym("frame"));
+            }
+            else
+                mInputs[i] = NULL;
         }
         
         // Create frame outlets
