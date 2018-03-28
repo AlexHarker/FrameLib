@@ -26,12 +26,12 @@ template <typename Op> class FrameLib_TernaryOp : public FrameLib_Processor
         EnlargedInput(FrameLib_TernaryOp *owner, const double *input, unsigned long size, unsigned long extendedSize,
                       MismatchModes mode) : mOwner(owner),mAllocated(NULL)
         {
-            if(extendedSize > size)
+            if (extendedSize > size)
             {
                 mAllocated = owner->alloc<double>(extendedSize);
                 if(mAllocated)
                 {
-                    switch(mode)
+                    switch (mode)
                     {
                         case kWrap:
                         {
@@ -40,6 +40,7 @@ template <typename Op> class FrameLib_TernaryOp : public FrameLib_Processor
                         }
                         case kExtend:
                             enlargeExtend(mAllocated, input, size, extendedSize);
+                        default: break;
                     }
                     mPtr = mAllocated;
                 }
