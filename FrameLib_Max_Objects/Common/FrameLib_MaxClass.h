@@ -454,7 +454,7 @@ private:
 /////////////////////// FrameLib Max Object Class ////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-enum MaxObjectArgsMode {kAsParams, kAllInputs, kDistribute};
+enum MaxObjectArgsMode { kAsParams, kAllInputs, kDistribute };
 
 template <class T, MaxObjectArgsMode argsMode = kAsParams> class FrameLib_MaxClass : public MaxClass_Base
 {
@@ -1340,8 +1340,8 @@ private:
             }
             else
             {
-                for (unsigned long j = 0; j < i && (j+1) < getNumIns(); j++)
-                    mObject->setFixedInput(j+1, &values[j], 1);
+                for (unsigned long j = 0; j < i && (j + 1) < getNumIns(); j++)
+                    mObject->setFixedInput(j + 1, &values[j], 1);
             }
         }
         

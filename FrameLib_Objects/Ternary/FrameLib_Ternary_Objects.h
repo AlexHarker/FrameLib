@@ -1,24 +1,20 @@
-//
-//  Header.h
-//  OTGframelib~
-//
-//  Created by Owen Green on 31/01/2018.
-//
 
-#ifndef FrameLib_TernaryObjects_h
-#define FrameLib_TernaryObjects_h
+#ifndef FRAMELIB_TERNARY_OBJECTS_H
+#define FRAMELIB_TERNARY_OBJECTS_H
 
-#include "FrameLib_TernaryTemplate.h"
+#include "FrameLib_Ternary_Template.h"
 
-//Specification and signature taken from C++17 std::clamp, more or less
-//If v compares less than lo, returns lo; otherwise if hi compares less than v, returns hi; otherwise returns v. Uses operator< to compare the values.
+// Specification and signature taken from C++17 std::clamp, more or less
+// If v compares less than lo, returns lo; otherwise if hi compares less than v, returns hi; otherwise returns v. Uses operator< to compare the values.
+
 template<class T>  T clip(T v,T lo, T hi)
 {
     return v < lo? lo : (v > hi? hi : v);
 }
 
-//Wrap and fold are taken from PD's cyclone pong external
-//https://github.com/porres/pd-cyclone/blob/master/cyclone_src/binaries/signal/pong.c
+// Wrap and fold are taken from PD's cyclone pong external
+// https://github.com/porres/pd-cyclone/blob/master/cyclone_src/binaries/signal/pong.c
+
 template<class T> T wrap(T v, T lo, T hi)
 {
     T returnval;
@@ -88,5 +84,5 @@ typedef FrameLib_Ternary<clip<double> >         FrameLib_Clip;
 typedef FrameLib_Ternary<wrap<double> >         FrameLib_Wrap;
 typedef FrameLib_Ternary<fold<double> >         FrameLib_Fold; 
 
-#endif /* Header_h */
+#endif 
 

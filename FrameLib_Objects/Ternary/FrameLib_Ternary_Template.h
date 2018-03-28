@@ -1,19 +1,8 @@
-//
-//  FrameLib_TernaryTemplate.h
-//  OTGframelib~
-//
-//  Created by Owen Green on 23/01/2018.
-//
 
-#ifndef FrameLib_TernaryTemplate_h
-#define FrameLib_TernaryTemplate_h
+#ifndef FRAMELIB_TERNARY_TEMPLATE_H
+#define FRAMELIB_TERNARY_TEMPLATE_H
 
 #include "FrameLib_DSP.h"
-
-
-
-
-
 
 template <typename Op> class FrameLib_TernaryOp : public FrameLib_Processor
 {
@@ -26,12 +15,12 @@ template <typename Op> class FrameLib_TernaryOp : public FrameLib_Processor
         EnlargedInput(FrameLib_TernaryOp *owner, const double *input, unsigned long size, unsigned long extendedSize,
                       MismatchModes mode) : mOwner(owner),mAllocated(NULL)
         {
-            if(extendedSize > size)
+            if (extendedSize > size)
             {
                 mAllocated = owner->alloc<double>(extendedSize);
-                if(mAllocated)
+                if (mAllocated)
                 {
-                    switch(mode)
+                    switch (mode)
                     {
                         case kWrap:
                         {
@@ -65,7 +54,7 @@ template <typename Op> class FrameLib_TernaryOp : public FrameLib_Processor
         {
             unsigned long leftover = extendedSize % size;
             
-            for(unsigned long i = 0; i < (extendedSize-leftover); i+=size)
+            for (unsigned long i = 0; i < (extendedSize-leftover); i+=size)
             {
                 copyVector(output + i, input, size);
             }
@@ -118,7 +107,7 @@ public:
 
     std::string inputInfo(unsigned long idx, bool verbose)
     {
-        switch(idx)
+        switch (idx)
         {
             case 0: return "Input";
             case 1: return "Parameter 1";
@@ -144,13 +133,13 @@ private:
         unsigned long sizeMax = *std::max_element(sizeIn, sizeIn+3);
         unsigned long sizeMin = *std::min_element(sizeIn, sizeIn+3);
 
-        for(int i = 0; i < 3; i++)
-            if(sizeIn[i] == 0)
+        for (int i = 0; i < 3; i++)
+            if (sizeIn[i] == 0)
                 return;
             
         
-        //Not a real ternary op: sizeOut always = sizeIn1;
-        switch(mode)
+        // Not a real ternary op: sizeOut always = sizeIn1;
+        switch (mode)
         {
             case kShrink:
             {
