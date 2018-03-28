@@ -1878,8 +1878,8 @@
 
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
-		5A3CAB132052E67E001082E3 /* FrameLib_TernaryObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_TernaryObjects.h; sourceTree = "<group>"; };
-		5A3CAB142052E67E001082E3 /* FrameLib_TernaryTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_TernaryTemplate.h; sourceTree = "<group>"; };
+		5A3CAB132052E67E001082E3 /* FrameLib_Ternary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Objects.h; sourceTree = "<group>"; };
+		5A3CAB142052E67E001082E3 /* FrameLib_Ternary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Template.h; sourceTree = "<group>"; };
 		5A3CAB262052E7E8001082E3 /* fl.wrap~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.wrap~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AB54BBE2052E96E00325C14 /* fl.wrap~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.wrap~.cpp"; sourceTree = "<group>"; };
 		5AB54BD12052EAD700325C14 /* fl.clip~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.clip~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4217,8 +4217,8 @@
 		5A3CAB102052E625001082E3 /* Ternary */ = {
 			isa = PBXGroup;
 			children = (
-				5A3CAB132052E67E001082E3 /* FrameLib_TernaryObjects.h */,
-				5A3CAB142052E67E001082E3 /* FrameLib_TernaryTemplate.h */,
+				5A3CAB142052E67E001082E3 /* FrameLib_Ternary_Template.h */,
+				5A3CAB132052E67E001082E3 /* FrameLib_Ternary_Objects.h */,
 			);
 			path = Ternary;
 			sourceTree = "<group>";
@@ -4573,7 +4573,6 @@
 		B8A70CDD19C11084005BA4E3 /* Objects Max */ = {
 			isa = PBXGroup;
 			children = (
-				5AB54BBD2052E95000325C14 /* Ternary */,
 				B8A70CE119C11303005BA4E3 /* Common */,
 				B857535C1F2E933300478E9F /* Schedulers */,
 				B8B4C8781F334547008E5D31 /* Timing */,
@@ -4586,6 +4585,7 @@
 				B8F5A4E41F2AA3F600D4777C /* Mapping */,
 				B809BDC519C42CAF00BA41F4 /* Unary */,
 				B805E22419C3ABB6007D8D8B /* Binary */,
+				5AB54BBD2052E95000325C14 /* Ternary */,
 				B8F83E2719C78D7A00230CD4 /* Vector */,
 				B8A4757119C9DD7F0043DC65 /* Spectral */,
 				B812462119F475B8009833F1 /* Storage */,
@@ -4646,7 +4646,6 @@
 		B8A70CE019C11255005BA4E3 /* Objects FrameLib */ = {
 			isa = PBXGroup;
 			children = (
-				5A3CAB102052E625001082E3 /* Ternary */,
 				B85753501F2E1ED200478E9F /* Common_Utilities */,
 				B8BDF0591F2D406300264316 /* Schedulers */,
 				B8B4C8771F334536008E5D31 /* Timing */,
@@ -4659,6 +4658,7 @@
 				B8F5A4E31F2AA3E800D4777C /* Mapping */,
 				B85753561F2E209500478E9F /* Unary */,
 				B85753531F2E206F00478E9F /* Binary */,
+				5A3CAB102052E625001082E3 /* Ternary */,
 				B85B68D019F26185002D6F1D /* Vector */,
 				B850749619F1BB7C002315F4 /* Spectral */,
 				B8AE692819F459FF0040B4EE /* Storage */,
