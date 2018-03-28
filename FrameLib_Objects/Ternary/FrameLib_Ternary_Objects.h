@@ -21,13 +21,13 @@ namespace Ternary
     {
         T returnval;
         T range = hi - lo;
-        if(v < hi && v >= lo)
+        if (v < hi && v >= lo)
             return v;
         
         if (hi == lo)
             return lo;
         
-        if(v < lo)
+        if (v < lo)
         {
             returnval = v;
             while (returnval < lo)
@@ -43,17 +43,17 @@ namespace Ternary
     {
         T returnval;
         T range = hi - lo;
-        if(v < hi && v >= lo)
+        if (v < hi && v >= lo)
             return v;
         
         if (hi == lo)
             return lo;
         
-        if(v < lo)
+        if (v < lo)
         {
             T diff = lo - v;
             unsigned long mag = static_cast<unsigned long>(diff/range); //case where v is more than a range away from lo
-            if(mag % 2 == 0) // even number of ranges away => counting up from lo
+            if (mag % 2 == 0) // even number of ranges away => counting up from lo
             {
                 diff = diff - (range * mag);
                 returnval = diff + lo;
@@ -68,7 +68,7 @@ namespace Ternary
         {
             T diff = v - hi;
             unsigned long mag = static_cast<unsigned long>(diff/range);
-            if(mag % 2 == 0) // even number of ranges away => counting up from lo
+            if (mag % 2 == 0) // even number of ranges away => counting up from lo
             {
                 diff = diff - (range * mag);
                 returnval = hi - diff;

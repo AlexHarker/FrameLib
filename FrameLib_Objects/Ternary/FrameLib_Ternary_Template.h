@@ -27,8 +27,13 @@ template <typename Op> class FrameLib_TernaryOp : public FrameLib_Processor
                             enlargeModulo(mAllocated, input, size, extendedSize);
                             break;
                         }
+                            
+                        case kShrink:
+                            break;
+                            
                         case kExtend:
                             enlargeExtend(mAllocated, input, size, extendedSize);
+                            break;
                     }
                     mPtr = mAllocated;
                 }
@@ -55,17 +60,19 @@ template <typename Op> class FrameLib_TernaryOp : public FrameLib_Processor
             unsigned long leftover = extendedSize % size;
             
             for (unsigned long i = 0; i < (extendedSize-leftover); i+=size)
-            {
                 copyVector(output + i, input, size);
-            }
+            
             copyVector(output + (extendedSize-leftover), input, leftover);
         }
         
         
-        //deleted
+        // Deleted
+        
         EnlargedInput(const EnlargedInput&);
         EnlargedInput& operator=(const EnlargedInput&);
-        //data
+        
+        // Data
+        
         FrameLib_TernaryOp *mOwner;
         double *mAllocated;
         const double *mPtr;
@@ -139,6 +146,7 @@ private:
             
         
         // Not a real ternary op: sizeOut always = sizeIn1;
+        
         switch (mode)
         {
             case kShrink:
@@ -155,23 +163,23 @@ private:
         allocateOutputs();
         double *output = getOutput(0, &sizeOut);
 
-        if(!sizeOut)
+        if (!sizeOut)
             return;
         
-        for(unsigned long i = 0; i < sizeMin; i++)
+        for (unsigned long i = 0; i < sizeMin; i++)
         {
             output[i] = op(input1[i],input2[i],input3[i]);
         }
         
 
-        if(mode == kShrink)
+        if (mode == kShrink)
             return;
         
         EnlargedInput in1(this, input1, sizeIn[0], sizeMax, mode);
         EnlargedInput in2(this, input2, sizeIn[1], sizeMax, mode);
         EnlargedInput in3(this, input3, sizeIn[2], sizeMax, mode);
         
-        for(unsigned long i = sizeMin; i < sizeMax; i++)
+        for (unsigned long i = sizeMin; i < sizeMax; i++)
         {
             output[i] = op(in1[i], in2[i],in3[i]);
         }
@@ -212,4 +220,4 @@ private:
     virtual const char *getDescriptionString() { return "Ternary Operator - No operator info available"; }
 };
 
-#endif /* FrameLib_TernaryTemplate_h */
+#endif
