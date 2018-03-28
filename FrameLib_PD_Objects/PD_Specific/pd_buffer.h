@@ -4,14 +4,16 @@
 
 #include "TableReader.hpp"
 
-struct fetch : public table_fetcher<t_sample>
+struct fetch : public table_fetcher<double>
 {
     fetch(t_word *data)
-    : table_fetcher(1.0) {}
+    : table_fetcher(1.0), mData(data) {}
     
-    t_sample operator()(intptr_t offset)   { return data[offset].w_float; }
+    // FIX - guard for out of range
     
-    t_word *data;
+    t_sample operator()(intptr_t offset)   { return mData[offset].w_float; }
+    
+    t_word *mData;
 };
 
 class pd_buffer
