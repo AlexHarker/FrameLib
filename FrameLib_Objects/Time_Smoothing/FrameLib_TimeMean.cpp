@@ -39,7 +39,7 @@ void FrameLib_TimeMean::resetSize(unsigned long maxFrames, unsigned long size)
 
 // High Precision Sum
 
-void neumaierSum(double in, double &sum, double &c)
+static void neumaierSum(double in, double &sum, double &c)
 {
     double t = sum + in;
     
