@@ -60,9 +60,11 @@
 // Spectral
 
 #include "FrameLib_FFT.h"
+#include "FrameLib_iFFT.h"
+#include "FrameLib_Correlate.h"
+#include "FrameLib_Convolve.h"
 #include "FrameLib_Multitaper.h"
 #include "FrameLib_Window.h"
-#include "FrameLib_iFFT.h"
 
 // Storage
 
@@ -185,6 +187,8 @@ extern "C" void framelib_pd_setup(void)
     
     FrameLib_PDClass<FrameLib_Expand <FrameLib_FFT> >::makeClass("fl.fft~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_iFFT> >::makeClass("fl.ifft~");
+    FrameLib_PDClass<FrameLib_Expand <FrameLib_Correlate> >::makeClass("fl.correlate~");
+    FrameLib_PDClass<FrameLib_Expand <FrameLib_Convolve> >::makeClass("fl.convolve~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Multitaper> >::makeClass("fl.multitaper~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Window> >::makeClass("fl.window~");
     
@@ -308,7 +312,7 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Diff>, kAllInputs>::makeClass("fl.diff~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Modulo>, kAllInputs>::makeClass("fl.%~");
 
-    // Tenary  Operators
+    // Ternary  Operators
     
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Clip>, kDistribute>::makeClass("fl.clip~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Fold>, kAllInputs>::makeClass("fl.fold~");
