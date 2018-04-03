@@ -64,7 +64,8 @@ public:
     // N.B. - Nothing can be acheived by setting a fixed input, so ignore this
     
     virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) {}
-    
+    virtual const double *getFixedInput(unsigned long idx, unsigned long *size) { return getEmptyFixedInput(idx, size); }
+
     // Audio Processing
     
     virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) {}
