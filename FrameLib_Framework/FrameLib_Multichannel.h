@@ -27,11 +27,11 @@ public:
         
     // Constructors
 
-    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long  nStreams, unsigned long nIns, unsigned long nOuts)
+    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
     : FrameLib_Object(type, context, owner), mNumStreams(nStreams)
     { setIO(nIns, nOuts); }
     
-    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long  nStreams)
+    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long nStreams)
     : FrameLib_Object(type, context, owner), mNumStreams(nStreams) {}
     
     // Destructor
@@ -311,7 +311,7 @@ public:
     virtual FrameType inputType(unsigned long idx) const            { return mBlocks[0]->inputType(idx); }
     virtual FrameType outputType(unsigned long idx) const           { return mBlocks[0]->outputType(idx); }
     
-    virtual const FrameLib_Parameters *getParameters()  const       { return mBlocks[0]->getParameters(); }
+    virtual const FrameLib_Parameters *getParameters() const        { return mBlocks[0]->getParameters(); }
 
     // Ordering Connections
     
