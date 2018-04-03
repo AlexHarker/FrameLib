@@ -489,7 +489,7 @@ public:
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::serialise>(c, "serialise");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::codeexport>(c, "export");
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
         addMethod(c, (method) &externalResolveConnections, "__fl.resolve_connections");
@@ -568,19 +568,9 @@ public:
         object_free(mSyncIn);
     }
     
-    void serialise()
+    void codeexport(t_symbol *path)
     {
-        std::string str;
-        size_t oldPos, pos;
-        
-        serialiseGraph(str, mObject);
-        
-        for (oldPos = 0, pos = str.find_first_of("\n"); oldPos < str.size(); pos = str.find_first_of("\n", pos + 1))
-        {
-            pos = pos == std::string::npos ? str.size() : pos;
-            post("%s", str.substr(oldPos, (pos - oldPos) + 1).c_str());
-            oldPos = pos + 1;
-        }
+        exportGraph(mObject, path->s_name);
     }
     
     void assist(void *b, long m, long a, char *s)

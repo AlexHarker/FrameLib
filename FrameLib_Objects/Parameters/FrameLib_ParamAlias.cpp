@@ -40,7 +40,7 @@ FrameLib_Parameters::Serial *FrameLib_ParamAlias::aliasForConstruction(FrameLib_
     return &mSerial;
 }
 
-void FrameLib_ParamAlias::initialise(Parameters::Serial *serialisedParameters)
+void FrameLib_ParamAlias::initialise()
 {
     assert(!mParameters.size() && "Parameters have already been initialised");
     

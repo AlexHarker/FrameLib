@@ -35,7 +35,7 @@ public:
     FrameLib_ParamAlias(FrameLib_Context context, unsigned long numOuts, void *owner, FrameLib_Parameters::Info *info);
     
     FrameLib_Parameters::Serial *aliasForConstruction(FrameLib_Parameters::Serial *parametersIn, unsigned long idx);
-    void initialise(FrameLib_Parameters::Serial *serialisedParameters);
+    void initialise();
 
     // Info
     

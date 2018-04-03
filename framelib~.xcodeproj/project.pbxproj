@@ -213,7 +213,6 @@
 		B87670E92063B8FA001A3907 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		B87670EA2063B8FA001A3907 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B87670EB2063B8FA001A3907 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B87670F52063B96A001A3907 /* fl.aliastest~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87670F42063B96A001A3907 /* fl.aliastest~.cpp */; };
 		B87670F62063BA56001A3907 /* FrameLib_ParamAlias.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B81C72DD205A92F10073CBF4 /* FrameLib_ParamAlias.cpp */; };
 		B87670F72063BA70001A3907 /* FrameLib_Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CE91F2C94AA00C5C4F0 /* FrameLib_Map.cpp */; };
 		B87670F82063BA73001A3907 /* FrameLib_Convert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87F75531F35DFB1002B91E9 /* FrameLib_Convert.cpp */; };
@@ -2091,7 +2090,6 @@
 		B86685C61F84F31B0079568F /* fl.not~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.not~.cpp"; sourceTree = "<group>"; };
 		B86685C81F84F3300079568F /* fl.or~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.or~.cpp"; sourceTree = "<group>"; };
 		B87670F22063B8FA001A3907 /* fl.paramalias~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.paramalias~.mxo"; path = "fl.aliastest~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B87670F42063B96A001A3907 /* fl.aliastest~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.aliastest~.cpp"; sourceTree = "<group>"; };
 		B878DB731D819C15001A5151 /* MaxClass_Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaxClass_Base.h; sourceTree = "<group>"; };
 		B87E5C091FB8C18700C63385 /* FrameLib_Gaussian.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Gaussian.cpp; sourceTree = "<group>"; };
 		B87E5C0A1FB8C18700C63385 /* FrameLib_Gaussian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Gaussian.h; sourceTree = "<group>"; };
@@ -2373,6 +2371,7 @@
 		B8DF11571FBF97B600C6229D /* fl.correlate~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.correlate~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8DF3FA2198AABAD00CA8BB6 /* FrameLib_Parameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Parameters.h; sourceTree = "<group>"; };
 		B8E058AE198DA34D00721359 /* FrameLib_Object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Object.h; sourceTree = "<group>"; };
+		B8E5F08D2073A62400978385 /* FrameLib_Export.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Export.h; sourceTree = "<group>"; };
 		B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Threading.cpp; sourceTree = "<group>"; };
 		B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Multichannel.cpp; sourceTree = "<group>"; };
 		B8F3797919F1C8AF00EC7FDA /* FrameLib_OnePole.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_OnePole.h; sourceTree = "<group>"; };
@@ -4636,6 +4635,7 @@
 				B88BD2741F03F7830045E737 /* FrameLib_ProcessingQueue.cpp */,
 				B85B20E619938415004FFF22 /* FrameLib_Multichannel.h */,
 				B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */,
+				B8E5F08D2073A62400978385 /* FrameLib_Export.h */,
 				B88A482A2067DCC400CEB3AC /* FrameLib_SerialiseGraph.h */,
 				B88A48292067DCC400CEB3AC /* FrameLib_SerialiseGraph.cpp */,
 			);
@@ -4815,7 +4815,6 @@
 		B8BDF05C1F2D412900264316 /* Parameters */ = {
 			isa = PBXGroup;
 			children = (
-				B87670F42063B96A001A3907 /* fl.aliastest~.cpp */,
 				B81C72DE205A92F10073CBF4 /* FrameLib_ParamAlias.h */,
 				B81C72DD205A92F10073CBF4 /* FrameLib_ParamAlias.cpp */,
 				B84943B41B8349D40037DFF1 /* FrameLib_Tag.h */,
@@ -12503,7 +12502,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B87670F82063BA73001A3907 /* FrameLib_Convert.cpp in Sources */,
-				B87670F52063B96A001A3907 /* fl.aliastest~.cpp in Sources */,
 				B87670F62063BA56001A3907 /* FrameLib_ParamAlias.cpp in Sources */,
 				B87670F72063BA70001A3907 /* FrameLib_Map.cpp in Sources */,
 			);

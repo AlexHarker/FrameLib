@@ -24,7 +24,9 @@ protected:
     typedef FrameLib_Object::Connection MultiChannelConnection;
     
 public:
-        
+    
+    virtual const FrameLib_Parameters::Serial *getSerialised() = 0;
+    
     // Constructors
 
     FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
@@ -50,6 +52,10 @@ public:
 
     static bool handlesAudio() { return false; }
 
+    // Number of Streams
+    
+    unsigned long getNumStreams() { return mNumStreams; }
+    
 protected:
     
     // IO Utilities
@@ -61,10 +67,6 @@ protected:
         FrameLib_Object::setIO(nIns, nOuts, nAudioChans);
         mOutputs.resize(getNumOuts());
     }
-    
-    // Number of Streams
-    
-    unsigned long getNumStreams() { return mNumStreams; }
     
     // Query Connections for Individual Channels
     
@@ -115,6 +117,8 @@ class FrameLib_Pack : public FrameLib_MultiChannel
     
 public:
     
+    virtual const FrameLib_Parameters::Serial *getSerialised() { return &mSerialisedParameters; }
+
     FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, unsigned long nStreams);
     
     // Info
@@ -135,6 +139,8 @@ private:
     
     virtual bool inputUpdate();
 
+    FrameLib_Parameters::AutoSerial mSerialisedParameters;
+
     FrameLib_Parameters mParameters;
     
     static ParameterInfo sParamInfo;
@@ -151,6 +157,8 @@ class FrameLib_Unpack : public FrameLib_MultiChannel
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo() { add("Sets the number of outputs."); } };
 
 public:
+
+    virtual const FrameLib_Parameters::Serial *getSerialised() { return &mSerialisedParameters; }
 
     FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, unsigned long nStreams);
     
@@ -171,7 +179,9 @@ public:
 private:
     
     virtual bool inputUpdate();
-        
+    
+    FrameLib_Parameters::AutoSerial mSerialisedParameters;
+
     FrameLib_Parameters mParameters;
     
     static ParameterInfo sParamInfo;
@@ -186,6 +196,8 @@ template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
 
 public:
     
+    virtual const FrameLib_Parameters::Serial *getSerialised() { return &mSerialisedParameters; }
+
     FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, unsigned long nStreams)
     : FrameLib_MultiChannel(T::getType(), context, owner, nStreams), mSerialisedParameters(serialisedParameters->size())
     {
