@@ -41,6 +41,7 @@ public:
     // Set Fixed Inputs
     
     virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) {};
+    virtual const double *getFixedInput(unsigned long idx, unsigned long *size) { return getEmptyFixedInput(idx, size); }
 
     // Audio Processing
     
@@ -235,6 +236,11 @@ public:
         }
     }
     
+    virtual const double *getFixedInput(unsigned long idx, unsigned long *size)
+    {
+        return mBlocks[0]->getFixedInput(idx, size);
+    }
+
     // Audio Processing
         
     virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize)

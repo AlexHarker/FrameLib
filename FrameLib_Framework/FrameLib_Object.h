@@ -182,9 +182,10 @@ public:
     unsigned long getNumAudioOuts() const       { return getType() == kOutput ? mNumAudioChans : 0; }
     unsigned long getNumAudioChans()  const     { return mNumAudioChans; }
     
-    // Set Fixed Inputs
+    // Set / Get Fixed Inputs
     
     virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) = 0;
+    virtual const double *getFixedInput(unsigned long idx, unsigned long *size) = 0;
 
     // Audio Processing
 
@@ -452,6 +453,14 @@ protected:
         return true;
     }
     
+    // Input getter helper for empty inputs
+    
+    const double *getEmptyFixedInput(unsigned long idx, unsigned long *size)
+    {
+        *size = 0;
+        return NULL;
+    }
+
 private:
     
     // Connection Methods (private)

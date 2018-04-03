@@ -45,6 +45,12 @@ void FrameLib_DSP::setFixedInput(unsigned long idx, double *input, unsigned long
     }
 }
 
+const double *FrameLib_DSP::getFixedInput(unsigned long idx, unsigned long *size)
+{
+    *size = mInputs[idx].mSize;
+    return mInputs[idx].mFixedInput;
+}
+
 // Audio Processing
 
 // Block updates for objects with audio IO
