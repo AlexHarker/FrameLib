@@ -489,7 +489,6 @@ public:
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::codeexport>(c, "export");
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
         addMethod(c, (method) &externalResolveConnections, "__fl.resolve_connections");
@@ -501,6 +500,7 @@ public:
         addMethod(c, (method) &externalIsOutput, "__fl.is_output");
         addMethod(c, (method) &externalGetNumAudioIns, "__fl.get_num_audio_ins");
         addMethod(c, (method) &externalGetNumAudioOuts, "__fl.get_num_audio_outs");
+        class_addmethod(c, (method) &codeexport, "export", A_SYM, A_SYM, 0);
         
         dspInit(c);
     }
@@ -568,9 +568,9 @@ public:
         object_free(mSyncIn);
     }
     
-    void codeexport(t_symbol *path)
+    static void codeexport(FrameLib_MaxClass *x, t_symbol *path, t_symbol *className)
     {
-        exportGraph(mObject, path->s_name);
+        exportGraph(x->mObject, path->s_name, className->s_name);
     }
     
     void assist(void *b, long m, long a, char *s)

@@ -2,11 +2,11 @@
 static char exportHeader[] = "\n\
 #include <FrameLib_MultiChannel.h>\n\
 #include <vector>\n\n\
-class FrameLib_Export\n\
+class $\n\
 {\n\n\
 public:\n\n\
-    FrameLib_Export();\n\
-    ~FrameLib_Export();\n\n\
+    $();\n\
+    ~$();\n\n\
     void process(double **inputs, double **output, unsigned long blockSize);\n\n\
     unsigned long getNumAudioIns() const { return mNumAudioIns; }\n\
     unsigned long getNumAudioOuts() const  { return mNumAudioOuts; }\n\n\
@@ -19,11 +19,11 @@ private:\n\n\
 };";
 
 static char exportCPPOpen[] = "\n\
-#include <export.h>\n\
+#include \"$.h\"\n\
 #include <FrameLib_Objects.h>\n\n\
-FrameLib_Export::FrameLib_Export() : mNumAudioIns(0), mNumAudioOuts(0)\n\
+$::$() : mNumAudioIns(0), mNumAudioOuts(0)\n\
 {\n\
-typedef FrameLib_Object<FrameLib_MultiChannel>::Connection Connection;\n\n\
+    typedef FrameLib_Object<FrameLib_MultiChannel>::Connection Connection;\n\n\
     FrameLib_Global::get(&mGlobal);\n\
     FrameLib_Context context(mGlobal, this);\n\
     FrameLib_Parameters::AutoSerial parameters;\n\
@@ -40,7 +40,7 @@ static char exportCPPClose[] = "\
     mObjects.clear();\n\
     mAudioObjects.clear();\n\
 }\n\n\
-FrameLib_Export::~FrameLib_Export()\n\
+$::~$()\n\
 {\n\
     for (std::vector<FrameLib_MultiChannel *>::iterator it = mObjects.begin(); it != mObjects.end(); it++)\n\
         delete *it;\n\n\
@@ -48,7 +48,7 @@ FrameLib_Export::~FrameLib_Export()\n\
     mAudioObjects.clear();\n\
     FrameLib_Global::release(&mGlobal);\n\
 }\n\n\
-void FrameLib_Export::process(double **inputs, double **outputs, unsigned long blockSize)\n\
+void $::process(double **inputs, double **outputs, unsigned long blockSize)\n\
 {\n\
     for (std::vector<FrameLib_MultiChannel *>::iterator it = mAudioObjects.begin(); it != mAudioObjects.end(); it++)\n\
     {\n\

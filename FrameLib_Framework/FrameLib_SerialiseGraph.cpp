@@ -231,7 +231,22 @@ std::string serialiseGraph(FrameLib_MultiChannel *requestObject)
     return output.str();
 }
 
-void exportGraph(FrameLib_MultiChannel *requestObject, const char *path)
+void exportReplaceClassName(std::string& code, const char *classname)
+{
+    size_t pos = 0;
+
+    while ((pos = code.find("$")) != std::string::npos)
+        code.replace(pos, 1, classname);
+}
+
+void exportFilePath(std::string& path, const char *className, const char *ext)
+{
+    path.append("/");
+    path.append(className);
+    path.append(ext);
+}
+
+void exportGraph(FrameLib_MultiChannel *requestObject, const char *path, const char *className)
 {
     std::stringstream header;
     std::stringstream cpp;
@@ -241,11 +256,19 @@ void exportGraph(FrameLib_MultiChannel *requestObject, const char *path)
     std::string constructor = serialiseGraph(requestObject);
     std::string headerName(path);
     std::string cppName(path);
-    
-    headerName.append("/export.h");
-    cppName.append("/export.cpp");
-    header << exportHeader;
-    cpp << exportCPPOpen << constructor << exportCPPClose;
+    std::string headerContents(exportHeader);
+    std::string cppOpenContents(exportCPPOpen);
+    std::string cppCloseContents(exportCPPClose);
+
+    exportFilePath(headerName, className, ".h");
+    exportFilePath(cppName, className, ".cpp");
+        
+    exportReplaceClassName(headerContents, className);
+    exportReplaceClassName(cppOpenContents, className);
+    exportReplaceClassName(cppCloseContents, className);
+
+    header << headerContents;
+    cpp << cppOpenContents << constructor << cppCloseContents;
     
     headerFile.open(headerName.c_str(), std::ofstream::out);
     headerFile << header.rdbuf();;
