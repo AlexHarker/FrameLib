@@ -90,7 +90,7 @@ public:
     {
         void *x = object_alloc(*getClassPointer<T>());
         new(x) T(sym, ac, av);
-        return (T *)x;
+        return x;
     }
     
     template <class T> static void destroy(t_object * x)

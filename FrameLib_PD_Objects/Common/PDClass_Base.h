@@ -96,7 +96,7 @@ public:
     {
         void *x = pd_new(*getClassPointer<T>());
         new(x) T(sym, ac, av);
-        return (T *)x;
+        return x;
     }
     
     template <class T> static void destroy(t_object * x)
