@@ -200,6 +200,11 @@ public:
     
 private:
     
+    // Deleted
+    
+    SpinLockHolder(const SpinLockHolder&);
+    SpinLockHolder& operator=(const SpinLockHolder&);
+    
     SpinLock *mLock;
 };
 
