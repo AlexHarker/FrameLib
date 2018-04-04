@@ -246,11 +246,10 @@ void exportFilePath(std::string& path, const char *className, const char *ext)
     path.append(ext);
 }
 
-void exportGraph(FrameLib_MultiChannel *requestObject, const char *path, const char *className)
+ExportError exportGraph(FrameLib_MultiChannel *requestObject, const char *path, const char *className)
 {
     std::stringstream header, cpp;
     std::ofstream headerFile, cppFile;
-    bool headerOpened, cppOpened;
     
     std::string headerName(path);
     std::string cppName(path);
@@ -271,12 +270,26 @@ void exportGraph(FrameLib_MultiChannel *requestObject, const char *path, const c
     cpp << cppOpenContents << constructor << cppCloseContents;
     
     headerFile.open(headerName.c_str(), std::ofstream::out);
-    headerOpened = headerFile.is_open();
+    
+    if (!headerFile.is_open())
+        return kExportPathError;
+    
     headerFile << header.rdbuf();;
     headerFile.close();
     
+    if (headerFile.fail())
+        return kExportWriteError;
+    
     cppFile.open(cppName.c_str(), std::ofstream::out);
-    cppOpened = cppFile.is_open();
+    
+    if (!headerFile.is_open())
+        return kExportPathError;
+    
     cppFile << cpp.rdbuf();;
     cppFile.close();
+    
+    if (cppFile.fail())
+        return kExportWriteError;
+    
+    return kExportSuccess;
 }

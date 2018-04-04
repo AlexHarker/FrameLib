@@ -568,12 +568,17 @@ public:
         object_free(mSyncIn);
     }
     
-    static void codeexport(FrameLib_MaxClass *x, t_symbol *path, t_symbol *className)
+    static void codeexport(FrameLib_MaxClass *x, t_symbol *className, t_symbol *path)
     {
         char conformedPath[MAX_PATH_CHARS];
         
         path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
-        exportGraph(x->mObject, conformedPath, className->s_name);
+        ExportError error = exportGraph(x->mObject, conformedPath, className->s_name);
+        
+        if (error == kExportPathError)
+            object_error(x->mUserObject, "couldn't write to orfind specified path");
+        else if (error == kExportWriteError)
+            object_error(x->mUserObject, "couldn't write file");
     }
     
     void assist(void *b, long m, long a, char *s)

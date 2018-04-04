@@ -4,6 +4,8 @@
 
 #include "FrameLib_Multichannel.h"
 
+enum ExportError { kExportSuccess, kExportPathError, kExportWriteError };
+
 struct FrameLib_ObjectDescription
 {
     FrameLib_ObjectDescription() : mNumStreams(0) {}
@@ -36,6 +38,6 @@ struct FrameLib_ObjectDescription
 
 void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_MultiChannel *requestObject);
 std::string serialiseGraph(FrameLib_MultiChannel *requestObject);
-void exportGraph(FrameLib_MultiChannel *requestObject, const char *path,  const char *className);
+ExportError exportGraph(FrameLib_MultiChannel *requestObject, const char *path,  const char *className);
 
 #endif
