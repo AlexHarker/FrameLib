@@ -570,7 +570,10 @@ public:
     
     static void codeexport(FrameLib_MaxClass *x, t_symbol *path, t_symbol *className)
     {
-        exportGraph(x->mObject, path->s_name, className->s_name);
+        char conformedPath[MAX_PATH_CHARS];
+        
+        path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
+        exportGraph(x->mObject, conformedPath, className->s_name);
     }
     
     void assist(void *b, long m, long a, char *s)

@@ -248,16 +248,16 @@ void exportFilePath(std::string& path, const char *className, const char *ext)
 
 void exportGraph(FrameLib_MultiChannel *requestObject, const char *path, const char *className)
 {
-    std::stringstream header;
-    std::stringstream cpp;
-    std::ofstream headerFile;
-    std::ofstream cppFile;
-
-    std::string constructor = serialiseGraph(requestObject);
+    std::stringstream header, cpp;
+    std::ofstream headerFile, cppFile;
+    bool headerOpened, cppOpened;
+    
     std::string headerName(path);
     std::string cppName(path);
+    
     std::string headerContents(exportHeader);
     std::string cppOpenContents(exportCPPOpen);
+    std::string constructor = serialiseGraph(requestObject);
     std::string cppCloseContents(exportCPPClose);
 
     exportFilePath(headerName, className, ".h");
@@ -271,10 +271,12 @@ void exportGraph(FrameLib_MultiChannel *requestObject, const char *path, const c
     cpp << cppOpenContents << constructor << cppCloseContents;
     
     headerFile.open(headerName.c_str(), std::ofstream::out);
+    headerOpened = headerFile.is_open();
     headerFile << header.rdbuf();;
     headerFile.close();
     
     cppFile.open(cppName.c_str(), std::ofstream::out);
+    cppOpened = cppFile.is_open();
     cppFile << cpp.rdbuf();;
     cppFile.close();
 }
