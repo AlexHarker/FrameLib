@@ -9,7 +9,7 @@ class FrameLib_MaxClass_ToMax : public FrameLib_MaxClass<FrameLib_Expand<FrameLi
 {
     struct ToHostProxy : public FrameLib_ToHost::Proxy, public FrameLib_MaxProxy
     {
-        ToHostProxy(FrameLib_MaxClass_ToMax *object) : mObject(object) {}
+        ToHostProxy(FrameLib_MaxClass_ToMax *object) : mObject(object){}
         
         virtual void output(const double *values, unsigned long N);
         virtual void output(const FrameLib_Parameters::Serial *serial);
