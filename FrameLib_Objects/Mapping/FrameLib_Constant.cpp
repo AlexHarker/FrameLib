@@ -2,7 +2,7 @@
 #include "FrameLib_Constant.h"
 #include <cmath>
 
-FrameLib_Constant::FrameLib_Constant(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 2, 1)
+FrameLib_Constant::FrameLib_Constant(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kConstant, "constant", 0);
     mParameters.addEnumItem(kPI, "pi");

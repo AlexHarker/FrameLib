@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo)
+FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo)
 {
     char argStr[10];
     char nameStr[10];

@@ -16,7 +16,7 @@ public:
 
     // Constructor
     
-    FrameLib_Poltocar(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Complex_UnaryOp(context, serialisedParameters, owner) {}
+    FrameLib_Poltocar(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Complex_UnaryOp(context, serialisedParameters, proxy) {}
     
     // Info
     

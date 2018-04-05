@@ -19,7 +19,7 @@ public:
     
     // Constructor
     
-    FrameLib_PDRead(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_PDRead(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     

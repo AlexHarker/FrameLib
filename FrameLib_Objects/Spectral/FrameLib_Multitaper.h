@@ -17,7 +17,7 @@ public:
 
     // Constructor / Destructor
 
-    FrameLib_Multitaper(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_Multitaper(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     ~FrameLib_Multitaper();
     
     // Info

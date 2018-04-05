@@ -29,12 +29,12 @@ public:
     
     // Constructors
 
-    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
-    : FrameLib_Object(type, context, owner), mNumStreams(nStreams)
+    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
+    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams)
     { setIO(nIns, nOuts); }
     
-    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long nStreams)
-    : FrameLib_Object(type, context, owner), mNumStreams(nStreams) {}
+    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, unsigned long nStreams)
+    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams) {}
     
     // Destructor
     
@@ -119,7 +119,7 @@ public:
     
     virtual const FrameLib_Parameters::Serial *getSerialised() { return &mSerialisedParameters; }
 
-    FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, unsigned long nStreams);
+    FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams);
     
     // Info
     
@@ -160,7 +160,7 @@ public:
 
     virtual const FrameLib_Parameters::Serial *getSerialised() { return &mSerialisedParameters; }
 
-    FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, unsigned long nStreams);
+    FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams);
     
     // Info
     
@@ -198,12 +198,12 @@ public:
     
     virtual const FrameLib_Parameters::Serial *getSerialised() { return &mSerialisedParameters; }
 
-    FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, unsigned long nStreams)
-    : FrameLib_MultiChannel(T::getType(), context, owner, nStreams), mSerialisedParameters(serialisedParameters->size())
+    FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
+    : FrameLib_MultiChannel(T::getType(), context, proxy, nStreams), mSerialisedParameters(serialisedParameters->size())
     {
         // Make first block
         
-        mBlocks.push_back(new T(context, serialisedParameters, owner));
+        mBlocks.push_back(new T(context, serialisedParameters, proxy));
         mBlocks[0]->setStream(0);
         
         // Copy serialised parameters for later instantiations
@@ -378,7 +378,7 @@ private:
                 
                 for (unsigned long i = cChannels; i < nChannels; i++)
                 {
-                    mBlocks[i] = new T(getContext(), &mSerialisedParameters, getOwner());
+                    mBlocks[i] = new T(getContext(), &mSerialisedParameters, getProxy());
                     mBlocks[i]->setStream(i);
                     mBlocks[i]->reset(mSamplingRate, mMaxBlockSize);
                 }

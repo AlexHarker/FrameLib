@@ -91,7 +91,7 @@ template <typename Op> class FrameLib_TernaryOp : public FrameLib_Processor
     
 
 public:
-    FrameLib_TernaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, getParameterInfo(), 3, 1)
+    FrameLib_TernaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, getParameterInfo(), 3, 1)
     {
         mParameters.addEnum(kMismatchMode, "mismatch");
         mParameters.addEnumItem(kWrap, "wrap");
@@ -210,8 +210,8 @@ public:
     
     // Constructor
     
-    FrameLib_Ternary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-    : FrameLib_TernaryOp<Ternary_Functor<func> > (context, serialisedParameters, owner) {}
+    FrameLib_Ternary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+    : FrameLib_TernaryOp<Ternary_Functor<func> > (context, serialisedParameters, proxy) {}
     
 private:
     

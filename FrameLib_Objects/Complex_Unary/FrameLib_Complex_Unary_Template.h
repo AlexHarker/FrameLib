@@ -16,7 +16,7 @@ public:
     
     // Constructor
     
-    FrameLib_Complex_UnaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, NULL, 2, 2) {}
+    FrameLib_Complex_UnaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, NULL, 2, 2) {}
     
     // Info
     
@@ -110,8 +110,8 @@ public:
     
     // Constructor
     
-    FrameLib_Complex_Unary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-    : FrameLib_Complex_UnaryOp<Complex_Unary_Functor<func> > (context, serialisedParameters, owner) {}
+    FrameLib_Complex_Unary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+    : FrameLib_Complex_UnaryOp<Complex_Unary_Functor<func> > (context, serialisedParameters, proxy) {}
 
 private:
     

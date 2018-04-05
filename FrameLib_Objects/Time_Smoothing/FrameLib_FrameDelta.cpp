@@ -1,7 +1,7 @@
 
 #include "FrameLib_FrameDelta.h"
 
-FrameLib_FrameDelta::FrameLib_FrameDelta(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, NULL, 1, 1), mLastFrame(NULL), mFrameSize(0)
+FrameLib_FrameDelta::FrameLib_FrameDelta(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, NULL, 1, 1), mLastFrame(NULL), mFrameSize(0)
 {}
 
 // Info

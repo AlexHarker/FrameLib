@@ -1,0 +1,96 @@
+
+#include "fl.tomax~.h"
+
+// Proxy Class
+
+void FrameLib_MaxClass_ToMax::ToHostProxy::output(const double *values, unsigned long N)
+{
+    N = limitSize(N);
+    
+    if (N)
+    {
+        t_atom *output = alloc<t_atom>(N);
+
+        for (unsigned long i = 0; i < N; i++)
+            atom_setfloat(output + i, values[i]);
+        
+        schedule_delay(mObject, (method) &FrameLib_MaxClass_ToMax::toOutletExternal, 0.0, NULL, N, output);
+        
+        dealloc(output);
+    }
+    else
+        schedule_delay(mObject, (method) &FrameLib_MaxClass_ToMax::toOutletExternal, 0.0, NULL, 0, NULL);
+}
+
+void FrameLib_MaxClass_ToMax::ToHostProxy::output(const FrameLib_Parameters::Serial *serial)
+{
+    unsigned long maxSize = 0;
+    
+    for (FrameLib_Parameters::Serial::Iterator it = serial->begin(); it != serial->end(); it++)
+    {
+        if (it.getType() == kVector)
+        {
+            unsigned long size = it.getVectorSize();
+            maxSize = std::max(size, maxSize);
+        }
+    }
+    
+    maxSize = limitSize(maxSize);
+    t_atom *output = alloc<t_atom>(maxSize);
+
+    for (FrameLib_Parameters::Serial::Iterator it = serial->begin(); it != serial->end(); it++)
+    {
+        if (it.getType() == kVector)
+        {
+            t_symbol *tag = gensym(it.getTag());
+            unsigned long size = 0;
+            const double *vector = it.getVector(&size);
+            
+            for (unsigned long i = 0; i < size; i++)
+                atom_setfloat(output + i, vector[i]);
+            
+            schedule_delay(mObject, (method) &FrameLib_MaxClass_ToMax::toOutletExternal, 0.0, tag, size, output);
+        }
+        else
+        {
+            t_atom a;
+            t_symbol *tag = gensym(it.getTag());
+            atom_setsym(&a, gensym(it.getString()));
+            
+            schedule_delay(mObject, (method) &FrameLib_MaxClass_ToMax::toOutletExternal, 0.0, tag, 1, &a);
+        }
+    }
+    
+    dealloc(output);
+}
+
+// Max Class
+
+// Class Initisation
+
+void FrameLib_MaxClass_ToMax::classInit(t_class *c, t_symbol *nameSpace, const char *classname)
+{
+    FrameLib_MaxClass::classInit(c, nameSpace, classname);
+}
+
+// Constructor
+
+FrameLib_MaxClass_ToMax::FrameLib_MaxClass_ToMax(t_symbol *s, long argc, t_atom *argv)
+    : FrameLib_MaxClass(s, argc, argv, new ToHostProxy(this))
+{
+    mOutlet = listout(this);
+}
+
+// To Outlet
+
+void FrameLib_MaxClass_ToMax::toOutlet(t_symbol *s, short ac, t_atom *av)
+{
+    outlet_list(mOutlet, s, ac, av);
+}
+
+// Main
+
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass_ToMax::makeClass<FrameLib_MaxClass_ToMax>(CLASS_BOX, "fl.tomax~");
+}

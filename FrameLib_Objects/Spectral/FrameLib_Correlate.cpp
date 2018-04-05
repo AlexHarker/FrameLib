@@ -2,7 +2,7 @@
 #include "FrameLib_Correlate.h"
 #include "FrameLib_Spectral_Functions.h"
 
-FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 2, 1), Spectral(context)
+FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), Spectral(context)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);

@@ -18,7 +18,7 @@ class FrameLib_Dispatch : public FrameLib_Block
         
         // Constructor
         
-        Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, long numIns, long num);
+        Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long numIns, long num);
 
     private:
         
@@ -43,7 +43,7 @@ public:
     
     // Constructor / Destructor
     
-    FrameLib_Dispatch(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_Dispatch(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     ~FrameLib_Dispatch();
     
     // Object Type

@@ -78,7 +78,7 @@ public:
     
     // Constructor
     
-    FrameLib_Complex_BinaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, getParameterInfo(), 4, 2)
+    FrameLib_Complex_BinaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, getParameterInfo(), 4, 2)
     {
         mParameters.addEnum(kMismatchMode, "mismatch");
         mParameters.addEnumItem(kWrap, "wrap");
@@ -318,8 +318,8 @@ public:
     
     // Constructor
     
-    FrameLib_Complex_Binary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-    : FrameLib_Complex_BinaryOp<Complex_Binary_Functor<func> > (context, serialisedParameters, owner) {}
+    FrameLib_Complex_Binary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+    : FrameLib_Complex_BinaryOp<Complex_Binary_Functor<func> > (context, serialisedParameters, proxy) {}
 
 private:
     

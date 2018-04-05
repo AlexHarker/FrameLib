@@ -456,9 +456,14 @@ private:
 /////////////////////// FrameLib PD Object Class /////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-enum PDObjectFrameLib_PDRead { kAsParams, kAllInputs, kDistribute };
+enum PDObjectArgsMode { kAsParams, kAllInputs, kDistribute };
 
-template <class T, PDObjectFrameLib_PDRead argsMode = kAsParams> class FrameLib_PDClass : public PDClass_Base
+struct FrameLib_PDProxy : public virtual FrameLib_Proxy
+{
+    t_object *mMaxObject;
+};
+
+template <class T, PDObjectArgsMode argsMode = kAsParams> class FrameLib_PDClass : public PDClass_Base
 {
     typedef FrameLib_Object<FrameLib_MultiChannel>::Connection FrameLibConnection;
     typedef FrameLib_Object<t_object>::Connection PDConnection;
@@ -537,8 +542,8 @@ public:
     }
 
     // Constructor and Destructor
-    
-    FrameLib_PDClass(t_symbol *s, long argc, t_atom *argv) : mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mCanvas(canvas_getcurrent()), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
+
+    FrameLib_PDClass(t_symbol *s, long argc, t_atom *argv, FrameLib_PDProxy *proxy = new FrameLib_PDProxy()) : mFrameLibProxy(proxy), mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mCanvas(canvas_getcurrent()), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -553,7 +558,8 @@ public:
         
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mCanvas), &serialisedParameters, this, nStreams);
+        mFrameLibProxy->mMaxObject = *this;
+        mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mCanvas), &serialisedParameters, mFrameLibProxy, nStreams);
         parseInputs(argc, argv);
         
         long numIns = getNumIns() + (supportsOrderingConnections() ? 1 : 0);
@@ -593,7 +599,8 @@ public:
     ~FrameLib_PDClass()
     {
         delete mObject;
-
+        delete mFrameLibProxy;
+        
         for (PDObjectIterator it = mInputs.begin(); it != mInputs.end(); it++)
             if (*it)
                 pd_free(*it);
@@ -1090,13 +1097,17 @@ private:
     
     bool isConnected(long index) const                                      { return mObject->isConnected(index); }
     
+    PDConnection getPDConnection(const FrameLibConnection& connection) const
+    {
+        FrameLib_PDProxy *proxy = dynamic_cast<FrameLib_PDProxy *>(connection.mObject->getProxy());
+        t_object *object = proxy->mMaxObject;
+        return PDConnection(object, connection.mIndex);
+    }
+    
     PDConnection getConnection(long index) const
     {
         if (isConnected(index))
-        {
-            FrameLibConnection connection = mObject->getConnection(index);
-            return PDConnection((t_object *) connection.mObject->getOwner(), connection.mIndex);
-        }
+            return getPDConnection(mObject->getConnection(index));
         else
             return PDConnection();
     }
@@ -1108,8 +1119,7 @@ private:
     
     PDConnection getOrderingConnection(long index) const
     {
-        FrameLibConnection connection = mObject->getOrderingConnection(index);
-        return PDConnection((t_object *) connection.mObject->getOwner(), connection.mIndex);
+        return getPDConnection(mObject->getOrderingConnection(index));
     }
     
     bool matchConnection(t_object *src, long outIdx, long inIdx) const
@@ -1374,6 +1384,12 @@ private:
         }
     }
 
+protected:
+    
+    FrameLib_PDProxy *mFrameLibProxy;
+    
+private:
+
     // Data
     
     FrameLib_MultiChannel *mObject;
@@ -1406,5 +1422,5 @@ public:
 
 // Convenience for Objects Using FrameLib_Expand (use FrameLib_PDClass_Expand<T>::makeClass() to create)
 
-template <class T, PDObjectFrameLib_PDRead argsMode = kAsParams>
+template <class T, PDObjectArgsMode argsMode = kAsParams>
 class FrameLib_PDClass_Expand : public FrameLib_PDClass<FrameLib_Expand<T>, argsMode> {};

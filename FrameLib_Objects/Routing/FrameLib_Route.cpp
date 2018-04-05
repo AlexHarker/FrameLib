@@ -5,7 +5,7 @@
 
 // Constructor
 
-FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, long num) : FrameLib_Processor(context, owner, NULL, 2, 1), mValveNumber(num)
+FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long num) : FrameLib_Processor(context, proxy, NULL, 2, 1), mValveNumber(num)
 {
     mParameters.addInt(kActiveValve, "output", 0);
     
@@ -38,8 +38,8 @@ void FrameLib_Route::Valve::process()
 
 // Constructor
 
-FrameLib_Route::FrameLib_Route(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-: FrameLib_Block(kProcessor, context, owner), mParameters(&sParamInfo)
+FrameLib_Route::FrameLib_Route(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Block(kProcessor, context, proxy), mParameters(&sParamInfo)
 {
     mParameters.addDouble(kNumOuts, "num_outs", 2, 0);
     mParameters.setClip(2, 32);
@@ -55,7 +55,7 @@ FrameLib_Route::FrameLib_Route(FrameLib_Context context, FrameLib_Parameters::Se
 
     for (int i = 0; i < mNumOuts; i++)
     {
-        mValves.push_back(new Valve(context, serialisedParameters, owner, i));
+        mValves.push_back(new Valve(context, serialisedParameters, proxy, i));
         mValves[i]->setInputAlias(Connection(this, 0), 0);
         mValves[i]->setInputAlias(Connection(this, 1), 1);
         mValves[i]->setOutputAlias(Connection(this, i), 0);

@@ -18,7 +18,7 @@ class FrameLib_Route : public FrameLib_Block
         
         // Constructor
         
-        Valve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, long num);
+        Valve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long num);
 
     private:
         
@@ -43,7 +43,7 @@ public:
     
     // Constructor / Destructor
     
-    FrameLib_Route(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_Route(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     ~FrameLib_Route();
     
     // Object Type

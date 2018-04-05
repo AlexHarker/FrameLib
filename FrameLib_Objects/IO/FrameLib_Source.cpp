@@ -5,7 +5,7 @@
 
 // Constructor
 
-FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioInput(context, owner, &sParamInfo, 2, 1, 1)
+FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_AudioInput(context, proxy, &sParamInfo, 2, 1, 1)
 {
     // FIX - defaults when the untis are in samples!
     

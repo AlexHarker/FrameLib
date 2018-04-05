@@ -11,7 +11,7 @@ public:
     
     // Constructor
     
-    FrameLib_TimeMean(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_TimeMean(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
 
     ~FrameLib_TimeMean()
     {

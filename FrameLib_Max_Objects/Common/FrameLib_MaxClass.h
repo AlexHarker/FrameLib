@@ -456,6 +456,11 @@ private:
 
 enum MaxObjectArgsMode { kAsParams, kAllInputs, kDistribute };
 
+struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
+{
+    t_object *mMaxObject;
+};
+
 template <class T, MaxObjectArgsMode argsMode = kAsParams> class FrameLib_MaxClass : public MaxClass_Base
 {
     typedef FrameLib_Object<FrameLib_MultiChannel>::Connection FrameLibConnection;
@@ -507,7 +512,7 @@ public:
 
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv) : mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mTopLevelPatch(jpatcher_get_toppatcher(gensym("#P")->s_thing)), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
+    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy()) : mFrameLibProxy(proxy), mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mTopLevelPatch(jpatcher_get_toppatcher(gensym("#P")->s_thing)), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -522,7 +527,8 @@ public:
         
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mTopLevelPatch), &serialisedParameters, this, nStreams);
+        mFrameLibProxy->mMaxObject = *this;
+        mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mTopLevelPatch), &serialisedParameters, mFrameLibProxy, nStreams);
         parseInputs(argc, argv);
         
         long numIns = getNumIns() + (supportsOrderingConnections() ? 1 : 0);
@@ -561,7 +567,8 @@ public:
         dspFree();
 
         delete mObject;
-
+        delete mFrameLibProxy;
+        
         for (MaxObjectIterator it = mInputs.begin(); it != mInputs.end(); it++)
             object_free(*it);
         
@@ -1021,13 +1028,17 @@ private:
     
     bool isConnected(long index) const                                      { return mObject->isConnected(index); }
     
+    MaxConnection getMaxConnection(const FrameLibConnection& connection) const
+    {
+        FrameLib_MaxProxy *proxy = dynamic_cast<FrameLib_MaxProxy *>(connection.mObject->getProxy());
+        t_object *object = proxy->mMaxObject;
+        return MaxConnection(object, connection.mIndex);
+    }
+    
     MaxConnection getConnection(long index) const
     {
         if (isConnected(index))
-        {
-            FrameLibConnection connection = mObject->getConnection(index);
-            return MaxConnection((t_object *) connection.mObject->getOwner(), connection.mIndex);
-        }
+            return getMaxConnection(mObject->getConnection(index));
         else
             return MaxConnection();
     }
@@ -1039,8 +1050,7 @@ private:
     
     MaxConnection getOrderingConnection(long index) const
     {
-        FrameLibConnection connection = mObject->getOrderingConnection(index);
-        return MaxConnection((t_object *) connection.mObject->getOwner(), connection.mIndex);
+        return getMaxConnection(mObject->getOrderingConnection(index));
     }
     
     bool matchConnection(t_object *src, long outIdx, long inIdx) const
@@ -1362,6 +1372,12 @@ private:
         }
     }
 
+protected:
+   
+    FrameLib_MaxProxy *mFrameLibProxy;
+    
+private:
+    
     // Data
     
     FrameLib_MultiChannel *mObject;

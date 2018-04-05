@@ -4,7 +4,7 @@
 
 // Constructor
 
-FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 1, 1)
+FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
 {
     mParameters.addEnum(kInputMode, "inputmode");
     mParameters.addEnumItem(kPolar, "polar");

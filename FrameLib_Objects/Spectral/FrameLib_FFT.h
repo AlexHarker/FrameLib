@@ -20,7 +20,7 @@ public:
 	
     // Constructor / Destructor
 
-    FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     ~FrameLib_FFT();
     
     // Info
