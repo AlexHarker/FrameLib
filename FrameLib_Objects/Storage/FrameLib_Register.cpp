@@ -17,7 +17,7 @@ FrameLib_Register::FrameLib_Register(FrameLib_Context context, FrameLib_Paramete
     if (mode == kStore)
         setInputMode(1, false, false, false, kFrameAny);
     else
-        setInputMode(1, false, true, false);
+        setInputMode(1, false, true, false, kFrameAny);
 }
 
 // Info

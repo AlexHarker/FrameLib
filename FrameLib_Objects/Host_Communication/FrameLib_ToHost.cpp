@@ -8,6 +8,9 @@
 FrameLib_ToHost::FrameLib_ToHost(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, NULL, 1, 0), mProxy(dynamic_cast<Proxy *>(proxy))
 {
     mParameters.set(serialisedParameters);
+    
+    setInputMode(0, false, true, false, kFrameAny);
+
     if (mProxy)
         mProxy->mObject = this;
 }
