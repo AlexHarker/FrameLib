@@ -131,35 +131,37 @@ public:
     
     template<typename Op>
     void binaryOp(FFT_SPLIT_COMPLEX_D &io1, FFT_SPLIT_COMPLEX_D &in2, unsigned long dataLength, double scale, Op op)
-    {
-        // FIX - vectorise here (with appropriate changes to ops)
+    {        
+        const int vec_size = SIMDLimits<double>::max_size;
         
-        if (dataLength == 1)
-            op(io1.realp[0], io1.imagp[0], io1.realp[0], io1.imagp[0], in2.realp[0], in2.imagp[0], scale);
-        
-        if (dataLength < 4)
+        if (dataLength == 1 || dataLength < (vec_size / 2))
         {
-            SIMDType<double, 2> *real1 = reinterpret_cast<SIMDType<double, 2> *>(io1.realp);
-            SIMDType<double, 2> *imag1 = reinterpret_cast<SIMDType<double, 2> *>(io1.imagp);
-            SIMDType<double, 2> *real2 = reinterpret_cast<SIMDType<double, 2> *>(in2.realp);
-            SIMDType<double, 2> *imag2 = reinterpret_cast<SIMDType<double, 2> *>(in2.imagp);
+            op(io1.realp[0], io1.imagp[0], io1.realp[0], io1.imagp[0], in2.realp[0], in2.imagp[0], scale);
+        }
+        else if (dataLength < vec_size)
+        {
+            const int current_vec_size = SIMDLimits<double>::max_size / 2;
+
+            SIMDType<double, current_vec_size> *real1 = reinterpret_cast<SIMDType<double, current_vec_size> *>(io1.realp);
+            SIMDType<double, current_vec_size> *imag1 = reinterpret_cast<SIMDType<double, current_vec_size> *>(io1.imagp);
+            SIMDType<double, current_vec_size> *real2 = reinterpret_cast<SIMDType<double, current_vec_size> *>(in2.realp);
+            SIMDType<double, current_vec_size> *imag2 = reinterpret_cast<SIMDType<double, current_vec_size> *>(in2.imagp);
             
-            SIMDType<double, 2> scaleVec(scale);
+            SIMDType<double, current_vec_size> scaleVec(scale);
             
-            for (unsigned long i = 0; i < (dataLength >> 1); i++)
+            for (unsigned long i = 0; i < (dataLength / current_vec_size); i++)
                 op(real1[i], imag1[i], real1[i], imag1[i], real2[i], imag2[i], scaleVec);
         }
-        
-        if (dataLength >= 4)
+        else
         {
-            SIMDType<double, 4> *real1 = reinterpret_cast<SIMDType<double, 4> *>(io1.realp);
-            SIMDType<double, 4> *imag1 = reinterpret_cast<SIMDType<double, 4> *>(io1.imagp);
-            SIMDType<double, 4> *real2 = reinterpret_cast<SIMDType<double, 4> *>(in2.realp);
-            SIMDType<double, 4> *imag2 = reinterpret_cast<SIMDType<double, 4> *>(in2.imagp);
+            SIMDType<double, vec_size> *real1 = reinterpret_cast<SIMDType<double, vec_size> *>(io1.realp);
+            SIMDType<double, vec_size> *imag1 = reinterpret_cast<SIMDType<double, vec_size> *>(io1.imagp);
+            SIMDType<double, vec_size> *real2 = reinterpret_cast<SIMDType<double, vec_size> *>(in2.realp);
+            SIMDType<double, vec_size> *imag2 = reinterpret_cast<SIMDType<double, vec_size> *>(in2.imagp);
             
-            SIMDType<double, 4> scaleVec(scale);
+            SIMDType<double, vec_size> scaleVec(scale);
 
-            for (unsigned long i = 0; i < (dataLength >> 2); i++)
+            for (unsigned long i = 0; i < (dataLength / vec_size); i++)
                 op(real1[i], imag1[i], real1[i], imag1[i], real2[i], imag2[i], scaleVec);
         }
     }

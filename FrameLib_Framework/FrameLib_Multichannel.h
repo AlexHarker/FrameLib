@@ -24,15 +24,17 @@ protected:
     typedef FrameLib_Object::Connection MultiChannelConnection;
     
 public:
-        
+    
+    virtual const FrameLib_Parameters::Serial *getSerialised() = 0;
+    
     // Constructors
 
-    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long  nStreams, unsigned long nIns, unsigned long nOuts)
-    : FrameLib_Object(type, context, owner), mNumStreams(nStreams)
+    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
+    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams)
     { setIO(nIns, nOuts); }
     
-    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, void *owner, unsigned long  nStreams)
-    : FrameLib_Object(type, context, owner), mNumStreams(nStreams) {}
+    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, unsigned long nStreams)
+    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams) {}
     
     // Destructor
     
@@ -41,6 +43,7 @@ public:
     // Set Fixed Inputs
     
     virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) {};
+    virtual const double *getFixedInput(unsigned long idx, unsigned long *size) { return getEmptyFixedInput(idx, size); }
 
     // Audio Processing
     
@@ -49,6 +52,10 @@ public:
 
     static bool handlesAudio() { return false; }
 
+    // Number of Streams
+    
+    unsigned long getNumStreams() { return mNumStreams; }
+    
 protected:
     
     // IO Utilities
@@ -60,10 +67,6 @@ protected:
         FrameLib_Object::setIO(nIns, nOuts, nAudioChans);
         mOutputs.resize(getNumOuts());
     }
-    
-    // Number of Streams
-    
-    unsigned long getNumStreams() { return mNumStreams; }
     
     // Query Connections for Individual Channels
     
@@ -114,7 +117,9 @@ class FrameLib_Pack : public FrameLib_MultiChannel
     
 public:
     
-    FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, unsigned long nStreams);
+    virtual const FrameLib_Parameters::Serial *getSerialised() { return &mSerialisedParameters; }
+
+    FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams);
     
     // Info
     
@@ -133,6 +138,8 @@ public:
 private:
     
     virtual bool inputUpdate();
+
+    FrameLib_Parameters::AutoSerial mSerialisedParameters;
 
     FrameLib_Parameters mParameters;
     
@@ -151,7 +158,9 @@ class FrameLib_Unpack : public FrameLib_MultiChannel
 
 public:
 
-    FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, unsigned long nStreams);
+    virtual const FrameLib_Parameters::Serial *getSerialised() { return &mSerialisedParameters; }
+
+    FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams);
     
     // Info
     
@@ -170,7 +179,9 @@ public:
 private:
     
     virtual bool inputUpdate();
-        
+    
+    FrameLib_Parameters::AutoSerial mSerialisedParameters;
+
     FrameLib_Parameters mParameters;
     
     static ParameterInfo sParamInfo;
@@ -185,12 +196,14 @@ template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
 
 public:
     
-    FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, unsigned long nStreams)
-    : FrameLib_MultiChannel(T::getType(), context, owner, nStreams), mSerialisedParameters(serialisedParameters->size())
+    virtual const FrameLib_Parameters::Serial *getSerialised() { return &mSerialisedParameters; }
+
+    FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
+    : FrameLib_MultiChannel(T::getType(), context, proxy, nStreams), mSerialisedParameters(serialisedParameters->size())
     {
         // Make first block
         
-        mBlocks.push_back(new T(context, serialisedParameters, owner));
+        mBlocks.push_back(new T(context, serialisedParameters, proxy));
         mBlocks[0]->setStream(0);
         
         // Copy serialised parameters for later instantiations
@@ -235,6 +248,11 @@ public:
         }
     }
     
+    virtual const double *getFixedInput(unsigned long idx, unsigned long *size)
+    {
+        return mBlocks[0]->getFixedInput(idx, size);
+    }
+
     // Audio Processing
         
     virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize)
@@ -305,7 +323,7 @@ public:
     virtual FrameType inputType(unsigned long idx) const            { return mBlocks[0]->inputType(idx); }
     virtual FrameType outputType(unsigned long idx) const           { return mBlocks[0]->outputType(idx); }
     
-    virtual const FrameLib_Parameters *getParameters()  const       { return mBlocks[0]->getParameters(); }
+    virtual const FrameLib_Parameters *getParameters() const        { return mBlocks[0]->getParameters(); }
 
     // Ordering Connections
     
@@ -360,7 +378,7 @@ private:
                 
                 for (unsigned long i = cChannels; i < nChannels; i++)
                 {
-                    mBlocks[i] = new T(getContext(), &mSerialisedParameters, getOwner());
+                    mBlocks[i] = new T(getContext(), &mSerialisedParameters, getProxy());
                     mBlocks[i]->setStream(i);
                     mBlocks[i]->reset(mSamplingRate, mMaxBlockSize);
                 }

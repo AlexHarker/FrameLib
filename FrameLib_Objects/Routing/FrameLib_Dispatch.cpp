@@ -5,7 +5,7 @@
 
 // Constructor
 
-FrameLib_Dispatch::Select::Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner, long numIns, long num) : FrameLib_Processor(context, owner, NULL, numIns, 1), mNumIns(numIns)
+FrameLib_Dispatch::Select::Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long numIns, long num) : FrameLib_Processor(context, proxy, NULL, numIns, 1), mNumIns(numIns)
 {
     char name[32];
     sprintf(name, "input_%2ld", num + 1);
@@ -49,8 +49,8 @@ void FrameLib_Dispatch::Select::process()
 
 // Constructor
 
-FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-: FrameLib_Block(kProcessor, context, owner), mParameters(&sParamInfo)
+FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Block(kProcessor, context, proxy), mParameters(&sParamInfo)
 {
     mParameters.addDouble(kNumIns, "num_ins", 2, 0);
     mParameters.setClip(2, 32);
@@ -77,7 +77,7 @@ FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Paramete
 
     for (int i = 0; i < mNumOuts; i++)
     {
-        mSelects.push_back(new Select(context, serialisedParameters, owner, mNumIns, i));
+        mSelects.push_back(new Select(context, serialisedParameters, proxy, mNumIns, i));
         for (unsigned long j = 0; j < mNumIns + 1; j++)
             mSelects[i]->setInputAlias(Connection(this, j), j);
         mSelects[i]->setOutputAlias(Connection(this, i), 0);

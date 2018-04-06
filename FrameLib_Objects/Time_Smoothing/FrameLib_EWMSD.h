@@ -16,7 +16,7 @@ public:
     
     // Constructor
     
-    FrameLib_EWMSD(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_EWMSD(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     ~FrameLib_EWMSD()
     {

@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_ParamAlias::FrameLib_ParamAlias(FrameLib_Context context, unsigned long numOuts, void *owner, Parameters::Info *info) : FrameLib_Processor(context, owner, info)
+FrameLib_ParamAlias::FrameLib_ParamAlias(FrameLib_Context context, unsigned long numOuts, FrameLib_Proxy *proxy, Parameters::Info *info) : FrameLib_Processor(context, proxy, info)
 {
     setIO(0, numOuts);
     addParameterInput();
@@ -40,7 +40,7 @@ FrameLib_Parameters::Serial *FrameLib_ParamAlias::aliasForConstruction(FrameLib_
     return &mSerial;
 }
 
-void FrameLib_ParamAlias::initialise(Parameters::Serial *serialisedParameters)
+void FrameLib_ParamAlias::initialise()
 {
     assert(!mParameters.size() && "Parameters have already been initialised");
     

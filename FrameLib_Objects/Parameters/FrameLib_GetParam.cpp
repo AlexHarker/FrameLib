@@ -3,8 +3,8 @@
 
 // Constructor
 
-FrameLib_GetParam::FrameLib_GetParam(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) :
-    FrameLib_Processor(context, owner, NULL, 2, 1), mConnectedObject(NULL)
+FrameLib_GetParam::FrameLib_GetParam(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) :
+    FrameLib_Processor(context, proxy, NULL, 2, 1), mConnectedObject(NULL)
 {
     // Setup IO
 

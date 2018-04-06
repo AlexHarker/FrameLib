@@ -18,7 +18,7 @@ public:
     
     // Constructor
     
-    FrameLib_GetParam(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_GetParam(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     

@@ -11,6 +11,15 @@
 #include <sstream>
 #include <iostream>
 
+// FrameLib_Proxy is simply a virtual struct allowing for communication to/from the host environment
+
+struct FrameLib_Proxy
+{
+    virtual ~FrameLib_Proxy() {}
+};
+
+// FrameLib_Queable is a template class for items that can be placed on a queue
+
 template <class T>
 class FrameLib_Queueable
 {
@@ -157,8 +166,8 @@ public:
 
     // Constructor / Destructor
     
-    FrameLib_Object(ObjectType type, FrameLib_Context context, void *owner)
-    : mType(type), mContext(context), mAllocator(context), mOwner(owner), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
+    FrameLib_Object(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy)
+    : mType(type), mContext(context), mAllocator(context), mProxy(proxy), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
     
     virtual ~FrameLib_Object()                  { clearConnections(false); }
    
@@ -172,7 +181,7 @@ public:
 
     // Owner
     
-    void *getOwner() const                      { return mOwner; }
+    FrameLib_Proxy *getProxy() const            { return mProxy; }
     
     // IO Queries
     
@@ -182,9 +191,10 @@ public:
     unsigned long getNumAudioOuts() const       { return getType() == kOutput ? mNumAudioChans : 0; }
     unsigned long getNumAudioChans()  const     { return mNumAudioChans; }
     
-    // Set Fixed Inputs
+    // Set / Get Fixed Inputs
     
     virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) = 0;
+    virtual const double *getFixedInput(unsigned long idx, unsigned long *size) = 0;
 
     // Audio Processing
 
@@ -452,6 +462,14 @@ protected:
         return true;
     }
     
+    // Input getter helper for empty inputs
+    
+    const double *getEmptyFixedInput(unsigned long idx, unsigned long *size)
+    {
+        *size = 0;
+        return NULL;
+    }
+
 private:
     
     // Connection Methods (private)
@@ -852,7 +870,7 @@ private:
     FrameLib_Context mContext;
     FrameLib_Context::Allocator mAllocator;
     
-    void *mOwner;
+    FrameLib_Proxy *mProxy;
     
     // Audio IO Counts
     
@@ -882,7 +900,7 @@ public:
     
     // Constructor / Destructor
     
-    FrameLib_Block(ObjectType type, FrameLib_Context context, void *owner) : FrameLib_Object<FrameLib_Block>(type, context, owner) {}
+    FrameLib_Block(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy) : FrameLib_Object<FrameLib_Block>(type, context, proxy) {}
     virtual ~FrameLib_Block() {}
 
     // Stream Awareness

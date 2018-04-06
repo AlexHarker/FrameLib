@@ -16,7 +16,7 @@ public:
     
     // Constructor / Destructor
 
-    FrameLib_Recall(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_Recall(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     ~FrameLib_Recall();
     
     // Info

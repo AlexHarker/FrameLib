@@ -70,7 +70,7 @@ public:
             
             DataType getType() const    { return *(reinterpret_cast<DataType *>(mPtr)); }
             char *getTag() const        { return reinterpret_cast<char *>(mPtr + sizeType() + sizeSize()); }
-            double *getVector(unsigned long *size) const;
+            const double *getVector(unsigned long *size) const;
             unsigned long getVectorSize() const;
             char *getString() const;
             size_t getSize() const;
@@ -219,9 +219,9 @@ public:
         
         // Write Items
         
-        void write(Serial *serialised)                          { if (checkSize(calcSize(serialised))) Serial::write(serialised); }
-        void write(const char *tag, const char *str)            { if (checkSize(calcSize(tag, str))) Serial::write(tag, str); }
-        void write(const char *tag, double *values, size_t N)   { if (checkSize(calcSize(tag, N))) Serial::write(tag, values, N); }
+        void write(const Serial *serialised)                            { if (checkSize(calcSize(serialised))) Serial::write(serialised); }
+        void write(const char *tag, const char *str)                    { if (checkSize(calcSize(tag, str))) Serial::write(tag, str); }
+        void write(const char *tag, const double *values, size_t N)     { if (checkSize(calcSize(tag, N))) Serial::write(tag, values, N); }
         
     private:
         

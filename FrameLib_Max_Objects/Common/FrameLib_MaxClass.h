@@ -454,7 +454,12 @@ private:
 /////////////////////// FrameLib Max Object Class ////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-enum MaxObjectArgsMode {kAsParams, kAllInputs, kDistribute};
+enum MaxObjectArgsMode { kAsParams, kAllInputs, kDistribute };
+
+struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
+{
+    t_object *mMaxObject;
+};
 
 template <class T, MaxObjectArgsMode argsMode = kAsParams> class FrameLib_MaxClass : public MaxClass_Base
 {
@@ -489,7 +494,6 @@ public:
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::serialise>(c, "serialise");
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
         addMethod(c, (method) &externalResolveConnections, "__fl.resolve_connections");
@@ -501,13 +505,14 @@ public:
         addMethod(c, (method) &externalIsOutput, "__fl.is_output");
         addMethod(c, (method) &externalGetNumAudioIns, "__fl.get_num_audio_ins");
         addMethod(c, (method) &externalGetNumAudioOuts, "__fl.get_num_audio_outs");
+        class_addmethod(c, (method) &codeexport, "export", A_SYM, A_SYM, 0);
         
         dspInit(c);
     }
 
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv) : mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mTopLevelPatch(jpatcher_get_toppatcher(gensym("#P")->s_thing)), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
+    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy()) : mFrameLibProxy(proxy), mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mTopLevelPatch(jpatcher_get_toppatcher(gensym("#P")->s_thing)), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -522,7 +527,8 @@ public:
         
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mTopLevelPatch), &serialisedParameters, this, nStreams);
+        mFrameLibProxy->mMaxObject = *this;
+        mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mTopLevelPatch), &serialisedParameters, mFrameLibProxy, nStreams);
         parseInputs(argc, argv);
         
         long numIns = getNumIns() + (supportsOrderingConnections() ? 1 : 0);
@@ -561,26 +567,25 @@ public:
         dspFree();
 
         delete mObject;
-
+        delete mFrameLibProxy;
+        
         for (MaxObjectIterator it = mInputs.begin(); it != mInputs.end(); it++)
             object_free(*it);
         
         object_free(mSyncIn);
     }
     
-    void serialise()
+    static void codeexport(FrameLib_MaxClass *x, t_symbol *className, t_symbol *path)
     {
-        std::string str;
-        size_t oldPos, pos;
+        char conformedPath[MAX_PATH_CHARS];
         
-        serialiseGraph(str, mObject);
+        path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
+        ExportError error = exportGraph(x->mObject, conformedPath, className->s_name);
         
-        for (oldPos = 0, pos = str.find_first_of("\n"); oldPos < str.size(); pos = str.find_first_of("\n", pos + 1))
-        {
-            pos = pos == std::string::npos ? str.size() : pos;
-            post("%s", str.substr(oldPos, (pos - oldPos) + 1).c_str());
-            oldPos = pos + 1;
-        }
+        if (error == kExportPathError)
+            object_error(x->mUserObject, "couldn't write to or find specified path");
+        else if (error == kExportWriteError)
+            object_error(x->mUserObject, "couldn't write file");
     }
     
     void assist(void *b, long m, long a, char *s)
@@ -1023,13 +1028,17 @@ private:
     
     bool isConnected(long index) const                                      { return mObject->isConnected(index); }
     
+    MaxConnection getMaxConnection(const FrameLibConnection& connection) const
+    {
+        FrameLib_MaxProxy *proxy = dynamic_cast<FrameLib_MaxProxy *>(connection.mObject->getProxy());
+        t_object *object = proxy->mMaxObject;
+        return MaxConnection(object, connection.mIndex);
+    }
+    
     MaxConnection getConnection(long index) const
     {
         if (isConnected(index))
-        {
-            FrameLibConnection connection = mObject->getConnection(index);
-            return MaxConnection((t_object *) connection.mObject->getOwner(), connection.mIndex);
-        }
+            return getMaxConnection(mObject->getConnection(index));
         else
             return MaxConnection();
     }
@@ -1041,8 +1050,7 @@ private:
     
     MaxConnection getOrderingConnection(long index) const
     {
-        FrameLibConnection connection = mObject->getOrderingConnection(index);
-        return MaxConnection((t_object *) connection.mObject->getOwner(), connection.mIndex);
+        return getMaxConnection(mObject->getOrderingConnection(index));
     }
     
     bool matchConnection(t_object *src, long outIdx, long inIdx) const
@@ -1340,8 +1348,8 @@ private:
             }
             else
             {
-                for (unsigned long j = 0; j < i && (j+1) < getNumIns(); j++)
-                    mObject->setFixedInput(j+1, &values[j], 1);
+                for (unsigned long j = 0; j < i && (j + 1) < getNumIns(); j++)
+                    mObject->setFixedInput(j + 1, &values[j], 1);
             }
         }
         
@@ -1364,6 +1372,12 @@ private:
         }
     }
 
+protected:
+   
+    FrameLib_MaxProxy *mFrameLibProxy;
+    
+private:
+    
     // Data
     
     FrameLib_MultiChannel *mObject;

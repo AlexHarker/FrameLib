@@ -4,6 +4,7 @@
 
 #include <m_pd.h>
 #include <string>
+#include <vector>
 
 // This is a very lightweight C++ template wrapper for writing PD objects as C++ classes
 // This work is loosely based on https://github.com/grrrwaaa/maxcpp by Graham Wakefield
@@ -95,7 +96,7 @@ public:
     {
         void *x = pd_new(*getClassPointer<T>());
         new(x) T(sym, ac, av);
-        return (T *)x;
+        return x;
     }
     
     template <class T> static void destroy(t_object * x)

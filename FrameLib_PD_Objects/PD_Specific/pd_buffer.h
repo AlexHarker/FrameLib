@@ -4,20 +4,26 @@
 
 #include "TableReader.hpp"
 
-struct fetch : public table_fetcher<t_sample>
-{
-    fetch(t_word *data)
-    : table_fetcher(1.0) {}
-    
-    t_sample operator()(intptr_t offset)   { return data[offset].w_float; }
-    
-    t_word *data;
-};
-
 class pd_buffer
 {
+
+    struct fetch : public table_fetcher<double>
+    {
+        fetch(t_word *data, int length)
+        : table_fetcher(1.0), mData(data), mLength(length) {}
+        
+        t_sample operator()(intptr_t offset)
+        {
+            return (offset < 0 || offset >= mLength) ? t_sample(0) : mData[offset].w_float;
+        }
+        
+        t_word *mData;
+        int mLength;
+    };
     
 public:
+
+    pd_buffer() : mArray(NULL), mTable(NULL), mLength(0) {}
 
     pd_buffer(t_symbol *name) : mTable(NULL), mLength(0)
     {
@@ -27,13 +33,12 @@ public:
             garray_getfloatwords(mArray, &mLength, &mTable);
     }
     
-    int get_num_chans() const { return 1; }
     bool is_valid() const { return mTable && (mLength > 0); }
     int get_length() const { return mLength; }
     
-    void read(double *output, double *positions, unsigned long size, unsigned long chan, double amp, InterpType interpType)
+    void read(double *output, const double *positions, unsigned long size, double amp, InterpType interpType)
     {
-        table_read(fetch(mTable), output, positions, size, amp, interpType);
+        table_read(fetch(mTable, mLength), output, positions, size, amp, interpType);
     }
     
 private:
@@ -43,4 +48,4 @@ private:
     int mLength;
 };
 
-#endif /* pd_buffer_h */
+#endif

@@ -26,7 +26,7 @@ FrameLib_Parameters::Serial::Iterator& FrameLib_Parameters::Serial::Iterator::op
 }
 // Get Underlying data
 
-double *FrameLib_Parameters::Serial::Iterator::getVector(unsigned long *size) const
+const double *FrameLib_Parameters::Serial::Iterator::getVector(unsigned long *size) const
 {
     Entry entry = getEntry();
     

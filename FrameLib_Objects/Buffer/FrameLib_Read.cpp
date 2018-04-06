@@ -1,16 +1,11 @@
 
-#include "fl.read_pd~.h"
-#include "FrameLib_PDClass.h"
-#include "pd_buffer.h"
+#include "FrameLib_Read.h"
 
-// FIX - abstract out max buffer interaction (buffer name / channel)
 // FIX - consider adding anti-alising later....
-
-// Underlying FrameLib Object
 
 // Constructor
 
-FrameLib_PDRead::FrameLib_PDRead(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 2, 1)
+FrameLib_Read::FrameLib_Read(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mProxy(dynamic_cast<Proxy *>(proxy))
 {
     mParameters.addString(kBuffer, "buffer", 0);
     
@@ -31,7 +26,6 @@ FrameLib_PDRead::FrameLib_PDRead(FrameLib_Context context, FrameLib_Parameters::
         
     mParameters.set(serialisedParameters);
     
-    mBufferName = gensym(mParameters.getString(kBuffer));
     mChan = mParameters.getInt(kChannel);
     mMode = (Modes) mParameters.getInt(kMode);
     mUnits = (Units) mParameters.getInt(kUnits);
@@ -39,17 +33,20 @@ FrameLib_PDRead::FrameLib_PDRead(FrameLib_Context context, FrameLib_Parameters::
     setParameterInput(1);
     
     assert(false == 0 && "False does not equal zero");
+    
+    if (mProxy)
+        mProxy->update(mParameters.getString(kBuffer));
 }
 
 // Info
 
-std::string FrameLib_PDRead::objectInfo(bool verbose)
+std::string FrameLib_Read::objectInfo(bool verbose)
 {
     return formatInfo("Reads from a buffer~ given an input frame of sample positions: There are different available interpolation types.",
                    "Reads from a buffer~ given an input frame of sample positions.", verbose);
 }
 
-std::string FrameLib_PDRead::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Read::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
         return parameterInputInfo(verbose);
@@ -57,16 +54,16 @@ std::string FrameLib_PDRead::inputInfo(unsigned long idx, bool verbose)
         return formatInfo("Frame of Positions - triggers generation of output", "Frame of Positions", verbose);
 }
 
-std::string FrameLib_PDRead::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_Read::outputInfo(unsigned long idx, bool verbose)
 {
     return "Output Frame";
 }
 
 // Parameter Info
 
-FrameLib_PDRead::ParameterInfo FrameLib_PDRead::sParamInfo;
+FrameLib_Read::ParameterInfo FrameLib_Read::sParamInfo;
 
-FrameLib_PDRead::ParameterInfo::ParameterInfo()
+FrameLib_Read::ParameterInfo::ParameterInfo()
 {
     add("Sets the buffer~ name to use.");
     add("Sets the buffer~ channel to use.");
@@ -80,12 +77,12 @@ FrameLib_PDRead::ParameterInfo::ParameterInfo()
 
 // Process
 
-void FrameLib_PDRead::process()
+void FrameLib_Read::process()
 {
     double *positions = NULL;
     
     unsigned long size;
-    long chan;
+    long chan = mChan;
     
     bool interp = false;
     
@@ -96,26 +93,30 @@ void FrameLib_PDRead::process()
     
     double *output = getOutput(0, &size);
     
+    double samplingRate = 0.0;
+    unsigned long length = 0;
+    
     // Get buffer
     
-    pd_buffer buffer(mBufferName);
+    if (mProxy)
+         mProxy->acquire(length, samplingRate);
     
-    if (size && buffer.is_valid())
-    {
-        chan = (mChan - 1) % buffer.get_num_chans();
+    if (size && length)
         positions = alloc<double>(size);
-    }
     
     if (positions)
     {
-        double lengthM1 = buffer.get_length() - 1.0;
         double conversionFactor = 1.0;
+        double lengthM1 = length - 1.0;
+        
+        if (!samplingRate)
+            samplingRate = mSamplingRate;
         
         switch (mUnits)
         {
-            case kMS:           conversionFactor = mSamplingRate / 1000.0;       break;
-            case kSeconds:      conversionFactor = mSamplingRate;                break;
-            case kSamples:      conversionFactor = 1.0;                          break;
+            case kMS:           conversionFactor = samplingRate / 1000.0;       break;
+            case kSeconds:      conversionFactor = samplingRate;                break;
+            case kSamples:      conversionFactor = 1.0;                         break;
         }
         
         for (unsigned long i = 0; i < size; i++)
@@ -148,7 +149,8 @@ void FrameLib_PDRead::process()
             }
         }
         
-        buffer.read(output, positions, size, chan, 1.0, interpType);
+        mProxy->read(output, positions, size, chan, interpType);
+        
         dealloc(positions);
     }
     else
@@ -157,4 +159,7 @@ void FrameLib_PDRead::process()
         
         zeroVector(output, size);
     }
+    
+    if (mProxy)
+        mProxy->release();
 }

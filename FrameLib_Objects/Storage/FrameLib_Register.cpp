@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Register::FrameLib_Register(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, owner, &sParamInfo, 2, 1)
+FrameLib_Register::FrameLib_Register(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kStore, "store");
@@ -17,7 +17,7 @@ FrameLib_Register::FrameLib_Register(FrameLib_Context context, FrameLib_Paramete
     if (mode == kStore)
         setInputMode(1, false, false, false, kFrameAny);
     else
-        setInputMode(1, false, true, false);
+        setInputMode(1, false, true, false, kFrameAny);
 }
 
 // Info
