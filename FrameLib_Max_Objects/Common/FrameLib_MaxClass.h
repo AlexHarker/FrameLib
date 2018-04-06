@@ -583,7 +583,7 @@ public:
         ExportError error = exportGraph(x->mObject, conformedPath, className->s_name);
         
         if (error == kExportPathError)
-            object_error(x->mUserObject, "couldn't write to orfind specified path");
+            object_error(x->mUserObject, "couldn't write to or find specified path");
         else if (error == kExportWriteError)
             object_error(x->mUserObject, "couldn't write file");
     }

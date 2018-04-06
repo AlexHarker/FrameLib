@@ -20,12 +20,12 @@ struct FrameLib_ObjectDescription
     
     struct Connection
     {
-        Connection(unsigned long objectIdx, long inIdx, long outIdx) :
-        mObjectIndex(objectIdx), mInputIndex(inIdx), mOutputIndex(outIdx) {}
+        Connection(unsigned long objectIdx, long outIdx, long inIdx) :
+        mObjectIndex(objectIdx), mOutputIndex(outIdx), mInputIndex(inIdx) {}
         
         unsigned long mObjectIndex;
-        unsigned long mInputIndex;
         unsigned long mOutputIndex;
+        unsigned long mInputIndex;
     };
     
     std::string mObjectType;

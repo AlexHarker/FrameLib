@@ -2,6 +2,11 @@
 #ifndef FRAMELIB_OBJECTS_H
 #define FRAMELIB_OBJECTS_H
 
+// Host Communication
+
+#include "FrameLib_FromHost.h"
+#include "FrameLib_ToHost.h"
+
 // Filters
 
 #include "FrameLib_0dfSVF.h"

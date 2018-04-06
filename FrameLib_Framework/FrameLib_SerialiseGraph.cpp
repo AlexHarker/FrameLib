@@ -75,6 +75,7 @@ void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_M
 {
     std::vector<FrameLib_Object<FrameLib_MultiChannel> *> serial;
     unsigned long size = 0;
+    const unsigned long kOrdering = -1;
 
     // Serialise object pointers
     
@@ -138,7 +139,7 @@ void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_M
         for (int i = 0; i < object->getNumIns(); i++)
             addConnection(description, serial, object->getConnection(i), i);
         for (int i = 0; i < object->getNumOrderingConnections(); i++)
-            addConnection(description, serial, object->getOrderingConnection(i), -1);
+            addConnection(description, serial, object->getOrderingConnection(i), kOrdering);
     }
 }
 
@@ -199,7 +200,7 @@ std::string serialiseGraph(FrameLib_MultiChannel *requestObject)
         
         // Object declaration
         
-        output << exportIndent << "mObjects[" << index << "] = new " << it->mObjectType << "(context, &parameters, owner," << it->mNumStreams << ");\n";
+        output << exportIndent << "mObjects[" << index << "] = new " << it->mObjectType << "(context, &parameters, mProxy, " << it->mNumStreams << ");\n";
         
         // Inputs
         
@@ -219,8 +220,10 @@ std::string serialiseGraph(FrameLib_MultiChannel *requestObject)
         
         for (std::vector<FrameLib_ObjectDescription::Connection>::iterator jt = it->mConnections.begin(); jt != it->mConnections.end(); jt++)
         {
-            if (jt->mInputIndex == -1)
-                output << exportIndent << "mObjects[" << index << "]->addOrderingConnection(Connection(mObjects[" << jt->mObjectIndex << "], " << jt->mOutputIndex << ");\n";
+            const unsigned long kOrdering = -1;
+
+            if (jt->mInputIndex == kOrdering)
+                output << exportIndent << "mObjects[" << index << "]->addOrderingConnection(Connection(mObjects[" << jt->mObjectIndex << "], " << jt->mOutputIndex << "));\n";
             else
                 output << exportIndent << "mObjects[" << index << "]->addConnection(Connection(mObjects[" << jt->mObjectIndex << "], " << jt->mOutputIndex << "), " << jt->mInputIndex << ");\n";
         }
@@ -282,7 +285,7 @@ ExportError exportGraph(FrameLib_MultiChannel *requestObject, const char *path, 
     
     cppFile.open(cppName.c_str(), std::ofstream::out);
     
-    if (!headerFile.is_open())
+    if (!cppFile.is_open())
         return kExportPathError;
     
     cppFile << cpp.rdbuf();;
