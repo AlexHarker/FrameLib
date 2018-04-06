@@ -4285,8 +4285,8 @@
 		B83E028F20667422005925DD /* Objects pd */ = {
 			isa = PBXGroup;
 			children = (
-				B8F93AEA206A88FF00833231 /* PD_Specific */,
 				B83E0294206674A8005925DD /* Common */,
+				B8F93AEA206A88FF00833231 /* PD_Specific */,
 				B83E029220667499005925DD /* framelib_pd.cpp */,
 			);
 			name = "Objects pd";
@@ -4297,8 +4297,8 @@
 			isa = PBXGroup;
 			children = (
 				B83E0296206674CD005925DD /* m_pd.h */,
-				B83E0295206674CD005925DD /* FrameLib_PDClass.h */,
 				B83E0297206674CD005925DD /* PDClass_Base.h */,
+				B83E0295206674CD005925DD /* FrameLib_PDClass.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
