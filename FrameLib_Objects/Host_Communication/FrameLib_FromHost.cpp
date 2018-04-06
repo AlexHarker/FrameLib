@@ -2,7 +2,7 @@
 #include "FrameLib_FromHost.h"
 #include <algorithm>
 
-// Owner Class
+// Proxy Class
 
 void FrameLib_FromHost::Proxy::write(const double *values, unsigned long N)
 {
