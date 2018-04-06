@@ -122,8 +122,51 @@
 #include "FrameLib_Poltocar.h"
 #include "FrameLib_Complex_Binary_Objects.h"
 
-#include "fl.read_pd~.h"
+// Buffer
 
+#include "FrameLib_Read.h"
+#include "PD_Specific/pd_buffer.h"
+
+// PD Read Class
+
+class FrameLib_PDClass_Read : public FrameLib_PDClass<FrameLib_Expand<FrameLib_Read> >
+{
+    struct ReadProxy : public FrameLib_Read::Proxy, public FrameLib_PDProxy
+    {
+        virtual void update(const char *name)
+        {
+            mBufferName = gensym(name);
+        }
+        
+        virtual void acquire(unsigned long& length, double& samplingRate)
+        {
+            mBuffer = pd_buffer(mBufferName);
+            length = mBuffer.get_length();
+            samplingRate = 0.0;
+        }
+        
+        virtual void release()
+        {
+            mBuffer = pd_buffer();
+        };
+        
+        virtual void read(double *output, const double *positions, unsigned long size, long chan, InterpType interpType)
+        {
+            mBuffer.read(output, positions, size, 1.0, interpType);
+        }
+        
+    private:
+        
+        pd_buffer mBuffer;
+        t_symbol *mBufferName;
+    };
+    
+public:
+    
+    // Constructor
+    
+    FrameLib_PDClass_Read(t_symbol *s, long argc, t_atom *argv) : FrameLib_PDClass(s, argc, argv, new ReadProxy()) {}
+};
 
 extern "C" void framelib_pd_setup(void)
 {
@@ -345,7 +388,7 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Complex_Divide>, kAllInputs>::makeClass("fl.complexdivide~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Complex_Pow>, kAllInputs>::makeClass("fl.complexpow~");
 
-    // PD
+    // Buffer
     
-    FrameLib_PDClass_Expand<FrameLib_PDRead>::makeClass("fl.read~");
+    FrameLib_PDClass_Read::makeClass<FrameLib_PDClass_Read>("fl.read~");
 }

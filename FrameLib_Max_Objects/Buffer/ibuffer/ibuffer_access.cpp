@@ -26,6 +26,61 @@ t_symbol *ps_ibuffer;
 
 ibuffer_data::ibuffer_data(t_symbol *name) : buffer_type(kBufferNone), samples(NULL), length(0), num_chans(0), format(0), sample_rate(0.0)
 {
+    acquire_buffer(name);
+}
+
+ibuffer_data::~ibuffer_data()
+{
+    release_buffer();
+}
+
+void ibuffer_data::set_dirty()
+{
+    if (buffer_type == kBufferMaxBuffer)
+        object_method(buffer_object, gensym("dirty"));
+}
+
+void ibuffer_data::set_size_in_samples(t_atom_long size)
+{
+    t_atom temp_atom[2];
+    
+    atom_setlong(temp_atom, size);
+    
+    if (buffer_type == kBufferMaxBuffer)
+    {
+        t_buffer *buffer = reinterpret_cast<t_buffer *>(buffer_object);
+        
+        ATOMIC_INCREMENT(&(buffer)->b_inuse);
+        object_method_typed(buffer_object, gensym("sizeinsamps"), 1, temp_atom, temp_atom + 1);
+        ATOMIC_DECREMENT(&(buffer)->b_inuse);
+        
+        samples = (void *) buffer->b_samples;
+        length = buffer->b_frames;
+    }
+}
+
+void ibuffer_data::acquire(t_symbol *name)
+{
+    // N.B. - release (and init data using user call) before acquiring the new buffer
+    
+    release();
+    acquire_buffer(name);
+}
+
+void ibuffer_data::release()
+{
+    release_buffer();
+    buffer_type = kBufferNone;
+    samples = NULL;
+    length = 0;
+    num_chans = 0;
+    format = 0,
+    sample_rate = 0.0;
+    buffer_object = NULL;
+}
+
+void ibuffer_data::acquire_buffer(t_symbol *name)
+{
     buffer_object = name ? name->s_thing : NULL;
     
     if (buffer_object)
@@ -66,48 +121,6 @@ ibuffer_data::ibuffer_data(t_symbol *name) : buffer_type(kBufferNone), samples(N
     }
 }
 
-ibuffer_data::~ibuffer_data()
-{
-    release_buffer();
-}
-
-void ibuffer_data::set_dirty()
-{
-    if (buffer_type == kBufferMaxBuffer)
-        object_method(buffer_object, gensym("dirty"));
-}
-
-void ibuffer_data::set_size_in_samples(t_atom_long size)
-{
-    t_atom temp_atom[2];
-    
-    atom_setlong(temp_atom, size);
-    
-    if (buffer_type == kBufferMaxBuffer)
-    {
-        t_buffer *buffer = reinterpret_cast<t_buffer *>(buffer_object);
-        
-        ATOMIC_INCREMENT(&(buffer)->b_inuse);
-        object_method_typed(buffer_object, gensym("sizeinsamps"), 1, temp_atom, temp_atom + 1);
-        ATOMIC_DECREMENT(&(buffer)->b_inuse);
-        
-        samples = (void *) buffer->b_samples;
-        length = buffer->b_frames;
-    }
-}
-
-void ibuffer_data::release()
-{
-    release_buffer();
-    buffer_type = kBufferNone;
-    samples = NULL;
-    length = 0;
-    num_chans = 0;
-    format = 0,
-    sample_rate = 0.0;
-    buffer_object = NULL;
-}
-
 void ibuffer_data::release_buffer()
 {
     if (buffer_object)
@@ -145,17 +158,17 @@ void ibuffer_read_format(const ibuffer_data& buffer, T *out, U *positions, intpt
     }
 }
 
-void ibuffer_read(const ibuffer_data& buffer, double *out, double *positions, intptr_t n_samps, long chan, double mul, InterpType interp)
+void ibuffer_read(const ibuffer_data& buffer, double *out, const double *positions, intptr_t n_samps, long chan, double mul, InterpType interp)
 {
     ibuffer_read_format<double>(buffer, out, positions, n_samps, chan, mul, interp);
 }
 
-void ibuffer_read(const ibuffer_data& buffer, float *out, double *positions, intptr_t n_samps, long chan, float mul, InterpType interp)
+void ibuffer_read(const ibuffer_data& buffer, float *out, const double *positions, intptr_t n_samps, long chan, float mul, InterpType interp)
 {
     ibuffer_read_format<float>(buffer, out, positions, n_samps, chan, mul, interp);
 }
 
-void ibuffer_read(const ibuffer_data& buffer, float *out, float *positions, intptr_t n_samps, long chan, float mul, InterpType interp)
+void ibuffer_read(const ibuffer_data& buffer, float *out, const float *positions, intptr_t n_samps, long chan, float mul, InterpType interp)
 {
     ibuffer_read_format<float>(buffer, out, positions, n_samps, chan, mul, interp);
 }

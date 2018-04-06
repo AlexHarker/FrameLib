@@ -60,6 +60,7 @@ public:
     void set_dirty();
     void set_size_in_samples(t_atom_long size);
     
+    void acquire(t_symbol *name);
     void release();
     
     BufferType get_type() const         { return buffer_type; };
@@ -71,6 +72,7 @@ public:
     
 private:
     
+    void acquire_buffer(t_symbol *name);
     void release_buffer();
 
     BufferType buffer_type;
@@ -135,9 +137,9 @@ void ibuffer_get_samps(const ibuffer_data& buffer, double *out, intptr_t offset,
 
 // Read with various forms of interpolation
 
-void ibuffer_read(const ibuffer_data& buffer, float *out, double *positions, intptr_t n_samps, long chan, float mul, InterpType interp);
-void ibuffer_read(const ibuffer_data& buffer, double *out, double *positions, intptr_t n_samps, long chan, double mul, InterpType interp);
-void ibuffer_read(const ibuffer_data& buffer, float *out, float *positions, intptr_t n_samps, long chan, float mul, InterpType interp);
+void ibuffer_read(const ibuffer_data& buffer, double *out, const double *positions, intptr_t n_samps, long chan, double mul, InterpType interp);
+void ibuffer_read(const ibuffer_data& buffer, float *out, const double *positions, intptr_t n_samps, long chan, float mul, InterpType interp);
+void ibuffer_read(const ibuffer_data& buffer, float *out, const float *positions, intptr_t n_samps, long chan, float mul, InterpType interp);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////// Get individual samples /////////////////////////////////////////////
