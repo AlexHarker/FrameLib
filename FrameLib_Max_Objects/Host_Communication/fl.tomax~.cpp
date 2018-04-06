@@ -121,7 +121,7 @@ void FrameLib_MaxClass_ToMax::classInit(t_class *c, t_symbol *nameSpace, const c
 FrameLib_MaxClass_ToMax::FrameLib_MaxClass_ToMax(t_symbol *s, long argc, t_atom *argv)
     : FrameLib_MaxClass(s, argc, argv, new ToHostProxy(this))
 {
-    mOutlet = outlet_new(this, "");
+    mOutlet = outlet_new(this, 0L);
 }
 
 // To Outlet
