@@ -30,6 +30,7 @@ _MaxSDK_/
 ## Binaries
 externals/
 *.o
+*.d_fat
 
 ## Other
 *.moved-aside
