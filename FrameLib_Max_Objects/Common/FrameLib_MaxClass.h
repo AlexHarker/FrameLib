@@ -575,19 +575,6 @@ public:
         object_free(mSyncIn);
     }
     
-    static void codeexport(FrameLib_MaxClass *x, t_symbol *className, t_symbol *path)
-    {
-        char conformedPath[MAX_PATH_CHARS];
-        
-        path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
-        ExportError error = exportGraph(x->mObject, conformedPath, className->s_name);
-        
-        if (error == kExportPathError)
-            object_error(x->mUserObject, "couldn't write to or find specified path");
-        else if (error == kExportWriteError)
-            object_error(x->mUserObject, "couldn't write file");
-    }
-    
     void assist(void *b, long m, long a, char *s)
     {
         if (m == ASSIST_OUTLET)
@@ -613,6 +600,19 @@ public:
                     sprintf(s,"(frame) %s", mObject->inputInfo(a - getNumAudioIns()).c_str());
             }
         }
+    }
+    
+    static void codeexport(FrameLib_MaxClass *x, t_symbol *className, t_symbol *path)
+    {
+        char conformedPath[MAX_PATH_CHARS];
+        
+        path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
+        ExportError error = exportGraph(x->mObject, conformedPath, className->s_name);
+        
+        if (error == kExportPathError)
+            object_error(x->mUserObject, "couldn't write to or find specified path");
+        else if (error == kExportWriteError)
+            object_error(x->mUserObject, "couldn't write file");
     }
     
     void info(t_symbol *sym, long ac, t_atom *av)
