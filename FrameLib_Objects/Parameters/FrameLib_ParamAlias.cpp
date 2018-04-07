@@ -65,9 +65,9 @@ void FrameLib_ParamAlias::initialise()
             unsigned long idx = mParameters.size();
             const char *tag = it->mInTag.c_str();
             const Parameters *params = (*jt)->getParameters();
-            unsigned paramIdx = -1;
+            unsigned long paramIdx = -1;
     
-            if ((paramIdx = params->getIdx(it->mOutTag.c_str())) != -1)
+            if ((paramIdx = params->getIdx(it->mOutTag.c_str())) != unsigned long(-1))
             {
                 double value = params->getDefault(paramIdx);
 
