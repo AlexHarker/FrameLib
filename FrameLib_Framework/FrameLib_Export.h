@@ -1,12 +1,13 @@
 
 static char exportHeader[] = "\n\
-#include <FrameLib_MultiChannel.h>\n\
+#include \"FrameLib_MultiChannel.h\"\n\
 #include <vector>\n\n\
 class $\n\
 {\n\n\
 public:\n\n\
     $(FrameLib_Proxy *proxy = new FrameLib_Proxy());\n\
     ~$();\n\n\
+    void reset(double samplerate, unsigned long maxvectorsize);\n\
     void process(double **inputs, double **output, unsigned long blockSize);\n\n\
     unsigned long getNumAudioIns() const { return mNumAudioIns; }\n\
     unsigned long getNumAudioOuts() const  { return mNumAudioOuts; }\n\n\
@@ -21,7 +22,7 @@ private:\n\n\
 
 static char exportCPPOpen[] = "\n\
 #include \"$.h\"\n\
-#include <FrameLib_Objects.h>\n\n\
+#include \"FrameLib_Objects.h\"\n\n\
 $::$(FrameLib_Proxy *proxy) : mNumAudioIns(0), mNumAudioOuts(0), mProxy(proxy)\n\
 {\n\
     typedef FrameLib_Object<FrameLib_MultiChannel>::Connection Connection;\n\n\
@@ -48,6 +49,11 @@ $::~$()\n\
     mAudioObjects.clear();\n\
     delete mProxy;\n\
     FrameLib_Global::release(&mGlobal);\n\
+}\n\n\
+void $::reset(double samplerate, unsigned long maxvectorsize)\n\
+{\n\
+    for (std::vector<FrameLib_MultiChannel *>::iterator it = mObjects.begin(); it != mObjects.end(); it++)\n\
+        (*it)->reset(samplerate, maxvectorsize);\n\
 }\n\n\
 void $::process(double **inputs, double **outputs, unsigned long blockSize)\n\
 {\n\
