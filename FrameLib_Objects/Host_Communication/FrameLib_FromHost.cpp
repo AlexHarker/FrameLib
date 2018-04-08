@@ -38,25 +38,22 @@ void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, const FrameLib_
     std::vector<SerialList::Item *> addSerials(objects.size());
     std::vector<SerialList> freeLists(objects.size());
 
-    // Create one serial structure per object, swap and then clear the returned free lists
+    // Create one serial structure per object, swap and then clear the returned free lists when the vector destructs
     
     for (unsigned long i = 0; i < objects.size(); i++)
         addSerials[i] = new SerialList::Item(*serial);
     
     for (unsigned long i = 0; i < objects.size(); i++)
-        freeLists[i] = objects[i]->updateSerialFrame(addSerials[i]);
-        
-    for (unsigned long i = 0; i < objects.size(); i++)
-        freeLists[i].clear();
+        objects[i]->updateSerialFrame(freeLists[i], addSerials[i]);
 }
 
 void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial)
 {
-    // Copy serial date, update and delete any frame ready to be freed
+    // Copy serial date, update and then the free list will clear on destruct
     
+    SerialList freeList;
     SerialList::Item *addSerial = new SerialList::Item(*serial);
-    SerialList freeList = getObject(index, stream)->updateSerialFrame(addSerial);
-    freeList.clear();
+    getObject(index, stream)->updateSerialFrame(freeList, addSerial);
 }
 
 // Send a parameter that takes a string
@@ -202,14 +199,10 @@ void FrameLib_FromHost::swapVectorFrame(std::vector<double> *swapVector)
 
 // Swap vector frame
 
-FrameLib_FromHost::SerialList FrameLib_FromHost::updateSerialFrame(SerialList::Item *addSerial)
+void FrameLib_FromHost::updateSerialFrame(SerialList &freeList, SerialList::Item *addSerial)
 {
-    SerialList freeList;
-    
     mLock.acquire();
     mSerialFrame.push(addSerial);
-    std::swap(mSerialFreeFrame, freeList);
+    freeList.reassign(mSerialFreeFrame);
     mLock.release();
-    
-    return freeList;
 }
