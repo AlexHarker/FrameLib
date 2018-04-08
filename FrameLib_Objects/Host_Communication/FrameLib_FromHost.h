@@ -11,7 +11,10 @@ class FrameLib_FromHost : public FrameLib_Processor
     
     struct SerialList
     {
+        // N.B. - copy construction is allowed, but doesn't copy anything, so we can construct vectors
+        
         SerialList() : mTop(NULL), mTail(NULL) {}
+        SerialList(const SerialList&) : mTop(NULL), mTail(NULL) {}
         ~SerialList() { clear(); }
         
         struct Item
@@ -64,6 +67,22 @@ class FrameLib_FromHost : public FrameLib_Processor
             for (Item *item = pop(); item; item = pop())
                 delete item;
         }
+        
+        void reassign(SerialList& list)
+        {
+            mTop = list.mTop;
+            mTail = list.mTail;
+            list.mTop = NULL;
+            list.mTail = NULL;
+        }
+        
+    private:
+        
+        // Deleted
+        
+        SerialList& operator=(const SerialList&);
+        
+        // Data
         
         Item *mTop;
         Item *mTail;
@@ -129,7 +148,7 @@ private:
     // Swapping data with the proxy
     
     void swapVectorFrame(std::vector<double> *swapVector);
-    SerialList updateSerialFrame(SerialList::Item *addSerial);
+    void updateSerialFrame(SerialList &freeList, SerialList::Item *addSerial);
 
 // Data
     

@@ -33,13 +33,11 @@ $::$(FrameLib_Proxy *proxy) : mNumAudioIns(0), mNumAudioOuts(0), mProxy(proxy)\n
 static char exportCPPClose[] = "\
     for (std::vector<FrameLib_MultiChannel *>::iterator it = mObjects.begin(); it != mObjects.end(); it++)\n\
     {\n\
-        if ((*it)->handlesAudio())\n\
+        if ((*it)->getType() == kScheduler || (*it)->getNumAudioChans())//if ((*it)->handlesAudio())\n\
             mAudioObjects.push_back(*it);\n\n\
         mNumAudioIns += (*it)->getNumAudioIns();\n\
         mNumAudioOuts += (*it)->getNumAudioOuts();\n\
-    }\n\n\
-    mObjects.clear();\n\
-    mAudioObjects.clear();\n\
+    }\n\
 }\n\n\
 $::~$()\n\
 {\n\
