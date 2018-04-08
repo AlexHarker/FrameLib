@@ -204,7 +204,7 @@ public:
         // Make first block
         
         mBlocks.push_back(new T(context, serialisedParameters, proxy));
-        mBlocks[0]->setStream(0);
+        mBlocks[0]->setStream(this, 0);
         
         // Copy serialised parameters for later instantiations
 
@@ -379,7 +379,7 @@ private:
                 for (unsigned long i = cChannels; i < nChannels; i++)
                 {
                     mBlocks[i] = new T(getContext(), &mSerialisedParameters, getProxy());
-                    mBlocks[i]->setStream(i);
+                    mBlocks[i]->setStream(this, i);
                     mBlocks[i]->reset(mSamplingRate, mMaxBlockSize);
                 }
             }

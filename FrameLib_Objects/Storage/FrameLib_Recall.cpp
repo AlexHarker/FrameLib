@@ -46,7 +46,7 @@ std::string FrameLib_Recall::outputInfo(unsigned long idx, bool verbose)
 
 // Stream Awareness
 
-void FrameLib_Recall::setStream(unsigned long stream)
+void FrameLib_Recall::setStream(void *streamOwner, unsigned long stream)
 {
     releaseStorage(mStorage);
     mStorage = registerStorage(numberedString(mName.c_str(), stream).c_str());

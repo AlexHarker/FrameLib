@@ -27,7 +27,7 @@ std::string FrameLib_StreamID::outputInfo(unsigned long idx, bool verbose)
 
 // Stream Awareness
 
-void FrameLib_StreamID::setStream(unsigned long stream)
+void FrameLib_StreamID::setStream(void *streamOwner, unsigned long stream)
 {
     mStream = stream;
 }

@@ -20,7 +20,7 @@ class FrameLib_StreamID : public FrameLib_Processor
     
     // Stream Awareness
     
-    void setStream(unsigned long stream);
+    void setStream(void *streamOwner, unsigned long stream);
     
 private:
 

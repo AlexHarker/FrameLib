@@ -3,19 +3,23 @@
 #define FRAMELIB_TOHOST_H
 
 #include "FrameLib_DSP.h"
+#include "FrameLib_HostProxy.h"
 
 class FrameLib_ToHost : public FrameLib_Processor
 {
-    // The owner should inherit from this class and override these calls to receive messages
     
 public:
     
-    struct Proxy : virtual FrameLib_Proxy
+    // The owner should inherit from this class and override these calls to receive messages
+
+    struct Proxy : public FrameLib_HostProxy<FrameLib_ToHost>
     {
         friend FrameLib_ToHost;
         
-        virtual void output(const double *values, unsigned long N) {}
-        virtual void output(const FrameLib_Parameters::Serial *serial) {}
+        Proxy() : mObject(NULL) {}
+        
+        virtual void sendToHost(unsigned long index, unsigned long stream, const double *values, unsigned long N) = 0;
+        virtual void sendToHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial)= 0;
         
         // These methods should only be used to allocate temporary memory in the overrides of the output methods
         
@@ -29,10 +33,15 @@ public:
     
 public:
     
-    // Constructor
+    // Constructor / Destructor
     
     FrameLib_ToHost(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    ~FrameLib_ToHost();
     
+    // Stream Awareness
+    
+    virtual void setStream(void *streamOwner, unsigned long stream);
+
     // Info
     
     std::string objectInfo(bool verbose);
@@ -46,6 +55,9 @@ private:
     // Data
     
     Proxy *mProxy;
+    void *mStreamOwner;
+    unsigned long mStream;
+    unsigned long  mID;
 };
 
 #endif

@@ -11,8 +11,8 @@ class FrameLib_MaxClass_ToMax : public FrameLib_MaxClass<FrameLib_Expand<FrameLi
     {
         ToHostProxy(FrameLib_MaxClass_ToMax *object) : mObject(object){}
         
-        virtual void output(const double *values, unsigned long N);
-        virtual void output(const FrameLib_Parameters::Serial *serial);
+        virtual void sendToHost(unsigned long index, unsigned long stream, const double *values, unsigned long N);
+        virtual void sendToHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial);
         
     private:
         
@@ -46,11 +46,9 @@ private:
 
 // Proxy Class
 
-void FrameLib_MaxClass_ToMax::ToHostProxy::output(const double *values, unsigned long N)
-{
-    N = limitSize(N);
-    
-    if (N)
+void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(unsigned long index, unsigned long stream, const double *values, unsigned long N)
+{    
+    if ((N = limitSize(N)))
     {
         t_atom *output = alloc<t_atom>(N);
 
@@ -65,7 +63,7 @@ void FrameLib_MaxClass_ToMax::ToHostProxy::output(const double *values, unsigned
         schedule_delay(mObject, (method) &FrameLib_MaxClass_ToMax::toOutletExternal, 0.0, NULL, 0, NULL);
 }
 
-void FrameLib_MaxClass_ToMax::ToHostProxy::output(const FrameLib_Parameters::Serial *serial)
+void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial)
 {
     unsigned long maxSize = 0;
     
@@ -122,6 +120,10 @@ FrameLib_MaxClass_ToMax::FrameLib_MaxClass_ToMax(t_symbol *s, long argc, t_atom 
     : FrameLib_MaxClass(s, argc, argv, new ToHostProxy(this))
 {
     mOutlet = outlet_new(this, 0L);
+    
+    FrameLib_Proxy *proxy = mFrameLibProxy;
+    FrameLib_ToHost::Proxy *isProxy = dynamic_cast<FrameLib_ToHost::Proxy *>(proxy);
+    isProxy = NULL;
 }
 
 // To Outlet

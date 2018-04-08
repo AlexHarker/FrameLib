@@ -905,7 +905,7 @@ public:
 
     // Stream Awareness
     
-    virtual void setStream(unsigned long stream) {}
+    virtual void setStream(void *streamOwner, unsigned long stream) {}
 };
 
 #endif

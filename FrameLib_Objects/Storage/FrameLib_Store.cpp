@@ -47,7 +47,7 @@ std::string FrameLib_Store::outputInfo(unsigned long idx, bool verbose)
 
 // Stream Awareness
 
-void FrameLib_Store::setStream(unsigned long stream)
+void FrameLib_Store::setStream(void *streamOwner, unsigned long stream)
 {
     releaseStorage(mStorage);
     mStorage = registerStorage(numberedString(mName.c_str(), stream).c_str());
