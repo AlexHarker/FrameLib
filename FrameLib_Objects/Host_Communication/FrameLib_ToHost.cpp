@@ -5,14 +5,37 @@
 
 // Constructor
 
-FrameLib_ToHost::FrameLib_ToHost(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, NULL, 1, 0), mProxy(dynamic_cast<Proxy *>(proxy))
+FrameLib_ToHost::FrameLib_ToHost(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, NULL, 1, 0), mProxy(dynamic_cast<Proxy *>(proxy)), mStreamOwner(this), mStream(0), mID(0)
 {
     mParameters.set(serialisedParameters);
     
     setInputMode(0, false, true, false, kFrameAny);
 
     if (mProxy)
+    {
+        mID = mProxy->registerObject(this, mStreamOwner, mStream);
         mProxy->mObject = this;
+    }
+}
+
+FrameLib_ToHost::~FrameLib_ToHost()
+{
+    if (mProxy)
+        mProxy->unregisterObject(this, mStreamOwner, mStream);
+}
+
+// Stream Awareness
+
+void FrameLib_ToHost::setStream(void *streamOwner, unsigned long stream)
+{
+    if (mProxy)
+    {
+        mProxy->unregisterObject(this, mStreamOwner, mStream);
+        mID = mProxy->registerObject(this, streamOwner, stream);
+    }
+    
+    mStreamOwner = streamOwner;
+    mStream = stream;
 }
 
 // Info
@@ -44,13 +67,13 @@ void FrameLib_ToHost::process()
             unsigned long sizeIn;
             const double *input = getInput(0, &sizeIn);
             
-            mProxy->output(input, sizeIn);
+            mProxy->sendToHost(mID, mStream, input, sizeIn);
         }
         else
         {
             const FrameLib_Parameters::Serial *input = getInput(0);
             
-            mProxy->output(input);
+            mProxy->sendToHost(mID, mStream, input);
         }
     }
 }

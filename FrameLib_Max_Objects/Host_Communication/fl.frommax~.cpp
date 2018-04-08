@@ -61,7 +61,7 @@ void FrameLib_MaxClass_FromMax::intHandler(t_atom_long in)
 
 void FrameLib_MaxClass_FromMax::floatHandler(double in)
 {
-    mProxy->write(&in, 1);
+    mProxy->sendFromHost(0, &in, 1);
 }
 
 void FrameLib_MaxClass_FromMax::list(t_symbol *s, long argc, t_atom *argv)
@@ -71,7 +71,7 @@ void FrameLib_MaxClass_FromMax::list(t_symbol *s, long argc, t_atom *argv)
     for (unsigned long i = 0; i < argc; i++)
         temporary[i] = atom_getfloat(argv++);
         
-    mProxy->write(&temporary[0], argc);
+    mProxy->sendFromHost(0, &temporary[0], argc);
 }
 
 void FrameLib_MaxClass_FromMax::anything(t_symbol *s, long argc, t_atom *argv)
@@ -79,8 +79,8 @@ void FrameLib_MaxClass_FromMax::anything(t_symbol *s, long argc, t_atom *argv)
     if (argc > 1 && atom_gettype(argv) == A_SYM)
         object_error(*this, "too many arguments for string value");
     
-    if (atom_gettype(argv) == A_SYM)
-        mProxy->write(s->s_name, argc ? atom_getsym(argv)->s_name : "");
+    if (argc && atom_gettype(argv) == A_SYM)
+        mProxy->sendFromHost(0, s->s_name, atom_getsym(argv)->s_name);
     else
     {
         std::vector<double> temporary(argc);
@@ -88,7 +88,7 @@ void FrameLib_MaxClass_FromMax::anything(t_symbol *s, long argc, t_atom *argv)
         for (unsigned long i = 0; i < argc; i++)
             temporary[i] = atom_getfloat(argv++);
         
-        mProxy->write(s->s_name, &temporary[0], argc);
+        mProxy->sendFromHost(0, s->s_name, &temporary[0], argc);
     }
 }
 

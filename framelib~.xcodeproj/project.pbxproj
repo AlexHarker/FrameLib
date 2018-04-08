@@ -2118,6 +2118,7 @@
 		B85C8FCC1E604F19004D7D40 /* FrameLib_Multitaper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Multitaper.h; sourceTree = "<group>"; };
 		B85C8FCD1E605B28004D7D40 /* fl.multitaper~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.multitaper~.cpp"; sourceTree = "<group>"; };
 		B85C8FE21E605B2E004D7D40 /* fl.multitaper~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.multitaper~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B85ED7EA20795F6D00B78657 /* FrameLib_HostProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_HostProxy.h; sourceTree = "<group>"; };
 		B861EB9F19CA2DCE00B89477 /* FrameLib_Sort_Functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Sort_Functions.h; sourceTree = "<group>"; };
 		B861EBA019CA389E00B89477 /* FrameLib_Sort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Sort.h; sourceTree = "<group>"; };
 		B861EBA119CA3AA500B89477 /* FrameLib_Percentile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Percentile.h; sourceTree = "<group>"; };
@@ -4935,6 +4936,7 @@
 		B8DCDB36207539F5008361FA /* Host_Communication */ = {
 			isa = PBXGroup;
 			children = (
+				B85ED7EA20795F6D00B78657 /* FrameLib_HostProxy.h */,
 				B8DCDB3820753A4F008361FA /* FrameLib_FromHost.h */,
 				B8DCDB3720753A4F008361FA /* FrameLib_FromHost.cpp */,
 				B8A1128E2076CDEA000C74FC /* FrameLib_ToHost.h */,

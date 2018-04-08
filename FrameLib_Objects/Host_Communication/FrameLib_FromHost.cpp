@@ -4,97 +4,94 @@
 
 // Proxy Class
 
-void FrameLib_FromHost::Proxy::write(const double *values, unsigned long N)
+// Send a vector frame
+
+void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, const double *values, unsigned long N)
 {
-    typedef std::vector<std::vector<double> *> VectorPtrList;
+    const std::vector<FrameLib_FromHost *>& objects = getObjectList(index);
+    std::vector<std::vector<double> *> swapVectors(objects.size());
     
-    VectorPtrList swapVectors(mRegistered.size());
+    // Create one vector per object, swap and then delete the old vectors
     
-    // Copy vector once per registered object
+    for (unsigned long i = 0; i < objects.size(); i++)
+        swapVectors[i] = new std::vector<double>(values, values + N);
     
-    for (unsigned long i = 0; i < mRegistered.size(); i++)
-    {
-        swapVectors[i] = new std::vector<double>(N);
-        swapVectors[i]->assign(values, values + N);
-    }
-
-    // Swap vectors once per registered object
-
-    for (unsigned long i = 0; i < mRegistered.size(); i++)
-    {
-        mRegistered[i]->mLock.acquire();
-        std::swap(mRegistered[i]->mVectorFrame, swapVectors[i]);
-        mRegistered[i]->mLock.release();
-    }
+    for (unsigned long i = 0; i < objects.size(); i++)
+        objects[i]->swapVectorFrame(swapVectors[i]);
     
-    // Delete old vectors
-    
-    for (VectorPtrList::iterator it = swapVectors.begin(); it != swapVectors.end(); it++)
-        delete *it;
+    for (unsigned long i = 0; i < objects.size(); i++)
+        delete swapVectors[i];
 }
 
-void FrameLib_FromHost::Proxy::write(const FrameLib_Parameters::Serial *serial)
+void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, unsigned long stream, const double *values, unsigned long N)
 {
-    typedef std::vector<FrameLib_Parameters::AutoSerial *> SerialPtrList;
-    
-    SerialPtrList swapSerials(mRegistered.size());
-    
-    // Copy serial structure once per registered object
-    
-    for (unsigned long i = 0; i < mRegistered.size(); i++)
-    {
-        swapSerials[i] = new FrameLib_Parameters::AutoSerial();
-        swapSerials[i]->write(serial);
-    }
-    
-    // Swap serial structures once per registered object
-    
-    for (unsigned long i = 0; i < mRegistered.size(); i++)
-    {
-        mRegistered[i]->mLock.acquire();
-        std::swap(mRegistered[i]->mSerialFrame, swapSerials[i]);
-        mRegistered[i]->mLock.release();
-    }
-    
-    // Delete old serial structures
-    
-    for (SerialPtrList::iterator it = swapSerials.begin(); it != swapSerials.end(); it++)
-        delete *it;
+    // Copy vector, swap and delete the old vector
+
+    std::vector<double> *inputSwap = new std::vector<double>(values, values + N);
+    getObject(index, stream)->swapVectorFrame(inputSwap);
+    delete inputSwap;
 }
 
-void FrameLib_FromHost::Proxy::write(const char *tag, const char *string)
+void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, const FrameLib_Parameters::Serial *serial)
 {
-    FrameLib_Parameters::AutoSerial serial;
-    serial.write(tag, string);
-    write(&serial);
-}
+    const std::vector<FrameLib_FromHost *>& objects = getObjectList(index);
+    std::vector<SerialList::Item *> addSerials(objects.size());
+    std::vector<SerialList> freeLists(objects.size());
 
-void FrameLib_FromHost::Proxy::write(const char *tag, const double *values, unsigned long N)
-{
-    FrameLib_Parameters::AutoSerial serial;
-    serial.write(tag, values, N);
-    write(&serial);
-}
-
-void FrameLib_FromHost::Proxy::registerObject(FrameLib_FromHost *object)
-{
-    if (std::find(mRegistered.begin(), mRegistered.end(), object) ==  mRegistered.end())
-        mRegistered.push_back(object);
-}
-
-void FrameLib_FromHost::Proxy::unregisterObject(FrameLib_FromHost *object)
-{
-    std::vector<FrameLib_FromHost *>::iterator it;
+    // Create one serial structure per object, swap and then clear the returned free lists
     
-    if ((it = std::find(mRegistered.begin(), mRegistered.end(), object)) !=  mRegistered.end())
-        mRegistered.erase(it);
+    for (unsigned long i = 0; i < objects.size(); i++)
+        addSerials[i] = new SerialList::Item(*serial);
+    
+    for (unsigned long i = 0; i < objects.size(); i++)
+        freeLists[i] = objects[i]->updateSerialFrame(addSerials[i]);
+        
+    for (unsigned long i = 0; i < objects.size(); i++)
+        freeLists[i].clear();
+}
+
+void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial)
+{
+    // Copy serial date, update and delete any frame ready to be freed
+    
+    SerialList::Item *addSerial = new SerialList::Item(*serial);
+    SerialList freeList = getObject(index, stream)->updateSerialFrame(addSerial);
+    freeList.clear();
+}
+
+// Send a parameter that takes a string
+
+void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, const char *tag, const char *string)
+{
+    FrameLib_Parameters::AutoSerial serial(tag, string);
+    sendFromHost(index, &serial);
+}
+
+void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, unsigned long stream, const char *tag, const char *string)
+{
+    FrameLib_Parameters::AutoSerial serial(tag, string);
+    sendFromHost(index, stream, &serial);
+}
+
+// Send a parameter that takes a vector
+
+void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, const char *tag, const double *values, unsigned long N)
+{
+    FrameLib_Parameters::AutoSerial serial(tag, values, N);
+    sendFromHost(index, &serial);
+}
+
+void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, unsigned long stream, const char *tag, const double *values, unsigned long N)
+{
+    FrameLib_Parameters::AutoSerial serial(tag, values, N);
+    sendFromHost(index, stream, &serial);
 }
 
 // FrameLib_FromHost Class
 
 // Constructor
 
-FrameLib_FromHost::FrameLib_FromHost(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1), mVectorFrame(NULL), mSerialFrame(NULL), mProxy(dynamic_cast<Proxy *>(proxy))
+FrameLib_FromHost::FrameLib_FromHost(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1), mVectorFrame(NULL), mProxy(dynamic_cast<Proxy *>(proxy)), mStreamOwner(this), mStream(0)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kValues, "values");
@@ -107,15 +104,28 @@ FrameLib_FromHost::FrameLib_FromHost(FrameLib_Context context, FrameLib_Paramete
     setOutputType(0, mMode == kValues ? kFrameNormal : kFrameTagged);
     
     if (mProxy)
-        mProxy->registerObject(this);
+        mProxy->registerObject(this, mStreamOwner, mStream);
 }
 
 FrameLib_FromHost::~FrameLib_FromHost()
 {
     if (mProxy)
-        mProxy->unregisterObject(this);
+        mProxy->unregisterObject(this, mStreamOwner, mStream);
     delete mVectorFrame;
-    delete mSerialFrame;
+}
+
+// Stream Awareness
+
+void FrameLib_FromHost::setStream(void *streamOwner, unsigned long stream)
+{
+    if (mProxy)
+    {
+        mProxy->unregisterObject(this, mStreamOwner, mStream);
+        mProxy->registerObject(this, streamOwner, stream);
+    }
+    
+    mStreamOwner = streamOwner;
+    mStream = stream;
 }
 
 // Info
@@ -166,14 +176,40 @@ void FrameLib_FromHost::process()
     }
     else
     {
-        requestOutputSize(0, mSerialFrame ? mSerialFrame->size() : 0);
+        requestOutputSize(0, mSerialFrame.size());
         allocateOutputs();
         
         FrameLib_Parameters::Serial *output = getOutput(0);
         
-        if (output)
-            output->write(mSerialFrame);
+        for (SerialList::Item *item = mSerialFrame.pop(); output && item; item = mSerialFrame.pop())
+        {
+            output->write(&item->mSerial);
+            mSerialFreeFrame.push(item);
+        }
     }
     
     mLock.release();
+}
+
+// Swap vector frame
+
+void FrameLib_FromHost::swapVectorFrame(std::vector<double> *swapVector)
+{
+    mLock.acquire();
+    std::swap(mVectorFrame, swapVector);
+    mLock.release();
+}
+
+// Swap vector frame
+
+FrameLib_FromHost::SerialList FrameLib_FromHost::updateSerialFrame(SerialList::Item *addSerial)
+{
+    SerialList freeList;
+    
+    mLock.acquire();
+    mSerialFrame.push(addSerial);
+    std::swap(mSerialFreeFrame, freeList);
+    mLock.release();
+    
+    return freeList;
 }
