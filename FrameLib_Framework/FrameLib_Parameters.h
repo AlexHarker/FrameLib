@@ -215,6 +215,9 @@ public:
 
         AutoSerial() {};
         AutoSerial(size_t size) : Serial(new Byte[size], size) {}
+        AutoSerial(const Serial& serial) : Serial(new Byte[serial.size()], serial.size()) { write(&serial); }
+        AutoSerial(const char *tag, const char *string) { write(tag, string); }
+        AutoSerial(const char *tag, const double *values, size_t N)  { write(tag, values, N); }
         ~AutoSerial() { if (mPtr) delete[] mPtr; }
         
         // Write Items
