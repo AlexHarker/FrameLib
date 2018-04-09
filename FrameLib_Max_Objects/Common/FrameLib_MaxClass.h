@@ -497,6 +497,7 @@ public:
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
         addMethod(c, (method) &externalResolveConnections, "__fl.resolve_connections");
+        addMethod(c, (method) &externalMarkUnresolved, "__fl.mark_unresolved");
         addMethod(c, (method) &externalAutoOrderingConnections, "__fl.auto_ordering_connections");
         addMethod(c, (method) &externalClearAutoOrderingConnections, "__fl.clear_auto_ordering_connections");
         addMethod(c, (method) &externalIsConnected, "__fl.is_connected");
@@ -606,6 +607,9 @@ public:
     {
         char conformedPath[MAX_PATH_CHARS];
         
+        if (!sys_getdspobjdspstate(*x))
+            x->resolveGraph(true);
+
         path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
         ExportError error = exportGraph(x->mObject, conformedPath, className->s_name);
         
@@ -792,11 +796,7 @@ public:
         FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, T::handlesAudio(), externalIsOutput(this));
        
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && T::handlesAudio() && mNeedsResolve)
-        {
-            traversePatch(mTopLevelPatch, gensym("__fl.resolve_connections"));
-            traversePatch(mTopLevelPatch, gensym("__fl.clear_auto_ordering_connections"));
-            traversePatch(mTopLevelPatch, gensym("__fl.auto_ordering_connections"));
-        }
+            resolveGraph(false);
         
         if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
             outlet_anything(mSyncIn, gensym("signal"), 0, NULL);
@@ -866,7 +866,12 @@ public:
     {
         x->resolveConnections();
     }
-                               
+    
+    static void externalMarkUnresolved(FrameLib_MaxClass *x)
+    {
+        x->mNeedsResolve = true;
+    }
+    
     static void externalAutoOrderingConnections(FrameLib_MaxClass *x)
     {
         x->mObject->autoOrderingConnections();
@@ -953,6 +958,15 @@ private:
         }
     }
 
+    void resolveGraph(bool markUnresolved)
+    {
+        traversePatch(mTopLevelPatch, gensym("__fl.resolve_connections"));
+        traversePatch(mTopLevelPatch, gensym("__fl.clear_auto_ordering_connections"));
+        traversePatch(mTopLevelPatch, gensym("__fl.auto_ordering_connections"));
+        if (markUnresolved)
+            traversePatch(mTopLevelPatch, gensym("__fl.mark_unresolved"));
+    }
+    
     void resolveConnections()
     {
         if (mNeedsResolve)
