@@ -150,7 +150,7 @@ private:
     
     // Swapping data with the proxy
     
-    void swapVectorFrame(std::vector<double> *swapVector);
+    std::vector<double> *swapVectorFrame(std::vector<double> *swapVector);
     void updateSerialFrame(SerialList &freeList, SerialList::Item *addSerial);
 
 // Data
