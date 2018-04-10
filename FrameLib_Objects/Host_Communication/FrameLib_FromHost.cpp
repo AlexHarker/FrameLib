@@ -34,17 +34,17 @@ void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, unsigned long s
 
 void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, const FrameLib_Parameters::Serial *serial)
 {
+    SerialList freeList;
     const std::vector<FrameLib_FromHost *>& objects = getObjectList(index);
     std::vector<SerialList::Item *> addSerials(objects.size());
-    std::vector<SerialList> freeLists(objects.size());
 
-    // Create one serial structure per object, swap and then clear the returned free lists when the vector destructs
+    // Create one serial structure per object, swap and then the free list will clear on destruct
     
     for (unsigned long i = 0; i < objects.size(); i++)
         addSerials[i] = new SerialList::Item(*serial);
     
     for (unsigned long i = 0; i < objects.size(); i++)
-        objects[i]->updateSerialFrame(freeLists[i], addSerials[i]);
+        objects[i]->updateSerialFrame(freeList, addSerials[i]);
 }
 
 void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial)

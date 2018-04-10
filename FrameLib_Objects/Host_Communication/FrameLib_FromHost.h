@@ -11,10 +11,7 @@ class FrameLib_FromHost : public FrameLib_Processor
     
     struct SerialList
     {
-        // N.B. - copy construction is allowed, but doesn't copy anything, so we can construct vectors
-        
         SerialList() : mTop(NULL), mTail(NULL) {}
-        SerialList(const SerialList&) : mTop(NULL), mTail(NULL) {}
         ~SerialList() { clear(); }
         
         struct Item
@@ -70,8 +67,13 @@ class FrameLib_FromHost : public FrameLib_Processor
         
         void reassign(SerialList& list)
         {
-            mTop = list.mTop;
-            mTail = list.mTail;
+            if (!mTop)
+                mTop = list.mTop;
+            else
+                mTail->mNext = list.mTop;
+            if (list.mTail)
+                mTail = list.mTail;
+            
             list.mTop = NULL;
             list.mTail = NULL;
         }
@@ -79,7 +81,8 @@ class FrameLib_FromHost : public FrameLib_Processor
     private:
         
         // Deleted
-        
+
+        SerialList(const SerialList&);
         SerialList& operator=(const SerialList&);
         
         // Data
