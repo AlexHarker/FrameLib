@@ -17,7 +17,7 @@ void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, const double *v
         swapVectors[i] = new std::vector<double>(values, values + N);
     
     for (unsigned long i = 0; i < objects.size(); i++)
-        objects[i]->swapVectorFrame(swapVectors[i]);
+        swapVectors[i] = objects[i]->swapVectorFrame(swapVectors[i]);
     
     for (unsigned long i = 0; i < objects.size(); i++)
         delete swapVectors[i];
@@ -190,11 +190,12 @@ void FrameLib_FromHost::process()
 
 // Swap vector frame
 
-void FrameLib_FromHost::swapVectorFrame(std::vector<double> *swapVector)
+std::vector<double> *FrameLib_FromHost::swapVectorFrame(std::vector<double> *swapVector)
 {
     mLock.acquire();
     std::swap(mVectorFrame, swapVector);
     mLock.release();
+    return swapVector;
 }
 
 // Swap vector frame
