@@ -169,7 +169,7 @@ void FrameLib_FromHost::process()
         allocateOutputs();
         
         double *output = getOutput(0, &size);
-        copyVector(output, &(*mVectorFrame)[0], size);
+        copyVector(output, mVectorFrame ? &(*mVectorFrame)[0] : NULL, size);
     }
     else
     {
