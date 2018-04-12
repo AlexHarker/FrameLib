@@ -475,7 +475,7 @@ template <class T, PDObjectArgsMode argsMode = kAsParams> class FrameLib_PDClass
     
     struct PDProxy : public PDClass_Base
     {
-        static t_pd *create(FrameLib_PDClass *owner, long index)
+        static t_pd *create(FrameLib_PDClass *owner, int index)
         {
             t_pd *proxy = pd_new(*PDProxy::getClassPointer<PDProxy>());
            
@@ -577,7 +577,7 @@ public:
         {
             if (i || T::handlesAudio())
             {
-                mInputs[i] = PDProxy::create(this, getNumAudioIns() + i);
+                mInputs[i] = PDProxy::create(this, (int) (getNumAudioIns() + i));
                 inlet_new(*this, mInputs[i], gensym("frame"), gensym("frame"));
             }
             else
