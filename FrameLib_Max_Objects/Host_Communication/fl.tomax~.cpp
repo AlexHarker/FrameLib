@@ -120,10 +120,6 @@ FrameLib_MaxClass_ToMax::FrameLib_MaxClass_ToMax(t_symbol *s, long argc, t_atom 
     : FrameLib_MaxClass(s, argc, argv, new ToHostProxy(this))
 {
     mOutlet = outlet_new(this, 0L);
-    
-    FrameLib_Proxy *proxy = mFrameLibProxy;
-    FrameLib_ToHost::Proxy *isProxy = dynamic_cast<FrameLib_ToHost::Proxy *>(proxy);
-    isProxy = NULL;
 }
 
 // To Outlet
