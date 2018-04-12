@@ -498,8 +498,8 @@ uint64_t basicSanity(uint64_t count)
 {
     FL_FP One(1,0);
     FL_FP OneULP(0,1);
-    FL_FP MaxInt(std::numeric_limits<uint64>::max(),0);
-    FL_FP MaxVal(std::numeric_limits<uint64>::max(),std::numeric_limits<uint64>::max());
+    FL_FP MaxInt(std::numeric_limits<uint64_t>::max(),0);
+    FL_FP MaxVal(std::numeric_limits<uint64_t>::max(),std::numeric_limits<uint64_t>::max());
     FL_FP result;
     bool success = true;
     

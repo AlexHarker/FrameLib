@@ -13,35 +13,5 @@ CLANG_CXX_LANGUAGE_STANDARD = c++11
 CLANG_CXX_LIBRARY = libc++
 CLANG_X86_VECTOR_INSTRUCTIONS = avx2
 
-// Specific to Max
-
-// Paths
-
-C74SUPPORT = $(SRCROOT)/FrameLib_Max_Objects/_MaxSDK_/c74support
-HEADER_SEARCH_PATHS = "$(SRCROOT)/../../AH_MaxMSP_Headers" "$(C74SUPPORT)/max-includes" "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-includes"
-FRAMEWORK_SEARCH_PATHS = "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-includes"
-
-
-// Special Files
-
-INFOPLIST_FILE = Info.plist
-GCC_PREFIX_HEADER = $(C74SUPPORT)/max-includes/macho-prefix.pch
-
-// Static Configuration (don't change these)
-
-WRAPPER_EXTENSION = mxo
-DEPLOYMENT_LOCATION = NO
-GENERATE_PKGINFO_FILE = YES
-
-GCC_PREPROCESSOR_DEFINITIONS = "DENORM_WANT_FIX = 1" "NO_TRANSLATION_SUPPORT = 1"
-
-// Flags to enforce some build-time checks for the symbols used while not actually performing a hard link
-
-C74_SYM_LINKER_FLAGS = @$(C74SUPPORT)/max-includes/c74_linker_flags.txt
-
-OTHER_LDFLAGS = $(C74_SYM_LINKER_FLAGS)
-
-// hide all symbols by default
-// mark a function to be exported with the C74_EXPORT macro -- most likely this will only apply to the main() function
-
 OTHER_CFLAGS = -fvisibility=hidden
+OTHER_CPLUSPLUSFLAGS = -fvisibility=hidden
