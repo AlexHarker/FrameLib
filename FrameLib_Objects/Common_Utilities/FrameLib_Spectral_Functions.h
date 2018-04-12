@@ -13,7 +13,7 @@ static unsigned long ilog2(unsigned long value)
         bitCount++;
     }
     
-    if (value == 1U << (bitCount - 1U))
+    if (bitCount && value == 1U << (bitCount - 1U))
         return bitCount - 1U;
     else
         return bitCount;
