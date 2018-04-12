@@ -3,27 +3,29 @@
 
 PRODUCT_NAME = $(TARGET_NAME)
 
+// Per architecture and deployment settings
+
+ARCHS = i386 x86_64
+
+//GCC_VERSION = com.apple.compilers.llvm.clang.1_0
+MACOSX_DEPLOYMENT_TARGET = 10.7
+CLANG_CXX_LANGUAGE_STANDARD = c++11
+CLANG_CXX_LIBRARY = libc++
+CLANG_X86_VECTOR_INSTRUCTIONS = avx2
+
+// Specific to Max
+
 // Paths
 
 C74SUPPORT = $(SRCROOT)/FrameLib_Max_Objects/_MaxSDK_/c74support
-HEADER_SEARCH_PATHS = /Developer/Headers/FlatCarbon "$(SRCROOT)/../../AH_MaxMSP_Headers" "$(C74SUPPORT)/max-includes" "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-includes"
+HEADER_SEARCH_PATHS = "$(SRCROOT)/../../AH_MaxMSP_Headers" "$(C74SUPPORT)/max-includes" "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-includes"
 FRAMEWORK_SEARCH_PATHS = "$(C74SUPPORT)/msp-includes" "$(C74SUPPORT)/jit-includes"
+
 
 // Special Files
 
-GCC_PREFIX_HEADER = $(C74SUPPORT)/max-includes/macho-prefix.pch
 INFOPLIST_FILE = Info.plist
-
-// Per architecture and deployment settings
-
-GCC_VERSION = com.apple.compilers.llvm.clang.1_0
-MACOSX_DEPLOYMENT_TARGET = 10.5
-
-ARCHS = i386 x86_64 
-
-CLANG_X86_VECTOR_INSTRUCTIONS = avx2
-
-GCC_PREPROCESSOR_DEFINITIONS = "DENORM_WANT_FIX = 1" "NO_TRANSLATION_SUPPORT = 1"
+GCC_PREFIX_HEADER = $(C74SUPPORT)/max-includes/macho-prefix.pch
 
 // Static Configuration (don't change these)
 
@@ -31,13 +33,7 @@ WRAPPER_EXTENSION = mxo
 DEPLOYMENT_LOCATION = NO
 GENERATE_PKGINFO_FILE = YES
 
-// Turn off C99 to minimise time spent working in Visual Studio
-
-WARNING_CFLAGS = -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -Wdeclaration-after-statement -Wno-deprecated-declarations -Werror
-
-// Allow old-style use of __inline (revise later)
-
-OTHER_CFLAGS = -std=gnu89
+GCC_PREPROCESSOR_DEFINITIONS = "DENORM_WANT_FIX = 1" "NO_TRANSLATION_SUPPORT = 1"
 
 // Flags to enforce some build-time checks for the symbols used while not actually performing a hard link
 
