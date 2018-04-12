@@ -72,7 +72,7 @@ public:
     
 private:
     
-    void acquire_buffer(t_symbol *name);
+    void acquire_buffer();
     void release_buffer();
 
     BufferType buffer_type;

@@ -26,7 +26,8 @@ t_symbol *ps_ibuffer;
 
 ibuffer_data::ibuffer_data(t_symbol *name) : buffer_type(kBufferNone), samples(NULL), length(0), num_chans(0), format(0), sample_rate(0.0)
 {
-    acquire_buffer(name);
+    buffer_object = name ? name->s_thing : NULL;
+    acquire_buffer();
 }
 
 ibuffer_data::~ibuffer_data()
@@ -47,15 +48,10 @@ void ibuffer_data::set_size_in_samples(t_atom_long size)
     atom_setlong(temp_atom, size);
     
     if (buffer_type == kBufferMaxBuffer)
-    {
-        t_buffer *buffer = reinterpret_cast<t_buffer *>(buffer_object);
-        
-        ATOMIC_INCREMENT(&(buffer)->b_inuse);
+    {        
+        release_buffer();
         object_method_typed(buffer_object, gensym("sizeinsamps"), 1, temp_atom, temp_atom + 1);
-        ATOMIC_DECREMENT(&(buffer)->b_inuse);
-        
-        samples = (void *) buffer->b_samples;
-        length = buffer->b_frames;
+        acquire_buffer();
     }
 }
 
@@ -64,7 +60,8 @@ void ibuffer_data::acquire(t_symbol *name)
     // N.B. - release (and init data using user call) before acquiring the new buffer
     
     release();
-    acquire_buffer(name);
+    buffer_object = name ? name->s_thing : NULL;
+    acquire_buffer();
 }
 
 void ibuffer_data::release()
@@ -79,27 +76,21 @@ void ibuffer_data::release()
     buffer_object = NULL;
 }
 
-void ibuffer_data::acquire_buffer(t_symbol *name)
+void ibuffer_data::acquire_buffer()
 {
-    buffer_object = name ? name->s_thing : NULL;
-    
     if (buffer_object)
     {
         if (ob_sym(buffer_object) == ps_buffer)
         {
-            t_buffer *buffer = reinterpret_cast<t_buffer *>(buffer_object);
             buffer_type = kBufferMaxBuffer;
-            
-            if (buffer->b_valid)
-            {
-                ATOMIC_INCREMENT(&buffer->b_inuse);
+            t_buffer_info info;
                 
-                samples = (void *) buffer->b_samples;
-                length = buffer->b_frames;
-                num_chans = buffer->b_nchans;
-                format = PCM_FLOAT;
-                sample_rate = buffer->b_sr;
-            }
+            samples = (void *) buffer_locksamples(buffer_object);
+            buffer_getinfo(buffer_object, &info);
+            length = samples ? info.b_frames : 0;
+            num_chans = samples ? info.b_nchans : 0;
+            format = PCM_FLOAT;
+            sample_rate = samples ? info.b_sr : 0.0;
         }
         
         if (ob_sym(buffer_object) == ps_ibuffer)
@@ -126,7 +117,7 @@ void ibuffer_data::release_buffer()
     if (buffer_object)
     {
         if (ob_sym(buffer_object) == ps_buffer)
-            ATOMIC_DECREMENT(&((t_buffer *)buffer_object)->b_inuse);
+        buffer_unlocksamples(buffer_object);
         
         if (ob_sym(buffer_object) == ps_ibuffer)
             ATOMIC_DECREMENT(&((t_ibuffer *)buffer_object)->inuse);
