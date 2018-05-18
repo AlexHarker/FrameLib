@@ -105,6 +105,7 @@
 #include "FrameLib_Chop.h"
 #include "FrameLib_Join.h"
 #include "FrameLib_MedianFilter.h"
+#include "FrameLib_NanFilter.h"
 #include "FrameLib_NonZero.h"
 #include "FrameLib_Pad.h"
 #include "FrameLib_Peaks.h"
