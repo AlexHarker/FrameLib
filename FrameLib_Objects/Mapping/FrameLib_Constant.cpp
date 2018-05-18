@@ -11,6 +11,7 @@ FrameLib_Constant::FrameLib_Constant(FrameLib_Context context, FrameLib_Paramete
     mParameters.addEnumItem(kInvPI, "1/pi");
     mParameters.addEnumItem(kInvE, "1/e");
     mParameters.addEnumItem(kInvSqrt2, "1/sqrt2");
+    mParameters.addEnumItem(kEpsilon, "epsilon");
     
     mParameters.addDouble(kMultiplier, "multiplier", 1.0, 1);
 
@@ -71,6 +72,7 @@ void FrameLib_Constant::process()
             case kInvPI:        value = M_1_PI;         break;
             case kInvE:         value = 1.0/M_E;        break;
             case kInvSqrt2:     value = M_SQRT1_2;      break;
+            case kEpsilon:      value = std::numeric_limits<double>::epsilon();     break;
         }
         
         output[0] = value * mParameters.getValue(kMultiplier);
