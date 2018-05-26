@@ -95,13 +95,11 @@ void getTypeString(std::string &name, FrameLib_Object<FrameLib_MultiChannel> *ob
     char *real_name = abi::__cxa_demangle(type_mangled_name, 0, 0, &status);
     
     name = real_name;
+    free(real_name);
 
     // Resolve functions Recursively
     
     findAndResolveFunctions(name, 0, name.length() - 1);
-    printf("The type is %s then %s\n", real_name, name.c_str());
-    free(real_name);
-
 }
 
 void serialiseGraph(std::vector<FrameLib_Object<FrameLib_MultiChannel> *>& serial, FrameLib_MultiChannel *object)
