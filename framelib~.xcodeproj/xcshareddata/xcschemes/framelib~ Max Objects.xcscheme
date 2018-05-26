@@ -2199,8 +2199,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8ACCA9120AF14770054E1E0"
-               BuildableName = "fl.nanfliter~.mxo"
-               BlueprintName = "fl.nanfliter~"
+               BuildableName = "fl.nanfilter~.mxo"
+               BlueprintName = "fl.nanfilter~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
