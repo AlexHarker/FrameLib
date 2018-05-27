@@ -6,6 +6,88 @@
 #include <sstream>
 #include <fstream>
 
+bool invalidPosition(size_t pos, size_t lo, size_t hi)
+{
+    return pos == std::string::npos || (pos < lo) || (pos > hi);
+}
+
+void removeCharacters(std::string &name, size_t pos, size_t count, size_t& end, size_t& removed)
+{
+    name.erase(pos, count);
+    end -= count;
+    removed += count;
+}
+
+size_t resolveFunctionType(std::string &name, size_t beg, size_t end)
+{
+    size_t searchPos;
+    size_t removed = 0;
+    
+    // Now determine if there are parameters to deal with and if so erase them
+    
+    if (!invalidPosition(searchPos = name.find("(", beg), beg, end))
+        removeCharacters(name, searchPos, 1 + end - searchPos, end, removed);
+    
+    // Reset search to the end character
+    
+    searchPos = end;
+
+    // Look for a template at the end and match the beginning template bracket
+
+    if (name[searchPos] == '>')
+    {
+        for (int bracketCount = 1; bracketCount; bracketCount = (name[searchPos] == '>') ? ++bracketCount : --bracketCount)
+            if (invalidPosition(searchPos = name.find_last_of("<>", searchPos - 1), beg, end))
+                return removed;
+    }
+        
+    // Find a space (the beginning of the function name) and delete everything before it inclusive of the space
+            
+    if (!invalidPosition(searchPos = name.rfind(" ", searchPos - 1), beg, end))
+        removeCharacters(name, beg, 1 + searchPos - beg, end, removed);
+    
+    return removed;
+}
+
+size_t findAndResolveFunctions(std::string &name, size_t beg, size_t end)
+{
+    size_t function1, function2;
+    size_t removed = 0;
+    
+    while (1)
+    {
+        // Recurse across the string to find any ampersands followed by a bracket (which are the start of a function)
+    
+        if (invalidPosition(function1 = name.find("&(", beg), beg, end))
+            return removed;
+    
+        function1 = function1 + 1;
+        function2 = function1 + 1;
+    
+        // Find the balancing bracket
+    
+        for (int bracketCount = 1; bracketCount; bracketCount = (name[function2] == '(') ? ++bracketCount : --bracketCount)
+            if (invalidPosition(function2 = name.find_first_of("()", function2 + 1), beg, end))
+                return removed;
+    
+        // Erase the main brackets (last first to keep the positions correct)
+        
+        removeCharacters(name, function2, 1, end, removed);
+        removeCharacters(name, function1, 1, end, removed);
+        function2 -= 2;
+        
+        // Recurse downwards to resolve functions within functions
+        
+        size_t currentRemoved = findAndResolveFunctions(name, function1, function2);
+        end -= currentRemoved;
+        removed += currentRemoved;
+
+        // We are now looking at a single function with no nested functions to resolve
+        
+        resolveFunctionType(name, function1, function2 - currentRemoved);
+    }
+}
+
 void getTypeString(std::string &name, FrameLib_Object<FrameLib_MultiChannel> *obj)
 {
     int status;
@@ -13,18 +95,11 @@ void getTypeString(std::string &name, FrameLib_Object<FrameLib_MultiChannel> *ob
     char *real_name = abi::__cxa_demangle(type_mangled_name, 0, 0, &status);
     
     name = real_name;
-    
-    // Remove brackets
-    
-    size_t pos;
-    
-    while ((pos = name.find("(")) != std::string::npos)
-        name.erase(pos, 1);
-    
-    while ((pos = name.find(")")) != std::string::npos)
-        name.erase(pos, 1);
-    
     free(real_name);
+
+    // Resolve functions Recursively
+    
+    findAndResolveFunctions(name, 0, name.length() - 1);
 }
 
 void serialiseGraph(std::vector<FrameLib_Object<FrameLib_MultiChannel> *>& serial, FrameLib_MultiChannel *object)

@@ -17,8 +17,8 @@ FrameLib_NanFilter::FrameLib_NanFilter(FrameLib_Context context, FrameLib_Parame
 
 std::string FrameLib_NanFilter::objectInfo(bool verbose)
 {
-    return formatInfo("Replaces NaNs in a vector",
-                      "Replaces NaNs in a vector", verbose);
+    return formatInfo("Replaces or removes NaNs in a vector",
+                      "Replaces or removes NaNs in a vector", verbose);
 }
 
 std::string FrameLib_NanFilter::inputInfo(unsigned long idx, bool verbose)

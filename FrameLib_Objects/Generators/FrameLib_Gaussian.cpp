@@ -88,6 +88,7 @@ void FrameLib_Gaussian::process()
     unsigned long sizeIn = std::min(sizeIn1, sizeIn2);
     
     sizeOut = ((Modes) mParameters.getInt(kMode)) == kInLength ? sizeIn : getLength();
+    sizeOut = !sizeIn ? 0 : sizeOut;
     requestOutputSize(0, sizeOut);
     allocateOutputs();
     

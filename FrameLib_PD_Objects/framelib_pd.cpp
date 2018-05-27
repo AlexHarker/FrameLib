@@ -99,6 +99,7 @@
 #include "FrameLib_Chop.h"
 #include "FrameLib_Join.h"
 #include "FrameLib_MedianFilter.h"
+#include "FrameLib_NanFilter.h"
 #include "FrameLib_NonZero.h"
 #include "FrameLib_Pad.h"
 #include "FrameLib_Peaks.h"
@@ -295,7 +296,8 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Crest> >::makeClass("fl.crest~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_VectorArgMin> >::makeClass("fl.argmin~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_VectorArgMax> >::makeClass("fl.argmax~");
-    
+    FrameLib_PDClass<FrameLib_Expand <FrameLib_NanFilter> >::makeClass("fl.nanfilter~");
+
     // Unary Operators
     
     FrameLib_PDClass_Expand<FrameLib_LogicalNot>::makeClass("fl.not~");
