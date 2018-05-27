@@ -56,7 +56,7 @@ FrameLib_MedianFilter::ParameterInfo::ParameterInfo()
     add("Sets the mode that controls the edge behaviour: "
         "pad - the edges are treated as though infinitely padded with the padding value. "
         "wrap - the edges are treated as though the frame is wrapped cyclically. "
-        "fold - the edges are treated as through they fold over (suitable for spectral purposes).");
+        "fold - the edges are treated as though they fold over (suitable for spectral purposes).");
 }
 
 // Helpers
