@@ -15,6 +15,7 @@ template<> const char *FrameLib_Vector<statProduct>::getOpString()              
 template<> const char *FrameLib_Vector<statMean>::getOpString()                 { return "mean"; }
 template<> const char *FrameLib_Vector<statGeometricMean>::getOpString()        { return "geometric mean"; }
 template<> const char *FrameLib_Vector<statStandardDeviation>::getOpString()    { return "standard deviation"; }
+template<> const char *FrameLib_Vector<statCentroid>::getOpString()             { return "centroid"; }
 template<> const char *FrameLib_Vector<statSpread>::getOpString()               { return "spread"; }
 template<> const char *FrameLib_Vector<statSkewness>::getOpString()             { return "skewness"; }
 template<> const char *FrameLib_Vector<statKurtosis>::getOpString()             { return "kurtosis"; }
