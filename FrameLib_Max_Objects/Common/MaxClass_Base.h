@@ -53,7 +53,7 @@ public:
     template <class T, typename Subpatch<T>::MethodSubPatch F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (method) call<T, F>, name, A_CANT, 0); }
     
     template <class T> struct ParentPatch { typedef void (T::*MethodParentPatch)(t_object **parent); };
-    template <class T, typename ParentPatch<T>::MethodParentPatch F> static void *call(T *x, t_object **parent) { ((x)->*F)(parent); }
+    template <class T, typename ParentPatch<T>::MethodParentPatch F> static void call(T *x, t_object **parent) { ((x)->*F)(parent); }
     template <class T, typename ParentPatch<T>::MethodParentPatch F> static void addMethod(t_class *c, const char *name) { class_addmethod(c, (method) call<T, F>, name, A_CANT, 0); }
 
     template <class T> struct DSP { typedef void (T::*MethodDSP)(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags); };
