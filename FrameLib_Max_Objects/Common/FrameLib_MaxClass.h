@@ -541,7 +541,7 @@ public:
         return !strcmp(jpatcher_get_filename(patch)->s_name, "");
     }
     
-    // Find the Patcher for the Context
+    // Find the patcher for the context
 
     static t_object *contextPatcher(t_object *patch)
     {
