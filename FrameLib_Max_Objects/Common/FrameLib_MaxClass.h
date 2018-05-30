@@ -526,9 +526,49 @@ public:
         dspInit(c);
     }
 
+    // Detect abstractions or other patches in boxes
+    
+    static bool isPatchInBox(t_object *patch)
+    {
+        t_object *box = jpatcher_get_box(patch);
+        return box ? jbox_get_object(box) == patch : false;
+    }
+    
+    // Detect subpatches or similar (patches not loaded from disk)
+    
+    static bool isSubpatch(t_object *patch)
+    {
+        return !strcmp(jpatcher_get_filename(patch)->s_name, "");
+    }
+    
+    // Find the Patcher for the Context
+
+    static t_object *contextPatcher(t_object *patch)
+    {
+        short loadUpdate = z_dsp_setloadupdate(false);
+        z_dsp_setloadupdate(loadUpdate);
+        bool useAssociation = loadUpdate;
+        
+        while (jpatcher_get_parentpatcher(patch))
+        {
+            t_object *assoc = 0;
+            object_method(patch, gensym("getassoc"), &assoc);
+            bool subpatch = isSubpatch(patch);
+            bool patchInBox = isPatchInBox(patch);
+            bool associationSafe = (useAssociation && !assoc);
+
+            if (!subpatch && !patchInBox && !associationSafe)
+                break;
+            
+            patch = jpatcher_get_parentpatcher(patch);
+        }
+        
+        return patch;
+    }
+    
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy()) : mFrameLibProxy(proxy), mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mTopLevelPatch(jpatcher_get_toppatcher(gensym("#P")->s_thing)), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
+    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy()) : mFrameLibProxy(proxy), mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mPatch(gensym("#P")->s_thing), mContextPatch(contextPatcher(mPatch)), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -544,7 +584,7 @@ public:
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
         mFrameLibProxy->mMaxObject = *this;
-        mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mTopLevelPatch), &serialisedParameters, mFrameLibProxy, nStreams);
+        mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mContextPatch), &serialisedParameters, mFrameLibProxy, nStreams);
         parseInputs(argc, argv);
         
         long numIns = getNumIns() + (supportsOrderingConnections() ? 1 : 0);
@@ -978,11 +1018,11 @@ private:
 
     void resolveGraph(bool markUnresolved)
     {
-        traversePatch(mTopLevelPatch, gensym("__fl.resolve_connections"));
-        traversePatch(mTopLevelPatch, gensym("__fl.clear_auto_ordering_connections"));
-        traversePatch(mTopLevelPatch, gensym("__fl.auto_ordering_connections"));
+        traversePatch(mContextPatch, gensym("__fl.resolve_connections"));
+        traversePatch(mContextPatch, gensym("__fl.clear_auto_ordering_connections"));
+        traversePatch(mContextPatch, gensym("__fl.auto_ordering_connections"));
         if (markUnresolved)
-            traversePatch(mTopLevelPatch, gensym("__fl.mark_unresolved"));
+            traversePatch(mContextPatch, gensym("__fl.mark_unresolved"));
     }
     
     void resolveConnections()
@@ -1424,7 +1464,8 @@ private:
     long mConfirmOutIndex;
     bool mConfirm;
     
-    t_object *mTopLevelPatch;
+    t_object *mPatch;
+    t_object *mContextPatch;
     t_object *mSyncIn;
     
     FrameLib_MaxGlobals::ManagedPointer mGlobal;
