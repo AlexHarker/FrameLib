@@ -526,21 +526,6 @@ public:
         dspInit(c);
     }
 
-    // Detect abstractions or other patches in boxes
-    
-    static bool isPatchInBox(t_object *patch)
-    {
-        t_object *box = jpatcher_get_box(patch);
-        return box ? jbox_get_object(box) == patch : false;
-    }
-    
-    // Detect subpatches or similar (patches not loaded from disk)
-    
-    static bool isSubpatch(t_object *patch)
-    {
-        return !strcmp(jpatcher_get_filename(patch)->s_name, "");
-    }
-    
     // Find the patcher for the context
 
     static t_object *contextPatcher(t_object *patch)
@@ -553,8 +538,8 @@ public:
         {
             t_object *assoc = 0;
             object_method(patch, gensym("getassoc"), &assoc);
-            bool subpatch = isSubpatch(patch);
-            bool patchInBox = isPatchInBox(patch);
+            bool subpatch = !strcmp(jpatcher_get_filename(patch)->s_name, "");
+            bool patchInBox = jpatcher_get_box(patch);
             bool associationSafe = (useAssociation && !assoc);
 
             if (!subpatch && !patchInBox && !associationSafe)
