@@ -226,6 +226,7 @@ public:
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
+        addMethod<Wrapper<T>, &Wrapper<T>::parentpatcher>(c, "parentpatcher");
         addMethod<Wrapper<T>, &Wrapper<T>::subpatcher>(c, "subpatcher");
         addMethod<Wrapper<T>, &Wrapper<T>::assist>(c, "assist");
         addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "anything");
@@ -251,7 +252,7 @@ public:
 
     // Constructor and Destructor
     
-    Wrapper(t_symbol *s, long argc, t_atom *argv)
+    Wrapper(t_symbol *s, long argc, t_atom *argv) : mParentPatch(gensym("#P")->s_thing)
     {
         // Create patcher (you must report this as a subpatcher to get audio working)
         
@@ -285,6 +286,11 @@ public:
         // Make internal object
 
         mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch, "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", newObjectText.c_str()));
+        
+        // Set the patch association and disallow editing
+        
+        object_method(mPatch, gensym("setassoc"), this);
+        object_method(mPatch, gensym("noedit"));
         
         // Make Mutator (with argument referencing the internal object)
         
@@ -363,9 +369,14 @@ public:
     
     // Standard methods
     
+    void parentpatcher(t_object **parent)
+    {
+        *parent = mParentPatch;
+    }
+    
     void *subpatcher(long index, void *arg)
     {
-        return ((t_ptr_uint) arg > 1 && !NOGOOD(arg) && index == 0) ? (void *) mPatch : NULL;
+        return (((t_ptr_uint) arg <= 1) || ((t_ptr_uint) arg > 1 && !NOGOOD(arg))) && index == 0 ? (void *) mPatch : NULL;
     }
     
     void assist(void *b, long m, long a, char *s)
@@ -428,12 +439,16 @@ public:
 private:
     
     T *internalObject() { return (T *) mObject; }
-    
-    // Objects (need freeing except the internal object which is owned by the patch)
+
+    // Owned Objects (need freeing)
     
     t_object *mPatch;
-    t_object *mObject;
     t_object *mMutator;
+    
+    // Unowned objects (the internal object is owned by the patch)
+    
+    t_object *mParentPatch;
+    t_object *mObject;
     
     // Inlets (must be freed)
     
@@ -942,7 +957,10 @@ private:
         
         t_object *assoc = 0;
         object_method(p, gensym("getassoc"), &assoc);
-        if (assoc)
+        
+         // If the subpatcher is a wrapper we do need to deal with it
+         
+        if (assoc && !object_method(assoc, gensym("__fl.wrapper_internal_object")))
             return;
         
         // Search for subpatchers, and call method on objects that don't have subpatchers
