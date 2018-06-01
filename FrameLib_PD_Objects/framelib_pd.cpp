@@ -104,6 +104,7 @@
 #include "FrameLib_Pad.h"
 #include "FrameLib_Peaks.h"
 #include "FrameLib_Percentile.h"
+#include "FrameLib_Reverse.h"
 #include "FrameLib_Shift.h"
 #include "FrameLib_Sort.h"
 #include "FrameLib_Split.h"
@@ -273,6 +274,7 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Pad> >::makeClass("fl.pad~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Peaks> >::makeClass("fl.peaks~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Percentile> >::makeClass("fl.percentile~");
+    FrameLib_PDClass<FrameLib_Expand <FrameLib_Reverse> >::makeClass("fl.reverse~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Shift> >::makeClass("fl.shift~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Sort> >::makeClass("fl.sort~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_Split> >::makeClass("fl.split~");
@@ -298,6 +300,7 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass<FrameLib_Expand <FrameLib_VectorArgMax> >::makeClass("fl.argmax~");
     FrameLib_PDClass<FrameLib_Expand <FrameLib_NanFilter> >::makeClass("fl.nanfilter~");
 
+    
     // Unary Operators
     
     FrameLib_PDClass_Expand<FrameLib_LogicalNot>::makeClass("fl.not~");
