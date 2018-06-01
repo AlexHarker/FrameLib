@@ -23,14 +23,14 @@ INCLUDEPATH=$(FRAMELIBOBJINCLUDES)\
 
 OBJS = framelib_pd.o
 
-OPT=-O2
+OPTIM=-O3
 #OPT=-g
 
 framelib_pd.d_fat: framelib_pd.o $(FRAMELIBOBJ1); \
-        cc $(OPT) -arch i386 -arch x86_64 -bundle -flat_namespace -undefined suppress -o framelib_pd.d_fat $(OBJS) \
+        cc $(OPTIM) -arch i386 -arch x86_64 -bundle -flat_namespace -undefined suppress -o framelib_pd.d_fat $(OBJS) \
         $(FRAMELIBOBJ) -lstdc++ -lpthread
 	cp framelib_pd.d_fat /Users/alexharker/Documents/Pd/externals
 
-.cpp.o:; g++ $(OPT) -arch i386 -arch x86_64 -std=c++11 -fPIC $(INCLUDEPATH) -c $<
+.cpp.o:; g++ $(OPTIM) -arch i386 -arch x86_64 -std=c++11 -fPIC $(INCLUDEPATH) -c $<
 
-.c.o:; cc $(OPT) -arch i386 -arch x86_64 -fPIC $(INCLUDEPATH) -c $<
+.c.o:; cc $(OPTIM) -arch i386 -arch x86_64 -fPIC $(INCLUDEPATH) -c $<
