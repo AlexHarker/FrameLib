@@ -235,7 +235,8 @@ public:
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
         addMethod(c, (method) &externalWrapperInternalObject, "__fl.wrapper_internal_object");
-        
+        addMethod(c, (method) &externalWrapperIsWrapper, "__fl.wrapper_is_wrapper");
+
         // N.B. MUST add signal handling after dspInit to override the builtin responses
         
         dspInit(c);
@@ -283,13 +284,13 @@ public:
                 newObjectText += text;
         }
         
-        // Make internal object
-
-        mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch, "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", newObjectText.c_str()));
-        
         // Set the patch association and disallow editing
         
         object_method(mPatch, gensym("setassoc"), this);
+        
+        // Make internal object  and disallow editing
+
+        mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch, "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", newObjectText.c_str()));
         object_method(mPatch, gensym("noedit"));
         
         // Make Mutator (with argument referencing the internal object)
@@ -436,6 +437,11 @@ public:
         return x->mObject;
     }
     
+    static void *externalWrapperIsWrapper(Wrapper *x)
+    {
+        return (void *) 1;
+    }
+    
 private:
     
     T *internalObject() { return (T *) mObject; }
@@ -530,22 +536,54 @@ public:
 
     static t_object *contextPatcher(t_object *patch)
     {
-        short loadUpdate = z_dsp_setloadupdate(false);
-        z_dsp_setloadupdate(loadUpdate);
-        bool useAssociation = loadUpdate;
+        bool traverse = true;
         
-        while (jpatcher_get_parentpatcher(patch))
+        for (t_object *parent = NULL; traverse && (parent = jpatcher_get_parentpatcher(patch)); patch = parent)
         {
             t_object *assoc = 0;
             object_method(patch, gensym("getassoc"), &assoc);
-            bool subpatch = !strcmp(jpatcher_get_filename(patch)->s_name, "");
-            bool patchInBox = jpatcher_get_box(patch);
-            bool associationSafe = (useAssociation && !assoc);
-
-            if (!subpatch && !patchInBox && !associationSafe)
-                break;
             
-            patch = jpatcher_get_parentpatcher(patch);
+            // Traverse if the patch is in a box (subpatcher or abstraction) ir belongs to a wrapper
+            
+            traverse = jpatcher_get_box(patch) || (assoc && object_method(assoc, gensym("__fl.wrapper_is_wrapper")));
+            
+            if (!traverse && !assoc)
+            {
+                // Get text of loading object in parent if there is no association (patch is currently loading)
+
+                char *text = NULL;
+                
+                for (t_object *b = jpatcher_get_firstobject(parent); b && !text; b = jbox_get_nextobject(b))
+                    if (jbox_get_maxclass(b) == gensym("newobj") && jbox_get_textfield(b))
+                        text = (char *) object_method(jbox_get_textfield(b), gensym("getptr"));
+
+                if (text)
+                {
+                    // Get the first item in the box as a symbol
+                
+                    t_atombuf *atomBuffer = (t_atombuf *) atombuf_new(0, NULL);
+                    atombuf_text(&atomBuffer, &text, strlen(text));
+                    t_symbol *objectName = atom_getsym(atomBuffer->a_argv);
+                    atombuf_free(atomBuffer);
+                    
+                    // Check if the patch is loading in a subpatcher
+                    
+                    if (!(traverse = objectName == gensym("p") || objectName == gensym("patcher")))
+                    {
+                        // Check if the patch is loading in an abstraction
+                        
+                        char objectText[MAX_FILENAME_CHARS];
+                        t_fourcc validTypes[TYPELIST_SIZE];
+                        short outvol = 0, numTypes = 0;
+                        t_fourcc outtype = 0;
+
+                        typelist_make(validTypes, TYPELIST_MAXFILES, &numTypes);
+                        strncpy_zero(objectText, objectName->s_name, MAX_FILENAME_CHARS);
+                        locatefile_extended(objectText, &outvol, &outtype, validTypes, numTypes);
+                        traverse = !strcmp(jpatcher_get_filename(patch)->s_name, objectText);
+                    }
+                }
+            }
         }
         
         return patch;
@@ -976,16 +1014,14 @@ private:
     
     // Private connection methods
     
-    void traversePatch(t_patcher *p, t_symbol *method)
+    void traversePatch(t_patcher *p, t_symbol *method, t_object *contextAssoc)
     {
-        // Avoid recursion into a poly / pfft / etc.
-        
         t_object *assoc = 0;
-        object_method(p, gensym("getassoc"), &assoc);
+        object_method(mContextPatch, gensym("getassoc"), &assoc);
         
-         // If the subpatcher is a wrapper we do need to deal with it
+        // Avoid recursion into a poly / pfft / etc. - If the subpatcher is a wrapper we do need to deal with it
          
-        if (assoc && !object_method(assoc, gensym("__fl.wrapper_internal_object")))
+        if (assoc != contextAssoc && !object_method(assoc, gensym("__fl.wrapper_is_wrapper")))
             return;
         
         // Search for subpatchers, and call method on objects that don't have subpatchers
@@ -995,7 +1031,7 @@ private:
             long index = 0;
             
             while (b && (p = (t_patcher *)object_subpatcher(jbox_get_object(b), &index, this)))
-                traversePatch(p, method);
+                traversePatch(p, method, contextAssoc);
 
             object_method(jbox_get_object(b), method);
         }
@@ -1003,11 +1039,14 @@ private:
 
     void resolveGraph(bool markUnresolved)
     {
-        traversePatch(mContextPatch, gensym("__fl.resolve_connections"));
-        traversePatch(mContextPatch, gensym("__fl.clear_auto_ordering_connections"));
-        traversePatch(mContextPatch, gensym("__fl.auto_ordering_connections"));
+        t_object *assoc = 0;
+        object_method(mContextPatch, gensym("getassoc"), &assoc);
+        
+        traversePatch(mContextPatch, gensym("__fl.resolve_connections"), assoc);
+        traversePatch(mContextPatch, gensym("__fl.clear_auto_ordering_connections"), assoc);
+        traversePatch(mContextPatch, gensym("__fl.auto_ordering_connections"), assoc);
         if (markUnresolved)
-            traversePatch(mContextPatch, gensym("__fl.mark_unresolved"));
+            traversePatch(mContextPatch, gensym("__fl.mark_unresolved"), assoc);
     }
     
     void resolveConnections()
