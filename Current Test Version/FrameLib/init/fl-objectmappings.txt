@@ -5,7 +5,7 @@ max objectfile fl.>=~ fl.greaterthaneq~;
 max objectfile fl.<~ fl.lessthan~;
 max objectfile fl.<=~ fl.lessthaneq~;
 max objectfile fl.-~ fl.minus~;
-max objectfile fl.!=~ fl.notequal~;
+max objectfile fl.!=~ fl.notequals~;
 max objectfile fl.+~ fl.plus~;
 max objectfile fl.*~ fl.times~;
 max objectfile fl.%~ fl.modulo~;

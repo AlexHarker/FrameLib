@@ -281,8 +281,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B805E26919C3AD16007D8D8B"
-               BuildableName = "fl.notequal~.mxo"
-               BlueprintName = "fl.notequal~"
+               BuildableName = "fl.notequals~.mxo"
+               BlueprintName = "fl.notequals~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
