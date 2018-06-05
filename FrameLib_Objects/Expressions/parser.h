@@ -71,7 +71,7 @@ struct UnaryOperation : public OpBase
 {
     UnaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
-    virtual int numItems() const                        { return 1; }
+    int numItems() const                        { return 1; }
     double call(double a, double b, double c) const     { return Op()(a); }
     
     FrameLib_DSP *create(FrameLib_Context context, bool const1, bool const2, bool const3) const
@@ -85,7 +85,7 @@ struct BinaryOperation : public OpBase
 {
     BinaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
-    virtual int numItems() const                        { return 2; }
+    int numItems() const                        { return 2; }
     double call(double a, double b, double c) const     { return Op()(a, b); }
     
     FrameLib_DSP *create(FrameLib_Context context, bool const1, bool const2, bool const3) const
@@ -588,7 +588,7 @@ class Parser
     {
         // Fold constants
         
-        if ( arg1.isConstant() && arg2.isConstant() && arg3.isConstant())
+        if (arg1.isConstant() && arg2.isConstant() && arg3.isConstant())
             return Node(op->call(arg1.getValue(), arg2.getValue(), arg3.getValue()));
         
         // Add to the graph
