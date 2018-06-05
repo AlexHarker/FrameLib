@@ -38,7 +38,7 @@ FrameLib_Now::ParameterInfo FrameLib_Now::sParamInfo;
 
 FrameLib_Now::ParameterInfo::ParameterInfo()
 {
-    add("Sets the time units used to for output.");
+    add("Sets the time units used for output.");
 }
 
 // Calculate Multiplier
