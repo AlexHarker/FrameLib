@@ -144,9 +144,7 @@ private:
 
         if (sizeMin == 0)
             return;
-        
-        // Not a real ternary op: sizeOut always = sizeIn1;
-        
+                
         switch (mode)
         {
             case kShrink:
