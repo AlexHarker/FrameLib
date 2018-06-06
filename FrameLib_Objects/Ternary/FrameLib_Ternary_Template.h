@@ -148,10 +148,9 @@ private:
         switch (mode)
         {
             case kShrink:
-            {
                 sizeOut = sizeMin;
                 break;
-            }
+
             case kWrap:
             case kExtend:
                 sizeOut = sizeMax;
@@ -164,18 +163,20 @@ private:
         if (!sizeOut)
             return;
         
-        for (unsigned long i = 0; i < sizeMin; i++)
-            output[i] = op(input1[i], input2[i], input3[i]);
-    
-        if (mode == kShrink)
-            return;
+        if (mode == kShrink || sizeMin == sizeMax)
+        {
+            for (unsigned long i = 0; i < sizeMin; i++)
+                output[i] = op(input1[i], input2[i], input3[i]);
+        }
+        else
+        {
+            EnlargedInput in1(this, input1, sizeIn[0], sizeMax, mode);
+            EnlargedInput in2(this, input2, sizeIn[1], sizeMax, mode);
+            EnlargedInput in3(this, input3, sizeIn[2], sizeMax, mode);
         
-        EnlargedInput in1(this, input1, sizeIn[0], sizeMax, mode);
-        EnlargedInput in2(this, input2, sizeIn[1], sizeMax, mode);
-        EnlargedInput in3(this, input3, sizeIn[2], sizeMax, mode);
-        
-        for (unsigned long i = sizeMin; i < sizeMax; i++)
-            output[i] = op(in1[i], in2[i], in3[i]);
+            for (unsigned long i = 0; i < sizeMax; i++)
+                output[i] = op(in1[i], in2[i], in3[i]);
+        }
     }
     
     virtual const char *getDescriptionString() { return "Ternary Operator - No operator info available"; }
