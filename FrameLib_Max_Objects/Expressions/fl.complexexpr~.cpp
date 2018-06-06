@@ -1,5 +1,5 @@
 
-#include "FrameLib_Expression.h"
+#include "FrameLib_ComplexExpression.h"
 #include "FrameLib_MaxClass.h"
 
 // This object parses it's arguments differently to normal, which is handled by pre-parsing the atoms into a different format
@@ -47,7 +47,7 @@ private:
      
         // Escape division by known constants
         
-        if (sym == gensym("/pi") || sym == gensym("/epsilon") || sym == gensym("/e") || sym == gensym("/inf"))
+        if (sym == gensym("/i") || sym == gensym("/pi") || sym == gensym("/epsilon") || sym == gensym("/e") || sym == gensym("/inf"))
             return false;
 
         // Require a parameter tag to have only letters after the slash
@@ -91,23 +91,23 @@ private:
 
 // This class is a wrapper that allows the parsing to happen correctly
 
-struct FrameLib_MaxClass_Expression_Parsed : public FrameLib_MaxClass<FrameLib_Expand<FrameLib_Expression> >
+struct FrameLib_MaxClass_ComplexExpression_Parsed : public FrameLib_MaxClass<FrameLib_Expand<FrameLib_ComplexExpression> >
 {
-    FrameLib_MaxClass_Expression_Parsed(const ArgumentParser &parsed) :
+    FrameLib_MaxClass_ComplexExpression_Parsed(const ArgumentParser &parsed) :
     FrameLib_MaxClass(parsed.symbol(), parsed.count(), parsed.args(), new FrameLib_MaxProxy()) {}
 };
 
 // Max Class (inherits from the parsed version which inherits the standard max class
 
-struct FrameLib_MaxClass_Expression : public FrameLib_MaxClass_Expression_Parsed
+struct FrameLib_MaxClass_ComplexExpression : public FrameLib_MaxClass_ComplexExpression_Parsed
 {
     // Constructor
     
-    FrameLib_MaxClass_Expression(t_symbol *s, long argc, t_atom *argv) :
-        FrameLib_MaxClass_Expression_Parsed(ArgumentParser(s, argc, argv)) {}
+    FrameLib_MaxClass_ComplexExpression(t_symbol *s, long argc, t_atom *argv) :
+        FrameLib_MaxClass_ComplexExpression_Parsed(ArgumentParser(s, argc, argv)) {}
 };
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expression::makeClass<FrameLib_MaxClass_Expression>(CLASS_BOX, "fl.expr~");
+    FrameLib_MaxClass_ComplexExpression::makeClass<FrameLib_MaxClass_ComplexExpression>(CLASS_BOX, "fl.complexexpr~");
 }

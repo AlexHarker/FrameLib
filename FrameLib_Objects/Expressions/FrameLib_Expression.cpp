@@ -1,12 +1,69 @@
 
-#include "FrameLib_ExpressionGraph.h"
+#include "FrameLib_Expression.h"
+
+#include "../Unary/FrameLib_Unary_Template.h"
+#include "../Binary/FrameLib_Binary_Template.h"
+#include "../Ternary/FrameLib_Ternary_Template.h"
+#include "../Ternary/FrameLib_Ternary_Objects.h"
 
 // Parser Class
+
+// Function/Operator Templates
+
+template <typename Op>
+struct UnaryOperation : public OpBase<double>
+{
+    UnaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
+    
+    int numItems() const                                { return 1; }
+    double call(double a, double b, double c) const     { return Op()(a); }
+    
+    FrameLib_DSP *create(FrameLib_Context context) const
+    {
+        return new FrameLib_UnaryOp<Op>(context, NULL, NULL);
+    }
+};
+
+template <typename Op>
+struct BinaryOperation : public OpBase<double>
+{
+    BinaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
+    
+    int numItems() const                                { return 2; }
+    double call(double a, double b, double c) const     { return Op()(a, b); }
+    
+    FrameLib_DSP *create(FrameLib_Context context) const
+    {
+        FrameLib_Parameters::AutoSerial serialiedParameters;
+        serialiedParameters.write("mismatch", "wrap");
+        return new FrameLib_BinaryOp<Op>(context, &serialiedParameters, NULL);
+    }
+};
+
+template <typename Op>
+struct TernaryOperation : public OpBase<double>
+{
+    TernaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
+    
+    virtual int numItems() const                        { return 3; }
+    double call(double a, double b, double c) const     { return Op()(a, b, c); }
+    
+    FrameLib_DSP *create(FrameLib_Context context) const
+    {
+        FrameLib_Parameters::AutoSerial serialiedParameters;
+        serialiedParameters.write("mismatch", "extend");
+        return new FrameLib_TernaryOp<Op>(context, &serialiedParameters, NULL);
+    }
+};
 
 static double negate(double a) { return -a; }
 
 FrameLib_Expression::Parser::Parser() : FrameLib_ExprParser(7)
 {
+    // Default Return Constant
+    
+    setDefaultConstant(std::numeric_limits<double>::quiet_NaN());
+    
     // Constants
     
     addConstant("e", M_E);
@@ -139,9 +196,10 @@ void FrameLib_Expression::ConstantOut::process()
 
 FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mInputProcessor(NULL), mParameters(&sParamInfo)
 {
+    typedef Graph<double> Graph;
     typedef FrameLib_Block::Connection Connection;
     
-    mParameters.addString(kExpression, "expression", 0);
+    mParameters.addString(kExpression, "expr", 0);
     mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);

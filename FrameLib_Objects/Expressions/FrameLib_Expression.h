@@ -7,7 +7,7 @@
 
 class FrameLib_Expression : public FrameLib_Block
 {
-    struct Parser : public FrameLib_ExprParser
+    struct Parser : public FrameLib_ExprParser<double>
     {
         Parser();
     };

@@ -1,4 +1,7 @@
 
+#ifndef FRAMELIB_EXPRPARSER_H
+#define FRAMELIB_EXPRPARSER_H
+
 #include <vector>
 #include <cmath>
 #include <limits>
@@ -7,75 +10,7 @@
 
 #include <string.h>
 
-#include "../Unary/FrameLib_Unary_Template.h"
-#include "../Binary/FrameLib_Binary_Template.h"
-#include "../Ternary/FrameLib_Ternary_Template.h"
-#include "../Ternary/FrameLib_Ternary_Objects.h"
-
-// A base class for functions and operators
-
-struct OpBase
-{
-    OpBase(const char* name, int precedence) : mName(name), mPrecedence(precedence) {}
-    virtual ~OpBase() {}
-    
-    virtual int numItems() const = 0;
-    virtual double call(double a, double b, double c) const = 0;
-    virtual FrameLib_DSP *create(FrameLib_Context context) const = 0;
-
-    const char* mName;
-    int mPrecedence;
-};
-
-// Function/Operator Templates
-
-template <typename Op>
-struct UnaryOperation : public OpBase
-{
-    UnaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
-    
-    int numItems() const                                { return 1; }
-    double call(double a, double b, double c) const     { return Op()(a); }
-    
-    FrameLib_DSP *create(FrameLib_Context context) const
-    {
-        return new FrameLib_UnaryOp<Op>(context, NULL, NULL);
-    }
-};
-
-template <typename Op>
-struct BinaryOperation : public OpBase
-{
-    BinaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
-    
-    int numItems() const                                { return 2; }
-    double call(double a, double b, double c) const     { return Op()(a, b); }
-    
-    FrameLib_DSP *create(FrameLib_Context context) const
-    {
-        FrameLib_Parameters::AutoSerial serialiedParameters;
-        serialiedParameters.write("mismatch", "wrap");
-        return new FrameLib_BinaryOp<Op>(context, &serialiedParameters, NULL);
-    }
-};
-
-template <typename Op>
-struct TernaryOperation : public OpBase
-{
-    TernaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
-    
-    virtual int numItems() const                        { return 3; }
-    double call(double a, double b, double c) const     { return Op()(a, b, c); }
-    
-    FrameLib_DSP *create(FrameLib_Context context) const
-    {
-        FrameLib_Parameters::AutoSerial serialiedParameters;
-        serialiedParameters.write("mismatch", "extend");
-        return new FrameLib_TernaryOp<Op>(context, &serialiedParameters, NULL);
-    }
-};
-
-// Error Types
+// Parsing Error Types
 
 enum ExprParseError
 {
@@ -94,41 +29,59 @@ enum ExprParseError
     kParseError_StrayItem
 };
 
-// Graph Structure
+// A base class for functions and operators
+
+template <class T>
+struct OpBase
+{
+    OpBase(const char* name, int precedence) : mName(name), mPrecedence(precedence) {}
+    virtual ~OpBase() {}
+    
+    virtual int numItems() const = 0;
+    virtual T call(T a, T b, T c) const = 0;
+    virtual FrameLib_DSP *create(FrameLib_Context context) const = 0;
+
+    const char* mName;
+    int mPrecedence;
+};
+
+// Graph Structure for Output
 
 enum InputType { kInputUnused, kInputConstant, kInputVariable, kInputResult };
 enum IndexType { kIsInput, kIsOutput };
 
+template <class T>
 struct Graph
 {
-    Graph() : mNumInputs(1), mConstant(std::numeric_limits<double>::quiet_NaN()) {}
+    Graph() : mNumInputs(1), mConstant(0.0) {}
     
     struct Input
     {
         Input() : mType(kInputUnused), mIndex(-1), mValue(0.0) {}
-        Input(double value) : mType(kInputConstant), mIndex(-1), mValue(value) {}
+        Input(T value) : mType(kInputConstant), mIndex(-1), mValue(value) {}
         Input(IndexType type, long index) : mType(type == kIsInput ? kInputVariable : kInputResult), mIndex(index), mValue(0.0) {}
         
         InputType mType;
         long mIndex;
-        double mValue;
+        T mValue;
     };
     
     struct Operation
     {
-        Operation(const OpBase *op) : mOp(op) {}
+        Operation(const OpBase<T> *op) : mOp(op) {}
         
-        const OpBase *mOp;
+        const OpBase<T> *mOp;
         Input mIns[3];
     };
     
     std::vector<Operation> mOperations;
     long mNumInputs;
-    double mConstant;
+    T mConstant;
 };
 
 // FrameLib_ExprParser Class
 
+template <class T>
 class FrameLib_ExprParser
 {
     enum TokenType { kParenthesisLHS, kParenthesisRHS, kComma, kOperator, kNumber, kSymbol, kUnknown };
@@ -154,7 +107,7 @@ class FrameLib_ExprParser
         
         Node() : mType(kToken), mValue(0.0), mIndex(-1) {}
         Node(Token token) : mType(kToken), mToken(token), mValue(0.0), mIndex(-1) {}
-        Node(double constant) : mType(kConstant), mValue(constant), mIndex(-1) {}
+        Node(T constant) : mType(kConstant), mValue(constant), mIndex(-1) {}
         Node(IndexType type, long index) : mType(type == kIsInput ? kVariable : kResult), mValue(0.0), mIndex(index) {}
         
         // Checks for types of node / tokens
@@ -172,7 +125,7 @@ class FrameLib_ExprParser
         // Getters
         
         inline long getIndex() const            { return mIndex; }
-        inline double getValue() const          { return mValue; }
+        inline T getValue() const               { return mValue; }
         const char *getTokenString() const      { return mToken.mText.c_str(); }
         
         // Input Token Conversion
@@ -195,23 +148,23 @@ class FrameLib_ExprParser
         
         NodeType mType;
         Token mToken;
-        double mValue;
+        T mValue;
         long mIndex;
     };
     
     // Typedefs for brevity
     
     typedef std::vector<Node> NodeList;
-    typedef std::vector<Node>::iterator NodeListIterator;
+    typedef typename std::vector<Node>::iterator NodeListIterator;
     
     // Constant Struct
     
     struct Constant
     {
-        Constant(const char* name, double value) : mName(name), mValue(value) {}
+        Constant(const char* name, T value) : mName(name), mValue(value) {}
         
         const char *mName;
-        double mValue;
+        T mValue;
     };
     
     // Operator List Class
@@ -225,7 +178,7 @@ class FrameLib_ExprParser
         
         ~OperatorList()
         {
-            for (std::vector<OpBase *>::iterator it = mItems.begin(); it != mItems.end(); it++)
+            for (typename std::vector<OpBase<T> *>::iterator it = mItems.begin(); it != mItems.end(); it++)
             {
                 delete (*it);
                 *it = NULL;
@@ -234,14 +187,14 @@ class FrameLib_ExprParser
             mItems.clear();
         }
         
-        void addItem(OpBase *item)
+        void addItem(OpBase<T> *item)
         {
             mItems.push_back(item);
         }
         
-        const OpBase *getItem(const char *name) const
+        const OpBase<T> *getItem(const char *name) const
         {
-            for (std::vector<OpBase *>::const_iterator it = mItems.begin(); it != mItems.end(); it++)
+            for (typename std::vector<OpBase<T> *>::const_iterator it = mItems.begin(); it != mItems.end(); it++)
                 if (!strcmp(name, (*it)->mName))
                     return (*it);
             
@@ -250,7 +203,7 @@ class FrameLib_ExprParser
         
     private:
         
-        std::vector<OpBase *> mItems;
+        std::vector<OpBase<T> *> mItems;
     };
     
 public:
@@ -260,7 +213,7 @@ public:
         mOperators.resize(precedenceLevels);
     }
     
-    void addOperator(OpBase* op)
+    void addOperator(OpBase<T>* op)
     {
         int precedence = op->mPrecedence;
         
@@ -282,23 +235,28 @@ public:
         mOperatorCharList.erase(it, mOperatorCharList.end());
     }
     
-    void addFunction(OpBase *item)
+    void addFunction(OpBase<T> *item)
     {
         mFunctions.addItem(item);
     }
     
-    void addConstant(const char *name, double value)
+    void addConstant(const char *name, T value)
     {
         mConstants.push_back(Constant(name, value));
     }
     
-    ExprParseError parse(Graph& graph, const char *expr)
+    void setDefaultConstant(T constant)
+    {
+        mDefaultConstant = constant;
+    }
+    
+    ExprParseError parse(Graph<T>& graph, const char *expr)
     {
         NodeList nodes;
         ExprParseError error;
-        double value = 0.0;
+        T value = 0.0;
         
-        graph = Graph();
+        graph = Graph<T>();
         
         // Run lexer
         
@@ -430,8 +388,7 @@ private:
     
     // Lex the input into tokens or nodes
     
-    template <class T>
-    ExprParseError lex(std::vector<T>& tokens, const char *expr)
+    ExprParseError lex(std::vector<Node>& tokens, const char *expr)
     {
         while (*expr)
         {
@@ -472,9 +429,9 @@ private:
     
     // Constants
     
-    bool getConstant(const char *name, double& value) const
+    bool getConstant(const char *name, T& value) const
     {
-        for (std::vector<Constant>::const_iterator it = mConstants.begin(); it != mConstants.end(); it++)
+        for (typename std::vector<Constant>::const_iterator it = mConstants.begin(); it != mConstants.end(); it++)
         {
             if (!strcmp(name, it->mName))
             {
@@ -488,14 +445,14 @@ private:
     
     // Operators / Functions
     
-    const OpBase *getOperator(const char *name, int precedence) const
+    const OpBase<T> *getOperator(const char *name, int precedence) const
     {
         return mOperators[precedence].getItem(name);
     }
     
-    const OpBase *getOperator(const char *name) const
+    const OpBase<T> *getOperator(const char *name) const
     {
-        const OpBase *op = NULL;
+        const OpBase<T> *op = NULL;
         
         for (int i = 0; i < mOperators.size(); i++)
             if ((op = getOperator(name, i)))
@@ -506,17 +463,17 @@ private:
     
     // Parsing Functions
     
-    Graph::Input parseInput(const Node& arg)
+    typename Graph<T>::Input parseInput(const Node& arg)
     {
         if (arg.isConstant())
-            return Graph::Input(arg.getValue());
+            return typename Graph<T>::Input(arg.getValue());
         if (arg.isVariable())
-            return Graph::Input(kIsInput, arg.getIndex());
+            return typename Graph<T>::Input(kIsInput, arg.getIndex());
         
-        return Graph::Input(kIsOutput, arg.getIndex());
+        return typename Graph<T>::Input(kIsOutput, arg.getIndex());
     }
 
-    Node parseOperation(Graph& graph, const OpBase *op, const Node& arg1, const Node& arg2, const Node& arg3)
+    Node parseOperation(Graph<T>& graph, const OpBase<T> *op, const Node& arg1, const Node& arg2, const Node& arg3)
     {
         // Fold constants
         
@@ -535,7 +492,7 @@ private:
         return Node(kIsOutput, graph.mOperations.size() - 1);
     }
     
-    ExprParseError parseUnaryOperator(Graph& graph, const OpBase *op, NodeList& nodes, NodeListIterator& it)
+    ExprParseError parseUnaryOperator(Graph<T>& graph, const OpBase<T> *op, NodeList& nodes, NodeListIterator& it)
     {
         // Check the operator isn't last, that its either first, or precededed by an operator and not followed by one
         // N.B. return no error in case this is also an operator later, otherwise it'll be picked up as a stray item
@@ -551,7 +508,7 @@ private:
         return kNoError;
     }
 
-    ExprParseError parseBinaryOperator(Graph& graph, const OpBase *op, NodeList& nodes, NodeListIterator& it)
+    ExprParseError parseBinaryOperator(Graph<T>& graph, const OpBase<T> *op, NodeList& nodes, NodeListIterator& it)
     {
         // Check the operator is not at the beginning or end and the nodes either side are not operators
         
@@ -566,7 +523,7 @@ private:
         return kNoError;
     }
 
-    void parseFunction(Graph& graph, const OpBase *function, NodeList& nodes)
+    void parseFunction(Graph<T>& graph, const OpBase<T> *function, NodeList& nodes)
     {
         int numItems = function->numItems();
         
@@ -575,9 +532,9 @@ private:
         nodes[0] = parseOperation(graph, function, nodes[0], nodes[numItems > 1 ? 1 : 0], nodes[numItems > 2 ? 2 : 0]);
     }
 
-    ExprParseError parseOperators(Graph& graph, Node &result, NodeList& nodes)
+    ExprParseError parseOperators(Graph<T>& graph, Node &result, NodeList& nodes)
     {
-        const OpBase *op = NULL;
+        const OpBase<T> *op = NULL;
         ExprParseError error = kNoError;
 
         // Check for any remaining tokens that are not operators
@@ -610,7 +567,7 @@ private:
         return (nodes.size() != 1 || nodes[0].isToken()) ? kParseError_StrayItem : kNoError;;
     }
 
-    ExprParseError recursiveParse(Graph& graph, NodeList& nodes, int resultItems)
+    ExprParseError recursiveParse(Graph<T>& graph, NodeList& nodes, int resultItems)
     {
         NodeListIterator n1, n2;
         ExprParseError error = kNoError;
@@ -624,7 +581,7 @@ private:
         
         for (n2 = nodes.begin(); ; )
         {
-            const OpBase *function = NULL;
+            const OpBase<T> *function = NULL;
 
             // Find first RHS parenthesis and matching LHS parenthesis
             
@@ -713,4 +670,8 @@ private:
     
     std::vector<char> mOperatorCharList;
     size_t mMaxLengthOp;
+    
+    T mDefaultConstant;
 };
+
+#endif
