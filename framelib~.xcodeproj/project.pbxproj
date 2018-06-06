@@ -122,7 +122,7 @@
 		B85C8FDC1E605B2E004D7D40 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B85C8FE41E605B44004D7D40 /* fl.multitaper~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85C8FCD1E605B28004D7D40 /* fl.multitaper~.cpp */; };
 		B85C8FE61E605E5D004D7D40 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879419C8F58C00B1D0CD /* Accelerate.framework */; };
-		B85E1D4020C8408E00DEEE6E /* FrameLib_ExpressionGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = B8E41B1E20C5E763003BBD86 /* FrameLib_ExpressionGraph.h */; };
+		B85E1D4020C8408E00DEEE6E /* FrameLib_Expression.h in Headers */ = {isa = PBXBuildFile; fileRef = B8E41B1E20C5E763003BBD86 /* FrameLib_Expression.h */; };
 		B85E1D4620C8408E00DEEE6E /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B85E1D4720C8408E00DEEE6E /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B85E1D4E20C8409F00DEEE6E /* FrameLib_ComplexExpression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85E1D3B20C82DDF00DEEE6E /* FrameLib_ComplexExpression.cpp */; };
@@ -658,8 +658,8 @@
 		B8E41B0820C41A6B003BBD86 /* FrameLib_ExprParser.h in Headers */ = {isa = PBXBuildFile; fileRef = B8E41B0720C36599003BBD86 /* FrameLib_ExprParser.h */; };
 		B8E41B1620C5E71C003BBD86 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8E41B1720C5E71C003BBD86 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8E41B2020C5E765003BBD86 /* FrameLib_ExpressionGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = B8E41B1E20C5E763003BBD86 /* FrameLib_ExpressionGraph.h */; };
-		B8E41B2120C5E765003BBD86 /* FrameLib_ExpressionGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8E41B1F20C5E764003BBD86 /* FrameLib_ExpressionGraph.cpp */; };
+		B8E41B2020C5E765003BBD86 /* FrameLib_Expression.h in Headers */ = {isa = PBXBuildFile; fileRef = B8E41B1E20C5E763003BBD86 /* FrameLib_Expression.h */; };
+		B8E41B2120C5E765003BBD86 /* FrameLib_Expression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8E41B1F20C5E764003BBD86 /* FrameLib_Expression.cpp */; };
 		B8E41B2320C5EACE003BBD86 /* fl.expr~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8E41B2220C5EACD003BBD86 /* fl.expr~.cpp */; };
 		B8E6E9DF207904F7004AB73F /* libframelib_objects.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8BA6FD22078D49200D3DB3D /* libframelib_objects.a */; };
 		B8F3798119F1C8B400EC7FDA /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
@@ -2336,8 +2336,8 @@
 		B8E41AE820C30AE2003BBD86 /* exprtk.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = exprtk.hpp; sourceTree = "<group>"; };
 		B8E41B0720C36599003BBD86 /* FrameLib_ExprParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_ExprParser.h; sourceTree = "<group>"; };
 		B8E41B1C20C5E71C003BBD86 /* fl.expr~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.expr~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8E41B1E20C5E763003BBD86 /* FrameLib_ExpressionGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_ExpressionGraph.h; sourceTree = "<group>"; };
-		B8E41B1F20C5E764003BBD86 /* FrameLib_ExpressionGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_ExpressionGraph.cpp; sourceTree = "<group>"; };
+		B8E41B1E20C5E763003BBD86 /* FrameLib_Expression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Expression.h; sourceTree = "<group>"; };
+		B8E41B1F20C5E764003BBD86 /* FrameLib_Expression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Expression.cpp; sourceTree = "<group>"; };
 		B8E41B2220C5EACD003BBD86 /* fl.expr~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.expr~.cpp"; sourceTree = "<group>"; };
 		B8E5F08D2073A62400978385 /* FrameLib_Export.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Export.h; sourceTree = "<group>"; };
 		B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Threading.cpp; sourceTree = "<group>"; };
@@ -4756,8 +4756,8 @@
 				B8E41B0720C36599003BBD86 /* FrameLib_ExprParser.h */,
 				B85E1D3A20C82D9700DEEE6E /* FrameLib_ComplexExpression.h */,
 				B85E1D3B20C82DDF00DEEE6E /* FrameLib_ComplexExpression.cpp */,
-				B8E41B1E20C5E763003BBD86 /* FrameLib_ExpressionGraph.h */,
-				B8E41B1F20C5E764003BBD86 /* FrameLib_ExpressionGraph.cpp */,
+				B8E41B1E20C5E763003BBD86 /* FrameLib_Expression.h */,
+				B8E41B1F20C5E764003BBD86 /* FrameLib_Expression.cpp */,
 			);
 			path = Expressions;
 			sourceTree = "<group>";
@@ -5417,7 +5417,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B85E1D4020C8408E00DEEE6E /* FrameLib_ExpressionGraph.h in Headers */,
+				B85E1D4020C8408E00DEEE6E /* FrameLib_Expression.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6001,7 +6001,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8E41B2020C5E765003BBD86 /* FrameLib_ExpressionGraph.h in Headers */,
+				B8E41B2020C5E765003BBD86 /* FrameLib_Expression.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12084,7 +12084,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8E41B2120C5E765003BBD86 /* FrameLib_ExpressionGraph.cpp in Sources */,
+				B8E41B2120C5E765003BBD86 /* FrameLib_Expression.cpp in Sources */,
 				B8E41B2320C5EACE003BBD86 /* fl.expr~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
