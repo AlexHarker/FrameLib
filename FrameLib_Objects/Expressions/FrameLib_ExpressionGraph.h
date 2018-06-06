@@ -3,9 +3,32 @@
 #define FRAMELIB_EXPRESSION_H
 
 #include "FrameLib_DSP.h"
+#include "FrameLib_ExprParser.h"
 
 class FrameLib_Expression : public FrameLib_Block
 {
+    struct Parser : public FrameLib_ExprParser
+    {
+        Parser();
+    };
+    
+    class InputProcessor : public FrameLib_Processor
+    {
+        
+    public:
+        
+        // Constructor
+        
+        InputProcessor(FrameLib_Context context, unsigned long numIns)
+         : FrameLib_Processor(context, NULL, NULL, numIns, numIns) {}
+        
+    private:
+        
+        // Update and Process
+        
+        void process();
+    };
+    
     class ConstantOut : public FrameLib_Processor
     {
 
@@ -13,7 +36,8 @@ class FrameLib_Expression : public FrameLib_Block
         
         // Constructor
         
-        ConstantOut(FrameLib_Context context, unsigned long numIns, double value);
+        ConstantOut(FrameLib_Context context, unsigned long numIns, double value)
+        : FrameLib_Processor(context, NULL, NULL, numIns, 1), mValue(value) {}
         
     private:
         
@@ -54,10 +78,10 @@ public:
     virtual FrameType inputType(unsigned long idx) const    { return kFrameNormal; }
     virtual FrameType outputType(unsigned long idx) const   { return kFrameNormal; }
     
-    // N.B. - Nothing can be acheived by setting a fixed input, so ignore this
+    // Fixed inputs are dealt with either by the input processor or by the constant object
     
-    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) {}
-    virtual const double *getFixedInput(unsigned long idx, unsigned long *size) { return getEmptyFixedInput(idx, size); }
+    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size)    { mFixedInputNode->setFixedInput(idx, input, size); }
+    virtual const double *getFixedInput(unsigned long idx, unsigned long *size)         { return mFixedInputNode->getFixedInput(idx, size); }
     
     // Audio Processing
     
@@ -75,6 +99,8 @@ private:
     
     // Data
     
+    FrameLib_DSP *mFixedInputNode;
+    FrameLib_DSP *mInputProcessor;
     std::vector<FrameLib_DSP *> mGraph;
     
     static ParameterInfo sParamInfo;
