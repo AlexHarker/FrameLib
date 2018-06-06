@@ -180,6 +180,22 @@ protected:
     static void copyVector(double *output, const double *input, unsigned long size)     { std::copy(input, input + size, output); }
     static void zeroVector(double *output, unsigned long size)                          { std::fill_n(output, size, 0.0); }
     
+    static void copyVectorExtend(double* output, const double *input, unsigned long sizeOut, unsigned long sizeIn)
+    {
+        copyVector(output, input, sizeIn);
+        std::fill_n(output + sizeIn, sizeOut - sizeIn, input[sizeIn - 1]);
+    }
+    
+    static void copyVectorWrap(double* output, const double *input, unsigned long sizeOut, unsigned long sizeIn)
+    {
+        unsigned long excess = sizeOut % sizeIn;
+        
+        for (unsigned long i = 0; i < (sizeOut - excess); i += sizeIn)
+            copyVector(output + i, input, sizeIn);
+        
+        copyVector(output + (sizeOut - excess), input, excess);
+    }
+    
 private:
     
     // Deleted

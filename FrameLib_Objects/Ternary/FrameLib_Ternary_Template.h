@@ -15,28 +15,18 @@ template <typename Op> class FrameLib_TernaryOp : public FrameLib_Processor
     public:
         
         EnlargedInput(FrameLib_TernaryOp *owner, const double *input, unsigned long size, unsigned long extendedSize, MismatchModes mode)
-            : mOwner(owner),mAllocated(NULL)
+            : mOwner(owner), mAllocated(NULL)
         {
             if (extendedSize > size)
             {
-                mAllocated = owner->alloc<double>(extendedSize);
-                
-                if (mAllocated)
+                if ((mPtr = mAllocated = owner->alloc<double>(extendedSize)))
                 {
                     switch (mode)
                     {
-                        case kWrap:
-                            enlargeModulo(mAllocated, input, size, extendedSize);
-                            break;
-                            
-                        case kShrink:
-                            break;
-                            
-                        case kExtend:
-                            enlargeExtend(mAllocated, input, size, extendedSize);
-                            break;
+                        case kWrap:     copyVectorWrap(mAllocated, input, extendedSize, size);      break;
+                        case kShrink:                                                               break;
+                        case kExtend:   copyVectorExtend(mAllocated, input, extendedSize, size);    break;
                     }
-                    mPtr = mAllocated;
                 }
             }
             else
@@ -48,25 +38,11 @@ template <typename Op> class FrameLib_TernaryOp : public FrameLib_Processor
             mOwner->dealloc(mAllocated);
         }
         
-        const double &operator [] (size_t idx) { return mPtr[idx]; }
+        bool isValid() const { return mPtr; }
+        
+        const double &operator [] (size_t idx) const { return mPtr[idx]; }
 
     private:
-        
-        void enlargeExtend(double* output, const double *input, unsigned long size, unsigned long extendedSize)
-        {
-            copyVector(output, input, size);
-            std::fill_n(output + size, extendedSize - size, input[size-1]);
-        }
-        
-        void enlargeModulo(double* output, const double *input, unsigned long size, unsigned long extendedSize)
-        {
-            unsigned long leftover = extendedSize % size;
-            
-            for (unsigned long i = 0; i < (extendedSize - leftover); i+=size)
-                copyVector(output + i, input, size);
-            
-            copyVector(output + (extendedSize - leftover), input, leftover);
-        }
         
         // Deleted
         
@@ -174,8 +150,13 @@ private:
             EnlargedInput in2(this, input2, sizeIn[1], sizeMax, mode);
             EnlargedInput in3(this, input3, sizeIn[2], sizeMax, mode);
         
-            for (unsigned long i = 0; i < sizeMax; i++)
-                output[i] = op(in1[i], in2[i], in3[i]);
+            if (in1.isValid() && in2.isValid() && in3.isValid())
+            {
+                for (unsigned long i = 0; i < sizeMax; i++)
+                    output[i] = op(in1[i], in2[i], in3[i]);
+            }
+            else
+                zeroVector(output, sizeMax);
         }
     }
     
