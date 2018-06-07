@@ -6,6 +6,13 @@
 
 class FrameLib_Dispatch : public FrameLib_Block
 {
+    // Parameter Enums and Info
+    
+    enum ParameterList { kNumIns, kNumOuts, kActiveIn1 };
+    
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
+
+    
     // Internal valve class
     
     class Select : public FrameLib_Processor
@@ -32,12 +39,6 @@ class FrameLib_Dispatch : public FrameLib_Block
         long mNumIns;
         long mActiveIn;
     };
-    
-    // Parameter Enums and Info
-    
-    enum ParameterList { kNumIns, kNumOuts, kActiveIn1 };
-    
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     
 public:
     

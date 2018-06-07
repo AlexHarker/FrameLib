@@ -6,7 +6,13 @@
 
 class FrameLib_Route : public FrameLib_Block
 {
-    // Internal valve class
+    // Parameter Enums and Info
+    
+    enum ParameterList { kNumOuts, kActiveOut };
+    
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
+    
+    // Internal Valve Class
     
     class Valve : public FrameLib_Processor
     {
@@ -32,13 +38,7 @@ class FrameLib_Route : public FrameLib_Block
         long mValveNumber;
         long mActiveValve;
     };
-    
-    // Parameter Enums and Info
-    
-    enum ParameterList { kNumOuts, kActiveOut };
-    
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
-    
+
 public:
     
     // Constructor / Destructor
