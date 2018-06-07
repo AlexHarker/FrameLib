@@ -12,7 +12,6 @@ class FrameLib_Dispatch : public FrameLib_Block
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
-    
     // Internal valve class
     
     class Select : public FrameLib_Processor
