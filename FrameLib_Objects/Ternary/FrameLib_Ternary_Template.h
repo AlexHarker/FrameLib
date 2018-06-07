@@ -75,7 +75,8 @@ public:
         mParameters.addEnumItem(kWrap, "wrap");
         mParameters.addEnumItem(kShrink, "shrink");
         mParameters.addEnumItem(kExtend, "extend");
-        
+        mParameters.setInstantiation();
+
         mParameters.set(serialisedParameters);
         
         mMismatchMode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
