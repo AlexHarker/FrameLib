@@ -4754,10 +4754,10 @@
 			isa = PBXGroup;
 			children = (
 				B8E41B0720C36599003BBD86 /* FrameLib_ExprParser.h */,
-				B85E1D3A20C82D9700DEEE6E /* FrameLib_ComplexExpression.h */,
-				B85E1D3B20C82DDF00DEEE6E /* FrameLib_ComplexExpression.cpp */,
 				B8E41B1E20C5E763003BBD86 /* FrameLib_Expression.h */,
 				B8E41B1F20C5E764003BBD86 /* FrameLib_Expression.cpp */,
+				B85E1D3A20C82D9700DEEE6E /* FrameLib_ComplexExpression.h */,
+				B85E1D3B20C82DDF00DEEE6E /* FrameLib_ComplexExpression.cpp */,
 			);
 			path = Expressions;
 			sourceTree = "<group>";
