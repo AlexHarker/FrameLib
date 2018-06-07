@@ -11,6 +11,9 @@ namespace Ternary
 
     template<class T>  T clip(T v,T lo, T hi)
     {
+        if (lo > hi)
+            std::swap(lo, hi);
+        
         return v < lo ? lo : (v > hi ? hi : v);
     }
 
@@ -19,6 +22,9 @@ namespace Ternary
 
     template <class T> T wrap(T v, T lo, T hi)
     {
+        if (lo > hi)
+            std::swap(lo, hi);
+        
         T returnVal;
         T range = hi - lo;
         
@@ -45,6 +51,9 @@ namespace Ternary
 
     template <class T> T fold(T v, T lo, T hi)
     {
+        if (lo > hi)
+            std::swap(lo, hi);
+        
         T range = hi - lo;
         
         if (v <= hi && v >= lo)
