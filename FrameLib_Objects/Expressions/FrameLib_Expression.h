@@ -7,6 +7,15 @@
 
 class FrameLib_Expression : public FrameLib_Block
 {
+    // Parameter Enums and Info
+    
+    enum ParameterList { kExpression, kMismatchMode };
+    enum MismatchModes { kWrap, kShrink, kExtend};
+    
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
+
+    // Interal Classes
+    
     struct Parser : public FrameLib_ExprParser<double>
     {
         Parser();
@@ -19,25 +28,8 @@ class FrameLib_Expression : public FrameLib_Block
         
         // Constructor
         
-        InputProcessor(FrameLib_Context context, unsigned long numIns)
-         : FrameLib_Processor(context, NULL, NULL, numIns, numIns) {}
-        
-    private:
-        
-        // Update and Process
-        
-        void process();
-    };
-    
-    class ConstantOut : public FrameLib_Processor
-    {
-
-    public:
-        
-        // Constructor
-        
-        ConstantOut(FrameLib_Context context, unsigned long numIns, double value)
-        : FrameLib_Processor(context, NULL, NULL, numIns, 1), mValue(value) {}
+        InputProcessor(FrameLib_Context context, MismatchModes mode, unsigned long numIns)
+         : FrameLib_Processor(context, NULL, NULL, numIns, numIns), mMode(mode) {}
         
     private:
         
@@ -47,14 +39,30 @@ class FrameLib_Expression : public FrameLib_Block
         
         // Data
         
-        double mValue;
+        MismatchModes mMode;
     };
     
-    // Parameter Enums and Info
-    
-    enum ParameterList { kExpression };
-    
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
+    class ConstantOut : public FrameLib_Processor
+    {
+
+    public:
+        
+        // Constructor
+        
+        ConstantOut(FrameLib_Context context, MismatchModes mode, unsigned long numIns, double value)
+        : FrameLib_Processor(context, NULL, NULL, numIns, 1), mMode(mode), mValue(value) {}
+        
+    private:
+        
+        // Update and Process
+        
+        void process();
+        
+        // Data
+        
+        MismatchModes mMode;
+        double mValue;
+    };
     
 public:
     

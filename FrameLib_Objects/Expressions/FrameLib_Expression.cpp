@@ -144,27 +144,47 @@ FrameLib_Expression::Parser::Parser() : FrameLib_ExprParser(7)
 
 void FrameLib_Expression::InputProcessor::process()
 {
-    unsigned long sizeIn = 0;
-    unsigned long sizeOut = 0;
+    unsigned long sizeMin, sizeMax, sizeIn, sizeOut;
     
-    getInput(0, &sizeOut);
-    
+    getInput(0, &sizeMin);
+    getInput(0, &sizeMax);
+
     for (unsigned long i = 1; i < getNumIns(); i++)
     {
         getInput(i, &sizeIn);
-        sizeOut = std::min(sizeIn, sizeOut);
+        sizeMin = std::min(sizeIn, sizeMin);
+        sizeMax = std::max(sizeIn, sizeMax);
     }
+    
+    sizeOut = sizeMin ? (mMode == kShrink ? sizeMin : sizeMax) : 0;
     
     for (unsigned long i = 0 ; i < getNumIns(); i++)
         requestOutputSize(i, sizeOut);
     
     if (allocateOutputs())
     {
-        for (unsigned long i = 0 ; i < getNumIns(); i++)
+        switch (mMode)
         {
-            const double *input = getInput(i, &sizeIn);
-            double *output = getOutput(i, &sizeOut);
-            copyVector(output, input, sizeOut);
+            // N.B. - these can call the same routine as the size is already shrunk for KShrink so no wrapping will take place
+                
+            case kWrap:
+            case kShrink:
+                for (unsigned long i = 0 ; i < getNumIns(); i++)
+                {
+                    const double *input = getInput(i, &sizeIn);
+                    double *output = getOutput(i, &sizeOut);
+                    copyVectorWrap(output, input, sizeOut, sizeIn);
+                }
+                break;
+                
+            case kExtend:
+                for (unsigned long i = 0 ; i < getNumIns(); i++)
+                {
+                    const double *input = getInput(i, &sizeIn);
+                    double *output = getOutput(i, &sizeOut);
+                    copyVectorExtend(output, input, sizeOut, sizeIn);
+                }
+                break;
         }
     }
 }
@@ -173,18 +193,19 @@ void FrameLib_Expression::InputProcessor::process()
 
 void FrameLib_Expression::ConstantOut::process()
 {
-    unsigned long sizeIn = 0;
-    unsigned long sizeOut = 0;
+    unsigned long sizeMin, sizeMax, sizeIn, sizeOut;
     
-    getInput(0, &sizeOut);
+    getInput(0, &sizeMin);
+    getInput(0, &sizeMax);
     
     for (unsigned long i = 1; i < getNumIns(); i++)
     {
         getInput(i, &sizeIn);
-        sizeOut = std::min(sizeIn, sizeOut);
+        sizeMin = std::min(sizeIn, sizeMin);
+        sizeMax = std::max(sizeIn, sizeMax);
     }
     
-    requestOutputSize(0, sizeOut);
+    sizeOut = sizeMin ? (mMode == kShrink ? sizeMin : sizeMax) : 0;
     
     if (allocateOutputs())
         std::fill_n(getOutput(0, &sizeOut), sizeOut, mValue);
@@ -202,7 +223,15 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Para
     mParameters.addString(kExpression, "expr", 0);
     mParameters.setInstantiation();
     
+    mParameters.addEnum(kMismatchMode, "mismatch");
+    mParameters.addEnumItem(kWrap, "wrap");
+    mParameters.addEnumItem(kShrink, "shrink");
+    mParameters.addEnumItem(kExtend, "extend");
+    mParameters.setInstantiation();
+
     mParameters.set(serialisedParameters);
+    
+    MismatchModes mode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
     
     Graph graph;
     Parser parser;
@@ -217,7 +246,7 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Para
     {
         // Create and Input Processor
         
-        mInputProcessor = new InputProcessor(context, graph.mNumInputs);
+        mInputProcessor = new InputProcessor(context, mode, graph.mNumInputs);
 
         // Alias the inputs to the input processor
         
@@ -251,7 +280,7 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Para
     {
         // Build the graph if the result is constant (including an invalid expression)
 
-        mGraph.push_back(new ConstantOut(context, graph.mNumInputs, graph.mConstant));
+        mGraph.push_back(new ConstantOut(context, mode, graph.mNumInputs, graph.mConstant));
         for (long i = 0; i < graph.mNumInputs; i++)
             mGraph.back()->setInputAlias(Connection(this, i), i);
         mGraph.back()->setOutputAlias(Connection(this, 0), 0);
