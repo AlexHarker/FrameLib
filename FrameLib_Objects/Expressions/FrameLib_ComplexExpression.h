@@ -9,6 +9,17 @@
 
 class FrameLib_ComplexExpression : public FrameLib_Block
 {
+    const static int kMaxIns = 32;
+    
+    // Parameter Enums and Info
+    
+    enum ParameterList { kExpression, kMismatchMode, kTriggers };
+    enum MismatchModes { kWrap, kShrink, kExtend};
+    
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
+
+    // Internal Classes
+    
     struct Parser : public FrameLib_ExprParser<std::complex<double> >
     {
         Parser();
@@ -21,14 +32,19 @@ class FrameLib_ComplexExpression : public FrameLib_Block
         
         // Constructor
         
-        InputProcessor(FrameLib_Context context, unsigned long numIns)
-         : FrameLib_Processor(context, NULL, NULL, numIns * 2, numIns * 2) {}
+        InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns);
+
+        void copyVectorZeroWrap(double* output, const double *input, unsigned long sizeOut, unsigned long sizeIn, unsigned long sizeWrap);
         
     private:
         
         // Update and Process
         
         void process();
+        
+        // Dade
+        
+        MismatchModes mMode;
     };
     
     class ConstantOut : public FrameLib_Processor
@@ -38,8 +54,7 @@ class FrameLib_ComplexExpression : public FrameLib_Block
         
         // Constructor
         
-        ConstantOut(FrameLib_Context context, unsigned long numIns, std::complex<double> value)
-        : FrameLib_Processor(context, NULL, NULL, numIns * 2, 2), mValue(value) {}
+        ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns, std::complex<double> value);
         
     private:
         
@@ -49,14 +64,9 @@ class FrameLib_ComplexExpression : public FrameLib_Block
         
         // Data
         
+        MismatchModes mMode;
         std::complex<double> mValue;
     };
-    
-    // Parameter Enums and Info
-    
-    enum ParameterList { kExpression };
-    
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     
 public:
     

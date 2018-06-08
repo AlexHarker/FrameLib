@@ -7,9 +7,11 @@
 
 class FrameLib_Expression : public FrameLib_Block
 {
+    const static int kMaxIns = 32;
+    
     // Parameter Enums and Info
     
-    enum ParameterList { kExpression, kMismatchMode };
+    enum ParameterList { kExpression, kMismatchMode, kTriggers };
     enum MismatchModes { kWrap, kShrink, kExtend};
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
@@ -28,8 +30,7 @@ class FrameLib_Expression : public FrameLib_Block
         
         // Constructor
         
-        InputProcessor(FrameLib_Context context, MismatchModes mode, unsigned long numIns)
-         : FrameLib_Processor(context, NULL, NULL, numIns, numIns), mMode(mode) {}
+        InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns);
         
     private:
         
@@ -49,8 +50,7 @@ class FrameLib_Expression : public FrameLib_Block
         
         // Constructor
         
-        ConstantOut(FrameLib_Context context, MismatchModes mode, unsigned long numIns, double value)
-        : FrameLib_Processor(context, NULL, NULL, numIns, 1), mMode(mode), mValue(value) {}
+        ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns, double value);
         
     private:
         

@@ -4,6 +4,34 @@
 #include "../Complex_Unary/FrameLib_Complex_Unary_Template.h"
 #include "../Complex_Binary/FrameLib_Complex_Binary_Template.h"
 
+// Specialisations to allow implicit multiples of i for complex numbers
+
+template<>
+const char *FrameLib_ExprParser<std::complex<double> >::extentNumber(const char *expr)
+{
+    if (isDigit(*expr))
+    {
+        while (isDigit(*expr)) expr++;
+        if (isPeriod(*expr)) for (expr++; isDigit(*expr); expr++);
+        if (*expr == 'i' && !isLetter(*(expr + 1)))
+            expr++;
+    }
+    
+    return expr;
+}
+
+template<>
+std::complex<double> FrameLib_ExprParser<std::complex<double> >::convertTextToNumber(const char* text)
+{
+    if (text[strlen(text) - 1] == 'i')
+    {
+        std::string numberText(text, strlen(text) - 1);
+        return std::complex<double>(0.0, std::stod(numberText));
+    }
+        
+    return std::stod(text);
+}
+
 // Parser Class
 
 // Function/Operator Templates
@@ -98,63 +126,149 @@ FrameLib_ComplexExpression::Parser::Parser() : FrameLib_ExprParser(3)
 
 // Constructor
 
+FrameLib_ComplexExpression::InputProcessor::InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns)
+: FrameLib_Processor(context, NULL, NULL, numIns * 2, numIns * 2), mMode(mode)
+{
+    for (size_t i = 0; i < numIns; i++)
+    {
+        setInputMode(i + 0, false, (i < triggersSize) && triggers[i], false);
+        setInputMode(i + 1, false, (i < triggersSize) && triggers[i], false);
+    }
+}
+
+// Copying with wrap and zeroing
+
+void FrameLib_ComplexExpression::InputProcessor::copyVectorZeroWrap(double* output, const double *input, unsigned long sizeOut, unsigned long sizeIn, unsigned long sizeWrap)
+{
+    unsigned long excess = sizeOut % sizeWrap;
+    unsigned long excessIn = std::min(excess, sizeIn);
+    
+    for (unsigned long i = 0; i < (sizeOut - excess); i += sizeWrap)
+    {
+        copyVector(output + i, input, sizeIn);
+        zeroVector(output + i + sizeIn, sizeWrap - sizeIn);
+    }
+    
+    copyVector(output + (sizeOut - excess), input, excessIn);
+    zeroVector(output + (sizeOut - (excess - excessIn)), excess - excessIn);
+}
+
+// Process
+
 void FrameLib_ComplexExpression::InputProcessor::process()
 {
-    unsigned long sizeInR = 0;
-    unsigned long sizeInI = 0;
-    unsigned long sizeOut = 0;
-    unsigned long sizeIn;
+    unsigned long sizeIn, sizeOut, sizeMin, sizeMax, sizeInR, sizeInI;
     
     getInput(0, &sizeInR);
     getInput(1, &sizeInI);
     
-    sizeOut = std::max(sizeInR, sizeInI);
+    sizeMin = sizeMax = std::max(sizeInR, sizeInI);
     
     for (unsigned long i = 1; i < getNumIns() / 2; i++)
     {
         getInput(i * 2 + 0, &sizeInR);
         getInput(i * 2 + 1, &sizeInI);
-        
-        sizeOut = std::min(std::max(sizeInR, sizeInI), sizeOut);
+        sizeIn = std::max(sizeInR, sizeInI);
+        sizeMin = std::min(sizeIn, sizeMin);
+        sizeMax = std::max(sizeIn, sizeMax);
     }
+    
+    sizeOut = sizeMin ? (mMode == kShrink ? sizeMin : sizeMax) : 0;
     
     for (unsigned long i = 0 ; i < getNumIns(); i++)
         requestOutputSize(i, sizeOut);
     
     if (allocateOutputs())
     {
-        for (unsigned long i = 0 ; i < getNumIns(); i++)
+        switch (mMode)
         {
-            const double *input = getInput(i, &sizeIn);
-            double *output = getOutput(i, &sizeOut);
-            unsigned long copySize = std::min(sizeIn, sizeOut);
-            copyVector(output, input, copySize);
-            zeroVector(output + copySize, sizeOut - copySize);
+            // N.B. - these can call the same routine as the size is already shrunk for KShrink so no wrapping will take place
+                
+            case kWrap:
+                for (unsigned long i = 0 ; i < getNumIns() / 2; i++)
+                {
+                    const double *inputR = getInput(i * 2 + 0, &sizeInR);
+                    const double *inputI = getInput(i * 2 + 1, &sizeInI);
+                    double *outputR = getOutput(i * 2 + 0, &sizeOut);
+                    double *outputI = getOutput(i * 2 + 1, &sizeOut);
+                    
+                    sizeIn = std::max(sizeInR, sizeInI);
+                    copyVectorZeroWrap(outputR, inputR, sizeOut, sizeInR, sizeIn);
+                    copyVectorZeroWrap(outputI, inputI, sizeOut, sizeInI, sizeIn);
+                }
+                break;
+                
+            case kShrink:
+                for (unsigned long i = 0 ; i < getNumIns() / 2; i++)
+                {
+                    const double *inputR = getInput(i * 2 + 0, &sizeInR);
+                    const double *inputI = getInput(i * 2 + 1, &sizeInI);
+                    double *outputR = getOutput(i * 2 + 0, &sizeOut);
+                    double *outputI = getOutput(i * 2 + 1, &sizeOut);
+                    
+                    copyVectorZero(outputR, inputR, sizeOut, sizeInR);
+                    copyVectorZero(outputI, inputI, sizeOut, sizeInI);
+                }
+                break;
+                
+            case kExtend:
+                for (unsigned long i = 0 ; i < getNumIns() / 2; i++)
+                {
+                    const double *inputR = getInput(i * 2 + 0, &sizeInR);
+                    const double *inputI = getInput(i * 2 + 1, &sizeInI);
+                    double *outputR = getOutput(i * 2 + 0, &sizeOut);
+                    double *outputI = getOutput(i * 2 + 1, &sizeOut);
+                    
+                    if (sizeInR < sizeInI)
+                        copyVectorZero(outputR, inputR, sizeOut, sizeInR);
+                    else
+                        copyVectorExtend(outputR, inputR, sizeOut, sizeInR);
+                    
+                    if (sizeInI < sizeInR)
+                        copyVectorZero(outputI, inputI, sizeOut, sizeInI);
+                    else
+                        copyVectorExtend(outputI, inputI, sizeOut, sizeInI);
+                }
+                break;
         }
     }
 }
 
 // Constant Out Class
 
+// Constructor
+
+FrameLib_ComplexExpression::ConstantOut::ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns, std::complex<double> value) : FrameLib_Processor(context, NULL, NULL, numIns * 2, 2), mMode(mode), mValue(value)
+{
+    for (size_t i = 0; i < numIns; i++)
+    {
+        setInputMode(i + 0, false, (i < triggersSize) && triggers[i], false);
+        setInputMode(i + 1, false, (i < triggersSize) && triggers[i], false);
+    }
+}
+
+// Process
+
 void FrameLib_ComplexExpression::ConstantOut::process()
 {
-    unsigned long sizeInR = 0;
-    unsigned long sizeInI = 0;
-    unsigned long sizeOut = 0;
+    unsigned long sizeIn, sizeOut, sizeMin, sizeMax, sizeInR, sizeInI;
     
     getInput(0, &sizeInR);
     getInput(1, &sizeInI);
     
-    sizeOut = std::max(sizeInR, sizeInI);
+    sizeMin = sizeMax = std::max(sizeInR, sizeInI);
     
     for (unsigned long i = 1; i < getNumIns() / 2; i++)
     {
         getInput(i * 2 + 0, &sizeInR);
         getInput(i * 2 + 1, &sizeInI);
-        
-        sizeOut = std::min(std::max(sizeInR, sizeInI), sizeOut);
+        sizeIn = std::max(sizeInR, sizeInI);
+        sizeMin = std::min(sizeIn, sizeMin);
+        sizeMax = std::max(sizeIn, sizeMax);
     }
     
+    sizeOut = sizeMin ? (mMode == kShrink ? sizeMin : sizeMax) : 0;
+      
     requestOutputSize(0, sizeOut);
     requestOutputSize(1, sizeOut);
     
@@ -177,8 +291,24 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
     mParameters.addString(kExpression, "expr", 0);
     mParameters.setInstantiation();
     
-    mParameters.set(serialisedParameters);
+    mParameters.setInstantiation();
     
+    mParameters.addEnum(kMismatchMode, "mismatch");
+    mParameters.addEnumItem(kWrap, "wrap");
+    mParameters.addEnumItem(kShrink, "shrink");
+    mParameters.addEnumItem(kExtend, "extend");
+    mParameters.setInstantiation();
+    
+    mParameters.addVariableBoolArray(kTriggers, "trigger_ins", false, kMaxIns, kMaxIns);
+    mParameters.setInstantiation();
+
+    mParameters.set(serialisedParameters);
+  
+    const double *triggers = mParameters.getArray(kTriggers);
+    size_t triggersSize = mParameters.getArraySize(kTriggers);
+    
+    MismatchModes mode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
+
     Graph graph;
     Parser parser;
     ExprParseError error = parser.parse(graph, mParameters.getString(kExpression));
@@ -192,7 +322,7 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
     {
         // Create and Input Processor
         
-        mInputProcessor = new InputProcessor(context, graph.mNumInputs);
+        mInputProcessor = new InputProcessor(context, mode, triggers, triggersSize, graph.mNumInputs);
 
         // Alias the inputs to the input processor
         
@@ -239,7 +369,7 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
     {
         // Build the graph if the result is constant (including an invalid expression)
 
-        mGraph.push_back(new ConstantOut(context, graph.mNumInputs, graph.mConstant));
+        mGraph.push_back(new ConstantOut(context, mode, triggers, triggersSize, graph.mNumInputs, graph.mConstant));
         for (long i = 0; i < graph.mNumInputs * 2; i++)
             mGraph.back()->setInputAlias(Connection(this, i), i);
         mGraph.back()->setOutputAlias(Connection(this, 0), 0);

@@ -142,6 +142,14 @@ FrameLib_Expression::Parser::Parser() : FrameLib_ExprParser(7)
 
 // Constructor
 
+FrameLib_Expression::InputProcessor::InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns) : FrameLib_Processor(context, NULL, NULL, numIns, numIns), mMode(mode)
+{
+    for (size_t i = 0; i < numIns; i++)
+        setInputMode(i, false, (i < triggersSize) && triggers[i], false);
+}
+
+// Process
+
 void FrameLib_Expression::InputProcessor::process()
 {
     unsigned long sizeMin, sizeMax, sizeIn, sizeOut;
@@ -191,6 +199,16 @@ void FrameLib_Expression::InputProcessor::process()
 
 // Constant Out Class
 
+// Constructor
+
+FrameLib_Expression::ConstantOut::ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns, double value) : FrameLib_Processor(context, NULL, NULL, numIns, 1), mMode(mode), mValue(value)
+{
+    for (size_t i = 0; i < numIns; i++)
+        setInputMode(i, false, (i < triggersSize) && triggers[i], false);
+}
+
+// Process
+
 void FrameLib_Expression::ConstantOut::process()
 {
     unsigned long sizeMin, sizeMax, sizeIn, sizeOut;
@@ -229,24 +247,30 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Para
     mParameters.addEnumItem(kExtend, "extend");
     mParameters.setInstantiation();
 
+    mParameters.addVariableBoolArray(kTriggers, "trigger_ins", false, kMaxIns, kMaxIns);
+    mParameters.setInstantiation();
+
     mParameters.set(serialisedParameters);
     
     MismatchModes mode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
+    
+    const double *triggers = mParameters.getArray(kTriggers);
+    size_t triggersSize = mParameters.getArraySize(kTriggers);
     
     Graph graph;
     Parser parser;
     ExprParseError error = parser.parse(graph, mParameters.getString(kExpression));
 
-    if (graph.mNumInputs > 32)
+    if (graph.mNumInputs > kMaxIns)
         graph = Graph();
     
     setIO(graph.mNumInputs, 1);
-    
+        
     if (!error && graph.mOperations.size())
     {
         // Create and Input Processor
         
-        mInputProcessor = new InputProcessor(context, mode, graph.mNumInputs);
+        mInputProcessor = new InputProcessor(context, mode, triggers, triggersSize, graph.mNumInputs);
 
         // Alias the inputs to the input processor
         
@@ -280,7 +304,7 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Para
     {
         // Build the graph if the result is constant (including an invalid expression)
 
-        mGraph.push_back(new ConstantOut(context, mode, graph.mNumInputs, graph.mConstant));
+        mGraph.push_back(new ConstantOut(context, mode, triggers, triggersSize, graph.mNumInputs, graph.mConstant));
         for (long i = 0; i < graph.mNumInputs; i++)
             mGraph.back()->setInputAlias(Connection(this, i), i);
         mGraph.back()->setOutputAlias(Connection(this, 0), 0);
