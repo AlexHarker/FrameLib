@@ -7,7 +7,7 @@
 
 FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_AudioInput(context, proxy, &sParamInfo, 2, 1, 1)
 {
-    // FIX - defaults when the untis are in samples!
+    // FIX - defaults for when the units are not in samples!
     
     mParameters.addDouble(kBufferSize, "buffer_size", 16384, 0);
     mParameters.setMin(0.0);

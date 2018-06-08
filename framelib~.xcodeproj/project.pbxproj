@@ -2208,7 +2208,7 @@
 		B8A4758319C9DDCD0043DC65 /* fl.convolve~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.convolve~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A82A9C1F750FE0005CC75A /* fl.tomax~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.tomax~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A82AA21F75104E005CC75A /* fl.tomax~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.tomax~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		B8ACCAA020AF14770054E1E0 /* fl.nanfliter~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.nanfliter~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8ACCAA020AF14770054E1E0 /* fl.nanfilter~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.nanfilter~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8ACCAA220AF14FD0054E1E0 /* FrameLib_NanFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_NanFilter.cpp; sourceTree = "<group>"; };
 		B8ACCAA320AF14FD0054E1E0 /* FrameLib_NanFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_NanFilter.h; sourceTree = "<group>"; };
 		B8ACCAA620AF15410054E1E0 /* fl.nanfilter~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.nanfilter~.cpp"; sourceTree = "<group>"; };
@@ -4141,6 +4141,7 @@
 				5A1C972220A4725D004636C1 /* fl.sigmund~.mxo */,
 				5A1C97E220A5D515004636C1 /* fl.fft-1~.mxo */,
 				5A9D53E520AE49AA00835070 /* fl.nanfilter~.mxo */,
+				B8ACCAA020AF14770054E1E0 /* fl.nanfilter~.mxo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -8205,9 +8206,9 @@
 			productReference = B8A82A9C1F750FE0005CC75A /* fl.tomax~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8ACCA9120AF14770054E1E0 /* fl.nanfliter~ */ = {
+		B8ACCA9120AF14770054E1E0 /* fl.nanfilter~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8ACCA9C20AF14770054E1E0 /* Build configuration list for PBXNativeTarget "fl.nanfliter~" */;
+			buildConfigurationList = B8ACCA9C20AF14770054E1E0 /* Build configuration list for PBXNativeTarget "fl.nanfilter~" */;
 			buildPhases = (
 				B8ACCA9420AF14770054E1E0 /* Headers */,
 				B8ACCA9520AF14770054E1E0 /* Resources */,
@@ -8219,10 +8220,10 @@
 			dependencies = (
 				B8ACCA9220AF14770054E1E0 /* PBXTargetDependency */,
 			);
-			name = "fl.nanfliter~";
+			name = "fl.nanfilter~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8ACCAA020AF14770054E1E0 /* fl.nanfliter~.mxo */;
+			productReference = B8ACCAA020AF14770054E1E0 /* fl.nanfilter~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8AD885F19C7C46B00FFA238 /* fl.read~ */ = {
@@ -9674,7 +9675,7 @@
 				5AB54BC02052EAD700325C14 /* fl.clip~ */,
 				5AB54BD32052EAE900325C14 /* fl.fold~ */,
 				B88F555B207A5903007774AD /* fl.reverse~ */,
-				B8ACCA9120AF14770054E1E0 /* fl.nanfliter~ */,
+				B8ACCA9120AF14770054E1E0 /* fl.nanfilter~ */,
 				B83E029B206674D4005925DD /* framelib_pd */,
 				5A07258E2080BA8B001F5975 /* fl.numpyread~ */,
 				5A2F713420A2E6C200D89B3E /* fl.tracks~ */,
@@ -29789,7 +29790,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8ACCA9C20AF14770054E1E0 /* Build configuration list for PBXNativeTarget "fl.nanfliter~" */ = {
+		B8ACCA9C20AF14770054E1E0 /* Build configuration list for PBXNativeTarget "fl.nanfilter~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8ACCA9D20AF14770054E1E0 /* Development */,

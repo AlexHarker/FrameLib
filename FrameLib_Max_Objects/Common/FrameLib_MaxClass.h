@@ -226,6 +226,7 @@ public:
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
+        addMethod<Wrapper<T>, &Wrapper<T>::parentpatcher>(c, "parentpatcher");
         addMethod<Wrapper<T>, &Wrapper<T>::subpatcher>(c, "subpatcher");
         addMethod<Wrapper<T>, &Wrapper<T>::assist>(c, "assist");
         addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "anything");
@@ -234,7 +235,8 @@ public:
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
         addMethod(c, (method) &externalWrapperInternalObject, "__fl.wrapper_internal_object");
-        
+        addMethod(c, (method) &externalWrapperIsWrapper, "__fl.wrapper_is_wrapper");
+
         // N.B. MUST add signal handling after dspInit to override the builtin responses
         
         dspInit(c);
@@ -251,7 +253,7 @@ public:
 
     // Constructor and Destructor
     
-    Wrapper(t_symbol *s, long argc, t_atom *argv)
+    Wrapper(t_symbol *s, long argc, t_atom *argv) : mParentPatch(gensym("#P")->s_thing)
     {
         // Create patcher (you must report this as a subpatcher to get audio working)
         
@@ -282,9 +284,14 @@ public:
                 newObjectText += text;
         }
         
-        // Make internal object
+        // Set the patch association and disallow editing
+        
+        object_method(mPatch, gensym("setassoc"), this);
+        
+        // Make internal object  and disallow editing
 
         mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch, "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", newObjectText.c_str()));
+        object_method(mPatch, gensym("noedit"));
         
         // Make Mutator (with argument referencing the internal object)
         
@@ -363,9 +370,14 @@ public:
     
     // Standard methods
     
+    void parentpatcher(t_object **parent)
+    {
+        *parent = mParentPatch;
+    }
+    
     void *subpatcher(long index, void *arg)
     {
-        return ((t_ptr_uint) arg > 1 && !NOGOOD(arg) && index == 0) ? (void *) mPatch : NULL;
+        return (((t_ptr_uint) arg <= 1) || ((t_ptr_uint) arg > 1 && !NOGOOD(arg))) && index == 0 ? (void *) mPatch : NULL;
     }
     
     void assist(void *b, long m, long a, char *s)
@@ -425,15 +437,24 @@ public:
         return x->mObject;
     }
     
+    static void *externalWrapperIsWrapper(Wrapper *x)
+    {
+        return (void *) 1;
+    }
+    
 private:
     
     T *internalObject() { return (T *) mObject; }
-    
-    // Objects (need freeing except the internal object which is owned by the patch)
+
+    // Owned Objects (need freeing)
     
     t_object *mPatch;
-    t_object *mObject;
     t_object *mMutator;
+    
+    // Unowned objects (the internal object is owned by the patch)
+    
+    t_object *mParentPatch;
+    t_object *mObject;
     
     // Inlets (must be freed)
     
@@ -511,9 +532,66 @@ public:
         dspInit(c);
     }
 
+    // Find the patcher for the context
+
+    static t_object *contextPatcher(t_object *patch)
+    {
+        bool traverse = true;
+        
+        for (t_object *parent = NULL; traverse && (parent = jpatcher_get_parentpatcher(patch)); patch = parent)
+        {
+            t_object *assoc = 0;
+            object_method(patch, gensym("getassoc"), &assoc);
+            
+            // Traverse if the patch is in a box (subpatcher or abstraction) ir belongs to a wrapper
+            
+            traverse = jpatcher_get_box(patch) || (assoc && object_method(assoc, gensym("__fl.wrapper_is_wrapper")));
+            
+            if (!traverse && !assoc)
+            {
+                // Get text of loading object in parent if there is no association (patch is currently loading)
+
+                char *text = NULL;
+                
+                for (t_object *b = jpatcher_get_firstobject(parent); b && !text; b = jbox_get_nextobject(b))
+                    if (jbox_get_maxclass(b) == gensym("newobj") && jbox_get_textfield(b))
+                        text = (char *) object_method(jbox_get_textfield(b), gensym("getptr"));
+
+                if (text)
+                {
+                    // Get the first item in the box as a symbol
+                
+                    t_atombuf *atomBuffer = (t_atombuf *) atombuf_new(0, NULL);
+                    atombuf_text(&atomBuffer, &text, strlen(text));
+                    t_symbol *objectName = atom_getsym(atomBuffer->a_argv);
+                    atombuf_free(atomBuffer);
+                    
+                    // Check if the patch is loading in a subpatcher
+                    
+                    if (!(traverse = objectName == gensym("p") || objectName == gensym("patcher")))
+                    {
+                        // Check if the patch is loading in an abstraction
+                        
+                        char objectText[MAX_FILENAME_CHARS];
+                        t_fourcc validTypes[TYPELIST_SIZE];
+                        short outvol = 0, numTypes = 0;
+                        t_fourcc outtype = 0;
+
+                        typelist_make(validTypes, TYPELIST_MAXFILES, &numTypes);
+                        strncpy_zero(objectText, objectName->s_name, MAX_FILENAME_CHARS);
+                        locatefile_extended(objectText, &outvol, &outtype, validTypes, numTypes);
+                        traverse = !strcmp(jpatcher_get_filename(patch)->s_name, objectText);
+                    }
+                }
+            }
+        }
+        
+        return patch;
+    }
+    
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy()) : mFrameLibProxy(proxy), mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mTopLevelPatch(jpatcher_get_toppatcher(gensym("#P")->s_thing)), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
+    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy()) : mFrameLibProxy(proxy), mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mPatch(gensym("#P")->s_thing), mContextPatch(contextPatcher(mPatch)), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -529,7 +607,7 @@ public:
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
         mFrameLibProxy->mMaxObject = *this;
-        mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mTopLevelPatch), &serialisedParameters, mFrameLibProxy, nStreams);
+        mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mContextPatch), &serialisedParameters, mFrameLibProxy, nStreams);
         parseInputs(argc, argv);
         
         long numIns = getNumIns() + (supportsOrderingConnections() ? 1 : 0);
@@ -936,13 +1014,14 @@ private:
     
     // Private connection methods
     
-    void traversePatch(t_patcher *p, t_symbol *method)
+    void traversePatch(t_patcher *p, t_symbol *method, t_object *contextAssoc)
     {
-        // Avoid recursion into a poly / pfft / etc.
-        
         t_object *assoc = 0;
-        object_method(p, gensym("getassoc"), &assoc);
-        if (assoc)
+        object_method(mContextPatch, gensym("getassoc"), &assoc);
+        
+        // Avoid recursion into a poly / pfft / etc. - If the subpatcher is a wrapper we do need to deal with it
+         
+        if (assoc != contextAssoc && !object_method(assoc, gensym("__fl.wrapper_is_wrapper")))
             return;
         
         // Search for subpatchers, and call method on objects that don't have subpatchers
@@ -952,7 +1031,7 @@ private:
             long index = 0;
             
             while (b && (p = (t_patcher *)object_subpatcher(jbox_get_object(b), &index, this)))
-                traversePatch(p, method);
+                traversePatch(p, method, contextAssoc);
 
             object_method(jbox_get_object(b), method);
         }
@@ -960,11 +1039,14 @@ private:
 
     void resolveGraph(bool markUnresolved)
     {
-        traversePatch(mTopLevelPatch, gensym("__fl.resolve_connections"));
-        traversePatch(mTopLevelPatch, gensym("__fl.clear_auto_ordering_connections"));
-        traversePatch(mTopLevelPatch, gensym("__fl.auto_ordering_connections"));
+        t_object *assoc = 0;
+        object_method(mContextPatch, gensym("getassoc"), &assoc);
+        
+        traversePatch(mContextPatch, gensym("__fl.resolve_connections"), assoc);
+        traversePatch(mContextPatch, gensym("__fl.clear_auto_ordering_connections"), assoc);
+        traversePatch(mContextPatch, gensym("__fl.auto_ordering_connections"), assoc);
         if (markUnresolved)
-            traversePatch(mTopLevelPatch, gensym("__fl.mark_unresolved"));
+            traversePatch(mContextPatch, gensym("__fl.mark_unresolved"), assoc);
     }
     
     void resolveConnections()
@@ -1406,7 +1488,8 @@ private:
     long mConfirmOutIndex;
     bool mConfirm;
     
-    t_object *mTopLevelPatch;
+    t_object *mPatch;
+    t_object *mContextPatch;
     t_object *mSyncIn;
     
     FrameLib_MaxGlobals::ManagedPointer mGlobal;

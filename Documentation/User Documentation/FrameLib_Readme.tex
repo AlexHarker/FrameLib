@@ -29,7 +29,7 @@
 
 \linespread{1.1} % Line spacing
 
-\newcommand{\version}{Alpha 1.0}
+\newcommand{\version}{Alpha 2.0}
 % Set up the header and footer
 \pagestyle{fancy}
 \lhead{Alex Harker} % Top left header
@@ -52,6 +52,7 @@
 %	NAME AND CLASS SECTION
 %----------------------------------------------------------------------------------------
 
+\newcommand{\object}[1]{\textit{#1$\sim$}}
 \newcommand{\flobject}[1]{\textit{fl.#1$\sim$}}
 \newcommand{\flobjectb}[1]{\textbf{\flobject{#1}}}
 
@@ -214,7 +215,13 @@ You can also use any combination of the following to customise the info given:
  \item{quick (give brief versions of all info)}
   \end{itemize}
 
-\pagebreak
+\subsection{Code Export}
+
+You can now get C++ code from a Max patch of FrameLib objects. For the time being this is not fully documented, but it can be done using the \textbf{export} message, which takes a class name (a symbol) and a path to write files to (another symbol). Calling this will create a C++ class that hosts its own unique FrameLib network (it can't be connected to other FrameLib) networks) and can be tied in to some other audio block-based environment. The host should create the object, call the reset method when relevant, and call the process method in the audio thread at the correct time. The object can also be polled for its number of inputs/outputs. The build should be linked against libframelib\_objects.a
+
+Slightly more complexity is required for dealing with either buffers or sending values to/from the host. This is done via the FrameLib\_Proxy class, which can be extended for various different scenarios of usage. If you are interested in more detail on this, currently the best way to find out is to read the code on github, or email me. 
+
+% \pagebreak
 
 %----------------------------------------------------------------------------------------
 
@@ -304,38 +311,77 @@ Objects in bold are yet to be finalised by review.
 \flobject{times} \\
 \end{tabular}
 
+\subsection{Ternary}
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobjectb{clip} &
+\flobjectb{fold} &
+\flobjectb{wrap} &
+\end{tabular}
+
+\subsection{Complex Unary}
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobjectb{cartopol} &
+\flobjectb{poltocar} &
+\flobjectb{complexconj} &
+\flobjectb{complexcosh} \\
+\flobjectb{complexcos} &
+\flobjectb{complexexp} &
+\flobjectb{complexlog10} &
+\flobjectb{complexlog} \\
+\flobjectb{complextanh} &
+\flobjectb{complextan} &
+\flobjectb{complexsinh} &
+\flobjectb{complexsin} \\
+\flobjectb{complexsqrt} &
+\end{tabular}
+
+\subsection{Complex Binary}
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobjectb{complexdivide} &
+\flobjectb{complexminus} &
+\flobjectb{complexmultiply} &
+\flobjectb{complexplus} \\
+\flobjectb{complexpow} &
+\end{tabular}
+
 \subsection{Vector}
 \begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
-\flobjectb{centroid} &
+\flobjectb{accumpoint} &
+\flobjectb{argmin} &
+\flobjectb{argmax} &
+\flobjectb{centroid} \\
 \flobjectb{chop} &
 \flobjectb{crest} &
-\flobjectb{flatness} \\
-\flobjectb{geometricmean} &
+\flobjectb{flatness} &
+\flobjectb{geometricmean} \\
 \flobjectb{join} &
 \flobjectb{kurtosis} &
-\flobjectb{length} \\
-\flobjectb{mean} &
+\flobjectb{length} &
+\flobjectb{mean} \\
 \flobjectb{medianfilter} &
+\flobjectb{nanfilter} &
 \flobjectb{nonzero} &
 \flobjectb{pad} \\
 \flobjectb{peaks} &
 \flobjectb{percentile} &
 \flobjectb{product} &
-\flobjectb{rms} \\
+\flobjectb{reverse} \\
+\flobjectb{rms} &
 \flobjectb{shift} &
 \flobjectb{skewness} &
-\flobjectb{sort} &
-\flobjectb{split} \\
+\flobjectb{sort} \\
+\flobjectb{split} &
 \flobjectb{spread} &
 \flobjectb{standarddeviation} &
-\flobjectb{subframe} &
-\flobjectb{sum} \\
-\flobjectb{vmax} & 
-\flobjectb{vmin}
+\flobjectb{subframe} \\
+\flobjectb{sum} &
+\flobjectb{vmax} &
+\flobjectb{vmin} &
 \end{tabular}
 
 \subsection{Generators}
 \begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobjectb{gaussian} &
 \flobject{ramp} &
 \flobject{random} &
 \flobject{uniform}
@@ -357,10 +403,14 @@ Objects in bold are yet to be finalised by review.
 \flobjectb{samplerate}
 \end{tabular}
 
-\subsection{Max Specific}
+\subsection{Host Communication}
 \begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
 \flobjectb{frommax} &
 \flobjectb{tomax} &
+\end{tabular}
+
+\subsection{Buffers}
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
 \flobjectb{read}
 \end{tabular}
 
@@ -390,10 +440,22 @@ Objects in bold are yet to be finalised by review.
 \subsection{Spectral}
 \begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
 \flobjectb{convolve} &
+\flobjectb{correlate} &
 \flobjectb{fft} &
-\flobjectb{ifft} &
-\flobjectb{multiaper} \\
+\flobjectb{ifft} \\
+\flobjectb{multiaper} &
 \flobjectb{window}
+\end{tabular}
+
+\subsection{Time Smoothing}
+\begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobjectb{ewma} &
+\flobjectb{ewmsd} &
+\flobjectb{framedelta} &
+\flobjectb{lag} \\
+\flobjectb{timestddev} &
+\flobjectb{timemean} &
+\flobjectb{timemedian}
 \end{tabular}
 
 \subsection{Storage}
@@ -414,8 +476,8 @@ Objects in bold are yet to be finalised by review.
 \subsection{Filters}
 \begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
 \flobjectb{0dfsvf} &
-\flobjectb{onepolezero} &
 \flobjectb{onepole} &
+\flobjectb{onepolezero} &
 \flobjectb{resonant} \\
 \flobjectb{sallenkey}
 \end{tabular}
@@ -431,6 +493,8 @@ Objects in bold are yet to be finalised by review.
 
 \section{Alpha Aspects of FrameLib}
 \vspace{0.1in}
+
+\textbf{N.B. Please note that objects not yet reviewed are more likely to change - the object list shows which objects are still due for review.}
 
  \begin{itemize}
 \item{The object set is subject to change.}
@@ -601,5 +665,60 @@ Objects in bold are yet to be finalised by review.
 \item All demos updated to reflect object changes.
 \item New demos added.
 \end{itemize}
+
+\subsection{Changes in Alpha 2.0}
+\vspace{0.1in}
+
+\subsubsection{Bug fixes}
+
+\begin{itemize}
+\item {\#48} Compilation no longer requires AVX.
+\item Corrected info strings for \flobject{*~},  \flobject{trace},  \flobject{constant},  \flobject{mediafilter}
+\item Corrected \flobject{length} to report zero length frames.
+\item Corrected \flobject{percentile} to report the correct values.
+\item Corrected \flobject{fft} to calculate FFTs with complex inputs correctly.
+\item Corrected \flobject{ramp} scaling.
+\item Corrected \flobject{medianfilter} edge behaviour.
+\item Corrected variance calculations for  \flobject{fl.starndarddeviation} etc.
+\item {\#4} Probing the outputs of FrameLib objects in Max now works.
+\item {\#60} Fixed hang with \flobject{gaussian} and zero length inputs.
+\item  {\#61} Fixed crash with \flobject{shift} with large shifts in padding mode.
+\item FrameLib now works correctly in \object{poly~} and similar objects, even when nested.
+\end{itemize}
+
+\subsubsection{New objects}
+
+\begin{itemize}
+\item New reverse object \flobject{reverse} (by James Bradbury - {\#51}).
+\item New objects to return the position of min/max values - \flobject{argmin} and \flobject{argmax} (by Owen Green).
+\item New nan filtering object \flobject{nanfilter} (by Owen Green).
+\item New objects for constraining values \flobject{clip}, \flobject{wrap} and \flobject{fold} (by Owen Green).
+\item New gaussian random number generation object \flobject{gaussian}.
+\item New correlation object \flobject{correlate}.
+\item New object for calculating the sample at which a given percentage of the sum is reached \flobject{accumpoint}.
+\item New complex math objects (numerous but including \flobject{cartopol} and \flobject{poltocar} as raised in {\#10}).
+\item New time smoothing objects for frame delays, smoothing and statistics over time in parallel values per vector (e.g. \flobject{timemean} and \flobject{lag} as raised in {\#8}).
+\end{itemize}
+
+\subsubsection{New object features}
+
+\begin{itemize}
+\item \flobject{convolve} and  \flobject{correlate} supports real and complex inputs as well as a number of edge modes.
+\item \flobject{lookup} now supports different kinds of input scaling via the "scale" parameter.
+\item \flobject{sort} now supports output in the form of indices, as well as by value (see the "indices\_mode" parameter).
+\item \flobject{constant} can now return an epsilon value (thanks to Owen Green).
+\item {\#52} \flobject{read} now supports changing the buffer in realtime.
+\end{itemize}
+
+\subsubsection{Other changes}
+
+\begin{itemize}
+\item Corrected trigger inputs on the "clever" granular synthesis demo.
+\item Corrected buffer length parameter for the  \flobject{sink} object in the "clever" granular synthesis demo.
+\item Added new demos for 2D median filtering and stochastic freeze.
+\item FrameLib is now compilable for pd (not quite ready for testing yet).
+\item Added code export feature that can be used to auto-generate C++ code from a network in Max/pd.
+\end{itemize}
+
 
 \end{document}

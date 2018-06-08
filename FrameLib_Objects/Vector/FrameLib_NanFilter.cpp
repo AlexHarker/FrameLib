@@ -3,11 +3,11 @@
 
 FrameLib_NanFilter::FrameLib_NanFilter(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
-    mParameters.addEnum(enum_value(ParameterList::kMode), "mode");
-    mParameters.addEnumItem(enum_value(Modes::kReplace), "replace");
-    mParameters.addEnumItem(enum_value(Modes::kRemove), "remove");
+    mParameters.addEnum(kMode, "mode");
+    mParameters.addEnumItem(kReplace, "replace");
+    mParameters.addEnumItem(kRemove, "remove");
 
-    mParameters.addDouble(enum_value(ParameterList::kValue), "value",0);
+    mParameters.addDouble(kValue, "value",0);
     
     mParameters.set(serialisedParameters);
     setParameterInput(1);
@@ -47,8 +47,8 @@ void FrameLib_NanFilter::process()
 {
     unsigned long sizeIn;
     unsigned long sizeOut = 0;
-    Modes mode = enum_lookup<Modes>( mParameters.getInt((enum_value(ParameterList::kMode))));
-    double replacement = mParameters.getValue(enum_value(ParameterList::kValue));
+    Modes mode = (Modes) mParameters.getInt(kMode);
+    double replacement = mParameters.getValue(kValue);
     const double *input = getInput(0, &sizeIn);
     
     switch(mode)
