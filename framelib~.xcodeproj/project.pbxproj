@@ -7,8 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A0725972080BA8B001F5975 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		5A0725982080BA8B001F5975 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		5A0725A12080BB47001F5975 /* FrameLib_NumpyRead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A07259F2080BB47001F5975 /* FrameLib_NumpyRead.cpp */; };
+		5A0725A52080BB6A001F5975 /* fl.numpyread~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A0725A22080BB5A001F5975 /* fl.numpyread~.cpp */; };
+		5A0725A62080BB71001F5975 /* FrameLib_NumpyRead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A07259F2080BB47001F5975 /* FrameLib_NumpyRead.cpp */; };
+		5A0725A82080BB83001F5975 /* libcnpy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A0725A72080BB83001F5975 /* libcnpy.a */; };
+		5A1C971B20A4725D004636C1 /* libcnpy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A0725A72080BB83001F5975 /* libcnpy.a */; };
+		5A1C971C20A4725D004636C1 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		5A1C971D20A4725D004636C1 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		5A1C972420A47526004636C1 /* FrameLib_Sigmund.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A1C970E20A47233004636C1 /* FrameLib_Sigmund.cpp */; };
+		5A1C972520A4752C004636C1 /* fl.sigmund~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A1C970D20A4720F004636C1 /* fl.sigmund~.cpp */; };
+		5A1C97D620A5D515004636C1 /* FrameLib_Tracks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A2F713220A2E67400D89B3E /* FrameLib_Tracks.cpp */; };
+		5A1C97DC20A5D515004636C1 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		5A1C97DD20A5D515004636C1 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		5A1C97E520A5D549004636C1 /* fl.fft-1~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A1C97E420A5D549004636C1 /* fl.fft-1~.cpp */; };
+		5A1C97E620A5D549004636C1 /* fl.fft-1~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A1C97E420A5D549004636C1 /* fl.fft-1~.cpp */; };
+		5A1C97E720A5D582004636C1 /* FrameLib_FFT-1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A1C97CC20A5D06C004636C1 /* FrameLib_FFT-1.cpp */; };
+		5A2F713A20A2E6C200D89B3E /* fl.numpyread~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A0725A22080BB5A001F5975 /* fl.numpyread~.cpp */; };
+		5A2F713B20A2E6C200D89B3E /* FrameLib_NumpyRead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A07259F2080BB47001F5975 /* FrameLib_NumpyRead.cpp */; };
+		5A2F713D20A2E6C200D89B3E /* libcnpy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A0725A72080BB83001F5975 /* libcnpy.a */; };
+		5A2F713E20A2E6C200D89B3E /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		5A2F713F20A2E6C200D89B3E /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		5A2F714720A2EF5F00D89B3E /* fl.tracks~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A2F714620A2EF5600D89B3E /* fl.tracks~.cpp */; };
+		5A2F714820A2EF6300D89B3E /* FrameLib_Tracks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A2F713220A2E67400D89B3E /* FrameLib_Tracks.cpp */; };
 		5A3CAB1E2052E7E8001082E3 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		5A3CAB1F2052E7E8001082E3 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		5A9D53D220AE493D00835070 /* FrameLib_NanFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D53D120AE493D00835070 /* FrameLib_NanFilter.cpp */; };
+		5A9D53DF20AE49AA00835070 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		5A9D53E020AE49AA00835070 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		5A9D53E720AE49EB00835070 /* fl_nanfilter~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D53D420AE499E00835070 /* fl_nanfilter~.cpp */; };
+		5A9D53E820AE49FA00835070 /* FrameLib_NanFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D53D120AE493D00835070 /* FrameLib_NanFilter.cpp */; };
 		5AB54BBF2052E96E00325C14 /* fl.wrap~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AB54BBE2052E96E00325C14 /* fl.wrap~.cpp */; };
 		5AB54BC92052EAD700325C14 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		5AB54BCA2052EAD700325C14 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
@@ -676,7 +705,42 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5A0725902080BA8B001F5975 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
+			remoteInfo = framelib;
+		};
+		5A1C971220A4725D004636C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
+			remoteInfo = framelib;
+		};
+		5A1C97D020A5D515004636C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
+			remoteInfo = framelib;
+		};
+		5A2F713620A2E6C200D89B3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
+			remoteInfo = framelib;
+		};
 		5A3CAB172052E7E8001082E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
+			remoteInfo = framelib;
+		};
+		5A9D53D720AE49AA00835070 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
 			proxyType = 1;
@@ -1821,9 +1885,30 @@
 
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		5A07259D2080BA8B001F5975 /* fl.numpyread~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.numpyread~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A07259F2080BB47001F5975 /* FrameLib_NumpyRead.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_NumpyRead.cpp; sourceTree = "<group>"; };
+		5A0725A02080BB47001F5975 /* FrameLib_NumpyRead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_NumpyRead.h; sourceTree = "<group>"; };
+		5A0725A22080BB5A001F5975 /* fl.numpyread~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "fl.numpyread~.cpp"; path = "FrameLib_Max_Objects/Buffer/fl.numpyread~.cpp"; sourceTree = SOURCE_ROOT; };
+		5A0725A72080BB83001F5975 /* libcnpy.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcnpy.a; path = ../cnpy/build/libcnpy.a; sourceTree = "<group>"; };
+		5A1C970D20A4720F004636C1 /* fl.sigmund~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.sigmund~.cpp"; sourceTree = "<group>"; };
+		5A1C970E20A47233004636C1 /* FrameLib_Sigmund.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Sigmund.cpp; sourceTree = "<group>"; };
+		5A1C970F20A47233004636C1 /* FrameLib_Sigmund.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Sigmund.h; sourceTree = "<group>"; };
+		5A1C972220A4725D004636C1 /* fl.sigmund~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.sigmund~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A1C97CC20A5D06C004636C1 /* FrameLib_FFT-1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "FrameLib_FFT-1.cpp"; sourceTree = "<group>"; };
+		5A1C97CD20A5D06C004636C1 /* FrameLib_FFT-1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FrameLib_FFT-1.h"; sourceTree = "<group>"; };
+		5A1C97E220A5D515004636C1 /* fl.fft-1~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.fft-1~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A1C97E420A5D549004636C1 /* fl.fft-1~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.fft-1~.cpp"; sourceTree = "<group>"; };
+		5A2F713220A2E67400D89B3E /* FrameLib_Tracks.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Tracks.cpp; sourceTree = "<group>"; };
+		5A2F713320A2E67400D89B3E /* FrameLib_Tracks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Tracks.h; sourceTree = "<group>"; };
+		5A2F714420A2E6C200D89B3E /* fl.tracks~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.tracks~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A2F714620A2EF5600D89B3E /* fl.tracks~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.tracks~.cpp"; sourceTree = "<group>"; };
 		5A3CAB132052E67E001082E3 /* FrameLib_Ternary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Objects.h; sourceTree = "<group>"; };
 		5A3CAB142052E67E001082E3 /* FrameLib_Ternary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Template.h; sourceTree = "<group>"; };
 		5A3CAB262052E7E8001082E3 /* fl.wrap~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.wrap~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A9D53D120AE493D00835070 /* FrameLib_NanFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_NanFilter.cpp; sourceTree = "<group>"; };
+		5A9D53D320AE495200835070 /* FrameLib_NanFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_NanFilter.h; sourceTree = "<group>"; };
+		5A9D53D420AE499E00835070 /* fl_nanfilter~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl_nanfilter~.cpp"; sourceTree = "<group>"; };
+		5A9D53E520AE49AA00835070 /* fl.nanfilter~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.nanfilter~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AB54BBE2052E96E00325C14 /* fl.wrap~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.wrap~.cpp"; sourceTree = "<group>"; };
 		5AB54BD12052EAD700325C14 /* fl.clip~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.clip~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AB54BE42052EAE900325C14 /* fl.fold~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.fold~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2372,12 +2457,60 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5A0725962080BA8B001F5975 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A0725A82080BB83001F5975 /* libcnpy.a in Frameworks */,
+				5A0725972080BA8B001F5975 /* libframelib.a in Frameworks */,
+				5A0725982080BA8B001F5975 /* MaxAudioAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A1C971A20A4725D004636C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A1C971B20A4725D004636C1 /* libcnpy.a in Frameworks */,
+				5A1C971C20A4725D004636C1 /* libframelib.a in Frameworks */,
+				5A1C971D20A4725D004636C1 /* MaxAudioAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A1C97DA20A5D515004636C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A1C97DC20A5D515004636C1 /* libframelib.a in Frameworks */,
+				5A1C97DD20A5D515004636C1 /* MaxAudioAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A2F713C20A2E6C200D89B3E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A2F713D20A2E6C200D89B3E /* libcnpy.a in Frameworks */,
+				5A2F713E20A2E6C200D89B3E /* libframelib.a in Frameworks */,
+				5A2F713F20A2E6C200D89B3E /* MaxAudioAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5A3CAB1C2052E7E8001082E3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				5A3CAB1E2052E7E8001082E3 /* libframelib.a in Frameworks */,
 				5A3CAB1F2052E7E8001082E3 /* MaxAudioAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A9D53DE20AE49AA00835070 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A9D53DF20AE49AA00835070 /* libframelib.a in Frameworks */,
+				5A9D53E020AE49AA00835070 /* MaxAudioAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4057,6 +4190,11 @@
 				B83E02B0206674D4005925DD /* framelib_pd.d_fat */,
 				B8BA6FD22078D49200D3DB3D /* libframelib_objects.a */,
 				B88F556C207A5904007774AD /* fl.reverse~.mxo */,
+				5A07259D2080BA8B001F5975 /* fl.numpyread~.mxo */,
+				5A2F714420A2E6C200D89B3E /* fl.tracks~.mxo */,
+				5A1C972220A4725D004636C1 /* fl.sigmund~.mxo */,
+				5A1C97E220A5D515004636C1 /* fl.fft-1~.mxo */,
+				5A9D53E520AE49AA00835070 /* fl.nanfilter~.mxo */,
 				B8ACCAA020AF14770054E1E0 /* fl.nanfilter~.mxo */,
 				B8E41B1C20C5E71C003BBD86 /* fl.expr~.mxo */,
 				B85E1D4C20C8408E00DEEE6E /* fl.complexexpr~.mxo */,
@@ -4230,6 +4368,13 @@
 				B8891CF71F2C9A4600C5C4F0 /* FrameLib_Convolve.cpp */,
 				B8DF11411FBF971600C6229D /* FrameLib_Correlate.h */,
 				B8DF11421FBF972200C6229D /* FrameLib_Correlate.cpp */,
+				5A2F713220A2E67400D89B3E /* FrameLib_Tracks.cpp */,
+				5A2F713320A2E67400D89B3E /* FrameLib_Tracks.h */,
+				5A1C970E20A47233004636C1 /* FrameLib_Sigmund.cpp */,
+				5A1C970F20A47233004636C1 /* FrameLib_Sigmund.h */,
+				5A1C97CC20A5D06C004636C1 /* FrameLib_FFT-1.cpp */,
+				5A1C97CD20A5D06C004636C1 /* FrameLib_FFT-1.h */,
+				B8AE692819F459FF0040B4EE /* Storage */,
 			);
 			path = Spectral;
 			sourceTree = "<group>";
@@ -4269,6 +4414,7 @@
 		B85753591F2E92E300478E9F /* Buffer */ = {
 			isa = PBXGroup;
 			children = (
+				5A0725A22080BB5A001F5975 /* fl.numpyread~.cpp */,
 				B8AD883119C7C2B500FFA238 /* ibuffer */,
 				B8AD883819C7C2FA00FFA238 /* fl.read~.cpp */,
 			);
@@ -4342,6 +4488,8 @@
 				B8BDF04D1F2D0E0600264316 /* FrameLib_Peaks.cpp */,
 				B88F5557207A5872007774AD /* FrameLib_Reverse.h */,
 				B88F5558207A5873007774AD /* FrameLib_Reverse.cpp */,
+				5A9D53D120AE493D00835070 /* FrameLib_NanFilter.cpp */,
+				5A9D53D320AE495200835070 /* FrameLib_NanFilter.h */,
 			);
 			path = Vector;
 			sourceTree = "<group>";
@@ -4381,6 +4529,7 @@
 		B89C1A4F2069A969009CA55B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5A0725A72080BB83001F5975 /* libcnpy.a */,
 				B88F558E207AB15C007774AD /* Accelerate.framework */,
 			);
 			name = Frameworks;
@@ -4389,6 +4538,8 @@
 		B89C46B420777E9100579BE7 /* Buffer */ = {
 			isa = PBXGroup;
 			children = (
+				5A07259F2080BB47001F5975 /* FrameLib_NumpyRead.cpp */,
+				5A0725A02080BB47001F5975 /* FrameLib_NumpyRead.h */,
 				B89C46B520777F0F00579BE7 /* FrameLib_Read.h */,
 				B89C46B620777F0F00579BE7 /* FrameLib_Read.cpp */,
 			);
@@ -4432,6 +4583,9 @@
 				B85C8FCD1E605B28004D7D40 /* fl.multitaper~.cpp */,
 				B87E877419C8EEEB00B1D0CD /* fl.fft~.cpp */,
 				B87E877719C8F45700B1D0CD /* fl.ifft~.cpp */,
+				5A2F714620A2EF5600D89B3E /* fl.tracks~.cpp */,
+				5A1C970D20A4720F004636C1 /* fl.sigmund~.cpp */,
+				5A1C97E420A5D549004636C1 /* fl.fft-1~.cpp */,
 			);
 			path = Spectral;
 			sourceTree = "<group>";
@@ -4534,7 +4688,6 @@
 				5A3CAB102052E625001082E3 /* Ternary */,
 				B85B68D019F26185002D6F1D /* Vector */,
 				B850749619F1BB7C002315F4 /* Spectral */,
-				B8AE692819F459FF0040B4EE /* Storage */,
 				B850749519F1BB61002315F4 /* Filters */,
 				B8BDF05E1F2D426800264316 /* Spatial */,
 				B8B4019F1FB9A305006EE056 /* Complex_Unary */,
@@ -4911,6 +5064,7 @@
 				B8C5EBDA1E5FA6180086E8B6 /* fl.peaks~.cpp */,
 				B88F556F207A59E9007774AD /* fl.reverse~.cpp */,
 				B84A406F1FD73EA700A30455 /* fl.accumpoint~.cpp */,
+				5A9D53D420AE499E00835070 /* fl_nanfilter~.cpp */,
 			);
 			path = Vector;
 			sourceTree = "<group>";
@@ -4926,7 +5080,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		5A0725912080BA8B001F5975 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A1C971320A4725D004636C1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A1C97D120A5D515004636C1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A2F713720A2E6C200D89B3E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5A3CAB182052E7E8001082E3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A9D53D820AE49AA00835070 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -6071,6 +6260,86 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		5A07258E2080BA8B001F5975 /* fl.numpyread~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A0725992080BA8B001F5975 /* Build configuration list for PBXNativeTarget "fl.numpyread~" */;
+			buildPhases = (
+				5A0725912080BA8B001F5975 /* Headers */,
+				5A0725922080BA8B001F5975 /* Resources */,
+				5A0725932080BA8B001F5975 /* Sources */,
+				5A0725962080BA8B001F5975 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5A07258F2080BA8B001F5975 /* PBXTargetDependency */,
+			);
+			name = "fl.numpyread~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = 5A07259D2080BA8B001F5975 /* fl.numpyread~.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		5A1C971020A4725D004636C1 /* fl.sigmund~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A1C971E20A4725D004636C1 /* Build configuration list for PBXNativeTarget "fl.sigmund~" */;
+			buildPhases = (
+				5A1C971320A4725D004636C1 /* Headers */,
+				5A1C971420A4725D004636C1 /* Resources */,
+				5A1C971520A4725D004636C1 /* Sources */,
+				5A1C971A20A4725D004636C1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5A1C971120A4725D004636C1 /* PBXTargetDependency */,
+			);
+			name = "fl.sigmund~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = 5A1C972220A4725D004636C1 /* fl.sigmund~.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		5A1C97CE20A5D515004636C1 /* fl.fft-1~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A1C97DE20A5D515004636C1 /* Build configuration list for PBXNativeTarget "fl.fft-1~" */;
+			buildPhases = (
+				5A1C97D120A5D515004636C1 /* Headers */,
+				5A1C97D220A5D515004636C1 /* Resources */,
+				5A1C97D320A5D515004636C1 /* Sources */,
+				5A1C97DA20A5D515004636C1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5A1C97CF20A5D515004636C1 /* PBXTargetDependency */,
+			);
+			name = "fl.fft-1~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = 5A1C97E220A5D515004636C1 /* fl.fft-1~.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		5A2F713420A2E6C200D89B3E /* fl.tracks~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A2F714020A2E6C200D89B3E /* Build configuration list for PBXNativeTarget "fl.tracks~" */;
+			buildPhases = (
+				5A2F713720A2E6C200D89B3E /* Headers */,
+				5A2F713820A2E6C200D89B3E /* Resources */,
+				5A2F713920A2E6C200D89B3E /* Sources */,
+				5A2F713C20A2E6C200D89B3E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5A2F713520A2E6C200D89B3E /* PBXTargetDependency */,
+			);
+			name = "fl.tracks~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = 5A2F714420A2E6C200D89B3E /* fl.tracks~.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
 		5A3CAB152052E7E8001082E3 /* fl.wrap~ */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A3CAB212052E7E8001082E3 /* Build configuration list for PBXNativeTarget "fl.wrap~" */;
@@ -6089,6 +6358,26 @@
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = 5A3CAB262052E7E8001082E3 /* fl.wrap~.mxo */;
+			productType = "com.apple.product-type.bundle";
+		};
+		5A9D53D520AE49AA00835070 /* fl.nanfilter~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A9D53E120AE49AA00835070 /* Build configuration list for PBXNativeTarget "fl.nanfilter~" */;
+			buildPhases = (
+				5A9D53D820AE49AA00835070 /* Headers */,
+				5A9D53D920AE49AA00835070 /* Resources */,
+				5A9D53DA20AE49AA00835070 /* Sources */,
+				5A9D53DE20AE49AA00835070 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5A9D53D620AE49AA00835070 /* PBXTargetDependency */,
+			);
+			name = "fl.nanfilter~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = 5A9D53E520AE49AA00835070 /* fl.nanfilter~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		5AB54BC02052EAD700325C14 /* fl.clip~ */ = {
@@ -9537,12 +9826,52 @@
 				B83E029B206674D4005925DD /* framelib_pd */,
 				B8E41B0920C5E71C003BBD86 /* fl.expr~ */,
 				B85E1D3C20C8408E00DEEE6E /* fl.complexexpr~ */,
+				5A07258E2080BA8B001F5975 /* fl.numpyread~ */,
+				5A2F713420A2E6C200D89B3E /* fl.tracks~ */,
+				5A1C971020A4725D004636C1 /* fl.sigmund~ */,
+				5A1C97CE20A5D515004636C1 /* fl.fft-1~ */,
+				5A9D53D520AE49AA00835070 /* fl.nanfilter~ */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5A0725922080BA8B001F5975 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A1C971420A4725D004636C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A1C97D220A5D515004636C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A2F713820A2E6C200D89B3E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5A3CAB192052E7E8001082E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A9D53D920AE49AA00835070 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -10682,11 +11011,59 @@
 /* End PBXRezBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5A0725932080BA8B001F5975 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A0725A52080BB6A001F5975 /* fl.numpyread~.cpp in Sources */,
+				5A0725A62080BB71001F5975 /* FrameLib_NumpyRead.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A1C971520A4725D004636C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A1C972420A47526004636C1 /* FrameLib_Sigmund.cpp in Sources */,
+				5A1C972520A4752C004636C1 /* fl.sigmund~.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A1C97D320A5D515004636C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A1C97E720A5D582004636C1 /* FrameLib_FFT-1.cpp in Sources */,
+				5A1C97D620A5D515004636C1 /* FrameLib_Tracks.cpp in Sources */,
+				5A1C97E620A5D549004636C1 /* fl.fft-1~.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A2F713920A2E6C200D89B3E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A2F714720A2EF5F00D89B3E /* fl.tracks~.cpp in Sources */,
+				5A2F714820A2EF6300D89B3E /* FrameLib_Tracks.cpp in Sources */,
+				5A2F713A20A2E6C200D89B3E /* fl.numpyread~.cpp in Sources */,
+				5A2F713B20A2E6C200D89B3E /* FrameLib_NumpyRead.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5A3CAB1A2052E7E8001082E3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				5AB54BBF2052E96E00325C14 /* fl.wrap~.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A9D53DA20AE49AA00835070 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A9D53E720AE49EB00835070 /* fl_nanfilter~.cpp in Sources */,
+				5A9D53E820AE49FA00835070 /* FrameLib_NanFilter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11501,7 +11878,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A1C97E520A5D549004636C1 /* fl.fft-1~.cpp in Sources */,
+				5A9D53D220AE493D00835070 /* FrameLib_NanFilter.cpp in Sources */,
 				B8A1F5BE1D5370DE00FA5FFC /* NumericTesting.cpp in Sources */,
+				5A0725A12080BB47001F5975 /* FrameLib_NumpyRead.cpp in Sources */,
 				B8B961DD1F1000D500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
 				B80059BF1DAF96340073A866 /* FrameLib_RandGen.cpp in Sources */,
 			);
@@ -12166,10 +12546,35 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5A07258F2080BA8B001F5975 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89ABA8F1FA73483006DAD53 /* framelib */;
+			targetProxy = 5A0725902080BA8B001F5975 /* PBXContainerItemProxy */;
+		};
+		5A1C971120A4725D004636C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89ABA8F1FA73483006DAD53 /* framelib */;
+			targetProxy = 5A1C971220A4725D004636C1 /* PBXContainerItemProxy */;
+		};
+		5A1C97CF20A5D515004636C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89ABA8F1FA73483006DAD53 /* framelib */;
+			targetProxy = 5A1C97D020A5D515004636C1 /* PBXContainerItemProxy */;
+		};
+		5A2F713520A2E6C200D89B3E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89ABA8F1FA73483006DAD53 /* framelib */;
+			targetProxy = 5A2F713620A2E6C200D89B3E /* PBXContainerItemProxy */;
+		};
 		5A3CAB162052E7E8001082E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B89ABA8F1FA73483006DAD53 /* framelib */;
 			targetProxy = 5A3CAB172052E7E8001082E3 /* PBXContainerItemProxy */;
+		};
+		5A9D53D620AE49AA00835070 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89ABA8F1FA73483006DAD53 /* framelib */;
+			targetProxy = 5A9D53D720AE49AA00835070 /* PBXContainerItemProxy */;
 		};
 		5AB54BC12052EAD700325C14 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -13110,6 +13515,418 @@
 			};
 			name = Deployment;
 		};
+		5A07259A2080BA8B001F5975 /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LIBRARY_SEARCH_PATHS = /Users/owen/cnpy/build;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/owen/Fecho/src /Users/owen/cnpy";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		5A07259B2080BA8B001F5975 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LIBRARY_SEARCH_PATHS = /Users/owen/cnpy/build;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/owen/Fecho/src /Users/owen/cnpy";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		5A07259C2080BA8B001F5975 /* Public Testing */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LIBRARY_SEARCH_PATHS = /Users/owen/cnpy/build;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/owen/Fecho/src /Users/owen/cnpy";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = "Public Testing";
+		};
+		5A1C971F20A4725D004636C1 /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LIBRARY_SEARCH_PATHS = /Users/owen/cnpy/build;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/owen/Fecho/src /Users/owen/cnpy";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		5A1C972020A4725D004636C1 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LIBRARY_SEARCH_PATHS = /Users/owen/cnpy/build;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/owen/Fecho/src /Users/owen/cnpy";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		5A1C972120A4725D004636C1 /* Public Testing */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LIBRARY_SEARCH_PATHS = /Users/owen/cnpy/build;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/owen/Fecho/src /Users/owen/cnpy";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = "Public Testing";
+		};
+		5A1C97DF20A5D515004636C1 /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LIBRARY_SEARCH_PATHS = /Users/owen/cnpy/build;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/owen/Fecho/src /Users/owen/cnpy";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		5A1C97E020A5D515004636C1 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LIBRARY_SEARCH_PATHS = /Users/owen/cnpy/build;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/owen/Fecho/src /Users/owen/cnpy";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		5A1C97E120A5D515004636C1 /* Public Testing */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LIBRARY_SEARCH_PATHS = /Users/owen/cnpy/build;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/owen/Fecho/src /Users/owen/cnpy";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = "Public Testing";
+		};
+		5A2F714120A2E6C200D89B3E /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LIBRARY_SEARCH_PATHS = /Users/owen/cnpy/build;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/owen/Fecho/src /Users/owen/cnpy";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		5A2F714220A2E6C200D89B3E /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LIBRARY_SEARCH_PATHS = /Users/owen/cnpy/build;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/owen/Fecho/src /Users/owen/cnpy";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		5A2F714320A2E6C200D89B3E /* Public Testing */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LIBRARY_SEARCH_PATHS = /Users/owen/cnpy/build;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/owen/Fecho/src /Users/owen/cnpy";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = "Public Testing";
+		};
 		5A3CAB222052E7E8001082E3 /* Development */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
@@ -13198,6 +14015,109 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = "Public Testing";
+		};
+		5A9D53E220AE49AA00835070 /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LIBRARY_SEARCH_PATHS = /Users/owen/cnpy/build;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/owen/Fecho/src /Users/owen/cnpy";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		5A9D53E320AE49AA00835070 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LIBRARY_SEARCH_PATHS = /Users/owen/cnpy/build;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/owen/Fecho/src /Users/owen/cnpy";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		5A9D53E420AE49AA00835070 /* Public Testing */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LIBRARY_SEARCH_PATHS = /Users/owen/cnpy/build;
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/Users/owen/Fecho/src /Users/owen/cnpy";
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -28223,12 +29143,62 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
+		5A0725992080BA8B001F5975 /* Build configuration list for PBXNativeTarget "fl.numpyread~" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A07259A2080BA8B001F5975 /* Development */,
+				5A07259B2080BA8B001F5975 /* Deployment */,
+				5A07259C2080BA8B001F5975 /* Public Testing */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		5A1C971E20A4725D004636C1 /* Build configuration list for PBXNativeTarget "fl.sigmund~" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A1C971F20A4725D004636C1 /* Development */,
+				5A1C972020A4725D004636C1 /* Deployment */,
+				5A1C972120A4725D004636C1 /* Public Testing */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		5A1C97DE20A5D515004636C1 /* Build configuration list for PBXNativeTarget "fl.fft-1~" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A1C97DF20A5D515004636C1 /* Development */,
+				5A1C97E020A5D515004636C1 /* Deployment */,
+				5A1C97E120A5D515004636C1 /* Public Testing */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		5A2F714020A2E6C200D89B3E /* Build configuration list for PBXNativeTarget "fl.tracks~" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A2F714120A2E6C200D89B3E /* Development */,
+				5A2F714220A2E6C200D89B3E /* Deployment */,
+				5A2F714320A2E6C200D89B3E /* Public Testing */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
 		5A3CAB212052E7E8001082E3 /* Build configuration list for PBXNativeTarget "fl.wrap~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5A3CAB222052E7E8001082E3 /* Development */,
 				5A3CAB232052E7E8001082E3 /* Deployment */,
 				5A3CAB242052E7E8001082E3 /* Public Testing */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		5A9D53E120AE49AA00835070 /* Build configuration list for PBXNativeTarget "fl.nanfilter~" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A9D53E220AE49AA00835070 /* Development */,
+				5A9D53E320AE49AA00835070 /* Deployment */,
+				5A9D53E420AE49AA00835070 /* Public Testing */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
