@@ -29,7 +29,7 @@
 
 \linespread{1.1} % Line spacing
 
-\newcommand{\version}{Alpha 2.0}
+\newcommand{\version}{Alpha 2.1}
 % Set up the header and footer
 \pagestyle{fancy}
 \lhead{Alex Harker} % Top left header
@@ -719,6 +719,31 @@ Objects in bold are yet to be finalised by review.
 \item FrameLib is now compilable for pd (not quite ready for testing yet).
 \item Added code export feature that can be used to auto-generate C++ code from a network in Max/pd.
 \end{itemize}
+
+
+\subsection{Changes in Alpha 2.1}
+\vspace{0.1in}
+
+\subsubsection{Bug fixes}
+
+\begin{itemize}
+\item {\#66} Corrected naming of not equals object.
+\item Ternary objects now behave predictably for all input values.
+\end{itemize}
+
+\subsubsection{New objects}
+
+\begin{itemize}
+\item {\#9} \flobject{expr} and \flobject{complexexpr} allow expressions in a single object.
+\end{itemize}
+
+\subsubsection{Other changes}
+
+\begin{itemize}
+\item {\#68} FrameLib is now compiled with AVX1.0 but not AVX2.0 due to incompatibility with reasonably recent computers.
+\item {\#63} Corrected typos in demos and user docs.
+\end{itemize}
+
 
 
 \end{document}
