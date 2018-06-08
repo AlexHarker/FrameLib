@@ -11,60 +11,38 @@ template <typename Op> class FrameLib_TernaryOp : public FrameLib_Processor
     
     class EnlargedInput
     {
+        
     public:
-        EnlargedInput(FrameLib_TernaryOp *owner, const double *input, unsigned long size, unsigned long extendedSize,
-                      MismatchModes mode) : mOwner(owner),mAllocated(NULL)
+        
+        EnlargedInput(FrameLib_TernaryOp *owner, const double *input, unsigned long size, unsigned long extendedSize, MismatchModes mode)
+            : mOwner(owner), mAllocated(NULL)
         {
             if (extendedSize > size)
             {
-                mAllocated = owner->alloc<double>(extendedSize);
-                if (mAllocated)
+                if ((mPtr = mAllocated = owner->alloc<double>(extendedSize)))
                 {
                     switch (mode)
                     {
-                        case kWrap:
-                        {
-                            enlargeModulo(mAllocated, input, size, extendedSize);
-                            break;
-                        }
-                            
-                        case kShrink:
-                            break;
-                            
-                        case kExtend:
-                            enlargeExtend(mAllocated, input, size, extendedSize);
-                            break;
+                        case kWrap:     copyVectorWrap(mAllocated, input, extendedSize, size);      break;
+                        case kShrink:                                                               break;
+                        case kExtend:   copyVectorExtend(mAllocated, input, extendedSize, size);    break;
                     }
-                    mPtr = mAllocated;
                 }
             }
             else
-                mPtr=input;
+                mPtr = input;
         }
         
         ~EnlargedInput()
         {
             mOwner->dealloc(mAllocated);
         }
-        const double &operator [] (size_t idx) { return mPtr[idx]; }
+        
+        bool isValid() const { return mPtr; }
+        
+        const double &operator [] (size_t idx) const { return mPtr[idx]; }
 
     private:
-        void enlargeExtend(double* output, const double *input, unsigned long size, unsigned long extendedSize)
-        {
-            copyVector(output, input, size);
-            std::fill_n(output + size, extendedSize - size, input[size-1]);
-        }
-        
-        void enlargeModulo(double* output, const double *input, unsigned long size, unsigned long extendedSize)
-        {
-            unsigned long leftover = extendedSize % size;
-            
-            for (unsigned long i = 0; i < (extendedSize-leftover); i+=size)
-                copyVector(output + i, input, size);
-            
-            copyVector(output + (extendedSize-leftover), input, leftover);
-        }
-        
         
         // Deleted
         
@@ -97,12 +75,12 @@ public:
         mParameters.addEnumItem(kWrap, "wrap");
         mParameters.addEnumItem(kShrink, "shrink");
         mParameters.addEnumItem(kExtend, "extend");
-        
+        mParameters.setInstantiation();
+
         mParameters.set(serialisedParameters);
         
         mMismatchMode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
     }
-    
     
     std::string objectInfo(bool verbose)
     {
@@ -110,7 +88,6 @@ public:
                           "When frames mismatch in size the result depends on the setting of the mismatch parameter.",
                           "#.", getDescriptionString(), verbose);
     }
-
 
     std::string inputInfo(unsigned long idx, bool verbose)
     {
@@ -124,7 +101,9 @@ public:
     }
 
     std::string outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
+    
 private:
+    
     void process()
     {
         MismatchModes mode = mMismatchMode;
@@ -137,23 +116,18 @@ private:
         const double *input2 = getInput(1, &sizeIn[1]);
         const double *input3 = getInput(2, &sizeIn[2]);
 
-        unsigned long sizeMax = *std::max_element(sizeIn, sizeIn+3);
-        unsigned long sizeMin = *std::min_element(sizeIn, sizeIn+3);
+        unsigned long sizeMax = *std::max_element(sizeIn, sizeIn + 3);
+        unsigned long sizeMin = *std::min_element(sizeIn, sizeIn + 3);
 
-        for (int i = 0; i < 3; i++)
-            if (sizeIn[i] == 0)
-                return;
-            
-        
-        // Not a real ternary op: sizeOut always = sizeIn1;
-        
+        if (sizeMin == 0)
+            return;
+                
         switch (mode)
         {
             case kShrink:
-            {
                 sizeOut = sizeMin;
                 break;
-            }
+
             case kWrap:
             case kExtend:
                 sizeOut = sizeMax;
@@ -166,25 +140,26 @@ private:
         if (!sizeOut)
             return;
         
-        for (unsigned long i = 0; i < sizeMin; i++)
+        if (mode == kShrink || sizeMin == sizeMax)
         {
-            output[i] = op(input1[i],input2[i],input3[i]);
+            for (unsigned long i = 0; i < sizeMin; i++)
+                output[i] = op(input1[i], input2[i], input3[i]);
         }
-        
-
-        if (mode == kShrink)
-            return;
-        
-        EnlargedInput in1(this, input1, sizeIn[0], sizeMax, mode);
-        EnlargedInput in2(this, input2, sizeIn[1], sizeMax, mode);
-        EnlargedInput in3(this, input3, sizeIn[2], sizeMax, mode);
-        
-        for (unsigned long i = sizeMin; i < sizeMax; i++)
+        else
         {
-            output[i] = op(in1[i], in2[i],in3[i]);
+            EnlargedInput in1(this, input1, sizeIn[0], sizeMax, mode);
+            EnlargedInput in2(this, input2, sizeIn[1], sizeMax, mode);
+            EnlargedInput in3(this, input3, sizeIn[2], sizeMax, mode);
+        
+            if (in1.isValid() && in2.isValid() && in3.isValid())
+            {
+                for (unsigned long i = 0; i < sizeMax; i++)
+                    output[i] = op(in1[i], in2[i], in3[i]);
+            }
+            else
+                zeroVector(output, sizeMax);
         }
     }
-    
     
     virtual const char *getDescriptionString() { return "Ternary Operator - No operator info available"; }
     

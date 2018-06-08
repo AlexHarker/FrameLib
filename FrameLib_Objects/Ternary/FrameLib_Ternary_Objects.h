@@ -4,23 +4,30 @@
 
 #include "FrameLib_Ternary_Template.h"
 
-// Specification and signature taken from C++17 std::clamp, more or less
-// If v compares less than lo, returns lo; otherwise if hi compares less than v, returns hi; otherwise returns v. Uses operator< to compare the values.
-
 namespace Ternary
 {
+    // Specification/signature taken from C++17 std::clamp, (although that specifies use of only < rather than < and >)
+    // If v compares less than lo, returns lo; otherwise if hi compares less than v, returns hi; otherwise returns v.
+
     template<class T>  T clip(T v,T lo, T hi)
     {
-        return v < lo? lo : (v > hi? hi : v);
+        if (lo > hi)
+            std::swap(lo, hi);
+        
+        return v < lo ? lo : (v > hi ? hi : v);
     }
 
-    // Wrap and fold are taken from PD's cyclone pong external
-    // https://github.com/porres/pd-cyclone/blob/master/cyclone_src/binaries/signal/pong.c
+    // Wrap is modified from PD's cyclone pong external
+    // https://github.com/porres/pd-cyclone/blob/master/cyclone_objects/binaries/audio/pong.c
 
-    template<class T> T wrap(T v, T lo, T hi)
+    template <class T> T wrap(T v, T lo, T hi)
     {
-        T returnval;
+        if (lo > hi)
+            std::swap(lo, hi);
+        
+        T returnVal;
         T range = hi - lo;
+        
         if (v < hi && v >= lo)
             return v;
         
@@ -29,63 +36,48 @@ namespace Ternary
         
         if (v < lo)
         {
-            returnval = v;
-            while (returnval < lo)
-                returnval += range;
+            returnVal = v;
+            while (returnVal < lo)
+                returnVal += range;
         }
         else
-            returnval = std::fmod(v-lo,range) + lo;
+            returnVal = std::fmod(v - lo, range) + lo;
         
-        return returnval;
+        return returnVal;
     }
 
-    template<class T> T fold(T v, T lo, T hi)
+    // Fold is modified from PD's cyclone pong external
+    // https://github.com/porres/pd-cyclone/blob/master/cyclone_objects/binaries/audio/pong.c
+
+    template <class T> T fold(T v, T lo, T hi)
     {
-        T returnval;
+        if (lo > hi)
+            std::swap(lo, hi);
+        
         T range = hi - lo;
-        if (v < hi && v >= lo)
+        
+        if (v <= hi && v >= lo)
             return v;
         
         if (hi == lo)
             return lo;
         
-        if (v < lo)
-        {
-            T diff = lo - v;
-            unsigned long mag = static_cast<unsigned long>(diff/range); //case where v is more than a range away from lo
-            if (mag % 2 == 0) // even number of ranges away => counting up from lo
-            {
-                diff = diff - (range * mag);
-                returnval = diff + lo;
-            }
-            else            // odd number of ranges away => counting down from hi
-            {
-                diff = diff - (range * mag);
-                returnval = hi - diff;
-            }
-        }
-        else // v > hi
-        {
-            T diff = v - hi;
-            unsigned long mag = static_cast<unsigned long>(diff/range);
-            if (mag % 2 == 0) // even number of ranges away => counting up from lo
-            {
-                diff = diff - (range * mag);
-                returnval = hi - diff;
-            }
-            else            // odd number of ranges away => counting down from hi
-            {
-                diff = diff - (range * mag);
-                returnval = diff + lo;
-            }
-        }
-        return returnval;
+        bool below = (v < lo);
+        T diff = below ? lo - v : v - hi;
+        unsigned long mag = static_cast<unsigned long>(diff/range);
+        
+        diff = diff - (range * mag);
+        
+        if ((mag % 2 == 0) ^ below)
+            return hi - diff;
+        else
+            return lo + diff;
     }
 };
 
-typedef FrameLib_Ternary<Ternary::clip<double> >         FrameLib_Clip;
-typedef FrameLib_Ternary<Ternary::wrap<double> >         FrameLib_Wrap;
-typedef FrameLib_Ternary<Ternary::fold<double> >         FrameLib_Fold; 
+typedef FrameLib_Ternary<Ternary::clip<double> >    FrameLib_Clip;
+typedef FrameLib_Ternary<Ternary::wrap<double> >    FrameLib_Wrap;
+typedef FrameLib_Ternary<Ternary::fold<double> >    FrameLib_Fold; 
 
 #endif 
 

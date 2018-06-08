@@ -41,14 +41,17 @@ public:
         mParameters.addEnumItem(kShrink, "shrink");
         mParameters.addEnumItem(kPadIn, "pad_in");
         mParameters.addEnumItem(kPadOut, "pad_out");
-        
+        mParameters.setInstantiation();
+
         mParameters.addEnum(kTriggers, "trigger_ins");
         mParameters.addEnumItem(kBoth, "both");
         mParameters.addEnumItem(kLeft, "left");
         mParameters.addEnumItem(kRight, "right");
+        mParameters.setInstantiation();
 
         mParameters.addDouble(kPadding, "pad", 0.0);
-        
+        mParameters.setInstantiation();
+
         mParameters.set(serialisedParameters);
                                     
         mMismatchMode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));

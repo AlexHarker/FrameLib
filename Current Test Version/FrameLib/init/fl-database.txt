@@ -5,7 +5,7 @@ max db.addvirtual alias fl.>=~ fl.greaterthaneq~;
 max db.addvirtual alias fl.<~ fl.lessthan~;
 max db.addvirtual alias fl.<=~ fl.lessthaneq~;
 max db.addvirtual alias fl.-~ fl.minus~;
-max db.addvirtual alias fl.!=~ fl.notequal~;
+max db.addvirtual alias fl.!=~ fl.notequals~;
 max db.addvirtual alias fl.+~ fl.plus~;
 max db.addvirtual alias fl.*~ fl.times~;
 max db.addvirtual alias fl.%~ fl.modulo~;

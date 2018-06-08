@@ -2,14 +2,16 @@
 	"patcher" : 	{
 		"fileversion" : 1,
 		"appversion" : 		{
-			"major" : 7,
-			"minor" : 3,
-			"revision" : 5,
+			"major" : 8,
+			"minor" : 0,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"rect" : [ 256.0, 153.0, 1169.0, 736.0 ],
+		"bgcolor" : [ 0.898039, 0.898039, 0.898039, 1 ],
+		"editing_bgcolor" : [ 0.898039, 0.898039, 0.898039, 1 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -44,6 +46,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 399.0, 215.0, 49.0, 22.0 ],
+					"presentation_rect" : [ 399.0, 215.0, 49.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.plus~"
 				}
@@ -59,6 +62,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 643.0, 176.0, 86.0, 22.0 ],
+					"presentation_rect" : [ 643.0, 176.0, 86.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.times~ 1000"
 				}
@@ -74,6 +78,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 643.0, 139.0, 210.0, 22.0 ],
+					"presentation_rect" : [ 643.0, 139.0, 210.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.random~ /mode requested /length 1"
 				}
@@ -86,6 +91,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 647.0, 48.0, 142.0, 20.0 ],
+					"presentation_rect" : [ 647.0, 48.0, 142.0, 20.0 ],
 					"style" : "",
 					"text" : "100 voices simultaneous"
 				}
@@ -98,6 +104,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 502.0, 368.0, 106.0, 20.0 ],
+					"presentation_rect" : [ 502.0, 368.0, 106.0, 20.0 ],
 					"style" : "",
 					"text" : "Back to MSP land"
 				}
@@ -110,6 +117,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 512.0, 330.0, 53.0, 20.0 ],
+					"presentation_rect" : [ 512.0, 330.0, 53.0, 20.0 ],
 					"style" : "",
 					"text" : "Window"
 				}
@@ -122,6 +130,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 540.0, 289.0, 89.0, 20.0 ],
+					"presentation_rect" : [ 540.0, 289.0, 89.0, 20.0 ],
 					"style" : "",
 					"text" : "A filter (for fun)"
 				}
@@ -134,6 +143,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 717.0, 209.0, 96.0, 20.0 ],
+					"presentation_rect" : [ 717.0, 209.0, 96.0, 20.0 ],
 					"style" : "",
 					"text" : "Add offset in ms"
 				}
@@ -146,8 +156,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 643.0, 249.0, 308.0, 20.0 ],
+					"presentation_rect" : [ 643.0, 249.0, 308.0, 20.0 ],
 					"style" : "",
-					"text" : "Read the buffer at the specified samples (in the vectore)"
+					"text" : "Read the buffer at the specified samples (in the vector)"
 				}
 
 			}
@@ -158,6 +169,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 91.5, 182.0, 229.0, 20.0 ],
+					"presentation_rect" : [ 91.5, 182.0, 229.0, 20.0 ],
 					"style" : "",
 					"text" : "Sample rate converstion (samples to ms)"
 				}
@@ -170,6 +182,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 91.5, 145.0, 295.0, 20.0 ],
+					"presentation_rect" : [ 91.5, 145.0, 295.0, 20.0 ],
 					"style" : "",
 					"text" : "A vector of counts from 0 - N -1 (10000 samples long)"
 				}
@@ -182,6 +195,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 891.0, 143.0, 240.0, 20.0 ],
+					"presentation_rect" : [ 891.0, 143.0, 240.0, 20.0 ],
 					"style" : "",
 					"text" : "Grab one random number for sample offset"
 				}
@@ -194,6 +208,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 404.0, 48.0, 190.0, 20.0 ],
+					"presentation_rect" : [ 404.0, 48.0, 190.0, 20.0 ],
 					"style" : "",
 					"text" : "Every 100 samples trigger frames"
 				}
@@ -209,6 +224,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 399.0, 289.0, 112.0, 22.0 ],
+					"presentation_rect" : [ 399.0, 289.0, 112.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.onepole~ 500. lpf"
 				}
@@ -224,6 +240,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 399.0, 176.0, 198.0, 22.0 ],
+					"presentation_rect" : [ 399.0, 176.0, 198.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.samplerate~ /mode samples->ms"
 				}
@@ -239,6 +256,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 399.0, 330.0, 105.0, 22.0 ],
+					"presentation_rect" : [ 399.0, 330.0, 105.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.window~ cosine"
 				}
@@ -254,6 +272,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 163.0, 412.0, 50.0, 22.0 ],
+					"presentation_rect" : [ 163.0, 412.0, 50.0, 22.0 ],
 					"style" : "",
 					"text" : "replace"
 				}
@@ -269,6 +288,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
 					"patching_rect" : [ 163.0, 446.0, 139.0, 22.0 ],
+					"presentation_rect" : [ 163.0, 446.0, 139.0, 22.0 ],
 					"style" : "",
 					"text" : "buffer~ jongles jongly.aif"
 				}
@@ -285,6 +305,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 399.0, 249.0, 224.0, 22.0 ],
+					"presentation_rect" : [ 399.0, 249.0, 224.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.read~ jongles /mode hermite /units ms"
 				}
@@ -300,6 +321,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 399.0, 139.0, 224.0, 22.0 ],
+					"presentation_rect" : [ 399.0, 139.0, 224.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.ramp~ /mode requested /length 10000"
 				}
@@ -313,6 +335,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 0,
 					"patching_rect" : [ 522.0, 462.0, 279.0, 204.0 ],
+					"presentation_rect" : [ 522.0, 462.0, 279.0, 204.0 ],
 					"style" : ""
 				}
 
@@ -324,6 +347,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 0,
 					"patching_rect" : [ 399.0, 465.5, 45.0, 45.0 ],
+					"presentation_rect" : [ 399.0, 465.5, 45.0, 45.0 ],
 					"style" : ""
 				}
 
@@ -338,6 +362,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 399.0, 417.0, 42.0, 22.0 ],
+					"presentation_rect" : [ 399.0, 417.0, 42.0, 22.0 ],
 					"style" : "",
 					"text" : "*~ 0.4"
 				}
@@ -353,6 +378,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 399.0, 368.0, 48.0, 22.0 ],
+					"presentation_rect" : [ 399.0, 368.0, 48.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.sink~"
 				}
@@ -369,6 +395,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 399.0, 91.0, 89.0, 22.0 ],
+					"presentation_rect" : [ 399.0, 91.0, 89.0, 22.0 ],
 					"style" : "",
 					"text" : "fl.interval~ 100"
 				}
@@ -490,6 +517,14 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.sink~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
