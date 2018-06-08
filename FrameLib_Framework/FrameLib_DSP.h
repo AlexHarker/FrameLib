@@ -182,8 +182,8 @@ protected:
     
     static void copyVectorExtend(double* output, const double *input, unsigned long sizeOut, unsigned long sizeIn)
     {
-        copyVector(output, input, sizeIn);
-        std::fill_n(output + sizeIn, sizeOut - sizeIn, input[sizeIn - 1]);
+        copyVector(output, input, std::min(sizeIn, sizeOut));
+        std::fill_n(output + sizeIn, (sizeOut > sizeIn) ? sizeOut - sizeIn : 0, input[sizeIn - 1]);
     }
     
     static void copyVectorWrap(double* output, const double *input, unsigned long sizeOut, unsigned long sizeIn)
@@ -194,6 +194,12 @@ protected:
             copyVector(output + i, input, sizeIn);
         
         copyVector(output + (sizeOut - excess), input, excess);
+    }
+    
+    static void copyVectorZero(double* output, const double *input, unsigned long sizeOut, unsigned long sizeIn)
+    {
+        copyVector(output, input, std::min(sizeIn, sizeOut));
+        zeroVector(output + sizeIn, (sizeOut > sizeIn) ? sizeOut - sizeIn : 0);
     }
     
 private:
