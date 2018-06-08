@@ -270,7 +270,7 @@ public:
             // Convert number tokens to constants
             
             if (it->isNumber())
-                *it = Node(std::stod(it->getTokenString()));
+                *it = Node(convertTextToNumber(it->getTokenString()));
             
             // Convert constant symbols to constants
             
@@ -348,6 +348,8 @@ private:
         
         return kUnknown;
     }
+    
+    T convertTextToNumber(const char*text) { return std::stod(text); }
     
     // Find the extent of an operator token
     
