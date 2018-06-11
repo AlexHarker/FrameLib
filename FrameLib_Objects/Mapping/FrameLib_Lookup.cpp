@@ -8,7 +8,6 @@ FrameLib_Lookup::FrameLib_Lookup(FrameLib_Context context, FrameLib_Parameters::
     mParameters.addEnum(kMode, "mode");
     mParameters.addEnumItem(kZero, "zero");
     mParameters.addEnumItem(kClip, "clip");
-    mParameters.setInstantiation();
     
     mParameters.addEnum(kInterpolation, "interp");
     mParameters.addEnumItem(kHermite, "hermite");
@@ -16,21 +15,17 @@ FrameLib_Lookup::FrameLib_Lookup(FrameLib_Context context, FrameLib_Parameters::
     mParameters.addEnumItem(kLagrange, "lagrange");
     mParameters.addEnumItem(kLinear, "linear");
     mParameters.addEnumItem(kNone, "none");
-    mParameters.setInstantiation();
 
     mParameters.addEnum(kScaling, "scale");
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kNormalised, "normalised");
     mParameters.addEnumItem(kBipolar, "bipolar");
-    mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
     
-    mMode = mParameters.getInt(kMode);
-    mInterpMode = mParameters.getInt(kInterpolation);
-    mScaling = mParameters.getInt(kScaling);
-
     setInputMode(1, false, false, false);
+    
+    addParameterInput();
 }
 
 // Info
@@ -45,10 +40,13 @@ std::string FrameLib_Lookup::objectInfo(bool verbose)
 
 std::string FrameLib_Lookup::inputInfo(unsigned long idx, bool verbose)
 {
-    if (idx)
-        return formatInfo("Frame for Table - values are retrieved from this frame / does not trigger output", "Frame for Table", verbose);
-    else
-        return formatInfo("Values to Lookup - interpreted as sample positions into the table / right input", "Values to Lookup", verbose);
+    switch (idx)
+    {
+        case 0: return formatInfo("Values to Lookup - interpreted as sample positions into the table / right input", "Values to Lookup", verbose);
+        case 1: return formatInfo("Frame for Table - values are retrieved from this frame / does not trigger output", "Frame for Table", verbose);
+        case 2: return parameterInputInfo(verbose);
+        default: return "Unknown input";
+    }
 }
 
 std::string FrameLib_Lookup::outputInfo(unsigned long idx, bool verbose)
@@ -89,9 +87,10 @@ void FrameLib_Lookup::process()
     double *temp = NULL;
     double scaleFactor;
     
-    enum InterpType interpType = kInterpNone;
+    Scaling scaling = (Scaling) mParameters.getInt(kScaling);
+    InterpType interpType = kInterpNone;
     
-    switch (mInterpMode)
+    switch ((Interpolation) mParameters.getInt(kInterpolation))
     {
         case kNone:         interpType = kInterpNone;               break;
         case kLinear:       interpType = kInterpLinear;             break;
@@ -100,7 +99,7 @@ void FrameLib_Lookup::process()
         case kBSpline:      interpType = kInterpCubicBSpline;       break;
     }
     
-    if (mScaling != kSamples)
+    if (scaling != kSamples)
     {
         temp = alloc<double>(sizeIn1);
         positions = temp;
@@ -112,7 +111,7 @@ void FrameLib_Lookup::process()
         }
     }
     
-    switch (mScaling)
+    switch (scaling)
     {
         case kSamples:
             break;
@@ -132,7 +131,7 @@ void FrameLib_Lookup::process()
             break;
     }
     
-    switch (mMode)
+    switch ((Mode) mParameters.getInt(kMode))
     {
         case kZero:     table_read(FetchZero(input2, sizeIn2), output, positions, sizeIn1, 1.0, interpType);   break;
         case kClip:     table_read(FetchClip(input2, sizeIn2), output, positions, sizeIn1, 1.0, interpType);   break;
@@ -140,6 +139,6 @@ void FrameLib_Lookup::process()
         //case kPad:   table_read(FetchPad(input2, sizeIn2, padValue), output, input1, sizeIn1, 1.0, interpType);   break;
     }
     
-     if (mScaling != kSamples)
+     if (scaling != kSamples)
          dealloc(temp);
 }

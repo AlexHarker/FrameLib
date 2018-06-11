@@ -86,10 +86,6 @@ private:
     
     // Data
     
-    long mMode;
-    long mInterpMode;
-    long mScaling;
-    
     static ParameterInfo sParamInfo;
 };
 
