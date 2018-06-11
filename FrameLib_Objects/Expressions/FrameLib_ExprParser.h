@@ -203,6 +203,11 @@ class FrameLib_ExprParser
         
     private:
         
+        // Deleted
+        
+        OperatorList(const OperatorList&);
+        OperatorList& operator=(const OperatorList&);
+
         std::vector<OpBase<T> *> mItems;
     };
     
