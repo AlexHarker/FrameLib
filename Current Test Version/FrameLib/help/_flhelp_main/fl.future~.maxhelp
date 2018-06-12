@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 720.0, 44.0, 503.0, 585.0 ],
+		"rect" : [ 100.0, 100.0, 503.0, 585.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -55,7 +55,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 377.5, 305.5, 105.0, 80.0 ],
+					"patching_rect" : [ 377.5, 305.5, 106.0, 80.0 ],
 					"style" : "",
 					"text" : "Here fl.future is in /mode relative and triggers an ouput in relation to an input frame, rather than the absolute time."
 				}
@@ -72,7 +72,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 139.0, 406.0, 120.0, 35.0 ],
 					"setminmax" : [ 0.0, 1.0 ],
-					"size" : 20,
+					"size" : 128,
 					"style" : ""
 				}
 
@@ -580,7 +580,7 @@
 					"spacing_y" : 0.0,
 					"style" : "",
 					"text" : "Frame Lib reference",
-					"textcolor" : [ 0.348, 0.44, 0.578, 1.0 ],
+					"textcolor" : [ 0.413, 0.515, 0.668, 1.0 ],
 					"textoncolor" : [ 0.27, 0.35, 0.47, 1.0 ],
 					"textovercolor" : [ 0.4, 0.5, 0.65, 1.0 ],
 					"underline" : 1,
