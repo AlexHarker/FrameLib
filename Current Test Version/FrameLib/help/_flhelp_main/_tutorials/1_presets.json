@@ -1,0 +1,93 @@
+{
+	"pattrstorage" : 	{
+		"name" : "stochSynth",
+		"slots" : 		{
+			"1" : 			{
+				"id" : 1,
+				"data" : 				{
+					"1_FrameInterval" : [ 32.382355 ],
+					"1_FrameLength" : [ 76.455879 ],
+					"2_FrameInterval" : [  ],
+					"2_FrameLength" : [ 164.602936 ],
+					"randcontrol" : [ 0.1166 ]
+				}
+
+			}
+,
+			"2" : 			{
+				"id" : 2,
+				"data" : 				{
+					"1_FrameInterval" : [ 61.764706 ],
+					"1_FrameLength" : [ 76.455879 ],
+					"2_FrameInterval" : [ 105.838234 ],
+					"2_FrameLength" : [ 1457.426514 ],
+					"randcontrol" : [ 0.29 ]
+				}
+
+			}
+,
+			"3" : 			{
+				"id" : 3,
+				"data" : 				{
+					"1_FrameInterval" : [ 47.073528 ],
+					"1_FrameLength" : [ 17.691177 ],
+					"2_FrameInterval" : [ 208.676468 ],
+					"2_FrameLength" : [ 3.0 ],
+					"randcontrol" : [ 0.29 ]
+				}
+
+			}
+,
+			"4" : 			{
+				"id" : 4,
+				"data" : 				{
+					"1_FrameInterval" : [ 91.147057 ],
+					"1_FrameLength" : [ 664.102966 ],
+					"2_FrameInterval" : [ 193.985291 ],
+					"2_FrameLength" : [ 443.735291 ],
+					"randcontrol" : [ 0.001 ]
+				}
+
+			}
+,
+			"5" : 			{
+				"id" : 5,
+				"data" : 				{
+					"1_FrameInterval" : [ 193.985291 ],
+					"1_FrameLength" : [ 2529.882324 ],
+					"2_FrameInterval" : [ 326.205872 ],
+					"2_FrameLength" : [ 2412.353027 ],
+					"randcontrol" : [ 0.017514 ]
+				}
+
+			}
+,
+			"6" : 			{
+				"id" : 6,
+				"data" : 				{
+					"1_FrameInterval" : [ 193.985291 ],
+					"1_FrameLength" : [ 2529.882324 ],
+					"2_FrameInterval" : [ 76.455879 ],
+					"2_FrameLength" : [ 208.676468 ],
+					"randcontrol" : [ 0.017514 ]
+				}
+
+			}
+,
+			"7" : 			{
+				"id" : 7,
+				"data" : 				{
+					"1_FrameInterval" : [  ],
+					"1_FrameLength" : [  ],
+					"2_FrameInterval" : [  ],
+					"2_FrameLength" : [  ],
+					"randcontrol" : [  ]
+				}
+
+			}
+
+		}
+
+	}
+
+}
