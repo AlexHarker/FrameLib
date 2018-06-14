@@ -54,7 +54,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 70.0, 1000.0, 830.0 ],
+						"rect" : [ 0.0, 26.0, 1000.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -669,7 +669,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 15.75, 732.400024, 157.75, 51.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 2,
+									"size" : 8,
 									"style" : ""
 								}
 
@@ -773,7 +773,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 1000.0, 830.0 ],
+						"rect" : [ 0.0, 70.0, 1000.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1114,7 +1114,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 181.875, 434.5, 368.0, 38.0 ],
+									"patching_rect" : [ 181.875, 434.5, 343.0, 38.0 ],
 									"style" : "",
 									"text" : "fl.random~ generates a frame of pseudorandom floats between 0 and 1 at a specified length (set by /length)."
 								}
