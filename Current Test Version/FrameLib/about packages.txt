@@ -1,0 +1,47 @@
+Packages are a convenient means of bundling objects, media, patchers, and resources for distribution.
+
+A package is simply a folder adhering to a prescribed structure and placed in the 'packages' folder.  Folders adhering to this structure can be accessed by Max to integrate seamlessly at launch time.
+
+To install a package, simply copy it to your 'packages' folder.
+To uninstall a package, simply remove it from your 'packages' folder.
+
+There are two packages folders you may use.
+One is called 'packages' in your Max folder.
+The other is the 'Max/Packages' in your Documents (Mac) or My Documents (Windows) folder.
+
+
+Creating A Package
+
+You may create your own packages, either for your own use or for distribution to others.  The folders comprising a package may optionally include the following:
+
+* clippings              Patchers to list in the "Paste From..." contextual menu when patching
+* code                   Gen patchers
+  collections            Collections to list in the File Browser that are associated with the package
+  default-definitions    Definition info for Object Defaults support in UI externals
+  default-settings       Saved color schemes for Object Defaults
+* docs                   Reference pages and Vignettes to be accessible from the Documentation Window
+* examples               Example patchers and supporting material
+* extensions             Special external objects loaded on Max launch
+* externals              External objects
+* extras                 Patchers to be listed in the "Extras" menu
+* help                   Help patchers and supporting material
+  init                   Text files interpreted by Max at launch
+  interfaces             Supporting files for objects to display in the Object Explorer and other Max integration.
+* java-classes           Compiled Java classes for use in mxj/mxj~
+  java-doc               Documentation for Java classes
+* javascript             Javascript files to be used by js
+* jsextensions           Extensions to JS implemented as special externals or js files
+* jsui                   Javascript files to be used by jsui, and listed in the contextual menu for jsui
+  license.txt            Terms of use / redistribution of your package
+* media                  Media files to be included in the searchpath
+* misc                   Anything
+* patchers               Patchers or abstractions to be included in the searchpath
+* object-icons           An SVG-format object icon for a particular Max object (named <objectname>.svg), used in the Object Browser
+  object-prototypes      Object Prototypes will be listed in the context menu for a selected UI object
+  readme.txt             Information about your package
+  snippets               Snippets associated with this package
+  source                 Source code for external objects, ignored by Max
+  support                Special location for DLL or dylib dependencies of external objects. Added to the DLL search path on Windows.
+  templates              Patchers to be listed in the "File > New From Template" menu
+
+Items in folders marked with a star will automatically be included in the searchpath.

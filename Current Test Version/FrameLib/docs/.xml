@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+<c74object name="" module="max">
+
+	<digest>
+		Fast Fourier transform for lllls	</digest>
+
+	<description>
+		bach.fft performs, the Fast Fourier transform on the incoming llll, for any size, and outputs either the cartesian or the polar representation.	</description>
+
