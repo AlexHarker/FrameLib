@@ -11,13 +11,6 @@
 #include <sstream>
 #include <iostream>
 
-// FrameLib_Proxy is simply a virtual struct allowing for communication to/from the host environment
-
-struct FrameLib_Proxy
-{
-    virtual ~FrameLib_Proxy() {}
-};
-
 // FrameLib_Queable is a template class for items that can be placed on a queue
 
 template <class T>

@@ -26,6 +26,13 @@ enum FrameType { kFrameAny, kFrameNormal, kFrameTagged };
 enum DataType { kVector, kSingleString };
 enum ConnectionResult { kConnectSuccess, kConnectWrongContext, kConnectSelfConnection, kConnectFeedbackDetected, kConnectNoOrderingSupport, kConnectAliased };
 
+// Proxy - FrameLib_Proxy is simply a virtual struct allowing for extensible communication to/from the host environment 
+
+struct FrameLib_Proxy
+{
+    virtual ~FrameLib_Proxy() {}
+};
+
 #ifdef __linux__
 #define NULL 0
 #endif
