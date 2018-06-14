@@ -29,7 +29,7 @@ inline size_t blockSize(void* ptr)
 
 // The Core Allocator (has no threadsafety)
 
-FrameLib_GlobalAllocator::CoreAllocator::CoreAllocator() : mPools(NULL), mOSAllocated(0), mAllocated(0), mLastDisposedPoolSize(0), mAllocThread(this), mFreeThread(this)
+FrameLib_GlobalAllocator::CoreAllocator::CoreAllocator(FrameLib_ErrorReporter& errorReporter) : mPools(NULL), mOSAllocated(0), mAllocated(0), mLastDisposedPoolSize(0), mAllocThread(this), mFreeThread(this), mErrorReporter(errorReporter)
 {
     mTLSF = tlsf_create(malloc(tlsf_size()));
     insertPool(createPool(initSize));
@@ -100,7 +100,9 @@ void *FrameLib_GlobalAllocator::CoreAllocator::alloc(size_t size)
     
     if (ptr)
         mAllocated += blockSize(ptr);
-    
+    else
+        mErrorReporter.reportError(kErrorMemory, NULL, "FrameLib - couldn't allocate memory");
+   
     // Check for near full
     
     if (mOSAllocated < mAllocated + growSize)
