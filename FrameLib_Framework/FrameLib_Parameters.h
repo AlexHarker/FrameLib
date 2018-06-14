@@ -3,6 +3,7 @@
 #define FRAMELIB_PARAMETERS_H
 
 #include "FrameLib_Types.h"
+#include "FrameLib_Errors.h"
 
 #include <vector>
 #include <cstring>
@@ -20,6 +21,8 @@ static const char *typeStringsBool[] = {"bool", "enum", "string", "fixed length 
 
 class FrameLib_Parameters
 {
+    
+    enum SetError { kSetSucceeded, kUnknownArgument, kUnknownParameter, kParameterNotSetByNumber, kParameterNotSetByString, kEnumUnknownIndex, kEnumUnknownString };
     
 public:
     
@@ -280,9 +283,9 @@ private:
         void setMax(double max);
         void setClip(double min, double max);
         
-        virtual void set(const char *str) {}
-        virtual void set(double value) {}
-        virtual void set(double *values, size_t N);
+        virtual SetError set(const char *str) { return kParameterNotSetByString; }
+        virtual SetError set(double value) { return kParameterNotSetByNumber; }
+        virtual SetError set(double *values, size_t N);
 
         virtual void clear() = 0;
         
@@ -346,9 +349,9 @@ private:
         
         void addEnumItem(const char *str);
         
-        virtual void set(double value);
-        virtual void set(double *values, size_t N);
-        virtual void set(const char *str);
+        virtual SetError set(double value);
+        virtual SetError set(double *values, size_t N);
+        virtual SetError set(const char *str);
         
         virtual void clear() { Enum::set(0.0); };
 
@@ -380,8 +383,8 @@ private:
         
         // Setters
 
-        virtual void set(double value);
-        virtual void set(double *values, size_t N);
+        virtual SetError set(double value);
+        virtual SetError set(double *values, size_t N);
         
         virtual void clear() { Value::set(mDefault); };
 
@@ -410,7 +413,7 @@ private:
         
         // Setters
         
-        virtual void set(const char *str);
+        virtual SetError set(const char *str);
         
         virtual void clear() { String::set(NULL); };
 
@@ -439,7 +442,7 @@ private:
 
         // Setters
 
-        virtual void set(double *values, size_t N);
+        virtual SetError set(double *values, size_t N);
 
         virtual void clear() { Array::set(NULL, 0); };
 
@@ -465,7 +468,8 @@ public:
     
     // Constructor
     
-    FrameLib_Parameters(Info *info) : mParameterInfo(info) {}
+    FrameLib_Parameters(FrameLib_ErrorReporter& errorReporter, FrameLib_Proxy *proxy, Info *info)
+    : mErrorReporter(errorReporter), mProxy(proxy), mReportErrors(true), mParameterInfo(info) {}
     
     // Destructor
     
@@ -474,6 +478,10 @@ public:
         for (std::vector <Parameter *>::iterator it = mParameters.begin(); it != mParameters.end(); it++)
             delete *it;
     }
+    
+    // Enable/Disable Error Reporting (enabled by default)
+    
+    void setErrorReportingEnabled(bool enable)  { mReportErrors = enable; }
     
     // Size and Index
     
@@ -491,6 +499,11 @@ public:
             for (unsigned long i = 0; i < mParameters.size(); i++)
                 if (argumentIdx == mParameters[i]->argumentIdx())
                     return i;
+        
+        if (argumentIdx >= 0)
+            handleError(kUnknownArgument, argumentIdx, argumentIdx);
+        else
+            handleError(kUnknownParameter, -1, name);
         
         return -1;
     }
@@ -586,6 +599,39 @@ public:
     void setMax(double max)                     { mParameters.back()->setMax(max); }
     void setClip(double min, double max)        { mParameters.back()->setClip(min, max); }
    
+    // Error handling
+    
+    template <typename T>
+    void handleError(SetError error, long idx, T arg) const
+    {
+        if (error && mReportErrors)
+        {
+            switch (error)
+            {
+                case kUnknownArgument:
+                    mErrorReporter.reportError(kErrorParameter, mProxy, "argument # out of range", idx);
+                    break;
+                case kUnknownParameter:
+                    mErrorReporter.reportError(kErrorParameter, mProxy, "no parameter named '#'", arg);
+                    break;
+                case kParameterNotSetByNumber:
+                    mErrorReporter.reportError(kErrorParameter, mProxy, "parameter '#' cannot be set by a number", mParameters[idx]->name());
+                    break;
+                case kParameterNotSetByString:
+                    mErrorReporter.reportError(kErrorParameter, mProxy, "parameter '#' cannot be set by a string", mParameters[idx]->name());
+                    break;
+                case kEnumUnknownIndex:
+                    mErrorReporter.reportError(kErrorParameter, mProxy, "enum parameter '#' does not contain an item numbered #", mParameters[idx]->name(), arg);
+                    break;
+                case kEnumUnknownString:
+                    mErrorReporter.reportError(kErrorParameter, mProxy, "enum parameter '#' does not contain an item named '#'", mParameters[idx]->name(), arg);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    
     // Set Value
     
     void set(Serial *serialised)                                { if (serialised) serialised->read(this); }
@@ -596,13 +642,13 @@ public:
     void set(unsigned long idx, long value)                     { set(idx, (double) value); }
     void set(const char *name, long value)                      { set(name, (double) value); }
 
-    void set(unsigned long idx, double value)                   { if (idx < size()) mParameters[idx]->set(value); }
+    void set(unsigned long idx, double value)                   { if (idx < size()) handleError(mParameters[idx]->set(value), idx, value); }
     void set(const char *name, double value)                    { set(getIdx(name), value); }
     
-    void set(unsigned long idx, char *str)                      { if (idx < size()) mParameters[idx]->set(str); }
+    void set(unsigned long idx, char *str)                      { if (idx < size()) handleError(mParameters[idx]->set(str), idx, str); }
     void set(const char *name, char *str)                       { set(getIdx(name), str); }
     
-    void set(unsigned long idx, double *values, size_t N)       { if (idx < size()) mParameters[idx]->set(values, N); }
+    void set(unsigned long idx, double *values, size_t N)       { if (idx < size()) handleError(mParameters[idx]->set(values, N), idx, *values); }
     void set(const char *name, double *values, size_t N)        { set(getIdx(name), values, N); }
 
     void clear(unsigned long idx)                               { if (idx < size()) mParameters[idx]->clear(); }
@@ -724,6 +770,10 @@ private:
     }
     
     // Data
+    
+    FrameLib_ErrorReporter& mErrorReporter;
+    FrameLib_Proxy *mProxy;
+    bool mReportErrors;
     
     std::vector <Parameter *> mParameters;
     Info *mParameterInfo;

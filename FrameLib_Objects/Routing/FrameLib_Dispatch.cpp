@@ -50,7 +50,7 @@ void FrameLib_Dispatch::Select::process()
 // Constructor
 
 FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Block(kProcessor, context, proxy), mParameters(&sParamInfo)
+: FrameLib_Block(kProcessor, context, proxy), mParameters(context, proxy, &sParamInfo)
 {
     mParameters.addDouble(kNumIns, "num_ins", 2, 0);
     mParameters.setClip(2, 32);
