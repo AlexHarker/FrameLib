@@ -16,7 +16,7 @@ void FrameLib_Global::PointerSet<T>::add(T *object, void *reference)
 template <class T>
 T *FrameLib_Global::PointerSet<T>::find(void *reference)
 {
-    for (Iterator it = mPointers.begin(); it != mPointers.end(); it++)
+    for (auto it = mPointers.begin(); it != mPointers.end(); it++)
     {
         if (it->mReference == reference)
         {
@@ -33,7 +33,7 @@ T *FrameLib_Global::PointerSet<T>::find(void *reference)
 template <class T>
 void FrameLib_Global::template PointerSet<T>::release(void *reference)
 {
-    for (Iterator it = mPointers.begin(); it != mPointers.end(); it++)
+    for (auto it = mPointers.begin(); it != mPointers.end(); it++)
     {
         if (it->mReference == reference)
         {

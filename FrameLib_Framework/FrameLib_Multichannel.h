@@ -233,7 +233,7 @@ public:
     {
         // Delete blocks
         
-        for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
+        for (auto it = mBlocks.begin(); it != mBlocks.end(); it++)
             delete(*it);
     }
     
@@ -301,7 +301,7 @@ public:
         mSamplingRate = samplingRate;
         mMaxBlockSize = maxBlockSize;
         
-        for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
+        for (auto it = mBlocks.begin(); it != mBlocks.end(); it++)
             (*it)->reset(samplingRate, maxBlockSize);
     }
     
@@ -329,13 +329,13 @@ public:
     
     virtual void autoOrderingConnections()
     {
-        for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
+        for (auto it = mBlocks.begin(); it != mBlocks.end(); it++)
             (*it)->autoOrderingConnections();
     }
 
     virtual void clearAutoOrderingConnections()
     {
-        for (std::vector <FrameLib_Block *> :: iterator it = mBlocks.begin(); it != mBlocks.end(); it++)
+        for (auto it = mBlocks.begin(); it != mBlocks.end(); it++)
             (*it)->clearAutoOrderingConnections();
     }
 

@@ -112,14 +112,14 @@ void FrameLib_FilterTags::process()
         return;
     }
     
-    for (FrameLib_Parameters::Serial::Iterator it = input->begin(); it != input->end(); it++)
+    for (auto it = input->begin(); it != input->end(); it++)
         requestAddedOutputSize(filterIndex(it), it.getSize());
     
     if (allocateOutputs())
     {
         FrameLib_Parameters::Serial *outputs[2] = {getOutput(0), getOutput(1)};
 
-        for (FrameLib_Parameters::Serial::Iterator it = input->begin(); it != input->end(); it++)
+        for (auto it = input->begin(); it != input->end(); it++)
             outputs[filterIndex(it)]->write(it);
     }
 }

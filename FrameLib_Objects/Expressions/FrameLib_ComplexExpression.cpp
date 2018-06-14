@@ -283,7 +283,7 @@ void FrameLib_ComplexExpression::ConstantOut::process()
 
 // Constructor
 
-FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mInputProcessor(NULL), mParameters(&sParamInfo)
+FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mInputProcessor(NULL), mParameters(context, proxy, &sParamInfo)
 {
     typedef Graph<std::complex<double> > Graph;
     typedef FrameLib_Block::Connection Connection;
@@ -333,7 +333,7 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
         
         // Build the graph if there is one
 
-        for (std::vector<Graph::Operation>::iterator it = graph.mOperations.begin(); it != graph.mOperations.end(); it++)
+        for (auto it = graph.mOperations.begin(); it != graph.mOperations.end(); it++)
         {
             FrameLib_DSP* operation = it->mOp->create(context);
             
@@ -384,7 +384,7 @@ FrameLib_ComplexExpression::~FrameLib_ComplexExpression()
     if (mInputProcessor)
         delete mInputProcessor;
     
-    for (std::vector<FrameLib_DSP *>::iterator it = mGraph.begin(); it != mGraph.end(); it++)
+    for (auto it = mGraph.begin(); it != mGraph.end(); it++)
         delete (*it);
     
     mGraph.clear();
@@ -434,6 +434,6 @@ void FrameLib_ComplexExpression::reset(double samplingRate, unsigned long maxBlo
     if (mInputProcessor)
         mInputProcessor->reset(samplingRate, maxBlockSize);
     
-    for (std::vector<FrameLib_DSP *>::iterator it = mGraph.begin(); it != mGraph.end(); it++)
+    for (auto it = mGraph.begin(); it != mGraph.end(); it++)
         (*it)->reset(samplingRate, maxBlockSize);
 }

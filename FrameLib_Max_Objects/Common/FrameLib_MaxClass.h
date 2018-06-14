@@ -216,8 +216,7 @@ private:
 
 template <class T> class Wrapper : public MaxClass_Base
 {
-    typedef std::vector<t_object *>::iterator MaxObjectIterator;
-
+    
 public:
     
     // Initialise Class
@@ -359,10 +358,10 @@ public:
     {
         // Delete ins and proxies
         
-        for (MaxObjectIterator it = mProxyIns.begin(); it != mProxyIns.end(); it++)
+        for (auto it = mProxyIns.begin(); it != mProxyIns.end(); it++)
             object_free(*it);
         
-        for (MaxObjectIterator it = mInOutlets.begin(); it != mInOutlets.end(); it++)
+        for (auto it = mInOutlets.begin(); it != mInOutlets.end(); it++)
             object_free(*it);
         
         // Free objects - N.B. - free the patch, but not the object within it (which will be freed by deleting the patch)
@@ -485,7 +484,6 @@ template <class T, MaxObjectArgsMode argsMode = kAsParams> class FrameLib_MaxCla
     typedef FrameLib_Object<FrameLib_MultiChannel>::Connection FrameLibConnection;
     typedef FrameLib_Object<t_object>::Connection MaxConnection;
     typedef FrameLib_MaxGlobals::ConnectionInfo ConnectionInfo;
-    typedef std::vector<t_object *>::iterator MaxObjectIterator;
 
 public:
     
@@ -658,7 +656,7 @@ public:
         delete mObject;
         delete mFrameLibProxy;
         
-        for (MaxObjectIterator it = mInputs.begin(); it != mInputs.end(); it++)
+        for (auto it = mInputs.begin(); it != mInputs.end(); it++)
             object_free(*it);
         
         object_free(mSyncIn);

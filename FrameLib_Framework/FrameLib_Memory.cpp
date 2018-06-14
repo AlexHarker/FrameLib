@@ -422,7 +422,7 @@ void FrameLib_LocalAllocator::clear()
 
 FrameLib_LocalAllocator::Storage *FrameLib_LocalAllocator::registerStorage(const char *name)
 {
-    StorageIterator it = findStorage(name);
+    auto it = findStorage(name);
     
     if (it != mStorage.end())
     {
@@ -436,7 +436,7 @@ FrameLib_LocalAllocator::Storage *FrameLib_LocalAllocator::registerStorage(const
 
 void FrameLib_LocalAllocator::releaseStorage(const char *name)
 {
-    StorageIterator it = findStorage(name);
+    auto it = findStorage(name);
     
     if (it != mStorage.end() && (*it)->decrement() <= 0)
     {
@@ -447,9 +447,9 @@ void FrameLib_LocalAllocator::releaseStorage(const char *name)
 
 // Find Storage by Name
 
-FrameLib_LocalAllocator::StorageIterator FrameLib_LocalAllocator::findStorage(const char *name)
+std::vector<FrameLib_LocalAllocator::Storage *>::iterator FrameLib_LocalAllocator::findStorage(const char *name)
 {
-    for (StorageIterator it = mStorage.begin(); it != mStorage.end(); it++)
+    for (auto it = mStorage.begin(); it != mStorage.end(); it++)
         if (!strcmp((*it)->getName(), name))
             return it;
     

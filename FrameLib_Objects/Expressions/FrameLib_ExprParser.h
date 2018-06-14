@@ -178,7 +178,7 @@ class FrameLib_ExprParser
         
         ~OperatorList()
         {
-            for (typename std::vector<OpBase<T> *>::iterator it = mItems.begin(); it != mItems.end(); it++)
+            for (auto it = mItems.begin(); it != mItems.end(); it++)
             {
                 delete (*it);
                 *it = NULL;
@@ -194,7 +194,7 @@ class FrameLib_ExprParser
         
         const OpBase<T> *getItem(const char *name) const
         {
-            for (typename std::vector<OpBase<T> *>::const_iterator it = mItems.begin(); it != mItems.end(); it++)
+            for (auto it = mItems.begin(); it != mItems.end(); it++)
                 if (!strcmp(name, (*it)->mName))
                     return (*it);
             
@@ -236,7 +236,7 @@ public:
         // Sort so that we can keep the unique characters by using std:unique and std::erase
         
         std::sort(mOperatorCharList.begin(), mOperatorCharList.end());
-        std::vector<char>::iterator it = std::unique(mOperatorCharList.begin(), mOperatorCharList.end());
+        auto it = std::unique(mOperatorCharList.begin(), mOperatorCharList.end());
         mOperatorCharList.erase(it, mOperatorCharList.end());
     }
     
@@ -270,7 +270,7 @@ public:
         
         // Replace number tokens and symbols representing constants/variables with relevant node types
         
-        for (NodeListIterator it = nodes.begin(); it != nodes.end(); it++)
+        for (auto it = nodes.begin(); it != nodes.end(); it++)
         {
             // Convert number tokens to constants
             
@@ -438,7 +438,7 @@ private:
     
     bool getConstant(const char *name, T& value) const
     {
-        for (typename std::vector<Constant>::const_iterator it = mConstants.begin(); it != mConstants.end(); it++)
+        for (auto it = mConstants.begin(); it != mConstants.end(); it++)
         {
             if (!strcmp(name, it->mName))
             {
@@ -546,13 +546,13 @@ private:
 
         // Check for any remaining tokens that are not operators
 
-        for (NodeListIterator it = nodes.begin(); it != nodes.end(); it++)
+        for (auto it = nodes.begin(); it != nodes.end(); it++)
             if (it->isToken() && !it->isOperator())
                 return kParseError_UnknownToken;
         
         // Now resolve unary operators by searching right-to-left
         
-         for (NodeListIterator it = nodes.end() - 1; it >= nodes.begin(); it--)
+         for (auto it = nodes.end() - 1; it >= nodes.begin(); it--)
              if ((op = getOperator(it->getTokenString(), 0)))
                 if ((error = parseUnaryOperator(graph, op, nodes, it)))
                     return error;
@@ -561,7 +561,7 @@ private:
         
         for (int i = 1; i < mOperators.size(); i++)
         {
-            for (NodeListIterator it = nodes.begin(); it < nodes.end(); it++)
+            for (auto it = nodes.begin(); it < nodes.end(); it++)
                 if ((op = getOperator(it->getTokenString(), i)))
                     if ((error = parseBinaryOperator(graph, op, nodes, it)))
                         return error;

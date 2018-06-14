@@ -475,7 +475,7 @@ public:
     
     ~FrameLib_Parameters()
     {
-        for (std::vector <Parameter *>::iterator it = mParameters.begin(); it != mParameters.end(); it++)
+        for (auto it = mParameters.begin(); it != mParameters.end(); it++)
             delete *it;
     }
     

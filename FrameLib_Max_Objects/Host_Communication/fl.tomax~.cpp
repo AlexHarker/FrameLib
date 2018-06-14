@@ -67,7 +67,7 @@ void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(unsigned long index, unsig
 {
     unsigned long maxSize = 0;
     
-    for (FrameLib_Parameters::Serial::Iterator it = serial->begin(); it != serial->end(); it++)
+    for (auto it = serial->begin(); it != serial->end(); it++)
     {
         if (it.getType() == kVector)
         {
@@ -79,7 +79,7 @@ void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(unsigned long index, unsig
     maxSize = limitSize(maxSize);
     t_atom *output = alloc<t_atom>(maxSize);
 
-    for (FrameLib_Parameters::Serial::Iterator it = serial->begin(); it != serial->end(); it++)
+    for (auto it = serial->begin(); it != serial->end(); it++)
     {
         if (it.getType() == kVector)
         {

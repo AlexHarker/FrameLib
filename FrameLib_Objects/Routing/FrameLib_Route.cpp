@@ -64,7 +64,7 @@ FrameLib_Route::FrameLib_Route(FrameLib_Context context, FrameLib_Parameters::Se
 
 FrameLib_Route::~FrameLib_Route()
 {    
-    for (std::vector<Valve *>::iterator it = mValves.begin(); it != mValves.end(); it++)
+    for (auto it = mValves.begin(); it != mValves.end(); it++)
         delete (*it);
 }
     
@@ -103,6 +103,6 @@ FrameLib_Route::ParameterInfo::ParameterInfo()
 
 void FrameLib_Route::reset(double samplingRate, unsigned long maxBlockSize)
 {
-    for (std::vector<Valve *>::iterator it = mValves.begin(); it != mValves.end(); it++)
+    for (auto it = mValves.begin(); it != mValves.end(); it++)
         (*it)->reset(samplingRate, maxBlockSize);
 }

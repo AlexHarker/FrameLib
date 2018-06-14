@@ -22,9 +22,9 @@ FrameLib_Parameters::Serial *FrameLib_ParamAlias::aliasForConstruction(FrameLib_
 {
     mSerial.clear();
     
-    for (Parameters::Serial::Iterator it = parametersIn->begin(); it != parametersIn->end(); it++)
+    for (auto it = parametersIn->begin(); it != parametersIn->end(); it++)
     {
-        for (std::vector<Alias>::iterator jt = mAliases.begin(); jt != mAliases.end(); jt++)
+        for (auto jt = mAliases.begin(); jt != mAliases.end(); jt++)
         {
             if (jt->mIndex == idx)
             {
@@ -56,11 +56,11 @@ void FrameLib_ParamAlias::initialise()
     
     // Now get each alias in turn and duplicate the parameter characteristics
     
-    for (std::vector<Alias>::iterator it = mAliases.begin(); it != mAliases.end(); it++)
+    for (auto it = mAliases.begin(); it != mAliases.end(); it++)
     {
         unsigned long idx = it->mIndex;
      
-        for (std::vector<FrameLib_DSP *>::iterator jt = dependencies[idx].begin(); jt != dependencies[idx].end(); jt++)
+        for (auto jt = dependencies[idx].begin(); jt != dependencies[idx].end(); jt++)
         {
             unsigned long idx = mParameters.size();
             const char *tag = it->mInTag.c_str();
@@ -176,9 +176,9 @@ void FrameLib_ParamAlias::process()
     
     if (parametersIn)
     {
-        for (Parameters::Serial::Iterator it = parametersIn->begin(); it != parametersIn->end(); it++)
+        for (auto it = parametersIn->begin(); it != parametersIn->end(); it++)
         {
-            for (std::vector<Alias>::iterator jt = mAliases.begin(); jt != mAliases.end(); jt++)
+            for (auto jt = mAliases.begin(); jt != mAliases.end(); jt++)
             {
                 if (!strcmp(jt->mInTag.c_str(), it.getTag()))
                 {
@@ -195,7 +195,7 @@ void FrameLib_ParamAlias::process()
     
     if (allocateOutputs())
     {
-        for (Serial::Iterator it = parametersIn->begin(); it != parametersIn->end(); it++)
+        for (auto it = parametersIn->begin(); it != parametersIn->end(); it++)
         {
             Alias *alias = matches[it.getIndex()];
             

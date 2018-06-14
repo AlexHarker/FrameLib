@@ -233,7 +233,7 @@ void FrameLib_Expression::ConstantOut::process()
 
 // Constructor
 
-FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mInputProcessor(NULL), mParameters(&sParamInfo)
+FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mInputProcessor(NULL), mParameters(context, proxy, &sParamInfo)
 {
     typedef Graph<double> Graph;
     typedef FrameLib_Block::Connection Connection;
@@ -281,7 +281,7 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Para
         
         // Build the graph if there is one
 
-        for (std::vector<Graph::Operation>::iterator it = graph.mOperations.begin(); it != graph.mOperations.end(); it++)
+        for (auto it = graph.mOperations.begin(); it != graph.mOperations.end(); it++)
         {
             FrameLib_DSP* operation = it->mOp->create(context);
             
@@ -318,7 +318,7 @@ FrameLib_Expression::~FrameLib_Expression()
     if (mInputProcessor)
         delete mInputProcessor;
     
-    for (std::vector<FrameLib_DSP *>::iterator it = mGraph.begin(); it != mGraph.end(); it++)
+    for (auto it = mGraph.begin(); it != mGraph.end(); it++)
         delete (*it);
     
     mGraph.clear();
@@ -359,6 +359,6 @@ void FrameLib_Expression::reset(double samplingRate, unsigned long maxBlockSize)
     if (mInputProcessor)
         mInputProcessor->reset(samplingRate, maxBlockSize);
     
-    for (std::vector<FrameLib_DSP *>::iterator it = mGraph.begin(); it != mGraph.end(); it++)
+    for (auto it = mGraph.begin(); it != mGraph.end(); it++)
         (*it)->reset(samplingRate, maxBlockSize);
 }

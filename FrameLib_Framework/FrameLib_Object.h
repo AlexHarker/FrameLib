@@ -147,10 +147,8 @@ private:
         std::vector<Connection> mOut;
     };
     
-    // Typedefs for concision
+    // Connector method typedef and kOrdering definition
     
-    typedef typename std::vector<Connection>::const_iterator ConstConnectionIterator;
-    typedef typename std::vector<Connector>::const_iterator ConstConnectorIterator;
     typedef Connector& (FrameLib_Object::*ConnectorMethod)(unsigned long);
 
     const unsigned long kOrdering = -1;
@@ -446,7 +444,7 @@ protected:
     
     template <class U> static bool deleteUniqueItem(std::vector<U>& list, U item)
     {
-        typename std::vector<U>::iterator it = std::find(list.begin(), list.end(), item);
+        auto it = std::find(list.begin(), list.end(), item);
         
         if (it == list.end())
             return false;
@@ -493,8 +491,8 @@ private:
     
     void queueConnectorVectorDependencies(Queue *queue, const std::vector<Connector>& connectors) const
     {
-        for (ConstConnectorIterator it = connectors.begin(); it != connectors.end(); it++)
-            for (ConstConnectionIterator jt = it->mOut.begin(); jt != it->mOut.end(); jt++)
+        for (auto it = connectors.begin(); it != connectors.end(); it++)
+            for (auto jt = it->mOut.begin(); jt != it->mOut.end(); jt++)
                 queue->add(jt->mObject);
     }
     
@@ -504,7 +502,7 @@ private:
     {
         queueConnectorVectorDependencies(queue, mInputConnections);
         
-        for (ConstConnectorIterator it = mOutputConnections.begin(); it != mOutputConnections.end(); it++)
+        for (auto it = mOutputConnections.begin(); it != mOutputConnections.end(); it++)
             queue->add(it->mIn.mObject);
     };
     
@@ -580,7 +578,7 @@ private:
             FrameLib_Object *object = connection.mObject->traverseOrderingAliases();
             std::vector<Connection> &connections = object->mOrderingConnections;
             
-            for (ConstConnectionIterator it = connections.begin(); it != connections.end(); it++)
+            for (auto it = connections.begin(); it != connections.end(); it++)
                 notifyConnectionsChanged(*it, queue);
         }
         else
@@ -755,7 +753,7 @@ private:
     template <class U>
     void traverseDependencies(U& dependencies, const Connector& connector, void (FrameLib_Object::*method)(U&, unsigned long) const) const
     {
-        for (ConstConnectionIterator it = connector.mOut.begin(); it != connector.mOut.end(); it++)
+        for (auto it = connector.mOut.begin(); it != connector.mOut.end(); it++)
             (it->mObject->*method)(dependencies, it->mIndex);
     }
     
@@ -828,7 +826,7 @@ private:
         
         // Remove from aliased objects and clear
 
-        for (ConstConnectionIterator it = connector.mOut.begin(); it != connector.mOut.end(); it++)
+        for (auto it = connector.mOut.begin(); it != connector.mOut.end(); it++)
             (it->mObject->*method)(it->mIndex).mIn = Connection();
         connector.clearOuts(isOutput(method));
     }

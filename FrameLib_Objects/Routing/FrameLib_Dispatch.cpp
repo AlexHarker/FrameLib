@@ -86,7 +86,7 @@ FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Paramete
 
 FrameLib_Dispatch::~FrameLib_Dispatch()
 {    
-    for (std::vector<Select *>::iterator it = mSelects.begin(); it != mSelects.end(); it++)
+    for (auto it = mSelects.begin(); it != mSelects.end(); it++)
         delete (*it);
 }
     
@@ -127,6 +127,6 @@ FrameLib_Dispatch::ParameterInfo::ParameterInfo()
 
 void FrameLib_Dispatch::reset(double samplingRate, unsigned long maxBlockSize)
 {
-    for (std::vector<Select *>::iterator it = mSelects.begin(); it != mSelects.end(); it++)
+    for (auto it = mSelects.begin(); it != mSelects.end(); it++)
         (*it)->reset(samplingRate, maxBlockSize);
 }

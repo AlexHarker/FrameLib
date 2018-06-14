@@ -214,8 +214,7 @@ private:
 /*
 template <class T> class Wrapper : public PDClass_Base
 {
-    typedef std::vector<t_object *>::iterator PDObjectIterator;
-
+ 
 public:
     
     // Initialise Class
@@ -352,10 +351,10 @@ public:
     {
         // Delete ins and proxies
         
-        for (PDObjectIterator it = mProxyIns.begin(); it != mProxyIns.end(); it++)
+        for (auto it = mProxyIns.begin(); it != mProxyIns.end(); it++)
             object_free(*it);
         
-        for (PDObjectIterator it = mInOutlets.begin(); it != mInOutlets.end(); it++)
+        for (auto it = mInOutlets.begin(); it != mInOutlets.end(); it++)
             object_free(*it);
         
         // Free objects - N.B. - free the patch, but not the object within it (which will be freed by deleting the patch)
@@ -469,7 +468,6 @@ template <class T, PDObjectArgsMode argsMode = kAsParams> class FrameLib_PDClass
     typedef FrameLib_Object<FrameLib_MultiChannel>::Connection FrameLibConnection;
     typedef FrameLib_Object<t_object>::Connection PDConnection;
     typedef FrameLib_PDGlobals::ConnectionInfo ConnectionInfo;
-    typedef std::vector<t_pd *>::iterator PDObjectIterator;
 
     static t_atomtype atom_gettype(t_atom* a) { return a->a_type; }
     
@@ -603,7 +601,7 @@ public:
         delete mObject;
         delete mFrameLibProxy;
         
-        for (PDObjectIterator it = mInputs.begin(); it != mInputs.end(); it++)
+        for (auto it = mInputs.begin(); it != mInputs.end(); it++)
             if (*it)
                 pd_free(*it);
       

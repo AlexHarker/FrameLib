@@ -20,9 +20,7 @@ class FrameLib_HostProxy : public virtual FrameLib_Proxy
 
     unsigned long registerObject(T *object, void *streamOwner, unsigned long stream)
     {
-        typedef typename std::vector<RefList>::iterator Iterator;
-
-        for (Iterator it = mRegistered.begin(); it != mRegistered.end(); it++)
+        for (auto it = mRegistered.begin(); it != mRegistered.end(); it++)
         {
             // Find the owner first and if it exists insert into the stream list
             
@@ -48,10 +46,8 @@ class FrameLib_HostProxy : public virtual FrameLib_Proxy
     }
     
     void unregisterObject(T *object, void *streamOwner, unsigned long stream)
-    {
-        typedef typename std::vector<RefList>::iterator Iterator;
-        
-        for (Iterator it = mRegistered.begin(); it != mRegistered.end(); it++)
+    {        
+        for (auto it = mRegistered.begin(); it != mRegistered.end(); it++)
         {
             // Find the owner first and if it exists remove from the stream space
             
