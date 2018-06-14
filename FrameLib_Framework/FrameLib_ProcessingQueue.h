@@ -40,9 +40,9 @@ public:
     FrameLib_ProcessingQueue(FrameLib_ErrorReporter& errorReporter) : mTop(NULL), mTail(NULL), mTimedOut(false), mErrorReporter(errorReporter) {}
     
     void add(FrameLib_DSP *object);
-    bool timedOut() { return mTimedOut; }
     void reset() { mTimedOut = false; }
-    
+    bool isTimedOut() { return mTimedOut; }
+
 private:
     
     // Deleted

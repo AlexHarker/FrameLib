@@ -79,6 +79,8 @@ void FrameLib_DSP::reset(double samplingRate, unsigned long maxBlockSize)
     mMaxBlockSize = maxBlockSize;
     
     LocalQueue(this, &FrameLib_DSP::reset);
+    
+    mProcessingQueue->reset();
 }
 
 void FrameLib_DSP::reset(LocalQueue *queue)
@@ -343,6 +345,9 @@ void FrameLib_DSP::copyInputToOutput(unsigned long inIdx, unsigned long outIdx)
 
 inline void FrameLib_DSP::dependencyNotify(bool releaseMemory, bool fromInput)
 {
+    if (mProcessingQueue->isTimedOut())
+        return;
+    
     assert(((mDependencyCount > 0) || (mUpdatingInputs && (mInputCount > 0))) && "Dependency count is already zero");
     
     if (releaseMemory)
