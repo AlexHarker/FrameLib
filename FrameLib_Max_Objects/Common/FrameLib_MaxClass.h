@@ -25,6 +25,55 @@ class FrameLib_MaxGlobals : public MaxClass_Base
     
 public:
     
+    // Error Notification Class
+    
+    struct ErrorNotifier : public FrameLib_ErrorReporter::HostNotifier
+    {
+        ErrorNotifier(FrameLib_MaxGlobals *maxGlobals)
+        {
+            mQelem = qelem_new(maxGlobals, (method) &errorReport);
+        }
+        
+        ~ErrorNotifier()
+        {
+            qelem_free(mQelem);
+        }
+        
+        void notify()
+        {
+            qelem_set(mQelem);
+        }
+        
+        static void errorReport(FrameLib_MaxGlobals* x)
+        {
+            std::unique_ptr<ErrorList> reports = x->mGlobal->getErrors();
+            std::string errorText;
+
+            for (auto it = reports->begin(); it != reports->end(); it++)
+            {
+                t_object *object = dynamic_cast<FrameLib_MaxProxy *>(it->getReporter())->mMaxObject;
+                t_object *userObject = object ? (t_object *) object_method(object, gensym("__fl.get_user_object")) : nullptr;
+                
+                it->getErrorText(errorText);
+                
+                if (userObject)
+                {
+                    if (it->getSource() == kErrorDSP)
+                        object_error_obtrusive(userObject, errorText.c_str());
+                    else
+                        object_error(userObject, errorText.c_str());
+                }
+                else
+                    ouchstring(errorText.c_str());
+            }
+
+            if (reports->isFull())
+                error("*** FrameLib - too many errors - reporting only some ***");
+        }
+        
+        t_qelem mQelem;
+    };
+    
     // Sync Check Class
     
     class SyncCheck
@@ -119,8 +168,17 @@ public:
     // Constructor and Destructor (public for the max API, but use the ManagedPointer for use from outside this class)
     
     FrameLib_MaxGlobals(t_symbol *sym, long ac, t_atom *av)
-    : mGlobal(nullptr), mConnectionInfo(nullptr), mSyncCheck(nullptr), mCount(0) { FrameLib_Global::get(&mGlobal); }
-    ~FrameLib_MaxGlobals() { FrameLib_Global::release(&mGlobal); }
+    : mGlobal(nullptr), mConnectionInfo(nullptr), mSyncCheck(nullptr), mCount(0)
+    {
+        mNotifier = new ErrorNotifier(this);
+        FrameLib_Global::get(&mGlobal, mNotifier);
+    }
+    
+    ~FrameLib_MaxGlobals()
+    {
+        FrameLib_Global::release(&mGlobal);
+        delete mNotifier;
+    }
 
     // Getters and setters for max global items
     
@@ -170,6 +228,7 @@ private:
     
     // Pointers
     
+    ErrorNotifier *mNotifier;
     FrameLib_Global *mGlobal;
     ConnectionInfo *mConnectionInfo;
     SyncCheck *mSyncCheck;
