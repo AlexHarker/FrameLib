@@ -67,7 +67,7 @@ public:
             bool operator != (const Iterator& it) const { return !(*this == it); }
 
             Iterator& operator ++ ();
-            Iterator& operator ++ (int);
+            Iterator operator ++ (int);
             
             // Getters
             

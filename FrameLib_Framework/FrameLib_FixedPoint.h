@@ -120,9 +120,9 @@ public:
         return *this;
     }
    
-    FL_FP& operator ++ (int)
+    FL_FP operator ++ (int)
     {
-        FL_FP& result = *this;
+        FL_FP result = *this;
         operator++();
         return result;
     }

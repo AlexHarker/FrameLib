@@ -18,9 +18,9 @@ FrameLib_Parameters::Serial::Iterator& FrameLib_Parameters::Serial::Iterator::op
     return *this;
 }
 
-FrameLib_Parameters::Serial::Iterator& FrameLib_Parameters::Serial::Iterator::operator ++ (int)
+FrameLib_Parameters::Serial::Iterator FrameLib_Parameters::Serial::Iterator::operator ++ (int)
 {
-    Iterator& result = *this;
+    Iterator result = *this;
     operator ++();
     return result;
 }
