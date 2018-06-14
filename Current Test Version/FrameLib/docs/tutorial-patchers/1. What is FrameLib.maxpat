@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 0.0, 44.0, 800.0, 715.0 ],
+		"rect" : [ 0.0, 44.0, 1377.0, 856.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -56,7 +56,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 59.0, 103.0, 640.0, 480.0 ],
+						"rect" : [ 0.0, 26.0, 1377.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -84,7 +84,6 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"fontname" : "Lato",
@@ -103,13 +102,13 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-46",
-									"linecount" : 14,
+									"linecount" : 18,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 5.75, 269.5, 680.0, 225.0 ],
+									"patching_rect" : [ 5.75, 269.5, 680.0, 288.0 ],
 									"style" : "",
-									"text" : "In most realtime audio environments, audio processing is built on the model of grouping continuous streams of samples into small consecutive blocks of equal size for the purpose of calculation. Whilst this offers an appropriate model to represent continous analog signals, it is less suited to processing that functions on chunks, or *frames*, of audio in which the position of a sample is meaningful (e.g spectral representations), or in which the frame might be considered as a whole (e.g granular synthesis). Advanced multi rate processing, based on DSP graphs that operate on frames of different sizes and different rates is not currently supported natively within Max which is where a frame based tool kit like FrameLib excels. FrameLib brings a wealth of processing techniques into the Max environment where rapid prototyping and experimentation is redily available to the user. \n\nIf you don't know where to start, navigating through the tabs above demonstrate what you might want to do with FrameLib. Many of  these processes could be achieved through native max objects such as poly~ and pfft~, but are less cumbersome in FrameLib. You can extend on these practices to achieve more nuanced and creatively rich processes that would otherwise not be possible."
+									"text" : "In most realtime audio environments, audio processing is built on the model of grouping continuous streams of samples into small consecutive blocks of equal size for the purpose of calculation. Whilst this offers an appropriate model to represent continous analog signals, it is less suited to processing that functions on chunks, or *frames*, of audio in which the position of a sample is meaningful (e.g spectral representations), or in which the frame might be considered as a whole (e.g granular synthesis). Advanced multi rate processing, based on DSP graphs that operate on frames of different sizes and different rates is not currently supported natively within Max which is where a frame based tool kit like FrameLib excels. FrameLib brings a wealth of processing techniques into the Max environment where rapid prototyping and experimentation is redily available to the user. \n\nIf you don't know where to start, navigating through the tabs above demonstrate what you might want to do with FrameLib. In each example they load muted inside of a poly~ so that this tutorial can run even on less powerful machines. To operate each patch, unmute by clicking the red \"unmute\" button,  turn audio on, adjust the volume slider to an appropriate level and follow any on screen instructions.\n\nMany of  these processes could be achieved through native max objects such as poly~ and pfft~, but are less cumbersome in FrameLib. You can extend on these practices to achieve more nuanced and creatively rich processes that would otherwise not be possible."
 								}
 
 							}
@@ -238,8 +237,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -306,7 +305,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 800.0, 689.0 ],
+						"rect" : [ 0.0, 70.0, 1377.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -343,7 +342,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 380.0, 292.5, 40.25, 13.0 ]
+									"patching_rect" : [ 380.0, 323.5, 40.25, 13.0 ]
 								}
 
 							}
@@ -354,7 +353,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 422.25, 288.5, 61.0, 33.0 ],
+									"patching_rect" : [ 422.25, 319.5, 61.0, 33.0 ],
 									"style" : "",
 									"text" : "Replace source 2"
 								}
@@ -367,7 +366,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 264.25, 288.5, 59.0, 33.0 ],
+									"patching_rect" : [ 264.25, 319.5, 59.0, 33.0 ],
 									"style" : "",
 									"text" : "Replace source 1"
 								}
@@ -382,7 +381,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 222.0, 292.5, 40.25, 13.0 ]
+									"patching_rect" : [ 222.0, 323.5, 40.25, 13.0 ]
 								}
 
 							}
@@ -393,7 +392,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 328.0, 288.5, 50.0, 22.0 ],
+									"patching_rect" : [ 328.0, 319.5, 50.0, 22.0 ],
 									"style" : "",
 									"text" : "replace"
 								}
@@ -406,7 +405,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 168.0, 288.0, 50.0, 22.0 ],
+									"patching_rect" : [ 168.0, 319.0, 50.0, 22.0 ],
 									"style" : "",
 									"text" : "replace"
 								}
@@ -418,7 +417,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 162.25, 93.350006, 237.0, 20.0 ],
+									"patching_rect" : [ 162.25, 124.350006, 237.0, 20.0 ],
 									"style" : "",
 									"text" : "Mute or unmute the convolution granulator"
 								}
@@ -433,7 +432,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 120.0, 97.350006, 40.25, 13.0 ]
+									"patching_rect" : [ 120.0, 128.350006, 40.25, 13.0 ]
 								}
 
 							}
@@ -452,7 +451,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 17.0, 93.600006, 101.0, 20.5 ],
+									"patching_rect" : [ 17.0, 124.600006, 101.0, 20.5 ],
 									"viewvisibility" : 1
 								}
 
@@ -464,7 +463,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "" ],
-									"patching_rect" : [ 17.0, 126.0, 170.0, 22.0 ],
+									"patching_rect" : [ 17.0, 157.0, 170.0, 22.0 ],
 									"style" : "",
 									"text" : "poly~ convolutionGranulator 1"
 								}
@@ -485,7 +484,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 17.0, 154.100037, 43.0, 92.0 ],
+									"patching_rect" : [ 17.0, 185.100037, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -496,7 +495,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 17.0, 253.100037, 57.0, 22.0 ],
+									"patching_rect" : [ 17.0, 284.100037, 57.0, 22.0 ],
 									"style" : "",
 									"text" : "dac~ 1 2"
 								}
@@ -510,7 +509,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 168.0, 154.100037, 298.0, 121.0 ],
+									"patching_rect" : [ 168.0, 185.100037, 298.0, 121.0 ],
 									"size" : 19999,
 									"style" : ""
 								}
@@ -525,7 +524,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 328.0, 327.5, 134.0, 22.0 ],
+									"patching_rect" : [ 328.0, 358.5, 134.0, 22.0 ],
 									"style" : "",
 									"text" : "buffer~ cello cello-f2.aif"
 								}
@@ -540,7 +539,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 168.0, 327.0, 139.0, 22.0 ],
+									"patching_rect" : [ 168.0, 358.0, 139.0, 22.0 ],
 									"style" : "",
 									"text" : "buffer~ jongles jongly.aif"
 								}
@@ -552,7 +551,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 17.0, 288.0, 45.0, 45.0 ],
+									"patching_rect" : [ 17.0, 319.0, 45.0, 45.0 ],
 									"style" : ""
 								}
 
@@ -565,7 +564,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 72.0, 530.25, 5.0 ]
+									"patching_rect" : [ 16.0, 103.0, 530.25, 5.0 ]
 								}
 
 							}
@@ -573,12 +572,13 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-23",
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 48.0, 559.0, 22.0 ],
+									"patching_rect" : [ 16.0, 48.0, 530.25, 53.0 ],
 									"style" : "",
-									"text" : "A typical convolution applied to granular treatments on each sound source."
+									"text" : "A typical convolution applied to granular treatments on each sound source. Convolving the rhythmic properties of jongly.aif with the harmonic properties of cello-f2.aif."
 								}
 
 							}
@@ -706,8 +706,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -775,7 +775,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 70.0, 800.0, 689.0 ],
+						"rect" : [ 0.0, 26.0, 1377.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -954,7 +954,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 48.0, 529.25, 85.0 ],
+									"patching_rect" : [ 16.0, 48.0, 533.0, 85.0 ],
 									"style" : "",
 									"text" : "This stochastic synth works by generating two spline like frames of varying lengths and convolving them together. Each time frames are generated (dependent on the interval setting) they are slightly randomised, causing transformations of the frame content each time. The two generated frames are independently timed to each other and can be of differing lengths."
 								}
@@ -1009,6 +1009,7 @@
 							}
 , 							{
 								"box" : 								{
+									"autorestore" : "1_presets.json",
 									"fontsize" : 9.0,
 									"hidden" : 1,
 									"id" : "obj-103",
@@ -1211,7 +1212,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 134.0, 422.000031, 298.0, 121.0 ],
-									"size" : 2738,
+									"size" : 1532,
 									"style" : ""
 								}
 
@@ -1252,11 +1253,11 @@
 									"outlettype" : [ "", "", "", "" ],
 									"patching_rect" : [ 523.550049, 494.800018, 79.0, 19.0 ],
 									"restore" : 									{
-										"1_FrameInterval" : [ 193.985291 ],
-										"1_FrameLength" : [ 2529.882324 ],
-										"2_FrameInterval" : [ 76.455879 ],
-										"2_FrameLength" : [ 208.676468 ],
-										"randcontrol" : [ 0.017514 ]
+										"1_FrameInterval" : [ 61.764706 ],
+										"1_FrameLength" : [ 76.455879 ],
+										"2_FrameInterval" : [ 105.838234 ],
+										"2_FrameLength" : [ 1457.426514 ],
+										"randcontrol" : [ 0.29 ]
 									}
 ,
 									"style" : "",
@@ -1429,8 +1430,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1498,7 +1499,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 800.0, 689.0 ],
+						"rect" : [ 0.0, 26.0, 1377.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1546,7 +1547,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 48.0, 530.25, 163.0 ],
+									"patching_rect" : [ 16.0, 48.0, 534.0, 163.0 ],
 									"style" : "",
 									"text" : "What you'll find here is a simple granular synth. In this example, FrameLib reads small random amounts of samples from a buffer and outputs these frames as the grains. Although the engine of this patch is stored in a poly~ FrameLib doesn't require it to do voice management and all of this is managed internally. The purpose of it here is so you can switch it off when you're done to save processing power. \n\nImplementing a granular synthesis algorithm in FrameLib makes it simple to process each frame (or grain if you wish) independently. In this patch, each frame is being band passed filtered and spatialised across the stereo field randomly without having to rely on poly~'s voice management or replicating the process."
 								}
@@ -1581,7 +1582,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 124.999992, 475.899963, 298.0, 121.0 ],
-									"size" : 4772,
+									"size" : 13801,
 									"style" : ""
 								}
 
@@ -2062,8 +2063,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2130,7 +2131,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 800.0, 689.0 ],
+						"rect" : [ 0.0, 26.0, 1377.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2502,8 +2503,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2556,57 +2557,64 @@
  ],
 		"lines" : [  ],
 		"parameters" : 		{
-			"obj-3::obj-26::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
 			"obj-116::obj-93::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
+			"obj-9::obj-21::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
 			"obj-1::obj-9::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-9::obj-21::obj-50" : [ "live.gain~[3]", "Volume", 0 ]
+			"obj-3::obj-26::obj-50" : [ "live.gain~[4]", "Volume", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "stochasticFreeze.maxpat",
-				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/help/_flhelp_main/_tutorials",
+				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "polyCont.maxpat",
-				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/help/_flhelp_main/_tutorials",
+				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "monoVolume.maxpat",
-				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/help/_flhelp_main/_tutorials",
+				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "granularSynth.maxpat",
-				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/help/_flhelp_main/_tutorials",
+				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "stereoVolume.maxpat",
-				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/help/_flhelp_main/_tutorials",
+				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "1_presets.json",
+				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "stochasticSynth.maxpat",
-				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/help/_flhelp_main/_tutorials",
+				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "convolutionGranulator.maxpat",
-				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/help/_flhelp_main/_tutorials",
+				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -2878,8 +2886,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",

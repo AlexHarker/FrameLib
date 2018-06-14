@@ -45,7 +45,7 @@
 					"1_FrameLength" : [ 664.102966 ],
 					"2_FrameInterval" : [ 193.985291 ],
 					"2_FrameLength" : [ 443.735291 ],
-					"randcontrol" : [ 0.001 ]
+					"randcontrol" : [ 0.00525 ]
 				}
 
 			}

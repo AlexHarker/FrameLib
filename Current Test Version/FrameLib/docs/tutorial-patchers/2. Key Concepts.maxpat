@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 69.0, 246.0, 667.0, 899.0 ],
+		"rect" : [ 0.0, 44.0, 1000.0, 856.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -54,7 +54,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 667.0, 873.0 ],
+						"rect" : [ 0.0, 70.0, 1000.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -89,7 +89,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 112.0, 813.0, 47.75, 20.0 ],
+									"patching_rect" : [ 112.0, 792.0, 47.75, 20.0 ],
 									"style" : "",
 									"text" : "Length"
 								}
@@ -103,7 +103,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 59.0, 812.0, 50.0, 22.0 ],
+									"patching_rect" : [ 59.0, 791.0, 50.0, 22.0 ],
 									"style" : ""
 								}
 
@@ -115,7 +115,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 15.75, 812.0, 39.0, 22.0 ],
+									"patching_rect" : [ 15.75, 791.0, 39.0, 22.0 ],
 									"style" : "",
 									"text" : "zl len"
 								}
@@ -125,13 +125,13 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-14",
-									"linecount" : 11,
+									"linecount" : 10,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 350.0, 608.0, 179.0 ],
+									"patching_rect" : [ 8.75, 350.0, 646.0, 179.0 ],
 									"style" : "",
-									"text" : "3. fl.tag~ (real-time configuration.)\n\nReal-time control of parameters is managed uniquely in FrameLib. Each parameter does not have its own inlet like most Max objects do but works more closely to gen~ by sending in tagged messages with the appropriate parameter. These tagged frames designed for changing parameters in real-time are created with the fl.tag~ object and sent to the \"parameter update\" inlet. In the example below a new frame of random numbers between 0 and 1 are generated every 200 milliseconds, however, each time this happens the length of the frame (or how many numbers are generated) is also randomly decided (between 1-21). The multislider depicts the output and you can see how it changes each time.\n\n"
+									"text" : "3. fl.tag~ (real-time configuration.)\n\nReal-time control of parameters is managed uniquely in FrameLib. Each parameter does not have its own inlet like most Max objects do but works more closely to gen~ by sending in tagged messages with the appropriate parameter. These tagged frames designed for changing parameters in real-time are created with the fl.tag~ object and sent to the \"parameter update\" inlet. In the example below, every 200 milliseconds a frame of random numbers between 0 and 1 are generated. Each time this happens the length of the frame is also randomly decided (between 1-21). The multislider depicts the output and you can see how it changes each time.\n\n"
 								}
 
 							}
@@ -142,7 +142,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 305.0, 297.0, 22.0 ],
+									"patching_rect" : [ 8.75, 319.0, 297.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.random~ /mode requested /length 10 /units samples"
 								}
@@ -156,9 +156,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 234.0, 608.0, 69.0 ],
+									"patching_rect" : [ 8.75, 244.0, 619.0, 69.0 ],
 									"style" : "",
-									"text" : "2. /parameter <value>\n\nParameters can also be addressed by prefxiing / to the name. Again, lets configure the same example from above in this style."
+									"text" : "2. /parameter <value>\n\nParameters can also be addressed by prefixing a forward slash (/) to the name. Again, lets configure the same example from above in this style."
 								}
 
 							}
@@ -168,7 +168,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 201.0, 203.0, 28.0, 20.0 ],
+									"patching_rect" : [ 201.0, 213.0, 28.0, 20.0 ],
 									"style" : "",
 									"text" : "==",
 									"textjustification" : 1
@@ -182,7 +182,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 234.75, 202.0, 104.0, 22.0 ],
+									"patching_rect" : [ 234.75, 212.0, 104.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.random~ 0 10 0"
 								}
@@ -195,7 +195,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "signal" ],
-									"patching_rect" : [ 179.0, 753.400024, 51.0, 51.0 ],
+									"patching_rect" : [ 179.0, 732.400024, 51.0, 51.0 ],
 									"style" : ""
 								}
 
@@ -207,7 +207,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 202.0, 189.0, 22.0 ],
+									"patching_rect" : [ 8.75, 212.0, 189.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.random~ requested 10 samples"
 								}
@@ -217,13 +217,13 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-18",
-									"linecount" : 9,
+									"linecount" : 10,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 50.0, 608.0, 147.0 ],
+									"patching_rect" : [ 8.75, 50.0, 615.0, 163.0 ],
 									"style" : "",
-									"text" : "There three ways of dealing with parameters in FrameLib, one of which is analogous to the Max style of configuring objects.\n\n1. \"Max style configuring\"\n\nfl.random~ has three parameters: Mode, Length and Units. We can address each one of these parameters by sequentially addressing each one. Enumerated parameters where there are limited options can also be addressed through numbers counting from 0. The example below demonstrates two ways of initialising the three parameters of fl.random~ in a max style."
+									"text" : "There three ways of dealing with parameters in FrameLib, one of which is analogous to the Max style of configuring objects.\n\n1. \"Max style configuring\"\n\nfl.random~ has three parameters: Mode, Length and Units. We can sequentially address each one. Enumerated parameters where there are limited options can also be addressed through numbers counting from 0. The example below demonstrates two ways of initialising the three parameters of fl.random~ in a max style. Check the help file of fl.random~ to see more about the parameters."
 								}
 
 							}
@@ -586,7 +586,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.75, 714.0, 59.0, 22.0 ],
+									"patching_rect" : [ 15.75, 704.0, 59.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.tomax~"
 								}
@@ -599,7 +599,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.75, 665.0, 67.0, 22.0 ],
+									"patching_rect" : [ 15.75, 659.0, 67.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.random~"
 								}
@@ -667,9 +667,9 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.75, 753.400024, 157.75, 51.0 ],
+									"patching_rect" : [ 15.75, 732.400024, 157.75, 51.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 10,
+									"size" : 2,
 									"style" : ""
 								}
 
@@ -773,7 +773,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 667.0, 873.0 ],
+						"rect" : [ 0.0, 26.0, 1000.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1353,7 +1353,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 69.0, 272.0, 667.0, 873.0 ],
+						"rect" : [ 0.0, 26.0, 1000.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1389,7 +1389,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 222.0, 841.0, 173.0, 22.0 ],
+									"patching_rect" : [ 518.0, 750.0, 173.0, 22.0 ],
 									"style" : "",
 									"text" : "Provides a quick summary"
 								}
@@ -1402,7 +1402,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 252.0, 810.333313, 204.0, 22.0 ],
+									"patching_rect" : [ 548.0, 719.333313, 204.0, 22.0 ],
 									"style" : "",
 									"text" : "Prints parameters for the object"
 								}
@@ -1415,7 +1415,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 204.0, 779.666687, 209.0, 22.0 ],
+									"patching_rect" : [ 500.0, 688.666687, 209.0, 22.0 ],
 									"style" : "",
 									"text" : "Prints info on inputs and outputs"
 								}
@@ -1428,7 +1428,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 234.0, 749.0, 230.0, 22.0 ],
+									"patching_rect" : [ 530.0, 658.0, 230.0, 22.0 ],
 									"style" : "",
 									"text" : "Prints information about the outputs"
 								}
@@ -1480,7 +1480,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 159.0, 840.0, 61.0, 22.0 ],
+									"patching_rect" : [ 455.0, 749.0, 61.0, 22.0 ],
 									"style" : "",
 									"text" : "info quick"
 								}
@@ -1493,7 +1493,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 159.0, 809.333313, 94.0, 22.0 ],
+									"patching_rect" : [ 455.0, 718.333313, 94.0, 22.0 ],
 									"style" : "",
 									"text" : "info parameters"
 								}
@@ -1506,7 +1506,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 159.0, 778.666687, 43.0, 22.0 ],
+									"patching_rect" : [ 455.0, 687.666687, 43.0, 22.0 ],
 									"style" : "",
 									"text" : "info io"
 								}
@@ -1519,7 +1519,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 159.0, 748.0, 73.0, 22.0 ],
+									"patching_rect" : [ 455.0, 657.0, 73.0, 22.0 ],
 									"style" : "",
 									"text" : "info outputs"
 								}
@@ -1740,7 +1740,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
-									"midpoints" : [ 168.5, 771.0, 81.0, 771.0, 81.0, 651.0, 13.25, 651.0 ],
+									"midpoints" : [ 464.5, 681.0, 441.0, 681.0, 441.0, 714.0, 444.0, 714.0, 444.0, 750.0, 81.0, 750.0, 81.0, 651.0, 13.25, 651.0 ],
 									"source" : [ "obj-23", 0 ]
 								}
 
@@ -1748,7 +1748,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
-									"midpoints" : [ 168.5, 801.0, 81.0, 801.0, 81.0, 651.0, 13.25, 651.0 ],
+									"midpoints" : [ 464.5, 711.0, 444.0, 711.0, 444.0, 750.0, 81.0, 750.0, 81.0, 651.0, 13.25, 651.0 ],
 									"source" : [ "obj-24", 0 ]
 								}
 
@@ -1756,7 +1756,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
-									"midpoints" : [ 168.5, 834.0, 81.0, 834.0, 81.0, 651.0, 13.25, 651.0 ],
+									"midpoints" : [ 464.5, 741.0, 81.0, 741.0, 81.0, 651.0, 13.25, 651.0 ],
 									"source" : [ "obj-25", 0 ]
 								}
 
@@ -1764,7 +1764,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
-									"midpoints" : [ 168.5, 864.0, 81.0, 864.0, 81.0, 651.0, 13.25, 651.0 ],
+									"midpoints" : [ 464.5, 774.0, 81.0, 774.0, 81.0, 651.0, 13.25, 651.0 ],
 									"source" : [ "obj-26", 0 ]
 								}
 
