@@ -34,7 +34,7 @@ public:
         
     public:
         
-        ErrorReport() : mSource(kErrorObject), mReporter(NULL), mError(NULL), mItems(NULL), mNumItems(0) {}
+        ErrorReport() : mSource(kErrorObject), mReporter(nullptr), mError(nullptr), mItems(nullptr), mNumItems(0) {}
         
         ErrorReport(ErrorSource source, FrameLib_Proxy *reporter, const char *error, const char *items, unsigned long numItems)
         : mSource(source), mReporter(reporter), mError(error), mItems(items), mNumItems(numItems) {}

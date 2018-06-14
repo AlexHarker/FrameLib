@@ -29,7 +29,7 @@ private:
         
         struct Pool
         {
-            Pool(void *mem, size_t size)  : mUsedRecently(true), mTime(0), mSize(size), mPrev(NULL), mNext(NULL), mMem(mem) {}
+            Pool(void *mem, size_t size)  : mUsedRecently(true), mTime(0), mSize(size), mPrev(nullptr), mNext(nullptr), mMem(mem) {}
             
             bool isFree() { return tlsf_pool_is_free(mMem); }
             
@@ -207,7 +207,7 @@ class FrameLib_LocalAllocator
 
     struct FreeBlock
     {
-        FreeBlock() : mMemory(NULL), mSize(0), mPrev(NULL), mNext(NULL) {}
+        FreeBlock() : mMemory(nullptr), mSize(0), mPrev(nullptr), mNext(nullptr) {}
         
         void *mMemory;
         size_t mSize;
@@ -272,10 +272,10 @@ public:
         // Getters
         
         FrameType getType() const               { return mType; }
-        double *getVector() const               { return mType == kFrameNormal ? static_cast<double *>(mData) : NULL; }
+        double *getVector() const               { return mType == kFrameNormal ? static_cast<double *>(mData) : nullptr; }
         unsigned long getVectorSize() const     { return mType == kFrameNormal ? mSize : 0; }
         unsigned long getTaggedSize() const     { return mType == kFrameTagged ? mSize : 0; }
-        Serial *getTagged() const               { return mType == kFrameTagged ? static_cast<Serial *>(mData) : NULL; }
+        Serial *getTagged() const               { return mType == kFrameTagged ? static_cast<Serial *>(mData) : nullptr; }
         
         // Resize the storage
         

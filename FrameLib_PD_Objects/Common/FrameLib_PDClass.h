@@ -38,7 +38,7 @@ public:
         enum Mode { kDownOnly, kDown, kAcross };
         enum Action { kSyncComplete, kSync, kAttachAndSync };
         
-        SyncCheck() : mGlobal(get()), mObject(NULL), mTime(-1), mMode(kDownOnly) {}
+        SyncCheck() : mGlobal(get()), mObject(nullptr), mTime(-1), mMode(kDownOnly) {}
         ~SyncCheck() { mGlobal->release(); }
         
         Action operator()(void *object, bool handlesAudio, bool isOutput)
@@ -60,10 +60,10 @@ public:
             return kSyncComplete;
         }
         
-        void sync(void *object = NULL, long time = -1, Mode mode = kDownOnly)
+        void sync(void *object = nullptr, long time = -1, Mode mode = kDownOnly)
         {
             set(object, time, mode);
-            mGlobal->setSyncCheck(object ? this : NULL);
+            mGlobal->setSyncCheck(object ? this : nullptr);
         }
         
         bool upwardsMode()  { return setMode(mGlobal->getSyncCheck(), kAcross); }
@@ -122,23 +122,23 @@ public:
     // Constructor and Destructor (public for the PD API, but use the ManagedPointer for use from outside this class)
     
     FrameLib_PDGlobals(t_symbol *sym, long ac, t_atom *av)
-    : mGlobal(NULL), mConnectionInfo(NULL), mSyncCheck(NULL) {}
+    : mGlobal(nullptr), mConnectionInfo(nullptr), mSyncCheck(nullptr) {}
     ~FrameLib_PDGlobals() { if (mGlobal) FrameLib_Global::release(&mGlobal); }
 
     // Getters and setters for max global items
     
-    FrameLib_Global *getGlobal() const                      { return mGlobal; }
+    FrameLib_Global *getGlobal() const                          { return mGlobal; }
     
-    const ConnectionInfo *getConnectionInfo() const         { return mConnectionInfo; }
-    void setConnectionInfo(ConnectionInfo *info = NULL)     { mConnectionInfo = info; }
+    const ConnectionInfo *getConnectionInfo() const             { return mConnectionInfo; }
+    void setConnectionInfo(ConnectionInfo *info = nullptr)      { mConnectionInfo = info; }
     
-    SyncCheck *getSyncCheck() const                         { return mSyncCheck; }
-    void setSyncCheck(SyncCheck *check = NULL)              { mSyncCheck = check; }
+    SyncCheck *getSyncCheck() const                             { return mSyncCheck; }
+    void setSyncCheck(SyncCheck *check = nullptr)               { mSyncCheck = check; }
     
 private:
     
-    void retain()                                           { FrameLib_Global::get(&mGlobal); }
-    void release()                                          { FrameLib_Global::release(&mGlobal); }
+    void retain()                                               { FrameLib_Global::get(&mGlobal); }
+    void release()                                              { FrameLib_Global::release(&mGlobal); }
 
     static FrameLib_PDGlobals **getPDGlobalsPtr()
     {
@@ -184,7 +184,7 @@ public:
     
     Mutator(t_symbol *sym, long ac, t_atom *av)
     {
-        mObject = ac ? atom_getobj(av) : NULL;
+        mObject = ac ? atom_getobj(av) : nullptr;
         mMode = object_method(mObject, gensym("__fl.is_output")) ? FrameLib_PDGlobals::SyncCheck::kDownOnly : FrameLib_PDGlobals::SyncCheck::kDown;
     }
     
@@ -259,7 +259,7 @@ public:
         
         t_dictionary *d = dictionary_new();
         t_atom a;
-        t_atom *av = NULL;
+        t_atom *av = nullptr;
         long ac = 0;
         
         atom_setparse(&ac, &av, "@defrect 0 0 300 300");
@@ -269,8 +269,8 @@ public:
         
         // Get box text (and strip object name from the top - relace with stored name in case the object name is an alias)
         
-        t_object *textfield = NULL;
-        const char *text = NULL;
+        t_object *textfield = nullptr;
+        const char *text = nullptr;
         std::string newObjectText = accessClassName<Wrapper>()->c_str();
 
         object_obex_lookup(this, gensym("#B"), &textfield);
@@ -321,14 +321,14 @@ public:
 
         for (long i = numIns + numAudioIns - 2; i >= 0 ; i--)
         {
-            mInOutlets[i] = (t_object *) outlet_new(NULL, NULL);
-            mProxyIns[i] = (t_object *)  (i ? proxy_new(this, i, &mProxyNum) : NULL);
+            mInOutlets[i] = (t_object *) outlet_new(nullptr, nullptr);
+            mProxyIns[i] = (t_object *)  (i ? proxy_new(this, i, &mProxyNum) : nullptr);
         }
         
         // Outlets for messages/signals
         
         for (long i = numOuts - 1; i >= 0 ; i--)
-            mOuts[i] = (t_object *) outlet_new(this, NULL);
+            mOuts[i] = (t_object *) outlet_new(this, nullptr);
         for (long i = numAudioOuts - 2; i >= 0 ; i--)
             mAudioOuts[i] = (t_object *) outlet_new(this, "signal");
         
@@ -367,7 +367,7 @@ public:
     
     void *subpatcher(long index, void *arg)
     {
-        return ((t_ptr_uint) arg > 1 && !NOGOOD(arg) && index == 0) ? (void *) mPatch : NULL;
+        return ((t_ptr_uint) arg > 1 && !NOGOOD(arg) && index == 0) ? (void *) mPatch : nullptr;
     }
     
     void assist(void *b, long m, long a, char *s)
@@ -488,7 +488,7 @@ template <class T, PDObjectArgsMode argsMode = kAsParams> class FrameLib_PDClass
             addMethod<PDProxy, &PDProxy::frame>(c, "frame");
         }
         
-        PDProxy(t_symbol *sym, long ac, t_atom *av) : mOwner(NULL), mIndex(-1) {}
+        PDProxy(t_symbol *sym, long ac, t_atom *av) : mOwner(nullptr), mIndex(-1) {}
         
         void frame()
         {
@@ -543,7 +543,7 @@ public:
 
     // Constructor and Destructor
 
-    FrameLib_PDClass(t_symbol *s, long argc, t_atom *argv, FrameLib_PDProxy *proxy = new FrameLib_PDProxy()) : mFrameLibProxy(proxy), mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mCanvas(canvas_getcurrent()), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
+    FrameLib_PDClass(t_symbol *s, long argc, t_atom *argv, FrameLib_PDProxy *proxy = new FrameLib_PDProxy()) : mFrameLibProxy(proxy), mConfirmObject(nullptr), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mCanvas(canvas_getcurrent()), mSyncIn(nullptr), mNeedsResolve(true), mUserObject(*this)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -579,7 +579,7 @@ public:
                 inlet_new(*this, mInputs[i], gensym("frame"), gensym("frame"));
             }
             else
-                mInputs[i] = NULL;
+                mInputs[i] = nullptr;
         }
         
         // Create frame outlets
@@ -591,7 +591,7 @@ public:
         
         if (T::handlesAudio())
         {
-            //mSyncIn = (t_object *) outlet_new(NULL, NULL);
+            //mSyncIn = (t_object *) outlet_new(nullptr, nullptr);
             //outlet_add(mSyncIn, inlet_nth(*this, 0));
         }
     }
@@ -837,12 +837,12 @@ public:
         // FIX
         
         //if (action == FrameLib_PDGlobals::SyncCheck::kAttachAndSync)
-        //    outlet_anything(mSyncIn, gensym("signal"), 0, NULL);
+        //    outlet_anything(mSyncIn, gensym("signal"), 0, nullptr);
         
         if (action != FrameLib_PDGlobals::SyncCheck::kSyncComplete)
         {
             for (unsigned long i = getNumOuts(); i > 0; i--)
-                outlet_anything(mOutputs[i - 1], gensym("sync"), 0, NULL);
+                outlet_anything(mOutputs[i - 1], gensym("sync"), 0, nullptr);
             
             if (mSyncChecker.upwardsMode())
             {
@@ -1067,7 +1067,7 @@ private:
         ConnectionInfo info(*this, index, mode);
         
         mGlobal->setConnectionInfo(&info);
-        outlet_anything(mOutputs[index], gensym("frame"), 0, NULL);
+        outlet_anything(mOutputs[index], gensym("frame"), 0, nullptr);
         mGlobal->setConnectionInfo();
     }
     
@@ -1099,7 +1099,7 @@ private:
         
         bool result = mConfirm;
         mConfirm = false;
-        mConfirmObject = NULL;
+        mConfirmObject = nullptr;
         mConfirmInIndex = mConfirmOutIndex = -1;
         
         return result;
@@ -1282,7 +1282,7 @@ private:
     
     void parseParameters(FrameLib_Parameters::AutoSerial& serialisedParameters, long argc, t_atom *argv)
     {
-        t_symbol *sym = NULL;
+        t_symbol *sym = nullptr;
         std::vector<double> values;
         long i;
         

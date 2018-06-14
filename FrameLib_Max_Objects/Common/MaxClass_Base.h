@@ -62,7 +62,7 @@ public:
     
     template <class T>  struct Perform { typedef void (T::*MethodPerform)(t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam); };
     template <class T, typename Perform<T>::MethodPerform F> static void call(T *x, t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam) { ((x)->*F)(dsp64, ins, numins, outs, numouts, vec_size, flags, userparam); }
-    template <class T, typename Perform<T>::MethodPerform F> void addPerform(t_object *dsp64) { object_method(dsp64, gensym("dsp_add64"), this, ((method) call<T, F>), 0, NULL); }
+    template <class T, typename Perform<T>::MethodPerform F> void addPerform(t_object *dsp64) { object_method(dsp64, gensym("dsp_add64"), this, ((method) call<T, F>), 0, nullptr); }
     
     // Static Methods for class initialisation, object creation and deletion
     

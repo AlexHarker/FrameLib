@@ -4,7 +4,7 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
-: FrameLib_Block(type, context, proxy), mSamplingRate(44100.0), mMaxBlockSize(4096), mParameters(context, proxy, info), mProcessingQueue(context), mNext(NULL), mNoLiveInputs(true), mInUpdate(false)
+: FrameLib_Block(type, context, proxy), mSamplingRate(44100.0), mMaxBlockSize(4096), mParameters(context, proxy, info), mProcessingQueue(context), mNext(nullptr), mNoLiveInputs(true), mInUpdate(false)
 {
     // Set IO
     
@@ -106,7 +106,7 @@ void FrameLib_DSP::reset(LocalQueue *queue)
 
     // Remove info about the processing queue
     
-    mNext = NULL;
+    mNext = nullptr;
     
     // Reset output
     
@@ -258,7 +258,7 @@ bool FrameLib_DSP::allocateOutputs()
     
     for (auto outs = mOutputs.begin(); outs != mOutputs.end(); outs++)
     {
-        outs->mMemory = NULL;
+        outs->mMemory = nullptr;
         outs->mCurrentSize = 0;
     }
     
@@ -281,7 +281,7 @@ const FrameLib_Parameters::Serial *FrameLib_DSP::getInput(unsigned long idx) con
     if (mInputs[idx].mObject)
         return mInputs[idx].mObject->getOutput(mInputs[idx].mIndex);
     
-    return NULL;
+    return nullptr;
 }
 
 double *FrameLib_DSP::getOutput(unsigned long idx, size_t *size) const
@@ -293,7 +293,7 @@ double *FrameLib_DSP::getOutput(unsigned long idx, size_t *size) const
     }
     
     *size = 0;
-    return NULL;
+    return nullptr;
 }
 
 FrameLib_Parameters::Serial *FrameLib_DSP::getOutput(unsigned long idx) const
@@ -301,7 +301,7 @@ FrameLib_Parameters::Serial *FrameLib_DSP::getOutput(unsigned long idx) const
     if (mOutputs[0].mMemory && mOutputs[idx].mCurrentType == kFrameTagged)
         return (Serial *) mOutputs[idx].mMemory;
     
-    return NULL;
+    return nullptr;
 }
 
 // Convience methods for copying and zeroing
@@ -573,7 +573,7 @@ inline void FrameLib_DSP::freeOutputMemory()
             if (outs->mCurrentType == kFrameTagged)
                 ((Serial *)outs->mMemory)->Serial::~Serial();
 
-        // Then deallocate (will also set to NULL)
+        // Then deallocate (will also set to nullptr)
         
         dealloc(mOutputs[0].mMemory);
     }

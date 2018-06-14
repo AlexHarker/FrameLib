@@ -134,7 +134,7 @@ void FrameLib_RandGen::randSeedCMWC()
     for (uint32_t i = 0; i < CMWC_LAG_SIZE; i++)
         seeds[i] = arc4random();
 #elif defined (__linux__)
-    srandom(time(NULL));
+    srandom(time(nullptr));
     for (uint32_t i = 0; i < CMWC_LAG_SIZE; i++)
         seeds[i] = random();
 #else

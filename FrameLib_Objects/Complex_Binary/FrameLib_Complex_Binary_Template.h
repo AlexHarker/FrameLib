@@ -17,7 +17,7 @@ template <typename Op> class FrameLib_Complex_BinaryOp : public FrameLib_Process
     public:
         
         PaddedInput(FrameLib_Complex_BinaryOp *owner, const double *input, unsigned long size, unsigned long paddedSize)
-        : mOwner(owner), mAllocated(NULL)
+        : mOwner(owner), mAllocated(nullptr)
         {
             if (paddedSize > size)
             {

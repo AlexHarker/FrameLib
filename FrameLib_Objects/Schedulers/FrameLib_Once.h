@@ -12,7 +12,7 @@ public:
     // Constructor
     
     FrameLib_Once(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-    : FrameLib_Scheduler(context, proxy, NULL, 1, 1) {}
+    : FrameLib_Scheduler(context, proxy, nullptr, 1, 1) {}
     
     // Info
     

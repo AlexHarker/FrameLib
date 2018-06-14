@@ -5,7 +5,7 @@
 
 // Constructor
 
-FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long num) : FrameLib_Processor(context, proxy, NULL, 2, 1), mValveNumber(num)
+FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long num) : FrameLib_Processor(context, proxy, nullptr, 2, 1), mValveNumber(num)
 {
     mParameters.addInt(kActiveValve, "output", 0);
     

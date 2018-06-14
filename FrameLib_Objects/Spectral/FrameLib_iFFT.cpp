@@ -113,7 +113,7 @@ void FrameLib_iFFT::process()
     // Setup output and temporary memory
     
     double *outputR = getOutput(0, &sizeOut);
-    double *outputI = NULL;
+    double *outputI = nullptr;
     
     if (mMode == kComplex && sizeOut)
     {

@@ -25,7 +25,7 @@ T *FrameLib_Global::PointerSet<T>::find(void *reference)
         }
     }
     
-    return NULL;
+    return nullptr;
 }
 
 // Release a pre-existing object by reference address
@@ -124,7 +124,7 @@ FrameLib_Global *FrameLib_Global::decrement()
         
         lock.destroy();
         delete this;
-        return NULL;
+        return nullptr;
     }
     
     return this;

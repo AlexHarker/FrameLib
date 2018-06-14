@@ -2,7 +2,7 @@
 #include "FrameLib_EWMA.h"
 #include "Interpolation.hpp"
 
-FrameLib_EWMA::FrameLib_EWMA(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mAverageFrame(NULL), mPrevFrame(NULL), mFrameSize(0)
+FrameLib_EWMA::FrameLib_EWMA(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mAverageFrame(nullptr), mPrevFrame(nullptr), mFrameSize(0)
 {
     mParameters.addInt(kAlphaUp, "alpha_up", 0.5, 0);
     mParameters.setClip(0.0, 1.0);

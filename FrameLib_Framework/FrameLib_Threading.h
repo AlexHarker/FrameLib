@@ -139,11 +139,11 @@ template <class T> class AtomicPtr
     
 public:
     
-    AtomicPtr()	{ mValue = NULL; }
+    AtomicPtr()	{ mValue = nullptr; }
     
     bool compareAndSwap(T *comparand, T *exchange) { return OS_Specific::compareAndSwapPtr(&mValue, comparand, exchange); }
     T *swap(T *exchange) { return (T *) OS_Specific::swapPtr(&mValue, exchange); }
-    T *clear() { return swap(NULL); }
+    T *clear() { return swap(nullptr); }
     
 private:
     
@@ -195,7 +195,7 @@ public:
     {
         if (mLock)
             mLock->release();
-        mLock = NULL;
+        mLock = nullptr;
     }
     
 private:
@@ -221,7 +221,7 @@ public:
     enum PriorityLevel {kLowPriority, kMediumPriority, kHighPriority, kAudioPriority};
 
     Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void *arg)
-    : mInternal(NULL), mPriority(priority), mThreadFunction(threadFunction), mArg(arg), mValid(false)
+    : mInternal(nullptr), mPriority(priority), mThreadFunction(threadFunction), mArg(arg), mValid(false)
     {}
 
     ~Thread();

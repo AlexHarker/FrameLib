@@ -7,9 +7,10 @@
 #include "FrameLib_Object.h"
 #include "FrameLib_ProcessingQueue.h"
 
-#include <limits>
-#include <vector>
 #include <algorithm>
+#include <limits>
+#include <memory>
+#include <vector>
 
 // FrameLib_DSP
 
@@ -44,7 +45,7 @@ private:
     
     struct Input
     {
-        Input() : mObject(NULL), mIndex(0), mSize(0), mFixedInput(NULL), mType(kFrameNormal), mUpdate(false), mParameters(false), mTrigger(true), mSwitchable(false) {}
+        Input() : mObject(nullptr), mIndex(0), mSize(0), mFixedInput(nullptr), mType(kFrameNormal), mUpdate(false), mParameters(false), mTrigger(true), mSwitchable(false) {}
         
         FrameType getCurrentType() const { return mObject ? mObject->mOutputs[mIndex].mCurrentType : kFrameNormal; }
         
@@ -70,7 +71,7 @@ private:
    
     struct Output
     {
-        Output() : mMemory(NULL), mType(kFrameNormal), mCurrentType(kFrameNormal), mRequestedType(kFrameNormal), mCurrentSize(0), mRequestedSize(0), mPointerOffset(0) {}
+        Output() : mMemory(nullptr), mType(kFrameNormal), mCurrentType(kFrameNormal), mRequestedType(kFrameNormal), mCurrentSize(0), mRequestedSize(0), mPointerOffset(0) {}
         
         void *mMemory;
         

@@ -37,7 +37,7 @@ class FrameLib_ProcessingQueue
     
 public:
     
-    FrameLib_ProcessingQueue(FrameLib_ErrorReporter& errorReporter) : mTop(NULL), mTail(NULL), mTimedOut(false), mErrorReporter(errorReporter) {}
+    FrameLib_ProcessingQueue(FrameLib_ErrorReporter& errorReporter) : mTop(nullptr), mTail(nullptr), mTimedOut(false), mErrorReporter(errorReporter) {}
     
     void add(FrameLib_DSP *object);
     void reset() { mTimedOut = false; }

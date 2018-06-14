@@ -79,7 +79,7 @@ FrameLib_Read::ParameterInfo::ParameterInfo()
 
 void FrameLib_Read::process()
 {
-    double *positions = NULL;
+    double *positions = nullptr;
     
     unsigned long size;
     long chan = mChan;

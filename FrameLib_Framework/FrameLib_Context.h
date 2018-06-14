@@ -51,15 +51,15 @@ class FrameLib_Context
         {
             if (mGlobal)
                 (mGlobal->*releaseMethod)(mReference);
-            mPointer = NULL;
-            mGlobal = NULL;
-            mReference  = NULL;
+            mPointer = nullptr;
+            mGlobal = nullptr;
+            mReference  = nullptr;
         }
         
         // Pointer  / Bool Conversion
         
         T *operator->()         { return mPointer; }
-        operator bool() const   { return mPointer != NULL; }
+        operator bool() const   { return mPointer != nullptr; }
         
     private:
         

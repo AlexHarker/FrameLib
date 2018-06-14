@@ -61,7 +61,7 @@ public:
     
     // Retrieve and release the global object
     
-    static FrameLib_Global *get(FrameLib_Global **global, FrameLib_ErrorReporter::HostNotifier *notifier = NULL);
+    static FrameLib_Global *get(FrameLib_Global **global, FrameLib_ErrorReporter::HostNotifier *notifier = nullptr);
     static void release(FrameLib_Global **global);
         
 private:

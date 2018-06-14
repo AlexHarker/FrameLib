@@ -118,7 +118,7 @@ public:
         
         // Size Calculations
         
-        static size_t calcSize(const Serial *serialised)            { return serialised != NULL ? serialised->mSize : 0; }
+        static size_t calcSize(const Serial *serialised)            { return serialised != nullptr ? serialised->mSize : 0; }
         static size_t calcSize(const FrameLib_Parameters *params);
         static size_t calcSize(const char *tag, const char *str)    { return sizeType() + sizeString(tag) + sizeString(str); }
         static size_t calcSize(const char *tag, size_t N)           { return sizeType() + sizeString(tag) + sizeArray(N); }
@@ -311,10 +311,10 @@ private:
         double getDefault() const                       { return mDefault; }
 
         virtual double getValue() const                 { return 0; }
-        virtual const char *getString() const           { return NULL; }
+        virtual const char *getString() const           { return nullptr; }
         virtual size_t getArraySize() const             { return 0; }
         virtual size_t getArrayMaxSize() const          { return 0; }
-        virtual const double *getArray() const          { return NULL; }
+        virtual const double *getArray() const          { return nullptr; }
         const double *getArray(size_t *size) const;
         
         bool changed();
@@ -415,7 +415,7 @@ private:
         
         virtual SetError set(const char *str);
         
-        virtual void clear() { String::set(NULL); };
+        virtual void clear() { String::set(nullptr); };
 
         // Getters
         
@@ -444,7 +444,7 @@ private:
 
         virtual SetError set(double *values, size_t N);
 
-        virtual void clear() { Array::set(NULL, 0); };
+        virtual void clear() { Array::set(nullptr, 0); };
 
         // Getters
 

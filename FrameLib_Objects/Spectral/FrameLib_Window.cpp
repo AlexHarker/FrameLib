@@ -42,7 +42,7 @@ FrameLib_Window::FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::
     
     mParameters.set(serialisedParameters);
     
-    mWindow = NULL;
+    mWindow = nullptr;
     mWindowType = kHann;
     mSize = 0;
     mSqrtWindow = false;

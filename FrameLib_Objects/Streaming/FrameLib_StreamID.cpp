@@ -4,7 +4,7 @@
 // Constructor
 
 FrameLib_StreamID::FrameLib_StreamID(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Processor(context, proxy, NULL, 1, 1), mStream(1)
+: FrameLib_Processor(context, proxy, nullptr, 1, 1), mStream(1)
 {}
 
 // Info

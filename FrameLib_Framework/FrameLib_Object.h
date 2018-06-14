@@ -19,7 +19,7 @@ class FrameLib_Queueable
     
 public:
     
-    FrameLib_Queueable() : mNext(NULL) {}
+    FrameLib_Queueable() : mNext(nullptr) {}
     
     class Queue
     {
@@ -27,9 +27,9 @@ public:
 
     public:
         
-        Queue() : mFirst(NULL), mTop(NULL), mTail(NULL) {}
+        Queue() : mFirst(nullptr), mTop(nullptr), mTail(nullptr) {}
 
-        Queue(T *object, Method method) : mFirst(NULL), mTop(NULL), mTail(NULL)
+        Queue(T *object, Method method) : mFirst(nullptr), mTop(nullptr), mTail(nullptr)
         {
             add(object);
             start(method);
@@ -37,9 +37,9 @@ public:
         
         void add(T *object)
         {
-            // Do not add if NULL or re-add if already in queue
+            // Do not add if nullptr or re-add if already in queue
             
-            if (!object || object->FrameLib_Queueable<T>::mNext != NULL)
+            if (!object || object->FrameLib_Queueable<T>::mNext != nullptr)
                 return;
             
             // Add to the top /tail of the queue depending on whether the queue is open
@@ -64,10 +64,10 @@ public:
                 T *object = mTop;
                 (object->*method)(this);
                 mTop = object->FrameLib_Queueable<T>::mNext;
-                object->FrameLib_Queueable<T>::mNext = NULL;
+                object->FrameLib_Queueable<T>::mNext = nullptr;
             }
             
-            mFirst = mTail = NULL;
+            mFirst = mTail = nullptr;
         }
         
         T *getFirst() const { return mFirst; }
@@ -105,7 +105,7 @@ public:
     
     struct Connection
     {
-        Connection() : mObject(NULL), mIndex(0) {}
+        Connection() : mObject(nullptr), mIndex(0) {}
         Connection(T *object, unsigned long index) : mObject(object), mIndex(index) {}
         
         friend bool operator == (const Connection& a, const Connection& b) { return a.mObject == b.mObject && a.mIndex == b.mIndex; }
@@ -210,7 +210,7 @@ public:
     
     // N.B. Parameter objects can be queried directly for info
     
-    virtual const FrameLib_Parameters *getParameters() const                    { return NULL; }
+    virtual const FrameLib_Parameters *getParameters() const                    { return nullptr; }
     
     // Connection 
     
@@ -294,7 +294,7 @@ public:
     
     // Input Connection Queries
 
-    bool isConnected(unsigned long inIdx) const                             { return getConnection(inIdx).mObject != NULL; }
+    bool isConnected(unsigned long inIdx) const                             { return getConnection(inIdx).mObject != nullptr; }
     Connection getConnection(unsigned long inIdx) const                     { return getConnection(inIdx, false); }
     
     bool supportsOrderingConnections() const                                { return mSupportsOrderingConnections; }
@@ -363,7 +363,7 @@ protected:
     template <class U> void dealloc(U *& ptr)
     {
         mAllocator->dealloc(ptr);
-        ptr = NULL;
+        ptr = nullptr;
     }
     
     void clearAllocator() { mAllocator->clear(); }
@@ -373,7 +373,7 @@ protected:
     void releaseStorage(FrameLib_LocalAllocator::Storage *&storage)
     {
         mAllocator->releaseStorage(storage->getName());
-        storage = NULL;
+        storage = nullptr;
     }
     
     // Info Helpers
@@ -458,7 +458,7 @@ protected:
     const double *getEmptyFixedInput(unsigned long idx, unsigned long *size)
     {
         *size = 0;
-        return NULL;
+        return nullptr;
     }
 
 private:
@@ -546,7 +546,7 @@ private:
     
     // Notifications
     
-    void notifySelf(bool notify, Queue *queue = NULL)
+    void notifySelf(bool notify, Queue *queue = nullptr)
     {
         if (notify)
         {
@@ -557,7 +557,7 @@ private:
         }
     }
 
-    void notifyConnectionsChanged(Connection connection, Queue *queue = NULL)
+    void notifyConnectionsChanged(Connection connection, Queue *queue = nullptr)
     {
         if (connection.mObject)
         {
@@ -590,7 +590,7 @@ private:
 
     // Change Input Connection
 
-    ConnectionResult changeConnection(Connection connection, unsigned long inIdx, bool notify, Queue *queue = NULL)
+    ConnectionResult changeConnection(Connection connection, unsigned long inIdx, bool notify, Queue *queue = nullptr)
     {
         if (mInputConnections[inIdx].mIn == connection)
             return kConnectSuccess;
@@ -641,19 +641,19 @@ private:
         return kConnectSuccess;
     }
     
-    ConnectionResult addOrderingConnection(Connection connection, bool notify, Queue *queue = NULL)
+    ConnectionResult addOrderingConnection(Connection connection, bool notify, Queue *queue = nullptr)
     {
         return changeOrderingConnection(connection, &addUniqueItem<Connection>, &FrameLib_Object::addToConnector, notify, queue);
     }
     
-    void deleteOrderingConnection(Connection connection, bool notify, Queue *queue = NULL)
+    void deleteOrderingConnection(Connection connection, bool notify, Queue *queue = nullptr)
     {
         changeOrderingConnection(connection, &deleteUniqueItem<Connection>, &FrameLib_Object::deleteFromConnector, notify, queue);
     }
     
     // Clear Ordering Connections
     
-    void clearOrderingConnections(bool notify, Queue *queue = NULL)
+    void clearOrderingConnections(bool notify, Queue *queue = nullptr)
     {
         if (!supportsOrderingConnections() || mOrderingConnector.mInternal)
             return;
@@ -678,7 +678,7 @@ private:
     
     // Clear output
     
-    void clearOutput(unsigned long outIdx, Queue *queue = NULL)
+    void clearOutput(unsigned long outIdx, Queue *queue = nullptr)
     {
         while (!mOutputConnections[outIdx].mInternal && mOutputConnections[outIdx].mOut.size())
         {
@@ -716,7 +716,7 @@ private:
         // Clear ordering connections
         
         clearOrderingConnections(false, &queue);
-        changeOrderingAlias(NULL, false, &queue);
+        changeOrderingAlias(nullptr, false, &queue);
         clearAliases(&FrameLib_Object::getOrderingConnector, kOrdering, &queue);
         
         // Clear outputs
@@ -787,7 +787,7 @@ private:
         return thisConnection(idx);
     }
     
-    void changeAlias(ConnectorMethod method, Connection alias, unsigned long idx, bool notify, Queue *queue = NULL)
+    void changeAlias(ConnectorMethod method, Connection alias, unsigned long idx, bool notify, Queue *queue = nullptr)
     {
         Connector& connector = (this->*method)(idx);
         
@@ -835,7 +835,7 @@ private:
     
     FrameLib_Object *traverseOrderingAliases() const      { return traverseAliases(&FrameLib_Object::getOrderingConnector, kOrdering).mObject; }
     
-    void changeOrderingAlias(T *alias, bool notify, Queue *queue = NULL)
+    void changeOrderingAlias(T *alias, bool notify, Queue *queue = nullptr)
     {
         changeAlias(&FrameLib_Object::getOrderingConnector, Connection(alias, kOrdering), kOrdering, notify, queue);
     }

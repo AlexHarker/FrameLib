@@ -181,7 +181,7 @@ class FrameLib_ExprParser
             for (auto it = mItems.begin(); it != mItems.end(); it++)
             {
                 delete (*it);
-                *it = NULL;
+                *it = nullptr;
             }
             
             mItems.clear();
@@ -198,7 +198,7 @@ class FrameLib_ExprParser
                 if (!strcmp(name, (*it)->mName))
                     return (*it);
             
-            return NULL;
+            return nullptr;
         }
         
     private:
@@ -459,7 +459,7 @@ private:
     
     const OpBase<T> *getOperator(const char *name) const
     {
-        const OpBase<T> *op = NULL;
+        const OpBase<T> *op = nullptr;
         
         for (int i = 0; i < mOperators.size(); i++)
             if ((op = getOperator(name, i)))
@@ -541,7 +541,7 @@ private:
 
     ExprParseError parseOperators(Graph<T>& graph, Node &result, NodeList& nodes)
     {
-        const OpBase<T> *op = NULL;
+        const OpBase<T> *op = nullptr;
         ExprParseError error = kNoError;
 
         // Check for any remaining tokens that are not operators
@@ -588,7 +588,7 @@ private:
         
         for (n2 = nodes.begin(); ; )
         {
-            const OpBase<T> *function = NULL;
+            const OpBase<T> *function = nullptr;
 
             // Find first RHS parenthesis and matching LHS parenthesis
             

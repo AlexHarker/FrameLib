@@ -88,7 +88,7 @@ void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, unsigned long s
 
 // Constructor
 
-FrameLib_FromHost::FrameLib_FromHost(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1), mVectorFrame(NULL), mProxy(dynamic_cast<Proxy *>(proxy)), mStreamOwner(this), mStream(0)
+FrameLib_FromHost::FrameLib_FromHost(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1), mVectorFrame(nullptr), mProxy(dynamic_cast<Proxy *>(proxy)), mStreamOwner(this), mStream(0)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kValues, "values");
@@ -169,7 +169,7 @@ void FrameLib_FromHost::process()
         allocateOutputs();
         
         double *output = getOutput(0, &size);
-        copyVector(output, mVectorFrame ? mVectorFrame->data() : NULL, size);
+        copyVector(output, mVectorFrame ? mVectorFrame->data() : nullptr, size);
     }
     else
     {

@@ -37,7 +37,7 @@ const double *FrameLib_Parameters::Serial::Iterator::getVector(unsigned long *si
     }
         
     *size = 0;
-    return NULL;
+    return nullptr;
 }
 
 unsigned long FrameLib_Parameters::Serial::Iterator::getVectorSize() const
@@ -53,7 +53,7 @@ char *FrameLib_Parameters::Serial::Iterator::getString() const
 {
     Entry entry = getEntry();
     
-    return entry.mType == kSingleString ? entry.data<char>() : NULL;
+    return entry.mType == kSingleString ? entry.data<char>() : nullptr;
 }
 
 // Get Size
@@ -159,7 +159,7 @@ FrameLib_Parameters::Serial::Serial(BytePointer ptr, size_t size) : mPtr(ptr), m
     alignmentChecks();
 }
 
-FrameLib_Parameters::Serial::Serial() : mPtr(NULL), mSize(0), mMaxSize(0), mNumTags(0)
+FrameLib_Parameters::Serial::Serial() : mPtr(nullptr), mSize(0), mMaxSize(0), mNumTags(0)
 {
     alignmentChecks();
 }
@@ -507,7 +507,7 @@ void FrameLib_Parameters::Parameter::getRange(double *min, double *max) const
 const char *FrameLib_Parameters::Parameter::getItemString(unsigned long item) const
 {
     assert(0 && "cannot get enum string for non-enum parameter");
-    return NULL;
+    return nullptr;
 }
 
 const double *FrameLib_Parameters::Parameter::getArray(size_t *size) const
@@ -616,7 +616,7 @@ FrameLib_Parameters::SetError FrameLib_Parameters::String::set(const char *str)
 {
     size_t i = 0;
     
-    if (str != NULL)
+    if (str != nullptr)
     {
         for (i = 0; i < maxLen; i++)
             if ((mCString[i] = str[i]) == 0)

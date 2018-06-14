@@ -11,7 +11,7 @@ public:
     
     // Constructor
     
-    FrameLib_VectorSet(FrameLib_Context context) : mFrames(NULL), mNumFrames(0), mFrameLength(0), mAllocator(context)
+    FrameLib_VectorSet(FrameLib_Context context) : mFrames(nullptr), mNumFrames(0), mFrameLength(0), mAllocator(context)
     {}
     
     ~FrameLib_VectorSet()
@@ -51,7 +51,7 @@ private:
     void deallocVector(double *& ptr)
     {
         mAllocator->dealloc(ptr);
-        ptr = NULL;
+        ptr = nullptr;
     }
 
     double *mFrames;
