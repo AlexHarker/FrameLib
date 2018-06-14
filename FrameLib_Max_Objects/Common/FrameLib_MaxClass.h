@@ -284,11 +284,11 @@ public:
                 newObjectText += text;
         }
         
-        // Set the patch association and disallow editing
+        // Set the patch association
         
         object_method(mPatch, gensym("setassoc"), this);
         
-        // Make internal object  and disallow editing
+        // Make internal object and disallow editing
 
         mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch, "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", newObjectText.c_str()));
         object_method(mPatch, gensym("noedit"));
@@ -310,8 +310,6 @@ public:
         long numOuts = internal->getNumOuts();
         long numAudioIns = internal->getNumAudioIns();
         long numAudioOuts = internal->getNumAudioOuts();
-        
-        internal->mUserObject = *this;
         
         // Create I/O
         
@@ -524,6 +522,7 @@ public:
         addMethod(c, (method) &externalIsConnected, "__fl.is_connected");
         addMethod(c, (method) &externalConnectionConfirm, "__fl.connection_confirm");
         addMethod(c, (method) &externalGetInternalObject, "__fl.get_internal_object");
+        addMethod(c, (method) &externalGetUserObject, "__fl.get_user_object");
         addMethod(c, (method) &externalIsOutput, "__fl.is_output");
         addMethod(c, (method) &externalGetNumAudioIns, "__fl.get_num_audio_ins");
         addMethod(c, (method) &externalGetNumAudioOuts, "__fl.get_num_audio_outs");
@@ -589,9 +588,20 @@ public:
         return patch;
     }
     
+    // Detect the user object at load time
+    
+    t_object *detectUserObjectAtLoad()
+    {
+        t_object *assoc = 0;
+        t_object *patch = gensym("#P")->s_thing;
+        object_method(patch, gensym("getassoc"), &assoc);
+    
+        return (assoc && object_method(assoc, gensym("__fl.wrapper_is_wrapper"))) ? assoc : *this;
+    }
+    
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy()) : mFrameLibProxy(proxy), mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mPatch(gensym("#P")->s_thing), mContextPatch(contextPatcher(mPatch)), mSyncIn(NULL), mNeedsResolve(true), mUserObject(*this)
+    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy()) : mFrameLibProxy(proxy), mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mPatch(gensym("#P")->s_thing), mContextPatch(contextPatcher(mPatch)), mSyncIn(NULL), mUserObject(detectUserObjectAtLoad()), mNeedsResolve(true)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -973,6 +983,11 @@ public:
     static FrameLib_MultiChannel *externalGetInternalObject(FrameLib_MaxClass *x)
     {
         return x->mObject;
+    }
+    
+    static t_object *externalGetUserObject(FrameLib_MaxClass *x)
+    {
+        return x->mUserObject;
     }
     
     static t_ptr_int externalIsOutput(FrameLib_MaxClass *x)
@@ -1491,15 +1506,12 @@ private:
     t_object *mPatch;
     t_object *mContextPatch;
     t_object *mSyncIn;
+    t_object *mUserObject;
     
     FrameLib_MaxGlobals::ManagedPointer mGlobal;
     FrameLib_MaxGlobals::SyncCheck mSyncChecker;
     
     bool mNeedsResolve;
-    
-public:
-
-    t_object *mUserObject;
 };
 
 // Convenience for Objects Using FrameLib_Expand (use FrameLib_MaxClass_Expand<T>::makeClass() to create)
