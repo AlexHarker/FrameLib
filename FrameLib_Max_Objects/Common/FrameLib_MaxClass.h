@@ -11,6 +11,11 @@
 #include <string>
 #include <vector>
 
+struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
+{
+    t_object *mMaxObject;
+};
+
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////// Max Globals Class ///////////////////////////
 //////////////////////////////////////////////////////////////////////////
@@ -474,11 +479,6 @@ private:
 //////////////////////////////////////////////////////////////////////////
 
 enum MaxObjectArgsMode { kAsParams, kAllInputs, kDistribute };
-
-struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
-{
-    t_object *mMaxObject;
-};
 
 template <class T, MaxObjectArgsMode argsMode = kAsParams> class FrameLib_MaxClass : public MaxClass_Base
 {
