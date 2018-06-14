@@ -279,7 +279,7 @@ public:
             unsigned long inStreamOffset = internalNumIns * (i % getNumStreams());
             unsigned long outStreamOffset = internalNumOuts * (i % getNumStreams());
             
-            mBlocks[i]->blockUpdate(ins + inStreamOffset, &mAudioTemps[0], blockSize);
+            mBlocks[i]->blockUpdate(ins + inStreamOffset, mAudioTemps.data(), blockSize);
             
             for (unsigned long j = 0; j < internalNumOuts; j++)
                 for (unsigned long k = 0; k < blockSize; k++)
@@ -346,7 +346,7 @@ private:
     void updateFixedInput(unsigned long idx)
     {
         for (unsigned long i = 0; i < mBlocks.size(); i++)
-            mBlocks[i]->setFixedInput(idx, &mFixedInputs[idx][0], mFixedInputs[idx].size());
+            mBlocks[i]->setFixedInput(idx, mFixedInputs[idx].data(), mFixedInputs[idx].size());
     }
     
     // Update (expand)

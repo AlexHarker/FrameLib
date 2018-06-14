@@ -24,7 +24,7 @@ public:
     
     t_symbol *symbol() const    { return mSymbol;}
     long count() const          { return static_cast<long>(mArgs.size());}
-    t_atom* args() const        { return const_cast<t_atom*>(&mArgs[0]); }
+    t_atom* args() const        { return const_cast<t_atom*>(mArgs.data()); }
 
 private:
     

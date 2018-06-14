@@ -765,7 +765,7 @@ public:
         
         // N.B. Plus one due to sync inputs
         
-        mObject->blockUpdate(&mSigIns[0], &mSigOuts[0], vec_size);
+        mObject->blockUpdate(mSigIns.data(), mSigOuts.data(), vec_size);
         
         for (int i = 0; i < (getNumAudioOuts() - 1); i++)
             for (int j = 0; j < vec_size; j++)
@@ -799,7 +799,7 @@ public:
             mSigIns.resize(getNumAudioIns() - 1);
             mSigOuts.resize(getNumAudioOuts() - 1);
         
-            double *inVecs = &mTemp[0];
+            double *inVecs = mTemp.data();
             double *outVecs = inVecs + ((getNumAudioIns() - 1) * vec_size);
         
             for (int i = 0; i < getNumAudioIns() - 1; i++)
@@ -1349,7 +1349,7 @@ private:
                 else
                 {
                     i = parseNumericalList(values, argv, argc, i);
-                    serialisedParameters.write(sym->s_name + 1, &values[0], values.size());
+                    serialisedParameters.write(sym->s_name + 1, values.data(), values.size());
                 }
             }
         }
@@ -1375,7 +1375,7 @@ private:
             if(argsMode == kAllInputs)
             {
                 for (unsigned long j = 0; i && j < getNumIns(); j++)
-                    mObject->setFixedInput(j, &values[0], values.size());
+                    mObject->setFixedInput(j, values.data(), values.size());
             }
             else
             {
@@ -1398,7 +1398,7 @@ private:
             {
                 t_symbol *sym = atom_getsymbol(argv + i);
                 i = parseNumericalList(values, argv, argc, i + 1);
-                mObject->setFixedInput(inputNumber(sym), &values[0], values.size());
+                mObject->setFixedInput(inputNumber(sym), values.data(), values.size());
             }
         }
     }

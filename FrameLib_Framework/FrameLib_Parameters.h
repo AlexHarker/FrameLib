@@ -452,7 +452,7 @@ private:
         
         virtual size_t getArraySize() const         { return mSize; }
         virtual size_t getArrayMaxSize() const      { return mItems.size(); }
-        virtual const double * getArray() const     { return &mItems[0]; }
+        virtual const double * getArray() const     { return mItems.data(); }
 
     private:
         

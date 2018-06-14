@@ -102,7 +102,7 @@ void FrameLib_Sink::objectReset()
     if (size != bufferSize())
         mBuffer.resize(size);
     
-    zeroVector(&mBuffer[0], bufferSize());
+    zeroVector(mBuffer.data(), bufferSize());
     
     mCounter = 0;
 }

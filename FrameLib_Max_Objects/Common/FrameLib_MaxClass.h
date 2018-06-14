@@ -1429,7 +1429,7 @@ private:
                 else
                 {
                     i = parseNumericalList(values, argv, argc, i);
-                    serialisedParameters.write(sym->s_name + 1, &values[0], values.size());
+                    serialisedParameters.write(sym->s_name + 1, values.data(), values.size());
                 }
             }
         }
@@ -1455,7 +1455,7 @@ private:
             if(argsMode == kAllInputs)
             {
                 for (unsigned long j = 0; i && j < getNumIns(); j++)
-                    mObject->setFixedInput(j, &values[0], values.size());
+                    mObject->setFixedInput(j, values.data(), values.size());
             }
             else
             {
@@ -1478,7 +1478,7 @@ private:
             {
                 t_symbol *sym = atom_getsym(argv + i);
                 i = parseNumericalList(values, argv, argc, i + 1);
-                mObject->setFixedInput(inputNumber(sym), &values[0], values.size());
+                mObject->setFixedInput(inputNumber(sym), values.data(), values.size());
             }
         }
     }

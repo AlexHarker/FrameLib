@@ -131,7 +131,7 @@ void FrameLib_Trace::objectReset()
         mFlags.resize(size);
     }
     
-    zeroVector(&mBuffer[0], bufferSize());
+    zeroVector(mBuffer.data(), bufferSize());
     std::fill_n(mFlags.begin(), bufferSize(), false);
     
     mLastValue = 0.0;

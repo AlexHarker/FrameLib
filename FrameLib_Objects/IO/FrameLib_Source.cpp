@@ -105,7 +105,7 @@ void FrameLib_Source::objectReset()
     if (size != bufferSize())
         mBuffer.resize(size);
     
-    zeroVector(&mBuffer[0], bufferSize());
+    zeroVector(mBuffer.data(), bufferSize());
     
     mCounter = 0;
 }
@@ -166,5 +166,5 @@ void FrameLib_Source::process()
     unsigned long size = ((offset + sizeOut) > bufferSize()) ? bufferSize() - offset : sizeOut;
     
     copyVector(output, &mBuffer[offset], size);
-    copyVector(output + size, &mBuffer[0], (sizeOut - size));
+    copyVector(output + size, mBuffer.data(), (sizeOut - size));
 }
