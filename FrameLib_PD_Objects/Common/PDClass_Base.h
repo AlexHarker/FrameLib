@@ -141,8 +141,8 @@ private:
     
     // Deleted
     
-    PDClass_Base(const PDClass_Base&);
-    PDClass_Base& operator=(const PDClass_Base&);
+    PDClass_Base(const PDClass_Base&) = delete;
+    PDClass_Base& operator=(const PDClass_Base&) = delete;
     
     // The object structure
     

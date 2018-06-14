@@ -44,8 +44,8 @@ template <typename Op> class FrameLib_Complex_BinaryOp : public FrameLib_Process
         
         // Deleted
         
-        PaddedInput(const PaddedInput&);
-        PaddedInput& operator=(const PaddedInput&);
+        PaddedInput(const PaddedInput&) = delete;
+        PaddedInput& operator=(const PaddedInput&) = delete;
         
         // Data
         

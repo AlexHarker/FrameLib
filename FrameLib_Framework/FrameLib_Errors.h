@@ -64,8 +64,8 @@ private:
     
     // Deleted
     
-    ErrorList(const ErrorList&);
-    ErrorList& operator=(const ErrorList&);
+    ErrorList(const ErrorList&) = delete;
+    ErrorList& operator=(const ErrorList&) = delete;
     
     bool addItem(const char *str)
     {

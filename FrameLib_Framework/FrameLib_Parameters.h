@@ -167,8 +167,8 @@ public:
         
         // Deleted
         
-        Serial(const Serial&);
-        Serial& operator=(const Serial&);
+        Serial(const Serial&) = delete;
+        Serial& operator=(const Serial&) = delete;
         
         // Debug
         
@@ -740,8 +740,8 @@ private:
     
     // Deleted
     
-    FrameLib_Parameters(const FrameLib_Parameters&);
-    FrameLib_Parameters& operator=(const FrameLib_Parameters&);
+    FrameLib_Parameters(const FrameLib_Parameters&) = delete;
+    FrameLib_Parameters& operator=(const FrameLib_Parameters&) = delete;
     
     // Utility
     

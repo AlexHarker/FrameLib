@@ -76,8 +76,8 @@ public:
         
         // Deleted
         
-        Queue(const Queue&);
-        Queue& operator=(const Queue&);
+        Queue(const Queue&) = delete;
+        Queue& operator=(const Queue&) = delete;
         
         T *mFirst;
         T *mTop;

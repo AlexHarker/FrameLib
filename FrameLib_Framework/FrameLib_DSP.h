@@ -206,8 +206,8 @@ private:
     
     // Deleted
     
-    FrameLib_DSP(const FrameLib_DSP&);
-    FrameLib_DSP& operator=(const FrameLib_DSP&);
+    FrameLib_DSP(const FrameLib_DSP&) = delete;
+    FrameLib_DSP& operator=(const FrameLib_DSP&) = delete;
 
     // Queueable Reset
     

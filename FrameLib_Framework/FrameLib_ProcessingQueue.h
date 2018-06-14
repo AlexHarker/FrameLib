@@ -47,8 +47,8 @@ private:
     
     // Deleted
     
-    FrameLib_ProcessingQueue(const FrameLib_ProcessingQueue&);
-    FrameLib_ProcessingQueue& operator=(const FrameLib_ProcessingQueue&);
+    FrameLib_ProcessingQueue(const FrameLib_ProcessingQueue&) = delete;
+    FrameLib_ProcessingQueue& operator=(const FrameLib_ProcessingQueue&) = delete;
     
     FrameLib_DSP *mTop;
     FrameLib_DSP *mTail;

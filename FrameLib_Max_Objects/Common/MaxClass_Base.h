@@ -130,8 +130,8 @@ private:
     
     // Deleted
     
-    MaxClass_Base(const MaxClass_Base&);
-    MaxClass_Base& operator=(const MaxClass_Base&);
+    MaxClass_Base(const MaxClass_Base&) = delete;
+    MaxClass_Base& operator=(const MaxClass_Base&) = delete;
     
     // The object structure
     

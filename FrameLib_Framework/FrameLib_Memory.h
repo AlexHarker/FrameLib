@@ -157,8 +157,8 @@ public:
         
         // Deleted
         
-        Pruner(const Pruner&);
-        Pruner& operator=(const Pruner&);
+        Pruner(const Pruner&) = delete;
+        Pruner& operator=(const Pruner&) = delete;
         
         // Allocator
         
@@ -186,8 +186,8 @@ private:
     
     // Deleted
     
-    FrameLib_GlobalAllocator(const FrameLib_GlobalAllocator&);
-    FrameLib_GlobalAllocator& operator=(const FrameLib_GlobalAllocator&);
+    FrameLib_GlobalAllocator(const FrameLib_GlobalAllocator&) = delete;
+    FrameLib_GlobalAllocator& operator=(const FrameLib_GlobalAllocator&) = delete;
     
     // Member Variables
     
@@ -257,8 +257,8 @@ public:
             
             // Deleted
             
-            Access(const Access&);
-            Access& operator=(const Access&);
+            Access(const Access&) = delete;
+            Access& operator=(const Access&) = delete;
             
             // Data
             
@@ -295,8 +295,8 @@ public:
 
         // Deleted
         
-        Storage(const Storage&);
-        Storage& operator=(const Storage&);
+        Storage(const Storage&) = delete;
+        Storage& operator=(const Storage&) = delete;
         
         // Member Variables
         
@@ -343,8 +343,8 @@ private:
     
     // Deleted
     
-    FrameLib_LocalAllocator(const FrameLib_LocalAllocator&);
-    FrameLib_LocalAllocator& operator=(const FrameLib_LocalAllocator&);
+    FrameLib_LocalAllocator(const FrameLib_LocalAllocator&) = delete;
+    FrameLib_LocalAllocator& operator=(const FrameLib_LocalAllocator&) = delete;
     
     // Find Storage by Name
     

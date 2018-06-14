@@ -205,8 +205,8 @@ class FrameLib_ExprParser
         
         // Deleted
         
-        OperatorList(const OperatorList&);
-        OperatorList& operator=(const OperatorList&);
+        OperatorList(const OperatorList&) = delete;
+        OperatorList& operator=(const OperatorList&) = delete;
 
         std::vector<OpBase<T> *> mItems;
     };

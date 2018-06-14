@@ -46,8 +46,8 @@ template <typename Op> class FrameLib_TernaryOp : public FrameLib_Processor
         
         // Deleted
         
-        EnlargedInput(const EnlargedInput&);
-        EnlargedInput& operator=(const EnlargedInput&);
+        EnlargedInput(const EnlargedInput&) = delete;
+        EnlargedInput& operator=(const EnlargedInput&) = delete;
         
         // Data
         

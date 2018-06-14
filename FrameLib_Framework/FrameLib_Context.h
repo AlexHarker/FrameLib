@@ -65,8 +65,8 @@ class FrameLib_Context
         
         // Deleted
         
-        ManagedPointer(const ManagedPointer&);
-        ManagedPointer& operator=(const ManagedPointer&);
+        ManagedPointer(const ManagedPointer&) = delete;
+        ManagedPointer& operator=(const ManagedPointer&) = delete;
         
         // Member Variables
         

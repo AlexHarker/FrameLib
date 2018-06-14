@@ -57,8 +57,8 @@ private:
     
     // Deleted
     
-    FrameLib_Global(const FrameLib_Global&);
-    FrameLib_Global& operator=(const FrameLib_Global&);
+    FrameLib_Global(const FrameLib_Global&) = delete;
+    FrameLib_Global& operator=(const FrameLib_Global&) = delete;
     
 public:
     

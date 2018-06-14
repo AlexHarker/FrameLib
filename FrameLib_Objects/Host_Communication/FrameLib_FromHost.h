@@ -82,8 +82,8 @@ class FrameLib_FromHost : public FrameLib_Processor
         
         // Deleted
 
-        SerialList(const SerialList&);
-        SerialList& operator=(const SerialList&);
+        SerialList(const SerialList&) = delete;
+        SerialList& operator=(const SerialList&) = delete;
         
         // Data
         

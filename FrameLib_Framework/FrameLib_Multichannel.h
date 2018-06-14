@@ -80,8 +80,8 @@ private:
 
     // Deleted
     
-    FrameLib_MultiChannel(const FrameLib_MultiChannel&);
-    FrameLib_MultiChannel& operator=(const FrameLib_MultiChannel&);
+    FrameLib_MultiChannel(const FrameLib_MultiChannel&) = delete;
+    FrameLib_MultiChannel& operator=(const FrameLib_MultiChannel&) = delete;
     
     // Connection Methods (private)
     
