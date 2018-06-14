@@ -4,6 +4,7 @@
 
 #include "FrameLib_Types.h"
 #include "FrameLib_Global.h"
+#include "FrameLib_Errors.h"
 
 // The Context Object (used to define non-connectable areas in the host environment)
 // This acts as a proxy to the global object with a suitable reference to the context
@@ -85,6 +86,10 @@ public:
     typedef ManagedPointer<FrameLib_LocalAllocator, &Global::getAllocator, &Global::releaseAllocator>                   Allocator;
     typedef ManagedPointer<FrameLib_ProcessingQueue, &Global::getProcessingQueue, &Global::releaseProcessingQueue>      ProcessingQueue;
 
+    // Get the global as a FrameLib_ErrorReporter from the context
+    
+    operator FrameLib_ErrorReporter&() { return *mGlobal; }
+    
 private:
     
     FrameLib_Global *mGlobal;
