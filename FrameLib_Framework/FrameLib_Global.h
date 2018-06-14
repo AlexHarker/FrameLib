@@ -3,6 +3,7 @@
 #define FRAMELIB_GLOBAL_H
 
 #include "FrameLib_Types.h"
+#include "FrameLib_Errors.h"
 #include "FrameLib_Memory.h"
 #include "FrameLib_ProcessingQueue.h"
 #include "FrameLib_Threading.h"
@@ -11,7 +12,7 @@
 
 // The Global Object
 
-class FrameLib_Global
+class FrameLib_Global : public FrameLib_ErrorReporter
 {
 
     friend class FrameLib_Context;
@@ -51,7 +52,7 @@ private:
     
     // Constructor / Destructor
     
-    FrameLib_Global() : mCount(0) {}
+    FrameLib_Global(FrameLib_ErrorReporter::HostNotifier *notifier) : FrameLib_ErrorReporter(notifier), mAllocator(*this), mCount(0) {}
     ~FrameLib_Global() {};
     
     // Deleted
@@ -63,9 +64,9 @@ public:
     
     // Retrieve and release the global object
     
-    static FrameLib_Global *get(FrameLib_Global **global);
+    static FrameLib_Global *get(FrameLib_Global **global, FrameLib_ErrorReporter::HostNotifier *notifier = NULL);
     static void release(FrameLib_Global **global);
-    
+        
 private:
     
     // Methods to retrieve common objects

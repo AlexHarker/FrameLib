@@ -46,7 +46,7 @@ void FrameLib_MultiChannel::outputUpdate(Queue *queue)
 
 FrameLib_Pack::ParameterInfo FrameLib_Pack::sParamInfo;
 
-FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams): FrameLib_MultiChannel(kProcessor, context, proxy, 1), mParameters(&sParamInfo)
+FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams): FrameLib_MultiChannel(kProcessor, context, proxy, 1), mParameters(context, proxy, &sParamInfo)
 {
     mParameters.addInt(0, "inputs", 2, 0 );
     mParameters.setInstantiation();
@@ -89,7 +89,7 @@ bool FrameLib_Pack::inputUpdate()
 
 FrameLib_Unpack::ParameterInfo FrameLib_Unpack::sParamInfo;
 
-FrameLib_Unpack::FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams) : FrameLib_MultiChannel(kProcessor, context, proxy, 1), mParameters(&sParamInfo)
+FrameLib_Unpack::FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams) : FrameLib_MultiChannel(kProcessor, context, proxy, 1), mParameters(context, proxy, &sParamInfo)
 {
     mParameters.addInt(kOutputs, "outputs", 2, 0);
     mParameters.setInstantiation();

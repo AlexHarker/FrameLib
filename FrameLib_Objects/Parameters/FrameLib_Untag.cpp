@@ -14,7 +14,9 @@ FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, FrameLib_Parameters::Se
     
     // Read in once to get number of strings needed
     
+    mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
+    mParameters.setErrorReportingEnabled(true);
 
     // If no number of inputs is specified explicityly then examine the serialised parameters to determine the number needed
     

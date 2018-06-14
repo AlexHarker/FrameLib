@@ -477,12 +477,15 @@ void FrameLib_Parameters::Parameter::setClip(double min, double max)
     mMax = max;
 }
 
-void FrameLib_Parameters::Parameter::set(double *values, size_t N)
+FrameLib_Parameters::SetError FrameLib_Parameters::Parameter::set(double *values, size_t N)
 {
     if (N)
-        set(*values);
+        return set(*values);
     else
+    {
         clear();
+        return kSetSucceeded;
+    }
 }
 
 FrameLib_Parameters::ClipMode FrameLib_Parameters::Parameter::getClipMode() const
@@ -539,13 +542,16 @@ void FrameLib_Parameters::Enum::addEnumItem(const char *str)
     mMax += 1.0;
 }
 
-void FrameLib_Parameters::Enum::set(double value)
+FrameLib_Parameters::SetError FrameLib_Parameters::Enum::set(double value)
 {
-    mValue = static_cast<unsigned long>((value >= mItems.size()) ? (mItems.size() - 1) : (value < 0.0 ? 0.0 : value));
+    bool outOfRange = value >= mItems.size();
+    mValue = static_cast<unsigned long>(outOfRange ? (mItems.size() - 1) : (value < 0.0 ? 0.0 : value));
     mChanged = true;
+    
+    return outOfRange ? kEnumUnknownIndex : kSetSucceeded;
 }
 
-void FrameLib_Parameters::Enum::set(const char *str)
+FrameLib_Parameters::SetError FrameLib_Parameters::Enum::set(const char *str)
 {
     for (unsigned long i = 0; i < mItems.size(); i++)
     {
@@ -553,35 +559,46 @@ void FrameLib_Parameters::Enum::set(const char *str)
         {
             mValue = i;
             mChanged = true;
-            return;
+            return kSetSucceeded;
         }
     }
+    
+    return kEnumUnknownString;
 }
 
-void FrameLib_Parameters::Enum::set(double *values, size_t N)
+FrameLib_Parameters::SetError FrameLib_Parameters::Enum::set(double *values, size_t N)
 {
     if (N)
-        Enum::set(*values);
+    {
+        return Enum::set(*values);
+    }
     else
+    {
         Enum::clear();
+        return kSetSucceeded;
+    }
 }
 
 // ************************************************************************************** //
 
 // Value Parameter Class
 
-void FrameLib_Parameters::Value::set(double value)
+FrameLib_Parameters::SetError FrameLib_Parameters::Value::set(double value)
 {
     mValue = (value < mMin) ? mMin : ((value > mMax) ? mMax : value);
     mChanged = true;
+    
+    return kSetSucceeded;
 }
 
-void FrameLib_Parameters::Value::set(double *values, size_t N)
+FrameLib_Parameters::SetError FrameLib_Parameters::Value::set(double *values, size_t N)
 {
     if (N)
         Value::set(*values);
     else
         Value::clear();
+    
+    return kSetSucceeded;
 }
 
 // ************************************************************************************** //
@@ -595,7 +612,7 @@ FrameLib_Parameters::String::String(const char *name, long argumentIdx) : Parame
     mMin = mMax = 0.0;
 }
 
-void FrameLib_Parameters::String::set(const char *str)
+FrameLib_Parameters::SetError FrameLib_Parameters::String::set(const char *str)
 {
     size_t i = 0;
     
@@ -608,6 +625,8 @@ void FrameLib_Parameters::String::set(const char *str)
     
     mCString[i] = 0;
     mChanged = true;
+    
+    return kSetSucceeded;
 }
 
 // ************************************************************************************** //
@@ -636,7 +655,7 @@ FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double def
         mItems[i] = defaultValue;
 }
 
-void FrameLib_Parameters::Array::set(double *values, size_t N)
+FrameLib_Parameters::SetError FrameLib_Parameters::Array::set(double *values, size_t N)
 {
     N = N > mItems.size() ? mItems.size() : N;
     
@@ -667,6 +686,8 @@ void FrameLib_Parameters::Array::set(double *values, size_t N)
         mSize = N;
     
     mChanged = true;
+    
+    return kSetSucceeded;
 }
 
 // ************************************************************************************** //

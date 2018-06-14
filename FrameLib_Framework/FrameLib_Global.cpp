@@ -52,10 +52,10 @@ void FrameLib_Global::template PointerSet<T>::release(void *reference)
 
 // Retrieve and release the global object
 
-FrameLib_Global *FrameLib_Global::get(FrameLib_Global **global)
+FrameLib_Global *FrameLib_Global::get(FrameLib_Global **global, FrameLib_ErrorReporter::HostNotifier *notifier)
 {
     if (!*global)
-        *global = new FrameLib_Global();
+        *global = new FrameLib_Global(notifier);
 
     (*global)->increment();
     return *global;
@@ -87,7 +87,7 @@ FrameLib_ProcessingQueue *FrameLib_Global::getProcessingQueue(void *reference)
     
     if (!queue)
     {
-        queue = new FrameLib_ProcessingQueue();
+        queue = new FrameLib_ProcessingQueue(*this);
         mProcessingQueues.add(queue, reference);
     }
     

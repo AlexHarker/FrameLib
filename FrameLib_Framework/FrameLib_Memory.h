@@ -4,6 +4,7 @@
 
 #include "../FrameLib_Dependencies/tlsf/tlsf.h"
 #include "FrameLib_Types.h"
+#include "FrameLib_Errors.h"
 #include "FrameLib_Parameters.h"
 #include "FrameLib_Threading.h"
 
@@ -80,7 +81,7 @@ private:
         
     public:
         
-        CoreAllocator();
+        CoreAllocator(FrameLib_ErrorReporter& errorReporter);
         ~CoreAllocator();
         
         // Allocate and deallocate memory (plus pruning)
@@ -124,6 +125,8 @@ private:
         AtomicPtr<Pool> mScheduledDisposePool;
         NewThread mAllocThread;
         FreeThread mFreeThread;
+        
+        FrameLib_ErrorReporter& mErrorReporter;
     };
     
     // ************************************************************************************** //
@@ -166,7 +169,7 @@ public:
 
     // Constructor / Destructor
     
-    FrameLib_GlobalAllocator() {}
+    FrameLib_GlobalAllocator(FrameLib_ErrorReporter& errorReporter) : mAllocator(errorReporter) {}
     ~FrameLib_GlobalAllocator() {}
     
     // Allocate / Deallocate Memory

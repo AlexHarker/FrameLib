@@ -4,7 +4,7 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
-: FrameLib_Block(type, context, proxy), mSamplingRate(44100.0), mMaxBlockSize(4096), mParameters(info), mProcessingQueue(context), mNext(NULL), mNoLiveInputs(true), mInUpdate(false)
+: FrameLib_Block(type, context, proxy), mSamplingRate(44100.0), mMaxBlockSize(4096), mParameters(context, proxy, info), mProcessingQueue(context), mNext(NULL), mNoLiveInputs(true), mInUpdate(false)
 {
     // Set IO
     
@@ -79,6 +79,8 @@ void FrameLib_DSP::reset(double samplingRate, unsigned long maxBlockSize)
     mMaxBlockSize = maxBlockSize;
     
     LocalQueue(this, &FrameLib_DSP::reset);
+    
+    mProcessingQueue->reset();
 }
 
 void FrameLib_DSP::reset(LocalQueue *queue)
@@ -343,6 +345,9 @@ void FrameLib_DSP::copyInputToOutput(unsigned long inIdx, unsigned long outIdx)
 
 inline void FrameLib_DSP::dependencyNotify(bool releaseMemory, bool fromInput)
 {
+    if (mProcessingQueue->isTimedOut())
+        return;
+    
     assert(((mDependencyCount > 0) || (mUpdatingInputs && (mInputCount > 0))) && "Dependency count is already zero");
     
     if (releaseMemory)
