@@ -29,7 +29,7 @@ inline size_t blockSize(void* ptr)
 
 // The Core Allocator (has no threadsafety)
 
-FrameLib_GlobalAllocator::CoreAllocator::CoreAllocator(FrameLib_ErrorReporter& errorReporter) : mPools(NULL), mOSAllocated(0), mAllocated(0), mLastDisposedPoolSize(0), mAllocThread(this), mFreeThread(this), mErrorReporter(errorReporter)
+FrameLib_GlobalAllocator::CoreAllocator::CoreAllocator(FrameLib_ErrorReporter& errorReporter) : mPools(nullptr), mOSAllocated(0), mAllocated(0), mLastDisposedPoolSize(0), mAllocThread(this), mFreeThread(this), mErrorReporter(errorReporter)
 {
     mTLSF = tlsf_create(malloc(tlsf_size()));
     insertPool(createPool(initSize));
@@ -64,7 +64,7 @@ void *FrameLib_GlobalAllocator::CoreAllocator::alloc(size_t size)
     {
         // N.B. - for now allocate double the necessary size (which should always work)
 
-        Pool *pool = NULL;
+        Pool *pool = nullptr;
         size_t poolSize = size <= (growSize >> 1) ? growSize : (size << 1);
         
         // Attempt to get the pool from the scheduled slot
@@ -101,7 +101,7 @@ void *FrameLib_GlobalAllocator::CoreAllocator::alloc(size_t size)
     if (ptr)
         mAllocated += blockSize(ptr);
     else
-        mErrorReporter.reportError(kErrorMemory, NULL, "FrameLib - couldn't allocate memory");
+        mErrorReporter.reportError(kErrorMemory, nullptr, "FrameLib - couldn't allocate memory");
    
     // Check for near full
     
@@ -144,7 +144,7 @@ void FrameLib_GlobalAllocator::CoreAllocator::prune()
             return;
         }
         
-        if (difftime(now, pool->mTime) > pruneInterval && mScheduledDisposePool.compareAndSwap(NULL, pool))
+        if (difftime(now, pool->mTime) > pruneInterval && mScheduledDisposePool.compareAndSwap(nullptr, pool))
         {
             removePool(pool);
             mLastDisposedPoolSize = pool->mSize;
@@ -202,7 +202,7 @@ void FrameLib_GlobalAllocator::CoreAllocator::unlinkPool(Pool *pool)
     pool->mNext->mPrev = pool->mPrev;
     
     if (pool == mPools)
-        mPools = pool->mNext == pool ? NULL : pool->mNext;
+        mPools = pool->mNext == pool ? nullptr : pool->mNext;
 }
 
 void FrameLib_GlobalAllocator::CoreAllocator::poolToTop(Pool *pool)
@@ -231,7 +231,7 @@ void FrameLib_GlobalAllocator::CoreAllocator::removePool(Pool *pool)
 void FrameLib_GlobalAllocator::CoreAllocator::addScheduledPool()
 {
     Pool *pool = createPool(growSize);
-    while (!mScheduledNewPool.compareAndSwap(NULL, pool));
+    while (!mScheduledNewPool.compareAndSwap(nullptr, pool));
 }
 
 void FrameLib_GlobalAllocator::CoreAllocator::destroyScheduledPool()
@@ -274,7 +274,7 @@ size_t FrameLib_GlobalAllocator::alignSize(size_t x)
 // Local Storage
 
 FrameLib_LocalAllocator::Storage::Storage(const char *name, FrameLib_LocalAllocator *allocator)
-:  mName(name), mType(kFrameNormal), mData(NULL), mSize(0), mMaxSize(0), mCount(1), mAllocator(allocator)
+:  mName(name), mType(kFrameNormal), mData(nullptr), mSize(0), mMaxSize(0), mCount(1), mAllocator(allocator)
 {}
 
 FrameLib_LocalAllocator::Storage::~Storage()
@@ -362,7 +362,7 @@ FrameLib_LocalAllocator::~FrameLib_LocalAllocator()
 void *FrameLib_LocalAllocator::alloc(size_t size)
 {
     if (!size)
-        return NULL;
+        return nullptr;
     
     // N.B. - all memory should be aligned to alignment / memory returned will be between size and size << 1
     
@@ -370,7 +370,7 @@ void *FrameLib_LocalAllocator::alloc(size_t size)
     
     // Find an appropriately sized block in the free lists
     
-    for (FreeBlock *block = mTail->mNext; block && block->mMemory; block = block == mTail ? NULL : block->mNext)
+    for (FreeBlock *block = mTail->mNext; block && block->mMemory; block = block == mTail ? nullptr : block->mNext)
         if (block->mSize >= size && block->mSize <= maxSize)
             return removeBlock(block);
     
@@ -412,7 +412,7 @@ void FrameLib_LocalAllocator::clear()
         if (mFreeLists[i].mMemory)
         {
             pruner.dealloc(mFreeLists[i].mMemory);
-            mFreeLists[i].mMemory = NULL;
+            mFreeLists[i].mMemory = nullptr;
             mFreeLists[i].mSize = 0;
         }
     }
@@ -422,7 +422,7 @@ void FrameLib_LocalAllocator::clear()
 
 FrameLib_LocalAllocator::Storage *FrameLib_LocalAllocator::registerStorage(const char *name)
 {
-    StorageIterator it = findStorage(name);
+    auto it = findStorage(name);
     
     if (it != mStorage.end())
     {
@@ -436,7 +436,7 @@ FrameLib_LocalAllocator::Storage *FrameLib_LocalAllocator::registerStorage(const
 
 void FrameLib_LocalAllocator::releaseStorage(const char *name)
 {
-    StorageIterator it = findStorage(name);
+    auto it = findStorage(name);
     
     if (it != mStorage.end() && (*it)->decrement() <= 0)
     {
@@ -447,9 +447,9 @@ void FrameLib_LocalAllocator::releaseStorage(const char *name)
 
 // Find Storage by Name
 
-FrameLib_LocalAllocator::StorageIterator FrameLib_LocalAllocator::findStorage(const char *name)
+std::vector<FrameLib_LocalAllocator::Storage *>::iterator FrameLib_LocalAllocator::findStorage(const char *name)
 {
-    for (StorageIterator it = mStorage.begin(); it != mStorage.end(); it++)
+    for (auto it = mStorage.begin(); it != mStorage.end(); it++)
         if (!strcmp((*it)->getName(), name))
             return it;
     
@@ -464,7 +464,7 @@ void *FrameLib_LocalAllocator::removeBlock(FreeBlock *block)
     
     // Set to default values
     
-    block->mMemory = NULL;
+    block->mMemory = nullptr;
     block->mSize = 0;
     
     // If at the tail there is no need to do anything

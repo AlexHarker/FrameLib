@@ -5,10 +5,11 @@
 
 // Constructor
 
-FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long num) : FrameLib_Processor(context, proxy, NULL, 2, 1), mValveNumber(num)
+FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long num) : FrameLib_Processor(context, proxy, nullptr, 2, 1), mValveNumber(num)
 {
     mParameters.addInt(kActiveValve, "output", 0);
-    
+
+    mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
     
     mActiveValve = floor(mParameters.getValue(kActiveValve) - 1.0);
@@ -64,7 +65,7 @@ FrameLib_Route::FrameLib_Route(FrameLib_Context context, FrameLib_Parameters::Se
 
 FrameLib_Route::~FrameLib_Route()
 {    
-    for (std::vector<Valve *>::iterator it = mValves.begin(); it != mValves.end(); it++)
+    for (auto it = mValves.begin(); it != mValves.end(); it++)
         delete (*it);
 }
     
@@ -103,6 +104,6 @@ FrameLib_Route::ParameterInfo::ParameterInfo()
 
 void FrameLib_Route::reset(double samplingRate, unsigned long maxBlockSize)
 {
-    for (std::vector<Valve *>::iterator it = mValves.begin(); it != mValves.end(); it++)
+    for (auto it = mValves.begin(); it != mValves.end(); it++)
         (*it)->reset(samplingRate, maxBlockSize);
 }

@@ -58,7 +58,7 @@ void Thread::join()
         
         // Wait for thread to join before we allow the program to continue
         
-        pthread_join(mInternal, NULL);
+        pthread_join(mInternal, nullptr);
     }
 }
 
@@ -66,7 +66,7 @@ void *Thread::threadStart(void *arg)
 {
     static_cast<Thread *>(arg)->call();
     
-    return NULL;
+    return nullptr;
 }
 
 // Semaphore Linux OS implementation
@@ -170,7 +170,7 @@ void Thread::join()
         
         // Wait for thread to join before we allow the program to continue
         
-        pthread_join(mInternal, NULL);
+        pthread_join(mInternal, nullptr);
     }
 }
 
@@ -178,7 +178,7 @@ void *Thread::threadStart(void *arg)
 {
     static_cast<Thread *>(arg)->call();
     
-    return NULL;
+    return nullptr;
 }
 
 // Semaphore Mac OS implementation
@@ -237,7 +237,7 @@ void start()
     
     // Create thread
     
-    mInternal = CreateThread(NULL, 0, threadStart, this, 0, NULL);
+    mInternal = CreateThread(nullptr, 0, threadStart, this, 0, nullptr);
     
     // Set priority
     
@@ -275,7 +275,7 @@ DWORD WINAPI Thread::threadStart(LPVOID arg)
 
 Semaphore::Semaphore(long maxCount) : mValid(true)
 {
-    mInternal = CreateSemaphore(NULL, 0, maxCount, NULL);
+    mInternal = CreateSemaphore(nullptr, 0, maxCount, nullptr);
 }
 
 Semaphore::~Semaphore()
@@ -303,7 +303,7 @@ void Semaphore::signal(long n)
     // N.B. - signalling is unsafe after the semaphore has been closed
     
     MemoryBarrier();
-    ReleaseSemaphore(mInternal, n, NULL);
+    ReleaseSemaphore(mInternal, n, nullptr);
 }
 
 bool Semaphore::wait()

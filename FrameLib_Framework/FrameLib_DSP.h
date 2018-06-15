@@ -7,13 +7,14 @@
 #include "FrameLib_Object.h"
 #include "FrameLib_ProcessingQueue.h"
 
-#include <limits>
-#include <vector>
 #include <algorithm>
+#include <limits>
+#include <memory>
+#include <vector>
 
 // FrameLib_DSP
 
-// This abstract class is the core of the DSP processing system and handles low level single channel connections and timing
+// This abstract class is the core of the DSP processing system and handles low level single-stream connections and timing
 
 class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_DSP>
 {
@@ -44,7 +45,7 @@ private:
     
     struct Input
     {
-        Input() : mObject(NULL), mIndex(0), mSize(0), mFixedInput(NULL), mType(kFrameNormal), mUpdate(false), mParameters(false), mTrigger(true), mSwitchable(false) {}
+        Input() : mObject(nullptr), mIndex(0), mSize(0), mFixedInput(nullptr), mType(kFrameNormal), mUpdate(false), mParameters(false), mTrigger(true), mSwitchable(false) {}
         
         FrameType getCurrentType() const { return mObject ? mObject->mOutputs[mIndex].mCurrentType : kFrameNormal; }
         
@@ -70,7 +71,7 @@ private:
    
     struct Output
     {
-        Output() : mMemory(NULL), mType(kFrameNormal), mCurrentType(kFrameNormal), mRequestedType(kFrameNormal), mCurrentSize(0), mRequestedSize(0), mPointerOffset(0) {}
+        Output() : mMemory(nullptr), mType(kFrameNormal), mCurrentType(kFrameNormal), mRequestedType(kFrameNormal), mCurrentSize(0), mRequestedSize(0), mPointerOffset(0) {}
         
         void *mMemory;
         
@@ -83,12 +84,6 @@ private:
         size_t mPointerOffset;
     };
     
-    // Typedefs for concision
-    
-    typedef std::vector<Input>::iterator InputIterator;
-    typedef std::vector<Output>::iterator OutputIterator;
-    typedef std::vector<FrameLib_DSP *>::iterator ObjectIterator;
-
 public:
 
     // Constructor / Destructor
@@ -98,25 +93,25 @@ public:
     
     // Set Fixed Inputs
     
-    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size);
-    virtual const double *getFixedInput(unsigned long idx, unsigned long *size);
+    void setFixedInput(unsigned long idx, double *input, unsigned long size) final;
+    const double *getFixedInput(unsigned long idx, unsigned long *size) final;
     
     // Audio Processing
     
-    virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize);
-    virtual void reset(double samplingRate, unsigned long maxBlockSize);
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) final;
+    void reset(double samplingRate, unsigned long maxBlockSize) final;
     
     // Info (individual objects should override other methods to provide info)
     
-    virtual const FrameLib_Parameters *getParameters() const { return &mParameters;  }
+    const FrameLib_Parameters *getParameters() const final { return &mParameters;  }
 
-    virtual FrameType inputType(unsigned long idx) const  { return mInputs[idx].mType; }
-    virtual FrameType outputType(unsigned long idx) const { return mOutputs[idx].mType; }
+    FrameType inputType(unsigned long idx) const final  { return mInputs[idx].mType; }
+    FrameType outputType(unsigned long idx) const final { return mOutputs[idx].mType; }
 
-    // Automatic Oredering Connections
+    // Automatic Ordering Connections
     
-    virtual void autoOrderingConnections();
-    virtual void clearAutoOrderingConnections();
+    void autoOrderingConnections() final;
+    void clearAutoOrderingConnections() final;
 
 protected:
         
@@ -206,8 +201,8 @@ private:
     
     // Deleted
     
-    FrameLib_DSP(const FrameLib_DSP&);
-    FrameLib_DSP& operator=(const FrameLib_DSP&);
+    FrameLib_DSP(const FrameLib_DSP&) = delete;
+    FrameLib_DSP& operator=(const FrameLib_DSP&) = delete;
 
     // Queueable Reset
     
@@ -255,8 +250,8 @@ private:
     
     // Connections
     
-    virtual void connectionUpdate(Queue *queue);
-    virtual void autoOrderingConnections(LocalQueue *queue);
+    void connectionUpdate(Queue *queue) final;
+    void autoOrderingConnections(LocalQueue *queue);
 
 protected:
    

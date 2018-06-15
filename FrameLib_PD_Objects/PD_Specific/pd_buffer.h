@@ -23,9 +23,9 @@ class pd_buffer
     
 public:
 
-    pd_buffer() : mArray(NULL), mTable(NULL), mLength(0) {}
+    pd_buffer() : mArray(nullptr), mTable(nullptr), mLength(0) {}
 
-    pd_buffer(t_symbol *name) : mTable(NULL), mLength(0)
+    pd_buffer(t_symbol *name) : mTable(nullptr), mLength(0)
     {
         mArray = (t_garray *) pd_findbyclass(name, garray_class);
 

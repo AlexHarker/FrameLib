@@ -5,7 +5,7 @@
 #include "FrameLib_Context.h"
 #include "FrameLib_Parameters.h"
 #include "FrameLib_DSP.h"
-#include "FrameLib_Multichannel.h"
+#include "FrameLib_Multistream.h"
 #include "FrameLib_SerialiseGraph.h"
 
 #include <string>
@@ -25,6 +25,55 @@ class FrameLib_MaxGlobals : public MaxClass_Base
     
 public:
     
+    // Error Notification Class
+    
+    struct ErrorNotifier : public FrameLib_ErrorReporter::HostNotifier
+    {
+        ErrorNotifier(FrameLib_MaxGlobals *maxGlobals)
+        {
+            mQelem = qelem_new(maxGlobals, (method) &errorReport);
+        }
+        
+        ~ErrorNotifier()
+        {
+            qelem_free(mQelem);
+        }
+        
+        void notify()
+        {
+            qelem_set(mQelem);
+        }
+        
+        static void errorReport(FrameLib_MaxGlobals* x)
+        {
+            std::unique_ptr<ErrorList> reports = x->mGlobal->getErrors();
+            std::string errorText;
+
+            for (auto it = reports->begin(); it != reports->end(); it++)
+            {
+                t_object *object = dynamic_cast<FrameLib_MaxProxy *>(it->getReporter())->mMaxObject;
+                t_object *userObject = object ? (t_object *) object_method(object, gensym("__fl.get_user_object")) : nullptr;
+                
+                it->getErrorText(errorText);
+                
+                if (userObject)
+                {
+                    if (it->getSource() == kErrorDSP)
+                        object_error_obtrusive(userObject, errorText.c_str());
+                    else
+                        object_error(userObject, errorText.c_str());
+                }
+                else
+                    ouchstring(errorText.c_str());
+            }
+
+            if (reports->isFull())
+                error("*** FrameLib - too many errors - reporting only some ***");
+        }
+        
+        t_qelem mQelem;
+    };
+    
     // Sync Check Class
     
     class SyncCheck
@@ -35,7 +84,7 @@ public:
         enum Mode { kDownOnly, kDown, kAcross };
         enum Action { kSyncComplete, kSync, kAttachAndSync };
         
-        SyncCheck() : mGlobal(get()), mObject(NULL), mTime(-1), mMode(kDownOnly) {}
+        SyncCheck() : mGlobal(get()), mObject(nullptr), mTime(-1), mMode(kDownOnly) {}
         ~SyncCheck() { mGlobal->release(); }
         
         Action operator()(void *object, bool handlesAudio, bool isOutput)
@@ -57,10 +106,10 @@ public:
             return kSyncComplete;
         }
         
-        void sync(void *object = NULL, long time = -1, Mode mode = kDownOnly)
+        void sync(void *object = nullptr, long time = -1, Mode mode = kDownOnly)
         {
             set(object, time, mode);
-            mGlobal->setSyncCheck(object ? this : NULL);
+            mGlobal->setSyncCheck(object ? this : nullptr);
         }
         
         bool upwardsMode()  { return setMode(mGlobal->getSyncCheck(), kAcross); }
@@ -110,8 +159,8 @@ public:
         
         // Deleted
         
-        ManagedPointer(const ManagedPointer&);
-        ManagedPointer& operator=(const ManagedPointer&);
+        ManagedPointer(const ManagedPointer&) = delete;
+        ManagedPointer& operator=(const ManagedPointer&) = delete;
 
         FrameLib_MaxGlobals *mPointer;
     };
@@ -119,18 +168,27 @@ public:
     // Constructor and Destructor (public for the max API, but use the ManagedPointer for use from outside this class)
     
     FrameLib_MaxGlobals(t_symbol *sym, long ac, t_atom *av)
-    : mGlobal(NULL), mConnectionInfo(NULL), mSyncCheck(NULL), mCount(0) { FrameLib_Global::get(&mGlobal); }
-    ~FrameLib_MaxGlobals() { FrameLib_Global::release(&mGlobal); }
+    : mGlobal(nullptr), mConnectionInfo(nullptr), mSyncCheck(nullptr), mCount(0)
+    {
+        mNotifier = new ErrorNotifier(this);
+        FrameLib_Global::get(&mGlobal, mNotifier);
+    }
+    
+    ~FrameLib_MaxGlobals()
+    {
+        FrameLib_Global::release(&mGlobal);
+        delete mNotifier;
+    }
 
     // Getters and setters for max global items
     
-    FrameLib_Global *getGlobal() const                      { return mGlobal; }
+    FrameLib_Global *getGlobal() const                          { return mGlobal; }
     
-    const ConnectionInfo *getConnectionInfo() const         { return mConnectionInfo; }
-    void setConnectionInfo(ConnectionInfo *info = NULL)     { mConnectionInfo = info; }
+    const ConnectionInfo *getConnectionInfo() const             { return mConnectionInfo; }
+    void setConnectionInfo(ConnectionInfo *info = nullptr)      { mConnectionInfo = info; }
     
-    SyncCheck *getSyncCheck() const                         { return mSyncCheck; }
-    void setSyncCheck(SyncCheck *check = NULL)              { mSyncCheck = check; }
+    SyncCheck *getSyncCheck() const                             { return mSyncCheck; }
+    void setSyncCheck(SyncCheck *check = nullptr)               { mSyncCheck = check; }
     
 private:
     
@@ -152,7 +210,7 @@ private:
         FrameLib_MaxGlobals *x = (FrameLib_MaxGlobals *) object_findregistered(nameSpace, globalTag);
         
         if (!x)
-            x = (FrameLib_MaxGlobals *) object_register(nameSpace, globalTag, object_new_typed(CLASS_NOBOX, gensym(maxGlobalClass), 0, NULL));
+            x = (FrameLib_MaxGlobals *) object_register(nameSpace, globalTag, object_new_typed(CLASS_NOBOX, gensym(maxGlobalClass), 0, nullptr));
             
         x->mCount++;
         
@@ -170,6 +228,7 @@ private:
     
     // Pointers
     
+    ErrorNotifier *mNotifier;
     FrameLib_Global *mGlobal;
     ConnectionInfo *mConnectionInfo;
     SyncCheck *mSyncCheck;
@@ -187,7 +246,7 @@ public:
     
     Mutator(t_symbol *sym, long ac, t_atom *av)
     {
-        mObject = ac ? atom_getobj(av) : NULL;
+        mObject = ac ? atom_getobj(av) : nullptr;
         mMode = object_method(mObject, gensym("__fl.is_output")) ? FrameLib_MaxGlobals::SyncCheck::kDownOnly : FrameLib_MaxGlobals::SyncCheck::kDown;
     }
     
@@ -216,8 +275,7 @@ private:
 
 template <class T> class Wrapper : public MaxClass_Base
 {
-    typedef std::vector<t_object *>::iterator MaxObjectIterator;
-
+    
 public:
     
     // Initialise Class
@@ -264,7 +322,7 @@ public:
         
         t_dictionary *d = dictionary_new();
         t_atom a;
-        t_atom *av = NULL;
+        t_atom *av = nullptr;
         long ac = 0;
         
         atom_setparse(&ac, &av, "@defrect 0 0 300 300");
@@ -274,8 +332,8 @@ public:
         
         // Get box text (and strip object name from the top - relace with stored name in case the object name is an alias)
         
-        t_object *textfield = NULL;
-        const char *text = NULL;
+        t_object *textfield = nullptr;
+        const char *text = nullptr;
         std::string newObjectText = accessClassName<Wrapper>()->c_str();
 
         object_obex_lookup(this, gensym("#B"), &textfield);
@@ -329,14 +387,14 @@ public:
 
         for (long i = numIns + numAudioIns - 2; i >= 0 ; i--)
         {
-            mInOutlets[i] = (t_object *) outlet_new(NULL, NULL);
-            mProxyIns[i] = (t_object *)  (i ? proxy_new(this, i, &mProxyNum) : NULL);
+            mInOutlets[i] = (t_object *) outlet_new(nullptr, nullptr);
+            mProxyIns[i] = (t_object *)  (i ? proxy_new(this, i, &mProxyNum) : nullptr);
         }
         
         // Outlets for messages/signals
         
         for (long i = numOuts - 1; i >= 0 ; i--)
-            mOuts[i] = (t_object *) outlet_new(this, NULL);
+            mOuts[i] = (t_object *) outlet_new(this, nullptr);
         for (long i = numAudioOuts - 2; i >= 0 ; i--)
             mAudioOuts[i] = (t_object *) outlet_new(this, "signal");
         
@@ -359,10 +417,10 @@ public:
     {
         // Delete ins and proxies
         
-        for (MaxObjectIterator it = mProxyIns.begin(); it != mProxyIns.end(); it++)
+        for (auto it = mProxyIns.begin(); it != mProxyIns.end(); it++)
             object_free(*it);
         
-        for (MaxObjectIterator it = mInOutlets.begin(); it != mInOutlets.end(); it++)
+        for (auto it = mInOutlets.begin(); it != mInOutlets.end(); it++)
             object_free(*it);
         
         // Free objects - N.B. - free the patch, but not the object within it (which will be freed by deleting the patch)
@@ -380,7 +438,7 @@ public:
     
     void *subpatcher(long index, void *arg)
     {
-        return (((t_ptr_uint) arg <= 1) || ((t_ptr_uint) arg > 1 && !NOGOOD(arg))) && index == 0 ? (void *) mPatch : NULL;
+        return (((t_ptr_uint) arg <= 1) || ((t_ptr_uint) arg > 1 && !NOGOOD(arg))) && index == 0 ? (void *) mPatch : nullptr;
     }
     
     void assist(void *b, long m, long a, char *s)
@@ -482,10 +540,9 @@ enum MaxObjectArgsMode { kAsParams, kAllInputs, kDistribute };
 
 template <class T, MaxObjectArgsMode argsMode = kAsParams> class FrameLib_MaxClass : public MaxClass_Base
 {
-    typedef FrameLib_Object<FrameLib_MultiChannel>::Connection FrameLibConnection;
+    typedef FrameLib_Object<FrameLib_Multistream>::Connection FrameLibConnection;
     typedef FrameLib_Object<t_object>::Connection MaxConnection;
     typedef FrameLib_MaxGlobals::ConnectionInfo ConnectionInfo;
-    typedef std::vector<t_object *>::iterator MaxObjectIterator;
 
 public:
     
@@ -537,7 +594,7 @@ public:
     {
         bool traverse = true;
         
-        for (t_object *parent = NULL; traverse && (parent = jpatcher_get_parentpatcher(patch)); patch = parent)
+        for (t_object *parent = nullptr; traverse && (parent = jpatcher_get_parentpatcher(patch)); patch = parent)
         {
             t_object *assoc = 0;
             object_method(patch, gensym("getassoc"), &assoc);
@@ -550,7 +607,7 @@ public:
             {
                 // Get text of loading object in parent if there is no association (patch is currently loading)
 
-                char *text = NULL;
+                char *text = nullptr;
                 
                 for (t_object *b = jpatcher_get_firstobject(parent); b && !text; b = jbox_get_nextobject(b))
                     if (jbox_get_maxclass(b) == gensym("newobj") && jbox_get_textfield(b))
@@ -560,7 +617,7 @@ public:
                 {
                     // Get the first item in the box as a symbol
                 
-                    t_atombuf *atomBuffer = (t_atombuf *) atombuf_new(0, NULL);
+                    t_atombuf *atomBuffer = (t_atombuf *) atombuf_new(0, nullptr);
                     atombuf_text(&atomBuffer, &text, strlen(text));
                     t_symbol *objectName = atom_getsym(atomBuffer->a_argv);
                     atombuf_free(atomBuffer);
@@ -601,7 +658,7 @@ public:
     
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy()) : mFrameLibProxy(proxy), mConfirmObject(NULL), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mPatch(gensym("#P")->s_thing), mContextPatch(contextPatcher(mPatch)), mSyncIn(NULL), mUserObject(detectUserObjectAtLoad()), mNeedsResolve(true)
+    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy()) : mFrameLibProxy(proxy), mConfirmObject(nullptr), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mPatch(gensym("#P")->s_thing), mContextPatch(contextPatcher(mPatch)), mSyncIn(nullptr), mUserObject(detectUserObjectAtLoad()), mNeedsResolve(true)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -630,10 +687,10 @@ public:
         // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles audio)
         
         for (long i = numIns - 1; i >= 0; i--)
-            mInputs[i] = (t_object *) ((i || T::handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : NULL);
+            mInputs[i] = (t_object *) ((i || T::handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : nullptr);
         
         for (unsigned long i = getNumOuts(); i > 0; i--)
-            mOutputs[i - 1] = outlet_new(this, NULL);
+            mOutputs[i - 1] = outlet_new(this, nullptr);
         
         // Setup for audio, even if the object doesn't handle it, so that dsp recompile works correctly
         
@@ -646,7 +703,7 @@ public:
         
         if (T::handlesAudio())
         {
-            mSyncIn = (t_object *) outlet_new(NULL, NULL);
+            mSyncIn = (t_object *) outlet_new(nullptr, nullptr);
             outlet_add(mSyncIn, inlet_nth(*this, 0));
         }
     }
@@ -658,7 +715,7 @@ public:
         delete mObject;
         delete mFrameLibProxy;
         
-        for (MaxObjectIterator it = mInputs.begin(); it != mInputs.end(); it++)
+        for (auto it = mInputs.begin(); it != mInputs.end(); it++)
             object_free(*it);
         
         object_free(mSyncIn);
@@ -887,12 +944,12 @@ public:
             resolveGraph(false);
         
         if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
-            outlet_anything(mSyncIn, gensym("signal"), 0, NULL);
+            outlet_anything(mSyncIn, gensym("signal"), 0, nullptr);
         
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete)
         {
             for (unsigned long i = getNumOuts(); i > 0; i--)
-                outlet_anything(mOutputs[i - 1], gensym("sync"), 0, NULL);
+                outlet_anything(mOutputs[i - 1], gensym("sync"), 0, nullptr);
             
             if (mSyncChecker.upwardsMode())
             {
@@ -980,7 +1037,7 @@ public:
         x->makeConnection(index, mode);
     }
     
-    static FrameLib_MultiChannel *externalGetInternalObject(FrameLib_MaxClass *x)
+    static FrameLib_Multistream *externalGetInternalObject(FrameLib_MaxClass *x)
     {
         return x->mObject;
     }
@@ -1022,9 +1079,9 @@ private:
     
     // Get an internal object from a generic pointer safely
     
-    FrameLib_MultiChannel *getInternalObject(t_object *x)
+    FrameLib_Multistream *getInternalObject(t_object *x)
     {
-        return (FrameLib_MultiChannel *) object_method(x, gensym("__fl.get_internal_object"));
+        return (FrameLib_Multistream *) object_method(x, gensym("__fl.get_internal_object"));
     }
     
     // Private connection methods
@@ -1092,7 +1149,7 @@ private:
         ConnectionInfo info(*this, index, mode);
         
         mGlobal->setConnectionInfo(&info);
-        outlet_anything(mOutputs[index], gensym("frame"), 0, NULL);
+        outlet_anything(mOutputs[index], gensym("frame"), 0, nullptr);
         mGlobal->setConnectionInfo();
     }
     
@@ -1124,15 +1181,15 @@ private:
         
         bool result = mConfirm;
         mConfirm = false;
-        mConfirmObject = NULL;
+        mConfirmObject = nullptr;
         mConfirmInIndex = mConfirmOutIndex = -1;
         
         return result;
     }
     
-    bool validInput(long index, FrameLib_MultiChannel *object) const        { return object && index >= 0 && index < object->getNumIns(); }
-    bool validOutput(long index, FrameLib_MultiChannel *object) const       { return object && index >= 0 && index < object->getNumOuts(); }
-    bool isOrderingInput(long index, FrameLib_MultiChannel *object) const   { return object && object->supportsOrderingConnections() && index == object->getNumIns(); }
+    bool validInput(long index, FrameLib_Multistream *object) const         { return object && index >= 0 && index < object->getNumIns(); }
+    bool validOutput(long index, FrameLib_Multistream *object) const        { return object && index >= 0 && index < object->getNumOuts(); }
+    bool isOrderingInput(long index, FrameLib_Multistream *object) const    { return object && object->supportsOrderingConnections() && index == object->getNumIns(); }
     bool validInput(long index) const                                       { return validInput(index, mObject); }
     bool validOutput(long index) const                                      { return validOutput(index, mObject); }
     bool isOrderingInput(long index) const                                  { return isOrderingInput(index, mObject); }
@@ -1172,7 +1229,7 @@ private:
     
     void connect(t_object *src, long outIdx, long inIdx)
     {
-        FrameLib_MultiChannel *object = getInternalObject(src);
+        FrameLib_Multistream *object = getInternalObject(src);
         
         if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !validOutput(outIdx, object) || matchConnection(src, outIdx, inIdx) || confirmConnection(inIdx, ConnectionInfo::kDoubleCheck)))
             return;
@@ -1207,7 +1264,7 @@ private:
     
     void disconnect(t_object *src, long outIdx, long inIdx)
     {
-        FrameLib_MultiChannel *object = getInternalObject(src);
+        FrameLib_Multistream *object = getInternalObject(src);
 
         if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !matchConnection(src, outIdx, inIdx)))
             return;
@@ -1364,7 +1421,7 @@ private:
     
     void parseParameters(FrameLib_Parameters::AutoSerial& serialisedParameters, long argc, t_atom *argv)
     {
-        t_symbol *sym = NULL;
+        t_symbol *sym = nullptr;
         std::vector<double> values;
         long i;
         
@@ -1429,7 +1486,7 @@ private:
                 else
                 {
                     i = parseNumericalList(values, argv, argc, i);
-                    serialisedParameters.write(sym->s_name + 1, &values[0], values.size());
+                    serialisedParameters.write(sym->s_name + 1, values.data(), values.size());
                 }
             }
         }
@@ -1455,7 +1512,7 @@ private:
             if(argsMode == kAllInputs)
             {
                 for (unsigned long j = 0; i && j < getNumIns(); j++)
-                    mObject->setFixedInput(j, &values[0], values.size());
+                    mObject->setFixedInput(j, values.data(), values.size());
             }
             else
             {
@@ -1478,7 +1535,7 @@ private:
             {
                 t_symbol *sym = atom_getsym(argv + i);
                 i = parseNumericalList(values, argv, argc, i + 1);
-                mObject->setFixedInput(inputNumber(sym), &values[0], values.size());
+                mObject->setFixedInput(inputNumber(sym), values.data(), values.size());
             }
         }
     }
@@ -1491,7 +1548,7 @@ private:
     
     // Data
     
-    FrameLib_MultiChannel *mObject;
+    FrameLib_Multistream *mObject;
     
     std::vector<t_object *> mInputs;
     std::vector<void *> mOutputs;

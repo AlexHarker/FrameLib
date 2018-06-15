@@ -37,7 +37,7 @@ class FrameLib_ProcessingQueue
     
 public:
     
-    FrameLib_ProcessingQueue(FrameLib_ErrorReporter& errorReporter) : mTop(NULL), mTail(NULL), mTimedOut(false), mErrorReporter(errorReporter) {}
+    FrameLib_ProcessingQueue(FrameLib_ErrorReporter& errorReporter) : mTop(nullptr), mTail(nullptr), mTimedOut(false), mErrorReporter(errorReporter) {}
     
     void add(FrameLib_DSP *object);
     void reset() { mTimedOut = false; }
@@ -47,8 +47,8 @@ private:
     
     // Deleted
     
-    FrameLib_ProcessingQueue(const FrameLib_ProcessingQueue&);
-    FrameLib_ProcessingQueue& operator=(const FrameLib_ProcessingQueue&);
+    FrameLib_ProcessingQueue(const FrameLib_ProcessingQueue&) = delete;
+    FrameLib_ProcessingQueue& operator=(const FrameLib_ProcessingQueue&) = delete;
     
     FrameLib_DSP *mTop;
     FrameLib_DSP *mTail;

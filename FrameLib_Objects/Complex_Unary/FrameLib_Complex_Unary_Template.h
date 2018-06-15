@@ -16,7 +16,7 @@ public:
     
     // Constructor
     
-    FrameLib_Complex_UnaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, NULL, 2, 2) {}
+    FrameLib_Complex_UnaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 2, 2) {}
     
     // Info
     

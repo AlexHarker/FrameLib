@@ -29,7 +29,7 @@ private:
         
         struct Pool
         {
-            Pool(void *mem, size_t size)  : mUsedRecently(true), mTime(0), mSize(size), mPrev(NULL), mNext(NULL), mMem(mem) {}
+            Pool(void *mem, size_t size)  : mUsedRecently(true), mTime(0), mSize(size), mPrev(nullptr), mNext(nullptr), mMem(mem) {}
             
             bool isFree() { return tlsf_pool_is_free(mMem); }
             
@@ -45,7 +45,7 @@ private:
         
         // Thread for Allocating System Memory
         
-        class NewThread : public DelegateThread
+        class NewThread final : public DelegateThread
         {
             
         public:
@@ -54,7 +54,7 @@ private:
             
         private:
             
-            virtual void doTask() { mAllocator->addScheduledPool(); };
+            void doTask() override { mAllocator->addScheduledPool(); };
             
             CoreAllocator *mAllocator;
         };
@@ -63,7 +63,7 @@ private:
         
         // Thread for Freeing System Memory
         
-        class FreeThread : public TriggerableThread
+        class FreeThread final : public TriggerableThread
         {
             
         public:
@@ -72,7 +72,7 @@ private:
             
         private:
             
-            virtual void doTask() { mAllocator->destroyScheduledPool(); };
+            void doTask() override { mAllocator->destroyScheduledPool(); };
             
             CoreAllocator *mAllocator;
         };
@@ -157,8 +157,8 @@ public:
         
         // Deleted
         
-        Pruner(const Pruner&);
-        Pruner& operator=(const Pruner&);
+        Pruner(const Pruner&) = delete;
+        Pruner& operator=(const Pruner&) = delete;
         
         // Allocator
         
@@ -186,8 +186,8 @@ private:
     
     // Deleted
     
-    FrameLib_GlobalAllocator(const FrameLib_GlobalAllocator&);
-    FrameLib_GlobalAllocator& operator=(const FrameLib_GlobalAllocator&);
+    FrameLib_GlobalAllocator(const FrameLib_GlobalAllocator&) = delete;
+    FrameLib_GlobalAllocator& operator=(const FrameLib_GlobalAllocator&) = delete;
     
     // Member Variables
     
@@ -207,7 +207,7 @@ class FrameLib_LocalAllocator
 
     struct FreeBlock
     {
-        FreeBlock() : mMemory(NULL), mSize(0), mPrev(NULL), mNext(NULL) {}
+        FreeBlock() : mMemory(nullptr), mSize(0), mPrev(nullptr), mNext(nullptr) {}
         
         void *mMemory;
         size_t mSize;
@@ -257,8 +257,8 @@ public:
             
             // Deleted
             
-            Access(const Access&);
-            Access& operator=(const Access&);
+            Access(const Access&) = delete;
+            Access& operator=(const Access&) = delete;
             
             // Data
             
@@ -272,10 +272,10 @@ public:
         // Getters
         
         FrameType getType() const               { return mType; }
-        double *getVector() const               { return mType == kFrameNormal ? static_cast<double *>(mData) : NULL; }
+        double *getVector() const               { return mType == kFrameNormal ? static_cast<double *>(mData) : nullptr; }
         unsigned long getVectorSize() const     { return mType == kFrameNormal ? mSize : 0; }
         unsigned long getTaggedSize() const     { return mType == kFrameTagged ? mSize : 0; }
-        Serial *getTagged() const               { return mType == kFrameTagged ? static_cast<Serial *>(mData) : NULL; }
+        Serial *getTagged() const               { return mType == kFrameTagged ? static_cast<Serial *>(mData) : nullptr; }
         
         // Resize the storage
         
@@ -295,8 +295,8 @@ public:
 
         // Deleted
         
-        Storage(const Storage&);
-        Storage& operator=(const Storage&);
+        Storage(const Storage&) = delete;
+        Storage& operator=(const Storage&) = delete;
         
         // Member Variables
         
@@ -311,8 +311,6 @@ public:
         FrameLib_LocalAllocator *mAllocator;
     };
     
-    typedef std::vector<Storage *>::iterator StorageIterator;
-
     // ************************************************************************************** //
 
     // Constructor / Destructor
@@ -343,8 +341,8 @@ private:
     
     // Deleted
     
-    FrameLib_LocalAllocator(const FrameLib_LocalAllocator&);
-    FrameLib_LocalAllocator& operator=(const FrameLib_LocalAllocator&);
+    FrameLib_LocalAllocator(const FrameLib_LocalAllocator&) = delete;
+    FrameLib_LocalAllocator& operator=(const FrameLib_LocalAllocator&) = delete;
     
     // Find Storage by Name
     

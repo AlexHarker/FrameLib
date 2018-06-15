@@ -48,7 +48,7 @@ struct UnaryOperation : public OpBase<std::complex<double> >
     
     FrameLib_DSP *create(FrameLib_Context context) const
     {
-        return new FrameLib_Complex_UnaryOp<Op>(context, NULL, NULL);
+        return new FrameLib_Complex_UnaryOp<Op>(context, nullptr, nullptr);
     }
 };
 
@@ -66,7 +66,7 @@ struct BinaryOperation : public OpBase<std::complex<double> >
     {
         FrameLib_Parameters::AutoSerial serialiedParameters;
         serialiedParameters.write("mismatch", "wrap");
-        return new FrameLib_Complex_BinaryOp<Op>(context, &serialiedParameters, NULL);
+        return new FrameLib_Complex_BinaryOp<Op>(context, &serialiedParameters, nullptr);
     }
 };
 
@@ -127,7 +127,7 @@ FrameLib_ComplexExpression::Parser::Parser() : FrameLib_ExprParser(3)
 // Constructor
 
 FrameLib_ComplexExpression::InputProcessor::InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns)
-: FrameLib_Processor(context, NULL, NULL, numIns * 2, numIns * 2), mMode(mode)
+: FrameLib_Processor(context, nullptr, nullptr, numIns * 2, numIns * 2), mMode(mode)
 {
     for (size_t i = 0; i < numIns; i++)
     {
@@ -238,7 +238,7 @@ void FrameLib_ComplexExpression::InputProcessor::process()
 
 // Constructor
 
-FrameLib_ComplexExpression::ConstantOut::ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns, std::complex<double> value) : FrameLib_Processor(context, NULL, NULL, numIns * 2, 2), mMode(mode), mValue(value)
+FrameLib_ComplexExpression::ConstantOut::ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns, std::complex<double> value) : FrameLib_Processor(context, nullptr, nullptr, numIns * 2, 2), mMode(mode), mValue(value)
 {
     for (size_t i = 0; i < numIns; i++)
     {
@@ -283,7 +283,7 @@ void FrameLib_ComplexExpression::ConstantOut::process()
 
 // Constructor
 
-FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mInputProcessor(NULL), mParameters(&sParamInfo)
+FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mInputProcessor(nullptr), mParameters(context, proxy, &sParamInfo)
 {
     typedef Graph<std::complex<double> > Graph;
     typedef FrameLib_Block::Connection Connection;
@@ -333,7 +333,7 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
         
         // Build the graph if there is one
 
-        for (std::vector<Graph::Operation>::iterator it = graph.mOperations.begin(); it != graph.mOperations.end(); it++)
+        for (auto it = graph.mOperations.begin(); it != graph.mOperations.end(); it++)
         {
             FrameLib_DSP* operation = it->mOp->create(context);
             
@@ -384,7 +384,7 @@ FrameLib_ComplexExpression::~FrameLib_ComplexExpression()
     if (mInputProcessor)
         delete mInputProcessor;
     
-    for (std::vector<FrameLib_DSP *>::iterator it = mGraph.begin(); it != mGraph.end(); it++)
+    for (auto it = mGraph.begin(); it != mGraph.end(); it++)
         delete (*it);
     
     mGraph.clear();
@@ -434,6 +434,6 @@ void FrameLib_ComplexExpression::reset(double samplingRate, unsigned long maxBlo
     if (mInputProcessor)
         mInputProcessor->reset(samplingRate, maxBlockSize);
     
-    for (std::vector<FrameLib_DSP *>::iterator it = mGraph.begin(); it != mGraph.end(); it++)
+    for (auto it = mGraph.begin(); it != mGraph.end(); it++)
         (*it)->reset(samplingRate, maxBlockSize);
 }

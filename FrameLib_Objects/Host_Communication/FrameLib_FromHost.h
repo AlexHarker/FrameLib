@@ -11,13 +11,13 @@ class FrameLib_FromHost : public FrameLib_Processor
     
     struct SerialList
     {
-        SerialList() : mTop(NULL), mTail(NULL) {}
+        SerialList() : mTop(nullptr), mTail(nullptr) {}
         ~SerialList() { clear(); }
         
         struct Item
         {
-            Item() : mNext(NULL) {}
-            Item(const FrameLib_Parameters::Serial& serial) : mSerial(serial), mNext(NULL) {}
+            Item() : mNext(nullptr) {}
+            Item(const FrameLib_Parameters::Serial& serial) : mSerial(serial), mNext(nullptr) {}
 
             FrameLib_Parameters::AutoSerial mSerial;
             Item *mNext;
@@ -25,7 +25,7 @@ class FrameLib_FromHost : public FrameLib_Processor
         
         void push(Item *item)
         {
-            assert (item->mNext == NULL && "item already in a list");
+            assert (item->mNext == nullptr && "item already in a list");
             
             if (mTail)
             {
@@ -40,11 +40,11 @@ class FrameLib_FromHost : public FrameLib_Processor
         {
             Item *item = mTop;
             
-            mTop = mTop ? mTop->mNext : NULL;
-            mTail = (mTail == item) ? NULL : mTail;
+            mTop = mTop ? mTop->mNext : nullptr;
+            mTail = (mTail == item) ? nullptr : mTail;
             
             if (item)
-                item->mNext = NULL;
+                item->mNext = nullptr;
             
             return item;
         }
@@ -74,16 +74,16 @@ class FrameLib_FromHost : public FrameLib_Processor
             if (list.mTail)
                 mTail = list.mTail;
             
-            list.mTop = NULL;
-            list.mTail = NULL;
+            list.mTop = nullptr;
+            list.mTail = nullptr;
         }
         
     private:
         
         // Deleted
 
-        SerialList(const SerialList&);
-        SerialList& operator=(const SerialList&);
+        SerialList(const SerialList&) = delete;
+        SerialList& operator=(const SerialList&) = delete;
         
         // Data
         

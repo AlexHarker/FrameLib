@@ -20,9 +20,7 @@ class FrameLib_HostProxy : public virtual FrameLib_Proxy
 
     unsigned long registerObject(T *object, void *streamOwner, unsigned long stream)
     {
-        typedef typename std::vector<RefList>::iterator Iterator;
-
-        for (Iterator it = mRegistered.begin(); it != mRegistered.end(); it++)
+        for (auto it = mRegistered.begin(); it != mRegistered.end(); it++)
         {
             // Find the owner first and if it exists insert into the stream list
             
@@ -31,7 +29,7 @@ class FrameLib_HostProxy : public virtual FrameLib_Proxy
                 if (it->mObjects.size() <= stream)
                     it->mObjects.resize(stream + 1);
                 else
-                    assert ((it->mObjects[stream] == NULL) && "stream is already registered");
+                    assert ((it->mObjects[stream] == nullptr) && "stream is already registered");
                 
                 it->mObjects[stream] = object;
             
@@ -48,10 +46,8 @@ class FrameLib_HostProxy : public virtual FrameLib_Proxy
     }
     
     void unregisterObject(T *object, void *streamOwner, unsigned long stream)
-    {
-        typedef typename std::vector<RefList>::iterator Iterator;
-        
-        for (Iterator it = mRegistered.begin(); it != mRegistered.end(); it++)
+    {        
+        for (auto it = mRegistered.begin(); it != mRegistered.end(); it++)
         {
             // Find the owner first and if it exists remove from the stream space
             
@@ -59,11 +55,11 @@ class FrameLib_HostProxy : public virtual FrameLib_Proxy
             {
                 assert(it->mObjects[stream] == object && "object not registered to expected stream");
                 
-                it->mObjects[stream] = NULL;
+                it->mObjects[stream] = nullptr;
                 
                 if (it->mObjects.size() == stream + 1)
                 {
-                    while (stream && it->mObjects[stream] == NULL)
+                    while (stream && it->mObjects[stream] == nullptr)
                         stream--;
                     
                     if (stream)

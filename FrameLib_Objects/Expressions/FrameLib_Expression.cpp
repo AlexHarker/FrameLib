@@ -20,7 +20,7 @@ struct UnaryOperation : public OpBase<double>
     
     FrameLib_DSP *create(FrameLib_Context context) const
     {
-        return new FrameLib_UnaryOp<Op>(context, NULL, NULL);
+        return new FrameLib_UnaryOp<Op>(context, nullptr, nullptr);
     }
 };
 
@@ -36,7 +36,7 @@ struct BinaryOperation : public OpBase<double>
     {
         FrameLib_Parameters::AutoSerial serialiedParameters;
         serialiedParameters.write("mismatch", "wrap");
-        return new FrameLib_BinaryOp<Op>(context, &serialiedParameters, NULL);
+        return new FrameLib_BinaryOp<Op>(context, &serialiedParameters, nullptr);
     }
 };
 
@@ -52,7 +52,7 @@ struct TernaryOperation : public OpBase<double>
     {
         FrameLib_Parameters::AutoSerial serialiedParameters;
         serialiedParameters.write("mismatch", "extend");
-        return new FrameLib_TernaryOp<Op>(context, &serialiedParameters, NULL);
+        return new FrameLib_TernaryOp<Op>(context, &serialiedParameters, nullptr);
     }
 };
 
@@ -142,7 +142,7 @@ FrameLib_Expression::Parser::Parser() : FrameLib_ExprParser(7)
 
 // Constructor
 
-FrameLib_Expression::InputProcessor::InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns) : FrameLib_Processor(context, NULL, NULL, numIns, numIns), mMode(mode)
+FrameLib_Expression::InputProcessor::InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns) : FrameLib_Processor(context, nullptr, nullptr, numIns, numIns), mMode(mode)
 {
     for (size_t i = 0; i < numIns; i++)
         setInputMode(i, false, (i < triggersSize) && triggers[i], false);
@@ -201,7 +201,7 @@ void FrameLib_Expression::InputProcessor::process()
 
 // Constructor
 
-FrameLib_Expression::ConstantOut::ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns, double value) : FrameLib_Processor(context, NULL, NULL, numIns, 1), mMode(mode), mValue(value)
+FrameLib_Expression::ConstantOut::ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns, double value) : FrameLib_Processor(context, nullptr, nullptr, numIns, 1), mMode(mode), mValue(value)
 {
     for (size_t i = 0; i < numIns; i++)
         setInputMode(i, false, (i < triggersSize) && triggers[i], false);
@@ -233,7 +233,7 @@ void FrameLib_Expression::ConstantOut::process()
 
 // Constructor
 
-FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mInputProcessor(NULL), mParameters(&sParamInfo)
+FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mInputProcessor(nullptr), mParameters(context, proxy, &sParamInfo)
 {
     typedef Graph<double> Graph;
     typedef FrameLib_Block::Connection Connection;
@@ -281,7 +281,7 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Para
         
         // Build the graph if there is one
 
-        for (std::vector<Graph::Operation>::iterator it = graph.mOperations.begin(); it != graph.mOperations.end(); it++)
+        for (auto it = graph.mOperations.begin(); it != graph.mOperations.end(); it++)
         {
             FrameLib_DSP* operation = it->mOp->create(context);
             
@@ -318,7 +318,7 @@ FrameLib_Expression::~FrameLib_Expression()
     if (mInputProcessor)
         delete mInputProcessor;
     
-    for (std::vector<FrameLib_DSP *>::iterator it = mGraph.begin(); it != mGraph.end(); it++)
+    for (auto it = mGraph.begin(); it != mGraph.end(); it++)
         delete (*it);
     
     mGraph.clear();
@@ -359,6 +359,6 @@ void FrameLib_Expression::reset(double samplingRate, unsigned long maxBlockSize)
     if (mInputProcessor)
         mInputProcessor->reset(samplingRate, maxBlockSize);
     
-    for (std::vector<FrameLib_DSP *>::iterator it = mGraph.begin(); it != mGraph.end(); it++)
+    for (auto it = mGraph.begin(); it != mGraph.end(); it++)
         (*it)->reset(samplingRate, maxBlockSize);
 }

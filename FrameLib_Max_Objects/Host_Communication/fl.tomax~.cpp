@@ -55,19 +55,19 @@ void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(unsigned long index, unsig
         for (unsigned long i = 0; i < N; i++)
             atom_setfloat(output + i, values[i]);
         
-        schedule_delay(mObject, (method) &FrameLib_MaxClass_ToMax::toOutletExternal, 0.0, NULL, N, output);
+        schedule_delay(mObject, (method) &FrameLib_MaxClass_ToMax::toOutletExternal, 0.0, nullptr, N, output);
         
         dealloc(output);
     }
     else
-        schedule_delay(mObject, (method) &FrameLib_MaxClass_ToMax::toOutletExternal, 0.0, NULL, 0, NULL);
+        schedule_delay(mObject, (method) &FrameLib_MaxClass_ToMax::toOutletExternal, 0.0, nullptr, 0, nullptr);
 }
 
 void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial)
 {
     unsigned long maxSize = 0;
     
-    for (FrameLib_Parameters::Serial::Iterator it = serial->begin(); it != serial->end(); it++)
+    for (auto it = serial->begin(); it != serial->end(); it++)
     {
         if (it.getType() == kVector)
         {
@@ -79,7 +79,7 @@ void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(unsigned long index, unsig
     maxSize = limitSize(maxSize);
     t_atom *output = alloc<t_atom>(maxSize);
 
-    for (FrameLib_Parameters::Serial::Iterator it = serial->begin(); it != serial->end(); it++)
+    for (auto it = serial->begin(); it != serial->end(); it++)
     {
         if (it.getType() == kVector)
         {
@@ -131,7 +131,7 @@ void FrameLib_MaxClass_ToMax::toOutlet(t_symbol *s, short ac, t_atom *av)
     else if (s)
         outlet_anything(mOutlet, s, ac, av);
     else
-        outlet_list(mOutlet, NULL, ac, av);
+        outlet_list(mOutlet, nullptr, ac, av);
 }
 
 // Main

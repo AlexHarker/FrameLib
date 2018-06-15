@@ -88,7 +88,7 @@ size_t findAndResolveFunctions(std::string &name, size_t beg, size_t end)
     }
 }
 
-void getTypeString(std::string &name, FrameLib_Object<FrameLib_MultiChannel> *obj)
+void getTypeString(std::string &name, FrameLib_Object<FrameLib_Multistream> *obj)
 {
     int status;
     const char *type_mangled_name = typeid(*obj).name();
@@ -102,7 +102,7 @@ void getTypeString(std::string &name, FrameLib_Object<FrameLib_MultiChannel> *ob
     findAndResolveFunctions(name, 0, name.length() - 1);
 }
 
-void serialiseGraph(std::vector<FrameLib_Object<FrameLib_MultiChannel> *>& serial, FrameLib_MultiChannel *object)
+void serialiseGraph(std::vector<FrameLib_Object<FrameLib_Multistream> *>& serial, FrameLib_Multistream *object)
 {
     if (std::find(serial.begin(), serial.end(), object) != serial.end())
         return;
@@ -111,13 +111,13 @@ void serialiseGraph(std::vector<FrameLib_Object<FrameLib_MultiChannel> *>& seria
     
     for (int i = 0; i < object->getNumIns(); i++)
     {
-        FrameLib_MultiChannel::Connection connect = object->getConnection(i);
+        FrameLib_Multistream::Connection connect = object->getConnection(i);
         if (connect.mObject) serialiseGraph(serial, connect.mObject);
     }
     
     for (int i = 0; i < object->getNumOrderingConnections(); i++)
     {
-        FrameLib_MultiChannel::Connection connect = object->getOrderingConnection(i);
+        FrameLib_Multistream::Connection connect = object->getOrderingConnection(i);
         if (connect.mObject) serialiseGraph(serial, connect.mObject);
     }
     
@@ -128,11 +128,11 @@ void serialiseGraph(std::vector<FrameLib_Object<FrameLib_MultiChannel> *>& seria
     
     // Then search down
     
-    std::vector<FrameLib_MultiChannel *> outputDependencies;
+    std::vector<FrameLib_Multistream *> outputDependencies;
     
     object->addOutputDependencies(outputDependencies);
     
-    for (typename std::vector<FrameLib_MultiChannel *>::iterator it = outputDependencies.begin(); it != outputDependencies.end(); it++)
+    for (auto it = outputDependencies.begin(); it != outputDependencies.end(); it++)
         serialiseGraph(serial, *it);
 }
 
@@ -146,9 +146,9 @@ void addConnection(FrameLib_ObjectDescription& description, std::vector<FrameLib
     }
 }
 
-void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_MultiChannel *requestObject)
+void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_Multistream *requestObject)
 {
-    std::vector<FrameLib_Object<FrameLib_MultiChannel> *> serial;
+    std::vector<FrameLib_Object<FrameLib_Multistream> *> serial;
     unsigned long size = 0;
     const unsigned long kOrdering = -1;
 
@@ -156,11 +156,11 @@ void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_M
     
     serialiseGraph(serial, requestObject);
     
-    for (std::vector<FrameLib_Object<FrameLib_MultiChannel> *>::iterator it = serial.begin(); it != serial.end(); it++)
+    for (auto it = serial.begin(); it != serial.end(); it++)
     {
         // Create a space and store the typename and number of streams
         
-        FrameLib_MultiChannel *object = dynamic_cast<FrameLib_MultiChannel *>(*it);
+        FrameLib_Multistream *object = dynamic_cast<FrameLib_Multistream *>(*it);
         objects.push_back(FrameLib_ObjectDescription());
         FrameLib_ObjectDescription& description = objects.back();
         
@@ -173,7 +173,7 @@ void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_M
         
         if (parameters && object->getParameters())
         {
-            for (FrameLib_Parameters::Serial::Iterator it = parameters->begin(); it != parameters->end(); it++)
+            for (auto it = parameters->begin(); it != parameters->end(); it++)
             {
                 long idx = object->getParameters()->getIdx(it.getTag());
                 
@@ -225,7 +225,7 @@ void serialiseVector(std::stringstream& output, size_t index, const char *type, 
     
     output << exportIndent << "double fl_" << index << "_" << type << "_" << idx << "[] = { ";
     
-    for (std::vector<double>::const_iterator it = vector.begin(); it != vector.end(); it++)
+    for (auto it = vector.begin(); it != vector.end(); it++)
     {
         char formatted[1024];
 
@@ -244,7 +244,7 @@ void serialiseVector(std::stringstream& output, size_t index, const char *type, 
     output << " };\n";
 }
 
-std::string serialiseGraph(FrameLib_MultiChannel *requestObject)
+std::string serialiseGraph(FrameLib_Multistream *requestObject)
 {
     std::vector<FrameLib_ObjectDescription> objects;
     std::stringstream output;
@@ -253,18 +253,18 @@ std::string serialiseGraph(FrameLib_MultiChannel *requestObject)
 
     output << exportIndent << "mObjects.resize(" << objects.size() <<");\n\n";
 
-    for (std::vector<FrameLib_ObjectDescription>::iterator it = objects.begin(); it != objects.end(); it++)
+    for (auto it = objects.begin(); it != objects.end(); it++)
     {
         size_t index = it - objects.begin();
         
         // Params
         
-        for (std::vector<FrameLib_ObjectDescription::Tagged>::iterator jt = it->mParameters.begin(); jt != it->mParameters.end(); jt++)
+        for (auto jt = it->mParameters.begin(); jt != it->mParameters.end(); jt++)
             serialiseVector(output, index, "vector", jt - it->mParameters.begin(), jt->mVector);
 
         output << exportIndent << "parameters.clear();\n";
 
-        for (std::vector<FrameLib_ObjectDescription::Tagged>::iterator jt = it->mParameters.begin(); jt != it->mParameters.end(); jt++)
+        for (auto jt = it->mParameters.begin(); jt != it->mParameters.end(); jt++)
         {
             size_t idx = jt - it->mParameters.begin();
             if (jt->mType == kVector)
@@ -279,10 +279,10 @@ std::string serialiseGraph(FrameLib_MultiChannel *requestObject)
         
         // Inputs
         
-        for (std::vector<std::vector<double> >::iterator jt = it->mInputs.begin(); jt != it->mInputs.end(); jt++)
+        for (auto jt = it->mInputs.begin(); jt != it->mInputs.end(); jt++)
             serialiseVector(output, index, "inputs", jt - it->mInputs.begin(), *jt);
     
-        for (std::vector<std::vector<double> >::iterator jt = it->mInputs.begin(); jt != it->mInputs.end(); jt++)
+        for (auto jt = it->mInputs.begin(); jt != it->mInputs.end(); jt++)
         {
             if (jt->size())
             {
@@ -293,7 +293,7 @@ std::string serialiseGraph(FrameLib_MultiChannel *requestObject)
         
         // Connections
         
-        for (std::vector<FrameLib_ObjectDescription::Connection>::iterator jt = it->mConnections.begin(); jt != it->mConnections.end(); jt++)
+        for (auto jt = it->mConnections.begin(); jt != it->mConnections.end(); jt++)
         {
             const unsigned long kOrdering = -1;
 
@@ -324,7 +324,7 @@ void exportFilePath(std::string& path, const char *className, const char *ext)
     path.append(ext);
 }
 
-ExportError exportGraph(FrameLib_MultiChannel *requestObject, const char *path, const char *className)
+ExportError exportGraph(FrameLib_Multistream *requestObject, const char *path, const char *className)
 {
     std::stringstream header, cpp;
     std::ofstream headerFile, cppFile;

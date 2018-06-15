@@ -53,7 +53,7 @@ bool FrameLib_MaxClass_Read::ReadProxy::sInit = false;
 
 // Proxy Constructor
 
-FrameLib_MaxClass_Read::ReadProxy::ReadProxy() : mBuffer(NULL)
+FrameLib_MaxClass_Read::ReadProxy::ReadProxy() : mBuffer(nullptr)
 {
     if (!sInit)
     {

@@ -15,7 +15,7 @@ template <typename Op> class FrameLib_TernaryOp : public FrameLib_Processor
     public:
         
         EnlargedInput(FrameLib_TernaryOp *owner, const double *input, unsigned long size, unsigned long extendedSize, MismatchModes mode)
-            : mOwner(owner), mAllocated(NULL)
+            : mOwner(owner), mAllocated(nullptr)
         {
             if (extendedSize > size)
             {
@@ -46,8 +46,8 @@ template <typename Op> class FrameLib_TernaryOp : public FrameLib_Processor
         
         // Deleted
         
-        EnlargedInput(const EnlargedInput&);
-        EnlargedInput& operator=(const EnlargedInput&);
+        EnlargedInput(const EnlargedInput&) = delete;
+        EnlargedInput& operator=(const EnlargedInput&) = delete;
         
         // Data
         

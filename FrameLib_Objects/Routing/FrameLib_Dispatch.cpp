@@ -5,12 +5,13 @@
 
 // Constructor
 
-FrameLib_Dispatch::Select::Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long numIns, long num) : FrameLib_Processor(context, proxy, NULL, numIns, 1), mNumIns(numIns)
+FrameLib_Dispatch::Select::Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long numIns, long num) : FrameLib_Processor(context, proxy, nullptr, numIns, 1), mNumIns(numIns)
 {
     char name[32];
     sprintf(name, "input_%2ld", num + 1);
     mParameters.addInt(kActiveIn, name, 0);
     
+    mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
     
     mActiveIn = floor(mParameters.getValue(kActiveIn) - 1.0);
@@ -86,7 +87,7 @@ FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Paramete
 
 FrameLib_Dispatch::~FrameLib_Dispatch()
 {    
-    for (std::vector<Select *>::iterator it = mSelects.begin(); it != mSelects.end(); it++)
+    for (auto it = mSelects.begin(); it != mSelects.end(); it++)
         delete (*it);
 }
     
@@ -127,6 +128,6 @@ FrameLib_Dispatch::ParameterInfo::ParameterInfo()
 
 void FrameLib_Dispatch::reset(double samplingRate, unsigned long maxBlockSize)
 {
-    for (std::vector<Select *>::iterator it = mSelects.begin(); it != mSelects.end(); it++)
+    for (auto it = mSelects.begin(); it != mSelects.end(); it++)
         (*it)->reset(samplingRate, maxBlockSize);
 }

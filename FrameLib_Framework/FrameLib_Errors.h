@@ -34,7 +34,41 @@ public:
         
     public:
         
-        ErrorReport() : mSource(kErrorObject), mReporter(NULL), mError(NULL), mItems(NULL), mNumItems(0) {}
+        class ConstIterator
+        {
+            friend ErrorList;
+            
+            ConstIterator(const ErrorReport *ptr) : mPtr(ptr) {};
+            
+        public:
+            
+            const ErrorReport operator *() { return *mPtr; }
+            const ErrorReport *operator ->() { return mPtr; }
+            
+            friend bool operator == (const ConstIterator &a, const ConstIterator &b) { return a.mPtr == b.mPtr; }
+            friend bool operator != (const ConstIterator &a, const ConstIterator &b) { return a.mPtr != b.mPtr; }
+            
+            ConstIterator& operator ++()
+            {
+                mPtr++;
+                return *this;
+            }
+            
+            ConstIterator operator ++(int)
+            {
+                ConstIterator result = *this;
+                operator++();
+                return result;
+            }
+
+        private:
+            
+            // Pointer
+            
+            const ErrorReport *mPtr;
+        };
+        
+        ErrorReport() : mSource(kErrorObject), mReporter(nullptr), mError(nullptr), mItems(nullptr), mNumItems(0) {}
         
         ErrorReport(ErrorSource source, FrameLib_Proxy *reporter, const char *error, const char *items, unsigned long numItems)
         : mSource(source), mReporter(reporter), mError(error), mItems(items), mNumItems(numItems) {}
@@ -56,16 +90,20 @@ public:
     
     ErrorList() : mReportsSize(0), mItemsSize(0), mFull(false) {}
     
+    const ErrorReport operator[](size_t idx) const { return mReports[idx]; }
     size_t size() const { return mReportsSize; }
-    const ErrorReport getReport(size_t idx) const { return mReports[idx]; }
+
+    ErrorReport::ConstIterator begin() const { return mReports; }
+    ErrorReport::ConstIterator end() const { return mReports + mReportsSize; }
+    
     bool isFull() const { return mFull; }
     
 private:
     
     // Deleted
     
-    ErrorList(const ErrorList&);
-    ErrorList& operator=(const ErrorList&);
+    ErrorList(const ErrorList&) = delete;
+    ErrorList& operator=(const ErrorList&) = delete;
     
     bool addItem(const char *str)
     {

@@ -42,12 +42,9 @@ private:
         
     private:
         
-        // Type definition for concision and internal pointers
+        // Internal Pointers
         
-        typedef std::vector<CountablePointer> PointerVector;
-        typedef typename PointerVector::iterator Iterator;
-        
-        PointerVector mPointers;
+        std::vector<CountablePointer> mPointers;
     };
     
     // Constructor / Destructor
@@ -57,14 +54,14 @@ private:
     
     // Deleted
     
-    FrameLib_Global(const FrameLib_Global&);
-    FrameLib_Global& operator=(const FrameLib_Global&);
+    FrameLib_Global(const FrameLib_Global&) = delete;
+    FrameLib_Global& operator=(const FrameLib_Global&) = delete;
     
 public:
     
     // Retrieve and release the global object
     
-    static FrameLib_Global *get(FrameLib_Global **global, FrameLib_ErrorReporter::HostNotifier *notifier = NULL);
+    static FrameLib_Global *get(FrameLib_Global **global, FrameLib_ErrorReporter::HostNotifier *notifier = nullptr);
     static void release(FrameLib_Global **global);
         
 private:

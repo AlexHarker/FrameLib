@@ -26,7 +26,7 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object)
             object = mTop;
             object->dependenciesReady();
             mTop = object->mNext;
-            object->mNext = NULL;
+            object->mNext = nullptr;
             
             // Every so often check whether we're taking too long
             
@@ -43,14 +43,14 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object)
                         mErrorReporter.reportError(kErrorDSP, mTop->getProxy(), "FrameLib - DSP time out - FrameLib is disabled in this context until this is resolved");
                         object = mTop;
                         mTop = object->mNext;
-                        object->mNext = NULL;
+                        object->mNext = nullptr;
                     }
                 }
                 count = 0;
             }
         }
         
-        mTail = NULL;
+        mTail = nullptr;
     }
     else
     {

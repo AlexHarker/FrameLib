@@ -16,7 +16,7 @@ public:
     {
         friend FrameLib_ToHost;
         
-        Proxy() : mObject(NULL) {}
+        Proxy() : mObject(nullptr) {}
         
         virtual void sendToHost(unsigned long index, unsigned long stream, const double *values, unsigned long N) = 0;
         virtual void sendToHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial)= 0;

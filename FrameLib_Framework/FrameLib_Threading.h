@@ -125,8 +125,8 @@ private:
 	
     // Deleted
     
-    Atomic32(const Atomic32&);
-    Atomic32& operator=(const Atomic32&);
+    Atomic32(const Atomic32&) = delete;
+    Atomic32& operator=(const Atomic32&) = delete;
     
 	OS_Specific::Atomic32 mValue;
 };
@@ -139,18 +139,18 @@ template <class T> class AtomicPtr
     
 public:
     
-    AtomicPtr()	{ mValue = NULL; }
+    AtomicPtr()	{ mValue = nullptr; }
     
     bool compareAndSwap(T *comparand, T *exchange) { return OS_Specific::compareAndSwapPtr(&mValue, comparand, exchange); }
     T *swap(T *exchange) { return (T *) OS_Specific::swapPtr(&mValue, exchange); }
-    T *clear() { return swap(NULL); }
+    T *clear() { return swap(nullptr); }
     
 private:
     
     // Deleted
     
-    AtomicPtr(const AtomicPtr&);
-    AtomicPtr& operator=(const AtomicPtr&);
+    AtomicPtr(const AtomicPtr&) = delete;
+    AtomicPtr& operator=(const AtomicPtr&) = delete;
     
     OS_Specific::AtomicPtr mValue;
 };
@@ -174,8 +174,8 @@ private:
 	
     // Deleted
     
-    SpinLock(const SpinLock&);
-    SpinLock& operator=(const SpinLock&);
+    SpinLock(const SpinLock&) = delete;
+    SpinLock& operator=(const SpinLock&) = delete;
     
 	Atomic32 mAtomicLock;
 };
@@ -195,15 +195,15 @@ public:
     {
         if (mLock)
             mLock->release();
-        mLock = NULL;
+        mLock = nullptr;
     }
     
 private:
     
     // Deleted
     
-    SpinLockHolder(const SpinLockHolder&);
-    SpinLockHolder& operator=(const SpinLockHolder&);
+    SpinLockHolder(const SpinLockHolder&) = delete;
+    SpinLockHolder& operator=(const SpinLockHolder&) = delete;
     
     SpinLock *mLock;
 };
@@ -221,7 +221,7 @@ public:
     enum PriorityLevel {kLowPriority, kMediumPriority, kHighPriority, kAudioPriority};
 
     Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void *arg)
-    : mInternal(NULL), mPriority(priority), mThreadFunction(threadFunction), mArg(arg), mValid(false)
+    : mInternal(nullptr), mPriority(priority), mThreadFunction(threadFunction), mArg(arg), mValid(false)
     {}
 
     ~Thread();
@@ -233,8 +233,8 @@ private:
     
     // Deleted
     
-    Thread(const Thread&);
-    Thread& operator=(const Thread&);
+    Thread(const Thread&) = delete;
+    Thread& operator=(const Thread&) = delete;
     
     // threadStart is a quick OS-style wrapper to call the object which calls the relevant static function
     
@@ -269,8 +269,8 @@ private:
     
     // Deleted
     
-    Semaphore(const Semaphore&);
-    Semaphore& operator=(const Semaphore&);
+    Semaphore(const Semaphore&) = delete;
+    Semaphore& operator=(const Semaphore&) = delete;
     
     // Data
     
@@ -302,8 +302,8 @@ private:
     
     // Deleted
     
-    TriggerableThread(const Thread&);
-    TriggerableThread& operator=(const Thread&);
+    TriggerableThread(const Thread&) = delete;
+    TriggerableThread& operator=(const Thread&) = delete;
     
     // threadEntry simply calls threadClassEntry which calls the task handler
     
@@ -348,8 +348,8 @@ private:
     
     // Deleted
     
-    DelegateThread(const DelegateThread&);
-    DelegateThread& operator=(const DelegateThread&);
+    DelegateThread(const DelegateThread&) = delete;
+    DelegateThread& operator=(const DelegateThread&) = delete;
     
     // threadEntry simply calls threadClassEntry which calls the task handler
     

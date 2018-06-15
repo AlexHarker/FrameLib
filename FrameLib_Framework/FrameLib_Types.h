@@ -33,8 +33,4 @@ struct FrameLib_Proxy
     virtual ~FrameLib_Proxy() {}
 };
 
-#ifdef __linux__
-#define NULL 0
-#endif
-
 #endif
