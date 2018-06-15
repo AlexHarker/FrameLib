@@ -29,10 +29,10 @@ public:
     {
         mParameters.addInt(sMaxFrames, "max_frames", 10, 0);
         mParameters.setMin(1);
-        serialisedParameters->read(&mParameters);
     
         mParameters.addInt(sNumFrames, "num_frames", 10, 1);
         mParameters.setMin(1);
+        
         serialisedParameters->read(&mParameters);
 
         setParameterInput(1);

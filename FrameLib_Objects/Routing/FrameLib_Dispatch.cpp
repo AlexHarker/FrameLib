@@ -11,6 +11,7 @@ FrameLib_Dispatch::Select::Select(FrameLib_Context context, FrameLib_Parameters:
     sprintf(name, "input_%2ld", num + 1);
     mParameters.addInt(kActiveIn, name, 0);
     
+    mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
     
     mActiveIn = floor(mParameters.getValue(kActiveIn) - 1.0);

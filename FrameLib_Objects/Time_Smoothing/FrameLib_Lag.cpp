@@ -5,10 +5,10 @@ FrameLib_Lag::FrameLib_Lag(FrameLib_Context context, FrameLib_Parameters::Serial
 {
     mParameters.addInt(kMaxFrames, "max_frames", 10, 0);
     mParameters.setMin(1);
-    serialisedParameters->read(&mParameters);
     
     mParameters.addInt(kNumFrames, "num_frames", 1, 1);
     mParameters.setMin(0);
+    
     serialisedParameters->read(&mParameters);
     
     setParameterInput(1);
