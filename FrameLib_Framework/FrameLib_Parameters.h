@@ -609,7 +609,7 @@ public:
             switch (error)
             {
                 case kUnknownArgument:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "argument # out of range", idx);
+                    mErrorReporter.reportError(kErrorParameter, mProxy, "argument # out of range", idx + 1);
                     break;
                 case kUnknownParameter:
                     mErrorReporter.reportError(kErrorParameter, mProxy, "no parameter named '#'", arg);
