@@ -338,7 +338,7 @@ private:
 
     // Enum Parameter Class
 
-    class Enum : public Parameter
+    class Enum final : public Parameter
     {
         
     public:
@@ -347,21 +347,21 @@ private:
         
         // Setters
         
-        void addEnumItem(const char *str);
+        void addEnumItem(const char *str) override;
         
-        virtual SetError set(double value);
-        virtual SetError set(double *values, size_t N);
-        virtual SetError set(const char *str);
+        SetError set(double value) override;
+        SetError set(double *values, size_t N) override;
+        virtual SetError set(const char *str) override;
         
-        virtual void clear() { Enum::set(0.0); };
+        void clear() override { Enum::set(0.0); }
 
-        virtual Type type() { return kEnum; }
+        virtual Type type() override { return kEnum; }
         
         // Getters
         
-        virtual double getValue() const                                 { return mValue; }
-        virtual const char *getString() const                           { return mItems[mValue].c_str(); }
-        virtual const char *getItemString(unsigned long item) const     { return mItems[item].c_str(); }
+        virtual double getValue() const override                                { return mValue; }
+        virtual const char *getString() const override                          { return mItems[mValue].c_str(); }
+        virtual const char *getItemString(unsigned long item) const override    { return mItems[item].c_str(); }
         
     private:
         
@@ -373,7 +373,7 @@ private:
 
     // Value Parameter Class
 
-    class Value : public Parameter
+    class Value final : public Parameter
     {
         
     public:
@@ -383,16 +383,16 @@ private:
         
         // Setters
 
-        virtual SetError set(double value);
-        virtual SetError set(double *values, size_t N);
+        SetError set(double value) override;
+        SetError set(double *values, size_t N) override;
         
-        virtual void clear() { Value::set(mDefault); };
+        void clear() override { Value::set(mDefault); };
 
         // Getters
 
-        virtual Type type() { return kValue; }
+        Type type() override { return kValue; }
         
-        virtual double getValue() const { return mValue; }
+        double getValue() const override { return mValue; }
        
     private:
         
@@ -403,7 +403,7 @@ private:
 
     // String Parameter Class
 
-    class String : public Parameter
+    class String final : public Parameter
     {
         const static size_t maxLen = 128;
         
@@ -413,15 +413,15 @@ private:
         
         // Setters
         
-        virtual SetError set(const char *str);
+        SetError set(const char *str) override;
         
-        virtual void clear() { String::set(nullptr); };
+        void clear() override { String::set(nullptr); };
 
         // Getters
         
-        virtual Type type() { return kString; }
+        Type type() override { return kString; }
         
-        virtual const char *getString() const   { return mCString; }
+        const char *getString() const override   { return mCString; }
 
     private:
         
@@ -432,7 +432,7 @@ private:
 
     // Array Parameter Class
 
-    class Array : public Parameter, private std::vector<double>
+    class Array final : public Parameter, private std::vector<double>
     {
     
     public:
@@ -442,17 +442,17 @@ private:
 
         // Setters
 
-        virtual SetError set(double *values, size_t N);
+        SetError set(double *values, size_t N) override;
 
-        virtual void clear() { Array::set(nullptr, 0); };
+        void clear() override { Array::set(nullptr, 0); };
 
         // Getters
 
-        virtual Type type() { return mVariableSize ? kVariableArray : kArray; }
+        Type type() override { return mVariableSize ? kVariableArray : kArray; }
         
-        virtual size_t getArraySize() const         { return mSize; }
-        virtual size_t getArrayMaxSize() const      { return mItems.size(); }
-        virtual const double * getArray() const     { return mItems.data(); }
+        size_t getArraySize() const override        { return mSize; }
+        size_t getArrayMaxSize() const override     { return mItems.size(); }
+        const double * getArray() const override    { return mItems.data(); }
 
     private:
         

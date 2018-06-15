@@ -14,4 +14,4 @@ CLANG_CXX_LIBRARY = libc++
 CLANG_X86_VECTOR_INSTRUCTIONS = avx
 
 OTHER_CFLAGS = -fvisibility=hidden
-OTHER_CPLUSPLUSFLAGS = -fvisibility=hidden
+OTHER_CPLUSPLUSFLAGS = -fvisibility=hidden -Winconsistent-missing-override

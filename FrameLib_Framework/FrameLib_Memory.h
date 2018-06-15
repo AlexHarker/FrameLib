@@ -45,7 +45,7 @@ private:
         
         // Thread for Allocating System Memory
         
-        class NewThread : public DelegateThread
+        class NewThread final : public DelegateThread
         {
             
         public:
@@ -54,7 +54,7 @@ private:
             
         private:
             
-            virtual void doTask() { mAllocator->addScheduledPool(); };
+            void doTask() override { mAllocator->addScheduledPool(); };
             
             CoreAllocator *mAllocator;
         };
@@ -63,7 +63,7 @@ private:
         
         // Thread for Freeing System Memory
         
-        class FreeThread : public TriggerableThread
+        class FreeThread final : public TriggerableThread
         {
             
         public:
@@ -72,7 +72,7 @@ private:
             
         private:
             
-            virtual void doTask() { mAllocator->destroyScheduledPool(); };
+            void doTask() override { mAllocator->destroyScheduledPool(); };
             
             CoreAllocator *mAllocator;
         };

@@ -40,16 +40,8 @@ public:
     
     virtual ~FrameLib_MultiChannel() {}
     
-    // Set Fixed Inputs
+    // Default is not to handle audio
     
-    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) {};
-    virtual const double *getFixedInput(unsigned long idx, unsigned long *size) { return getEmptyFixedInput(idx, size); }
-
-    // Audio Processing
-    
-    virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) {}
-    virtual void reset(double samplingRate, unsigned long maxBlockSize) {}
-
     static bool handlesAudio() { return false; }
 
     // Number of Streams
@@ -85,7 +77,7 @@ private:
     
     // Connection Methods (private)
     
-    void connectionUpdate(Queue *queue)
+    void connectionUpdate(Queue *queue) final
     {
         if (inputUpdate())
             outputUpdate(queue);
@@ -109,7 +101,7 @@ private:
 
 // FrameLib_Pack - Pack Multichannel Signals
 
-class FrameLib_Pack : public FrameLib_MultiChannel
+class FrameLib_Pack final : public FrameLib_MultiChannel
 {
     enum AtrributeList { kInputs };
 
@@ -117,27 +109,37 @@ class FrameLib_Pack : public FrameLib_MultiChannel
     
 public:
     
-    virtual const FrameLib_Parameters::Serial *getSerialised() { return &mSerialisedParameters; }
+    const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
 
     FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams);
     
+    // Set Fixed Inputs
+    
+    void setFixedInput(unsigned long idx, double *input, unsigned long size) override {};
+    const double *getFixedInput(unsigned long idx, unsigned long *size) override { return getEmptyFixedInput(idx, size); }
+    
+    // Audio Processing
+    
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override {}
+    void reset(double samplingRate, unsigned long maxBlockSize) override {}
+
     // Info
     
-    virtual std::string objectInfo(bool verbose);
-    virtual std::string inputInfo(unsigned long idx, bool verbose);
-    virtual std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
     
-    virtual const FrameLib_Parameters *getParameters() const { return &mParameters; }
+    const FrameLib_Parameters *getParameters() const override { return &mParameters; }
 
-    virtual FrameType inputType(unsigned long idx) const { return kFrameAny; }
-    virtual FrameType outputType(unsigned long idx) const { return kFrameAny; }
+    FrameType inputType(unsigned long idx) const override { return kFrameAny; }
+    FrameType outputType(unsigned long idx) const override { return kFrameAny; }
     
-    virtual void autoOrderingConnections() {}
-    virtual void clearAutoOrderingConnections() {}
+    void autoOrderingConnections() override {}
+    void clearAutoOrderingConnections() override {}
     
 private:
     
-    virtual bool inputUpdate();
+    bool inputUpdate() override;
 
     FrameLib_Parameters::AutoSerial mSerialisedParameters;
 
@@ -150,7 +152,7 @@ private:
 
 // FrameLib_Unpack - Unpack Multichannel Signals
 
-class FrameLib_Unpack : public FrameLib_MultiChannel
+class FrameLib_Unpack final : public FrameLib_MultiChannel
 {
     enum AtrributeList { kOutputs };
     
@@ -158,27 +160,37 @@ class FrameLib_Unpack : public FrameLib_MultiChannel
 
 public:
 
-    virtual const FrameLib_Parameters::Serial *getSerialised() { return &mSerialisedParameters; }
+    const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
 
     FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams);
     
+    // Set Fixed Inputs
+    
+    void setFixedInput(unsigned long idx, double *input, unsigned long size) override {};
+    const double *getFixedInput(unsigned long idx, unsigned long *size) override { return getEmptyFixedInput(idx, size); }
+    
+    // Audio Processing
+    
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override {}
+    void reset(double samplingRate, unsigned long maxBlockSize) override {}
+
     // Info
     
-    virtual std::string objectInfo(bool verbose);
-    virtual std::string inputInfo(unsigned long idx, bool verbose);
-    virtual std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
 
-    virtual const FrameLib_Parameters *getParameters() const { return &mParameters; }
+    const FrameLib_Parameters *getParameters() const override { return &mParameters; }
 
-    virtual FrameType inputType(unsigned long idx) const { return kFrameAny; }
-    virtual FrameType outputType(unsigned long idx) const { return kFrameAny; }
+    FrameType inputType(unsigned long idx) const override { return kFrameAny; }
+    FrameType outputType(unsigned long idx) const override { return kFrameAny; }
     
-    virtual void autoOrderingConnections() {}
-    virtual void clearAutoOrderingConnections() {}
+    void autoOrderingConnections() override {}
+    void clearAutoOrderingConnections() override {}
     
 private:
     
-    virtual bool inputUpdate();
+    virtual bool inputUpdate() override;
     
     FrameLib_Parameters::AutoSerial mSerialisedParameters;
 
@@ -191,12 +203,12 @@ private:
 
 // FrameLib_Expand - MultiChannel expansion for FrameLib_Block objects
 
-template <class T> class FrameLib_Expand : public FrameLib_MultiChannel
+template <class T> class FrameLib_Expand final : public FrameLib_MultiChannel
 {
 
 public:
     
-    virtual const FrameLib_Parameters::Serial *getSerialised() { return &mSerialisedParameters; }
+    const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
 
     FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
     : FrameLib_MultiChannel(T::getType(), context, proxy, nStreams), mSerialisedParameters(serialisedParameters->size())
@@ -239,7 +251,7 @@ public:
     
     // Fixed Inputs
     
-    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size)
+    void setFixedInput(unsigned long idx, double *input, unsigned long size) override
     {
         if (idx < mFixedInputs.size())
         {
@@ -248,14 +260,14 @@ public:
         }
     }
     
-    virtual const double *getFixedInput(unsigned long idx, unsigned long *size)
+    const double *getFixedInput(unsigned long idx, unsigned long *size) override
     {
         return mBlocks[0]->getFixedInput(idx, size);
     }
 
     // Audio Processing
         
-    virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize)
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override
     {
         unsigned long internalNumIns = mBlocks[0]->getNumAudioIns();
         unsigned long internalNumOuts = mBlocks[0]->getNumAudioOuts();
@@ -296,7 +308,7 @@ public:
    
     // Reset
     
-    virtual void reset(double samplingRate, unsigned long maxBlockSize)
+    void reset(double samplingRate, unsigned long maxBlockSize) override
     {
         mSamplingRate = samplingRate;
         mMaxBlockSize = maxBlockSize;
@@ -311,29 +323,29 @@ public:
     
     // Info
     
-    virtual std::string objectInfo(bool verbose)                    { return mBlocks[0]->objectInfo(verbose); }
-    virtual std::string inputInfo(unsigned long idx, bool verbose)  { return mBlocks[0]->inputInfo(idx, verbose); }
-    virtual std::string outputInfo(unsigned long idx, bool verbose) { return mBlocks[0]->outputInfo(idx, verbose); }
+    std::string objectInfo(bool verbose) override                       { return mBlocks[0]->objectInfo(verbose); }
+    std::string inputInfo(unsigned long idx, bool verbose) override     { return mBlocks[0]->inputInfo(idx, verbose); }
+    std::string outputInfo(unsigned long idx, bool verbose) override    { return mBlocks[0]->outputInfo(idx, verbose); }
     
-    virtual std::string audioInfo(unsigned long idx, bool verbose)
+    std::string audioInfo(unsigned long idx, bool verbose) override
     {
         return formatInfo((mBlocks[0]->audioInfo(idx % mBlocks[0]->getNumAudioChans(), verbose) + " [#]").c_str(), idx / mBlocks[0]->getNumAudioChans());
     }
 
-    virtual FrameType inputType(unsigned long idx) const            { return mBlocks[0]->inputType(idx); }
-    virtual FrameType outputType(unsigned long idx) const           { return mBlocks[0]->outputType(idx); }
+    FrameType inputType(unsigned long idx) const override               { return mBlocks[0]->inputType(idx); }
+    FrameType outputType(unsigned long idx) const override              { return mBlocks[0]->outputType(idx); }
     
-    virtual const FrameLib_Parameters *getParameters() const        { return mBlocks[0]->getParameters(); }
+    const FrameLib_Parameters *getParameters() const override           { return mBlocks[0]->getParameters(); }
 
     // Ordering Connections
     
-    virtual void autoOrderingConnections()
+    void autoOrderingConnections() override
     {
         for (auto it = mBlocks.begin(); it != mBlocks.end(); it++)
             (*it)->autoOrderingConnections();
     }
 
-    virtual void clearAutoOrderingConnections()
+    void clearAutoOrderingConnections() override
     {
         for (auto it = mBlocks.begin(); it != mBlocks.end(); it++)
             (*it)->clearAutoOrderingConnections();
@@ -351,7 +363,7 @@ private:
     
     // Update (expand)
     
-    virtual bool inputUpdate()
+    bool inputUpdate() override
     {
         // Find number of channels (always keep at least one channel)
         

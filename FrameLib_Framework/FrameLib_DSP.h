@@ -93,25 +93,25 @@ public:
     
     // Set Fixed Inputs
     
-    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size);
-    virtual const double *getFixedInput(unsigned long idx, unsigned long *size);
+    void setFixedInput(unsigned long idx, double *input, unsigned long size) final;
+    const double *getFixedInput(unsigned long idx, unsigned long *size) final;
     
     // Audio Processing
     
-    virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize);
-    virtual void reset(double samplingRate, unsigned long maxBlockSize);
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) final;
+    void reset(double samplingRate, unsigned long maxBlockSize) final;
     
     // Info (individual objects should override other methods to provide info)
     
-    virtual const FrameLib_Parameters *getParameters() const { return &mParameters;  }
+    const FrameLib_Parameters *getParameters() const final { return &mParameters;  }
 
-    virtual FrameType inputType(unsigned long idx) const  { return mInputs[idx].mType; }
-    virtual FrameType outputType(unsigned long idx) const { return mOutputs[idx].mType; }
+    FrameType inputType(unsigned long idx) const final  { return mInputs[idx].mType; }
+    FrameType outputType(unsigned long idx) const final { return mOutputs[idx].mType; }
 
-    // Automatic Oredering Connections
+    // Automatic Ordering Connections
     
-    virtual void autoOrderingConnections();
-    virtual void clearAutoOrderingConnections();
+    void autoOrderingConnections() final;
+    void clearAutoOrderingConnections() final;
 
 protected:
         
@@ -250,8 +250,8 @@ private:
     
     // Connections
     
-    virtual void connectionUpdate(Queue *queue);
-    virtual void autoOrderingConnections(LocalQueue *queue);
+    void connectionUpdate(Queue *queue) final;
+    void autoOrderingConnections(LocalQueue *queue);
 
 protected:
    
