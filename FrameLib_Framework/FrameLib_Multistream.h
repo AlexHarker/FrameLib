@@ -1,6 +1,6 @@
 
-#ifndef FRAMELIB_MULTICHANNEL_H
-#define FRAMELIB_MULTICHANNEL_H
+#ifndef FRAMELIB_MULTISTREAM_H
+#define FRAMELIB_MULTISTREAM_H
 
 #include "FrameLib_Types.h"
 #include "FrameLib_Context.h"
@@ -10,18 +10,18 @@
 #include <algorithm>
 #include <vector>
 
-// FrameLib_MultiChannel
+// FrameLib_Multistream
 
-// This abstract class allows multichannel connnections and the means to update the network according to the number of channels
+// This abstract class allows multi-stream connnections and the means to update the network according to the number of streams
 
-class FrameLib_MultiChannel : public FrameLib_Object<FrameLib_MultiChannel>
+class FrameLib_Multistream : public FrameLib_Object<FrameLib_Multistream>
 {
     
 protected:
 
     typedef FrameLib_Object<FrameLib_Block>::Connection BlockConnection;
-    typedef std::vector<BlockConnection> MultiChannelOutput;
-    typedef FrameLib_Object::Connection MultiChannelConnection;
+    typedef std::vector<BlockConnection> MultistreamOutput;
+    typedef FrameLib_Object::Connection MultistreamConnection;
     
 public:
     
@@ -29,16 +29,16 @@ public:
     
     // Constructors
 
-    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
+    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
     : FrameLib_Object(type, context, proxy), mNumStreams(nStreams)
     { setIO(nIns, nOuts); }
     
-    FrameLib_MultiChannel(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, unsigned long nStreams)
+    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, unsigned long nStreams)
     : FrameLib_Object(type, context, proxy), mNumStreams(nStreams) {}
     
     // Destructor
     
-    virtual ~FrameLib_MultiChannel() {}
+    virtual ~FrameLib_Multistream() {}
     
     // Default is not to handle audio
     
@@ -72,8 +72,8 @@ private:
 
     // Deleted
     
-    FrameLib_MultiChannel(const FrameLib_MultiChannel&) = delete;
-    FrameLib_MultiChannel& operator=(const FrameLib_MultiChannel&) = delete;
+    FrameLib_Multistream(const FrameLib_Multistream&) = delete;
+    FrameLib_Multistream& operator=(const FrameLib_Multistream&) = delete;
     
     // Connection Methods (private)
     
@@ -90,7 +90,7 @@ protected:
 
     // Outputs
     
-    std::vector<MultiChannelOutput> mOutputs;
+    std::vector<MultistreamOutput> mOutputs;
     
 private:
     
@@ -99,9 +99,9 @@ private:
 
 // ************************************************************************************** //
 
-// FrameLib_Pack - Pack Multichannel Signals
+// FrameLib_Pack - Pack Multi-stream Signals
 
-class FrameLib_Pack final : public FrameLib_MultiChannel
+class FrameLib_Pack final : public FrameLib_Multistream
 {
     enum AtrributeList { kInputs };
 
@@ -150,9 +150,9 @@ private:
 
 // ************************************************************************************** //
 
-// FrameLib_Unpack - Unpack Multichannel Signals
+// FrameLib_Unpack - Unpack Multi-stream Signals
 
-class FrameLib_Unpack final : public FrameLib_MultiChannel
+class FrameLib_Unpack final : public FrameLib_Multistream
 {
     enum AtrributeList { kOutputs };
     
@@ -201,9 +201,9 @@ private:
 
 // ************************************************************************************** //
 
-// FrameLib_Expand - MultiChannel expansion for FrameLib_Block objects
+// FrameLib_Expand - Multi-stream expansion for FrameLib_Block objects
 
-template <class T> class FrameLib_Expand final : public FrameLib_MultiChannel
+template <class T> class FrameLib_Expand final : public FrameLib_Multistream
 {
 
 public:
@@ -211,7 +211,7 @@ public:
     const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
 
     FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
-    : FrameLib_MultiChannel(T::getType(), context, proxy, nStreams), mSerialisedParameters(serialisedParameters->size())
+    : FrameLib_Multistream(T::getType(), context, proxy, nStreams), mSerialisedParameters(serialisedParameters->size())
     {
         // Make first block
         

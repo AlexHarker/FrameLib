@@ -14,7 +14,7 @@
 
 // FrameLib_DSP
 
-// This abstract class is the core of the DSP processing system and handles low level single channel connections and timing
+// This abstract class is the core of the DSP processing system and handles low level single-stream connections and timing
 
 class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_DSP>
 {

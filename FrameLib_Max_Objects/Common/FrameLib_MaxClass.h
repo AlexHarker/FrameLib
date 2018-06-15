@@ -5,7 +5,7 @@
 #include "FrameLib_Context.h"
 #include "FrameLib_Parameters.h"
 #include "FrameLib_DSP.h"
-#include "FrameLib_Multichannel.h"
+#include "FrameLib_Multistream.h"
 #include "FrameLib_SerialiseGraph.h"
 
 #include <string>
@@ -540,7 +540,7 @@ enum MaxObjectArgsMode { kAsParams, kAllInputs, kDistribute };
 
 template <class T, MaxObjectArgsMode argsMode = kAsParams> class FrameLib_MaxClass : public MaxClass_Base
 {
-    typedef FrameLib_Object<FrameLib_MultiChannel>::Connection FrameLibConnection;
+    typedef FrameLib_Object<FrameLib_Multistream>::Connection FrameLibConnection;
     typedef FrameLib_Object<t_object>::Connection MaxConnection;
     typedef FrameLib_MaxGlobals::ConnectionInfo ConnectionInfo;
 
@@ -1037,7 +1037,7 @@ public:
         x->makeConnection(index, mode);
     }
     
-    static FrameLib_MultiChannel *externalGetInternalObject(FrameLib_MaxClass *x)
+    static FrameLib_Multistream *externalGetInternalObject(FrameLib_MaxClass *x)
     {
         return x->mObject;
     }
@@ -1079,9 +1079,9 @@ private:
     
     // Get an internal object from a generic pointer safely
     
-    FrameLib_MultiChannel *getInternalObject(t_object *x)
+    FrameLib_Multistream *getInternalObject(t_object *x)
     {
-        return (FrameLib_MultiChannel *) object_method(x, gensym("__fl.get_internal_object"));
+        return (FrameLib_Multistream *) object_method(x, gensym("__fl.get_internal_object"));
     }
     
     // Private connection methods
@@ -1187,9 +1187,9 @@ private:
         return result;
     }
     
-    bool validInput(long index, FrameLib_MultiChannel *object) const        { return object && index >= 0 && index < object->getNumIns(); }
-    bool validOutput(long index, FrameLib_MultiChannel *object) const       { return object && index >= 0 && index < object->getNumOuts(); }
-    bool isOrderingInput(long index, FrameLib_MultiChannel *object) const   { return object && object->supportsOrderingConnections() && index == object->getNumIns(); }
+    bool validInput(long index, FrameLib_Multistream *object) const         { return object && index >= 0 && index < object->getNumIns(); }
+    bool validOutput(long index, FrameLib_Multistream *object) const        { return object && index >= 0 && index < object->getNumOuts(); }
+    bool isOrderingInput(long index, FrameLib_Multistream *object) const    { return object && object->supportsOrderingConnections() && index == object->getNumIns(); }
     bool validInput(long index) const                                       { return validInput(index, mObject); }
     bool validOutput(long index) const                                      { return validOutput(index, mObject); }
     bool isOrderingInput(long index) const                                  { return isOrderingInput(index, mObject); }
@@ -1229,7 +1229,7 @@ private:
     
     void connect(t_object *src, long outIdx, long inIdx)
     {
-        FrameLib_MultiChannel *object = getInternalObject(src);
+        FrameLib_Multistream *object = getInternalObject(src);
         
         if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !validOutput(outIdx, object) || matchConnection(src, outIdx, inIdx) || confirmConnection(inIdx, ConnectionInfo::kDoubleCheck)))
             return;
@@ -1264,7 +1264,7 @@ private:
     
     void disconnect(t_object *src, long outIdx, long inIdx)
     {
-        FrameLib_MultiChannel *object = getInternalObject(src);
+        FrameLib_Multistream *object = getInternalObject(src);
 
         if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !matchConnection(src, outIdx, inIdx)))
             return;
@@ -1548,7 +1548,7 @@ private:
     
     // Data
     
-    FrameLib_MultiChannel *mObject;
+    FrameLib_Multistream *mObject;
     
     std::vector<t_object *> mInputs;
     std::vector<void *> mOutputs;

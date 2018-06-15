@@ -91,7 +91,7 @@ private:
 
 // FrameLib_Object
 
-// This abstract template class outlines the basic functionality that objects (blocks / DSP / multichannel must provide)
+// This abstract template class outlines the basic functionality that objects (blocks / DSP / multistream must provide)
 
 template <class T>
 class FrameLib_Object : public FrameLib_Queueable<T>

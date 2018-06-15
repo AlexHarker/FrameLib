@@ -293,7 +293,7 @@
 		B89ABA9A1FA734C8006DAD53 /* FrameLib_Parameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DE5D911F06A5E4007B0601 /* FrameLib_Parameters.cpp */; };
 		B89ABA9B1FA734CA006DAD53 /* FrameLib_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */; };
 		B89ABA9C1FA734CC006DAD53 /* FrameLib_ProcessingQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88BD2741F03F7830045E737 /* FrameLib_ProcessingQueue.cpp */; };
-		B89ABA9D1FA734D0006DAD53 /* FrameLib_Multichannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */; };
+		B89ABA9D1FA734D0006DAD53 /* FrameLib_Multistream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F17FDE1F05988F00CED8A1 /* FrameLib_Multistream.cpp */; };
 		B89C46B820777F1000579BE7 /* FrameLib_Read.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B89C46B620777F0F00579BE7 /* FrameLib_Read.cpp */; };
 		B89F14E21F829F3C00315736 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B89F14EC1F829FA800315736 /* fl.modulo~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B89F14EB1F829FA800315736 /* fl.modulo~.cpp */; };
@@ -1993,7 +1993,7 @@
 		B85753571F2E21A700478E9F /* FrameLib_Unary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FrameLib_Unary_Objects.h; path = Unary/FrameLib_Unary_Objects.h; sourceTree = "<group>"; };
 		B85753581F2E21A700478E9F /* FrameLib_Unary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FrameLib_Unary_Template.h; path = Unary/FrameLib_Unary_Template.h; sourceTree = "<group>"; };
 		B857535D1F2E957300478E9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B85B20E619938415004FFF22 /* FrameLib_Multichannel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Multichannel.h; sourceTree = "<group>"; };
+		B85B20E619938415004FFF22 /* FrameLib_Multistream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Multistream.h; sourceTree = "<group>"; };
 		B85B689419F1CDA3002D6F1D /* FrameLib_SallenAndKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_SallenAndKey.h; sourceTree = "<group>"; };
 		B85B689519F1CEB7002D6F1D /* fl.sallenkey~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.sallenkey~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B85B68A419F1CEDC002D6F1D /* fl.sallenkey~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.sallenkey~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2343,7 +2343,7 @@
 		B8E41B2220C5EACD003BBD86 /* fl.expr~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.expr~.cpp"; sourceTree = "<group>"; };
 		B8E5F08D2073A62400978385 /* FrameLib_Export.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Export.h; sourceTree = "<group>"; };
 		B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Threading.cpp; sourceTree = "<group>"; };
-		B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Multichannel.cpp; sourceTree = "<group>"; };
+		B8F17FDE1F05988F00CED8A1 /* FrameLib_Multistream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Multistream.cpp; sourceTree = "<group>"; };
 		B8F3797919F1C8AF00EC7FDA /* FrameLib_OnePole.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_OnePole.h; sourceTree = "<group>"; };
 		B8F3798819F1C8B400EC7FDA /* fl.onepole~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.onepole~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F3798A19F1C8E600EC7FDA /* fl.onepole~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.onepole~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -4507,8 +4507,8 @@
 				B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */,
 				B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */,
 				B88BD2741F03F7830045E737 /* FrameLib_ProcessingQueue.cpp */,
-				B85B20E619938415004FFF22 /* FrameLib_Multichannel.h */,
-				B8F17FDE1F05988F00CED8A1 /* FrameLib_Multichannel.cpp */,
+				B85B20E619938415004FFF22 /* FrameLib_Multistream.h */,
+				B8F17FDE1F05988F00CED8A1 /* FrameLib_Multistream.cpp */,
 				B8E5F08D2073A62400978385 /* FrameLib_Export.h */,
 				B88A482A2067DCC400CEB3AC /* FrameLib_SerialiseGraph.h */,
 				B88A48292067DCC400CEB3AC /* FrameLib_SerialiseGraph.cpp */,
@@ -11472,7 +11472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8BEEB131FA7358000ED26F4 /* tlsf.c in Sources */,
-				B89ABA9D1FA734D0006DAD53 /* FrameLib_Multichannel.cpp in Sources */,
+				B89ABA9D1FA734D0006DAD53 /* FrameLib_Multistream.cpp in Sources */,
 				B89ABA9C1FA734CC006DAD53 /* FrameLib_ProcessingQueue.cpp in Sources */,
 				B89ABA9B1FA734CA006DAD53 /* FrameLib_DSP.cpp in Sources */,
 				B89ABA9A1FA734C8006DAD53 /* FrameLib_Parameters.cpp in Sources */,

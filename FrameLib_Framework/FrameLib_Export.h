@@ -1,6 +1,6 @@
 
 static char exportHeader[] = "\n\
-#include \"FrameLib_MultiChannel.h\"\n\
+#include \"FrameLib_Multistream.h\"\n\
 #include <vector>\n\n\
 class $\n\
 {\n\n\
@@ -13,8 +13,8 @@ public:\n\n\
     unsigned long getNumAudioOuts() const  { return mNumAudioOuts; }\n\n\
 private:\n\n\
     FrameLib_Global *mGlobal;\n\
-    std::vector<FrameLib_MultiChannel *> mObjects;\n\
-    std::vector<FrameLib_MultiChannel *> mAudioObjects;\n\
+    std::vector<FrameLib_Multistream *> mObjects;\n\
+    std::vector<FrameLib_Multistream *> mAudioObjects;\n\
     unsigned long mNumAudioIns;\n\
     unsigned long mNumAudioOuts;\n\
     FrameLib_Proxy *mProxy;\n\
@@ -25,7 +25,7 @@ static char exportCPPOpen[] = "\n\
 #include \"FrameLib_Objects.h\"\n\n\
 $::$(FrameLib_Proxy *proxy) : mNumAudioIns(0), mNumAudioOuts(0), mProxy(proxy)\n\
 {\n\
-    typedef FrameLib_Object<FrameLib_MultiChannel>::Connection Connection;\n\n\
+    typedef FrameLib_Object<FrameLib_Multistream>::Connection Connection;\n\n\
     FrameLib_Global::get(&mGlobal);\n\
     FrameLib_Context context(mGlobal, this);\n\
     FrameLib_Parameters::AutoSerial parameters;\n\n";
