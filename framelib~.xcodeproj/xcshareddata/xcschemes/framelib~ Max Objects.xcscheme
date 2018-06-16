@@ -2204,6 +2204,34 @@
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B85E1D3C20C8408E00DEEE6E"
+               BuildableName = "fl.complexexpr~.mxo"
+               BlueprintName = "fl.complexexpr~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B8E41B0920C5E71C003BBD86"
+               BuildableName = "fl.expr~.mxo"
+               BlueprintName = "fl.expr~"
+               ReferencedContainer = "container:framelib~.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
