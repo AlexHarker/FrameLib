@@ -116,7 +116,7 @@
 #include "FrameLib_Unary_Objects.h"
 #include "FrameLib_Binary_Objects.h"
 #include "FrameLib_Ternary_Objects.h"
-#include "FrameLib_ExpressionGraph.h"
+#include "FrameLib_Expression.h"
 
 // Complex Operators
 
@@ -469,9 +469,9 @@ extern "C" void framelib_pd_setup(void)
 
     // Ternary  Operators
     
-    FrameLib_PDClass_Expand<FrameLib_Clip>, kDistribute>::makeClass("fl.clip~");
-    FrameLib_PDClass_Expand<FrameLib_Fold>, kDistribute>::makeClass("fl.fold~");
-    FrameLib_PDClass_Expand<FrameLib_Wrap>, kDistribute>::makeClass("fl.wrap~");
+    FrameLib_PDClass_Expand<FrameLib_Clip, kDistribute>::makeClass("fl.clip~");
+    FrameLib_PDClass_Expand<FrameLib_Fold, kDistribute>::makeClass("fl.fold~");
+    FrameLib_PDClass_Expand<FrameLib_Wrap, kDistribute>::makeClass("fl.wrap~");
     
     // Complex Unary Operators
     
