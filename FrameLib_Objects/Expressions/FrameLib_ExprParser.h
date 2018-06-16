@@ -2,11 +2,13 @@
 #ifndef FRAMELIB_EXPRPARSER_H
 #define FRAMELIB_EXPRPARSER_H
 
-#include <vector>
-#include <cmath>
-#include <limits>
+#include "FrameLib_Types.h"
+
 #include <algorithm>
+#include <cmath>
 #include <functional>
+#include <limits>
+#include <vector>
 
 #include <string.h>
 
@@ -178,27 +180,16 @@ class FrameLib_ExprParser
         OperatorList(OperatorList&&) = default;
         OperatorList& operator=(OperatorList&&) = default;
         
-        ~OperatorList()
-        {
-            for (auto it = mItems.begin(); it != mItems.end(); it++)
-            {
-                delete (*it);
-                *it = nullptr;
-            }
-            
-            mItems.clear();
-        }
-        
         void addItem(OpBase<T> *item)
         {
-            mItems.push_back(item);
+            mItems.add(item);
         }
         
         const OpBase<T> *getItem(const char *name) const
         {
             for (auto it = mItems.begin(); it != mItems.end(); it++)
                 if (!strcmp(name, (*it)->mName))
-                    return (*it);
+                    return it->get();
             
             return nullptr;
         }
@@ -209,8 +200,8 @@ class FrameLib_ExprParser
         
         OperatorList(const OperatorList&) = delete;
         OperatorList& operator=(const OperatorList&) = delete;
-
-        std::vector<OpBase<T> *> mItems;
+        
+        FrameLib_OwnedList<OpBase<T>> mItems;
     };
     
 public:

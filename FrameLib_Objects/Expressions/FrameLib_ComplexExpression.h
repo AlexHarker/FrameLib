@@ -2,10 +2,10 @@
 #ifndef FRAMELIB_COMPLEXEXPRESSION_H
 #define FRAMELIB_COMPLEXEXPRESSION_H
 
-#include  <complex>
-
 #include "FrameLib_DSP.h"
 #include "FrameLib_ExprParser.h"
+
+#include <complex>
 
 class FrameLib_ComplexExpression : public FrameLib_Block
 {
@@ -73,7 +73,6 @@ public:
     // Constructor / Destructor
     
     FrameLib_ComplexExpression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-    ~FrameLib_ComplexExpression();
 
     // Object Type
     
@@ -112,8 +111,8 @@ private:
     // Data
     
     FrameLib_DSP *mFixedInputNode;
-    FrameLib_DSP *mInputProcessor;
-    std::vector<FrameLib_DSP *> mGraph;
+    std::unique_ptr<FrameLib_DSP> mInputProcessor;
+    FrameLib_OwnedList<FrameLib_DSP> mGraph;
     
     static ParameterInfo sParamInfo;
     FrameLib_Parameters mParameters;

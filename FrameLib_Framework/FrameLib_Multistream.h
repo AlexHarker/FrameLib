@@ -215,7 +215,7 @@ public:
     {
         // Make first block
         
-        mBlocks.push_back(new T(context, serialisedParameters, proxy));
+        mBlocks.add(new T(context, serialisedParameters, proxy));
         mBlocks[0]->setStream(this, 0);
         
         // Copy serialised parameters for later instantiations
@@ -231,7 +231,7 @@ public:
         // Make initial output connections
         
         for (unsigned long i = 0; i < getNumOuts(); i++)
-            mOutputs[i].push_back(BlockConnection(mBlocks[0], i));
+            mOutputs[i].push_back(BlockConnection(mBlocks[0].get(), i));
         
         // Check for ordering support
         
@@ -239,14 +239,6 @@ public:
             enableOrderingConnections();
         
         reset(0.0, 4096);
-    }
-    
-    ~FrameLib_Expand()
-    {
-        // Delete blocks
-        
-        for (auto it = mBlocks.begin(); it != mBlocks.end(); it++)
-            delete(*it);
     }
     
     // Fixed Inputs
@@ -385,23 +377,16 @@ private:
             // Change the number of hosted blocks
             
             if (nChannels > cChannels)
-            {
-                mBlocks.resize(nChannels);
-                
+            {                
                 for (unsigned long i = cChannels; i < nChannels; i++)
                 {
-                    mBlocks[i] = new T(getContext(), &mSerialisedParameters, getProxy());
-                    mBlocks[i]->setStream(this, i);
-                    mBlocks[i]->reset(mSamplingRate, mMaxBlockSize);
+                    mBlocks.add(new T(getContext(), &mSerialisedParameters, getProxy()));
+                    mBlocks.back()->setStream(this, i);
+                    mBlocks.back()->reset(mSamplingRate, mMaxBlockSize);
                 }
             }
             else
-            {
-                for (unsigned long i = nChannels; i < cChannels; i++)
-                    delete mBlocks[i];
-                
                 mBlocks.resize(nChannels);
-            }
             
             // Redo output connection lists
             
@@ -410,7 +395,7 @@ private:
             
             for (unsigned long i = 0; i < getNumOuts(); i++)
                 for (unsigned long j = 0; j < nChannels; j++)
-                    mOutputs[i].push_back(BlockConnection(mBlocks[j], i));
+                    mOutputs[i].push_back(BlockConnection(mBlocks[j].get(), i));
             
             // Update Fixed Inputs
             
@@ -455,7 +440,7 @@ private:
     
     FrameLib_Parameters::AutoSerial mSerialisedParameters;
 
-    std::vector<FrameLib_Block *> mBlocks;
+    FrameLib_OwnedList<FrameLib_Block> mBlocks;
     std::vector<std::vector<double>> mFixedInputs;
 
     unsigned long mMaxBlockSize;

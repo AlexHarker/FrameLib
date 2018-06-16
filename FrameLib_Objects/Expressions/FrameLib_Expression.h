@@ -66,10 +66,9 @@ class FrameLib_Expression : public FrameLib_Block
     
 public:
     
-    // Constructor / Destructor
+    // Constructor 
     
     FrameLib_Expression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-    ~FrameLib_Expression();
 
     // Object Type
     
@@ -108,8 +107,8 @@ private:
     // Data
     
     FrameLib_DSP *mFixedInputNode;
-    FrameLib_DSP *mInputProcessor;
-    std::vector<FrameLib_DSP *> mGraph;
+    std::unique_ptr<FrameLib_DSP> mInputProcessor;
+    FrameLib_OwnedList<FrameLib_DSP> mGraph;
     
     static ParameterInfo sParamInfo;
     FrameLib_Parameters mParameters;

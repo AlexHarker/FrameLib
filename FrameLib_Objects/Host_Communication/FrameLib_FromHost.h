@@ -7,6 +7,10 @@
 
 class FrameLib_FromHost final : public FrameLib_Processor
 {
+    // Typedef for concision
+    
+    typedef std::unique_ptr<std::vector<double>> OwnedFrame;
+    
     // A FIFO list for storing parameter frame additions
     
     struct SerialList
@@ -150,13 +154,13 @@ private:
     
     // Swapping data with the proxy
     
-    std::vector<double> *swapVectorFrame(std::vector<double> *swapVector);
+    OwnedFrame swapVectorFrame(OwnedFrame& swapVector);
     void updateSerialFrame(SerialList &freeList, SerialList::Item *addSerial);
 
 // Data
     
     SpinLock mLock;
-    std::vector<double> *mVectorFrame;
+    OwnedFrame mVectorFrame;
     SerialList mSerialFrame;
     SerialList mSerialFreeFrame;
     Modes mMode;

@@ -471,14 +471,6 @@ public:
     FrameLib_Parameters(FrameLib_ErrorReporter& errorReporter, FrameLib_Proxy *proxy, Info *info)
     : mErrorReporter(errorReporter), mProxy(proxy), mReportErrors(true), mParameterInfo(info) {}
     
-    // Destructor
-    
-    ~FrameLib_Parameters()
-    {
-        for (auto it = mParameters.begin(); it != mParameters.end(); it++)
-            delete *it;
-    }
-    
     // Enable/Disable Error Reporting (enabled by default)
     
     void setErrorReportingEnabled(bool enable)  { mReportErrors = enable; }
@@ -745,10 +737,10 @@ private:
     
     // Utility
     
-    void addParameter(unsigned long index, Parameter *attr)
+    void addParameter(unsigned long index, Parameter *parameter)
     {
         assert((index == mParameters.size()) && "parameters must be added in order");
-        mParameters.push_back(attr);
+        mParameters.add(parameter);
     }
     
     static long convertToNumber(const char *name)
@@ -775,7 +767,7 @@ private:
     FrameLib_Proxy *mProxy;
     bool mReportErrors;
     
-    std::vector<Parameter *> mParameters;
+    FrameLib_OwnedList<Parameter> mParameters;
     Info *mParameterInfo;
 };
 

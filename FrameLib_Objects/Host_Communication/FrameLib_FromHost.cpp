@@ -9,27 +9,23 @@
 void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, const double *values, unsigned long N)
 {
     const std::vector<FrameLib_FromHost *>& objects = getObjectList(index);
-    std::vector<std::vector<double> *> swapVectors(objects.size());
+    std::vector<OwnedFrame> swapVectors(objects.size());
     
-    // Create one vector per object, swap and then delete the old vectors
+    // Create one vector per object, then swap (deconstructing the old ones in this thread)
     
     for (unsigned long i = 0; i < objects.size(); i++)
-        swapVectors[i] = new std::vector<double>(values, values + N);
+        swapVectors[i] = OwnedFrame(new std::vector<double>(values, values + N));
     
     for (unsigned long i = 0; i < objects.size(); i++)
         swapVectors[i] = objects[i]->swapVectorFrame(swapVectors[i]);
-    
-    for (unsigned long i = 0; i < objects.size(); i++)
-        delete swapVectors[i];
 }
 
 void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, unsigned long stream, const double *values, unsigned long N)
 {
-    // Copy vector, swap and delete the old vector
+    // Copy vector and swap(deconstructing the old vector in this thread)
 
-    std::vector<double> *inputSwap = new std::vector<double>(values, values + N);
+    OwnedFrame inputSwap(new std::vector<double>(values, values + N));
     getObject(index, stream)->swapVectorFrame(inputSwap);
-    delete inputSwap;
 }
 
 void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, const FrameLib_Parameters::Serial *serial)
@@ -88,7 +84,7 @@ void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, unsigned long s
 
 // Constructor
 
-FrameLib_FromHost::FrameLib_FromHost(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1), mVectorFrame(nullptr), mProxy(dynamic_cast<Proxy *>(proxy)), mStreamOwner(this), mStream(0)
+FrameLib_FromHost::FrameLib_FromHost(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1), mProxy(dynamic_cast<Proxy *>(proxy)), mStreamOwner(this), mStream(0)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kValues, "values");
@@ -108,7 +104,6 @@ FrameLib_FromHost::~FrameLib_FromHost()
 {
     if (mProxy)
         mProxy->unregisterObject(this, mStreamOwner, mStream);
-    delete mVectorFrame;
 }
 
 // Stream Awareness
@@ -190,12 +185,12 @@ void FrameLib_FromHost::process()
 
 // Swap vector frame
 
-std::vector<double> *FrameLib_FromHost::swapVectorFrame(std::vector<double> *swapVector)
+FrameLib_FromHost::OwnedFrame FrameLib_FromHost::swapVectorFrame(OwnedFrame& swapVector)
 {
     mLock.acquire();
     std::swap(mVectorFrame, swapVector);
     mLock.release();
-    return swapVector;
+    return std::move(swapVector);
 }
 
 // Swap vector frame

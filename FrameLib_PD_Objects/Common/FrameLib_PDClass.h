@@ -562,7 +562,7 @@ public:
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
         mFrameLibProxy->mMaxObject = *this;
-        mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mCanvas), &serialisedParameters, mFrameLibProxy, nStreams);
+        mObject.reset(new T(FrameLib_Context(mGlobal->getGlobal(), mCanvas), &serialisedParameters, mFrameLibProxy.get(), nStreams));
         parseInputs(argc, argv);
         
         long numIns = getNumIns() + (supportsOrderingConnections() ? 1 : 0);
@@ -601,9 +601,6 @@ public:
 
     ~FrameLib_PDClass()
     {
-        delete mObject;
-        delete mFrameLibProxy;
-        
         for (auto it = mInputs.begin(); it != mInputs.end(); it++)
             if (*it)
                 pd_free(*it);
@@ -620,7 +617,7 @@ public:
         else
             sys_bashfilename(path->s_name, conformedPath);
         
-        ExportError error = exportGraph(x->mObject, conformedPath, className->s_name);
+        ExportError error = exportGraph(x->mObject.get(), conformedPath, className->s_name);
         
         if (error == kExportPathError)
             pd_error(x->mUserObject, "couldn't write to or find specified path");
@@ -925,7 +922,7 @@ public:
     
     static FrameLib_Multistream *externalGetInternalObject(FrameLib_PDClass *x)
     {
-        return x->mObject;
+        return x->mObject.get();
     }
     
     static uintptr_t externalIsOutput(FrameLib_PDClass *x)
@@ -1111,9 +1108,9 @@ private:
     bool validInput(long index, FrameLib_Multistream *object) const         { return object && index >= 0 && index < object->getNumIns(); }
     bool validOutput(long index, FrameLib_Multistream *object) const        { return object && index >= 0 && index < object->getNumOuts(); }
     bool isOrderingInput(long index, FrameLib_Multistream *object) const    { return object && object->supportsOrderingConnections() && index == object->getNumIns(); }
-    bool validInput(long index) const                                       { return validInput(index, mObject); }
-    bool validOutput(long index) const                                      { return validOutput(index, mObject); }
-    bool isOrderingInput(long index) const                                  { return isOrderingInput(index, mObject); }
+    bool validInput(long index) const                                       { return validInput(index, mObject.get()); }
+    bool validOutput(long index) const                                      { return validOutput(index, mObject.get()); }
+    bool isOrderingInput(long index) const                                  { return isOrderingInput(index, mObject.get()); }
     
     bool isConnected(long index) const                                      { return mObject->isConnected(index); }
     
@@ -1406,13 +1403,16 @@ private:
 
 protected:
     
-    FrameLib_PDProxy *mFrameLibProxy;
+    std::unique_ptr<FrameLib_PDProxy> mFrameLibProxy;
     
 private:
 
-    // Data
+    // Data - N.B. - the order is crucial for safe deconstruction
     
-    FrameLib_Multistream *mObject;
+    FrameLib_PDGlobals::ManagedPointer mGlobal;
+    FrameLib_PDGlobals::SyncCheck mSyncChecker;
+
+    std::unique_ptr<FrameLib_Multistream> mObject;
     
     std::vector<t_pd *> mInputs;
     std::vector<t_outlet *> mOutputs;
@@ -1429,9 +1429,6 @@ private:
     
     t_glist *mCanvas;
     t_object *mSyncIn;
-    
-    FrameLib_PDGlobals::ManagedPointer mGlobal;
-    FrameLib_PDGlobals::SyncCheck mSyncChecker;
     
     bool mNeedsResolve;
     

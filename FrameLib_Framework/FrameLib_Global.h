@@ -8,6 +8,7 @@
 #include "FrameLib_ProcessingQueue.h"
 #include "FrameLib_Threading.h"
 
+#include <memory>
 #include <vector>
 
 // The Global Object
@@ -27,7 +28,7 @@ private:
         {
             CountablePointer(T* object, void *reference) : mObject(object), mReference(reference), mCount(1) {}
             
-            T *mObject;
+            std::unique_ptr<T> mObject;
             void *mReference;
             long mCount;
         };
