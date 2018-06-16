@@ -59,12 +59,12 @@ template <typename Compare, class T> void sortIndices(unsigned long *indices, T 
 
 template <class T> void sortAscending(T *data, unsigned long size)
 {
-    sortVector<std::greater<T> >(data, size);
+    sortVector<std::greater<T>>(data, size);
 }
 
 template <class T> void sortDescending(T *data, unsigned long size)
 {
-	sortVector<std::less<T> >(data, size);
+	sortVector<std::less<T>>(data, size);
 }
 
 template <class T> void sortAscending(T *output, const T *input, unsigned long size)
@@ -81,12 +81,12 @@ template <class T> void sortDescending(T *output, const T *input, unsigned long 
 
 template <class T> void sortIndicesAscending(unsigned long *indices, const T *data, unsigned long size)
 {
-    sortIndices<std::greater<T> >(indices, data, size);
+    sortIndices<std::greater<T>>(indices, data, size);
 }
 
 template <class T> void sortIndicesDescending(unsigned long *indices, const T *data, unsigned long size)
 {
-    sortIndices<std::less<T> >(indices, data, size);
+    sortIndices<std::less<T>>(indices, data, size);
 }
 
 

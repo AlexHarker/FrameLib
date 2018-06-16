@@ -273,7 +273,8 @@ private:
 ////////////////////// Wrapper for Synchronisation ///////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-template <class T> class Wrapper : public MaxClass_Base
+template <class T>
+class Wrapper : public MaxClass_Base
 {
     
 public:
@@ -538,7 +539,8 @@ private:
 
 enum MaxObjectArgsMode { kAsParams, kAllInputs, kDistribute };
 
-template <class T, MaxObjectArgsMode argsMode = kAsParams> class FrameLib_MaxClass : public MaxClass_Base
+template <class T, MaxObjectArgsMode argsMode = kAsParams>
+class FrameLib_MaxClass : public MaxClass_Base
 {
     typedef FrameLib_Object<FrameLib_Multistream>::Connection FrameLibConnection;
     typedef FrameLib_Object<t_object>::Connection MaxConnection;
@@ -548,7 +550,8 @@ public:
     
     // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_MaxClass<>)
     
-    template <class U = FrameLib_MaxClass<T, argsMode> > static void makeClass(t_symbol *nameSpace, const char *className)
+    template <class U = FrameLib_MaxClass<T, argsMode>>
+    static void makeClass(t_symbol *nameSpace, const char *className)
     {
         // If handles audio/scheduler then make wrapper class and name the inner object differently..
         
@@ -556,7 +559,7 @@ public:
         
         if (T::handlesAudio())
         {
-            Wrapper<U>:: template makeClass<Wrapper<U> >(CLASS_BOX, className);
+            Wrapper<U>:: template makeClass<Wrapper<U>>(CLASS_BOX, className);
             internalClassName.insert(0, "unsynced.");
         }
         
@@ -1574,4 +1577,4 @@ private:
 // Convenience for Objects Using FrameLib_Expand (use FrameLib_MaxClass_Expand<T>::makeClass() to create)
 
 template <class T, MaxObjectArgsMode argsSetAllInputs = kAsParams>
-class FrameLib_MaxClass_Expand : public FrameLib_MaxClass<FrameLib_Expand<T>, argsSetAllInputs> {};
+using FrameLib_MaxClass_Expand = FrameLib_MaxClass<FrameLib_Expand<T>, argsSetAllInputs>;

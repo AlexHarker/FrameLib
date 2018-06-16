@@ -212,7 +212,8 @@ private:
 ////////////////////// Wrapper for Synchronisation ///////////////////////
 //////////////////////////////////////////////////////////////////////////
 /*
-template <class T> class Wrapper : public PDClass_Base
+template <class T>
+ class Wrapper : public PDClass_Base
 {
  
 public:
@@ -463,7 +464,8 @@ struct FrameLib_PDProxy : public virtual FrameLib_Proxy
     t_object *mMaxObject;
 };
 
-template <class T, PDObjectArgsMode argsMode = kAsParams> class FrameLib_PDClass : public PDClass_Base
+template <class T, PDObjectArgsMode argsMode = kAsParams>
+class FrameLib_PDClass : public PDClass_Base
 {
     typedef FrameLib_Object<FrameLib_Multistream>::Connection FrameLibConnection;
     typedef FrameLib_Object<t_object>::Connection PDConnection;
@@ -503,7 +505,8 @@ public:
     
     // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_PDClass<>)
     
-    template <class U = FrameLib_PDClass<T, argsMode> > static void makeClass(const char *className)
+    template <class U = FrameLib_PDClass<T, argsMode>>
+    static void makeClass(const char *className)
     {
         // If handles audio/scheduler then make wrapper class and name the inner object differently..
         
@@ -512,7 +515,7 @@ public:
 
         if (T::handlesAudio())
         {
-            //Wrapper<U>:: template makeClass<Wrapper<U> >(CLASS_BOX, className);
+            //Wrapper<U>:: template makeClass<Wrapper<U>>(CLASS_BOX, className);
             internalClassName.insert(0, "unsynced.");
         }
         
@@ -1440,4 +1443,4 @@ public:
 // Convenience for Objects Using FrameLib_Expand (use FrameLib_PDClass_Expand<T>::makeClass() to create)
 
 template <class T, PDObjectArgsMode argsMode = kAsParams>
-class FrameLib_PDClass_Expand : public FrameLib_PDClass<FrameLib_Expand<T>, argsMode> {};
+using FrameLib_PDClass_Expand = FrameLib_PDClass<FrameLib_Expand<T>, argsMode>;

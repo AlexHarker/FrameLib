@@ -220,6 +220,6 @@ struct Binary_Functor
 // Binary (Function Version)
 
 template<double func(double, double)>
-using FrameLib_Binary = FrameLib_BinaryOp<Binary_Functor<func> >;
+using FrameLib_Binary = FrameLib_BinaryOp<Binary_Functor<func>>;
 
 #endif

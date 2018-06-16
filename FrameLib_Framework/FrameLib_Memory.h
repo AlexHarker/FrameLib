@@ -359,7 +359,7 @@ private:
     FreeBlock mFreeLists[numLocalFreeBlocks];
     FreeBlock *mTail;
     
-    std::vector <Storage *> mStorage;
+    std::vector<Storage *> mStorage;
 };
 
 #endif

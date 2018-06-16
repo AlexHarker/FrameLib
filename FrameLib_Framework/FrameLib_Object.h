@@ -318,7 +318,7 @@ public:
     
     template <class U> void addOutputDependencies(std::vector<U *> &dependencies, unsigned long outIdx)
     {
-        addOutputDependencies<std::vector<U *> >(dependencies, outIdx);
+        addOutputDependencies<std::vector<U *>>(dependencies, outIdx);
     }
     
 protected:

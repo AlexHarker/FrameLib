@@ -455,8 +455,8 @@ private:
     
     FrameLib_Parameters::AutoSerial mSerialisedParameters;
 
-    std::vector <FrameLib_Block *> mBlocks;
-    std::vector <std::vector <double> > mFixedInputs;
+    std::vector<FrameLib_Block *> mBlocks;
+    std::vector<std::vector<double>> mFixedInputs;
 
     unsigned long mMaxBlockSize;
     double mSamplingRate;

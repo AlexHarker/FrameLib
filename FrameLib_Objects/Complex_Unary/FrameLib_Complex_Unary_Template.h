@@ -105,6 +105,6 @@ struct Complex_Unary_Functor
 // Complex Unary (Function Version)
 
 template<std::complex<double> func(const std::complex<double> &)>
-using  FrameLib_Complex_Unary = FrameLib_Complex_UnaryOp<Complex_Unary_Functor<func> >;
+using  FrameLib_Complex_Unary = FrameLib_Complex_UnaryOp<Complex_Unary_Functor<func>>;
 
 #endif

@@ -56,7 +56,7 @@ private:
     
     // Data
     
-    std::vector <Cartesian> mSpeakers;
+    std::vector<Cartesian> mSpeakers;
 
     static ParameterInfo sParamInfo;
 };

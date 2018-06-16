@@ -365,7 +365,7 @@ private:
         
     private:
         
-        std::vector <std::string> mItems;
+        std::vector<std::string> mItems;
         unsigned long mValue;
     };
     
@@ -775,7 +775,7 @@ private:
     FrameLib_Proxy *mProxy;
     bool mReportErrors;
     
-    std::vector <Parameter *> mParameters;
+    std::vector<Parameter *> mParameters;
     Info *mParameterInfo;
 };
 

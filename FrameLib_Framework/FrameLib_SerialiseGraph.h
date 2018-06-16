@@ -30,7 +30,7 @@ struct FrameLib_ObjectDescription
     
     std::string mObjectType;
     std::vector<Tagged> mParameters;
-    std::vector<std::vector<double> > mInputs;
+    std::vector<std::vector<double>> mInputs;
     std::vector<Connection> mConnections;
     
     unsigned long mNumStreams;

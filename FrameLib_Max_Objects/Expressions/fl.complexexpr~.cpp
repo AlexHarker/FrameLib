@@ -91,7 +91,7 @@ private:
 
 // This class is a wrapper that allows the parsing to happen correctly
 
-struct FrameLib_MaxClass_ComplexExpression_Parsed : public FrameLib_MaxClass<FrameLib_Expand<FrameLib_ComplexExpression> >
+struct FrameLib_MaxClass_ComplexExpression_Parsed : public FrameLib_MaxClass_Expand<FrameLib_ComplexExpression>
 {
     FrameLib_MaxClass_ComplexExpression_Parsed(const ArgumentParser &parsed) :
     FrameLib_MaxClass(parsed.symbol(), parsed.count(), parsed.args(), new FrameLib_MaxProxy()) {}

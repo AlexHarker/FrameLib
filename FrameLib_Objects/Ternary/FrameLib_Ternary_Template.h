@@ -186,6 +186,6 @@ struct Ternary_Functor
 // Ternary (Function Version)
 
 template<double func(double, double, double)>
-using  FrameLib_Ternary = FrameLib_TernaryOp<Ternary_Functor<func> >;
+using  FrameLib_Ternary = FrameLib_TernaryOp<Ternary_Functor<func>>;
 
 #endif

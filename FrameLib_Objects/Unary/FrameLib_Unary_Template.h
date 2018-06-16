@@ -63,6 +63,6 @@ struct Unary_Functor
 // Unary (Function Version)
 
 template<double func(double)>
-using FrameLib_Unary = FrameLib_UnaryOp<Unary_Functor<func> >;
+using FrameLib_Unary = FrameLib_UnaryOp<Unary_Functor<func>>;
 
 #endif

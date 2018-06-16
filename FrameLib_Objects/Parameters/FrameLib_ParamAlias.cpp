@@ -46,7 +46,7 @@ void FrameLib_ParamAlias::initialise()
     
     // Make space to store all the output dependencies
     
-    std::vector<std::vector<FrameLib_DSP *> > dependencies;
+    std::vector<std::vector<FrameLib_DSP *>> dependencies;
     dependencies.resize(getNumOuts());
     
     // For each output get a list of output dependencies

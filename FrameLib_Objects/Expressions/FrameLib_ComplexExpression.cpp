@@ -7,7 +7,7 @@
 // Specialisations to allow implicit multiples of i for complex numbers
 
 template<>
-const char *FrameLib_ExprParser<std::complex<double> >::extentNumber(const char *expr)
+const char *FrameLib_ExprParser<std::complex<double>>::extentNumber(const char *expr)
 {
     if (isDigit(*expr))
     {
@@ -21,7 +21,7 @@ const char *FrameLib_ExprParser<std::complex<double> >::extentNumber(const char 
 }
 
 template<>
-std::complex<double> FrameLib_ExprParser<std::complex<double> >::convertTextToNumber(const char* text)
+std::complex<double> FrameLib_ExprParser<std::complex<double>>::convertTextToNumber(const char* text)
 {
     if (text[strlen(text) - 1] == 'i')
     {
@@ -37,7 +37,7 @@ std::complex<double> FrameLib_ExprParser<std::complex<double> >::convertTextToNu
 // Function/Operator Templates
 
 template <typename Op>
-struct UnaryOperation final : public OpBase<std::complex<double> >
+struct UnaryOperation final : public OpBase<std::complex<double>>
 {
     typedef std::complex<double> complex;
     
@@ -53,7 +53,7 @@ struct UnaryOperation final : public OpBase<std::complex<double> >
 };
 
 template <typename Op>
-struct BinaryOperation final : public OpBase<std::complex<double> >
+struct BinaryOperation final : public OpBase<std::complex<double>>
 {
     typedef std::complex<double> complex;
 
@@ -88,38 +88,38 @@ FrameLib_ComplexExpression::Parser::Parser() : FrameLib_ExprParser(3)
     
     // Operators
     
-    addOperator(new UnaryOperation<Complex_Unary_Functor<negate> >("-", 0));
+    addOperator(new UnaryOperation<Complex_Unary_Functor<negate>>("-", 0));
     
-    addOperator(new BinaryOperation<std::divides<std::complex<double> > >("/", 1));
-    addOperator(new BinaryOperation<std::multiplies<std::complex<double> > >("*", 1));
+    addOperator(new BinaryOperation<std::divides<std::complex<double>>>("/", 1));
+    addOperator(new BinaryOperation<std::multiplies<std::complex<double>>>("*", 1));
     
-    addOperator(new BinaryOperation<std::plus<std::complex<double> > >("+", 2));
-    addOperator(new BinaryOperation<std::minus<std::complex<double> > >("-", 2));
+    addOperator(new BinaryOperation<std::plus<std::complex<double>>>("+", 2));
+    addOperator(new BinaryOperation<std::minus<std::complex<double>>>("-", 2));
     
     // Functions
     
-    addFunction(new UnaryOperation<Complex_Unary_Functor<std::sin> >("sin"));
-    addFunction(new UnaryOperation<Complex_Unary_Functor<std::cos> >("cos"));
-    addFunction(new UnaryOperation<Complex_Unary_Functor<std::tan> >("tan"));
-    addFunction(new UnaryOperation<Complex_Unary_Functor<std::sinh> >("sinh"));
-    addFunction(new UnaryOperation<Complex_Unary_Functor<std::cosh> >("cosh"));
-    addFunction(new UnaryOperation<Complex_Unary_Functor<std::tanh> >("tanh"));
-    addFunction(new UnaryOperation<Complex_Unary_Functor<std::asin> >("asin"));
-    addFunction(new UnaryOperation<Complex_Unary_Functor<std::acos> >("acos"));
-    addFunction(new UnaryOperation<Complex_Unary_Functor<std::atan> >("atan"));
-    addFunction(new UnaryOperation<Complex_Unary_Functor<std::asinh> >("asinh"));
-    addFunction(new UnaryOperation<Complex_Unary_Functor<std::acosh> >("acosh"));
-    addFunction(new UnaryOperation<Complex_Unary_Functor<std::atanh> >("atanh"));
+    addFunction(new UnaryOperation<Complex_Unary_Functor<std::sin>>("sin"));
+    addFunction(new UnaryOperation<Complex_Unary_Functor<std::cos>>("cos"));
+    addFunction(new UnaryOperation<Complex_Unary_Functor<std::tan>>("tan"));
+    addFunction(new UnaryOperation<Complex_Unary_Functor<std::sinh>>("sinh"));
+    addFunction(new UnaryOperation<Complex_Unary_Functor<std::cosh>>("cosh"));
+    addFunction(new UnaryOperation<Complex_Unary_Functor<std::tanh>>("tanh"));
+    addFunction(new UnaryOperation<Complex_Unary_Functor<std::asin>>("asin"));
+    addFunction(new UnaryOperation<Complex_Unary_Functor<std::acos>>("acos"));
+    addFunction(new UnaryOperation<Complex_Unary_Functor<std::atan>>("atan"));
+    addFunction(new UnaryOperation<Complex_Unary_Functor<std::asinh>>("asinh"));
+    addFunction(new UnaryOperation<Complex_Unary_Functor<std::acosh>>("acosh"));
+    addFunction(new UnaryOperation<Complex_Unary_Functor<std::atanh>>("atanh"));
     
-    addFunction(new UnaryOperation<Complex_Unary_Functor<std::log> >("log"));
-    addFunction(new UnaryOperation<Complex_Unary_Functor<std::log10> >("log10"));
-    addFunction(new UnaryOperation<Complex_Unary_Functor<std::exp> >("exp"));
+    addFunction(new UnaryOperation<Complex_Unary_Functor<std::log>>("log"));
+    addFunction(new UnaryOperation<Complex_Unary_Functor<std::log10>>("log10"));
+    addFunction(new UnaryOperation<Complex_Unary_Functor<std::exp>>("exp"));
     
-    addFunction(new UnaryOperation<Complex_Unary_Functor<std::conj> >("conj"));
+    addFunction(new UnaryOperation<Complex_Unary_Functor<std::conj>>("conj"));
 
-    addFunction(new UnaryOperation<Complex_Unary_Functor<std::sqrt> >("sqrt"));
+    addFunction(new UnaryOperation<Complex_Unary_Functor<std::sqrt>>("sqrt"));
     
-    addFunction(new BinaryOperation<Complex_Binary_Functor<std::pow> >("pow"));
+    addFunction(new BinaryOperation<Complex_Binary_Functor<std::pow>>("pow"));
 }
 
 // Input Processor Class
@@ -285,7 +285,7 @@ void FrameLib_ComplexExpression::ConstantOut::process()
 
 FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mInputProcessor(nullptr), mParameters(context, proxy, &sParamInfo)
 {
-    typedef Graph<std::complex<double> > Graph;
+    typedef Graph<std::complex<double>> Graph;
     typedef FrameLib_Block::Connection Connection;
     
     mParameters.addString(kExpression, "expr", 0);

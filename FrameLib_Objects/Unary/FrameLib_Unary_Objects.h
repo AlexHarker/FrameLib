@@ -8,11 +8,11 @@
 
 // Info specialisations
 
-template<> const char *FrameLib_UnaryOp<std::logical_not<double> >::getOpString()  { return "logical not"; }
+template<> const char *FrameLib_UnaryOp<std::logical_not<double>>::getOpString()  { return "logical not"; }
 
 // Type definitions
 
-typedef FrameLib_UnaryOp<std::logical_not<double> >    FrameLib_LogicalNot;
+typedef FrameLib_UnaryOp<std::logical_not<double>>    FrameLib_LogicalNot;
 
 // Unary (functions)
 

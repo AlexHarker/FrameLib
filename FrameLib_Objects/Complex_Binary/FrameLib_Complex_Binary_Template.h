@@ -313,7 +313,7 @@ struct Complex_Binary_Functor
 // Complex Binary (Function Version)
 
 template<std::complex<double> func(const std::complex<double>&, const std::complex<double>&)>
-using  FrameLib_Complex_Binary = FrameLib_Complex_BinaryOp<Complex_Binary_Functor<func> >;
+using  FrameLib_Complex_Binary = FrameLib_Complex_BinaryOp<Complex_Binary_Functor<func>>;
 
 
 

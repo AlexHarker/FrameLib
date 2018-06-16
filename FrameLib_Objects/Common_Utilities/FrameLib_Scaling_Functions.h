@@ -109,31 +109,31 @@ struct ClipScaler
 
 // ClipScaler Definitions (add clipping to functors)
 
-template <class T> struct LinClipScaler : public ClipScaler<T, LinScaler<T> >
+template <class T> struct LinClipScaler : public ClipScaler<T, LinScaler<T>>
 {
-    LinClipScaler() : ClipScaler<T, LinScaler<T> >(LinScaler<T>(), 0, 1) {}
-    LinClipScaler(T inLo, T inHi, T outLo, T outHi) : ClipScaler<T, LinScaler<T> >(LinScaler<T>(inLo, inHi, outLo, outHi), outLo, outHi) {}
-    LinClipScaler(const ScaleCoefficients<T>& coeff, T min, T max) : ClipScaler<T, LinScaler<T> >(LinScaler<T>(coeff), min, max) {}
+    LinClipScaler() : ClipScaler<T, LinScaler<T>>(LinScaler<T>(), 0, 1) {}
+    LinClipScaler(T inLo, T inHi, T outLo, T outHi) : ClipScaler<T, LinScaler<T>>(LinScaler<T>(inLo, inHi, outLo, outHi), outLo, outHi) {}
+    LinClipScaler(const ScaleCoefficients<T>& coeff, T min, T max) : ClipScaler<T, LinScaler<T>>(LinScaler<T>(coeff), min, max) {}
 };
 
-template <class T> struct LogClipScaler : public ClipScaler<T, LogScaler<T> >
+template <class T> struct LogClipScaler : public ClipScaler<T, LogScaler<T>>
 {
-    LogClipScaler(T inLo, T inHi, T outLo, T outHi) : ClipScaler<T, LogScaler<T> >(log(inLo), log(inHi), outLo, outHi) {}
-    LogClipScaler(const ScaleCoefficients<T>& coeff, T min, T max) : ClipScaler<T, LogScaler<T> >(LogScaler<T>(coeff), min, max) {}
+    LogClipScaler(T inLo, T inHi, T outLo, T outHi) : ClipScaler<T, LogScaler<T>>(log(inLo), log(inHi), outLo, outHi) {}
+    LogClipScaler(const ScaleCoefficients<T>& coeff, T min, T max) : ClipScaler<T, LogScaler<T>>(LogScaler<T>(coeff), min, max) {}
 };
 
-template <class T> struct ExpClipScaler : public ClipScaler<T, ExpScaler<T> >
+template <class T> struct ExpClipScaler : public ClipScaler<T, ExpScaler<T>>
 {
-    ExpClipScaler(T inLo, T inHi, T outLo, T outHi) : ClipScaler<T, ExpScaler<T> >(ExpScaler<T>(inLo, inHi, log(outLo), log(outHi)), outLo, outHi) {}
-    ExpClipScaler(const ScaleCoefficients<T>& coeff, T min, T max) : ClipScaler<T, ExpScaler<T> >(ExpScaler<T>(coeff), min, max) {}
+    ExpClipScaler(T inLo, T inHi, T outLo, T outHi) : ClipScaler<T, ExpScaler<T>>(ExpScaler<T>(inLo, inHi, log(outLo), log(outHi)), outLo, outHi) {}
+    ExpClipScaler(const ScaleCoefficients<T>& coeff, T min, T max) : ClipScaler<T, ExpScaler<T>>(ExpScaler<T>(coeff), min, max) {}
 };
 
-template <class T> struct PowClipScaler : public ClipScaler<T, PowScaler<T> >
+template <class T> struct PowClipScaler : public ClipScaler<T, PowScaler<T>>
 {
     PowClipScaler(T inLo, T inHi, T outLo, T outHi, T exponent)
-    : ClipScaler<T, PowScaler<T> >(PowScaler<T>(inLo, inHi, log(outLo), log(outHi)), outLo, outHi, exponent) {}
+    : ClipScaler<T, PowScaler<T>>(PowScaler<T>(inLo, inHi, log(outLo), log(outHi)), outLo, outHi, exponent) {}
     PowClipScaler(const ScaleCoefficients<T>& inCoeff, const ScaleCoefficients<T>& outCoeff, T exponent, T min, T max)
-    : ClipScaler<T, PowScaler<T> >(PowScaler<T>(inCoeff, outCoeff, exponent), min, max) {}
+    : ClipScaler<T, PowScaler<T>>(PowScaler<T>(inCoeff, outCoeff, exponent), min, max) {}
 };
 
 // Variable Lin, Log or Exp Scaling

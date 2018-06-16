@@ -5,7 +5,7 @@
 
 // Max Class
 
-class FrameLib_MaxClass_Read : public FrameLib_MaxClass<FrameLib_Expand<FrameLib_Read> >
+class FrameLib_MaxClass_Read : public FrameLib_MaxClass_Expand<FrameLib_Read>
 {
     struct ReadProxy : public FrameLib_Read::Proxy, public FrameLib_MaxProxy
     {

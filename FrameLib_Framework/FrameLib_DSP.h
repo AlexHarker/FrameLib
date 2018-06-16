@@ -278,8 +278,8 @@ private:
     std::vector<FrameLib_DSP *> mInputDependencies;
     std::vector<FrameLib_DSP *> mOutputDependencies;
 
-    std::vector <Input> mInputs;
-    std::vector <Output> mOutputs;
+    std::vector<Input> mInputs;
+    std::vector<Output> mOutputs;
     
     // Dependency Counts
     
