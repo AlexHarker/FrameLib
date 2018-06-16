@@ -25,7 +25,7 @@ class FrameLib_ComplexExpression : public FrameLib_Block
         Parser();
     };
     
-    class InputProcessor : public FrameLib_Processor
+    class InputProcessor final : public FrameLib_Processor
     {
         
     public:
@@ -40,14 +40,14 @@ class FrameLib_ComplexExpression : public FrameLib_Block
         
         // Update and Process
         
-        void process();
+        void process() override;
         
         // Dade
         
         MismatchModes mMode;
     };
     
-    class ConstantOut : public FrameLib_Processor
+    class ConstantOut final : public FrameLib_Processor
     {
 
     public:
@@ -60,7 +60,7 @@ class FrameLib_ComplexExpression : public FrameLib_Block
         
         // Update and Process
         
-        void process();
+        void process() override;
         
         // Data
         
@@ -81,31 +81,31 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string inputInfo(unsigned long idx, bool verbose);
-    std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
     
     // Connection Types
     
-    virtual FrameType inputType(unsigned long idx) const    { return kFrameNormal; }
-    virtual FrameType outputType(unsigned long idx) const   { return kFrameNormal; }
+    FrameType inputType(unsigned long idx) const override   { return kFrameNormal; }
+    FrameType outputType(unsigned long idx) const override  { return kFrameNormal; }
     
     // Fixed inputs are dealt with either by the input processor or by the constant object
     
-    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size)    { mFixedInputNode->setFixedInput(idx, input, size); }
-    virtual const double *getFixedInput(unsigned long idx, unsigned long *size)         { return mFixedInputNode->getFixedInput(idx, size); }
+    void setFixedInput(unsigned long idx, double *input, unsigned long size) override    { mFixedInputNode->setFixedInput(idx, input, size); }
+    const double *getFixedInput(unsigned long idx, unsigned long *size) override         { return mFixedInputNode->getFixedInput(idx, size); }
     
     // Audio Processing
     
-    virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) {}
-    virtual void reset(double samplingRate, unsigned long maxBlockSize);
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override {}
+    void reset(double samplingRate, unsigned long maxBlockSize) override;
     
-    virtual const FrameLib_Parameters *getParameters() const { return &mParameters; }
+    const FrameLib_Parameters *getParameters() const override { return &mParameters; }
     
     // Ordering Connections
     
-    virtual void autoOrderingConnections() {};
-    virtual void clearAutoOrderingConnections() {};
+    void autoOrderingConnections() override {};
+    void clearAutoOrderingConnections() override {};
     
 private:
     

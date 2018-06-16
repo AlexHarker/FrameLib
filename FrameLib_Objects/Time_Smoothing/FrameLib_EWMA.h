@@ -4,7 +4,7 @@
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_EWMA : public FrameLib_Processor
+class FrameLib_EWMA final : public FrameLib_Processor
 {
     // Parameter Enums and Info
     
@@ -26,19 +26,19 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string inputInfo(unsigned long idx, bool verbose);
-    std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
     
 private:
 
     // Object Reset
     
-    void objectReset() { mFrameSize = 0; }
+    void objectReset() override { mFrameSize = 0; }
     
     // Process
     
-    void process();
+    void process() override;
     
     // Data
     

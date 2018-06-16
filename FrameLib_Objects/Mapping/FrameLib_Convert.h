@@ -5,7 +5,7 @@
 #include "FrameLib_DSP.h"
 #include "FrameLib_Scaling_Functions.h"
 
-class FrameLib_Convert : public FrameLib_Processor, private FrameLib_ScaleConverter
+class FrameLib_Convert final : public FrameLib_Processor, private FrameLib_ScaleConverter
 {
     // Parameter Enums and Info
 
@@ -22,9 +22,9 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string inputInfo(unsigned long idx, bool verbose);
-    std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
 
 private:
     
@@ -34,8 +34,8 @@ private:
     
     // Update and Process
     
-    void update();
-    void process();
+    void update() override;
+    void process() override;
     
     // Data
         

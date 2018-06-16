@@ -14,7 +14,7 @@ class FrameLib_Dispatch : public FrameLib_Block
 
     // Internal valve class
     
-    class Select : public FrameLib_Processor
+    class Select final : public FrameLib_Processor
     {
         // Parameter Enums and Info
         
@@ -30,8 +30,8 @@ class FrameLib_Dispatch : public FrameLib_Block
         
         // Update and Process
         
-        void update();
-        void process();
+        void update() override;
+        void process() override;
         
         // Data
         
@@ -52,31 +52,31 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string inputInfo(unsigned long idx, bool verbose);
-    std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
     
     // Connection Types
     
-    virtual FrameType inputType(unsigned long idx) const    { return kFrameAny; }
-    virtual FrameType outputType(unsigned long idx) const   { return kFrameAny; }
+    FrameType inputType(unsigned long idx) const override       { return kFrameAny; }
+    FrameType outputType(unsigned long idx) const override      { return kFrameAny; }
     
     // N.B. - Nothing can be acheived by setting a fixed input, so ignore this
     
-    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) {}
-    virtual const double *getFixedInput(unsigned long idx, unsigned long *size) { return getEmptyFixedInput(idx, size); }
+    void setFixedInput(unsigned long idx, double *input, unsigned long size) override {}
+    const double *getFixedInput(unsigned long idx, unsigned long *size) override { return getEmptyFixedInput(idx, size); }
 
     // Audio Processing
     
-    virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) {}
-    virtual void reset(double samplingRate, unsigned long maxBlockSize);
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override {}
+    void reset(double samplingRate, unsigned long maxBlockSize) override;
     
-    virtual const FrameLib_Parameters *getParameters() const                                { return &mParameters; }
+    const FrameLib_Parameters *getParameters() const override                                { return &mParameters; }
 
     // Ordering Connections
     
-    virtual void autoOrderingConnections() {};
-    virtual void clearAutoOrderingConnections() {};
+    void autoOrderingConnections() override {};
+    void clearAutoOrderingConnections() override {};
     
 private:
     

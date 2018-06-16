@@ -4,7 +4,7 @@
 
 #include "FrameLib_DSP.h"
 
-template <typename Op> class FrameLib_TernaryOp : public FrameLib_Processor
+template <typename Op> class FrameLib_TernaryOp final : public FrameLib_Processor
 {
     enum ParameterList { kMismatchMode };
     enum MismatchModes { kWrap, kShrink, kExtend};
@@ -82,14 +82,14 @@ public:
         mMismatchMode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
     }
     
-    std::string objectInfo(bool verbose)
+    std::string objectInfo(bool verbose) override
     {
         return formatInfo("#: Calculation is performed on triplets of values in turn. The result is an output frame as long as the left most frame, presumed to be a signal input."
                           "When frames mismatch in size the result depends on the setting of the mismatch parameter.",
                           "#.", getDescriptionString(), verbose);
     }
 
-    std::string inputInfo(unsigned long idx, bool verbose)
+    std::string inputInfo(unsigned long idx, bool verbose) override
     {
         switch (idx)
         {
@@ -100,11 +100,14 @@ public:
         }
     }
 
-    std::string outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
+    std::string outputInfo(unsigned long idx, bool verbose) override
+    {
+        return "Result";
+    }
     
 private:
     
-    void process()
+    void process() override
     {
         MismatchModes mode = mMismatchMode;
         Op op;
@@ -161,7 +164,7 @@ private:
         }
     }
     
-    virtual const char *getDescriptionString() { return "Ternary Operator - No operator info available"; }
+    const char *getDescriptionString() { return "Ternary Operator - No operator info available"; }
     
     ParameterInfo *getParameterInfo()
     {
@@ -172,27 +175,17 @@ private:
     MismatchModes mMismatchMode;
 };
 
+// Ternary Functor
 
-template <double func(double, double, double)> struct Ternary_Functor
+template<double func(double, double, double)>
+struct Ternary_Functor
 {
     double operator()(double x, double y, double z) { return func(x, y, z); }
 };
 
-template <double func(double, double, double)> class FrameLib_Ternary : public FrameLib_TernaryOp<Ternary_Functor<func> >
-{
-    
-public:
-    
-    // Constructor
-    
-    FrameLib_Ternary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-    : FrameLib_TernaryOp<Ternary_Functor<func> > (context, serialisedParameters, proxy) {}
-    
-private:
-    
-    // Description (specialise/override to change description)
-    
-    virtual const char *getDescriptionString() { return "Ternary Operator - No operator info available"; }
-};
+// Ternary (Function Version)
+
+template<double func(double, double, double)>
+using  FrameLib_Ternary = FrameLib_TernaryOp<Ternary_Functor<func> >;
 
 #endif

@@ -75,7 +75,7 @@ private:
     
     // Process
     
-    void process()
+    void process() override
     {
         unsigned long sizeIn, sizeOut;
         unsigned long maxFrames = getMaxFrames();

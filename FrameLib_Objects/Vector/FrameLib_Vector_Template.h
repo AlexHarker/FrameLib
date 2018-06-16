@@ -4,7 +4,7 @@
 
 #include "FrameLib_DSP.h"
 
-template <double func(const double *, unsigned long), bool calcZeroLength = false> class FrameLib_Vector : public FrameLib_Processor
+template <double func(const double *, unsigned long), bool calcZeroLength = false> class FrameLib_Vector final : public FrameLib_Processor
 {
     
 public:
@@ -15,20 +15,20 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose)
+    std::string objectInfo(bool verbose) override
     {
         return formatInfo("Calculates the # of the input frame: The result is a single value.",
                        "Calculates the # of the input frame.", getOpString(), verbose);
     }
     
-    std::string inputInfo(unsigned long idx, bool verbose)      { return "Input"; }
-    std::string outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
+    std::string inputInfo(unsigned long idx, bool verbose) override     { return "Input"; }
+    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Result"; }
 
 private:
     
     // Process
     
-    void process()
+    void process() override
     {
         unsigned long sizeIn, sizeOut;
         const double *input = getInput(0, &sizeIn);

@@ -11,24 +11,24 @@ class FrameLib_MaxClass_Read : public FrameLib_MaxClass<FrameLib_Expand<FrameLib
     {
         ReadProxy();
         
-        virtual void update(const char *name)
+        void update(const char *name) override
         {
             mBufferName = gensym(name);
         }
         
-        virtual void acquire(unsigned long& length, double& samplingRate)
+        void acquire(unsigned long& length, double& samplingRate) override
         {
             mBuffer.acquire(mBufferName);
             length = mBuffer.get_length();
             samplingRate = mBuffer.get_sample_rate();
         }
         
-        virtual void release()
+        void release() override
         {
             mBuffer.release();
         };
         
-        virtual void read(double *output, const double *positions, unsigned long size, long chan, InterpType interpType)
+        void read(double *output, const double *positions, unsigned long size, long chan, InterpType interpType)  override
         {
             ibuffer_read(mBuffer, output, positions, size, chan, 1.0, interpType);
         }

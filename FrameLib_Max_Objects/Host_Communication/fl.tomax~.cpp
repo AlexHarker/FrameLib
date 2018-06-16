@@ -11,8 +11,8 @@ class FrameLib_MaxClass_ToMax : public FrameLib_MaxClass<FrameLib_Expand<FrameLi
     {
         ToHostProxy(FrameLib_MaxClass_ToMax *object) : mObject(object){}
         
-        virtual void sendToHost(unsigned long index, unsigned long stream, const double *values, unsigned long N);
-        virtual void sendToHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial);
+        void sendToHost(unsigned long index, unsigned long stream, const double *values, unsigned long N)  override;
+        void sendToHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial)  override;
         
     private:
         

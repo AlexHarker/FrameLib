@@ -9,7 +9,7 @@
 
 // Complex Unary (Operator Version)
 
-template <typename Op> class FrameLib_Complex_UnaryOp : public FrameLib_Processor
+template <typename Op> class FrameLib_Complex_UnaryOp final : public FrameLib_Processor
 {
     
 public:
@@ -20,13 +20,13 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose)
+    std::string objectInfo(bool verbose) override
     {
         return formatInfo("Calculates the # of each complex value at the inputs: The input and output are split into real and imaginary parts. The result is two frames of the same size as the longer of the two inputs. If one input is shorter than the other it is padded with zeros to the size of the other before calculation.",
                        "Calculates the # of each complex value at the inputs.", getOpString(), verbose);
     }
 
-    std::string inputInfo(unsigned long idx, bool verbose)
+    std::string inputInfo(unsigned long idx, bool verbose) override
     {
         if (idx == 0)
             return formatInfo("Real Input", "Real Input", verbose);
@@ -34,7 +34,7 @@ public:
             return formatInfo("Imaginary Input", "Imag Input", verbose);
     }
     
-    std::string outputInfo(unsigned long idx, bool verbose)
+    std::string outputInfo(unsigned long idx, bool verbose) override
     {
         if (idx == 0)
             return formatInfo("Real Result", "Real Result", verbose);
@@ -55,7 +55,7 @@ private:
     
     // Process
     
-    void process()
+    void process() override
     {
         Op op;
         unsigned long size, sizeInR, sizeInI;
@@ -89,35 +89,22 @@ private:
         }
     }
     
-    // Description (specialise/override to change description)
+    // Description (specialise to change description)
 
-    virtual const char *getOpString() { return "<unary operation>"; }
+    const char *getOpString() { return "<unary operation>"; }
 };
 
 // Complex Unary Functor
 
-template <std::complex<double> func(const std::complex<double> &)> struct Complex_Unary_Functor
+template<std::complex<double> func(const std::complex<double> &)>
+struct Complex_Unary_Functor
 {
     std::complex<double> operator()(std::complex<double> x) { return func(x); }
 };
 
 // Complex Unary (Function Version)
 
-template <std::complex<double> func(const std::complex<double> &)> class FrameLib_Complex_Unary : public FrameLib_Complex_UnaryOp<Complex_Unary_Functor<func> >
-{
-    
-public:
-    
-    // Constructor
-    
-    FrameLib_Complex_Unary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-    : FrameLib_Complex_UnaryOp<Complex_Unary_Functor<func> > (context, serialisedParameters, proxy) {}
-
-private:
-    
-    // Description (specialise/override to change description)
-
-    virtual const char *getOpString() { return "<unary operation>"; }
-};
+template<std::complex<double> func(const std::complex<double> &)>
+using  FrameLib_Complex_Unary = FrameLib_Complex_UnaryOp<Complex_Unary_Functor<func> >;
 
 #endif

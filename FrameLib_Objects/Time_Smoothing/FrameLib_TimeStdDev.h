@@ -4,7 +4,7 @@
 
 #include "FrameLib_TimeBuffer_Template.h"
 
-class FrameLib_TimeStdDev : public FrameLib_TimeBuffer<FrameLib_TimeStdDev>
+class FrameLib_TimeStdDev final : public FrameLib_TimeBuffer<FrameLib_TimeStdDev>
 {
     
 public:
@@ -23,23 +23,23 @@ public:
 
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string inputInfo(unsigned long idx, bool verbose);
-    std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
     
     // Smooth
 
-    void resetSize(unsigned long maxFrames, unsigned long size);
+    void resetSize(unsigned long maxFrames, unsigned long size) override;
 
-    virtual void add(const double *newFrame, unsigned long size);
-    virtual void remove(const double *oldFrame, unsigned long size);
-    virtual void result(double *output, unsigned long size);
+    void add(const double *newFrame, unsigned long size) override;
+    void remove(const double *oldFrame, unsigned long size) override;
+    void result(double *output, unsigned long size) override;
     
 private:
     
     // Object Reset
     
-    void objectReset() { smoothReset(); }
+    void objectReset() override { smoothReset(); }
     
     // Data
     

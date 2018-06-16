@@ -11,28 +11,28 @@
 // Function/Operator Templates
 
 template <typename Op>
-struct UnaryOperation : public OpBase<double>
+struct UnaryOperation final : public OpBase<double>
 {
     UnaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
-    int numItems() const                                { return 1; }
-    double call(double a, double b, double c) const     { return Op()(a); }
+    int numItems() const override                                { return 1; }
+    double call(double a, double b, double c) const override     { return Op()(a); }
     
-    FrameLib_DSP *create(FrameLib_Context context) const
+    FrameLib_DSP *create(FrameLib_Context context) const override
     {
         return new FrameLib_UnaryOp<Op>(context, nullptr, nullptr);
     }
 };
 
 template <typename Op>
-struct BinaryOperation : public OpBase<double>
+struct BinaryOperation final : public OpBase<double>
 {
     BinaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
-    int numItems() const                                { return 2; }
-    double call(double a, double b, double c) const     { return Op()(a, b); }
+    int numItems() const override                               { return 2; }
+    double call(double a, double b, double c) const override    { return Op()(a, b); }
     
-    FrameLib_DSP *create(FrameLib_Context context) const
+    FrameLib_DSP *create(FrameLib_Context context) const override
     {
         FrameLib_Parameters::AutoSerial serialiedParameters;
         serialiedParameters.write("mismatch", "wrap");
@@ -41,14 +41,14 @@ struct BinaryOperation : public OpBase<double>
 };
 
 template <typename Op>
-struct TernaryOperation : public OpBase<double>
+struct TernaryOperation final : public OpBase<double>
 {
     TernaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
-    virtual int numItems() const                        { return 3; }
-    double call(double a, double b, double c) const     { return Op()(a, b, c); }
+    int numItems() const override                       { return 3; }
+    double call(double a, double b, double c) const override    { return Op()(a, b, c); }
     
-    FrameLib_DSP *create(FrameLib_Context context) const
+    FrameLib_DSP *create(FrameLib_Context context) const override
     {
         FrameLib_Parameters::AutoSerial serialiedParameters;
         serialiedParameters.write("mismatch", "extend");

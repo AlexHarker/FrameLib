@@ -6,7 +6,7 @@
 #include "FrameLib_DSP.h"
 #include <vector>
 
-class FrameLib_Sink : public FrameLib_AudioOutput
+class FrameLib_Sink final : public FrameLib_AudioOutput
 {
     enum ParameterList { kBufferSize, kUnits, kDelay };
     enum Units { kSamples, kMS, kSeconds };
@@ -21,9 +21,9 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string inputInfo(unsigned long idx, bool verbose);
-    std::string audioInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string audioInfo(unsigned long idx, bool verbose) override;
     
 private:
     
@@ -38,9 +38,9 @@ private:
     
     // Object Reset, Block Process and Process
 
-    void objectReset();
-    void blockProcess(const double * const *ins, double **outs, unsigned long blockSize);
-    void process();
+    void objectReset() override;
+    void blockProcess(const double * const *ins, double **outs, unsigned long blockSize) override;
+    void process() override;
     
     // Data
     

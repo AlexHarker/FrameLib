@@ -5,7 +5,7 @@
 #include "FrameLib_DSP.h"
 #include "FrameLib_HostProxy.h"
 
-class FrameLib_FromHost : public FrameLib_Processor
+class FrameLib_FromHost final : public FrameLib_Processor
 {
     // A FIFO list for storing parameter frame additions
     
@@ -136,17 +136,17 @@ public:
     
     // Stream Awareness
     
-    virtual void setStream(void *streamOwner, unsigned long stream);
+    void setStream(void *streamOwner, unsigned long stream) override;
     
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string inputInfo(unsigned long idx, bool verbose);
-    std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
 
 private:
     
-    void process();
+    void process() override;
     
     // Swapping data with the proxy
     

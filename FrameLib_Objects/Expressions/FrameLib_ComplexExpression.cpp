@@ -37,32 +37,32 @@ std::complex<double> FrameLib_ExprParser<std::complex<double> >::convertTextToNu
 // Function/Operator Templates
 
 template <typename Op>
-struct UnaryOperation : public OpBase<std::complex<double> >
+struct UnaryOperation final : public OpBase<std::complex<double> >
 {
     typedef std::complex<double> complex;
     
     UnaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
-    int numItems() const                                    { return 1; }
-    complex call(complex a, complex b, complex c) const     { return Op()(a); }
+    int numItems() const override                                   { return 1; }
+    complex call(complex a, complex b, complex c) const override    { return Op()(a); }
     
-    FrameLib_DSP *create(FrameLib_Context context) const
+    FrameLib_DSP *create(FrameLib_Context context) const override
     {
         return new FrameLib_Complex_UnaryOp<Op>(context, nullptr, nullptr);
     }
 };
 
 template <typename Op>
-struct BinaryOperation : public OpBase<std::complex<double> >
+struct BinaryOperation final : public OpBase<std::complex<double> >
 {
     typedef std::complex<double> complex;
 
     BinaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
-    int numItems() const                                    { return 2; }
-    complex call(complex a, complex b, complex c) const     { return Op()(a, b); }
+    int numItems() const override                                   { return 2; }
+    complex call(complex a, complex b, complex c) const override    { return Op()(a, b); }
     
-    FrameLib_DSP *create(FrameLib_Context context) const
+    FrameLib_DSP *create(FrameLib_Context context) const override
     {
         FrameLib_Parameters::AutoSerial serialiedParameters;
         serialiedParameters.write("mismatch", "wrap");

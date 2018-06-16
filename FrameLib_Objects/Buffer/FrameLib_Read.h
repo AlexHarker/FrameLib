@@ -4,7 +4,7 @@
 
 // FIX - consider adding anti-alising later....
 
-class FrameLib_Read : public FrameLib_Processor
+class FrameLib_Read final : public FrameLib_Processor
 {
     // Parameter Info and Enums
     
@@ -40,16 +40,16 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string inputInfo(unsigned long idx, bool verbose);
-    std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
 
 private:
     
     // Process
     
-    void update() { if (mProxy) mProxy->update(mParameters.getString(kBuffer)); }
-    void process();
+    void update() override { if (mProxy) mProxy->update(mParameters.getString(kBuffer)); }
+    void process() override;
     
     // Data
     

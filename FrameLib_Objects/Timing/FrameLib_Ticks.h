@@ -4,7 +4,7 @@
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_Ticks : public FrameLib_Processor
+class FrameLib_Ticks final : public FrameLib_Processor
 {
     enum ParameterList {kLimit, kSetValue, kLimitMode, kRunMode};
     enum ModesLimit {kProgress, kRestart};
@@ -21,9 +21,9 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string inputInfo(unsigned long idx, bool verbose);
-    std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
     
 private:
     unsigned long counter;
@@ -34,7 +34,7 @@ private:
     
     // Process
     
-    void process();
+    void process() override;
     
     static ParameterInfo sParamInfo;
 };

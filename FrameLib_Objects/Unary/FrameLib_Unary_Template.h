@@ -8,7 +8,7 @@
 
 // Unary (Operator Version)
 
-template <typename Op> class FrameLib_UnaryOp : public FrameLib_Processor
+template <typename Op> class FrameLib_UnaryOp final : public FrameLib_Processor
 {
     
 public:
@@ -19,20 +19,20 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose)
+    std::string objectInfo(bool verbose) override
     {
         return formatInfo("Calculates the # of each value in the input frame: The result is a frame of the same size as the input.",
                        "Calculates the # of each value in the input frame.", getOpString(), verbose);
     }
 
-    std::string inputInfo(unsigned long idx, bool verbose)      { return "Input"; }
-    std::string outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
+    std::string inputInfo(unsigned long idx, bool verbose) override     { return "Input"; }
+    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Result"; }
 
 private:
     
     // Process
     
-    void process()
+    void process() override
     {
         Op op;
         unsigned long size;
@@ -47,35 +47,22 @@ private:
             output[i] = op(input[i]);
     }
     
-    // Description (specialise/override to change description)
+    // Description (specialise to change description)
 
-    virtual const char *getOpString() { return "<unary operation>"; }
+    const char *getOpString() { return "<unary operation>"; }
 };
 
 // Unary Functor
 
-template <double func(double)> struct Unary_Functor
+template<double func(double)>
+struct Unary_Functor
 {
     double operator()(double x) { return func(x); }
 };
 
 // Unary (Function Version)
 
-template <double func(double)> class FrameLib_Unary : public FrameLib_UnaryOp<Unary_Functor<func> >
-{
-    
-public:
-    
-    // Constructor
-    
-    FrameLib_Unary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-    : FrameLib_UnaryOp<Unary_Functor<func> > (context, serialisedParameters, proxy) {}
-
-private:
-    
-    // Description (specialise/override to change description)
-
-    virtual const char *getOpString() { return "<unary operation>"; }
-};
+template<double func(double)>
+using FrameLib_Unary = FrameLib_UnaryOp<Unary_Functor<func> >;
 
 #endif

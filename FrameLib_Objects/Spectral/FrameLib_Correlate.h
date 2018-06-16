@@ -5,7 +5,7 @@
 #include "FrameLib_DSP.h"
 #include "FrameLib_Convolution_Tools.h"
 
-class FrameLib_Correlate : public FrameLib_Processor, private Spectral
+class FrameLib_Correlate final : public FrameLib_Processor, private Spectral
 {
     // Parameter Enums and Info
 
@@ -22,15 +22,15 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string inputInfo(unsigned long idx, bool verbose);
-    std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
 
 private:
 
     // Process
     
-    void process();
+    void process() override;
 	
 private:
     

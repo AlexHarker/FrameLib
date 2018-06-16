@@ -136,24 +136,24 @@ class FrameLib_PDClass_Read : public FrameLib_PDClass<FrameLib_Expand<FrameLib_R
 {
     struct ReadProxy : public FrameLib_Read::Proxy, public FrameLib_PDProxy
     {
-        virtual void update(const char *name)
+        void update(const char *name) override
         {
             mBufferName = gensym(name);
         }
         
-        virtual void acquire(unsigned long& length, double& samplingRate)
+        void acquire(unsigned long& length, double& samplingRate) override
         {
             mBuffer = pd_buffer(mBufferName);
             length = mBuffer.get_length();
             samplingRate = 0.0;
         }
         
-        virtual void release()
+        void release() override
         {
             mBuffer = pd_buffer();
         };
         
-        virtual void read(double *output, const double *positions, unsigned long size, long chan, InterpType interpType)
+        void read(double *output, const double *positions, unsigned long size, long chan, InterpType interpType) override
         {
             mBuffer.read(output, positions, size, 1.0, interpType);
         }

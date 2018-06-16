@@ -8,7 +8,7 @@
 // FIX - All filters to templates
 // FIX - time varying params
 
-class FrameLib_0dfSVF : public FrameLib_Processor
+class FrameLib_0dfSVF final : public FrameLib_Processor
 {
     // Filter Class
     
@@ -59,15 +59,15 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string inputInfo(unsigned long idx, bool verbose);
-    std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
     
 private:
     
     // Process
     
-    void process();
+    void process() override;
     
     // Data
     

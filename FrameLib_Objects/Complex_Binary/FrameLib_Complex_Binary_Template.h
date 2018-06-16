@@ -9,7 +9,7 @@
 
 // Complex Binary Operator
 
-template <typename Op> class FrameLib_Complex_BinaryOp : public FrameLib_Processor
+template <typename Op> class FrameLib_Complex_BinaryOp final : public FrameLib_Processor
 {
     class PaddedInput
     {
@@ -114,14 +114,14 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose)
+    std::string objectInfo(bool verbose) override
     {
         return formatInfo("#: Calculation is performed on pairs of complex values in turn (with each complex value split across two inputs). If there is a mismatch between sizes within each complex pair (within a single operand) the shorter input is padded with zeros before calculation and the longer size used). The result is two output frames at least as long as the smaller of the two input pairs. "
                        "When complex pairs of frames (left and right operands) mismatch in size the result depends on the setting of the mismatch parameter. Either or both pairs of inputs may be set to trigger output.",
                        "#.", getDescriptionString(), verbose);
     }
         
-    std::string inputInfo(unsigned long idx, bool verbose)
+    std::string inputInfo(unsigned long idx, bool verbose) override
     {
         if (idx == 0)
             return formatInfo("Left Real Input", "Left Real Input", verbose);
@@ -133,7 +133,7 @@ public:
             return formatInfo("Right Imaginary Input", "Right Imag Input", verbose);
     }
     
-    std::string outputInfo(unsigned long idx, bool verbose)
+    std::string outputInfo(unsigned long idx, bool verbose) override
     {
         if (idx == 0)
             return formatInfo("Real Result", "Real Result", verbose);
@@ -154,7 +154,7 @@ private:
     
     // Process
     
-    void process()
+    void process() override
     {
         MismatchModes mode = mMismatchMode;
         Op op;
@@ -286,9 +286,9 @@ private:
     
 private:
     
-    // Description (specialise/override to change description)
+    // Description (specialise to change description)
     
-    virtual const char *getDescriptionString() { return "Binary Operator - No operator info available"; }
+    const char *getDescriptionString() { return "Binary Operator - No operator info available"; }
 
     ParameterInfo *getParameterInfo()
     {
@@ -302,30 +302,19 @@ private:
     MismatchModes mMismatchMode;
 };
 
-// Complex Binary (Function Version)
-
 // Complex Binary Functor
 
-template <std::complex<double> func(const std::complex<double>&, const std::complex<double>&)> struct Complex_Binary_Functor
+template<std::complex<double> func(const std::complex<double>&, const std::complex<double>&)>
+struct Complex_Binary_Functor
 {
     std::complex<double> operator()(const std::complex<double> &x, const std::complex<double> &y) { return func(x, y); }
 };
 
-template <std::complex<double> func(const std::complex<double>&, const std::complex<double>&)> class FrameLib_Complex_Binary : public FrameLib_Complex_BinaryOp<Complex_Binary_Functor<func> >
-{
-    
-public:
-    
-    // Constructor
-    
-    FrameLib_Complex_Binary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-    : FrameLib_Complex_BinaryOp<Complex_Binary_Functor<func> > (context, serialisedParameters, proxy) {}
+// Complex Binary (Function Version)
 
-private:
-    
-    // Description (specialise/override to change description)
+template<std::complex<double> func(const std::complex<double>&, const std::complex<double>&)>
+using  FrameLib_Complex_Binary = FrameLib_Complex_BinaryOp<Complex_Binary_Functor<func> >;
 
-    virtual const char *getDescriptionString() { return "Binary Operator - No operator info available"; }
-};
+
 
 #endif

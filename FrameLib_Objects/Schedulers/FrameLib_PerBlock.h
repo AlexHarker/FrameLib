@@ -5,7 +5,7 @@
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_PerBlock : public FrameLib_Scheduler
+class FrameLib_PerBlock final : public FrameLib_Scheduler
 {
     
 public:
@@ -16,15 +16,15 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string inputInfo(unsigned long idx, bool verbose);
-    std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
     
 private:
     
     // Schedule
     
-    SchedulerInfo schedule(bool newFrame, bool noAdvance);
+    SchedulerInfo schedule(bool newFrame, bool noAdvance) override;
 };
 
 #endif

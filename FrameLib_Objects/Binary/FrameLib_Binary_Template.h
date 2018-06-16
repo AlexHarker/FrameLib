@@ -8,7 +8,7 @@
 
 // Binary Operator
 
-template <typename Op> class FrameLib_BinaryOp : public FrameLib_Processor
+template <typename Op> class FrameLib_BinaryOp final : public FrameLib_Processor
 {
     // Parameter Enums and Info
     
@@ -67,21 +67,21 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose)
+    std::string objectInfo(bool verbose) override
     {
         return formatInfo("#: Calculation is performed on pairs of values in turn. The result is an output frame at least as long as the smaller of the two inputs. "
                        "When frames mismatch in size the result depends on the setting of the mismatch parameter. Either or both inputs may be set to trigger output.",
                        "#.", getDescriptionString(), verbose);
     }
     
-    std::string inputInfo(unsigned long idx, bool verbose)      { return idx ? "Right Operand" : "Left Operand"; }
-    std::string outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
+    std::string inputInfo(unsigned long idx, bool verbose) override     { return idx ? "Right Operand" : "Left Operand"; }
+    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Result"; }
     
 private:
     
     // Process
     
-    void process()
+    void process() override
     {
         MismatchModes mode = mMismatchMode;
         Op op;
@@ -193,9 +193,9 @@ private:
     
 private:
     
-    // Description (specialise/override to change description)
+    // Description (specialise to change description)
     
-    virtual const char *getDescriptionString() { return "Binary Operator - No operator info available"; }
+    const char *getDescriptionString() { return "Binary Operator - No operator info available"; }
 
     ParameterInfo *getParameterInfo()
     {
@@ -209,30 +209,17 @@ private:
     MismatchModes mMismatchMode;
 };
 
-// Binary (Function Version)
-
 // Binary Functor
 
-template <double func(double, double)> struct Binary_Functor
+template<double func(double, double)>
+struct Binary_Functor
 {
     double operator()(double x, double y) { return func(x, y); }
 };
 
-template <double func(double, double)> class FrameLib_Binary : public FrameLib_BinaryOp<Binary_Functor<func> >
-{
-    
-public:
-    
-    // Constructor
-    
-    FrameLib_Binary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-    : FrameLib_BinaryOp<Binary_Functor<func> > (context, serialisedParameters, proxy) {}
+// Binary (Function Version)
 
-private:
-    
-    // Description (specialise/override to change description)
-
-    virtual const char *getDescriptionString() { return "Binary Operator - No operator info available"; }
-};
+template<double func(double, double)>
+using FrameLib_Binary = FrameLib_BinaryOp<Binary_Functor<func> >;
 
 #endif

@@ -5,7 +5,7 @@
 #include "FrameLib_DSP.h"
 #include "FrameLib_RingBuffer.h"
 
-class FrameLib_Lag : public FrameLib_Processor, private FrameLib_RingBuffer
+class FrameLib_Lag final : public FrameLib_Processor, private FrameLib_RingBuffer
 {
     // Parameter Enums and Info
 
@@ -21,19 +21,19 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string inputInfo(unsigned long idx, bool verbose);
-    std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
     
 private:
 
     // Object Reset
     
-    void objectReset() { FrameLib_RingBuffer::reset(); }
+    void objectReset() override { FrameLib_RingBuffer::reset(); }
     
     // Process
     
-    void process();
+    void process() override;
     
     // Data
     

@@ -4,7 +4,7 @@
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_Store : public FrameLib_Processor
+class FrameLib_Store final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
@@ -21,20 +21,20 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string inputInfo(unsigned long idx, bool verbose);
-    std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
     
     // Stream Awareness
     
-    virtual void setStream(void *streamOwner, unsigned long stream);
+    void setStream(void *streamOwner, unsigned long stream) override;
     
 private:
     
     // Object Reset and Process
     
-    void objectReset();
-    void process();
+    void objectReset() override;
+    void process() override;
     
     // Data
     

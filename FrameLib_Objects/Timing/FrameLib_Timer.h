@@ -4,7 +4,7 @@
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_Timer : public FrameLib_Processor
+class FrameLib_Timer final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
@@ -21,9 +21,9 @@ public:
     
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string inputInfo(unsigned long idx, bool verbose);
-    std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
     
 private:
     
@@ -33,12 +33,12 @@ private:
     
     // Object Reset
     
-    void objectReset() { calculateMultiplier(); }
+    void objectReset() override { calculateMultiplier(); }
     
     // Update and Process
     
-    void update();
-    void process();
+    void update() override;
+    void process() override;
     
     // Data
 

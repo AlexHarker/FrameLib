@@ -175,6 +175,8 @@ class FrameLib_ExprParser
     public:
         
         OperatorList() {}
+        OperatorList(OperatorList&&) = default;
+        OperatorList& operator=(OperatorList&&) = default;
         
         ~OperatorList()
         {
