@@ -14,18 +14,19 @@
 
 enum ErrorSource { kErrorObject, kErrorParameter, kErrorMemory, kErrorDSP  };
 
-//  ErrorList Class
+// Error reporting class
 
-class FrameLib_ErrorReporter;
-
-class ErrorList
+class FrameLib_ErrorReporter
 {
-    friend FrameLib_ErrorReporter;
-
-    const static int sCharArraySize = 8192;
-    const static int sReportArraySize = 1024;
     
 public:
+    
+    // Structure for notifying the host of errors
+    
+    struct HostNotifier : public FrameLib_Proxy
+    {
+        virtual void notify() = 0;
+    };
     
     // A single error report
 
@@ -36,7 +37,7 @@ public:
         
         class ConstIterator
         {
-            friend ErrorList;
+            friend FrameLib_ErrorReporter;
             
             ConstIterator(const ErrorReport *ptr) : mPtr(ptr) {};
             
@@ -88,106 +89,103 @@ public:
         unsigned long mNumItems;
     };
     
-    ErrorList() : mReportsSize(0), mItemsSize(0), mFull(false) {}
+    //  ErrorList Class
     
-    const ErrorReport operator[](size_t idx) const { return mReports[idx]; }
-    size_t size() const { return mReportsSize; }
-
-    ErrorReport::ConstIterator begin() const { return mReports; }
-    ErrorReport::ConstIterator end() const { return mReports + mReportsSize; }
-    
-    bool isFull() const { return mFull; }
-    
-private:
-    
-    // Deleted
-    
-    ErrorList(const ErrorList&) = delete;
-    ErrorList& operator=(const ErrorList&) = delete;
-    
-    bool addItem(const char *str)
+    class ErrorList
     {
-        char *ptr = mItems + mItemsSize;
-        size_t size = + strlen(str) + 1;
+        friend FrameLib_ErrorReporter;
         
-        if (mItemsSize + size < sCharArraySize)
+        const static int sCharArraySize = 8192;
+        const static int sReportArraySize = 1024;
+        
+    public:
+        
+        ErrorList() : mReportsSize(0), mItemsSize(0), mFull(false) {}
+        
+        const ErrorReport operator[](size_t idx) const { return mReports[idx]; }
+        size_t size() const { return mReportsSize; }
+        
+        ErrorReport::ConstIterator begin() const { return mReports; }
+        ErrorReport::ConstIterator end() const { return mReports + mReportsSize; }
+        
+        bool isFull() const { return mFull; }
+        
+    private:
+        
+        // Deleted
+        
+        ErrorList(const ErrorList&) = delete;
+        ErrorList& operator=(const ErrorList&) = delete;
+        
+        bool addItem(const char *str)
         {
-            strcpy(ptr, str);
-            mItemsSize += size;
+            char *ptr = mItems + mItemsSize;
+            size_t size = + strlen(str) + 1;
+            
+            if (mItemsSize + size < sCharArraySize)
+            {
+                strcpy(ptr, str);
+                mItemsSize += size;
+                return true;
+            }
+            
+            return false;
+        }
+        
+        bool addItem(long number)
+        {
+            char charArray[32];
+            sprintf(charArray, "%ld", number);
+            return addItem(charArray);
+        }
+        
+        bool addItem(double number)
+        {
+            char charArray[32];
+            sprintf(charArray, "%lf", number);
+            return addItem(charArray);
+        }
+        
+        bool addItems()
+        {
             return true;
         }
         
-        return false;
-    }
-    
-    bool addItem(long number)
-    {
-        char charArray[32];
-        sprintf(charArray, "%ld", number);
-        return addItem(charArray);
-    }
-    
-    bool addItem(double number)
-    {
-        char charArray[32];
-        sprintf(charArray, "%lf", number);
-        return addItem(charArray);
-    }
-    
-    bool addItems()
-    {
-        return true;
-    }
-    
-    template<typename T>
-    bool addItems(T first)
-    {
-        return addItem(first);
-    }
-    
-    template<typename T, typename... Args>
-    bool addItems(T first, Args... args)
-    {
-        if (addItem(first))
-            return addItems(args...);
-        return false;
-    }
-    
-    template<typename... Args>
-    void add(ErrorSource source, FrameLib_Proxy *reporter, const char *error, Args... args)
-    {
-        char *ptr = mItems + mItemsSize;
-
-        if (!mFull && (mReportsSize < sReportArraySize) && addItems(args...))
+        template<typename T>
+        bool addItems(T first)
         {
-            mReports[mReportsSize] = ErrorReport(source, reporter, error, ptr, sizeof...(args));
-            mReportsSize++;
+            return addItem(first);
         }
-        else
-            mFull = true;
-    }
-    
-    // Data
-    
-    ErrorReport mReports[sCharArraySize];
-    char mItems[sCharArraySize];
-    size_t mReportsSize;
-    size_t mItemsSize;
-    bool mFull;
-};
-
-// Error reporting class
-
-class FrameLib_ErrorReporter
-{
-    
-public:
-
-    // Structure for notifying the host of errors
-    
-    struct HostNotifier : public FrameLib_Proxy
-    {
-        virtual void notify() = 0;
+        
+        template<typename T, typename... Args>
+        bool addItems(T first, Args... args)
+        {
+            if (addItem(first))
+                return addItems(args...);
+            return false;
+        }
+        
+        template<typename... Args>
+        void add(ErrorSource source, FrameLib_Proxy *reporter, const char *error, Args... args)
+        {
+            char *ptr = mItems + mItemsSize;
+            
+            if (!mFull && (mReportsSize < sReportArraySize) && addItems(args...))
+            {
+                mReports[mReportsSize] = ErrorReport(source, reporter, error, ptr, sizeof...(args));
+                mReportsSize++;
+            }
+            else
+                mFull = true;
+        }
+        
+        // Data
+        
+        ErrorReport mReports[sCharArraySize];
+        char mItems[sCharArraySize];
+        size_t mReportsSize;
+        size_t mItemsSize;
+        bool mFull;
     };
     
     // Constructor
