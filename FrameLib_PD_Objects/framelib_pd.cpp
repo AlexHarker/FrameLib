@@ -74,6 +74,8 @@
 
 // Streaming
 
+#include "FrameLib_Pack.h"
+#include "FrameLib_Unpack.h"
 #include "FrameLib_StreamID.h"
 
 // Time Smoothing

@@ -65,6 +65,12 @@
 		B812464719F476D3009833F1 /* fl.store~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B812462419F475B8009833F1 /* fl.store~.cpp */; };
 		B812464B19F476D3009833F1 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B812465319F4781E009833F1 /* fl.join~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C8563919F2957F006358DA /* fl.join~.cpp */; };
+		B812606420D69574000B81D9 /* FrameLib_Pack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B812606220D69573000B81D9 /* FrameLib_Pack.cpp */; };
+		B812606720D69662000B81D9 /* FrameLib_Unpack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B812606620D69661000B81D9 /* FrameLib_Unpack.cpp */; };
+		B812606920D697A9000B81D9 /* FrameLib_Pack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B812606220D69573000B81D9 /* FrameLib_Pack.cpp */; };
+		B812606A20D697AD000B81D9 /* FrameLib_Unpack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B812606620D69661000B81D9 /* FrameLib_Unpack.cpp */; };
+		B812606B20D697BB000B81D9 /* FrameLib_ComplexExpression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85E1D3B20C82DDF00DEEE6E /* FrameLib_ComplexExpression.cpp */; };
+		B812606C20D697C2000B81D9 /* FrameLib_Expression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8E41B1F20C5E764003BBD86 /* FrameLib_Expression.cpp */; };
 		B81C72DF205A92F10073CBF4 /* FrameLib_ParamAlias.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B81C72DD205A92F10073CBF4 /* FrameLib_ParamAlias.cpp */; };
 		B81CE02E207FC8E800EAC64C /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8213A281FA758F50013E31F /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
@@ -123,7 +129,6 @@
 		B85C8FDC1E605B2E004D7D40 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B85C8FE41E605B44004D7D40 /* fl.multitaper~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85C8FCD1E605B28004D7D40 /* fl.multitaper~.cpp */; };
 		B85C8FE61E605E5D004D7D40 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879419C8F58C00B1D0CD /* Accelerate.framework */; };
-		B85E1D4020C8408E00DEEE6E /* FrameLib_Expression.h in Headers */ = {isa = PBXBuildFile; fileRef = B8E41B1E20C5E763003BBD86 /* FrameLib_Expression.h */; };
 		B85E1D4620C8408E00DEEE6E /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B85E1D4720C8408E00DEEE6E /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B85E1D4E20C8409F00DEEE6E /* FrameLib_ComplexExpression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85E1D3B20C82DDF00DEEE6E /* FrameLib_ComplexExpression.cpp */; };
@@ -659,7 +664,6 @@
 		B8E41B0820C41A6B003BBD86 /* FrameLib_ExprParser.h in Headers */ = {isa = PBXBuildFile; fileRef = B8E41B0720C36599003BBD86 /* FrameLib_ExprParser.h */; };
 		B8E41B1620C5E71C003BBD86 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8E41B1720C5E71C003BBD86 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8E41B2020C5E765003BBD86 /* FrameLib_Expression.h in Headers */ = {isa = PBXBuildFile; fileRef = B8E41B1E20C5E763003BBD86 /* FrameLib_Expression.h */; };
 		B8E41B2120C5E765003BBD86 /* FrameLib_Expression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8E41B1F20C5E764003BBD86 /* FrameLib_Expression.cpp */; };
 		B8E41B2320C5EACE003BBD86 /* fl.expr~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8E41B2220C5EACD003BBD86 /* fl.expr~.cpp */; };
 		B8E6E9DF207904F7004AB73F /* libframelib_objects.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8BA6FD22078D49200D3DB3D /* libframelib_objects.a */; };
@@ -1922,6 +1926,10 @@
 		B812462419F475B8009833F1 /* fl.store~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.store~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B812463C19F476CB009833F1 /* fl.recall~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.recall~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B812465219F476D3009833F1 /* fl.store~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.store~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B812606220D69573000B81D9 /* FrameLib_Pack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Pack.cpp; sourceTree = "<group>"; };
+		B812606320D69573000B81D9 /* FrameLib_Pack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Pack.h; sourceTree = "<group>"; };
+		B812606620D69661000B81D9 /* FrameLib_Unpack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Unpack.cpp; sourceTree = "<group>"; };
+		B812606820D6966B000B81D9 /* FrameLib_Unpack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Unpack.h; sourceTree = "<group>"; };
 		B81C72DD205A92F10073CBF4 /* FrameLib_ParamAlias.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_ParamAlias.cpp; sourceTree = "<group>"; };
 		B81C72DE205A92F10073CBF4 /* FrameLib_ParamAlias.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_ParamAlias.h; sourceTree = "<group>"; };
 		B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Config_FrameLib_Max.xcconfig; path = Common/Config_FrameLib_Max.xcconfig; sourceTree = "<group>"; };
@@ -4400,6 +4408,10 @@
 		B89C9B181FB1D8E800ED327E /* Streaming */ = {
 			isa = PBXGroup;
 			children = (
+				B812606320D69573000B81D9 /* FrameLib_Pack.h */,
+				B812606220D69573000B81D9 /* FrameLib_Pack.cpp */,
+				B812606820D6966B000B81D9 /* FrameLib_Unpack.h */,
+				B812606620D69661000B81D9 /* FrameLib_Unpack.cpp */,
 				B82CC2471F851D6F00077ECB /* FrameLib_StreamID.h */,
 				B82CC2461F851D6F00077ECB /* FrameLib_StreamID.cpp */,
 			);
@@ -4758,8 +4770,8 @@
 			children = (
 				B8E41B0720C36599003BBD86 /* FrameLib_ExprParser.h */,
 				B8E41B1E20C5E763003BBD86 /* FrameLib_Expression.h */,
-				B8E41B1F20C5E764003BBD86 /* FrameLib_Expression.cpp */,
 				B85E1D3A20C82D9700DEEE6E /* FrameLib_ComplexExpression.h */,
+				B8E41B1F20C5E764003BBD86 /* FrameLib_Expression.cpp */,
 				B85E1D3B20C82DDF00DEEE6E /* FrameLib_ComplexExpression.cpp */,
 			);
 			path = Expressions;
@@ -5412,7 +5424,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B85E1D4020C8408E00DEEE6E /* FrameLib_Expression.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5996,7 +6007,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8E41B2020C5E765003BBD86 /* FrameLib_Expression.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10706,6 +10716,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8CA31DC199A1F5F005F30A1 /* fl.unpack~.cpp in Sources */,
+				B812606720D69662000B81D9 /* FrameLib_Unpack.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11756,6 +11767,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B812606C20D697C2000B81D9 /* FrameLib_Expression.cpp in Sources */,
+				B812606B20D697BB000B81D9 /* FrameLib_ComplexExpression.cpp in Sources */,
+				B812606A20D697AD000B81D9 /* FrameLib_Unpack.cpp in Sources */,
+				B812606920D697A9000B81D9 /* FrameLib_Pack.cpp in Sources */,
 				B88F558D207AAFBB007774AD /* HISSTools_FFT.cpp in Sources */,
 				B8BA6FEA2078D57C00D3DB3D /* FrameLib_ParamAlias.cpp in Sources */,
 				B8BA6FDC2078D53900D3DB3D /* FrameLib_Future.cpp in Sources */,
@@ -11973,6 +11988,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B812606420D69574000B81D9 /* FrameLib_Pack.cpp in Sources */,
 				B8CA31EF199A20FF005F30A1 /* fl.pack~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
