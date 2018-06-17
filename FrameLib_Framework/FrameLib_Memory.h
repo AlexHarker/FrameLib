@@ -121,8 +121,8 @@ private:
         size_t mAllocated;
         
         size_t mLastDisposedPoolSize;
-        AtomicPtr<Pool> mScheduledNewPool;
-        AtomicPtr<Pool> mScheduledDisposePool;
+        std::atomic<Pool *> mScheduledNewPool;
+        std::atomic<Pool *> mScheduledDisposePool;
         NewThread mAllocThread;
         FreeThread mFreeThread;
         
