@@ -166,7 +166,7 @@ void Thread::join()
     if (mValid)
     {
         mValid = false;
-        OSMemoryBarrier();
+        std::atomic_thread_fence(std::memory_order_seq_cst);
         
         // Wait for thread to join before we allow the program to continue
         
@@ -199,14 +199,14 @@ void Semaphore::close()
     if (mValid)
     {
         mValid = false;
-        OSMemoryBarrier();
+        std::atomic_thread_fence(std::memory_order_seq_cst);
         semaphore_signal_all(mInternal);
     }
 }
 
 void Semaphore::signal(long n)
 {
-    OSMemoryBarrier();
+    std::atomic_thread_fence(std::memory_order_seq_cst);
     for (long i = 0; i < n; i++)
         semaphore_signal(mInternal);
 }
@@ -255,8 +255,8 @@ void Thread::join()
     if (mValid)
     {
         mValid = false;
-        MemoryBarrier();
-        
+        std::atomic_thread_fence(std::memory_order_seq_cst);
+
         // Wait for thread to join before we allow the program to continue
         
         WaitForSingleObject(mInternal, INFINITE);
@@ -289,8 +289,8 @@ void Semaphore::close()
     if (mValid)
     {
         mValid = false;
-        MemoryBarrier();
-        
+        std::atomic_thread_fence(std::memory_order_seq_cst);
+
         // Signal until the count is zero (only reliable way to signal all waiting threads
         
         for (long releaseCount = 1; releaseCount; --releaseCount)
@@ -347,7 +347,7 @@ void DelegateThread::join()
 
 bool DelegateThread::signal()
 {
-    if (mSignaled || !mFlag.compareAndSwap(0, 1))
+    if (mSignaled || !compareAndSwap(mFlag, 0, 1))
         return false;
     mSignaled = true;
     mSemaphore.signal(1);
@@ -358,9 +358,9 @@ bool DelegateThread::completed()
 {
     if (!mSignaled)
         return false;
-    while (!mFlag.compareAndSwap(2, 0))
+    while (!compareAndSwap(mFlag, 2, 0))
     {
-        if (mFlag.compareAndSwap(0, 0))
+        if (compareAndSwap(mFlag, 0, 0))
             return false;
     }
     mSignaled = false;
@@ -377,6 +377,6 @@ void DelegateThread::threadClassEntry()
     while (mSemaphore.wait())
     {
         doTask();
-        mFlag.compareAndSwap(1, 2);
+        compareAndSwap(mFlag, 1, 2);
     }
 }
