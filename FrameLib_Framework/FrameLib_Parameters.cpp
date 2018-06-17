@@ -489,13 +489,11 @@ FrameLib_Parameters::SetError FrameLib_Parameters::Parameter::set(double *values
 }
 
 FrameLib_Parameters::ClipMode FrameLib_Parameters::Parameter::getClipMode() const
-{
-    bool maxCheck = checkMax(mMax);
-    
+{    
     if (checkMin(mMin))
-        return maxCheck ? kNone : kMax;
+        return checkMax(mMax) ? kNone : kMax;
     else
-        return maxCheck ? kMin : kClip;
+        return checkMax(mMax) ? kMin : kClip;
 }
 
 void FrameLib_Parameters::Parameter::getRange(double *min, double *max) const
