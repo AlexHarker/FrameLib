@@ -168,15 +168,8 @@ public:
     // Constructor and Destructor (public for the max API, but use the ManagedPointer for use from outside this class)
     
     FrameLib_MaxGlobals(t_symbol *sym, long ac, t_atom *av)
-    : mNotifier(new ErrorNotifier(this)), mGlobal(nullptr), mConnectionInfo(nullptr), mSyncCheck(nullptr), mCount(0)
-    {
-        FrameLib_Global::get(&mGlobal, mNotifier.get());
-    }
-    
-    ~FrameLib_MaxGlobals()
-    {
-        FrameLib_Global::release(&mGlobal);
-    }
+    : mNotifier(new ErrorNotifier(this)), mGlobal(nullptr), mConnectionInfo(nullptr), mSyncCheck(nullptr)
+    {}
 
     // Getters and setters for max global items
     
@@ -209,15 +202,17 @@ private:
         
         if (!x)
             x = (FrameLib_MaxGlobals *) object_register(nameSpace, globalTag, object_new_typed(CLASS_NOBOX, gensym(maxGlobalClass), 0, nullptr));
-            
-        x->mCount++;
+        
+        FrameLib_Global::get(&x->mGlobal, x->mNotifier.get());
         
         return x;
     }
     
     void release()
     {
-        if (--mCount == 0)
+        FrameLib_Global::release(&mGlobal);
+        
+        if (!mGlobal)
         {
             object_unregister(this);
             object_free(this);
@@ -230,7 +225,6 @@ private:
     FrameLib_Global *mGlobal;
     ConnectionInfo *mConnectionInfo;
     SyncCheck *mSyncCheck;
-    long mCount;
 };
 
 //////////////////////////////////////////////////////////////////////////
