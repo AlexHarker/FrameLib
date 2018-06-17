@@ -53,7 +53,7 @@ private:
     FrameLib_Global(FrameLib_ErrorReporter::HostNotifier *notifier) : FrameLib_ErrorReporter(notifier), mAllocator(*this), mCount(0) {}
     ~FrameLib_Global() {};
     
-    // Deleted
+    // Non-copyable
     
     FrameLib_Global(const FrameLib_Global&) = delete;
     FrameLib_Global& operator=(const FrameLib_Global&) = delete;
@@ -82,12 +82,18 @@ private:
     void increment();
     FrameLib_Global *decrement();
     
-    // Common Objects
+    // Member Variables
+    
+    // Global Memory Allocator
     
     FrameLib_GlobalAllocator mAllocator;
     
+    // Context-specific Resources
+    
     PointerSet<FrameLib_LocalAllocator> mLocalAllocators;
     PointerSet<FrameLib_ProcessingQueue> mProcessingQueues;
+    
+    // Lock and Reference Count
     
     SpinLock mLock;
     long mCount;
