@@ -688,7 +688,7 @@ public:
         // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles audio)
         
         for (long i = numIns - 1; i >= 0; i--)
-            mInputs[i] = (t_object *) ((i || T::handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : nullptr);
+            mInputs[i] = (t_object *) ((i || handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : nullptr);
         
         for (unsigned long i = getNumOuts(); i > 0; i--)
             mOutputs[i - 1] = outlet_new(this, nullptr);
@@ -702,7 +702,7 @@ public:
         
         // Add a sync outlet if we need to handle audio
         
-        if (T::handlesAudio())
+        if (handlesAudio())
         {
             mSyncIn = (t_object *) outlet_new(nullptr, nullptr);
             outlet_add(mSyncIn, inlet_nth(*this, 0));
@@ -723,7 +723,7 @@ public:
     {
         if (m == ASSIST_OUTLET)
         {
-            if (a == 0 && T::handlesAudio())
+            if (a == 0 && handlesAudio())
                  sprintf(s,"(signal) Audio Synchronisation Output" );
             else if (a < getNumAudioOuts())
                 sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
@@ -732,7 +732,7 @@ public:
         }
         else
         {
-            if (a == 0 && T::handlesAudio())
+            if (a == 0 && handlesAudio())
                 sprintf(s,"(signal) Audio Synchronisation Input");
             else if (a < getNumAudioIns())
                 sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
@@ -879,8 +879,10 @@ public:
     
     bool supportsOrderingConnections()    { return mObject->supportsOrderingConnections(); }
     
-    long getNumAudioIns()   { return (long) mObject->getNumAudioIns() + (T::handlesAudio() ? 1 : 0); }
-    long getNumAudioOuts()  { return (long) mObject->getNumAudioOuts() + (T::handlesAudio() ? 1 : 0); }
+    bool handlesAudio()     { return T::handlesAudio(); }
+    
+    long getNumAudioIns()   { return (long) mObject->getNumAudioIns() + (handlesAudio() ? 1 : 0); }
+    long getNumAudioOuts()  { return (long) mObject->getNumAudioOuts() + (handlesAudio() ? 1 : 0); }
     long getNumIns()        { return (long) mObject->getNumIns(); }
     long getNumOuts()       { return (long) mObject->getNumOuts(); }
     
@@ -914,7 +916,7 @@ public:
         
         // Add a perform routine to the chain if the object handles audio
         
-        if (T::handlesAudio())
+        if (handlesAudio())
             addPerform<FrameLib_MaxClass, &FrameLib_MaxClass<T>::perform>(dsp64);
     }
 
@@ -936,9 +938,9 @@ public:
     
     void sync()
     {
-        FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, T::handlesAudio(), externalIsOutput(this));
+        FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), externalIsOutput(this));
        
-        if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && T::handlesAudio() && mNeedsResolve)
+        if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && mNeedsResolve)
             resolveGraph(false);
         
         if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
@@ -1047,7 +1049,7 @@ public:
     
     static t_ptr_int externalIsOutput(FrameLib_MaxClass *x)
     {
-        return T::handlesAudio() && (x->getNumAudioOuts() > 1);
+        return x->handlesAudio() && (x->getNumAudioOuts() > 1);
     }
     
     static t_ptr_int externalGetNumAudioIns(FrameLib_MaxClass *x)

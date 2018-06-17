@@ -20,7 +20,7 @@ extern "C"
 }
 
 //////////////////////////////////////////////////////////////////////////
-//////////////////////////// Max Globals Class ///////////////////////////
+//////////////////////////// PD Globals Class ////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
 class FrameLib_PDGlobals : public PDClass_Base
@@ -576,7 +576,7 @@ public:
 
         for (long i = 0; i < numIns; i++)
         {
-            if (i || T::handlesAudio())
+            if (i || handlesAudio())
             {
                 mInputs[i] = PDProxy::create(this, (int) (getNumAudioIns() + i));
                 inlet_new(*this, mInputs[i], gensym("frame"), gensym("frame"));
@@ -592,7 +592,7 @@ public:
         
         // Add a sync outlet if we need to handle audio
         
-        if (T::handlesAudio())
+        if (handlesAudio())
         {
             //mSyncIn = (t_object *) outlet_new(nullptr, nullptr);
             //outlet_add(mSyncIn, inlet_nth(*this, 0));
@@ -744,8 +744,10 @@ public:
     
     bool supportsOrderingConnections()    { return mObject->supportsOrderingConnections(); }
     
-    long getNumAudioIns()   { return (long) mObject->getNumAudioIns() + (T::handlesAudio() ? 1 : 0); }
-    long getNumAudioOuts()  { return (long) mObject->getNumAudioOuts() + (T::handlesAudio() ? 1 : 0); }
+    bool handlesAudio()     { return T::handlesAudio(); }
+
+    long getNumAudioIns()   { return (long) mObject->getNumAudioIns() + (handlesAudio() ? 1 : 0); }
+    long getNumAudioOuts()  { return (long) mObject->getNumAudioOuts() + (handlesAudio() ? 1 : 0); }
     long getNumIns()        { return (long) mObject->getNumIns(); }
     long getNumOuts()       { return (long) mObject->getNumOuts(); }
     
@@ -789,7 +791,7 @@ public:
     
         // Add a perform routine to the chain if the object handles audio
         
-        if (T::handlesAudio())
+        if (handlesAudio())
         {
             addPerform<FrameLib_PDClass, &FrameLib_PDClass<T>::perform>(sp);
         
@@ -825,9 +827,9 @@ public:
     
     void sync()
     {
-        FrameLib_PDGlobals::SyncCheck::Action action = mSyncChecker(this, T::handlesAudio(), externalIsOutput(this));
+        FrameLib_PDGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), externalIsOutput(this));
        
-        if (action != FrameLib_PDGlobals::SyncCheck::kSyncComplete && T::handlesAudio() && mNeedsResolve)
+        if (action != FrameLib_PDGlobals::SyncCheck::kSyncComplete && handlesAudio() && mNeedsResolve)
         {
             iterateCanvas(mCanvas, gensym("__fl.resolve_connections"));
             iterateCanvas(mCanvas, gensym("__fl.clear_auto_ordering_connections"));
@@ -927,7 +929,7 @@ public:
     
     static uintptr_t externalIsOutput(FrameLib_PDClass *x)
     {
-        return T::handlesAudio() && (x->getNumAudioOuts() > 1);
+        return x->handlesAudio() && (x->getNumAudioOuts() > 1);
     }
     
     static uintptr_t externalGetNumAudioIns(FrameLib_PDClass *x)
