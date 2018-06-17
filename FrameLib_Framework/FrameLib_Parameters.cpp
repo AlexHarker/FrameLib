@@ -707,6 +707,10 @@ FrameLib_Parameters::NumericType FrameLib_Parameters::getNumericType(unsigned lo
 
 std::string FrameLib_Parameters::getTypeString(unsigned long idx) const
 {
+    static const char *typeStringsDouble[] = {"double", "enum", "string", "fixed length double array", "variable length double array" };
+    static const char *typeStringsInteger[] = {"int", "enum", "string", "fixed length int array", "variable length int array" };
+    static const char *typeStringsBool[] = {"bool", "enum", "string", "fixed length bool array", "variable length bool array" };
+
     const char **typeStrings = typeStringsDouble;
     int flags = mParameters[idx]->flags();
     std::string str("");

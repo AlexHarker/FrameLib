@@ -15,10 +15,6 @@
 
 // This class deals with parameters of an object
 
-static const char *typeStringsDouble[] = {"double", "enum", "string", "fixed length double array", "variable length double array" };
-static const char *typeStringsInteger[] = {"int", "enum", "string", "fixed length int array", "variable length int array" };
-static const char *typeStringsBool[] = {"bool", "enum", "string", "fixed length bool array", "variable length bool array" };
-
 class FrameLib_Parameters
 {
     
