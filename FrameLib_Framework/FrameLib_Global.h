@@ -8,6 +8,7 @@
 #include "FrameLib_ProcessingQueue.h"
 #include "FrameLib_Threading.h"
 
+#include <memory>
 #include <vector>
 
 // The Global Object
@@ -27,7 +28,7 @@ private:
         {
             CountablePointer(T* object, void *reference) : mObject(object), mReference(reference), mCount(1) {}
             
-            T *mObject;
+            std::unique_ptr<T> mObject;
             void *mReference;
             long mCount;
         };
@@ -52,7 +53,7 @@ private:
     FrameLib_Global(FrameLib_ErrorReporter::HostNotifier *notifier) : FrameLib_ErrorReporter(notifier), mAllocator(*this), mCount(0) {}
     ~FrameLib_Global() {};
     
-    // Deleted
+    // Non-copyable
     
     FrameLib_Global(const FrameLib_Global&) = delete;
     FrameLib_Global& operator=(const FrameLib_Global&) = delete;
@@ -81,14 +82,20 @@ private:
     void increment();
     FrameLib_Global *decrement();
     
-    // Common Objects
+    // Member Variables
+    
+    // Global Memory Allocator
     
     FrameLib_GlobalAllocator mAllocator;
+    
+    // Context-specific Resources
     
     PointerSet<FrameLib_LocalAllocator> mLocalAllocators;
     PointerSet<FrameLib_ProcessingQueue> mProcessingQueues;
     
-    SpinLock mLock;
+    // Lock and Reference Count
+    
+    FrameLib_SpinLock mLock;
     long mCount;
 };
 

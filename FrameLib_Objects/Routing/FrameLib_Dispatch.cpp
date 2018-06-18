@@ -78,17 +78,11 @@ FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Paramete
 
     for (int i = 0; i < mNumOuts; i++)
     {
-        mSelects.push_back(new Select(context, serialisedParameters, proxy, mNumIns, i));
+        mSelects.add(new Select(context, serialisedParameters, proxy, mNumIns, i));
         for (unsigned long j = 0; j < mNumIns + 1; j++)
             mSelects[i]->setInputAlias(Connection(this, j), j);
         mSelects[i]->setOutputAlias(Connection(this, i), 0);
     }
-}
-
-FrameLib_Dispatch::~FrameLib_Dispatch()
-{    
-    for (auto it = mSelects.begin(); it != mSelects.end(); it++)
-        delete (*it);
 }
     
 // Info

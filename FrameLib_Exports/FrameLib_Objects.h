@@ -80,6 +80,8 @@
 
 // Streaming
 
+#include "FrameLib_Pack.h"
+#include "FrameLib_Unpack.h"
 #include "FrameLib_StreamID.h"
 
 // Time Smoothing
@@ -122,6 +124,11 @@
 #include "FrameLib_Unary_Objects.h"
 #include "FrameLib_Binary_Objects.h"
 #include "FrameLib_Ternary_Objects.h"
+
+// Expressions
+
+#include "FrameLib_Expression.h"
+#include "FrameLib_ComplexExpression.h"
 
 // Complex Operators
 

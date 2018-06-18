@@ -14,6 +14,10 @@ PROGRESS	- Avoid double reporting of directly patched errors when DSP is on
 		- Review memory management
 	
 PROGRESS	Multi threading work (Attributes / Connection)
+			- Attributes							
+			- Memory							
+			- DSP								
+			- DSP Queue
 DONE		DSP
 PROGRESS	Processing Queue
 TEMP		Memory
@@ -27,7 +31,7 @@ TEMP		Memory
 
 		Objects for dealing with data storage/retrieval (a la coll etc.) 
 		Abstract buffer type? 
-		Multichannel support (how should expansion work for audio?)
+		Multistream support (how should expansion work for audio?)
 		Adding parameters via inheritance/wrapping
 
 ******* OBJECT REVIEW ******* 
@@ -56,8 +60,13 @@ Filters
 Spatial/Special
 
 
+OBJECT IDEAS
 
-
-
+Function Generators (from fixed numbers to allow mapping ?? / use 2D)
+Matching (fixed up version of entry matcher) - sort data storage problem
+Descriptor Analysis (per frame to start with?)
+Envelope Estimation
+Delays(solve co-incident issue - 3 solutions - first/last/move OR delay now??)
+Filters with time-varying parameters
 
 

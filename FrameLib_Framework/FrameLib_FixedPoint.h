@@ -56,8 +56,8 @@ public:
     
     // Int and Fract
     
-    uint64_t intVal()   { return mInt; }
-    uint64_t fracVal()  { return mFrac; }
+    uint64_t intVal() const   { return mInt; }
+    uint64_t fracVal() const  { return mFrac; }
     
     // Absolute value
     
@@ -181,7 +181,7 @@ public:
     friend FL_FP operator / (const FL_FP& a, const double& b)   { return a / FL_FP(b); }
     friend FL_FP operator / (const double& a, const FL_FP& b)   { return FL_FP(a) / b; }
 
-    // Arithmetic Operators with Assignmnet
+    // Arithmetic Operators with Assignment
 
     FL_FP& operator += (const double& b)                        { return operator +=(FL_FP(b)); }
     FL_FP& operator -= (const double& b)                        { return operator -=(FL_FP(b)); }
@@ -198,7 +198,8 @@ private:
 
 // Numeric Limits
 
-template <class T> struct FL_Limits
+template <class T>
+struct FL_Limits
 {
     // N.B. there is basically no good value for smallest for a floating point unit, because all values will fail at some point before total overflow
     
@@ -213,7 +214,8 @@ template <class T> struct FL_Limits
     }
 };
 
-template<> struct FL_Limits <FL_FP>
+template<>
+struct FL_Limits<FL_FP>
 {
     static FL_FP smallest() { return FL_FP(0,1); }
     static FL_FP largest()  { return FL_FP(std::numeric_limits<uint64_t>::max(), std::numeric_limits<uint64_t>::max()); }

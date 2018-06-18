@@ -41,10 +41,9 @@ class FrameLib_Dispatch : public FrameLib_Block
     
 public:
     
-    // Constructor / Destructor
+    // Constructor
     
     FrameLib_Dispatch(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-    ~FrameLib_Dispatch();
     
     // Object Type
     
@@ -85,7 +84,7 @@ private:
     long mNumIns;
     long mNumOuts;
     
-    std::vector<Select *> mSelects;
+    FrameLib_OwnedList<FrameLib_DSP> mSelects;
     FrameLib_Parameters mParameters;
     static ParameterInfo sParamInfo;
 };

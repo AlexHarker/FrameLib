@@ -56,17 +56,11 @@ FrameLib_Route::FrameLib_Route(FrameLib_Context context, FrameLib_Parameters::Se
 
     for (int i = 0; i < mNumOuts; i++)
     {
-        mValves.push_back(new Valve(context, serialisedParameters, proxy, i));
+        mValves.add(new Valve(context, serialisedParameters, proxy, i));
         mValves[i]->setInputAlias(Connection(this, 0), 0);
         mValves[i]->setInputAlias(Connection(this, 1), 1);
         mValves[i]->setOutputAlias(Connection(this, i), 0);
     }
-}
-
-FrameLib_Route::~FrameLib_Route()
-{    
-    for (auto it = mValves.begin(); it != mValves.end(); it++)
-        delete (*it);
 }
     
 // Info

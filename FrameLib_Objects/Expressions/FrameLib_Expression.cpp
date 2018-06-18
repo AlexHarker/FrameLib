@@ -233,7 +233,7 @@ void FrameLib_Expression::ConstantOut::process()
 
 // Constructor
 
-FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mInputProcessor(nullptr), mParameters(context, proxy, &sParamInfo)
+FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mParameters(context, proxy, &sParamInfo)
 {
     typedef Graph<double> Graph;
     typedef FrameLib_Block::Connection Connection;
@@ -270,14 +270,14 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Para
     {
         // Create and Input Processor
         
-        mInputProcessor = new InputProcessor(context, mode, triggers, triggersSize, graph.mNumInputs);
+        mInputProcessor.reset(new InputProcessor(context, mode, triggers, triggersSize, graph.mNumInputs));
 
         // Alias the inputs to the input processor
         
         for (unsigned long i = 0 ; i < graph.mNumInputs; i++)
             mInputProcessor->setInputAlias(Connection(this, i), i);
         
-        mFixedInputNode = mInputProcessor;
+        mFixedInputNode = mInputProcessor.get();
         
         // Build the graph if there is one
 
@@ -290,12 +290,12 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Para
                 if (it->mIns[i].mType == kInputConstant)
                     operation->setFixedInput(i, &it->mIns[i].mValue, 1);
                 else if (it->mIns[i].mType == kInputVariable)
-                    operation->addConnection(Connection(mInputProcessor, it->mIns[i].mIndex), i);
+                    operation->addConnection(Connection(mInputProcessor.get(), it->mIns[i].mIndex), i);
                 else
-                    operation->addConnection(Connection(mGraph[it->mIns[i].mIndex], 0), i);
+                    operation->addConnection(Connection(mGraph[it->mIns[i].mIndex].get(), 0), i);
             }
             
-            mGraph.push_back(operation);
+            mGraph.add(operation);
         }
         
         mGraph.back()->setOutputAlias(Connection(this, 0), 0);
@@ -304,24 +304,13 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Para
     {
         // Build the graph if the result is constant (including an invalid expression)
 
-        mGraph.push_back(new ConstantOut(context, mode, triggers, triggersSize, graph.mNumInputs, graph.mConstant));
+        mGraph.add(new ConstantOut(context, mode, triggers, triggersSize, graph.mNumInputs, graph.mConstant));
         for (long i = 0; i < graph.mNumInputs; i++)
             mGraph.back()->setInputAlias(Connection(this, i), i);
         mGraph.back()->setOutputAlias(Connection(this, 0), 0);
         
-        mFixedInputNode = mGraph.back();
+        mFixedInputNode = mGraph.back().get();
     }
-}
-
-FrameLib_Expression::~FrameLib_Expression()
-{
-    if (mInputProcessor)
-        delete mInputProcessor;
-    
-    for (auto it = mGraph.begin(); it != mGraph.end(); it++)
-        delete (*it);
-    
-    mGraph.clear();
 }
 
 // Info

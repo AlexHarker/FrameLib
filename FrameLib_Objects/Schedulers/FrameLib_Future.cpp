@@ -57,8 +57,8 @@ void FrameLib_Future::calculateTime()
     
     switch (static_cast<Units>(mParameters.getValue(kUnits)))
     {
-        case kMS:       time *= mSamplingRate / 1000.0;     break;
-        case kSeconds:  time *= mSamplingRate;              break;
+        case kMS:       time = msToSamples(time);           break;
+        case kSeconds:  time = secondsToSamples(time);      break;
         case kSamples:  break;
     }
     

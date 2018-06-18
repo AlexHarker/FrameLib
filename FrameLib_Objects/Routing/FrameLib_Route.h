@@ -41,10 +41,9 @@ class FrameLib_Route : public FrameLib_Block
 
 public:
     
-    // Constructor / Destructor
+    // Constructor
     
     FrameLib_Route(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-    ~FrameLib_Route();
     
     // Object Type
     
@@ -84,7 +83,7 @@ private:
     
     long mNumOuts;
     
-    std::vector<Valve *> mValves;
+    FrameLib_OwnedList<FrameLib_DSP> mValves;
     FrameLib_Parameters mParameters;
     static ParameterInfo sParamInfo;
 };

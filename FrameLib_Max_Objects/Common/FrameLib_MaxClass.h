@@ -46,11 +46,11 @@ public:
         
         static void errorReport(FrameLib_MaxGlobals* x)
         {
-            std::unique_ptr<ErrorList> reports = x->mGlobal->getErrors();
-            std::string errorText;
+            auto reports = x->mGlobal->getErrors();
 
             for (auto it = reports->begin(); it != reports->end(); it++)
             {
+                std::string errorText;
                 t_object *object = dynamic_cast<FrameLib_MaxProxy *>(it->getReporter())->mMaxObject;
                 t_object *userObject = object ? (t_object *) object_method(object, gensym("__fl.get_user_object")) : nullptr;
                 
@@ -168,17 +168,8 @@ public:
     // Constructor and Destructor (public for the max API, but use the ManagedPointer for use from outside this class)
     
     FrameLib_MaxGlobals(t_symbol *sym, long ac, t_atom *av)
-    : mGlobal(nullptr), mConnectionInfo(nullptr), mSyncCheck(nullptr), mCount(0)
-    {
-        mNotifier = new ErrorNotifier(this);
-        FrameLib_Global::get(&mGlobal, mNotifier);
-    }
-    
-    ~FrameLib_MaxGlobals()
-    {
-        FrameLib_Global::release(&mGlobal);
-        delete mNotifier;
-    }
+    : mNotifier(new ErrorNotifier(this)), mGlobal(nullptr), mConnectionInfo(nullptr), mSyncCheck(nullptr)
+    {}
 
     // Getters and setters for max global items
     
@@ -211,15 +202,17 @@ private:
         
         if (!x)
             x = (FrameLib_MaxGlobals *) object_register(nameSpace, globalTag, object_new_typed(CLASS_NOBOX, gensym(maxGlobalClass), 0, nullptr));
-            
-        x->mCount++;
+        
+        FrameLib_Global::get(&x->mGlobal, x->mNotifier.get());
         
         return x;
     }
     
     void release()
     {
-        if (--mCount == 0)
+        FrameLib_Global::release(&mGlobal);
+        
+        if (!mGlobal)
         {
             object_unregister(this);
             object_free(this);
@@ -228,11 +221,10 @@ private:
     
     // Pointers
     
-    ErrorNotifier *mNotifier;
+    std::unique_ptr<ErrorNotifier> mNotifier;
     FrameLib_Global *mGlobal;
     ConnectionInfo *mConnectionInfo;
     SyncCheck *mSyncCheck;
-    long mCount;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -677,7 +669,7 @@ public:
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
         mFrameLibProxy->mMaxObject = *this;
-        mObject = new T(FrameLib_Context(mGlobal->getGlobal(), mContextPatch), &serialisedParameters, mFrameLibProxy, nStreams);
+        mObject.reset(new T(FrameLib_Context(mGlobal->getGlobal(), mContextPatch), &serialisedParameters, mFrameLibProxy.get(), nStreams));
         parseInputs(argc, argv);
         
         long numIns = getNumIns() + (supportsOrderingConnections() ? 1 : 0);
@@ -690,7 +682,7 @@ public:
         // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles audio)
         
         for (long i = numIns - 1; i >= 0; i--)
-            mInputs[i] = (t_object *) ((i || T::handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : nullptr);
+            mInputs[i] = (t_object *) ((i || handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : nullptr);
         
         for (unsigned long i = getNumOuts(); i > 0; i--)
             mOutputs[i - 1] = outlet_new(this, nullptr);
@@ -704,7 +696,7 @@ public:
         
         // Add a sync outlet if we need to handle audio
         
-        if (T::handlesAudio())
+        if (handlesAudio())
         {
             mSyncIn = (t_object *) outlet_new(nullptr, nullptr);
             outlet_add(mSyncIn, inlet_nth(*this, 0));
@@ -715,9 +707,6 @@ public:
     {
         dspFree();
 
-        delete mObject;
-        delete mFrameLibProxy;
-        
         for (auto it = mInputs.begin(); it != mInputs.end(); it++)
             object_free(*it);
         
@@ -728,7 +717,7 @@ public:
     {
         if (m == ASSIST_OUTLET)
         {
-            if (a == 0 && T::handlesAudio())
+            if (a == 0 && handlesAudio())
                  sprintf(s,"(signal) Audio Synchronisation Output" );
             else if (a < getNumAudioOuts())
                 sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
@@ -737,7 +726,7 @@ public:
         }
         else
         {
-            if (a == 0 && T::handlesAudio())
+            if (a == 0 && handlesAudio())
                 sprintf(s,"(signal) Audio Synchronisation Input");
             else if (a < getNumAudioIns())
                 sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
@@ -759,7 +748,7 @@ public:
             x->resolveGraph(true);
 
         path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
-        ExportError error = exportGraph(x->mObject, conformedPath, className->s_name);
+        ExportError error = exportGraph(x->mObject.get(), conformedPath, className->s_name);
         
         if (error == kExportPathError)
             object_error(x->mUserObject, "couldn't write to or find specified path");
@@ -884,8 +873,10 @@ public:
     
     bool supportsOrderingConnections()    { return mObject->supportsOrderingConnections(); }
     
-    long getNumAudioIns()   { return (long) mObject->getNumAudioIns() + (T::handlesAudio() ? 1 : 0); }
-    long getNumAudioOuts()  { return (long) mObject->getNumAudioOuts() + (T::handlesAudio() ? 1 : 0); }
+    bool handlesAudio()     { return T::handlesAudio(); }
+    
+    long getNumAudioIns()   { return (long) mObject->getNumAudioIns() + (handlesAudio() ? 1 : 0); }
+    long getNumAudioOuts()  { return (long) mObject->getNumAudioOuts() + (handlesAudio() ? 1 : 0); }
     long getNumIns()        { return (long) mObject->getNumIns(); }
     long getNumOuts()       { return (long) mObject->getNumOuts(); }
     
@@ -919,7 +910,7 @@ public:
         
         // Add a perform routine to the chain if the object handles audio
         
-        if (T::handlesAudio())
+        if (handlesAudio())
             addPerform<FrameLib_MaxClass, &FrameLib_MaxClass<T>::perform>(dsp64);
     }
 
@@ -941,9 +932,9 @@ public:
     
     void sync()
     {
-        FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, T::handlesAudio(), externalIsOutput(this));
+        FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), externalIsOutput(this));
        
-        if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && T::handlesAudio() && mNeedsResolve)
+        if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && mNeedsResolve)
             resolveGraph(false);
         
         if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
@@ -1042,7 +1033,7 @@ public:
     
     static FrameLib_Multistream *externalGetInternalObject(FrameLib_MaxClass *x)
     {
-        return x->mObject;
+        return x->mObject.get();
     }
     
     static t_object *externalGetUserObject(FrameLib_MaxClass *x)
@@ -1052,7 +1043,7 @@ public:
     
     static t_ptr_int externalIsOutput(FrameLib_MaxClass *x)
     {
-        return T::handlesAudio() && (x->getNumAudioOuts() > 1);
+        return x->handlesAudio() && (x->getNumAudioOuts() > 1);
     }
     
     static t_ptr_int externalGetNumAudioIns(FrameLib_MaxClass *x)
@@ -1193,9 +1184,9 @@ private:
     bool validInput(long index, FrameLib_Multistream *object) const         { return object && index >= 0 && index < object->getNumIns(); }
     bool validOutput(long index, FrameLib_Multistream *object) const        { return object && index >= 0 && index < object->getNumOuts(); }
     bool isOrderingInput(long index, FrameLib_Multistream *object) const    { return object && object->supportsOrderingConnections() && index == object->getNumIns(); }
-    bool validInput(long index) const                                       { return validInput(index, mObject); }
-    bool validOutput(long index) const                                      { return validOutput(index, mObject); }
-    bool isOrderingInput(long index) const                                  { return isOrderingInput(index, mObject); }
+    bool validInput(long index) const                                       { return validInput(index, mObject.get()); }
+    bool validOutput(long index) const                                      { return validOutput(index, mObject.get()); }
+    bool isOrderingInput(long index) const                                  { return isOrderingInput(index, mObject.get()); }
     
     bool isConnected(long index) const                                      { return mObject->isConnected(index); }
     
@@ -1545,13 +1536,16 @@ private:
 
 protected:
    
-    FrameLib_MaxProxy *mFrameLibProxy;
+    std::unique_ptr<FrameLib_MaxProxy> mFrameLibProxy;
     
 private:
     
-    // Data
+    // Data - N.B. - the order is crucial for safe deconstruction
     
-    FrameLib_Multistream *mObject;
+    FrameLib_MaxGlobals::ManagedPointer mGlobal;
+    FrameLib_MaxGlobals::SyncCheck mSyncChecker;
+    
+    std::unique_ptr<FrameLib_Multistream> mObject;
     
     std::vector<t_object *> mInputs;
     std::vector<void *> mOutputs;
@@ -1567,9 +1561,6 @@ private:
     t_object *mContextPatch;
     t_object *mSyncIn;
     t_object *mUserObject;
-    
-    FrameLib_MaxGlobals::ManagedPointer mGlobal;
-    FrameLib_MaxGlobals::SyncCheck mSyncChecker;
     
     bool mNeedsResolve;
 };

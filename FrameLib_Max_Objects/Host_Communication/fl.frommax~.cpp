@@ -49,7 +49,7 @@ void FrameLib_MaxClass_FromMax::classInit(t_class *c, t_symbol *nameSpace, const
 FrameLib_MaxClass_FromMax::FrameLib_MaxClass_FromMax(t_symbol *s, long argc, t_atom *argv)
     : FrameLib_MaxClass(s, argc, argv, new FromHostProxy())
 {
-    mProxy = dynamic_cast<FromHostProxy *>(mFrameLibProxy);
+    mProxy = dynamic_cast<FromHostProxy *>(mFrameLibProxy.get());
 }
 
 // Additional handlers

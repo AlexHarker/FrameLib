@@ -21,7 +21,7 @@ T *FrameLib_Global::PointerSet<T>::find(void *reference)
         if (it->mReference == reference)
         {
             it->mCount++;
-            return it->mObject;
+            return it->mObject.get();
         }
     }
     
@@ -38,10 +38,7 @@ void FrameLib_Global::template PointerSet<T>::release(void *reference)
         if (it->mReference == reference)
         {
             if (--it->mCount < 1)
-            {
-                delete it->mObject;
                 mPointers.erase(it);
-            }
             
             return;
         }
@@ -110,13 +107,13 @@ void FrameLib_Global::releaseProcessingQueue(void *reference)
 
 void FrameLib_Global::increment()
 {
-    SpinLockHolder lock(&mLock);
+    FrameLib_SpinLockHolder lock(&mLock);
     ++mCount;
 }
 
 FrameLib_Global *FrameLib_Global::decrement()
 {
-    SpinLockHolder lock(&mLock);
+    FrameLib_SpinLockHolder lock(&mLock);
     
     if (--mCount < 1)
     {

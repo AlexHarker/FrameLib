@@ -99,108 +99,6 @@ private:
 
 // ************************************************************************************** //
 
-// FrameLib_Pack - Pack Multi-stream Signals
-
-class FrameLib_Pack final : public FrameLib_Multistream
-{
-    enum AtrributeList { kInputs };
-
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo() { add("Sets the number of inputs."); } };
-    
-public:
-    
-    const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
-
-    FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams);
-    
-    // Set Fixed Inputs
-    
-    void setFixedInput(unsigned long idx, double *input, unsigned long size) override {};
-    const double *getFixedInput(unsigned long idx, unsigned long *size) override { return getEmptyFixedInput(idx, size); }
-    
-    // Audio Processing
-    
-    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override {}
-    void reset(double samplingRate, unsigned long maxBlockSize) override {}
-
-    // Info
-    
-    std::string objectInfo(bool verbose) override;
-    std::string inputInfo(unsigned long idx, bool verbose) override;
-    std::string outputInfo(unsigned long idx, bool verbose) override;
-    
-    const FrameLib_Parameters *getParameters() const override { return &mParameters; }
-
-    FrameType inputType(unsigned long idx) const override { return kFrameAny; }
-    FrameType outputType(unsigned long idx) const override { return kFrameAny; }
-    
-    void autoOrderingConnections() override {}
-    void clearAutoOrderingConnections() override {}
-    
-private:
-    
-    bool inputUpdate() override;
-
-    FrameLib_Parameters::AutoSerial mSerialisedParameters;
-
-    FrameLib_Parameters mParameters;
-    
-    static ParameterInfo sParamInfo;
-};
-
-// ************************************************************************************** //
-
-// FrameLib_Unpack - Unpack Multi-stream Signals
-
-class FrameLib_Unpack final : public FrameLib_Multistream
-{
-    enum AtrributeList { kOutputs };
-    
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo() { add("Sets the number of outputs."); } };
-
-public:
-
-    const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
-
-    FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams);
-    
-    // Set Fixed Inputs
-    
-    void setFixedInput(unsigned long idx, double *input, unsigned long size) override {};
-    const double *getFixedInput(unsigned long idx, unsigned long *size) override { return getEmptyFixedInput(idx, size); }
-    
-    // Audio Processing
-    
-    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override {}
-    void reset(double samplingRate, unsigned long maxBlockSize) override {}
-
-    // Info
-    
-    std::string objectInfo(bool verbose) override;
-    std::string inputInfo(unsigned long idx, bool verbose) override;
-    std::string outputInfo(unsigned long idx, bool verbose) override;
-
-    const FrameLib_Parameters *getParameters() const override { return &mParameters; }
-
-    FrameType inputType(unsigned long idx) const override { return kFrameAny; }
-    FrameType outputType(unsigned long idx) const override { return kFrameAny; }
-    
-    void autoOrderingConnections() override {}
-    void clearAutoOrderingConnections() override {}
-    
-private:
-    
-    virtual bool inputUpdate() override;
-    
-    FrameLib_Parameters::AutoSerial mSerialisedParameters;
-
-    FrameLib_Parameters mParameters;
-    
-    static ParameterInfo sParamInfo;
-};
-
-// ************************************************************************************** //
-
 // FrameLib_Expand - Multi-stream expansion for FrameLib_Block objects
 
 template <class T> class FrameLib_Expand final : public FrameLib_Multistream
@@ -215,7 +113,7 @@ public:
     {
         // Make first block
         
-        mBlocks.push_back(new T(context, serialisedParameters, proxy));
+        mBlocks.add(new T(context, serialisedParameters, proxy));
         mBlocks[0]->setStream(this, 0);
         
         // Copy serialised parameters for later instantiations
@@ -231,7 +129,7 @@ public:
         // Make initial output connections
         
         for (unsigned long i = 0; i < getNumOuts(); i++)
-            mOutputs[i].push_back(BlockConnection(mBlocks[0], i));
+            mOutputs[i].push_back(BlockConnection(mBlocks[0].get(), i));
         
         // Check for ordering support
         
@@ -239,14 +137,6 @@ public:
             enableOrderingConnections();
         
         reset(0.0, 4096);
-    }
-    
-    ~FrameLib_Expand()
-    {
-        // Delete blocks
-        
-        for (auto it = mBlocks.begin(); it != mBlocks.end(); it++)
-            delete(*it);
     }
     
     // Fixed Inputs
@@ -385,23 +275,16 @@ private:
             // Change the number of hosted blocks
             
             if (nChannels > cChannels)
-            {
-                mBlocks.resize(nChannels);
-                
+            {                
                 for (unsigned long i = cChannels; i < nChannels; i++)
                 {
-                    mBlocks[i] = new T(getContext(), &mSerialisedParameters, getProxy());
-                    mBlocks[i]->setStream(this, i);
-                    mBlocks[i]->reset(mSamplingRate, mMaxBlockSize);
+                    mBlocks.add(new T(getContext(), &mSerialisedParameters, getProxy()));
+                    mBlocks.back()->setStream(this, i);
+                    mBlocks.back()->reset(mSamplingRate, mMaxBlockSize);
                 }
             }
             else
-            {
-                for (unsigned long i = nChannels; i < cChannels; i++)
-                    delete mBlocks[i];
-                
                 mBlocks.resize(nChannels);
-            }
             
             // Redo output connection lists
             
@@ -410,7 +293,7 @@ private:
             
             for (unsigned long i = 0; i < getNumOuts(); i++)
                 for (unsigned long j = 0; j < nChannels; j++)
-                    mOutputs[i].push_back(BlockConnection(mBlocks[j], i));
+                    mOutputs[i].push_back(BlockConnection(mBlocks[j].get(), i));
             
             // Update Fixed Inputs
             
@@ -455,7 +338,7 @@ private:
     
     FrameLib_Parameters::AutoSerial mSerialisedParameters;
 
-    std::vector<FrameLib_Block *> mBlocks;
+    FrameLib_OwnedList<FrameLib_Block> mBlocks;
     std::vector<std::vector<double>> mFixedInputs;
 
     unsigned long mMaxBlockSize;

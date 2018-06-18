@@ -35,6 +35,8 @@ class FrameLib_Context
         
     public:
         
+        // Constructor / Destructor
+        
         ManagedPointer(const FrameLib_Context &context) : mGlobal(context.mGlobal), mReference(context.mReference)
         {
             mPointer = (mGlobal->*getMethod)(mReference);
@@ -45,6 +47,11 @@ class FrameLib_Context
             release();
         }
         
+        // Non-copyable
+        
+        ManagedPointer(const ManagedPointer&) = delete;
+        ManagedPointer& operator=(const ManagedPointer&) = delete;
+        
         // Release
         
         void release()
@@ -53,7 +60,7 @@ class FrameLib_Context
                 (mGlobal->*releaseMethod)(mReference);
             mPointer = nullptr;
             mGlobal = nullptr;
-            mReference  = nullptr;
+            mReference = nullptr;
         }
         
         // Pointer  / Bool Conversion
@@ -62,11 +69,6 @@ class FrameLib_Context
         operator bool() const   { return mPointer != nullptr; }
         
     private:
-        
-        // Deleted
-        
-        ManagedPointer(const ManagedPointer&) = delete;
-        ManagedPointer& operator=(const ManagedPointer&) = delete;
         
         // Member Variables
         
@@ -83,8 +85,8 @@ public:
     
     // Construct one of these objects to retain a relevant object
     
-    typedef ManagedPointer<FrameLib_LocalAllocator, &Global::getAllocator, &Global::releaseAllocator>                   Allocator;
-    typedef ManagedPointer<FrameLib_ProcessingQueue, &Global::getProcessingQueue, &Global::releaseProcessingQueue>      ProcessingQueue;
+    using Allocator = ManagedPointer<FrameLib_LocalAllocator, &Global::getAllocator, &Global::releaseAllocator>;
+    using ProcessingQueue = ManagedPointer<FrameLib_ProcessingQueue, &Global::getProcessingQueue, &Global::releaseProcessingQueue>;
 
     // Get the global as a FrameLib_ErrorReporter from the context
     
@@ -92,6 +94,8 @@ public:
     
 private:
     
+    // Member Variables
+
     FrameLib_Global *mGlobal;
     void *mReference;
 };

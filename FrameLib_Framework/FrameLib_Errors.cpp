@@ -3,7 +3,7 @@
 
 // Report Class
 
-void ErrorList::ErrorReport::getErrorText(std::string& text) const
+void FrameLib_ErrorReporter::ErrorReport::getErrorText(std::string& text) const
 {
     text = mError;
     const char *ptr = mItems;
@@ -22,11 +22,11 @@ void ErrorList::ErrorReport::getErrorText(std::string& text) const
 
 // Retrieve errors (passes ownership to the host)
 
-std::unique_ptr<ErrorList> FrameLib_ErrorReporter::getErrors()
+std::unique_ptr<FrameLib_ErrorReporter::ErrorList> FrameLib_ErrorReporter::getErrors()
 {
     std::unique_ptr<ErrorList> reports(new ErrorList());
     
-    SpinLockHolder lockHolder(&mLock);
+    FrameLib_SpinLockHolder lockHolder(&mLock);
     std::swap(mReports, reports);
     mNotified = false;
     return reports;

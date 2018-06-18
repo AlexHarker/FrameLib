@@ -29,7 +29,7 @@ inline size_t blockSize(void* ptr)
 
 // The Core Allocator (has no threadsafety)
 
-FrameLib_GlobalAllocator::CoreAllocator::CoreAllocator(FrameLib_ErrorReporter& errorReporter) : mPools(nullptr), mOSAllocated(0), mAllocated(0), mLastDisposedPoolSize(0), mAllocThread(this), mFreeThread(this), mErrorReporter(errorReporter)
+FrameLib_GlobalAllocator::CoreAllocator::CoreAllocator(FrameLib_ErrorReporter& errorReporter) : mPools(nullptr), mOSAllocated(0), mAllocated(0), mLastDisposedPoolSize(0),  mScheduledNewPool(nullptr), mScheduledDisposePool(nullptr), mAllocThread(this), mFreeThread(this), mErrorReporter(errorReporter)
 {
     mTLSF = tlsf_create(malloc(tlsf_size()));
     insertPool(createPool(initSize));
@@ -72,14 +72,14 @@ void *FrameLib_GlobalAllocator::CoreAllocator::alloc(size_t size)
         if (poolSize == growSize)
         {
             if (mAllocThread.completed())
-                while (!(pool = mScheduledNewPool.clear()));
+                while (!(pool = mScheduledNewPool.exchange(nullptr)));
         }
         
         // If we still don't have pool try the disposed slot
         
         if (!pool && mLastDisposedPoolSize >= poolSize)
         {
-            pool = mScheduledDisposePool.clear();
+            pool = mScheduledDisposePool.exchange(nullptr);
             mLastDisposedPoolSize = 0;
         }
 
@@ -144,7 +144,7 @@ void FrameLib_GlobalAllocator::CoreAllocator::prune()
             return;
         }
         
-        if (difftime(now, pool->mTime) > pruneInterval && mScheduledDisposePool.compareAndSwap(nullptr, pool))
+        if (difftime(now, pool->mTime) > pruneInterval && nullSwap(mScheduledDisposePool, pool))
         {
             removePool(pool);
             mLastDisposedPoolSize = pool->mSize;
@@ -231,12 +231,12 @@ void FrameLib_GlobalAllocator::CoreAllocator::removePool(Pool *pool)
 void FrameLib_GlobalAllocator::CoreAllocator::addScheduledPool()
 {
     Pool *pool = createPool(growSize);
-    while (!mScheduledNewPool.compareAndSwap(nullptr, pool));
+    while (!nullSwap(mScheduledNewPool, pool));
 }
 
 void FrameLib_GlobalAllocator::CoreAllocator::destroyScheduledPool()
 {
-    destroyPool(mScheduledDisposePool.clear());
+    destroyPool(mScheduledDisposePool.exchange(nullptr));
 }
 
 // ************************************************************************************** //
@@ -247,13 +247,13 @@ void FrameLib_GlobalAllocator::CoreAllocator::destroyScheduledPool()
 
 void *FrameLib_GlobalAllocator::alloc(size_t size)
 {
-    SpinLockHolder lock(&mLock);
+    FrameLib_SpinLockHolder lock(&mLock);
     return mAllocator.alloc(size);
 }
 
 void FrameLib_GlobalAllocator::dealloc(void *ptr)
 {
-    SpinLockHolder lock(&mLock);
+    FrameLib_SpinLockHolder lock(&mLock);
     mAllocator.dealloc(ptr);
 }
 

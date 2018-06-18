@@ -41,7 +41,7 @@ size_t resolveFunctionType(std::string &name, size_t beg, size_t end)
                 return removed;
     }
         
-    // Find a space (the beginning of the function name) and delete everything before it inclusive of the space
+    // Find a space (the beginning of the function name) and remove everything before it inclusive of the space
             
     if (!invalidPosition(searchPos = name.rfind(" ", searchPos - 1), beg, end))
         removeCharacters(name, beg, 1 + searchPos - beg, end, removed);
