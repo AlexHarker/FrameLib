@@ -181,7 +181,7 @@ public:
     friend FL_FP operator / (const FL_FP& a, const double& b)   { return a / FL_FP(b); }
     friend FL_FP operator / (const double& a, const FL_FP& b)   { return FL_FP(a) / b; }
 
-    // Arithmetic Operators with Assignmnet
+    // Arithmetic Operators with Assignment
 
     FL_FP& operator += (const double& b)                        { return operator +=(FL_FP(b)); }
     FL_FP& operator -= (const double& b)                        { return operator -=(FL_FP(b)); }
