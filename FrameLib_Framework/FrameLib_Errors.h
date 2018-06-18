@@ -32,12 +32,46 @@ public:
 
     class ErrorReport
     {
+        friend FrameLib_ErrorReporter;
+        
+        ErrorReport(ErrorSource source, FrameLib_Proxy *reporter, const char *error, const char *items, unsigned long numItems)
+        : mSource(source), mReporter(reporter), mError(error), mItems(items), mNumItems(numItems) {}
+        
+    public:
+        
+        ErrorReport() : mSource(kErrorObject), mReporter(nullptr), mError(nullptr), mItems(nullptr), mNumItems(0) {}
+
+        void getErrorText(std::string& text) const;
+        ErrorSource getSource() const                   { return mSource; }
+        FrameLib_Proxy* getReporter() const             { return mReporter; }
+    
+    private:
+        
+        // Data
+        
+        ErrorSource mSource;
+        FrameLib_Proxy* mReporter;
+        const char* mError;
+        const char* mItems;
+        unsigned long mNumItems;
+    };
+    
+    //  ErrorList Class
+    
+    class ErrorList
+    {
+        friend FrameLib_ErrorReporter;
+        
+        const static int sCharArraySize = 8192;
+        const static int sReportArraySize = 1024;
+        
+    public:
         
     public:
         
         class ConstIterator
         {
-            friend FrameLib_ErrorReporter;
+            friend ErrorList;
             
             ConstIterator(const ErrorReport *ptr) : mPtr(ptr) {};
             
@@ -69,44 +103,13 @@ public:
             const ErrorReport *mPtr;
         };
         
-        ErrorReport() : mSource(kErrorObject), mReporter(nullptr), mError(nullptr), mItems(nullptr), mNumItems(0) {}
-        
-        ErrorReport(ErrorSource source, FrameLib_Proxy *reporter, const char *error, const char *items, unsigned long numItems)
-        : mSource(source), mReporter(reporter), mError(error), mItems(items), mNumItems(numItems) {}
-        
-        void getErrorText(std::string& text) const;
-        ErrorSource getSource() const                   { return mSource; }
-        FrameLib_Proxy* getReporter() const             { return mReporter; }
-    
-    private:
-        
-        // Data
-        
-        ErrorSource mSource;
-        FrameLib_Proxy* mReporter;
-        const char* mError;
-        const char* mItems;
-        unsigned long mNumItems;
-    };
-    
-    //  ErrorList Class
-    
-    class ErrorList
-    {
-        friend FrameLib_ErrorReporter;
-        
-        const static int sCharArraySize = 8192;
-        const static int sReportArraySize = 1024;
-        
-    public:
-        
         ErrorList() : mReportsSize(0), mItemsSize(0), mFull(false) {}
         
         const ErrorReport operator[](size_t idx) const { return mReports[idx]; }
         size_t size() const { return mReportsSize; }
         
-        ErrorReport::ConstIterator begin() const { return mReports; }
-        ErrorReport::ConstIterator end() const { return mReports + mReportsSize; }
+        ConstIterator begin() const { return mReports; }
+        ConstIterator end() const { return mReports + mReportsSize; }
         
         bool isFull() const { return mFull; }
         
