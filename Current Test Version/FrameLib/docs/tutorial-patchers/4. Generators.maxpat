@@ -54,7 +54,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 1000.0, 830.0 ],
+						"rect" : [ 0.0, 70.0, 1000.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -162,7 +162,7 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 170.75, 446.0, 161.0, 50.0 ],
 									"style" : "",
-									"text" : "0.32 0.32 0.32 0.32 0.32 0.32 0.32 0.32 0.32 0.32 0.32 0.32 0.32 0.32"
+									"text" : "0.60 0.60 0.60 0.60 0.60 0.60 0.60 0.60 0.60 0.60 0.60 0.60 0.60 0.60"
 								}
 
 							}
@@ -601,7 +601,7 @@
 							}
 , 							{
 								"box" : 								{
-									"fontface" : 0,
+									"fontface" : 1,
 									"fontsize" : 13.0,
 									"id" : "obj-15",
 									"maxclass" : "comment",
@@ -628,7 +628,7 @@
 							}
 , 							{
 								"box" : 								{
-									"fontface" : 0,
+									"fontface" : 1,
 									"fontsize" : 13.0,
 									"id" : "obj-10",
 									"maxclass" : "comment",
@@ -1489,7 +1489,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 70.0, 1000.0, 830.0 ],
+						"rect" : [ 0.0, 26.0, 1000.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1526,7 +1526,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 103.0, 716.0, 476.0 ],
+									"patching_rect" : [ 3.75, 103.0, 717.0, 476.0 ],
 									"style" : "",
 									"text" : "Generators are a fundamental part of FrameLib as they facilitate the creation of new frames that can be used for control, scaling and buffer reading.\n\nThere are three primary generators in FrameLib:\n\n1. fl.random~ - generates uniformly distributed random numbers between 0 and 1.\n2. fl.ramp~ - generates frames of linearly counting values\n3. fl.uniform~ - generates frames of a single uniform value\n\nAll of the generators contain similar parameters to adjust the length of their output as well as the units of time they output. Frames by default contain samples, so if you want to access a buffer in milliseconds these values need to be converted. Any object with a \"units\" parameter can internally adjust its output to convert to the right unit of time.\n\nAnother feature of all the generator objects is that they have two modes of operation to determine their output length. By default they run in \"requested\" mode meaning they will output the length requested by the \"length\" parameter. The second mode \"input\" makes it so that the object will adjust its output length to the length of the frame that triggers it. If this is a normal scheduler frame such as one that is output by an fl.interval~ object (which is zero length) nothing will be output by the generator. However, imagine a scenario where the length of one generator needs to match a dynamically changing frame somewhere \"upstream\" in your chain of objects - this is where the input mode is really useful. It is also useful synchronising two or more generators.\n\nOverall, learning the generators will help you to understand the key concepts of FrameLib that we have covered previously.\n\n1. Scheduling and Schedulers\n2. Parameters and Tagging\n\nIn the next tutorial we are going to start building our first FrameLib project - a granular synthesiser! First, have a look through the tabs of this tutorial to get a feeling for how generators work as they are fundamental to the next parts."
 								}

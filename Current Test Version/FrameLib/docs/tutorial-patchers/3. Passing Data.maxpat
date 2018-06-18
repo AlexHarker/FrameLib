@@ -445,7 +445,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 160.25, 428.0, 288.0, 38.0 ],
+									"patching_rect" : [ 160.25, 428.0, 291.0, 38.0 ],
 									"style" : "",
 									"text" : "This will be covered very soon. Enter the sub patch and open the gate to hear the output."
 								}
@@ -791,7 +791,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 127.0, 311.5, 388.375, 69.0 ],
+									"patching_rect" : [ 127.0, 311.5, 389.0, 69.0 ],
 									"style" : "",
 									"text" : "Because fl.source~ takes 4096 samples every 2048 samples of time, a compensation of half has to be made for the 2x overlap. This is one of the reasons why the relationship between your scheduler and frame length is important."
 								}
@@ -1278,12 +1278,40 @@
 						"title" : "Control Data",
 						"boxes" : [ 							{
 								"box" : 								{
+									"fontface" : 1,
+									"fontname" : "Arial",
+									"fontsize" : 14.0,
+									"id" : "obj-11",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 8.75, 230.0, 175.0, 22.0 ],
+									"style" : "",
+									"text" : "0.72 0.93 0.33 0.72 0.60"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-5",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 8.75, 199.25, 74.0, 22.0 ],
+									"style" : "",
+									"text" : "prepend set"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-32",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 496.0, 593.5, 227.0, 22.0 ],
+									"patching_rect" : [ 496.0, 595.5, 227.0, 22.0 ],
 									"style" : "",
 									"text" : "Adjust the length of output frames"
 								}
@@ -1297,18 +1325,19 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 316.75, 561.0, 5.0, 232.0 ]
+									"patching_rect" : [ 292.75, 577.0, 5.0, 232.0 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"hidden" : 1,
 									"id" : "obj-28",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 444.0, 561.0, 79.0, 22.0 ],
+									"patching_rect" : [ 444.0, 564.5, 79.0, 22.0 ],
 									"style" : "",
 									"text" : "loadmess 10"
 								}
@@ -1325,9 +1354,9 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 332.0, 749.0, 207.0, 44.0 ],
+									"patching_rect" : [ 332.0, 765.0, 207.0, 44.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 80,
+									"size" : 10,
 									"style" : ""
 								}
 
@@ -1339,7 +1368,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 332.0, 719.0, 59.0, 22.0 ],
+									"patching_rect" : [ 332.0, 729.0, 59.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.tomax~"
 								}
@@ -1353,7 +1382,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 444.0, 593.5, 50.0, 22.0 ],
+									"patching_rect" : [ 444.0, 595.5, 50.0, 22.0 ],
 									"style" : ""
 								}
 
@@ -1365,7 +1394,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 332.0, 561.0, 89.0, 22.0 ],
+									"patching_rect" : [ 332.0, 595.5, 89.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.interval~ 200"
 								}
@@ -1378,7 +1407,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 444.0, 626.0, 60.0, 22.0 ],
+									"patching_rect" : [ 444.0, 635.0, 60.0, 22.0 ],
 									"style" : "",
 									"text" : "length $1"
 								}
@@ -1391,7 +1420,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 444.0, 658.5, 154.0, 22.0 ],
+									"patching_rect" : [ 444.0, 664.5, 154.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.frommax~ /mode params"
 								}
@@ -1404,7 +1433,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 332.0, 685.0, 131.0, 22.0 ],
+									"patching_rect" : [ 332.0, 698.0, 131.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.random~"
 								}
@@ -1418,7 +1447,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.5, 584.5, 121.0, 38.0 ],
+									"patching_rect" : [ 150.5, 619.0, 121.0, 38.0 ],
 									"style" : "",
 									"text" : "Generate data between 0 and 1."
 								}
@@ -1431,7 +1460,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.0, 703.0, 85.0, 22.0 ],
+									"patching_rect" : [ 8.0, 723.0, 85.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.times~ 1000"
 								}
@@ -1440,14 +1469,13 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-29",
-									"linecount" : 2,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.0, 771.0, 244.0, 35.0 ],
+									"patching_rect" : [ 8.0, 787.0, 43.0, 22.0 ],
 									"style" : "",
-									"text" : "588.235319 588.235319 247.058824 47.058824 105.882354"
+									"text" : "bang"
 								}
 
 							}
@@ -1458,7 +1486,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.0, 739.0, 59.0, 22.0 ],
+									"patching_rect" : [ 8.0, 755.0, 59.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.tomax~"
 								}
@@ -1472,7 +1500,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 90.5, 669.0, 102.0, 22.0 ],
+									"patching_rect" : [ 89.5, 691.0, 102.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.interval~ 14 ms"
 								}
@@ -1485,7 +1513,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.0, 669.0, 72.0, 22.0 ],
+									"patching_rect" : [ 8.0, 691.0, 72.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.frommax~"
 								}
@@ -1502,7 +1530,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 8.0, 561.0, 140.5, 85.0 ],
+									"patching_rect" : [ 8.0, 595.5, 140.5, 85.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 5,
 									"style" : ""
@@ -1513,13 +1541,13 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-13",
-									"linecount" : 18,
+									"linecount" : 16,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.0, 267.0, 531.0, 288.0 ],
+									"patching_rect" : [ 8.0, 298.5, 592.0, 272.0 ],
 									"style" : "",
-									"text" : "Passing control data from Max/MSP into FrameLib requires one extra step. The fl.frommax~ object requires a trigger frame to know when it should transfer the data from Max into FrameLib. In the below example, fl.interval~ is sending trigger frames every 14 milliseconds to fl.frommax~.\n\nThe fl.interval~ could be replaced by any of the other scheduler objects or alternatively, another FrameLib object could be sending frames of data that can be used as triggers. This is a really important concept to understanding how a network of FrameLib objects can be synchronised through scheduling objects or each others outputs.\n\nAdditionally another method of changing parameters is included in the right most example. The fl.frommax~ object has been instantiated in \"params\" mode. This means you can send it gen~ like messages to adjust parameters in side FrameLib as an alternative to using fl.tag~. Sending a message to fl.frommax~ in this mode (such as \"length $1\" here is the equivlaent of sending that variable and tagging it with fl.tag~.\n\n"
+									"text" : "Passing control data from Max/MSP into FrameLib requires one extra step. The fl.frommax~ object requires a trigger frame to know when it should transfer the data from Max into FrameLib. In the left most below example, fl.interval~ is sending trigger frames every 14 milliseconds to fl.frommax~.\n\nThe fl.interval~ could be replaced by another scheduler object or alternatively, another FrameLib object could be sending frames of data to be used as triggers. This is a really important concept to understanding how a network of FrameLib objects can be synchronised through scheduling objects or each others output frames.\n\nAdditionally another method of changing parameters is included in the right most example. The fl.frommax~ object has been instantiated in \"params\" mode. This means you can send it gen~ like messages to adjust parameters inside FrameLib as an alternative to using fl.tag~. Sending a message to fl.frommax~ in this mode (such as \"length $1\" here is the equivalent of sending that variable and tagging it with \"fl.tag~ length\"\n\n"
 								}
 
 							}
@@ -1531,9 +1559,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.0, 229.0, 456.0, 29.0 ],
+									"patching_rect" : [ 8.0, 262.0, 456.0, 29.0 ],
 									"style" : "",
-									"text" : "Passing control data TO FrameLib"
+									"text" : "2. Passing control data TO FrameLib"
 								}
 
 							}
@@ -1545,7 +1573,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.0, 260.0, 530.25, 5.0 ]
+									"patching_rect" : [ 8.0, 293.0, 530.25, 5.0 ]
 								}
 
 							}
@@ -1563,26 +1591,12 @@
 , 							{
 								"box" : 								{
 									"fontsize" : 12.0,
-									"id" : "obj-10",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.0, 201.193542, 278.0, 22.0 ],
-									"style" : "",
-									"text" : "0.403091 0.574291 0.940073 0.88277 0.347568"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 12.0,
 									"id" : "obj-7",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 172.129028, 59.0, 22.0 ],
+									"patching_rect" : [ 8.75, 168.5, 59.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.tomax~"
 								}
@@ -1596,7 +1610,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 143.064514, 116.0, 22.0 ],
+									"patching_rect" : [ 8.75, 137.75, 116.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.random~ /length 5"
 								}
@@ -1610,7 +1624,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 114.0, 114.0, 22.0 ],
+									"patching_rect" : [ 8.75, 107.0, 114.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.interval~ 1000 ms"
 								}
@@ -1626,7 +1640,7 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 52.0, 531.0, 53.0 ],
 									"style" : "",
-									"text" : "Passing data out of FrameLib as control data is especially easy. All that is required is a fl.tomax~ object. In this example, an fl.interval~ generates five random numbers between 0. and 1. and passes that frame out as a list."
+									"text" : "Passing data out of FrameLib as control data is especially easy. All that is required is a fl.tomax~ object. In this example, an fl.interval~ generates five random numbers between 0. and 1. and passes the output frame as a list."
 								}
 
 							}
@@ -1640,7 +1654,7 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 12.0, 456.0, 29.0 ],
 									"style" : "",
-									"text" : "Passing control data FROM FrameLib"
+									"text" : "1. Passing control data FROM FrameLib"
 								}
 
 							}
@@ -1740,6 +1754,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-20", 0 ],
+									"hidden" : 1,
 									"source" : [ "obj-28", 0 ]
 								}
 
@@ -1753,6 +1768,13 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-11", 0 ],
+									"source" : [ "obj-5", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-2", 0 ],
 									"source" : [ "obj-6", 0 ]
 								}
@@ -1760,7 +1782,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-10", 1 ],
+									"destination" : [ "obj-5", 0 ],
 									"source" : [ "obj-7", 0 ]
 								}
 
@@ -1835,6 +1857,18 @@
 						"showontab" : 1,
 						"title" : "Passing Data",
 						"boxes" : [ 							{
+								"box" : 								{
+									"border" : 2.0,
+									"id" : "obj-49",
+									"linecolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 8.75, 96.0, 530.25, 5.0 ]
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-3",

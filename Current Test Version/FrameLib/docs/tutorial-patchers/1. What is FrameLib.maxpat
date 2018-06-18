@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 0.0, 44.0, 720.0, 856.0 ],
+		"rect" : [ 1.0, 44.0, 720.0, 856.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -56,7 +56,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 70.0, 720.0, 830.0 ],
+						"rect" : [ 1.0, 70.0, 720.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -102,13 +102,13 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-46",
-									"linecount" : 18,
+									"linecount" : 14,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 5.75, 269.5, 680.0, 288.0 ],
+									"patching_rect" : [ 5.75, 269.5, 680.0, 225.0 ],
 									"style" : "",
-									"text" : "In most realtime audio environments, audio processing is built on the model of grouping continuous streams of samples into small consecutive blocks of equal size for the purpose of calculation. Whilst this offers an appropriate model to represent continous analog signals, it is less suited to processing that functions on chunks, or *frames*, of audio in which the position of a sample is meaningful (e.g spectral representations), or in which the frame might be considered as a whole (e.g granular synthesis). Advanced multi rate processing, based on DSP graphs that operate on frames of different sizes and different rates is not currently supported natively within Max which is where a frame based tool kit like FrameLib excels. FrameLib brings a wealth of processing techniques into the Max environment where rapid prototyping and experimentation is redily available to the user. \n\nIf you don't know where to start, navigating through the tabs above demonstrate what you might want to do with FrameLib. In each example they load muted inside of a poly~ so that this tutorial can run even on less powerful machines. To operate each patch, unmute by clicking the red \"unmute\" button,  turn audio on, adjust the volume slider to an appropriate level and follow any on screen instructions.\n\nMany of  these processes could be achieved through native max objects such as poly~ and pfft~, but are less cumbersome in FrameLib. You can extend on these practices to achieve more nuanced and creatively rich processes that would otherwise not be possible."
+									"text" : "In most realtime audio environments, audio processing is built on the model of grouping continuous streams of samples into small consecutive blocks of equal size for the purpose of calculation. Whilst this offers an appropriate model to represent continous analog signals, it is less suited to processing that functions on chunks, or *frames*, of audio in which the position of a sample is meaningful (e.g spectral representations), or in which the frame might be considered as a whole (e.g granular synthesis). Advanced multi rate processing, based on DSP graphs that operate on frames of different sizes and different rates is not currently supported natively within Max which is where a frame based tool kit like FrameLib excels. FrameLib brings a wealth of processing techniques into the Max environment where rapid prototyping and experimentation is redily available to the user. \n\nIf you don't know where to start, navigating through the tabs above demonstrate what you might want to do with FrameLib. In each example they load muted inside of a poly~ so that this tutorial can run even on less powerful machines. To operate each patch, unmute by clicking the red \"unmute\" button,  turn audio on, adjust the volume slider to an appropriate level and follow any on screen instructions."
 								}
 
 							}
@@ -596,6 +596,52 @@
 								}
 
 							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-2",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 485.25, 326.0, 20.0, 20.0 ],
+									"presentation_rect" : [ 232.857147, 187.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "2",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-30",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 400.25, 124.350006, 20.0, 20.0 ],
+									"presentation_rect" : [ 217.857147, 172.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "1",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
@@ -804,6 +850,30 @@
 						"subpatcher_template" : "default",
 						"showontab" : 1,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 222.0, 215.5, 150.0, 20.0 ],
+									"style" : "",
+									"text" : "Change the parameters"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-5",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 274.125, 382.500031, 83.0, 20.0 ],
+									"style" : "",
+									"text" : "Some presets"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"border" : 2.0,
 									"id" : "obj-49",
@@ -1212,7 +1282,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 134.0, 422.000031, 298.0, 121.0 ],
-									"size" : 1532,
+									"size" : 2738,
 									"style" : ""
 								}
 
@@ -1253,16 +1323,62 @@
 									"outlettype" : [ "", "", "", "" ],
 									"patching_rect" : [ 523.550049, 494.800018, 79.0, 19.0 ],
 									"restore" : 									{
-										"1_FrameInterval" : [ 61.764706 ],
-										"1_FrameLength" : [ 76.455879 ],
-										"2_FrameInterval" : [ 105.838234 ],
-										"2_FrameLength" : [ 1457.426514 ],
-										"randcontrol" : [ 0.29 ]
+										"1_FrameInterval" : [ 193.985291 ],
+										"1_FrameLength" : [ 2529.882324 ],
+										"2_FrameInterval" : [ 76.455879 ],
+										"2_FrameLength" : [ 208.676468 ],
+										"randcontrol" : [ 0.017514 ]
 									}
 ,
 									"style" : "",
 									"text" : "autopattr expose",
 									"varname" : "expose"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-2",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 361.125, 215.5, 20.0, 20.0 ],
+									"presentation_rect" : [ 232.857147, 187.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "2",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-30",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 358.0, 382.500031, 20.0, 20.0 ],
+									"presentation_rect" : [ 217.857147, 172.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "1",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
 
 							}
@@ -1582,7 +1698,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 124.999992, 475.899963, 298.0, 121.0 ],
-									"size" : 13801,
+									"size" : 8891,
 									"style" : ""
 								}
 
@@ -1644,7 +1760,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 216.0, 619.900024, 151.0, 20.0 ],
+									"patching_rect" : [ 216.0, 619.900024, 117.0, 20.0 ],
 									"style" : "",
 									"text" : "Replace the source!"
 								}
@@ -1696,7 +1812,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 317.625, 298.199951, 250.0, 33.0 ],
+									"patching_rect" : [ 320.625, 298.699951, 250.0, 33.0 ],
 									"style" : "",
 									"text" : "Click and drag to change what portion of the buffer can be granulated."
 								}
@@ -1711,7 +1827,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 271.375, 293.449951, 44.25, 42.5 ]
+									"patching_rect" : [ 274.375, 293.949951, 44.25, 42.5 ]
 								}
 
 							}
@@ -1898,6 +2014,75 @@
 									"patching_rect" : [ 16.0, 283.199951, 256.0, 64.0 ],
 									"setmode" : 1,
 									"style" : ""
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-7",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 329.625, 619.900024, 20.0, 20.0 ],
+									"presentation_rect" : [ 83.357147, 256.0, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "3",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-1",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 423.125, 373.699951, 20.0, 20.0 ],
+									"presentation_rect" : [ 232.857147, 187.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "2",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-30",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 572.625, 305.199951, 20.0, 20.0 ],
+									"presentation_rect" : [ 217.857147, 172.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "1",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
 
 							}
@@ -2281,9 +2466,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 99.0, 169.0, 181.0, 20.0 ],
+									"patching_rect" : [ 99.0, 169.0, 231.0, 20.0 ],
 									"style" : "",
-									"text" : "Make some sounds to be frozen"
+									"text" : "Make some sounds into your microphone"
 								}
 
 							}
@@ -2389,6 +2574,52 @@
 									"patching_rect" : [ 16.0, 405.5, 55.0, 22.0 ],
 									"style" : "",
 									"text" : "dac~ 1 2"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-2",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 404.125, 202.5, 20.0, 20.0 ],
+									"presentation_rect" : [ 232.857147, 187.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "2",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-30",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 324.625, 169.0, 20.0, 20.0 ],
+									"presentation_rect" : [ 217.857147, 172.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "1",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
 
 							}
