@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.7</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
    <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
@@ -89,8 +89,11 @@ $(document).ready(function(){initNavTree('class_frame_lib___global.html','');});
 <p>This is the complete list of members for <a class="el" href="class_frame_lib___global.html">FrameLib_Global</a>, including all inherited members.</p>
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="class_frame_lib___global.html#a6a4d0dd2956393d740d97600370f6ef8">FrameLib_Context</a> class</td><td class="entry"><a class="el" href="class_frame_lib___global.html">FrameLib_Global</a></td><td class="entry"><span class="mlabel">friend</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_frame_lib___global.html#ac9a895677da386e8fde525c061a854e4">get</a>(FrameLib_Global **global)</td><td class="entry"><a class="el" href="class_frame_lib___global.html">FrameLib_Global</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_frame_lib___error_reporter.html#a6caa37f2bec568844bdccf55ce1d6c74">FrameLib_ErrorReporter</a>(HostNotifier *notifier)</td><td class="entry"><a class="el" href="class_frame_lib___error_reporter.html">FrameLib_ErrorReporter</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_frame_lib___global.html#a2d24a293da4c71e089e4738cfbbf6aec">get</a>(FrameLib_Global **global, FrameLib_ErrorReporter::HostNotifier *notifier=nullptr)</td><td class="entry"><a class="el" href="class_frame_lib___global.html">FrameLib_Global</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_frame_lib___error_reporter.html#a95924f411be44edbe7e69f92e983e89e">getErrors</a>()</td><td class="entry"><a class="el" href="class_frame_lib___error_reporter.html">FrameLib_ErrorReporter</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_frame_lib___global.html#a079e2b866b66d477ae551e0b0e12ea11">release</a>(FrameLib_Global **global)</td><td class="entry"><a class="el" href="class_frame_lib___global.html">FrameLib_Global</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_frame_lib___error_reporter.html#a69301a8520fa2d90ce84a637f7bc7827">reportError</a>(ErrorSource source, FrameLib_Proxy *reporter, const char *error, Args... args)</td><td class="entry"><a class="el" href="class_frame_lib___error_reporter.html">FrameLib_ErrorReporter</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.7</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
    <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
@@ -82,25 +82,38 @@ $(document).ready(function(){initNavTree('_frame_lib___types_8h.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
 <div class="title">FrameLib_Types.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="_frame_lib___fixed_point_8h_source.html">FrameLib_FixedPoint.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="_frame_lib___fixed_point_8h_source.html">FrameLib_FixedPoint.h</a>&quot;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 </div>
 <p><a href="_frame_lib___types_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_frame_lib___time_format.html">FrameLib_TimeFormat</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a type for representing time in fixed-point high-precision for scheduling purposes.  <a href="struct_frame_lib___time_format.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_frame_lib___proxy.html">FrameLib_Proxy</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a virtual struct allowing for extensible communication to/from the host environment.  <a href="struct_frame_lib___proxy.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_frame_lib___owned_list.html">FrameLib_OwnedList&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a convenience wrapper for dealing with a vector of objects owned by pointer.  <a href="struct_frame_lib___owned_list.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:ae3a497195d617519e5353ea7b417940f"><td class="memItemLeft" align="right" valign="top">typedef unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_frame_lib___types_8h.html#ae3a497195d617519e5353ea7b417940f">Byte</a></td></tr>
 <tr class="separator:ae3a497195d617519e5353ea7b417940f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c5689a997a12479b7d925e565428141"><td class="memItemLeft" align="right" valign="top">typedef unsigned char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_frame_lib___types_8h.html#a2c5689a997a12479b7d925e565428141">BytePointer</a></td></tr>
 <tr class="separator:a2c5689a997a12479b7d925e565428141"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a699a4071a9eaaa283906a5ebd0a79ac0"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="class_f_l___f_p.html">FL_FP</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a></td></tr>
-<tr class="separator:a699a4071a9eaaa283906a5ebd0a79ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -114,13 +127,18 @@ Enumerations</h2></td></tr>
 <a class="el" href="_frame_lib___types_8h.html#ad495a9f61af7fff07d7e97979d1ab854a5aee2d6178ee23e61651d75ebc9b21c3">kFrameTagged</a>
  }</td></tr>
 <tr class="separator:ad495a9f61af7fff07d7e97979d1ab854"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8ed01ff3ff33333d8e19db4d2818bb6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_frame_lib___types_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> { <a class="el" href="_frame_lib___types_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6a6e202ffd504c2ae6e4f094c04a6fb753">kVector</a>, 
+<a class="el" href="_frame_lib___types_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6aa5a30c385cc94aa0233a0af81ef90d6a">kSingleString</a>
+ }</td></tr>
+<tr class="separator:ad8ed01ff3ff33333d8e19db4d2818bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a427ca8c6f961bac8e41f6edecf0722"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722">ConnectionResult</a> { <br />
 &#160;&#160;<a class="el" href="_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722acbb7410537aa828b1bd79f9f482c4f58">kConnectSuccess</a>, 
 <a class="el" href="_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722aa60bde05fabf20fadbc9383756c0eb79">kConnectWrongContext</a>, 
 <a class="el" href="_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722ab9d26eda5af349a5999d6dfe4ebfdc40">kConnectSelfConnection</a>, 
 <a class="el" href="_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722a9d2a53b28aad91bf56798bb950e093b0">kConnectFeedbackDetected</a>, 
 <br />
-&#160;&#160;<a class="el" href="_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722ae8d1018327af38e058cd3b7a92284248">kConnectNoOrderingSupport</a>
+&#160;&#160;<a class="el" href="_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722ae8d1018327af38e058cd3b7a92284248">kConnectNoOrderingSupport</a>, 
+<a class="el" href="_frame_lib___types_8h.html#a2a427ca8c6f961bac8e41f6edecf0722ac2d587c92eaceb7c3a66b6f0f59e68fd">kConnectAliased</a>
 <br />
  }</td></tr>
 <tr class="separator:a2a427ca8c6f961bac8e41f6edecf0722"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,20 +172,6 @@ Enumerations</h2></td></tr>
 
 </div>
 </div>
-<a id="a699a4071a9eaaa283906a5ebd0a79ac0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a699a4071a9eaaa283906a5ebd0a79ac0">&#9670;&nbsp;</a></span>FrameLib_TimeFormat</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="class_f_l___f_p.html">FL_FP</a> <a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a2a427ca8c6f961bac8e41f6edecf0722"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2a427ca8c6f961bac8e41f6edecf0722">&#9670;&nbsp;</a></span>ConnectionResult</h2>
@@ -186,6 +190,25 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="a2a427ca8c6f961bac8e41f6edecf0722ab9d26eda5af349a5999d6dfe4ebfdc40"></a>kConnectSelfConnection&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a2a427ca8c6f961bac8e41f6edecf0722a9d2a53b28aad91bf56798bb950e093b0"></a>kConnectFeedbackDetected&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a2a427ca8c6f961bac8e41f6edecf0722ae8d1018327af38e058cd3b7a92284248"></a>kConnectNoOrderingSupport&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2a427ca8c6f961bac8e41f6edecf0722ac2d587c92eaceb7c3a66b6f0f59e68fd"></a>kConnectAliased&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="ad8ed01ff3ff33333d8e19db4d2818bb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8ed01ff3ff33333d8e19db4d2818bb6">&#9670;&nbsp;</a></span>DataType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="_frame_lib___types_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ad8ed01ff3ff33333d8e19db4d2818bb6a6e202ffd504c2ae6e4f094c04a6fb753"></a>kVector&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad8ed01ff3ff33333d8e19db4d2818bb6aa5a30c385cc94aa0233a0af81ef90d6a"></a>kSingleString&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>

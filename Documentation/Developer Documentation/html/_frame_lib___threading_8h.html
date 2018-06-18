@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.7</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
    <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
@@ -84,32 +84,37 @@ $(document).ready(function(){initNavTree('_frame_lib___threading_8h.html','');})
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">FrameLib_Threading.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;windows.h&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="_frame_lib___types_8h_source.html">FrameLib_Types.h</a>&quot;</code><br />
+<code>#include &lt;atomic&gt;</code><br />
+<code>#include &lt;windows.h&gt;</code><br />
 </div>
 <p><a href="_frame_lib___threading_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_atomic32.html">Atomic32</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___spin_lock.html">FrameLib_SpinLock</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a spinlock that can be locked, attempted or acquired.  <a href="class_frame_lib___spin_lock.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_atomic_ptr.html">AtomicPtr&lt; T &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___spin_lock_holder.html">FrameLib_SpinLockHolder</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a RAII hold utility for a <a class="el" href="class_frame_lib___spin_lock.html" title="a spinlock that can be locked, attempted or acquired. ">FrameLib_SpinLock</a>  <a href="class_frame_lib___spin_lock_holder.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spin_lock.html">SpinLock</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___thread.html">FrameLib_Thread</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">lightweight joinable thread with variable priority level  <a href="class_frame_lib___thread.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spin_lock_holder.html">SpinLockHolder</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___semaphore.html">FrameLib_Semaphore</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a semaphore class wrapping an OS-level semaphore  <a href="class_frame_lib___semaphore.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_thread.html">Thread</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___triggerable_thread.html">FrameLib_TriggerableThread</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a thread that can be triggered from another thread (there is no mechanism to check progress)  <a href="class_frame_lib___triggerable_thread.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_semaphore.html">Semaphore</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triggerable_thread.html">TriggerableThread</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_delegate_thread.html">DelegateThread</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___delegate_thread.html">FrameLib_DelegateThread</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a thread to delegate tasks to, which can be then be checked for completion  <a href="class_frame_lib___delegate_thread.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -119,17 +124,89 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ae0c154d740b3e6f81b245ff564b7d0ad"><td class="memItemLeft" align="right" valign="top">typedef volatile long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_s___specific.html#ae0c154d740b3e6f81b245ff564b7d0ad">OS_Specific::Atomic32</a></td></tr>
-<tr class="separator:ae0c154d740b3e6f81b245ff564b7d0ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9a39cdf74334e1457fda6bb1c4cb505"><td class="memItemLeft" align="right" valign="top">typedef volatile PVOID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_s___specific.html#ad9a39cdf74334e1457fda6bb1c4cb505">OS_Specific::AtomicPtr</a></td></tr>
-<tr class="separator:ad9a39cdf74334e1457fda6bb1c4cb505"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a965d89d27f3b632fa8d2d1b593bf2bd6"><td class="memItemLeft" align="right" valign="top">typedef HANDLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_s___specific.html#a965d89d27f3b632fa8d2d1b593bf2bd6">OS_Specific::OSThreadType</a></td></tr>
 <tr class="separator:a965d89d27f3b632fa8d2d1b593bf2bd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11a242d06d0e59bcf9525303bd7b3b57"><td class="memItemLeft" align="right" valign="top">typedef HANDLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_s___specific.html#a11a242d06d0e59bcf9525303bd7b3b57">OS_Specific::OSSemaphoreType</a></td></tr>
 <tr class="separator:a11a242d06d0e59bcf9525303bd7b3b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a422b5e92e59f05440b9f9439cd349d"><td class="memItemLeft" align="right" valign="top">typedef DWORD WINAPI&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_s___specific.html#a4a422b5e92e59f05440b9f9439cd349d">OS_Specific::OSThreadFunctionType</a>(LPVOID arg)</td></tr>
 <tr class="separator:a4a422b5e92e59f05440b9f9439cd349d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a6f684f24f2a5a14c560a1267fd944700"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a6f684f24f2a5a14c560a1267fd944700"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="_frame_lib___threading_8h.html#a6f684f24f2a5a14c560a1267fd944700">compareAndSwap</a> (std::atomic&lt; T &gt; &amp;value, T comparand, T exchange)</td></tr>
+<tr class="separator:a6f684f24f2a5a14c560a1267fd944700"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c8027bc239ef6f1b2809f7f3f7db932"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a4c8027bc239ef6f1b2809f7f3f7db932"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="_frame_lib___threading_8h.html#a4c8027bc239ef6f1b2809f7f3f7db932">nullSwap</a> (std::atomic&lt; T *&gt; &amp;value, T *exchange)</td></tr>
+<tr class="separator:a4c8027bc239ef6f1b2809f7f3f7db932"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a6f684f24f2a5a14c560a1267fd944700"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f684f24f2a5a14c560a1267fd944700">&#9670;&nbsp;</a></span>compareAndSwap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool compareAndSwap </td>
+          <td>(</td>
+          <td class="paramtype">std::atomic&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>comparand</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>exchange</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4c8027bc239ef6f1b2809f7f3f7db932"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c8027bc239ef6f1b2809f7f3f7db932">&#9670;&nbsp;</a></span>nullSwap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool nullSwap </td>
+          <td>(</td>
+          <td class="paramtype">std::atomic&lt; T *&gt; &amp;&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>exchange</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

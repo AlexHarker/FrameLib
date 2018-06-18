@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['processingqueue',['ProcessingQueue',['../class_frame_lib___context.html#af25ffc646e2a2062cd126357acd714df',1,'FrameLib_Context']]]
+  ['queue',['Queue',['../class_frame_lib___object.html#a3e6fce9a979bf08406e40e51583cb4ea',1,'FrameLib_Object']]]
 ];

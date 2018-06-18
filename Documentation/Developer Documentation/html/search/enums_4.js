@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['prioritylevel',['PriorityLevel',['../class_thread.html#a42f854dd02a3640e422b2f3288067744',1,'Thread']]]
+  ['numerictype',['NumericType',['../class_frame_lib___parameters.html#a61fa243341eccefa66dbb744b7e047a0',1,'FrameLib_Parameters']]]
 ];

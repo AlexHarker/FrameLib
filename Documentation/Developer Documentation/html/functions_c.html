@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.7</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
    <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
@@ -85,7 +85,10 @@ $(document).ready(function(){initNavTree('functions_c.html','');});
 
 <h3><a id="index_c"></a>- c -</h3><ul>
 <li>calcSize()
-: <a class="el" href="class_frame_lib___parameters_1_1_serial.html#a05ed411c98c4c7507c6cb2f6025d617f">FrameLib_Parameters::Serial</a>
+: <a class="el" href="class_frame_lib___parameters_1_1_serial.html#ad0ef941c4f0461a59b4cdd303d7e1c89">FrameLib_Parameters::Serial</a>
+</li>
+<li>callConnectionUpdate()
+: <a class="el" href="class_frame_lib___object.html#add88ac11ac70eb93b2d05eebf2ab9b82">FrameLib_Object&lt; T &gt;</a>
 </li>
 <li>changed()
 : <a class="el" href="class_frame_lib___parameters.html#a1ddc66de3c5b22c98c61692139d6edb1">FrameLib_Parameters</a>
@@ -94,8 +97,7 @@ $(document).ready(function(){initNavTree('functions_c.html','');});
 : <a class="el" href="class_frame_lib___parameters_1_1_serial.html#a85681aac08fc30d99942fefee262a4ea">FrameLib_Parameters::Serial</a>
 </li>
 <li>clear()
-: <a class="el" href="class_atomic_ptr.html#aa5b96f75a6f1427e28aa7fad94965818">AtomicPtr&lt; T &gt;</a>
-, <a class="el" href="class_frame_lib___local_allocator.html#a5d4eef90190d3699cb2026da02749dd5">FrameLib_LocalAllocator</a>
+: <a class="el" href="class_frame_lib___local_allocator.html#a5d4eef90190d3699cb2026da02749dd5">FrameLib_LocalAllocator</a>
 , <a class="el" href="class_frame_lib___parameters.html#a5c0764e11e7723b034fc9951b4dcfb3e">FrameLib_Parameters</a>
 , <a class="el" href="class_frame_lib___parameters_1_1_serial.html#a5c5fdd1e22ef366407e77b09554df8f8">FrameLib_Parameters::Serial</a>
 </li>
@@ -103,10 +105,9 @@ $(document).ready(function(){initNavTree('functions_c.html','');});
 : <a class="el" href="class_frame_lib___object.html#a33b99de2c7a35227bc8a40d4c3b2ee76">FrameLib_Object&lt; T &gt;</a>
 </li>
 <li>clearAutoOrderingConnections()
-: <a class="el" href="class_frame_lib___expand.html#adbf3c1e77474e23eacabb395409424e5">FrameLib_Expand&lt; T &gt;</a>
+: <a class="el" href="class_frame_lib___d_s_p.html#a8c9843103d691ed57e3e265528f575be">FrameLib_DSP</a>
+, <a class="el" href="class_frame_lib___expand.html#a1fc74f5aa29990019307078693016f78">FrameLib_Expand&lt; T &gt;</a>
 , <a class="el" href="class_frame_lib___object.html#aac43ebfacb59081f7f60957380df7481">FrameLib_Object&lt; T &gt;</a>
-, <a class="el" href="class_frame_lib___pack.html#af0b40307726462df7754ead87c7c8a9c">FrameLib_Pack</a>
-, <a class="el" href="class_frame_lib___unpack.html#a99d42ef7daadceeda8e3aa34afb249f5">FrameLib_Unpack</a>
 </li>
 <li>clearConnections()
 : <a class="el" href="class_frame_lib___object.html#a4fa6add369fd21ddc5250efd740d0285">FrameLib_Object&lt; T &gt;</a>
@@ -118,20 +119,29 @@ $(document).ready(function(){initNavTree('functions_c.html','');});
 : <a class="el" href="class_frame_lib___parameters.html#afcefd8a6a664599b93f635538d95265a">FrameLib_Parameters</a>
 </li>
 <li>close()
-: <a class="el" href="class_semaphore.html#ab04c0934fbf281eb49bd332ecd07c856">Semaphore</a>
-</li>
-<li>compareAndSwap()
-: <a class="el" href="class_atomic32.html#a00fe115c7138497ce5d7de9001b3166f">Atomic32</a>
-, <a class="el" href="class_atomic_ptr.html#a553945e2bd92ac404262a6e9f2c31590">AtomicPtr&lt; T &gt;</a>
+: <a class="el" href="class_frame_lib___semaphore.html#a5d2d85054c42363761ad4bf37d167d90">FrameLib_Semaphore</a>
 </li>
 <li>completed()
-: <a class="el" href="class_delegate_thread.html#a0f03ed4723a9517afb896108d20927e8">DelegateThread</a>
+: <a class="el" href="class_frame_lib___delegate_thread.html#a621fe74509d9a92a0ef7f8a93b26de6e">FrameLib_DelegateThread</a>
 </li>
-<li>Connection
-: <a class="el" href="class_frame_lib___multi_channel.html#ae58a3f32378b88e31fd9da76206c7313">FrameLib_MultiChannel</a>
+<li>Connection()
+: <a class="el" href="struct_frame_lib___object_1_1_connection.html#ab0e9711193a05fc2f5db06354d7a888f">FrameLib_Object&lt; T &gt;::Connection</a>
+, <a class="el" href="struct_frame_lib___object_description_1_1_connection.html#ae7adfde2b957d21fd01cc9fbaff4dc92">FrameLib_ObjectDescription::Connection</a>
+</li>
+<li>copyInputToOutput()
+: <a class="el" href="class_frame_lib___d_s_p.html#abe84c66d723767ef803c58f9ada7a7de">FrameLib_DSP</a>
 </li>
 <li>copyVector()
-: <a class="el" href="class_frame_lib___d_s_p.html#aaa7b3e5f55db4a6cf13d37958f08b17f">FrameLib_DSP</a>
+: <a class="el" href="class_frame_lib___d_s_p.html#acd722a6a2939ed16f748288901f75119">FrameLib_DSP</a>
+</li>
+<li>copyVectorExtend()
+: <a class="el" href="class_frame_lib___d_s_p.html#a53100cc66147cbb05374e5d877ad4bd7">FrameLib_DSP</a>
+</li>
+<li>copyVectorWrap()
+: <a class="el" href="class_frame_lib___d_s_p.html#a11ceb4866739ced35e33ce353d293130">FrameLib_DSP</a>
+</li>
+<li>copyVectorZero()
+: <a class="el" href="class_frame_lib___d_s_p.html#aeb49d3b2882291b61acaefe1182f0e2e">FrameLib_DSP</a>
 </li>
 </ul>
 </div><!-- contents -->

@@ -3,6 +3,7 @@
 {\ttfamily \#include \char`\"{}Frame\+Lib\+\_\+\+Types.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Frame\+Lib\+\_\+\+Context.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Frame\+Lib\+\_\+\+Parameters.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
 {\ttfamily \#include $<$string$>$}\newline
 {\ttfamily \#include $<$sstream$>$}\newline
 {\ttfamily \#include $<$iostream$>$}\newline
@@ -10,12 +11,12 @@
 \begin{DoxyCompactItemize}
 \item 
 class \hyperlink{class_frame_lib___queueable}{Frame\+Lib\+\_\+\+Queueable$<$ T $>$}
-\item 
+\begin{DoxyCompactList}\small\item\em a template class for items that can be placed on a queue \end{DoxyCompactList}\item 
 class \hyperlink{class_frame_lib___queueable_1_1_queue}{Frame\+Lib\+\_\+\+Queueable$<$ T $>$\+::\+Queue}
-\item 
+\begin{DoxyCompactList}\small\item\em a single-\/threaded queue for non-\/recursive queuing of items for processing \end{DoxyCompactList}\item 
 class \hyperlink{class_frame_lib___object}{Frame\+Lib\+\_\+\+Object$<$ T $>$}
-\item 
-struct \hyperlink{struct_frame_lib___object_1_1_untyped_connection}{Frame\+Lib\+\_\+\+Object$<$ T $>$\+::\+Untyped\+Connection$<$ U $>$}
-\item 
+\begin{DoxyCompactList}\small\item\em an abstract template class providing an interface for Frame\+Lib objects and implementing connectivity \end{DoxyCompactList}\item 
+class \hyperlink{struct_frame_lib___object_1_1_connection}{Frame\+Lib\+\_\+\+Object$<$ T $>$\+::\+Connection}
+\begin{DoxyCompactList}\small\item\em holds the connected object and IO indices for a connection to an object \end{DoxyCompactList}\item 
 class \hyperlink{class_frame_lib___block}{Frame\+Lib\+\_\+\+Block}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em an abstract class that represents either a single \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} object, or a group of connected \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} objects. \end{DoxyCompactList}\end{DoxyCompactItemize}

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.7</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
    <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
@@ -91,25 +91,32 @@ $(document).ready(function(){initNavTree('_frame_lib___d_s_p_8h.html','');});
 <code>#include &quot;<a class="el" href="_frame_lib___context_8h_source.html">FrameLib_Context.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_frame_lib___object_8h_source.html">FrameLib_Object.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_frame_lib___processing_queue_8h_source.html">FrameLib_ProcessingQueue.h</a>&quot;</code><br />
-<code>#include &lt;limits&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;limits&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 </div>
 <p><a href="_frame_lib___d_s_p_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___d_s_p.html">FrameLib_DSP</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">an abstract class containing the core of the DSP processing system, which handles single-stream scheduling.  <a href="class_frame_lib___d_s_p.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_frame_lib___d_s_p_1_1_scheduler_info.html">FrameLib_DSP::SchedulerInfo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">an struct for returning scheduling info from the schedule() method.  <a href="struct_frame_lib___d_s_p_1_1_scheduler_info.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___processor.html">FrameLib_Processor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a convenience class for creating processor <a class="el" href="class_frame_lib___d_s_p.html" title="an abstract class containing the core of the DSP processing system, which handles single-stream sched...">FrameLib_DSP</a> classes that do not handle audio.  <a href="class_frame_lib___processor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___audio_input.html">FrameLib_AudioInput</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a convenience class for creating processor type <a class="el" href="class_frame_lib___d_s_p.html" title="an abstract class containing the core of the DSP processing system, which handles single-stream sched...">FrameLib_DSP</a> classes which handle audio input.  <a href="class_frame_lib___audio_input.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___audio_output.html">FrameLib_AudioOutput</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a convenience class for creating processor type <a class="el" href="class_frame_lib___d_s_p.html" title="an abstract class containing the core of the DSP processing system, which handles single-stream sched...">FrameLib_DSP</a> classes which handle audio output.  <a href="class_frame_lib___audio_output.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___scheduler.html">FrameLib_Scheduler</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a convenience class for creating scheduler type <a class="el" href="class_frame_lib___d_s_p.html" title="an abstract class containing the core of the DSP processing system, which handles single-stream sched...">FrameLib_DSP</a> classes.  <a href="class_frame_lib___scheduler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.7</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
    <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
@@ -87,23 +87,31 @@ $(document).ready(function(){initNavTree('class_frame_lib___global_allocator.htm
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_frame_lib___global_allocator-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">FrameLib_GlobalAllocator Class Reference</div>  </div>
+<div class="title">FrameLib_GlobalAllocator Class Reference<div class="ingroups"><a class="el" href="group___memory.html">Memory</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>a global threadsafe memory allocator suitable for realtime usage.  
+ <a href="class_frame_lib___global_allocator.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_frame_lib___memory_8h_source.html">FrameLib_Memory.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global_allocator_1_1_pruner.html">Pruner</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">an RAII utility for repeated deallocation with only a single lock.  <a href="class_frame_lib___global_allocator_1_1_pruner.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0181e5afd418f9eeb13bbb293e1863e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global_allocator.html#a0181e5afd418f9eeb13bbb293e1863e1">FrameLib_GlobalAllocator</a> ()</td></tr>
-<tr class="separator:a0181e5afd418f9eeb13bbb293e1863e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb0d7259cd6bb4c5b8e365a26e370e54"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global_allocator.html#aeb0d7259cd6bb4c5b8e365a26e370e54">FrameLib_GlobalAllocator</a> (<a class="el" href="class_frame_lib___error_reporter.html">FrameLib_ErrorReporter</a> &amp;errorReporter)</td></tr>
+<tr class="separator:aeb0d7259cd6bb4c5b8e365a26e370e54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20fa9b3b84bb54eefffb8f30a70883d5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global_allocator.html#a20fa9b3b84bb54eefffb8f30a70883d5">~FrameLib_GlobalAllocator</a> ()</td></tr>
 <tr class="separator:a20fa9b3b84bb54eefffb8f30a70883d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e93abd711eb6acf04601aef3c6b9877"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global_allocator.html#a7e93abd711eb6acf04601aef3c6b9877">FrameLib_GlobalAllocator</a> (const <a class="el" href="class_frame_lib___global_allocator.html">FrameLib_GlobalAllocator</a> &amp;)=delete</td></tr>
+<tr class="separator:a7e93abd711eb6acf04601aef3c6b9877"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23d4689821a194c5f89227d135a5703c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___global_allocator.html">FrameLib_GlobalAllocator</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global_allocator.html#a23d4689821a194c5f89227d135a5703c">operator=</a> (const <a class="el" href="class_frame_lib___global_allocator.html">FrameLib_GlobalAllocator</a> &amp;)=delete</td></tr>
+<tr class="separator:a23d4689821a194c5f89227d135a5703c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2ef32b9cba8f46c836be2d1df31d8a4"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global_allocator.html#af2ef32b9cba8f46c836be2d1df31d8a4">alloc</a> (size_t size)</td></tr>
 <tr class="separator:af2ef32b9cba8f46c836be2d1df31d8a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cd36632acf1f6f281f50337bb95e2be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global_allocator.html#a8cd36632acf1f6f281f50337bb95e2be">dealloc</a> (void *ptr)</td></tr>
@@ -116,9 +124,11 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a5568abfa871845e293c76e76a891b2ef"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global_allocator.html#a5568abfa871845e293c76e76a891b2ef">alignSize</a> (size_t x)</td></tr>
 <tr class="separator:a5568abfa871845e293c76e76a891b2ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a0181e5afd418f9eeb13bbb293e1863e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0181e5afd418f9eeb13bbb293e1863e1">&#9670;&nbsp;</a></span>FrameLib_GlobalAllocator()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>a global threadsafe memory allocator suitable for realtime usage. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aeb0d7259cd6bb4c5b8e365a26e370e54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb0d7259cd6bb4c5b8e365a26e370e54">&#9670;&nbsp;</a></span>FrameLib_GlobalAllocator() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -129,7 +139,8 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">FrameLib_GlobalAllocator::FrameLib_GlobalAllocator </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_frame_lib___error_reporter.html">FrameLib_ErrorReporter</a> &amp;&#160;</td>
+          <td class="paramname"><em>errorReporter</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -161,6 +172,32 @@ Static Public Member Functions</h2></td></tr>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7e93abd711eb6acf04601aef3c6b9877"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e93abd711eb6acf04601aef3c6b9877">&#9670;&nbsp;</a></span>FrameLib_GlobalAllocator() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FrameLib_GlobalAllocator::FrameLib_GlobalAllocator </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_frame_lib___global_allocator.html">FrameLib_GlobalAllocator</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -249,6 +286,32 @@ Static Public Member Functions</h2></td></tr>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a23d4689821a194c5f89227d135a5703c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23d4689821a194c5f89227d135a5703c">&#9670;&nbsp;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_frame_lib___global_allocator.html">FrameLib_GlobalAllocator</a>&amp; FrameLib_GlobalAllocator::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_frame_lib___global_allocator.html">FrameLib_GlobalAllocator</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

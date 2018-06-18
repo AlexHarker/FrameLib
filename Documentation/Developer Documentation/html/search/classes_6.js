@@ -1,9 +1,4 @@
 var searchData=
 [
-  ['schedulerinfo',['SchedulerInfo',['../struct_frame_lib___d_s_p_1_1_scheduler_info.html',1,'FrameLib_DSP']]],
-  ['semaphore',['Semaphore',['../class_semaphore.html',1,'']]],
-  ['serial',['Serial',['../class_frame_lib___parameters_1_1_serial.html',1,'FrameLib_Parameters']]],
-  ['spinlock',['SpinLock',['../class_spin_lock.html',1,'']]],
-  ['spinlockholder',['SpinLockHolder',['../class_spin_lock_holder.html',1,'']]],
-  ['storage',['Storage',['../class_frame_lib___local_allocator_1_1_storage.html',1,'FrameLib_LocalAllocator']]]
+  ['pruner',['Pruner',['../class_frame_lib___global_allocator_1_1_pruner.html',1,'FrameLib_GlobalAllocator']]]
 ];

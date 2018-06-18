@@ -2,6 +2,11 @@
 \label{class_frame_lib___processor}\index{Frame\+Lib\+\_\+\+Processor@{Frame\+Lib\+\_\+\+Processor}}
 
 
+a convenience class for creating processor \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} classes that do not handle audio.  
+
+
+
+
 {\ttfamily \#include $<$Frame\+Lib\+\_\+\+D\+S\+P.\+h$>$}
 
 Inheritance diagram for Frame\+Lib\+\_\+\+Processor\+:\begin{figure}[H]
@@ -13,7 +18,7 @@ Inheritance diagram for Frame\+Lib\+\_\+\+Processor\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_frame_lib___processor_acd8ddc4d9b3d10ef8cd6b63716979711}{Frame\+Lib\+\_\+\+Processor} (\hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} context, void $\ast$owner, \hyperlink{class_frame_lib___parameters_1_1_info}{Frame\+Lib\+\_\+\+Parameters\+::\+Info} $\ast$info, unsigned long n\+Ins=0, unsigned long n\+Outs=0)
+\hyperlink{class_frame_lib___processor_a8892a6fdd58d45c2182bd8dc11a92845}{Frame\+Lib\+\_\+\+Processor} (\hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} context, \hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy} $\ast$proxy, \hyperlink{class_frame_lib___parameters_1_1_info}{Frame\+Lib\+\_\+\+Parameters\+::\+Info} $\ast$info, unsigned long n\+Ins=0, unsigned long n\+Outs=0)
 \end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -32,12 +37,17 @@ void \hyperlink{class_frame_lib___processor_a84035040e5e1cff07e16502ee290881e}{s
 \subsection*{Additional Inherited Members}
 
 
+\subsection{Detailed Description}
+a convenience class for creating processor \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} classes that do not handle audio. 
+
+Processor classes do not schedule frames and do not handle block-\/based audio IO. This object provides an empty implementation of \hyperlink{class_frame_lib___processor_a2487e6433f6a5e79014664a0500ccc24}{schedule()} to avoid the end class developer needing to override this method (never called by a processor class) and also provides a simplified \hyperlink{class_frame_lib___processor_a84035040e5e1cff07e16502ee290881e}{set\+I\+O()} that does not take a parameter for audio channels. 
+
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_frame_lib___processor_acd8ddc4d9b3d10ef8cd6b63716979711}\label{class_frame_lib___processor_acd8ddc4d9b3d10ef8cd6b63716979711}} 
+\mbox{\Hypertarget{class_frame_lib___processor_a8892a6fdd58d45c2182bd8dc11a92845}\label{class_frame_lib___processor_a8892a6fdd58d45c2182bd8dc11a92845}} 
 \index{Frame\+Lib\+\_\+\+Processor@{Frame\+Lib\+\_\+\+Processor}!Frame\+Lib\+\_\+\+Processor@{Frame\+Lib\+\_\+\+Processor}}
 \index{Frame\+Lib\+\_\+\+Processor@{Frame\+Lib\+\_\+\+Processor}!Frame\+Lib\+\_\+\+Processor@{Frame\+Lib\+\_\+\+Processor}}
 \subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Processor()}{FrameLib\_Processor()}}
-{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Processor\+::\+Frame\+Lib\+\_\+\+Processor (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context}}]{context,  }\item[{void $\ast$}]{owner,  }\item[{\hyperlink{class_frame_lib___parameters_1_1_info}{Frame\+Lib\+\_\+\+Parameters\+::\+Info} $\ast$}]{info,  }\item[{unsigned long}]{n\+Ins = {\ttfamily 0},  }\item[{unsigned long}]{n\+Outs = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Processor\+::\+Frame\+Lib\+\_\+\+Processor (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context}}]{context,  }\item[{\hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy} $\ast$}]{proxy,  }\item[{\hyperlink{class_frame_lib___parameters_1_1_info}{Frame\+Lib\+\_\+\+Parameters\+::\+Info} $\ast$}]{info,  }\item[{unsigned long}]{n\+Ins = {\ttfamily 0},  }\item[{unsigned long}]{n\+Outs = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 

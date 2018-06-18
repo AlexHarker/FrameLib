@@ -2,8 +2,19 @@
 \label{class_f_l___f_p}\index{F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}}
 
 
+high-\/precision unsigned fixed-\/point numerical format.  
+
+
+
+
 {\ttfamily \#include $<$Frame\+Lib\+\_\+\+Fixed\+Point.\+h$>$}
 
+Inheritance diagram for F\+L\+\_\+\+FP\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_f_l___f_p}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -15,9 +26,9 @@
 \item 
 \hyperlink{class_f_l___f_p_a552b545bb667d5a6436e89f33586e9fa}{F\+L\+\_\+\+FP} (const double \&val)
 \item 
-uint64\+\_\+t \hyperlink{class_f_l___f_p_a0ce00ef24ad45d942501781061b423a8}{int\+Val} ()
+uint64\+\_\+t \hyperlink{class_f_l___f_p_acffd4f751e5042dbed4a28bfe3f90ea5}{int\+Val} () const
 \item 
-uint64\+\_\+t \hyperlink{class_f_l___f_p_a4d17ff88a771402857fa22e94e502efe}{frac\+Val} ()
+uint64\+\_\+t \hyperlink{class_f_l___f_p_adeac9cc0d327d4759ac35890c13978c0}{frac\+Val} () const
 \item 
 \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \& \hyperlink{class_f_l___f_p_ab07d8c341752a6668a3a8a6e0d8ba2c7}{operator+=} (const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&b)
 \item 
@@ -29,7 +40,7 @@ uint64\+\_\+t \hyperlink{class_f_l___f_p_a4d17ff88a771402857fa22e94e502efe}{frac
 \item 
 \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \& \hyperlink{class_f_l___f_p_a883f8d6a0d34a3af9a35654b25f0ba7c}{operator++} ()
 \item 
-\hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \& \hyperlink{class_f_l___f_p_ab8417e45b7fe2aeb0517834c0cec409c}{operator++} (int)
+\hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \hyperlink{class_f_l___f_p_a2feeebae2b863b1955232473b4f62db0}{operator++} (int)
 \item 
 \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \& \hyperlink{class_f_l___f_p_a3e9f6cc369b21fe2d188ebeca60a3df4}{operator-\/-\/} ()
 \item 
@@ -50,9 +61,9 @@ uint64\+\_\+t \hyperlink{class_f_l___f_p_a4d17ff88a771402857fa22e94e502efe}{frac
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-bool \hyperlink{class_f_l___f_p_a9edcf609bd52b6d25b394bf8b1a22819}{non\+Zero\+Positive} (const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&a)
-\item 
 bool \hyperlink{class_f_l___f_p_a7f68a65590040b22d55e29f700a70090}{operator==} (const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&a, const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&b)
+\item 
+bool \hyperlink{class_f_l___f_p_a694ee4bd94433b815c7f4e5f7a2acd50}{operator!=} (const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&a, const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&b)
 \item 
 bool \hyperlink{class_f_l___f_p_a7a645d400e5b6aeaf8a3ea2a4512ab9e}{operator$<$} (const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&a, const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&b)
 \item 
@@ -75,6 +86,10 @@ bool \hyperlink{class_f_l___f_p_a14d7541c865b9e57eaaca1c3fd2c6240}{operator!} (c
 bool \hyperlink{class_f_l___f_p_a666442f1b900ba2e6680d77ec4261a9e}{operator==} (const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&a, const double \&b)
 \item 
 bool \hyperlink{class_f_l___f_p_a8b8fd18407f83f9bbf63012179eb694d}{operator==} (const double \&a, const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&b)
+\item 
+bool \hyperlink{class_f_l___f_p_a3c240fef687da52fed8f3646a924d91e}{operator!=} (const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&a, const double \&b)
+\item 
+bool \hyperlink{class_f_l___f_p_a699d74159c9061491364140ac24a568b}{operator!=} (const double \&a, const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&b)
 \item 
 bool \hyperlink{class_f_l___f_p_ae0d89fcb254db9759b80cca31de5ee00}{operator$<$} (const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&a, const double \&b)
 \item 
@@ -110,6 +125,11 @@ bool \hyperlink{class_f_l___f_p_a1f7bf9f00e36c130033949619f5261dd}{operator$>$=}
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+high-\/precision unsigned fixed-\/point numerical format. 
+
+This unsigned type allows for 64 bits of integer precision and 64 bits of fractional precision. Basic arithmetic and comparison operators are supported, for this type, and when used in conjunction with double-\/precision floating-\/point numbers. The primary purpose of this type is to precisely represent the time in samples in Frame\+Lib. 
+
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_f_l___f_p_a2db44ca3f010e72af1a0ba97f443fe93}\label{class_f_l___f_p_a2db44ca3f010e72af1a0ba97f443fe93}} 
 \index{F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}!F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}}
@@ -138,17 +158,17 @@ bool \hyperlink{class_f_l___f_p_a1f7bf9f00e36c130033949619f5261dd}{operator$>$=}
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_f_l___f_p_a4d17ff88a771402857fa22e94e502efe}\label{class_f_l___f_p_a4d17ff88a771402857fa22e94e502efe}} 
+\mbox{\Hypertarget{class_f_l___f_p_adeac9cc0d327d4759ac35890c13978c0}\label{class_f_l___f_p_adeac9cc0d327d4759ac35890c13978c0}} 
 \index{F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}!frac\+Val@{frac\+Val}}
 \index{frac\+Val@{frac\+Val}!F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}}
 \subsubsection{\texorpdfstring{frac\+Val()}{fracVal()}}
-{\footnotesize\ttfamily uint64\+\_\+t F\+L\+\_\+\+F\+P\+::frac\+Val (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily uint64\+\_\+t F\+L\+\_\+\+F\+P\+::frac\+Val (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{class_f_l___f_p_a0ce00ef24ad45d942501781061b423a8}\label{class_f_l___f_p_a0ce00ef24ad45d942501781061b423a8}} 
+\mbox{\Hypertarget{class_f_l___f_p_acffd4f751e5042dbed4a28bfe3f90ea5}\label{class_f_l___f_p_acffd4f751e5042dbed4a28bfe3f90ea5}} 
 \index{F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}!int\+Val@{int\+Val}}
 \index{int\+Val@{int\+Val}!F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}}
 \subsubsection{\texorpdfstring{int\+Val()}{intVal()}}
-{\footnotesize\ttfamily uint64\+\_\+t F\+L\+\_\+\+F\+P\+::int\+Val (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily uint64\+\_\+t F\+L\+\_\+\+F\+P\+::int\+Val (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{class_f_l___f_p_af0526310d4b3754485f712b5dfb96b32}\label{class_f_l___f_p_af0526310d4b3754485f712b5dfb96b32}} 
 \index{F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}!operator double@{operator double}}
@@ -174,11 +194,11 @@ bool \hyperlink{class_f_l___f_p_a1f7bf9f00e36c130033949619f5261dd}{operator$>$=}
 \subsubsection{\texorpdfstring{operator++()}{operator++()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP}\& F\+L\+\_\+\+F\+P\+::operator++ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{class_f_l___f_p_ab8417e45b7fe2aeb0517834c0cec409c}\label{class_f_l___f_p_ab8417e45b7fe2aeb0517834c0cec409c}} 
+\mbox{\Hypertarget{class_f_l___f_p_a2feeebae2b863b1955232473b4f62db0}\label{class_f_l___f_p_a2feeebae2b863b1955232473b4f62db0}} 
 \index{F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}!operator++@{operator++}}
 \index{operator++@{operator++}!F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}}
 \subsubsection{\texorpdfstring{operator++()}{operator++()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP}\& F\+L\+\_\+\+F\+P\+::operator++ (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} F\+L\+\_\+\+F\+P\+::operator++ (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{class_f_l___f_p_ab07d8c341752a6668a3a8a6e0d8ba2c7}\label{class_f_l___f_p_ab07d8c341752a6668a3a8a6e0d8ba2c7}} 
 \index{F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}!operator+=@{operator+=}}
@@ -237,17 +257,29 @@ bool \hyperlink{class_f_l___f_p_a1f7bf9f00e36c130033949619f5261dd}{operator$>$=}
 
 
 \subsection{Friends And Related Function Documentation}
-\mbox{\Hypertarget{class_f_l___f_p_a9edcf609bd52b6d25b394bf8b1a22819}\label{class_f_l___f_p_a9edcf609bd52b6d25b394bf8b1a22819}} 
-\index{F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}!non\+Zero\+Positive@{non\+Zero\+Positive}}
-\index{non\+Zero\+Positive@{non\+Zero\+Positive}!F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}}
-\subsubsection{\texorpdfstring{non\+Zero\+Positive}{nonZeroPositive}}
-{\footnotesize\ttfamily bool non\+Zero\+Positive (\begin{DoxyParamCaption}\item[{const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
-
 \mbox{\Hypertarget{class_f_l___f_p_a14d7541c865b9e57eaaca1c3fd2c6240}\label{class_f_l___f_p_a14d7541c865b9e57eaaca1c3fd2c6240}} 
 \index{F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}!operator"!@{operator"!}}
 \index{operator"!@{operator"!}!F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}}
 \subsubsection{\texorpdfstring{operator"!}{operator!}}
 {\footnotesize\ttfamily bool operator! (\begin{DoxyParamCaption}\item[{const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{class_f_l___f_p_a694ee4bd94433b815c7f4e5f7a2acd50}\label{class_f_l___f_p_a694ee4bd94433b815c7f4e5f7a2acd50}} 
+\index{F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}}
+\subsubsection{\texorpdfstring{operator"!=}{operator!=}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily bool \hyperlink{class_f_l___f_p_a14d7541c865b9e57eaaca1c3fd2c6240}{operator!}= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&}]{a,  }\item[{const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{class_f_l___f_p_a3c240fef687da52fed8f3646a924d91e}\label{class_f_l___f_p_a3c240fef687da52fed8f3646a924d91e}} 
+\index{F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}}
+\subsubsection{\texorpdfstring{operator"!=}{operator!=}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily bool \hyperlink{class_f_l___f_p_a14d7541c865b9e57eaaca1c3fd2c6240}{operator!}= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&}]{a,  }\item[{const double \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{class_f_l___f_p_a699d74159c9061491364140ac24a568b}\label{class_f_l___f_p_a699d74159c9061491364140ac24a568b}} 
+\index{F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}}
+\subsubsection{\texorpdfstring{operator"!=}{operator!=}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily bool \hyperlink{class_f_l___f_p_a14d7541c865b9e57eaaca1c3fd2c6240}{operator!}= (\begin{DoxyParamCaption}\item[{const double \&}]{a,  }\item[{const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
 
 \mbox{\Hypertarget{class_f_l___f_p_a7c9e13210a3e8f9ef270a4895b1fc0d3}\label{class_f_l___f_p_a7c9e13210a3e8f9ef270a4895b1fc0d3}} 
 \index{F\+L\+\_\+\+FP@{F\+L\+\_\+\+FP}!operator$\ast$@{operator$\ast$}}

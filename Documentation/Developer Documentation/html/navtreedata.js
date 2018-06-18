@@ -1,6 +1,7 @@
 var NAVTREE =
 [
   [ "FrameLib", "index.html", [
+    [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", "namespaces" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -38,8 +39,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_frame_lib___context_8h.html",
-"class_frame_lib___local_allocator_1_1_storage.html#aa4c7c5b51de2b88770a5de6f273cfd26",
-"class_triggerable_thread.html#ab0ce124fac1a131bdc27b0a757470820"
+"class_frame_lib___error_reporter_1_1_error_list_1_1_const_iterator.html#a08cbe6c95505991a964320a3075d558f",
+"class_frame_lib___parameters_1_1_auto_serial.html#a9176c245f71bf8f551870863c23fcd28"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

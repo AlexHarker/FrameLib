@@ -1,0 +1,108 @@
+\hypertarget{class_frame_lib___local_allocator_1_1_storage_1_1_access}{}\section{Frame\+Lib\+\_\+\+Local\+Allocator\+:\+:Storage\+:\+:Access Class Reference}
+\label{class_frame_lib___local_allocator_1_1_storage_1_1_access}\index{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}}
+
+
+an R\+A\+II utility for safely accessing a \hyperlink{class_frame_lib___local_allocator_1_1_storage}{Storage} object.  
+
+
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+Memory.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_frame_lib___local_allocator_1_1_storage_1_1_access_a02ea2f7c9943eb1fcd0963a685e0d7fd}{Access} (\hyperlink{class_frame_lib___local_allocator_1_1_storage}{Storage} $\ast$storage)
+\item 
+\hyperlink{class_frame_lib___local_allocator_1_1_storage_1_1_access_a15a62c966e41b3a5ea69f7dd56b2d9a2}{$\sim$\+Access} ()
+\item 
+\hyperlink{class_frame_lib___local_allocator_1_1_storage_1_1_access_a19c0194ff9a802ae0978a29bc217b237}{Access} (const \hyperlink{class_frame_lib___local_allocator_1_1_storage_1_1_access}{Access} \&)=delete
+\item 
+\hyperlink{class_frame_lib___local_allocator_1_1_storage_1_1_access}{Access} \& \hyperlink{class_frame_lib___local_allocator_1_1_storage_1_1_access_a9b8e0d8f30fd3b6c58c1d8290968086b}{operator=} (const \hyperlink{class_frame_lib___local_allocator_1_1_storage_1_1_access}{Access} \&)=delete
+\item 
+\hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} \hyperlink{class_frame_lib___local_allocator_1_1_storage_1_1_access_aed5345a46f87f7ef3beb05b68f31fd31}{get\+Type} () const
+\item 
+double $\ast$ \hyperlink{class_frame_lib___local_allocator_1_1_storage_1_1_access_a8ab7864388a3b8ef384e796b0609b808}{get\+Vector} () const
+\item 
+unsigned long \hyperlink{class_frame_lib___local_allocator_1_1_storage_1_1_access_a321a445a9999cbdfdfbf51bf20924ccc}{get\+Vector\+Size} () const
+\item 
+unsigned long \hyperlink{class_frame_lib___local_allocator_1_1_storage_1_1_access_a9538ca22ad01d88328ef3a0230231ff1}{get\+Tagged\+Size} () const
+\item 
+\hyperlink{class_frame_lib___parameters_1_1_serial}{Serial} $\ast$ \hyperlink{class_frame_lib___local_allocator_1_1_storage_1_1_access_af010002f0baeb791cd6a4b19f7879f13}{get\+Tagged} () const
+\item 
+void \hyperlink{class_frame_lib___local_allocator_1_1_storage_1_1_access_a7b730ca5d82115b00d018114c21604d3}{resize} (bool tagged, size\+\_\+t size)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+an R\+A\+II utility for safely accessing a \hyperlink{class_frame_lib___local_allocator_1_1_storage}{Storage} object. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_frame_lib___local_allocator_1_1_storage_1_1_access_a02ea2f7c9943eb1fcd0963a685e0d7fd}\label{class_frame_lib___local_allocator_1_1_storage_1_1_access_a02ea2f7c9943eb1fcd0963a685e0d7fd}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}!Access@{Access}}
+\index{Access@{Access}!Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}}
+\subsubsection{\texorpdfstring{Access()}{Access()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access\+::\+Access (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___local_allocator_1_1_storage}{Storage} $\ast$}]{storage }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___local_allocator_1_1_storage_1_1_access_a15a62c966e41b3a5ea69f7dd56b2d9a2}\label{class_frame_lib___local_allocator_1_1_storage_1_1_access_a15a62c966e41b3a5ea69f7dd56b2d9a2}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}!````~Access@{$\sim$\+Access}}
+\index{````~Access@{$\sim$\+Access}!Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}}
+\subsubsection{\texorpdfstring{$\sim$\+Access()}{~Access()}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access\+::$\sim$\+Access (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___local_allocator_1_1_storage_1_1_access_a19c0194ff9a802ae0978a29bc217b237}\label{class_frame_lib___local_allocator_1_1_storage_1_1_access_a19c0194ff9a802ae0978a29bc217b237}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}!Access@{Access}}
+\index{Access@{Access}!Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}}
+\subsubsection{\texorpdfstring{Access()}{Access()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access\+::\+Access (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___local_allocator_1_1_storage_1_1_access}{Access} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_frame_lib___local_allocator_1_1_storage_1_1_access_af010002f0baeb791cd6a4b19f7879f13}\label{class_frame_lib___local_allocator_1_1_storage_1_1_access_af010002f0baeb791cd6a4b19f7879f13}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}!get\+Tagged@{get\+Tagged}}
+\index{get\+Tagged@{get\+Tagged}!Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}}
+\subsubsection{\texorpdfstring{get\+Tagged()}{getTagged()}}
+{\footnotesize\ttfamily \hyperlink{class_frame_lib___parameters_1_1_serial}{Serial}$\ast$ Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access\+::get\+Tagged (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___local_allocator_1_1_storage_1_1_access_a9538ca22ad01d88328ef3a0230231ff1}\label{class_frame_lib___local_allocator_1_1_storage_1_1_access_a9538ca22ad01d88328ef3a0230231ff1}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}!get\+Tagged\+Size@{get\+Tagged\+Size}}
+\index{get\+Tagged\+Size@{get\+Tagged\+Size}!Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}}
+\subsubsection{\texorpdfstring{get\+Tagged\+Size()}{getTaggedSize()}}
+{\footnotesize\ttfamily unsigned long Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access\+::get\+Tagged\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___local_allocator_1_1_storage_1_1_access_aed5345a46f87f7ef3beb05b68f31fd31}\label{class_frame_lib___local_allocator_1_1_storage_1_1_access_aed5345a46f87f7ef3beb05b68f31fd31}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}!get\+Type@{get\+Type}}
+\index{get\+Type@{get\+Type}!Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}}
+\subsubsection{\texorpdfstring{get\+Type()}{getType()}}
+{\footnotesize\ttfamily \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___local_allocator_1_1_storage_1_1_access_a8ab7864388a3b8ef384e796b0609b808}\label{class_frame_lib___local_allocator_1_1_storage_1_1_access_a8ab7864388a3b8ef384e796b0609b808}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}!get\+Vector@{get\+Vector}}
+\index{get\+Vector@{get\+Vector}!Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}}
+\subsubsection{\texorpdfstring{get\+Vector()}{getVector()}}
+{\footnotesize\ttfamily double$\ast$ Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access\+::get\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___local_allocator_1_1_storage_1_1_access_a321a445a9999cbdfdfbf51bf20924ccc}\label{class_frame_lib___local_allocator_1_1_storage_1_1_access_a321a445a9999cbdfdfbf51bf20924ccc}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}!get\+Vector\+Size@{get\+Vector\+Size}}
+\index{get\+Vector\+Size@{get\+Vector\+Size}!Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}}
+\subsubsection{\texorpdfstring{get\+Vector\+Size()}{getVectorSize()}}
+{\footnotesize\ttfamily unsigned long Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access\+::get\+Vector\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___local_allocator_1_1_storage_1_1_access_a9b8e0d8f30fd3b6c58c1d8290968086b}\label{class_frame_lib___local_allocator_1_1_storage_1_1_access_a9b8e0d8f30fd3b6c58c1d8290968086b}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}!operator=@{operator=}}
+\index{operator=@{operator=}!Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \hyperlink{class_frame_lib___local_allocator_1_1_storage_1_1_access}{Access}\& Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___local_allocator_1_1_storage_1_1_access}{Access} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_frame_lib___local_allocator_1_1_storage_1_1_access_a7b730ca5d82115b00d018114c21604d3}\label{class_frame_lib___local_allocator_1_1_storage_1_1_access_a7b730ca5d82115b00d018114c21604d3}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}!resize@{resize}}
+\index{resize@{resize}!Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access@{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}}
+\subsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access\+::resize (\begin{DoxyParamCaption}\item[{bool}]{tagged,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___memory_8h}{Frame\+Lib\+\_\+\+Memory.\+h}\end{DoxyCompactItemize}

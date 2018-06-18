@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['objecttype',['ObjectType',['../_frame_lib___types_8h.html#a842c5e2e69277690b064bf363c017980',1,'FrameLib_Types.h']]]
+  ['frametype',['FrameType',['../_frame_lib___types_8h.html#ad495a9f61af7fff07d7e97979d1ab854',1,'FrameLib_Types.h']]]
 ];

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.7</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
    <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
@@ -89,6 +89,9 @@ $(document).ready(function(){initNavTree('class_frame_lib___global_allocator_1_1
 </div><!--header-->
 <div class="contents">
 
+<p>an RAII utility for repeated deallocation with only a single lock.  
+ <a href="class_frame_lib___global_allocator_1_1_pruner.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_frame_lib___memory_8h_source.html">FrameLib_Memory.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,12 +100,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aaeef6460d559456c61e25854f016625c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1b947e70e93d005e5a996ea2010e51a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global_allocator_1_1_pruner.html#af1b947e70e93d005e5a996ea2010e51a">~Pruner</a> ()</td></tr>
 <tr class="separator:af1b947e70e93d005e5a996ea2010e51a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39d760f7c11898823f0d6eb8fc9fa996"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global_allocator_1_1_pruner.html#a39d760f7c11898823f0d6eb8fc9fa996">Pruner</a> (const <a class="el" href="class_frame_lib___global_allocator_1_1_pruner.html">Pruner</a> &amp;)=delete</td></tr>
+<tr class="separator:a39d760f7c11898823f0d6eb8fc9fa996"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a223ed75d883318ef6d350ab9ce48bdc2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___global_allocator_1_1_pruner.html">Pruner</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global_allocator_1_1_pruner.html#a223ed75d883318ef6d350ab9ce48bdc2">operator=</a> (const <a class="el" href="class_frame_lib___global_allocator_1_1_pruner.html">Pruner</a> &amp;)=delete</td></tr>
+<tr class="separator:a223ed75d883318ef6d350ab9ce48bdc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad261c2fb12e19ce40ed3af4c550c479c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global_allocator_1_1_pruner.html#ad261c2fb12e19ce40ed3af4c550c479c">dealloc</a> (void *ptr)</td></tr>
 <tr class="separator:ad261c2fb12e19ce40ed3af4c550c479c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>an RAII utility for repeated deallocation with only a single lock. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aaeef6460d559456c61e25854f016625c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaeef6460d559456c61e25854f016625c">&#9670;&nbsp;</a></span>Pruner()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aaeef6460d559456c61e25854f016625c">&#9670;&nbsp;</a></span>Pruner() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -152,6 +161,32 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a39d760f7c11898823f0d6eb8fc9fa996"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39d760f7c11898823f0d6eb8fc9fa996">&#9670;&nbsp;</a></span>Pruner() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FrameLib_GlobalAllocator::Pruner::Pruner </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_frame_lib___global_allocator_1_1_pruner.html">Pruner</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="ad261c2fb12e19ce40ed3af4c550c479c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad261c2fb12e19ce40ed3af4c550c479c">&#9670;&nbsp;</a></span>dealloc()</h2>
@@ -173,6 +208,32 @@ Public Member Functions</h2></td></tr>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a223ed75d883318ef6d350ab9ce48bdc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a223ed75d883318ef6d350ab9ce48bdc2">&#9670;&nbsp;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_frame_lib___global_allocator_1_1_pruner.html">Pruner</a>&amp; FrameLib_GlobalAllocator::Pruner::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_frame_lib___global_allocator_1_1_pruner.html">Pruner</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

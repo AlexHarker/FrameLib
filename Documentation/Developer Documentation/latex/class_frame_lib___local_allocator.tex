@@ -2,19 +2,28 @@
 \label{class_frame_lib___local_allocator}\index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
 
 
+a memory allocator suitable for usage in a given Frame\+Lib context.  
+
+
+
+
 {\ttfamily \#include $<$Frame\+Lib\+\_\+\+Memory.\+h$>$}
 
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 class \hyperlink{class_frame_lib___local_allocator_1_1_storage}{Storage}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em named storage local to a specific context. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{class_frame_lib___local_allocator_a218131bb74240289b83dc7cd0e0ad6a7}{Frame\+Lib\+\_\+\+Local\+Allocator} (\hyperlink{class_frame_lib___global_allocator}{Frame\+Lib\+\_\+\+Global\+Allocator} $\ast$allocator)
 \item 
 \hyperlink{class_frame_lib___local_allocator_a7c7bc361ea0fc016fdc7da6282c963d4}{$\sim$\+Frame\+Lib\+\_\+\+Local\+Allocator} ()
+\item 
+\hyperlink{class_frame_lib___local_allocator_ad59cc2ff2acce853dddb8eb3ff38073d}{Frame\+Lib\+\_\+\+Local\+Allocator} (const \hyperlink{class_frame_lib___local_allocator}{Frame\+Lib\+\_\+\+Local\+Allocator} \&)=delete
+\item 
+\hyperlink{class_frame_lib___local_allocator}{Frame\+Lib\+\_\+\+Local\+Allocator} \& \hyperlink{class_frame_lib___local_allocator_ad398ba077e9f04c3508ba5cf5250d01c}{operator=} (const \hyperlink{class_frame_lib___local_allocator}{Frame\+Lib\+\_\+\+Local\+Allocator} \&)=delete
 \item 
 void $\ast$ \hyperlink{class_frame_lib___local_allocator_a47d3c43f0a7d094b7d237850523828df}{alloc} (size\+\_\+t size)
 \item 
@@ -35,11 +44,19 @@ static size\+\_\+t \hyperlink{class_frame_lib___local_allocator_aecfc92521d06870
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+a memory allocator suitable for usage in a given Frame\+Lib context. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} 
+\end{DoxySeeAlso}
+
+
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_frame_lib___local_allocator_a218131bb74240289b83dc7cd0e0ad6a7}\label{class_frame_lib___local_allocator_a218131bb74240289b83dc7cd0e0ad6a7}} 
 \index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}!Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
 \index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}!Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
-\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Local\+Allocator()}{FrameLib\_LocalAllocator()}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Local\+Allocator()}{FrameLib\_LocalAllocator()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Frame\+Lib\+\_\+\+Local\+Allocator (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___global_allocator}{Frame\+Lib\+\_\+\+Global\+Allocator} $\ast$}]{allocator }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{class_frame_lib___local_allocator_a7c7bc361ea0fc016fdc7da6282c963d4}\label{class_frame_lib___local_allocator_a7c7bc361ea0fc016fdc7da6282c963d4}} 
@@ -47,6 +64,12 @@ static size\+\_\+t \hyperlink{class_frame_lib___local_allocator_aecfc92521d06870
 \index{````~Frame\+Lib\+\_\+\+Local\+Allocator@{$\sim$\+Frame\+Lib\+\_\+\+Local\+Allocator}!Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
 \subsubsection{\texorpdfstring{$\sim$\+Frame\+Lib\+\_\+\+Local\+Allocator()}{~FrameLib\_LocalAllocator()}}
 {\footnotesize\ttfamily Frame\+Lib\+\_\+\+Local\+Allocator\+::$\sim$\+Frame\+Lib\+\_\+\+Local\+Allocator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___local_allocator_ad59cc2ff2acce853dddb8eb3ff38073d}\label{class_frame_lib___local_allocator_ad59cc2ff2acce853dddb8eb3ff38073d}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}!Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
+\index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}!Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Local\+Allocator()}{FrameLib\_LocalAllocator()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Frame\+Lib\+\_\+\+Local\+Allocator (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___local_allocator}{Frame\+Lib\+\_\+\+Local\+Allocator} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 
 
@@ -80,6 +103,12 @@ static size\+\_\+t \hyperlink{class_frame_lib___local_allocator_aecfc92521d06870
 \index{get\+Alignment@{get\+Alignment}!Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
 \subsubsection{\texorpdfstring{get\+Alignment()}{getAlignment()}}
 {\footnotesize\ttfamily static size\+\_\+t Frame\+Lib\+\_\+\+Local\+Allocator\+::get\+Alignment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_frame_lib___local_allocator_ad398ba077e9f04c3508ba5cf5250d01c}\label{class_frame_lib___local_allocator_ad398ba077e9f04c3508ba5cf5250d01c}} 
+\index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}!operator=@{operator=}}
+\index{operator=@{operator=}!Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \hyperlink{class_frame_lib___local_allocator}{Frame\+Lib\+\_\+\+Local\+Allocator}\& Frame\+Lib\+\_\+\+Local\+Allocator\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___local_allocator}{Frame\+Lib\+\_\+\+Local\+Allocator} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 \mbox{\Hypertarget{class_frame_lib___local_allocator_a9659c558d40a3c5b41c1d09f293c39bf}\label{class_frame_lib___local_allocator_a9659c558d40a3c5b41c1d09f293c39bf}} 
 \index{Frame\+Lib\+\_\+\+Local\+Allocator@{Frame\+Lib\+\_\+\+Local\+Allocator}!register\+Storage@{register\+Storage}}

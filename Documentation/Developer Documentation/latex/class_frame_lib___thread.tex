@@ -1,0 +1,115 @@
+\hypertarget{class_frame_lib___thread}{}\section{Frame\+Lib\+\_\+\+Thread Class Reference}
+\label{class_frame_lib___thread}\index{Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}}
+
+
+lightweight joinable thread with variable priority level  
+
+
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+Threading.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7ed}{Priority\+Level} \{ \hyperlink{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7eda1a88fab67841ce6becd6f20038414626}{k\+Low\+Priority}, 
+\hyperlink{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7eda2636ca3f19213ed53440fb07a1b74fda}{k\+Medium\+Priority}, 
+\hyperlink{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7eda0094300f409c6599b652d503f8a66d77}{k\+High\+Priority}, 
+\hyperlink{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7edab5c5b4bbe028d4f9d4d605d79fb97895}{k\+Audio\+Priority}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_frame_lib___thread_a021c5dfa5ac08a22020680bd57ba575d}{Frame\+Lib\+\_\+\+Thread} (\hyperlink{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7ed}{Priority\+Level} priority, Thread\+Function\+Type $\ast$thread\+Function, void $\ast$arg)
+\item 
+\hyperlink{class_frame_lib___thread_a3131c05e77de52925145496a8a7d0bb1}{$\sim$\+Frame\+Lib\+\_\+\+Thread} ()
+\item 
+\hyperlink{class_frame_lib___thread_a0c371ea3c0cf803ffc568fcb28d0a41a}{Frame\+Lib\+\_\+\+Thread} (const \hyperlink{class_frame_lib___thread}{Frame\+Lib\+\_\+\+Thread} \&)=delete
+\item 
+\hyperlink{class_frame_lib___thread}{Frame\+Lib\+\_\+\+Thread} \& \hyperlink{class_frame_lib___thread_af6a6b8a2ae2b38eb9629871ef3c40e01}{operator=} (const \hyperlink{class_frame_lib___thread}{Frame\+Lib\+\_\+\+Thread} \&)=delete
+\item 
+void \hyperlink{class_frame_lib___thread_a5b6dbb96372355e02fb81753638b6102}{start} ()
+\item 
+void \hyperlink{class_frame_lib___thread_ac316111ade61b8b4aea13d7a3f8d21a3}{join} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+lightweight joinable thread with variable priority level 
+
+The thread must be joined before destruction. 
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7ed}\label{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7ed}} 
+\index{Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}!Priority\+Level@{Priority\+Level}}
+\index{Priority\+Level@{Priority\+Level}!Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}}
+\subsubsection{\texorpdfstring{Priority\+Level}{PriorityLevel}}
+{\footnotesize\ttfamily enum \hyperlink{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7ed}{Frame\+Lib\+\_\+\+Thread\+::\+Priority\+Level}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Low\+Priority@{k\+Low\+Priority}!Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}}\index{Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}!k\+Low\+Priority@{k\+Low\+Priority}}}\mbox{\Hypertarget{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7eda1a88fab67841ce6becd6f20038414626}\label{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7eda1a88fab67841ce6becd6f20038414626}} 
+k\+Low\+Priority&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Medium\+Priority@{k\+Medium\+Priority}!Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}}\index{Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}!k\+Medium\+Priority@{k\+Medium\+Priority}}}\mbox{\Hypertarget{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7eda2636ca3f19213ed53440fb07a1b74fda}\label{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7eda2636ca3f19213ed53440fb07a1b74fda}} 
+k\+Medium\+Priority&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+High\+Priority@{k\+High\+Priority}!Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}}\index{Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}!k\+High\+Priority@{k\+High\+Priority}}}\mbox{\Hypertarget{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7eda0094300f409c6599b652d503f8a66d77}\label{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7eda0094300f409c6599b652d503f8a66d77}} 
+k\+High\+Priority&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Audio\+Priority@{k\+Audio\+Priority}!Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}}\index{Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}!k\+Audio\+Priority@{k\+Audio\+Priority}}}\mbox{\Hypertarget{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7edab5c5b4bbe028d4f9d4d605d79fb97895}\label{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7edab5c5b4bbe028d4f9d4d605d79fb97895}} 
+k\+Audio\+Priority&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_frame_lib___thread_a021c5dfa5ac08a22020680bd57ba575d}\label{class_frame_lib___thread_a021c5dfa5ac08a22020680bd57ba575d}} 
+\index{Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}!Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}}
+\index{Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}!Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Thread()}{FrameLib\_Thread()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Thread\+::\+Frame\+Lib\+\_\+\+Thread (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7ed}{Priority\+Level}}]{priority,  }\item[{Thread\+Function\+Type $\ast$}]{thread\+Function,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___thread_a3131c05e77de52925145496a8a7d0bb1}\label{class_frame_lib___thread_a3131c05e77de52925145496a8a7d0bb1}} 
+\index{Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}!````~Frame\+Lib\+\_\+\+Thread@{$\sim$\+Frame\+Lib\+\_\+\+Thread}}
+\index{````~Frame\+Lib\+\_\+\+Thread@{$\sim$\+Frame\+Lib\+\_\+\+Thread}!Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}}
+\subsubsection{\texorpdfstring{$\sim$\+Frame\+Lib\+\_\+\+Thread()}{~FrameLib\_Thread()}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Thread\+::$\sim$\+Frame\+Lib\+\_\+\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___thread_a0c371ea3c0cf803ffc568fcb28d0a41a}\label{class_frame_lib___thread_a0c371ea3c0cf803ffc568fcb28d0a41a}} 
+\index{Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}!Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}}
+\index{Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}!Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Thread()}{FrameLib\_Thread()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Thread\+::\+Frame\+Lib\+\_\+\+Thread (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___thread}{Frame\+Lib\+\_\+\+Thread} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_frame_lib___thread_ac316111ade61b8b4aea13d7a3f8d21a3}\label{class_frame_lib___thread_ac316111ade61b8b4aea13d7a3f8d21a3}} 
+\index{Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}!join@{join}}
+\index{join@{join}!Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}}
+\subsubsection{\texorpdfstring{join()}{join()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Thread\+::join (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___thread_af6a6b8a2ae2b38eb9629871ef3c40e01}\label{class_frame_lib___thread_af6a6b8a2ae2b38eb9629871ef3c40e01}} 
+\index{Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}!operator=@{operator=}}
+\index{operator=@{operator=}!Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \hyperlink{class_frame_lib___thread}{Frame\+Lib\+\_\+\+Thread}\& Frame\+Lib\+\_\+\+Thread\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___thread}{Frame\+Lib\+\_\+\+Thread} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_frame_lib___thread_a5b6dbb96372355e02fb81753638b6102}\label{class_frame_lib___thread_a5b6dbb96372355e02fb81753638b6102}} 
+\index{Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}!start@{start}}
+\index{start@{start}!Frame\+Lib\+\_\+\+Thread@{Frame\+Lib\+\_\+\+Thread}}
+\subsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Thread\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___threading_8h}{Frame\+Lib\+\_\+\+Threading.\+h}\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___threading_8cpp}{Frame\+Lib\+\_\+\+Threading.\+cpp}\end{DoxyCompactItemize}

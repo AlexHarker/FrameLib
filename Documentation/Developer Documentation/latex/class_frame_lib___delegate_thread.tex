@@ -1,0 +1,95 @@
+\hypertarget{class_frame_lib___delegate_thread}{}\section{Frame\+Lib\+\_\+\+Delegate\+Thread Class Reference}
+\label{class_frame_lib___delegate_thread}\index{Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}}
+
+
+a thread to delegate tasks to, which can be then be checked for completion  
+
+
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+Threading.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_frame_lib___delegate_thread_a0b56650235d213cb94df48dadd5ac657}{Frame\+Lib\+\_\+\+Delegate\+Thread} (\hyperlink{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7ed}{Frame\+Lib\+\_\+\+Thread\+::\+Priority\+Level} priority)
+\item 
+virtual \hyperlink{class_frame_lib___delegate_thread_a85bf48f07bb1a0f666be8c3ca7119c26}{$\sim$\+Frame\+Lib\+\_\+\+Delegate\+Thread} ()
+\item 
+\hyperlink{class_frame_lib___delegate_thread_a9a150c0742bd28d06e0e6fad698ee0c9}{Frame\+Lib\+\_\+\+Delegate\+Thread} (const \hyperlink{class_frame_lib___delegate_thread}{Frame\+Lib\+\_\+\+Delegate\+Thread} \&)=delete
+\item 
+\hyperlink{class_frame_lib___delegate_thread}{Frame\+Lib\+\_\+\+Delegate\+Thread} \& \hyperlink{class_frame_lib___delegate_thread_a13be49ee178426e0380c88e9e5544013}{operator=} (const \hyperlink{class_frame_lib___delegate_thread}{Frame\+Lib\+\_\+\+Delegate\+Thread} \&)=delete
+\item 
+void \hyperlink{class_frame_lib___delegate_thread_af954e98c441430f66868b83ea3cf9f01}{start} ()
+\item 
+void \hyperlink{class_frame_lib___delegate_thread_ab46bdfbd5a37ef8652440684ff38db6b}{join} ()
+\item 
+bool \hyperlink{class_frame_lib___delegate_thread_afe1365fd2b19f435da23a2b14374bd29}{signal} ()
+\item 
+bool \hyperlink{class_frame_lib___delegate_thread_a621fe74509d9a92a0ef7f8a93b26de6e}{completed} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+a thread to delegate tasks to, which can be then be checked for completion 
+
+The thread should be joined before desctruction. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_frame_lib___delegate_thread_a0b56650235d213cb94df48dadd5ac657}\label{class_frame_lib___delegate_thread_a0b56650235d213cb94df48dadd5ac657}} 
+\index{Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}!Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}}
+\index{Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}!Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Delegate\+Thread()}{FrameLib\_DelegateThread()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Delegate\+Thread\+::\+Frame\+Lib\+\_\+\+Delegate\+Thread (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7ed}{Frame\+Lib\+\_\+\+Thread\+::\+Priority\+Level}}]{priority }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___delegate_thread_a85bf48f07bb1a0f666be8c3ca7119c26}\label{class_frame_lib___delegate_thread_a85bf48f07bb1a0f666be8c3ca7119c26}} 
+\index{Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}!````~Frame\+Lib\+\_\+\+Delegate\+Thread@{$\sim$\+Frame\+Lib\+\_\+\+Delegate\+Thread}}
+\index{````~Frame\+Lib\+\_\+\+Delegate\+Thread@{$\sim$\+Frame\+Lib\+\_\+\+Delegate\+Thread}!Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}}
+\subsubsection{\texorpdfstring{$\sim$\+Frame\+Lib\+\_\+\+Delegate\+Thread()}{~FrameLib\_DelegateThread()}}
+{\footnotesize\ttfamily virtual Frame\+Lib\+\_\+\+Delegate\+Thread\+::$\sim$\+Frame\+Lib\+\_\+\+Delegate\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_frame_lib___delegate_thread_a9a150c0742bd28d06e0e6fad698ee0c9}\label{class_frame_lib___delegate_thread_a9a150c0742bd28d06e0e6fad698ee0c9}} 
+\index{Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}!Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}}
+\index{Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}!Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Delegate\+Thread()}{FrameLib\_DelegateThread()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Delegate\+Thread\+::\+Frame\+Lib\+\_\+\+Delegate\+Thread (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___delegate_thread}{Frame\+Lib\+\_\+\+Delegate\+Thread} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_frame_lib___delegate_thread_a621fe74509d9a92a0ef7f8a93b26de6e}\label{class_frame_lib___delegate_thread_a621fe74509d9a92a0ef7f8a93b26de6e}} 
+\index{Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}!completed@{completed}}
+\index{completed@{completed}!Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}}
+\subsubsection{\texorpdfstring{completed()}{completed()}}
+{\footnotesize\ttfamily bool Frame\+Lib\+\_\+\+Delegate\+Thread\+::completed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___delegate_thread_ab46bdfbd5a37ef8652440684ff38db6b}\label{class_frame_lib___delegate_thread_ab46bdfbd5a37ef8652440684ff38db6b}} 
+\index{Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}!join@{join}}
+\index{join@{join}!Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}}
+\subsubsection{\texorpdfstring{join()}{join()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Delegate\+Thread\+::join (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___delegate_thread_a13be49ee178426e0380c88e9e5544013}\label{class_frame_lib___delegate_thread_a13be49ee178426e0380c88e9e5544013}} 
+\index{Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}!operator=@{operator=}}
+\index{operator=@{operator=}!Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \hyperlink{class_frame_lib___delegate_thread}{Frame\+Lib\+\_\+\+Delegate\+Thread}\& Frame\+Lib\+\_\+\+Delegate\+Thread\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___delegate_thread}{Frame\+Lib\+\_\+\+Delegate\+Thread} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_frame_lib___delegate_thread_afe1365fd2b19f435da23a2b14374bd29}\label{class_frame_lib___delegate_thread_afe1365fd2b19f435da23a2b14374bd29}} 
+\index{Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}!signal@{signal}}
+\index{signal@{signal}!Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}}
+\subsubsection{\texorpdfstring{signal()}{signal()}}
+{\footnotesize\ttfamily bool Frame\+Lib\+\_\+\+Delegate\+Thread\+::signal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___delegate_thread_af954e98c441430f66868b83ea3cf9f01}\label{class_frame_lib___delegate_thread_af954e98c441430f66868b83ea3cf9f01}} 
+\index{Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}!start@{start}}
+\index{start@{start}!Frame\+Lib\+\_\+\+Delegate\+Thread@{Frame\+Lib\+\_\+\+Delegate\+Thread}}
+\subsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Delegate\+Thread\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___threading_8h}{Frame\+Lib\+\_\+\+Threading.\+h}\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___threading_8cpp}{Frame\+Lib\+\_\+\+Threading.\+cpp}\end{DoxyCompactItemize}

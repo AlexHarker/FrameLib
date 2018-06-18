@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.7</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
    <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
@@ -86,11 +86,23 @@ $(document).ready(function(){initNavTree('class_f_l___f_p.html','');});
 <a href="#friends">Friends</a> &#124;
 <a href="class_f_l___f_p-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">FL_FP Class Reference</div>  </div>
+<div class="title">FL_FP Class Reference<div class="ingroups"><a class="el" href="group___fixed_point.html">Fixed-Point</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
+<p>high-precision unsigned fixed-point numerical format.  
+ <a href="class_f_l___f_p.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_frame_lib___fixed_point_8h_source.html">FrameLib_FixedPoint.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for FL_FP:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_f_l___f_p.png" usemap="#FL_5FFP_map" alt=""/>
+  <map id="FL_5FFP_map" name="FL_5FFP_map">
+<area href="struct_frame_lib___time_format.html" title="a type for representing time in fixed-point high-precision for scheduling purposes. " alt="FrameLib_TimeFormat" shape="rect" coords="0,56,137,80"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -102,10 +114,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae69dbbbcee3563f7ff4e3102dd137c05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a552b545bb667d5a6436e89f33586e9fa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#a552b545bb667d5a6436e89f33586e9fa">FL_FP</a> (const double &amp;val)</td></tr>
 <tr class="separator:a552b545bb667d5a6436e89f33586e9fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ce00ef24ad45d942501781061b423a8"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#a0ce00ef24ad45d942501781061b423a8">intVal</a> ()</td></tr>
-<tr class="separator:a0ce00ef24ad45d942501781061b423a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d17ff88a771402857fa22e94e502efe"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#a4d17ff88a771402857fa22e94e502efe">fracVal</a> ()</td></tr>
-<tr class="separator:a4d17ff88a771402857fa22e94e502efe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acffd4f751e5042dbed4a28bfe3f90ea5"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#acffd4f751e5042dbed4a28bfe3f90ea5">intVal</a> () const</td></tr>
+<tr class="separator:acffd4f751e5042dbed4a28bfe3f90ea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeac9cc0d327d4759ac35890c13978c0"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#adeac9cc0d327d4759ac35890c13978c0">fracVal</a> () const</td></tr>
+<tr class="separator:adeac9cc0d327d4759ac35890c13978c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab07d8c341752a6668a3a8a6e0d8ba2c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#ab07d8c341752a6668a3a8a6e0d8ba2c7">operator+=</a> (const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;b)</td></tr>
 <tr class="separator:ab07d8c341752a6668a3a8a6e0d8ba2c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a494e954f36fbfd791dfc2117e0de4baa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#a494e954f36fbfd791dfc2117e0de4baa">operator-=</a> (const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;b)</td></tr>
@@ -116,8 +128,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2bbae2b6138642ae4cf90eb7b3a1ea5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a883f8d6a0d34a3af9a35654b25f0ba7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#a883f8d6a0d34a3af9a35654b25f0ba7c">operator++</a> ()</td></tr>
 <tr class="separator:a883f8d6a0d34a3af9a35654b25f0ba7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8417e45b7fe2aeb0517834c0cec409c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#ab8417e45b7fe2aeb0517834c0cec409c">operator++</a> (int)</td></tr>
-<tr class="separator:ab8417e45b7fe2aeb0517834c0cec409c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2feeebae2b863b1955232473b4f62db0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_l___f_p.html">FL_FP</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#a2feeebae2b863b1955232473b4f62db0">operator++</a> (int)</td></tr>
+<tr class="separator:a2feeebae2b863b1955232473b4f62db0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e9f6cc369b21fe2d188ebeca60a3df4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#a3e9f6cc369b21fe2d188ebeca60a3df4">operator--</a> ()</td></tr>
 <tr class="separator:a3e9f6cc369b21fe2d188ebeca60a3df4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a15cf670b1b9a8e66d6ba910bcb8e62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#a1a15cf670b1b9a8e66d6ba910bcb8e62">operator--</a> (int)</td></tr>
@@ -137,10 +149,10 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:a9edcf609bd52b6d25b394bf8b1a22819"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#a9edcf609bd52b6d25b394bf8b1a22819">nonZeroPositive</a> (const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;a)</td></tr>
-<tr class="separator:a9edcf609bd52b6d25b394bf8b1a22819"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f68a65590040b22d55e29f700a70090"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#a7f68a65590040b22d55e29f700a70090">operator==</a> (const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;a, const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;b)</td></tr>
 <tr class="separator:a7f68a65590040b22d55e29f700a70090"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a694ee4bd94433b815c7f4e5f7a2acd50"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#a694ee4bd94433b815c7f4e5f7a2acd50">operator!=</a> (const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;a, const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;b)</td></tr>
+<tr class="separator:a694ee4bd94433b815c7f4e5f7a2acd50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a645d400e5b6aeaf8a3ea2a4512ab9e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#a7a645d400e5b6aeaf8a3ea2a4512ab9e">operator&lt;</a> (const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;a, const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;b)</td></tr>
 <tr class="separator:a7a645d400e5b6aeaf8a3ea2a4512ab9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab237b013e66f2d39a3bb466e36741baf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#ab237b013e66f2d39a3bb466e36741baf">operator&gt;</a> (const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;a, const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;b)</td></tr>
@@ -163,6 +175,10 @@ Friends</h2></td></tr>
 <tr class="separator:a666442f1b900ba2e6680d77ec4261a9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b8fd18407f83f9bbf63012179eb694d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#a8b8fd18407f83f9bbf63012179eb694d">operator==</a> (const double &amp;a, const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;b)</td></tr>
 <tr class="separator:a8b8fd18407f83f9bbf63012179eb694d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c240fef687da52fed8f3646a924d91e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#a3c240fef687da52fed8f3646a924d91e">operator!=</a> (const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;a, const double &amp;b)</td></tr>
+<tr class="separator:a3c240fef687da52fed8f3646a924d91e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a699d74159c9061491364140ac24a568b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#a699d74159c9061491364140ac24a568b">operator!=</a> (const double &amp;a, const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;b)</td></tr>
+<tr class="separator:a699d74159c9061491364140ac24a568b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0d89fcb254db9759b80cca31de5ee00"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#ae0d89fcb254db9759b80cca31de5ee00">operator&lt;</a> (const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;a, const double &amp;b)</td></tr>
 <tr class="separator:ae0d89fcb254db9759b80cca31de5ee00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1a4354ad8a5d501c5d9f3a784ca3b95"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#af1a4354ad8a5d501c5d9f3a784ca3b95">operator&lt;</a> (const double &amp;a, const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;b)</td></tr>
@@ -196,7 +212,10 @@ Friends</h2></td></tr>
 <tr class="memitem:a748c3789021613fe839afe4289689f88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_f_l___f_p.html">FL_FP</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_l___f_p.html#a748c3789021613fe839afe4289689f88">operator/</a> (const double &amp;a, const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;b)</td></tr>
 <tr class="separator:a748c3789021613fe839afe4289689f88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>high-precision unsigned fixed-point numerical format. </p>
+<p>This unsigned type allows for 64 bits of integer precision and 64 bits of fractional precision. Basic arithmetic and comparison operators are supported, for this type, and when used in conjunction with double-precision floating-point numbers. The primary purpose of this type is to precisely represent the time in samples in FrameLib. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2db44ca3f010e72af1a0ba97f443fe93"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2db44ca3f010e72af1a0ba97f443fe93">&#9670;&nbsp;</a></span>FL_FP() <span class="overload">[1/4]</span></h2>
 
@@ -295,8 +314,8 @@ Friends</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4d17ff88a771402857fa22e94e502efe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d17ff88a771402857fa22e94e502efe">&#9670;&nbsp;</a></span>fracVal()</h2>
+<a id="adeac9cc0d327d4759ac35890c13978c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adeac9cc0d327d4759ac35890c13978c0">&#9670;&nbsp;</a></span>fracVal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -308,7 +327,7 @@ Friends</h2></td></tr>
           <td class="memname">uint64_t FL_FP::fracVal </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -320,8 +339,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a0ce00ef24ad45d942501781061b423a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0ce00ef24ad45d942501781061b423a8">&#9670;&nbsp;</a></span>intVal()</h2>
+<a id="acffd4f751e5042dbed4a28bfe3f90ea5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acffd4f751e5042dbed4a28bfe3f90ea5">&#9670;&nbsp;</a></span>intVal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -333,7 +352,7 @@ Friends</h2></td></tr>
           <td class="memname">uint64_t FL_FP::intVal </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -447,8 +466,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="ab8417e45b7fe2aeb0517834c0cec409c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8417e45b7fe2aeb0517834c0cec409c">&#9670;&nbsp;</a></span>operator++() <span class="overload">[2/2]</span></h2>
+<a id="a2feeebae2b863b1955232473b4f62db0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2feeebae2b863b1955232473b4f62db0">&#9670;&nbsp;</a></span>operator++() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -457,7 +476,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_f_l___f_p.html">FL_FP</a>&amp; FL_FP::operator++ </td>
+          <td class="memname"><a class="el" href="class_f_l___f_p.html">FL_FP</a> FL_FP::operator++ </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -707,32 +726,6 @@ Friends</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Friends And Related Function Documentation</h2>
-<a id="a9edcf609bd52b6d25b394bf8b1a22819"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9edcf609bd52b6d25b394bf8b1a22819">&#9670;&nbsp;</a></span>nonZeroPositive</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool nonZeroPositive </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;&#160;</td>
-          <td class="paramname"><em>a</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a14d7541c865b9e57eaaca1c3fd2c6240"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a14d7541c865b9e57eaaca1c3fd2c6240">&#9670;&nbsp;</a></span>operator!</h2>
 
@@ -748,6 +741,114 @@ Friends</h2></td></tr>
           <td class="paramtype">const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;&#160;</td>
           <td class="paramname"><em>b</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a694ee4bd94433b815c7f4e5f7a2acd50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a694ee4bd94433b815c7f4e5f7a2acd50">&#9670;&nbsp;</a></span>operator!= <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_f_l___f_p.html#a14d7541c865b9e57eaaca1c3fd2c6240">operator!</a>= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3c240fef687da52fed8f3646a924d91e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c240fef687da52fed8f3646a924d91e">&#9670;&nbsp;</a></span>operator!= <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_f_l___f_p.html#a14d7541c865b9e57eaaca1c3fd2c6240">operator!</a>= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a699d74159c9061491364140ac24a568b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a699d74159c9061491364140ac24a568b">&#9670;&nbsp;</a></span>operator!= <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_f_l___f_p.html#a14d7541c865b9e57eaaca1c3fd2c6240">operator!</a>= </td>
+          <td>(</td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_f_l___f_p.html">FL_FP</a> &amp;&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>

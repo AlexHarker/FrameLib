@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.7</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
    <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
@@ -82,6 +82,7 @@ $(document).ready(function(){initNavTree('class_frame_lib___local_allocator_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#friends">Friends</a> &#124;
@@ -91,25 +92,44 @@ $(document).ready(function(){initNavTree('class_frame_lib___local_allocator_1_1_
 </div><!--header-->
 <div class="contents">
 
+<p>named storage local to a specific context.  
+ <a href="class_frame_lib___local_allocator_1_1_storage.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_frame_lib___memory_8h_source.html">FrameLib_Memory.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage_1_1_access.html">Access</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">an RAII utility for safely accessing a <a class="el" href="class_frame_lib___local_allocator_1_1_storage.html" title="named storage local to a specific context. ">Storage</a> object.  <a href="class_frame_lib___local_allocator_1_1_storage_1_1_access.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac6fa172155e0314dda315378a34ab574"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#ac6fa172155e0314dda315378a34ab574">getData</a> () const</td></tr>
-<tr class="separator:ac6fa172155e0314dda315378a34ab574"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d02d9eb9cab22dab7fe058fab38b00f"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#a4d02d9eb9cab22dab7fe058fab38b00f">getSize</a> () const</td></tr>
-<tr class="separator:a4d02d9eb9cab22dab7fe058fab38b00f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1a8a26c698837c22b87b76999041bf2"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#ac1a8a26c698837c22b87b76999041bf2">getName</a> () const</td></tr>
 <tr class="separator:ac1a8a26c698837c22b87b76999041bf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4c7c5b51de2b88770a5de6f273cfd26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#aa4c7c5b51de2b88770a5de6f273cfd26">resize</a> (unsigned long size)</td></tr>
-<tr class="separator:aa4c7c5b51de2b88770a5de6f273cfd26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:ad32b168f553ec8bfebe03a09bd4f5617"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#ad495a9f61af7fff07d7e97979d1ab854">FrameType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#ad32b168f553ec8bfebe03a09bd4f5617">getType</a> () const</td></tr>
+<tr class="separator:ad32b168f553ec8bfebe03a09bd4f5617"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f5940887df76dcc85b47368bf181b95"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#a8f5940887df76dcc85b47368bf181b95">getVector</a> () const</td></tr>
+<tr class="separator:a8f5940887df76dcc85b47368bf181b95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcff0780f5809e833bb241205f87d356"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#abcff0780f5809e833bb241205f87d356">getVectorSize</a> () const</td></tr>
+<tr class="separator:abcff0780f5809e833bb241205f87d356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97b908fd494c73e037e9af8730e67ebb"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#a97b908fd494c73e037e9af8730e67ebb">getTaggedSize</a> () const</td></tr>
+<tr class="separator:a97b908fd494c73e037e9af8730e67ebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaca03c77d94f96049ee65ca1ede99450"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___parameters_1_1_serial.html">Serial</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#aaca03c77d94f96049ee65ca1ede99450">getTagged</a> () const</td></tr>
+<tr class="separator:aaca03c77d94f96049ee65ca1ede99450"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b432eda27a1cd4ca6fce89015c60c75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#a3b432eda27a1cd4ca6fce89015c60c75">resize</a> (bool tagged, size_t size)</td></tr>
+<tr class="separator:a3b432eda27a1cd4ca6fce89015c60c75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51742c2b24393570cf3478d0ad7530f8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#a51742c2b24393570cf3478d0ad7530f8">Storage</a> (const char *name, <a class="el" href="class_frame_lib___local_allocator.html">FrameLib_LocalAllocator</a> *allocator)</td></tr>
 <tr class="separator:a51742c2b24393570cf3478d0ad7530f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a562e98ee56a7fcff07f90621572688b1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#a562e98ee56a7fcff07f90621572688b1">~Storage</a> ()</td></tr>
 <tr class="separator:a562e98ee56a7fcff07f90621572688b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3c128a573d8d69cf8f990361c21ed7f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#aa3c128a573d8d69cf8f990361c21ed7f">Storage</a> (const <a class="el" href="class_frame_lib___local_allocator_1_1_storage.html">Storage</a> &amp;)=delete</td></tr>
+<tr class="separator:aa3c128a573d8d69cf8f990361c21ed7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93d7ce8d96576ecb14b79f00afcad050"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html">Storage</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#a93d7ce8d96576ecb14b79f00afcad050">operator=</a> (const <a class="el" href="class_frame_lib___local_allocator_1_1_storage.html">Storage</a> &amp;)=delete</td></tr>
+<tr class="separator:a93d7ce8d96576ecb14b79f00afcad050"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6589845a528ed83f75785003a32aaeb0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#a6589845a528ed83f75785003a32aaeb0">increment</a> ()</td></tr>
 <tr class="separator:a6589845a528ed83f75785003a32aaeb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9f0b3faffe38cc459d28dfec814d158"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#af9f0b3faffe38cc459d28dfec814d158">decrement</a> ()</td></tr>
@@ -120,9 +140,11 @@ Friends</h2></td></tr>
 <tr class="memitem:ab38ae86a5b2f6f2e79c8b7ed2a9c8c20"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html#ab38ae86a5b2f6f2e79c8b7ed2a9c8c20">FrameLib_LocalAllocator</a></td></tr>
 <tr class="separator:ab38ae86a5b2f6f2e79c8b7ed2a9c8c20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>named storage local to a specific context. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a51742c2b24393570cf3478d0ad7530f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51742c2b24393570cf3478d0ad7530f8">&#9670;&nbsp;</a></span>Storage()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a51742c2b24393570cf3478d0ad7530f8">&#9670;&nbsp;</a></span>Storage() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -182,6 +204,32 @@ Friends</h2></td></tr>
 
 </div>
 </div>
+<a id="aa3c128a573d8d69cf8f990361c21ed7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3c128a573d8d69cf8f990361c21ed7f">&#9670;&nbsp;</a></span>Storage() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FrameLib_LocalAllocator::Storage::Storage </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_frame_lib___local_allocator_1_1_storage.html">Storage</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="af9f0b3faffe38cc459d28dfec814d158"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af9f0b3faffe38cc459d28dfec814d158">&#9670;&nbsp;</a></span>decrement()</h2>
@@ -202,31 +250,6 @@ Friends</h2></td></tr>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac6fa172155e0314dda315378a34ab574"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6fa172155e0314dda315378a34ab574">&#9670;&nbsp;</a></span>getData()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double* FrameLib_LocalAllocator::Storage::getData </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -258,8 +281,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a4d02d9eb9cab22dab7fe058fab38b00f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d02d9eb9cab22dab7fe058fab38b00f">&#9670;&nbsp;</a></span>getSize()</h2>
+<a id="aaca03c77d94f96049ee65ca1ede99450"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaca03c77d94f96049ee65ca1ede99450">&#9670;&nbsp;</a></span>getTagged()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -268,7 +291,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned long FrameLib_LocalAllocator::Storage::getSize </td>
+          <td class="memname"><a class="el" href="class_frame_lib___parameters_1_1_serial.html">Serial</a>* FrameLib_LocalAllocator::Storage::getTagged </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -276,7 +299,107 @@ Friends</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a97b908fd494c73e037e9af8730e67ebb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97b908fd494c73e037e9af8730e67ebb">&#9670;&nbsp;</a></span>getTaggedSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long FrameLib_LocalAllocator::Storage::getTaggedSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad32b168f553ec8bfebe03a09bd4f5617"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad32b168f553ec8bfebe03a09bd4f5617">&#9670;&nbsp;</a></span>getType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_frame_lib___types_8h.html#ad495a9f61af7fff07d7e97979d1ab854">FrameType</a> FrameLib_LocalAllocator::Storage::getType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8f5940887df76dcc85b47368bf181b95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f5940887df76dcc85b47368bf181b95">&#9670;&nbsp;</a></span>getVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double* FrameLib_LocalAllocator::Storage::getVector </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abcff0780f5809e833bb241205f87d356"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcff0780f5809e833bb241205f87d356">&#9670;&nbsp;</a></span>getVectorSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long FrameLib_LocalAllocator::Storage::getVectorSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -308,20 +431,64 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="aa4c7c5b51de2b88770a5de6f273cfd26"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4c7c5b51de2b88770a5de6f273cfd26">&#9670;&nbsp;</a></span>resize()</h2>
+<a id="a93d7ce8d96576ecb14b79f00afcad050"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93d7ce8d96576ecb14b79f00afcad050">&#9670;&nbsp;</a></span>operator=()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html">Storage</a>&amp; FrameLib_LocalAllocator::Storage::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_frame_lib___local_allocator_1_1_storage.html">Storage</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3b432eda27a1cd4ca6fce89015c60c75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b432eda27a1cd4ca6fce89015c60c75">&#9670;&nbsp;</a></span>resize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void FrameLib_LocalAllocator::Storage::resize </td>
           <td>(</td>
-          <td class="paramtype">unsigned long&#160;</td>
-          <td class="paramname"><em>size</em></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>tagged</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

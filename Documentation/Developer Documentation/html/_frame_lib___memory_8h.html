@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.7</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
    <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
@@ -87,7 +87,10 @@ $(document).ready(function(){initNavTree('_frame_lib___memory_8h.html','');});
 <div class="title">FrameLib_Memory.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;tlsf.h&quot;</code><br />
+<div class="textblock"><code>#include &quot;../FrameLib_Dependencies/tlsf/tlsf.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="_frame_lib___types_8h_source.html">FrameLib_Types.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_frame_lib___errors_8h_source.html">FrameLib_Errors.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_frame_lib___parameters_8h_source.html">FrameLib_Parameters.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_frame_lib___threading_8h_source.html">FrameLib_Threading.h</a>&quot;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;ctime&gt;</code><br />
@@ -98,12 +101,19 @@ $(document).ready(function(){initNavTree('_frame_lib___memory_8h.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global_allocator.html">FrameLib_GlobalAllocator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a global threadsafe memory allocator suitable for realtime usage.  <a href="class_frame_lib___global_allocator.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___global_allocator_1_1_pruner.html">FrameLib_GlobalAllocator::Pruner</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">an RAII utility for repeated deallocation with only a single lock.  <a href="class_frame_lib___global_allocator_1_1_pruner.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator.html">FrameLib_LocalAllocator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a memory allocator suitable for usage in a given FrameLib context.  <a href="class_frame_lib___local_allocator.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage.html">FrameLib_LocalAllocator::Storage</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">named storage local to a specific context.  <a href="class_frame_lib___local_allocator_1_1_storage.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___local_allocator_1_1_storage_1_1_access.html">FrameLib_LocalAllocator::Storage::Access</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">an RAII utility for safely accessing a <a class="el" href="class_frame_lib___local_allocator_1_1_storage.html" title="named storage local to a specific context. ">Storage</a> object.  <a href="class_frame_lib___local_allocator_1_1_storage_1_1_access.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

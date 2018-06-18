@@ -1,0 +1,57 @@
+\hypertarget{_frame_lib___errors_8h}{}\section{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Errors.h File Reference}
+\label{_frame_lib___errors_8h}\index{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Errors.\+h@{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Errors.\+h}}
+{\ttfamily \#include \char`\"{}Frame\+Lib\+\_\+\+Threading.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Frame\+Lib\+\_\+\+Types.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_frame_lib___error_reporter}{Frame\+Lib\+\_\+\+Error\+Reporter}
+\begin{DoxyCompactList}\small\item\em a class used to report errors to the host environment. \end{DoxyCompactList}\item 
+class \hyperlink{struct_frame_lib___error_reporter_1_1_host_notifier}{Frame\+Lib\+\_\+\+Error\+Reporter\+::\+Host\+Notifier}
+\begin{DoxyCompactList}\small\item\em a virtual struct used to supply a method for notifying the host of errors. \end{DoxyCompactList}\item 
+class \hyperlink{class_frame_lib___error_reporter_1_1_error_report}{Frame\+Lib\+\_\+\+Error\+Reporter\+::\+Error\+Report}
+\begin{DoxyCompactList}\small\item\em a report for a single error. \end{DoxyCompactList}\item 
+class \hyperlink{class_frame_lib___error_reporter_1_1_error_list}{Frame\+Lib\+\_\+\+Error\+Reporter\+::\+Error\+List}
+\begin{DoxyCompactList}\small\item\em a list of \hyperlink{class_frame_lib___error_reporter_1_1_error_report}{Error\+Report} objects. \end{DoxyCompactList}\item 
+class \hyperlink{class_frame_lib___error_reporter_1_1_error_list_1_1_const_iterator}{Frame\+Lib\+\_\+\+Error\+Reporter\+::\+Error\+List\+::\+Const\+Iterator}
+\begin{DoxyCompactList}\small\item\em an iterator for reports in the list (with an underlying const \hyperlink{class_frame_lib___error_reporter_1_1_error_report}{Error\+Report} type). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39}{Error\+Source} \{ \hyperlink{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39a596441c4ea142210ffe8bd9f7e0dd2d7}{k\+Error\+Object}, 
+\hyperlink{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39a3a80fbc0be01c2b2ecc52412652171e4}{k\+Error\+Parameter}, 
+\hyperlink{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39a15365bed91abc5e197914bcecbe13bfd}{k\+Error\+Memory}, 
+\hyperlink{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39a0cf806fea1889e1f6f48a4e3f04a40aa}{k\+Error\+D\+SP}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39}\label{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39}} 
+\index{Frame\+Lib\+\_\+\+Errors.\+h@{Frame\+Lib\+\_\+\+Errors.\+h}!Error\+Source@{Error\+Source}}
+\index{Error\+Source@{Error\+Source}!Frame\+Lib\+\_\+\+Errors.\+h@{Frame\+Lib\+\_\+\+Errors.\+h}}
+\subsubsection{\texorpdfstring{Error\+Source}{ErrorSource}}
+{\footnotesize\ttfamily enum \hyperlink{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39}{Error\+Source}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Error\+Object@{k\+Error\+Object}!Frame\+Lib\+\_\+\+Errors.\+h@{Frame\+Lib\+\_\+\+Errors.\+h}}\index{Frame\+Lib\+\_\+\+Errors.\+h@{Frame\+Lib\+\_\+\+Errors.\+h}!k\+Error\+Object@{k\+Error\+Object}}}\mbox{\Hypertarget{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39a596441c4ea142210ffe8bd9f7e0dd2d7}\label{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39a596441c4ea142210ffe8bd9f7e0dd2d7}} 
+k\+Error\+Object&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Error\+Parameter@{k\+Error\+Parameter}!Frame\+Lib\+\_\+\+Errors.\+h@{Frame\+Lib\+\_\+\+Errors.\+h}}\index{Frame\+Lib\+\_\+\+Errors.\+h@{Frame\+Lib\+\_\+\+Errors.\+h}!k\+Error\+Parameter@{k\+Error\+Parameter}}}\mbox{\Hypertarget{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39a3a80fbc0be01c2b2ecc52412652171e4}\label{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39a3a80fbc0be01c2b2ecc52412652171e4}} 
+k\+Error\+Parameter&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Error\+Memory@{k\+Error\+Memory}!Frame\+Lib\+\_\+\+Errors.\+h@{Frame\+Lib\+\_\+\+Errors.\+h}}\index{Frame\+Lib\+\_\+\+Errors.\+h@{Frame\+Lib\+\_\+\+Errors.\+h}!k\+Error\+Memory@{k\+Error\+Memory}}}\mbox{\Hypertarget{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39a15365bed91abc5e197914bcecbe13bfd}\label{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39a15365bed91abc5e197914bcecbe13bfd}} 
+k\+Error\+Memory&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Error\+D\+SP@{k\+Error\+D\+SP}!Frame\+Lib\+\_\+\+Errors.\+h@{Frame\+Lib\+\_\+\+Errors.\+h}}\index{Frame\+Lib\+\_\+\+Errors.\+h@{Frame\+Lib\+\_\+\+Errors.\+h}!k\+Error\+D\+SP@{k\+Error\+D\+SP}}}\mbox{\Hypertarget{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39a0cf806fea1889e1f6f48a4e3f04a40aa}\label{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39a0cf806fea1889e1f6f48a4e3f04a40aa}} 
+k\+Error\+D\+SP&\\
+\hline
+
+\end{DoxyEnumFields}

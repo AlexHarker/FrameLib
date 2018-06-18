@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.7</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
    <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
@@ -90,25 +90,30 @@ $(document).ready(function(){initNavTree('struct_frame_lib___d_s_p_1_1_scheduler
 </div><!--header-->
 <div class="contents">
 
+<p>an struct for returning scheduling info from the schedule() method.  
+ <a href="struct_frame_lib___d_s_p_1_1_scheduler_info.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_frame_lib___d_s_p_8h_source.html">FrameLib_DSP.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a5939a752d4ea50eea67c019805254a82"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_frame_lib___d_s_p_1_1_scheduler_info.html#a5939a752d4ea50eea67c019805254a82">SchedulerInfo</a> ()</td></tr>
 <tr class="separator:a5939a752d4ea50eea67c019805254a82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82a4ba6533c2d663620c4276b7d27dce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_frame_lib___d_s_p_1_1_scheduler_info.html#a82a4ba6533c2d663620c4276b7d27dce">SchedulerInfo</a> (<a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a> timeAdvance, bool newFrame, bool outputDone)</td></tr>
+<tr class="memitem:a82a4ba6533c2d663620c4276b7d27dce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_frame_lib___d_s_p_1_1_scheduler_info.html#a82a4ba6533c2d663620c4276b7d27dce">SchedulerInfo</a> (<a class="el" href="struct_frame_lib___time_format.html">FrameLib_TimeFormat</a> timeAdvance, bool newFrame, bool outputDone)</td></tr>
 <tr class="separator:a82a4ba6533c2d663620c4276b7d27dce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ae38d8335efc201f8c2c967ffea7b6076"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_frame_lib___d_s_p_1_1_scheduler_info.html#ae38d8335efc201f8c2c967ffea7b6076">mTimeAdvance</a></td></tr>
+<tr class="memitem:ae38d8335efc201f8c2c967ffea7b6076"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_frame_lib___time_format.html">FrameLib_TimeFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_frame_lib___d_s_p_1_1_scheduler_info.html#ae38d8335efc201f8c2c967ffea7b6076">mTimeAdvance</a></td></tr>
 <tr class="separator:ae38d8335efc201f8c2c967ffea7b6076"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88fa8b1c2060d60f4ae1cf164405c85f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_frame_lib___d_s_p_1_1_scheduler_info.html#a88fa8b1c2060d60f4ae1cf164405c85f">mNewFrame</a></td></tr>
 <tr class="separator:a88fa8b1c2060d60f4ae1cf164405c85f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee41d636cde5b117b4ce8610905d668d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_frame_lib___d_s_p_1_1_scheduler_info.html#aee41d636cde5b117b4ce8610905d668d">mOutputDone</a></td></tr>
 <tr class="separator:aee41d636cde5b117b4ce8610905d668d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>an struct for returning scheduling info from the schedule() method. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5939a752d4ea50eea67c019805254a82"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5939a752d4ea50eea67c019805254a82">&#9670;&nbsp;</a></span>SchedulerInfo() <span class="overload">[1/2]</span></h2>
 
@@ -146,7 +151,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">FrameLib_DSP::SchedulerInfo::SchedulerInfo </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_frame_lib___time_format.html">FrameLib_TimeFormat</a>&#160;</td>
           <td class="paramname"><em>timeAdvance</em>, </td>
         </tr>
         <tr>
@@ -212,7 +217,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_frame_lib___types_8h.html#a699a4071a9eaaa283906a5ebd0a79ac0">FrameLib_TimeFormat</a> FrameLib_DSP::SchedulerInfo::mTimeAdvance</td>
+          <td class="memname"><a class="el" href="struct_frame_lib___time_format.html">FrameLib_TimeFormat</a> FrameLib_DSP::SchedulerInfo::mTimeAdvance</td>
         </tr>
       </table>
 </div><div class="memdoc">

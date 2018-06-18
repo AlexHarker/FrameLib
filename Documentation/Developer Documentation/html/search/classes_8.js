@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['untypedconnection',['UntypedConnection',['../struct_frame_lib___object_1_1_untyped_connection.html',1,'FrameLib_Object']]]
+  ['schedulerinfo',['SchedulerInfo',['../struct_frame_lib___d_s_p_1_1_scheduler_info.html',1,'FrameLib_DSP']]],
+  ['serial',['Serial',['../class_frame_lib___parameters_1_1_serial.html',1,'FrameLib_Parameters']]],
+  ['storage',['Storage',['../class_frame_lib___local_allocator_1_1_storage.html',1,'FrameLib_LocalAllocator']]]
 ];

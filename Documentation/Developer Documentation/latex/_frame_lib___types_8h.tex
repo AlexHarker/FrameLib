@@ -1,15 +1,24 @@
 \hypertarget{_frame_lib___types_8h}{}\section{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Types.h File Reference}
 \label{_frame_lib___types_8h}\index{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Types.\+h@{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Types.\+h}}
-{\ttfamily \#include $<$stdint.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}Frame\+Lib\+\_\+\+Fixed\+Point.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format}
+\begin{DoxyCompactList}\small\item\em a type for representing time in fixed-\/point high-\/precision for scheduling purposes. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy}
+\begin{DoxyCompactList}\small\item\em a virtual struct allowing for extensible communication to/from the host environment. \end{DoxyCompactList}\item 
+class \hyperlink{struct_frame_lib___owned_list}{Frame\+Lib\+\_\+\+Owned\+List$<$ T $>$}
+\begin{DoxyCompactList}\small\item\em a convenience wrapper for dealing with a vector of objects owned by pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
 typedef unsigned char \hyperlink{_frame_lib___types_8h_ae3a497195d617519e5353ea7b417940f}{Byte}
 \item 
 typedef unsigned char $\ast$ \hyperlink{_frame_lib___types_8h_a2c5689a997a12479b7d925e565428141}{Byte\+Pointer}
-\item 
-typedef \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \hyperlink{_frame_lib___types_8h_a699a4071a9eaaa283906a5ebd0a79ac0}{Frame\+Lib\+\_\+\+Time\+Format}
 \end{DoxyCompactItemize}
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
@@ -24,13 +33,18 @@ enum \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+
 \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854a5aee2d6178ee23e61651d75ebc9b21c3}{k\+Frame\+Tagged}
  \}
 \item 
+enum \hyperlink{_frame_lib___types_8h_ad8ed01ff3ff33333d8e19db4d2818bb6}{Data\+Type} \{ \hyperlink{_frame_lib___types_8h_ad8ed01ff3ff33333d8e19db4d2818bb6a6e202ffd504c2ae6e4f094c04a6fb753}{k\+Vector}, 
+\hyperlink{_frame_lib___types_8h_ad8ed01ff3ff33333d8e19db4d2818bb6aa5a30c385cc94aa0233a0af81ef90d6a}{k\+Single\+String}
+ \}
+\item 
 enum \hyperlink{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722}{Connection\+Result} \{ \newline
 \hyperlink{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722acbb7410537aa828b1bd79f9f482c4f58}{k\+Connect\+Success}, 
 \hyperlink{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722aa60bde05fabf20fadbc9383756c0eb79}{k\+Connect\+Wrong\+Context}, 
 \hyperlink{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722ab9d26eda5af349a5999d6dfe4ebfdc40}{k\+Connect\+Self\+Connection}, 
 \hyperlink{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722a9d2a53b28aad91bf56798bb950e093b0}{k\+Connect\+Feedback\+Detected}, 
 \newline
-\hyperlink{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722ae8d1018327af38e058cd3b7a92284248}{k\+Connect\+No\+Ordering\+Support}
+\hyperlink{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722ae8d1018327af38e058cd3b7a92284248}{k\+Connect\+No\+Ordering\+Support}, 
+\hyperlink{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722ac2d587c92eaceb7c3a66b6f0f59e68fd}{k\+Connect\+Aliased}
  \}
 \end{DoxyCompactItemize}
 
@@ -47,12 +61,6 @@ enum \hyperlink{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722}{Connect
 \index{Byte\+Pointer@{Byte\+Pointer}!Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}}
 \subsubsection{\texorpdfstring{Byte\+Pointer}{BytePointer}}
 {\footnotesize\ttfamily typedef unsigned char$\ast$ \hyperlink{_frame_lib___types_8h_a2c5689a997a12479b7d925e565428141}{Byte\+Pointer}}
-
-\mbox{\Hypertarget{_frame_lib___types_8h_a699a4071a9eaaa283906a5ebd0a79ac0}\label{_frame_lib___types_8h_a699a4071a9eaaa283906a5ebd0a79ac0}} 
-\index{Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}!Frame\+Lib\+\_\+\+Time\+Format@{Frame\+Lib\+\_\+\+Time\+Format}}
-\index{Frame\+Lib\+\_\+\+Time\+Format@{Frame\+Lib\+\_\+\+Time\+Format}!Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}}
-\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Time\+Format}{FrameLib\_TimeFormat}}
-{\footnotesize\ttfamily typedef \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \hyperlink{_frame_lib___types_8h_a699a4071a9eaaa283906a5ebd0a79ac0}{Frame\+Lib\+\_\+\+Time\+Format}}
 
 
 
@@ -82,6 +90,26 @@ k\+Connect\+Feedback\+Detected&\\
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Connect\+No\+Ordering\+Support@{k\+Connect\+No\+Ordering\+Support}!Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}}\index{Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}!k\+Connect\+No\+Ordering\+Support@{k\+Connect\+No\+Ordering\+Support}}}\mbox{\Hypertarget{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722ae8d1018327af38e058cd3b7a92284248}\label{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722ae8d1018327af38e058cd3b7a92284248}} 
 k\+Connect\+No\+Ordering\+Support&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Connect\+Aliased@{k\+Connect\+Aliased}!Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}}\index{Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}!k\+Connect\+Aliased@{k\+Connect\+Aliased}}}\mbox{\Hypertarget{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722ac2d587c92eaceb7c3a66b6f0f59e68fd}\label{_frame_lib___types_8h_a2a427ca8c6f961bac8e41f6edecf0722ac2d587c92eaceb7c3a66b6f0f59e68fd}} 
+k\+Connect\+Aliased&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{_frame_lib___types_8h_ad8ed01ff3ff33333d8e19db4d2818bb6}\label{_frame_lib___types_8h_ad8ed01ff3ff33333d8e19db4d2818bb6}} 
+\index{Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}!Data\+Type@{Data\+Type}}
+\index{Data\+Type@{Data\+Type}!Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}}
+\subsubsection{\texorpdfstring{Data\+Type}{DataType}}
+{\footnotesize\ttfamily enum \hyperlink{_frame_lib___types_8h_ad8ed01ff3ff33333d8e19db4d2818bb6}{Data\+Type}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Vector@{k\+Vector}!Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}}\index{Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}!k\+Vector@{k\+Vector}}}\mbox{\Hypertarget{_frame_lib___types_8h_ad8ed01ff3ff33333d8e19db4d2818bb6a6e202ffd504c2ae6e4f094c04a6fb753}\label{_frame_lib___types_8h_ad8ed01ff3ff33333d8e19db4d2818bb6a6e202ffd504c2ae6e4f094c04a6fb753}} 
+k\+Vector&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{k\+Single\+String@{k\+Single\+String}!Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}}\index{Frame\+Lib\+\_\+\+Types.\+h@{Frame\+Lib\+\_\+\+Types.\+h}!k\+Single\+String@{k\+Single\+String}}}\mbox{\Hypertarget{_frame_lib___types_8h_ad8ed01ff3ff33333d8e19db4d2818bb6aa5a30c385cc94aa0233a0af81ef90d6a}\label{_frame_lib___types_8h_ad8ed01ff3ff33333d8e19db4d2818bb6aa5a30c385cc94aa0233a0af81ef90d6a}} 
+k\+Single\+String&\\
 \hline
 
 \end{DoxyEnumFields}

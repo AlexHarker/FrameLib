@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.7</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
    <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
@@ -82,25 +82,39 @@ $(document).ready(function(){initNavTree('class_frame_lib___processing_queue.htm
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_frame_lib___processing_queue-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">FrameLib_ProcessingQueue Class Reference</div>  </div>
+<div class="title">FrameLib_ProcessingQueue Class Reference<div class="ingroups"><a class="el" href="group___processing_queue.html">Processing Queue</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>a minimal processing queue that is used to non-recursively process FrameLIB_DSP objects in a network.  
+ <a href="class_frame_lib___processing_queue.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_frame_lib___processing_queue_8h_source.html">FrameLib_ProcessingQueue.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aebaf74090b8be2322111dec5e61de3a4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___processing_queue.html#aebaf74090b8be2322111dec5e61de3a4">FrameLib_ProcessingQueue</a> ()</td></tr>
-<tr class="separator:aebaf74090b8be2322111dec5e61de3a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78a6230062203a2257260353053c30a4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___processing_queue.html#a78a6230062203a2257260353053c30a4">FrameLib_ProcessingQueue</a> (<a class="el" href="class_frame_lib___error_reporter.html">FrameLib_ErrorReporter</a> &amp;errorReporter)</td></tr>
+<tr class="separator:a78a6230062203a2257260353053c30a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa41a1203cd7c47f1a27e97c56aed3683"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___processing_queue.html#aa41a1203cd7c47f1a27e97c56aed3683">FrameLib_ProcessingQueue</a> (const <a class="el" href="class_frame_lib___processing_queue.html">FrameLib_ProcessingQueue</a> &amp;)=delete</td></tr>
+<tr class="separator:aa41a1203cd7c47f1a27e97c56aed3683"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44a9ef734bc91efcee0bb95188e89e62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_frame_lib___processing_queue.html">FrameLib_ProcessingQueue</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___processing_queue.html#a44a9ef734bc91efcee0bb95188e89e62">operator=</a> (const <a class="el" href="class_frame_lib___processing_queue.html">FrameLib_ProcessingQueue</a> &amp;)=delete</td></tr>
+<tr class="separator:a44a9ef734bc91efcee0bb95188e89e62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add4ce0ad0a1cc32eb2df5522adea7e62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___processing_queue.html#add4ce0ad0a1cc32eb2df5522adea7e62">add</a> (<a class="el" href="class_frame_lib___d_s_p.html">FrameLib_DSP</a> *object)</td></tr>
 <tr class="separator:add4ce0ad0a1cc32eb2df5522adea7e62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5550993e0c39bb9d6075fdf6d5aec956"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___processing_queue.html#a5550993e0c39bb9d6075fdf6d5aec956">reset</a> ()</td></tr>
+<tr class="separator:a5550993e0c39bb9d6075fdf6d5aec956"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d82a4d810794436e31e02ff54904f6f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___processing_queue.html#a2d82a4d810794436e31e02ff54904f6f">isTimedOut</a> ()</td></tr>
+<tr class="separator:a2d82a4d810794436e31e02ff54904f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aebaf74090b8be2322111dec5e61de3a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebaf74090b8be2322111dec5e61de3a4">&#9670;&nbsp;</a></span>FrameLib_ProcessingQueue()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>a minimal processing queue that is used to non-recursively process FrameLIB_DSP objects in a network. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a78a6230062203a2257260353053c30a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78a6230062203a2257260353053c30a4">&#9670;&nbsp;</a></span>FrameLib_ProcessingQueue() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -111,13 +125,40 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">FrameLib_ProcessingQueue::FrameLib_ProcessingQueue </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_frame_lib___error_reporter.html">FrameLib_ErrorReporter</a> &amp;&#160;</td>
+          <td class="paramname"><em>errorReporter</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa41a1203cd7c47f1a27e97c56aed3683"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa41a1203cd7c47f1a27e97c56aed3683">&#9670;&nbsp;</a></span>FrameLib_ProcessingQueue() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FrameLib_ProcessingQueue::FrameLib_ProcessingQueue </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_frame_lib___processing_queue.html">FrameLib_ProcessingQueue</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -139,6 +180,82 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2d82a4d810794436e31e02ff54904f6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d82a4d810794436e31e02ff54904f6f">&#9670;&nbsp;</a></span>isTimedOut()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FrameLib_ProcessingQueue::isTimedOut </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a44a9ef734bc91efcee0bb95188e89e62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44a9ef734bc91efcee0bb95188e89e62">&#9670;&nbsp;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_frame_lib___processing_queue.html">FrameLib_ProcessingQueue</a>&amp; FrameLib_ProcessingQueue::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_frame_lib___processing_queue.html">FrameLib_ProcessingQueue</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5550993e0c39bb9d6075fdf6d5aec956"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5550993e0c39bb9d6075fdf6d5aec956">&#9670;&nbsp;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FrameLib_ProcessingQueue::reset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

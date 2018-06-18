@@ -1,6 +1,9 @@
 \hypertarget{_frame_lib___memory_8h}{}\section{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Memory.h File Reference}
 \label{_frame_lib___memory_8h}\index{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Memory.\+h@{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Memory.\+h}}
-{\ttfamily \#include \char`\"{}tlsf.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Frame\+Lib\+\_\+\+Dependencies/tlsf/tlsf.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Frame\+Lib\+\_\+\+Types.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Frame\+Lib\+\_\+\+Errors.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Frame\+Lib\+\_\+\+Parameters.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Frame\+Lib\+\_\+\+Threading.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$vector$>$}\newline
 {\ttfamily \#include $<$ctime$>$}\newline
@@ -9,10 +12,12 @@
 \begin{DoxyCompactItemize}
 \item 
 class \hyperlink{class_frame_lib___global_allocator}{Frame\+Lib\+\_\+\+Global\+Allocator}
-\item 
+\begin{DoxyCompactList}\small\item\em a global threadsafe memory allocator suitable for realtime usage. \end{DoxyCompactList}\item 
 class \hyperlink{class_frame_lib___global_allocator_1_1_pruner}{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner}
-\item 
+\begin{DoxyCompactList}\small\item\em an R\+A\+II utility for repeated deallocation with only a single lock. \end{DoxyCompactList}\item 
 class \hyperlink{class_frame_lib___local_allocator}{Frame\+Lib\+\_\+\+Local\+Allocator}
-\item 
+\begin{DoxyCompactList}\small\item\em a memory allocator suitable for usage in a given Frame\+Lib context. \end{DoxyCompactList}\item 
 class \hyperlink{class_frame_lib___local_allocator_1_1_storage}{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em named storage local to a specific context. \end{DoxyCompactList}\item 
+class \hyperlink{class_frame_lib___local_allocator_1_1_storage_1_1_access}{Frame\+Lib\+\_\+\+Local\+Allocator\+::\+Storage\+::\+Access}
+\begin{DoxyCompactList}\small\item\em an R\+A\+II utility for safely accessing a \hyperlink{class_frame_lib___local_allocator_1_1_storage}{Storage} object. \end{DoxyCompactList}\end{DoxyCompactItemize}

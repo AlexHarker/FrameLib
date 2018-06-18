@@ -2,6 +2,11 @@
 \label{class_frame_lib___block}\index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}}
 
 
+an abstract class that represents either a single \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} object, or a group of connected \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} objects.  
+
+
+
+
 {\ttfamily \#include $<$Frame\+Lib\+\_\+\+Object.\+h$>$}
 
 Inheritance diagram for Frame\+Lib\+\_\+\+Block\+:\begin{figure}[H]
@@ -13,35 +18,26 @@ Inheritance diagram for Frame\+Lib\+\_\+\+Block\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_frame_lib___block_a99b10eba9f8f598c6ffdebd4a493489d}{Frame\+Lib\+\_\+\+Block} (\hyperlink{_frame_lib___types_8h_a842c5e2e69277690b064bf363c017980}{Object\+Type} type, \hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} context, void $\ast$owner)
+\hyperlink{class_frame_lib___block_a00c67dce2872ec851851570f32b2af5b}{Frame\+Lib\+\_\+\+Block} (\hyperlink{_frame_lib___types_8h_a842c5e2e69277690b064bf363c017980}{Object\+Type} type, \hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} context, \hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy} $\ast$proxy)
 \item 
 virtual \hyperlink{class_frame_lib___block_a17c0048595334cb8d63abfcbb77c980d}{$\sim$\+Frame\+Lib\+\_\+\+Block} ()
 \item 
-virtual void \hyperlink{class_frame_lib___block_a730aaf9204244afd2c40da0c40bb1ba8}{set\+Channel} (unsigned long chan)
-\item 
-virtual unsigned long \hyperlink{class_frame_lib___block_ab16af33ec9eb40711590cb90a927706c}{get\+Num\+Input\+Objects} (unsigned long block\+Idx)=0
-\item 
-virtual class \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} $\ast$ \hyperlink{class_frame_lib___block_a762b56f0e53163b7b4fabc90febc814e}{get\+Input\+Object} (unsigned long block\+Idx, unsigned long idx)=0
-\item 
-virtual unsigned long \hyperlink{class_frame_lib___block_a65748f72b840fd90bee87591446b9b50}{get\+Input\+Object\+Idx} (unsigned long block\+Idx, unsigned long idx)=0
-\item 
-virtual class \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} $\ast$ \hyperlink{class_frame_lib___block_add0b4f01447203f0ffaecb59cfe2c271}{get\+Output\+Object} (unsigned long block\+Idx)=0
-\item 
-virtual unsigned long \hyperlink{class_frame_lib___block_ad9e6ffbcf895c3eedc9e9b9c17dd013c}{get\+Output\+Object\+Idx} (unsigned long block\+Idx)=0
-\item 
-virtual unsigned long \hyperlink{class_frame_lib___block_a4a3be26fea03fcea53ef482cda07de56}{get\+Num\+Ordering\+Connection\+Objects} ()=0
-\item 
-virtual class \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} $\ast$ \hyperlink{class_frame_lib___block_a783373d2348b0d96b1c731041ba4fb0f}{get\+Ordering\+Connection\+Object} (unsigned long idx)=0
+virtual void \hyperlink{class_frame_lib___block_ac1e9dee6bc2b3f67cb6635d27797a0ea}{set\+Stream} (void $\ast$stream\+Owner, unsigned long stream)
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
+\subsection{Detailed Description}
+an abstract class that represents either a single \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} object, or a group of connected \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} objects. 
+
+This abstract class provides a connectivity interface to \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} objects or blocks (groups of \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} objects). Most objects inherit this in the \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} class. Objects that have asynchronous outputs can use this class to host multiple \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} objects and alias the connections correctly. 
+
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_frame_lib___block_a99b10eba9f8f598c6ffdebd4a493489d}\label{class_frame_lib___block_a99b10eba9f8f598c6ffdebd4a493489d}} 
+\mbox{\Hypertarget{class_frame_lib___block_a00c67dce2872ec851851570f32b2af5b}\label{class_frame_lib___block_a00c67dce2872ec851851570f32b2af5b}} 
 \index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}!Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}}
 \index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}!Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}}
 \subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Block()}{FrameLib\_Block()}}
-{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Block\+::\+Frame\+Lib\+\_\+\+Block (\begin{DoxyParamCaption}\item[{\hyperlink{_frame_lib___types_8h_a842c5e2e69277690b064bf363c017980}{Object\+Type}}]{type,  }\item[{\hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context}}]{context,  }\item[{void $\ast$}]{owner }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Block\+::\+Frame\+Lib\+\_\+\+Block (\begin{DoxyParamCaption}\item[{\hyperlink{_frame_lib___types_8h_a842c5e2e69277690b064bf363c017980}{Object\+Type}}]{type,  }\item[{\hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context}}]{context,  }\item[{\hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy} $\ast$}]{proxy }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{class_frame_lib___block_a17c0048595334cb8d63abfcbb77c980d}\label{class_frame_lib___block_a17c0048595334cb8d63abfcbb77c980d}} 
 \index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}!````~Frame\+Lib\+\_\+\+Block@{$\sim$\+Frame\+Lib\+\_\+\+Block}}
@@ -52,81 +48,11 @@ virtual class \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} $\ast
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_frame_lib___block_a762b56f0e53163b7b4fabc90febc814e}\label{class_frame_lib___block_a762b56f0e53163b7b4fabc90febc814e}} 
-\index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}!get\+Input\+Object@{get\+Input\+Object}}
-\index{get\+Input\+Object@{get\+Input\+Object}!Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}}
-\subsubsection{\texorpdfstring{get\+Input\+Object()}{getInputObject()}}
-{\footnotesize\ttfamily virtual class \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP}$\ast$ Frame\+Lib\+\_\+\+Block\+::get\+Input\+Object (\begin{DoxyParamCaption}\item[{unsigned long}]{block\+Idx,  }\item[{unsigned long}]{idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
-
-
-
-Implemented in \hyperlink{class_frame_lib___d_s_p_a11c7de51dabca61ca89e5fc178144725}{Frame\+Lib\+\_\+\+D\+SP}.
-
-\mbox{\Hypertarget{class_frame_lib___block_a65748f72b840fd90bee87591446b9b50}\label{class_frame_lib___block_a65748f72b840fd90bee87591446b9b50}} 
-\index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}!get\+Input\+Object\+Idx@{get\+Input\+Object\+Idx}}
-\index{get\+Input\+Object\+Idx@{get\+Input\+Object\+Idx}!Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}}
-\subsubsection{\texorpdfstring{get\+Input\+Object\+Idx()}{getInputObjectIdx()}}
-{\footnotesize\ttfamily virtual unsigned long Frame\+Lib\+\_\+\+Block\+::get\+Input\+Object\+Idx (\begin{DoxyParamCaption}\item[{unsigned long}]{block\+Idx,  }\item[{unsigned long}]{idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
-
-
-
-Implemented in \hyperlink{class_frame_lib___d_s_p_a6da5977366587bbab7532a8d4ab7d2f5}{Frame\+Lib\+\_\+\+D\+SP}.
-
-\mbox{\Hypertarget{class_frame_lib___block_ab16af33ec9eb40711590cb90a927706c}\label{class_frame_lib___block_ab16af33ec9eb40711590cb90a927706c}} 
-\index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}!get\+Num\+Input\+Objects@{get\+Num\+Input\+Objects}}
-\index{get\+Num\+Input\+Objects@{get\+Num\+Input\+Objects}!Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}}
-\subsubsection{\texorpdfstring{get\+Num\+Input\+Objects()}{getNumInputObjects()}}
-{\footnotesize\ttfamily virtual unsigned long Frame\+Lib\+\_\+\+Block\+::get\+Num\+Input\+Objects (\begin{DoxyParamCaption}\item[{unsigned long}]{block\+Idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
-
-
-
-Implemented in \hyperlink{class_frame_lib___d_s_p_a3864d31866672734f27c80d6eff15d47}{Frame\+Lib\+\_\+\+D\+SP}.
-
-\mbox{\Hypertarget{class_frame_lib___block_a4a3be26fea03fcea53ef482cda07de56}\label{class_frame_lib___block_a4a3be26fea03fcea53ef482cda07de56}} 
-\index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}!get\+Num\+Ordering\+Connection\+Objects@{get\+Num\+Ordering\+Connection\+Objects}}
-\index{get\+Num\+Ordering\+Connection\+Objects@{get\+Num\+Ordering\+Connection\+Objects}!Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}}
-\subsubsection{\texorpdfstring{get\+Num\+Ordering\+Connection\+Objects()}{getNumOrderingConnectionObjects()}}
-{\footnotesize\ttfamily virtual unsigned long Frame\+Lib\+\_\+\+Block\+::get\+Num\+Ordering\+Connection\+Objects (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
-
-
-
-Implemented in \hyperlink{class_frame_lib___d_s_p_a5a36587f32b2f7a49e0737934dc8a59b}{Frame\+Lib\+\_\+\+D\+SP}.
-
-\mbox{\Hypertarget{class_frame_lib___block_a783373d2348b0d96b1c731041ba4fb0f}\label{class_frame_lib___block_a783373d2348b0d96b1c731041ba4fb0f}} 
-\index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}!get\+Ordering\+Connection\+Object@{get\+Ordering\+Connection\+Object}}
-\index{get\+Ordering\+Connection\+Object@{get\+Ordering\+Connection\+Object}!Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}}
-\subsubsection{\texorpdfstring{get\+Ordering\+Connection\+Object()}{getOrderingConnectionObject()}}
-{\footnotesize\ttfamily virtual class \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP}$\ast$ Frame\+Lib\+\_\+\+Block\+::get\+Ordering\+Connection\+Object (\begin{DoxyParamCaption}\item[{unsigned long}]{idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
-
-
-
-Implemented in \hyperlink{class_frame_lib___d_s_p_a8ecd5acbe59bf34b514c6e3b73cb518c}{Frame\+Lib\+\_\+\+D\+SP}.
-
-\mbox{\Hypertarget{class_frame_lib___block_add0b4f01447203f0ffaecb59cfe2c271}\label{class_frame_lib___block_add0b4f01447203f0ffaecb59cfe2c271}} 
-\index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}!get\+Output\+Object@{get\+Output\+Object}}
-\index{get\+Output\+Object@{get\+Output\+Object}!Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}}
-\subsubsection{\texorpdfstring{get\+Output\+Object()}{getOutputObject()}}
-{\footnotesize\ttfamily virtual class \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP}$\ast$ Frame\+Lib\+\_\+\+Block\+::get\+Output\+Object (\begin{DoxyParamCaption}\item[{unsigned long}]{block\+Idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
-
-
-
-Implemented in \hyperlink{class_frame_lib___d_s_p_afdf6c94e0cef2f714bdfd90aea517faf}{Frame\+Lib\+\_\+\+D\+SP}.
-
-\mbox{\Hypertarget{class_frame_lib___block_ad9e6ffbcf895c3eedc9e9b9c17dd013c}\label{class_frame_lib___block_ad9e6ffbcf895c3eedc9e9b9c17dd013c}} 
-\index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}!get\+Output\+Object\+Idx@{get\+Output\+Object\+Idx}}
-\index{get\+Output\+Object\+Idx@{get\+Output\+Object\+Idx}!Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}}
-\subsubsection{\texorpdfstring{get\+Output\+Object\+Idx()}{getOutputObjectIdx()}}
-{\footnotesize\ttfamily virtual unsigned long Frame\+Lib\+\_\+\+Block\+::get\+Output\+Object\+Idx (\begin{DoxyParamCaption}\item[{unsigned long}]{block\+Idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
-
-
-
-Implemented in \hyperlink{class_frame_lib___d_s_p_a9eedfc5c69502c9bea3a0c1586a3ac57}{Frame\+Lib\+\_\+\+D\+SP}.
-
-\mbox{\Hypertarget{class_frame_lib___block_a730aaf9204244afd2c40da0c40bb1ba8}\label{class_frame_lib___block_a730aaf9204244afd2c40da0c40bb1ba8}} 
-\index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}!set\+Channel@{set\+Channel}}
-\index{set\+Channel@{set\+Channel}!Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}}
-\subsubsection{\texorpdfstring{set\+Channel()}{setChannel()}}
-{\footnotesize\ttfamily virtual void Frame\+Lib\+\_\+\+Block\+::set\+Channel (\begin{DoxyParamCaption}\item[{unsigned long}]{chan }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+\mbox{\Hypertarget{class_frame_lib___block_ac1e9dee6bc2b3f67cb6635d27797a0ea}\label{class_frame_lib___block_ac1e9dee6bc2b3f67cb6635d27797a0ea}} 
+\index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}!set\+Stream@{set\+Stream}}
+\index{set\+Stream@{set\+Stream}!Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}}
+\subsubsection{\texorpdfstring{set\+Stream()}{setStream()}}
+{\footnotesize\ttfamily virtual void Frame\+Lib\+\_\+\+Block\+::set\+Stream (\begin{DoxyParamCaption}\item[{void $\ast$}]{stream\+Owner,  }\item[{unsigned long}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 

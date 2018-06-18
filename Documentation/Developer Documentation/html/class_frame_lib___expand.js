@@ -1,17 +1,18 @@
 var class_frame_lib___expand =
 [
-    [ "FrameLib_Expand", "class_frame_lib___expand.html#a591240aee95c812856a9835b8014a915", null ],
-    [ "~FrameLib_Expand", "class_frame_lib___expand.html#a3aa2aa689e4b063fa65fe72be311c45f", null ],
-    [ "audioInfo", "class_frame_lib___expand.html#a94ab97ff114452551719fad428fd2d6e", null ],
-    [ "autoOrderingConnections", "class_frame_lib___expand.html#ab3f908391944bd2d6f5492cc67c19cba", null ],
-    [ "blockUpdate", "class_frame_lib___expand.html#ae712d631cb99284e91c3f318534b3c03", null ],
-    [ "clearAutoOrderingConnections", "class_frame_lib___expand.html#adbf3c1e77474e23eacabb395409424e5", null ],
-    [ "getParameters", "class_frame_lib___expand.html#ae399eee75f1f0d854505eb67f8fb4dd0", null ],
-    [ "inputInfo", "class_frame_lib___expand.html#ab9017c7fe8562857609fcf819b7d1cdd", null ],
-    [ "inputType", "class_frame_lib___expand.html#abfe5f5550062e7cb351d45111dd2958c", null ],
-    [ "objectInfo", "class_frame_lib___expand.html#ac4527eab2bfb55a38bd796d95f2a2562", null ],
-    [ "outputInfo", "class_frame_lib___expand.html#abba12bed97c0b76095f1e1a699591b3e", null ],
-    [ "outputType", "class_frame_lib___expand.html#a5ab23cdee5ca51ed5098b8a99164aa6a", null ],
-    [ "reset", "class_frame_lib___expand.html#a579f16ec32e05ff84ee766038012fc3f", null ],
-    [ "setFixedInput", "class_frame_lib___expand.html#a73f7bf4264d45f56f249d6303b3e4c35", null ]
+    [ "FrameLib_Expand", "class_frame_lib___expand.html#ab755d71f4232588304fe43236df3fe92", null ],
+    [ "audioInfo", "class_frame_lib___expand.html#ab55544cf81d2ea1c9b53db6124eddc88", null ],
+    [ "autoOrderingConnections", "class_frame_lib___expand.html#affdd2a6ec7ae518770f1fdfea1ce8768", null ],
+    [ "blockUpdate", "class_frame_lib___expand.html#a5601bb681542a7da33a688af0c74c163", null ],
+    [ "clearAutoOrderingConnections", "class_frame_lib___expand.html#a1fc74f5aa29990019307078693016f78", null ],
+    [ "getFixedInput", "class_frame_lib___expand.html#aea5cb729f1e2e69c5db41b53a991e0c6", null ],
+    [ "getParameters", "class_frame_lib___expand.html#a7fed62e92c707d454fa49ce10dee39ff", null ],
+    [ "getSerialised", "class_frame_lib___expand.html#a58eae43d3a0746f20a9d00e9c050b8c8", null ],
+    [ "inputInfo", "class_frame_lib___expand.html#a0e29df27f7dac1cd8082a468a24fe07e", null ],
+    [ "inputType", "class_frame_lib___expand.html#ad5300f03d5fe2531a97ecb4e28a044bf", null ],
+    [ "objectInfo", "class_frame_lib___expand.html#ae3cdc7661ba6a00f816e9aaea68ce262", null ],
+    [ "outputInfo", "class_frame_lib___expand.html#a0c7a6f0cc3779c6fb6a61fe8e3a8bc60", null ],
+    [ "outputType", "class_frame_lib___expand.html#a235019747538c76a1505f60e0773c041", null ],
+    [ "reset", "class_frame_lib___expand.html#aab1637f19abfa1ca21abb9f2bbff6062", null ],
+    [ "setFixedInput", "class_frame_lib___expand.html#ae7e72800c3b52698383e333885921ce4", null ]
 ];

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.7</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
    <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
@@ -84,22 +84,26 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <div class="textblock">Here is a list of all class members with links to the classes they belong to:</div>
 
 <h3><a id="index_a"></a>- a -</h3><ul>
+<li>Access()
+: <a class="el" href="class_frame_lib___local_allocator_1_1_storage_1_1_access.html#a02ea2f7c9943eb1fcd0963a685e0d7fd">FrameLib_LocalAllocator::Storage::Access</a>
+</li>
 <li>acquire()
-: <a class="el" href="class_spin_lock.html#ae35cf9e034be7ddced1fcfaefb0161ca">SpinLock</a>
+: <a class="el" href="class_frame_lib___spin_lock.html#a9718ce6f4e9cb09d6d614e1e7c36a1ae">FrameLib_SpinLock</a>
 </li>
 <li>add()
-: <a class="el" href="class_frame_lib___parameters_1_1_info.html#ae5b7b0ee9401ba93b5a15cc25f0f7863">FrameLib_Parameters::Info</a>
+: <a class="el" href="struct_frame_lib___owned_list.html#a9c7d0ad8bf68242a3889794039903d40">FrameLib_OwnedList&lt; T &gt;</a>
+, <a class="el" href="class_frame_lib___parameters_1_1_info.html#a7d2360d181ac4e0d8e49af6b5777b38b">FrameLib_Parameters::Info</a>
 , <a class="el" href="class_frame_lib___processing_queue.html#add4ce0ad0a1cc32eb2df5522adea7e62">FrameLib_ProcessingQueue</a>
-, <a class="el" href="class_frame_lib___queueable_1_1_queue.html#abf0d41d8f1e7988e1bde9b8a5f899f30">FrameLib_Queueable&lt; T &gt;::Queue</a>
+, <a class="el" href="class_frame_lib___queueable_1_1_queue.html#ad53a3b731ae68fb92a3e0ea82687a1ce">FrameLib_Queueable&lt; T &gt;::Queue</a>
 </li>
 <li>addBool()
 : <a class="el" href="class_frame_lib___parameters.html#ad975cc435f4fa2006e1a722dad784d9a">FrameLib_Parameters</a>
 </li>
 <li>addBoolArray()
-: <a class="el" href="class_frame_lib___parameters.html#a9239184fd366b1cbaeec545577c20ab2">FrameLib_Parameters</a>
+: <a class="el" href="class_frame_lib___parameters.html#a2f43754fb04e7601bc206961f9111b0d">FrameLib_Parameters</a>
 </li>
 <li>addConnection()
-: <a class="el" href="class_frame_lib___object.html#a216a018651f08f5779d40fd243921527">FrameLib_Object&lt; T &gt;</a>
+: <a class="el" href="class_frame_lib___object.html#a53722775485e80ba9590750ad68e437b">FrameLib_Object&lt; T &gt;</a>
 </li>
 <li>addDouble()
 : <a class="el" href="class_frame_lib___parameters.html#ab05bf4cd30eecd26bba972efd171798c">FrameLib_Parameters</a>
@@ -120,13 +124,19 @@ $(document).ready(function(){initNavTree('functions.html','');});
 : <a class="el" href="class_frame_lib___parameters.html#a409ad961a1376b59eb9927894ee08d35">FrameLib_Parameters</a>
 </li>
 <li>addOrderingConnection()
-: <a class="el" href="class_frame_lib___object.html#a3e403445d93444a203604fcb3bfd8fe6">FrameLib_Object&lt; T &gt;</a>
+: <a class="el" href="class_frame_lib___object.html#aaa1ec62334620a049632f72ad2c22538">FrameLib_Object&lt; T &gt;</a>
+</li>
+<li>addOutputDependencies()
+: <a class="el" href="class_frame_lib___object.html#a9b2213d1010d13c7c79de5d5f053ea1b">FrameLib_Object&lt; T &gt;</a>
 </li>
 <li>addParameterInput()
 : <a class="el" href="class_frame_lib___d_s_p.html#aa000b56c19ad1fbdc4f3fe56b0ca762d">FrameLib_DSP</a>
 </li>
 <li>addString()
 : <a class="el" href="class_frame_lib___parameters.html#a54881a00c48e949914b130383c110a0a">FrameLib_Parameters</a>
+</li>
+<li>addUniqueItem()
+: <a class="el" href="class_frame_lib___object.html#aa06caf2148631c1a6c3204ac6d8b2bc7">FrameLib_Object&lt; T &gt;</a>
 </li>
 <li>addVariableBoolArray()
 : <a class="el" href="class_frame_lib___parameters.html#a7d29ce5a989b58dd19a00fccea66de9f">FrameLib_Parameters</a>
@@ -136,6 +146,9 @@ $(document).ready(function(){initNavTree('functions.html','');});
 </li>
 <li>addVariableIntArray()
 : <a class="el" href="class_frame_lib___parameters.html#abd0359eb3df2b07acf25ef5d1f2873fe">FrameLib_Parameters</a>
+</li>
+<li>alias()
+: <a class="el" href="class_frame_lib___parameters_1_1_serial_1_1_iterator.html#ab67005473b98c2a4eb2f264da87232d2">FrameLib_Parameters::Serial::Iterator</a>
 </li>
 <li>alignment
 : <a class="el" href="class_frame_lib___parameters_1_1_serial.html#a9932ac93f403097497aee15214b6e762">FrameLib_Parameters::Serial</a>
@@ -154,30 +167,22 @@ $(document).ready(function(){initNavTree('functions.html','');});
 : <a class="el" href="class_frame_lib___d_s_p.html#abbf404ed95c61cfa713c988b10f76202">FrameLib_DSP</a>
 </li>
 <li>Allocator
-: <a class="el" href="class_frame_lib___context.html#a4cfa321c8f6048211d031f05156b5b19">FrameLib_Context</a>
-</li>
-<li>Atomic32()
-: <a class="el" href="class_atomic32.html#a2f4bd49dda1e79d59618309c7823ddad">Atomic32</a>
-</li>
-<li>AtomicPtr()
-: <a class="el" href="class_atomic_ptr.html#a5928e4738a0e9c3a26d166977287b172">AtomicPtr&lt; T &gt;</a>
+: <a class="el" href="class_frame_lib___context.html#a5282f95b5825866bc4bb2aad500ccfa3">FrameLib_Context</a>
 </li>
 <li>attempt()
-: <a class="el" href="class_spin_lock.html#a5c9211c6e3323218948c48e22623836f">SpinLock</a>
+: <a class="el" href="class_frame_lib___spin_lock.html#ab77f604b7e610535d0b48c5f2147daff">FrameLib_SpinLock</a>
 </li>
 <li>audioInfo()
-: <a class="el" href="class_frame_lib___expand.html#a94ab97ff114452551719fad428fd2d6e">FrameLib_Expand&lt; T &gt;</a>
+: <a class="el" href="class_frame_lib___expand.html#ab55544cf81d2ea1c9b53db6124eddc88">FrameLib_Expand&lt; T &gt;</a>
 , <a class="el" href="class_frame_lib___object.html#af618fcdec82b457911147c7c293bedd7">FrameLib_Object&lt; T &gt;</a>
 </li>
 <li>autoOrderingConnections()
-: <a class="el" href="class_frame_lib___d_s_p.html#a8dfb9b1855cc6a829acc1a03dcc4776b">FrameLib_DSP</a>
-, <a class="el" href="class_frame_lib___expand.html#ab3f908391944bd2d6f5492cc67c19cba">FrameLib_Expand&lt; T &gt;</a>
+: <a class="el" href="class_frame_lib___d_s_p.html#a6584230fa17c0b76a045fd1ec99f0482">FrameLib_DSP</a>
+, <a class="el" href="class_frame_lib___expand.html#affdd2a6ec7ae518770f1fdfea1ce8768">FrameLib_Expand&lt; T &gt;</a>
 , <a class="el" href="class_frame_lib___object.html#afa5bb93302a641c23b5eac7ab0dfe516">FrameLib_Object&lt; T &gt;</a>
-, <a class="el" href="class_frame_lib___pack.html#aacf276d3ed114e4aa03b8e640164d116">FrameLib_Pack</a>
-, <a class="el" href="class_frame_lib___unpack.html#a4bbf83c7d4bd8c96acd2283afa0ed2c2">FrameLib_Unpack</a>
 </li>
 <li>AutoSerial()
-: <a class="el" href="class_frame_lib___parameters_1_1_auto_serial.html#a633ec0dfc1b5a1bdf67b0932e2c132d4">FrameLib_Parameters::AutoSerial</a>
+: <a class="el" href="class_frame_lib___parameters_1_1_auto_serial.html#ade5aeae38060ad0e691517d3d6bc3600">FrameLib_Parameters::AutoSerial</a>
 </li>
 </ul>
 </div><!-- contents -->

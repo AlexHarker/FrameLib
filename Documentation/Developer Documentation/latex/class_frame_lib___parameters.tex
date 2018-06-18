@@ -2,17 +2,22 @@
 \label{class_frame_lib___parameters}\index{Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}}
 
 
+a set of parameters for a Frame\+Lib object.  
+
+
+
+
 {\ttfamily \#include $<$Frame\+Lib\+\_\+\+Parameters.\+h$>$}
 
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 class \hyperlink{class_frame_lib___parameters_1_1_auto_serial}{Auto\+Serial}
-\item 
+\begin{DoxyCompactList}\small\item\em an extension of \hyperlink{class_frame_lib___parameters_1_1_serial}{Serial} that manages its own resizable memory. \end{DoxyCompactList}\item 
 class \hyperlink{class_frame_lib___parameters_1_1_info}{Info}
-\item 
+\begin{DoxyCompactList}\small\item\em a class for passing info strings to \hyperlink{class_frame_lib___parameters}{Frame\+Lib\+\_\+\+Parameters}. \end{DoxyCompactList}\item 
 class \hyperlink{class_frame_lib___parameters_1_1_serial}{Serial}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em a set of tagged parameter values using external non-\/owned memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
@@ -40,9 +45,13 @@ enum \hyperlink{class_frame_lib___parameters_afcefd8a6a664599b93f635538d95265a}{
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_frame_lib___parameters_a901d16f8654b147d21cf2b87d3ed8a14}{Frame\+Lib\+\_\+\+Parameters} (\hyperlink{class_frame_lib___parameters_1_1_info}{Info} $\ast$info)
+\hyperlink{class_frame_lib___parameters_a4adc6d011e6a9842dc11025789dcda27}{Frame\+Lib\+\_\+\+Parameters} (\hyperlink{class_frame_lib___error_reporter}{Frame\+Lib\+\_\+\+Error\+Reporter} \&error\+Reporter, \hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy} $\ast$proxy, \hyperlink{class_frame_lib___parameters_1_1_info}{Info} $\ast$info)
 \item 
-\hyperlink{class_frame_lib___parameters_a5bb469337e8a213ba9f397bc6af269c8}{$\sim$\+Frame\+Lib\+\_\+\+Parameters} ()
+\hyperlink{class_frame_lib___parameters_a45a182e2dc59c805b148f36571fe93a6}{Frame\+Lib\+\_\+\+Parameters} (const \hyperlink{class_frame_lib___parameters}{Frame\+Lib\+\_\+\+Parameters} \&)=delete
+\item 
+\hyperlink{class_frame_lib___parameters}{Frame\+Lib\+\_\+\+Parameters} \& \hyperlink{class_frame_lib___parameters_ad9a863e077776c631cf7e9923ace933d}{operator=} (const \hyperlink{class_frame_lib___parameters}{Frame\+Lib\+\_\+\+Parameters} \&)=delete
+\item 
+void \hyperlink{class_frame_lib___parameters_a483bca3b2937ffd979af819ef3e32b3e}{set\+Error\+Reporting\+Enabled} (bool enable)
 \item 
 unsigned long \hyperlink{class_frame_lib___parameters_a391d0cb37c904981f7ad52bc0ba1b111}{size} () const
 \item 
@@ -62,7 +71,7 @@ void \hyperlink{class_frame_lib___parameters_ae79973b1261a0a63a14f6c4b299d0fb6}{
 \item 
 void \hyperlink{class_frame_lib___parameters_a9840a17de7f4c3078d26f23ec88eb02d}{add\+Enum\+Item} (unsigned long index, const char $\ast$str)
 \item 
-void \hyperlink{class_frame_lib___parameters_a9239184fd366b1cbaeec545577c20ab2}{add\+Bool\+Array} (unsigned long index, const char $\ast$name, long default\+Value, size\+\_\+t \hyperlink{class_frame_lib___parameters_a391d0cb37c904981f7ad52bc0ba1b111}{size}, long argument\+Idx=-\/1)
+void \hyperlink{class_frame_lib___parameters_a2f43754fb04e7601bc206961f9111b0d}{add\+Bool\+Array} (unsigned long index, const char $\ast$name, bool default\+Value, size\+\_\+t \hyperlink{class_frame_lib___parameters_a391d0cb37c904981f7ad52bc0ba1b111}{size}, long argument\+Idx=-\/1)
 \item 
 void \hyperlink{class_frame_lib___parameters_a409ad961a1376b59eb9927894ee08d35}{add\+Int\+Array} (unsigned long index, const char $\ast$name, long default\+Value, size\+\_\+t \hyperlink{class_frame_lib___parameters_a391d0cb37c904981f7ad52bc0ba1b111}{size}, long argument\+Idx=-\/1)
 \item 
@@ -196,6 +205,9 @@ bool \hyperlink{class_frame_lib___parameters_a6bd6af480a8d8f589ee7443c690f75b0}{
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+a set of parameters for a Frame\+Lib object. 
+
 \subsection{Member Enumeration Documentation}
 \mbox{\Hypertarget{class_frame_lib___parameters_afcefd8a6a664599b93f635538d95265a}\label{class_frame_lib___parameters_afcefd8a6a664599b93f635538d95265a}} 
 \index{Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}!Clip\+Mode@{Clip\+Mode}}
@@ -276,17 +288,17 @@ k\+Variable\+Array&\\
 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_frame_lib___parameters_a901d16f8654b147d21cf2b87d3ed8a14}\label{class_frame_lib___parameters_a901d16f8654b147d21cf2b87d3ed8a14}} 
+\mbox{\Hypertarget{class_frame_lib___parameters_a4adc6d011e6a9842dc11025789dcda27}\label{class_frame_lib___parameters_a4adc6d011e6a9842dc11025789dcda27}} 
 \index{Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}!Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}}
 \index{Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}!Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}}
-\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Parameters()}{FrameLib\_Parameters()}}
-{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Parameters\+::\+Frame\+Lib\+\_\+\+Parameters (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___parameters_1_1_info}{Info} $\ast$}]{info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Parameters()}{FrameLib\_Parameters()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Parameters\+::\+Frame\+Lib\+\_\+\+Parameters (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___error_reporter}{Frame\+Lib\+\_\+\+Error\+Reporter} \&}]{error\+Reporter,  }\item[{\hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy} $\ast$}]{proxy,  }\item[{\hyperlink{class_frame_lib___parameters_1_1_info}{Info} $\ast$}]{info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{class_frame_lib___parameters_a5bb469337e8a213ba9f397bc6af269c8}\label{class_frame_lib___parameters_a5bb469337e8a213ba9f397bc6af269c8}} 
-\index{Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}!````~Frame\+Lib\+\_\+\+Parameters@{$\sim$\+Frame\+Lib\+\_\+\+Parameters}}
-\index{````~Frame\+Lib\+\_\+\+Parameters@{$\sim$\+Frame\+Lib\+\_\+\+Parameters}!Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}}
-\subsubsection{\texorpdfstring{$\sim$\+Frame\+Lib\+\_\+\+Parameters()}{~FrameLib\_Parameters()}}
-{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Parameters\+::$\sim$\+Frame\+Lib\+\_\+\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\Hypertarget{class_frame_lib___parameters_a45a182e2dc59c805b148f36571fe93a6}\label{class_frame_lib___parameters_a45a182e2dc59c805b148f36571fe93a6}} 
+\index{Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}!Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}}
+\index{Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}!Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Parameters()}{FrameLib\_Parameters()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Parameters\+::\+Frame\+Lib\+\_\+\+Parameters (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___parameters}{Frame\+Lib\+\_\+\+Parameters} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 
 
@@ -297,11 +309,11 @@ k\+Variable\+Array&\\
 \subsubsection{\texorpdfstring{add\+Bool()}{addBool()}}
 {\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Parameters\+::add\+Bool (\begin{DoxyParamCaption}\item[{unsigned long}]{index,  }\item[{const char $\ast$}]{name,  }\item[{bool}]{default\+Value = {\ttfamily false},  }\item[{long}]{argument\+Idx = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{class_frame_lib___parameters_a9239184fd366b1cbaeec545577c20ab2}\label{class_frame_lib___parameters_a9239184fd366b1cbaeec545577c20ab2}} 
+\mbox{\Hypertarget{class_frame_lib___parameters_a2f43754fb04e7601bc206961f9111b0d}\label{class_frame_lib___parameters_a2f43754fb04e7601bc206961f9111b0d}} 
 \index{Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}!add\+Bool\+Array@{add\+Bool\+Array}}
 \index{add\+Bool\+Array@{add\+Bool\+Array}!Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}}
 \subsubsection{\texorpdfstring{add\+Bool\+Array()}{addBoolArray()}}
-{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Parameters\+::add\+Bool\+Array (\begin{DoxyParamCaption}\item[{unsigned long}]{index,  }\item[{const char $\ast$}]{name,  }\item[{long}]{default\+Value,  }\item[{size\+\_\+t}]{size,  }\item[{long}]{argument\+Idx = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Parameters\+::add\+Bool\+Array (\begin{DoxyParamCaption}\item[{unsigned long}]{index,  }\item[{const char $\ast$}]{name,  }\item[{bool}]{default\+Value,  }\item[{size\+\_\+t}]{size,  }\item[{long}]{argument\+Idx = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{class_frame_lib___parameters_ab05bf4cd30eecd26bba972efd171798c}\label{class_frame_lib___parameters_ab05bf4cd30eecd26bba972efd171798c}} 
 \index{Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}!add\+Double@{add\+Double}}
@@ -645,6 +657,12 @@ k\+Variable\+Array&\\
 \subsubsection{\texorpdfstring{max\+Argument()}{maxArgument()}}
 {\footnotesize\ttfamily long Frame\+Lib\+\_\+\+Parameters\+::max\+Argument (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+\mbox{\Hypertarget{class_frame_lib___parameters_ad9a863e077776c631cf7e9923ace933d}\label{class_frame_lib___parameters_ad9a863e077776c631cf7e9923ace933d}} 
+\index{Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}!operator=@{operator=}}
+\index{operator=@{operator=}!Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \hyperlink{class_frame_lib___parameters}{Frame\+Lib\+\_\+\+Parameters}\& Frame\+Lib\+\_\+\+Parameters\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___parameters}{Frame\+Lib\+\_\+\+Parameters} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
 \mbox{\Hypertarget{class_frame_lib___parameters_a1028e3913b7f38000f71ce4b172143a7}\label{class_frame_lib___parameters_a1028e3913b7f38000f71ce4b172143a7}} 
 \index{Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}!set@{set}}
 \index{set@{set}!Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}}
@@ -716,6 +734,12 @@ k\+Variable\+Array&\\
 \index{set\+Clip@{set\+Clip}!Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}}
 \subsubsection{\texorpdfstring{set\+Clip()}{setClip()}}
 {\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Parameters\+::set\+Clip (\begin{DoxyParamCaption}\item[{double}]{min,  }\item[{double}]{max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___parameters_a483bca3b2937ffd979af819ef3e32b3e}\label{class_frame_lib___parameters_a483bca3b2937ffd979af819ef3e32b3e}} 
+\index{Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}!set\+Error\+Reporting\+Enabled@{set\+Error\+Reporting\+Enabled}}
+\index{set\+Error\+Reporting\+Enabled@{set\+Error\+Reporting\+Enabled}!Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}}
+\subsubsection{\texorpdfstring{set\+Error\+Reporting\+Enabled()}{setErrorReportingEnabled()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Parameters\+::set\+Error\+Reporting\+Enabled (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{class_frame_lib___parameters_a29ca4962b55f16a90fd54a246fb17810}\label{class_frame_lib___parameters_a29ca4962b55f16a90fd54a246fb17810}} 
 \index{Frame\+Lib\+\_\+\+Parameters@{Frame\+Lib\+\_\+\+Parameters}!set\+Instantiation@{set\+Instantiation}}

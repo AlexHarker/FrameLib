@@ -1,0 +1,87 @@
+\hypertarget{class_frame_lib___semaphore}{}\section{Frame\+Lib\+\_\+\+Semaphore Class Reference}
+\label{class_frame_lib___semaphore}\index{Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}}
+
+
+a semaphore class wrapping an O\+S-\/level semaphore  
+
+
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+Threading.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_frame_lib___semaphore_a005822b2888a73b8764a8026b6f88217}{Frame\+Lib\+\_\+\+Semaphore} (long max\+Count)
+\item 
+\hyperlink{class_frame_lib___semaphore_add006e7bfd2758acfcc4c763c00028eb}{$\sim$\+Frame\+Lib\+\_\+\+Semaphore} ()
+\item 
+\hyperlink{class_frame_lib___semaphore_adeed1a71cb4555c224115658254e0377}{Frame\+Lib\+\_\+\+Semaphore} (const \hyperlink{class_frame_lib___semaphore}{Frame\+Lib\+\_\+\+Semaphore} \&)=delete
+\item 
+\hyperlink{class_frame_lib___semaphore}{Frame\+Lib\+\_\+\+Semaphore} \& \hyperlink{class_frame_lib___semaphore_ad8c78aa4866dd72819ff35428736adde}{operator=} (const \hyperlink{class_frame_lib___semaphore}{Frame\+Lib\+\_\+\+Semaphore} \&)=delete
+\item 
+void \hyperlink{class_frame_lib___semaphore_a5d2d85054c42363761ad4bf37d167d90}{close} ()
+\item 
+void \hyperlink{class_frame_lib___semaphore_ab46387d91374abb71cae7e2874641119}{signal} (long n)
+\item 
+bool \hyperlink{class_frame_lib___semaphore_a87e8ba7aa4aba472e9d05c85f0170920}{wait} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+a semaphore class wrapping an O\+S-\/level semaphore 
+
+The semaphore must be clsed before destruction. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_frame_lib___semaphore_a005822b2888a73b8764a8026b6f88217}\label{class_frame_lib___semaphore_a005822b2888a73b8764a8026b6f88217}} 
+\index{Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}!Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}}
+\index{Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}!Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Semaphore()}{FrameLib\_Semaphore()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Semaphore\+::\+Frame\+Lib\+\_\+\+Semaphore (\begin{DoxyParamCaption}\item[{long}]{max\+Count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___semaphore_add006e7bfd2758acfcc4c763c00028eb}\label{class_frame_lib___semaphore_add006e7bfd2758acfcc4c763c00028eb}} 
+\index{Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}!````~Frame\+Lib\+\_\+\+Semaphore@{$\sim$\+Frame\+Lib\+\_\+\+Semaphore}}
+\index{````~Frame\+Lib\+\_\+\+Semaphore@{$\sim$\+Frame\+Lib\+\_\+\+Semaphore}!Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}}
+\subsubsection{\texorpdfstring{$\sim$\+Frame\+Lib\+\_\+\+Semaphore()}{~FrameLib\_Semaphore()}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Semaphore\+::$\sim$\+Frame\+Lib\+\_\+\+Semaphore (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___semaphore_adeed1a71cb4555c224115658254e0377}\label{class_frame_lib___semaphore_adeed1a71cb4555c224115658254e0377}} 
+\index{Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}!Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}}
+\index{Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}!Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Semaphore()}{FrameLib\_Semaphore()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Semaphore\+::\+Frame\+Lib\+\_\+\+Semaphore (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___semaphore}{Frame\+Lib\+\_\+\+Semaphore} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_frame_lib___semaphore_a5d2d85054c42363761ad4bf37d167d90}\label{class_frame_lib___semaphore_a5d2d85054c42363761ad4bf37d167d90}} 
+\index{Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}!close@{close}}
+\index{close@{close}!Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}}
+\subsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Semaphore\+::close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___semaphore_ad8c78aa4866dd72819ff35428736adde}\label{class_frame_lib___semaphore_ad8c78aa4866dd72819ff35428736adde}} 
+\index{Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}!operator=@{operator=}}
+\index{operator=@{operator=}!Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \hyperlink{class_frame_lib___semaphore}{Frame\+Lib\+\_\+\+Semaphore}\& Frame\+Lib\+\_\+\+Semaphore\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___semaphore}{Frame\+Lib\+\_\+\+Semaphore} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_frame_lib___semaphore_ab46387d91374abb71cae7e2874641119}\label{class_frame_lib___semaphore_ab46387d91374abb71cae7e2874641119}} 
+\index{Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}!signal@{signal}}
+\index{signal@{signal}!Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}}
+\subsubsection{\texorpdfstring{signal()}{signal()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Semaphore\+::signal (\begin{DoxyParamCaption}\item[{long}]{n }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___semaphore_a87e8ba7aa4aba472e9d05c85f0170920}\label{class_frame_lib___semaphore_a87e8ba7aa4aba472e9d05c85f0170920}} 
+\index{Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}!wait@{wait}}
+\index{wait@{wait}!Frame\+Lib\+\_\+\+Semaphore@{Frame\+Lib\+\_\+\+Semaphore}}
+\subsubsection{\texorpdfstring{wait()}{wait()}}
+{\footnotesize\ttfamily bool Frame\+Lib\+\_\+\+Semaphore\+::wait (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___threading_8h}{Frame\+Lib\+\_\+\+Threading.\+h}\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___threading_8cpp}{Frame\+Lib\+\_\+\+Threading.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,52 @@
+\hypertarget{struct_frame_lib___owned_list}{}\section{Frame\+Lib\+\_\+\+Owned\+List$<$ T $>$ Class Template Reference}
+\label{struct_frame_lib___owned_list}\index{Frame\+Lib\+\_\+\+Owned\+List$<$ T $>$@{Frame\+Lib\+\_\+\+Owned\+List$<$ T $>$}}
+
+
+a convenience wrapper for dealing with a vector of objects owned by pointer.  
+
+
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+Types.\+h$>$}
+
+Inheritance diagram for Frame\+Lib\+\_\+\+Owned\+List$<$ T $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{struct_frame_lib___owned_list}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{struct_frame_lib___owned_list_a9c7d0ad8bf68242a3889794039903d40}{add} (T $\ast$object)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Frame\+Lib\+\_\+\+Owned\+List$<$ T $>$}
+
+a convenience wrapper for dealing with a vector of objects owned by pointer. 
+
+This minimal template class inherits from a std\+::vector of std\+::unique\+\_\+ptr$<$\+T$>$ objects. The owned list of objects is thus memory-\/managed as-\/per std\+::unique\+\_\+ptr. For convenience the \hyperlink{struct_frame_lib___owned_list_a9c7d0ad8bf68242a3889794039903d40}{add()} method allows a raw pointer to be added to the end of the vector (and thus ownership transferred) in a compact manner. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_frame_lib___owned_list_a9c7d0ad8bf68242a3889794039903d40}\label{struct_frame_lib___owned_list_a9c7d0ad8bf68242a3889794039903d40}} 
+\index{Frame\+Lib\+\_\+\+Owned\+List@{Frame\+Lib\+\_\+\+Owned\+List}!add@{add}}
+\index{add@{add}!Frame\+Lib\+\_\+\+Owned\+List@{Frame\+Lib\+\_\+\+Owned\+List}}
+\subsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \hyperlink{struct_frame_lib___owned_list}{Frame\+Lib\+\_\+\+Owned\+List}$<$ T $>$\+::add (\begin{DoxyParamCaption}\item[{T $\ast$}]{object }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add a pointer to the list of managed pointers, transferring ownership.
+
+
+\begin{DoxyParams}{Parameters}
+{\em object} & the pointer to add to the owned list. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___types_8h}{Frame\+Lib\+\_\+\+Types.\+h}\end{DoxyCompactItemize}

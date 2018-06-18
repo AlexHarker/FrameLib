@@ -2,23 +2,45 @@
 \label{class_frame_lib___processing_queue}\index{Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}}
 
 
+a minimal processing queue that is used to non-\/recursively process Frame\+L\+I\+B\+\_\+\+D\+SP objects in a network.  
+
+
+
+
 {\ttfamily \#include $<$Frame\+Lib\+\_\+\+Processing\+Queue.\+h$>$}
 
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_frame_lib___processing_queue_aebaf74090b8be2322111dec5e61de3a4}{Frame\+Lib\+\_\+\+Processing\+Queue} ()
+\hyperlink{class_frame_lib___processing_queue_a78a6230062203a2257260353053c30a4}{Frame\+Lib\+\_\+\+Processing\+Queue} (\hyperlink{class_frame_lib___error_reporter}{Frame\+Lib\+\_\+\+Error\+Reporter} \&error\+Reporter)
+\item 
+\hyperlink{class_frame_lib___processing_queue_aa41a1203cd7c47f1a27e97c56aed3683}{Frame\+Lib\+\_\+\+Processing\+Queue} (const \hyperlink{class_frame_lib___processing_queue}{Frame\+Lib\+\_\+\+Processing\+Queue} \&)=delete
+\item 
+\hyperlink{class_frame_lib___processing_queue}{Frame\+Lib\+\_\+\+Processing\+Queue} \& \hyperlink{class_frame_lib___processing_queue_a44a9ef734bc91efcee0bb95188e89e62}{operator=} (const \hyperlink{class_frame_lib___processing_queue}{Frame\+Lib\+\_\+\+Processing\+Queue} \&)=delete
 \item 
 void \hyperlink{class_frame_lib___processing_queue_add4ce0ad0a1cc32eb2df5522adea7e62}{add} (\hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} $\ast$object)
+\item 
+void \hyperlink{class_frame_lib___processing_queue_a5550993e0c39bb9d6075fdf6d5aec956}{reset} ()
+\item 
+bool \hyperlink{class_frame_lib___processing_queue_a2d82a4d810794436e31e02ff54904f6f}{is\+Timed\+Out} ()
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+a minimal processing queue that is used to non-\/recursively process Frame\+L\+I\+B\+\_\+\+D\+SP objects in a network. 
+
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_frame_lib___processing_queue_aebaf74090b8be2322111dec5e61de3a4}\label{class_frame_lib___processing_queue_aebaf74090b8be2322111dec5e61de3a4}} 
+\mbox{\Hypertarget{class_frame_lib___processing_queue_a78a6230062203a2257260353053c30a4}\label{class_frame_lib___processing_queue_a78a6230062203a2257260353053c30a4}} 
 \index{Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}!Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}}
 \index{Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}!Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}}
-\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Processing\+Queue()}{FrameLib\_ProcessingQueue()}}
-{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Processing\+Queue\+::\+Frame\+Lib\+\_\+\+Processing\+Queue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Processing\+Queue()}{FrameLib\_ProcessingQueue()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Processing\+Queue\+::\+Frame\+Lib\+\_\+\+Processing\+Queue (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___error_reporter}{Frame\+Lib\+\_\+\+Error\+Reporter} \&}]{error\+Reporter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___processing_queue_aa41a1203cd7c47f1a27e97c56aed3683}\label{class_frame_lib___processing_queue_aa41a1203cd7c47f1a27e97c56aed3683}} 
+\index{Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}!Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}}
+\index{Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}!Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Processing\+Queue()}{FrameLib\_ProcessingQueue()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Processing\+Queue\+::\+Frame\+Lib\+\_\+\+Processing\+Queue (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___processing_queue}{Frame\+Lib\+\_\+\+Processing\+Queue} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 
 
@@ -28,6 +50,24 @@ void \hyperlink{class_frame_lib___processing_queue_add4ce0ad0a1cc32eb2df5522adea
 \index{add@{add}!Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}}
 \subsubsection{\texorpdfstring{add()}{add()}}
 {\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Processing\+Queue\+::add (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} $\ast$}]{object }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___processing_queue_a2d82a4d810794436e31e02ff54904f6f}\label{class_frame_lib___processing_queue_a2d82a4d810794436e31e02ff54904f6f}} 
+\index{Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}!is\+Timed\+Out@{is\+Timed\+Out}}
+\index{is\+Timed\+Out@{is\+Timed\+Out}!Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}}
+\subsubsection{\texorpdfstring{is\+Timed\+Out()}{isTimedOut()}}
+{\footnotesize\ttfamily bool Frame\+Lib\+\_\+\+Processing\+Queue\+::is\+Timed\+Out (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___processing_queue_a44a9ef734bc91efcee0bb95188e89e62}\label{class_frame_lib___processing_queue_a44a9ef734bc91efcee0bb95188e89e62}} 
+\index{Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}!operator=@{operator=}}
+\index{operator=@{operator=}!Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \hyperlink{class_frame_lib___processing_queue}{Frame\+Lib\+\_\+\+Processing\+Queue}\& Frame\+Lib\+\_\+\+Processing\+Queue\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___processing_queue}{Frame\+Lib\+\_\+\+Processing\+Queue} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_frame_lib___processing_queue_a5550993e0c39bb9d6075fdf6d5aec956}\label{class_frame_lib___processing_queue_a5550993e0c39bb9d6075fdf6d5aec956}} 
+\index{Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}!reset@{reset}}
+\index{reset@{reset}!Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Processing\+Queue\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 

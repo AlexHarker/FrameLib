@@ -2,19 +2,28 @@
 \label{class_frame_lib___global_allocator}\index{Frame\+Lib\+\_\+\+Global\+Allocator@{Frame\+Lib\+\_\+\+Global\+Allocator}}
 
 
+a global threadsafe memory allocator suitable for realtime usage.  
+
+
+
+
 {\ttfamily \#include $<$Frame\+Lib\+\_\+\+Memory.\+h$>$}
 
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 class \hyperlink{class_frame_lib___global_allocator_1_1_pruner}{Pruner}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em an R\+A\+II utility for repeated deallocation with only a single lock. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_frame_lib___global_allocator_a0181e5afd418f9eeb13bbb293e1863e1}{Frame\+Lib\+\_\+\+Global\+Allocator} ()
+\hyperlink{class_frame_lib___global_allocator_aeb0d7259cd6bb4c5b8e365a26e370e54}{Frame\+Lib\+\_\+\+Global\+Allocator} (\hyperlink{class_frame_lib___error_reporter}{Frame\+Lib\+\_\+\+Error\+Reporter} \&error\+Reporter)
 \item 
 \hyperlink{class_frame_lib___global_allocator_a20fa9b3b84bb54eefffb8f30a70883d5}{$\sim$\+Frame\+Lib\+\_\+\+Global\+Allocator} ()
+\item 
+\hyperlink{class_frame_lib___global_allocator_a7e93abd711eb6acf04601aef3c6b9877}{Frame\+Lib\+\_\+\+Global\+Allocator} (const \hyperlink{class_frame_lib___global_allocator}{Frame\+Lib\+\_\+\+Global\+Allocator} \&)=delete
+\item 
+\hyperlink{class_frame_lib___global_allocator}{Frame\+Lib\+\_\+\+Global\+Allocator} \& \hyperlink{class_frame_lib___global_allocator_a23d4689821a194c5f89227d135a5703c}{operator=} (const \hyperlink{class_frame_lib___global_allocator}{Frame\+Lib\+\_\+\+Global\+Allocator} \&)=delete
 \item 
 void $\ast$ \hyperlink{class_frame_lib___global_allocator_af2ef32b9cba8f46c836be2d1df31d8a4}{alloc} (size\+\_\+t size)
 \item 
@@ -29,18 +38,27 @@ static size\+\_\+t \hyperlink{class_frame_lib___global_allocator_a5568abfa871845
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+a global threadsafe memory allocator suitable for realtime usage. 
+
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_frame_lib___global_allocator_a0181e5afd418f9eeb13bbb293e1863e1}\label{class_frame_lib___global_allocator_a0181e5afd418f9eeb13bbb293e1863e1}} 
+\mbox{\Hypertarget{class_frame_lib___global_allocator_aeb0d7259cd6bb4c5b8e365a26e370e54}\label{class_frame_lib___global_allocator_aeb0d7259cd6bb4c5b8e365a26e370e54}} 
 \index{Frame\+Lib\+\_\+\+Global\+Allocator@{Frame\+Lib\+\_\+\+Global\+Allocator}!Frame\+Lib\+\_\+\+Global\+Allocator@{Frame\+Lib\+\_\+\+Global\+Allocator}}
 \index{Frame\+Lib\+\_\+\+Global\+Allocator@{Frame\+Lib\+\_\+\+Global\+Allocator}!Frame\+Lib\+\_\+\+Global\+Allocator@{Frame\+Lib\+\_\+\+Global\+Allocator}}
-\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Global\+Allocator()}{FrameLib\_GlobalAllocator()}}
-{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Frame\+Lib\+\_\+\+Global\+Allocator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Global\+Allocator()}{FrameLib\_GlobalAllocator()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Frame\+Lib\+\_\+\+Global\+Allocator (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___error_reporter}{Frame\+Lib\+\_\+\+Error\+Reporter} \&}]{error\+Reporter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{class_frame_lib___global_allocator_a20fa9b3b84bb54eefffb8f30a70883d5}\label{class_frame_lib___global_allocator_a20fa9b3b84bb54eefffb8f30a70883d5}} 
 \index{Frame\+Lib\+\_\+\+Global\+Allocator@{Frame\+Lib\+\_\+\+Global\+Allocator}!````~Frame\+Lib\+\_\+\+Global\+Allocator@{$\sim$\+Frame\+Lib\+\_\+\+Global\+Allocator}}
 \index{````~Frame\+Lib\+\_\+\+Global\+Allocator@{$\sim$\+Frame\+Lib\+\_\+\+Global\+Allocator}!Frame\+Lib\+\_\+\+Global\+Allocator@{Frame\+Lib\+\_\+\+Global\+Allocator}}
 \subsubsection{\texorpdfstring{$\sim$\+Frame\+Lib\+\_\+\+Global\+Allocator()}{~FrameLib\_GlobalAllocator()}}
 {\footnotesize\ttfamily Frame\+Lib\+\_\+\+Global\+Allocator\+::$\sim$\+Frame\+Lib\+\_\+\+Global\+Allocator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___global_allocator_a7e93abd711eb6acf04601aef3c6b9877}\label{class_frame_lib___global_allocator_a7e93abd711eb6acf04601aef3c6b9877}} 
+\index{Frame\+Lib\+\_\+\+Global\+Allocator@{Frame\+Lib\+\_\+\+Global\+Allocator}!Frame\+Lib\+\_\+\+Global\+Allocator@{Frame\+Lib\+\_\+\+Global\+Allocator}}
+\index{Frame\+Lib\+\_\+\+Global\+Allocator@{Frame\+Lib\+\_\+\+Global\+Allocator}!Frame\+Lib\+\_\+\+Global\+Allocator@{Frame\+Lib\+\_\+\+Global\+Allocator}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Global\+Allocator()}{FrameLib\_GlobalAllocator()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Frame\+Lib\+\_\+\+Global\+Allocator (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___global_allocator}{Frame\+Lib\+\_\+\+Global\+Allocator} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 
 
@@ -68,6 +86,12 @@ static size\+\_\+t \hyperlink{class_frame_lib___global_allocator_a5568abfa871845
 \index{get\+Alignment@{get\+Alignment}!Frame\+Lib\+\_\+\+Global\+Allocator@{Frame\+Lib\+\_\+\+Global\+Allocator}}
 \subsubsection{\texorpdfstring{get\+Alignment()}{getAlignment()}}
 {\footnotesize\ttfamily size\+\_\+t Frame\+Lib\+\_\+\+Global\+Allocator\+::get\+Alignment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_frame_lib___global_allocator_a23d4689821a194c5f89227d135a5703c}\label{class_frame_lib___global_allocator_a23d4689821a194c5f89227d135a5703c}} 
+\index{Frame\+Lib\+\_\+\+Global\+Allocator@{Frame\+Lib\+\_\+\+Global\+Allocator}!operator=@{operator=}}
+\index{operator=@{operator=}!Frame\+Lib\+\_\+\+Global\+Allocator@{Frame\+Lib\+\_\+\+Global\+Allocator}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \hyperlink{class_frame_lib___global_allocator}{Frame\+Lib\+\_\+\+Global\+Allocator}\& Frame\+Lib\+\_\+\+Global\+Allocator\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___global_allocator}{Frame\+Lib\+\_\+\+Global\+Allocator} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 
 

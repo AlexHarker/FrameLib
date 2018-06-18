@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">FrameLib
-   &#160;<span id="projectnumber">0.7</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
    <div id="projectbrief">DSP processing with frames of arbitrary timing and length</div>
   </td>
@@ -90,6 +90,7 @@ $(document).ready(function(){initNavTree('_frame_lib___object_8h.html','');});
 <div class="textblock"><code>#include &quot;<a class="el" href="_frame_lib___types_8h_source.html">FrameLib_Types.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_frame_lib___context_8h_source.html">FrameLib_Context.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_frame_lib___parameters_8h_source.html">FrameLib_Parameters.h</a>&quot;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;sstream&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
@@ -99,14 +100,19 @@ $(document).ready(function(){initNavTree('_frame_lib___object_8h.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___queueable.html">FrameLib_Queueable&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a template class for items that can be placed on a queue  <a href="class_frame_lib___queueable.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___queueable_1_1_queue.html">FrameLib_Queueable&lt; T &gt;::Queue</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a single-threaded queue for non-recursive queuing of items for processing  <a href="class_frame_lib___queueable_1_1_queue.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___object.html">FrameLib_Object&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">an abstract template class providing an interface for FrameLib objects and implementing connectivity  <a href="class_frame_lib___object.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_frame_lib___object_1_1_untyped_connection.html">FrameLib_Object&lt; T &gt;::UntypedConnection&lt; U &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_frame_lib___object_1_1_connection.html">FrameLib_Object&lt; T &gt;::Connection</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">holds the connected object and IO indices for a connection to an object  <a href="struct_frame_lib___object_1_1_connection.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_frame_lib___block.html">FrameLib_Block</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">an abstract class that represents either a single <a class="el" href="class_frame_lib___d_s_p.html" title="an abstract class containing the core of the DSP processing system, which handles single-stream sched...">FrameLib_DSP</a> object, or a group of connected <a class="el" href="class_frame_lib___d_s_p.html" title="an abstract class containing the core of the DSP processing system, which handles single-stream sched...">FrameLib_DSP</a> objects.  <a href="class_frame_lib___block.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

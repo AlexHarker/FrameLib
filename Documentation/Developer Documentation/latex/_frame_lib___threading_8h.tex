@@ -1,25 +1,23 @@
 \hypertarget{_frame_lib___threading_8h}{}\section{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Threading.h File Reference}
 \label{_frame_lib___threading_8h}\index{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Threading.\+h@{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Threading.\+h}}
+{\ttfamily \#include \char`\"{}Frame\+Lib\+\_\+\+Types.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$atomic$>$}\newline
 {\ttfamily \#include $<$windows.\+h$>$}\newline
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{class_atomic32}{Atomic32}
-\item 
-class \hyperlink{class_atomic_ptr}{Atomic\+Ptr$<$ T $>$}
-\item 
-class \hyperlink{class_spin_lock}{Spin\+Lock}
-\item 
-class \hyperlink{class_spin_lock_holder}{Spin\+Lock\+Holder}
-\item 
-class \hyperlink{class_thread}{Thread}
-\item 
-class \hyperlink{class_semaphore}{Semaphore}
-\item 
-class \hyperlink{class_triggerable_thread}{Triggerable\+Thread}
-\item 
-class \hyperlink{class_delegate_thread}{Delegate\+Thread}
-\end{DoxyCompactItemize}
+class \hyperlink{class_frame_lib___spin_lock}{Frame\+Lib\+\_\+\+Spin\+Lock}
+\begin{DoxyCompactList}\small\item\em a spinlock that can be locked, attempted or acquired. \end{DoxyCompactList}\item 
+class \hyperlink{class_frame_lib___spin_lock_holder}{Frame\+Lib\+\_\+\+Spin\+Lock\+Holder}
+\begin{DoxyCompactList}\small\item\em a R\+A\+II hold utility for a \hyperlink{class_frame_lib___spin_lock}{Frame\+Lib\+\_\+\+Spin\+Lock} \end{DoxyCompactList}\item 
+class \hyperlink{class_frame_lib___thread}{Frame\+Lib\+\_\+\+Thread}
+\begin{DoxyCompactList}\small\item\em lightweight joinable thread with variable priority level \end{DoxyCompactList}\item 
+class \hyperlink{class_frame_lib___semaphore}{Frame\+Lib\+\_\+\+Semaphore}
+\begin{DoxyCompactList}\small\item\em a semaphore class wrapping an O\+S-\/level semaphore \end{DoxyCompactList}\item 
+class \hyperlink{class_frame_lib___triggerable_thread}{Frame\+Lib\+\_\+\+Triggerable\+Thread}
+\begin{DoxyCompactList}\small\item\em a thread that can be triggered from another thread (there is no mechanism to check progress) \end{DoxyCompactList}\item 
+class \hyperlink{class_frame_lib___delegate_thread}{Frame\+Lib\+\_\+\+Delegate\+Thread}
+\begin{DoxyCompactList}\small\item\em a thread to delegate tasks to, which can be then be checked for completion \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -28,13 +26,33 @@ class \hyperlink{class_delegate_thread}{Delegate\+Thread}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef volatile long \hyperlink{namespace_o_s___specific_ae0c154d740b3e6f81b245ff564b7d0ad}{O\+S\+\_\+\+Specific\+::\+Atomic32}
-\item 
-typedef volatile P\+V\+O\+ID \hyperlink{namespace_o_s___specific_ad9a39cdf74334e1457fda6bb1c4cb505}{O\+S\+\_\+\+Specific\+::\+Atomic\+Ptr}
-\item 
 typedef H\+A\+N\+D\+LE \hyperlink{namespace_o_s___specific_a965d89d27f3b632fa8d2d1b593bf2bd6}{O\+S\+\_\+\+Specific\+::\+O\+S\+Thread\+Type}
 \item 
 typedef H\+A\+N\+D\+LE \hyperlink{namespace_o_s___specific_a11a242d06d0e59bcf9525303bd7b3b57}{O\+S\+\_\+\+Specific\+::\+O\+S\+Semaphore\+Type}
 \item 
 typedef D\+W\+O\+RD W\+I\+N\+A\+PI \hyperlink{namespace_o_s___specific_a4a422b5e92e59f05440b9f9439cd349d}{O\+S\+\_\+\+Specific\+::\+O\+S\+Thread\+Function\+Type}(L\+P\+V\+O\+ID arg)
 \end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\bool \hyperlink{_frame_lib___threading_8h_a6f684f24f2a5a14c560a1267fd944700}{compare\+And\+Swap} (std\+::atomic$<$ T $>$ \&value, T comparand, T exchange)
+\item 
+{\footnotesize template$<$class T $>$ }\\bool \hyperlink{_frame_lib___threading_8h_a4c8027bc239ef6f1b2809f7f3f7db932}{null\+Swap} (std\+::atomic$<$ T $\ast$$>$ \&value, T $\ast$exchange)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_frame_lib___threading_8h_a6f684f24f2a5a14c560a1267fd944700}\label{_frame_lib___threading_8h_a6f684f24f2a5a14c560a1267fd944700}} 
+\index{Frame\+Lib\+\_\+\+Threading.\+h@{Frame\+Lib\+\_\+\+Threading.\+h}!compare\+And\+Swap@{compare\+And\+Swap}}
+\index{compare\+And\+Swap@{compare\+And\+Swap}!Frame\+Lib\+\_\+\+Threading.\+h@{Frame\+Lib\+\_\+\+Threading.\+h}}
+\subsubsection{\texorpdfstring{compare\+And\+Swap()}{compareAndSwap()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+bool compare\+And\+Swap (\begin{DoxyParamCaption}\item[{std\+::atomic$<$ T $>$ \&}]{value,  }\item[{T}]{comparand,  }\item[{T}]{exchange }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___threading_8h_a4c8027bc239ef6f1b2809f7f3f7db932}\label{_frame_lib___threading_8h_a4c8027bc239ef6f1b2809f7f3f7db932}} 
+\index{Frame\+Lib\+\_\+\+Threading.\+h@{Frame\+Lib\+\_\+\+Threading.\+h}!null\+Swap@{null\+Swap}}
+\index{null\+Swap@{null\+Swap}!Frame\+Lib\+\_\+\+Threading.\+h@{Frame\+Lib\+\_\+\+Threading.\+h}}
+\subsubsection{\texorpdfstring{null\+Swap()}{nullSwap()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+bool null\+Swap (\begin{DoxyParamCaption}\item[{std\+::atomic$<$ T $\ast$$>$ \&}]{value,  }\item[{T $\ast$}]{exchange }\end{DoxyParamCaption})}
+

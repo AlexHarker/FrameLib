@@ -2,6 +2,11 @@
 \label{class_frame_lib___audio_output}\index{Frame\+Lib\+\_\+\+Audio\+Output@{Frame\+Lib\+\_\+\+Audio\+Output}}
 
 
+a convenience class for creating processor type \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} classes which handle audio output.  
+
+
+
+
 {\ttfamily \#include $<$Frame\+Lib\+\_\+\+D\+S\+P.\+h$>$}
 
 Inheritance diagram for Frame\+Lib\+\_\+\+Audio\+Output\+:\begin{figure}[H]
@@ -13,7 +18,7 @@ Inheritance diagram for Frame\+Lib\+\_\+\+Audio\+Output\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_frame_lib___audio_output_aa63caeed1cdb5887b1a81f1de2b300a1}{Frame\+Lib\+\_\+\+Audio\+Output} (\hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} context, void $\ast$owner, \hyperlink{class_frame_lib___parameters_1_1_info}{Frame\+Lib\+\_\+\+Parameters\+::\+Info} $\ast$info, unsigned long n\+Ins=0, unsigned long n\+Outs=0, unsigned long n\+Audio\+Outs=0)
+\hyperlink{class_frame_lib___audio_output_a5bbfeb85ab62136e67e147e65e6b78f5}{Frame\+Lib\+\_\+\+Audio\+Output} (\hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} context, \hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy} $\ast$proxy, \hyperlink{class_frame_lib___parameters_1_1_info}{Frame\+Lib\+\_\+\+Parameters\+::\+Info} $\ast$info, unsigned long n\+Ins=0, unsigned long n\+Outs=0, unsigned long n\+Audio\+Outs=0)
 \end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -30,12 +35,17 @@ virtual \hyperlink{struct_frame_lib___d_s_p_1_1_scheduler_info}{Scheduler\+Info}
 \subsection*{Additional Inherited Members}
 
 
+\subsection{Detailed Description}
+a convenience class for creating processor type \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} classes which handle audio output. 
+
+Audio output classes do not schedule frames and create block-\/based audio output (but not audio input). This object provides an empty implementation of \hyperlink{class_frame_lib___audio_output_a39e97cc3e92147465cf1f6c267de185d}{schedule()} to avoid the end class developer needing to override this method (never called by a processor class). 
+
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_frame_lib___audio_output_aa63caeed1cdb5887b1a81f1de2b300a1}\label{class_frame_lib___audio_output_aa63caeed1cdb5887b1a81f1de2b300a1}} 
+\mbox{\Hypertarget{class_frame_lib___audio_output_a5bbfeb85ab62136e67e147e65e6b78f5}\label{class_frame_lib___audio_output_a5bbfeb85ab62136e67e147e65e6b78f5}} 
 \index{Frame\+Lib\+\_\+\+Audio\+Output@{Frame\+Lib\+\_\+\+Audio\+Output}!Frame\+Lib\+\_\+\+Audio\+Output@{Frame\+Lib\+\_\+\+Audio\+Output}}
 \index{Frame\+Lib\+\_\+\+Audio\+Output@{Frame\+Lib\+\_\+\+Audio\+Output}!Frame\+Lib\+\_\+\+Audio\+Output@{Frame\+Lib\+\_\+\+Audio\+Output}}
 \subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Audio\+Output()}{FrameLib\_AudioOutput()}}
-{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Audio\+Output\+::\+Frame\+Lib\+\_\+\+Audio\+Output (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context}}]{context,  }\item[{void $\ast$}]{owner,  }\item[{\hyperlink{class_frame_lib___parameters_1_1_info}{Frame\+Lib\+\_\+\+Parameters\+::\+Info} $\ast$}]{info,  }\item[{unsigned long}]{n\+Ins = {\ttfamily 0},  }\item[{unsigned long}]{n\+Outs = {\ttfamily 0},  }\item[{unsigned long}]{n\+Audio\+Outs = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Audio\+Output\+::\+Frame\+Lib\+\_\+\+Audio\+Output (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context}}]{context,  }\item[{\hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy} $\ast$}]{proxy,  }\item[{\hyperlink{class_frame_lib___parameters_1_1_info}{Frame\+Lib\+\_\+\+Parameters\+::\+Info} $\ast$}]{info,  }\item[{unsigned long}]{n\+Ins = {\ttfamily 0},  }\item[{unsigned long}]{n\+Outs = {\ttfamily 0},  }\item[{unsigned long}]{n\+Audio\+Outs = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
