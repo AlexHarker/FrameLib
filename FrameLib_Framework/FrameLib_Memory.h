@@ -224,7 +224,8 @@ public:
     
     class Storage
     {
-        typedef FrameLib_Parameters::Serial Serial;
+        using Serial = FrameLib_Parameters::Serial;
+        
         friend class FrameLib_LocalAllocator;
 
     public:

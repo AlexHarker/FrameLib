@@ -25,7 +25,7 @@ static char exportCPPOpen[] = "\n\
 #include \"FrameLib_Objects.h\"\n\n\
 $::$(FrameLib_Proxy *proxy) : mNumAudioIns(0), mNumAudioOuts(0), mProxy(proxy)\n\
 {\n\
-    typedef FrameLib_Object<FrameLib_Multistream>::Connection Connection;\n\n\
+    using Connection = FrameLib_Object<FrameLib_Multistream>::Connection;\n\n\
     FrameLib_Global::get(&mGlobal);\n\
     FrameLib_Context context(mGlobal, this);\n\
     FrameLib_Parameters::AutoSerial parameters;\n\n";

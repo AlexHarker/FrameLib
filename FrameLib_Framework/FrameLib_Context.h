@@ -10,10 +10,8 @@
 // This acts as a proxy to the global object with a suitable reference to the context
 
 class FrameLib_Context
-{
-    // Type definition for concision
-    
-    typedef FrameLib_Global Global;
+{    
+    using Global = FrameLib_Global;
     
     // Comparisions
     

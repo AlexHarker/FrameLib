@@ -19,9 +19,9 @@ class FrameLib_Multistream : public FrameLib_Object<FrameLib_Multistream>
     
 protected:
 
-    typedef FrameLib_Object<FrameLib_Block>::Connection BlockConnection;
-    typedef std::vector<BlockConnection> MultistreamOutput;
-    typedef FrameLib_Object::Connection MultistreamConnection;
+    using BlockConnection = FrameLib_Object<FrameLib_Block>::Connection;
+    using MultistreamOutput = std::vector<BlockConnection>;
+    using MultistreamConnection = FrameLib_Object::Connection;
     
 public:
     

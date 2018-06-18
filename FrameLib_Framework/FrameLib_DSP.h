@@ -18,11 +18,9 @@
 
 class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_DSP>
 {
-    // Typedefs for concision / Queue access
-
-    typedef FrameLib_Queueable<FrameLib_Block>::Queue Queue;
-    typedef FrameLib_Queueable<FrameLib_DSP>::Queue LocalQueue;
-    typedef FrameLib_Parameters::Serial Serial;
+    using Queue = FrameLib_Queueable<FrameLib_Block>::Queue;
+    using LocalQueue = FrameLib_Queueable<FrameLib_DSP>::Queue;
+    using Serial = FrameLib_Parameters::Serial;
 
     friend class FrameLib_ProcessingQueue;
     
