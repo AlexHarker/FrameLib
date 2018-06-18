@@ -196,7 +196,17 @@ protected:
         copyVector(output, input, std::min(sizeIn, sizeOut));
         zeroVector(output + sizeIn, (sizeOut > sizeIn) ? sizeOut - sizeIn : 0);
     }
+
+    // Convenience methods for converting time values either in time format, or double precision
     
+    FrameLib_TimeFormat hzToSamples(const FrameLib_TimeFormat& a)       { return mSamplingRate / a; }
+    FrameLib_TimeFormat msToSamples(const FrameLib_TimeFormat& a)       { return (a * mSamplingRate) / 1000.0; }
+    FrameLib_TimeFormat secondsToSamples(const FrameLib_TimeFormat& a)  { return a * mSamplingRate; }
+    
+    double hzToSamples(double a)       { return mSamplingRate / a; }
+    double msToSamples(double a)       { return (a * mSamplingRate) / 1000.0; }
+    double secondsToSamples(double a)  { return a * mSamplingRate; }
+
 private:
     
     // Deleted

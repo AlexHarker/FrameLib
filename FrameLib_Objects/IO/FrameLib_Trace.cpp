@@ -87,8 +87,8 @@ unsigned long FrameLib_Trace::convertTimeToSamples(double time)
     switch (static_cast<Units>(mParameters.getInt(kUnits)))
     {
         case kSamples:  break;
-        case kMS:       time *= mSamplingRate / 1000.0;     break;
-        case kSeconds:  time *= mSamplingRate;              break;
+        case kMS:       time = msToSamples(time);       break;
+        case kSeconds:  time = secondsToSamples(time);  break;
     }
     
     return round(time);
