@@ -59,10 +59,6 @@ public:
     uint64_t intVal() const   { return mInt; }
     uint64_t fracVal() const  { return mFrac; }
     
-    // Absolute value
-    
-    friend bool nonZeroPositive(const FL_FP& a)                 { return a.mInt | a.mFrac; }
-    
     // Comparison operators (N.B. - it is faster to avoid branching using bit rather logical operators)
 
     friend bool operator == (const FL_FP& a, const FL_FP& b)    { return (a.mInt == b.mInt & a.mFrac == b.mFrac); }
@@ -193,36 +189,5 @@ private:
     uint64_t mInt;
     uint64_t mFrac;
 };
-
-// ************************************************************************************** //
-
-// Numeric Limits
-
-template <class T>
-struct FL_Limits
-{
-    // N.B. there is basically no good value for smallest for a floating point unit, because all values will fail at some point before total overflow
-    
-    static T smallest()    { return std::numeric_limits<T>::epsilon() * 65536.0; }
-    
-    static T largest()
-    {
-        if (std::numeric_limits<T>::has_infinity)
-            return std::numeric_limits<T>::infinity();
-        else
-            return std::numeric_limits<T>::max();
-    }
-};
-
-template<>
-struct FL_Limits<FL_FP>
-{
-    static FL_FP smallest() { return FL_FP(0,1); }
-    static FL_FP largest()  { return FL_FP(std::numeric_limits<uint64_t>::max(), std::numeric_limits<uint64_t>::max()); }
-};
-
-// Double Helper Utility
-
-inline double nonZeroPositive(double& a)  {return a > 0.0; }
 
 #endif

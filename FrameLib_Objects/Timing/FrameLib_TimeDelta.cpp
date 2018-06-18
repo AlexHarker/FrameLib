@@ -73,7 +73,7 @@ void FrameLib_TimeDelta::process()
 {
     FrameLib_TimeFormat now = getCurrentTime();
 
-    requestOutputSize(0, nonZeroPositive(mLastTime) ? 1 : 0);
+    requestOutputSize(0, mLastTime.greaterThanZero() ? 1 : 0);
     
     if (allocateOutputs())
     {

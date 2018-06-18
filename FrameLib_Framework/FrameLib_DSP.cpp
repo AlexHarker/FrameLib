@@ -116,8 +116,8 @@ void FrameLib_DSP::reset(LocalQueue *queue)
     // Reset times (Note that the first sample is 1 so that we can start the frames *before* this with non-negative values)
 
     mFrameTime = 0.0;
-    mInputTime = mNoLiveInputs ? FL_Limits<FrameLib_TimeFormat>::largest() : FrameLib_TimeFormat(1.0);
-    mValidTime = mNoLiveInputs ? FL_Limits<FrameLib_TimeFormat>::largest() : FrameLib_TimeFormat(1.0);
+    mInputTime = mNoLiveInputs ? FrameLib_TimeFormat::largest() : FrameLib_TimeFormat(1.0);
+    mValidTime = mNoLiveInputs ? FrameLib_TimeFormat::largest() : FrameLib_TimeFormat(1.0);
     mBlockStartTime = 1.0;
     mBlockEndTime = 1.0;
     
@@ -415,7 +415,7 @@ void FrameLib_DSP::dependenciesReady()
     {
         // Find the input time (the min valid time of all inputs)
         
-        mInputTime = FL_Limits<FrameLib_TimeFormat>::largest();
+        mInputTime = FrameLib_TimeFormat::largest();
         
         for (auto ins = mInputs.begin(); ins != mInputs.end(); ins++)
             if (ins->mObject && ins->mObject->mValidTime < mInputTime)
@@ -428,7 +428,7 @@ void FrameLib_DSP::dependenciesReady()
 
         // Check if time has been updated (limiting to positive advances only), and if so set output times
                 
-        if ((timeUpdated = !upToDate && nonZeroPositive(scheduleInfo.mTimeAdvance)))
+        if ((timeUpdated = !upToDate && scheduleInfo.mTimeAdvance.greaterThanZero()))
         {
             if (scheduleInfo.mNewFrame || mOutputDone)
             {
@@ -452,8 +452,8 @@ void FrameLib_DSP::dependenciesReady()
 
         FrameLib_TimeFormat prevValidTime = mValidTime;
         bool trigger = false;
-        mInputTime = FL_Limits<FrameLib_TimeFormat>::largest();
-        mValidTime = FL_Limits<FrameLib_TimeFormat>::largest();
+        mInputTime = FrameLib_TimeFormat::largest();
+        mValidTime = FrameLib_TimeFormat::largest();
     
         for (auto ins = mInputs.begin(); ins != mInputs.end(); ins++)
         {
@@ -502,7 +502,7 @@ void FrameLib_DSP::dependenciesReady()
     
     // Check if we have reached the end of time or need to just update inputs
     
-    bool endOfTime = mInputTime == FL_Limits<FrameLib_TimeFormat>::largest();
+    bool endOfTime = mInputTime == FrameLib_TimeFormat::largest();
     bool prevUpdatingInputs = mUpdatingInputs;
     mUpdatingInputs = mInputTime < mValidTime;
     

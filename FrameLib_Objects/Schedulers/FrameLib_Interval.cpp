@@ -62,7 +62,7 @@ void FrameLib_Interval::calculateInterval()
     }
     
     if (!interval)
-        interval = FL_Limits<FrameLib_TimeFormat>::smallest();
+        interval = FrameLib_TimeFormat::smallest();
     
     mInterval = interval;
 }

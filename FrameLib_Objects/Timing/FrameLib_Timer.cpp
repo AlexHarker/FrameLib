@@ -69,7 +69,7 @@ void FrameLib_Timer::process()
 {
     FrameLib_TimeFormat previousTime = getInputFrameTime(0);
     
-    requestOutputSize(0, nonZeroPositive(previousTime) ? 1 : 0);
+    requestOutputSize(0, previousTime.greaterThanZero() ? 1 : 0);
     
     if (allocateOutputs())
     {
