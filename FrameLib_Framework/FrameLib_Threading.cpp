@@ -78,7 +78,7 @@ FrameLib_Semaphore::FrameLib_Semaphore(long maxCount) : mValid(true)
 
 FrameLib_Semaphore::~FrameLib_Semaphore()
 {
-    assert(!mValid && "Semaphore not closed before deletion");
+    assert(!mValid && "Semaphore not joined before deletion");
     sem_destroy(&mInternal);
 }
 
@@ -225,7 +225,7 @@ bool FrameLib_Semaphore::wait()
 
 FrameLib_Thread::~FrameLib_Thread()
 {
-    assert(!mValid && "Thread not closed before deletion");
+    assert(!mValid && "Thread not joined before deletion");
     CloseHandle(mInternal);
 }
 
