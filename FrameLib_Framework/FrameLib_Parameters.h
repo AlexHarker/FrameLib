@@ -67,6 +67,14 @@ public:
         
         class Iterator
         {
+            /**
+             
+             \struct Entry
+             
+             \brief data for a single entry in a Serial.
+             
+             */
+            
             struct Entry
             {
                 DataType mType;
@@ -285,11 +293,15 @@ public:
         std::vector<std::string> mInfoStrings;
     };
     
-    // ************************************************************************************** //
-
 private:
     
-    // Abstract Parameter Class
+    /**
+     
+     \class Parameter
+     
+     \brief an abstract class representing a parameter.
+     
+     */
     
     class Parameter
     {
@@ -367,9 +379,13 @@ private:
         long mArgumentIdx;
     };
     
-    // ************************************************************************************** //
-
-    // Enum Parameter Class
+    /**
+     
+    \class Parameter
+    
+    \brief an enumerated parameter class.
+    
+    */
 
     class Enum final : public Parameter
     {
@@ -402,9 +418,13 @@ private:
         unsigned long mValue;
     };
     
-    // ************************************************************************************** //
-
-    // Value Parameter Class
+    /**
+     
+     \class Value
+     
+     \brief a numeric parameter class storing a single value as a double.
+     
+     */
 
     class Value final : public Parameter
     {
@@ -432,9 +452,13 @@ private:
         double mValue;
     };
     
-    // ************************************************************************************** //
-
-    // String Parameter Class
+    /**
+     
+     \class String
+     
+     \brief a string parameter class.
+     
+     */
 
     class String final : public Parameter
     {
@@ -461,7 +485,13 @@ private:
         char mCString[maxLen + 1];
     };
 
-    // ************************************************************************************** //
+    /**
+     
+     \class Array
+     
+     \brief a numeric parameter class storing an array of values.
+     
+     */
 
     // Array Parameter Class
 
@@ -495,8 +525,6 @@ private:
         const bool mVariableSize;
     };
     
-    // ************************************************************************************** //
-
 public:
     
     // Constructor
@@ -508,7 +536,6 @@ public:
     
     FrameLib_Parameters(const FrameLib_Parameters&) = delete;
     FrameLib_Parameters& operator=(const FrameLib_Parameters&) = delete;
-    
     
     // Enable/Disable Error Reporting (enabled by default)
     

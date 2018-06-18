@@ -29,6 +29,14 @@ class FrameLib_DSP;
 
 class FrameLib_ProcessingQueue
 {
+    /**
+     
+     \class IntervalSecondsClock
+     
+     \brief a clock for measuring time intervals in seconds.
+     
+     */
+
     class IntervalSecondsClock
     {
         

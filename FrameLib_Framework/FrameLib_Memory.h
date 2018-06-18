@@ -33,13 +33,23 @@ class FrameLib_GlobalAllocator
 
 private:
     
-    // The Core Allocator (has no threadsafety)
+    /**
+     
+     \class CoreAllocator
+     
+     \brief the underlying single-threaded allocator.
+     
+     */
     
     class CoreAllocator
     {        
-        // ************************************************************************************** //
-        
-        // Memory Pools
+        /**
+         
+         \struct Pool
+         
+         \brief a memory pool from system memory.
+         
+         */
         
         struct Pool
         {
@@ -55,9 +65,13 @@ private:
             void *mMem;
         };
         
-        // ************************************************************************************** //
-        
-        // Thread for Allocating System Memory
+        /**
+         
+         \class NewThread
+         
+         \brief a thread for allocating new memory pools from system memory.
+         
+         */
         
         class NewThread final : public FrameLib_DelegateThread
         {
@@ -73,10 +87,14 @@ private:
             CoreAllocator *mAllocator;
         };
         
-        // ************************************************************************************** //
-        
-        // Thread for Freeing System Memory
-        
+        /**
+         
+         \class FreeThread
+         
+         \brief a thread for freeing memory pools back to system memory.
+         
+         */
+
         class FreeThread final : public FrameLib_TriggerableThread
         {
             
@@ -90,9 +108,7 @@ private:
             
             CoreAllocator *mAllocator;
         };
-        
-        // ************************************************************************************** //
-        
+                
     public:
         
         CoreAllocator(FrameLib_ErrorReporter& errorReporter);
@@ -228,10 +244,16 @@ private:
 
 class FrameLib_LocalAllocator
 {
-    // Local Blocks (free memory in double linked list (using internal pointers))
- 
     static const int numLocalFreeBlocks = 16;
 
+    /**
+     
+     \struct FreeBlock
+     
+     \brief a memory block that can be addressed as part of double-linked list.
+     
+     */
+    
     struct FreeBlock
     {
         FreeBlock() : mMemory(nullptr), mSize(0), mPrev(nullptr), mNext(nullptr) {}

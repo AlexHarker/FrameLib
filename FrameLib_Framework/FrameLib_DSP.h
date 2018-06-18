@@ -36,7 +36,7 @@ protected:
      
      \struct SchedulerInfo
      
-     \brief an struct for returning scheduling info from the schedule() method.
+     \brief a struct for returning scheduling info from the schedule() method.
      
      */
     
@@ -54,6 +54,14 @@ protected:
     };
     
 private:
+    
+    /**
+     
+     \struct Input
+     
+     \brief a struct that represents an input, its options, connections and any fixed input.
+     
+     */
     
     struct Input
     {
@@ -81,6 +89,13 @@ private:
         bool mSwitchable;
     };
    
+    /**
+     
+     \struct Output
+     
+     \brief a struct that represents an output frame.
+     
+     */
     struct Output
     {
         Output() : mMemory(nullptr), mType(kFrameNormal), mCurrentType(kFrameNormal), mRequestedType(kFrameNormal), mCurrentSize(0), mRequestedSize(0), mPointerOffset(0) {}

@@ -120,7 +120,8 @@ private:
  
  */
 
-template <class T> class FrameLib_Expand final : public FrameLib_Multistream
+template <class T>
+class FrameLib_Expand final : public FrameLib_Multistream
 {
 
 public:

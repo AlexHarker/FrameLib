@@ -34,7 +34,15 @@ class FrameLib_Context
         return !(a == b);
     }
     
-    // Non-copyable template class for retaining reference counted pointers using RAII
+    /**
+     
+     \class ManagedPointer
+     
+     \brief a managed pointer for a context-related result.
+
+     This is a non-copyable class that uses RAII to update the reference counted pointer in FrameLib_Global
+     
+     */
     
     template <class T, T *(Global::*getMethod)(void *), void(Global::*releaseMethod)(void *)>
     class ManagedPointer
