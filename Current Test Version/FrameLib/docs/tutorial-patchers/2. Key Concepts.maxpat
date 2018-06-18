@@ -54,7 +54,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 1000.0, 830.0 ],
+						"rect" : [ 0.0, 70.0, 1000.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -125,13 +125,13 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-14",
-									"linecount" : 10,
+									"linecount" : 9,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 350.0, 646.0, 179.0 ],
+									"patching_rect" : [ 8.75, 349.0, 769.0, 147.0 ],
 									"style" : "",
-									"text" : "3. fl.tag~ (real-time configuration.)\n\nReal-time control of parameters is managed uniquely in FrameLib. Each parameter does not have its own inlet like most Max objects do but works more closely to gen~ by sending in tagged messages with the appropriate parameter. These tagged frames designed for changing parameters in real-time are created with the fl.tag~ object and sent to the \"parameter update\" inlet. In the example below, every 200 milliseconds a frame of random numbers between 0 and 1 are generated. Each time this happens the length of the frame is also randomly decided (between 1-21). The multislider depicts the output and you can see how it changes each time.\n\n"
+									"text" : "3. fl.tag~ (real-time configuration.)\n\nReal-time control of parameters is managed uniquely in FrameLib. Each parameter does not have its own inlet like most Max objects but works more closely to gen~ by sending in messages tagged with the parameter. These tagged frames are created with the fl.tag~ object and sent to the \"parameter update\" inlet (the right most of any object that has one). In the example below, every 200 milliseconds a frame of random numbers between 0 and 1 are generated. Each time this happens the length of the frame is also randomly decided (between 1-21). The multislider visualises the output and you can see how it changes each time.\n\n"
 								}
 
 							}
@@ -182,7 +182,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 234.75, 212.0, 104.0, 22.0 ],
+									"patching_rect" : [ 231.75, 212.0, 104.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.random~ 0 10 0"
 								}
@@ -217,13 +217,13 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-18",
-									"linecount" : 10,
+									"linecount" : 9,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 50.0, 615.0, 163.0 ],
+									"patching_rect" : [ 8.75, 50.0, 671.0, 147.0 ],
 									"style" : "",
-									"text" : "There three ways of dealing with parameters in FrameLib, one of which is analogous to the Max style of configuring objects.\n\n1. \"Max style configuring\"\n\nfl.random~ has three parameters: Mode, Length and Units. We can sequentially address each one. Enumerated parameters where there are limited options can also be addressed through numbers counting from 0. The example below demonstrates two ways of initialising the three parameters of fl.random~ in a max style. Check the help file of fl.random~ to see more about the parameters."
+									"text" : "There three ways of dealing with parameters in FrameLib, one of which is analogous to the Max style of configuring objects.\n\n1. \"Max style configuring\"\n\nfl.random~ has three parameters: Mode, Length and Units. We can sequentially address each one. Enumerated parameters where there are limited options can also be addressed with numbers counting from 0. The example below demonstrates two ways of initialising the three parameters of fl.random~ in a max style. Check the help file of fl.random~ to see more about the parameters."
 								}
 
 							}
@@ -651,7 +651,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 163.0, 533.0, 285.0, 38.0 ],
+									"patching_rect" : [ 163.0, 533.0, 257.0, 38.0 ],
 									"style" : "",
 									"text" : "fl.interval~ is a scheduler. Here it is outputting a trigger frame every 200 ms."
 								}
@@ -669,7 +669,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 15.75, 732.400024, 157.75, 51.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 8,
+									"size" : 6,
 									"style" : ""
 								}
 
@@ -685,6 +685,52 @@
 									"patching_rect" : [ 15.75, 541.0, 106.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.interval~ 200 ms"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-26",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 427.0, 616.0, 20.0, 20.0 ],
+									"presentation_rect" : [ 232.857147, 187.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "2",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-3",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 422.0, 545.0, 20.0, 20.0 ],
+									"presentation_rect" : [ 217.857147, 172.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "1",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
 
 							}
@@ -773,7 +819,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 70.0, 1000.0, 830.0 ],
+						"rect" : [ 0.0, 26.0, 1000.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1114,7 +1160,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 181.875, 434.5, 343.0, 38.0 ],
+									"patching_rect" : [ 181.875, 434.5, 347.0, 38.0 ],
 									"style" : "",
 									"text" : "fl.random~ generates a frame of pseudorandom floats between 0 and 1 at a specified length (set by /length)."
 								}
