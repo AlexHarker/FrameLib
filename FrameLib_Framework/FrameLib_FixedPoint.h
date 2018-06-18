@@ -56,8 +56,8 @@ public:
     
     // Int and Fract
     
-    uint64_t intVal()   { return mInt; }
-    uint64_t fracVal()  { return mFrac; }
+    uint64_t intVal() const   { return mInt; }
+    uint64_t fracVal() const  { return mFrac; }
     
     // Absolute value
     
