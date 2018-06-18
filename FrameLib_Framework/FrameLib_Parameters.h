@@ -592,39 +592,6 @@ public:
     void setMin(double min)                     { mParameters.back()->setMin(min); }
     void setMax(double max)                     { mParameters.back()->setMax(max); }
     void setClip(double min, double max)        { mParameters.back()->setClip(min, max); }
-   
-    // Error handling
-    
-    template <typename T>
-    void handleError(SetError error, long idx, T arg) const
-    {
-        if (error && mReportErrors)
-        {
-            switch (error)
-            {
-                case kUnknownArgument:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "argument # out of range", idx + 1);
-                    break;
-                case kUnknownParameter:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "no parameter named '#'", arg);
-                    break;
-                case kParameterNotSetByNumber:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "parameter '#' cannot be set by a number", mParameters[idx]->name());
-                    break;
-                case kParameterNotSetByString:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "parameter '#' cannot be set by a string", mParameters[idx]->name());
-                    break;
-                case kEnumUnknownIndex:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "enum parameter '#' does not contain an item numbered #", mParameters[idx]->name(), arg);
-                    break;
-                case kEnumUnknownString:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "enum parameter '#' does not contain an item named '#'", mParameters[idx]->name(), arg);
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
     
     // Set Value
     
@@ -731,6 +698,39 @@ public:
     bool changed(const char *name)                                          { return changed(getIdx(name)); }
     
 private:
+    
+    // Error handling
+    
+    template <typename T>
+    void handleError(SetError error, long idx, T arg) const
+    {
+        if (error && mReportErrors)
+        {
+            switch (error)
+            {
+                case kUnknownArgument:
+                    mErrorReporter.reportError(kErrorParameter, mProxy, "argument # out of range", idx + 1);
+                    break;
+                case kUnknownParameter:
+                    mErrorReporter.reportError(kErrorParameter, mProxy, "no parameter named '#'", arg);
+                    break;
+                case kParameterNotSetByNumber:
+                    mErrorReporter.reportError(kErrorParameter, mProxy, "parameter '#' cannot be set by a number", mParameters[idx]->name());
+                    break;
+                case kParameterNotSetByString:
+                    mErrorReporter.reportError(kErrorParameter, mProxy, "parameter '#' cannot be set by a string", mParameters[idx]->name());
+                    break;
+                case kEnumUnknownIndex:
+                    mErrorReporter.reportError(kErrorParameter, mProxy, "enum parameter '#' does not contain an item numbered #", mParameters[idx]->name(), arg);
+                    break;
+                case kEnumUnknownString:
+                    mErrorReporter.reportError(kErrorParameter, mProxy, "enum parameter '#' does not contain an item named '#'", mParameters[idx]->name(), arg);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
     
     // Utility
     
