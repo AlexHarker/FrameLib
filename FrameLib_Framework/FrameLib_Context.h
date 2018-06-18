@@ -6,8 +6,17 @@
 #include "FrameLib_Global.h"
 #include "FrameLib_Errors.h"
 
-// The Context Object (used to define non-connectable areas in the host environment)
-// This acts as a proxy to the global object with a suitable reference to the context
+/**
+ 
+ \class FrameLib_Context
+ 
+ \ingroup Hosting
+
+ \brief a class used to represent distinct non-connectable areas in the host environment.
+ 
+ The context acts as a proxy to FrameLib_Global, and contains a suitable pointer reference to the context in the host environment. Resources for each context are held in the global object, and the context is passed as a parameter when creating any FrameLib object.
+ 
+ */
 
 class FrameLib_Context
 {    

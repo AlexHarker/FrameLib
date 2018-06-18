@@ -6,9 +6,23 @@
 #include <cmath>
 #include <limits>
 
-// FL_SP
+/**
+ 
+ \defgroup FixedPoint Fixed-Point
+ 
+ */
 
-// This is a minimal class for super precision that aids the calculation of division in fixed point (giving added precision where needed)
+/**
+ 
+ \struct FL_SP
+ 
+ \ingroup FixedPoint
+ 
+ \brief a minimal class for "super precision" fixed-point calculations where required.
+ 
+ This unsigned type allows for 64 bits of integer precision and 128 bits of fractional precision.
+ 
+ */
 
 struct FL_SP
 {
@@ -36,11 +50,18 @@ private:
     uint64_t mFracLo;
 };
 
-// ************************************************************************************** //
 
-// FL_FP
+/**
+ 
+ \class FL_FP
+ 
+ \ingroup FixedPoint
 
-// This class provides a very high precision fixed point format for dealing with time
+ \brief  high-precision unsigned fixed-point numerical format.
+ 
+ This unsigned type allows for 64 bits of integer precision and 64 bits of fractional precision. Basic arithmetic and comparison operators are supported, for this type, and when used in conjunction with double-precision floating-point numbers. The primary purpose of this type is to precisely represent the time in samples in FrameLib.
+ 
+ */
 
 class FL_FP
 {

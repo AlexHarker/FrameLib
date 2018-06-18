@@ -11,7 +11,19 @@
 #include <memory>
 #include <vector>
 
-// The Global Object
+/**
+
+ \class FrameLib_Global
+ 
+ \ingroup Hosting
+
+ \brief a class for containing and managing FrameLib's global resources.
+ 
+ The global object represents a self-contained FremeLib environment with a single memory-management and error reporting system. The host environment needs to maintain at least one global object in order to create FrameLib networks. Global objects are not constructed/deleted directly, but managed via calls to the static get()/release() methods which take a handle and maintain an internal reference count. The global object can be used as a singleton via a globally-accessible handle, or if preferred separate networks may use individual global objects, in which case they share no resources.
+ 
+ The global objects manages memory allocation, error reporting and the resources for scheduling DSP. FrameLib objects do not deal directly with the global object - it is the responsibility of the host to create an manage these objects, and they are identified to FrameLib objects via a FrameLib_Context object.
+ 
+*/
 
 class FrameLib_Global : public FrameLib_ErrorReporter
 {
@@ -48,6 +60,34 @@ private:
         std::vector<CountablePointer> mPointers;
     };
     
+public:
+        
+    /** Get a pointer to a FrameLib_Global object
+    
+     If the handle points to a nullptr, on return it will point to a valid FrameLib_Global object. Otherwise the reference count of the global object will be incremented. If a new global object is created it will use the object pointed to by notifier to report errors to the host.
+     
+     \param global a handle to a FrameLib_Global object.
+     \param notifier a pointer to a class that extends FrameLib_ErrorReporter::HostNotifier.
+
+     \sa release()
+     
+     */
+    
+    static FrameLib_Global *get(FrameLib_Global **global, FrameLib_ErrorReporter::HostNotifier *notifier = nullptr);
+    
+    /** Release a FrameLib_Global object
+     
+     If the handle points a valid FrameLib_Global object then its reference count will be decremented. If the count becomes zero the object will be deleted and the contents of the handle replaced with a nullptr.
+     
+     \param global a handle to a FrameLib_Global object.
+
+     \sa get()
+     */
+    
+    static void release(FrameLib_Global **global);
+        
+private:
+    
     // Constructor / Destructor
     
     FrameLib_Global(FrameLib_ErrorReporter::HostNotifier *notifier) : FrameLib_ErrorReporter(notifier), mAllocator(*this), mCount(0) {}
@@ -57,15 +97,6 @@ private:
     
     FrameLib_Global(const FrameLib_Global&) = delete;
     FrameLib_Global& operator=(const FrameLib_Global&) = delete;
-    
-public:
-    
-    // Retrieve and release the global object
-    
-    static FrameLib_Global *get(FrameLib_Global **global, FrameLib_ErrorReporter::HostNotifier *notifier = nullptr);
-    static void release(FrameLib_Global **global);
-        
-private:
     
     // Methods to retrieve common objects
 

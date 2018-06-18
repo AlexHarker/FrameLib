@@ -11,9 +11,21 @@
 #include <limits>
 #include <string>
 
-// FrameLib_Parameters
+/**
+ 
+ \defgroup Parameters
+ 
+ */
 
-// This class deals with parameters of an object
+/**
+ 
+ \class FrameLib_Parameters
+ 
+ \ingroup Parameters
+
+ \brief a set of parameters for a FrameLib object.
+ 
+ */
 
 class FrameLib_Parameters
 {
@@ -28,7 +40,13 @@ public:
     
 public:
     
-    // A Serialised Set Of Tagged Parameter Values (no memory ownership)
+    /**
+     
+     \class Serial
+     
+     \brief a set of tagged parameter values using external non-owned memory.
+     
+     */
     
     class Serial
     {
@@ -38,7 +56,15 @@ public:
         // N.B. the assumption is that double is the largest type in use
         
         static const size_t alignment = sizeof(double);
-                
+        
+        /**
+         
+         \class Iterator
+         
+         \brief an iterator for the items in a Serial.
+         
+         */
+        
         class Iterator
         {
             struct Entry
@@ -204,8 +230,15 @@ public:
         unsigned long mNumTags;
     };
 
-    // Extends Serial (with memory ownership)
     
+    /**
+     
+     \class AutoSerial
+     
+     \brief an extension of Serial that manages its own resizable memory.
+     
+     */
+        
     class AutoSerial : public Serial
     {
         static const size_t minGrowSize = 512;
@@ -230,9 +263,13 @@ public:
         bool checkSize(size_t writeSize);
     };
     
-    // ************************************************************************************** //
-
-    // Info Class for Passing in Info Strings
+    /**
+     
+     \class Info
+     
+     \brief a class for passing info strings to FrameLib_Parameters.
+     
+     */
     
     class Info
     {

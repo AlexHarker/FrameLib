@@ -4,11 +4,35 @@
 
 #include "FrameLib_Multistream.h"
 
+/**
+ 
+ \defgroup Serialisation
+ 
+ */
+
 enum ExportError { kExportSuccess, kExportPathError, kExportWriteError };
+
+/**
+ 
+ \struct FrameLib_ObjectDescription
+ 
+ \ingroup Serialisation
+ 
+ \brief a data-based representation of a FrameLib object in a network, used for serialisation purposes.
+ 
+ */
 
 struct FrameLib_ObjectDescription
 {
     FrameLib_ObjectDescription() : mNumStreams(0) {}
+    
+    /**
+     
+     \struct Tagged
+     
+     \brief a description of a single tagged string or vector of doubles.
+     
+     */
     
     struct Tagged
     {
@@ -17,6 +41,14 @@ struct FrameLib_ObjectDescription
         std::string mString;
         std::vector<double> mVector;
     };
+    
+    /**
+     
+     \struct Connection
+     
+     \brief a description of a connection to the input of the described object.
+     
+     */
     
     struct Connection
     {

@@ -10,25 +10,52 @@
 #include <string>
 #include <string.h>
 
+/**
+ 
+ \defgroup Hosting
+ 
+ */
+
+
 // Possible sources of error
 
 enum ErrorSource { kErrorObject, kErrorParameter, kErrorMemory, kErrorDSP  };
 
-// Error reporting class
+/**
+ 
+ \class FrameLib_ErrorReporter
+ 
+ \ingroup Hosting
+ 
+ \brief a class used to report errors to the host environment.
+ 
+ */
 
 class FrameLib_ErrorReporter
 {
     
 public:
     
-    // Structure for notifying the host of errors
+    /**
+     
+     \class HostNotifier
+     
+     \brief a virtual struct used to supply a method for notifying the host of errors.
+     
+     */
     
     struct HostNotifier : public FrameLib_Proxy
     {
         virtual void notify() = 0;
     };
     
-    // A single error report
+    /**
+     
+     \class ErrorReport
+     
+     \brief a report for a single error.
+     
+     */
 
     class ErrorReport
     {
@@ -56,7 +83,13 @@ public:
         unsigned long mNumItems;
     };
     
-    //  ErrorList Class
+    /**
+     
+     \class ErrorList
+     
+     \brief a list of ErrorReport objects.
+     
+     */
     
     class ErrorList
     {
@@ -68,6 +101,14 @@ public:
     public:
         
     public:
+        
+        /**
+         
+         \class ConstIterator
+         
+         \brief an iterator for reports in the list (with an underlying const ErrorReport type).
+         
+         */
         
         class ConstIterator
         {

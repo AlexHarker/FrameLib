@@ -12,9 +12,15 @@
 #include <memory>
 #include <vector>
 
-// FrameLib_DSP
+/**
+ 
+ \class FrameLib_DSP
+ 
+ \ingroup DSP
 
-// This abstract class is the core of the DSP processing system and handles low level single-stream connections and timing
+ \brief an abstract class containing the core of the DSP processing system, which handles single-stream scheduling.
+ 
+ */
 
 class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_DSP>
 {
@@ -25,6 +31,14 @@ class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_D
     friend class FrameLib_ProcessingQueue;
     
 protected:
+    
+    /**
+     
+     \struct SchedulerInfo
+     
+     \brief an struct for returning scheduling info from the schedule() method.
+     
+     */
     
     struct SchedulerInfo
     {
@@ -309,9 +323,18 @@ private:
     bool mOutputDone;
 };
 
-// ************************************************************************************** //
 
-// FrameLib_Processor - Simple class for process type objects (can't handle audio)
+/**
+
+ \class FrameLib_Processor
+
+ \ingroup DSP
+
+ \brief a convenience class for creating processor FrameLib_DSP classes that do not handle audio.
+ 
+ Processor classes do not schedule frames and do not handle block-based audio IO. This object provides an empty implementation of schedule() to avoid the end class developer needing to override this method  (never called by a processor class) and also provides a simplified setIO() that does not take a parameter for audio channels.
+ 
+ */
 
 class FrameLib_Processor : public FrameLib_DSP
 {
@@ -333,9 +356,18 @@ protected:
     void setIO(unsigned long nIns, unsigned long nOuts) { FrameLib_DSP::setIO(nIns, nOuts); }
 };
 
-// ************************************************************************************** //
 
-// FrameLib_AudioInput - Simple class for process type objects (can handle audio input)
+/**
+ 
+ \class FrameLib_AudioInput
+
+ \ingroup DSP
+
+ \brief a convenience class for creating processor type FrameLib_DSP classes which handle audio input.
+ 
+ Audio input classes do not schedule frames and take block-based audio input (but cannot output audio). This object provides an empty implementation of schedule() to avoid the end class developer needing to override this method (never called by a processor class).
+ 
+ */
 
 class FrameLib_AudioInput : public FrameLib_DSP
 {
@@ -355,9 +387,18 @@ protected:
     virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) { return SchedulerInfo(); }
 };
 
-// ************************************************************************************** //
 
-// FrameLib_AudioOutput - Simple class for process type objects (can handle audio output)
+/**
+ 
+ \class FrameLib_AudioOutput
+ 
+ \ingroup DSP
+
+ \brief a convenience class for creating processor type FrameLib_DSP classes which handle audio output.
+ 
+ Audio output classes do not schedule frames and create block-based audio output (but not audio input). This object provides an empty implementation of schedule() to avoid the end class developer needing to override this method (never called by a processor class).
+ 
+ */
 
 class FrameLib_AudioOutput : public FrameLib_DSP
 {
@@ -377,9 +418,18 @@ protected:
     virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) { return SchedulerInfo(); }
 };
 
-// ************************************************************************************** //
 
-// FrameLib_Scheduler - Simple class for scheduler type objects
+/**
+ 
+ \class FrameLib_Scheduler
+
+ \ingroup DSP
+
+ \brief a convenience class for creating scheduler type FrameLib_DSP classes.
+ 
+ Scheduler classes schedule frames and may deal with  block-based audio input (but not audio ioutput). This object provides an empty implementation of process() to avoid the end class developer needing to override this method (never called by a scheduler class).
+ 
+ */
 
 class FrameLib_Scheduler : public FrameLib_DSP
 {

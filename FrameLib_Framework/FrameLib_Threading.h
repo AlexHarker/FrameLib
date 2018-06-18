@@ -6,6 +6,12 @@
 
 #include <atomic>
 
+/**
+ 
+ \defgroup Threading
+ 
+ */
+
 #ifdef __linux__
 
 // Linux specific definitions
@@ -64,7 +70,16 @@ bool nullSwap(std::atomic<T *>& value, T *exchange)
     return value.compare_exchange_strong(comparand, exchange);
 }
 
-// A spinlock that can be locked, attempted or acquired
+
+/**
+ 
+ \class FrameLib_SpinLock
+ 
+ \ingroup Threading
+
+ \brief a spinlock that can be locked, attempted or acquired.
+ 
+ */
 
 class FrameLib_SpinLock
 {
@@ -89,7 +104,15 @@ private:
 };
 
 
-// A class for holding a lock using RAII
+/**
+ 
+ \class FrameLib_SpinLockHolder
+ 
+ \ingroup Threading
+
+ \brief a RAII hold utility for a FrameLib_SpinLock
+ 
+ */
 
 class FrameLib_SpinLockHolder
 {
@@ -117,11 +140,20 @@ private:
 };
 
 
-// Lightweight joinable thread
+/**
+ 
+ \class FrameLib_Thread
+ 
+ \ingroup Threading
+
+ \brief lightweight joinable thread with variable priority level
+ 
+ The thread must be joined before destruction.
+ 
+ */
 
 class FrameLib_Thread
 {
-    
     typedef void ThreadFunctionType(void *);
     
 public:
@@ -159,7 +191,17 @@ private:
 };
 
 
-// FrameLib_Semaphore (note that you should most likely close() before the destructor is called)
+/**
+ 
+ \class FrameLib_Semaphore
+ 
+ \brief a semaphore class wrapping an OS-level semaphore
+ 
+ \ingroup Threading
+
+ The semaphore must be clsed before destruction.
+ 
+ */
 
 class FrameLib_Semaphore
 {
@@ -187,7 +229,17 @@ private:
 };
 
 
-// A thread that can be triggered from another thread but without any built-in mechanism to check progress
+/**
+ 
+ \class FrameLib_TriggerableThread
+
+ \ingroup Threading
+
+ \brief a thread that can be triggered from another thread (there is no mechanism to check progress)
+ 
+ The thread should be joined before desctruction.
+ 
+ */
 
 class FrameLib_TriggerableThread
 {
@@ -229,7 +281,17 @@ private:
 };
 
 
-// A thread to delegate tasks to, which can be then be checked for completion
+/**
+ 
+ \class FrameLib_DelegateThread
+ 
+ \ingroup Threading
+
+ \brief a thread to delegate tasks to, which can be then be checked for completion
+ 
+ The thread should be joined before desctruction.
+ 
+ */
 
 class FrameLib_DelegateThread
 {

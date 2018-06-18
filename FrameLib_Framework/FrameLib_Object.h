@@ -11,7 +11,19 @@
 #include <sstream>
 #include <iostream>
 
-// FrameLib_Queable is a template class for items that can be placed on a queue
+/**
+ 
+ \defgroup DSP Processing Objects
+  
+ */
+
+/**
+ 
+ \class FrameLib_Queueable
+ 
+ \brief a template class for items that can be placed on a queue
+ 
+ */
 
 template <class T>
 class FrameLib_Queueable
@@ -20,6 +32,16 @@ class FrameLib_Queueable
 public:
     
     FrameLib_Queueable() : mNext(nullptr) {}
+    
+    /**
+     
+     \class Queue
+     
+     \brief a single-threaded queue for non-recursive queuing of items for processing
+     
+     An item can only be in one position in a single queue at a time.
+     
+     */
     
     class Queue
     {
@@ -89,19 +111,34 @@ private:
     T *mNext;
 };
 
-// FrameLib_Object
 
-// This abstract template class outlines the basic functionality that objects (blocks / DSP / multistream must provide)
+/**
+ 
+ \class FrameLib_Object
+ 
+ \ingroup DSP
+ 
+ \brief an abstract template class providing an interface for FrameLib objects and implementing connectivity
+ 
+ \sa FrameLib_Block, FrameLib_DSP FrameLib_Multistream
+ 
+ */
 
 template <class T>
 class FrameLib_Object : public FrameLib_Queueable<T>
 {
     
 public:
-
-    // Typedef for concision
     
-    typedef typename FrameLib_Queueable<T>::Queue Queue;
+    using Queue = typename FrameLib_Queueable<T>::Queue;
+    
+    /**
+     
+     \class Connection
+     
+     \brief holds the connected object and IO indices for a connection to an object
+     
+     */
     
     struct Connection
     {
@@ -878,11 +915,18 @@ private:
     bool mFeedback;
 };
 
-// FrameLib_Block
 
-// This abstract class provides a connectivity interface to FrameLib_DSP objects or blocks (groups of FrameLib_DSP objects).
-// Standard objects inherit this in the FrameLib_DSP class.
-// Objects that have asynchronous outputs can use this class to host multiple FrameLib_DSP objects and alias the connections correctly.
+/**
+ 
+ \class FrameLib_Block
+ 
+ \ingroup DSP
+
+ \brief an abstract class that represents either a single FrameLib_DSP object, or a group of connected FrameLib_DSP objects.
+ 
+    This abstract class provides a connectivity interface to FrameLib_DSP objects or blocks (groups of FrameLib_DSP objects). Most objects inherit this in the FrameLib_DSP class. Objects that have asynchronous outputs can use this class to host multiple FrameLib_DSP objects and alias the connections correctly.
+ 
+ */
 
 class FrameLib_Block : public FrameLib_Object<FrameLib_Block>
 {

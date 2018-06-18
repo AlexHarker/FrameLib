@@ -10,9 +10,21 @@
 #include <algorithm>
 #include <vector>
 
-// FrameLib_Multistream
+/**
+ 
+ \defgroup Multistream
+ 
+ */
 
-// This abstract class allows multi-stream connnections and the means to update the network according to the number of streams
+/**
+ 
+ \class FrameLib_Multistream
+ 
+ \ingroup Multistream
+ 
+ \brief a abstract class proving multi-stream connnections and the means to the number of streams in a network.
+ 
+ */
 
 class FrameLib_Multistream : public FrameLib_Object<FrameLib_Multistream>
 {
@@ -97,9 +109,16 @@ private:
     unsigned long mNumStreams;
 };
 
-// ************************************************************************************** //
 
-// FrameLib_Expand - Multi-stream expansion for FrameLib_Block objects
+/**
+ 
+ \class FrameLib_Expand
+ 
+ \ingroup Multistream
+
+ \brief a template class for providing multi-stream support to any FrameLib_Block class.
+ 
+ */
 
 template <class T> class FrameLib_Expand final : public FrameLib_Multistream
 {

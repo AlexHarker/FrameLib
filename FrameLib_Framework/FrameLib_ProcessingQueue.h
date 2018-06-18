@@ -11,8 +11,21 @@
 
 class FrameLib_DSP;
 
+/**
+ 
+ \defgroup ProcessingQueue Processing Queue
+ 
+ */
 
-// DSP Queue - this allows the DSP network to queue processing with minimal additional data storage (avoiding recursive calls)
+/**
+ 
+ \class FrameLib_ProcessingQueue
+ 
+ \ingroup ProcessingQueue
+ 
+ \brief a minimal processing queue that is used to non-recursively process FrameLIB_DSP objects in a network.
+ 
+ */
 
 class FrameLib_ProcessingQueue
 {

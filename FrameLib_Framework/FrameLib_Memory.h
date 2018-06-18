@@ -12,7 +12,21 @@
 #include <ctime>
 #include <string>
 
-// The Global Allocator (adds threadsafety to the CoreAllocator)
+/**
+
+\defgroup Memory
+
+*/
+
+/**
+ 
+ \class FrameLib_GlobalAllocator
+ 
+ \ingroup Memory
+ 
+ \brief a global threadsafe memory allocator suitable for realtime usage.
+ 
+ */
 
 class FrameLib_GlobalAllocator
 {
@@ -129,12 +143,16 @@ private:
         FrameLib_ErrorReporter& mErrorReporter;
     };
     
-    // ************************************************************************************** //
-    
 public:
 
-    // The Pruner uses RAII to lock the CoreAllocator allowing repeated deallocation followed by a prune with a single lock
-    
+    /**
+     
+     \class Pruner
+     
+     \brief an RAII utility for repeated deallocation with only a single lock.
+     
+     */
+        
     class Pruner
     {
         
@@ -225,11 +243,15 @@ class FrameLib_LocalAllocator
         FreeBlock *mNext;
     };
     
-    // ************************************************************************************** //
-    
 public:
 
-    // Named Storage Local to Each Context
+    /**
+     
+     \class Storage
+     
+     \brief named storage local to a specific context.
+     
+     */
     
     class Storage
     {
@@ -239,7 +261,13 @@ public:
 
     public:
         
-        // The Access Class Enforces Thread Safety for Storage
+        /**
+         
+         \class Access
+         
+         \brief an RAII utility for safely accessing a Storage object.
+         
+         */
         
         class Access
         {
@@ -321,8 +349,6 @@ public:
         FrameLib_LocalAllocator *mAllocator;
     };
     
-    // ************************************************************************************** //
-
     // Constructor / Destructor
     
     FrameLib_LocalAllocator(FrameLib_GlobalAllocator *allocator);
