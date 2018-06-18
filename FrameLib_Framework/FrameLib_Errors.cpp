@@ -26,7 +26,7 @@ std::unique_ptr<FrameLib_ErrorReporter::ErrorList> FrameLib_ErrorReporter::getEr
 {
     std::unique_ptr<ErrorList> reports(new ErrorList());
     
-    SpinLockHolder lockHolder(&mLock);
+    FrameLib_SpinLockHolder lockHolder(&mLock);
     std::swap(mReports, reports);
     mNotified = false;
     return reports;

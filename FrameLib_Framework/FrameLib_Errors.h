@@ -218,7 +218,7 @@ private:
     HostNotifier *mNotifier;
     bool mNotified;
     std::unique_ptr<ErrorList> mReports;
-    SpinLock mLock;
+    FrameLib_SpinLock mLock;
 };
 
 #endif

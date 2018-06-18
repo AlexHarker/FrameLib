@@ -159,7 +159,7 @@ private:
 
 // Data
     
-    SpinLock mLock;
+    FrameLib_SpinLock mLock;
     OwnedFrame mVectorFrame;
     SerialList mSerialFrame;
     SerialList mSerialFreeFrame;

@@ -107,13 +107,13 @@ void FrameLib_Global::releaseProcessingQueue(void *reference)
 
 void FrameLib_Global::increment()
 {
-    SpinLockHolder lock(&mLock);
+    FrameLib_SpinLockHolder lock(&mLock);
     ++mCount;
 }
 
 FrameLib_Global *FrameLib_Global::decrement()
 {
-    SpinLockHolder lock(&mLock);
+    FrameLib_SpinLockHolder lock(&mLock);
     
     if (--mCount < 1)
     {

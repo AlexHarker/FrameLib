@@ -66,13 +66,13 @@ bool nullSwap(std::atomic<T *>& value, T *exchange)
 
 // A spinlock that can be locked, attempted or acquired
 
-class SpinLock
+class FrameLib_SpinLock
 {
     
 public:
     
-    SpinLock() : mAtomicLock(false) {}
-    ~SpinLock() { acquire(); }
+    FrameLib_SpinLock() : mAtomicLock(false) {}
+    ~FrameLib_SpinLock() { acquire(); }
     
     bool attempt() { return compareAndSwap(mAtomicLock, false, true); }
 	void acquire() { while(attempt() == false); }
@@ -82,8 +82,8 @@ private:
 	
     // Deleted
     
-    SpinLock(const SpinLock&) = delete;
-    SpinLock& operator=(const SpinLock&) = delete;
+    FrameLib_SpinLock(const FrameLib_SpinLock&) = delete;
+    FrameLib_SpinLock& operator=(const FrameLib_SpinLock&) = delete;
     
     std::atomic<bool> mAtomicLock;
 };
@@ -91,13 +91,13 @@ private:
 
 // A class for holding a lock using RAII
 
-class SpinLockHolder
+class FrameLib_SpinLockHolder
 {
     
 public:
     
-    SpinLockHolder(SpinLock *lock) : mLock(lock) { if (mLock) mLock->acquire(); }
-    ~SpinLockHolder() { if (mLock) mLock->release(); }
+    FrameLib_SpinLockHolder(FrameLib_SpinLock *lock) : mLock(lock) { if (mLock) mLock->acquire(); }
+    ~FrameLib_SpinLockHolder() { if (mLock) mLock->release(); }
     
     void destroy()
     {
@@ -110,16 +110,16 @@ private:
     
     // Deleted
     
-    SpinLockHolder(const SpinLockHolder&) = delete;
-    SpinLockHolder& operator=(const SpinLockHolder&) = delete;
+    FrameLib_SpinLockHolder(const FrameLib_SpinLockHolder&) = delete;
+    FrameLib_SpinLockHolder& operator=(const FrameLib_SpinLockHolder&) = delete;
     
-    SpinLock *mLock;
+    FrameLib_SpinLock *mLock;
 };
 
 
 // Lightweight joinable thread
 
-class Thread
+class FrameLib_Thread
 {
     
     typedef void ThreadFunctionType(void *);
@@ -128,11 +128,11 @@ public:
     
     enum PriorityLevel {kLowPriority, kMediumPriority, kHighPriority, kAudioPriority};
 
-    Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void *arg)
+    FrameLib_Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void *arg)
     : mInternal(nullptr), mPriority(priority), mThreadFunction(threadFunction), mArg(arg), mValid(false)
     {}
 
-    ~Thread();
+    ~FrameLib_Thread();
 
     void start();
     void join();
@@ -141,8 +141,8 @@ private:
     
     // Deleted
     
-    Thread(const Thread&) = delete;
-    Thread& operator=(const Thread&) = delete;
+    FrameLib_Thread(const FrameLib_Thread&) = delete;
+    FrameLib_Thread& operator=(const FrameLib_Thread&) = delete;
     
     // threadStart is a quick OS-style wrapper to call the object which calls the relevant static function
     
@@ -159,15 +159,15 @@ private:
 };
 
 
-// Semaphore (note that you should most likely close() before the destructor is called)
+// FrameLib_Semaphore (note that you should most likely close() before the destructor is called)
 
-class Semaphore
+class FrameLib_Semaphore
 {
 
 public:
     
-    Semaphore(long maxCount);
-    ~Semaphore();
+    FrameLib_Semaphore(long maxCount);
+    ~FrameLib_Semaphore();
     
     void close();
     void signal(long n);
@@ -177,8 +177,8 @@ private:
     
     // Deleted
     
-    Semaphore(const Semaphore&) = delete;
-    Semaphore& operator=(const Semaphore&) = delete;
+    FrameLib_Semaphore(const FrameLib_Semaphore&) = delete;
+    FrameLib_Semaphore& operator=(const FrameLib_Semaphore&) = delete;
     
     // Data
     
@@ -189,13 +189,13 @@ private:
 
 // A thread that can be triggered from another thread but without any built-in mechanism to check progress
 
-class TriggerableThread
+class FrameLib_TriggerableThread
 {
     
 public:
 
-    TriggerableThread(Thread::PriorityLevel priority) : mThread(priority, threadEntry, this), mSemaphore(1) {}
-    virtual ~TriggerableThread() {}
+    FrameLib_TriggerableThread(FrameLib_Thread::PriorityLevel priority) : mThread(priority, threadEntry, this), mSemaphore(1) {}
+    virtual ~FrameLib_TriggerableThread() {}
     
     // Start and join
     
@@ -210,8 +210,8 @@ private:
     
     // Deleted
     
-    TriggerableThread(const Thread&) = delete;
-    TriggerableThread& operator=(const Thread&) = delete;
+    FrameLib_TriggerableThread(const FrameLib_TriggerableThread&) = delete;
+    FrameLib_TriggerableThread& operator=(const FrameLib_TriggerableThread&) = delete;
     
     // threadEntry simply calls threadClassEntry which calls the task handler
     
@@ -224,20 +224,20 @@ private:
     
     // Data
     
-    Thread mThread;
-    Semaphore mSemaphore;
+    FrameLib_Thread mThread;
+    FrameLib_Semaphore mSemaphore;
 };
 
 
 // A thread to delegate tasks to, which can be then be checked for completion
 
-class DelegateThread
+class FrameLib_DelegateThread
 {
     
 public:
 
-    DelegateThread(Thread::PriorityLevel priority) : mThread(priority, threadEntry, this), mSemaphore(1), mSignaled(false), mFlag(0) {}
-    virtual ~DelegateThread() {}
+    FrameLib_DelegateThread(FrameLib_Thread::PriorityLevel priority) : mThread(priority, threadEntry, this), mSemaphore(1), mSignaled(false), mFlag(0) {}
+    virtual ~FrameLib_DelegateThread() {}
 
     // Start and join
 
@@ -256,8 +256,8 @@ private:
     
     // Deleted
     
-    DelegateThread(const DelegateThread&) = delete;
-    DelegateThread& operator=(const DelegateThread&) = delete;
+    FrameLib_DelegateThread(const FrameLib_DelegateThread&) = delete;
+    FrameLib_DelegateThread& operator=(const FrameLib_DelegateThread&) = delete;
     
     // threadEntry simply calls threadClassEntry which calls the task handler
     
@@ -270,8 +270,8 @@ private:
     
     // Data
 
-    Thread mThread;
-    Semaphore mSemaphore;
+    FrameLib_Thread mThread;
+    FrameLib_Semaphore mSemaphore;
     
     bool mSignaled;
     std::atomic<int> mFlag;

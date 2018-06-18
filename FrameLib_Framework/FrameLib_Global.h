@@ -95,7 +95,7 @@ private:
     
     // Lock and Reference Count
     
-    SpinLock mLock;
+    FrameLib_SpinLock mLock;
     long mCount;
 };
 

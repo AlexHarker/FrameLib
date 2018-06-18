@@ -45,12 +45,12 @@ private:
         
         // Thread for Allocating System Memory
         
-        class NewThread final : public DelegateThread
+        class NewThread final : public FrameLib_DelegateThread
         {
             
         public:
             
-            NewThread(CoreAllocator *allocator) : DelegateThread(Thread::kHighPriority), mAllocator(allocator) {}
+            NewThread(CoreAllocator *allocator) : FrameLib_DelegateThread(FrameLib_Thread::kHighPriority), mAllocator(allocator) {}
             
         private:
             
@@ -63,12 +63,12 @@ private:
         
         // Thread for Freeing System Memory
         
-        class FreeThread final : public TriggerableThread
+        class FreeThread final : public FrameLib_TriggerableThread
         {
             
         public:
             
-            FreeThread(CoreAllocator *allocator) : TriggerableThread(Thread::kLowPriority), mAllocator(allocator) {}
+            FreeThread(CoreAllocator *allocator) : FrameLib_TriggerableThread(FrameLib_Thread::kLowPriority), mAllocator(allocator) {}
             
         private:
             
@@ -191,7 +191,7 @@ private:
     
     // Member Variables
     
-    SpinLock mLock;
+    FrameLib_SpinLock mLock;
     CoreAllocator mAllocator;
 };
 
@@ -307,7 +307,7 @@ public:
         size_t mMaxSize;
         unsigned long mCount;
         
-        SpinLock mLock;
+        FrameLib_SpinLock mLock;
         FrameLib_LocalAllocator *mAllocator;
     };
     

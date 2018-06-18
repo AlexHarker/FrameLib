@@ -7,12 +7,12 @@
 
 // Thread Linux OS implementation
 
-Thread::~Thread()
+FrameLib_Thread::~FrameLib_Thread()
 {
     assert(!mValid && "Thread not joined before deletion");
 }
 
-void Thread::start()
+void FrameLib_Thread::start()
 {
     // Valid
     
@@ -49,7 +49,7 @@ void Thread::start()
     pthread_create(&mInternal, &threadAttributes, threadStart, this);
 }
 
-void Thread::join()
+void FrameLib_Thread::join()
 {
     if (mValid)
     {
@@ -62,27 +62,27 @@ void Thread::join()
     }
 }
 
-void *Thread::threadStart(void *arg)
+void *FrameLib_Thread::threadStart(void *arg)
 {
-    static_cast<Thread *>(arg)->call();
+    static_cast<FrameLib_Thread *>(arg)->call();
     
     return nullptr;
 }
 
 // Semaphore Linux OS implementation
 
-Semaphore::Semaphore(long maxCount) : mValid(true)
+FrameLib_Semaphore::FrameLib_Semaphore(long maxCount) : mValid(true)
 {
     sem_init(&mInternal, 0, 0);
 }
 
-Semaphore::~Semaphore()
+FrameLib_Semaphore::~FrameLib_Semaphore()
 {
     assert(!mValid && "Semaphore not closed before deletion");
     sem_destroy(&mInternal);
 }
 
-void Semaphore::close()
+void FrameLib_Semaphore::close()
 {
     if (mValid)
     {
@@ -100,14 +100,14 @@ void Semaphore::close()
     }
 }
 
-void Semaphore::signal(long n)
+void FrameLib_Semaphore::signal(long n)
 {
     std::atomic_thread_fence(std::memory_order_seq_cst);
     for (long i = 0; i < n; i++)
         sem_post(&mInternal);
 }
 
-bool Semaphore::wait()
+bool FrameLib_Semaphore::wait()
 {
     if (mValid)
         sem_wait(&mInternal);
@@ -119,12 +119,12 @@ bool Semaphore::wait()
 
 // Thread Mac OS implementation
 
-Thread::~Thread()
+FrameLib_Thread::~FrameLib_Thread()
 {
     assert(!mValid && "Thread not joined before deletion");
 }
 
-void Thread::start()
+void FrameLib_Thread::start()
 {
     // Valid
     
@@ -161,7 +161,7 @@ void Thread::start()
     pthread_create(&mInternal, &threadAttributes, threadStart, this);
 }
 
-void Thread::join()
+void FrameLib_Thread::join()
 {
     if (mValid)
     {
@@ -174,27 +174,27 @@ void Thread::join()
     }
 }
 
-void *Thread::threadStart(void *arg)
+void *FrameLib_Thread::threadStart(void *arg)
 {
-    static_cast<Thread *>(arg)->call();
+    static_cast<FrameLib_Thread *>(arg)->call();
     
     return nullptr;
 }
 
 // Semaphore Mac OS implementation
 
-Semaphore::Semaphore(long maxCount) : mValid(true)
+FrameLib_Semaphore::FrameLib_Semaphore(long maxCount) : mValid(true)
 {
     semaphore_create(mach_task_self(), &mInternal, SYNC_POLICY_FIFO, 0);
 }
 
-Semaphore::~Semaphore()
+FrameLib_Semaphore::~FrameLib_Semaphore()
 {
     assert(!mValid && "Semaphore not closed before deletion");
     semaphore_destroy(mach_task_self(), mInternal);
 }
 
-void Semaphore::close()
+void FrameLib_Semaphore::close()
 {
     if (mValid)
     {
@@ -204,14 +204,14 @@ void Semaphore::close()
     }
 }
 
-void Semaphore::signal(long n)
+void FrameLib_Semaphore::signal(long n)
 {
     std::atomic_thread_fence(std::memory_order_seq_cst);
     for (long i = 0; i < n; i++)
         semaphore_signal(mInternal);
 }
 
-bool Semaphore::wait()
+bool FrameLib_Semaphore::wait()
 {
     if (mValid)
         semaphore_wait(mInternal);
@@ -223,13 +223,13 @@ bool Semaphore::wait()
 
 // Thread Windows OS implementation
 
-Thread::~Thread()
+FrameLib_Thread::~FrameLib_Thread()
 {
     assert(!mValid && "Thread not closed before deletion");
     CloseHandle(mInternal);
 }
 
-void start()
+void FrameLib_Thread::start()
 {
     // Valid
     
@@ -250,7 +250,7 @@ void start()
     }
 }
 
-void Thread::join()
+void FrameLib_Thread::join()
 {
     if (mValid)
     {
@@ -265,7 +265,7 @@ void Thread::join()
 
 DWORD WINAPI Thread::threadStart(LPVOID arg)
 {
-    static_cast<Thread *>(arg)->call();
+    static_cast<FrameLib_Thread *>(arg)->call();
     
     return 0;
 }
@@ -273,18 +273,18 @@ DWORD WINAPI Thread::threadStart(LPVOID arg)
 
 // Semaphore Windows OS implementation
 
-Semaphore::Semaphore(long maxCount) : mValid(true)
+FrameLib_Semaphore::FrameLib_Semaphore(long maxCount) : mValid(true)
 {
     mInternal = CreateSemaphore(nullptr, 0, maxCount, nullptr);
 }
 
-Semaphore::~Semaphore()
+FrameLib_Semaphore::~FrameLib_Semaphore()
 {
     assert(!mValid && "Semaphore not closed before deletion");
     CloseHandle(mInternal);
 }
 
-void Semaphore::close()
+void FrameLib_Semaphore::close()
 {
     if (mValid)
     {
@@ -298,7 +298,7 @@ void Semaphore::close()
     }
 }
 
-void Semaphore::signal(long n)
+void FrameLib_Semaphore::signal(long n)
 {
     // N.B. - signalling is unsafe after the semaphore has been closed
     
@@ -306,7 +306,7 @@ void Semaphore::signal(long n)
     ReleaseSemaphore(mInternal, n, nullptr);
 }
 
-bool Semaphore::wait()
+bool FrameLib_Semaphore::wait()
 {
     if (mValid)
         WaitForSingleObject(mInternal, INFINITE);
@@ -319,18 +319,18 @@ bool Semaphore::wait()
 
 // Triggerable Thread
 
-void TriggerableThread::join()
+void FrameLib_TriggerableThread::join()
 {
     mSemaphore.close();
     mThread.join();
 }
 
-void TriggerableThread::threadEntry(void *thread)
+void FrameLib_TriggerableThread::threadEntry(void *thread)
 {
-    static_cast<TriggerableThread *>(thread)->threadClassEntry();
+    static_cast<FrameLib_TriggerableThread *>(thread)->threadClassEntry();
 }
 
-void TriggerableThread::threadClassEntry()
+void FrameLib_TriggerableThread::threadClassEntry()
 {
     while(mSemaphore.wait())
         doTask();
@@ -339,13 +339,13 @@ void TriggerableThread::threadClassEntry()
 
 // Delegate Thread
 
-void DelegateThread::join()
+void FrameLib_DelegateThread::join()
 {
     mSemaphore.close();
     mThread.join();
 }
 
-bool DelegateThread::signal()
+bool FrameLib_DelegateThread::signal()
 {
     if (mSignaled || !compareAndSwap(mFlag, 0, 1))
         return false;
@@ -354,7 +354,7 @@ bool DelegateThread::signal()
     return true;
 }
 
-bool DelegateThread::completed()
+bool FrameLib_DelegateThread::completed()
 {
     if (!mSignaled)
         return false;
@@ -367,12 +367,12 @@ bool DelegateThread::completed()
     return true;
 }
 
-void DelegateThread::threadEntry(void *thread)
+void FrameLib_DelegateThread::threadEntry(void *thread)
 {
-    static_cast<DelegateThread *>(thread)->threadClassEntry();
+    static_cast<FrameLib_DelegateThread *>(thread)->threadClassEntry();
 }
 
-void DelegateThread::threadClassEntry()
+void FrameLib_DelegateThread::threadClassEntry()
 {
     while (mSemaphore.wait())
     {

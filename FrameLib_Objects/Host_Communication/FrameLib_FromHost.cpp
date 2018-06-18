@@ -156,7 +156,7 @@ void FrameLib_FromHost::process()
 {
     unsigned long size = 0;
     
-    mLock.acquire();
+    FrameLib_SpinLockHolder lock(&mLock);
     
     if (mMode == kValues)
     {
@@ -179,17 +179,14 @@ void FrameLib_FromHost::process()
             mSerialFreeFrame.push(item);
         }
     }
-    
-    mLock.release();
 }
 
 // Swap vector frame
 
 FrameLib_FromHost::OwnedFrame FrameLib_FromHost::swapVectorFrame(OwnedFrame& swapVector)
 {
-    mLock.acquire();
+    FrameLib_SpinLockHolder lock(&mLock);
     std::swap(mVectorFrame, swapVector);
-    mLock.release();
     return std::move(swapVector);
 }
 
@@ -197,8 +194,7 @@ FrameLib_FromHost::OwnedFrame FrameLib_FromHost::swapVectorFrame(OwnedFrame& swa
 
 void FrameLib_FromHost::updateSerialFrame(SerialList &freeList, SerialList::Item *addSerial)
 {
-    mLock.acquire();
+    FrameLib_SpinLockHolder lock(&mLock);
     mSerialFrame.push(addSerial);
     freeList.reassign(mSerialFreeFrame);
-    mLock.release();
 }
