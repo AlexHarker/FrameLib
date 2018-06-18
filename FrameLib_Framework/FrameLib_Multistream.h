@@ -40,6 +40,11 @@ public:
     
     virtual ~FrameLib_Multistream() {}
     
+    // Non-copyable
+    
+    FrameLib_Multistream(const FrameLib_Multistream&) = delete;
+    FrameLib_Multistream& operator=(const FrameLib_Multistream&) = delete;
+
     // Default is not to handle audio
     
     static bool handlesAudio() { return false; }
@@ -70,11 +75,6 @@ protected:
 
 private:
 
-    // Deleted
-    
-    FrameLib_Multistream(const FrameLib_Multistream&) = delete;
-    FrameLib_Multistream& operator=(const FrameLib_Multistream&) = delete;
-    
     // Connection Methods (private)
     
     void connectionUpdate(Queue *queue) final

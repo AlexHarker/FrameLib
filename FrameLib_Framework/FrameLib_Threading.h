@@ -74,16 +74,16 @@ public:
     FrameLib_SpinLock() : mAtomicLock(false) {}
     ~FrameLib_SpinLock() { acquire(); }
     
+    // Non-copyable
+    
+    FrameLib_SpinLock(const FrameLib_SpinLock&) = delete;
+    FrameLib_SpinLock& operator=(const FrameLib_SpinLock&) = delete;
+    
     bool attempt() { return compareAndSwap(mAtomicLock, false, true); }
 	void acquire() { while(attempt() == false); }
 	void release() { compareAndSwap(mAtomicLock, true, false); }
     
 private:
-	
-    // Deleted
-    
-    FrameLib_SpinLock(const FrameLib_SpinLock&) = delete;
-    FrameLib_SpinLock& operator=(const FrameLib_SpinLock&) = delete;
     
     std::atomic<bool> mAtomicLock;
 };
@@ -99,6 +99,11 @@ public:
     FrameLib_SpinLockHolder(FrameLib_SpinLock *lock) : mLock(lock) { if (mLock) mLock->acquire(); }
     ~FrameLib_SpinLockHolder() { if (mLock) mLock->release(); }
     
+    // Non-copyable
+    
+    FrameLib_SpinLockHolder(const FrameLib_SpinLockHolder&) = delete;
+    FrameLib_SpinLockHolder& operator=(const FrameLib_SpinLockHolder&) = delete;
+    
     void destroy()
     {
         if (mLock)
@@ -107,11 +112,6 @@ public:
     }
     
 private:
-    
-    // Deleted
-    
-    FrameLib_SpinLockHolder(const FrameLib_SpinLockHolder&) = delete;
-    FrameLib_SpinLockHolder& operator=(const FrameLib_SpinLockHolder&) = delete;
     
     FrameLib_SpinLock *mLock;
 };
@@ -134,15 +134,15 @@ public:
 
     ~FrameLib_Thread();
 
+    // Non-copyable
+    
+    FrameLib_Thread(const FrameLib_Thread&) = delete;
+    FrameLib_Thread& operator=(const FrameLib_Thread&) = delete;
+    
     void start();
     void join();
 
 private:
-    
-    // Deleted
-    
-    FrameLib_Thread(const FrameLib_Thread&) = delete;
-    FrameLib_Thread& operator=(const FrameLib_Thread&) = delete;
     
     // threadStart is a quick OS-style wrapper to call the object which calls the relevant static function
     
@@ -169,16 +169,16 @@ public:
     FrameLib_Semaphore(long maxCount);
     ~FrameLib_Semaphore();
     
+    // Non-copyable
+
+    FrameLib_Semaphore(const FrameLib_Semaphore&) = delete;
+    FrameLib_Semaphore& operator=(const FrameLib_Semaphore&) = delete;
+    
     void close();
     void signal(long n);
     bool wait();
     
 private:
-    
-    // Deleted
-    
-    FrameLib_Semaphore(const FrameLib_Semaphore&) = delete;
-    FrameLib_Semaphore& operator=(const FrameLib_Semaphore&) = delete;
     
     // Data
     
@@ -197,6 +197,11 @@ public:
     FrameLib_TriggerableThread(FrameLib_Thread::PriorityLevel priority) : mThread(priority, threadEntry, this), mSemaphore(1) {}
     virtual ~FrameLib_TriggerableThread() {}
     
+    // Non-copyable
+    
+    FrameLib_TriggerableThread(const FrameLib_TriggerableThread&) = delete;
+    FrameLib_TriggerableThread& operator=(const FrameLib_TriggerableThread&) = delete;
+    
     // Start and join
     
     void start() { mThread.start(); }
@@ -207,11 +212,6 @@ public:
     void signal() { mSemaphore.signal(1); };
     
 private:
-    
-    // Deleted
-    
-    FrameLib_TriggerableThread(const FrameLib_TriggerableThread&) = delete;
-    FrameLib_TriggerableThread& operator=(const FrameLib_TriggerableThread&) = delete;
     
     // threadEntry simply calls threadClassEntry which calls the task handler
     
@@ -239,6 +239,11 @@ public:
     FrameLib_DelegateThread(FrameLib_Thread::PriorityLevel priority) : mThread(priority, threadEntry, this), mSemaphore(1), mSignaled(false), mFlag(0) {}
     virtual ~FrameLib_DelegateThread() {}
 
+    // Non-copyable
+    
+    FrameLib_DelegateThread(const FrameLib_DelegateThread&) = delete;
+    FrameLib_DelegateThread& operator=(const FrameLib_DelegateThread&) = delete;
+    
     // Start and join
 
     void start() { mThread.start(); }
@@ -253,11 +258,6 @@ public:
     bool completed();
     
 private:
-    
-    // Deleted
-    
-    FrameLib_DelegateThread(const FrameLib_DelegateThread&) = delete;
-    FrameLib_DelegateThread& operator=(const FrameLib_DelegateThread&) = delete;
     
     // threadEntry simply calls threadClassEntry which calls the task handler
     

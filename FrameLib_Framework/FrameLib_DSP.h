@@ -89,6 +89,11 @@ public:
     FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0);
     ~FrameLib_DSP();
     
+    // Non-copyable
+    
+    FrameLib_DSP(const FrameLib_DSP&) = delete;
+    FrameLib_DSP& operator=(const FrameLib_DSP&) = delete;
+
     // Set Fixed Inputs
     
     void setFixedInput(unsigned long idx, double *input, unsigned long size) final;
@@ -207,11 +212,6 @@ protected:
 
 private:
     
-    // Deleted
-    
-    FrameLib_DSP(const FrameLib_DSP&) = delete;
-    FrameLib_DSP& operator=(const FrameLib_DSP&) = delete;
-
     // Queueable Reset
     
     void reset(LocalQueue *queue);

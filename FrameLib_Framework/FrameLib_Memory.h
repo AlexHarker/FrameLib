@@ -151,14 +151,14 @@ public:
             mAllocator->mLock.release();
         }
         
-        void dealloc(void *ptr) { mAllocator->mAllocator.dealloc(ptr); }
-
-    private:
-        
-        // Deleted
+        // Non-copyable
         
         Pruner(const Pruner&) = delete;
         Pruner& operator=(const Pruner&) = delete;
+        
+        void dealloc(void *ptr) { mAllocator->mAllocator.dealloc(ptr); }
+
+    private:
         
         // Allocator
         
@@ -172,6 +172,11 @@ public:
     FrameLib_GlobalAllocator(FrameLib_ErrorReporter& errorReporter) : mAllocator(errorReporter) {}
     ~FrameLib_GlobalAllocator() {}
     
+    // Non-copyable
+    
+    FrameLib_GlobalAllocator(const FrameLib_GlobalAllocator&) = delete;
+    FrameLib_GlobalAllocator& operator=(const FrameLib_GlobalAllocator&) = delete;
+    
     // Allocate / Deallocate Memory
     
     void *alloc(size_t size);
@@ -183,21 +188,25 @@ public:
     static size_t alignSize(size_t x);
     
 private:
-    
-    // Deleted
-    
-    FrameLib_GlobalAllocator(const FrameLib_GlobalAllocator&) = delete;
-    FrameLib_GlobalAllocator& operator=(const FrameLib_GlobalAllocator&) = delete;
-    
+   
     // Member Variables
     
     FrameLib_SpinLock mLock;
     CoreAllocator mAllocator;
 };
 
-// ************************************************************************************** //
 
-// The Local Allocator
+/**
+ 
+ \class FrameLib_LocalAllocator
+ 
+ \ingroup Memory
+
+ \brief a memory allocator suitable for usage in a given FrameLib context.
+ 
+ \sa FrameLib_Context
+ 
+ */
 
 class FrameLib_LocalAllocator
 {
@@ -242,6 +251,11 @@ public:
             Access(Storage *storage) : mStorage(storage)    { mStorage->mLock.acquire(); }
             ~Access()                                       { mStorage->mLock.release(); }
             
+            // Non-copyable
+            
+            Access(const Access&) = delete;
+            Access& operator=(const Access&) = delete;
+            
             // Getters
             
             FrameType getType() const               { return mStorage->getType(); }
@@ -255,11 +269,6 @@ public:
             void resize(bool tagged, size_t size)   { mStorage->resize(tagged, size); }
             
         private:
-            
-            // Deleted
-            
-            Access(const Access&) = delete;
-            Access& operator=(const Access&) = delete;
             
             // Data
             
@@ -287,6 +296,11 @@ public:
         Storage(const char *name, FrameLib_LocalAllocator *allocator);
         ~Storage();
         
+        // Non-copyable
+        
+        Storage(const Storage&) = delete;
+        Storage& operator=(const Storage&) = delete;
+        
         // Reference Counting
         
         void increment()                { mCount++; }
@@ -294,11 +308,6 @@ public:
 
     private:
 
-        // Deleted
-        
-        Storage(const Storage&) = delete;
-        Storage& operator=(const Storage&) = delete;
-        
         // Member Variables
         
         std::string mName;
@@ -318,6 +327,12 @@ public:
     
     FrameLib_LocalAllocator(FrameLib_GlobalAllocator *allocator);
     ~FrameLib_LocalAllocator();
+    
+    // Non-copyable
+    
+    FrameLib_LocalAllocator(const FrameLib_LocalAllocator&) = delete;
+    FrameLib_LocalAllocator& operator=(const FrameLib_LocalAllocator&) = delete;
+    
     
     // Allocate / Deallocate Memory
 
@@ -339,11 +354,6 @@ public:
     void releaseStorage(const char *name);
     
 private:
-    
-    // Deleted
-    
-    FrameLib_LocalAllocator(const FrameLib_LocalAllocator&) = delete;
-    FrameLib_LocalAllocator& operator=(const FrameLib_LocalAllocator&) = delete;
     
     // Find Storage by Name
     

@@ -112,6 +112,11 @@ public:
         Serial(BytePointer ptr, size_t size);
         Serial();
         
+        // Non-copyable
+        
+        Serial(const Serial&) = delete;
+        Serial& operator=(const Serial&) = delete;
+        
         // Size Calculations
         
         static size_t calcSize(const Serial *serialised)            { return serialised != nullptr ? serialised->mSize : 0; }
@@ -160,11 +165,6 @@ public:
         bool checkSize(size_t writeSize);
         
     private:
-        
-        // Deleted
-        
-        Serial(const Serial&) = delete;
-        Serial& operator=(const Serial&) = delete;
         
         // Debug
         
@@ -467,6 +467,12 @@ public:
     FrameLib_Parameters(FrameLib_ErrorReporter& errorReporter, FrameLib_Proxy *proxy, Info *info)
     : mErrorReporter(errorReporter), mProxy(proxy), mReportErrors(true), mParameterInfo(info) {}
     
+    // Non-copyable
+    
+    FrameLib_Parameters(const FrameLib_Parameters&) = delete;
+    FrameLib_Parameters& operator=(const FrameLib_Parameters&) = delete;
+    
+    
     // Enable/Disable Error Reporting (enabled by default)
     
     void setErrorReportingEnabled(bool enable)  { mReportErrors = enable; }
@@ -725,11 +731,6 @@ public:
     bool changed(const char *name)                                          { return changed(getIdx(name)); }
     
 private:
-    
-    // Deleted
-    
-    FrameLib_Parameters(const FrameLib_Parameters&) = delete;
-    FrameLib_Parameters& operator=(const FrameLib_Parameters&) = delete;
     
     // Utility
     

@@ -105,6 +105,11 @@ public:
         
         ErrorList() : mReportsSize(0), mItemsSize(0), mFull(false) {}
         
+        // Non-copyable
+        
+        ErrorList(const ErrorList&) = delete;
+        ErrorList& operator=(const ErrorList&) = delete;
+        
         const ErrorReport operator[](size_t idx) const { return mReports[idx]; }
         size_t size() const { return mReportsSize; }
         
@@ -114,11 +119,6 @@ public:
         bool isFull() const { return mFull; }
         
     private:
-        
-        // Deleted
-        
-        ErrorList(const ErrorList&) = delete;
-        ErrorList& operator=(const ErrorList&) = delete;
         
         bool addItem(const char *str)
         {

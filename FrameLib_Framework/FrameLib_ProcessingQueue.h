@@ -39,16 +39,16 @@ public:
     
     FrameLib_ProcessingQueue(FrameLib_ErrorReporter& errorReporter) : mTop(nullptr), mTail(nullptr), mTimedOut(false), mErrorReporter(errorReporter) {}
     
+    // Non-copyable
+    
+    FrameLib_ProcessingQueue(const FrameLib_ProcessingQueue&) = delete;
+    FrameLib_ProcessingQueue& operator=(const FrameLib_ProcessingQueue&) = delete;
+    
     void add(FrameLib_DSP *object);
     void reset() { mTimedOut = false; }
     bool isTimedOut() { return mTimedOut; }
 
 private:
-    
-    // Deleted
-    
-    FrameLib_ProcessingQueue(const FrameLib_ProcessingQueue&) = delete;
-    FrameLib_ProcessingQueue& operator=(const FrameLib_ProcessingQueue&) = delete;
     
     FrameLib_DSP *mTop;
     FrameLib_DSP *mTail;

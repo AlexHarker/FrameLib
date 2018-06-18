@@ -35,6 +35,11 @@ public:
             start(method);
         }
         
+        // Non-copyable
+        
+        Queue(const Queue&) = delete;
+        Queue& operator=(const Queue&) = delete;
+
         void add(T *object)
         {
             // Do not add if nullptr or re-add if already in queue
@@ -73,11 +78,6 @@ public:
         T *getFirst() const { return mFirst; }
         
     private:
-        
-        // Deleted
-        
-        Queue(const Queue&) = delete;
-        Queue& operator=(const Queue&) = delete;
         
         T *mFirst;
         T *mTop;
