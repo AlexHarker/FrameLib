@@ -78,13 +78,13 @@ private:
             
         public:
             
-            NewThread(CoreAllocator *allocator) : FrameLib_DelegateThread(FrameLib_Thread::kHighPriority), mAllocator(allocator) {}
+            NewThread(CoreAllocator& allocator) : FrameLib_DelegateThread(FrameLib_Thread::kHighPriority), mAllocator(allocator) {}
             
         private:
             
-            void doTask() override { mAllocator->addScheduledPool(); };
+            void doTask() override { mAllocator.addScheduledPool(); };
             
-            CoreAllocator *mAllocator;
+            CoreAllocator& mAllocator;
         };
         
         /**
@@ -100,13 +100,13 @@ private:
             
         public:
             
-            FreeThread(CoreAllocator *allocator) : FrameLib_TriggerableThread(FrameLib_Thread::kLowPriority), mAllocator(allocator) {}
+            FreeThread(CoreAllocator& allocator) : FrameLib_TriggerableThread(FrameLib_Thread::kLowPriority), mAllocator(allocator) {}
             
         private:
             
-            void doTask() override { mAllocator->destroyScheduledPool(); };
+            void doTask() override { mAllocator.destroyScheduledPool(); };
             
-            CoreAllocator *mAllocator;
+            CoreAllocator& mAllocator;
         };
                 
     public:
@@ -174,15 +174,15 @@ public:
         
     public:
         
-        Pruner(FrameLib_GlobalAllocator *allocator) : mAllocator(allocator)
+        Pruner(FrameLib_GlobalAllocator& allocator) : mAllocator(allocator)
         {
-            mAllocator->mLock.acquire();
+            mAllocator.mLock.acquire();
         }
         
         ~Pruner()
         {
-            mAllocator->mAllocator.prune();
-            mAllocator->mLock.release();
+            mAllocator.mAllocator.prune();
+            mAllocator.mLock.release();
         }
         
         // Non-copyable
@@ -190,16 +190,14 @@ public:
         Pruner(const Pruner&) = delete;
         Pruner& operator=(const Pruner&) = delete;
         
-        void dealloc(void *ptr) { mAllocator->mAllocator.dealloc(ptr); }
+        void dealloc(void *ptr) { mAllocator.mAllocator.dealloc(ptr); }
 
     private:
         
         // Allocator
         
-        FrameLib_GlobalAllocator *mAllocator;
+        FrameLib_GlobalAllocator& mAllocator;
     };
-
-    // ************************************************************************************** //
 
     // Constructor / Destructor
     
@@ -343,7 +341,7 @@ public:
 
         // Constructor / Destructor
         
-        Storage(const char *name, FrameLib_LocalAllocator *allocator);
+        Storage(const char *name, FrameLib_LocalAllocator& allocator);
         ~Storage();
         
         // Non-copyable
@@ -368,12 +366,12 @@ public:
         unsigned long mCount;
         
         FrameLib_SpinLock mLock;
-        FrameLib_LocalAllocator *mAllocator;
+        FrameLib_LocalAllocator& mAllocator;
     };
     
     // Constructor / Destructor
     
-    FrameLib_LocalAllocator(FrameLib_GlobalAllocator *allocator);
+    FrameLib_LocalAllocator(FrameLib_GlobalAllocator& allocator);
     ~FrameLib_LocalAllocator();
     
     // Non-copyable
@@ -413,7 +411,7 @@ private:
     
     // Member Variables
     
-    FrameLib_GlobalAllocator *mAllocator;
+    FrameLib_GlobalAllocator& mAllocator;
     
     FreeBlock mFreeLists[numLocalFreeBlocks];
     FreeBlock *mTail;

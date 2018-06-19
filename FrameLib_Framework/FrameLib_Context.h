@@ -19,8 +19,62 @@
  */
 
 class FrameLib_Context
-{    
-    using Global = FrameLib_Global;
+{
+    /**
+     
+     \class ManagedPointer
+     
+     \brief a managed pointer for a context-related result.
+
+     This is a non-copyable class that uses RAII to update the reference counted pointer in FrameLib_Global
+     
+     */
+    
+    template <class T, FrameLib_Global::PointerSet<T> FrameLib_Global::*PointerSet>
+    class ManagedPointer
+    {
+        
+    public:
+        
+        // Constructor / Destructor
+        
+        ManagedPointer(const FrameLib_Context &context) : mGlobal(context.mGlobal), mReference(context.mReference)
+        {
+            mPointer = (mGlobal->*PointerSet).get(mReference);
+        }
+        
+        ~ManagedPointer()
+        {
+            (mGlobal->*PointerSet).release(mReference);
+            mPointer = nullptr;
+            mGlobal = nullptr;
+            mReference = nullptr;
+        }
+        
+        // Non-copyable
+        
+        ManagedPointer(const ManagedPointer&) = delete;
+        ManagedPointer& operator=(const ManagedPointer&) = delete;
+    
+        // Pointer dereferencing
+        
+        T *operator->()         { return mPointer; }
+        T& operator*()          { return *mPointer; }
+        
+    private:
+        
+        // Member Variables
+        
+        FrameLib_Global *mGlobal;
+        void *mReference;
+        T *mPointer;
+    };
+
+public:
+    
+    // Constructor - the reference should be a suitable reference address in the host environment
+    
+    FrameLib_Context(FrameLib_Global *global, void *reference) : mGlobal(global), mReference(reference) {}
     
     // Comparisions
     
@@ -34,74 +88,10 @@ class FrameLib_Context
         return !(a == b);
     }
     
-    /**
-     
-     \class ManagedPointer
-     
-     \brief a managed pointer for a context-related result.
-
-     This is a non-copyable class that uses RAII to update the reference counted pointer in FrameLib_Global
-     
-     */
-    
-    template <class T, T *(Global::*getMethod)(void *), void(Global::*releaseMethod)(void *)>
-    class ManagedPointer
-    {
-        
-    public:
-        
-        // Constructor / Destructor
-        
-        ManagedPointer(const FrameLib_Context &context) : mGlobal(context.mGlobal), mReference(context.mReference)
-        {
-            mPointer = (mGlobal->*getMethod)(mReference);
-        }
-        
-        ~ManagedPointer()
-        {
-            release();
-        }
-        
-        // Non-copyable
-        
-        ManagedPointer(const ManagedPointer&) = delete;
-        ManagedPointer& operator=(const ManagedPointer&) = delete;
-        
-        // Release
-        
-        void release()
-        {
-            if (mGlobal)
-                (mGlobal->*releaseMethod)(mReference);
-            mPointer = nullptr;
-            mGlobal = nullptr;
-            mReference = nullptr;
-        }
-        
-        // Pointer  / Bool Conversion
-        
-        T *operator->()         { return mPointer; }
-        operator bool() const   { return mPointer != nullptr; }
-        
-    private:
-        
-        // Member Variables
-        
-        T *mPointer;
-        FrameLib_Global *mGlobal;
-        void *mReference;
-    };
-
-public:
-    
-    // Constructor - the reference should be a suitable reference address in the host environment
-    
-    FrameLib_Context(FrameLib_Global *global, void *reference) : mGlobal(global), mReference(reference) {}
-    
     // Construct one of these objects to retain a relevant object
     
-    using Allocator = ManagedPointer<FrameLib_LocalAllocator, &Global::getAllocator, &Global::releaseAllocator>;
-    using ProcessingQueue = ManagedPointer<FrameLib_ProcessingQueue, &Global::getProcessingQueue, &Global::releaseProcessingQueue>;
+    using Allocator = ManagedPointer<FrameLib_LocalAllocator, &FrameLib_Global::mLocalAllocators>;
+    using ProcessingQueue = ManagedPointer<FrameLib_ProcessingQueue, &FrameLib_Global::mProcessingQueues>;
 
     // Get the global as a FrameLib_ErrorReporter from the context
     

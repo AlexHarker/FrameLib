@@ -32,7 +32,8 @@ class FrameLib_Global : public FrameLib_ErrorReporter
     
 private:
 
-    template <class T> class PointerSet
+    template <class T>
+    class PointerSet
     {
         // A simple countable pointer with a reference address
         
@@ -47,16 +48,47 @@ private:
         
     public:
         
-        // Add, find or release an object by reference address
+        PointerSet(FrameLib_Global& global) : mGlobal(global) {}
         
-        void add(T *object, void *reference);
-        T *find(void *reference);
-        void release(void *reference);
+        // Get an object given a reference pointer
+        
+        T *get(void *reference)
+        {
+            for (auto it = mPointers.begin(); it != mPointers.end(); it++)
+            {
+                if (it->mReference == reference)
+                {
+                    it->mCount++;
+                    return it->mObject.get();
+                }
+            }
+            
+            T *object = new T(mGlobal);
+            mPointers.push_back(CountablePointer(object, reference));
+            return object;
+        }
+        
+        // Release a pre-existing object by reference address
+        
+        void release(void *reference)
+        {
+            for (auto it = mPointers.begin(); it != mPointers.end(); it++)
+            {
+                if (it->mReference == reference)
+                {
+                    if (--it->mCount < 1)
+                        mPointers.erase(it);
+                    
+                    return;
+                }
+            }
+        }
         
     private:
         
         // Internal Pointers
         
+        FrameLib_Global& mGlobal;
         std::vector<CountablePointer> mPointers;
     };
     
@@ -90,7 +122,8 @@ private:
     
     // Constructor / Destructor
     
-    FrameLib_Global(FrameLib_ErrorReporter::HostNotifier *notifier) : FrameLib_ErrorReporter(notifier), mAllocator(*this), mCount(0) {}
+    FrameLib_Global(FrameLib_ErrorReporter::HostNotifier *notifier)
+    : FrameLib_ErrorReporter(notifier), mAllocator(*this), mLocalAllocators(*this), mProcessingQueues(*this), mCount(0) {}
     ~FrameLib_Global() {};
     
     // Non-copyable
@@ -98,20 +131,14 @@ private:
     FrameLib_Global(const FrameLib_Global&) = delete;
     FrameLib_Global& operator=(const FrameLib_Global&) = delete;
     
-    // Methods to retrieve common objects
-
-    FrameLib_LocalAllocator *getAllocator(void *reference);
-    FrameLib_ProcessingQueue *getProcessingQueue(void *reference);
-    
-    // Methods to release common objects
-
-    void releaseAllocator(void *reference);
-    void releaseProcessingQueue(void *reference);
-    
     // Reference Counting / Auto-deletion
     
     void increment();
     FrameLib_Global *decrement();
+    
+    // Conversion to allocator for initisation of local allocators
+    
+    operator FrameLib_GlobalAllocator& () { return mAllocator; }
     
     // Member Variables
     

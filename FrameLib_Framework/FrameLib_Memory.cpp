@@ -29,7 +29,7 @@ inline size_t blockSize(void* ptr)
 
 // The Core Allocator (has no threadsafety)
 
-FrameLib_GlobalAllocator::CoreAllocator::CoreAllocator(FrameLib_ErrorReporter& errorReporter) : mPools(nullptr), mOSAllocated(0), mAllocated(0), mLastDisposedPoolSize(0),  mScheduledNewPool(nullptr), mScheduledDisposePool(nullptr), mAllocThread(this), mFreeThread(this), mErrorReporter(errorReporter)
+FrameLib_GlobalAllocator::CoreAllocator::CoreAllocator(FrameLib_ErrorReporter& errorReporter) : mPools(nullptr), mOSAllocated(0), mAllocated(0), mLastDisposedPoolSize(0),  mScheduledNewPool(nullptr), mScheduledDisposePool(nullptr), mAllocThread(*this), mFreeThread(*this), mErrorReporter(errorReporter)
 {
     mTLSF = tlsf_create(malloc(tlsf_size()));
     insertPool(createPool(initSize));
@@ -273,7 +273,7 @@ size_t FrameLib_GlobalAllocator::alignSize(size_t x)
 
 // Local Storage
 
-FrameLib_LocalAllocator::Storage::Storage(const char *name, FrameLib_LocalAllocator *allocator)
+FrameLib_LocalAllocator::Storage::Storage(const char *name, FrameLib_LocalAllocator& allocator)
 :  mName(name), mType(kFrameNormal), mData(nullptr), mSize(0), mMaxSize(0), mCount(1), mAllocator(allocator)
 {}
 
@@ -282,7 +282,7 @@ FrameLib_LocalAllocator::Storage::~Storage()
     if (mType == kFrameTagged)
         getTagged()->~Serial();
 
-    mAllocator->dealloc(mData);
+    mAllocator.dealloc(mData);
 }
 
 void FrameLib_LocalAllocator::Storage::resize(bool tagged, size_t size)
@@ -306,7 +306,7 @@ void FrameLib_LocalAllocator::Storage::resize(bool tagged, size_t size)
     }
     else
     {
-        void *newData = mAllocator->alloc(maxSize);
+        void *newData = mAllocator.alloc(maxSize);
         
         if (newData)
         {
@@ -314,7 +314,7 @@ void FrameLib_LocalAllocator::Storage::resize(bool tagged, size_t size)
             
             if (mType == kFrameTagged)
                 getTagged()->~Serial();
-            mAllocator->dealloc(mData);
+            mAllocator.dealloc(mData);
             
             // Allocate
             
@@ -337,7 +337,7 @@ void FrameLib_LocalAllocator::Storage::resize(bool tagged, size_t size)
 
 // Constructor / Destructor
 
-FrameLib_LocalAllocator::FrameLib_LocalAllocator(FrameLib_GlobalAllocator *allocator) : mAllocator(allocator)
+FrameLib_LocalAllocator::FrameLib_LocalAllocator(FrameLib_GlobalAllocator& allocator) : mAllocator(allocator)
 {
     // Setup the free lists as a circularly linked list
     
@@ -376,7 +376,7 @@ void *FrameLib_LocalAllocator::alloc(size_t size)
     
     // If this fails call the global allocator
     
-    return mAllocator->alloc(size);
+    return mAllocator.alloc(size);
 }
 
 void FrameLib_LocalAllocator::dealloc(void *ptr)
@@ -386,7 +386,7 @@ void FrameLib_LocalAllocator::dealloc(void *ptr)
         // If the free lists are full send the tail back to the global allocator
         
         if (mTail->mMemory)
-            mAllocator->dealloc(mTail->mMemory);
+            mAllocator.dealloc(mTail->mMemory);
         
         // Put the memory into the (now vacant) tail position
         
@@ -430,7 +430,7 @@ FrameLib_LocalAllocator::Storage *FrameLib_LocalAllocator::registerStorage(const
         return *it;
     }
     
-    mStorage.push_back(new Storage(name, this));
+    mStorage.push_back(new Storage(name, *this));
     return mStorage.back();
 }
 
