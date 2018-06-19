@@ -11,14 +11,14 @@ bool invalidPosition(size_t pos, size_t lo, size_t hi)
     return pos == std::string::npos || (pos < lo) || (pos > hi);
 }
 
-void removeCharacters(std::string &name, size_t pos, size_t count, size_t& end, size_t& removed)
+void removeCharacters(std::string& name, size_t pos, size_t count, size_t& end, size_t& removed)
 {
     name.erase(pos, count);
     end -= count;
     removed += count;
 }
 
-size_t resolveFunctionType(std::string &name, size_t beg, size_t end)
+size_t resolveFunctionType(std::string& name, size_t beg, size_t end)
 {
     size_t searchPos;
     size_t removed = 0;
@@ -49,7 +49,7 @@ size_t resolveFunctionType(std::string &name, size_t beg, size_t end)
     return removed;
 }
 
-size_t findAndResolveFunctions(std::string &name, size_t beg, size_t end)
+size_t findAndResolveFunctions(std::string& name, size_t beg, size_t end)
 {
     size_t function1, function2;
     size_t removed = 0;
@@ -88,7 +88,7 @@ size_t findAndResolveFunctions(std::string &name, size_t beg, size_t end)
     }
 }
 
-void getTypeString(std::string &name, FrameLib_Object<FrameLib_Multistream> *obj)
+void getTypeString(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj)
 {
     int status;
     const char *type_mangled_name = typeid(*obj).name();
@@ -97,7 +97,7 @@ void getTypeString(std::string &name, FrameLib_Object<FrameLib_Multistream> *obj
     name = real_name;
     free(real_name);
 
-    // Resolve functions Recursively
+    // Resolve functions recursively
     
     findAndResolveFunctions(name, 0, name.length() - 1);
 }
@@ -309,65 +309,50 @@ std::string serialiseGraph(FrameLib_Multistream *requestObject)
     return output.str();
 }
 
-void exportReplaceClassName(std::string& code, const char *classname)
+std::string exportClassName(const char *codeIn, const char *classname)
 {
+    std::string codeOut(codeIn);
+    
     size_t pos = 0;
 
-    while ((pos = code.find("$")) != std::string::npos)
-        code.replace(pos, 1, classname);
+    while ((pos = codeOut.find("$")) != std::string::npos)
+        codeOut.replace(pos, 1, classname);
+    
+    return codeOut;
 }
 
-void exportFilePath(std::string& path, const char *className, const char *ext)
+ExportError exportWriteFile(std::stringstream& contents, const char *path, const char *className, const char *ext)
 {
-    path.append("/");
-    path.append(className);
-    path.append(ext);
+    std::string fileName(path);
+
+    fileName.append("/");
+    fileName.append(className);
+    fileName.append(ext);
+    
+    std::ofstream file(fileName.c_str(), std::ofstream::out);
+    
+    if (!file.is_open())
+        return kExportPathError;
+    
+    file << contents.rdbuf();
+    file.close();
+    
+    return file.fail() ? kExportWriteError : kExportSuccess;
 }
 
 ExportError exportGraph(FrameLib_Multistream *requestObject, const char *path, const char *className)
 {
+    ExportError error = kExportSuccess;
     std::stringstream header, cpp;
-    std::ofstream headerFile, cppFile;
     
-    std::string headerName(path);
-    std::string cppName(path);
-    
-    std::string headerContents(exportHeader);
-    std::string cppOpenContents(exportCPPOpen);
-    std::string constructor = serialiseGraph(requestObject);
-    std::string cppCloseContents(exportCPPClose);
+    header << exportClassName(exportHeader, className);
+    cpp << exportClassName(exportCPPOpen, className) << serialiseGraph(requestObject) << exportClassName(exportCPPClose, className);
 
-    exportFilePath(headerName, className, ".h");
-    exportFilePath(cppName, className, ".cpp");
-        
-    exportReplaceClassName(headerContents, className);
-    exportReplaceClassName(cppOpenContents, className);
-    exportReplaceClassName(cppCloseContents, className);
-
-    header << headerContents;
-    cpp << cppOpenContents << constructor << cppCloseContents;
+    if ((error = exportWriteFile(header, path, className, ".h")))
+        return error;
     
-    headerFile.open(headerName.c_str(), std::ofstream::out);
-    
-    if (!headerFile.is_open())
-        return kExportPathError;
-    
-    headerFile << header.rdbuf();;
-    headerFile.close();
-    
-    if (headerFile.fail())
-        return kExportWriteError;
-    
-    cppFile.open(cppName.c_str(), std::ofstream::out);
-    
-    if (!cppFile.is_open())
-        return kExportPathError;
-    
-    cppFile << cpp.rdbuf();;
-    cppFile.close();
-    
-    if (cppFile.fail())
-        return kExportWriteError;
+    if ((error = exportWriteFile(cpp, path, className, ".cpp")))
+        return error;
     
     return kExportSuccess;
 }
