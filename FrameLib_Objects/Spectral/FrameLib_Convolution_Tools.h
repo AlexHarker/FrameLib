@@ -107,8 +107,6 @@ public:
         hisstools_rifft(mFFTSetup, &input, output, FFTSizelog2);
     }
     
-    
-    
     struct CorrelateOp
     {
         template<class T>
