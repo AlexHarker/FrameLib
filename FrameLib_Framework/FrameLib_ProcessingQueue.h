@@ -13,17 +13,17 @@ class FrameLib_DSP;
 
 /**
  
- \defgroup ProcessingQueue Processing Queue
+ @defgroup ProcessingQueue Processing Queue
  
  */
 
 /**
  
- \class FrameLib_ProcessingQueue
+ @class FrameLib_ProcessingQueue
  
- \ingroup ProcessingQueue
+ @ingroup ProcessingQueue
  
- \brief a minimal processing queue that is used to non-recursively process FrameLIB_DSP objects in a network.
+ @brief a minimal processing queue that is used to non-recursively process FrameLIB_DSP objects in a network.
  
  */
 
@@ -31,9 +31,9 @@ class FrameLib_ProcessingQueue
 {
     /**
      
-     \class IntervalSecondsClock
+     @class IntervalSecondsClock
      
-     \brief a clock for measuring time intervals in seconds.
+     @brief a clock for measuring time intervals in seconds.
      
      */
 

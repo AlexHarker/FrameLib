@@ -14,17 +14,17 @@
 
 /**
 
-\defgroup Memory
+@defgroup Memory
 
 */
 
 /**
  
- \class FrameLib_GlobalAllocator
+ @class FrameLib_GlobalAllocator
  
- \ingroup Memory
+ @ingroup Memory
  
- \brief a global threadsafe memory allocator suitable for realtime usage.
+ @brief a global threadsafe memory allocator suitable for realtime usage.
  
  */
 
@@ -35,9 +35,9 @@ private:
     
     /**
      
-     \class CoreAllocator
+     @class CoreAllocator
      
-     \brief the underlying single-threaded allocator.
+     @brief the underlying single-threaded allocator.
      
      */
     
@@ -45,9 +45,9 @@ private:
     {        
         /**
          
-         \struct Pool
+         @struct Pool
          
-         \brief a memory pool from system memory.
+         @brief a memory pool from system memory.
          
          */
         
@@ -67,9 +67,9 @@ private:
         
         /**
          
-         \class NewThread
+         @class NewThread
          
-         \brief a thread for allocating new memory pools from system memory.
+         @brief a thread for allocating new memory pools from system memory.
          
          */
         
@@ -89,9 +89,9 @@ private:
         
         /**
          
-         \class FreeThread
+         @class FreeThread
          
-         \brief a thread for freeing memory pools back to system memory.
+         @brief a thread for freeing memory pools back to system memory.
          
          */
 
@@ -163,9 +163,9 @@ public:
 
     /**
      
-     \class Pruner
+     @class Pruner
      
-     \brief an RAII utility for repeated deallocation with only a single lock.
+     @brief an RAII utility for repeated deallocation with only a single lock.
      
      */
         
@@ -230,13 +230,13 @@ private:
 
 /**
  
- \class FrameLib_LocalAllocator
+ @class FrameLib_LocalAllocator
  
- \ingroup Memory
+ @ingroup Memory
 
- \brief a memory allocator suitable for usage in a given FrameLib context.
+ @brief a memory allocator suitable for usage in a given FrameLib context.
  
- \sa FrameLib_Context
+ @sa FrameLib_Context
  
  */
 
@@ -246,9 +246,9 @@ class FrameLib_LocalAllocator
 
     /**
      
-     \struct FreeBlock
+     @struct FreeBlock
      
-     \brief a memory block that can be addressed as part of double-linked list.
+     @brief a memory block that can be addressed as part of double-linked list.
      
      */
     
@@ -267,9 +267,9 @@ public:
 
     /**
      
-     \class Storage
+     @class Storage
      
-     \brief named storage local to a specific context.
+     @brief named storage local to a specific context.
      
      */
     
@@ -283,9 +283,9 @@ public:
         
         /**
          
-         \class Access
+         @class Access
          
-         \brief an RAII utility for safely accessing a Storage object.
+         @brief an RAII utility for safely accessing a Storage object.
          
          */
         

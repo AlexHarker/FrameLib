@@ -8,11 +8,11 @@
 
 /**
  
- \class FrameLib_Context
+ @class FrameLib_Context
  
- \ingroup Hosting
+ @ingroup Hosting
 
- \brief a class used to represent distinct non-connectable areas in the host environment.
+ @brief a class used to represent distinct non-connectable areas in the host environment.
  
  The context acts as a proxy to FrameLib_Global, and contains a suitable pointer reference to the context in the host environment. Resources for each context are held in the global object, and the context is passed as a parameter when creating any FrameLib object.
  
@@ -22,9 +22,9 @@ class FrameLib_Context
 {
     /**
      
-     \class ManagedPointer
+     @class ManagedPointer
      
-     \brief a managed pointer for a context-related result.
+     @brief a managed pointer for a context-related resource.
 
      This is a non-copyable class that uses RAII to update the reference counted pointer in FrameLib_Global
      

@@ -12,7 +12,7 @@
 
 /**
  
- \defgroup Hosting
+ @defgroup Hosting
  
  */
 
@@ -23,11 +23,11 @@ enum ErrorSource { kErrorObject, kErrorParameter, kErrorMemory, kErrorDSP  };
 
 /**
  
- \class FrameLib_ErrorReporter
+ @class FrameLib_ErrorReporter
  
- \ingroup Hosting
+ @ingroup Hosting
  
- \brief a class used to report errors to the host environment.
+ @brief a class used to report errors to the host environment.
  
  */
 
@@ -38,9 +38,9 @@ public:
     
     /**
      
-     \class HostNotifier
+     @class HostNotifier
      
-     \brief a virtual struct used to supply a method for notifying the host of errors.
+     @brief a virtual struct used to supply a method for notifying the host of errors.
      
      */
     
@@ -51,9 +51,9 @@ public:
     
     /**
      
-     \class ErrorReport
+     @class ErrorReport
      
-     \brief a report for a single error.
+     @brief a report for a single error.
      
      */
 
@@ -85,9 +85,9 @@ public:
     
     /**
      
-     \class ErrorList
+     @class ErrorList
      
-     \brief a list of ErrorReport objects.
+     @brief a list of ErrorReport objects.
      
      */
     
@@ -104,9 +104,9 @@ public:
         
         /**
          
-         \class ConstIterator
+         @class ConstIterator
          
-         \brief an iterator for reports in the list (with an underlying const ErrorReport type).
+         @brief an iterator for reports in the list (with an underlying const ErrorReport type).
          
          */
         

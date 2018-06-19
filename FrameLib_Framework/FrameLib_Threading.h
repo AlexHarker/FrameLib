@@ -8,7 +8,7 @@
 
 /**
  
- \defgroup Threading
+ @defgroup Threading
  
  */
 
@@ -73,11 +73,11 @@ bool nullSwap(std::atomic<T *>& value, T *exchange)
 
 /**
  
- \class FrameLib_SpinLock
+ @class FrameLib_SpinLock
  
- \ingroup Threading
+ @ingroup Threading
 
- \brief a spinlock that can be locked, attempted or acquired.
+ @brief a spinlock that can be locked, attempted or acquired.
  
  */
 
@@ -106,11 +106,11 @@ private:
 
 /**
  
- \class FrameLib_SpinLockHolder
+ @class FrameLib_SpinLockHolder
  
- \ingroup Threading
+ @ingroup Threading
 
- \brief a RAII hold utility for a FrameLib_SpinLock
+ @brief a RAII hold utility for a FrameLib_SpinLock
  
  */
 
@@ -142,11 +142,11 @@ private:
 
 /**
  
- \class FrameLib_Thread
+ @class FrameLib_Thread
  
- \ingroup Threading
+ @ingroup Threading
 
- \brief lightweight joinable thread with variable priority level
+ @brief lightweight joinable thread with variable priority level
  
  The thread must be joined before destruction.
  
@@ -193,11 +193,11 @@ private:
 
 /**
  
- \class FrameLib_Semaphore
+ @class FrameLib_Semaphore
  
- \brief a semaphore class wrapping an OS-level semaphore
+ @brief a semaphore class wrapping an OS-level semaphore
  
- \ingroup Threading
+ @ingroup Threading
 
  The semaphore must be clsed before destruction.
  
@@ -231,11 +231,11 @@ private:
 
 /**
  
- \class FrameLib_TriggerableThread
+ @class FrameLib_TriggerableThread
 
- \ingroup Threading
+ @ingroup Threading
 
- \brief a thread that can be triggered from another thread (there is no mechanism to check progress)
+ @brief a thread that can be triggered from another thread (there is no mechanism to check progress)
  
  The thread should be joined before desctruction.
  
@@ -283,11 +283,11 @@ private:
 
 /**
  
- \class FrameLib_DelegateThread
+ @class FrameLib_DelegateThread
  
- \ingroup Threading
+ @ingroup Threading
 
- \brief a thread to delegate tasks to, which can be then be checked for completion
+ @brief a thread to delegate tasks to, which can be then be checked for completion
  
  The thread should be joined before desctruction.
  

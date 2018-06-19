@@ -13,15 +13,15 @@
 
 /**
  
- \defgroup DSP Processing Objects
+ @defgroup DSP Processing Objects
   
  */
 
 /**
  
- \class FrameLib_Queueable
+ @class FrameLib_Queueable
  
- \brief a template class for items that can be placed on a queue
+ @brief a template class for items that can be placed on a queue
  
  */
 
@@ -35,9 +35,9 @@ public:
     
     /**
      
-     \class Queue
+     @class Queue
      
-     \brief a single-threaded queue for non-recursive queuing of items for processing
+     @brief a single-threaded queue for non-recursive queuing of items for processing
      
      An item can only be in one position in a single queue at a time.
      
@@ -114,13 +114,13 @@ private:
 
 /**
  
- \class FrameLib_Object
+ @class FrameLib_Object
  
- \ingroup DSP
+ @ingroup DSP
  
- \brief an abstract template class providing an interface for FrameLib objects and implementing connectivity
+ @brief an abstract template class providing an interface for FrameLib objects and implementing connectivity
  
- \sa FrameLib_Block, FrameLib_DSP FrameLib_Multistream
+ @sa FrameLib_Block, FrameLib_DSP FrameLib_Multistream
  
  */
 
@@ -134,9 +134,9 @@ public:
     
     /**
      
-     \class Connection
+     @class Connection
      
-     \brief holds the connected object and IO indices for a connection to an object
+     @brief holds the connected object and IO indices for a connection to an object
      
      */
     
@@ -918,11 +918,11 @@ private:
 
 /**
  
- \class FrameLib_Block
+ @class FrameLib_Block
  
- \ingroup DSP
+ @ingroup DSP
 
- \brief an abstract class that represents either a single FrameLib_DSP object, or a group of connected FrameLib_DSP objects.
+ @brief an abstract class that represents either a single FrameLib_DSP object, or a group of connected FrameLib_DSP objects.
  
     This abstract class provides a connectivity interface to FrameLib_DSP objects or blocks (groups of FrameLib_DSP objects). Most objects inherit this in the FrameLib_DSP class. Objects that have asynchronous outputs can use this class to host multiple FrameLib_DSP objects and alias the connections correctly.
  

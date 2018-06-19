@@ -13,11 +13,11 @@
 
 /**
 
- \class FrameLib_Global
+ @class FrameLib_Global
  
- \ingroup Hosting
+ @ingroup Hosting
 
- \brief a class for containing and managing FrameLib's global resources.
+ @brief a class for containing and managing FrameLib's global resources.
  
  The global object represents a self-contained FremeLib environment with a single memory-management and error reporting system. The host environment needs to maintain at least one global object in order to create FrameLib networks. Global objects are not constructed/deleted directly, but managed via calls to the static get()/release() methods which take a handle and maintain an internal reference count. The global object can be used as a singleton via a globally-accessible handle, or if preferred separate networks may use individual global objects, in which case they share no resources.
  
@@ -35,8 +35,14 @@ private:
     template <class T>
     class PointerSet
     {
-        // A simple countable pointer with a reference address
-        
+        /**
+         
+         @class CountablePointer
+         
+         @brief a simple reference counted pointer with a reference address.
+         
+         */
+                
         struct CountablePointer
         {
             CountablePointer(T* object, void *reference) : mObject(object), mReference(reference), mCount(1) {}
@@ -98,10 +104,10 @@ public:
     
      If the handle points to a nullptr, on return it will point to a valid FrameLib_Global object. Otherwise the reference count of the global object will be incremented. If a new global object is created it will use the object pointed to by notifier to report errors to the host.
      
-     \param global a handle to a FrameLib_Global object.
-     \param notifier a pointer to a class that extends FrameLib_ErrorReporter::HostNotifier.
+     @param global a handle to a FrameLib_Global object.
+     @param notifier a pointer to a class that extends FrameLib_ErrorReporter::HostNotifier.
 
-     \sa release()
+     @sa release()
      
      */
     
@@ -111,9 +117,9 @@ public:
      
      If the handle points a valid FrameLib_Global object then its reference count will be decremented. If the count becomes zero the object will be deleted and the contents of the handle replaced with a nullptr.
      
-     \param global a handle to a FrameLib_Global object.
+     @param global a handle to a FrameLib_Global object.
 
-     \sa get()
+     @sa get()
      */
     
     static void release(FrameLib_Global **global);

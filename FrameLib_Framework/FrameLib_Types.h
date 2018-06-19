@@ -4,7 +4,7 @@
 
 /**
  
- \defgroup Utility
+ @defgroup Utility
  
  */
 
@@ -29,9 +29,9 @@ typedef unsigned char *BytePointer;
 
 /**
  
- \struct FrameLib_TimeFormat
+ @struct FrameLib_TimeFormat
  
- \brief a type for representing time in fixed-point high-precision for scheduling purposes.
+ @brief a type for representing time in fixed-point high-precision for scheduling purposes.
  
  */
 
@@ -57,9 +57,9 @@ enum ConnectionResult { kConnectSuccess, kConnectWrongContext, kConnectSelfConne
 
 /**
  
- \struct FrameLib_Proxy
+ @struct FrameLib_Proxy
  
- \brief a virtual struct allowing for extensible communication to/from the host environment.
+ @brief a virtual struct allowing for extensible communication to/from the host environment.
  
  This structure is used to facilitate host environment communication with FrameLib objects. On construction each FrameLib_Object takes a pointer to a proxy which may be a nullptr or a valid pointer to a type inheriting from FrameLib_Proxy. By default the object does nothing, but hosts may wish to use inheriting types to store typesafe pointers to owning objects (thus allowing the owning object to be retrieved from FrameLib classes.
  
@@ -75,11 +75,11 @@ struct FrameLib_Proxy
 
 /**
  
- \class FrameLib_OwnedList
+ @class FrameLib_OwnedList
 
- \ingroup Utility
+ @ingroup Utility
  
- \brief a convenience wrapper for dealing with a vector of objects owned by pointer.
+ @brief a convenience wrapper for dealing with a vector of objects owned by pointer.
  
  This minimal template class inherits from a std::vector of std::unique_ptr<T> objects. The owned list of objects is thus memory-managed as-per std::unique_ptr. For convenience the add() method allows a raw pointer to be added to the end of the vector (and thus ownership transferred) in a compact manner.
 
@@ -90,7 +90,7 @@ struct FrameLib_OwnedList : public std::vector<std::unique_ptr<T>>
 {    
     /** Add a pointer to the list of managed pointers, transferring ownership.
      
-     \param object the pointer to add to the owned list.
+     @param object the pointer to add to the owned list.
      
      */
     void add(T *object)

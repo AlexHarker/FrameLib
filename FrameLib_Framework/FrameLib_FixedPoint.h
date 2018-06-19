@@ -8,17 +8,17 @@
 
 /**
  
- \defgroup FixedPoint Fixed-Point
+ @defgroup FixedPoint Fixed-Point
  
  */
 
 /**
  
- \struct FL_SP
+ @struct FL_SP
  
- \ingroup FixedPoint
+ @ingroup FixedPoint
  
- \brief a minimal class for "super precision" fixed-point calculations where required.
+ @brief a minimal class for "super precision" fixed-point calculations where required.
  
  This unsigned type allows for 64 bits of integer precision and 128 bits of fractional precision.
  
@@ -53,11 +53,11 @@ private:
 
 /**
  
- \class FL_FP
+ @class FL_FP
  
- \ingroup FixedPoint
+ @ingroup FixedPoint
 
- \brief  high-precision unsigned fixed-point numerical format.
+ @brief  high-precision unsigned fixed-point numerical format.
  
  This unsigned type allows for 64 bits of integer precision and 64 bits of fractional precision. Basic arithmetic and comparison operators are supported, for this type, and when used in conjunction with double-precision floating-point numbers. The primary purpose of this type is to precisely represent the time in samples in FrameLib.
  

@@ -13,17 +13,17 @@
 
 /**
  
- \defgroup Parameters
+ @defgroup Parameters
  
  */
 
 /**
  
- \class FrameLib_Parameters
+ @class FrameLib_Parameters
  
- \ingroup Parameters
+ @ingroup Parameters
 
- \brief a set of parameters for a FrameLib object.
+ @brief a set of parameters for a FrameLib object.
  
  */
 
@@ -42,9 +42,9 @@ public:
     
     /**
      
-     \class Serial
+     @class Serial
      
-     \brief a set of tagged parameter values using external non-owned memory.
+     @brief a set of tagged parameter values using external non-owned memory.
      
      */
     
@@ -59,9 +59,9 @@ public:
         
         /**
          
-         \class Iterator
+         @class Iterator
          
-         \brief an iterator for the items in a Serial.
+         @brief an iterator for the items in a Serial.
          
          */
         
@@ -69,9 +69,9 @@ public:
         {
             /**
              
-             \struct Entry
+             @struct Entry
              
-             \brief data for a single entry in a Serial.
+             @brief data for a single entry in a Serial.
              
              */
             
@@ -241,9 +241,9 @@ public:
     
     /**
      
-     \class AutoSerial
+     @class AutoSerial
      
-     \brief an extension of Serial that manages its own resizable memory.
+     @brief an extension of Serial that manages its own resizable memory.
      
      */
         
@@ -273,9 +273,9 @@ public:
     
     /**
      
-     \class Info
+     @class Info
      
-     \brief a class for passing info strings to FrameLib_Parameters.
+     @brief a class for passing info strings to FrameLib_Parameters.
      
      */
     
@@ -297,9 +297,9 @@ private:
     
     /**
      
-     \class Parameter
+     @class Parameter
      
-     \brief an abstract class representing a parameter.
+     @brief an abstract class representing a parameter.
      
      */
     
@@ -381,9 +381,9 @@ private:
     
     /**
      
-    \class Parameter
+    @class Parameter
     
-    \brief an enumerated parameter class.
+    @brief an enumerated parameter class.
     
     */
 
@@ -420,9 +420,9 @@ private:
     
     /**
      
-     \class Value
+     @class Value
      
-     \brief a numeric parameter class storing a single value as a double.
+     @brief a numeric parameter class storing a single value as a double.
      
      */
 
@@ -454,9 +454,9 @@ private:
     
     /**
      
-     \class String
+     @class String
      
-     \brief a string parameter class.
+     @brief a string parameter class.
      
      */
 
@@ -487,9 +487,9 @@ private:
 
     /**
      
-     \class Array
+     @class Array
      
-     \brief a numeric parameter class storing an array of values.
+     @brief a numeric parameter class storing an array of values.
      
      */
 
