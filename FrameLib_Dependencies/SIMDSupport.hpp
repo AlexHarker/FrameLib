@@ -2,6 +2,7 @@
 #ifndef SIMDSUPPORT
 #define SIMDSUPPORT
 
+#include <cmath>
 #include <emmintrin.h>
 #include <immintrin.h>
 #include <stdint.h>
