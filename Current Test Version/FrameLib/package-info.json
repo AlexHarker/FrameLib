@@ -7,7 +7,7 @@
 	"extensible" : 0,
 	"homepatcher" : "FrameLib.overview.maxpat",
 	"max_version_max" : "none",
-	"max_version_min" : "7.3.5",
+	"max_version_min" : "7.3.4",
 	"name" : "FrameLib",
 	"os" : 	{
 		"macintosh" : 		{

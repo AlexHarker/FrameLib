@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 0.0, 44.0, 720.0, 856.0 ],
+		"rect" : [ 0.0, 44.0, 944.0, 856.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -54,7 +54,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 70.0, 720.0, 830.0 ],
+						"rect" : [ 0.0, 26.0, 944.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1247,7 +1247,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 720.0, 830.0 ],
+						"rect" : [ 0.0, 26.0, 944.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1545,7 +1545,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.0, 298.5, 592.0, 272.0 ],
+									"patching_rect" : [ 8.0, 298.5, 592.0, 257.0 ],
 									"style" : "",
 									"text" : "Passing control data from Max/MSP into FrameLib requires one extra step. The fl.frommax~ object requires a trigger frame to know when it should transfer the data from Max into FrameLib. In the left most below example, fl.interval~ is sending trigger frames every 14 milliseconds to fl.frommax~.\n\nThe fl.interval~ could be replaced by another scheduler object or alternatively, another FrameLib object could be sending frames of data to be used as triggers. This is a really important concept to understanding how a network of FrameLib objects can be synchronised through scheduling objects or each others output frames.\n\nAdditionally another method of changing parameters is included in the right most example. The fl.frommax~ object has been instantiated in \"params\" mode. This means you can send it gen~ like messages to adjust parameters inside FrameLib as an alternative to using fl.tag~. Sending a message to fl.frommax~ in this mode (such as \"length $1\" here is the equivalent of sending that variable and tagging it with \"fl.tag~ length\"\n\n"
 								}
@@ -1827,7 +1827,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 720.0, 830.0 ],
+						"rect" : [ 0.0, 70.0, 944.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
