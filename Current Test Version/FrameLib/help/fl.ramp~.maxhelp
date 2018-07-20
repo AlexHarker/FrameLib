@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 286.0, 217.0, 507.0, 686.0 ],
+		"rect" : [ 100.0, 100.0, 507.0, 686.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -874,7 +874,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 7.0, 25.0, 116.0, 47.0 ],
+									"patching_rect" : [ 7.0, 25.0, 118.0, 47.0 ],
 									"style" : "",
 									"text" : "0. samples\n1. ms (milliseconds)\n2. seconds"
 								}
@@ -926,7 +926,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 285.0, 205.666672, 73.0, 21.0 ],
+					"patching_rect" : [ 285.0, 205.666672, 70.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -936,7 +936,7 @@
 					}
 ,
 					"style" : "",
-					"text" : "p FFTModes"
+					"text" : "p unitModes"
 				}
 
 			}
@@ -1277,7 +1277,7 @@
 					"spacing_y" : 0.0,
 					"style" : "",
 					"text" : "Frame Lib reference",
-					"textcolor" : [ 0.413, 0.515, 0.668, 1.0 ],
+					"textcolor" : [ 0.27, 0.35, 0.47, 1.0 ],
 					"textoncolor" : [ 0.27, 0.35, 0.47, 1.0 ],
 					"textovercolor" : [ 0.4, 0.5, 0.65, 1.0 ],
 					"underline" : 1,
