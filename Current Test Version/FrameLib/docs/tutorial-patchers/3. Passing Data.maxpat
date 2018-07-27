@@ -36,7 +36,8 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "default",
-		"showontab" : 1,
+		"showrootpatcherontab" : 0,
+		"showontab" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-4",
@@ -529,7 +530,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 128.25, 509.5, 153.0, 53.0 ],
+									"patching_rect" : [ 128.25, 509.5, 154.0, 53.0 ],
 									"style" : "",
 									"text" : "This bang matches the top most fl.interval (200 milliseconds)"
 								}
@@ -2228,7 +2229,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 1440.0, 830.0 ],
+						"rect" : [ 0.0, 70.0, 1440.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
