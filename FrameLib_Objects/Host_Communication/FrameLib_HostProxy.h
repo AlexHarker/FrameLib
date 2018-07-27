@@ -59,7 +59,7 @@ class FrameLib_HostProxy : public virtual FrameLib_Proxy
                 
                 if (it->mObjects.size() == stream + 1)
                 {
-                    while (stream && it->mObjects[stream] == nullptr)
+                    while (stream && it->mObjects[stream - 1] == nullptr)
                         stream--;
                     
                     if (stream)
