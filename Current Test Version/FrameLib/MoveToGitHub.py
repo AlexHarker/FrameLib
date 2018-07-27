@@ -1,4 +1,4 @@
-from distutils.dir_util import copy_tree
+from distutils.dir_util import copy_tree, remove_tree
 
 gitExternals = '/Users/jamesbradbury/FrameLib-fork/build/framelib~/Build/Products/Public Testing/'
 gitPackage = '/Users/jamesbradbury/FrameLib-fork/Current Test Version/FrameLib'
@@ -10,9 +10,11 @@ def copyBuild():
     copy_tree(gitExternals, localExternals)
     print("Copied externals from Fork to Max Package")
 
+# copy the package from local max folder to repo
 def copyPackage():
+    remove_tree(gitPackage) # delete the destination folder so redundant files are removed
     copy_tree(localPackage, gitPackage)
     print("Copied package from Max Packages to Fork")
         
-copyBuild()
+#copyBuild()
 copyPackage()
