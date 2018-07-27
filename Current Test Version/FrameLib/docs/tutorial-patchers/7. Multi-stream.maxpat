@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 0.0, 45.0, 1440.0, 829.0 ],
+		"rect" : [ 59.0, 103.0, 640.0, 480.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -53,7 +53,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 1440.0, 803.0 ],
+						"rect" : [ 0.0, 26.0, 640.0, 454.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1379,7 +1379,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 1440.0, 803.0 ],
+						"rect" : [ 0.0, 26.0, 640.0, 454.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2387,7 +2387,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 1440.0, 803.0 ],
+						"rect" : [ 0.0, 26.0, 640.0, 454.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3149,7 +3149,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ -34.0, 78.0, 1440.0, 830.0 ],
+						"rect" : [ 0.0, 26.0, 640.0, 454.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3178,7 +3178,6 @@
 						"subpatcher_template" : "default",
 						"showontab" : 1,
 						"title" : "Changing Properties (1)",
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"hidden" : 1,
@@ -3678,7 +3677,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 1440.0, 803.0 ],
+						"rect" : [ 0.0, 26.0, 640.0, 454.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4088,7 +4087,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 1440.0, 803.0 ],
+						"rect" : [ 0.0, 26.0, 640.0, 454.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4428,7 +4427,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 34.0, 78.0, 1440.0, 830.0 ],
+						"rect" : [ 59.0, 129.0, 640.0, 454.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4457,14 +4456,26 @@
 						"subpatcher_template" : "default",
 						"showontab" : 1,
 						"title" : "Overview",
-						"visible" : 1,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-6",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"patching_rect" : [ 3.75, 365.0, 133.0, 22.0 ],
+									"style" : "",
+									"text" : "fl.split~ 0.5 /units ratios"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-7",
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 586.0, 45.0, 45.0 ],
+									"patching_rect" : [ 3.75, 623.0, 45.0, 45.0 ],
 									"style" : ""
 								}
 
@@ -4477,7 +4488,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 117.75, 402.0, 110.0, 52.0 ],
+									"patching_rect" : [ 117.75, 488.0, 110.0, 52.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 25,
 									"style" : ""
@@ -4491,35 +4502,9 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 117.75, 369.0, 60.0, 22.0 ],
+									"patching_rect" : [ 117.75, 406.0, 60.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.tomax~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-14",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 3.75, 369.0, 60.0, 22.0 ],
-									"style" : "",
-									"text" : "fl.tomax~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-12",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 173.0, 309.0, 30.0, 22.0 ],
-									"style" : "",
-									"text" : "info"
 								}
 
 							}
@@ -4530,23 +4515,9 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 3.75, 227.0, 115.0, 22.0 ],
+									"patching_rect" : [ 3.75, 264.0, 115.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.interval~ 1000 ms"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 14.0,
-									"id" : "obj-9",
-									"linecount" : 7,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 459.0, 674.0, 116.0 ],
-									"style" : "",
-									"text" : "Hold on? Why are we seeing only the fl.random~ frame being split in half by fl.split~? You would expect to see the left frame containing random values from fl.random~ and the right frame containing fl.ramp~ values. However, when you multi-stream frames you are not packing them side-by-side, you are layering them on top of one each other and they are treated separately. Any processing of the multi-stream container respects the properties of each frame in the stream such as its length.\n\nGo to the next tab to see why this is the case."
 								}
 
 							}
@@ -4558,23 +4529,10 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 3.75, 402.0, 110.0, 52.0 ],
+									"patching_rect" : [ 3.75, 488.0, 110.0, 52.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
 									"size" : 25,
 									"style" : ""
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-6",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 3.75, 332.0, 133.0, 22.0 ],
-									"style" : "",
-									"text" : "fl.split~ 0.5 /units ratios"
 								}
 
 							}
@@ -4585,7 +4543,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 147.75, 260.0, 214.0, 22.0 ],
+									"patching_rect" : [ 147.75, 297.0, 214.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.ramp~ /length 100 /scale normalised"
 								}
@@ -4598,7 +4556,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 3.75, 260.0, 124.0, 22.0 ],
+									"patching_rect" : [ 3.75, 297.0, 124.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.random~ /length 50"
 								}
@@ -4611,7 +4569,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 3.75, 298.0, 62.0, 22.0 ],
+									"patching_rect" : [ 3.75, 333.0, 62.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.pack~ 2"
 								}
@@ -4621,13 +4579,13 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-3",
-									"linecount" : 7,
+									"linecount" : 10,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 103.0, 670.0, 116.0 ],
+									"patching_rect" : [ 3.75, 103.0, 732.0, 163.0 ],
 									"style" : "",
-									"text" : "FrameLib has a unique feature called multi-streaming. It is similar to how you might take multiple elements (ints, floats, symbols) in Max and combine them into a list or symbol. Because everything is a frame in FrameLib, multi-streaming is essentially turning any number of frames into a multi-stream container. Each frame in this container can be a different length.\n\nUsing the fl.pack~ object, the example below  Take a look at the below example which uses the fl.pack~ object to combine two frames into a multi-stream frame."
+									"text" : "FrameLib has a feature called multi-streaming which allows you to process mulitple frames of different sizes simultaneously. Doing so makes your patch much easier to maintain, and allows you to create a single processing instance rather than having to duplicate it out.\n\nMulti-streaming is a somewhat complex system when you go beyond the basic functionality of combining multiple frames into a single 'multi-stream' container so let's start with the simplest method of working in this way.\n\nUsing the fl.pack~ object, two frames are concatenated into a single multi-stream unit. These frames can be thought of as being stacked vertically rather than horizontally and are processed in parallel. The example below demonstrates how "
 								}
 
 							}
@@ -4690,20 +4648,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-6", 0 ],
-									"source" : [ "obj-12", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-8", 0 ],
-									"source" : [ "obj-14", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-17", 0 ],
 									"source" : [ "obj-15", 0 ]
 								}
@@ -4730,20 +4674,6 @@
 								}
 
 							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-14", 0 ],
-									"source" : [ "obj-6", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-15", 0 ],
-									"source" : [ "obj-6", 1 ]
-								}
-
-							}
  ]
 					}
 ,
@@ -4764,11 +4694,11 @@
  ],
 		"lines" : [  ],
 		"parameters" : 		{
-			"obj-5::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
-			"obj-3::obj-15::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
-			"obj-1::obj-15::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
-			"obj-6::obj-15::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
-			"obj-4::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ]
+			"obj-1::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
+			"obj-4::obj-15::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
+			"obj-5::obj-15::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
+			"obj-6::obj-15::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-3::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
@@ -4798,10 +4728,6 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.split~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "fl.interval~.mxo",
 				"type" : "iLaX"
 			}
@@ -4811,6 +4737,10 @@
 			}
 , 			{
 				"name" : "fl.tomax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.split~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

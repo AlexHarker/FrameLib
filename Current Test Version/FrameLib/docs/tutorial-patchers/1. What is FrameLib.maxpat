@@ -476,7 +476,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 966.0, 546.0 ],
+						"rect" : [ 0.0, 70.0, 966.0, 546.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2129,7 +2129,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 70.0, 966.0, 546.0 ],
+						"rect" : [ 0.0, 26.0, 966.0, 546.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4476,12 +4476,12 @@
 		"lines" : [  ],
 		"parameters" : 		{
 			"obj-5::obj-93::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
-			"obj-116::obj-93::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
-			"obj-3::obj-26::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
 			"obj-9::obj-21::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
-			"obj-2::obj-93::obj-50" : [ "live.gain~[9]", "Volume", 0 ],
+			"obj-4::obj-9::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
+			"obj-116::obj-93::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
 			"obj-1::obj-9::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-4::obj-9::obj-50" : [ "live.gain~[7]", "Volume", 0 ]
+			"obj-3::obj-26::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
+			"obj-2::obj-93::obj-50" : [ "live.gain~[9]", "Volume", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{

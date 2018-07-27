@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 0.0, 44.0, 1003.0, 856.0 ],
+		"rect" : [ -212.0, -1036.0, 1483.0, 1036.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -39,6 +39,707 @@
 		"showontab" : 1,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-3",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patcher" : 					{
+						"fileversion" : 1,
+						"appversion" : 						{
+							"major" : 7,
+							"minor" : 3,
+							"revision" : 4,
+							"architecture" : "x64",
+							"modernui" : 1
+						}
+,
+						"rect" : [ 0.0, 26.0, 1483.0, 1010.0 ],
+						"bglocked" : 0,
+						"openinpresentation" : 0,
+						"default_fontsize" : 12.0,
+						"default_fontface" : 0,
+						"default_fontname" : "Arial",
+						"gridonopen" : 1,
+						"gridsize" : [ 15.0, 15.0 ],
+						"gridsnaponopen" : 1,
+						"objectsnaponopen" : 1,
+						"statusbarvisible" : 2,
+						"toolbarvisible" : 1,
+						"lefttoolbarpinned" : 0,
+						"toptoolbarpinned" : 0,
+						"righttoolbarpinned" : 0,
+						"bottomtoolbarpinned" : 0,
+						"toolbars_unpinned_last_save" : 0,
+						"tallnewobj" : 0,
+						"boxanimatetime" : 200,
+						"enablehscroll" : 1,
+						"enablevscroll" : 1,
+						"devicewidth" : 0.0,
+						"description" : "",
+						"digest" : "",
+						"tags" : "",
+						"style" : "",
+						"subpatcher_template" : "default",
+						"showontab" : 1,
+						"title" : "FFT Basics (2)",
+						"visible" : 1,
+						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-17",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 129.0, 164.0, 150.0, 33.0 ],
+									"style" : "",
+									"text" : "Link back to the original tutorial"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-15",
+									"maxclass" : "newobj",
+									"numinlets" : 0,
+									"numoutlets" : 0,
+									"patcher" : 									{
+										"fileversion" : 1,
+										"appversion" : 										{
+											"major" : 7,
+											"minor" : 3,
+											"revision" : 4,
+											"architecture" : "x64",
+											"modernui" : 1
+										}
+,
+										"rect" : [ 34.0, 78.0, 1372.0, 788.0 ],
+										"bglocked" : 0,
+										"openinpresentation" : 0,
+										"default_fontsize" : 12.0,
+										"default_fontface" : 0,
+										"default_fontname" : "Arial",
+										"gridonopen" : 1,
+										"gridsize" : [ 15.0, 15.0 ],
+										"gridsnaponopen" : 1,
+										"objectsnaponopen" : 1,
+										"statusbarvisible" : 2,
+										"toolbarvisible" : 1,
+										"lefttoolbarpinned" : 0,
+										"toptoolbarpinned" : 0,
+										"righttoolbarpinned" : 0,
+										"bottomtoolbarpinned" : 0,
+										"toolbars_unpinned_last_save" : 0,
+										"tallnewobj" : 0,
+										"boxanimatetime" : 200,
+										"enablehscroll" : 1,
+										"enablevscroll" : 1,
+										"devicewidth" : 0.0,
+										"description" : "",
+										"digest" : "",
+										"tags" : "",
+										"style" : "",
+										"subpatcher_template" : "default",
+										"boxes" : [ 											{
+												"box" : 												{
+													"id" : "obj-17",
+													"maxclass" : "newobj",
+													"numinlets" : 1,
+													"numoutlets" : 1,
+													"outlettype" : [ "bang" ],
+													"patching_rect" : [ 329.0, 248.0, 24.0, 22.0 ],
+													"style" : "",
+													"text" : "t b"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-15",
+													"linecount" : 3,
+													"maxclass" : "comment",
+													"numinlets" : 1,
+													"numoutlets" : 0,
+													"patching_rect" : [ 756.0, 193.5, 150.0, 47.0 ],
+													"style" : "",
+													"text" : "Using bin index information take data out of jitter matrices."
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-10",
+													"linecount" : 2,
+													"maxclass" : "comment",
+													"numinlets" : 1,
+													"numoutlets" : 0,
+													"patching_rect" : [ 361.0, 289.5, 164.0, 33.0 ],
+													"style" : "",
+													"text" : "When it receives a bang store the frame in jit.matrix"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-6",
+													"maxclass" : "comment",
+													"numinlets" : 1,
+													"numoutlets" : 0,
+													"patching_rect" : [ 284.0, 102.0, 87.0, 20.0 ],
+													"style" : "",
+													"text" : "Compute FFT"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-4",
+													"linecount" : 4,
+													"maxclass" : "comment",
+													"numinlets" : 1,
+													"numoutlets" : 0,
+													"patching_rect" : [ 15.0, 14.0, 636.0, 60.0 ],
+													"style" : "",
+													"text" : "This patch uses jitter matrices to store frames of data produced by pfft~. When a bang is received at jit.catch~ the frame is stored in a 2d jitter matrix 'oneframe'. Each 'row' of the jitter matrix stores the real and imaginary components respectively. Using the bin index outlet of fftin~, this held frames are recalled and passed to an inverse FFT calculation."
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-2",
+													"linecount" : 4,
+													"maxclass" : "comment",
+													"numinlets" : 1,
+													"numoutlets" : 0,
+													"patching_rect" : [ 78.0, 100.0, 150.0, 60.0 ],
+													"style" : "",
+													"text" : "Extract the fft window size and match dimensions of our matrix and catch objects to it"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"fontname" : "Arial",
+													"fontsize" : 12.0,
+													"id" : "obj-14",
+													"maxclass" : "newobj",
+													"numinlets" : 1,
+													"numoutlets" : 2,
+													"outlettype" : [ "signal", "" ],
+													"patching_rect" : [ 563.0, 186.0, 130.0, 22.0 ],
+													"style" : "",
+													"text" : "jit.peek~ oneframe 1 0"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"fontname" : "Arial",
+													"fontsize" : 12.0,
+													"id" : "obj-39",
+													"maxclass" : "newobj",
+													"numinlets" : 1,
+													"numoutlets" : 2,
+													"outlettype" : [ "signal", "" ],
+													"patching_rect" : [ 620.0, 224.0, 130.0, 22.0 ],
+													"style" : "",
+													"text" : "jit.peek~ oneframe 1 1"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"fontname" : "Arial",
+													"fontsize" : 12.0,
+													"id" : "obj-36",
+													"maxclass" : "newobj",
+													"numinlets" : 2,
+													"numoutlets" : 0,
+													"patching_rect" : [ 563.0, 331.0, 75.0, 22.0 ],
+													"style" : "",
+													"text" : "fftout~ 1"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"fontname" : "Arial",
+													"fontsize" : 12.0,
+													"id" : "obj-35",
+													"maxclass" : "newobj",
+													"numinlets" : 2,
+													"numoutlets" : 2,
+													"outlettype" : [ "jit_matrix", "" ],
+													"patching_rect" : [ 235.0, 295.0, 124.0, 22.0 ],
+													"style" : "",
+													"text" : "jit.catch~ 2 @mode 2"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"fontname" : "Arial",
+													"fontsize" : 12.0,
+													"id" : "obj-34",
+													"maxclass" : "newobj",
+													"numinlets" : 1,
+													"numoutlets" : 2,
+													"outlettype" : [ "jit_matrix", "" ],
+													"patching_rect" : [ 235.0, 327.0, 189.0, 22.0 ],
+													"style" : "",
+													"text" : "jit.matrix oneframe 2 float32 2048"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-29",
+													"maxclass" : "message",
+													"numinlets" : 2,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 28.5, 186.0, 46.0, 22.0 ],
+													"style" : "",
+													"text" : "dim $1"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-28",
+													"maxclass" : "message",
+													"numinlets" : 2,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 74.5, 186.0, 77.0, 22.0 ],
+													"style" : "",
+													"text" : "framesize $1"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"fontname" : "Arial",
+													"fontsize" : 12.0,
+													"id" : "obj-26",
+													"maxclass" : "newobj",
+													"numinlets" : 1,
+													"numoutlets" : 4,
+													"outlettype" : [ "int", "int", "int", "int" ],
+													"patching_rect" : [ 15.0, 100.0, 59.5, 22.0 ],
+													"style" : "",
+													"text" : "fftinfo~"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"fontname" : "Arial",
+													"fontsize" : 12.0,
+													"id" : "obj-24",
+													"maxclass" : "newobj",
+													"numinlets" : 1,
+													"numoutlets" : 3,
+													"outlettype" : [ "signal", "signal", "signal" ],
+													"patching_rect" : [ 235.0, 100.0, 47.0, 22.0 ],
+													"style" : "",
+													"text" : "fftin~ 1"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"fontname" : "Arial",
+													"fontsize" : 12.0,
+													"id" : "obj-23",
+													"maxclass" : "newobj",
+													"numinlets" : 1,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 329.0, 211.0, 30.0, 22.0 ],
+													"saved_object_attributes" : 													{
+														"attr_comment" : ""
+													}
+,
+													"style" : "",
+													"text" : "in 1"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"background" : 1,
+													"bgcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
+													"fontface" : 1,
+													"hint" : "",
+													"id" : "obj-18",
+													"ignoreclick" : 1,
+													"legacytextcolor" : 1,
+													"maxclass" : "textbutton",
+													"numinlets" : 1,
+													"numoutlets" : 3,
+													"outlettype" : [ "", "", "int" ],
+													"parameter_enable" : 0,
+													"patching_rect" : [ 908.0, 207.0, 20.0, 20.0 ],
+													"presentation_rect" : [ 337.857147, 292.5, 20.455872, 22.94873 ],
+													"rounded" : 60.0,
+													"style" : "",
+													"text" : "3",
+													"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"background" : 1,
+													"bgcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
+													"fontface" : 1,
+													"hint" : "",
+													"id" : "obj-11",
+													"ignoreclick" : 1,
+													"legacytextcolor" : 1,
+													"maxclass" : "textbutton",
+													"numinlets" : 1,
+													"numoutlets" : 3,
+													"outlettype" : [ "", "", "int" ],
+													"parameter_enable" : 0,
+													"patching_rect" : [ 513.0, 296.0, 20.0, 20.0 ],
+													"presentation_rect" : [ 322.857147, 277.5, 20.455872, 22.94873 ],
+													"rounded" : 60.0,
+													"style" : "",
+													"text" : "2",
+													"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"background" : 1,
+													"bgcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
+													"fontface" : 1,
+													"hint" : "",
+													"id" : "obj-12",
+													"ignoreclick" : 1,
+													"legacytextcolor" : 1,
+													"maxclass" : "textbutton",
+													"numinlets" : 1,
+													"numoutlets" : 3,
+													"outlettype" : [ "", "", "int" ],
+													"parameter_enable" : 0,
+													"patching_rect" : [ 367.0, 102.0, 20.0, 20.0 ],
+													"presentation_rect" : [ 292.857147, 247.5, 20.455872, 22.94873 ],
+													"rounded" : 60.0,
+													"style" : "",
+													"text" : "1",
+													"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+												}
+
+											}
+ ],
+										"lines" : [ 											{
+												"patchline" : 												{
+													"destination" : [ "obj-36", 0 ],
+													"midpoints" : [ 572.5, 210.0, 572.5, 210.0 ],
+													"source" : [ "obj-14", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-35", 0 ],
+													"source" : [ "obj-17", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-17", 0 ],
+													"source" : [ "obj-23", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-14", 0 ],
+													"midpoints" : [ 272.5, 171.0, 572.5, 171.0 ],
+													"order" : 1,
+													"source" : [ "obj-24", 2 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-35", 1 ],
+													"midpoints" : [ 258.5, 282.0, 349.5, 282.0 ],
+													"source" : [ "obj-24", 1 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-35", 0 ],
+													"source" : [ "obj-24", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-39", 0 ],
+													"midpoints" : [ 272.5, 171.0, 629.5, 171.0 ],
+													"order" : 0,
+													"source" : [ "obj-24", 2 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-28", 0 ],
+													"order" : 0,
+													"source" : [ "obj-26", 1 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-29", 0 ],
+													"order" : 1,
+													"source" : [ "obj-26", 1 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-35", 0 ],
+													"source" : [ "obj-28", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-34", 0 ],
+													"source" : [ "obj-29", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-34", 0 ],
+													"source" : [ "obj-35", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-36", 1 ],
+													"midpoints" : [ 629.5, 249.0, 628.5, 249.0 ],
+													"source" : [ "obj-39", 0 ]
+												}
+
+											}
+ ],
+										"styles" : [ 											{
+												"name" : "newobjBlue-1",
+												"default" : 												{
+													"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+												}
+,
+												"parentstyle" : "",
+												"multi" : 0
+											}
+, 											{
+												"name" : "newobjYellow-1",
+												"default" : 												{
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
+												}
+,
+												"parentstyle" : "",
+												"multi" : 0
+											}
+, 											{
+												"name" : "numberGold-1",
+												"default" : 												{
+													"accentcolor" : [ 0.764706, 0.592157, 0.101961, 1.0 ]
+												}
+,
+												"parentstyle" : "",
+												"multi" : 0
+											}
+ ]
+									}
+,
+									"patching_rect" : [ 8.75, 162.5, 110.0, 22.0 ],
+									"saved_object_attributes" : 									{
+										"description" : "",
+										"digest" : "",
+										"globalpatchername" : "",
+										"style" : "",
+										"tags" : ""
+									}
+,
+									"style" : "",
+									"text" : "p basicFreee_pfft~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 14.0,
+									"id" : "obj-13",
+									"linecount" : 6,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 8.75, 50.0, 672.0, 100.0 ],
+									"style" : "",
+									"text" : "You might remember from the very first tutorial a freeze patch which was made in both FrameLib and with native pfft~. This freezer process is a great demonstration of bin indices work differently between the two systems.\n\nOpen the native max version of the basicFreeze_pfft~ and follow the numbered notes to understand how its working."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-3",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "signal" ],
+									"patching_rect" : [ 8.75, 251.0, 76.0, 22.0 ],
+									"style" : "",
+									"text" : "basicFreeze"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"channels" : 1,
+									"id" : "obj-40",
+									"maxclass" : "live.gain~",
+									"numinlets" : 1,
+									"numoutlets" : 4,
+									"orientation" : 1,
+									"outlettype" : [ "signal", "", "float", "list" ],
+									"parameter_enable" : 1,
+									"patching_rect" : [ 8.75, 478.0, 136.0, 41.0 ],
+									"presentation_rect" : [ 0.0, 0.0, 50.0, 41.0 ],
+									"saved_attribute_attributes" : 									{
+										"valueof" : 										{
+											"parameter_longname" : "live.gain~[3]",
+											"parameter_shortname" : "Volume",
+											"parameter_type" : 0,
+											"parameter_mmin" : -70.0,
+											"parameter_mmax" : 6.0,
+											"parameter_initial" : [ 0.0 ],
+											"parameter_unitstyle" : 4
+										}
+
+									}
+,
+									"varname" : "live.gain~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-19",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 8.75, 533.0, 45.0, 45.0 ],
+									"style" : ""
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 1,
+									"fontsize" : 20.0,
+									"id" : "obj-1",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 8.75, 12.0, 456.0, 29.0 ],
+									"style" : "",
+									"text" : " Recreating a basic convolution example (2)."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"border" : 2.0,
+									"id" : "obj-49",
+									"linecolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 8.75, 43.0, 530.25, 5.0 ]
+								}
+
+							}
+ ],
+						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-19", 1 ],
+									"order" : 0,
+									"source" : [ "obj-40", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-19", 0 ],
+									"order" : 1,
+									"source" : [ "obj-40", 0 ]
+								}
+
+							}
+ ],
+						"styles" : [ 							{
+								"name" : "newobjBlue-1",
+								"default" : 								{
+									"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjYellow-1",
+								"default" : 								{
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "numberGold-1",
+								"default" : 								{
+									"accentcolor" : [ 0.764706, 0.592157, 0.101961, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+ ]
+					}
+,
+					"patching_rect" : [ 137.0, 581.0, 78.0, 21.0 ],
+					"saved_object_attributes" : 					{
+						"description" : "",
+						"digest" : "",
+						"globalpatchername" : "",
+						"style" : "",
+						"tags" : ""
+					}
+,
+					"style" : "",
+					"text" : "p fl.convolve~"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-6",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
@@ -53,7 +754,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 1003.0, 830.0 ],
+						"rect" : [ 0.0, 26.0, 1483.0, 1010.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -421,7 +1122,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "",
-										"visible" : 1,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-2",
@@ -1611,8 +2311,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1630,7 +2330,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 571.0, 582.0, 108.0, 21.0 ],
+					"patching_rect" : [ 810.0, 582.0, 108.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1660,7 +2360,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 1003.0, 830.0 ],
+						"rect" : [ 0.0, 26.0, 1483.0, 1010.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2099,8 +2799,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2118,7 +2818,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 471.0, 582.0, 94.0, 21.0 ],
+					"patching_rect" : [ 710.0, 582.0, 94.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -2148,7 +2848,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 1003.0, 830.0 ],
+						"rect" : [ 0.0, 26.0, 1483.0, 1010.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2178,6 +2878,18 @@
 						"showontab" : 1,
 						"title" : "Complex FFT",
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-7",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 228.916656, 306.0, 85.5, 20.0 ],
+									"style" : "",
+									"text" : "Play a sound"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-5",
 									"maxclass" : "newobj",
@@ -2611,7 +3323,7 @@
 											"modernui" : 1
 										}
 ,
-										"rect" : [ 0.0, 0.0, 640.0, 480.0 ],
+										"rect" : [ 84.0, 128.0, 640.0, 480.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -3091,7 +3803,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 8.75, 395.200012, 52.0, 22.0 ],
+									"patching_rect" : [ 8.75, 431.200012, 52.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.fft~"
 								}
@@ -3146,15 +3858,63 @@
 							}
 , 							{
 								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.011765, 0.396078, 0.752941, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-9",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 153.416656, 396.200012, 20.0, 20.0 ],
+									"presentation_rect" : [ 322.857147, 277.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "1",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.011765, 0.396078, 0.752941, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-12",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 316.416656, 306.0, 20.0, 20.0 ],
+									"presentation_rect" : [ 307.857147, 262.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "1",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
 									"fontsize" : 14.0,
 									"id" : "obj-3",
-									"linecount" : 17,
+									"linecount" : 16,
 									"maxclass" : "comment",
-									"numinlets" : 1,
+									"numinlets" : 0,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 50.0, 1030.0, 272.0 ],
+									"patching_rect" : [ 8.75, 50.0, 695.0, 257.0 ],
 									"style" : "",
-									"text" : "The previous example's only demonstrate some basic methods for recreating simple  FFT routines which you might have seen before. FrameLib really excels when you want to create complex processes.\n\nIn this example a median filter is used to seperate sinusoidal and noisy components from an incoming signal. The steps to achieveing this are actually quite simple.\n\n1. Compute FFT\n2. Calculate the hypotenuse of each real/imaginary pair of values\n3. Pass the hypotenuse through a median filter\n4. If the hypotenuse is less than the filtered hypotenuse multiply the original real/imaginary pair by 0 (in effect, a gate).\n\nPerforming this process within FrameLib is much easier than if it had to be realised with native Max objects. There is no storage required for the frames and we don't have to explicitly perform these calculations using the third 'bin index' signal as the position of each value within the frame corresponds to its bin. \n\n\n\n\n\n"
+									"suppressinlet" : 1,
+									"text" : "The previous example's only demonstrate some basic methods for recreating simple  FFT routines which you might have seen before. FrameLib really excels when you want to create complex processes.\n\nIn this example a median filter is used to seperate sinusoidal and noisy components from an incoming signal. The steps to achieveing this are actually quite simple.\n\n1. Compute FFT\n2. Calculate the hypotenuse of each real/imaginary pair of values\n3. Pass the hypotenuse through a median filter\n4. If the hypotenuse is less than the filtered hypotenuse multiply the original real/imaginary pair by 0 (in effect, a gate).\n\n\n\n\n\n"
 								}
 
 							}
@@ -3274,7 +4034,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
-									"midpoints" : [ 18.25, 419.0, 18.249992, 419.0 ],
+									"midpoints" : [ 18.25, 456.0, 18.249992, 456.0 ],
 									"order" : 1,
 									"source" : [ "obj-8", 0 ]
 								}
@@ -3283,7 +4043,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 1 ],
-									"midpoints" : [ 51.25, 485.0, 240.583333, 485.0 ],
+									"midpoints" : [ 51.25, 486.0, 240.583333, 486.0 ],
 									"order" : 0,
 									"source" : [ "obj-8", 1 ]
 								}
@@ -3292,7 +4052,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 0 ],
-									"midpoints" : [ 18.25, 485.0, 207.25, 485.0 ],
+									"midpoints" : [ 18.25, 486.0, 207.25, 486.0 ],
 									"order" : 0,
 									"source" : [ "obj-8", 0 ]
 								}
@@ -3301,7 +4061,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-37", 0 ],
-									"midpoints" : [ 51.25, 548.0, 130.25, 548.0 ],
+									"midpoints" : [ 51.25, 549.0, 130.25, 549.0 ],
 									"order" : 1,
 									"source" : [ "obj-8", 1 ]
 								}
@@ -3320,8 +4080,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3339,7 +4099,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 346.0, 582.0, 105.0, 21.0 ],
+					"patching_rect" : [ 585.0, 582.0, 105.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -3369,7 +4129,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 1003.0, 830.0 ],
+						"rect" : [ 0.0, 26.0, 1483.0, 1010.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3727,8 +4487,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3746,7 +4506,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 257.0, 582.0, 78.0, 21.0 ],
+					"patching_rect" : [ 496.0, 582.0, 78.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -3776,7 +4536,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 1003.0, 830.0 ],
+						"rect" : [ 0.0, 26.0, 1483.0, 1010.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3807,6 +4567,31 @@
 						"title" : "Simple FFT (Convolution)",
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-27",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 65.5, 551.0, 138.0, 20.0 ],
+									"style" : "",
+									"text" : "Convert frames to MSP"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-6",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 471.0, 155.0, 104.0, 20.0 ],
+									"style" : "",
+									"text" : "Play two sounds!"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 2,
 									"fontsize" : 14.0,
 									"id" : "obj-61",
 									"linecount" : 2,
@@ -3825,7 +4610,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 106.5, 512.0, 224.0, 20.0 ],
+									"patching_rect" : [ 106.5, 512.0, 200.0, 20.0 ],
 									"style" : "",
 									"text" : "Compute the inverse FFT for output"
 								}
@@ -4045,6 +4830,7 @@
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
 									"id" : "obj-10",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -4058,12 +4844,13 @@
 							}
 , 							{
 								"box" : 								{
+									"color" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
 									"id" : "obj-8",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 15.5, 361.0, 89.0, 22.0 ],
+									"patching_rect" : [ 15.5, 362.0, 89.0, 22.0 ],
 									"style" : "",
 									"text" : "fl.fft~"
 								}
@@ -4187,6 +4974,167 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 43.0, 530.25, 5.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-26",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 205.5, 551.0, 20.0, 20.0 ],
+									"presentation_rect" : [ 382.857147, 337.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "6",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-25",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 308.5, 512.0, 20.0, 20.0 ],
+									"presentation_rect" : [ 367.857147, 322.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "6",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-24",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 370.25, 459.0, 20.0, 20.0 ],
+									"presentation_rect" : [ 352.857147, 307.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "5",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-22",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 542.25, 400.0, 20.0, 20.0 ],
+									"presentation_rect" : [ 337.857147, 292.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "4",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-21",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 370.25, 362.0, 20.0, 20.0 ],
+									"presentation_rect" : [ 322.857147, 277.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "3",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-20",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 530.75, 281.0, 20.0, 20.0 ],
+									"presentation_rect" : [ 307.857147, 262.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "2",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-12",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 577.0, 155.0, 20.0, 20.0 ],
+									"presentation_rect" : [ 292.857147, 247.5, 20.455872, 22.94873 ],
+									"rounded" : 60.0,
+									"style" : "",
+									"text" : "1",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 								}
 
 							}
@@ -4346,8 +5294,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4365,7 +5313,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 107.0, 582.0, 140.0, 21.0 ],
+					"patching_rect" : [ 354.0, 582.0, 140.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -4395,7 +5343,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 0.0, 26.0, 1003.0, 830.0 ],
+						"rect" : [ -212.0, -1010.0, 1483.0, 1010.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4425,6 +5373,20 @@
 						"showontab" : 1,
 						"title" : "FFT Basics",
 						"boxes" : [ 							{
+								"box" : 								{
+									"fontsize" : 14.0,
+									"id" : "obj-7",
+									"linecount" : 8,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 329.75, 379.0, 692.0, 132.0 ],
+									"style" : "",
+									"text" : "The fl.fft~ takes in a frame as an analysis window and outputs two frames containg the FFT analysis. The left output of fl.fft~ contains the the real components and the right frame contains the imaginary. This is similar to the structure of the native fft~ object although there is no third frame produced containing the bin index information. In FrameLib the bin index outlet is not required as the position of a value within the frame corresponds to its bin (i.e the first value of the left frame is the amplitude of the first bin). Because frames in a network are synchronised and sample accurate, we don't have to recall indices using a bin index frame and instead the information is packaged into the frame itself. The next tab in this tutorial will make it clear how this works."
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-30",
@@ -4631,9 +5593,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 103.0, 670.0, 194.0 ],
+									"patching_rect" : [ 3.75, 103.0, 666.0, 194.0 ],
 									"style" : "",
-									"text" : "The Fast Fourier Transform (FFT) in FrameLib might take some time to understand if you are used to working with pfft~ in Max. The main difference is that there is no wrapper in FrameLib. Instead, frames can simply be sent through into the fl.fft~ object and we can begin processing sound in the frequency domain. \n\nBeneifts:\n\n1. Synchronicity is guaranteed\n2. Nothing occurs magically under the hood. Your network's processes are transparent\n3. Frame size is flexible and can easily be changed on the fly\n4. Mixture of sizes can be processed simultaneously\n\nTake a look at the comparison between the structure of an FFT process in FrameLib and native Max"
+									"text" : "The Fast Fourier Transform (FFT) in FrameLib might take some time to understand if you are used to working with pfft~ in Max. The main difference is that there is no wrapper in FrameLib. You do not create patches which are hosted inside of the pfft~ system and frames are directly dealt with by the fl.fft~ object.\n\nBeneifts:\n\n1. Synchronicity is guaranteed\n2. Nothing occurs magically under the hood. Your network's processes are transparent\n3. Frame size is flexible and can easily be changed on the fly\n4. Mixture of sizes can be processed simultaneously\n\nTake a look at the comparison between the structure of an FFT process in FrameLib and native Max"
 								}
 
 							}
@@ -4769,21 +5731,22 @@
  ],
 		"lines" : [  ],
 		"parameters" : 		{
-			"obj-4::obj-23::obj-21::obj-6" : [ "live.tab[6]", "live.tab[1]", 0 ],
-			"obj-5::obj-23::obj-35" : [ "[9]", "Level", 0 ],
-			"obj-4::obj-9::obj-35" : [ "[6]", "Level", 0 ],
-			"obj-10::obj-9::obj-35" : [ "[5]", "Level", 0 ],
-			"obj-10::obj-23::obj-35" : [ "[1]", "Level", 0 ],
+			"obj-10::obj-40" : [ "live.gain~", "Volume", 0 ],
 			"obj-4::obj-23::obj-35" : [ "[7]", "Level", 0 ],
 			"obj-6::obj-23::obj-21::obj-6" : [ "live.tab[7]", "live.tab[1]", 0 ],
-			"obj-10::obj-23::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-10::obj-40" : [ "live.gain~", "Volume", 0 ],
+			"obj-10::obj-23::obj-35" : [ "[1]", "Level", 0 ],
 			"obj-5::obj-23::obj-21::obj-6" : [ "live.tab[8]", "live.tab[1]", 0 ],
-			"obj-4::obj-40" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-10::obj-9::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
+			"obj-10::obj-9::obj-35" : [ "[5]", "Level", 0 ],
+			"obj-3::obj-40" : [ "live.gain~[3]", "Volume", 0 ],
 			"obj-4::obj-9::obj-21::obj-6" : [ "live.tab[5]", "live.tab[1]", 0 ],
+			"obj-6::obj-23::obj-35" : [ "[2]", "Level", 0 ],
+			"obj-10::obj-9::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
 			"obj-5::obj-4" : [ "live.gain~[2]", "Volume", 0 ],
-			"obj-6::obj-23::obj-35" : [ "[2]", "Level", 0 ]
+			"obj-4::obj-23::obj-21::obj-6" : [ "live.tab[6]", "live.tab[1]", 0 ],
+			"obj-5::obj-23::obj-35" : [ "[9]", "Level", 0 ],
+			"obj-4::obj-40" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-10::obj-23::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
+			"obj-4::obj-9::obj-35" : [ "[6]", "Level", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
@@ -4832,6 +5795,13 @@
 			}
 , 			{
 				"name" : "LinFilter.maxpat",
+				"bootpath" : "~/Documents/Max 7/Packages/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "basicFreeze.maxpat",
 				"bootpath" : "~/Documents/Max 7/Packages/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
@@ -4959,6 +5929,18 @@
 			}
 , 			{
 				"name" : "multiconvolve~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.register~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.audiotrigger~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.audiotrigger~.mxo",
 				"type" : "iLaX"
 			}
  ],

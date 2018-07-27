@@ -7,14 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2623E1F92101E341007C0F66 /* FrameLib_PhaseWrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2623E1F82101E341007C0F66 /* FrameLib_PhaseWrap.cpp */; };
 		2623E2042101E855007C0F66 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		2623E20B2101E884007C0F66 /* FrameLib_PhaseWrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2623E1F82101E341007C0F66 /* FrameLib_PhaseWrap.cpp */; };
-		2623E20C2101E887007C0F66 /* FrameLib_PhaseWrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 2623E1F72101E341007C0F66 /* FrameLib_PhaseWrap.h */; };
-		2623E20E2101E8CC007C0F66 /* fl.phasewrap~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2623E20D2101E8CC007C0F66 /* fl.phasewrap~.cpp */; };
-		2623E20F2101E8CC007C0F66 /* fl.phasewrap~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2623E20D2101E8CC007C0F66 /* fl.phasewrap~.cpp */; };
 		262C53C92101EEDC00F6F42F /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
-		262C53CA2101EF1100F6F42F /* FrameLib_PhaseWrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2623E1F82101E341007C0F66 /* FrameLib_PhaseWrap.cpp */; };
 		5A3CAB1E2052E7E8001082E3 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		5A3CAB1F2052E7E8001082E3 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		5AB54BBF2052E96E00325C14 /* fl.wrap~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AB54BBE2052E96E00325C14 /* fl.wrap~.cpp */; };
@@ -1841,11 +1835,8 @@
 
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
-		2623E1F72101E341007C0F66 /* FrameLib_PhaseWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_PhaseWrap.h; sourceTree = "<group>"; };
-		2623E1F82101E341007C0F66 /* FrameLib_PhaseWrap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_PhaseWrap.cpp; sourceTree = "<group>"; };
 		2623E2092101E855007C0F66 /* fl.phasewrap~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.phasewrap~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2623E20A2101E855007C0F66 /* fl.complexexpr~ copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "fl.complexexpr~ copy-Info.plist"; path = "/Users/jamesbradbury/FrameLib-fork/fl.complexexpr~ copy-Info.plist"; sourceTree = "<absolute>"; };
-		2623E20D2101E8CC007C0F66 /* fl.phasewrap~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.phasewrap~.cpp"; sourceTree = "<group>"; };
 		5A3CAB132052E67E001082E3 /* FrameLib_Ternary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Objects.h; sourceTree = "<group>"; };
 		5A3CAB142052E67E001082E3 /* FrameLib_Ternary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Template.h; sourceTree = "<group>"; };
 		5A3CAB262052E7E8001082E3 /* fl.wrap~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.wrap~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4383,8 +4374,6 @@
 				B8BDF04D1F2D0E0600264316 /* FrameLib_Peaks.cpp */,
 				B88F5557207A5872007774AD /* FrameLib_Reverse.h */,
 				B88F5558207A5873007774AD /* FrameLib_Reverse.cpp */,
-				2623E1F82101E341007C0F66 /* FrameLib_PhaseWrap.cpp */,
-				2623E1F72101E341007C0F66 /* FrameLib_PhaseWrap.h */,
 			);
 			path = Vector;
 			sourceTree = "<group>";
@@ -4951,7 +4940,6 @@
 				B8C5EBDA1E5FA6180086E8B6 /* fl.peaks~.cpp */,
 				B88F556F207A59E9007774AD /* fl.reverse~.cpp */,
 				B84A406F1FD73EA700A30455 /* fl.accumpoint~.cpp */,
-				2623E20D2101E8CC007C0F66 /* fl.phasewrap~.cpp */,
 			);
 			path = Vector;
 			sourceTree = "<group>";
@@ -4971,7 +4959,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2623E20C2101E887007C0F66 /* FrameLib_PhaseWrap.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10761,8 +10748,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2623E20B2101E884007C0F66 /* FrameLib_PhaseWrap.cpp in Sources */,
-				2623E20F2101E8CC007C0F66 /* fl.phasewrap~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11589,9 +11574,7 @@
 			files = (
 				B8A1F5BE1D5370DE00FA5FFC /* NumericTesting.cpp in Sources */,
 				B8B961DD1F1000D500D174F2 /* FrameLib_FixedPoint.cpp in Sources */,
-				2623E20E2101E8CC007C0F66 /* fl.phasewrap~.cpp in Sources */,
 				B80059BF1DAF96340073A866 /* FrameLib_RandGen.cpp in Sources */,
-				2623E1F92101E341007C0F66 /* FrameLib_PhaseWrap.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11848,7 +11831,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				262C53CA2101EF1100F6F42F /* FrameLib_PhaseWrap.cpp in Sources */,
 				B812606C20D697C2000B81D9 /* FrameLib_Expression.cpp in Sources */,
 				B812606B20D697BB000B81D9 /* FrameLib_ComplexExpression.cpp in Sources */,
 				B812606A20D697AD000B81D9 /* FrameLib_Unpack.cpp in Sources */,
