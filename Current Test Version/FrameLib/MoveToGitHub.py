@@ -16,5 +16,5 @@ def copyPackage():
     copy_tree(localPackage, gitPackage)
     print("Copied package from Max Packages to Fork")
         
-#copyBuild()
+copyBuild()
 copyPackage()

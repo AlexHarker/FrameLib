@@ -18,9 +18,6 @@
   OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 <root>
-  <module>jit-ref</module>
-  <module>m4l-ref</module>
-  <module>max-ref</module>
-  <module>msp-ref</module>
-  <module>FrameLib_ref</module>
+  <module>binary_ops</module>
+  <module>ternary_ops</modul>
 </root>

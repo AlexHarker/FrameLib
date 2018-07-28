@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 59.0, 103.0, 503.0, 509.0 ],
+		"rect" : [ 100.0, 100.0, 503.0, 509.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -132,7 +132,6 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "default",
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"arrows" : 1,
@@ -324,9 +323,9 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 11.0, 220.0, 154.0, 22.0 ],
+									"patching_rect" : [ 11.0, 220.0, 148.0, 22.0 ],
 									"style" : "",
-									"text" : "fl.minus~ /trigger_ins boths"
+									"text" : "fl.minus~ /trigger_ins both"
 								}
 
 							}
@@ -462,7 +461,7 @@
 								"patchline" : 								{
 									"color" : [ 0.640896, 0.0, 0.012428, 0.9 ],
 									"destination" : [ "obj-8", 1 ],
-									"midpoints" : [ 146.5, 207.0, 155.5, 207.0 ],
+									"midpoints" : [ 146.5, 207.0, 149.5, 207.0 ],
 									"order" : 2,
 									"source" : [ "obj-5", 0 ]
 								}
@@ -488,8 +487,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -996,8 +995,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1431,7 +1430,7 @@
 					"spacing_y" : 0.0,
 					"style" : "",
 					"text" : "Frame Lib reference",
-					"textcolor" : [ 0.413, 0.515, 0.668, 1.0 ],
+					"textcolor" : [ 0.27, 0.35, 0.47, 1.0 ],
 					"textoncolor" : [ 0.27, 0.35, 0.47, 1.0 ],
 					"textovercolor" : [ 0.4, 0.5, 0.65, 1.0 ],
 					"underline" : 1,
@@ -1625,8 +1624,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",
