@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 
-<c74object name="fl.plus~" module="FrameLib">
+<c74object name="fl.plus~" module="" category="FrameLib">
 
 	<digest>
-		Adds values in two input frames.
+		Adds values in the two input frames.
 	</digest>
 
 	<description>
-		<o>fl.plus~</o>calculates pairs of values in turn.
+		<o>fl.plus~</o>calculates pairs of values in turn.<br></br>
+		The result is an output frame at least as long as the smaller of the two inputs.<br></br>
+		When frames mismatch in size the result depends on the setting of the mismatch parameter.<br></br>
+		Either or both inputs may be set to trigger output.<br></br>
 	</description>
 
 	<misc name = "Parameters">
@@ -33,7 +36,7 @@
 
 		<entry name = "3. /pad [double]">
 			<description>
-				Sets the value used for padding (for either pad_in or pad_out modes.
+				Sets the value used for padding (for either pad_in or pad_out modes).
 			</description>
 		</entry>
 	</misc>
@@ -45,31 +48,18 @@
 		<metadata name="tag">Binary Ops</metadata>
 	</metadatalist>
 
-	<!--DISCUSSION-->
-	<discussion>
-		The result is an output frame at least as long as the smaller of the two inputs.
-		When frames mismatch in size the result depends on the setting of the mismatch parameter.
-		Either or both inputs may be set to trigger output. AHHHHHHHHHHHHH
-	</discussion>
-
 	<!--SEEALSO-->
 	<!-- The information here is pulled from the digest of the corresponding object-->
 	<seealsolist>
 		<seealso name="fl.minus~" />
 		<seealso name="fl.times~" />
 		<seealso name="fl.divide~" />
-		<seealso name="fl.pow~" />
 	</seealsolist>
 
 	<misc name = "Discussion">
-		<entry name ="More details">
-			<description>
-		<!--This is a place to put some parameter/mismatch info-->
-			</description>
-		</entry>
 		<entry name ="Keywords">
 			<description>
-addition, add, plus, +~, +.
+				addition, add, plus, +~, +
 			</description>
 		</entry>
 	</misc>

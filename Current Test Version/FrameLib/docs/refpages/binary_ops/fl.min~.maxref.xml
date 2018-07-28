@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 
-<c74object name="fl.minus~" module="" category="FrameLib">
+<c74object name="fl.min~" module="" category="FrameLib">
 
 	<digest>
-		Subtracts the right input frame from the left input frame.
+		Calculates the minimums of pairs of values in the two input frames.
 	</digest>
 
 	<description>
-		<o>fl.minus~</o>calculates pairs of values in turn.
+		<o>fl.min~</o>calculates pairs of values in turn.<br></br>
+		The result is an output frame at least as long as the smaller of the two inputs.<br></br>
+		When frames mismatch in size the result depends on the setting of the mismatch parameter.<br></br>
+		Either or both inputs may be set to trigger output.<br></br>
 	</description>
 
 	<misc name = "Parameters">
@@ -33,7 +36,7 @@
 
 		<entry name = "3. /pad [double]">
 			<description>
-				Sets the value used for padding (for either pad_in or pad_out modes.
+				Sets the value used for padding (for either pad_in or pad_out modes).
 			</description>
 		</entry>
 	</misc>
@@ -45,31 +48,22 @@
 		<metadata name="tag">Binary Ops</metadata>
 	</metadatalist>
 
-	<!--DISCUSSION-->
-	<discussion>
-		The result is an output frame at least as long as the smaller of the two inputs.
-		When frames mismatch in size the result depends on the setting of the mismatch parameter.
-		Either or both inputs may be set to trigger output. AHHHHHHHHHHHHH
-	</discussion>
-
 	<!--SEEALSO-->
 	<!-- The information here is pulled from the digest of the corresponding object-->
 	<seealsolist>
-		<seealso name="fl.plus~" />
-		<seealso name="fl.times~" />
-		<seealso name="fl.divide~" />
 		<seealso name="fl.pow~" />
+		<seealso name="fl.atan2~" />
+		<seealso name="fl.hypot~" />
+		<seealso name="fl.copysign~" />
+		<seealso name="fl.min~" />
+		<seealso name="fl.max~" />
+		<seealso name="fl.diff~" />
 	</seealsolist>
 
 	<misc name = "Discussion">
-		<entry name ="More details">
-			<description>
-		<!--This is a place to put some parameter/mismatch info-->
-			</description>
-		</entry>
 		<entry name ="Keywords">
 			<description>
-addition, add, plus, +~, +.
+				min
 			</description>
 		</entry>
 	</misc>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 
-<c74object name="fl.minus~" module="" category="FrameLib">
+<c74object name="fl.equals~" module="" category="FrameLib">
 
 	<digest>
-		Subtracts the right input frame from the left input frame.
+		Compares frame values for equality (output is 1 for true and 0 for false).
 	</digest>
 
 	<description>
-		<o>fl.minus~</o>calculates pairs of values in turn.<br></br>
+		<o>fl.equals~</o>calculates pairs of values in turn.<br></br>
 		The result is an output frame at least as long as the smaller of the two inputs.<br></br>
 		When frames mismatch in size the result depends on the setting of the mismatch parameter.<br></br>
 		Either or both inputs may be set to trigger output.<br></br>
@@ -51,15 +51,17 @@
 	<!--SEEALSO-->
 	<!-- The information here is pulled from the digest of the corresponding object-->
 	<seealsolist>
-		<seealso name="fl.plus~" />
-		<seealso name="fl.times~" />
-		<seealso name="fl.divide~" />
+		<seealso name="fl.notequals~" />
+		<seealso name="fl.greaterthan~" />
+		<seealso name="fl.greaterthaneq~" />
+		<seealso name="fl.lessthan~" />
+		<seealso name="fl.lessthaneq~" />
 	</seealsolist>
 
 	<misc name = "Discussion">
 		<entry name ="Keywords">
 			<description>
-				subtraction, take, minus, -~, -.
+				equals, ==
 			</description>
 		</entry>
 	</misc>
