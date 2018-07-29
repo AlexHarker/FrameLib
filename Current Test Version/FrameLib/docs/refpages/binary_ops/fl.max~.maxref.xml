@@ -57,7 +57,7 @@
 		<seealso name="fl.copysign~" />
 		<seealso name="fl.min~" />
 		<seealso name="fl.max~" />
-		<seealso name="fl.diff">
+		<seealso name="fl.diff~" />
 	</seealsolist>
 
 	<misc name = "Discussion">
