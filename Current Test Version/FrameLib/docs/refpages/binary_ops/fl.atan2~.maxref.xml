@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 
-<c74object name="fl.atan2~" module="" category="FrameLib">
+<c74object name="fl.atan2~" module="FrameLib" category="binary_ops">
 
 	<digest>
 		For each pair of input values calculates the arctangent using two arguments (left operand is y, right operand is x).

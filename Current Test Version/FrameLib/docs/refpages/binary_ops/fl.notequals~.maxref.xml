@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 
-<c74object name="fl.notequals~" module="" category="FrameLib">
+<c74object name="fl.notequals~" module="FrameLib" category="binary_ops">
 
 	<digest>
 		Compares frame values for inequality (output is 1 for true and 0 for false).

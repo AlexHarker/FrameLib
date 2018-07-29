@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 
-<c74object name="fl.and~" module="" category="FrameLib">
+<c74object name="fl.and~" module="FrameLib" category="binary_ops">
 
 	<digest>
 		Calculates the logical and of the left and right input frame values.

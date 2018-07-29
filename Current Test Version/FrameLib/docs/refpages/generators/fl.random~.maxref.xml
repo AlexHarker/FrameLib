@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 
-<c74object name="fl.random~" module="" category="generators">
+<c74object name="fl.random~" module="FrameLib" category="generators">
 
 	<digest>
 		Generates frames of linearly distributed random values in the range [0-1].

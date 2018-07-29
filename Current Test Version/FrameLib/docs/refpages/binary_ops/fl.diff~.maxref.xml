@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 
-<c74object name="fl.diff~" module="" category="FrameLib">
+<c74object name="fl.diff~" module="FrameLib" category="binary_ops">
 
 	<digest>
 		Calculates the absolute differences between values in the two input frames.
