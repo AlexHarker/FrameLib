@@ -11,7 +11,7 @@
 		<o>fl.plus~</o>calculates pairs of values in turn.<br></br>
 		The result is an output frame at least as long as the smaller of the two inputs.<br></br>
 		When frames mismatch in size the result depends on the setting of the mismatch parameter.<br></br>
-		Either or both inputs may be set to trigger output.<br></br>
+		Either or both inputs may be set to trigger output.
 	</description>
 
 	<misc name = "Parameters">
@@ -21,7 +21,7 @@
 				<bullet><b>[0] - wrap:</b> the smaller input is read modulo against the larger input. <br></br></bullet>
 				<bullet><b>[1] - shrink:</b> the output length is set to the size of the smaller input. <br></br></bullet>
 				<bullet><b>[2] - pad_in:</b> the smaller input is padded prior to the calculation to match the larger input.<br></br></bullet>
-				<bullet><b>[3] - pad_out:</b> the output is padded to match the size of the larger input.<br></br></bullet>
+				<bullet><b>[3] - pad_out:</b> the output is padded to match the size of the larger input.</bullet>
 			</description>
 		</entry>
 
@@ -30,7 +30,7 @@
 				Sets which inputs trigger output: <br></br>		
 				<bullet><b>[0] - both:</b> both inlets trigger output.<br></br></bullet>
 				<bullet><b>[1] - left:</b> left inlet triggers output.<br></br></bullet>
-				<bullet><b>[2] - right:</b> right inlet triggers output.<br></br></bullet>
+				<bullet><b>[2] - right:</b> right inlet triggers output.</bullet>
 			</description>
 		</entry>
 
