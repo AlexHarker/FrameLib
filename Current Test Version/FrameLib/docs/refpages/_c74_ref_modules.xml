@@ -19,5 +19,20 @@
 -->
 <root>
   <module>binary_ops</module>
-  <module>ternary_ops</modul>
+  <module>filters</module>
+  <module>generators</module>
+  <module>host_communication</module>
+  <module>io</module>
+  <module>mapping</module>
+  <module>routing</module>
+  <module>schedulers</module>
+  <module>spatial</module>
+  <module>spectral</module>
+  <module>storage</module>
+  <module>streaming</module>
+  <module>ternary_ops</module>
+  <module>time_smoothing</module>
+  <module>timing</module>
+  <module>unary_ops</module>
+  <module>vector</module>
 </root>
