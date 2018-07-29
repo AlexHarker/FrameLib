@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+<c74object name="fl.frommax~" module="" category="host_communication">
+
+	<digest>
+		Turn Max messages into frames.
+	</digest>
+
+	<description>
+		In values mode the output is the last received value(s) as a vector.<br></br>
+		The size of the output may be limited by Max.
+	</description>
+	
+	<misc name = "Parameters">
+		<entry name = "1. /mode [enum]">
+			<description>
+				Sets the object mode: <br></br>
+				<bullet><b>[0] - values:</b> translate values from max into vectors.</bullet><br></br>
+				<bullet><b>[1] - params:</b> translate messages into concatenated tagged frames to set parameters.</bullet>
+			</description>
+		</entry>
+	</misc>
+
+	<!--METADATA-->
+	<metadatalist>
+		<metadata name="author">Alex Harker</metadata>
+		<metadata name="tag">FrameLib</metadata>
+		<metadata name="tag">Host Communication</metadata>
+	</metadatalist>
+
+	<!--SEEALSO-->
+	<!-- The information here is pulled from the digest of the corresponding object-->
+	<seealsolist>
+		<seealso name="fl.tomax~" />
+	</seealsolist>
+
+	<misc name = "Discussion">
+		<entry name ="Keywords">
+			<description>
+				convert, conversion, message, list, vector
+			</description>
+		</entry>
+	</misc>
+
+</c74object>
