@@ -49,7 +49,7 @@ void FrameLib_Multitaper::getWrapped(double &rOut, double&iOut, double *real, do
 
 std::string FrameLib_Multitaper::objectInfo(bool verbose)
 {
-    return formatInfo("Calculates the multitaper power spectrum of a real input using the cosinre tapers: All FFTs performed will use a power of two size. "
+    return formatInfo("Calculates the multitaper power spectrum of a real input using the cosine tapers: All FFTs performed will use a power of two size. "
                    "Output frames will be (N / 2) + 1 in length where N is the FFT size. Inputs which are not a power of two are zero-padded to the next power of two.",
                    "Calculates the multitaper power spectrum of a real input using the cosinre tapers.", verbose);
 }
