@@ -27,9 +27,9 @@
 		<entry name = "3. /mode [enum]">
 			<description>
 				Sets the filter mode:<br></br>
-				<bullet><b>[0] - lpf:</b> Low Pass.</bullet><br></br>
-				<bullet><b>[1] - bpf:</b> Band Pass.</bullet><br></br>
-				<bullet><b>[2] - hpf:</b> High Pass.</bullet>
+				<bullet><b>[0] - lpf:</b> Low Pass</bullet><br></br>
+				<bullet><b>[1] - bpf:</b> Band Pass</bullet><br></br>
+				<bullet><b>[2] - hpf:</b> High Pass</bullet>
 			</description>
 		</entry>
 	</misc>
