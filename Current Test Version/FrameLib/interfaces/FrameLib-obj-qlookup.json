@@ -1,23 +1,1323 @@
 {
-  "fl.plus~": {
-    "digest": "Adds values in two input frames.",
-    "module": "FrameLib",
-    "category": [
-      "FrameLib",
-      "Binary Ops"
-    ],
-    "keywords": [
-      "addition",
-      "add",
-      "plus",
-      "+~",
-      "+"
-    ],
-    "seealso": [
-      "fl.minus~",
-      "fl.times~",
-      "fl.divide~",
-      "fl.pow~"
-    ]
-  }
+    "fl.onepolezero~": {
+        "digest": "Filters input frames using a one pole, one zero filter.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "filters"
+        ],
+        "keywords": [
+            "filter",
+            "onepolezero",
+            "low pass",
+            "high pass"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.0dsvf~": {
+        "digest": "Filters input frames using a zero delay state variable filter.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "filters"
+        ],
+        "keywords": [
+            "filter",
+            "low pass",
+            "band pass",
+            "high pass",
+            "zero delay state variable",
+            ""
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.resonant~": {
+        "digest": "Filters input frames using a resonant filter.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "filters"
+        ],
+        "keywords": [
+            "filter",
+            "resonant",
+            "reson"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.sallenkey~": {
+        "digest": "Filters input frames using a sallen and key filter.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "filters"
+        ],
+        "keywords": [
+            "filter",
+            "sallen",
+            "key",
+            "sallenkey"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.onepole~": {
+        "digest": "Filters input frames using a one pole filter.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "filters"
+        ],
+        "keywords": [
+            "filter",
+            "onepole",
+            "low pass",
+            "high pass"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.tomax~": {
+        "digest": "Turn frames into Max messages.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "host_communication"
+        ],
+        "keywords": [
+            "convert",
+            "conversion",
+            "message",
+            "list",
+            "vector"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.frommax~": {
+        "digest": "Turn Max messages into frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "host_communication"
+        ],
+        "keywords": [
+            "convert",
+            "conversion",
+            "message",
+            "list",
+            "vector"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.store~": {
+        "digest": "Stores a vector frame in named memory for recall.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "storage"
+        ],
+        "keywords": [
+            "storage",
+            "buffer",
+            "value"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.register~": {
+        "digest": "Store and recall a vector frame locally.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "storage"
+        ],
+        "keywords": [
+            "storage",
+            "buffer",
+            "value",
+            ""
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.recall~": {
+        "digest": "Recall a vector frame from named memory for use.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "storage"
+        ],
+        "keywords": [
+            "storage",
+            "buffer",
+            "value"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.copysign~": {
+        "digest": "Outputs a frame with the magnitude values of the left input frame and the sign values of right input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "copysign"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.greaterthaneq~": {
+        "digest": "Calculates if left input frame values are greater than or equal to right input frame values (output is 1 for true and 0 for false).",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "greaterthaneq",
+            ">="
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.greaterthan~": {
+        "digest": "Calculates if left input frame values are greater than right input frame values (output is 1 for true and 0 for false).",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "greaterthan",
+            ">"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.or~": {
+        "digest": "Calculates the logical or of the left and right input frame values.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "or"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.and~": {
+        "digest": "Calculates the logical and of the left and right input frame values.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "and",
+            "&&",
+            ""
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.times~": {
+        "digest": "Multiplies values in the two input frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "times",
+            "multiply",
+            "*~",
+            "*"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.divide~": {
+        "digest": "Divides the left input frame values by the right input frame values.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "divide",
+            "/~",
+            "/"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.minus~": {
+        "digest": "Subtracts the right input frame from the left input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "subtraction",
+            "take",
+            "minus",
+            "-~",
+            "-."
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.pow~": {
+        "digest": "Calculates left input frame values to the power of right input frame values.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "pow",
+            "power",
+            "exponent"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.atan2~": {
+        "digest": "For each pair of input values calculates the arctangent using two arguments (left operand is y, right operand is x).",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "atan2",
+            "atan"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.notequals~": {
+        "digest": "Compares frame values for inequality (output is 1 for true and 0 for false).",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "notequals",
+            "!=",
+            "=/="
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.lessthaneq~": {
+        "digest": "Calculates if left input frame values are greater than or equal to right input frame values (output is 1 for true and 0 for false).",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "lessthaneq"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.max~": {
+        "digest": "Calculates the maximums of pairs of values in the two input frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "max"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.plus~": {
+        "digest": "Adds values in the two input frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "addition",
+            "add",
+            "plus",
+            "+~",
+            "+"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.modulo~": {
+        "digest": "Calculates the left input frame values modulo the right input frame values.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "modulo",
+            "mod",
+            "fmod",
+            "%"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.lessthan~": {
+        "digest": "Calculates if left input frame values are less than right input frame values (output is 1 for true and 0 for false).",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "lessthan"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.diff~": {
+        "digest": "Calculates the absolute differences between values in the two input frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "diff",
+            "delta",
+            "framedelta"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.equals~": {
+        "digest": "Compares frame values for equality (output is 1 for true and 0 for false).",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "equals",
+            "=="
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.hypot~": {
+        "digest": "For each pair of input values calculates the hypotenuse of a right-angled triangle with sides of the given lengths.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "hypot",
+            "hypotenuse",
+            "pythagoras"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.min~": {
+        "digest": "Calculates the minimums of pairs of values in the two input frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "binary_ops"
+        ],
+        "keywords": [
+            "min"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.uniform~": {
+        "digest": "Generates frames of a single (uniform) value:",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "generators"
+        ],
+        "keywords": [
+            "random",
+            "rng",
+            "uniform"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.random~": {
+        "digest": "Generates frames of linearly distributed random values in the range [0-1].",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "generators"
+        ],
+        "keywords": [
+            "random",
+            "rng",
+            "noise"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.gaussian~": {
+        "digest": "Generates frames of gaussian distributed random values.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "generators"
+        ],
+        "keywords": [
+            "random",
+            "rng",
+            "gaussian",
+            "gauss"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.ramp~": {
+        "digest": "Generates frames that consist of linear ramps from [0-x].",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "generators"
+        ],
+        "keywords": [
+            "random",
+            "rng",
+            "count",
+            "ramp",
+            "line"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.argmin~": {
+        "digest": "Calculates the index of the minimum of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "min",
+            "minimum"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.sort~": {
+        "digest": "Sorts an input frame in ascending or descending order.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "sort",
+            "zl sort"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.shift~": {
+        "digest": "Shifts an input frame either with padding, or cyclically.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "shift",
+            "rotate"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.standarddeviation~": {
+        "digest": "Calculates the standard deviation of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "standard deviation",
+            "statistics"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.geometricmean~": {
+        "digest": "Calculates the geometric mean of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "geometric mean",
+            "mean"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.accumpoint~": {
+        "digest": "Calculates the point in a vector at which the sum reaches a given percentage of the total sum.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "accumulation",
+            "accum"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.centroid~": {
+        "digest": "Calculates the centroid of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "centroid",
+            "descriptor"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.medianfilter~": {
+        "digest": "Median filter an input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "median filter",
+            "separation",
+            "noise",
+            "percussive",
+            "harmonic",
+            "filter"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.percentile~": {
+        "digest": "Calculates any percentile of an input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "percentile",
+            "statistics"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.kurtosis~": {
+        "digest": "Calculates the kurtosis of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "kurtosis",
+            "descriptor"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.vmin~": {
+        "digest": "Calculates the minimum of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "minimum",
+            "min"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.flatness~": {
+        "digest": "Calculates the flatness of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "flatness",
+            "descriptor"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.skewness~": {
+        "digest": "Calculates the skewness of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "skewness",
+            "descriptor"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.join~": {
+        "digest": "Concatenates all input frames into a single output frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "join",
+            "pack",
+            "pak",
+            "zl join"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.length~": {
+        "digest": "Calculates the length of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "zl len",
+            "length",
+            "len"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.argmax~": {
+        "digest": "Calculates the index of the maximum of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "max",
+            "maximum"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.mean~": {
+        "digest": "Calculates the mean of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "mean",
+            "average"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.rms~": {
+        "digest": "Calculates the rms of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "rms",
+            "root mean square"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.pad~": {
+        "digest": "Pads an input frame with a fixed value at either the start, the end, or both.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "pad",
+            "padding"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.reverse~": {
+        "digest": "Reverses the order of a single frame's contents.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "zl rev",
+            "reverse"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.sum~": {
+        "digest": "Calculates the sum of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "sum",
+            "add"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.nanfilter~": {
+        "digest": "Replaces or removes NaNs in a vector.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "nan",
+            "nanfilter"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.vmax~": {
+        "digest": "Calculates the maximum of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "maximum",
+            "max"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.split~": {
+        "digest": "Splits input frames into two parts, given a specificed split point.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "split",
+            "unjoin"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.subframe~": {
+        "digest": "Output part of an input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "subframe"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.product~": {
+        "digest": "Calculates the product of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "product"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.crest~": {
+        "digest": "Calculates the crest factor of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "crest",
+            "descriptor"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.chop~": {
+        "digest": "Chops input frames into equally sized output frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "chop",
+            "unjoin"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.peaks~": {
+        "digest": "Finds peaks in an input frame (spectrum).",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "peaks",
+            "spectral"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.spread~": {
+        "digest": "Calculates the spread of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "vector"
+        ],
+        "keywords": [
+            "vector",
+            "spread"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.perblock~": {
+        "digest": "Schedules one frame at the start of each of Max's audio blocks.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "schedulers"
+        ],
+        "keywords": [
+            "scheduler",
+            "metro",
+            "timing"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.once~": {
+        "digest": "Schedules one frame at the beginning of time.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "schedulers"
+        ],
+        "keywords": [
+            "scheduler",
+            "once",
+            "loadbang",
+            "loadmess"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.audiotrigger~": {
+        "digest": "Translates non-zero samples into trigger frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "schedulers"
+        ],
+        "keywords": [
+            "scheduler",
+            "bang",
+            "timing"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.future~": {
+        "digest": "Schedules frames in the future at a specified time.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "schedulers"
+        ],
+        "keywords": [
+            "scheduler",
+            "timing",
+            "sync",
+            "future"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    },
+    "fl.interval~": {
+        "digest": "Schedules frames at regular intervals, which can be adjusted using the interval parameter.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "schedulers"
+        ],
+        "keywords": [
+            "scheduler",
+            "metro",
+            "timing"
+        ],
+        "seealso": [
+            "fl.audiotrigger~",
+            "fl.future~",
+            "fl.once~",
+            "fl.perblock~"
+        ]
+    }
 }
