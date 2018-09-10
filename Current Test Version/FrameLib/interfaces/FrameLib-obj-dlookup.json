@@ -1,0 +1,209 @@
+{
+    "fl.onepolezero~": {
+        "digest": "Filters input frames using a one pole, one zero filter."
+    },
+    "fl.0dsvf~": {
+        "digest": "Filters input frames using a zero delay state variable filter."
+    },
+    "fl.resonant~": {
+        "digest": "Filters input frames using a resonant filter."
+    },
+    "fl.sallenkey~": {
+        "digest": "Filters input frames using a sallen and key filter."
+    },
+    "fl.onepole~": {
+        "digest": "Filters input frames using a one pole filter."
+    },
+    "fl.tomax~": {
+        "digest": "Turn frames into Max messages."
+    },
+    "fl.frommax~": {
+        "digest": "Turn Max messages into frames."
+    },
+    "fl.store~": {
+        "digest": "Stores a vector frame in named memory for recall."
+    },
+    "fl.register~": {
+        "digest": "Store and recall a vector frame locally."
+    },
+    "fl.recall~": {
+        "digest": "Recall a vector frame from named memory for use."
+    },
+    "fl.copysign~": {
+        "digest": "Outputs a frame with the magnitude values of the left input frame and the sign values of right input frame."
+    },
+    "fl.greaterthaneq~": {
+        "digest": "Calculates if left input frame values are greater than or equal to right input frame values (output is 1 for true and 0 for false)."
+    },
+    "fl.greaterthan~": {
+        "digest": "Calculates if left input frame values are greater than right input frame values (output is 1 for true and 0 for false)."
+    },
+    "fl.or~": {
+        "digest": "Calculates the logical or of the left and right input frame values."
+    },
+    "fl.and~": {
+        "digest": "Calculates the logical and of the left and right input frame values."
+    },
+    "fl.times~": {
+        "digest": "Multiplies values in the two input frames."
+    },
+    "fl.divide~": {
+        "digest": "Divides the left input frame values by the right input frame values."
+    },
+    "fl.minus~": {
+        "digest": "Subtracts the right input frame from the left input frame."
+    },
+    "fl.pow~": {
+        "digest": "Calculates left input frame values to the power of right input frame values."
+    },
+    "fl.atan2~": {
+        "digest": "For each pair of input values calculates the arctangent using two arguments (left operand is y, right operand is x)."
+    },
+    "fl.notequals~": {
+        "digest": "Compares frame values for inequality (output is 1 for true and 0 for false)."
+    },
+    "fl.lessthaneq~": {
+        "digest": "Calculates if left input frame values are greater than or equal to right input frame values (output is 1 for true and 0 for false)."
+    },
+    "fl.max~": {
+        "digest": "Calculates the maximums of pairs of values in the two input frames."
+    },
+    "fl.plus~": {
+        "digest": "Adds values in the two input frames."
+    },
+    "fl.modulo~": {
+        "digest": "Calculates the left input frame values modulo the right input frame values."
+    },
+    "fl.lessthan~": {
+        "digest": "Calculates if left input frame values are less than right input frame values (output is 1 for true and 0 for false)."
+    },
+    "fl.diff~": {
+        "digest": "Calculates the absolute differences between values in the two input frames."
+    },
+    "fl.equals~": {
+        "digest": "Compares frame values for equality (output is 1 for true and 0 for false)."
+    },
+    "fl.hypot~": {
+        "digest": "For each pair of input values calculates the hypotenuse of a right-angled triangle with sides of the given lengths."
+    },
+    "fl.min~": {
+        "digest": "Calculates the minimums of pairs of values in the two input frames."
+    },
+    "fl.uniform~": {
+        "digest": "Generates frames of a single (uniform) value:"
+    },
+    "fl.random~": {
+        "digest": "Generates frames of linearly distributed random values in the range [0-1]."
+    },
+    "fl.gaussian~": {
+        "digest": "Generates frames of gaussian distributed random values."
+    },
+    "fl.ramp~": {
+        "digest": "Generates frames that consist of linear ramps from [0-x]."
+    },
+    "fl.argmin~": {
+        "digest": "Calculates the index of the minimum of the input frame."
+    },
+    "fl.sort~": {
+        "digest": "Sorts an input frame in ascending or descending order."
+    },
+    "fl.shift~": {
+        "digest": "Shifts an input frame either with padding, or cyclically."
+    },
+    "fl.standarddeviation~": {
+        "digest": "Calculates the standard deviation of the input frame."
+    },
+    "fl.geometricmean~": {
+        "digest": "Calculates the geometric mean of the input frame."
+    },
+    "fl.accumpoint~": {
+        "digest": "Calculates the point in a vector at which the sum reaches a given percentage of the total sum."
+    },
+    "fl.centroid~": {
+        "digest": "Calculates the centroid of the input frame."
+    },
+    "fl.medianfilter~": {
+        "digest": "Median filter an input frame."
+    },
+    "fl.percentile~": {
+        "digest": "Calculates any percentile of an input frame."
+    },
+    "fl.kurtosis~": {
+        "digest": "Calculates the kurtosis of the input frame."
+    },
+    "fl.vmin~": {
+        "digest": "Calculates the minimum of the input frame."
+    },
+    "fl.flatness~": {
+        "digest": "Calculates the flatness of the input frame."
+    },
+    "fl.skewness~": {
+        "digest": "Calculates the skewness of the input frame."
+    },
+    "fl.join~": {
+        "digest": "Concatenates all input frames into a single output frame."
+    },
+    "fl.length~": {
+        "digest": "Calculates the length of the input frame."
+    },
+    "fl.argmax~": {
+        "digest": "Calculates the index of the maximum of the input frame."
+    },
+    "fl.mean~": {
+        "digest": "Calculates the mean of the input frame."
+    },
+    "fl.rms~": {
+        "digest": "Calculates the rms of the input frame."
+    },
+    "fl.pad~": {
+        "digest": "Pads an input frame with a fixed value at either the start, the end, or both."
+    },
+    "fl.reverse~": {
+        "digest": "Reverses the order of a single frame's contents."
+    },
+    "fl.sum~": {
+        "digest": "Calculates the sum of the input frame."
+    },
+    "fl.nanfilter~": {
+        "digest": "Replaces or removes NaNs in a vector."
+    },
+    "fl.vmax~": {
+        "digest": "Calculates the maximum of the input frame."
+    },
+    "fl.split~": {
+        "digest": "Splits input frames into two parts, given a specificed split point."
+    },
+    "fl.subframe~": {
+        "digest": "Output part of an input frame."
+    },
+    "fl.product~": {
+        "digest": "Calculates the product of the input frame."
+    },
+    "fl.crest~": {
+        "digest": "Calculates the crest factor of the input frame."
+    },
+    "fl.chop~": {
+        "digest": "Chops input frames into equally sized output frames."
+    },
+    "fl.peaks~": {
+        "digest": "Finds peaks in an input frame (spectrum)."
+    },
+    "fl.spread~": {
+        "digest": "Calculates the spread of the input frame."
+    },
+    "fl.perblock~": {
+        "digest": "Schedules one frame at the start of each of Max's audio blocks."
+    },
+    "fl.once~": {
+        "digest": "Schedules one frame at the beginning of time."
+    },
+    "fl.audiotrigger~": {
+        "digest": "Translates non-zero samples into trigger frames."
+    },
+    "fl.future~": {
+        "digest": "Schedules frames in the future at a specified time."
+    },
+    "fl.interval~": {
+        "digest": "Schedules frames at regular intervals, which can be adjusted using the interval parameter."
+    }
+}
