@@ -15,7 +15,7 @@
 		<entry name = "1. /freq [double]">
 			<description>
 				Sets the filter cutoff frequency.
-			</description>
+			</description> 	
 		</entry>
 
 		<entry name = "2. /reson [double]">
