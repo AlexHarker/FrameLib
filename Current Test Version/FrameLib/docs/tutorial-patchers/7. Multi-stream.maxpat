@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ -209.0, -1036.0, 1046.0, 1036.0 ],
+		"rect" : [ 0.0, 44.0, 1046.0, 1036.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -688,8 +688,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -786,7 +786,7 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 607.75, 393.0, 191.0, 20.0 ],
 									"style" : "",
-									"text" : "No = notation summs the streams"
+									"text" : "No = notation sums the streams"
 								}
 
 							}
@@ -1090,7 +1090,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 802.75, 393.0, 33.0, 33.0 ],
+									"patching_rect" : [ 785.75, 393.0, 33.0, 33.0 ],
 									"presentation_rect" : [ 497.607147, 416.0, 20.455872, 22.94873 ],
 									"rounded" : 60.0,
 									"style" : "",
@@ -1353,8 +1353,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1402,7 +1402,7 @@
 							"modernui" : 1
 						}
 ,
-						"rect" : [ -209.0, -1010.0, 1046.0, 1010.0 ],
+						"rect" : [ 0.0, 70.0, 1046.0, 1010.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1808,9 +1808,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 103.0, 830.0, 116.0 ],
+									"patching_rect" : [ 3.75, 103.0, 923.0, 116.0 ],
 									"style" : "",
-									"text" : "FrameLib has a feature called multi-streaming which allows you to scale up any processes easily. Doing so makes your patch much easier to maintain, and allows you to create a single processing instance rather than having to duplicate it out for each stream you want to process.\n\nUsing the fl.pack~ object, two frames are combined into a single multi-stream unit. The example below demonstrates how these two different streams of random numbers can be independent of each other in timing and frame size. The two timing sources do not interfere with each other and can be thought of as entirely isolated processes."
+									"text" : "FrameLib has a feature called multi-streaming, allowing you to apply one instance of a process to many streams of frame based data. Doing so makes your patch much easier to maintain, and allows you to create a single processing instance rather than having to duplicate it out for each stream you want to process.\n\nUsing the fl.pack~ object, two frames are combined into a single multi-stream unit. The example below demonstrates how these two different streams of random numbers can be independent of each other in timing and frame size. The two timing sources do not interfere with each other and can be thought of as entirely isolated processes."
 								}
 
 							}
@@ -2084,8 +2084,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
