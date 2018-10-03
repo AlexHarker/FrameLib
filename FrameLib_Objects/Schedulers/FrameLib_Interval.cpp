@@ -23,7 +23,7 @@ FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, FrameLib_Paramete
 
 std::string FrameLib_Interval::objectInfo(bool verbose)
 {
-    return formatInfo("Schedules frames at regular intervals, which can be adjusted using the interval parameter: Output frames are empty.",
+    return formatInfo("Schedules frames at regular intervals, which can be adjusted using the interval parameter: The output is an empty frame.",
                    "Schedules frames at regular intervals, which can be adjusted using the interval parameter.", verbose);
 }
 

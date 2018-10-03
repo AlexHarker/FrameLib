@@ -13,7 +13,7 @@ FrameLib_AudioTrigger::FrameLib_AudioTrigger(FrameLib_Context context, FrameLib_
 
 std::string FrameLib_AudioTrigger::objectInfo(bool verbose)
 {
-    return formatInfo("Translates non-zero samples into trigger frames: The output is an empty vector. Any non-zero audio sample triggers a frame.",
+    return formatInfo("Translates non-zero samples into trigger frames: The output is an empty frame. Any non-zero audio sample triggers a frame.",
                    "Translates non-zero samples into trigger frames.", verbose);
 }
 

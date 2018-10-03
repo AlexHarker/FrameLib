@@ -9,7 +9,7 @@ FrameLib_PerBlock::FrameLib_PerBlock(FrameLib_Context context, FrameLib_Paramete
 
 std::string FrameLib_PerBlock::objectInfo(bool verbose)
 {
-    return formatInfo("Schedules one frame at the start of each of the hosts audio blocks: The output is an empty vector.",
+    return formatInfo("Schedules one frame at the start of each of the hosts audio blocks: The output is an empty frame.",
                    "Schedules one frame at the start of each of the hosts audio blocks.", verbose);
 }
 
