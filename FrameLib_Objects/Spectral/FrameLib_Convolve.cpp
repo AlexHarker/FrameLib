@@ -32,9 +32,9 @@ FrameLib_Convolve::FrameLib_Convolve(FrameLib_Context context, FrameLib_Paramete
 
 std::string FrameLib_Convolve::objectInfo(bool verbose)
 {
-    return formatInfo("Convolve two time domain frames together together, (using frequency domain processing internally): "
-                   "The result will be a frame of M + N - 1 where M and N are the sizes of the two inputs respectively",
-                   "Convolve two time domain frames together, (using frequency domain processing internally).", verbose);
+    return formatInfo("Convolve two input frames, (using frequency domain processing internally): "
+                   "The output is a frame of length M + N - 1 where M and N are the lengths of the two inputs respectively",
+                   "Convolve two input frames, (using frequency domain processing internally).", verbose);
 }
 
 std::string FrameLib_Convolve::inputInfo(unsigned long idx, bool verbose)
