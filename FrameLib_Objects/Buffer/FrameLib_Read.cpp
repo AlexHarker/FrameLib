@@ -9,8 +9,8 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, FrameLib_Parameters::Seri
 {
     mParameters.addString(kBuffer, "buffer", 0);
     
-    mParameters.addInt(kChannel, "chan", 0, 1);
-    mParameters.setClip(1, 4);
+    mParameters.addInt(kChannel, "chan", 1, 1);
+    mParameters.setMin(1);
     
     mParameters.addEnum(kMode, "mode");
     mParameters.addEnumItem(kHermite, "hermite");
@@ -75,6 +75,18 @@ FrameLib_Read::ParameterInfo::ParameterInfo()
     add("Sets the units for the position input.");
 }
 
+// Update
+
+void FrameLib_Read::update()
+{
+    if (mProxy)
+        mProxy->update(mParameters.getString(kBuffer));
+    
+    mChan = mParameters.getInt(kChannel);
+    mMode = (Modes) mParameters.getInt(kMode);
+    mUnits = (Units) mParameters.getInt(kUnits);
+}
+
 // Process
 
 void FrameLib_Read::process()
@@ -82,7 +94,7 @@ void FrameLib_Read::process()
     double *positions = nullptr;
     
     unsigned long size;
-    long chan = mChan;
+    long chan = mChan - 1;
     
     bool interp = false;
     
