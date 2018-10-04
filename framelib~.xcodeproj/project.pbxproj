@@ -2343,7 +2343,6 @@
 		B8DF11571FBF97B600C6229D /* fl.correlate~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.correlate~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8DF3FA2198AABAD00CA8BB6 /* FrameLib_Parameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Parameters.h; sourceTree = "<group>"; };
 		B8E058AE198DA34D00721359 /* FrameLib_Object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Object.h; sourceTree = "<group>"; };
-		B8E41AE620C307EB003BBD86 /* fl.expression~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.expression~.cpp"; sourceTree = "<group>"; };
 		B8E41B0720C36599003BBD86 /* FrameLib_ExprParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_ExprParser.h; sourceTree = "<group>"; };
 		B8E41B1C20C5E71C003BBD86 /* fl.expr~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.expr~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E41B1E20C5E763003BBD86 /* FrameLib_Expression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Expression.h; sourceTree = "<group>"; };
@@ -4770,8 +4769,8 @@
 			children = (
 				B8E41B0720C36599003BBD86 /* FrameLib_ExprParser.h */,
 				B8E41B1E20C5E763003BBD86 /* FrameLib_Expression.h */,
-				B85E1D3A20C82D9700DEEE6E /* FrameLib_ComplexExpression.h */,
 				B8E41B1F20C5E764003BBD86 /* FrameLib_Expression.cpp */,
+				B85E1D3A20C82D9700DEEE6E /* FrameLib_ComplexExpression.h */,
 				B85E1D3B20C82DDF00DEEE6E /* FrameLib_ComplexExpression.cpp */,
 			);
 			path = Expressions;
@@ -4782,7 +4781,6 @@
 			children = (
 				B8E41B2220C5EACD003BBD86 /* fl.expr~.cpp */,
 				B85E1D4F20C8494300DEEE6E /* fl.complexexpr~.cpp */,
-				B8E41AE620C307EB003BBD86 /* fl.expression~.cpp */,
 			);
 			name = Expressions;
 			path = FrameLib_Max_Objects/Expressions;

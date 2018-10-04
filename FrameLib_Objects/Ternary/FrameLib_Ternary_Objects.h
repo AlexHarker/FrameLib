@@ -94,9 +94,9 @@ const char* FrameLib_Ternary<Ternary::fold<double>>::getDescriptionString()
 }
 
 
-typedef FrameLib_Ternary<Ternary::clip<double>>     FrameLib_Clip;
-typedef FrameLib_Ternary<Ternary::wrap<double>>     FrameLib_Wrap;
-typedef FrameLib_Ternary<Ternary::fold<double>>     FrameLib_Fold;
+typedef FrameLib_Ternary<Ternary::clip<double>> FrameLib_Clip;
+typedef FrameLib_Ternary<Ternary::wrap<double>> FrameLib_Wrap;
+typedef FrameLib_Ternary<Ternary::fold<double>> FrameLib_Fold;
 
 #endif 
 
