@@ -4,17 +4,13 @@
 
 #include "FrameLib_Binary_Template.h"
 
-//Abs diff functor
+// Absolute diff functor
+
 namespace
 {
-    struct absDiff
-    {
-        double operator()(double x, double y)
-        {
-            return std::abs(x-y);
-        }
-    };
+    struct absDiff { double operator()(double x, double y) { return std::abs(x-y); } };
 }
+
 // Binary (operators)
 
 // Info specialisations
