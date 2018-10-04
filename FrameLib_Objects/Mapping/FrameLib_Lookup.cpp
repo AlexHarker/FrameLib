@@ -79,6 +79,9 @@ void FrameLib_Lookup::process()
     const double *input1 = getInput(0, &sizeIn1);
     const double *input2 = getInput(1, &sizeIn2);
     
+    // Before allocating check that we have a table and if not produce an empty frame
+    
+    sizeIn1 = sizeIn2 ? sizeIn1 : 0;
     requestOutputSize(0, sizeIn1);
     allocateOutputs();
     
