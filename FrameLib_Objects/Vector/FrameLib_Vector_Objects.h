@@ -8,8 +8,8 @@
 // Info specialisations
 
 template<> const char *FrameLib_Vector<statLength, true>::getOpString()         { return "length"; }
-template<> const char *FrameLib_Vector<statMin>::getOpString()                  { return "minimum"; }
-template<> const char *FrameLib_Vector<statMax>::getOpString()                  { return "maximum"; }
+template<> const char *FrameLib_Vector<statMin>::getOpString()                  { return "minimum value"; }
+template<> const char *FrameLib_Vector<statMax>::getOpString()                  { return "maximum value"; }
 template<> const char *FrameLib_Vector<statSum>::getOpString()                  { return "sum"; }
 template<> const char *FrameLib_Vector<statProduct>::getOpString()              { return "product"; }
 template<> const char *FrameLib_Vector<statMean>::getOpString()                 { return "mean"; }
@@ -22,8 +22,8 @@ template<> const char *FrameLib_Vector<statKurtosis>::getOpString()             
 template<> const char *FrameLib_Vector<statFlatness>::getOpString()             { return "flatness"; }
 template<> const char *FrameLib_Vector<statRMS>::getOpString()                  { return "rms"; }
 template<> const char *FrameLib_Vector<statCrest>::getOpString()                { return "crest factor"; }
-template<> const char *FrameLib_Vector<statArgMin>::getOpString()               { return "index of minimum"; }
-template<> const char *FrameLib_Vector<statArgMax>::getOpString()               { return "index of maximum"; }
+template<> const char *FrameLib_Vector<statArgMin>::getOpString()               { return "index of the minimum value"; }
+template<> const char *FrameLib_Vector<statArgMax>::getOpString()               { return "index of the maximum value"; }
 
 // Type definitions
 

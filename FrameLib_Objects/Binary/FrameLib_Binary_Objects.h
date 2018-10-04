@@ -4,6 +4,13 @@
 
 #include "FrameLib_Binary_Template.h"
 
+// Absolute diff functor
+
+namespace
+{
+    struct absDiff { double operator()(double x, double y) { return std::abs(x-y); } };
+}
+
 // Binary (operators)
 
 // Info specialisations
@@ -44,6 +51,10 @@ template<> const char *FrameLib_BinaryOp<std::logical_and<double>>::getDescripti
 template<> const char *FrameLib_BinaryOp<std::logical_or<double>>::getDescriptionString()
 { return "Calculates the logical or of the left and right input frame values"; }
 
+template<> const char *FrameLib_BinaryOp<absDiff>::getDescriptionString()
+{ return "Calculates the absolute differences between values in the two input frames"; }
+
+
 // Type definitions
 
 typedef FrameLib_BinaryOp<std::plus<double>>            FrameLib_Plus;
@@ -60,6 +71,8 @@ typedef FrameLib_BinaryOp<std::less_equal<double>>      FrameLib_LessThanEqual;
 
 typedef FrameLib_BinaryOp<std::logical_and<double>>     FrameLib_LogicalAnd;
 typedef FrameLib_BinaryOp<std::logical_or<double>>      FrameLib_LogicalOr;
+
+typedef FrameLib_BinaryOp<absDiff>                      FrameLib_Diff;
 
 // Binary (functions)
 
@@ -83,9 +96,6 @@ template<> const char *FrameLib_Binary<fmin>::getDescriptionString()
 template<> const char *FrameLib_Binary<fmax>::getDescriptionString()
 { return "Calculates the maximums of pairs of values in the two input frames"; }
 
-template<> const char *FrameLib_Binary<fdim>::getDescriptionString()
-{ return "Calculates the absolute differences between values in the two input frames"; }
-
 template<> const char *FrameLib_Binary<fmod>::getDescriptionString()
 { return "Calculates the left input frame values modulo the right input frame values"; }
 
@@ -95,7 +105,6 @@ typedef FrameLib_Binary<hypot>          FrameLib_Hypot;
 typedef FrameLib_Binary<copysign>       FrameLib_CopySign;
 typedef FrameLib_Binary<fmin>           FrameLib_Min;
 typedef FrameLib_Binary<fmax>           FrameLib_Max;
-typedef FrameLib_Binary<fdim>           FrameLib_Diff;
 typedef FrameLib_Binary<fmod>           FrameLib_Modulo;
 
 #endif

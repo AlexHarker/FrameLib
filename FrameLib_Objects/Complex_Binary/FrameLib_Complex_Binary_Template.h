@@ -116,7 +116,7 @@ public:
     
     std::string objectInfo(bool verbose) override
     {
-        return formatInfo("#: Calculation is performed on pairs of complex values in turn (with each complex value split across two inputs). If there is a mismatch between sizes within each complex pair (within a single operand) the shorter input is padded with zeros before calculation and the longer size used). The result is two output frames at least as long as the smaller of the two input pairs. "
+        return formatInfo("#: Calculation is performed on pairs of complex values in turn (with each complex value split across two inputs). If there is a mismatch between frame lengths within each complex pair (within a single operand) the shorter input is padded with zeros before calculation and the longer size used). The outputs are frames at least as long as the smaller of the two input pairs. "
                        "When complex pairs of frames (left and right operands) mismatch in size the result depends on the setting of the mismatch parameter. Either or both pairs of inputs may be set to trigger output.",
                        "#.", getDescriptionString(), verbose);
     }

@@ -48,7 +48,7 @@ private:
     
     // Process
     
-    void update() override { if (mProxy) mProxy->update(mParameters.getString(kBuffer)); }
+    void update() override;
     void process() override;
     
     // Data

@@ -69,7 +69,7 @@ public:
     
     std::string objectInfo(bool verbose) override
     {
-        return formatInfo("#: Calculation is performed on pairs of values in turn. The result is an output frame at least as long as the smaller of the two inputs. "
+        return formatInfo("#: Calculation is performed on pairs of values in turn. The output is a frame at least as long as the smaller of the two inputs. "
                        "When frames mismatch in size the result depends on the setting of the mismatch parameter. Either or both inputs may be set to trigger output.",
                        "#.", getDescriptionString(), verbose);
     }

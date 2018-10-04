@@ -5,7 +5,7 @@
 
 std::string FrameLib_Once::objectInfo(bool verbose)
 {
-    return formatInfo("Schedules one frame at the begining of time, lasting forever: The output frame is empty.",
+    return formatInfo("Schedules one frame at the begining of time, lasting forever: The output is an empty frame.",
                    "Schedules one frame at the begining of time, lasting forever.", verbose);
 }
 

@@ -14,7 +14,7 @@ struct CarToPol
 template<>
 std::string FrameLib_Complex_UnaryOp<CarToPol>::objectInfo(bool verbose)
 {
-    return formatInfo("Converts from cartesian values at the input to polar values at output: The result is two frames of the same size as the longer of the two inputs. If one input is shorter than the other it is padded with zeros to the size of the other before conversion.",
+    return formatInfo("Converts from cartesian values at the input to polar values at output: The outputs are frames of the same length as the longer of the two inputs. If one input is shorter than the other it is padded with zeros to the length of the other before conversion.",
                       "Converts from cartesian values at the input to polar values at output.", verbose);
 }
 

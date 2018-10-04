@@ -26,7 +26,7 @@ FrameLib_Future::FrameLib_Future(FrameLib_Context context, FrameLib_Parameters::
 
 std::string FrameLib_Future::objectInfo(bool verbose)
 {
-    return formatInfo("Schedules frames in the future at a specified time: Output frames are empty.",
+    return formatInfo("Schedules frames in the future at a specified time: The output is an empty frame.",
                    "Schedules frames in the future at a specified time.", verbose);
 }
 

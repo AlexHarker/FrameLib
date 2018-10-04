@@ -32,9 +32,9 @@ FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, FrameLib_Parame
 
 std::string FrameLib_Correlate::objectInfo(bool verbose)
 {
-    return formatInfo("Correlate two time domain frames together together, (using frequency domain processing internally): "
-                   "The result will be a frame of M + N - 1 where M and N are the sizes of the two inputs respectively",
-                   "Correlate two time domain frames together, (using frequency domain processing internally).", verbose);
+    return formatInfo("Calculate the correlation of two input frames, (using frequency domain processing internally): "
+                   "The output is a frame of length M + N - 1 where M and N are the lengths of the two inputs respectively",
+                   "Calculate the correlation of two input frames, (using frequency domain processing internally).", verbose);
 }
 
 std::string FrameLib_Correlate::inputInfo(unsigned long idx, bool verbose)

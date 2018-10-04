@@ -299,7 +299,7 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
     mParameters.addEnumItem(kExtend, "extend");
     mParameters.setInstantiation();
     
-    mParameters.addVariableBoolArray(kTriggers, "trigger_ins", false, kMaxIns, kMaxIns);
+    mParameters.addVariableBoolArray(kTriggers, "trigger_ins", true, kMaxIns, kMaxIns);
     mParameters.setInstantiation();
 
     mParameters.set(serialisedParameters);
