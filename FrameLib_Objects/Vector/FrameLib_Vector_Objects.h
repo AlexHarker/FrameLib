@@ -7,23 +7,23 @@
 
 // Info specialisations
 
-template<> const char *FrameLib_Vector<statLength, true>::getOpString()         { return "length"; }
-template<> const char *FrameLib_Vector<statMin>::getOpString()                  { return "minimum value"; }
-template<> const char *FrameLib_Vector<statMax>::getOpString()                  { return "maximum value"; }
-template<> const char *FrameLib_Vector<statSum>::getOpString()                  { return "sum"; }
-template<> const char *FrameLib_Vector<statProduct>::getOpString()              { return "product"; }
-template<> const char *FrameLib_Vector<statMean>::getOpString()                 { return "mean"; }
-template<> const char *FrameLib_Vector<statGeometricMean>::getOpString()        { return "geometric mean"; }
-template<> const char *FrameLib_Vector<statStandardDeviation>::getOpString()    { return "standard deviation"; }
-template<> const char *FrameLib_Vector<statCentroid>::getOpString()             { return "centroid"; }
-template<> const char *FrameLib_Vector<statSpread>::getOpString()               { return "spread"; }
-template<> const char *FrameLib_Vector<statSkewness>::getOpString()             { return "skewness"; }
-template<> const char *FrameLib_Vector<statKurtosis>::getOpString()             { return "kurtosis"; }
-template<> const char *FrameLib_Vector<statFlatness>::getOpString()             { return "flatness"; }
-template<> const char *FrameLib_Vector<statRMS>::getOpString()                  { return "rms"; }
-template<> const char *FrameLib_Vector<statCrest>::getOpString()                { return "crest factor"; }
-template<> const char *FrameLib_Vector<statArgMin>::getOpString()               { return "index of the minimum value"; }
-template<> const char *FrameLib_Vector<statArgMax>::getOpString()               { return "index of the maximum value"; }
+template<> inline const char *FrameLib_Vector<statLength, true>::getOpString()         { return "length"; }
+template<> inline const char *FrameLib_Vector<statMin>::getOpString()                  { return "minimum value"; }
+template<> inline const char *FrameLib_Vector<statMax>::getOpString()                  { return "maximum value"; }
+template<> inline const char *FrameLib_Vector<statSum>::getOpString()                  { return "sum"; }
+template<> inline const char *FrameLib_Vector<statProduct>::getOpString()              { return "product"; }
+template<> inline const char *FrameLib_Vector<statMean>::getOpString()                 { return "mean"; }
+template<> inline const char *FrameLib_Vector<statGeometricMean>::getOpString()        { return "geometric mean"; }
+template<> inline const char *FrameLib_Vector<statStandardDeviation>::getOpString()    { return "standard deviation"; }
+template<> inline const char *FrameLib_Vector<statCentroid>::getOpString()             { return "centroid"; }
+template<> inline const char *FrameLib_Vector<statSpread>::getOpString()               { return "spread"; }
+template<> inline const char *FrameLib_Vector<statSkewness>::getOpString()             { return "skewness"; }
+template<> inline const char *FrameLib_Vector<statKurtosis>::getOpString()             { return "kurtosis"; }
+template<> inline const char *FrameLib_Vector<statFlatness>::getOpString()             { return "flatness"; }
+template<> inline const char *FrameLib_Vector<statRMS>::getOpString()                  { return "rms"; }
+template<> inline const char *FrameLib_Vector<statCrest>::getOpString()                { return "crest factor"; }
+template<> inline const char *FrameLib_Vector<statArgMin>::getOpString()               { return "index of the minimum value"; }
+template<> inline const char *FrameLib_Vector<statArgMax>::getOpString()               { return "index of the maximum value"; }
 
 // Type definitions
 

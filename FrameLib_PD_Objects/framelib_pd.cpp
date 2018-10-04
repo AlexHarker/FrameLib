@@ -119,6 +119,7 @@
 #include "FrameLib_Binary_Objects.h"
 #include "FrameLib_Ternary_Objects.h"
 #include "FrameLib_Expression.h"
+#include "FrameLib_ComplexExpression.h"
 
 // Complex Operators
 
@@ -173,16 +174,16 @@ public:
     FrameLib_PDClass_Read(t_symbol *s, long argc, t_atom *argv) : FrameLib_PDClass(s, argc, argv, new ReadProxy()) {}
 };
 
-// PD Expression Class
+// PD Expression Classes
 
-// The expression object parses it's arguments differently to normal, which is handled by pre-parsing the atoms into a different format
+// The expression objects parses arguments differently to normal, which is handled by pre-parsing the atoms into a different format
 
 class ArgumentParser
 {
     
 public:
     
-    ArgumentParser(t_symbol *s, long argc, t_atom *argv) : mSymbol(s)
+    ArgumentParser(t_symbol *s, long argc, t_atom *argv, bool complex) : mSymbol(s), mComplex(complex)
     {
         concatenate(argc, argv);
         
@@ -223,6 +224,9 @@ private:
         if (sym == gensym("/pi") || sym == gensym("/epsilon") || sym == gensym("/e") || sym == gensym("/inf"))
             return false;
         
+        if (mComplex && sym == gensym("/i"))
+            return false;
+        
         // Require a parameter tag to have only letters after the slash
         
         for (const char *c = sym->s_name + 1; *c; c++)
@@ -259,10 +263,11 @@ private:
     }
     
     t_symbol *mSymbol;
+    bool mComplex;
     std::vector<t_atom> mArgs;
 };
 
-// This class is a wrapper that allows the parsing to happen correctly
+// This expression class is a wrapper that allows the parsing to happen correctly
 
 struct FrameLib_PDClass_Expression_Parsed : public FrameLib_PDClass_Expand<FrameLib_Expression>
 {
@@ -270,15 +275,35 @@ struct FrameLib_PDClass_Expression_Parsed : public FrameLib_PDClass_Expand<Frame
     FrameLib_PDClass(parsed.symbol(), parsed.count(), parsed.args(), new FrameLib_PDProxy()) {}
 };
 
-// PD Class (inherits from the parsed version which inherits the standard pd class
+// Expression PD Class (inherits from the parsed version which inherits the standard pd class)
 
 struct FrameLib_PDClass_Expression : public FrameLib_PDClass_Expression_Parsed
 {
     // Constructor
     
     FrameLib_PDClass_Expression(t_symbol *s, long argc, t_atom *argv) :
-    FrameLib_PDClass_Expression_Parsed(ArgumentParser(s, argc, argv)) {}
+    FrameLib_PDClass_Expression_Parsed(ArgumentParser(s, argc, argv, false)) {}
 };
+
+// This complex expression class is a wrapper that allows the parsing to happen correctly
+
+struct FrameLib_PDClass_ComplexExpression_Parsed : public FrameLib_PDClass_Expand<FrameLib_ComplexExpression>
+{
+    FrameLib_PDClass_ComplexExpression_Parsed(const ArgumentParser &parsed) :
+    FrameLib_PDClass(parsed.symbol(), parsed.count(), parsed.args(), new FrameLib_PDProxy()) {}
+};
+
+// Complex Expression PD Class (inherits from the parsed version which inherits the standard pd class)
+
+struct FrameLib_PDClass_ComplexExpression : public FrameLib_PDClass_ComplexExpression_Parsed
+{
+    // Constructor
+    
+    FrameLib_PDClass_ComplexExpression(t_symbol *s, long argc, t_atom *argv) :
+    FrameLib_PDClass_ComplexExpression_Parsed(ArgumentParser(s, argc, argv, true)) {}
+};
+
+// Main setup routine
 
 extern "C" void framelib_pd_setup(void)
 {
@@ -474,6 +499,11 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_Clip, kDistribute>::makeClass("fl.clip~");
     FrameLib_PDClass_Expand<FrameLib_Fold, kDistribute>::makeClass("fl.fold~");
     FrameLib_PDClass_Expand<FrameLib_Wrap, kDistribute>::makeClass("fl.wrap~");
+    
+    // Expressions
+    
+    FrameLib_PDClass_Expression::makeClass("fl.expr~");
+    FrameLib_PDClass_ComplexExpression::makeClass("fl.complexexpr~");
     
     // Complex Unary Operators
     
