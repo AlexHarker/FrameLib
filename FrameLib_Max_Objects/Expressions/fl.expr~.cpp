@@ -2,7 +2,7 @@
 #include "FrameLib_Expression.h"
 #include "FrameLib_MaxClass.h"
 
-// This object parses it's arguments differently to normal, which is handled by pre-parsing the atoms into a different format
+// These objects parses its arguments differently to normal, which is handled by pre-parsing the atoms into a different format
 
 class ArgumentParser
 {

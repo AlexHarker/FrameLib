@@ -12,14 +12,14 @@ struct PolToCar
 // Info Specialisations
 
 template<>
-std::string FrameLib_Complex_UnaryOp<PolToCar>::objectInfo(bool verbose)
+inline std::string FrameLib_Complex_UnaryOp<PolToCar>::objectInfo(bool verbose)
 {
     return formatInfo("Converts from polar values at the input to cartesian values at output: The outputs are frames of the same length as the longer of the two inputs. If one input is shorter than the other it is padded with zeros to the length of the other before conversion.",
                       "Converts from polar values at the input to cartesian values at output.", verbose);
 }
 
 template<>
-std::string FrameLib_Complex_UnaryOp<PolToCar>::inputInfo(unsigned long idx, bool verbose)
+inline std::string FrameLib_Complex_UnaryOp<PolToCar>::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx == 0)
         return formatInfo("Amplitudes (or abs values)", "Amplitudes", verbose);
@@ -28,7 +28,7 @@ std::string FrameLib_Complex_UnaryOp<PolToCar>::inputInfo(unsigned long idx, boo
 }
 
 template<>
-std::string FrameLib_Complex_UnaryOp<PolToCar>::outputInfo(unsigned long idx, bool verbose)
+inline std::string FrameLib_Complex_UnaryOp<PolToCar>::outputInfo(unsigned long idx, bool verbose)
 {
     if (idx == 0)
         return formatInfo("Real or X Output", "Real or X Output", verbose);

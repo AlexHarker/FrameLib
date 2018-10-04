@@ -6,8 +6,7 @@ VPATH = PD_Specific:\ ../FrameLib_Dependencies/tlsf
 FRAMELIBCPP=  \
 $(wildcard ../FrameLib_Framework/FrameLib_*.cpp)\
 $(wildcard ../FrameLib_Objects/*/FrameLib_*.cpp)\
-../FrameLib_Dependencies/HISSTools_FFT/HISSTools_FFT.cpp\
-fl.read_pd~.cpp\
+../FrameLib_Dependencies/HISSTools_FFT/HISSTools_FFT.cpp
 
 FRAMELIBOBJ1=$(FRAMELIBCPP:.cpp=.o) tlsf.o
 FRAMELIBOBJ=$(notdir $(FRAMELIBOBJ1))

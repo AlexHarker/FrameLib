@@ -8,7 +8,7 @@
 
 // Info specialisations
 
-template<> const char *FrameLib_UnaryOp<std::logical_not<double>>::getOpString()  { return "logical not"; }
+template<> inline const char *FrameLib_UnaryOp<std::logical_not<double>>::getOpString()  { return "logical not"; }
 
 // Type definitions
 
@@ -18,35 +18,35 @@ typedef FrameLib_UnaryOp<std::logical_not<double>>    FrameLib_LogicalNot;
 
 // Info specialisations
 
-template<> const char *FrameLib_Unary<acos>::getOpString()  { return "arccosine (in radians)"; }
-template<> const char *FrameLib_Unary<asin>::getOpString()  { return "arcsine (in radians)"; }
-template<> const char *FrameLib_Unary<atan>::getOpString()  { return "arctangent (in radians)"; }
-template<> const char *FrameLib_Unary<cos>::getOpString()   { return "cosine (for arguments in radians)"; }
-template<> const char *FrameLib_Unary<sin>::getOpString()   { return "sine (for arguments in radians)"; }
-template<> const char *FrameLib_Unary<tan>::getOpString()   { return "tangent (for arguments in radians)"; }
-template<> const char *FrameLib_Unary<acosh>::getOpString() { return "hyperbolic arccosine"; }
-template<> const char *FrameLib_Unary<asinh>::getOpString() { return "hyperbolic arcsine"; }
-template<> const char *FrameLib_Unary<atanh>::getOpString() { return "hyperbolic arctangent"; }
-template<> const char *FrameLib_Unary<cosh>::getOpString()  { return "hyperbolic cosine"; }
-template<> const char *FrameLib_Unary<sinh>::getOpString()  { return "hyperbolic sine"; }
-template<> const char *FrameLib_Unary<tanh>::getOpString()  { return "hyperbolic tangent"; }
+template<> inline const char *FrameLib_Unary<acos>::getOpString()  { return "arccosine (in radians)"; }
+template<> inline const char *FrameLib_Unary<asin>::getOpString()  { return "arcsine (in radians)"; }
+template<> inline const char *FrameLib_Unary<atan>::getOpString()  { return "arctangent (in radians)"; }
+template<> inline const char *FrameLib_Unary<cos>::getOpString()   { return "cosine (for arguments in radians)"; }
+template<> inline const char *FrameLib_Unary<sin>::getOpString()   { return "sine (for arguments in radians)"; }
+template<> inline const char *FrameLib_Unary<tan>::getOpString()   { return "tangent (for arguments in radians)"; }
+template<> inline const char *FrameLib_Unary<acosh>::getOpString() { return "hyperbolic arccosine"; }
+template<> inline const char *FrameLib_Unary<asinh>::getOpString() { return "hyperbolic arcsine"; }
+template<> inline const char *FrameLib_Unary<atanh>::getOpString() { return "hyperbolic arctangent"; }
+template<> inline const char *FrameLib_Unary<cosh>::getOpString()  { return "hyperbolic cosine"; }
+template<> inline const char *FrameLib_Unary<sinh>::getOpString()  { return "hyperbolic sine"; }
+template<> inline const char *FrameLib_Unary<tanh>::getOpString()  { return "hyperbolic tangent"; }
 
-template<> const char *FrameLib_Unary<log>::getOpString()   { return "logarithm base e"; }
-template<> const char *FrameLib_Unary<log2>::getOpString()  { return "logarithm base 2"; }
-template<> const char *FrameLib_Unary<log10>::getOpString() { return "logarithm base 10"; }
-template<> const char *FrameLib_Unary<exp>::getOpString()   { return "exponent base e (e to the power of)"; }
-template<> const char *FrameLib_Unary<exp2>::getOpString()  { return "exponent base 2 (2 to the power of)"; }
+template<> inline const char *FrameLib_Unary<log>::getOpString()   { return "logarithm base e"; }
+template<> inline const char *FrameLib_Unary<log2>::getOpString()  { return "logarithm base 2"; }
+template<> inline const char *FrameLib_Unary<log10>::getOpString() { return "logarithm base 10"; }
+template<> inline const char *FrameLib_Unary<exp>::getOpString()   { return "exponent base e (e to the power of)"; }
+template<> inline const char *FrameLib_Unary<exp2>::getOpString()  { return "exponent base 2 (2 to the power of)"; }
 
-template<> const char *FrameLib_Unary<fabs>::getOpString()  { return "absolute value"; }
-template<> const char *FrameLib_Unary<ceil>::getOpString()  { return "ceiling value"; }
-template<> const char *FrameLib_Unary<floor>::getOpString() { return "floor value"; }
-template<> const char *FrameLib_Unary<round>::getOpString() { return "rounded value"; }
-template<> const char *FrameLib_Unary<trunc>::getOpString() { return "truncated value"; }
+template<> inline const char *FrameLib_Unary<fabs>::getOpString()  { return "absolute value"; }
+template<> inline const char *FrameLib_Unary<ceil>::getOpString()  { return "ceiling value"; }
+template<> inline const char *FrameLib_Unary<floor>::getOpString() { return "floor value"; }
+template<> inline const char *FrameLib_Unary<round>::getOpString() { return "rounded value"; }
+template<> inline const char *FrameLib_Unary<trunc>::getOpString() { return "truncated value"; }
 
-template<> const char *FrameLib_Unary<sqrt>::getOpString()  { return "square root"; }
-template<> const char *FrameLib_Unary<cbrt>::getOpString()  { return "cube root"; }
-template<> const char *FrameLib_Unary<erf>::getOpString()   { return "error function"; }
-template<> const char *FrameLib_Unary<erfc>::getOpString()  { return "complimentary error function"; }
+template<> inline const char *FrameLib_Unary<sqrt>::getOpString()  { return "square root"; }
+template<> inline const char *FrameLib_Unary<cbrt>::getOpString()  { return "cube root"; }
+template<> inline const char *FrameLib_Unary<erf>::getOpString()   { return "error function"; }
+template<> inline const char *FrameLib_Unary<erfc>::getOpString()  { return "complimentary error function"; }
 
 // Type definitions
 
