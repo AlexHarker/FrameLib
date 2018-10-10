@@ -8,8 +8,8 @@ class FrameLib_Read final : public FrameLib_Processor
 {
     // Parameter Info and Enums
     
-    enum ParameterList { kBuffer, kChannel, kMode, kUnits };
-    enum Modes { kHermite, kBSpline, kLagrange, kLinear, kNone };
+    enum ParameterList { kBuffer, kChannel, kInterpolation, kUnits };
+    enum Interpolation { kHermite, kBSpline, kLagrange, kLinear, kNone };
     enum Units { kMS, kSeconds, kSamples };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
@@ -54,7 +54,7 @@ private:
     // Data
     
     long mChan;
-    Modes mMode;
+    Interpolation mInterpolation;
     Units mUnits;
     Proxy *mProxy;
 
