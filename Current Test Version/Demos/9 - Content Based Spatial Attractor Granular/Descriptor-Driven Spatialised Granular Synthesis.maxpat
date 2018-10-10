@@ -802,9 +802,9 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 87.0, 61.0, 162.0, 22.0 ],
+									"patching_rect" : [ 87.0, 61.0, 160.0, 22.0 ],
 									"style" : "",
-									"text" : "fl.map~ lineae 0 1 1 0.00001"
+									"text" : "fl.map~ linear 0 1 1 0.00001"
 								}
 
 							}
