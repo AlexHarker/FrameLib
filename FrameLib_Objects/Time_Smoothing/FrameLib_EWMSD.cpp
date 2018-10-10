@@ -77,7 +77,7 @@ void FrameLib_EWMSD::process()
        
         double diff = current - mAverageFrame[i];
         double incr = alpha * diff;
-        mAverageFrame[i] +=  incr;
+        mAverageFrame[i] += incr;
         double variance = mVarianceFrame[i] = (1.0 - alpha) * (mVarianceFrame[i] + diff * incr);
         
         output[i] = sqrt(variance);
