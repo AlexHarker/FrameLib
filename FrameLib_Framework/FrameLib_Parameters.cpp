@@ -306,11 +306,13 @@ size_t FrameLib_Parameters::Serial::read(const char *tag, double *output, unsign
 
 FrameLib_Parameters::Serial::Iterator FrameLib_Parameters::Serial::find(const char *tag) const
 {
+    auto position = end();
+    
     for (auto it = begin(); it != end(); it++)
         if (it.matchTag(tag))
-            return it;
+            position = it;
     
-    return end();
+    return position;
 }
 
 // Implementation
