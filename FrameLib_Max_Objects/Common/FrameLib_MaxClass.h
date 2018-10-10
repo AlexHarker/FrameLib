@@ -589,12 +589,12 @@ public:
     {
         bool traverse = true;
         
-        for (t_object *parent = nullptr; traverse && (parent = jpatcher_get_parentpatcher(patch)); patch = parent)
+        for (t_object *parent = nullptr; traverse && (parent = jpatcher_get_parentpatcher(patch)); patch = traverse ? parent : patch)
         {
             t_object *assoc = 0;
             object_method(patch, gensym("getassoc"), &assoc);
             
-            // Traverse if the patch is in a box (subpatcher or abstraction) ir belongs to a wrapper
+            // Traverse if the patch is in a box (subpatcher or abstraction) it belongs to a wrapper
             
             traverse = jpatcher_get_box(patch) || (assoc && object_method(assoc, gensym("__fl.wrapper_is_wrapper")));
             
