@@ -12,8 +12,9 @@ class FrameLib_Tag final : public FrameLib_Processor
     
     // Parameter Enums and Info
 
-    enum ParameterList { kNumIns, kNames };
-    
+    enum ParameterList { kNumIns, kEmptyMode, kNames };
+    enum EmptyMode { kIgnore, kReset };
+
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:

@@ -11,14 +11,18 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, FrameLib_Parameters::Serial
     mParameters.addInt(kNumIns, "num_ins", 1);
     mParameters.setClip(1, maxNumIns);
     mParameters.setInstantiation();
-    
+    mParameters.addEnum(kEmptyMode, "empty_mode");
+    mParameters.addEnumItem(0, "ignore");
+    mParameters.addEnumItem(1, "reset");
+    mParameters.setInstantiation();
+
     // Read in once to get number of strings needed
     
     mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
     mParameters.setErrorReportingEnabled(true);
 
-    // If no number of inputs is specified explicityly then examine the serialised parameters to determine the number needed
+    // If no number of inputs is specified explicity then examine the serialised parameters to determine the number needed
     
     if (!mParameters.changed(kNumIns))
     {
@@ -88,7 +92,9 @@ FrameLib_Tag::ParameterInfo::ParameterInfo()
     char str[256];
     
     add("Sets the number of inputs (and hence the number of tags).");
-    
+
+    add("Sets the behaviour when received empty frames: ignore - empty frames are ignored / reset - empty frames create empty tags to reset parameters. ");
+
     for (int i = 0; i < maxNumIns; i++)
     {
         sprintf(str, "Sets the tag for input %d.", i + 1);
@@ -103,12 +109,15 @@ void FrameLib_Tag::process()
     const Serial *preTagged = getInput(mNumIns);
     unsigned long sizeIn;
     
+    EmptyMode mode = (EmptyMode) mParameters.getInt(kEmptyMode);
+    
     requestOutputSize(0, 0);
     
     for (unsigned long i = 0; i < mNumIns; i++)
     {
         getInput(i, &sizeIn);
-        requestAddedOutputSize(0, Serial::calcSize(mParameters.getString(kNames + i), sizeIn));
+        if (sizeIn || mode == kReset)
+            requestAddedOutputSize(0, Serial::calcSize(mParameters.getString(kNames + i), sizeIn));
     }
     
     requestAddedOutputSize(0, Serial::calcSize(preTagged));
@@ -120,7 +129,8 @@ void FrameLib_Tag::process()
         for (unsigned long i = 0; i < mNumIns; i++)
         {
             const double *input = getInput(i, &sizeIn);
-            output->write(mParameters.getString(kNames + i), input, sizeIn);
+            if (sizeIn || mode == kReset)
+                output->write(mParameters.getString(kNames + i), input, sizeIn);
         }
         
         output->write(preTagged);
