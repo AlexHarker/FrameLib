@@ -35,10 +35,23 @@ void FrameLib_TimeMedian::resetSize(unsigned long maxFrames, unsigned long size)
     mNumFrames = 0;
 }
 
+bool compareLess(double a, double b)
+{
+    return (a < b || (isnan(b) && !isnan(a)));
+}
+
+bool compareMore(double a, double b)
+{
+    return (a > b || (isnan(a) && !isnan(b)));
+}
+
 unsigned long find(double input, double *channel, unsigned long numFrames)
 {
     unsigned long gap = numFrames >> 1;
     unsigned long i = gap;
+    
+    if (!numFrames)
+        return 0;
     
     gap = gap < 1 ? 1 : gap;
     
@@ -47,14 +60,14 @@ unsigned long find(double input, double *channel, unsigned long numFrames)
         gap >>= 1;
         gap = gap < 1 ? 1 : gap;
 
-        if (input < channel[i])
+        if (compareLess(input, channel[i]))
         {
-            if (gap == 1 && (!i || input > channel[i - 1]))
+            if (gap == 1 && (!i || compareMore(input, channel[i - 1])))
                 gap = 0;
             else
                 i -= gap;
         }
-        else if (input > channel[i])
+        else if (compareMore(input, channel[i]))
             i += gap;
         else
             break;
@@ -62,6 +75,31 @@ unsigned long find(double input, double *channel, unsigned long numFrames)
     
     return i;
 }
+
+/*
+bool checkArray(const double *array, unsigned long size)
+{
+    for (unsigned long i = 1; i < size; i++)
+    {
+        double hi = array[i];
+        double lo = array[i - 1];
+        if (hi < lo)
+        {
+            for (unsigned long j = 0; j < size; j++)
+            {
+                if (isnan(array[j]))
+                    std::cout << "NaN\n";
+                else
+                    std::cout << array[j] << "\n";
+            }
+            
+            return false;
+        }
+    }
+    
+    return true;
+}
+*/
 
 // Process
 
@@ -86,16 +124,11 @@ void FrameLib_TimeMedian::exchange(const double *newFrame, const double *oldFram
         }
         
         channel[k] = newFrame[i];
+        
+        assert(j < mNumFrames && "Value out of place");
+        assert(k < mNumFrames && "Value out of place");
+        //assert(checkArray(channel, mNumFrames) && "Array out of order");
     }
-}
-
-bool checkArray(const double *array, unsigned long size)
-{
-    for (unsigned long i = 1; i < size; i++)
-        if (array[i] < array[i - 1])
-            return false;
-            
-    return true;
 }
 
 void FrameLib_TimeMedian::add(const double *newFrame, unsigned long size)
@@ -114,6 +147,7 @@ void FrameLib_TimeMedian::add(const double *newFrame, unsigned long size)
         std::copy_backward(channel + j, channel + mNumFrames, channel + mNumFrames + 1);
         channel[j] = newFrame[i];
         
+        assert((!mNumFrames && j == 0) || (j < mNumFrames + 1) && "Value out of place");
         //assert(checkArray(channel, mNumFrames + 1) && "Array out of order");
     }
     
@@ -131,13 +165,12 @@ void FrameLib_TimeMedian::remove(const double *oldFrame, unsigned long size)
         double *channel = getChannel(i);
         unsigned long j = find(oldFrame[i], channel, mNumFrames);
         
-        assert(j < mNumFrames && "value out of place");
-
         // Copy
        
         std::copy(channel + j + 1, channel + mNumFrames, channel + j);
         
-        assert(checkArray(channel, mNumFrames - 1) && "Array out of order");
+        assert(j < mNumFrames && "Value out of place");
+        //assert(checkArray(channel, mNumFrames - 1) && "Array out of order");
     }
     
     mNumFrames--;

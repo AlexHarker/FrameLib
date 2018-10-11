@@ -4,8 +4,8 @@
 		"appversion" : 		{
 			"major" : 7,
 			"minor" : 3,
-			"revision" : 5,
-			"architecture" : "x86",
+			"revision" : 4,
+			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
@@ -292,7 +292,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 90.0, 222.0, 252.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.read~ jongles /mode hermite /units samples"
+					"text" : "fl.read~ jongles /interp hermite /units samples"
 				}
 
 			}
@@ -521,6 +521,14 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.sink~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.sink~.mxo",
 				"type" : "iLaX"
 			}
@@ -534,6 +542,10 @@
 			}
 , 			{
 				"name" : "fl.plus~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.source~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

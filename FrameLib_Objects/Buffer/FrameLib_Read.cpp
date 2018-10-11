@@ -12,7 +12,7 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, FrameLib_Parameters::Seri
     mParameters.addInt(kChannel, "chan", 1, 1);
     mParameters.setMin(1);
     
-    mParameters.addEnum(kMode, "mode");
+    mParameters.addEnum(kInterpolation, "interp");
     mParameters.addEnumItem(kHermite, "hermite");
     mParameters.addEnumItem(kBSpline, "bspline");
     mParameters.addEnumItem(kLagrange, "lagrange");
@@ -27,7 +27,7 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, FrameLib_Parameters::Seri
     mParameters.set(serialisedParameters);
     
     mChan = mParameters.getInt(kChannel);
-    mMode = (Modes) mParameters.getInt(kMode);
+    mInterpolation = (Interpolation) mParameters.getInt(kInterpolation);
     mUnits = (Units) mParameters.getInt(kUnits);
     
     setParameterInput(1);
@@ -83,7 +83,7 @@ void FrameLib_Read::update()
         mProxy->update(mParameters.getString(kBuffer));
     
     mChan = mParameters.getInt(kChannel);
-    mMode = (Modes) mParameters.getInt(kMode);
+    mInterpolation = (Interpolation) mParameters.getInt(kInterpolation);
     mUnits = (Units) mParameters.getInt(kUnits);
 }
 
@@ -151,7 +151,7 @@ void FrameLib_Read::process()
         
         if (interp)
         {
-            switch (mMode)
+            switch (mInterpolation)
             {
                 case kNone:         break;
                 case kLinear:       interpType = kInterpLinear;             break;
