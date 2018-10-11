@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 103.0, 77.0, 763.0, 856.0 ],
+		"rect" : [ 0.0, 45.0, 765.0, 856.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -39,14 +39,39 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"title" : "Tutorial 2: Key Concepts",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-11",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 106.0, 607.0, 54.0, 21.0 ],
+					"text" : "loadbang"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-9",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 106.0, 639.0, 157.0, 21.0 ],
+					"text" : "title \"Tutorial 2: Key Concepts\""
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-4",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 21.0, 634.0, 62.0, 21.0 ],
+					"patching_rect" : [ 21.0, 681.0, 62.0, 21.0 ],
 					"save" : [ "#N", "thispatcher", ";", "#Q", "end", ";" ],
 					"text" : "thispatcher"
 				}
@@ -81,7 +106,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 763.0, 830.0 ],
+						"rect" : [ 0.0, 71.0, 765.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -111,6 +136,34 @@
 						"showontab" : 1,
 						"title" : "How to Get Help",
 						"boxes" : [ 							{
+								"box" : 								{
+									"hidden" : 1,
+									"id" : "obj-9",
+									"linecount" : 3,
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 574.75, 574.0, 180.0, 49.0 ],
+									"text" : "next_tut _3_Converting_between_FrameLib_and_Max.maxpat"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 14.0,
+									"id" : "obj-10",
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 574.75, 536.0, 100.0, 20.0 ],
+									"text" : "Next Tutorial",
+									"textoncolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"hidden" : 1,
 									"id" : "obj-16",
@@ -666,6 +719,14 @@
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
+									"destination" : [ "obj-9", 0 ],
+									"hidden" : 1,
+									"source" : [ "obj-10", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-16", 0 ],
 									"hidden" : 1,
 									"source" : [ "obj-19", 0 ]
@@ -743,6 +804,98 @@
 								}
 
 							}
+ ],
+						"styles" : [ 							{
+								"name" : "AudioStatus_Menu",
+								"default" : 								{
+									"bgfillcolor" : 									{
+										"type" : "color",
+										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
+										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
+										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+										"angle" : 270.0,
+										"proportion" : 0.39,
+										"autogradient" : 0
+									}
+
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjBlue-1",
+								"default" : 								{
+									"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjBrown-1",
+								"default" : 								{
+									"accentcolor" : [ 0.654902, 0.572549, 0.376471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjGreen-1",
+								"default" : 								{
+									"accentcolor" : [ 0.0, 0.533333, 0.168627, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjRed-1",
+								"default" : 								{
+									"accentcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjYellow-1",
+								"default" : 								{
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "numberGold-1",
+								"default" : 								{
+									"accentcolor" : [ 0.764706, 0.592157, 0.101961, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "panelViolet",
+								"default" : 								{
+									"bgfillcolor" : 									{
+										"type" : "color",
+										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
+										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
+										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+										"angle" : 270.0,
+										"proportion" : 0.39,
+										"autogradient" : 0
+									}
+
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
  ]
 					}
 ,
@@ -775,7 +928,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 763.0, 830.0 ],
+						"rect" : [ 0.0, 26.0, 765.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1376,7 +1529,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 8.75, 770.40002400000003, 157.75, 51.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 3
+									"size" : 9
 								}
 
 							}
@@ -1513,7 +1666,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 763.0, 830.0 ],
+						"rect" : [ 0.0, 26.0, 765.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2186,7 +2339,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 103.0, 103.0, 763.0, 830.0 ],
+						"rect" : [ 0.0, 26.0, 765.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2217,42 +2370,14 @@
 						"title" : "Key Concepts",
 						"boxes" : [ 							{
 								"box" : 								{
-									"hidden" : 1,
-									"id" : "obj-9",
-									"linecount" : 3,
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 574.75, 611.0, 180.0, 49.0 ],
-									"text" : "next_tut _3_Converting_between_FrameLib_and_Max.maxpat"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 14.0,
-									"id" : "obj-10",
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 574.75, 587.0, 100.0, 20.0 ],
-									"text" : "Next Tutorial",
-									"textoncolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-2",
-									"linecount" : 16,
+									"linecount" : 15,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 310.0, 671.0, 272.0 ],
-									"text" : "FrameLib objects have a unique system for managing parameters at instantiation and with real-time control. It is is not dissimilar to max messages but there are some differences.\n\nThere are two ways to assign parameters to a FrameLib object at load time. Like many Max objects you can input values in the order of the arguments you want to address. Additionally you can directly address parameters through the \"/parameter <value>\" syntax. This is similar to the \"@attribute\" system in Max, however FrameLib objects cannot be addressed through the 'attrui' object. The /parameter syntax is a more direct way of addressing each parameter and is particularly useful in two scenarios.\n\n1. The default parameters are useful apart from one specific parameter you would like to change.\n2. Making parameter configurations explicit and easy to read.\n\nReal-time control is managed through a 'parameter update' inlet which receives special 'tagged frames'. Because frames are used to change the parameters, the configuration of the object is tightly synchronised to the network. More details can be found in the corresponding tabs above.\n\n"
+									"patching_rect" : [ 3.75, 281.0, 745.0, 241.0 ],
+									"text" : "FrameLib objects have a unique system for managing parameters at instantiation and with real-time control. It is is not dissimilar to max messages but there are some differences.\n\nThere are two ways to assign parameters to a FrameLib object at load time. Like many Max objects you can input values in the order of the arguments you want to address. Additionally you can directly address parameters through the \"/parameter <value>\" syntax. This is similar to the \"@attribute\" system in Max, however FrameLib objects cannot be addressed through the 'attrui' object. The /parameter syntax is a more direct way of addressing each parameter and is particularly useful in two scenarios.\n\n1. The default parameters are useful apart from one specific parameter you would like to change.\n2. Making parameter configurations explicit and easy to read.\n\nReal-time control is managed through a 'parameter update' inlet which receives special 'tagged frames'. Because frames are used to change the parameters, the configuration of the object is tightly synchronised to the network. More details can be found in the corresponding tabs above."
 								}
 
 							}
@@ -2264,8 +2389,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 272.0, 456.0, 29.0 ],
-									"text" : "2. Parameters and Tagging"
+									"patching_rect" : [ 3.75, 243.0, 456.0, 29.0 ],
+									"text" : "Parameters and Tagging"
 								}
 
 							}
@@ -2277,7 +2402,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 303.0, 530.25, 5.0 ]
+									"patching_rect" : [ 3.75, 274.0, 530.25, 5.0 ]
 								}
 
 							}
@@ -2289,7 +2414,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 96.0, 666.0, 132.0 ],
+									"patching_rect" : [ 3.75, 96.0, 745.0, 132.0 ],
 									"text" : "The most important concepts to understand in FrameLib:\n\n1. EVERYTHING is strongly timed.\n2. NOTHING happens without a FrameLib timing source otherwise known as a 'scheduler'.\n\nSchedulers create trigger frames - think of them like the bang of FrameLib. Under the hood, a trigger frame is just an empty or zero length frame that contains no samples. Frames containing samples can also act as trigger frames, but these won't exist until you've used a scheduler somewhere in the network."
 								}
 
@@ -2303,7 +2428,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 3.75, 65.0, 456.0, 29.0 ],
-									"text" : "1. Schedulers and Timing"
+									"text" : "Schedulers and Timing"
 								}
 
 							}
@@ -2334,15 +2459,7 @@
 
 							}
  ],
-						"lines" : [ 							{
-								"patchline" : 								{
-									"destination" : [ "obj-9", 0 ],
-									"hidden" : 1,
-									"source" : [ "obj-10", 0 ]
-								}
-
-							}
- ],
+						"lines" : [  ],
 						"styles" : [ 							{
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
@@ -2400,8 +2517,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2457,10 +2574,24 @@
 				}
 
 			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-9", 0 ],
+					"source" : [ "obj-11", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-4", 0 ],
+					"source" : [ "obj-9", 0 ]
+				}
+
+			}
  ],
 		"dependency_cache" : [ 			{
 				"name" : "next_tut.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

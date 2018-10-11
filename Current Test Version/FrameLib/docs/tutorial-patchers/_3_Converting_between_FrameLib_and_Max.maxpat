@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 78.0, 129.0, 931.0, 855.0 ],
+		"rect" : [ 0.0, 45.0, 895.0, 727.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -37,15 +37,41 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "default",
-		"showontab" : 1,
+		"showrootpatcherontab" : 0,
+		"showontab" : 0,
+		"title" : "Tutorial 3: Converting between FrameLib and Max",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-11",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 106.0, 613.0, 54.0, 21.0 ],
+					"text" : "loadbang"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-9",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 106.0, 639.0, 281.0, 21.0 ],
+					"text" : "title \"Tutorial 3: Converting between FrameLib and Max\""
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-6",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 21.0, 646.0, 62.0, 21.0 ],
+					"patching_rect" : [ 21.0, 667.0, 62.0, 21.0 ],
 					"save" : [ "#N", "thispatcher", ";", "#Q", "end", ";" ],
 					"text" : "thispatcher"
 				}
@@ -58,7 +84,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 21.0, 618.0, 76.0, 21.0 ],
+					"patching_rect" : [ 21.0, 639.0, 76.0, 21.0 ],
 					"text" : "r wclose_msg"
 				}
 
@@ -80,7 +106,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 931.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 895.0, 701.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -110,17 +136,6 @@
 						"showontab" : 1,
 						"title" : "Audio To Max",
 						"boxes" : [ 							{
-								"box" : 								{
-									"id" : "obj-9",
-									"local" : 1,
-									"maxclass" : "ezdac~",
-									"numinlets" : 2,
-									"numoutlets" : 0,
-									"patching_rect" : [ 519.75, 373.0, 45.0, 45.0 ]
-								}
-
-							}
-, 							{
 								"box" : 								{
 									"id" : "obj-48",
 									"maxclass" : "toggle",
@@ -272,11 +287,11 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-71",
-									"maxclass" : "newobj",
+									"local" : 1,
+									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 396.0, 55.0, 22.0 ],
-									"text" : "dac~ 1 2"
+									"patching_rect" : [ 8.75, 396.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -484,7 +499,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 931.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 895.0, 701.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -721,11 +736,11 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-44",
-									"linecount" : 6,
+									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 642.75, 271.5, 325.0, 100.0 ],
+									"patching_rect" : [ 642.75, 271.5, 244.0, 116.0 ],
 									"text" : "These parameters adjust the window type and the internal calculation size for the window. If the size parameter is set to 0 it matches the length of the incoming frame. Observe the quality of the windowed output with with different size parameters."
 								}
 
@@ -1208,7 +1223,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 931.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 895.0, 701.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1239,6 +1254,33 @@
 						"title" : "Audio From Max",
 						"boxes" : [ 							{
 								"box" : 								{
+									"hidden" : 1,
+									"id" : "obj-12",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 604.5, 668.5, 177.0, 22.0 ],
+									"text" : "next_tut _4_Generators.maxpat"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 14.0,
+									"id" : "obj-13",
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 786.5, 670.5, 100.0, 20.0 ],
+									"text" : "Next Tutorial",
+									"textoncolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"arrows" : 1,
 									"border" : 4.0,
 									"id" : "obj-4",
@@ -1246,7 +1288,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 144.625, 753.5, 37.125, 19.0 ]
+									"patching_rect" : [ 640.25, 586.5, 37.125, 19.0 ]
 								}
 
 							}
@@ -1258,7 +1300,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 184.875, 728.5, 206.0, 69.0 ],
+									"patching_rect" : [ 680.5, 561.5, 206.0, 69.0 ],
 									"text" : "Look in here for an explanation/warning about the deay incurred from converting audio to frames."
 								}
 
@@ -1464,7 +1506,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 8.75, 752.0, 105.0, 22.0 ],
+									"patching_rect" : [ 504.375, 585.0, 105.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1498,28 +1540,12 @@
 							}
 , 							{
 								"box" : 								{
-									"angle" : 270.0,
-									"bgcolor" : [ 0.290196, 0.309804, 0.301961, 0.0 ],
-									"border" : 3,
-									"bordercolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
-									"id" : "obj-11",
-									"maxclass" : "panel",
-									"mode" : 0,
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 501.5, 178.5625, 189.0 ],
-									"proportion" : 0.39
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-9",
 									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 509.375, 625.5, 45.0, 45.0 ]
+									"patching_rect" : [ 14.75, 638.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -1738,7 +1764,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 436.4375, 602.5, 20.0, 20.0 ],
+									"patching_rect" : [ 436.4375, 586.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "5",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1855,7 +1881,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 118.75, 752.0, 20.0, 20.0 ],
+									"patching_rect" : [ 614.375, 585.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "6",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1900,17 +1926,6 @@
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-58",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 0,
-									"patching_rect" : [ 14.75, 663.5, 55.0, 22.0 ],
-									"text" : "dac~ 1 2"
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-57",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
@@ -1921,11 +1936,36 @@
 								}
 
 							}
+, 							{
+								"box" : 								{
+									"angle" : 270.0,
+									"background" : 1,
+									"bgcolor" : [ 0.290196, 0.309804, 0.301961, 0.0 ],
+									"border" : 3,
+									"bordercolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
+									"id" : "obj-11",
+									"maxclass" : "panel",
+									"mode" : 0,
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 8.75, 501.5, 178.5625, 189.0 ],
+									"proportion" : 0.39
+								}
+
+							}
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-7", 0 ],
 									"source" : [ "obj-10", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-12", 0 ],
+									"hidden" : 1,
+									"source" : [ "obj-13", 0 ]
 								}
 
 							}
@@ -1982,7 +2022,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-58", 1 ],
+									"destination" : [ "obj-9", 1 ],
 									"order" : 0,
 									"source" : [ "obj-8", 0 ]
 								}
@@ -1990,11 +2030,103 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-58", 0 ],
+									"destination" : [ "obj-9", 0 ],
 									"order" : 1,
 									"source" : [ "obj-8", 0 ]
 								}
 
+							}
+ ],
+						"styles" : [ 							{
+								"name" : "AudioStatus_Menu",
+								"default" : 								{
+									"bgfillcolor" : 									{
+										"type" : "color",
+										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
+										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
+										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+										"angle" : 270.0,
+										"proportion" : 0.39,
+										"autogradient" : 0
+									}
+
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjBlue-1",
+								"default" : 								{
+									"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjBrown-1",
+								"default" : 								{
+									"accentcolor" : [ 0.654902, 0.572549, 0.376471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjGreen-1",
+								"default" : 								{
+									"accentcolor" : [ 0.0, 0.533333, 0.168627, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjRed-1",
+								"default" : 								{
+									"accentcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjYellow-1",
+								"default" : 								{
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "numberGold-1",
+								"default" : 								{
+									"accentcolor" : [ 0.764706, 0.592157, 0.101961, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "panelViolet",
+								"default" : 								{
+									"bgfillcolor" : 									{
+										"type" : "color",
+										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
+										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
+										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+										"angle" : 270.0,
+										"proportion" : 0.39,
+										"autogradient" : 0
+									}
+
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
 							}
  ]
 					}
@@ -2028,7 +2160,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 931.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 895.0, 701.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2213,7 +2345,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 78.0, 155.0, 931.0, 829.0 ],
+						"rect" : [ 0.0, 71.0, 895.0, 701.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2243,33 +2375,6 @@
 						"showontab" : 1,
 						"title" : "Passing Data",
 						"boxes" : [ 							{
-								"box" : 								{
-									"hidden" : 1,
-									"id" : "obj-9",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 231.0, 177.0, 22.0 ],
-									"text" : "next_tut _4_Generators.maxpat"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 14.0,
-									"id" : "obj-10",
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 3.75, 207.0, 100.0, 20.0 ],
-									"text" : "Next Tutorial",
-									"textoncolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
-								}
-
-							}
-, 							{
 								"box" : 								{
 									"border" : 2.0,
 									"id" : "obj-49",
@@ -2317,20 +2422,12 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 3.75, 4.0, 948.0, 59.0 ],
-									"text" : "Passing information between FrameLib and Max"
+									"text" : "Passing data between FrameLib and Max"
 								}
 
 							}
  ],
-						"lines" : [ 							{
-								"patchline" : 								{
-									"destination" : [ "obj-9", 0 ],
-									"hidden" : 1,
-									"source" : [ "obj-10", 0 ]
-								}
-
-							}
- ],
+						"lines" : [  ],
 						"styles" : [ 							{
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
@@ -2388,8 +2485,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2440,15 +2537,29 @@
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
+					"destination" : [ "obj-9", 0 ],
+					"source" : [ "obj-11", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
 					"source" : [ "obj-5", 0 ]
 				}
 
 			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-6", 0 ],
+					"source" : [ "obj-9", 0 ]
+				}
+
+			}
  ],
 		"parameters" : 		{
-			"obj-1::obj-5::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
 			"obj-1::obj-5::obj-35" : [ "[5]", "Level", 0 ],
+			"obj-1::obj-5::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
 			"parameterbanks" : 			{
 
 			}
@@ -2456,13 +2567,6 @@
 		}
 ,
 		"dependency_cache" : [ 			{
-				"name" : "next_tut.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "demosound.maxpat",
 				"bootpath" : "C74:/help/msp",
 				"type" : "JSON",
@@ -2496,6 +2600,13 @@
 				"name" : "interfacecolor.js",
 				"bootpath" : "C74:/interfaces",
 				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "next_tut.maxpat",
+				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{

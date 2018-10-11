@@ -2,7 +2,7 @@
     "fl.onepolezero~": {
         "digest": "Filters input frames using a one pole, one zero filter."
     },
-    "fl.0dsvf~": {
+    "fl.0dfsvf~": {
         "digest": "Filters input frames using a zero delay state variable filter."
     },
     "fl.resonant~": {

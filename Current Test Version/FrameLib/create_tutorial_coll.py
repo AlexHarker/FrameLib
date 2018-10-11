@@ -3,7 +3,7 @@ import os
 def main():
     # Directory stuff #
     dir_path = os.path.dirname(os.path.realpath(__file__))
-    tutorial_path = dir_path + '/docs/tutorial-patchers/'
+    tutorial_path = f'{dir_path}/docs/tutorial-patchers/'
     coll_output_path = f'{tutorial_path}tutorial_names.txt'
     print(coll_output_path)
 

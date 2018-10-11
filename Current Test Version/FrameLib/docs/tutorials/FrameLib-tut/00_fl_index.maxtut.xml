@@ -16,19 +16,19 @@ FrameLib Tutorials - Table of Contents
 
             <ul>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="01_introduction" diff="Basic">Tutorial 1: An introduction to FrameLib and frame based processing.</link>
+                    <link type="tutorial" module="FrameLib" name="01_introduction" diff="Basic" digest="Learn about the intricacies of multi-stream processing. A feature unique to FrameLib that allows you to perform a process on multiple streams of data at varying rates and sizes.">Tutorial 1: An introduction to FrameLib and frame based processing.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="02_fl_concepts" diff="Basic">Tutorial 2: A review of key concepts specific to the FrameLib eco-system.</link>
+                    <link type="tutorial" module="FrameLib" name="02_fl_concepts" diff="Basic" digest="An overview and explanation of the key concepts of FrameLib, such as its timing and patching architecture.">Tutorial 2: Key Concepts.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="03_fl_conversion" diff="Basic">Tutorial 3: Converting data between FrameLib and Max.</link>
+                    <link type="tutorial" module="FrameLib" name="03_fl_conversion" diff="Basic" digest="Methods for converting data between the Max and FrameLib domains.">Tutorial 3: Converting data between FrameLib and Max.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="04_fl_generators" diff="Basic">Tutorial 4: Generator objects.</link>
+                    <link type="tutorial" module="FrameLib" name="04_fl_generators" diff="Basic" digest="An overview of the various 'generator' objects belonging to the FrameLib eco-system.">Tutorial 4: Generator objects.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="05_fl_firstproject" diff="Basic">Tutorial 5: Your first FrameLib project - Building a granulator from scratch.</link>
+                    <link type="tutorial" module="FrameLib" name="05_fl_firstproject" diff="Basic" digest="A longer tutorial than the previous four that builds on previously covered information. Construct a granular synthesis engine from scratch and add increasingly complex features.">Tutorial 5: Your first FrameLib project - Building a granulator from scratch.</link>
                 </li>
             </ul>
         <!-- Intermediate Tutorials-->
@@ -38,10 +38,10 @@ FrameLib Tutorials - Table of Contents
 
             <ul>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="06_fl_fft" diff="Intermediate">Tutorial 6: FFT with FrameLib.</link>
+                    <link type="tutorial" module="FrameLib" name="06_fl_fft" diff="Intermediate" digest="The basics of FFT/STFT processing in FrameLib">Tutorial 6: FFT with FrameLib.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="07_fl_multistream" diff="Intermediate">Tutorial 7: Multi-stream processing.</link>
+                    <link type="tutorial" module="FrameLib" name="07_fl_multistream" diff="Intermediate" digest="A feature unique to FrameLib and somewhat similar to the Max 'mc' system, multi-streaming allows you to manipulate multiple streams of data at varying rates and sizes with only one set of processing objects.">Tutorial 7: Multi-stream processing.</link>
                 </li>
             </ul>
         
@@ -51,7 +51,7 @@ FrameLib Tutorials - Table of Contents
 
             <ul>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="08_fl_multiresfft" diff="Advanced">Tutorial 8: Multi-resolution FFT.</link>
+                    <link type="tutorial" module="FrameLib" name="08_fl_multiresfft" diff="Advanced" digest="An extension of the FFT tutorial, this crash course introduces you to the possibilities of multi-resolution FFT's.">Tutorial 8: Multi-resolution FFT.</link>
                 </li>
             </ul>
 

@@ -19,7 +19,7 @@
             "fl.perblock~"
         ]
     },
-    "fl.0dsvf~": {
+    "fl.0dfsvf~": {
         "digest": "Filters input frames using a zero delay state variable filter.",
         "module": "FrameLib",
         "category": [

@@ -46,8 +46,8 @@ class ParseAndBuild():
                     for li in elem:                 
                         for title in li:
                             self.inner_dict.clear() # wipe the inner dictionary
-                            self.counter += 1 # increment the counter so tutorial entry is correct
-                            self.inner_dict[str(self.counter)] = title.text #create an inner dict with the tutorial and info
+                            # self.counter += 1 # increment the counter so tutorial entry is correct
+                            self.inner_dict[title.text] = title.get('digest') #create an inner dict with the tutorial and info
                             self.d_skeleton[title.get('diff')].update(self.inner_dict) # append inner dict to right difficulty dict
     
 # ----------- THE GUTS ----------- #
@@ -58,6 +58,8 @@ def main():
 
     with open(obj_lookup, 'w') as fp:
         json.dump(worker.d_skeleton, fp, indent=4)
+
+main()
 
 
 
