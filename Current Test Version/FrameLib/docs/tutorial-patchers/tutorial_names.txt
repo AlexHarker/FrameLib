@@ -1,0 +1,8 @@
+0, _1_What_is_FrameLib?.maxpat;
+1, _2_Key_Concepts.maxpat;
+2, _3_Converting_between_FrameLib_and_Max.maxpat;
+3, _4_Generators.maxpat;
+4, _5_Your_First_FrameLib.maxpat;
+5, _6_FFT_in_FrameLib.maxpat;
+6, _7_Multi-stream.maxpat;
+7, _8_Multi-resolution_FFT.maxpat;
