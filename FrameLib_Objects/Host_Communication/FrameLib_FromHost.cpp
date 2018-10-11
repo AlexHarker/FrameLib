@@ -22,7 +22,7 @@ void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, const double *v
 
 void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, unsigned long stream, const double *values, unsigned long N)
 {
-    // Copy vector and swap(deconstructing the old vector in this thread)
+    // Copy vector and swap (deconstructing the old vector in this thread)
 
     OwnedFrame inputSwap(new std::vector<double>(values, values + N));
     getObject(index, stream)->swapVectorFrame(inputSwap);
@@ -80,6 +80,35 @@ void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, unsigned long s
     sendFromHost(index, stream, &serial);
 }
 
+// Copy data from the first stream
+
+void FrameLib_FromHost::Proxy::copyData(void *streamOwner, unsigned long stream)
+{
+    if (stream && mCopyStreams)
+    {
+        FrameLib_FromHost *first = getObject(streamOwner, 0);
+        FrameLib_FromHost *current = getObject(streamOwner, stream);
+        
+        if (first->mMode == kValues && current->mMode == kValues)
+        {
+            first->mLock.acquire();
+            OwnedFrame frame(new std::vector<double>(*first->mVectorFrame.get()));
+            first->mLock.release();
+            current->swapVectorFrame(frame);
+        }
+        else if (first->mMode == kParams && current->mMode == kParams)
+        {
+            FrameLib_Parameters::AutoSerial serial;
+            SerialList freeList;
+
+            first->mLock.acquire();
+            SerialList::Item *addSerial = new SerialList::Item(first->mSerialFrame);
+            first->mLock.release();
+            current->updateSerialFrame(freeList, addSerial);
+        }
+    }
+}
+
 // FrameLib_FromHost Class
 
 // Constructor
@@ -110,14 +139,17 @@ FrameLib_FromHost::~FrameLib_FromHost()
 
 void FrameLib_FromHost::setStream(void *streamOwner, unsigned long stream)
 {
-    if (mProxy)
-    {
-        mProxy->unregisterObject(this, mStreamOwner, mStream);
-        mProxy->registerObject(this, streamOwner, stream);
-    }
-    
+    void *prevOwner = mStreamOwner;
+    unsigned long prevStream = mStream;
     mStreamOwner = streamOwner;
     mStream = stream;
+    
+    if (mProxy)
+    {
+        mProxy->unregisterObject(this, prevOwner, prevStream);
+        mProxy->registerObject(this, streamOwner, stream);
+        mProxy->copyData(streamOwner, stream);
+    }
 }
 
 // Info

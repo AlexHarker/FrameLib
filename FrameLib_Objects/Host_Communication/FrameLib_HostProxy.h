@@ -15,6 +15,26 @@ class FrameLib_HostProxy : public virtual FrameLib_Proxy
         std::vector<T *> mObjects;
     };
     
+    const std::vector<T *> *getObjectList(void *streamOwner)
+    {
+        for (auto it = mRegistered.begin(); it != mRegistered.end(); it++)
+        {
+            // Find the owner first and if it exists insert into the stream list
+            
+            if (it->mStreamOwner == streamOwner)
+                return &it->mObjects;
+        }
+        
+        return nullptr;
+    }
+    
+    T *getObject(void *streamOwner, unsigned long stream)
+    {
+        const std::vector<T *> *objects = getObjectList(streamOwner);
+    
+        return objects ? (*objects)[stream] : nullptr;
+    }
+
     const std::vector<T *>& getObjectList(unsigned long index) { return mRegistered[index].mObjects; }
     T *getObject(unsigned long index, unsigned long stream) { return mRegistered[index].mObjects[stream]; }
 
@@ -29,7 +49,7 @@ class FrameLib_HostProxy : public virtual FrameLib_Proxy
                 if (it->mObjects.size() <= stream)
                     it->mObjects.resize(stream + 1);
                 else
-                    assert ((it->mObjects[stream] == nullptr) && "stream is already registered");
+                    assert((it->mObjects[stream] == nullptr) && "stream is already registered");
                 
                 it->mObjects[stream] = object;
             

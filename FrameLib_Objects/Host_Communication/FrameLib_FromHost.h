@@ -22,7 +22,12 @@ class FrameLib_FromHost final : public FrameLib_Processor
         {
             Item() : mNext(nullptr) {}
             Item(const FrameLib_Parameters::Serial& serial) : mSerial(serial), mNext(nullptr) {}
-
+            Item(const SerialList& list) : mNext(nullptr)
+            {
+                for (Item *item = list.mTop; item; item = list.mTail == item ? nullptr : item->mNext)
+                    mSerial.write(&item->mSerial);
+            }
+            
             FrameLib_Parameters::AutoSerial mSerial;
             Item *mNext;
         };
@@ -101,6 +106,8 @@ public:
 
     struct Proxy : public FrameLib_HostProxy<FrameLib_FromHost>
     {
+        Proxy(bool copyStreams) : mCopyStreams(copyStreams) {}
+        
         // Send a vector frame
         
         void sendFromHost(unsigned long index, const double *values, unsigned long N);
@@ -120,6 +127,12 @@ public:
         
         void sendFromHost(unsigned long index, const char *tag, const double *values, unsigned long N);
         void sendFromHost(unsigned long index, unsigned long stream, const char *tag, const double *values, unsigned long N);
+        
+        // Copy data from the first stream to another stream
+        
+        void copyData(void *streamOwner, unsigned long stream);
+        
+        bool mCopyStreams;
     };
     
 private:
