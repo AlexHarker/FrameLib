@@ -29,7 +29,7 @@
 
 \linespread{1.1} % Line spacing
 
-\newcommand{\version}{Alpha 2.1}
+\newcommand{\version}{Alpha 2.5}
 % Set up the header and footer
 \pagestyle{fancy}
 \lhead{Alex Harker} % Top left header
@@ -720,8 +720,7 @@ Objects in bold are yet to be finalised by review.
 \item Added code export feature that can be used to auto-generate C++ code from a network in Max/pd.
 \end{itemize}
 
-
-\subsection{Changes in Alpha 2.1}
+\subsection{Changes in Alpha 2.5}
 \vspace{0.1in}
 
 \subsubsection{Bug fixes}
@@ -729,7 +728,28 @@ Objects in bold are yet to be finalised by review.
 \begin{itemize}
 \item {\#66} Corrected naming of not equals object.
 \item Ternary objects now behave predictably for all input values.
-\item Ternary objects now. have info strings.
+\item Ternary objects now have info strings.
+\item {\#71, \#74 and \#75} Fixed host objects (\flobject{frommax} and \flobject{tomax}) to prevent crashes.
+\item  {\#64} Fixed \flobject{frommax} to copy messages sent before multistream expansion correctly to match user expectations.
+\item {\#80} Corrected buffer channel setting with \flobject{read}.
+\item {\#82} Fixed crash with \flobject{lookup} and empty table input.
+\item {\#85} Fixed \flobject{diff} to work correctly.
+\item {\#83} Fixed crash with \flobject{medianfilter} and NaNs at the input.
+\item {\#69} Fixed comparison of times within FrameLib was causing mis-scheduling.
+\item Fixed tagged inputs to be searched for the last occurrence of a tag to ensure the last sent tag is respected.
+\item Correct patch context awareness with bpatchers and other objects.
+\end{itemize}
+
+\subsubsection{Renamed parameters}
+
+\begin{itemize}
+\item {\#62} \flobject{read} now has an "interp" parameter, rather than "mode".
+\end{itemize}
+
+\subsubsection{New features}
+
+\begin{itemize}
+\item FrameLib now has error reporting! This covers parameters as well as DSP time-out.
 \end{itemize}
 
 \subsubsection{New objects}
@@ -738,11 +758,23 @@ Objects in bold are yet to be finalised by review.
 \item {\#9} \flobject{expr} and \flobject{complexexpr} allow expressions in a single object.
 \end{itemize}
 
+\subsubsection{New object features}
+
+\begin{itemize}
+\item {\#59} \flobject{lookup} has a parameter input.
+\item {\#56} \flobject{tag} has different modes for empty frames, with difficult behaviour being more obvious.
+\end{itemize}
+
 \subsubsection{Other changes}
 
 \begin{itemize}
 \item {\#68} FrameLib is now compiled with AVX1.0 but not AVX2.0 due to incompatibility with reasonably recent computers.
 \item {\#63} Corrected typos in demos and user docs.
+\item {\#77} Corrected info strings to refer to empty frames in a consistent manner.
+\item {\#78} Corrected info strings to use consistent wording for the output of an object.
+\item There are now tutorials and help files (massive thanks to James Bradbury).
+\item What was multichannel is now multistream (as in the docs).
+\item {\#76} More pd work (not quite ready for testing yet).
 \end{itemize}
 
 
