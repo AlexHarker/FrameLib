@@ -1,15 +1,11 @@
 import json
 import xml.etree.ElementTree as et
 import os
+from strippers import strip_space
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-ref_dir = dir_path + '/docs/refpages' # possibly make this relative
-obj_lookup = dir_path + '/interfaces/FrameLib-obj-qlookup.json'
-
-def strip_space(tostrip):
-    tostrip = tostrip.lstrip()
-    tostrip = tostrip.rstrip()
-    return tostrip
+ref_dir = f'{dir_path}/docs/refpages' 
+obj_lookup = f'{dir_path}/interfaces/FrameLib-obj-qlookup.json'
 
 class ParseAndBuild():
     def __init__(self):
@@ -64,14 +60,6 @@ class ParseAndBuild():
 
         self.build_json_file()
 
-        print ('-' * 40)
-        print('NAME: ', self.object_name)
-        print('DIGEST: ', self.digest)
-        print('SEEALSO: ', self.seealso_list)
-        print('KEYWORDS: ', self.keywords)
-        print('CATEGORY: ', self.category)
-        print ('_' * 40)
-
 # ----------- THE GUTS ----------- #
 
 def main():
@@ -90,9 +78,6 @@ def main():
 
     with open(obj_lookup, 'w') as fp:
         json.dump(worker.d_master_dict, fp, indent=4)
-    print('*' * 40)
-    print('Finished parsing and building object lookup file')
-    print(' ' * 40)
 
 
 

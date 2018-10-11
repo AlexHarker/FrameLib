@@ -2,18 +2,13 @@
 import json
 import xml.etree.ElementTree as et
 import os
+from strippers import strip_space
 
 # Directory stuff #
 dir_path = os.path.dirname(os.path.realpath(__file__))
 ref_dir = dir_path + '/docs/refpages'
 obj_lookup = dir_path + '/interfaces/FrameLib-obj-dlookup.json'
 
-# A little function to get rid of white space from a string #
-# Useful as it usually pulls indents out of existing xml files #
-def strip_space(tostrip):
-    tostrip = tostrip.lstrip() 
-    tostrip = tostrip.rstrip() # Do it twice to remove both start and end white space #
-    return tostrip
 
 # A class to parse the XML files and build a JSON file from it #
 class ParseAndBuild():
@@ -49,12 +44,6 @@ class ParseAndBuild():
         # Call the build function #
         self.build_json_file()
 
-        # Print output to check its correctly pulled info #
-        print ('-' * 40)
-        print('NAME: ', self.object_name)
-        print('DIGEST: ', self.digest)
-        print ('-' * 40)
-
 # ----------- THE GUTS ----------- #
 def main():
     worker = ParseAndBuild()
@@ -72,10 +61,6 @@ def main():
 
     with open(obj_lookup, 'w') as fp:
         json.dump(worker.d_master_dict, fp, indent=4)
-
-    print('*' * 40)
-    print('Finished parsing and building object lookup file')
-    print('*' * 40)
 
 
 
