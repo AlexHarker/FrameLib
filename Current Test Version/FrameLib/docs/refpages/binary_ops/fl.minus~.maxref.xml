@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+<c74object name="fl.minus~" module="FrameLib" category="binary_ops">
+
+	<digest>
+		Subtracts the right input frame from the left input frame.
+	</digest>
+
+	<description>
+		<o>fl.minus~</o>calculates pairs of values in turn.<br></br>
+		The result is an output frame at least as long as the smaller of the two inputs.<br></br>
+		When frames mismatch in size the result depends on the setting of the mismatch parameter.<br></br>
+		Either or both inputs may be set to trigger output.
+	</description>
+
+	<misc name = "Parameters">
+		<entry name = "1. /mistmatch [enum]">
+			<description>
+				Sets the mode when dealing with mismatched input lengths: <br></br>
+				<bullet><b>[0] - wrap:</b> the smaller input is read modulo against the larger input. <br></br></bullet>
+				<bullet><b>[1] - shrink:</b> the output length is set to the size of the smaller input. <br></br></bullet>
+				<bullet><b>[2] - pad_in:</b> the smaller input is padded prior to the calculation to match the larger input.<br></br></bullet>
+				<bullet><b>[3] - pad_out:</b> the output is padded to match the size of the larger input.</bullet>
+			</description>
+		</entry>
+
+		<entry name = "2. /trigger_ins [enum]">
+			<description>
+				Sets which inputs trigger output: <br></br>		
+				<bullet><b>[0] - both:</b> both inlets trigger output.<br></br></bullet>
+				<bullet><b>[1] - left:</b> left inlet triggers output.<br></br></bullet>
+				<bullet><b>[2] - right:</b> right inlet triggers output.</bullet>
+			</description>
+		</entry>
+
+		<entry name = "3. /pad [double]">
+			<description>
+				Sets the value used for padding (for either pad_in or pad_out modes).
+			</description>
+		</entry>
+	</misc>
+
+	<!--METADATA-->
+	<metadatalist>
+		<metadata name="author">Alex Harker</metadata>
+		<metadata name="tag">FrameLib</metadata>
+		<metadata name="tag">Binary Ops</metadata>
+	</metadatalist>
+
+	<!--SEEALSO-->
+	<!-- The information here is pulled from the digest of the corresponding object-->
+	<seealsolist>
+		<seealso name="fl.plus~" />
+		<seealso name="fl.times~" />
+		<seealso name="fl.divide~" />
+	</seealsolist>
+
+	<misc name = "Discussion">
+		<entry name ="Keywords">
+			<description>
+				subtraction, take, minus, -~, -.
+			</description>
+		</entry>
+	</misc>
+
+</c74object>

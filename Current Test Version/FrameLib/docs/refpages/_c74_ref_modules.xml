@@ -18,9 +18,21 @@
   OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 <root>
-  <module>jit-ref</module>
-  <module>m4l-ref</module>
-  <module>max-ref</module>
-  <module>msp-ref</module>
-  <module>FrameLib_ref</module>
+  <module>binary_ops</module>
+  <module>filters</module>
+  <module>generators</module>
+  <module>host_communication</module>
+  <module>io</module>
+  <module>mapping</module>
+  <module>routing</module>
+  <module>schedulers</module>
+  <module>spatial</module>
+  <module>spectral</module>
+  <module>storage</module>
+  <module>streaming</module>
+  <module>ternary_ops</module>
+  <module>time_smoothing</module>
+  <module>timing</module>
+  <module>unary_ops</module>
+  <module>vector</module>
 </root>

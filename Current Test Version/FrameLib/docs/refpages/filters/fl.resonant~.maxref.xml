@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+<c74object name="fl.resonant~" module="FrameLib" category="filters">
+
+	<digest>
+		Filters input frames using a resonant filter.
+	</digest>
+
+	<description>
+		The size of the output is equal to the input.
+	</description>
+
+	<misc name = "Parameters">
+		<entry name = "1. /freq [double]">
+			<description>
+				Sets the filter cutoff frequency.
+			</description> 	
+		</entry>
+
+		<entry name = "2. /reson [double]">
+			<description>
+				Sets the filter resonance [0-1].
+			</description>
+		</entry>
+
+		<entry name = "3. /mode [enum]">
+			<description>
+				Sets the filter mode:<br></br>
+				<bullet><b>[0] - lpf:</b> Low Pass.</bullet><br></br>
+				<bullet><b>[1] - hpf:</b> High Pass.</bullet>
+			</description>
+		</entry>
+	</misc>
+
+	<!--METADATA-->
+	<metadatalist>
+		<metadata name="author">Alex Harker</metadata>
+		<metadata name="tag">FrameLib</metadata>
+		<metadata name="tag">Filters</metadata>
+	</metadatalist>
+
+	<!--SEEALSO-->
+	<!-- The information here is pulled from the digest of the corresponding object-->
+	<seealsolist>
+		<seealso name="fl.0dfsvf~" />
+		<seealso name="fl.onepole~" />
+		<seealso name="fl.onepolezero~" />
+		<seealso name="fl.sallenkey~" />
+	</seealsolist>
+
+	<misc name = "Discussion">
+		<entry name ="Keywords">
+			<description>
+				filter, resonant, reson
+			</description>
+		</entry>
+	</misc>
+
+</c74object>

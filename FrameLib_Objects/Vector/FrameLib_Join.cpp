@@ -51,7 +51,7 @@ FrameLib_Join::ParameterInfo FrameLib_Join::sParamInfo;
 FrameLib_Join::ParameterInfo::ParameterInfo()
 {
     add("Sets the number of inputs.");
-    add("Set which inputs trigger output by default all inputs).");
+    add("Set which inputs trigger output (by default all inputs).");
 }
 
 // Process

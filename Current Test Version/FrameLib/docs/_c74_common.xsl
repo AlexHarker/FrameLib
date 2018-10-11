@@ -298,18 +298,6 @@
     </span>
   </xsl:template>
 
-  <xsl:template match="ar">
-    <span class="objectarg">
-      <xsl:apply-templates />
-    </span>
-  </xsl:template>
-
-  <xsl:template match="at">
-    <span class="attrname">
-      <xsl:value-of select="normalize-space(.)"/>
-    </span>
-  </xsl:template>
-
   <xsl:template match="j">
     <xsl:choose>
       <xsl:when test="$jargon_enable=1">
@@ -589,7 +577,6 @@
         </xsl:for-each>
       </table>
     </div>
-<!-- id="seealso_section" -->
   </xsl:template>
 
   <xsl:template name="docurl">

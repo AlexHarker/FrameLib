@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+<c74object name="fl.subframe~" module="FrameLib" category="vector">
+
+	<digest>
+		Output part of an input frame.
+	</digest>
+
+	<description>
+		The subframe is specified by a start and end point in the input frame.
+	</description>
+
+	<misc name = "Parameters">
+		<entry name = "1. /start [double]">
+			<description>
+				Sets the start point of the subframe.
+			</description>
+		</entry>
+
+		<entry name = "2. /end [enum]">
+			<description>
+				Sets the end point of the subframe.
+			</description>
+		</entry>
+
+		<entry name = "2. /units [enum]">
+			<description>
+				Sets units for the start and end points (samples or ratios [0-1]).
+				<bullet><b>[0] - samples</b></bullet><br></br>
+				<bullet><b>[1] - ratios</b></bullet>
+			</description>
+		</entry>
+	</misc>
+
+	<!--METADATA-->
+	<metadatalist>
+		<metadata name="author">Alex Harker</metadata>
+		<metadata name="tag">FrameLib</metadata>
+		<metadata name="tag">Vector</metadata>
+	</metadatalist>
+
+	<!--SEEALSO-->
+	<!-- The information here is pulled from the digest of the corresponding object-->
+	<seealsolist>
+		<seealso name="fl.accumpoint~" />
+		<seealso name="fl.argmax~" />
+		<seealso name="fl.argmin~" />
+		<seealso name="fl.centroid~" />
+		<seealso name="fl.chop~" />
+		<seealso name="fl.crest~" />
+		<seealso name="fl.flatness~" />
+		<seealso name="fl.geometricmean~" />
+		<seealso name="fl.join~" />
+		<seealso name="fl.kurtosis~" />
+		<seealso name="fl.length~" />
+		<seealso name="fl.mean~" />
+		<seealso name="fl.medianfilter~" />
+		<seealso name="fl.nanfilter~" />
+		<seealso name="fl.nonzero~" />
+		<seealso name="fl.pad~" />
+		<seealso name="fl.peaks~" />
+		<seealso name="fl.percentile~" />
+		<seealso name="fl.product~" />
+		<seealso name="fl.reverse~" />
+		<seealso name="fl.rms~" />
+		<seealso name="fl.shift~" />
+		<seealso name="fl.skewness~" />
+		<seealso name="fl.sort~" />
+		<seealso name="fl.split~" />
+		<seealso name="fl.spread~" />
+		<seealso name="fl.standarddeviation~" />
+		<seealso name="fl.sum~" />
+		<seealso name="fl.vmax~" />
+		<seealso name="fl.vmin~" />
+	</seealsolist>
+
+	<misc name = "Discussion">
+		<entry name ="Keywords">
+			<description>
+				vector, subframe
+			</description>
+		</entry>
+	</misc>
+
+</c74object>
