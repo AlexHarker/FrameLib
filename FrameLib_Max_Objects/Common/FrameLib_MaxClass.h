@@ -583,6 +583,22 @@ public:
         dspInit(c);
     }
 
+    // Check if a patch in memory matches a symbol representing a path
+    
+    static bool comparePatchWithName(t_object *patch, t_symbol *name)
+    {
+        char fileName[MAX_FILENAME_CHARS];
+        t_fourcc validTypes[TYPELIST_SIZE];
+        short outvol = 0, numTypes = 0;
+        t_fourcc outtype = 0;
+        
+        typelist_make(validTypes, TYPELIST_MAXFILES, &numTypes);
+        strncpy_zero(fileName, name->s_name, MAX_FILENAME_CHARS);
+        locatefile_extended(fileName, &outvol, &outtype, validTypes, numTypes);
+        
+        return !strcmp(jpatcher_get_filename(patch)->s_name, fileName);
+    }
+    
     // Find the patcher for the context
 
     static t_object *contextPatcher(t_object *patch)
@@ -617,22 +633,17 @@ public:
                     t_symbol *objectName = atom_getsym(atomBuffer->a_argv);
                     atombuf_free(atomBuffer);
                     
-                    // Check if the patch is loading in a subpatcher
+                    // Check if the patch is loading in a subpatcher otherwise check if it is loading in an abstraction
                     
-                    if (!(traverse = objectName == gensym("p") || objectName == gensym("patcher")))
-                    {
-                        // Check if the patch is loading in an abstraction
-                        
-                        char objectText[MAX_FILENAME_CHARS];
-                        t_fourcc validTypes[TYPELIST_SIZE];
-                        short outvol = 0, numTypes = 0;
-                        t_fourcc outtype = 0;
-
-                        typelist_make(validTypes, TYPELIST_MAXFILES, &numTypes);
-                        strncpy_zero(objectText, objectName->s_name, MAX_FILENAME_CHARS);
-                        locatefile_extended(objectText, &outvol, &outtype, validTypes, numTypes);
-                        traverse = !strcmp(jpatcher_get_filename(patch)->s_name, objectText);
-                    }
+                    traverse = objectName == gensym("p") || objectName == gensym("patcher") || comparePatchWithName(patch, objectName);
+                }
+                else
+                {
+                    // FIX - this is not perfect for bpatchers, but it is relatively safe for now
+                    
+                    for (t_object *b = jpatcher_get_firstobject(parent); b && !traverse; b = jbox_get_nextobject(b))
+                        if (jbox_get_maxclass(b) == gensym("bpatcher"))
+                            traverse = comparePatchWithName(patch, object_attr_getsym(b, gensym("name")));
                 }
             }
         }
