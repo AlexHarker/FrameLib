@@ -14,34 +14,46 @@ FrameLib Tutorials - Table of Contents
             Basics
         </h2>
 
-        <ul>
-            <li>
-                <link type="tutorial" module="FrameLib" name="01_introduction">Tutorial 1: An introduction to FrameLib and frame based processing.</link>
-            </li>
-            <li>
-                <link type="tutorial" module="FrameLib" name="02_fl_concepts">Tutorial 2: A review of key concepts specific to the FrameLib eco-system.</link>
-            </li>
-            <li>
-                <link type="tutorial" module="FrameLib" name="03_fl_conversion">Tutorial 3: Converting data between FrameLib and Max.</link>
-            </li>
-            <li>
-                <link type="tutorial" module="FrameLib" name="04_fl_generators">Tutorial 4: Generator objects.</link>
-            </li>
-            <li>
-                <link type="tutorial" module="FrameLib" name="05_fl_firstproject">Tutorial 5: Your first FrameLib project - Building a granulator from scratch.</link>
-            </li>
-        </ul>
+            <ul>
+                <li>
+                    <link type="tutorial" module="FrameLib" name="01_introduction" diff="Basic">Tutorial 1: An introduction to FrameLib and frame based processing.</link>
+                </li>
+                <li>
+                    <link type="tutorial" module="FrameLib" name="02_fl_concepts" diff="Basic">Tutorial 2: A review of key concepts specific to the FrameLib eco-system.</link>
+                </li>
+                <li>
+                    <link type="tutorial" module="FrameLib" name="03_fl_conversion" diff="Basic">Tutorial 3: Converting data between FrameLib and Max.</link>
+                </li>
+                <li>
+                    <link type="tutorial" module="FrameLib" name="04_fl_generators" diff="Basic">Tutorial 4: Generator objects.</link>
+                </li>
+                <li>
+                    <link type="tutorial" module="FrameLib" name="05_fl_firstproject" diff="Basic">Tutorial 5: Your first FrameLib project - Building a granulator from scratch.</link>
+                </li>
+            </ul>
         <!-- Intermediate Tutorials-->
         <h2>
             Intermediate
         </h2>
-            <li>
-                <link type="tutorial" module="FrameLib" name="06_fl_fft">Tutorial 6: FFT with FrameLib.</link>
-            </li>
-            <li>
-                <link type="tutorial" module="FrameLib" name="07_fl_multistream">Tutorial 7: Multi-stream processing.</link>
-            </li>
 
+            <ul>
+                <li>
+                    <link type="tutorial" module="FrameLib" name="06_fl_fft" diff="Intermediate">Tutorial 6: FFT with FrameLib.</link>
+                </li>
+                <li>
+                    <link type="tutorial" module="FrameLib" name="07_fl_multistream" diff="Intermediate">Tutorial 7: Multi-stream processing.</link>
+                </li>
+            </ul>
+        
+        <h2>
+            Advanced
+        </h2>
+
+            <ul>
+                <li>
+                    <link type="tutorial" module="FrameLib" name="08_fl_multiresfft" diff="Advanced">Tutorial 8: Multi-resolution FFT.</link>
+                </li>
+            </ul>
 
 	</p>
 

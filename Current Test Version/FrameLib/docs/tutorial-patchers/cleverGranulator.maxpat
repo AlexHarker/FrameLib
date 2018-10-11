@@ -2,14 +2,15 @@
 	"patcher" : 	{
 		"fileversion" : 1,
 		"appversion" : 		{
-			"major" : 7,
-			"minor" : 3,
-			"revision" : 4,
+			"major" : 8,
+			"minor" : 0,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 34.0, 78.0, 652.0, 788.0 ],
+		"classnamespace" : "box",
+		"rect" : [ 34.0, 79.0, 652.0, 788.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -43,7 +44,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 549.0, 200.0, 131.0, 19.0 ],
-					"style" : "",
 					"text" : "Random filter frequency"
 				}
 
@@ -56,7 +56,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 167.0, 189.0, 180.0, 43.0 ],
-					"style" : "",
 					"text" : "Generate the frame determining  millisecond positions to read from the buffer"
 				}
 
@@ -69,7 +68,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 127.0, 458.0, 159.0, 31.0 ],
-					"style" : "",
 					"text" : "Window each frame (or grain) with a cosine function."
 				}
 
@@ -81,7 +79,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 144.0, 332.0, 90.0, 19.0 ],
-					"style" : "",
 					"text" : "Filter each grain"
 				}
 
@@ -93,7 +90,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 144.0, 384.0, 143.0, 19.0 ],
-					"style" : "",
 					"text" : "Spatialisation (look inside)"
 				}
 
@@ -106,7 +102,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 236.0, 253.5, 180.0, 56.0 ],
-					"style" : "",
 					"text" : "Read from the jongles buffer a series of samples determined in millisecond positions. determined by the incoming frame."
 				}
 
@@ -121,13 +116,14 @@
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
-							"major" : 7,
-							"minor" : 3,
-							"revision" : 4,
+							"major" : 8,
+							"minor" : 0,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
+						"classnamespace" : "box",
 						"rect" : [ 34.0, 78.0, 652.0, 788.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
@@ -164,7 +160,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 95.25, 47.0, 107.0, 21.0 ],
-									"style" : "",
 									"text" : "pak f f"
 								}
 
@@ -179,7 +174,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 95.25, 16.0, 63.0, 21.0 ],
-									"style" : "",
 									"text" : "r rangeMin"
 								}
 
@@ -194,7 +188,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 183.25, 16.0, 66.0, 21.0 ],
-									"style" : "",
 									"text" : "r rangeMax"
 								}
 
@@ -207,7 +200,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 122.0, 715.0, 165.0, 33.0 ],
-									"style" : "",
 									"text" : "Offset the frame of ms positions to read as a grain"
 								}
 
@@ -220,7 +212,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 194.0, 639.0, 227.0, 33.0 ],
-									"style" : "",
 									"text" : "Generate a frame of sequential millisecond positions to read as a grain"
 								}
 
@@ -233,8 +224,7 @@
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 42.0, 756.0, 30.0, 30.0 ],
-									"style" : ""
+									"patching_rect" : [ 42.0, 756.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -247,7 +237,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 42.0, 721.0, 78.0, 21.0 ],
-									"style" : "",
 									"text" : "fl.plus~"
 								}
 
@@ -262,7 +251,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 42.0, 645.0, 150.0, 21.0 ],
-									"style" : "",
 									"text" : "fl.ramp~ /units ms /scale ms"
 								}
 
@@ -275,7 +263,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 249.0, 573.5, 172.0, 33.0 ],
-									"style" : "",
 									"text" : "tag the range as a length parameter for fl.ramp~"
 								}
 
@@ -286,8 +273,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 174.25, 528.777771, 168.5, 20.0 ],
-									"style" : "",
+									"patching_rect" : [ 174.25, 528.77777100000003, 168.5, 20.0 ],
 									"text" : "Multiply by the absolute range"
 								}
 
@@ -298,8 +284,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 95.25, 400.777771, 168.5, 20.0 ],
-									"style" : "",
+									"patching_rect" : [ 95.25, 400.777770999999973, 168.5, 20.0 ],
 									"text" : "Multiply by the absolute range"
 								}
 
@@ -311,8 +296,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 152.0, 330.777771, 156.0, 33.0 ],
-									"style" : "",
+									"patching_rect" : [ 152.0, 330.777770999999973, 156.0, 33.0 ],
 									"text" : "Generate two random numbers between 0. and 1."
 								}
 
@@ -323,8 +307,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 81.0, 272.777771, 156.0, 20.0 ],
-									"style" : "",
+									"patching_rect" : [ 81.0, 272.777770999999973, 156.0, 20.0 ],
 									"text" : "If negative make positive"
 								}
 
@@ -336,8 +319,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 101.5, 202.777771, 156.0, 33.0 ],
-									"style" : "",
+									"patching_rect" : [ 101.5, 202.777771000000001, 156.0, 33.0 ],
 									"text" : "Find the range of the two values"
 								}
 
@@ -348,8 +330,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 101.5, 144.777771, 150.0, 20.0 ],
-									"style" : "",
+									"patching_rect" : [ 101.5, 144.777771000000001, 150.0, 20.0 ],
 									"text" : "Equivalent of 'unpack i i'"
 								}
 
@@ -361,8 +342,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 114.0, 74.777779, 150.0, 33.0 ],
-									"style" : "",
+									"patching_rect" : [ 114.0, 74.777778999999995, 150.0, 33.0 ],
 									"text" : "Take the values from the Max waveform interface."
 								}
 
@@ -375,8 +355,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 42.0, 144.777771, 57.0, 21.0 ],
-									"style" : "",
+									"patching_rect" : [ 42.0, 144.777771000000001, 57.0, 21.0 ],
 									"text" : "fl.split~ 1"
 								}
 
@@ -389,8 +368,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 80.777779, 70.0, 21.0 ],
-									"style" : "",
+									"patching_rect" : [ 42.0, 80.777778999999995, 70.0, 21.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -403,8 +381,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 272.777771, 41.0, 21.0 ],
-									"style" : "",
+									"patching_rect" : [ 42.0, 272.777770999999973, 41.0, 21.0 ],
 									"text" : "fl.abs~"
 								}
 
@@ -417,8 +394,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 208.777771, 57.0, 21.0 ],
-									"style" : "",
+									"patching_rect" : [ 42.0, 208.777771000000001, 57.0, 21.0 ],
 									"text" : "fl.minus~"
 								}
 
@@ -432,7 +408,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 173.0, 579.5, 74.0, 21.0 ],
-									"style" : "",
 									"text" : "fl.tag~ length"
 								}
 
@@ -446,7 +421,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 152.0, 463.5, 49.0, 21.0 ],
-									"style" : "",
 									"text" : "fl.vmin~"
 								}
 
@@ -459,8 +433,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 464.777771, 52.0, 21.0 ],
-									"style" : "",
+									"patching_rect" : [ 42.0, 464.777770999999973, 52.0, 21.0 ],
 									"text" : "fl.vmax~"
 								}
 
@@ -473,8 +446,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 528.777771, 129.0, 21.0 ],
-									"style" : "",
+									"patching_rect" : [ 42.0, 528.77777100000003, 129.0, 21.0 ],
 									"text" : "fl.minus~ /trigger_ins left"
 								}
 
@@ -487,8 +459,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 400.777771, 52.0, 21.0 ],
-									"style" : "",
+									"patching_rect" : [ 42.0, 400.777770999999973, 52.0, 21.0 ],
 									"text" : "fl.times~"
 								}
 
@@ -501,8 +472,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 336.777771, 108.0, 21.0 ],
-									"style" : "",
+									"patching_rect" : [ 42.0, 336.777770999999973, 108.0, 21.0 ],
 									"text" : "fl.random~ /length 2"
 								}
 
@@ -516,8 +486,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 16.0, 30.0, 30.0 ],
-									"style" : ""
+									"patching_rect" : [ 42.0, 16.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -689,11 +658,9 @@
 						"description" : "",
 						"digest" : "",
 						"globalpatchername" : "",
-						"style" : "",
 						"tags" : ""
 					}
 ,
-					"style" : "",
 					"text" : "p randomPositionFrames"
 				}
 
@@ -709,13 +676,14 @@
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
-							"major" : 7,
-							"minor" : 3,
-							"revision" : 4,
+							"major" : 8,
+							"minor" : 0,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
+						"classnamespace" : "box",
 						"rect" : [ 59.0, 103.0, 640.0, 480.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
@@ -751,7 +719,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 119.0, 232.75, 160.0, 33.0 ],
-									"style" : "",
 									"text" : "Tag the value to change the parameters of the filter."
 								}
 
@@ -765,7 +732,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 50.0, 238.75, 67.0, 21.0 ],
-									"style" : "",
 									"text" : "fl.tag~ freq"
 								}
 
@@ -778,7 +744,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 196.0, 159.75, 150.0, 47.0 ],
-									"style" : "",
 									"text" : "Scale 0. 1. between 20. and 900. as a center frequency"
 								}
 
@@ -791,7 +756,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 113.0, 100.75, 150.0, 33.0 ],
-									"style" : "",
 									"text" : "Generate a random number between 0. and 1."
 								}
 
@@ -804,9 +768,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 172.75, 144.0, 21.0 ],
-									"style" : "",
-									"text" : "fl.map~ linear 0. 1. 20 900"
+									"patching_rect" : [ 50.0, 172.75, 142.0, 21.0 ],
+									"text" : "fl.map~ linear 0. 1. 40 2000"
 								}
 
 							}
@@ -819,7 +782,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 50.0, 106.75, 61.0, 21.0 ],
-									"style" : "",
 									"text" : "fl.random~"
 								}
 
@@ -833,8 +795,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 40.0, 30.0, 30.0 ],
-									"style" : ""
+									"patching_rect" : [ 50.0, 40.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -846,8 +807,7 @@
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 50.0, 304.75, 30.0, 30.0 ],
-									"style" : ""
+									"patching_rect" : [ 50.0, 304.75, 30.0, 30.0 ]
 								}
 
 							}
@@ -888,11 +848,9 @@
 						"description" : "",
 						"digest" : "",
 						"globalpatchername" : "",
-						"style" : "",
 						"tags" : ""
 					}
 ,
-					"style" : "",
 					"text" : "p random_frequency"
 				}
 
@@ -905,7 +863,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 112.0, 121.0, 166.0, 31.0 ],
-					"style" : "",
 					"text" : "Generate a trigger frame at the rate of the interval parameter"
 				}
 
@@ -921,13 +878,14 @@
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
-							"major" : 7,
-							"minor" : 3,
-							"revision" : 4,
+							"major" : 8,
+							"minor" : 0,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
+						"classnamespace" : "box",
 						"rect" : [ 59.0, 103.0, 640.0, 480.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
@@ -962,7 +920,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 133.0, 73.0, 238.0, 20.0 ],
-									"style" : "",
 									"text" : "Untag the frame to get the original value"
 								}
 
@@ -975,7 +932,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 50.0, 72.0, 81.0, 22.0 ],
-									"style" : "",
 									"text" : "fl.untag~ freq"
 								}
 
@@ -988,7 +944,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 124.0, 322.0, 146.0, 33.0 ],
-									"style" : "",
 									"text" : "pack the two values into a multi-stream frame"
 								}
 
@@ -1000,7 +955,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 146.0, 280.0, 146.0, 20.0 ],
-									"style" : "",
 									"text" : "multiply pi by cos and sin"
 								}
 
@@ -1012,7 +966,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 137.0, 232.0, 120.0, 20.0 ],
-									"style" : "",
 									"text" : "Output pi * multiplier"
 								}
 
@@ -1025,7 +978,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 211.0, 171.0, 186.0, 33.0 ],
-									"style" : "",
 									"text" : "Set the multiplier for fl.constant~ (will multiply pi by this value)"
 								}
 
@@ -1038,7 +990,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 203.0, 110.0, 238.0, 33.0 ],
-									"style" : "",
 									"text" : "Map the minimum and maximum generated frequency between 0.1 and 0.9"
 								}
 
@@ -1052,7 +1003,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 116.0, 177.0, 93.0, 21.0 ],
-									"style" : "",
 									"text" : "fl.tag~ multiplier"
 								}
 
@@ -1066,7 +1016,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 50.0, 116.0, 151.0, 21.0 ],
-									"style" : "",
 									"text" : "fl.map~ linear 20 900 0.1 0.9"
 								}
 
@@ -1080,8 +1029,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 50.0, 328.0, 71.0, 21.0 ],
-									"presentation_rect" : [ 564.0, 410.0, 71.0, 22.0 ],
-									"style" : "",
 									"text" : "fl.pack~"
 								}
 
@@ -1095,8 +1042,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 102.0, 280.0, 42.0, 21.0 ],
-									"presentation_rect" : [ 616.0, 373.0, 42.0, 22.0 ],
-									"style" : "",
 									"text" : "fl.sin~"
 								}
 
@@ -1110,8 +1055,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 50.0, 280.0, 46.0, 21.0 ],
-									"presentation_rect" : [ 564.0, 373.0, 46.0, 22.0 ],
-									"style" : "",
 									"text" : "fl.cos~"
 								}
 
@@ -1125,8 +1068,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 50.0, 232.0, 85.0, 21.0 ],
-									"presentation_rect" : [ 564.0, 336.0, 85.0, 22.0 ],
-									"style" : "",
 									"text" : "fl.constant~ pi"
 								}
 
@@ -1140,8 +1081,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 16.0, 30.0, 30.0 ],
-									"style" : ""
+									"patching_rect" : [ 50.0, 16.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -1153,8 +1093,7 @@
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 50.0, 376.0, 30.0, 30.0 ],
-									"style" : ""
+									"patching_rect" : [ 50.0, 376.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -1241,11 +1180,9 @@
 						"description" : "",
 						"digest" : "",
 						"globalpatchername" : "",
-						"style" : "",
 						"tags" : ""
 					}
 ,
-					"style" : "",
 					"text" : "p spatialisation"
 				}
 
@@ -1258,8 +1195,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 112.0, 574.0, 30.0, 30.0 ],
-					"style" : ""
+					"patching_rect" : [ 112.0, 574.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -1270,8 +1206,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 112.0, 507.0, 113.0, 21.0 ],
-					"style" : "",
+					"patching_rect" : [ 112.0, 507.0, 102.0, 21.0 ],
 					"text" : "fl.timemean~ 30 10"
 				}
 
@@ -1284,7 +1219,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 112.0, 539.0, 60.0, 21.0 ],
-					"style" : "",
 					"text" : "fl.tomax~"
 				}
 
@@ -1298,7 +1232,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 66.0, 9.0, 67.0, 21.0 ],
-					"style" : "",
 					"text" : "fl.perblock~"
 				}
 
@@ -1312,7 +1245,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 28.0, 79.0, 143.0, 21.0 ],
-					"style" : "",
 					"text" : "fl.frommax~ /mode params"
 				}
 
@@ -1326,7 +1258,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 28.0, 126.0, 82.0, 21.0 ],
-					"style" : "",
 					"text" : "fl.interval~ 450"
 				}
 
@@ -1340,7 +1271,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 28.0, 413.0, 52.0, 21.0 ],
-					"style" : "",
 					"text" : "fl.times~"
 				}
 
@@ -1354,7 +1284,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 28.0, 331.0, 113.0, 21.0 ],
-					"style" : "",
 					"text" : "fl.0dfsvf~ 500 0.5 bpf"
 				}
 
@@ -1369,7 +1298,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 28.0, 463.0, 97.0, 21.0 ],
-					"style" : "",
 					"text" : "fl.window~ cosine"
 				}
 
@@ -1385,7 +1313,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 28.0, 271.0, 206.0, 21.0 ],
-					"style" : "",
 					"text" : "fl.read~ jongles /mode hermite /units ms"
 				}
 
@@ -1400,7 +1327,6 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
 					"patching_rect" : [ 28.0, 507.0, 61.0, 21.0 ],
-					"style" : "",
 					"text" : "fl.sink~ =2"
 				}
 
@@ -1414,8 +1340,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 28.0, 9.0, 30.0, 30.0 ],
-					"style" : ""
+					"patching_rect" : [ 28.0, 9.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -1427,8 +1352,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 28.0, 574.0, 30.0, 30.0 ],
-					"style" : ""
+					"patching_rect" : [ 28.0, 574.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -1440,8 +1364,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 70.0, 574.0, 30.0, 30.0 ],
-					"style" : ""
+					"patching_rect" : [ 70.0, 574.0, 30.0, 30.0 ]
 				}
 
 			}
