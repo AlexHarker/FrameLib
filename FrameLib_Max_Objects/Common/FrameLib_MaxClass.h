@@ -1253,7 +1253,7 @@ private:
                 break;
                 
             case kConnectWrongContext:
-                object_error(mUserObject, "cannot connect objects from different top-level patchers");
+                object_error(mUserObject, "cannot connect objects from different patching contexts");
                 break;
                 
             case kConnectSelfConnection:
