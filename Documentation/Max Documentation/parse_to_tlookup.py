@@ -6,6 +6,7 @@ from strippers import strip_space
 
 # Directory stuff #
 dir_path = os.path.dirname(os.path.realpath(__file__))
+dir_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib')
 ref_dir = dir_path + '/docs/tutorials/FrameLib-tut/00_fl_index.maxtut.xml' 
 obj_lookup = dir_path + '/interfaces/FrameLib-obj-tlookup.json'
 
@@ -31,7 +32,7 @@ class ParseAndBuild():
 
         # create empty master dict #
         self.d_skeleton = dict({})
-        self.d_skeleton["Basic"] = dict({})
+        self.d_skeleton["Beginner"] = dict({})
         self.d_skeleton["Intermediate"] = dict({})
         self.d_skeleton["Advanced"] = dict({})
 

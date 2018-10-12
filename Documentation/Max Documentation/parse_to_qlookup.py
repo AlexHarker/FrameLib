@@ -4,6 +4,7 @@ import os
 from strippers import strip_space
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
+dir_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib')
 ref_dir = f'{dir_path}/docs/refpages' 
 obj_lookup = f'{dir_path}/interfaces/FrameLib-obj-qlookup.json'
 
