@@ -106,7 +106,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 814.0, 552.0 ],
+						"rect" : [ 0.0, 71.0, 814.0, 552.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -730,7 +730,7 @@
 							}
 , 							{
 								"box" : 								{
-									"fontface" : 1,
+									"fontface" : 0,
 									"fontsize" : 13.0,
 									"id" : "obj-15",
 									"maxclass" : "comment",
@@ -755,14 +755,14 @@
 							}
 , 							{
 								"box" : 								{
-									"fontface" : 1,
+									"fontface" : 0,
 									"fontsize" : 13.0,
 									"id" : "obj-10",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 170.75, 466.0, 161.0, 21.0 ],
-									"text" : "0.00 1.00 2.00 3.00 4.00"
+									"text" : "0.00 0.25 0.50 0.75 1.00"
 								}
 
 							}
@@ -788,7 +788,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 567.25, 113.5, 236.0, 147.0 ],
-									"text" : "fl.ramp~ has a scale parameter. By default it outputs samples counting up to to the length parameter minus one. In this example, \"/scale normalised\" causes fl.ramp~ to normalise its output between 0 and 1. Change between the modes to get a feeling for whats going on here."
+									"text" : "fl.ramp~ has a scale parameter. By default it outputs samples counting up to the length parameter minus one. In this example, \"/scale normalised\" causes fl.ramp~ to normalise its output between 0 and 1. Change between the modes to get a feeling for what's going on here."
 								}
 
 							}
@@ -1242,7 +1242,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 156.75, 364.0, 132.0, 111.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 5
+									"size" : 100
 								}
 
 							}
@@ -1582,7 +1582,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 71.0, 814.0, 552.0 ],
+						"rect" : [ 0.0, 26.0, 814.0, 552.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1613,13 +1613,25 @@
 						"title" : "Generators",
 						"boxes" : [ 							{
 								"box" : 								{
+									"border" : 2.0,
+									"id" : "obj-2",
+									"linecolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 3.75, 277.0, 530.25, 5.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"fontface" : 1,
 									"fontsize" : 20.0,
 									"id" : "obj-12",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 273.0, 456.0, 29.0 ],
+									"patching_rect" : [ 3.75, 246.0, 456.0, 29.0 ],
 									"text" : "Parameters of Generators"
 								}
 
@@ -1628,12 +1640,12 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-3",
-									"linecount" : 9,
+									"linecount" : 8,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 103.0, 791.0, 163.0 ],
-									"text" : "Generators are a fundamental part of FrameLib as they facilitate the generation of new frames according to some key algorithms (linear ramps, uniform/gaussian distributed random numbers, uniform frames).\n\nTo start, lets understand three primary generators in FrameLib:\n\n1. fl.random~ - generates uniformly distributed random numbers between 0 and 1.\n2. fl.ramp~ - generates frames of linearly counting values (e.g 0, 1, 2, 3, 4, 5, 6)\n3. fl.uniform~ - generates frames of a single uniform value (e.g 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)\n\n"
+									"patching_rect" : [ 3.75, 103.0, 791.0, 132.0 ],
+									"text" : "Generators are a fundamental part of FrameLib as they facilitate the generation of new frames according to some key algorithms (linear ramps, uniform/gaussian distributed random numbers, uniform frames).\n\nTo start, lets understand three primary generators in FrameLib:\n\n1. fl.random~ - generates uniformly distributed random numbers between 0 and 1.\n2. fl.ramp~ - generates frames of linear counting values (e.g 0, 1, 2, 3, 4, 5, 6)\n3. fl.uniform~ - generates frames of a single uniform value (e.g 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)"
 								}
 
 							}
@@ -1685,9 +1697,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 0,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 304.0, 791.0, 210.0 ],
+									"patching_rect" : [ 3.75, 284.0, 795.0, 210.0 ],
 									"suppressinlet" : 1,
-									"text" : "All generator objects share three parameters that are responsible for their general operation. We've already seen the /length and /mode parameters in previous tutorials which control how incoming frames might modify the output length of the frame, or how we might directly set the frame output length. The last shared parameters is \"units\". Frames by nature contain samples and any values in the frame are interpreted as sample values. If for example, you wanted to generate a frame in terms of milliseconds, the units parameter can internally convert these values into samples rather than you having to include an mstosamps~ style object somewhere in your network. A typical implementation of this is in granular synthesis, where you might generate a grain in terms of milliseconds but read from the buffer in sample positions.\n\nOverall, learning the generators will allow you to integrate the other key concepts of FrameLib that we have covered previously and to start building networks that can create and process sound.\n\nIn the next tutorial we are going to start building our first FrameLib project - a granular synthesiser! First, have a look through the tabs of this tutorial to get a feeling for how generators work."
+									"text" : "All generator objects share three parameters that are responsible for their general operation. We've already seen the /length and /mode parameters in previous tutorials, that control how incoming frames might modify the output length of the frame, or how we might directly set the frame output length. The last shared parameter is \"units\". Frames by nature contain samples and any values in the frame are interpreted as sample values. If, for example you wanted to generate a frame in terms of milliseconds, the units parameter can internally convert these values into samples rather than you having to include an mstosamps~ type object somewhere in your network. A typical implementation of this is in granular synthesis, where you might generate a grain in terms of milliseconds but convert these values and read from the buffer in sample positions.\n\nOverall, learning the generators will allow you to integrate the other key concepts of FrameLib that we have covered previously and to start building networks that can create and process sound.\n\nIn the next tutorial we are going to start building our first FrameLib project - a granular synthesiser! First, have a look through the tabs of this tutorial to get a feeling for how generators work."
 								}
 
 							}

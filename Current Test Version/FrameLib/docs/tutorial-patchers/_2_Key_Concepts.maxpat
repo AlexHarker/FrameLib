@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 0.0, 45.0, 765.0, 856.0 ],
+		"rect" : [ 0.0, 45.0, 795.0, 855.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -41,6 +41,824 @@
 		"showontab" : 0,
 		"title" : "Tutorial 2: Key Concepts",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-5",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patcher" : 					{
+						"fileversion" : 1,
+						"appversion" : 						{
+							"major" : 8,
+							"minor" : 0,
+							"revision" : 0,
+							"architecture" : "x64",
+							"modernui" : 1
+						}
+,
+						"classnamespace" : "box",
+						"rect" : [ 0.0, 26.0, 795.0, 829.0 ],
+						"bglocked" : 0,
+						"openinpresentation" : 0,
+						"default_fontsize" : 12.0,
+						"default_fontface" : 0,
+						"default_fontname" : "Arial",
+						"gridonopen" : 1,
+						"gridsize" : [ 15.0, 15.0 ],
+						"gridsnaponopen" : 1,
+						"objectsnaponopen" : 1,
+						"statusbarvisible" : 2,
+						"toolbarvisible" : 1,
+						"lefttoolbarpinned" : 0,
+						"toptoolbarpinned" : 0,
+						"righttoolbarpinned" : 0,
+						"bottomtoolbarpinned" : 0,
+						"toolbars_unpinned_last_save" : 0,
+						"tallnewobj" : 0,
+						"boxanimatetime" : 200,
+						"enablehscroll" : 1,
+						"enablevscroll" : 1,
+						"devicewidth" : 0.0,
+						"description" : "",
+						"digest" : "",
+						"tags" : "",
+						"style" : "",
+						"subpatcher_template" : "default",
+						"showontab" : 1,
+						"title" : "Multiple Tags",
+						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-38",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 365.75, 370.5, 245.0, 33.0 ],
+									"text" : "Two values are tagged separataely with fl.tag~ and combined with fl.combinetags~."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-37",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 301.75, 256.0, 309.0, 20.0 ],
+									"text" : "Generate some random values to be set as parameters"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-35",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 139.25, 160.0, 195.0, 20.0 ],
+									"text" : "Make some pink noise into frames"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-32",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"patcher" : 									{
+										"fileversion" : 1,
+										"appversion" : 										{
+											"major" : 8,
+											"minor" : 0,
+											"revision" : 0,
+											"architecture" : "x64",
+											"modernui" : 1
+										}
+,
+										"classnamespace" : "box",
+										"rect" : [ 59.0, 104.0, 640.0, 480.0 ],
+										"bglocked" : 0,
+										"openinpresentation" : 0,
+										"default_fontsize" : 12.0,
+										"default_fontface" : 0,
+										"default_fontname" : "Arial",
+										"gridonopen" : 1,
+										"gridsize" : [ 15.0, 15.0 ],
+										"gridsnaponopen" : 1,
+										"objectsnaponopen" : 1,
+										"statusbarvisible" : 2,
+										"toolbarvisible" : 1,
+										"lefttoolbarpinned" : 0,
+										"toptoolbarpinned" : 0,
+										"righttoolbarpinned" : 0,
+										"bottomtoolbarpinned" : 0,
+										"toolbars_unpinned_last_save" : 0,
+										"tallnewobj" : 0,
+										"boxanimatetime" : 200,
+										"enablehscroll" : 1,
+										"enablevscroll" : 1,
+										"devicewidth" : 0.0,
+										"description" : "",
+										"digest" : "",
+										"tags" : "",
+										"style" : "",
+										"subpatcher_template" : "default",
+										"boxes" : [ 											{
+												"box" : 												{
+													"id" : "obj-1",
+													"maxclass" : "newobj",
+													"numinlets" : 2,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 209.0, 185.0, 148.0, 22.0 ],
+													"text" : "fl.map~ linear 0 1 0.1 0.96"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-16",
+													"maxclass" : "newobj",
+													"numinlets" : 2,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 50.0, 185.0, 148.0, 22.0 ],
+													"text" : "fl.map~ linear 0 1 300 600"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-14",
+													"maxclass" : "newobj",
+													"numinlets" : 2,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 50.0, 91.0, 66.0, 22.0 ],
+													"text" : "fl.random~"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"comment" : "",
+													"id" : "obj-29",
+													"index" : 1,
+													"maxclass" : "inlet",
+													"numinlets" : 0,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 50.0, 38.0, 30.0, 30.0 ]
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"comment" : "",
+													"id" : "obj-30",
+													"index" : 2,
+													"maxclass" : "outlet",
+													"numinlets" : 1,
+													"numoutlets" : 0,
+													"patching_rect" : [ 209.0, 248.0, 30.0, 30.0 ]
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"comment" : "",
+													"id" : "obj-31",
+													"index" : 1,
+													"maxclass" : "outlet",
+													"numinlets" : 1,
+													"numoutlets" : 0,
+													"patching_rect" : [ 50.0, 248.0, 30.0, 30.0 ]
+												}
+
+											}
+ ],
+										"lines" : [ 											{
+												"patchline" : 												{
+													"destination" : [ "obj-30", 0 ],
+													"source" : [ "obj-1", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-1", 0 ],
+													"order" : 0,
+													"source" : [ "obj-14", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-16", 0 ],
+													"midpoints" : [ 59.5, 171.0, 59.5, 171.0 ],
+													"order" : 1,
+													"source" : [ "obj-14", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-31", 0 ],
+													"midpoints" : [ 59.5, 210.0, 59.5, 210.0 ],
+													"source" : [ "obj-16", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-14", 0 ],
+													"source" : [ "obj-29", 0 ]
+												}
+
+											}
+ ]
+									}
+,
+									"patching_rect" : [ 103.75, 255.0, 196.0, 22.0 ],
+									"saved_object_attributes" : 									{
+										"description" : "",
+										"digest" : "",
+										"globalpatchername" : "",
+										"tags" : ""
+									}
+,
+									"text" : "p random_parameters"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-22",
+									"maxclass" : "newobj",
+									"numinlets" : 0,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patcher" : 									{
+										"fileversion" : 1,
+										"appversion" : 										{
+											"major" : 8,
+											"minor" : 0,
+											"revision" : 0,
+											"architecture" : "x64",
+											"modernui" : 1
+										}
+,
+										"classnamespace" : "box",
+										"rect" : [ 59.0, 104.0, 640.0, 480.0 ],
+										"bglocked" : 0,
+										"openinpresentation" : 0,
+										"default_fontsize" : 12.0,
+										"default_fontface" : 0,
+										"default_fontname" : "Arial",
+										"gridonopen" : 1,
+										"gridsize" : [ 15.0, 15.0 ],
+										"gridsnaponopen" : 1,
+										"objectsnaponopen" : 1,
+										"statusbarvisible" : 2,
+										"toolbarvisible" : 1,
+										"lefttoolbarpinned" : 0,
+										"toptoolbarpinned" : 0,
+										"righttoolbarpinned" : 0,
+										"bottomtoolbarpinned" : 0,
+										"toolbars_unpinned_last_save" : 0,
+										"tallnewobj" : 0,
+										"boxanimatetime" : 200,
+										"enablehscroll" : 1,
+										"enablevscroll" : 1,
+										"devicewidth" : 0.0,
+										"description" : "",
+										"digest" : "",
+										"tags" : "",
+										"style" : "",
+										"subpatcher_template" : "default",
+										"boxes" : [ 											{
+												"box" : 												{
+													"id" : "obj-1",
+													"maxclass" : "newobj",
+													"numinlets" : 2,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 8.0, 92.0, 95.0, 22.0 ],
+													"text" : "fl.window~ hann"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-8",
+													"maxclass" : "newobj",
+													"numinlets" : 2,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 8.0, 137.0, 74.0, 22.0 ],
+													"text" : "fl.times~ 0.5"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-7",
+													"maxclass" : "newobj",
+													"numinlets" : 1,
+													"numoutlets" : 1,
+													"outlettype" : [ "signal" ],
+													"patching_rect" : [ 8.0, 11.0, 38.0, 22.0 ],
+													"text" : "pink~"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-6",
+													"maxclass" : "newobj",
+													"numinlets" : 1,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 63.5, 11.0, 87.0, 22.0 ],
+													"text" : "fl.interval~ 512"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-4",
+													"maxclass" : "newobj",
+													"numinlets" : 3,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 8.0, 44.0, 130.0, 22.0 ],
+													"text" : "fl.source~ /length 1024"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"comment" : "",
+													"id" : "obj-21",
+													"index" : 1,
+													"maxclass" : "outlet",
+													"numinlets" : 1,
+													"numoutlets" : 0,
+													"patching_rect" : [ 8.0, 188.0, 30.0, 30.0 ]
+												}
+
+											}
+ ],
+										"lines" : [ 											{
+												"patchline" : 												{
+													"destination" : [ "obj-8", 0 ],
+													"source" : [ "obj-1", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-1", 0 ],
+													"source" : [ "obj-4", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-4", 1 ],
+													"source" : [ "obj-6", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-4", 0 ],
+													"source" : [ "obj-7", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-21", 0 ],
+													"source" : [ "obj-8", 0 ]
+												}
+
+											}
+ ]
+									}
+,
+									"patching_rect" : [ 8.75, 158.0, 131.0, 22.0 ],
+									"saved_object_attributes" : 									{
+										"description" : "",
+										"digest" : "",
+										"globalpatchername" : "",
+										"tags" : ""
+									}
+,
+									"text" : "p pinknoise->FrameLib"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgmode" : 0,
+									"border" : 0,
+									"clickthrough" : 0,
+									"enablehscroll" : 0,
+									"enablevscroll" : 0,
+									"id" : "obj-20",
+									"lockeddragscroll" : 0,
+									"maxclass" : "bpatcher",
+									"name" : "monoVolume.maxpat",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"offset" : [ 0.0, 0.0 ],
+									"outlettype" : [ "signal" ],
+									"patching_rect" : [ 8.75, 528.0, 43.0, 92.0 ],
+									"viewvisibility" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-5",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 9.0, 640.4000244140625, 51.0, 51.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-19",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "signal" ],
+									"patching_rect" : [ 8.75, 488.0, 46.0, 22.0 ],
+									"text" : "fl.sink~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"angle" : 270.0,
+									"bgcolor" : [ 0.2, 0.2, 0.2, 0.0 ],
+									"border" : 3,
+									"bordercolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"id" : "obj-13",
+									"maxclass" : "panel",
+									"mode" : 0,
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 95.75, 346.5, 268.0, 68.0 ],
+									"proportion" : 0.5
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 280.75, 353.0, 75.0, 22.0 ],
+									"text" : "fl.tag~ reson"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-10",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 103.75, 384.0, 196.0, 22.0 ],
+									"text" : "fl.combinetags~ 2"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-9",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 103.75, 353.0, 66.0, 22.0 ],
+									"text" : "fl.tag~ freq"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-2",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 8.75, 450.0, 114.0, 22.0 ],
+									"text" : "fl.0dfsvf~ /mode bpf"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 14.0,
+									"id" : "obj-18",
+									"linecount" : 6,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 8.75, 50.0, 754.0, 100.0 ],
+									"text" : "There is only one 'parameter update' inlet on each FrameLib which can be problematic if you want to control multiple parameters with fl.tag~.\n\nBelow shows some methods of solving this problem.\n\nDon't worry too much about the objects outside of the black box - "
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 1,
+									"fontsize" : 20.0,
+									"id" : "obj-1",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 8.75, 12.0, 456.0, 29.0 ],
+									"text" : "Multiple Tags"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"border" : 2.0,
+									"id" : "obj-49",
+									"linecolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 8.75, 43.0, 530.25, 5.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-36",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 605.75, 256.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "2",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-39",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 601.75, 377.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "3",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-3",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 335.75, 160.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "1",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+ ],
+						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-2", 1 ],
+									"source" : [ "obj-10", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-10", 1 ],
+									"source" : [ "obj-11", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-20", 0 ],
+									"source" : [ "obj-19", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-19", 0 ],
+									"source" : [ "obj-2", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-5", 1 ],
+									"order" : 0,
+									"source" : [ "obj-20", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-5", 0 ],
+									"order" : 1,
+									"source" : [ "obj-20", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-2", 0 ],
+									"order" : 1,
+									"source" : [ "obj-22", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-32", 0 ],
+									"order" : 0,
+									"source" : [ "obj-22", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-11", 0 ],
+									"source" : [ "obj-32", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-9", 0 ],
+									"source" : [ "obj-32", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-10", 0 ],
+									"source" : [ "obj-9", 0 ]
+								}
+
+							}
+ ],
+						"styles" : [ 							{
+								"name" : "AudioStatus_Menu",
+								"default" : 								{
+									"bgfillcolor" : 									{
+										"type" : "color",
+										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
+										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
+										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+										"angle" : 270.0,
+										"proportion" : 0.39,
+										"autogradient" : 0
+									}
+
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjBlue-1",
+								"default" : 								{
+									"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjBrown-1",
+								"default" : 								{
+									"accentcolor" : [ 0.654902, 0.572549, 0.376471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjGreen-1",
+								"default" : 								{
+									"accentcolor" : [ 0.0, 0.533333, 0.168627, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjRed-1",
+								"default" : 								{
+									"accentcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjYellow-1",
+								"default" : 								{
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "numberGold-1",
+								"default" : 								{
+									"accentcolor" : [ 0.764706, 0.592157, 0.101961, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "panelViolet",
+								"default" : 								{
+									"bgfillcolor" : 									{
+										"type" : "color",
+										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
+										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
+										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+										"angle" : 270.0,
+										"proportion" : 0.39,
+										"autogradient" : 0
+									}
+
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+ ]
+					}
+,
+					"patching_rect" : [ 391.0, 582.0, 94.0, 21.0 ],
+					"saved_object_attributes" : 					{
+						"description" : "",
+						"digest" : "",
+						"globalpatchername" : "",
+						"tags" : ""
+					}
+,
+					"text" : "p Multiple fl.tags~"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-11",
 					"maxclass" : "newobj",
@@ -106,7 +924,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 71.0, 765.0, 830.0 ],
+						"rect" : [ 0.0, 26.0, 795.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -899,7 +1717,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 387.0, 582.0, 100.0, 21.0 ],
+					"patching_rect" : [ 491.0, 582.0, 100.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -928,7 +1746,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 765.0, 830.0 ],
+						"rect" : [ 0.0, 71.0, 795.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -958,6 +1776,17 @@
 						"showontab" : 1,
 						"title" : "Parameters and Tagging",
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-5",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 168.5, 770.4000244140625, 51.0, 51.0 ]
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-7",
 									"maxclass" : "comment",
@@ -1013,7 +1842,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 336.0, 751.0, 241.0 ],
-									"text" : "3. fl.tag~\n\nReal-time control of parameters is managed uniquely in FrameLib. Unlike Max objects, each parameter does not have its own inlet. Instead tagged frames are created with the fl.tag~ object and sent to the 'parameter update' inlet. Tagging frames occurs at audio rate inside of FrameLib networks and simply sending a Max message like \"parameter $1\" directly will not work. In fact, you will find that connecting the message box is impossible. There is a method to use Max message boxes to change parameters as a matter of convenience but this will be discussed later.\n\nIn the example below, every 200 milliseconds a frame is generated with a random length parameter and is filled with random values between 0 and 1. This demonstrates the tightly-timed nature of FrameLib, as the control of the length parameter is synchronised with the generation of the frame and its values. The multislider gives you a visual representation of this behaviour. In the next tutorial you'll be introduced to how you might change parameters with a Max interface.\n\n"
+									"text" : "3. fl.tag~\n\nReal-time control of parameters is managed uniquely in FrameLib. Unlike Max objects, each parameter does not have its own inlet. Instead, tagged frames are created with the fl.tag~ object and sent to the 'parameter update' inlet. Tagging frames occurs at audio rate inside of FrameLib networks and simply sending a Max message like \"parameter $1\" directly will not work. In fact, you will find that connecting the message box is impossible. There is a method to use Max message boxes to change parameters as a matter of convenience but this will be discussed later.\n\nIn the example below, every 200 milliseconds a frame is generated with a random length parameter and is filled with random values between 0 and 1. This demonstrates the tightly-timed nature of FrameLib, as the control of the length parameter is synchronised with the generation of the frame and its values. The multislider gives you a visual representation of this behaviour. In the next tutorial you'll be introduced to how you might change parameters with a Max interface.\n\n"
 								}
 
 							}
@@ -1068,17 +1897,6 @@
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-5",
-									"maxclass" : "ezadc~",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "signal", "signal" ],
-									"patching_rect" : [ 172.0, 770.40002400000003, 51.0, 51.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-2",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
@@ -1098,7 +1916,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 50.0, 754.0, 132.0 ],
-									"text" : "There three ways of dealing with parameters in FrameLib, one of which is analogous to the Max style of configuring objects.\n\n1. \"Max style configuring\"\n\nAs you can read in the help file fl.random~ has three parameters: Mode, Length and Units. We can sequentially address each one. Enumerated parameters where there are limited options can also be addressed with numbers counting from 0. The example below demonstrates two ways of initialising the three parameters of fl.random~ in a max style."
+									"text" : "There three ways of dealing with parameters in FrameLib, one of which is analogous to the Max style of configuring objects.\n\n1. \"Max style configuring\"\n\nAs you can read in the help file fl.random~ has three parameters: Mode, Length and Units. We can sequentially address each one. Enumerated parameters where there are limited options can also be addressed with numbers counting from 0. The example below demonstrates two ways of initialising the three parameters of fl.random~ in a Max style."
 								}
 
 							}
@@ -1666,7 +2484,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 765.0, 830.0 ],
+						"rect" : [ 0.0, 26.0, 795.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1712,7 +2530,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 198.950011999999987, 650.40002400000003, 250.0, 47.0 ],
+									"patching_rect" : [ 198.95001220703125, 650.4000244140625, 244.0, 47.0 ],
 									"text" : "In the \"input\" mode, fl.random~ can OBSERVE the length of the incoming frame and outputs a frame of the same length."
 								}
 
@@ -1776,8 +2594,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 80.125, 129.600006000000008, 371.0, 22.0 ],
-									"text" : "Schedule one frame at the start of each Max audio vector."
+									"patching_rect" : [ 80.125, 129.600006103515625, 384.625, 22.0 ],
+									"text" : "Schedules one frame at the start of each Max audio vector."
 								}
 
 							}
@@ -1826,7 +2644,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 68.75, 304.0, 342.0, 22.0 ],
-									"text" : "Schedule trigger frames in the future at a given time."
+									"text" : "Schedules trigger frames in the future at a given time."
 								}
 
 							}
@@ -2048,7 +2866,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 181.875, 434.5, 342.0, 38.0 ],
+									"patching_rect" : [ 181.875, 433.5, 342.0, 38.0 ],
 									"text" : "fl.random~ generates a frame of random numbers between 0 and 1 at a specified length (set by /length)."
 								}
 
@@ -2166,7 +2984,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 450.950012000000015, 663.90002400000003, 20.0, 20.0 ],
+									"patching_rect" : [ 443.95001220703125, 663.9000244140625, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "4",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -2339,7 +3157,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 765.0, 830.0 ],
+						"rect" : [ 0.0, 26.0, 795.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2376,7 +3194,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 281.0, 745.0, 241.0 ],
+									"patching_rect" : [ 3.75, 281.0, 749.0, 241.0 ],
 									"text" : "FrameLib objects have a unique system for managing parameters at instantiation and with real-time control. It is is not dissimilar to max messages but there are some differences.\n\nThere are two ways to assign parameters to a FrameLib object at load time. Like many Max objects you can input values in the order of the arguments you want to address. Additionally you can directly address parameters through the \"/parameter <value>\" syntax. This is similar to the \"@attribute\" system in Max, however FrameLib objects cannot be addressed through the 'attrui' object. The /parameter syntax is a more direct way of addressing each parameter and is particularly useful in two scenarios.\n\n1. The default parameters are useful apart from one specific parameter you would like to change.\n2. Making parameter configurations explicit and easy to read.\n\nReal-time control is managed through a 'parameter update' inlet which receives special 'tagged frames'. Because frames are used to change the parameters, the configuration of the object is tightly synchronised to the network. More details can be found in the corresponding tabs above."
 								}
 
@@ -2589,9 +3407,24 @@
 
 			}
  ],
+		"parameters" : 		{
+			"obj-5::obj-20::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"parameterbanks" : 			{
+
+			}
+
+		}
+,
 		"dependency_cache" : [ 			{
 				"name" : "next_tut.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "monoVolume.maxpat",
+				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -2662,6 +3495,38 @@
 			}
 , 			{
 				"name" : "fl.plus~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.0dfsvf~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.combinetags~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.sink~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.sink~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.source~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.source~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.window~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.map~.mxo",
 				"type" : "iLaX"
 			}
  ],
