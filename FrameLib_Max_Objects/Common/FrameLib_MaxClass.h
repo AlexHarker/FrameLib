@@ -562,6 +562,7 @@ public:
     {
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::assist>(c, "assist");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::info>(c, "info");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::write_info(c, "write_info");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
@@ -766,6 +767,194 @@ public:
         else if (error == kExportWriteError)
             object_error(x->mUserObject, "couldn't write file");
     }
+
+    void write_info(t_symbol *sym, long ac, t_atom *av)
+    {
+        
+        // Determine what to post
+        enum InfoFlags { kInfoDesciption = 0x01, kInfoInputs = 0x02, kInfoOutputs = 0x04, kInfoParameters = 0x08 };
+        bool verbose = true;
+        long flags = 0;
+        std::ofstream myfile;
+        std::string sp = " "; // code is more readable with sp rather than " "
+        std::string object = object_classname(mUserObject)->s_name;
+        myfile.open ("/Users/jamesbradbury/Desktop/" + object + ".txt");
+        std::string object_category = "boilerplate category";
+        std::string object_keywords = "boiletplate keywords";
+        std::string object_info;
+        std::string object_description;
+        std::string object_digest;
+        // store some indentations - groups of 4 spaces
+        std::string tab_1 = "    ";
+        std::string tab_2 = "        ";
+        std::string tab_3 = "            ";
+        std::string tab_4 = "                ";
+        
+        // Write some stuff at the top of every xml file.
+        myfile << "<?xml version='1.0' encoding='utf-8' standalone='yes'?> \n" ;
+        myfile << "<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?> \n \n" ;
+        
+        myfile << boost::format("<c74object name='%1%' module='FrameLib' category='%2%'> \n \n") % object_classname(mUserObject)->s_name % object_category;
+        
+        while (ac--)
+        {
+            t_symbol *type = atom_getsym(av++);
+            
+            if (type == gensym("description"))          flags |= kInfoDesciption;
+            else if (type == gensym("inputs"))          flags |= kInfoInputs;
+            else if (type == gensym("outputs"))         flags |= kInfoOutputs;
+            else if (type == gensym("io"))              flags |= kInfoInputs | kInfoOutputs;
+            else if (type == gensym("parameters"))      flags |= kInfoParameters;
+            else if (type == gensym("quick"))           verbose = false;
+        }
+        
+        flags = !flags ? (kInfoDesciption | kInfoInputs | kInfoOutputs | kInfoParameters) : flags;
+        
+        // Start Tag
+        
+        object_post(mUserObject, "********* %s *********", object_classname(mUserObject)->s_name);
+        
+        // Description
+        
+        if (flags & kInfoDesciption)
+        {
+            object_post(mUserObject, "--- Description ---");
+            postSplit(mObject->objectInfo(verbose).c_str(), "", "-");
+            
+            // split the object info into a description and a digest //
+            object_info = mObject->objectInfo(verbose);
+            std::size_t pos = object_info.find(":");
+            object_digest = object_info.substr(0, pos);
+            object_description = object_info.substr(pos + 1);
+            
+            // now write that info into sections //
+            myfile << tab_1 + "<digest> \n";
+            myfile << tab_2 + object_digest + "." + "\n";
+            myfile << tab_1 + "</digest> \n \n";
+            
+            myfile << tab_1 + "<description> \n";
+            myfile << tab_2 + object_description + "\n";
+            myfile << tab_1 + "</description> \n \n";
+        }
+        
+        // Parameters
+        
+        if (flags & kInfoParameters)
+        {
+            object_post(mUserObject, "--- Parameter List ---");
+            
+            // If object has no parameters create the 'no parameters template'
+            const FrameLib_Parameters *params = mObject->getParameters();
+            myfile << params->size();
+            if (!params || !params->size()) {
+                object_post(mUserObject, "< No Parameters >");
+                myfile << tab_1 + "<misc name = 'Parameters'> \n";
+                myfile << tab_2 + "<entry> \n";
+                myfile << tab_3 + "<description> \n";
+                myfile << tab_4 + "This object has no parameters. \n";
+                myfile << tab_3 + "</description> \n";
+                myfile << tab_2 + "</entry> \n";
+                myfile << tab_1 + "</misc> \n \n";
+            }
+            
+            // Loop over parameters
+            
+            if (params->size() != 0) {
+                myfile << tab_1 + "<misc name = 'Parameters'> \n \n"; // Write parameters tag to start misc section named Parameters
+                for (long i = 0; params && i < params->size(); i++)
+                {
+                    std::string param_num = std::to_string(i);
+                    FrameLib_Parameters::Type type = params->getType(i);
+                    FrameLib_Parameters::NumericType numericType = params->getNumericType(i);
+                    std::string defaultStr = params->getDefaultString(i);
+                    
+                    // Name, type and default value
+                    
+                    if (defaultStr.size()) {
+                        object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str(), defaultStr.c_str());
+                        
+                        myfile << boost::format("%4%<entry name = '%1%. /%2% [%3%]'> \n") % param_num % params->getName(i) % params->getTypeString(i) % tab_2;
+                    }
+                    else {
+                        object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str());
+                        myfile << boost::format("%4%<entry name = '%1%. /%2% [%3%]'> \n") % param_num % params->getName(i) % params->getTypeString(i) % tab_2;
+                    }
+                    // Construct the description
+                    myfile << boost::format("%1%<description> \n") % tab_3;
+                    myfile << tab_4 + params->getInfo(i);
+                    // Verbose - arguments, range (for numeric types), enum items (for enums), array sizes (for arrays), description
+                    if (verbose)
+                    {
+                        if (argsMode == kAsParams && params->getArgumentIdx(i) >= 0)
+                            object_post(mUserObject, "- Argument: %ld", params->getArgumentIdx(i) + 1);
+                        if (numericType == FrameLib_Parameters::kNumericInteger || numericType == FrameLib_Parameters::kNumericDouble)
+                        {
+                            switch (params->getClipMode(i))
+                            {
+                                case FrameLib_Parameters::kNone:    break;
+                                case FrameLib_Parameters::kMin:     object_post(mUserObject, "- Min Value: %lg", params->getMin(i));                        break;
+                                case FrameLib_Parameters::kMax:     object_post(mUserObject, "- Max Value: %lg", params->getMax(i));                        break;
+                                case FrameLib_Parameters::kClip:    object_post(mUserObject, "- Clipped: %lg-%lg", params->getMin(i), params->getMax(i));   break;
+                            }
+                        }
+                        
+                        if (type == FrameLib_Parameters::kEnum){
+                            
+                            myfile << "<br><br> \n" ; // if enum put a break big break between description and the enum options
+                            
+                            for (long j = 0; j <= params->getMax(i); j++) {
+                                object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j).c_str());
+                                std::string enum_param_num = std::to_string(j);
+                                if (j == params->getMax(i))
+                                    myfile << boost::format("%3%<bullet>[%1%] - %2%</bullet>") % enum_param_num % params->getItemString(i, j) % tab_4;
+                                else if (j != params->getMax(i))
+                                    myfile << boost::format("%3%<bullet>[%1%] - %2%</bullet> \n") % enum_param_num % params->getItemString(i, j) % tab_4;
+                                
+                            }
+                        }
+                        
+                        else if (type == FrameLib_Parameters::kArray)
+                            object_post(mUserObject, "- Array Size: %ld", params->getArraySize(i));
+                        else if (type == FrameLib_Parameters::kVariableArray)
+                            object_post(mUserObject, "- Array Max Size: %ld", params->getArrayMaxSize(i));
+                        
+                        postSplit(params->getInfo(i).c_str(), "- ", "-");
+                        
+                        myfile << "\n" + tab_3 + "</description> \n";
+                        myfile << tab_2 + "</entry> \n \n";
+
+                    }
+                }
+                myfile << tab_1 + "</misc> \n \n";
+            }
+            // All the tail end stuff is going to here like see also and key words. //
+            
+            // Metadata //
+            myfile << tab_1 + "<metadatalist> \n";
+            myfile << tab_2 + "<metadata name='author'>Alex Harker</metadata> \n";
+            myfile << tab_2 + "<metadata name='tag'>FrameLib</metadata> \n";
+            myfile << boost::format("%2%<metadata name='tag'>%1%</metadata> \n") % object_category % tab_2;
+            myfile << tab_1 + "</metadatalist> \n \n";
+            
+            // Seealso //
+            myfile << tab_1 + "<seealsolist> \n";
+            
+            myfile << tab_1 + "</seealsolist> \n";
+            
+            // Keywords //
+            myfile << tab_1 + "<misc name = 'Discussion'> \n";
+            myfile << tab_2 + "<entry name = 'Keywords'> \n";
+            myfile << tab_3 + "<description> \n";
+            myfile << tab_4 + object_keywords + "\n";
+            myfile << tab_3 + "</description> \n";
+            myfile << tab_2 + "</entry> \n";
+            myfile << tab_1 + "</misc> \n \n";
+            myfile << "</c74object>";
+
+            myfile.close();
+        }
+    }
+    
     
     void info(t_symbol *sym, long ac, t_atom *av)
     {
