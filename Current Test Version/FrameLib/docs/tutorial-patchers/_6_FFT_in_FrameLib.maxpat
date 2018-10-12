@@ -797,7 +797,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 50.0, 824.0, 116.0 ],
-									"text" : "This example is a translation of the forbidden planet example found under Help -> Examples -> fft-fun.\n\nIn the original patch, specific FFT bins are attenuated by the configuartion of a multislider. To do this, the multislider passes its values to a buffer, which has its data indexed by the fft~ bin outlet. \n\nAchieving this in FrameLib is EVEN simpler as Max control data can be directly converted into frames and used to perform operations on other frames such as FFT information. See below how this works in practice."
+									"text" : "This example is a translation of the forbidden planet example found under Help -> Examples -> fft-fun.\n\nIn the original patch, specific FFT bins are attenuated by the values of a multislider. To do this, the multislider passes its values to a buffer, which has its data indexed by the fft~ bin outlet. \n\nAchieving this in FrameLib is EVEN simpler, as Max control data can be directly converted into frames and used to perform operations on other frames such as FFT information. See below how this works in practice."
 								}
 
 							}
@@ -1143,7 +1143,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 579.0, 815.0, 194.0 ],
-									"text" : "In the pfft~ native version, the named jitter matrix acts as a one frame buffer holding the real and imaginary components when a bang is received. The contents of these matrices are retrieved by the values of fft~'s third outlet. The synchronicity of this process is handled by the bin index values.\n\nIn FrameLib, we can simply store the frames containing real and imaginary components in an fl.register object. Using the scheduler that initially causes the conversion of MSP audio to frames, the frame that is stored within these temporary buffers are recalled. The FrameLib realisation of this process is more linear and we don't need to be concerned with storing individual values of the frames at the correct location in a buffer (as is managed by the bin index outlet and the jitter matrices). Instead we can just be concerned with the frame as a unit of information itself. The usefulness of working in this way becomes apparent as the applications become increasingly complex.\n\nSee further tabs."
+									"text" : "In the pfft~ native version, the named jitter matrix acts as a one frame buffer holding the real and imaginary components when a bang is received. The contents of these matrices are retrieved by the values of fft~'s third outlet. The synchronicity of this process is handled by the bin index values.\n\nIn FrameLib, we can simply store the frames containing real and imaginary components in an fl.register~ object. Using the scheduler that initially causes the conversion of MSP audio to frames, the frame that is stored within these temporary buffers is recalled. The FrameLib realisation of this process is more linear and we don't need to be concerned with storing individual values of the frames at the correct location in a buffer (as is managed by the bin index outlet and the jitter matrices). Instead we can just be concerned with the frame as a unit of information itself. The usefulness of working in this way becomes apparent as the applications become increasingly complex.\n\nSee further tabs."
 								}
 
 							}
@@ -1433,7 +1433,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 196.75, 220.0, 174.0, 20.0 ],
+									"patching_rect" : [ 196.75, 227.0, 174.0, 20.0 ],
 									"text" : "Press when you want to freeze"
 								}
 
@@ -1470,7 +1470,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 142.75, 218.5, 48.0, 23.0 ],
+									"patching_rect" : [ 142.75, 225.5, 48.0, 23.0 ],
 									"text" : "freeze"
 								}
 
@@ -1527,7 +1527,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 376.5, 220.0, 20.0, 20.0 ],
+									"patching_rect" : [ 376.5, 227.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1800,7 +1800,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 843.0, 783.0 ],
+						"rect" : [ 0.0, 71.0, 843.0, 783.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2909,7 +2909,7 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 50.0, 828.0, 179.0 ],
 									"suppressinlet" : 1,
-									"text" : "The previous example's only demonstrate some basic methods for recreating simple  FFT routines which you might have seen before. FrameLib really excels when you want to create more complex processes.\n\nIn this example a median filter is used to seperate narrow and broadband components from an incoming signal. Roughly, this creates the effect of isolating the percussive components, which you can then subtract from the original signal to get the more harmonic components. This is not the same as a full harmonic-percussive separation algorithm.\n\n1. Compute FFT\n2. Calculate the magnitude of each real/imaginary pair of values\n3. Pass the magnitude through a median filter\n4. If the pre-filtered hypotenuse is less than the filtered hypotenuse multiply the original real/imaginary pair by 0 (in effect, a gate)."
+									"text" : "The previous examples only demonstrate some basic methods for recreating simple FFT routines which you might have seen before. FrameLib really excels when you want to create more complex processes.\n\nIn this example a median filter is used to seperate narrow and broadband components from an incoming signal. Roughly, this creates the effect of isolating the percussive components, which you can then subtract from the original signal to get the more harmonic components. This is not the same as a full harmonic-percussive separation algorithm.\n\n1. Compute FFT\n2. Calculate the magnitude of each real/imaginary pair of values\n3. Pass the magnitude through a median filter\n4. If the pre-filtered magnitude is less than the filtered magnitude multiply the original real/imaginary pair by 0 (in effect, a gate)."
 								}
 
 							}
@@ -3671,7 +3671,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 309.5, 400.0, 224.0, 33.0 ],
-									"text" : "Convert Cartesian to Polar Coordiantes (Gives us the amplitude of each bin)"
+									"text" : "Convert Cartesian to Polar Coordinates (Gives us the amplitude of each bin)"
 								}
 
 							}
@@ -3962,7 +3962,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 50.0, 545.0, 53.0 ],
-									"text" : "Max ships with an example method for performing cross synthesis on two sounds in the frequency domain. This patch translates the FFT processing found in the max examples to a FrameLib network, demonstrating the differences in patching."
+									"text" : "Max comes with an example method for performing cross-synthesis on two sounds in the frequency domain. This patch translates the FFT processing found in the Max examples to a FrameLib network, demonstrating the differences in patching."
 								}
 
 							}
@@ -3975,7 +3975,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 12.0, 456.0, 29.0 ],
-									"text" : "Cross Synthesis"
+									"text" : "Cross-Synthesis"
 								}
 
 							}
@@ -4342,7 +4342,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 71.0, 843.0, 783.0 ],
+						"rect" : [ 0.0, 26.0, 843.0, 783.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4380,7 +4380,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 320.75, 370.0, 185.0, 22.0 ],
-									"text" : "Whats going on here?"
+									"text" : "What's going on here?"
 								}
 
 							}
@@ -4393,7 +4393,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 320.75, 394.0, 375.0, 74.0 ],
-									"text" : "The fl.fft~ takes in a frame as an analysis window and outputs two frames containg the FFT analysis. The left output of fl.fft~ contains the the real components and the right frame contains the imaginary. This is similar to the structure of the native fft~ object although there is no third frame produced containing the bin index information."
+									"text" : "The fl.fft~ takes in a frame as an analysis window and outputs two frames containg the FFT analysis. The left output of fl.fft~ contains the real components and the right frame contains the imaginary. This is similar to the structure of the native fft~ object although there is no third frame produced containing the bin index information."
 								}
 
 							}
@@ -4405,8 +4405,9 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 599.0, 833.0, 179.0 ],
-									"text" : "The first difference that might immediately concern you is how to determine the window size and overlap of your FFT calculation without the pfft~ arguments. As FrameLib already uses frames of a given size this property is the window size and the rate that these frames are processed is the overlap. In the above example, we have a scheduler triggering fl.source~ to output 4096 samples every 2048 samples. 4096 is our window size, and 4096 / 2048 = 2, which gives our 2 times overlap. \n\nSecondly, there is no 'bin index' information present in the FFT of a FrameLib network. This information is carried directly in the frame by each value's position. The first bin of your FFT's real and imaginary values will be the first value in the frame and so on. This greatly simplifies processes that involve storing and synchronising FFT frames as you aren't reliant on that third inlet of fftin~ of native Max.\n\nLet's move on to the next tab to see a real use case."
+									"patching_rect" : [ 3.75, 599.0, 837.0, 179.0 ],
+									"presentation_linecount" : 11,
+									"text" : "The first difference that might immediately concern you is how to determine the window size and overlap of your FFT calculation without the pfft~ arguments. A FrameLib frame already has a length and this is the window size. The rate that these frames are processed is the overlap. In the above example, we have a scheduler triggering fl.source~ to output 4096 samples every 2048 samples. 4096 is our window size, and 4096 / 2048 = 2, which gives a 2 times overlap. \n\nSecondly, there is no 'bin index' information present in the FFT of a FrameLib network. This information is carried directly in the frame by each value's position. The first bin of your FFT's real and imaginary values will be the first value in each frame and so on. This greatly simplifies processes that involve storing and synchronising FFT frames as you aren't reliant on that third inlet of fftin~ of native Max.\n\nLet's move on to the next tab to see a real use case."
 								}
 
 							}
@@ -4592,7 +4593,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 3.75, 103.0, 831.0, 194.0 ],
-									"text" : "The Fast Fourier Transform (FFT) in FrameLib might take some time to understand if you are used to working with pfft~ in Max. The main difference is that there is no wrapper in FrameLib. You do not create patches which are hosted inside of a pfft~ like system and frames are directly processed.\n\nBeneifts:\n\n1. Synchronicity is guaranteed\n2. Nothing occurs magically under the hood. Your network's processes are transparent\n3. Frame size is flexible and can easily be changed on the fly\n4. Mixture of sizes can be processed simultaneously\n\nTake a look at the comparison between the structure of an FFT process in FrameLib and native Max"
+									"text" : "The Fast Fourier Transform (FFT) in FrameLib might take some time to understand if you are used to working with pfft~ in Max. The main difference is that there is no wrapper in FrameLib. You do not create patches which are hosted inside of a pfft~ wrapper and frames are directly processed.\n\nBenefits:\n\n1. Synchronicity is guaranteed\n2. Nothing occurs magically under the hood. Your network's processes are transparent\n3. Frame size is flexible and can easily be changed on the fly\n4. Mixture of sizes can be processed simultaneously\n\nTake a look at the comparison between the structure of an FFT process in FrameLib and native Max"
 								}
 
 							}

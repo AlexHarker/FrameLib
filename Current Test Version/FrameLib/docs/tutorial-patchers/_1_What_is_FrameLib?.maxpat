@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 390.0, 150.0, 801.0, 591.0 ],
+		"rect" : [ 2.0, 45.0, 801.0, 591.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -119,7 +119,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "signal" ],
-									"patching_rect" : [ 16.0, 102.0, 37.0, 22.0 ],
+									"patching_rect" : [ 16.0, 98.0, 37.0, 22.0 ],
 									"text" : "adc~"
 								}
 
@@ -167,7 +167,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 16.0, 48.0, 530.25, 22.0 ],
-									"text" : "An improvement over the BasicFreeze patch."
+									"text" : "An improvement on the BasicFreeze patch."
 								}
 
 							}
@@ -227,7 +227,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 99.0, 102.0, 231.0, 20.0 ],
+									"patching_rect" : [ 99.0, 98.0, 231.0, 20.0 ],
 									"text" : "Make some sounds into your microphone"
 								}
 
@@ -241,7 +241,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 55.0, 106.5, 40.25, 13.0 ]
+									"patching_rect" : [ 55.0, 102.5, 40.25, 13.0 ]
 								}
 
 							}
@@ -313,7 +313,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 324.625, 102.0, 20.0, 20.0 ],
+									"patching_rect" : [ 324.625, 98.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -914,7 +914,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 453.375, 217.5, 20.0, 20.0 ],
+									"patching_rect" : [ 446.375, 217.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1633,7 +1633,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 16.0, 48.0, 642.0, 116.0 ],
-									"text" : "Below is an example of granulation in FrameLib.\n\nEvery 150 milliseconds the first 150 milliseconds of a buffer are played back creating a stutter/repeat effect. Look inside the basicGranulator patch to see how this works more specifically.\n\nA side-by-side comparison is implemented in a poly~ allowing you to compare the sound result, as well as the simplicity of FrameLib compared to traditional Max objects."
+									"text" : "Below is an example of granulation in FrameLib.\n\nEvery 150 milliseconds the first 150 milliseconds of a buffer are played back creating a stutter/repeat effect. Look inside the basicGranulator patch to see how this works in detail.\n\nA side-by-side comparison is implemented in a poly~ allowing you to compare the sound result, and see the simplicity of FrameLib compared to traditional Max objects."
 								}
 
 							}
@@ -1850,7 +1850,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 390.0, 176.0, 801.0, 565.0 ],
+						"rect" : [ 0.0, 26.0, 801.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1926,7 +1926,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 5.75, 306.500030517578125, 774.0, 194.0 ],
+									"patching_rect" : [ 5.75, 306.500030517578125, 777.0, 194.0 ],
 									"text" : "In most realtime audio environments, audio processing is built on the model of grouping continuous streams of samples into small consecutive blocks of equal size for the purpose of calculation. Whilst this offers an appropriate model to represent continuous analog signals, it is less suited to processing that functions on chunks, or frames, of audio in which the position of a sample in the frame is meaningful (e.g spectral representations), or in which the frame might be considered as a whole (e.g granular synthesis). \n\nFrameLib brings a wealth of processing techniques into the Max environment where rapid prototyping and experimentation is redily available to the user. Advanced multi-rate processing, based on DSP graphs that operate on frames of different sizes is not currently supported natively within Max which is where a frame based tool kit like FrameLib excels. If this doesn't make sense to you now, these tutorials will introduce you to these concepts.\n\nIf you don't know where to start, navigating through the tabs above demonstrate what you might want to do with FrameLib."
 								}
 
@@ -1964,8 +1964,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 5.75, 106.0, 774.0, 163.0 ],
-									"text" : "FrameLib is a DSP system designed to allow quick modular constructions of frame-based networks. A frame is a self contained group of samples not dissimilar to a grain in granulation or an FFT frame. These networks can resolve time at a highly accurate subsample level and can run at different rates, and with different frame sizes.\n\nWithin a single FrameLib network you are able to mix different representations (such as time and frequency-based), efficiently process them and maintaing tightly-timed DSP constructs. A group of FrameLib objects resulting in a processing chain can be referred to as a 'network'.\n\nIf you don't know what these terms mean or are not sure if FrameLib could be useful for you rest assured it will make sense as the tutorials progress."
+									"patching_rect" : [ 5.75, 106.0, 775.0, 163.0 ],
+									"text" : "FrameLib is a DSP system designed to allow quick modular constructions of frame-based networks. A frame is a self contained group of samples similar to a grain in granulation or an FFT frame. These networks can resolve time at a highly accurate subsample level and can run at different rates and with different frame sizes.\n\nWithin a single FrameLib network you are able to mix different representations (such as time and frequency-based), efficiently process them and maintaining tightly-timed DSP constructs. A group of FrameLib objects resulting in a processing chain can be referred to as a 'network'.\n\nIf you don't know what these terms mean or are not sure if FrameLib could be useful for you rest assured it will make sense as the tutorials progress."
 								}
 
 							}
@@ -2391,12 +2391,12 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-23",
-									"linecount" : 3,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 48.0, 530.25, 53.0 ],
-									"text" : "A typical convolution applied to granular treatments on each sound source. Convolving the rhythmic properties of jongly.aif with the harmonic properties of cello-f2.aif. "
+									"patching_rect" : [ 16.0, 48.0, 530.25, 38.0 ],
+									"text" : "A typical convolution of two granular streams. This example convolves the rhythmic properties of jongly.aif with the harmonic properties of cello-f2.aif. "
 								}
 
 							}
@@ -2684,7 +2684,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 487.0, 45.0, 45.0 ]
+									"patching_rect" : [ 16.0, 506.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -2854,7 +2854,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 16.0, 48.0, 533.0, 85.0 ],
-									"text" : "This stochastic synth works by generating two spline like frames of varying lengths and convolving them together. Each time frames are generated (dependent on the interval setting) they are slightly randomised, causing transformations of the frame content each time. The two generated frames are independently timed to each other and can be of differing lengths."
+									"text" : "This stochastic synth works by generating two spline like frames of varying lengths and convolving them. Each time frames are generated (dependent on the interval setting) they are slightly randomised, causing transformations of the frame content each time. The two generated frames are independently timed to each other and can be of differing lengths."
 								}
 
 							}
@@ -3053,7 +3053,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 16.0, 390.000030999999979, 43.0, 90.0 ],
+									"patching_rect" : [ 16.0, 400.400054931640625, 43.0, 90.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -3066,7 +3066,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 92.0, 411.0, 298.0, 121.0 ],
+									"patching_rect" : [ 92.0, 430.0, 298.0, 121.0 ],
 									"size" : 3575
 								}
 
@@ -3374,7 +3374,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 801.0, 565.0 ],
+						"rect" : [ 2.0, 71.0, 801.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3423,7 +3423,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 150.0, 530.25, 5.0 ]
+									"patching_rect" : [ 16.0, 135.0, 530.25, 5.0 ]
 								}
 
 							}
@@ -3431,12 +3431,12 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-23",
-									"linecount" : 6,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 48.0, 531.0, 100.0 ],
-									"text" : "This granulator adds some extra features to the Basic Granulator and demonstrates how scalable FrameLib can be. In addition to generating random frame positions, the length of the frame is dynamically changed. Each frame (or grain) is being band passed filtered and spatialised across the stereo field according to its filter frequency. An interface is added allowing you to constrain the area of the buffer in which the FrameLib network extracts grains from."
+									"patching_rect" : [ 16.0, 48.0, 623.625, 85.0 ],
+									"text" : "This network adds some extra features to the Basic Granulator and demonstrates how scalable FrameLib can be. In addition to generating random frame positions, the length of the frame is dynamically changed. Each frame (or grain) is being band pass filtered and spatialised across the stereo field according to its filter frequency. An interface is added allowing you to constrain the area of the buffer from which the FrameLib network extracts grains."
 								}
 
 							}
@@ -3469,7 +3469,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 94.125, 432.0, 298.0, 121.0 ],
-									"size" : 177
+									"size" : 15487
 								}
 
 							}
@@ -3479,7 +3479,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 115.125, 280.699950999999999, 306.0, 20.0 ],
+									"patching_rect" : [ 115.125, 274.699951171875, 306.0, 20.0 ],
 									"text" : "Change the interval at which new frames are generated"
 								}
 
@@ -3493,7 +3493,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 72.875, 284.699950999999999, 40.25, 13.0 ]
+									"patching_rect" : [ 72.875, 278.699951171875, 40.25, 13.0 ]
 								}
 
 							}
@@ -3529,7 +3529,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 134.5, 159.999954000000002, 82.0, 22.0 ],
+									"patching_rect" : [ 134.5, 145.999954223632812, 82.0, 22.0 ],
 									"text" : "loadmess 44."
 								}
 
@@ -3542,7 +3542,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 320.625, 205.699951171875, 216.0, 33.0 ],
+									"patching_rect" : [ 320.625, 191.699951171875, 216.0, 33.0 ],
 									"text" : "Click and drag to change what portion of the buffer can be granulated."
 								}
 
@@ -3556,7 +3556,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 274.375, 200.949950999999999, 44.25, 42.5 ]
+									"patching_rect" : [ 274.375, 186.949951171875, 44.25, 42.5 ]
 								}
 
 							}
@@ -3607,7 +3607,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.999995999999999, 256.199950999999999, 83.0, 22.0 ],
+									"patching_rect" : [ 15.999996185302734, 248.199951171875, 83.0, 22.0 ],
 									"text" : "loadmess 450"
 								}
 
@@ -3632,7 +3632,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.999995999999999, 315.699950999999999, 67.0, 22.0 ],
+									"patching_rect" : [ 15.999996185302734, 314.699951171875, 67.0, 22.0 ],
 									"text" : "interval $1"
 								}
 
@@ -3647,7 +3647,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.999995999999999, 280.199981999999977, 53.0, 22.0 ]
+									"patching_rect" : [ 15.999996185302734, 274.199981689453125, 53.0, 22.0 ]
 								}
 
 							}
@@ -3659,7 +3659,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 231.5, 159.999954000000002, 95.0, 22.0 ],
+									"patching_rect" : [ 231.5, 145.999954223632812, 95.0, 22.0 ],
 									"text" : "loadmess 462.9"
 								}
 
@@ -3672,7 +3672,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.999954000000002, 256.199950999999999, 72.0, 22.0 ],
+									"patching_rect" : [ 180.999954223632812, 248.199951171875, 72.0, 22.0 ],
 									"text" : "s rangeMax"
 								}
 
@@ -3685,7 +3685,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 110.800003000000004, 256.199950999999999, 69.0, 22.0 ],
+									"patching_rect" : [ 110.800003051757812, 248.199951171875, 69.0, 22.0 ],
 									"text" : "s rangeMin"
 								}
 
@@ -3698,7 +3698,7 @@
 									"numinlets" : 5,
 									"numoutlets" : 6,
 									"outlettype" : [ "float", "float", "float", "float", "list", "" ],
-									"patching_rect" : [ 16.0, 190.199950999999999, 256.0, 64.0 ],
+									"patching_rect" : [ 16.0, 176.199951171875, 256.0, 64.0 ],
 									"setmode" : 1
 								}
 
@@ -3738,7 +3738,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 423.125, 280.699950999999999, 20.0, 20.0 ],
+									"patching_rect" : [ 423.125, 274.699951171875, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -3759,7 +3759,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 536.125, 212.199951171875, 20.0, 20.0 ],
+									"patching_rect" : [ 536.125, 198.199951171875, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -4048,7 +4048,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 16.0, 48.0, 642.0, 38.0 ],
-									"text" : "Stoachstic Freeze is similar to the 'Better Freeze'. The process calculates the mean and standard deviation of the FFT frames over a period of time. New frames are generated using these statistics."
+									"text" : "Stochastic Freeze is similar to the 'Better Freeze'. The process calculates the mean and standard deviation of the FFT frames over a period of time. New frames are generated using these statistics."
 								}
 
 							}

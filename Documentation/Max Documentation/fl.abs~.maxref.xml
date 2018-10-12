@@ -1,0 +1,35 @@
+<c74object category="boilerplate category" module="FrameLib" name="fl.abs~"> 
+ 
+    <digest> 
+        Calculates the absolute value of each value in the input frame.
+    </digest> 
+ 
+    <description> 
+         The result is a frame of the same size as the input.
+    </description> 
+ 
+    <misc name="Parameters"> 
+        <entry> 
+            <description> 
+                This object has no parameters. 
+            </description> 
+        </entry> 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">boilerplate category</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    <fl.acos~ /><fl.acosh~ /><fl.asin~ /><fl.asinh~ /><fl.atan~ /><fl.atanh~ /><fl.cbrt~ /><fl.ceil~ /><fl.cos~ /><fl.cosh~ /><fl.erf~ /><fl.erfc~ /><fl.exp~ /><fl.exp2~ /><fl.floor~ /><fl.log~ /><fl.log2~ /><fl.log10~ /><fl.not~ /><fl.round~ /><fl.sin~ /><fl.sinh~ /><fl.sqrt~ /><fl.tan~ /><fl.tanh~ /><fl.trunc~ /><fl.onepolezero~ /><fl.onepole~ /><fl.resonant~ /><fl.sallenkey~ /><fl.onepolezero~ /><fl.onepole~ /><fl.resonant~ /><fl.sallenkey~ /><fl.onepolezero~ /><fl.onepole~ /><fl.resonant~ /><fl.sallenkey~ /><fl.acos~ /><fl.acosh~ /><fl.asin~ /><fl.asinh~ /><fl.atan~ /><fl.atanh~ /><fl.cbrt~ /><fl.ceil~ /><fl.cos~ /><fl.cosh~ /><fl.erf~ /><fl.erfc~ /><fl.exp~ /><fl.exp2~ /><fl.floor~ /><fl.log~ /><fl.log2~ /><fl.log10~ /><fl.not~ /><fl.round~ /><fl.sin~ /><fl.sinh~ /><fl.sqrt~ /><fl.tan~ /><fl.tanh~ /><fl.trunc~ /></seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boiletplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

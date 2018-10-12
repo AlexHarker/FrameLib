@@ -106,7 +106,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 71.0, 996.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 996.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -291,7 +291,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 588.75, 133.75, 361.0, 47.0 ],
-									"text" : "These controls each map to a different parameter of the network. The float boxes control the rate of each LFO, and the rslider's dictate the numerical range which the LFO's oscillate between."
+									"text" : "These controls each map to a different parameter of the network. The float boxes control the rate of each LFO, and the rsliders dictate the range which the LFOs oscillate between."
 								}
 
 							}
@@ -2081,7 +2081,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 50.0, 828.0, 38.0 ],
-									"text" : "More variation! The interval and length is modulated by some signal LFO's. LFO sub patchers have been highlighted in lime green. Take a look inside to see how a signal based LFO is converted into a frame based control mechanism."
+									"text" : "More variation! The interval and length is modulated by some signal LFOs. LFO sub patchers have been highlighted in various colours. Take a look inside to see how a signal based LFO is converted into a frame based control mechanism."
 								}
 
 							}
@@ -3140,12 +3140,80 @@
 						"title" : "Changing Properties (5)",
 						"boxes" : [ 							{
 								"box" : 								{
+									"bgmode" : 0,
+									"border" : 0,
+									"clickthrough" : 0,
+									"enablehscroll" : 0,
+									"enablevscroll" : 0,
+									"id" : "obj-18",
+									"lockeddragscroll" : 0,
+									"maxclass" : "bpatcher",
+									"name" : "grain_control_1.maxpat",
+									"numinlets" : 0,
+									"numoutlets" : 4,
+									"offset" : [ 0.0, 0.0 ],
+									"outlettype" : [ "", "", "float", "float" ],
+									"patching_rect" : [ 8.75, 97.0, 258.0, 112.0 ],
+									"viewvisibility" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"color" : [ 0.0, 0.533333, 0.168627, 1.0 ],
+									"id" : "obj-9",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 88.416656494140625, 220.0, 65.0, 22.0 ],
+									"text" : "s e_length"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"color" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
+									"id" : "obj-13",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 247.75, 220.0, 52.0, 22.0 ],
+									"text" : "s e_end"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"color" : [ 0.113725, 0.580392, 0.737255, 1.0 ],
+									"id" : "obj-12",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 168.083343505859375, 220.0, 55.0, 22.0 ],
+									"text" : "s e_start"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"color" : [ 0.591933, 0.564554, 0.074619, 1.0 ],
+									"id" : "obj-17",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 8.75, 220.0, 71.0, 22.0 ],
+									"text" : "s e_interval"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-5",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 184.0, 378.75, 150.0, 47.0 ],
+									"patching_rect" : [ 184.0, 436.75, 150.0, 47.0 ],
 									"text" : "Chance as a fraction of 1 for a frame reversal to occur."
 								}
 
@@ -3157,7 +3225,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 96.75, 378.75, 82.0, 22.0 ],
+									"patching_rect" : [ 96.75, 436.75, 82.0, 22.0 ],
 									"text" : "loadmess 0.5"
 								}
 
@@ -3171,7 +3239,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 96.75, 417.75, 50.0, 22.0 ]
+									"patching_rect" : [ 96.75, 475.75, 50.0, 22.0 ]
 								}
 
 							}
@@ -3457,7 +3525,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 8.75, 463.0, 95.0, 22.0 ],
+									"patching_rect" : [ 8.75, 521.0, 95.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -3471,31 +3539,12 @@
 							}
 , 							{
 								"box" : 								{
-									"bgmode" : 0,
-									"border" : 0,
-									"clickthrough" : 0,
-									"enablehscroll" : 0,
-									"enablevscroll" : 0,
-									"id" : "obj-26",
-									"lockeddragscroll" : 0,
-									"maxclass" : "bpatcher",
-									"name" : "grain_control_2.maxpat",
-									"numinlets" : 0,
-									"numoutlets" : 0,
-									"offset" : [ 0.0, 0.0 ],
-									"patching_rect" : [ 8.75, 80.0, 258.0, 112.0 ],
-									"viewvisibility" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-23",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 131.75, 310.0, 80.0, 22.0 ],
+									"patching_rect" : [ 131.75, 368.0, 80.0, 22.0 ],
 									"text" : "fl.tag~ length"
 								}
 
@@ -3508,7 +3557,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 131.75, 248.75, 64.0, 22.0 ],
+									"patching_rect" : [ 131.75, 306.75, 64.0, 22.0 ],
 									"text" : "r e_length"
 								}
 
@@ -3520,7 +3569,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 131.75, 279.375, 74.0, 22.0 ],
+									"patching_rect" : [ 131.75, 337.375, 74.0, 22.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -4192,7 +4241,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 8.75, 378.75, 82.0, 22.0 ],
+									"patching_rect" : [ 8.75, 436.75, 82.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -4343,7 +4392,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 8.75, 213.75, 89.0, 22.0 ],
+									"patching_rect" : [ 8.75, 271.75, 89.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -4370,7 +4419,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 8.75, 572.75, 43.0, 92.0 ],
+									"patching_rect" : [ 8.75, 630.75, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -4382,7 +4431,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 248.75, 102.0, 22.0 ],
+									"patching_rect" : [ 8.75, 306.75, 102.0, 22.0 ],
 									"text" : "fl.interval~ 30 ms"
 								}
 
@@ -4394,7 +4443,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 671.25, 45.0, 45.0 ]
+									"patching_rect" : [ 8.75, 729.25, 45.0, 45.0 ]
 								}
 
 							}
@@ -4405,7 +4454,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 8.75, 543.75, 48.0, 22.0 ],
+									"patching_rect" : [ 8.75, 601.75, 48.0, 22.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -4417,7 +4466,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 499.75, 177.0, 22.0 ],
+									"patching_rect" : [ 8.75, 557.75, 177.0, 22.0 ],
 									"text" : "fl.read~ myGran /units samples"
 								}
 
@@ -4429,7 +4478,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 339.75, 106.0, 22.0 ],
+									"patching_rect" : [ 8.75, 397.75, 106.0, 22.0 ],
 									"text" : "fl.ramp~ /units ms"
 								}
 
@@ -4498,7 +4547,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-11", 1 ],
-									"midpoints" : [ 106.25, 450.0, 94.25, 450.0 ],
+									"midpoints" : [ 106.25, 508.0, 94.25, 508.0 ],
 									"source" : [ "obj-14", 0 ]
 								}
 
@@ -4523,6 +4572,34 @@
 								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
 									"source" : [ "obj-16", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-12", 0 ],
+									"source" : [ "obj-18", 2 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-13", 0 ],
+									"source" : [ "obj-18", 3 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-17", 0 ],
+									"source" : [ "obj-18", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-9", 0 ],
+									"source" : [ "obj-18", 1 ]
 								}
 
 							}
@@ -4674,6 +4751,54 @@
 						"title" : "Changing Properties (4)",
 						"boxes" : [ 							{
 								"box" : 								{
+									"color" : [ 0.0, 0.533333, 0.168627, 1.0 ],
+									"id" : "obj-14",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 88.416664123535156, 259.0, 65.0, 22.0 ],
+									"text" : "s d_length"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"color" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
+									"id" : "obj-13",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 247.75, 259.0, 52.0, 22.0 ],
+									"text" : "s d_end"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"color" : [ 0.113725, 0.580392, 0.737255, 1.0 ],
+									"id" : "obj-5",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 168.083328247070312, 259.0, 55.0, 22.0 ],
+									"text" : "s d_start"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"color" : [ 0.591933, 0.564554, 0.074619, 1.0 ],
+									"id" : "obj-4",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 8.75, 259.0, 71.0, 22.0 ],
+									"text" : "s d_interval"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"bgmode" : 0,
 									"border" : 0,
 									"clickthrough" : 0,
@@ -4684,9 +4809,10 @@
 									"maxclass" : "bpatcher",
 									"name" : "grain_control_1.maxpat",
 									"numinlets" : 0,
-									"numoutlets" : 0,
+									"numoutlets" : 4,
 									"offset" : [ 0.0, 0.0 ],
-									"patching_rect" : [ 8.75, 152.0, 258.0, 112.0 ],
+									"outlettype" : [ "", "", "float", "float" ],
+									"patching_rect" : [ 8.75, 136.0, 258.0, 112.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -4698,7 +4824,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 131.75, 382.0, 80.0, 22.0 ],
+									"patching_rect" : [ 131.75, 403.0, 80.0, 22.0 ],
 									"text" : "fl.tag~ length"
 								}
 
@@ -4711,7 +4837,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 131.75, 320.75, 64.0, 22.0 ],
+									"patching_rect" : [ 131.75, 341.75, 64.0, 22.0 ],
 									"text" : "r d_length"
 								}
 
@@ -4723,7 +4849,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 131.75, 351.375, 74.0, 22.0 ],
+									"patching_rect" : [ 131.75, 372.375, 74.0, 22.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -5395,7 +5521,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 8.75, 450.75, 82.0, 22.0 ],
+									"patching_rect" : [ 8.75, 471.75, 82.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -5546,7 +5672,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 8.75, 285.75, 89.0, 22.0 ],
+									"patching_rect" : [ 8.75, 307.75, 89.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -5573,7 +5699,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 8.75, 563.75, 43.0, 92.0 ],
+									"patching_rect" : [ 8.75, 584.75, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -5585,7 +5711,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 320.75, 102.0, 22.0 ],
+									"patching_rect" : [ 8.75, 341.75, 102.0, 22.0 ],
 									"text" : "fl.interval~ 30 ms"
 								}
 
@@ -5597,7 +5723,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 662.25, 45.0, 45.0 ]
+									"patching_rect" : [ 8.75, 683.25, 45.0, 45.0 ]
 								}
 
 							}
@@ -5608,7 +5734,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 8.75, 534.75, 48.0, 22.0 ],
+									"patching_rect" : [ 8.75, 555.75, 48.0, 22.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -5620,7 +5746,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 490.75, 177.0, 22.0 ],
+									"patching_rect" : [ 8.75, 511.75, 177.0, 22.0 ],
 									"text" : "fl.read~ myGran /units samples"
 								}
 
@@ -5632,7 +5758,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 411.75, 106.0, 22.0 ],
+									"patching_rect" : [ 8.75, 432.75, 106.0, 22.0 ],
 									"text" : "fl.ramp~ /units ms"
 								}
 
@@ -5641,12 +5767,12 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-3",
-									"linecount" : 5,
+									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 50.0, 821.0, 100.0 ],
-									"text" : "Lets create some variation to the grain creation process using randomness. Instead of just playing back the entire selection we've drawn on the waveform~ object, lets make it so that a random position is selected within this area and played back from. \n\nGo through the GrainLength and GrainOffset sub patchers to see what has changed.\n\n"
+									"patching_rect" : [ 8.75, 50.0, 821.0, 69.0 ],
+									"text" : "Let's create some variation to the grain creation process using randomness. Instead of just playing back the entire selection we've drawn on the waveform~ object, let's make it so that a random position is selected within this area and played back from. \n\nGo through the GrainLength and GrainOffset sub patchers to see what has changed."
 								}
 
 							}
@@ -5740,6 +5866,34 @@
 								"patchline" : 								{
 									"destination" : [ "obj-2", 1 ],
 									"source" : [ "obj-23", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-13", 0 ],
+									"source" : [ "obj-26", 3 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-14", 0 ],
+									"source" : [ "obj-26", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"source" : [ "obj-26", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-5", 0 ],
+									"source" : [ "obj-26", 2 ]
 								}
 
 							}
@@ -6781,7 +6935,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 50.0, 671.0, 38.0 ],
-									"text" : "Lets tidy up the patch a bit and maybe encapsulate some things to make it more space friendly. Lets also add a neat GUI to select portions of our jongles buffer a bit easier."
+									"text" : "Let's tidy up the patch a bit and maybe encapsulate some things to make it more space friendly. Let's also add a neat GUI to select portions of our jongles buffer a bit easier."
 								}
 
 							}
@@ -7608,8 +7762,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 50.0, 779.0, 85.0 ],
-									"text" : "It is possible now to adjust how often a new grain is generated. But what if we want to change the length and which part of the buffer we're reading from? Remember, we're reading a group of samples from a buffer with fl.read~. Fl.read~ accepts a frame as input denoting sample positions and retrieves them for us to store in a new frame. To change the number of samples that are read the input frame has to change length. The minimum position we want to read from is added as an offset to this frame to map the values correctly."
+									"patching_rect" : [ 8.75, 50.0, 782.0, 85.0 ],
+									"text" : "It is possible now to adjust how often a new grain is generated. But what if we want to change the length and which part of the buffer we're reading from? Remember, we're reading a group of samples from a buffer with fl.read~. The fl.read~ object accepts a frame as input, denoting sample positions and retrieves them for us to store in a new frame. To change the number of samples that are read the input frame has to change length. The minimum position we want to read from is added as an offset to this frame to map the values correctly."
 								}
 
 							}
@@ -7970,7 +8124,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 186.0, 296.5, 37.25, 15.0 ]
+									"patching_rect" : [ 154.0, 296.5, 37.25, 15.0 ]
 								}
 
 							}
@@ -7983,8 +8137,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 225.25, 293.0, 353.0, 85.0 ],
-									"text" : "Look out! This fl.interval~ tells fl.frommax~ to sample the input from the max domain. Without it we would not be able to change the interval of the downstream scheduler. Always remember to use a scheduler on all fl.frommax~ objects or your network won't do anything!",
+									"patching_rect" : [ 193.25, 293.0, 353.0, 85.0 ],
+									"text" : "Look out! This fl.perblock~ tells fl.frommax~ to sample the input from the Max domain. Without it we would not be able to change the interval of the downstream scheduler. Always remember to use a scheduler on all fl.frommax~ objects or your network won't do anything!",
 									"textcolor" : [ 0.82745099067688, 0.031372550874949, 0.031372550874949, 1.0 ]
 								}
 
@@ -8022,7 +8176,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 201.75, 137.0, 79.0, 22.0 ],
+									"patching_rect" : [ 64.75, 137.0, 79.0, 22.0 ],
 									"text" : "loadmess 30"
 								}
 
@@ -8036,7 +8190,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 199.0, 573.25, 69.0 ],
-									"text" : "Using fl.frommax~ we take the values of these parameters and tag them as fl.frommax~ is in \"params\" mode. Remember fl.frommax~ only passes the data in to FrameLib if it receives a trigger frame. Thats why we have an fl.perblock~ at the top of the chain, because otherwise there would be nothing to trigger it."
+									"text" : "The fl.frommax~ object is in 'params' mode, so sending the 'interval $1' message from outside the network converts it into a tagged frame. Remember fl.frommax~ only passes the data in to FrameLib if it receives a trigger frame. Thats why we have an fl.perblock~ at the top of the chain, because otherwise there would be nothing to trigger it."
 								}
 
 							}
@@ -8047,8 +8201,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 82.0, 293.0, 102.0, 22.0 ],
-									"text" : "fl.interval~ 30 ms"
+									"patching_rect" : [ 82.0, 293.0, 70.0, 22.0 ],
+									"text" : "fl.perblock~"
 								}
 
 							}
@@ -8131,7 +8285,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 206.0, 397.5, 152.0, 69.0 ],
-									"text" : "Tag the interval value. Turn the interval up and down to see how its working."
+									"text" : "Tag the interval value. Turn the interval up and down to see how it's working."
 								}
 
 							}
@@ -8198,12 +8352,12 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-3",
-									"linecount" : 5,
+									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 50.0, 573.25, 100.0 ],
-									"text" : "Now we have successfully created a grain lets add some functionality so that we can change how often a new grain is generated and how long the grain will be.\n\nFirst lets make some controllers in native Max to adjust these parameters.\n\n"
+									"patching_rect" : [ 8.75, 50.0, 573.25, 69.0 ],
+									"text" : "Now we have successfully created a grain let's add some functionality so that we can change how often a new grain is generated and how long the grain will be.\n\nFirst let's make some controllers in native Max to adjust these parameters."
 								}
 
 							}
@@ -8244,7 +8398,7 @@
 								"patchline" : 								{
 									"destination" : [ "obj-9", 0 ],
 									"hidden" : 1,
-									"midpoints" : [ 211.25, 162.0, 60.0, 162.0, 60.0, 132.0, 18.25, 132.0 ],
+									"midpoints" : [ 74.25, 162.0, 60.0, 162.0, 60.0, 132.0, 18.25, 132.0 ],
 									"source" : [ "obj-11", 0 ]
 								}
 
@@ -8421,7 +8575,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 187.75, 526.5, 37.25, 15.0 ]
+									"patching_rect" : [ 193.75, 526.5, 37.25, 15.0 ]
 								}
 
 							}
@@ -8433,7 +8587,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 227.0, 519.0, 179.0, 38.0 ],
+									"patching_rect" : [ 233.0, 519.0, 179.0, 38.0 ],
 									"text" : "Extract the samples from a buffer with fl.read~"
 								}
 
@@ -8467,7 +8621,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 172.75, 474.5, 37.25, 15.0 ]
+									"patching_rect" : [ 178.75, 474.5, 37.25, 15.0 ]
 								}
 
 							}
@@ -8479,8 +8633,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 212.0, 463.0, 230.0, 38.0 ],
-									"text" : "How long will the grain be (30 milliseconds converted to samples)"
+									"patching_rect" : [ 218.0, 463.0, 230.0, 38.0 ],
+									"text" : "How long will the grain be (200 milliseconds converted to samples)"
 								}
 
 							}
@@ -8493,7 +8647,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 112.75, 415.5, 37.25, 15.0 ]
+									"patching_rect" : [ 118.75, 415.5, 37.25, 15.0 ]
 								}
 
 							}
@@ -8501,12 +8655,12 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-67",
-									"linecount" : 2,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 152.0, 404.0, 219.0, 38.0 ],
-									"text" : "How often are we generating a new grain (Every 30 milliseconds)"
+									"patching_rect" : [ 158.0, 404.0, 219.0, 53.0 ],
+									"text" : "How often are we generating a new grain (Every 500 milliseconds)"
 								}
 
 							}
@@ -8552,7 +8706,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 523.0, 177.0, 22.0 ],
+									"patching_rect" : [ 8.75, 523.0, 175.0, 22.0 ],
 									"text" : "fl.read~ myGran /units samples"
 								}
 
@@ -8564,7 +8718,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 471.0, 168.0, 22.0 ],
+									"patching_rect" : [ 8.75, 471.0, 166.0, 22.0 ],
 									"text" : "fl.ramp~ /length 200 /units ms"
 								}
 
@@ -8578,7 +8732,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 50.0, 701.0, 335.0 ],
-									"text" : "Granular synthesis uses the \"grain\" as a unit of sound. These grains are often short and derived from a sample or selection of samples. We're going to use fl.ramp~ and fl.read~ to generate grains in this step.\n\nEverything is going to be thought of in milliseconds and FrameLib will convert these values to samples. The reason for doing this that its difficult to think about a 5 second buffer in terms of samples unless you're a computer. If we want the sample at 1.5 seconds we have to multiply the sample rate of the audio buffer by this number and then use that. Instead we should just be able to use milliseconds and leave the calculation under the hood.\n\nFirst, we have to consider two things for creating a grain.\n\n1. How often are we going to generate a new grain\n2. How long will the grain be\n\nRemember, nothing in FrameLib happens without a scheduler so the rate at which we schedule trigger frames will control how often a new grain is created.\n\nGrains are created by taking short selections from a larger sample and playing them back. To do this, fl.ramp~ will generate frames containing a selection of sequential sample values. These values tell fl.read~ which samples to store in a frame. Therefore, the length of fl.ramp~'s frame will dictate how long the grain will be. \n"
+									"text" : "Granular synthesis uses the \"grain\" as a unit of sound. These grains are often short and derived from a sample or selection of samples. We're going to use fl.ramp~ and fl.read~ to generate grains in this step.\n\nEverything is going to be thought of in milliseconds and FrameLib will convert these values to samples. The reason for doing this that it's difficult to think about a 5 second buffer in terms of samples unless you're a computer. If we want the sample at 1.5 seconds we have to multiply the sample rate of the audio buffer by this number and then use that. Instead we should just be able to use milliseconds and leave the calculation under the hood.\n\nFirst, we have to consider two things for creating a grain.\n\n1. How often are we going to generate a new grain\n2. How long will the grain be\n\nRemember, nothing in FrameLib happens without a scheduler so the rate at which we schedule trigger frames will control how often a new grain is created.\n\nGrains are created by taking short selections from a larger sample and playing them back. To do this, fl.ramp~ will generate frames containing a selection of sequential sample values. These values tell fl.read~ which samples to store in a frame. Therefore, the length of fl.ramp~'s frame will dictate how long the grain will be. \n"
 								}
 
 							}
@@ -8621,7 +8775,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 408.0, 528.0, 20.0, 20.0 ],
+									"patching_rect" : [ 414.0, 528.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -8642,7 +8796,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 444.0, 476.5, 20.0, 20.0 ],
+									"patching_rect" : [ 450.0, 476.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -8663,7 +8817,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 373.0, 415.5, 20.0, 20.0 ],
+									"patching_rect" : [ 379.0, 415.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -8776,7 +8930,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 996.0, 829.0 ],
+						"rect" : [ 0.0, 71.0, 996.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -8934,8 +9088,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 225.0, 287.666655999999989, 442.375, 38.0 ],
-									"text" : "fl.read~ receives a frame counting from 0-9999 and outputs a frame containing those samples read from the buffer it is pointed to (jongles)"
+									"patching_rect" : [ 225.0, 287.666656494140625, 447.375, 38.0 ],
+									"text" : "fl.read~ receives a frame counting from 0-9999 and outputs a frame containing those samples read from the buffer it is pointed to (myGran)"
 								}
 
 							}
@@ -9070,7 +9224,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 669.375, 296.666655999999989, 20.0, 20.0 ],
+									"patching_rect" : [ 674.375, 296.666656494140625, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -9264,7 +9418,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 3.75, 103.0, 673.0, 304.0 ],
-									"text" : "So far we've covered the key principles of FrameLib including:\n\n1. Scheduling (fl.interval~ mainly)\n\n2. Parameters and Tagging (fl.tag~)\n\n3. Converting data to and from frames (fl.tomax~, fl.frommax~, fl.source~, fl.sink~)\n\n4. Generator objects\n\nIf you need a refresher on how any of those work revisit the tutorials and additionally look at the help files for each object.\n\nNow that we've become familiar with these four areas its time to make something where they work together. In the very first tutorial there is a granulator example which we're going to build step-by-step. One tool that we're missing though is something to read~ audio from buffers and output it as frames. To do this we need to use the fl.read~ object.\n\nStart with the next tab and move along through the stages while you build your own granulator in FrameLib."
+									"text" : "So far we've covered the key principles of FrameLib including:\n\n1. Scheduling (fl.interval~ mainly)\n\n2. Parameters and Tagging (fl.tag~, fl.frommax~ /mode params)\n\n3. Converting data to and from frames (fl.tomax~, fl.frommax~, fl.source~, fl.sink~)\n\n4. Generator objects\n\nIf you need a refresher on how any of those work revisit the tutorials and additionally look at the help files for each object.\n\nNow that we've become familiar with these four areas it's time to make something where they work together. In the very first tutorial there is a granulator example which we're going to build step-by-step. One tool that we're missing currently is something to read audio from buffers and output it as frames. To solve this problem this we need to use the fl.read~ object.\n\nStart with the next tab and move along through the stages while you build your own granulator in FrameLib."
 								}
 
 							}
@@ -9277,7 +9431,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 3.75, 65.0, 456.0, 29.0 ],
-									"text" : "Lets make something!"
+									"text" : "Let's make something!"
 								}
 
 							}
@@ -9468,13 +9622,6 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "grain_control_2.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "next_tut.maxpat",
 				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
@@ -9510,19 +9657,19 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "fl.perblock~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.perblock~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "fl.tag~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
 				"name" : "fl.plus~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.perblock~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
