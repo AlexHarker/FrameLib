@@ -33,6 +33,7 @@ externals/
 *.d_fat
 
 ## Other
+__pycache__/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
