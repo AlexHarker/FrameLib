@@ -10,6 +10,9 @@
 
 #include <string>
 #include <vector>
+#include <boost/format.hpp>
+#include <iostream>
+#include <fstream>
 
 struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
 {
