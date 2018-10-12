@@ -595,7 +595,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 2.0, 71.0, 758.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 758.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -625,6 +625,36 @@
 						"showontab" : 1,
 						"title" : "Tutorials",
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-6",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 430.5, 378.0, 70.0, 22.0 ],
+									"text" : "loadmess 0"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "Lato Regular",
+									"fontsize" : 14.0,
+									"id" : "obj-17",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 23.0, 210.0, 382.0, 40.0 ],
+									"presentation" : 1,
+									"presentation_linecount" : 2,
+									"presentation_rect" : [ 251.0, 152.0, 422.0, 40.0 ],
+									"text" : "An extension of the FFT tutorial , this crash course introduces you to the possibilities of multi-resolution FFT's.",
+									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-4",
 									"maxclass" : "comment",
@@ -1135,13 +1165,13 @@
 									"fontface" : 0,
 									"fontsize" : 13.0,
 									"id" : "obj-31",
-									"items" : [ "Basic", ",", "Intermediate", ",", "Advanced" ],
+									"items" : [ "Beginner", ",", "Intermediate", ",", "Advanced" ],
 									"maxclass" : "umenu",
 									"numinlets" : 1,
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 430.5, 417.0, 100.0, 23.0 ],
+									"patching_rect" : [ 430.5, 413.0, 100.0, 23.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 4.0, 90.0, 209.0, 23.0 ],
 									"textjustification" : 1
@@ -1187,7 +1217,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 407.0, 222.0, 45.0, 20.0 ],
+									"patching_rect" : [ 407.0, 213.0, 45.0, 20.0 ],
 									"text" : "digest"
 								}
 
@@ -1229,24 +1259,7 @@
 									"patching_rect" : [ 23.0, 131.0, 382.0, 30.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 251.0, 97.0, 422.0, 30.0 ],
-									"text" : "Tutorial 6: FFT with FrameLib.",
-									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Lato",
-									"fontsize" : 14.0,
-									"frozen_box_attributes" : [ "presentation_rect" ],
-									"id" : "obj-21",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 220.0, 389.0, 23.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 251.0, 141.0, 422.0, 30.0 ],
-									"text" : "The basics of FFT/STFT processing in FrameLib",
+									"text" : "Tutorial 8: Multi-resolution FFT.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -2305,7 +2318,7 @@
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
-									"tabs" : [ "Tutorial 6: FFT with FrameLib.", "Tutorial 7: Multi-stream processing." ],
+									"tabs" : [ "Tutorial 8: Multi-resolution FFT." ],
 									"truncate" : 0
 								}
 
@@ -2411,6 +2424,13 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-31", 0 ],
+									"source" : [ "obj-6", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-10", 0 ],
 									"midpoints" : [ 501.833333333333314, 540.0, 417.0, 540.0, 417.0, 477.0, 9.0, 477.0, 9.0, 528.0, 32.5, 528.0 ],
 									"order" : 1,
@@ -2429,8 +2449,8 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-21", 0 ],
-									"midpoints" : [ 544.5, 534.0, 564.0, 534.0, 564.0, 255.0, 9.0, 255.0, 9.0, 216.0, 32.5, 216.0 ],
+									"destination" : [ "obj-17", 0 ],
+									"midpoints" : [ 544.5, 534.0, 573.0, 534.0, 573.0, 195.0, 32.5, 195.0 ],
 									"source" : [ "obj-63", 3 ]
 								}
 
@@ -2517,7 +2537,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 758.0, 829.0 ],
+						"rect" : [ 2.0, 71.0, 758.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -2778,7 +2798,7 @@
 									"patching_rect" : [ 23.0, 129.0, 382.0, 30.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 251.0, 97.0, 422.0, 30.0 ],
-									"text" : "fl.store~",
+									"text" : "fl.random~",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -2789,13 +2809,15 @@
 									"fontsize" : 14.0,
 									"frozen_box_attributes" : [ "presentation_rect" ],
 									"id" : "obj-21",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 220.0, 386.0, 23.0 ],
+									"patching_rect" : [ 23.0, 220.0, 386.0, 40.0 ],
 									"presentation" : 1,
+									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 141.0, 422.0, 30.0 ],
-									"text" : "Stores a vector frame in named memory for recall.",
+									"text" : "Generates frames of linearly distributed random values in the range [0-1].",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -4431,7 +4453,7 @@
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
-									"tabs" : [ "fl.recall~", "fl.register~", "fl.store~" ],
+									"tabs" : [ "fl.gaussian~", "fl.ramp~", "fl.random~", "fl.uniform~" ],
 									"truncate" : 0
 								}
 
@@ -4453,13 +4475,13 @@
 									"presentation_rect" : [ 5.0, 90.0, 209.0, 23.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_initial" : [ 0 ],
 											"parameter_shortname" : "umenu",
 											"parameter_type" : 3,
 											"parameter_longname" : "umenu",
 											"parameter_initial_enable" : 1,
 											"parameter_invisible" : 1,
-											"parameter_mmax" : 16.0
+											"parameter_mmax" : 16.0,
+											"parameter_initial" : [ 0 ]
 										}
 
 									}
@@ -4737,7 +4759,7 @@
 			}
 , 			{
 				"name" : "tutorial_names.txt",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : "../docs/tutorial-patchers",
 				"type" : "TEXT",
 				"implicit" : 1
