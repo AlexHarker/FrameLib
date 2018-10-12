@@ -3,9 +3,9 @@ import os
 def main():
     # Directory stuff #
     dir_path = os.path.dirname(os.path.realpath(__file__))
+    dir_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib')
     tutorial_path = f'{dir_path}/docs/tutorial-patchers/'
     coll_output_path = f'{tutorial_path}tutorial_names.txt'
-    print(coll_output_path)
 
     # If dir doesnt exist make, otherwise edit existing #
     coll = open(coll_output_path, 'w+')
