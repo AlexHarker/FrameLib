@@ -565,7 +565,7 @@ public:
     {
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::assist>(c, "assist");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::info>(c, "info");
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::write_info>(c, "info");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::write_info>(c, "write_info");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
@@ -780,7 +780,7 @@ public:
         std::ofstream myfile;
         std::string sp = " "; // code is more readable with sp rather than " "
         std::string object = object_classname(mUserObject)->s_name;
-        myfile.open ("/Users/jamesbradbury/Desktop/" + object + ".txt");
+        myfile.open ("/Users/jamesbradbury/Desktop/" + object + ".maxref.xml");
         std::string object_category = "!@#$%^&*(";
         std::string object_keywords = "boiletplate keywords";
         std::string object_info;
