@@ -562,7 +562,7 @@ public:
     {
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::assist>(c, "assist");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::info>(c, "info");
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::write_info(c, "write_info");
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::write_info>(c, "info");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
