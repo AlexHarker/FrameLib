@@ -773,7 +773,6 @@ public:
 
     void write_info(t_symbol *sym, long ac, t_atom *av)
     {
-        
         // Determine what to post
         enum InfoFlags { kInfoDesciption = 0x01, kInfoInputs = 0x02, kInfoOutputs = 0x04, kInfoParameters = 0x08 };
         bool verbose = true;
@@ -782,7 +781,7 @@ public:
         std::string sp = " "; // code is more readable with sp rather than " "
         std::string object = object_classname(mUserObject)->s_name;
         myfile.open ("/Users/jamesbradbury/Desktop/" + object + ".txt");
-        std::string object_category = "boilerplate category";
+        std::string object_category = "!@#$%^&*(";
         std::string object_keywords = "boiletplate keywords";
         std::string object_info;
         std::string object_description;
@@ -903,7 +902,7 @@ public:
                         
                         if (type == FrameLib_Parameters::kEnum){
                             
-                            myfile << "<br><br> \n" ; // if enum put a break big break between description and the enum options
+                            myfile << "<br></br> \n" ; // if enum put a break big break between description and the enum options
                             
                             for (long j = 0; j <= params->getMax(i); j++) {
                                 object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j).c_str());
