@@ -781,8 +781,8 @@ public:
         std::string sp = " "; // code is more readable with sp rather than " "
         std::string object = object_classname(mUserObject)->s_name;
         myfile.open ("/Users/jamesbradbury/Desktop/" + object + ".maxref.xml");
-        std::string object_category = "!@#$%^&*(";
-        std::string object_keywords = "boiletplate keywords";
+        std::string object_category = "!@#@#$";
+        std::string object_keywords = "boilerplate keywords";
         std::string object_info;
         std::string object_description;
         std::string object_digest;
@@ -812,16 +812,12 @@ public:
         
         flags = !flags ? (kInfoDesciption | kInfoInputs | kInfoOutputs | kInfoParameters) : flags;
         
-        // Start Tag
-        
-        object_post(mUserObject, "********* %s *********", object_classname(mUserObject)->s_name);
-        
         // Description
         
         if (flags & kInfoDesciption)
         {
-            object_post(mUserObject, "--- Description ---");
-            postSplit(mObject->objectInfo(verbose).c_str(), "", "-");
+            // object_post(mUserObject, "--- Description ---");
+            // postSplit(mObject->objectInfo(verbose).c_str(), "", "-");
             
             // split the object info into a description and a digest //
             object_info = mObject->objectInfo(verbose);
@@ -843,13 +839,12 @@ public:
         
         if (flags & kInfoParameters)
         {
-            object_post(mUserObject, "--- Parameter List ---");
+            // object_post(mUserObject, "--- Parameter List ---");
             
             // If object has no parameters create the 'no parameters template'
             const FrameLib_Parameters *params = mObject->getParameters();
-            myfile << params->size();
             if (!params || !params->size()) {
-                object_post(mUserObject, "< No Parameters >");
+                // object_post(mUserObject, "< No Parameters >");
                 myfile << tab_1 + "<misc name = 'Parameters'> \n";
                 myfile << tab_2 + "<entry> \n";
                 myfile << tab_3 + "<description> \n";
@@ -873,12 +868,12 @@ public:
                     // Name, type and default value
                     
                     if (defaultStr.size()) {
-                        object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str(), defaultStr.c_str());
+                        // object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str(), defaultStr.c_str());
                         
                         myfile << boost::format("%4%<entry name = '%1%. /%2% [%3%]'> \n") % param_num % params->getName(i) % params->getTypeString(i) % tab_2;
                     }
                     else {
-                        object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str());
+                        // object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str());
                         myfile << boost::format("%4%<entry name = '%1%. /%2% [%3%]'> \n") % param_num % params->getName(i) % params->getTypeString(i) % tab_2;
                     }
                     // Construct the description
@@ -887,25 +882,25 @@ public:
                     // Verbose - arguments, range (for numeric types), enum items (for enums), array sizes (for arrays), description
                     if (verbose)
                     {
-                        if (argsMode == kAsParams && params->getArgumentIdx(i) >= 0)
-                            object_post(mUserObject, "- Argument: %ld", params->getArgumentIdx(i) + 1);
-                        if (numericType == FrameLib_Parameters::kNumericInteger || numericType == FrameLib_Parameters::kNumericDouble)
-                        {
-                            switch (params->getClipMode(i))
-                            {
-                                case FrameLib_Parameters::kNone:    break;
-                                case FrameLib_Parameters::kMin:     object_post(mUserObject, "- Min Value: %lg", params->getMin(i));                        break;
-                                case FrameLib_Parameters::kMax:     object_post(mUserObject, "- Max Value: %lg", params->getMax(i));                        break;
-                                case FrameLib_Parameters::kClip:    object_post(mUserObject, "- Clipped: %lg-%lg", params->getMin(i), params->getMax(i));   break;
-                            }
-                        }
+                        // if (argsMode == kAsParams && params->getArgumentIdx(i) >= 0)
+                        //     object_post(mUserObject, "- Argument: %ld", params->getArgumentIdx(i) + 1);
+                        // if (numericType == FrameLib_Parameters::kNumericInteger || numericType == FrameLib_Parameters::kNumericDouble)
+                        // {
+                        //     switch (params->getClipMode(i))
+                        //     {
+                        //         case FrameLib_Parameters::kNone:    break;
+                        //         case FrameLib_Parameters::kMin:     object_post(mUserObject, "- Min Value: %lg", params->getMin(i));                        break;
+                        //         case FrameLib_Parameters::kMax:     object_post(mUserObject, "- Max Value: %lg", params->getMax(i));                        break;
+                        //         case FrameLib_Parameters::kClip:    object_post(mUserObject, "- Clipped: %lg-%lg", params->getMin(i), params->getMax(i));   break;
+                        //     }
+                        // }
                         
                         if (type == FrameLib_Parameters::kEnum){
                             
                             myfile << "<br></br> \n" ; // if enum put a break big break between description and the enum options
                             
                             for (long j = 0; j <= params->getMax(i); j++) {
-                                object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j).c_str());
+                                // object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j).c_str());
                                 std::string enum_param_num = std::to_string(j);
                                 if (j == params->getMax(i))
                                     myfile << boost::format("%3%<bullet>[%1%] - %2%</bullet>") % enum_param_num % params->getItemString(i, j) % tab_4;
@@ -915,12 +910,12 @@ public:
                             }
                         }
                         
-                        else if (type == FrameLib_Parameters::kArray)
-                            object_post(mUserObject, "- Array Size: %ld", params->getArraySize(i));
-                        else if (type == FrameLib_Parameters::kVariableArray)
-                            object_post(mUserObject, "- Array Max Size: %ld", params->getArrayMaxSize(i));
+                        // else if (type == FrameLib_Parameters::kArray)
+                        //     object_post(mUserObject, "- Array Size: %ld", params->getArraySize(i));
+                        // else if (type == FrameLib_Parameters::kVariableArray)
+                        //     object_post(mUserObject, "- Array Max Size: %ld", params->getArrayMaxSize(i));
                         
-                        postSplit(params->getInfo(i).c_str(), "- ", "-");
+                        // postSplit(params->getInfo(i).c_str(), "- ", "-");
                         
                         myfile << "\n" + tab_3 + "</description> \n";
                         myfile << tab_2 + "</entry> \n \n";
