@@ -1,0 +1,205 @@
+{
+    "Binary": [
+        "fl.lessthan~",
+        "fl.atan2~",
+        "fl.minus~",
+        "fl.hypot~",
+        "fl.equals~",
+        "fl.times~",
+        "fl.pow~",
+        "fl.divide~",
+        "fl.max~",
+        "fl.notequals~",
+        "fl.greaterthan~",
+        "fl.and~",
+        "fl.min~",
+        "fl.lessthaneq~",
+        "fl.diff~",
+        "fl.plus~",
+        "fl.or~",
+        "fl.copysign~",
+        "fl.greaterthaneq~",
+        "fl.modulo~"
+    ],
+    "Buffer": [
+        "fl.read~"
+    ],
+    "Complex_Binary": [
+        "fl.complexpow~",
+        "fl.complexminus~",
+        "fl.complexplus~",
+        "fl.complexdivide~",
+        "fl.complexmultiply~"
+    ],
+    "Complex_Unary": [
+        "fl.complexcos~",
+        "fl.complexlog10~",
+        "fl.complexsinh~",
+        "fl.cartopol~",
+        "fl.complexconj~",
+        "fl.complexexp~",
+        "fl.complexlog~",
+        "fl.complexcosh~",
+        "fl.complextan~",
+        "fl.complexsin~",
+        "fl.complextanh~",
+        "fl.complexsqrt~",
+        "fl.poltocar~"
+    ],
+    "Expressions": [
+        "fl.complexexpr~",
+        "fl.expr~"
+    ],
+    "Filters": [
+        "fl.resonant~",
+        "fl.0dfsvf~",
+        "fl.sallenkey~",
+        "fl.onepolezero~",
+        "fl.onepole~"
+    ],
+    "Generators": [
+        "fl.random~",
+        "fl.gaussian~",
+        "fl.uniform~",
+        "fl.ramp~"
+    ],
+    "Host_Communication": [
+        "fl.tomax~",
+        "fl.frommax~"
+    ],
+    "IO": [
+        "fl.source~",
+        "fl.trace~",
+        "fl.sink~"
+    ],
+    "Mapping": [
+        "fl.convert~",
+        "fl.map~",
+        "fl.constant~",
+        "fl.samplerate~",
+        "fl.lookup~"
+    ],
+    "Parameters": [
+        "fl.fromparam~",
+        "fl.combineparam~",
+        "fl.tag~",
+        "fl.getparam~",
+        "fl.filtertags~"
+    ],
+    "Routing": [
+        "fl.dispatch~",
+        "fl.route~",
+        "fl.select~"
+    ],
+    "Schedulers": [
+        "fl.interval~",
+        "fl.perblock~",
+        "fl.audiotrigger~",
+        "fl.once~",
+        "fl.future~"
+    ],
+    "Spatial": [
+        "fl.coordinatesystem",
+        "fl.spatial~"
+    ],
+    "Spectral": [
+        "fl.fft~",
+        "fl.multitaper~",
+        "fl.convolve~",
+        "fl.ifft~",
+        "fl.correlate~",
+        "fl.window~"
+    ],
+    "Storage": [
+        "fl.store~",
+        "fl.register~",
+        "fl.recall~"
+    ],
+    "Streaming": [
+        "fl.pack~",
+        "fl.unpack~",
+        "fl.streamid~"
+    ],
+    "Ternary": [
+        "fl.wrap~",
+        "fl.fold~.",
+        "fl.clip~"
+    ],
+    "Time_Smoothing": [
+        "fl.timestddev~",
+        "fl.ewma~",
+        "fl.timemedian~",
+        "fl.lag~",
+        "fl.ewmsd~",
+        "fl.framedelta~",
+        "fl.timemean~"
+    ],
+    "Timing": [
+        "fl.timedelta~",
+        "fl.now~",
+        "fl.timer~",
+        "fl.ticks~"
+    ],
+    "Unary": [
+        "fl.sqrt~",
+        "fl.floor~",
+        "fl.exp2~",
+        "fl.tanh~",
+        "fl.cbrt~",
+        "fl.cos~",
+        "fl.atanh~",
+        "fl.acosh~",
+        "fl.atan~",
+        "fl.erf~",
+        "fl.cosh~",
+        "fl.asin~",
+        "fl.exp~",
+        "fl.log10~",
+        "fl.log2~",
+        "fl.erfc~",
+        "fl.acos~",
+        "fl.abs~",
+        "fl.log~",
+        "fl.asinh~",
+        "fl.trunc~",
+        "fl.not~",
+        "fl.sinh~",
+        "fl.ceil~",
+        "fl.round~",
+        "fl.tan~",
+        "fl.sin~"
+    ],
+    "Vector": [
+        "fl.argmin~",
+        "fl.percentile~",
+        "fl.standarddeviation~",
+        "fl.centroid~",
+        "fl.accumpoint~",
+        "fl.nonzero~",
+        "fl.argmax~",
+        "fl.geometricmean~",
+        "fl.spread~",
+        "fl.vmax~",
+        "fl.kurtosis~",
+        "fl.sort~",
+        "fl.mean~",
+        "fl.join~",
+        "fl.shift~",
+        "fl.vmin~",
+        "fl.sum~",
+        "fl.subframe~",
+        "fl.nanfilter~",
+        "fl.reverse~",
+        "fl.length~",
+        "fl.peaks~",
+        "fl.product~",
+        "fl.skewness~",
+        "fl.crest~",
+        "fl.pad~",
+        "fl.chop~",
+        "fl.flatness~",
+        "fl.rms~",
+        "fl.split~",
+        "fl.medianfilter~"
+    ]
+}

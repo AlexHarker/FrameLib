@@ -5,6 +5,6 @@ def strip_space(tostrip):
     tostrip = tostrip.rstrip()
     return tostrip
 
-def strip_extension(input_string):
-    output = input_string.rsplit(".", 2)[0]
+def strip_extension(input_string, maxsplits):
+    output = input_string.rsplit(".", maxsplits)[0]
     return output

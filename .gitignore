@@ -35,6 +35,7 @@ externals/
 ## Other
 __pycache__/
 Documentation/Max\ Documentation/_Notes
+RawXML/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
