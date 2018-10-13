@@ -1547,6 +1547,8 @@ private:
 
 protected:
    
+    unsigned long getNumStreams() { return mObject->getNumStreams(); }
+    
     std::unique_ptr<FrameLib_MaxProxy> mFrameLibProxy;
     
 private:
