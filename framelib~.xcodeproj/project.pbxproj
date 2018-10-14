@@ -4417,7 +4417,8 @@
 				B88C0A1F21732753007A65C0 /* Config_FrameLib_SC.xcconfig */,
 				B88C0A1E21732710007A65C0 /* FrameLib_SC.cpp */,
 			);
-			path = "SC UGens";
+			name = "SC UGens";
+			path = FrameLib_SC_UGens;
 			sourceTree = SOURCE_ROOT;
 		};
 		B89C1A4F2069A969009CA55B /* Frameworks */ = {

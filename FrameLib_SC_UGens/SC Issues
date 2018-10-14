@@ -1,0 +1,9 @@
+1 - can I find what units I'm connected to at construct time?   YES
+2 - where do I store the global object so it is retrievable (from the world)?
+3 - how can I safely and reliably tell if a unit is a framelib thing?
+4 - how can I deal with variable numbers of inputs?
+5 - how do I minimise buffering?
+6 - how do I pass parameters in?
+6 - fixed inputs with more than one value?
+7 - memory management
+8 - auto synchronisation
