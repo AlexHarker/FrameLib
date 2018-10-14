@@ -80,9 +80,9 @@
         "fl.lookup~"
     ],
     "Parameters": [
-        "fl.fromparam~",
-        "fl.combineparam~",
         "fl.tag~",
+        "fl.untag~",
+        "fl.combinetags~",
         "fl.getparam~",
         "fl.filtertags~"
     ],
@@ -122,8 +122,8 @@
     ],
     "Ternary": [
         "fl.wrap~",
-        "fl.fold~.",
-        "fl.clip~"
+        "fl.clip~",
+        "fl.fold~"
     ],
     "Time_Smoothing": [
         "fl.timestddev~",
