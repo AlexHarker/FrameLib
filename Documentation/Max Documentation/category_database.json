@@ -99,7 +99,7 @@
         "fl.future~"
     ],
     "Spatial": [
-        "fl.coordinatesystem",
+        "fl.coordinatesystem~",
         "fl.spatial~"
     ],
     "Spectral": [

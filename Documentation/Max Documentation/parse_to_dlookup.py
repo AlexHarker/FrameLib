@@ -47,12 +47,11 @@ class ParseAndBuild():
 #----------- THE GUTS ----------- #
 def main():
     worker = ParseAndBuild()
-
     for filename in os.listdir(ref_dir):
         if filename != '.DS_Store':
             if filename != '_c74_ref_modules.xml':
                 current_category = filename
-                source_file_name = ref_dir + '/' + filename
+                source_file_name = f'{ref_dir}/{filename}
 
         for filename in os.listdir(source_file_name):
             if filename != '.DS_Store':
@@ -61,6 +60,8 @@ def main():
 
     with open(obj_lookup, 'w') as fp:
         json.dump(worker.d_master_dict, fp, indent=4)
+
+main()
 
 
 
