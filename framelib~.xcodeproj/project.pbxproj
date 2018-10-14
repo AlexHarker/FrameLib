@@ -291,7 +291,7 @@
 		B8985E9F1FAB2F740006B7E0 /* FrameLib_Untag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8985E9E1FAB2F740006B7E0 /* FrameLib_Untag.cpp */; };
 		B8985EAC1FAB3F190006B7E0 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8985EAD1FAB3F190006B7E0 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8985EB61FAB3FAB0006B7E0 /* fl.combineparam~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8985EB51FAB3FAB0006B7E0 /* fl.combineparam~.cpp */; };
+		B8985EB61FAB3FAB0006B7E0 /* fl.combinetags~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8985EB51FAB3FAB0006B7E0 /* fl.combinetags~.cpp */; };
 		B8985EB81FAB3FD90006B7E0 /* FrameLib_CombineTags.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8985EB71FAB3FD90006B7E0 /* FrameLib_CombineTags.cpp */; };
 		B89ABA961FA734C1006DAD53 /* FrameLib_FixedPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */; };
 		B89ABA971FA734C2006DAD53 /* FrameLib_Threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFD281DB0577D00833096 /* FrameLib_Threading.cpp */; };
@@ -2158,7 +2158,7 @@
 		B8985EA01FAB2F810006B7E0 /* FrameLib_Untag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Untag.h; sourceTree = "<group>"; };
 		B8985EA11FAB3F100006B7E0 /* FrameLib_CombineTags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_CombineTags.h; sourceTree = "<group>"; };
 		B8985EB41FAB3F190006B7E0 /* fl.combinetags~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.combinetags~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8985EB51FAB3FAB0006B7E0 /* fl.combineparam~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.combineparam~.cpp"; sourceTree = "<group>"; };
+		B8985EB51FAB3FAB0006B7E0 /* fl.combinetags~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.combinetags~.cpp"; sourceTree = "<group>"; };
 		B8985EB71FAB3FD90006B7E0 /* FrameLib_CombineTags.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_CombineTags.cpp; sourceTree = "<group>"; };
 		B89ABA901FA73483006DAD53 /* libframelib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libframelib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B89C46B520777F0F00579BE7 /* FrameLib_Read.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Read.h; sourceTree = "<group>"; };
@@ -4323,7 +4323,7 @@
 			children = (
 				B84943C61B834B4A0037DFF1 /* fl.tag~.cpp */,
 				B8985E9C1FAB2F690006B7E0 /* fl.untag~.cpp */,
-				B8985EB51FAB3FAB0006B7E0 /* fl.combineparam~.cpp */,
+				B8985EB51FAB3FAB0006B7E0 /* fl.combinetags~.cpp */,
 				B822F4331FAE162D003DC4CB /* fl.filtertags~.cpp */,
 				B8985E861FAA436D0006B7E0 /* fl.getparam~.cpp */,
 			);
@@ -11535,7 +11535,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8985EB81FAB3FD90006B7E0 /* FrameLib_CombineTags.cpp in Sources */,
-				B8985EB61FAB3FAB0006B7E0 /* fl.combineparam~.cpp in Sources */,
+				B8985EB61FAB3FAB0006B7E0 /* fl.combinetags~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
