@@ -285,7 +285,7 @@
 		B8985E871FAA436D0006B7E0 /* fl.getparam~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8985E861FAA436D0006B7E0 /* fl.getparam~.cpp */; };
 		B8985E921FAB2F3C0006B7E0 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8985E931FAB2F3C0006B7E0 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8985E9D1FAB2F690006B7E0 /* fl.fromparam~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8985E9C1FAB2F690006B7E0 /* fl.fromparam~.cpp */; };
+		B8985E9D1FAB2F690006B7E0 /* fl.untag~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8985E9C1FAB2F690006B7E0 /* fl.untag~.cpp */; };
 		B8985E9F1FAB2F740006B7E0 /* FrameLib_Untag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8985E9E1FAB2F740006B7E0 /* FrameLib_Untag.cpp */; };
 		B8985EAC1FAB3F190006B7E0 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8985EAD1FAB3F190006B7E0 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
@@ -651,7 +651,7 @@
 		B8D67A111B84A00500519310 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8D67A191B84A04D00519310 /* fl.frommax~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D67A081B849F4000519310 /* fl.frommax~.cpp */; };
 		B8D67A241B84D88F00519310 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8D67A2C1B84D8B200519310 /* fl.coordinatesystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D67A1B1B84D87800519310 /* fl.coordinatesystem.cpp */; };
+		B8D67A2C1B84D8B200519310 /* fl.coordinatesystem~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D67A1B1B84D87800519310 /* fl.coordinatesystem~.cpp */; };
 		B8D8DB871B89D74B000203E5 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8D8DB8F1B89D76A000203E5 /* fl.select~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D8DB7E1B89D72A000203E5 /* fl.select~.cpp */; };
 		B8DCDB3920753FF5008361FA /* FrameLib_FromHost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8DCDB3720753A4F008361FA /* FrameLib_FromHost.cpp */; };
@@ -2139,7 +2139,7 @@
 		B8985E841FAA41B10006B7E0 /* FrameLib_GetParam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_GetParam.cpp; sourceTree = "<group>"; };
 		B8985E861FAA436D0006B7E0 /* fl.getparam~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.getparam~.cpp"; sourceTree = "<group>"; };
 		B8985E9A1FAB2F3C0006B7E0 /* fl.untag~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.untag~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8985E9C1FAB2F690006B7E0 /* fl.fromparam~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.fromparam~.cpp"; sourceTree = "<group>"; };
+		B8985E9C1FAB2F690006B7E0 /* fl.untag~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.untag~.cpp"; sourceTree = "<group>"; };
 		B8985E9E1FAB2F740006B7E0 /* FrameLib_Untag.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Untag.cpp; sourceTree = "<group>"; };
 		B8985EA01FAB2F810006B7E0 /* FrameLib_Untag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Untag.h; sourceTree = "<group>"; };
 		B8985EA11FAB3F100006B7E0 /* FrameLib_CombineTags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_CombineTags.h; sourceTree = "<group>"; };
@@ -2327,7 +2327,7 @@
 		B8D67A081B849F4000519310 /* fl.frommax~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.frommax~.cpp"; sourceTree = "<group>"; };
 		B8D67A171B84A00500519310 /* fl.frommax~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.frommax~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D67A1A1B84D38500519310 /* FrameLib_CoordinateSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_CoordinateSystem.h; sourceTree = "<group>"; };
-		B8D67A1B1B84D87800519310 /* fl.coordinatesystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = fl.coordinatesystem.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B8D67A1B1B84D87800519310 /* fl.coordinatesystem~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.coordinatesystem~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8D67A2A1B84D88F00519310 /* fl.coordinatesystem~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.coordinatesystem~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D8DB7D1B89D664000203E5 /* FrameLib_Select.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Select.h; sourceTree = "<group>"; };
 		B8D8DB7E1B89D72A000203E5 /* fl.select~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.select~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -4298,7 +4298,7 @@
 			isa = PBXGroup;
 			children = (
 				B84943C61B834B4A0037DFF1 /* fl.tag~.cpp */,
-				B8985E9C1FAB2F690006B7E0 /* fl.fromparam~.cpp */,
+				B8985E9C1FAB2F690006B7E0 /* fl.untag~.cpp */,
 				B8985EB51FAB3FAB0006B7E0 /* fl.combineparam~.cpp */,
 				B822F4331FAE162D003DC4CB /* fl.filtertags~.cpp */,
 				B8985E861FAA436D0006B7E0 /* fl.getparam~.cpp */,
@@ -4790,7 +4790,7 @@
 			isa = PBXGroup;
 			children = (
 				B84943ED1B8386100037DFF1 /* fl.spatial~.cpp */,
-				B8D67A1B1B84D87800519310 /* fl.coordinatesystem.cpp */,
+				B8D67A1B1B84D87800519310 /* fl.coordinatesystem~.cpp */,
 			);
 			path = Spatial;
 			sourceTree = "<group>";
@@ -11462,7 +11462,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8985E9D1FAB2F690006B7E0 /* fl.fromparam~.cpp in Sources */,
+				B8985E9D1FAB2F690006B7E0 /* fl.untag~.cpp in Sources */,
 				B8985E9F1FAB2F740006B7E0 /* FrameLib_Untag.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -12066,7 +12066,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8D67A2C1B84D8B200519310 /* fl.coordinatesystem.cpp in Sources */,
+				B8D67A2C1B84D8B200519310 /* fl.coordinatesystem~.cpp in Sources */,
 				B8BDF0661F2D44EA00264316 /* FrameLib_CoordinateSystem.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
