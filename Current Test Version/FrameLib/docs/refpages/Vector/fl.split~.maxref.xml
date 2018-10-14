@@ -1,0 +1,45 @@
+<c74object category="Vector" module="FrameLib" name="fl.split~"> 
+ 
+    <digest> 
+        Splits input frames into two parts, given a specified split point.
+    </digest> 
+ 
+    <description> 
+         The split point may be specified in samples or as a ratio
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /split [double]"> 
+            <description> 
+                Sets the split point.
+            </description> 
+        </entry> 
+ 
+        <entry name="1. /units [enum]"> 
+            <description> 
+                Sets units for the split point (samples or ratios [0-1]).<br /> 
+                <bullet>[0] - samples</bullet> 
+                <bullet>[1] - ratios</bullet>
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Vector</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

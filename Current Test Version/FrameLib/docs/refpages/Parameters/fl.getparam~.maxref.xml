@@ -1,0 +1,35 @@
+<c74object category="Parameters" module="FrameLib" name="fl.getparam~"> 
+ 
+    <digest> 
+        Retrieves parameter values from a connected object.
+    </digest> 
+ 
+    <description> 
+         The output is a tagged frame of all parameter values from the connected object. Only the first input triggers output.
+    </description> 
+ 
+    <misc name="Parameters"> 
+        <entry> 
+            <description> 
+                This object has no parameters. 
+            </description> 
+        </entry> 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Parameters</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

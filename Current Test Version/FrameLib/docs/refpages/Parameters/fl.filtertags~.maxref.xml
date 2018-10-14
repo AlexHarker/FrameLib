@@ -1,0 +1,43 @@
+<c74object category="Parameters" module="FrameLib" name="fl.filtertags~"> 
+ 
+    <digest> 
+        Filters tagged frames into two parts given a number of tags.
+    </digest> 
+ 
+    <description> 
+         The number of tags is specified either explicitly with a parameter or implicitly by which arguments or tag parameters are present. The filtered output contains any items from the input that match the given tags. The residual output contains any items from the input that do not match the given tags
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /num_filters [instantiation int]"> 
+            <description> 
+                Sets the number of parameter names.
+            </description> 
+        </entry> 
+ 
+        <entry name="1. /tag_01 [instantiation string]"> 
+            <description> 
+                No parameter info available
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Parameters</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

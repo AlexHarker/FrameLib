@@ -1,0 +1,40 @@
+<c74object category="Ternary" module="FrameLib" name="fl.clip~"> 
+ 
+    <digest> 
+        Clips the incoming frame to the range delimited by the low and high parameters..
+    </digest> 
+ 
+    <description> 
+         Calculation is performed on triplets of values in turn. The output is a frame at least as long as the left most frame.When frames mismatch in size the result depends on the setting of the mismatch parameter.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /mismatch [instantiation enum]"> 
+            <description> 
+                Sets the mode used when dealing with mismatched input lengths: wrap -   smaller right inputs are read modulo against larger left input. shrink - the output length is set to the size of the smaller input. extend - smaller right inputs are extended by repeating their final value<br /> 
+                <bullet>[0] - wrap</bullet> 
+                <bullet>[1] - shrink</bullet> 
+                <bullet>[2] - extend</bullet>
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Ternary</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

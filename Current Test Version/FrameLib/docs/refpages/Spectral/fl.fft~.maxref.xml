@@ -1,0 +1,52 @@
+<c74object category="Spectral" module="FrameLib" name="fl.fft~"> 
+ 
+    <digest> 
+        Calculate the real Fast Fourier Transform of an input frame.
+    </digest> 
+ 
+    <description> 
+         All FFTs performed will use a power of two size. Output frames will be (N / 2) + 1 in length where N is the FFT size. Inputs which are not a power of two are zero-padded to the next power of two. Real and imaginary values are output as separate frames.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /maxlength [instantiation int]"> 
+            <description> 
+                Sets the maximum input length / FFT size.
+            </description> 
+        </entry> 
+ 
+        <entry name="1. /normalise [instantiation bool]"> 
+            <description> 
+                When on the output is normalised so that sine waves produce the same level output regardless of the FFT size.
+            </description> 
+        </entry> 
+ 
+        <entry name="2. /mode [instantiation enum]"> 
+            <description> 
+                Sets the type of input expected / output produced.<br /> 
+                <bullet>[0] - real</bullet> 
+                <bullet>[1] - complex</bullet> 
+                <bullet>[2] - fullspectrum</bullet>
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Spectral</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

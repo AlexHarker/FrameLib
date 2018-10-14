@@ -1,0 +1,81 @@
+<c74object category="Mapping" module="FrameLib" name="fl.map~"> 
+ 
+    <digest> 
+        Maps values in the input via a given scaling to corresponding output values.
+    </digest> 
+ 
+    <description> 
+         The output size matches the input size. Scaling maps a specified range of values in the input to a specified range of output values. Different modes of scaling are offered. Values may be optionally constrained within the specified ranges.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /mode [enum]"> 
+            <description> 
+                Sets the type of output scaling: linear / log / exp - scaling as specified. pow - scale the input range to [0-1], apply the specifiedexponent and then scale to the output range. db / invdb - output / input respectively are set in dB but scaled as gain values. transpose / invtranspose - output / input respectively are set in semitones but scaled as ratios for transposition.<br /> 
+                <bullet>[0] - linear</bullet> 
+                <bullet>[1] - log</bullet> 
+                <bullet>[2] - exp</bullet> 
+                <bullet>[3] - pow</bullet> 
+                <bullet>[4] - db</bullet> 
+                <bullet>[5] - invdb</bullet> 
+                <bullet>[6] - transpose</bullet> 
+                <bullet>[7] - invtranspose</bullet>
+            </description> 
+        </entry> 
+ 
+        <entry name="1. /inlo [double]"> 
+            <description> 
+                Sets the low input value.
+            </description> 
+        </entry> 
+ 
+        <entry name="2. /inhi [double]"> 
+            <description> 
+                Sets the high input value.
+            </description> 
+        </entry> 
+ 
+        <entry name="3. /outlo [double]"> 
+            <description> 
+                Sets the low output value.
+            </description> 
+        </entry> 
+ 
+        <entry name="4. /outhi [double]"> 
+            <description> 
+                Sets the high output value.
+            </description> 
+        </entry> 
+ 
+        <entry name="5. /exponent [double]"> 
+            <description> 
+                Sets the exponent for the pow mode.
+            </description> 
+        </entry> 
+ 
+        <entry name="6. /clip [bool]"> 
+            <description> 
+                If true then the output is clipped between the low and high output value.
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Mapping</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

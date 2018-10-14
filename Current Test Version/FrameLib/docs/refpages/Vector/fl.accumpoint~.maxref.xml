@@ -1,0 +1,37 @@
+<c74object category="Vector" module="FrameLib" name="fl.accumpoint~"> 
+ 
+    <digest> 
+        Calculates the point in a vector at which the sum reaches a given percentage of the total sum.
+    </digest> 
+ 
+    <description> 
+         The output is a single value.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /percentage [double]"> 
+            <description> 
+                Sets the percentile of the accumlation for the calculation [0-100].
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Vector</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

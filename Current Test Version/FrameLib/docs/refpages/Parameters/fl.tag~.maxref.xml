@@ -1,0 +1,51 @@
+<c74object category="Parameters" module="FrameLib" name="fl.tag~"> 
+ 
+    <digest> 
+        Tags vectors with names ready to send to the parameter input of an object, or for routing purposes.
+    </digest> 
+ 
+    <description> 
+         A variable number of inputs is available, each of which deal will a specific tag. The number of inputs is specified either explicitly with a parameter or implicitly by which arguments or tag parameters are present.The final input takes tagged input which is concatanated with other inputs after tagging. All inputs trigger output.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /num_ins [instantiation int]"> 
+            <description> 
+                Sets the number of inputs (and hence the number of tags).
+            </description> 
+        </entry> 
+ 
+        <entry name="1. /empty_mode [instantiation enum]"> 
+            <description> 
+                Sets the behaviour when received empty frames: ignore - empty frames are ignored / reset - empty frames create empty tags to reset parameters. <br /> 
+                <bullet>[0] - ignore</bullet> 
+                <bullet>[1] - reset</bullet>
+            </description> 
+        </entry> 
+ 
+        <entry name="2. /tag_01 [instantiation string]"> 
+            <description> 
+                Sets the tag for input 1.
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Parameters</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

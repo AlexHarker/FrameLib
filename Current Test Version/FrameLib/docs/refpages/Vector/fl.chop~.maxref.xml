@@ -1,0 +1,51 @@
+<c74object category="Vector" module="FrameLib" name="fl.chop~"> 
+ 
+    <digest> 
+        Chops input frames into equally sized output frames.
+    </digest> 
+ 
+    <description> 
+         The size can be set in samples, or as a ratio of the length of the input frame.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /num_outs [instantiation int]"> 
+            <description> 
+                Sets the number of outputs.
+            </description> 
+        </entry> 
+ 
+        <entry name="1. /size [double]"> 
+            <description> 
+                Sets the size of the output frames.
+            </description> 
+        </entry> 
+ 
+        <entry name="2. /units [enum]"> 
+            <description> 
+                Sets units for the chop size (samples or ratio of the input length [0-1]).<br /> 
+                <bullet>[0] - samples</bullet> 
+                <bullet>[1] - ratios</bullet>
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Vector</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

@@ -18,21 +18,26 @@
   OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 <root>
-  <module>binary_ops</module>
-  <module>filters</module>
-  <module>generators</module>
-  <module>host_communication</module>
-  <module>io</module>
-  <module>mapping</module>
-  <module>routing</module>
-  <module>schedulers</module>
-  <module>spatial</module>
-  <module>spectral</module>
-  <module>storage</module>
-  <module>streaming</module>
-  <module>ternary_ops</module>
-  <module>time_smoothing</module>
-  <module>timing</module>
-  <module>unary_ops</module>
-  <module>vector</module>
+  <module>Binary</module>
+  <module>Buffer</module>
+  <module>Complex_Binary</module>
+  <module>Complex_Unary</module>
+  <module>Expressions</module>
+  <module>Filters</module>
+  <module>Generators</module>
+  <module>Host_Communication</module>
+  <module>IO</module>
+  <module>Mapping</module>
+  <module>Parameters</module>
+  <module>Routing</module>
+  <module>Schedulers</module>
+  <module>Spatial</module>
+  <module>Spectral</module>
+  <module>Storage</module>
+  <module>Streaming</module>
+  <module>Ternary</module>
+  <module>Time_Smoothing</module>
+  <module>Timing</module>
+  <module>Unary</module>
+  <module>Vector</module>
 </root>

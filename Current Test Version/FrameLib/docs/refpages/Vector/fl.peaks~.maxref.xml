@@ -1,0 +1,35 @@
+<c74object category="Vector" module="FrameLib" name="fl.peaks~"> 
+ 
+    <digest> 
+        Finds peaks in an input frame (spectrum).
+    </digest> 
+ 
+    <description> 
+         Peaks are output in terms of interpolated sample position, interpolated amplitude and peak index. The first output is the same size as the input, other outputs are as long as the number of detected peaks.
+    </description> 
+ 
+    <misc name="Parameters"> 
+        <entry> 
+            <description> 
+                This object has no parameters. 
+            </description> 
+        </entry> 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Vector</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

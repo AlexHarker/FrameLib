@@ -1,0 +1,55 @@
+<c74object category="Spectral" module="FrameLib" name="fl.convolve~"> 
+ 
+    <digest> 
+        Convolve two input frames, (using frequency domain processing internally).
+    </digest> 
+ 
+    <description> 
+         The output is a frame of length M + N - 1 where M and N are the lengths of the two inputs respectively
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /maxlength [instantiation int]"> 
+            <description> 
+                Sets the maximum output length. The output length will be M + N - 1 where M and N are the sizes of the two inputs respectively
+            </description> 
+        </entry> 
+ 
+        <entry name="1. /mode [instantiation enum]"> 
+            <description> 
+                Sets the type of input expected / output produced.<br /> 
+                <bullet>[0] - real</bullet> 
+                <bullet>[1] - complex</bullet>
+            </description> 
+        </entry> 
+ 
+        <entry name="2. /edges [instantiation enum]"> 
+            <description> 
+                No parameter info available<br /> 
+                <bullet>[0] - linear</bullet> 
+                <bullet>[1] - circular</bullet> 
+                <bullet>[2] - wrap</bullet> 
+                <bullet>[3] - fold</bullet>
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Spectral</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>
