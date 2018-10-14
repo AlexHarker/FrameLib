@@ -1,0 +1,13 @@
+
+#include "../../Config_FrameLib.xcconfig"
+
+// Paths
+
+SC_PATH = $(SRCROOT)/../../C++ Development/SuperCollider
+HEADER_SEARCH_PATHS = "$(SC_PATH)/include/common" "$(SC_PATH)/include/plugin_interface"
+
+// Static Configuration (don't change these)
+
+EXECUTABLE_SUFFIX = .scx
+
+
