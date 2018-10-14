@@ -61,8 +61,6 @@ def main():
     with open(obj_lookup, 'w') as fp:
         json.dump(worker.d_master_dict, fp, indent=4)
 
-main()
-
 
 
 
