@@ -51,7 +51,7 @@ def main():
         if filename != '.DS_Store':
             if filename != '_c74_ref_modules.xml':
                 current_category = filename
-                source_file_name = f'{ref_dir}/{filename}
+                source_file_name = f'{ref_dir}/{filename}'
 
         for filename in os.listdir(source_file_name):
             if filename != '.DS_Store':
