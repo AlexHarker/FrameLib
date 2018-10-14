@@ -25,4 +25,3 @@ def main():
         
     with open(output_path, 'w+') as fp:
         json.dump(category_dict, fp, indent=4)
-
