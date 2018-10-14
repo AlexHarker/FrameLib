@@ -15,7 +15,7 @@
 		5AB54BDC2052EAE900325C14 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		5AB54BDD2052EAE900325C14 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		5AB54BE72052EB4400325C14 /* fl.clip~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AB54BE62052EB4400325C14 /* fl.clip~.cpp */; };
-		5AB54BE92052EB6100325C14 /* fl.fold~..cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AB54BE82052EB6100325C14 /* fl.fold~..cpp */; };
+		5AB54BE92052EB6100325C14 /* fl.fold~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AB54BE82052EB6100325C14 /* fl.fold~.cpp */; };
 		B80059BE1DAF96340073A866 /* FrameLib_RandGen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */; };
 		B80059BF1DAF96340073A866 /* FrameLib_RandGen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */; };
 		B805E34019C3AF73007D8D8B /* fl.plus~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B805E33D19C3AF69007D8D8B /* fl.plus~.cpp */; };
@@ -1833,7 +1833,7 @@
 		5AB54BD12052EAD700325C14 /* fl.clip~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.clip~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AB54BE42052EAE900325C14 /* fl.fold~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.fold~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AB54BE62052EB4400325C14 /* fl.clip~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.clip~.cpp"; sourceTree = "<group>"; };
-		5AB54BE82052EB6100325C14 /* fl.fold~..cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.fold~..cpp"; sourceTree = "<group>"; };
+		5AB54BE82052EB6100325C14 /* fl.fold~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.fold~.cpp"; sourceTree = "<group>"; };
 		B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_RandGen.cpp; sourceTree = "<group>"; };
 		B805E23419C3AD0A007D8D8B /* fl.minus~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.minus~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B805E24519C3AD0C007D8D8B /* fl.times~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.times~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4087,7 +4087,7 @@
 			children = (
 				5AB54BBE2052E96E00325C14 /* fl.wrap~.cpp */,
 				5AB54BE62052EB4400325C14 /* fl.clip~.cpp */,
-				5AB54BE82052EB6100325C14 /* fl.fold~..cpp */,
+				5AB54BE82052EB6100325C14 /* fl.fold~.cpp */,
 			);
 			path = Ternary;
 			sourceTree = "<group>";
@@ -10705,7 +10705,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5AB54BE92052EB6100325C14 /* fl.fold~..cpp in Sources */,
+				5AB54BE92052EB6100325C14 /* fl.fold~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
