@@ -1,1323 +1,1898 @@
 {
+    "fl.wrap~": {
+        "digest": "Wraps the incoming frame into the range delimited by the low and high parameters..",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Ternary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.fold~": {
+        "digest": "Folds the incoming frame into the range delimited by the low and high parameters.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Ternary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.clip~": {
+        "digest": "Clips the incoming frame to the range delimited by the low and high parameters..",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Ternary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
     "fl.onepolezero~": {
         "digest": "Filters input frames using a one pole, one zero filter.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "filters"
+            "Filters"
         ],
         "keywords": [
-            "filter",
-            "onepolezero",
-            "low pass",
-            "high pass"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.0dfsvf~": {
         "digest": "Filters input frames using a zero delay state variable filter.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "filters"
+            "Filters"
         ],
         "keywords": [
-            "filter",
-            "low pass",
-            "band pass",
-            "high pass",
-            "zero delay state variable",
-            ""
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.resonant~": {
         "digest": "Filters input frames using a resonant filter.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "filters"
+            "Filters"
         ],
         "keywords": [
-            "filter",
-            "resonant",
-            "reson"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.sallenkey~": {
         "digest": "Filters input frames using a sallen and key filter.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "filters"
+            "Filters"
         ],
         "keywords": [
-            "filter",
-            "sallen",
-            "key",
-            "sallenkey"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.onepole~": {
         "digest": "Filters input frames using a one pole filter.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "filters"
+            "Filters"
         ],
         "keywords": [
-            "filter",
-            "onepole",
-            "low pass",
-            "high pass"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
+    },
+    "fl.lookup~": {
+        "digest": "Use one frame as a lookup table for another.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Mapping"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.convert~": {
+        "digest": "Converts the input vector with the specified conversion.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Mapping"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.constant~": {
+        "digest": "Outputs the specified useful constant.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Mapping"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.map~": {
+        "digest": "Maps values in the input via a given scaling to corresponding output values.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Mapping"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.samplerate~": {
+        "digest": "Convert values based on the sample rate / Output a value based on the sampling rate value.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Mapping"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.exp2~": {
+        "digest": "Calculates the exponent base 2 (2 to the power of) of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.asinh~": {
+        "digest": "Calculates the hyperbolic arcsine of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.log~": {
+        "digest": "Calculates the logarithm base e of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.erf~": {
+        "digest": "Calculates the error function of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.exp~": {
+        "digest": "Calculates the exponent base e (e to the power of) of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.sin~": {
+        "digest": "Calculates the sine (for arguments in radians) of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.log2~": {
+        "digest": "Calculates the logarithm base 2 of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.asin~": {
+        "digest": "Calculates the arcsine (in radians) of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.acos~": {
+        "digest": "Calculates the arccosine (in radians) of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.cos~": {
+        "digest": "Calculates the cosine (for arguments in radians) of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.sinh~": {
+        "digest": "Calculates the hyperbolic sine of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.floor~": {
+        "digest": "Calculates the floor value of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.trunc~": {
+        "digest": "Calculates the truncated value of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.log10~": {
+        "digest": "Calculates the logarithm base 10 of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.atanh~": {
+        "digest": "Calculates the hyperbolic arctangent of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.sqrt~": {
+        "digest": "Calculates the square root of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.acosh~": {
+        "digest": "Calculates the hyperbolic arccosine of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.tan~": {
+        "digest": "Calculates the tangent (for arguments in radians) of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.not~": {
+        "digest": "Calculates the logical not of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.atan~": {
+        "digest": "Calculates the arctangent (in radians) of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.tanh~": {
+        "digest": "Calculates the hyperbolic tangent of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.erfc~": {
+        "digest": "Calculates the complimentary error function of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.abs~": {
+        "digest": "Calculates the absolute value of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.round~": {
+        "digest": "Calculates the rounded value of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.cbrt~": {
+        "digest": "Calculates the cube root of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.cosh~": {
+        "digest": "Calculates the hyperbolic cosine of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.ceil~": {
+        "digest": "Calculates the ceiling value of each value in the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
     },
     "fl.tomax~": {
-        "digest": "Turn frames into Max messages.",
+        "digest": "Turn frames into host messages. The maximum length of the output message may be limited by the host environment.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "host_communication"
+            "Host_Communication"
         ],
         "keywords": [
-            "convert",
-            "conversion",
-            "message",
-            "list",
-            "vector"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.frommax~": {
-        "digest": "Turn Max messages into frames.",
+        "digest": "Turn host messages into frames.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "host_communication"
+            "Host_Communication"
         ],
         "keywords": [
-            "convert",
-            "conversion",
-            "message",
-            "list",
-            "vector"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
+    },
+    "fl.ewmsd~": {
+        "digest": "Calculates a per sample exponentially weighted moving standard deviation.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Time_Smoothing"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.timemedian~": {
+        "digest": "Outputs the median per sample over a given number of frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Time_Smoothing"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.framedelta~": {
+        "digest": "Outputs the delta between two consecutive frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Time_Smoothing"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.lag~": {
+        "digest": "Outputs vector-type frames with a lag set as an integer number of frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Time_Smoothing"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.ewma~": {
+        "digest": "Calculates a per sample exponentially weighted moving average.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Time_Smoothing"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.timemean~": {
+        "digest": "Outputs the mean per sample over a given number of frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Time_Smoothing"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.timestddev~": {
+        "digest": "Outputs the standard deviation per sample over a given number of frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Time_Smoothing"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.sink~": {
+        "digest": "Outputs audio frames to the host environment by pasting them into an overlap-add buffer.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "IO"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.trace~": {
+        "digest": "Outputs audio frames (or values from the frame) to the host environment without overlapping, continuing the last value till a new frame arrives.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "IO"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.source~": {
+        "digest": "Captures audio from the host environment and outputs the most recent values as frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "IO"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.convolve~": {
+        "digest": "Convolve two input frames, (using frequency domain processing internally).",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Spectral"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.multitaper~": {
+        "digest": "Calculates the multitaper power spectrum of a real input using the cosine tapers.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Spectral"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.correlate~": {
+        "digest": "Calculate the correlation of two input frames, (using frequency domain processing internally).",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Spectral"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.fft~": {
+        "digest": "Calculate the real Fast Fourier Transform of an input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Spectral"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.ifft~": {
+        "digest": "Calculate the inverse real Fast Fourier Transform of two input frames (comprising the real and imaginary values).",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Spectral"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.window~": {
+        "digest": "Multiplies the incoming frame against a specified window.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Spectral"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
     },
     "fl.store~": {
         "digest": "Stores a vector frame in named memory for recall.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "storage"
+            "Storage"
         ],
         "keywords": [
-            "storage",
-            "buffer",
-            "value"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.register~": {
         "digest": "Store and recall a vector frame locally.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "storage"
+            "Storage"
         ],
         "keywords": [
-            "storage",
-            "buffer",
-            "value",
-            ""
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.recall~": {
         "digest": "Recall a vector frame from named memory for use.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "storage"
+            "Storage"
         ],
         "keywords": [
-            "storage",
-            "buffer",
-            "value"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
+    },
+    "fl.complexsinh~": {
+        "digest": "Calculates the hyperbolic sine of each complex value at the inputs.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.complextan~": {
+        "digest": "Calculates the tangent (for arguments in radians) of each complex value at the inputs.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.poltocar~": {
+        "digest": "Converts from polar values at the input to cartesian values at output.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.complexcos~": {
+        "digest": "Calculates the cosine (for arguments in radians) of each complex value at the inputs.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.complexsin~": {
+        "digest": "Calculates the sine (for arguments in radians) of each complex value at the inputs.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.complexcosh~": {
+        "digest": "Calculates the hyperbolic cosine of each complex value at the inputs.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.complexlog10~": {
+        "digest": "Calculates the logarithm base 10 of each complex value at the inputs.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.complextanh~": {
+        "digest": "Calculates the hyperbolic tangent of each complex value at the inputs.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.complexconj~": {
+        "digest": "Calculates the complex conjugate of each complex value at the inputs.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.complexexp~": {
+        "digest": "Calculates the exponent base e (e to the power of) of each complex value at the inputs.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.complexlog~": {
+        "digest": "Calculates the logarithm base e of each complex value at the inputs.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.complexsqrt~": {
+        "digest": "Calculates the square root of each complex value at the inputs.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.cartopol~": {
+        "digest": "Converts from cartesian values at the input to polar values at output.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Unary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.unpack~": {
+        "digest": "Unpacks multi-stream input into individual streams.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Streaming"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.streamid~": {
+        "digest": "Outputs consecutively numbered stream ids for each stream of a multi-stream connection when triggered.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Streaming"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.pack~": {
+        "digest": "Packs multiple frame streams into a multi-stream output.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Streaming"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.timedelta~": {
+        "digest": "Calculates the time interval between consecutive incoming frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Timing"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.timer~": {
+        "digest": "Calculates the time elapsed between trigger frame inputs and the subsequent reset frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Timing"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.now~": {
+        "digest": "Outputs the current time.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Timing"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.ticks~": {
+        "digest": "Counts how many frames have passed up to a specified value (0 based)..",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Timing"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.complexexpr~": {
+        "digest": "Applies a mathematical expression to complex pairs of inputs.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Expressions"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.expr~": {
+        "digest": "Applies a mathematical expression to the inputs.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Expressions"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.filtertags~": {
+        "digest": "Filters tagged frames into two parts given a number of tags.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Parameters"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.getparam~": {
+        "digest": "Retrieves parameter values from a connected object.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Parameters"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.tag~": {
+        "digest": "Tags vectors with names ready to send to the parameter input of an object, or for routing purposes.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Parameters"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.untag~": {
+        "digest": "Separates vectors from a tagged frame according to a given set of tags.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Parameters"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.combinetags~": {
+        "digest": "Combines a number of tagged input frames into a single tagged output frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Parameters"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.complexminus~": {
+        "digest": "Subtracts the right complex pair of input frame values from the left complex pair of input frame values.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Binary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.complexdivide~": {
+        "digest": "Divides the left complex pair of input frame values by the right complex pair of input frame values.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Binary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.complexmultiply~": {
+        "digest": "Multiplies complexvalues in the two sets of input frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Binary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.complexpow~": {
+        "digest": "Calculates left complex pair of input frame values to the power of right complex pair of input frame values.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Binary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.complexplus~": {
+        "digest": "Adds complex values in the two sets of input frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Complex_Binary"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
     },
     "fl.copysign~": {
         "digest": "Outputs a frame with the magnitude values of the left input frame and the sign values of right input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "copysign"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.greaterthaneq~": {
         "digest": "Calculates if left input frame values are greater than or equal to right input frame values (output is 1 for true and 0 for false).",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "greaterthaneq",
-            ">="
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.greaterthan~": {
         "digest": "Calculates if left input frame values are greater than right input frame values (output is 1 for true and 0 for false).",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "greaterthan",
-            ">"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.or~": {
         "digest": "Calculates the logical or of the left and right input frame values.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "or"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.and~": {
         "digest": "Calculates the logical and of the left and right input frame values.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "and",
-            "&&",
-            ""
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.times~": {
         "digest": "Multiplies values in the two input frames.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "times",
-            "multiply",
-            "*~",
-            "*"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.divide~": {
         "digest": "Divides the left input frame values by the right input frame values.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "divide",
-            "/~",
-            "/"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.minus~": {
-        "digest": "Subtracts the right input frame from the left input frame.",
+        "digest": "Subtracts the right input frame values from the left input frame values.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "subtraction",
-            "take",
-            "minus",
-            "-~",
-            "-."
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.pow~": {
         "digest": "Calculates left input frame values to the power of right input frame values.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "pow",
-            "power",
-            "exponent"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.atan2~": {
         "digest": "For each pair of input values calculates the arctangent using two arguments (left operand is y, right operand is x).",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "atan2",
-            "atan"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.notequals~": {
         "digest": "Compares frame values for inequality (output is 1 for true and 0 for false).",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "notequals",
-            "!=",
-            "=/="
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.lessthaneq~": {
         "digest": "Calculates if left input frame values are greater than or equal to right input frame values (output is 1 for true and 0 for false).",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "lessthaneq"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.max~": {
         "digest": "Calculates the maximums of pairs of values in the two input frames.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "max"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.plus~": {
         "digest": "Adds values in the two input frames.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "addition",
-            "add",
-            "plus",
-            "+~",
-            "+"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.modulo~": {
         "digest": "Calculates the left input frame values modulo the right input frame values.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "modulo",
-            "mod",
-            "fmod",
-            "%"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.lessthan~": {
         "digest": "Calculates if left input frame values are less than right input frame values (output is 1 for true and 0 for false).",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "lessthan"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.diff~": {
         "digest": "Calculates the absolute differences between values in the two input frames.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "diff",
-            "delta",
-            "framedelta"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.equals~": {
         "digest": "Compares frame values for equality (output is 1 for true and 0 for false).",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "equals",
-            "=="
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.hypot~": {
         "digest": "For each pair of input values calculates the hypotenuse of a right-angled triangle with sides of the given lengths.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "hypot",
-            "hypotenuse",
-            "pythagoras"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.min~": {
         "digest": "Calculates the minimums of pairs of values in the two input frames.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "binary_ops"
+            "Binary"
         ],
         "keywords": [
-            "min"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.uniform~": {
-        "digest": "Generates frames of a single (uniform) value:",
+        "digest": "Generates frames consisting of a single (uniform) value.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "generators"
+            "Generators"
         ],
         "keywords": [
-            "random",
-            "rng",
-            "uniform"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.random~": {
         "digest": "Generates frames of linearly distributed random values in the range [0-1].",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "generators"
+            "Generators"
         ],
         "keywords": [
-            "random",
-            "rng",
-            "noise"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.gaussian~": {
         "digest": "Generates frames of gaussian distributed random values.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "generators"
+            "Generators"
         ],
         "keywords": [
-            "random",
-            "rng",
-            "gaussian",
-            "gauss"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.ramp~": {
         "digest": "Generates frames that consist of linear ramps from [0-x].",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "generators"
+            "Generators"
         ],
         "keywords": [
-            "random",
-            "rng",
-            "count",
-            "ramp",
-            "line"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
+    },
+    "fl.route~": {
+        "digest": "Routes input frames to one of a number of outputs.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Routing"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.select~": {
+        "digest": "Selects between a number of input frame streams.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Routing"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.spatial~": {
+        "digest": "Generates multiplication factors for a number of speakers from an input coordinate triple.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Spatial"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.coordinatesystem~": {
+        "digest": "Converts vectors of triples between cartesian and polar values.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Spatial"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
     },
     "fl.argmin~": {
-        "digest": "Calculates the index of the minimum of the input frame.",
+        "digest": "Calculates the index of the minimum value of the input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "min",
-            "minimum"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.sort~": {
-        "digest": "Sorts an input frame in ascending or descending order.",
+        "digest": "Sorts an input frame in ascending or descending order..",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "sort",
-            "zl sort"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.shift~": {
         "digest": "Shifts an input frame either with padding, or cyclically.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "shift",
-            "rotate"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.standarddeviation~": {
         "digest": "Calculates the standard deviation of the input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "standard deviation",
-            "statistics"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.geometricmean~": {
         "digest": "Calculates the geometric mean of the input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "geometric mean",
-            "mean"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.accumpoint~": {
         "digest": "Calculates the point in a vector at which the sum reaches a given percentage of the total sum.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "accumulation",
-            "accum"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.centroid~": {
         "digest": "Calculates the centroid of the input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "centroid",
-            "descriptor"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.medianfilter~": {
         "digest": "Median filter an input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "median filter",
-            "separation",
-            "noise",
-            "percussive",
-            "harmonic",
-            "filter"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.percentile~": {
-        "digest": "Calculates any percentile of an input frame.",
+        "digest": "Calculates any percentile (for example the median at 50%) of an input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "percentile",
-            "statistics"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.kurtosis~": {
         "digest": "Calculates the kurtosis of the input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "kurtosis",
-            "descriptor"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
-    "fl.vmin~": {
-        "digest": "Calculates the minimum of the input frame.",
+    "fl.nonzero~": {
+        "digest": "Outputs indices that are non-zero.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "minimum",
-            "min"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
+    },
+    "fl.vmin~": {
+        "digest": "Calculates the minimum value of the input frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Vector"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
     },
     "fl.flatness~": {
         "digest": "Calculates the flatness of the input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "flatness",
-            "descriptor"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.skewness~": {
         "digest": "Calculates the skewness of the input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "skewness",
-            "descriptor"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.join~": {
         "digest": "Concatenates all input frames into a single output frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "join",
-            "pack",
-            "pak",
-            "zl join"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.length~": {
         "digest": "Calculates the length of the input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "zl len",
-            "length",
-            "len"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.argmax~": {
-        "digest": "Calculates the index of the maximum of the input frame.",
+        "digest": "Calculates the index of the maximum value of the input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "max",
-            "maximum"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.mean~": {
         "digest": "Calculates the mean of the input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "mean",
-            "average"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.rms~": {
         "digest": "Calculates the rms of the input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "rms",
-            "root mean square"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.pad~": {
-        "digest": "Pads an input frame with a fixed value at either the start, the end, or both.",
+        "digest": "Pads an input frame with a fixed value at either the start the end, or both.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "pad",
-            "padding"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.reverse~": {
-        "digest": "Reverses the order of a single frame's contents.",
+        "digest": "Reverses the order of a single frame's contents..",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "zl rev",
-            "reverse"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.sum~": {
         "digest": "Calculates the sum of the input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "sum",
-            "add"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.nanfilter~": {
         "digest": "Replaces or removes NaNs in a vector.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "nan",
-            "nanfilter"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.vmax~": {
-        "digest": "Calculates the maximum of the input frame.",
+        "digest": "Calculates the maximum value of the input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "maximum",
-            "max"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.split~": {
-        "digest": "Splits input frames into two parts, given a specificed split point.",
+        "digest": "Splits input frames into two parts, given a specified split point.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "split",
-            "unjoin"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.subframe~": {
         "digest": "Output part of an input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "subframe"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.product~": {
         "digest": "Calculates the product of the input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "product"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.crest~": {
         "digest": "Calculates the crest factor of the input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "crest",
-            "descriptor"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.chop~": {
         "digest": "Chops input frames into equally sized output frames.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "chop",
-            "unjoin"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.peaks~": {
         "digest": "Finds peaks in an input frame (spectrum).",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "peaks",
-            "spectral"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.spread~": {
         "digest": "Calculates the spread of the input frame.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "vector"
+            "Vector"
         ],
         "keywords": [
-            "vector",
-            "spread"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.perblock~": {
-        "digest": "Schedules one frame at the start of each of Max's audio blocks.",
+        "digest": "Schedules one frame at the start of each of the hosts audio blocks.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "schedulers"
+            "Schedulers"
         ],
         "keywords": [
-            "scheduler",
-            "metro",
-            "timing"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.once~": {
-        "digest": "Schedules one frame at the beginning of time.",
+        "digest": "Schedules one frame at the begining of time, lasting forever.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "schedulers"
+            "Schedulers"
         ],
         "keywords": [
-            "scheduler",
-            "once",
-            "loadbang",
-            "loadmess"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.audiotrigger~": {
         "digest": "Translates non-zero samples into trigger frames.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "schedulers"
+            "Schedulers"
         ],
         "keywords": [
-            "scheduler",
-            "bang",
-            "timing"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.future~": {
         "digest": "Schedules frames in the future at a specified time.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "schedulers"
+            "Schedulers"
         ],
         "keywords": [
-            "scheduler",
-            "timing",
-            "sync",
-            "future"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
     },
     "fl.interval~": {
         "digest": "Schedules frames at regular intervals, which can be adjusted using the interval parameter.",
         "module": "FrameLib",
         "category": [
             "FrameLib",
-            "schedulers"
+            "Schedulers"
         ],
         "keywords": [
-            "scheduler",
-            "metro",
-            "timing"
+            "boilerplate keywords"
         ],
-        "seealso": [
-            "fl.audiotrigger~",
-            "fl.future~",
-            "fl.once~",
-            "fl.perblock~"
-        ]
+        "seealso": []
+    },
+    "fl.read~": {
+        "digest": "Reads from a buffer~ given an input frame of sample positions.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "Buffer"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
     }
 }
