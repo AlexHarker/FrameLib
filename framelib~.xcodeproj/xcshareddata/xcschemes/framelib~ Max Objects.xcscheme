@@ -2281,6 +2281,7 @@
       allowLocationSimulation = "YES">
       <PathRunnable
          runnableDebuggingMode = "0"
+         BundleIdentifier = "com.cycling74.Max"
          FilePath = "/Applications/Max.app">
       </PathRunnable>
       <MacroExpansion>
