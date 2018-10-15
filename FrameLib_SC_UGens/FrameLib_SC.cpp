@@ -10,8 +10,11 @@
 #include "FrameLib_Source.h"
 #include "FrameLib_Sink.h"
 
+#include "FrameLib_Map.h"
+#include "FrameLib_Window.h"
 #include "FrameLib_Ramp.h"
 #include "FrameLib_Read.h"
+#include "FrameLib_Random.h"
 #include "TableReader.hpp"
 
 static InterfaceTable *ft;
@@ -393,18 +396,20 @@ void ParameterSetup(World *inWorld, void* inUserData, sc_msg_iter *args, void *r
     sGlobal.SetInitParameters(inWorld, count, message);
 }
 
-PluginLoad(FLTest)
+PluginLoad(FrameLib)
 {
     ft = inTable; // store pointer to InterfaceTable
     
     (*ft->fDefinePlugInCmd)("FLParameters", &ParameterSetup, nullptr);
     
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Plus>>("FLTest");
     DefineFrameLibUnit<FrameLib_Expand<FrameLib_Interval>>("FLInterval");
     DefineFrameLibUnit<FrameLib_Expand<FrameLib_Source>>("FLSource");
     DefineFrameLibUnit<FrameLib_Expand<FrameLib_Sink>>("FLSink");
     DefineFrameLibUnit<FrameLib_Expand<FrameLib_Read>>("FLRead");
     DefineFrameLibUnit<FrameLib_Expand<FrameLib_Ramp>>("FLRamp");
+    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Window>>("FLWindow");
+    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Random>>("FLRand");
+    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Map>>("FLMap");
 
     // Binary Operators
     

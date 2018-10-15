@@ -2142,7 +2142,7 @@
 		B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_ProcessingQueue.h; sourceTree = "<group>"; };
 		B88C0A1E21732710007A65C0 /* FrameLib_SC.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_SC.cpp; sourceTree = "<group>"; };
 		B88C0A1F21732753007A65C0 /* Config_FrameLib_SC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_FrameLib_SC.xcconfig; sourceTree = "<group>"; };
-		B88C0A3121733BF9007A65C0 /* FLTest.scx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FLTest.scx; sourceTree = BUILT_PRODUCTS_DIR; };
+		B88C0A3121733BF9007A65C0 /* FrameLib.scx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FrameLib.scx; sourceTree = BUILT_PRODUCTS_DIR; };
 		B88F5557207A5872007774AD /* FrameLib_Reverse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Reverse.h; sourceTree = "<group>"; };
 		B88F5558207A5873007774AD /* FrameLib_Reverse.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Reverse.cpp; sourceTree = "<group>"; };
 		B88F556C207A5904007774AD /* fl.reverse~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.reverse~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4092,7 +4092,7 @@
 				B8ACCAA020AF14770054E1E0 /* fl.nanfilter~.mxo */,
 				B8E41B1C20C5E71C003BBD86 /* fl.expr~.mxo */,
 				B85E1D4C20C8408E00DEEE6E /* fl.complexexpr~.mxo */,
-				B88C0A3121733BF9007A65C0 /* FLTest.scx */,
+				B88C0A3121733BF9007A65C0 /* FrameLib.scx */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -7890,9 +7890,9 @@
 			productReference = B8886F761FB76666001C843E /* fl.timestddev~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B88C0A3021733BF9007A65C0 /* FLTest */ = {
+		B88C0A3021733BF9007A65C0 /* FrameLib */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B88C0A3521733BF9007A65C0 /* Build configuration list for PBXNativeTarget "FLTest" */;
+			buildConfigurationList = B88C0A3521733BF9007A65C0 /* Build configuration list for PBXNativeTarget "FrameLib" */;
 			buildPhases = (
 				B88C0A2D21733BF9007A65C0 /* Sources */,
 				B88C0A2E21733BF9007A65C0 /* Frameworks */,
@@ -7902,9 +7902,9 @@
 			);
 			dependencies = (
 			);
-			name = FLTest;
+			name = FrameLib;
 			productName = FLTest2;
-			productReference = B88C0A3121733BF9007A65C0 /* FLTest.scx */;
+			productReference = B88C0A3121733BF9007A65C0 /* FrameLib.scx */;
 			productType = "com.apple.product-type.tool";
 		};
 		B88F555B207A5903007774AD /* fl.reverse~ */ = {
@@ -9595,7 +9595,7 @@
 				B8E41B0920C5E71C003BBD86 /* fl.expr~ */,
 				B85E1D3C20C8408E00DEEE6E /* fl.complexexpr~ */,
 				B83E029B206674D4005925DD /* framelib_pd */,
-				B88C0A3021733BF9007A65C0 /* FLTest */,
+				B88C0A3021733BF9007A65C0 /* FrameLib */,
 			);
 		};
 /* End PBXProject section */
@@ -29325,7 +29325,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B88C0A3521733BF9007A65C0 /* Build configuration list for PBXNativeTarget "FLTest" */ = {
+		B88C0A3521733BF9007A65C0 /* Build configuration list for PBXNativeTarget "FrameLib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B88C0A3621733BF9007A65C0 /* Development */,
