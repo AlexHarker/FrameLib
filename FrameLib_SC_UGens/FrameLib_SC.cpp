@@ -239,7 +239,7 @@ void FLTest_Ctor(FrameLib_SC_UGen* unit)
 {
     FrameLib_Context context(sGlobal.getGlobal(), unit->mParent);
     
-    // FIX - no parameters / number of streams / fixed inputs
+    // FIX - number of streams / fixed inputs
     
     SC_FrameLib_Global::InitParameters *params = sGlobal.GetInitParameters(unit);
     unit->mProxy = GetProxy<T>(unit, static_cast<T *>(nullptr));
