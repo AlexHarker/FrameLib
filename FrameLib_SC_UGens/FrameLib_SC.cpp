@@ -1,7 +1,6 @@
 
 #include "SC_PlugIn.h"
 #include "../../server/scsynth/SC_UnitDef.h"
-#include <iostream>
 
 #include "FrameLib_Multistream.h"
 
@@ -265,8 +264,6 @@ void FLTest_Ctor(FrameLib_SC_UGen* unit)
         
         if (sGlobal.CheckFrameLib(connect))
         {
-            // FIX - outputs don't work like this...
-            
             FrameLib_SC_UGen *connectable = reinterpret_cast<FrameLib_SC_UGen *>(connect);
             unsigned long cNumAudioOuts = connectable->mObject->getNumAudioOuts();
             unsigned long o = cNumAudioOuts;
@@ -278,10 +275,7 @@ void FLTest_Ctor(FrameLib_SC_UGen* unit)
             }
             
             if (o < connect->mNumOutputs)
-            {
                 unit->mObject->addConnection(FrameLib_Multistream::Connection(connectable->mObject, o - cNumAudioOuts), i);
-                std::cout << "Connection Input " << i << " Output " << o << " " << connect;
-            }
         }
         else if (wire->mCalcRate == calc_ScalarRate)
         {
@@ -388,6 +382,13 @@ void DefineFrameLibUnit(const char *name)
     (*ft->fDefineUnit)(name, sizeof(FrameLib_SC_UGen), (UnitCtorFunc)&FLTest_Ctor<T>,(UnitDtorFunc)&FLTest_Dtor, flags);
 }
 
+template <class T>
+void DefineFrameLibExpUnit(const char *name)
+{
+    int flags = kUnitDef_CantAliasInputsToOutputs | kFrameLibFlag;
+    (*ft->fDefineUnit)(name, sizeof(FrameLib_SC_UGen), (UnitCtorFunc)&FLTest_Ctor<FrameLib_Expand<T>>,(UnitDtorFunc)&FLTest_Dtor, flags);
+}
+
 void ParameterSetup(World *inWorld, void* inUserData, sc_msg_iter *args, void *replyAddr)
 {
     double count = args->getd();
@@ -402,27 +403,30 @@ PluginLoad(FrameLib)
     
     (*ft->fDefinePlugInCmd)("FLParameters", &ParameterSetup, nullptr);
     
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Interval>>("FLInterval");
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Source>>("FLSource");
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Sink>>("FLSink");
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Read>>("FLRead");
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Ramp>>("FLRamp");
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Window>>("FLWindow");
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Random>>("FLRand");
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Map>>("FLMap");
+    // Schedulers
+    
+    DefineFrameLibExpUnit<FrameLib_Interval>("FLInterval");
+    
+    DefineFrameLibExpUnit<FrameLib_Source>("FLSource");
+    DefineFrameLibExpUnit<FrameLib_Sink>("FLSink");
+    DefineFrameLibExpUnit<FrameLib_Read>("FLRead");
+    DefineFrameLibExpUnit<FrameLib_Ramp>("FLRamp");
+    DefineFrameLibExpUnit<FrameLib_Window>("FLWindow");
+    DefineFrameLibExpUnit<FrameLib_Random>("FLRand");
+    DefineFrameLibExpUnit<FrameLib_Map>("FLMap");
 
     // Binary Operators
     
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Multiply>>("FLMul");
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Plus>>("FLAdd");
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Minus>>("FLSub");
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Divide>>("FLDiv");
+    DefineFrameLibExpUnit<FrameLib_Multiply>("FLMul");
+    DefineFrameLibExpUnit<FrameLib_Plus>("FLAdd");
+    DefineFrameLibExpUnit<FrameLib_Minus>("FLSub");
+    DefineFrameLibExpUnit<FrameLib_Divide>("FLDiv");
     
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Pow>>("FLPow");
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Atan2>>("FLAtan2");
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Hypot>>("FLHypot");
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_CopySign>>("FLCopySign");
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Min>>("FLMin");
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Max>>("FLMax");
-    DefineFrameLibUnit<FrameLib_Expand<FrameLib_Modulo>>("FLModulo");
+    DefineFrameLibExpUnit<FrameLib_Pow>("FLPow");
+    DefineFrameLibExpUnit<FrameLib_Atan2>("FLAtan2");
+    DefineFrameLibExpUnit<FrameLib_Hypot>("FLHypot");
+    DefineFrameLibExpUnit<FrameLib_CopySign>("FLCopySign");
+    DefineFrameLibExpUnit<FrameLib_Min>("FLMin");
+    DefineFrameLibExpUnit<FrameLib_Max>("FLMax");
+    DefineFrameLibExpUnit<FrameLib_Modulo>("FLModulo");
 }
