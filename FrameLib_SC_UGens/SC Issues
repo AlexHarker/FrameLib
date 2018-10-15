@@ -1,9 +1,17 @@
-1 - can I find what units I'm connected to at construct time?   YES
-2 - where do I store the global object so it is retrievable (from the world)?
-3 - how can I safely and reliably tell if a unit is a framelib thing?
-4 - how can I deal with variable numbers of inputs?
-5 - how do I minimise buffering?
-6 - how do I pass parameters in?
-6 - fixed inputs with more than one value?
+DONE
+
+1 - can I find what units I'm connected to at construct time?   
+
+IN PROGRESS
+
+2 - how do I pass parameters in? SERVER COMMANDS WORK - NEEDS FINESSING
+3 - fixed inputs with more than one value? USE MECHANISM FOR PARAMS??
+
+OUTSTANDING
+
+4 - where do I store the global object so it is retrievable (from the world)?
+5 - how can I safely and reliably tell if a unit is a framelib thing?
+6 - auto synchronisation
 7 - memory management
-8 - auto synchronisation
+8 - how can I deal with variable numbers of outputs/inputs?
+9 - how do I minimise buffering?
