@@ -18,7 +18,7 @@ class FrameLib_Expression : public FrameLib_Block
 
     // Interal Classes
     
-    struct Parser : public FrameLib_ExprParser<double>
+    struct Parser : public FrameLib_ExprParser::Parser<double>
     {
         Parser();
     };

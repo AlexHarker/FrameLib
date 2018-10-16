@@ -20,7 +20,7 @@ class FrameLib_ComplexExpression : public FrameLib_Block
 
     // Internal Classes
     
-    struct Parser : public FrameLib_ExprParser<std::complex<double>>
+    struct Parser : public FrameLib_ExprParser::Parser<std::complex<double>>
     {
         Parser();
     };
