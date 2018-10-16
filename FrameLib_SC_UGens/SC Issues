@@ -1,11 +1,11 @@
 DONE
 
-1 - can I find what units I'm connected to at construct time?   
+1 - can I find what units I'm connected to at construct time?
 
 IN PROGRESS
 
-2 - how do I pass parameters in? SERVER COMMANDS WORK - NEEDS FINESSING
-3 - fixed inputs with more than one value? USE MECHANISM FOR PARAMS??
+2 - how do I pass parameters in?              SERVER COMMANDS WORK - NEEDS FINESSING
+3 - fixed inputs with more than one value?    USE MECHANISM FOR PARAMS - WORKS SERVER SIDE - NEEDS FINESSING
 
 OUTSTANDING
 

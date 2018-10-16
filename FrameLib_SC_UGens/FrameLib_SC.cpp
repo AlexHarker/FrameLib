@@ -3,21 +3,6 @@
 #include "../../server/scsynth/SC_UnitDef.h"
 
 #include "FrameLib_Objects.h"
-/*
-#include "FrameLib_Multistream.h"
-
-#include "FrameLib_Binary_Objects.h"
-#include "FrameLib_Interval.h"
-#include "FrameLib_Source.h"
-#include "FrameLib_Sink.h"
-
-#include "FrameLib_Map.h"
-#include "FrameLib_Window.h"
-#include "FrameLib_Ramp.h"
-#include "FrameLib_Read.h"
-#include "FrameLib_Random.h"
-#include "TableReader.hpp"
-*/
 
 static InterfaceTable *ft;
 
@@ -37,11 +22,12 @@ struct SC_FrameLib_Global
 {
     struct InitParameters
     {
-        InitParameters() : mSerial(nullptr) {}
+        InitParameters() : mSerial(nullptr), mInputsSerial(nullptr) {}
         
         ~InitParameters()
         {
             delete mSerial;
+            delete mInputsSerial;
         }
         
         // Non-copyable
@@ -52,10 +38,13 @@ struct SC_FrameLib_Global
         InitParameters(InitParameters&& rhs)
         {
             mSerial = rhs.mSerial;
+            mInputsSerial = rhs.mInputsSerial;
             rhs.mSerial = nullptr;
+            rhs.mInputsSerial = nullptr;
         }
 
         FrameLib_Parameters::AutoSerial *mSerial;
+        FrameLib_Parameters::AutoSerial *mInputsSerial;
     };
     
     SC_FrameLib_Global()
@@ -73,23 +62,15 @@ struct SC_FrameLib_Global
         return unit && unit->mUnitDef->mFlags & kFrameLibFlag;
     }
     
-    void SetInitParameters(World *inWorld,  int id, const char *params)
+    void parseString(World *inWorld, FrameLib_Parameters::AutoSerial& serial, const char *str)
     {
-        if (id >= mInitParameters.size())
-            mInitParameters.resize(id + 1);
-        
-        if (mInitParameters[id].mSerial)
-            mInitParameters[id].mSerial->clear();
-        else
-            mInitParameters[id].mSerial = new FrameLib_Parameters::AutoSerial;
-        
-        char *str = (char *) RTAlloc(inWorld, strlen(params) + 1);
-        strcpy(str, params);
+        char *tempStr = (char *) RTAlloc(inWorld, strlen(str) + 1);
+        strcpy(tempStr, str);
         
         double array[4096];
         int arraySize;
         
-        for (char *strParse = strtok(str, " "); strParse;)
+        for (char *strParse = strtok(tempStr, " "); strParse;)
         {
             char *tag = strParse;
             strParse = strtok(nullptr, " ");
@@ -107,16 +88,39 @@ struct SC_FrameLib_Global
             }
             
             if (arraySize)
-                mInitParameters[id].mSerial->write(tag, array, arraySize);
+                serial.write(tag, array, arraySize);
             else
             {
-                mInitParameters[id].mSerial->write(tag, strParse);
-                strParse = strtok(nullptr, " ");
+                if (strParse)
+                {
+                    serial.write(tag, strParse);
+                    strParse = strtok(nullptr, " ");
+                }
             }
         }
         
-        RTFree(inWorld, str);
+        RTFree(inWorld, tempStr);
     }
+    
+    void SetInitParameters(World *inWorld,  int id, const char *params, const char *inputs)
+    {
+        if (id >= mInitParameters.size())
+            mInitParameters.resize(id + 1);
+        
+        if (mInitParameters[id].mSerial)
+            mInitParameters[id].mSerial->clear();
+        else
+            mInitParameters[id].mSerial = new FrameLib_Parameters::AutoSerial;
+        
+        parseString(inWorld, *mInitParameters[id].mSerial, params);
+        
+        if (mInitParameters[id].mInputsSerial)
+            mInitParameters[id].mInputsSerial->clear();
+        else
+            mInitParameters[id].mInputsSerial = new FrameLib_Parameters::AutoSerial;
+
+        parseString(inWorld, *mInitParameters[id].mInputsSerial, inputs);
+}
     
     InitParameters *GetInitParameters(FrameLib_SC_UGen* unit)
     {
@@ -265,6 +269,22 @@ void FLTest_Ctor(FrameLib_SC_UGen* unit)
         Wire *wire = unit->mInput[i + numAudioIns + 1];
         Unit *connect = wire->mFromUnit;
         
+        if (params && params->mInputsSerial)
+        {
+            char tag[10];
+            sprintf(tag, "i%ld", i);
+            
+            FrameLib_Parameters::Serial::Iterator it = params->mInputsSerial->find(tag);
+            
+            if (it != params->mInputsSerial->end())
+            {
+                unsigned long arraySize;
+                const double *array = it.getVector(&arraySize);
+                unit->mObject->setFixedInput(i, array, arraySize);
+                continue;
+            }
+        }
+        
         if (sGlobal.CheckFrameLib(connect))
         {
             FrameLib_SC_UGen *connectable = reinterpret_cast<FrameLib_SC_UGen *>(connect);
@@ -395,9 +415,10 @@ void DefineFrameLibExpUnit(const char *name)
 void ParameterSetup(World *inWorld, void* inUserData, sc_msg_iter *args, void *replyAddr)
 {
     double count = args->getd();
-    const char *message = args->gets();
+    const char *paramMessage = args->gets();
+    const char *inputMessage = args->gets();
     
-    sGlobal.SetInitParameters(inWorld, count, message);
+    sGlobal.SetInitParameters(inWorld, count, paramMessage, inputMessage);
 }
 
 PluginLoad(FrameLib)

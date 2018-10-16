@@ -6,11 +6,11 @@ FLObject : UGen {
 		paramCount = 0;
 	}
 
-	*makeNewParams { arg paramString;
+	*makeNewParams { arg paramString = '', inputString = " ";
 		var count = -1;
 		if (paramString.isKindOf(String), { if(paramString.size() > 0, {
 			count = paramCount;
-			Server.local.sendMsg("/cmd", "FLParameters", paramCount, paramString);
+			Server.local.sendMsg("/cmd", "FLParameters", paramCount, paramString, inputString);
 			paramCount = paramCount + 1;
 		})})
 		^count;
@@ -45,7 +45,7 @@ FLWindow : FLObject {
 
 FLSource : FLObject {
 	*fr { arg in1 = 0.0, trigger = 0.0, params = 0.0;
-        ^this.multiNew('audio', this.makeNewParams(""), in1, trigger, params)
+        ^this.multiNew('control', this.makeNewParams(""), in1, trigger, params)
     }
 }
 
@@ -259,7 +259,7 @@ FLMin : FLObject {
 }
 FLMax : FLObject {
 	*fr { arg in1 = 0.0, in2 = 0.0, params = "";
-        ^this.multiNew('control', this.makeNewParams(params), in1, in2)}
+		^this.multiNew('control', this.makeNewParams(params), in1, in2)}
 }
 FLModulo : FLObject {
 	*fr { arg in1 = 0.0, in2 = 0.0, params = "";
