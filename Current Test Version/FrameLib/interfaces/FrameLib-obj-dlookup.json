@@ -155,6 +155,18 @@
     "fl.source~": {
         "digest": "Captures audio from the host environment and outputs the most recent values as frames."
     },
+    "fl.timedelta~": {
+        "digest": "Calculates the time interval between consecutive incoming frames."
+    },
+    "fl.timer~": {
+        "digest": "Calculates the time elapsed between trigger frame inputs and the subsequent reset frame."
+    },
+    "fl.now~": {
+        "digest": "Outputs the current time."
+    },
+    "fl.ticks~": {
+        "digest": "Counts how many frames have passed up to a specified value (0 based).."
+    },
     "fl.convolve~": {
         "digest": "Convolve two input frames, (using frequency domain processing internally)."
     },
@@ -229,18 +241,6 @@
     },
     "fl.pack~": {
         "digest": "Packs multiple frame streams into a multi-stream output."
-    },
-    "fl.timedelta~": {
-        "digest": "Calculates the time interval between consecutive incoming frames."
-    },
-    "fl.timer~": {
-        "digest": "Calculates the time elapsed between trigger frame inputs and the subsequent reset frame."
-    },
-    "fl.now~": {
-        "digest": "Outputs the current time."
-    },
-    "fl.ticks~": {
-        "digest": "Counts how many frames have passed up to a specified value (0 based).."
     },
     "fl.complexexpr~": {
         "digest": "Applies a mathematical expression to complex pairs of inputs."

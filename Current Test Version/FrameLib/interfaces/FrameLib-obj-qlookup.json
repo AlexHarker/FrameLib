@@ -623,6 +623,54 @@
         ],
         "seealso": []
     },
+    "fl.timedelta~": {
+        "digest": "Calculates the time interval between consecutive incoming frames.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "FL_Timing"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.timer~": {
+        "digest": "Calculates the time elapsed between trigger frame inputs and the subsequent reset frame.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "FL_Timing"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.now~": {
+        "digest": "Outputs the current time.",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "FL_Timing"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
+    "fl.ticks~": {
+        "digest": "Counts how many frames have passed up to a specified value (0 based)..",
+        "module": "FrameLib",
+        "category": [
+            "FrameLib",
+            "FL_Timing"
+        ],
+        "keywords": [
+            "boilerplate keywords"
+        ],
+        "seealso": []
+    },
     "fl.convolve~": {
         "digest": "Convolve two input frames, (using frequency domain processing internally).",
         "module": "FrameLib",
@@ -917,54 +965,6 @@
         "category": [
             "FrameLib",
             "Streaming"
-        ],
-        "keywords": [
-            "boilerplate keywords"
-        ],
-        "seealso": []
-    },
-    "fl.timedelta~": {
-        "digest": "Calculates the time interval between consecutive incoming frames.",
-        "module": "FrameLib",
-        "category": [
-            "FrameLib",
-            "Timing"
-        ],
-        "keywords": [
-            "boilerplate keywords"
-        ],
-        "seealso": []
-    },
-    "fl.timer~": {
-        "digest": "Calculates the time elapsed between trigger frame inputs and the subsequent reset frame.",
-        "module": "FrameLib",
-        "category": [
-            "FrameLib",
-            "Timing"
-        ],
-        "keywords": [
-            "boilerplate keywords"
-        ],
-        "seealso": []
-    },
-    "fl.now~": {
-        "digest": "Outputs the current time.",
-        "module": "FrameLib",
-        "category": [
-            "FrameLib",
-            "Timing"
-        ],
-        "keywords": [
-            "boilerplate keywords"
-        ],
-        "seealso": []
-    },
-    "fl.ticks~": {
-        "digest": "Counts how many frames have passed up to a specified value (0 based)..",
-        "module": "FrameLib",
-        "category": [
-            "FrameLib",
-            "Timing"
         ],
         "keywords": [
             "boilerplate keywords"

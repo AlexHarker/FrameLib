@@ -37,7 +37,7 @@
   <module>Streaming</module>
   <module>Ternary</module>
   <module>Time_Smoothing</module>
-  <module>Timing</module>
+  <module>FL_Timing</module>
   <module>Unary</module>
   <module>Vector</module>
 </root>

@@ -134,7 +134,7 @@
         "fl.framedelta~",
         "fl.timemean~"
     ],
-    "Timing": [
+    "FL_Timing": [
         "fl.timedelta~",
         "fl.now~",
         "fl.timer~",

@@ -19,9 +19,14 @@ def main():
         files = os.listdir(f'{object_path}/{item}')
         if 'ibuffer' in files:
             files.remove('ibuffer')
+        if item == 'Timing':
+            item = 'FL_Timing'
         for i in range(len(files)):
             files[i] = strip_extension(files[i], 1)
         category_dict[item] = files
+        print(item)
         
     with open(output_path, 'w+') as fp:
         json.dump(category_dict, fp, indent=4)
+
+main()
