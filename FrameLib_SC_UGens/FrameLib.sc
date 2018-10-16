@@ -45,7 +45,7 @@ FLWindow : FLObject {
 
 FLSource : FLObject {
 	*fr { arg in1 = 0.0, trigger = 0.0, params = 0.0;
-        ^this.multiNew('control', this.makeNewParams(""), in1, trigger, params)
+        ^this.multiNew('audio', this.makeNewParams(""), in1, trigger, params)
     }
 }
 

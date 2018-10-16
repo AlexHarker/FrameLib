@@ -401,14 +401,14 @@ void FLTest_next_a_calc(FrameLib_SC_UGen *unit, int inNumSamples)
 template <class T>
 void DefineFrameLibUnit(const char *name)
 {
-    int flags = kUnitDef_CantAliasInputsToOutputs | kFrameLibFlag;
+    int flags = kFrameLibFlag;
     (*ft->fDefineUnit)(name, sizeof(FrameLib_SC_UGen), (UnitCtorFunc)&FLTest_Ctor<T>,(UnitDtorFunc)&FLTest_Dtor, flags);
 }
 
 template <class T>
 void DefineFrameLibExpUnit(const char *name)
 {
-    int flags = kUnitDef_CantAliasInputsToOutputs | kFrameLibFlag;
+    int flags = kFrameLibFlag;
     (*ft->fDefineUnit)(name, sizeof(FrameLib_SC_UGen), (UnitCtorFunc)&FLTest_Ctor<FrameLib_Expand<T>>,(UnitDtorFunc)&FLTest_Dtor, flags);
 }
 
