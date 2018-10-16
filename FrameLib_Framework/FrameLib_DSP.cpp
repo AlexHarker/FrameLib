@@ -27,7 +27,7 @@ FrameLib_DSP::~FrameLib_DSP()
 
 // Set Fixed Input
 
-void FrameLib_DSP::setFixedInput(unsigned long idx, double *input, unsigned long size)
+void FrameLib_DSP::setFixedInput(unsigned long idx, const double *input, unsigned long size)
 {
     // This is not threadsafe with the processing thread and should not be called concurrently...
     

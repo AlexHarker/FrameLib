@@ -161,7 +161,7 @@ public:
     
     // Fixed Inputs
     
-    void setFixedInput(unsigned long idx, double *input, unsigned long size) override
+    void setFixedInput(unsigned long idx, const double *input, unsigned long size) override
     {
         if (idx < mFixedInputs.size())
         {
