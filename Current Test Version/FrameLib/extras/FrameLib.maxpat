@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 2.0, 45.0, 758.0, 855.0 ],
+		"rect" : [ 0.0, 45.0, 704.0, 855.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 11.0,
@@ -82,7 +82,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 758.0, 829.0 ],
+						"rect" : [ 0.0, 71.0, 704.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -115,30 +115,37 @@
 								"box" : 								{
 									"fontface" : 0,
 									"fontname" : "Lato",
-									"id" : "obj-4",
-									"linecount" : 6,
+									"id" : "obj-6",
+									"linecount" : 12,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 268.0, 78.0, 152.0, 93.0 ],
+									"patching_rect" : [ 292.0, 511.0, 152.0, 179.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 4.0, 802.0, 702.0, 21.0 ],
-									"text" : "Documentation written by James Bradbury with support from the Huddersfield Creative Coding Lab and Pierre Alexandre Tremblay"
+									"presentation_linecount" : 3,
+									"presentation_rect" : [ 4.0, 775.0, 681.0, 50.0 ],
+									"text" : "Part of the tutorial design was made possible thanks to the FluCoMa project ( http://www.flucoma.org/ ) funded by the European Research Council ( https://erc.europa.eu/ ) under the European Union’s Horizon 2020 research and innovation programme (grant agreement No 725899).",
+									"textcolor" : [ 0.0, 0.0, 0.0, 0.509999990463257 ]
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-6",
-									"linecount" : 4,
+									"fontface" : 0,
+									"fontname" : "Lato",
+									"fontsize" : 13.0,
+									"id" : "obj-4",
+									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 166.0, 297.0, 150.0, 60.0 ],
+									"patching_rect" : [ 292.0, 387.0, 180.0, 116.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 4,
-									"presentation_rect" : [ 251.0, 245.0, 150.0, 60.0 ],
-									"text" : "These buttons only work in Max 8. Manually click the tabs if you are sitll using Max 7 or lower."
+									"presentation_linecount" : 3,
+									"presentation_rect" : [ 322.0, 720.0, 359.0, 53.0 ],
+									"text" : "Max Documentation and Tutorials written by James Bradbury (james.bradbury@hud.ac.uk) with support from the Huddersfield Creative Coding Lab.",
+									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"textjustification" : 2
 								}
 
 							}
@@ -167,24 +174,6 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 14.0,
-									"id" : "obj-16",
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 159.0, 354.0, 100.0, 20.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 402.0, 245.0, 100.0, 20.0 ],
-									"rounded" : 8.0,
-									"text" : "Tutorials",
-									"textoncolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-11",
 									"maxclass" : "message",
 									"numinlets" : 2,
@@ -208,34 +197,16 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 14.0,
-									"id" : "obj-10",
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 8.0, 354.0, 100.0, 20.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 147.5, 245.0, 100.0, 20.0 ],
-									"rounded" : 8.0,
-									"text" : "Help",
-									"textoncolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-5",
-									"linecount" : 16,
+									"linecount" : 19,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.0, 123.0, 446.0, 221.0 ],
+									"patching_rect" : [ 8.0, 123.0, 446.0, 261.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 11,
-									"presentation_rect" : [ 8.0, 79.0, 636.0, 154.0 ],
-									"text" : "FrameLib is a DSP library for frame based processing. The underlying code is written in C++ and theoretically can be hosted in any block-based environment, but is easily compiled for Max from source. If this level of technical geekiness interests you there are links to the source/github throughout the documentation and just below.\n\nYou might be familiar working with other frame based tools such as pipo, mubu or gabor/FTM but you are encouraged to explore the FrameLib tutorials which will guide you through the fundamentals and how it works within Max. The tutorials should be perused in their numbered order, and increase with difficulty as you move through them. A number of techniques will be covered such as simple and complex FFT, and granular synthesis. \n\nThere is also a complete object reference as of 15/10/18. Gaining information about the FrameLib objects is still possible without help files and how to do this is explained in Tutorial 2: Key Concepts, \"How to get help\".",
+									"presentation_linecount" : 13,
+									"presentation_rect" : [ 8.0, 79.0, 636.0, 181.0 ],
+									"text" : "FrameLib is a DSP library for frame based processing. The underlying code is written in C++ and theoretically can be hosted in any block-based environment, but is easily compiled for Max from source. If this level of technical geekiness interests you there are links to the source/github throughout the documentation and just below.\n\nYou might be familiar working with other frame based tools such as pipo, mubu or gabor/FTM but you are encouraged to explore the FrameLib tutorials which will guide you through the fundamentals and how it works within Max. The tutorials should be perused in their numbered order, and increase with difficulty as you move through them. A number of techniques will be covered such as simple and complex FFT, and granular synthesis. \n\nThere is also a complete object reference as of 15/10/18. Gaining information about the FrameLib objects is still possible without help files and how to do this is explained in Tutorial 2: Key Concepts, \"How to get help\".\n\nYou are encouraged to move to the tutorial section next and to start learning how FrameLib works.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.910000026226044 ]
 								}
 
@@ -467,13 +438,6 @@
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
-									"destination" : [ "obj-11", 0 ],
-									"source" : [ "obj-10", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-7", 0 ],
 									"source" : [ "obj-11", 0 ]
 								}
@@ -483,13 +447,6 @@
 								"patchline" : 								{
 									"destination" : [ "obj-15", 0 ],
 									"source" : [ "obj-12", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-12", 0 ],
-									"source" : [ "obj-16", 0 ]
 								}
 
 							}
@@ -558,8 +515,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -626,7 +583,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 758.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 704.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -657,6 +614,44 @@
 						"title" : "Tutorials",
 						"boxes" : [ 							{
 								"box" : 								{
+									"fontface" : 0,
+									"fontname" : "Lato",
+									"fontsize" : 13.0,
+									"id" : "obj-20",
+									"linecount" : 5,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 307.0, 402.0, 179.0, 84.0 ],
+									"presentation" : 1,
+									"presentation_linecount" : 3,
+									"presentation_rect" : [ 302.5, 720.0, 378.0, 53.0 ],
+									"text" : "Tutorials written by James Bradbury with support from the Huddersfield Creative Coding Lab and the Fluid Corpus Manipulation Project.",
+									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"textjustification" : 2
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 0,
+									"fontname" : "Lato",
+									"id" : "obj-15",
+									"linecount" : 12,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 307.0, 526.0, 152.0, 179.0 ],
+									"presentation" : 1,
+									"presentation_linecount" : 3,
+									"presentation_rect" : [ 4.0, 775.0, 681.0, 50.0 ],
+									"text" : "Part of the tutorial design was made possible thanks to the FluCoMa project ( http://www.flucoma.org/ ) funded by the European Research Council ( https://erc.europa.eu/ ) under the European Union’s Horizon 2020 research and innovation programme (grant agreement No 725899).",
+									"textcolor" : [ 0.0, 0.0, 0.0, 0.509999990463257 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-16",
 									"linecount" : 5,
 									"maxclass" : "comment",
@@ -666,24 +661,8 @@
 									"presentation" : 1,
 									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 225.0, 427.0, 33.0 ],
-									"text" : "Warning: At this point in time, tutorials 1-6 are included in the FrameLib package. Further tutorials to come!",
+									"text" : "Warning: At this point in time, tutorials 1-6 are included in the FrameLib package. Further tutorials (7 & 8) to come!",
 									"textcolor" : [ 0.866666674613953, 0.117647059261799, 0.117647059261799, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontface" : 0,
-									"fontname" : "Lato",
-									"id" : "obj-15",
-									"linecount" : 6,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 268.0, 78.0, 152.0, 93.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 4.0, 802.0, 702.0, 21.0 ],
-									"text" : "Documentation written by James Bradbury with support from the Huddersfield Creative Coding Lab and Pierre Alexandre Tremblay"
 								}
 
 							}
@@ -704,13 +683,15 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 14.0,
 									"id" : "obj-17",
+									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 210.0, 382.0, 23.0 ],
+									"patching_rect" : [ 23.0, 210.0, 382.0, 74.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 251.0, 152.0, 422.0, 23.0 ],
-									"text" : "A general introduction to FrameLib.",
+									"presentation_linecount" : 3,
+									"presentation_rect" : [ 251.0, 152.0, 422.0, 57.0 ],
+									"text" : "A longer tutorial than the previous four that builds on previously covered information. Construct a granular synthesis engine from scratch and add increasingly complex features.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -1322,7 +1303,7 @@
 									"presentation" : 1,
 									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 97.0, 422.0, 30.0 ],
-									"text" : "Tutorial 1: An introduction to FrameLib and frame based processing.",
+									"text" : "Tutorial 5: Your first FrameLib project - Building a granulator from scratch.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -2378,7 +2359,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 471.0, 477.0, 53.0, 24.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 4.0, 114.0, 210.0, 681.0 ],
+									"presentation_rect" : [ 4.0, 114.0, 210.0, 659.0 ],
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
@@ -2625,8 +2606,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2693,7 +2674,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 2.0, 71.0, 758.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 704.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -2726,15 +2707,37 @@
 								"box" : 								{
 									"fontface" : 0,
 									"fontname" : "Lato",
-									"id" : "obj-6",
-									"linecount" : 6,
+									"fontsize" : 13.0,
+									"id" : "obj-20",
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 268.0, 78.0, 152.0, 93.0 ],
+									"patching_rect" : [ 339.5, 644.0, 180.0, 84.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 4.0, 802.0, 702.0, 21.0 ],
-									"text" : "Documentation written by James Bradbury with support from the Huddersfield Creative Coding Lab and Pierre Alexandre Tremblay"
+									"presentation_linecount" : 3,
+									"presentation_rect" : [ 302.5, 720.0, 379.0, 53.0 ],
+									"text" : "Help files written by James Bradbury with support from the Huddersfield Creative Coding Lab and the Fluid Corpus Manipulation Project.",
+									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"textjustification" : 2
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 0,
+									"fontname" : "Lato",
+									"id" : "obj-6",
+									"linecount" : 12,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 184.0, 644.0, 152.0, 179.0 ],
+									"presentation" : 1,
+									"presentation_linecount" : 3,
+									"presentation_rect" : [ 4.0, 775.0, 681.0, 50.0 ],
+									"text" : "Part of the tutorial design was made possible thanks to the FluCoMa project ( http://www.flucoma.org/ ) funded by the European Research Council ( https://erc.europa.eu/ ) under the European Union’s Horizon 2020 research and innovation programme (grant agreement No 725899).",
+									"textcolor" : [ 0.0, 0.0, 0.0, 0.509999990463257 ]
 								}
 
 							}
@@ -2745,7 +2748,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 366.5, 437.0, 97.0, 22.0 ],
+									"patching_rect" : [ 527.5, 312.0, 97.0, 22.0 ],
 									"text" : "loadmess tabs --"
 								}
 
@@ -2773,7 +2776,7 @@
 									"presentation" : 1,
 									"presentation_linecount" : 3,
 									"presentation_rect" : [ 251.0, 194.0, 427.0, 47.0 ],
-									"text" : "Warning: many categories have no help files and clicking the object name will do nothing. If you are looking for help with a particular object refer to the reference or send an instance of the object the \"info\" message.",
+									"text" : "Warning: many categories have no help files and clicking the object name will do nothing. If you are looking for help with a particular object refer to the Reference or send an instance of the object the \"info\" message.",
 									"textcolor" : [ 0.866666674613953, 0.117647059261799, 0.117647059261799, 1.0 ]
 								}
 
@@ -3010,7 +3013,7 @@
 									"patching_rect" : [ 23.0, 129.0, 382.0, 30.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 251.0, 97.0, 422.0, 30.0 ],
-									"text" : "fl.ticks~",
+									"text" : "fl.cartopol~",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -3029,7 +3032,7 @@
 									"presentation" : 1,
 									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 141.0, 422.0, 30.0 ],
-									"text" : "Counts how many frames have passed up to a specified value (0 based)..",
+									"text" : "Converts from cartesian values at the input to polar values at output.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -3080,6 +3083,66 @@
 										"style" : "",
 										"subpatcher_template" : "<none>",
 										"boxes" : [ 											{
+												"box" : 												{
+													"id" : "obj-42",
+													"maxclass" : "message",
+													"numinlets" : 2,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 237.0, 120.0, 29.5, 22.0 ],
+													"text" : "1"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-40",
+													"maxclass" : "message",
+													"numinlets" : 2,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 205.5, 120.0, 29.5, 22.0 ],
+													"text" : "0"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-37",
+													"maxclass" : "newobj",
+													"numinlets" : 1,
+													"numoutlets" : 2,
+													"outlettype" : [ "", "" ],
+													"patching_rect" : [ 195.0, 54.0, 29.5, 22.0 ],
+													"text" : "t l l"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-24",
+													"maxclass" : "newobj",
+													"numinlets" : 2,
+													"numoutlets" : 2,
+													"outlettype" : [ "bang", "" ],
+													"patching_rect" : [ 205.5, 87.333335876464844, 50.5, 22.0 ],
+													"text" : "sel --"
+												}
+
+											}
+, 											{
+												"box" : 												{
+													"id" : "obj-15",
+													"maxclass" : "newobj",
+													"numinlets" : 2,
+													"numoutlets" : 1,
+													"outlettype" : [ "" ],
+													"patching_rect" : [ 162.0, 152.0, 52.0, 22.0 ],
+													"text" : "gate 1 1"
+												}
+
+											}
+, 											{
 												"box" : 												{
 													"id" : "obj-29",
 													"maxclass" : "newobj",
@@ -3534,7 +3597,7 @@
 													"numinlets" : 0,
 													"numoutlets" : 1,
 													"outlettype" : [ "int" ],
-													"patching_rect" : [ 75.0, 157.0, 30.0, 30.0 ]
+													"patching_rect" : [ 75.0, 16.0, 30.0, 30.0 ]
 												}
 
 											}
@@ -3547,7 +3610,7 @@
 													"numinlets" : 0,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 162.0, 157.0, 30.0, 30.0 ]
+													"patching_rect" : [ 195.0, 16.0, 30.0, 30.0 ]
 												}
 
 											}
@@ -3624,6 +3687,13 @@
 											}
 , 											{
 												"patchline" : 												{
+													"destination" : [ "obj-34", 0 ],
+													"source" : [ "obj-15", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
 													"destination" : [ "obj-85", 0 ],
 													"source" : [ "obj-16", 0 ]
 												}
@@ -3672,6 +3742,20 @@
 													"destination" : [ "obj-23", 0 ],
 													"midpoints" : [ 203.5, 273.0, 203.5, 273.0 ],
 													"source" : [ "obj-22", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-40", 0 ],
+													"source" : [ "obj-24", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-42", 0 ],
+													"source" : [ "obj-24", 1 ]
 												}
 
 											}
@@ -3762,9 +3846,30 @@
 											}
 , 											{
 												"patchline" : 												{
+													"destination" : [ "obj-15", 1 ],
+													"source" : [ "obj-37", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-24", 0 ],
+													"source" : [ "obj-37", 1 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
 													"destination" : [ "obj-2", 0 ],
 													"midpoints" : [ 945.1666259765625, 504.83331298828125, 522.5, 504.83331298828125 ],
 													"source" : [ "obj-4", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
+													"destination" : [ "obj-15", 0 ],
+													"source" : [ "obj-40", 0 ]
 												}
 
 											}
@@ -3778,6 +3883,13 @@
 											}
 , 											{
 												"patchline" : 												{
+													"destination" : [ "obj-15", 0 ],
+													"source" : [ "obj-42", 0 ]
+												}
+
+											}
+, 											{
+												"patchline" : 												{
 													"destination" : [ "obj-3", 0 ],
 													"source" : [ "obj-5", 0 ]
 												}
@@ -3786,7 +3898,6 @@
 , 											{
 												"patchline" : 												{
 													"destination" : [ "obj-26", 0 ],
-													"midpoints" : [ 84.5, 195.0, 84.5, 195.0 ],
 													"source" : [ "obj-59", 0 ]
 												}
 
@@ -3800,8 +3911,7 @@
 											}
 , 											{
 												"patchline" : 												{
-													"destination" : [ "obj-34", 0 ],
-													"midpoints" : [ 171.5, 195.0, 171.5, 195.0 ],
+													"destination" : [ "obj-37", 0 ],
 													"source" : [ "obj-60", 0 ]
 												}
 
@@ -3934,7 +4044,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 2,
 													"outlettype" : [ "", "bang" ],
-													"patching_rect" : [ 211.0, 44.0, 31.0, 22.0 ],
+													"patching_rect" : [ 211.0, 51.0, 113.0, 22.0 ],
 													"text" : "t s b"
 												}
 
@@ -3958,7 +4068,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 2,
 													"outlettype" : [ "bang", "" ],
-													"patching_rect" : [ 211.0, 90.0, 117.0, 22.0 ],
+													"patching_rect" : [ 211.0, 90.0, 86.0, 22.0 ],
 													"text" : "sel Timing"
 												}
 
@@ -3969,20 +4079,8 @@
 													"maxclass" : "newobj",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 341.0, 122.0, 135.0, 22.0 ],
+													"patching_rect" : [ 305.0, 90.0, 135.0, 22.0 ],
 													"text" : "s 1234_category_select"
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"id" : "obj-4",
-													"maxclass" : "newobj",
-													"numinlets" : 1,
-													"numoutlets" : 1,
-													"outlettype" : [ "bang" ],
-													"patching_rect" : [ 341.0, 90.0, 22.0, 22.0 ],
-													"text" : "t b"
 												}
 
 											}
@@ -4191,7 +4289,7 @@
 											}
 , 											{
 												"patchline" : 												{
-													"destination" : [ "obj-4", 0 ],
+													"destination" : [ "obj-5", 0 ],
 													"source" : [ "obj-1", 1 ]
 												}
 
@@ -4270,7 +4368,7 @@
 , 											{
 												"patchline" : 												{
 													"destination" : [ "obj-37", 0 ],
-													"midpoints" : [ 318.5, 186.0, 220.5, 186.0 ],
+													"midpoints" : [ 287.5, 186.0, 220.5, 186.0 ],
 													"source" : [ "obj-30", 1 ]
 												}
 
@@ -4294,13 +4392,6 @@
 												"patchline" : 												{
 													"destination" : [ "obj-37", 0 ],
 													"source" : [ "obj-38", 0 ]
-												}
-
-											}
-, 											{
-												"patchline" : 												{
-													"destination" : [ "obj-5", 0 ],
-													"source" : [ "obj-4", 0 ]
 												}
 
 											}
@@ -4391,8 +4482,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-													"fontsize" : [ 12.059008 ]
+													"fontsize" : [ 12.059008 ],
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 												}
 ,
 												"parentstyle" : "",
@@ -4907,11 +4998,11 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 471.0, 477.0, 53.0, 24.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 4.0, 114.0, 210.0, 681.0 ],
+									"presentation_rect" : [ 4.0, 114.0, 210.0, 659.0 ],
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
-									"tabs" : [ "fl.now~", "fl.ticks~", "fl.timedelta~", "fl.timer~" ],
+									"tabs" : [ "fl.cartopol~", "fl.complexconj~", "fl.complexcosh~", "fl.complexcos~", "fl.complexexp~", "fl.complexlog10~", "fl.complexlog~", "fl.complexsinh~", "fl.complexsin~", "fl.complexsqrt~", "fl.complextanh~", "fl.complextan~", "fl.poltocar~" ],
 									"truncate" : 0
 								}
 
@@ -4922,7 +5013,7 @@
 									"allowdrag" : 0,
 									"fontsize" : 13.0,
 									"id" : "obj-4",
-									"items" : [ "(--)", ",", "Binary", ",", "Buffer", ",", "Complex_Binary", ",", "Complex_Unary", ",", "Expressions", ",", "Filters", ",", "Generators", ",", "Host_Communication", ",", "IO", ",", "Mapping", ",", "Parameters", ",", "Routing", ",", "Schedulers", ",", "Spatial", ",", "Spectral", ",", "Storage", ",", "Streaming", ",", "Ternary", ",", "Time_Smoothing", ",", "Timing", ",", "Unary", ",", "Vector" ],
+									"items" : [ "(Select", "a", "Category)", ",", "Binary", ",", "Buffer", ",", "Complex_Binary", ",", "Complex_Unary", ",", "Expressions", ",", "Filters", ",", "Generators", ",", "Host_Communication", ",", "IO", ",", "Mapping", ",", "Parameters", ",", "Routing", ",", "Schedulers", ",", "Spatial", ",", "Spectral", ",", "Storage", ",", "Streaming", ",", "Ternary", ",", "Time_Smoothing", ",", "Timing", ",", "Unary", ",", "Vector" ],
 									"maxclass" : "umenu",
 									"numinlets" : 1,
 									"numoutlets" : 3,
@@ -4933,13 +5024,13 @@
 									"presentation_rect" : [ 5.0, 90.0, 209.0, 23.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_longname" : "umenu",
-											"parameter_initial_enable" : 1,
 											"parameter_invisible" : 1,
 											"parameter_mmax" : 22.0,
 											"parameter_initial" : [ 0 ],
 											"parameter_shortname" : "umenu",
-											"parameter_type" : 3
+											"parameter_type" : 3,
+											"parameter_longname" : "umenu",
+											"parameter_initial_enable" : 1
 										}
 
 									}
@@ -5241,8 +5332,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",

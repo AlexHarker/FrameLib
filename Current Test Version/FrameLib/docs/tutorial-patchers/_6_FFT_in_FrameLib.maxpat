@@ -737,13 +737,13 @@
 									"patching_rect" : [ 8.75, 650.0, 136.0, 47.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_longname" : "live.gain~[3]",
 											"parameter_mmax" : 6.0,
 											"parameter_initial" : [ 0.0 ],
 											"parameter_shortname" : "Volume",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 4,
-											"parameter_mmin" : -70.0
+											"parameter_mmin" : -70.0,
+											"parameter_longname" : "live.gain~[3]"
 										}
 
 									}
@@ -1159,13 +1159,13 @@
 									"patching_rect" : [ 8.75, 460.0, 136.0, 47.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_longname" : "live.gain~[4]",
 											"parameter_mmax" : 6.0,
 											"parameter_initial" : [ 0.0 ],
 											"parameter_shortname" : "Volume",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 4,
-											"parameter_mmin" : -70.0
+											"parameter_mmin" : -70.0,
+											"parameter_longname" : "live.gain~[4]"
 										}
 
 									}
@@ -1892,13 +1892,13 @@
 									"patching_rect" : [ 8.749992000000001, 643.5, 136.0, 41.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_longname" : "live.gain~[2]",
 											"parameter_mmax" : 6.0,
 											"parameter_initial" : [ 0.0 ],
 											"parameter_shortname" : "Volume",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 4,
-											"parameter_mmin" : -70.0
+											"parameter_mmin" : -70.0,
+											"parameter_longname" : "live.gain~[2]"
 										}
 
 									}
@@ -3272,13 +3272,13 @@
 									"patching_rect" : [ 8.75, 384.0, 136.0, 41.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_longname" : "live.gain~[1]",
 											"parameter_mmax" : 6.0,
 											"parameter_initial" : [ 0.0 ],
 											"parameter_shortname" : "Volume",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 4,
-											"parameter_mmin" : -70.0
+											"parameter_mmin" : -70.0,
+											"parameter_longname" : "live.gain~[1]"
 										}
 
 									}
@@ -3738,13 +3738,13 @@
 									"patching_rect" : [ 8.75, 585.0, 136.0, 41.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_longname" : "live.gain~",
 											"parameter_mmax" : 6.0,
 											"parameter_initial" : [ 0.0 ],
 											"parameter_shortname" : "Volume",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 4,
-											"parameter_mmin" : -70.0
+											"parameter_mmin" : -70.0,
+											"parameter_longname" : "live.gain~"
 										}
 
 									}
@@ -4822,25 +4822,25 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-4::obj-23::obj-21::obj-6" : [ "live.tab[6]", "live.tab[1]", 0 ],
-			"obj-5::obj-23::obj-35" : [ "[9]", "Level", 0 ],
-			"obj-10::obj-9::obj-35" : [ "[5]", "Level", 0 ],
-			"obj-3::obj-10" : [ "live.gain~[4]", "Volume", 0 ],
-			"obj-10::obj-9::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
-			"obj-5::obj-4" : [ "live.gain~[2]", "Volume", 0 ],
-			"obj-4::obj-40" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-4::obj-9::obj-35" : [ "[6]", "Level", 0 ],
-			"obj-7::obj-8::obj-21::obj-6" : [ "live.tab[11]", "live.tab[1]", 0 ],
-			"obj-4::obj-23::obj-35" : [ "[7]", "Level", 0 ],
-			"obj-3::obj-23::obj-21::obj-6" : [ "live.tab[9]", "live.tab[1]", 0 ],
-			"obj-7::obj-10" : [ "live.gain~[3]", "Volume", 0 ],
-			"obj-10::obj-23::obj-35" : [ "[1]", "Level", 0 ],
-			"obj-5::obj-23::obj-21::obj-6" : [ "live.tab[8]", "live.tab[1]", 0 ],
 			"obj-7::obj-8::obj-35" : [ "[11]", "Level", 0 ],
-			"obj-10::obj-23::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
+			"obj-4::obj-40" : [ "live.gain~[1]", "Volume", 0 ],
 			"obj-10::obj-40" : [ "live.gain~", "Volume", 0 ],
+			"obj-10::obj-23::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
+			"obj-10::obj-9::obj-35" : [ "[5]", "Level", 0 ],
 			"obj-4::obj-9::obj-21::obj-6" : [ "live.tab[5]", "live.tab[1]", 0 ],
 			"obj-3::obj-23::obj-35" : [ "[8]", "Level", 0 ],
+			"obj-5::obj-4" : [ "live.gain~[2]", "Volume", 0 ],
+			"obj-4::obj-23::obj-21::obj-6" : [ "live.tab[6]", "live.tab[1]", 0 ],
+			"obj-5::obj-23::obj-35" : [ "[9]", "Level", 0 ],
+			"obj-7::obj-10" : [ "live.gain~[3]", "Volume", 0 ],
+			"obj-4::obj-9::obj-35" : [ "[6]", "Level", 0 ],
+			"obj-7::obj-8::obj-21::obj-6" : [ "live.tab[11]", "live.tab[1]", 0 ],
+			"obj-3::obj-10" : [ "live.gain~[4]", "Volume", 0 ],
+			"obj-4::obj-23::obj-35" : [ "[7]", "Level", 0 ],
+			"obj-3::obj-23::obj-21::obj-6" : [ "live.tab[9]", "live.tab[1]", 0 ],
+			"obj-10::obj-9::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
+			"obj-10::obj-23::obj-35" : [ "[1]", "Level", 0 ],
+			"obj-5::obj-23::obj-21::obj-6" : [ "live.tab[8]", "live.tab[1]", 0 ],
 			"parameterbanks" : 			{
 
 			}
@@ -4849,7 +4849,7 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "nativeFFT.maxpat",
-				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -4892,21 +4892,21 @@
 			}
 , 			{
 				"name" : "next_tut.maxpat",
-				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "basicFreeze.maxpat",
-				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "basicFreeze_pfft.maxpat",
-				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

@@ -423,8 +423,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1099,8 +1099,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1165,7 +1165,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 801.0, 565.0 ],
+						"rect" : [ 2.0, 71.0, 801.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1784,8 +1784,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1964,7 +1964,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 5.75, 106.0, 775.0, 163.0 ],
+									"patching_rect" : [ 5.75, 106.0, 778.0, 163.0 ],
 									"text" : "FrameLib is a DSP system designed to allow quick modular constructions of frame-based networks. A frame is a self contained group of samples similar to a grain in granulation or an FFT frame. These networks can resolve time at a highly accurate subsample level and can run at different rates and with different frame sizes.\n\nWithin a single FrameLib network you are able to mix different representations (such as time and frequency-based), efficiently process them and maintaining tightly-timed DSP constructs. A group of FrameLib objects resulting in a processing chain can be referred to as a 'network'.\n\nIf you don't know what these terms mean or are not sure if FrameLib could be useful for you rest assured it will make sense as the tutorials progress."
 								}
 
@@ -2061,8 +2061,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2581,8 +2581,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2853,7 +2853,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 48.0, 533.0, 85.0 ],
+									"patching_rect" : [ 16.0, 48.0, 537.0, 85.0 ],
 									"text" : "This stochastic synth works by generating two spline like frames of varying lengths and convolving them. Each time frames are generated (dependent on the interval setting) they are slightly randomised, causing transformations of the frame content each time. The two generated frames are independently timed to each other and can be of differing lengths."
 								}
 
@@ -3307,8 +3307,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3374,7 +3374,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 2.0, 71.0, 801.0, 565.0 ],
+						"rect" : [ 0.0, 26.0, 801.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3435,7 +3435,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 48.0, 623.625, 85.0 ],
+									"patching_rect" : [ 16.0, 48.0, 625.0, 85.0 ],
 									"text" : "This network adds some extra features to the Basic Granulator and demonstrates how scalable FrameLib can be. In addition to generating random frame positions, the length of the frame is dynamically changed. Each frame (or grain) is being band pass filtered and spatialised across the stereo field according to its filter frequency. An interface is added allowing you to constrain the area of the buffer from which the FrameLib network extracts grains."
 								}
 
@@ -3921,8 +3921,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4328,8 +4328,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4387,13 +4387,13 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-2::obj-93::obj-50" : [ "live.gain~[9]", "Volume", 0 ],
-			"obj-3::obj-26::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
-			"obj-4::obj-9::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
-			"obj-5::obj-93::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
-			"obj-116::obj-93::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
 			"obj-1::obj-9::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-116::obj-93::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
+			"obj-5::obj-93::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
 			"obj-9::obj-21::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
+			"obj-3::obj-26::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
+			"obj-2::obj-93::obj-50" : [ "live.gain~[9]", "Volume", 0 ],
+			"obj-4::obj-9::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
 			"parameterbanks" : 			{
 
 			}
@@ -4402,91 +4402,91 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "stochasticFreeze.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "monoVolume.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "cleverGranulator.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "stereoVolume.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "1_presets.json",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "stochasticSynth.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "convolutionGranulator.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "next_tut.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "basicGranulatorPoly.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "basicGranulator.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "basicFreeze.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "basicFreeze_pfft.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "betterFreeze.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -4766,8 +4766,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",

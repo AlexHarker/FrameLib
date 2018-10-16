@@ -3043,8 +3043,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3148,7 +3148,7 @@
 									"id" : "obj-18",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "grain_control_1.maxpat",
+									"name" : "grain_control.maxpat",
 									"numinlets" : 0,
 									"numoutlets" : 4,
 									"offset" : [ 0.0, 0.0 ],
@@ -4034,8 +4034,8 @@
 , 															{
 																"name" : "newobjYellow-1",
 																"default" : 																{
-																	"fontsize" : [ 12.059008 ],
-																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+																	"fontsize" : [ 12.059008 ]
 																}
 ,
 																"parentstyle" : "",
@@ -4222,8 +4222,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -4672,8 +4672,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4807,7 +4807,7 @@
 									"id" : "obj-26",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "grain_control_1.maxpat",
+									"name" : "grain_control.maxpat",
 									"numinlets" : 0,
 									"numoutlets" : 4,
 									"offset" : [ 0.0, 0.0 ],
@@ -5314,8 +5314,8 @@
 , 															{
 																"name" : "newobjYellow-1",
 																"default" : 																{
-																	"fontsize" : [ 12.059008 ],
-																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+																	"fontsize" : [ 12.059008 ]
 																}
 ,
 																"parentstyle" : "",
@@ -5502,8 +5502,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -5931,8 +5931,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -5979,7 +5979,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 996.0, 829.0 ],
+						"rect" : [ 0.0, 71.0, 996.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -6601,8 +6601,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -7097,8 +7097,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -8038,8 +8038,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -8489,8 +8489,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -8882,8 +8882,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -8930,7 +8930,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 71.0, 996.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 996.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -9331,8 +9331,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -9379,7 +9379,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1440.0, 828.0 ],
+						"rect" : [ 34.0, 79.0, 1440.0, 828.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -9520,8 +9520,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -9593,14 +9593,14 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-6::obj-15::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
-			"obj-4::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
-			"obj-7::obj-15::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
-			"obj-5::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
 			"obj-10::obj-6::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-1::obj-15::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
 			"obj-8::obj-15::obj-50" : [ "live.gain~[8]", "Volume", 0 ],
+			"obj-1::obj-15::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
+			"obj-5::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
 			"obj-3::obj-15::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
+			"obj-4::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
+			"obj-6::obj-15::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
+			"obj-7::obj-15::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
 			"parameterbanks" : 			{
 
 			}
@@ -9609,21 +9609,21 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "monoVolume.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "grain_control_1.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"name" : "grain_control.maxpat",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "next_tut.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -9775,8 +9775,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",
