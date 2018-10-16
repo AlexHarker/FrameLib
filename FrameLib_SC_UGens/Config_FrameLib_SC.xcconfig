@@ -1,10 +1,18 @@
 
-#include "../../Config_FrameLib.xcconfig"
+#include "../Config_FrameLib.xcconfig"
 
 // Paths
 
 SC_PATH = $(SRCROOT)/../../C++ Development/SuperCollider
 HEADER_SEARCH_PATHS = "$(SC_PATH)/include/common" "$(SC_PATH)/include/plugin_interface"
+
+// Install Location
+
+SKIP_INSTALL = NO
+DEPLOYMENT_LOCATION = YES
+DSTROOT = /Library/Application Support/SuperCollider/Extensions/plugins
+INSTALL_PATH = /
+COPY_PHASE_STRIP = NO
 
 // Static Configuration (don't change these)
 

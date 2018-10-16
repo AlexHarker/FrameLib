@@ -2,6 +2,8 @@
 #include "SC_PlugIn.h"
 #include "../../server/scsynth/SC_UnitDef.h"
 
+#include "FrameLib_Objects.h"
+/*
 #include "FrameLib_Multistream.h"
 
 #include "FrameLib_Binary_Objects.h"
@@ -15,6 +17,7 @@
 #include "FrameLib_Read.h"
 #include "FrameLib_Random.h"
 #include "TableReader.hpp"
+*/
 
 static InterfaceTable *ft;
 
@@ -403,18 +406,60 @@ PluginLoad(FrameLib)
     
     (*ft->fDefinePlugInCmd)("FLParameters", &ParameterSetup, nullptr);
     
+    DefineFrameLibExpUnit<FrameLib_Read>("FLRead");
+    DefineFrameLibExpUnit<FrameLib_Window>("FLWindow");
+    DefineFrameLibExpUnit<FrameLib_Map>("FLMap");
+
     // Schedulers
     
     DefineFrameLibExpUnit<FrameLib_Interval>("FLInterval");
     
+    // IO
+
     DefineFrameLibExpUnit<FrameLib_Source>("FLSource");
     DefineFrameLibExpUnit<FrameLib_Sink>("FLSink");
-    DefineFrameLibExpUnit<FrameLib_Read>("FLRead");
-    DefineFrameLibExpUnit<FrameLib_Ramp>("FLRamp");
-    DefineFrameLibExpUnit<FrameLib_Window>("FLWindow");
-    DefineFrameLibExpUnit<FrameLib_Random>("FLRand");
-    DefineFrameLibExpUnit<FrameLib_Map>("FLMap");
+    DefineFrameLibExpUnit<FrameLib_Trace>("FLTrace");
 
+    // Generators
+    
+    DefineFrameLibExpUnit<FrameLib_Random>("FLRand");
+    DefineFrameLibExpUnit<FrameLib_Ramp>("FLRamp");
+    DefineFrameLibExpUnit<FrameLib_Uniform>("FLUniform");
+
+    // Unary Operators
+    
+    DefineFrameLibExpUnit<FrameLib_LogicalNot>("FLNot");
+    
+    DefineFrameLibExpUnit<FrameLib_Acos>("FLAcos");
+    DefineFrameLibExpUnit<FrameLib_Asin>("FLAsin");
+    DefineFrameLibExpUnit<FrameLib_Atan>("FLAtan");
+    DefineFrameLibExpUnit<FrameLib_Cos>("FLCos");
+    DefineFrameLibExpUnit<FrameLib_Sin>("FLSin");
+    DefineFrameLibExpUnit<FrameLib_Tan>("FLTan");
+    DefineFrameLibExpUnit<FrameLib_Acosh>("FLAcosh");
+    DefineFrameLibExpUnit<FrameLib_Asinh>("FLAsinh");
+    DefineFrameLibExpUnit<FrameLib_Atanh>("FLAtanh");
+    DefineFrameLibExpUnit<FrameLib_Cosh>("FLCosh");
+    DefineFrameLibExpUnit<FrameLib_Sinh>("FLSinh");
+    DefineFrameLibExpUnit<FrameLib_Tanh>("FLTanh");
+    
+    DefineFrameLibExpUnit<FrameLib_Log>("FLLog");
+    DefineFrameLibExpUnit<FrameLib_Log2>("FLLog2");
+    DefineFrameLibExpUnit<FrameLib_Log10>("FLLog10");
+    DefineFrameLibExpUnit<FrameLib_Exp>("FLExp");
+    DefineFrameLibExpUnit<FrameLib_Exp2>("FLExp2");
+    
+    DefineFrameLibExpUnit<FrameLib_Abs>("FLAbs");
+    DefineFrameLibExpUnit<FrameLib_Ceil>("FLCeil");
+    DefineFrameLibExpUnit<FrameLib_Floor>("FLFloor");
+    DefineFrameLibExpUnit<FrameLib_Round>("FLRound");
+    DefineFrameLibExpUnit<FrameLib_Trunc>("FLTrunc");
+    
+    DefineFrameLibExpUnit<FrameLib_Sqrt>("FLSqrt");
+    DefineFrameLibExpUnit<FrameLib_Cbrt>("FLCbrt");
+    DefineFrameLibExpUnit<FrameLib_Erf>("FLErf");
+    DefineFrameLibExpUnit<FrameLib_Erfc>("FLErfc");
+    
     // Binary Operators
     
     DefineFrameLibExpUnit<FrameLib_Multiply>("FLMul");

@@ -114,6 +114,7 @@
 		B84BE8811C1F63E500A55F8C /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B84BE88A1C1F641500A55F8C /* fl.medianfilter~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84BE8891C1F641500A55F8C /* fl.medianfilter~.cpp */; };
 		B85426AA2173717A007FA185 /* libframelib_objects.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8BA6FD22078D49200D3DB3D /* libframelib_objects.a */; };
+		B85426AC2175CA0C007FA185 /* FrameLib.sc in CopyFiles */ = {isa = PBXBuildFile; fileRef = B85426AB2175CA05007FA185 /* FrameLib.sc */; };
 		B85435791F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
 		B854357A1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
 		B854357B1F65BF03001BA1AA /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
@@ -1808,12 +1809,13 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		B88C0A2F21733BF9007A65C0 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
+			buildActionMask = 12;
+			dstPath = ../classes;
 			dstSubfolderSpec = 0;
 			files = (
+				B85426AC2175CA0C007FA185 /* FrameLib.sc in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B8A1F5B91D5370DE00FA5FFC /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -2002,6 +2004,7 @@
 		B84BE8781C1F592400A55F8C /* FrameLib_MedianFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_MedianFilter.h; sourceTree = "<group>"; };
 		B84BE8871C1F63E500A55F8C /* fl.medianfilter~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.medianfilter~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B84BE8891C1F641500A55F8C /* fl.medianfilter~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.medianfilter~.cpp"; sourceTree = "<group>"; };
+		B85426AB2175CA05007FA185 /* FrameLib.sc */ = {isa = PBXFileReference; lastKnownFileType = text; path = FrameLib.sc; sourceTree = "<group>"; };
 		B85435721F65BF03001BA1AA /* HISSTools_FFT_Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HISSTools_FFT_Core.h; sourceTree = "<group>"; };
 		B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HISSTools_FFT.cpp; sourceTree = "<group>"; };
 		B85435741F65BF03001BA1AA /* HISSTools_FFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HISSTools_FFT.h; sourceTree = "<group>"; };
@@ -4416,6 +4419,7 @@
 			children = (
 				B88C0A1F21732753007A65C0 /* Config_FrameLib_SC.xcconfig */,
 				B88C0A1E21732710007A65C0 /* FrameLib_SC.cpp */,
+				B85426AB2175CA05007FA185 /* FrameLib.sc */,
 			);
 			name = "SC UGens";
 			path = FrameLib_SC_UGens;
