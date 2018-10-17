@@ -24,7 +24,7 @@ class FrameLib_FromHost final : public FrameLib_Processor
             Item(const FrameLib_Parameters::Serial& serial) : mSerial(serial), mNext(nullptr) {}
             Item(const SerialList& list) : mNext(nullptr)
             {
-                for (Item *item = list.mTop; item; item = list.mTail == item ? nullptr : item->mNext)
+                for (Item *item = list.mTop; item; item = item->mNext)
                     mSerial.write(&item->mSerial);
             }
             
@@ -58,7 +58,12 @@ class FrameLib_FromHost final : public FrameLib_Processor
             return item;
         }
         
-        size_t size()
+        bool empty() const
+        {
+            return mTop == nullptr;
+        }
+        
+        size_t size() const
         {
             unsigned long summedSize = 0;
             
