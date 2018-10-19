@@ -137,13 +137,51 @@
 						"title" : "Audio To Max",
 						"boxes" : [ 							{
 								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-4",
+									"justification" : 1,
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 135.75, 234.0, 37.125, 19.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 14.0,
+									"id" : "obj-2",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 172.46875, 234.0, 211.5625, 22.0 ],
+									"presentation_linecount" : 2,
+									"text" : "Convert unipolar noise to bipolar"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 8.75, 233.0, 125.0, 22.0 ],
+									"text" : "fl.map~ linear 0 1 -1 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-48",
 									"maxclass" : "toggle",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 73.3125, 308.0, 24.0, 24.0 ]
+									"patching_rect" : [ 73.3125, 363.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -154,7 +192,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 73.3125, 271.5, 72.0, 22.0 ],
+									"patching_rect" : [ 73.3125, 326.5, 72.0, 22.0 ],
 									"text" : "loadmess 0"
 								}
 
@@ -166,7 +204,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 8.75, 365.0, 61.0, 22.0 ],
+									"patching_rect" : [ 8.75, 420.0, 61.0, 22.0 ],
 									"text" : "gate~ 1 0"
 								}
 
@@ -180,7 +218,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 55.1875, 229.0, 37.125, 19.0 ]
+									"patching_rect" : [ 55.1875, 284.0, 37.125, 19.0 ]
 								}
 
 							}
@@ -218,7 +256,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 50.0, 537.0, 69.0 ],
+									"patching_rect" : [ 8.75, 50.0, 539.0, 69.0 ],
 									"text" : "Converting frames to Audio in Max is simple. All that is required is to connect the final node of your FrameLib network to an fl.sink~ object. In the below example, white noise is generated as frames and converted to Max audio. No delay is incurred by converting frames to MSP."
 								}
 
@@ -255,7 +293,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 94.3125, 228.0, 171.5625, 22.0 ],
+									"patching_rect" : [ 94.3125, 283.0, 171.5625, 22.0 ],
 									"text" : "Convert frames into audio"
 								}
 
@@ -291,7 +329,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 405.0, 45.0, 45.0 ]
+									"patching_rect" : [ 8.75, 460.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -302,7 +340,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 8.75, 271.5, 40.0, 22.0 ],
+									"patching_rect" : [ 8.75, 326.5, 40.0, 22.0 ],
 									"text" : "*~ 0.1"
 								}
 
@@ -314,7 +352,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 8.75, 227.0, 47.0, 22.0 ],
+									"patching_rect" : [ 8.75, 282.0, 47.0, 22.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -349,6 +387,27 @@
 									"bgcolor" : [ 0.011765, 0.396078, 0.752941, 1.0 ],
 									"fontface" : 1,
 									"hint" : "",
+									"id" : "obj-5",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 263.875, 284.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "4",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.011765, 0.396078, 0.752941, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
 									"id" : "obj-38",
 									"ignoreclick" : 1,
 									"legacytextcolor" : 1,
@@ -357,7 +416,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 265.25, 229.0, 20.0, 20.0 ],
+									"patching_rect" : [ 381.375, 235.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -409,6 +468,13 @@
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
+									"destination" : [ "obj-69", 0 ],
+									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-71", 1 ],
 									"order" : 0,
 									"source" : [ "obj-45", 0 ]
@@ -433,7 +499,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-45", 0 ],
-									"midpoints" : [ 82.8125, 351.0, 18.25, 351.0 ],
+									"midpoints" : [ 82.8125, 406.0, 18.25, 406.0 ],
 									"source" : [ "obj-48", 0 ]
 								}
 
@@ -447,7 +513,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-69", 0 ],
+									"destination" : [ "obj-1", 0 ],
 									"source" : [ "obj-67", 0 ]
 								}
 
@@ -462,7 +528,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-45", 1 ],
-									"midpoints" : [ 18.25, 351.0, 60.25, 351.0 ],
+									"midpoints" : [ 18.25, 406.0, 60.25, 406.0 ],
 									"source" : [ "obj-70", 0 ]
 								}
 
@@ -1223,7 +1289,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 71.0, 895.0, 701.0 ],
+						"rect" : [ 0.0, 26.0, 895.0, 701.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1288,7 +1354,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 262.875, 550.0, 37.125, 19.0 ]
+									"patching_rect" : [ 289.875, 550.0, 37.125, 19.0 ]
 								}
 
 							}
@@ -1300,7 +1366,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 303.125, 525.0, 206.0, 69.0 ],
+									"patching_rect" : [ 330.125, 525.0, 206.0, 69.0 ],
 									"text" : "Look in here for an explanation/warning about the deay incurred from converting audio to frames."
 								}
 
@@ -1356,7 +1422,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 50.0, 223.5, 76.0, 22.0 ],
+													"patching_rect" : [ 15.0, 141.5, 76.0, 22.0 ],
 													"text" : "fl.times~ 0.5"
 												}
 
@@ -1368,7 +1434,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 106.5, 149.0, 96.0, 22.0 ],
+													"patching_rect" : [ 71.5, 67.0, 96.0, 22.0 ],
 													"text" : "fl.interval~ 2048"
 												}
 
@@ -1380,7 +1446,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "signal" ],
-													"patching_rect" : [ 50.0, 258.5, 48.0, 22.0 ],
+													"patching_rect" : [ 15.0, 176.5, 48.0, 22.0 ],
 													"text" : "fl.sink~"
 												}
 
@@ -1391,7 +1457,7 @@
 													"maxclass" : "scope~",
 													"numinlets" : 2,
 													"numoutlets" : 0,
-													"patching_rect" : [ 50.0, 334.5, 130.0, 130.0 ]
+													"patching_rect" : [ 15.0, 252.5, 130.0, 130.0 ]
 												}
 
 											}
@@ -1402,7 +1468,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "signal" ],
-													"patching_rect" : [ 50.0, 293.5, 173.0, 22.0 ],
+													"patching_rect" : [ 15.0, 211.5, 173.0, 22.0 ],
 													"text" : "-~"
 												}
 
@@ -1414,7 +1480,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "signal" ],
-													"patching_rect" : [ 204.0, 188.0, 106.0, 22.0 ],
+													"patching_rect" : [ 169.0, 106.0, 106.0, 22.0 ],
 													"text" : "delay~ 4096 4096"
 												}
 
@@ -1426,7 +1492,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "signal" ],
-													"patching_rect" : [ 50.0, 100.0, 62.0, 22.0 ],
+													"patching_rect" : [ 15.0, 18.0, 62.0, 22.0 ],
 													"text" : "cycle~ 10"
 												}
 
@@ -1438,7 +1504,7 @@
 													"numinlets" : 3,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 50.0, 188.0, 132.0, 22.0 ],
+													"patching_rect" : [ 15.0, 106.0, 132.0, 22.0 ],
 													"text" : "fl.source~ /length 4096"
 												}
 
@@ -1462,7 +1528,7 @@
 , 											{
 												"patchline" : 												{
 													"destination" : [ "obj-16", 0 ],
-													"midpoints" : [ 59.5, 134.0, 213.0, 134.0, 213.0, 179.0, 213.5, 179.0 ],
+													"midpoints" : [ 24.5, 52.0, 178.0, 52.0, 178.0, 97.0, 178.5, 97.0 ],
 													"order" : 0,
 													"source" : [ "obj-15", 0 ]
 												}
@@ -1506,7 +1572,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 127.0, 548.5, 105.0, 22.0 ],
+									"patching_rect" : [ 154.0, 548.5, 105.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1834,7 +1900,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 237.0, 548.5, 20.0, 20.0 ],
+									"patching_rect" : [ 264.0, 548.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "5",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -2031,8 +2097,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2282,7 +2348,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 895.0, 701.0 ],
+						"rect" : [ 0.0, 71.0, 895.0, 701.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2422,8 +2488,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2495,8 +2561,8 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-1::obj-5::obj-35" : [ "[5]", "Level", 0 ],
 			"obj-1::obj-5::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
+			"obj-1::obj-5::obj-35" : [ "[5]", "Level", 0 ],
 			"parameterbanks" : 			{
 
 			}
@@ -2596,6 +2662,10 @@
 			}
 , 			{
 				"name" : "fl.uniform~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.map~.mxo",
 				"type" : "iLaX"
 			}
  ],
