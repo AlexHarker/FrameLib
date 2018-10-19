@@ -444,7 +444,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 61.5, 327.0, 94.0, 22.0 ],
+									"patching_rect" : [ 65.5, 326.0, 94.0, 22.0 ],
 									"text" : "fl.interval~ 2048"
 								}
 
