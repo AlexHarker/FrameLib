@@ -2084,7 +2084,7 @@
 		B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = "FrameLib_Max_Objects/_MaxSDK_/c74support/msp-includes/MaxAudioAPI.framework"; sourceTree = "<group>"; };
 		B87E9DCF1F8DA9660000886E /* FrameLib_Dispatch.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Dispatch.cpp; sourceTree = "<group>"; };
 		B87E9DD01F8DA9660000886E /* FrameLib_Dispatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Dispatch.h; sourceTree = "<group>"; };
-		B87E9DED1F8DAE820000886E /* fl.multiselect~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.multiselect~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B87E9DED1F8DAE820000886E /* fl.dispatch~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.dispatch~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B87E9DF01F8DAF000000886E /* fl.dispatch~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.dispatch~.cpp"; sourceTree = "<group>"; };
 		B87E9DF21F8DB1020000886E /* FrameLib_TimeDelta.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_TimeDelta.cpp; sourceTree = "<group>"; };
 		B87E9DF31F8DB1020000886E /* FrameLib_TimeDelta.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_TimeDelta.h; sourceTree = "<group>"; };
@@ -4045,7 +4045,7 @@
 				B86685C21F84F2670079568F /* fl.not~.mxo */,
 				B82CC2441F851CCD00077ECB /* fl.streamid~.mxo */,
 				B8C2F8121F863A2A00075677 /* fl.route~.mxo */,
-				B87E9DED1F8DAE820000886E /* fl.multiselect~.mxo */,
+				B87E9DED1F8DAE820000886E /* fl.dispatch~.mxo */,
 				B87E9E111F8DB1E50000886E /* fl.timedelta~.mxo */,
 				B86387D31F8DB48900D31E15 /* fl.timer~.mxo */,
 				B89ABA901FA73483006DAD53 /* libframelib.a */,
@@ -7734,9 +7734,9 @@
 			productReference = B87E878919C8F4AA00B1D0CD /* fl.ifft~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B87E9DD11F8DAE820000886E /* fl.multiselect~ */ = {
+		B87E9DD11F8DAE820000886E /* fl.dispatch~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B87E9DE81F8DAE820000886E /* Build configuration list for PBXNativeTarget "fl.multiselect~" */;
+			buildConfigurationList = B87E9DE81F8DAE820000886E /* Build configuration list for PBXNativeTarget "fl.dispatch~" */;
 			buildPhases = (
 				B87E9DD21F8DAE820000886E /* Headers */,
 				B87E9DD71F8DAE820000886E /* Resources */,
@@ -7748,10 +7748,10 @@
 			dependencies = (
 				B8BEEBEA1FA740AF00ED26F4 /* PBXTargetDependency */,
 			);
-			name = "fl.multiselect~";
+			name = "fl.dispatch~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B87E9DED1F8DAE820000886E /* fl.multiselect~.mxo */;
+			productReference = B87E9DED1F8DAE820000886E /* fl.dispatch~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B87E9DF51F8DB1E50000886E /* fl.timedelta~ */ = {
@@ -9556,7 +9556,7 @@
 				B86685A81F84F2670079568F /* fl.not~ */,
 				B82CC22A1F851CCD00077ECB /* fl.streamid~ */,
 				B8C2F7F71F863A2A00075677 /* fl.route~ */,
-				B87E9DD11F8DAE820000886E /* fl.multiselect~ */,
+				B87E9DD11F8DAE820000886E /* fl.dispatch~ */,
 				B87E9DF51F8DB1E50000886E /* fl.timedelta~ */,
 				B86387B71F8DB48900D31E15 /* fl.timer~ */,
 				B8213A1A1FA758F50013E31F /* fl.ticks~ */,
@@ -28764,7 +28764,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B87E9DE81F8DAE820000886E /* Build configuration list for PBXNativeTarget "fl.multiselect~" */ = {
+		B87E9DE81F8DAE820000886E /* Build configuration list for PBXNativeTarget "fl.dispatch~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B87E9DE91F8DAE820000886E /* Development */,
