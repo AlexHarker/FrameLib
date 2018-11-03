@@ -12,12 +12,12 @@ class FrameLib_iFFT final : public FrameLib_Processor
     // Parameter Enums and Info
 
     enum Mode { kReal, kComplex, kFullSpectrum };
-	enum ParameterList { kMaxLength, kNormalise, kMode };
+    enum ParameterList { kMaxLength, kNormalise, kMode };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
-	
+
     // Constructor / Destructor
 
     FrameLib_iFFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);    
@@ -31,16 +31,16 @@ public:
 
 private:
 
-	// Process
+    // Process
     
     void process() override;
-	
+
     // Data
     
-	// FFT Setup
-	
-	FFT_SETUP_D mFFTSetup;
-	
+    // FFT Setup
+
+    FFT_SETUP_D mFFTSetup;
+
     // Instantiation Params
     
     unsigned long mMaxFFTSize;

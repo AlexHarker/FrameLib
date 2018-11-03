@@ -9,7 +9,7 @@ class FrameLib_Multitaper final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-	enum ParameterList { kMaxLength, kNumTapers };
+    enum ParameterList { kMaxLength, kNumTapers };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
@@ -35,16 +35,16 @@ private:
     // Process
     
     void process() override;
-	
+
 protected:
-	
-	// FFT Setup
-	
-	FFT_SETUP_D mFFTSetup;
-	
-	// Maximum FFT Size
-	
-	unsigned long mMaxFFTSize;
+
+    // FFT Setup
+    
+    FFT_SETUP_D mFFTSetup;
+    
+    // Maximum FFT Size
+
+    unsigned long mMaxFFTSize;
     
     static ParameterInfo sParamInfo;
 };

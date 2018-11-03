@@ -31,7 +31,7 @@ uint32_t FrameLib_RandGen::randInt(uint32_t n)
     used |= used >> 16;
     
     do
-        i = randInt() & used;			// toss unused bits shortens search
+        i = randInt() & used;   // toss unused bits shortens search
     while (i > n);
     
     return i;

@@ -9,7 +9,7 @@ class FrameLib_NonZero final : public FrameLib_Processor
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
-	
+
     // Constructor
 
     FrameLib_NonZero(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
