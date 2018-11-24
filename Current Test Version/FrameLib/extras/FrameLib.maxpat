@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 0.0, 45.0, 704.0, 855.0 ],
+		"rect" : [ 0.0, 45.0, 720.0, 855.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 11.0,
@@ -82,7 +82,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 704.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 720.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -515,8 +515,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -583,7 +583,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 71.0, 704.0, 829.0 ],
+						"rect" : [ 0.0, 71.0, 720.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -687,12 +687,12 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 210.0, 382.0, 40.0 ],
+									"patching_rect" : [ 23.0, 210.0, 384.0, 40.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 152.0, 422.0, 40.0 ],
-									"text" : "Methods for converting data between the Max and FrameLib domains.",
-									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
+									"text" : "An overview of the various 'generator' objects belonging to the FrameLib eco-system.",
+									"textcolor" : [ 0.0, 0.0, 0.0, 0.964944839477539 ]
 								}
 
 							}
@@ -1295,16 +1295,14 @@
 									"fontsize" : 20.0,
 									"frozen_box_attributes" : [ "presentation_rect" ],
 									"id" : "obj-7",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 131.0, 382.0, 54.0 ],
+									"patching_rect" : [ 23.0, 131.0, 382.0, 30.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 97.0, 422.0, 30.0 ],
-									"text" : "Tutorial 3: Converting data between FrameLib and Max.",
-									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
+									"text" : "Tutorial 4: Generator objects.",
+									"textcolor" : [ 0.0, 0.0, 0.0, 0.964944839477539 ]
 								}
 
 							}
@@ -2606,8 +2604,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2641,7 +2639,7 @@
 								"multi" : 0
 							}
  ],
-						"textcolor" : [ 0.0, 0.0, 0.0, 0.5 ]
+						"textcolor" : [ 0.0, 0.0, 0.0, 0.017527572016461 ]
 					}
 ,
 					"patching_rect" : [ 170.79998779296875, 43.999984741210938, 61.0, 21.0 ],
@@ -2650,7 +2648,7 @@
 						"digest" : "",
 						"globalpatchername" : "",
 						"tags" : "",
-						"textcolor" : [ 0.0, 0.0, 0.0, 0.5 ]
+						"textcolor" : [ 0.0, 0.0, 0.0, 0.017527572016461 ]
 					}
 ,
 					"text" : "p Tutorials"
@@ -2674,7 +2672,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 704.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 720.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -4482,8 +4480,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-													"fontsize" : [ 12.059008 ]
+													"fontsize" : [ 12.059008 ],
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 												}
 ,
 												"parentstyle" : "",
@@ -5024,13 +5022,13 @@
 									"presentation_rect" : [ 5.0, 90.0, 209.0, 23.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_longname" : "umenu",
-											"parameter_initial_enable" : 1,
-											"parameter_invisible" : 1,
 											"parameter_mmax" : 22.0,
 											"parameter_initial" : [ 0 ],
 											"parameter_shortname" : "umenu",
-											"parameter_type" : 3
+											"parameter_type" : 3,
+											"parameter_longname" : "umenu",
+											"parameter_initial_enable" : 1,
+											"parameter_invisible" : 1
 										}
 
 									}
@@ -5332,8 +5330,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
