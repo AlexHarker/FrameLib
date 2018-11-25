@@ -62,7 +62,8 @@ void FrameLib_Info::process()
     // declare vars
     double samplingRate     = 0.0;
     unsigned long length    = 0;
-    unsigned long size      = 2;
+    unsigned long chans     = 0;
+    unsigned long size      = 3; // output size is fixed - we always get a vector of three values
     
     // allocate inputs and outputs
     
@@ -73,12 +74,13 @@ void FrameLib_Info::process()
     
     // Get buffer
     if (mProxy)
-        mProxy->acquire(length, samplingRate);
+        mProxy->acquire(length, samplingRate, chans);
     
     if (length != 0)
     {
         output[0] = length;
         output[1] = samplingRate;
+        output[2] = chans;
         if (mProxy)
             mProxy->release();
     }
