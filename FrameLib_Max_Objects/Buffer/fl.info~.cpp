@@ -16,11 +16,13 @@ class FrameLib_MaxClass_Info : public FrameLib_MaxClass_Expand<FrameLib_Info>
             mBufferName = gensym(name);
         }
         
-        void acquire(unsigned long& length, double& samplingRate) override
+        void acquire(unsigned long& length, double& samplingRate, unsigned long& chans) override
         {
             mBuffer.acquire(mBufferName);
             length = mBuffer.get_length();
             samplingRate = mBuffer.get_sample_rate();
+            chans = mBuffer.get_num_chans();
+            
         }
         
         void release() override
