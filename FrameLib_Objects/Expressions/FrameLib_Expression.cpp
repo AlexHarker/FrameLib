@@ -3,6 +3,7 @@
 
 #include "../Unary/FrameLib_Unary_Template.h"
 #include "../Binary/FrameLib_Binary_Template.h"
+#include "../Binary/FrameLib_Binary_Objects.h"
 #include "../Ternary/FrameLib_Ternary_Template.h"
 #include "../Ternary/FrameLib_Ternary_Objects.h"
 
@@ -11,7 +12,7 @@
 // Function/Operator Templates
 
 template <typename Op>
-struct UnaryOperation final : public OpBase<double>
+struct UnaryOperation final : public FrameLib_ExprParser::OpBase<double>
 {
     UnaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
@@ -25,7 +26,7 @@ struct UnaryOperation final : public OpBase<double>
 };
 
 template <typename Op>
-struct BinaryOperation final : public OpBase<double>
+struct BinaryOperation final : public FrameLib_ExprParser::OpBase<double>
 {
     BinaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
@@ -41,7 +42,7 @@ struct BinaryOperation final : public OpBase<double>
 };
 
 template <typename Op>
-struct TernaryOperation final : public OpBase<double>
+struct TernaryOperation final : public FrameLib_ExprParser::OpBase<double>
 {
     TernaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
@@ -58,7 +59,7 @@ struct TernaryOperation final : public OpBase<double>
 
 static double negate(double a) { return -a; }
 
-FrameLib_Expression::Parser::Parser() : FrameLib_ExprParser(7)
+FrameLib_Expression::Parser::Parser() : FrameLib_ExprParser::Parser<double>(7)
 {
     // Default Return Constant
     
@@ -131,11 +132,11 @@ FrameLib_Expression::Parser::Parser() : FrameLib_ExprParser(7)
     addFunction(new BinaryOperation<Binary_Functor<hypot>>("hypot"));
     addFunction(new BinaryOperation<Binary_Functor<fmin>>("min"));
     addFunction(new BinaryOperation<Binary_Functor<fmax>>("max"));
-    addFunction(new BinaryOperation<Binary_Functor<fdim>>("diff"));
+    addFunction(new BinaryOperation<FrameLib_Binary_Ops::absDiff>("diff"));
     
-    addFunction(new TernaryOperation<Ternary_Functor<Ternary::clip>>("clip"));
-    addFunction(new TernaryOperation<Ternary_Functor<Ternary::wrap>>("wrap"));
-    addFunction(new TernaryOperation<Ternary_Functor<Ternary::fold>>("fold"));
+    addFunction(new TernaryOperation<Ternary_Functor<FrameLib_Ternary_Ops::clip>>("clip"));
+    addFunction(new TernaryOperation<Ternary_Functor<FrameLib_Ternary_Ops::wrap>>("wrap"));
+    addFunction(new TernaryOperation<Ternary_Functor<FrameLib_Ternary_Ops::fold>>("fold"));
 }
 
 // Input Processor Class
@@ -235,9 +236,10 @@ void FrameLib_Expression::ConstantOut::process()
 
 FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mParameters(context, proxy, &sParamInfo)
 {
-    typedef Graph<double> Graph;
+    typedef FrameLib_ExprParser::Graph<double> Graph;
     typedef FrameLib_Block::Connection Connection;
-    
+    using namespace FrameLib_ExprParser;
+
     mParameters.addString(kExpression, "expr", 0);
     mParameters.setInstantiation();
     

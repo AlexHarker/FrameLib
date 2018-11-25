@@ -9,7 +9,9 @@ FrameLib_Join::FrameLib_Join(FrameLib_Context context, FrameLib_Parameters::Seri
     mParameters.setClip(2, 32);
     mParameters.setInstantiation();
     
+    mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
+    mParameters.setErrorReportingEnabled(true);
 
     mParameters.addBoolArray(kTriggers, "trigger_ins", 1.0, mParameters.getInt(kNumIns));
     mParameters.setInstantiation();

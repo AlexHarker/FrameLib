@@ -41,30 +41,33 @@ private:
     
     // Data
     
-    void *mOutlet;
+    std::vector<void *> mOutlets;
 };
 
 // Proxy Class
 
 void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(unsigned long index, unsigned long stream, const double *values, unsigned long N)
 {    
-    if ((N = limitSize(N)))
+    N = limitSize(N + 1);
+    t_atom *output = alloc<t_atom>(N);
+    
+    if (output)
     {
-        t_atom *output = alloc<t_atom>(N);
-
-        for (unsigned long i = 0; i < N; i++)
-            atom_setfloat(output + i, values[i]);
+        atom_setlong(output, stream);
+        
+        for (unsigned long i = 1; i < N; i++)
+            atom_setfloat(output + i, values[i - 1]);
         
         schedule_delay(mObject, (method) &FrameLib_MaxClass_ToMax::toOutletExternal, 0.0, nullptr, N, output);
         
         dealloc(output);
     }
-    else
-        schedule_delay(mObject, (method) &FrameLib_MaxClass_ToMax::toOutletExternal, 0.0, nullptr, 0, nullptr);
 }
 
 void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial)
 {
+    // Determine maximum required size
+    
     unsigned long maxSize = 0;
     
     for (auto it = serial->begin(); it != serial->end(); it++)
@@ -76,30 +79,38 @@ void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(unsigned long index, unsig
         }
     }
     
-    maxSize = limitSize(maxSize);
+    maxSize = std::max(limitSize(maxSize + 1), 2UL);
     t_atom *output = alloc<t_atom>(maxSize);
 
+    if (!output)
+        return;
+    
+    // Store stream
+    
+    atom_setlong(output + 0, stream);
+
+    // Iterate over tags
+    
     for (auto it = serial->begin(); it != serial->end(); it++)
     {
+        t_symbol *tag = gensym(it.getTag());
+        unsigned long size = 0;
+        
         if (it.getType() == kVector)
         {
-            t_symbol *tag = gensym(it.getTag());
-            unsigned long size = 0;
             const double *vector = it.getVector(&size);
+            size = size >= maxSize ? maxSize : size + 1;
             
-            for (unsigned long i = 0; i < size; i++)
-                atom_setfloat(output + i, vector[i]);
-            
-            schedule_delay(mObject, (method) &FrameLib_MaxClass_ToMax::toOutletExternal, 0.0, tag, size, output);
+            for (unsigned long i = 1; i < size; i++)
+                atom_setfloat(output + i, vector[i - 1]);
         }
         else
         {
-            t_atom a;
-            t_symbol *tag = gensym(it.getTag());
-            atom_setsym(&a, gensym(it.getString()));
-            
-            schedule_delay(mObject, (method) &FrameLib_MaxClass_ToMax::toOutletExternal, 0.0, tag, 1, &a);
+            size = 2;
+            atom_setsym(output + 1, gensym(it.getString()));
         }
+        
+        schedule_delay(mObject, (method) &FrameLib_MaxClass_ToMax::toOutletExternal, 0.0, tag, size, output);
     }
     
     dealloc(output);
@@ -119,20 +130,40 @@ void FrameLib_MaxClass_ToMax::classInit(t_class *c, t_symbol *nameSpace, const c
 FrameLib_MaxClass_ToMax::FrameLib_MaxClass_ToMax(t_symbol *s, long argc, t_atom *argv)
     : FrameLib_MaxClass(s, argc, argv, new ToHostProxy(this))
 {
-    mOutlet = outlet_new(this, 0L);
+    unsigned long nStreams = getNumStreams();
+    
+    mOutlets.resize(nStreams);
+    
+    for (unsigned long i = nStreams; i > 0; i--)
+        mOutlets[i - 1] = outlet_new(this, 0L);
 }
 
 // To Outlet
 
 void FrameLib_MaxClass_ToMax::toOutlet(t_symbol *s, short ac, t_atom *av)
 {
+    long idx = atom_getlong(av) % mOutlets.size();
+    ac--;
+    
     if (!ac)
-        outlet_bang(mOutlet);
+        outlet_bang(mOutlets[idx]);
     else if (s)
-        outlet_anything(mOutlet, s, ac, av);
+        outlet_anything(mOutlets[idx], s, ac, av + 1);
     else
-        outlet_list(mOutlet, nullptr, ac, av);
+        outlet_list(mOutlets[idx], nullptr, ac, av + 1);
 }
+
+// Assist
+
+template<>
+void FrameLib_MaxClass_Expand<FrameLib_ToHost>::assist(void *b, long m, long a, char *s)
+{
+    if (m == ASSIST_OUTLET)
+        sprintf(s,"(message) Message Outlet %ld", a + 1);
+    else
+        sprintf(s,"(frame) %s", mObject->inputInfo(a).c_str());
+}
+
 
 // Main
 

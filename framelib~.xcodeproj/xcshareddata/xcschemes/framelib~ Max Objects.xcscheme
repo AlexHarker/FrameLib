@@ -1583,8 +1583,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B87E9DD11F8DAE820000886E"
-               BuildableName = "fl.multiselect~.mxo"
-               BlueprintName = "fl.multiselect~"
+               BuildableName = "fl.dispatch~.mxo"
+               BlueprintName = "fl.dispatch~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -95,8 +95,8 @@ public:
     FrameLib_SpinLock& operator=(const FrameLib_SpinLock&) = delete;
     
     bool attempt() { return compareAndSwap(mAtomicLock, false, true); }
-	void acquire() { while(attempt() == false); }
-	void release() { compareAndSwap(mAtomicLock, true, false); }
+    void acquire() { while(attempt() == false); }
+    void release() { compareAndSwap(mAtomicLock, true, false); }
     
 private:
     

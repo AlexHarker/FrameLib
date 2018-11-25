@@ -8,13 +8,13 @@ class FrameLib_Register final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-	enum ParameterList { kMode };
+    enum ParameterList { kMode };
     enum Modes { kStore, kPass };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
-	
+
     // Constructor
     
     FrameLib_Register(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);

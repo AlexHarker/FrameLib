@@ -129,7 +129,7 @@ public:
     const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
 
     FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
-    : FrameLib_Multistream(T::getType(), context, proxy, nStreams), mSerialisedParameters(serialisedParameters->size())
+    : FrameLib_Multistream(T::getType(), context, proxy, nStreams), mSerialisedParameters(serialisedParameters ? serialisedParameters->size() : 0)
     {
         // Make first block
         
@@ -161,7 +161,7 @@ public:
     
     // Fixed Inputs
     
-    void setFixedInput(unsigned long idx, double *input, unsigned long size) override
+    void setFixedInput(unsigned long idx, const double *input, unsigned long size) override
     {
         if (idx < mFixedInputs.size())
         {

@@ -10,12 +10,12 @@ class FrameLib_Join final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-	enum ParameterList { kNumIns, kTriggers };
+    enum ParameterList { kNumIns, kTriggers };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
-	
+
     // Constructor
 
     FrameLib_Join(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);

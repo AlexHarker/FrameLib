@@ -22,7 +22,7 @@ public:
     
     // Set Fixed Inputs
     
-    void setFixedInput(unsigned long idx, double *input, unsigned long size) override {};
+    void setFixedInput(unsigned long idx, const double *input, unsigned long size) override {};
     const double *getFixedInput(unsigned long idx, unsigned long *size) override { return getEmptyFixedInput(idx, size); }
     
     // Audio Processing
