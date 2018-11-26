@@ -22,7 +22,6 @@ class FrameLib_MaxClass_Info : public FrameLib_MaxClass_Expand<FrameLib_Info>
             length = mBuffer.get_length();
             samplingRate = mBuffer.get_sample_rate();
             chans = mBuffer.get_num_chans();
-            
         }
         
         void release() override

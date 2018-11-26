@@ -13222,7 +13222,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LLVM_LTO = NO;
-				VALID_ARCHS = x86_64;
+				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Development;
 		};
@@ -13265,7 +13265,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LLVM_LTO = NO;
-				VALID_ARCHS = x86_64;
+				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Deployment;
 		};
@@ -17397,7 +17397,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LLVM_LTO = NO;
-				VALID_ARCHS = x86_64;
+				VALID_ARCHS = "x86_64 i386";
 			};
 			name = "Public Testing";
 		};

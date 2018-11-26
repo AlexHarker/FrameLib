@@ -6,15 +6,17 @@
 FrameLib_Info::FrameLib_Info(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mProxy(dynamic_cast<Proxy *>(proxy))
 {
     mParameters.addString(kBuffer, "buffer", 0);
-        
+
     mParameters.set(serialisedParameters);
-    
+
     setParameterInput(1);
-    
-    assert(false == 0 && "False does not equal zero");
-    
+
+//    assert(false == 0 && "False does not equal zero");
+
     if (mProxy)
         mProxy->update(mParameters.getString(kBuffer));
+
+    setIO(1, 3);
 }
 
 // Info
@@ -63,34 +65,39 @@ void FrameLib_Info::process()
     double samplingRate     = 0.0;
     unsigned long length    = 0;
     unsigned long chans     = 0;
-    unsigned long size      = 3; // output size is fixed - we always get a vector of three values
-    
+    unsigned long size      = 1; // output size is 1 - 1 value per outlet
+
     // allocate inputs and outputs
-    
+
     requestOutputSize(0, size);
+    requestOutputSize(1, size);
+    requestOutputSize(2, size);
     allocateOutputs();
-    
-    double *output = getOutput(0, &size);
-    
+
+    double *output_0 = getOutput(0, &size);
+    double *output_1 = getOutput(1, &size);
+    double *output_2 = getOutput(2, &size);
+
     // Get buffer
     if (mProxy)
         mProxy->acquire(length, samplingRate, chans);
-    
+
     if (length != 0)
     {
-        output[0] = length;
-        output[1] = samplingRate;
-        output[2] = chans;
-        if (mProxy)
-            mProxy->release();
+        output_0[0] = length;
+        output_1[0] = samplingRate;
+        output_2[0] = chans;
+
     }
-    
+
     else // if not empty buffer produce results
     {
         // Zero output if no buffer or memory
-        zeroVector(output, size);
-        if (mProxy)
-            mProxy->release();
-    }
+        zeroVector(output_0, size);
+        zeroVector(output_1, size);
+        zeroVector(output_2, size);
 
+    }
+    if (mProxy)
+        mProxy->release();
 }

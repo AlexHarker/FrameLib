@@ -20,8 +20,6 @@ public:
         
         // Called prior and after reading
         
-        // acquire - should return the length in samples (or zero for an invalid buffer) / sampling rate should be set to that of the buffer if one exists
-        
         virtual void acquire(unsigned long& length, double& samplingRate, unsigned long& chans) = 0;
         virtual void release() = 0;
     };
