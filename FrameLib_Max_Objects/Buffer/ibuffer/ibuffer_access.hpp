@@ -13,7 +13,7 @@
  *
  *	The init routine should be called in an objects main function to setup the necessary variables.
  *	Use the ibuffer__get_ptr / ibuffer_info / ibuffer_sample_rate functions to get info about the ibuffer (or buffer).
- *	The buffer inuse field should be incremented and decremented beoore and after use using ibuffer_increment_inuse and ibuffer_decrement_inuse.
+ *	The buffer inuse field should be incremented and decremented before and after use using ibuffer_increment_inuse and ibuffer_decrement_inuse.
  *
  *	The main routines for accessing samples are then:
  *
