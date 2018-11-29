@@ -22,6 +22,7 @@
         "fl.modulo~"
     ],
     "Buffer": [
+        "fl.info~",
         "fl.read~"
     ],
     "Complex_Binary": [
