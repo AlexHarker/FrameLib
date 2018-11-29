@@ -6,10 +6,11 @@ class FrameLib_Info final : public FrameLib_Processor
 {
     // Parameter Info and Enums
     
-    enum ParameterList { kBuffer };
-
+    enum ParameterList { kBuffer, kUnits };
+    enum Units { kMS, kSeconds, kSamples };
+    
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
-
+    
 public:
     
     struct Proxy : virtual FrameLib_Proxy
@@ -33,7 +34,7 @@ public:
     std::string objectInfo(bool verbose) override;
     std::string inputInfo(unsigned long idx, bool verbose) override;
     std::string outputInfo(unsigned long idx, bool verbose) override;
-
+    
 private:
     
     // Process
@@ -44,6 +45,8 @@ private:
     // Data
     
     Proxy *mProxy;
-
+    Units mUnits;
+    
     static ParameterInfo sParamInfo;
 };
+
