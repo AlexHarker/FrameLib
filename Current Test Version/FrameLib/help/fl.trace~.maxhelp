@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 0,
+			"revision" : 2,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -50,7 +50,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -249,7 +249,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 10.0, 338.66668701171875, 209.333328247070312, 20.0 ],
-									"text" : "Parameter 5: delay (default: 0)"
+									"text" : "Parameter 5: /delay (default: 0)"
 								}
 
 							}
@@ -284,7 +284,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 10.0, 290.66668701171875, 209.333328247070312, 20.0 ],
-									"text" : "Parameter 4: position (default: 0)"
+									"text" : "Parameter 4: /position (default: 0)"
 								}
 
 							}
@@ -340,8 +340,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 10.0, 191.0, 246.0, 20.0 ],
-									"text" : "Parameter 2: buffer_size (default: 250000)"
+									"patching_rect" : [ 10.0, 191.0, 276.0, 20.0 ],
+									"text" : "Parameter 2: /buffer_size (default: 250000)"
 								}
 
 							}
@@ -444,7 +444,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -506,7 +506,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -625,7 +625,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 2,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
