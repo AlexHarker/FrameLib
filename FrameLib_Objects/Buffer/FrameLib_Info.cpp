@@ -43,8 +43,13 @@ std::string FrameLib_Info::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Info::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output Frame";
-}
+    switch (idx)
+    {
+        case 0: return "Buffer Size";
+        case 1: return "Sample Rate";
+        case 2: return "Channels";
+    }
+} 
 
 // Parameter Info
 
