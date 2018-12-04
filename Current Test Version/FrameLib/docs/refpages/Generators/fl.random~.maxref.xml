@@ -1,0 +1,54 @@
+<c74object category="Generators" module="FrameLib" name="fl.random~"> 
+ 
+    <digest> 
+        Generates frames of linearly distributed random values in the range [0-1].
+    </digest> 
+ 
+    <description> 
+         The size of the output is dependent on the mode. The output size may either be set as a parameter, or be set to match that of the triggering input.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /mode [enum]"> 
+            <description> 
+                Controls how the output length is determined: requested - the output frame size is set by the length parameter. input - the output frame size will match the input size.<br /> 
+                <bullet>[0] - requested</bullet> 
+                <bullet>[1] - input</bullet>
+            </description> 
+        </entry> 
+ 
+        <entry name="1. /length [int]"> 
+            <description> 
+                Sets the length of the output when the mode is set to requested. Set in the units specified by the units parameter.
+            </description> 
+        </entry> 
+ 
+        <entry name="2. /units [enum]"> 
+            <description> 
+                Sets the units for specified output lengths.<br /> 
+                <bullet>[0] - samples</bullet> 
+                <bullet>[1] - ms</bullet> 
+                <bullet>[2] - seconds</bullet>
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Generators</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

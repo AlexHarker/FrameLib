@@ -1006,8 +1006,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1072,7 +1072,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 79.0, 956.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 843.0, 783.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1101,7 +1101,6 @@
 						"subpatcher_template" : "default",
 						"showontab" : 1,
 						"title" : "Spectral Freeze",
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-17",
@@ -1734,8 +1733,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1800,7 +1799,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 71.0, 843.0, 783.0 ],
+						"rect" : [ 0.0, 26.0, 843.0, 783.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3128,8 +3127,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3541,8 +3540,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4294,8 +4293,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4342,7 +4341,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 843.0, 783.0 ],
+						"rect" : [ 0.0, 71.0, 843.0, 783.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4392,7 +4391,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 320.75, 394.0, 375.0, 74.0 ],
+									"patching_rect" : [ 320.75, 394.0, 376.0, 74.0 ],
 									"text" : "The fl.fft~ takes in a frame as an analysis window and outputs two frames containg the FFT analysis. The left output of fl.fft~ contains the real components and the right frame contains the imaginary. This is similar to the structure of the native fft~ object although there is no third frame produced containing the bin index information."
 								}
 
@@ -4406,7 +4405,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 3.75, 599.0, 837.0, 179.0 ],
-									"presentation_linecount" : 11,
 									"text" : "The first difference that might immediately concern you is how to determine the window size and overlap of your FFT calculation without the pfft~ arguments. A FrameLib frame already has a length and this is the window size. The rate that these frames are processed is the overlap. In the above example, we have a scheduler triggering fl.source~ to output 4096 samples every 2048 samples. 4096 is our window size, and 4096 / 2048 = 2, which gives a 2 times overlap. \n\nSecondly, there is no 'bin index' information present in the FFT of a FrameLib network. This information is carried directly in the frame by each value's position. The first bin of your FFT's real and imaginary values will be the first value in each frame and so on. This greatly simplifies processes that involve storing and synchronising FFT frames as you aren't reliant on that third inlet of fftin~ of native Max.\n\nLet's move on to the next tab to see a real use case."
 								}
 
@@ -4765,8 +4763,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4824,25 +4822,25 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-10::obj-23::obj-35" : [ "[1]", "Level", 0 ],
+			"obj-7::obj-8::obj-35" : [ "[11]", "Level", 0 ],
+			"obj-4::obj-40" : [ "live.gain~[1]", "Volume", 0 ],
 			"obj-10::obj-40" : [ "live.gain~", "Volume", 0 ],
-			"obj-4::obj-9::obj-35" : [ "[6]", "Level", 0 ],
-			"obj-7::obj-8::obj-21::obj-6" : [ "live.tab[11]", "live.tab[1]", 0 ],
 			"obj-10::obj-23::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
 			"obj-10::obj-9::obj-35" : [ "[5]", "Level", 0 ],
-			"obj-4::obj-23::obj-35" : [ "[7]", "Level", 0 ],
-			"obj-3::obj-23::obj-21::obj-6" : [ "live.tab[9]", "live.tab[1]", 0 ],
-			"obj-10::obj-9::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
-			"obj-3::obj-10" : [ "live.gain~[4]", "Volume", 0 ],
-			"obj-5::obj-23::obj-21::obj-6" : [ "live.tab[8]", "live.tab[1]", 0 ],
-			"obj-7::obj-8::obj-35" : [ "[11]", "Level", 0 ],
 			"obj-4::obj-9::obj-21::obj-6" : [ "live.tab[5]", "live.tab[1]", 0 ],
-			"obj-4::obj-40" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-5::obj-4" : [ "live.gain~[2]", "Volume", 0 ],
 			"obj-3::obj-23::obj-35" : [ "[8]", "Level", 0 ],
+			"obj-5::obj-4" : [ "live.gain~[2]", "Volume", 0 ],
 			"obj-4::obj-23::obj-21::obj-6" : [ "live.tab[6]", "live.tab[1]", 0 ],
 			"obj-5::obj-23::obj-35" : [ "[9]", "Level", 0 ],
 			"obj-7::obj-10" : [ "live.gain~[3]", "Volume", 0 ],
+			"obj-4::obj-9::obj-35" : [ "[6]", "Level", 0 ],
+			"obj-7::obj-8::obj-21::obj-6" : [ "live.tab[11]", "live.tab[1]", 0 ],
+			"obj-3::obj-10" : [ "live.gain~[4]", "Volume", 0 ],
+			"obj-4::obj-23::obj-35" : [ "[7]", "Level", 0 ],
+			"obj-3::obj-23::obj-21::obj-6" : [ "live.tab[9]", "live.tab[1]", 0 ],
+			"obj-10::obj-9::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
+			"obj-10::obj-23::obj-35" : [ "[1]", "Level", 0 ],
+			"obj-5::obj-23::obj-21::obj-6" : [ "live.tab[8]", "live.tab[1]", 0 ],
 			"parameterbanks" : 			{
 
 			}
@@ -4851,7 +4849,7 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "nativeFFT.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -4894,21 +4892,21 @@
 			}
 , 			{
 				"name" : "next_tut.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "basicFreeze.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "basicFreeze_pfft.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

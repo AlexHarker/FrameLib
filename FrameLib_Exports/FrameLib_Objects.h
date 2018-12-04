@@ -2,6 +2,10 @@
 #ifndef FRAMELIB_OBJECTS_H
 #define FRAMELIB_OBJECTS_H
 
+// Buffers
+
+#include "FrameLib_Read.h"
+
 // Host Communication
 
 #include "FrameLib_FromHost.h"

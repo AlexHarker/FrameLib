@@ -1,0 +1,39 @@
+<c74object category="Spatial" module="FrameLib" name="fl.coordinatesystem~"> 
+ 
+    <digest> 
+        Converts vectors of triples between cartesian and polar values.
+    </digest> 
+ 
+    <description> 
+         Inputs should either be a cartesian triple (x, y, x) or polar tripe (azimuth, elevation, radius). Missing values are assumed to be zeroes. Extra values are ignored and the output is also a triple.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /mode [instantiation enum]"> 
+            <description> 
+                Sets the conversion mode.<br /> 
+                <bullet>[0] - polar-&gt;cartesian</bullet> 
+                <bullet>[1] - cartesian-&gt;polar</bullet>
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Spatial</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

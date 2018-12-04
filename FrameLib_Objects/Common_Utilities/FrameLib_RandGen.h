@@ -50,8 +50,8 @@ private:
     // State
     
     uint32_t mIncrement;
-	uint32_t mCarry;
-	uint32_t mSTATE[CMWC_LAG_SIZE];
+    uint32_t mCarry;
+    uint32_t mSTATE[CMWC_LAG_SIZE];
 };
 
 #endif

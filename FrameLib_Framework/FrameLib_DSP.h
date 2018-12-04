@@ -125,7 +125,7 @@ public:
 
     // Set Fixed Inputs
     
-    void setFixedInput(unsigned long idx, double *input, unsigned long size) final;
+    void setFixedInput(unsigned long idx, const double *input, unsigned long size) final;
     const double *getFixedInput(unsigned long idx, unsigned long *size) final;
     
     // Audio Processing

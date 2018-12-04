@@ -221,7 +221,7 @@ public:
     
     // Set / Get Fixed Inputs
     
-    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size) = 0;
+    virtual void setFixedInput(unsigned long idx, const double *input, unsigned long size) = 0;
     virtual const double *getFixedInput(unsigned long idx, unsigned long *size) = 0;
 
     // Audio Processing

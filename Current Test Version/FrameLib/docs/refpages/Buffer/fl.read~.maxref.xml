@@ -1,0 +1,63 @@
+<c74object category="Buffer" module="FrameLib" name="fl.read~"> 
+ 
+    <digest> 
+        Reads from a buffer~ given an input frame of sample positions.
+    </digest> 
+ 
+    <description> 
+         There are different available interpolation types.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /buffer [string]"> 
+            <description> 
+                Sets the buffer~ name to use.
+            </description> 
+        </entry> 
+ 
+        <entry name="1. /chan [int]"> 
+            <description> 
+                Sets the buffer~ channel to use.
+            </description> 
+        </entry> 
+ 
+        <entry name="2. /interp [enum]"> 
+            <description> 
+                Sets the interpolation mode: hermite - cubic hermite interpolation. bspline - cubic bspline interpolation. lagrange - cubic lagrange interpolation. linear - linear interpolation.<br /> 
+                <bullet>[0] - hermite</bullet> 
+                <bullet>[1] - bspline</bullet> 
+                <bullet>[2] - lagrange</bullet> 
+                <bullet>[3] - linear</bullet> 
+                <bullet>[4] - none</bullet>
+            </description> 
+        </entry> 
+ 
+        <entry name="3. /units [enum]"> 
+            <description> 
+                Sets the units for the position input.<br /> 
+                <bullet>[0] - ms</bullet> 
+                <bullet>[1] - seconds</bullet> 
+                <bullet>[2] - samples</bullet>
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Buffer</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

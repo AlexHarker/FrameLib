@@ -1,0 +1,43 @@
+<c74object category="Time_Smoothing" module="FrameLib" name="fl.ewma~"> 
+ 
+    <digest> 
+        Calculates a per sample exponentially weighted moving average.
+    </digest> 
+ 
+    <description> 
+         Averaging takes a parameter alpha to determine the rate of change. This parameter can be set differently for increasing and decreasing values. Frames are expected to be of uniform size, otherwise the object will reset. The output is the same size as the input.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /alpha_up [double]"> 
+            <description> 
+                Sets the alpha value for weighting when the input is increasing.
+            </description> 
+        </entry> 
+ 
+        <entry name="1. /alpha_down [double]"> 
+            <description> 
+                Sets the alpha value for weighting when the input is decreasing.
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Time_Smoothing</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

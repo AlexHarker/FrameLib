@@ -28,14 +28,13 @@ std::string FrameLib_Reverse::outputInfo(unsigned long idx, bool verbose)
 
 void FrameLib_Reverse::process()
 {
-	unsigned long size;
-	const double *input = getInput(0, &size);
+    unsigned long size;
+    const double *input = getInput(0, &size);
 
-	requestOutputSize(0, size);
-	allocateOutputs();
+    requestOutputSize(0, size);
+    allocateOutputs();
 
-	double *output = getOutput(0, &size);
+    double *output = getOutput(0, &size);
 
     std::reverse_copy(input, input+size, output);
-
 }

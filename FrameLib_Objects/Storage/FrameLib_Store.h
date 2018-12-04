@@ -8,12 +8,12 @@ class FrameLib_Store final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-	enum ParameterList { kName };
+    enum ParameterList { kName };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
-	
+
     // Constructor / Destructor
 
     FrameLib_Store(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);

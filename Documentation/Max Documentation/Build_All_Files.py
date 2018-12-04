@@ -3,13 +3,19 @@ import parse_to_qlookup
 import parse_to_tlookup
 import create_category_database
 import create_tutorial_coll
+import edit_raw_XML
 
 def main():
     
     print('*' * 40)
     print('Building Category Database')
     create_category_database.main()
+    print(' ' * 40)
+
     print('*' * 40)
+    print('Editing XML Files')
+    edit_raw_XML.main()
+    print(' ' * 40)
 
     print('*' * 40)
     print('Building dlookup')

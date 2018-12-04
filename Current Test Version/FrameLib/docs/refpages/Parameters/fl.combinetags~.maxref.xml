@@ -1,0 +1,37 @@
+<c74object category="Parameters" module="FrameLib" name="fl.combinetags~"> 
+ 
+    <digest> 
+        Combines a number of tagged input frames into a single tagged output frame.
+    </digest> 
+ 
+    <description> 
+         The number of inputs is set using a parameter.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /num_ins [instantiation int]"> 
+            <description> 
+                Sets the number of inputs.
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Parameters</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

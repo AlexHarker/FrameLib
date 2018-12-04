@@ -1,4 +1,13 @@
 {
+    "fl.wrap~": {
+        "digest": "Wraps the incoming frame into the range delimited by the low and high parameters.."
+    },
+    "fl.fold~": {
+        "digest": "Folds the incoming frame into the range delimited by the low and high parameters."
+    },
+    "fl.clip~": {
+        "digest": "Clips the incoming frame to the range delimited by the low and high parameters.."
+    },
     "fl.onepolezero~": {
         "digest": "Filters input frames using a one pole, one zero filter."
     },
@@ -14,11 +23,167 @@
     "fl.onepole~": {
         "digest": "Filters input frames using a one pole filter."
     },
+    "fl.lookup~": {
+        "digest": "Use one frame as a lookup table for another."
+    },
+    "fl.convert~": {
+        "digest": "Converts the input vector with the specified conversion."
+    },
+    "fl.constant~": {
+        "digest": "Outputs the specified useful constant."
+    },
+    "fl.map~": {
+        "digest": "Maps values in the input via a given scaling to corresponding output values."
+    },
+    "fl.samplerate~": {
+        "digest": "Convert values based on the sample rate / Output a value based on the sampling rate value."
+    },
+    "fl.exp2~": {
+        "digest": "Calculates the exponent base 2 (2 to the power of) of each value in the input frame."
+    },
+    "fl.asinh~": {
+        "digest": "Calculates the hyperbolic arcsine of each value in the input frame."
+    },
+    "fl.log~": {
+        "digest": "Calculates the logarithm base e of each value in the input frame."
+    },
+    "fl.erf~": {
+        "digest": "Calculates the error function of each value in the input frame."
+    },
+    "fl.exp~": {
+        "digest": "Calculates the exponent base e (e to the power of) of each value in the input frame."
+    },
+    "fl.sin~": {
+        "digest": "Calculates the sine (for arguments in radians) of each value in the input frame."
+    },
+    "fl.log2~": {
+        "digest": "Calculates the logarithm base 2 of each value in the input frame."
+    },
+    "fl.asin~": {
+        "digest": "Calculates the arcsine (in radians) of each value in the input frame."
+    },
+    "fl.acos~": {
+        "digest": "Calculates the arccosine (in radians) of each value in the input frame."
+    },
+    "fl.cos~": {
+        "digest": "Calculates the cosine (for arguments in radians) of each value in the input frame."
+    },
+    "fl.sinh~": {
+        "digest": "Calculates the hyperbolic sine of each value in the input frame."
+    },
+    "fl.floor~": {
+        "digest": "Calculates the floor value of each value in the input frame."
+    },
+    "fl.trunc~": {
+        "digest": "Calculates the truncated value of each value in the input frame."
+    },
+    "fl.log10~": {
+        "digest": "Calculates the logarithm base 10 of each value in the input frame."
+    },
+    "fl.atanh~": {
+        "digest": "Calculates the hyperbolic arctangent of each value in the input frame."
+    },
+    "fl.sqrt~": {
+        "digest": "Calculates the square root of each value in the input frame."
+    },
+    "fl.acosh~": {
+        "digest": "Calculates the hyperbolic arccosine of each value in the input frame."
+    },
+    "fl.tan~": {
+        "digest": "Calculates the tangent (for arguments in radians) of each value in the input frame."
+    },
+    "fl.not~": {
+        "digest": "Calculates the logical not of each value in the input frame."
+    },
+    "fl.atan~": {
+        "digest": "Calculates the arctangent (in radians) of each value in the input frame."
+    },
+    "fl.tanh~": {
+        "digest": "Calculates the hyperbolic tangent of each value in the input frame."
+    },
+    "fl.erfc~": {
+        "digest": "Calculates the complimentary error function of each value in the input frame."
+    },
+    "fl.abs~": {
+        "digest": "Calculates the absolute value of each value in the input frame."
+    },
+    "fl.round~": {
+        "digest": "Calculates the rounded value of each value in the input frame."
+    },
+    "fl.cbrt~": {
+        "digest": "Calculates the cube root of each value in the input frame."
+    },
+    "fl.cosh~": {
+        "digest": "Calculates the hyperbolic cosine of each value in the input frame."
+    },
+    "fl.ceil~": {
+        "digest": "Calculates the ceiling value of each value in the input frame."
+    },
     "fl.tomax~": {
-        "digest": "Turn frames into Max messages."
+        "digest": "Turn frames into host messages. The maximum length of the output message may be limited by the host environment."
     },
     "fl.frommax~": {
-        "digest": "Turn Max messages into frames."
+        "digest": "Turn host messages into frames."
+    },
+    "fl.ewmsd~": {
+        "digest": "Calculates a per sample exponentially weighted moving standard deviation."
+    },
+    "fl.timemedian~": {
+        "digest": "Outputs the median per sample over a given number of frames."
+    },
+    "fl.framedelta~": {
+        "digest": "Outputs the delta between two consecutive frames."
+    },
+    "fl.lag~": {
+        "digest": "Outputs vector-type frames with a lag set as an integer number of frames."
+    },
+    "fl.ewma~": {
+        "digest": "Calculates a per sample exponentially weighted moving average."
+    },
+    "fl.timemean~": {
+        "digest": "Outputs the mean per sample over a given number of frames."
+    },
+    "fl.timestddev~": {
+        "digest": "Outputs the standard deviation per sample over a given number of frames."
+    },
+    "fl.sink~": {
+        "digest": "Outputs audio frames to the host environment by pasting them into an overlap-add buffer."
+    },
+    "fl.trace~": {
+        "digest": "Outputs audio frames (or values from the frame) to the host environment without overlapping, continuing the last value till a new frame arrives."
+    },
+    "fl.source~": {
+        "digest": "Captures audio from the host environment and outputs the most recent values as frames."
+    },
+    "fl.timedelta~": {
+        "digest": "Calculates the time interval between consecutive incoming frames."
+    },
+    "fl.timer~": {
+        "digest": "Calculates the time elapsed between trigger frame inputs and the subsequent reset frame."
+    },
+    "fl.now~": {
+        "digest": "Outputs the current time."
+    },
+    "fl.ticks~": {
+        "digest": "Counts how many frames have passed up to a specified value (0 based).."
+    },
+    "fl.convolve~": {
+        "digest": "Convolve two input frames, (using frequency domain processing internally)."
+    },
+    "fl.multitaper~": {
+        "digest": "Calculates the multitaper power spectrum of a real input using the cosine tapers."
+    },
+    "fl.correlate~": {
+        "digest": "Calculate the correlation of two input frames, (using frequency domain processing internally)."
+    },
+    "fl.fft~": {
+        "digest": "Calculate the real Fast Fourier Transform of an input frame."
+    },
+    "fl.ifft~": {
+        "digest": "Calculate the inverse real Fast Fourier Transform of two input frames (comprising the real and imaginary values)."
+    },
+    "fl.window~": {
+        "digest": "Multiplies the incoming frame against a specified window."
     },
     "fl.store~": {
         "digest": "Stores a vector frame in named memory for recall."
@@ -28,6 +193,90 @@
     },
     "fl.recall~": {
         "digest": "Recall a vector frame from named memory for use."
+    },
+    "fl.complexsinh~": {
+        "digest": "Calculates the hyperbolic sine of each complex value at the inputs."
+    },
+    "fl.complextan~": {
+        "digest": "Calculates the tangent (for arguments in radians) of each complex value at the inputs."
+    },
+    "fl.poltocar~": {
+        "digest": "Converts from polar values at the input to cartesian values at output."
+    },
+    "fl.complexcos~": {
+        "digest": "Calculates the cosine (for arguments in radians) of each complex value at the inputs."
+    },
+    "fl.complexsin~": {
+        "digest": "Calculates the sine (for arguments in radians) of each complex value at the inputs."
+    },
+    "fl.complexcosh~": {
+        "digest": "Calculates the hyperbolic cosine of each complex value at the inputs."
+    },
+    "fl.complexlog10~": {
+        "digest": "Calculates the logarithm base 10 of each complex value at the inputs."
+    },
+    "fl.complextanh~": {
+        "digest": "Calculates the hyperbolic tangent of each complex value at the inputs."
+    },
+    "fl.complexconj~": {
+        "digest": "Calculates the complex conjugate of each complex value at the inputs."
+    },
+    "fl.complexexp~": {
+        "digest": "Calculates the exponent base e (e to the power of) of each complex value at the inputs."
+    },
+    "fl.complexlog~": {
+        "digest": "Calculates the logarithm base e of each complex value at the inputs."
+    },
+    "fl.complexsqrt~": {
+        "digest": "Calculates the square root of each complex value at the inputs."
+    },
+    "fl.cartopol~": {
+        "digest": "Converts from cartesian values at the input to polar values at output."
+    },
+    "fl.unpack~": {
+        "digest": "Unpacks multi-stream input into individual streams."
+    },
+    "fl.streamid~": {
+        "digest": "Outputs consecutively numbered stream ids for each stream of a multi-stream connection when triggered."
+    },
+    "fl.pack~": {
+        "digest": "Packs multiple frame streams into a multi-stream output."
+    },
+    "fl.complexexpr~": {
+        "digest": "Applies a mathematical expression to complex pairs of inputs."
+    },
+    "fl.expr~": {
+        "digest": "Applies a mathematical expression to the inputs."
+    },
+    "fl.filtertags~": {
+        "digest": "Filters tagged frames into two parts given a number of tags."
+    },
+    "fl.getparam~": {
+        "digest": "Retrieves parameter values from a connected object."
+    },
+    "fl.tag~": {
+        "digest": "Tags vectors with names ready to send to the parameter input of an object, or for routing purposes."
+    },
+    "fl.untag~": {
+        "digest": "Separates vectors from a tagged frame according to a given set of tags."
+    },
+    "fl.combinetags~": {
+        "digest": "Combines a number of tagged input frames into a single tagged output frame."
+    },
+    "fl.complexminus~": {
+        "digest": "Subtracts the right complex pair of input frame values from the left complex pair of input frame values."
+    },
+    "fl.complexdivide~": {
+        "digest": "Divides the left complex pair of input frame values by the right complex pair of input frame values."
+    },
+    "fl.complexmultiply~": {
+        "digest": "Multiplies complexvalues in the two sets of input frames."
+    },
+    "fl.complexpow~": {
+        "digest": "Calculates left complex pair of input frame values to the power of right complex pair of input frame values."
+    },
+    "fl.complexplus~": {
+        "digest": "Adds complex values in the two sets of input frames."
     },
     "fl.copysign~": {
         "digest": "Outputs a frame with the magnitude values of the left input frame and the sign values of right input frame."
@@ -51,7 +300,7 @@
         "digest": "Divides the left input frame values by the right input frame values."
     },
     "fl.minus~": {
-        "digest": "Subtracts the right input frame from the left input frame."
+        "digest": "Subtracts the right input frame values from the left input frame values."
     },
     "fl.pow~": {
         "digest": "Calculates left input frame values to the power of right input frame values."
@@ -90,7 +339,7 @@
         "digest": "Calculates the minimums of pairs of values in the two input frames."
     },
     "fl.uniform~": {
-        "digest": "Generates frames of a single (uniform) value:"
+        "digest": "Generates frames consisting of a single (uniform) value."
     },
     "fl.random~": {
         "digest": "Generates frames of linearly distributed random values in the range [0-1]."
@@ -101,11 +350,23 @@
     "fl.ramp~": {
         "digest": "Generates frames that consist of linear ramps from [0-x]."
     },
+    "fl.route~": {
+        "digest": "Routes input frames to one of a number of outputs."
+    },
+    "fl.select~": {
+        "digest": "Selects between a number of input frame streams."
+    },
+    "fl.spatial~": {
+        "digest": "Generates multiplication factors for a number of speakers from an input coordinate triple."
+    },
+    "fl.coordinatesystem~": {
+        "digest": "Converts vectors of triples between cartesian and polar values."
+    },
     "fl.argmin~": {
-        "digest": "Calculates the index of the minimum of the input frame."
+        "digest": "Calculates the index of the minimum value of the input frame."
     },
     "fl.sort~": {
-        "digest": "Sorts an input frame in ascending or descending order."
+        "digest": "Sorts an input frame in ascending or descending order.."
     },
     "fl.shift~": {
         "digest": "Shifts an input frame either with padding, or cyclically."
@@ -126,13 +387,16 @@
         "digest": "Median filter an input frame."
     },
     "fl.percentile~": {
-        "digest": "Calculates any percentile of an input frame."
+        "digest": "Calculates any percentile (for example the median at 50%) of an input frame."
     },
     "fl.kurtosis~": {
         "digest": "Calculates the kurtosis of the input frame."
     },
+    "fl.nonzero~": {
+        "digest": "Outputs indices that are non-zero."
+    },
     "fl.vmin~": {
-        "digest": "Calculates the minimum of the input frame."
+        "digest": "Calculates the minimum value of the input frame."
     },
     "fl.flatness~": {
         "digest": "Calculates the flatness of the input frame."
@@ -147,7 +411,7 @@
         "digest": "Calculates the length of the input frame."
     },
     "fl.argmax~": {
-        "digest": "Calculates the index of the maximum of the input frame."
+        "digest": "Calculates the index of the maximum value of the input frame."
     },
     "fl.mean~": {
         "digest": "Calculates the mean of the input frame."
@@ -156,10 +420,10 @@
         "digest": "Calculates the rms of the input frame."
     },
     "fl.pad~": {
-        "digest": "Pads an input frame with a fixed value at either the start, the end, or both."
+        "digest": "Pads an input frame with a fixed value at either the start the end, or both."
     },
     "fl.reverse~": {
-        "digest": "Reverses the order of a single frame's contents."
+        "digest": "Reverses the order of a single frame's contents.."
     },
     "fl.sum~": {
         "digest": "Calculates the sum of the input frame."
@@ -168,10 +432,10 @@
         "digest": "Replaces or removes NaNs in a vector."
     },
     "fl.vmax~": {
-        "digest": "Calculates the maximum of the input frame."
+        "digest": "Calculates the maximum value of the input frame."
     },
     "fl.split~": {
-        "digest": "Splits input frames into two parts, given a specificed split point."
+        "digest": "Splits input frames into two parts, given a specified split point."
     },
     "fl.subframe~": {
         "digest": "Output part of an input frame."
@@ -192,10 +456,10 @@
         "digest": "Calculates the spread of the input frame."
     },
     "fl.perblock~": {
-        "digest": "Schedules one frame at the start of each of Max's audio blocks."
+        "digest": "Schedules one frame at the start of each of the hosts audio blocks."
     },
     "fl.once~": {
-        "digest": "Schedules one frame at the beginning of time."
+        "digest": "Schedules one frame at the begining of time, lasting forever."
     },
     "fl.audiotrigger~": {
         "digest": "Translates non-zero samples into trigger frames."
@@ -205,5 +469,8 @@
     },
     "fl.interval~": {
         "digest": "Schedules frames at regular intervals, which can be adjusted using the interval parameter."
+    },
+    "fl.read~": {
+        "digest": "Reads from a buffer~ given an input frame of sample positions."
     }
 }

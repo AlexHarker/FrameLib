@@ -8,13 +8,13 @@ class FrameLib_Pad final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-	enum ParameterList { kPadding, kStart, kEnd, kUnits };
+    enum ParameterList { kPadding, kStart, kEnd, kUnits };
     enum Units { kSamples, kRatio };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
-	
+
     // Constructor
     
     FrameLib_Pad(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
