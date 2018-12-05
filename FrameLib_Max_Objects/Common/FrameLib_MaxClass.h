@@ -10,7 +10,6 @@
 
 #include <string>
 #include <vector>
-#include <boost/format.hpp>
 #include <iostream>
 #include <fstream>
 
@@ -796,7 +795,10 @@ public:
         myfile << "<?xml version='1.0' encoding='utf-8' standalone='yes'?> \n" ;
         myfile << "<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?> \n \n" ;
         
-        myfile << boost::format("<c74object name='%1%' module='FrameLib' category='%2%'> \n \n") % object_classname(mUserObject)->s_name % object_category;
+        // myfile << boost::format("<c74object name='%1%' module='FrameLib' category='%2%'> \n \n") % object_classname(mUserObject)->s_name % object_category;
+        
+        myfile << "<c74object name='" << object << "' " << "module='FrameLib' " << "category=" << "'" << object_category << std::string("'> ") << "\n \n";
+        
         
         while (ac--)
         {
@@ -870,14 +872,20 @@ public:
                     if (defaultStr.size()) {
                         // object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str(), defaultStr.c_str());
                         
-                        myfile << boost::format("%4%<entry name = '%1%. /%2% [%3%]'> \n") % param_num % params->getName(i) % params->getTypeString(i) % tab_2;
+                        // myfile << boost::format("%4%<entry name = '%1%. /%2% [%3%]'> \n") % param_num % params->getName(i) % params->getTypeString(i) % tab_2;
+                        
+                        myfile << tab_2 + "<" + "entry name = " + "'" + param_num + ". " + "/" + params->getName(i) + sp + "[" + params->getTypeString(i) + "]' " + "\n";
                     }
                     else {
                         // object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str());
-                        myfile << boost::format("%4%<entry name = '%1%. /%2% [%3%]'> \n") % param_num % params->getName(i) % params->getTypeString(i) % tab_2;
+                        
+                        // myfile << boost::format("%4%<entry name = '%1%. /%2% [%3%]'> \n") % param_num % params->getName(i) % params->getTypeString(i) % tab_2;
+                        
+                        myfile << tab_2 + "<" + "entry name = " + "'" + param_num + ". " + "/" + params->getName(i) + sp + "[" + params->getTypeString(i) + "]' " + "\n";
                     }
                     // Construct the description
-                    myfile << boost::format("%1%<description> \n") % tab_3;
+                    // myfile << boost::format("%1%<description> \n") % tab_3;
+                    myfile << tab_3 + "<description> \n";
                     myfile << tab_4 + params->getInfo(i);
                     // Verbose - arguments, range (for numeric types), enum items (for enums), array sizes (for arrays), description
                     if (verbose)
@@ -903,9 +911,15 @@ public:
                                 // object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j).c_str());
                                 std::string enum_param_num = std::to_string(j);
                                 if (j == params->getMax(i))
-                                    myfile << boost::format("%3%<bullet>[%1%] - %2%</bullet>") % enum_param_num % params->getItemString(i, j) % tab_4;
+                                    // myfile << boost::format("%3%<bullet>[%1%] - %2%</bullet>") % enum_param_num % params->getItemString(i, j) % tab_4;
+                                
+                                    myfile << tab_4 + "<bullet>[" + enum_param_num + "]" + " - " + params->getItemString(i, j) + "</bullet>";
+                                    
                                 else if (j != params->getMax(i))
-                                    myfile << boost::format("%3%<bullet>[%1%] - %2%</bullet> \n") % enum_param_num % params->getItemString(i, j) % tab_4;
+                                    // myfile << boost::format("%3%<bullet>[%1%] - %2%</bullet> \n") % enum_param_num % params->getItemString(i, j) % tab_4;
+                                    
+                                    myfile << tab_4 + "<bullet>[" + enum_param_num + "]" + " - " + params->getItemString(i, j) + "</bullet> \n";
+                                
                                 
                             }
                         }
@@ -930,7 +944,8 @@ public:
             myfile << tab_1 + "<metadatalist> \n";
             myfile << tab_2 + "<metadata name='author'>Alex Harker</metadata> \n";
             myfile << tab_2 + "<metadata name='tag'>FrameLib</metadata> \n";
-            myfile << boost::format("%2%<metadata name='tag'>%1%</metadata> \n") % object_category % tab_2;
+            // myfile << boost::format("%2%<metadata name='tag'>%1%</metadata> \n") % object_category % tab_2;
+            myfile << tab_2 + "<metadata name='tag'>" + object_category + "</metadata> \n";
             myfile << tab_1 + "</metadatalist> \n \n";
             
             // Seealso //
