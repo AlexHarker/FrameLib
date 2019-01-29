@@ -64,7 +64,7 @@ template <class T> void sortAscending(T *data, unsigned long size)
 
 template <class T> void sortDescending(T *data, unsigned long size)
 {
-	sortVector<std::less<T>>(data, size);
+    sortVector<std::less<T>>(data, size);
 }
 
 template <class T> void sortAscending(T *output, const T *input, unsigned long size)

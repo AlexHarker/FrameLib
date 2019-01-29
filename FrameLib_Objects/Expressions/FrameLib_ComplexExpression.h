@@ -20,7 +20,7 @@ class FrameLib_ComplexExpression : public FrameLib_Block
 
     // Internal Classes
     
-    struct Parser : public FrameLib_ExprParser<std::complex<double>>
+    struct Parser : public FrameLib_ExprParser::Parser<std::complex<double>>
     {
         Parser();
     };
@@ -91,8 +91,8 @@ public:
     
     // Fixed inputs are dealt with either by the input processor or by the constant object
     
-    void setFixedInput(unsigned long idx, double *input, unsigned long size) override    { mFixedInputNode->setFixedInput(idx, input, size); }
-    const double *getFixedInput(unsigned long idx, unsigned long *size) override         { return mFixedInputNode->getFixedInput(idx, size); }
+    void setFixedInput(unsigned long idx, const double *input, unsigned long size) override     { mFixedInputNode->setFixedInput(idx, input, size); }
+    const double *getFixedInput(unsigned long idx, unsigned long *size) override                { return mFixedInputNode->getFixedInput(idx, size); }
     
     // Audio Processing
     

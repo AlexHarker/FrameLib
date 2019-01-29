@@ -51,7 +51,7 @@ class FrameLib_Resonant final : public FrameLib_Processor
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
-	
+
     // Constructor
     
     FrameLib_Resonant(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);

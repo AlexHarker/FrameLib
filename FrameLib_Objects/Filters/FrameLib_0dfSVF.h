@@ -54,7 +54,7 @@ class FrameLib_0dfSVF final : public FrameLib_Processor
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
-	
+
     FrameLib_0dfSVF(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info

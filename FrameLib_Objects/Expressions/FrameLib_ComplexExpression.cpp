@@ -7,7 +7,7 @@
 // Specialisations to allow implicit multiples of i for complex numbers
 
 template<>
-const char *FrameLib_ExprParser<std::complex<double>>::extentNumber(const char *expr)
+const char *FrameLib_ExprParser::Parser<std::complex<double>>::extentNumber(const char *expr)
 {
     if (isDigit(*expr))
     {
@@ -21,7 +21,7 @@ const char *FrameLib_ExprParser<std::complex<double>>::extentNumber(const char *
 }
 
 template<>
-std::complex<double> FrameLib_ExprParser<std::complex<double>>::convertTextToNumber(const char* text)
+std::complex<double> FrameLib_ExprParser::Parser<std::complex<double>>::convertTextToNumber(const char* text)
 {
     if (text[strlen(text) - 1] == 'i')
     {
@@ -37,7 +37,7 @@ std::complex<double> FrameLib_ExprParser<std::complex<double>>::convertTextToNum
 // Function/Operator Templates
 
 template <typename Op>
-struct UnaryOperation final : public OpBase<std::complex<double>>
+struct UnaryOperation final : public FrameLib_ExprParser::OpBase<std::complex<double>>
 {
     typedef std::complex<double> complex;
     
@@ -53,7 +53,7 @@ struct UnaryOperation final : public OpBase<std::complex<double>>
 };
 
 template <typename Op>
-struct BinaryOperation final : public OpBase<std::complex<double>>
+struct BinaryOperation final : public FrameLib_ExprParser::OpBase<std::complex<double>>
 {
     typedef std::complex<double> complex;
 
@@ -72,7 +72,7 @@ struct BinaryOperation final : public OpBase<std::complex<double>>
 
 static std::complex<double> negate(const std::complex<double>& a) { return -a; }
 
-FrameLib_ComplexExpression::Parser::Parser() : FrameLib_ExprParser(3)
+FrameLib_ComplexExpression::Parser::Parser() : FrameLib_ExprParser::Parser<std::complex<double>>(3)
 {
     // Default Return Constant
 
@@ -285,8 +285,9 @@ void FrameLib_ComplexExpression::ConstantOut::process()
 
 FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mParameters(context, proxy, &sParamInfo)
 {
-    typedef Graph<std::complex<double>> Graph;
+    typedef FrameLib_ExprParser::Graph<std::complex<double>> Graph;
     typedef FrameLib_Block::Connection Connection;
+    using namespace FrameLib_ExprParser;
     
     mParameters.addString(kExpression, "expr", 0);
     mParameters.setInstantiation();

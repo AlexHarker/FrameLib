@@ -15,7 +15,7 @@ class FrameLib_Convolve final : public FrameLib_Processor, private Spectral
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
-	
+
     // Constructor / Destructor
     
     FrameLib_Convolve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
@@ -31,7 +31,7 @@ private:
     // Process
     
     void process() override;
-	
+
 private:
     
     // Data

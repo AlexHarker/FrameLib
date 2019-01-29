@@ -8,14 +8,14 @@ class FrameLib_Shift final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-	enum ParameterList { kShift, kPadding, kMode, kUnits };
+    enum ParameterList { kShift, kPadding, kMode, kUnits };
     enum Modes { kPad, kWrap };
     enum Units { kSamples, kRatio };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
-	
+
     // Constructor
 
     FrameLib_Shift(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);

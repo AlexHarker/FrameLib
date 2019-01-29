@@ -11,7 +11,7 @@ class FrameLib_Window final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-	enum ParameterList { kWindowType, kSize, kSqrt, kCompensation, kEndPoints };
+    enum ParameterList { kWindowType, kSize, kSqrt, kCompensation, kEndPoints };
     enum Compensation { kOff, kLinear, kPower, kPowerOverLinear };
     enum EndPoints { kFirst, kLast, kBoth, kNone };
     enum WindowTypes { kHann, kHamming, kTriangle, kCosine, kBlackman, kBlackman62, kBlackman70, kBlackman74, kBlackman92, kBlackmanHarris, kFlatTop, kRectangle };
@@ -19,7 +19,7 @@ class FrameLib_Window final : public FrameLib_Processor
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
-	
+
     // Constructor / Destructor
     
     FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
@@ -30,9 +30,9 @@ public:
     std::string objectInfo(bool verbose) override;
     std::string inputInfo(unsigned long idx, bool verbose) override;
     std::string outputInfo(unsigned long idx, bool verbose) override;
-	
+
 private:
-	
+
     // Helpers
     
     void updateWindow (unsigned long inSize, EndPoints ends);
@@ -41,7 +41,7 @@ private:
     // Process
     
     void process() override;
-	
+
 private:
 
     struct WindowCalculator : public WindowFunctions<double *, WindowTypes>

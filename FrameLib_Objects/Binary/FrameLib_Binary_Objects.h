@@ -6,7 +6,7 @@
 
 // Absolute diff functor
 
-namespace
+namespace FrameLib_Binary_Ops
 {
     struct absDiff { double operator()(double x, double y) { return std::abs(x-y); } };
 }
@@ -51,7 +51,7 @@ template<> inline const char *FrameLib_BinaryOp<std::logical_and<double>>::getDe
 template<> inline const char *FrameLib_BinaryOp<std::logical_or<double>>::getDescriptionString()
 { return "Calculates the logical or of the left and right input frame values"; }
 
-template<> inline const char *FrameLib_BinaryOp<absDiff>::getDescriptionString()
+template<> inline const char *FrameLib_BinaryOp<FrameLib_Binary_Ops::absDiff>::getDescriptionString()
 { return "Calculates the absolute differences between values in the two input frames"; }
 
 
@@ -72,7 +72,7 @@ typedef FrameLib_BinaryOp<std::less_equal<double>>      FrameLib_LessThanEqual;
 typedef FrameLib_BinaryOp<std::logical_and<double>>     FrameLib_LogicalAnd;
 typedef FrameLib_BinaryOp<std::logical_or<double>>      FrameLib_LogicalOr;
 
-typedef FrameLib_BinaryOp<absDiff>                      FrameLib_Diff;
+typedef FrameLib_BinaryOp<FrameLib_Binary_Ops::absDiff> FrameLib_Diff;
 
 // Binary (functions)
 
