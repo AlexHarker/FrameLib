@@ -1494,6 +1494,13 @@ private:
                     serialisedParameters.write(sym->s_name + 1, values.data(), values.size());
                 }
             }
+            else
+            {
+                // Advance to next tag
+                
+                for ( ; i < argc && !isTag(argv + i); i++);
+            }
+                
         }
     }
     
@@ -1514,7 +1521,7 @@ private:
         if (argsMode == kAllInputs || argsMode == kDistribute)
         {
             i = parseNumericalList(values, argv, argc, 0);
-            if(argsMode == kAllInputs)
+            if (argsMode == kAllInputs)
             {
                 for (unsigned long j = 0; i && j < getNumIns(); j++)
                     mObject->setFixedInput(j, values.data(), values.size());
@@ -1542,6 +1549,9 @@ private:
                 i = parseNumericalList(values, argv, argc, i + 1);
                 mObject->setFixedInput(inputNumber(sym), values.data(), values.size());
             }
+            
+            if ((i + 1) >= argc)
+                break;
         }
     }
 
