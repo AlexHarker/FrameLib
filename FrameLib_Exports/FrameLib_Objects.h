@@ -57,6 +57,7 @@
 // Schedulers
 
 #include "FrameLib_AudioTrigger.h"
+#include "FrameLib_Chain.h"
 #include "FrameLib_Future.h"
 #include "FrameLib_Interval.h"
 #include "FrameLib_Once.h"

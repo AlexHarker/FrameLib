@@ -47,13 +47,14 @@ FrameLib_Future::ParameterInfo FrameLib_Future::sParamInfo;
 FrameLib_Future::ParameterInfo::ParameterInfo()
 {
     add("Sets the time of the next frame.");
-    add("Sets the time units used to set the interval between frames.");
+    add("Sets the time units.");
+    add("Sets the mode for timings (relative or absolute)");
 }
 
 void FrameLib_Future::calculateTime()
 {
     FrameLib_TimeFormat time = mParameters.getValue(kTime);
-    FrameLib_TimeFormat now = getCurrentTime();
+    FrameLib_TimeFormat offset = mParameters.getInt(kMode) ? getCurrentTime() : FrameLib_TimeFormat(1);
     
     switch (static_cast<Units>(mParameters.getValue(kUnits)))
     {
@@ -61,13 +62,8 @@ void FrameLib_Future::calculateTime()
         case kSeconds:  time = secondsToSamples(time);      break;
         case kSamples:  break;
     }
-    
-    if (mParameters.getInt(kMode))
-        time += now;
-    else
-        time += FrameLib_TimeFormat(1);
-   
-    mTime = time;
+
+    mTime = time + offset;
 }
 
 void FrameLib_Future::update()
