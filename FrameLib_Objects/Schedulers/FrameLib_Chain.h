@@ -1,6 +1,6 @@
 
-#ifndef FRAMELIB_FUTURE_H
-#define FRAMELIB_FUTURE_H
+#ifndef FRAMELIB_CHAIN_H
+#define FRAMELIB_CHAIN_H
 
 #include "FrameLib_DSP.h"
 

@@ -6,8 +6,6 @@
 
 class FrameLib_NonZero final : public FrameLib_Processor
 {
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
-
 public:
 
     // Constructor
@@ -25,10 +23,6 @@ private:
     // Process
     
     void process() override;
-    
-    // Data
-    
-    static ParameterInfo sParamInfo;
 };
 
 #endif

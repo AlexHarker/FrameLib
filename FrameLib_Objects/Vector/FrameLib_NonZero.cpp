@@ -2,7 +2,7 @@
 
 // Constructor
 
-FrameLib_NonZero::FrameLib_NonZero(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+FrameLib_NonZero::FrameLib_NonZero(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 1, 1)
 {}
 
 // Info
@@ -21,15 +21,6 @@ std::string FrameLib_NonZero::inputInfo(unsigned long idx, bool verbose)
 std::string FrameLib_NonZero::outputInfo(unsigned long idx, bool verbose)
 {
     return "Indices that are non-zero";
-}
-
-// Parameter Info
-
-FrameLib_NonZero::ParameterInfo FrameLib_NonZero::sParamInfo;
-
-FrameLib_NonZero::ParameterInfo::ParameterInfo()
-{
-    
 }
 
 // Process
