@@ -9656,9 +9656,9 @@
 				B8ACCA9120AF14770054E1E0 /* fl.nanfilter~ */,
 				B8E41B0920C5E71C003BBD86 /* fl.expr~ */,
 				B85E1D3C20C8408E00DEEE6E /* fl.complexexpr~ */,
+				264C76F121AB192A00584048 /* fl.info~ */,
 				B83E029B206674D4005925DD /* framelib_pd */,
 				B88C0A3021733BF9007A65C0 /* FrameLib */,
-				264C76F121AB192A00584048 /* fl.info~ */,
 			);
 		};
 /* End PBXProject section */
