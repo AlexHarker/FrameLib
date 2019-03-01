@@ -16,7 +16,7 @@ GCC_PREFIX_HEADER = $(C74SUPPORT)/max-includes/macho-prefix.pch
 
 SKIP_INSTALL = NO
 DEPLOYMENT_LOCATION = YES
-DSTROOT = $(SRCROOT)/Documentation/Max Documentation/XML_Externals
+DSTROOT = $(SRCROOT)/Current Test Version/FrameLib/externals/
 INSTALL_PATH = /
 COPY_PHASE_STRIP = NO
 
@@ -35,3 +35,4 @@ OTHER_LDFLAGS = $(C74_SYM_LINKER_FLAGS)
 
 // all symbols hidden by default
 // mark a function to be exported with the C74_EXPORT macro -- most likely this will only apply to the main() function
+
