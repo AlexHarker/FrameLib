@@ -39,10 +39,10 @@ FrameLib_NanFilter::ParameterInfo::ParameterInfo()
 {
     add("Set whether to replace or remove NaN values" );
     add("Set the value with which to replace NaN values");
-    
 }
 
 // Process
+
 void FrameLib_NanFilter::process()
 {
     unsigned long sizeIn;

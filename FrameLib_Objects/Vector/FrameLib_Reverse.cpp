@@ -11,12 +11,12 @@ FrameLib_Reverse::FrameLib_Reverse(FrameLib_Context context, FrameLib_Parameters
 
 std::string FrameLib_Reverse::objectInfo(bool verbose)
 {
-    return formatInfo("Reverses the order of a single frame's contents.", verbose);
+    return "Reverses the order of a single frame's contents.";
 }
 
 std::string FrameLib_Reverse::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Input Frame", "Input Frame", verbose);
+    return "Input Frame";
 }
 
 std::string FrameLib_Reverse::outputInfo(unsigned long idx, bool verbose)
@@ -36,5 +36,6 @@ void FrameLib_Reverse::process()
 
     double *output = getOutput(0, &size);
 
-    std::reverse_copy(input, input+size, output);
+    if (output)
+        std::reverse_copy(input, input+size, output);
 }

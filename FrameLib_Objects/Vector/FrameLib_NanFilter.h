@@ -7,8 +7,8 @@ class FrameLib_NanFilter final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-    enum ParameterList{kMode, kValue};
-    enum Modes {kReplace,kRemove};
+    enum ParameterList { kMode, kValue };
+    enum Modes { kReplace, kRemove };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     

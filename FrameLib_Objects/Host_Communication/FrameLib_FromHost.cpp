@@ -92,7 +92,8 @@ void FrameLib_FromHost::Proxy::copyData(void *streamOwner, unsigned long stream)
         if (first->mMode == kValues && current->mMode == kValues)
         {
             first->mLock.acquire();
-            OwnedFrame frame(new std::vector<double>(*first->mVectorFrame.get()));
+            std::vector<double> *firstFrame = first->mVectorFrame.get();
+            OwnedFrame frame(firstFrame ? new std::vector<double>(*firstFrame) : nullptr);
             first->mLock.release();
             current->swapVectorFrame(frame);
         }
@@ -102,9 +103,10 @@ void FrameLib_FromHost::Proxy::copyData(void *streamOwner, unsigned long stream)
             SerialList freeList;
 
             first->mLock.acquire();
-            SerialList::Item *addSerial = new SerialList::Item(first->mSerialFrame);
+            SerialList::Item *addSerial = first->mSerialFrame.empty() ? nullptr : new SerialList::Item(first->mSerialFrame);
             first->mLock.release();
-            current->updateSerialFrame(freeList, addSerial);
+            if (addSerial)
+                current->updateSerialFrame(freeList, addSerial);
         }
     }
 }
