@@ -11,6 +11,7 @@
 		2668245C22294CD40068E5C4 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		2668246422294D220068E5C4 /* fl.info~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2668246322294D220068E5C4 /* fl.info~.cpp */; };
 		2668246722294D450068E5C4 /* FrameLib_Info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2668246522294D3E0068E5C4 /* FrameLib_Info.cpp */; };
+		26B784DF22297660008E19F0 /* ibuffer_access.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8AD883619C7C2B500FFA238 /* ibuffer_access.cpp */; };
 		5A3CAB1E2052E7E8001082E3 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		5A3CAB1F2052E7E8001082E3 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		5AB54BBF2052E96E00325C14 /* fl.wrap~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AB54BBE2052E96E00325C14 /* fl.wrap~.cpp */; };
@@ -10878,6 +10879,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26B784DF22297660008E19F0 /* ibuffer_access.cpp in Sources */,
 				2668246422294D220068E5C4 /* fl.info~.cpp in Sources */,
 				2668246722294D450068E5C4 /* FrameLib_Info.cpp in Sources */,
 			);
