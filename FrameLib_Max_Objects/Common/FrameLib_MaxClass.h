@@ -10,8 +10,6 @@
 
 #include <string>
 #include <vector>
-#include <iostream>
-#include <fstream>
 
 struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
 {
