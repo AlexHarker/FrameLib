@@ -1840,15 +1840,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		26970D1A222FEA6B00990D87 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
 		B88C0A2F21733BF9007A65C0 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
@@ -1881,19 +1872,20 @@
 
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		262E5BCE2232C9510002CB98 /* edit_raw_XML.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = edit_raw_XML.py; path = "Max Documentation/edit_raw_XML.py"; sourceTree = "<group>"; };
+		262E5BCF2232C9520002CB98 /* keywords_seealso.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = keywords_seealso.py; path = "Max Documentation/keywords_seealso.py"; sourceTree = "<group>"; };
+		262E5BD02232C9520002CB98 /* Build_All_Files.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = Build_All_Files.py; path = "Max Documentation/Build_All_Files.py"; sourceTree = "<group>"; };
+		262E5BD12232C9520002CB98 /* create_category_database.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = create_category_database.py; path = "Max Documentation/create_category_database.py"; sourceTree = "<group>"; };
+		262E5BD22232C9520002CB98 /* create_tutorial_coll.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = create_tutorial_coll.py; path = "Max Documentation/create_tutorial_coll.py"; sourceTree = "<group>"; };
+		262E5BD32232C9520002CB98 /* parse_to_qlookup.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = parse_to_qlookup.py; path = "Max Documentation/parse_to_qlookup.py"; sourceTree = "<group>"; };
+		262E5BD42232C9520002CB98 /* parse_to_tlookup.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = parse_to_tlookup.py; path = "Max Documentation/parse_to_tlookup.py"; sourceTree = "<group>"; };
+		262E5BD52232C9530002CB98 /* parse_to_dlookup.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = parse_to_dlookup.py; path = "Max Documentation/parse_to_dlookup.py"; sourceTree = "<group>"; };
+		262E5BD62232C9530002CB98 /* strippers.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = strippers.py; path = "Max Documentation/strippers.py"; sourceTree = "<group>"; };
 		2668246122294CD40068E5C4 /* fl.info~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.info~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2668246322294D220068E5C4 /* fl.info~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.info~.cpp"; sourceTree = "<group>"; };
 		2668246522294D3E0068E5C4 /* FrameLib_Info.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Info.cpp; sourceTree = "<group>"; };
 		2668246622294D3F0068E5C4 /* FrameLib_Info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Info.h; sourceTree = "<group>"; };
-		2671A5192232C43D005132A5 /* edit_raw_XML.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = edit_raw_XML.py; path = "Documentation/Max Documentation/edit_raw_XML.py"; sourceTree = SOURCE_ROOT; };
-		2671A51A2232C43D005132A5 /* keywords_seealso.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = keywords_seealso.py; path = "Documentation/Max Documentation/keywords_seealso.py"; sourceTree = SOURCE_ROOT; };
-		2671A51B2232C43D005132A5 /* Build_All_Files.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = Build_All_Files.py; path = "Documentation/Max Documentation/Build_All_Files.py"; sourceTree = SOURCE_ROOT; };
-		2671A51C2232C43D005132A5 /* create_category_database.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = create_category_database.py; path = "Documentation/Max Documentation/create_category_database.py"; sourceTree = SOURCE_ROOT; };
-		2671A51D2232C43D005132A5 /* create_tutorial_coll.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = create_tutorial_coll.py; path = "Documentation/Max Documentation/create_tutorial_coll.py"; sourceTree = SOURCE_ROOT; };
-		2671A51E2232C43D005132A5 /* parse_to_qlookup.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = parse_to_qlookup.py; path = "Documentation/Max Documentation/parse_to_qlookup.py"; sourceTree = SOURCE_ROOT; };
-		2671A51F2232C43E005132A5 /* parse_to_tlookup.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = parse_to_tlookup.py; path = "Documentation/Max Documentation/parse_to_tlookup.py"; sourceTree = SOURCE_ROOT; };
-		2671A5202232C43E005132A5 /* parse_to_dlookup.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = parse_to_dlookup.py; path = "Documentation/Max Documentation/parse_to_dlookup.py"; sourceTree = SOURCE_ROOT; };
-		2671A5212232C43E005132A5 /* strippers.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = strippers.py; path = "Documentation/Max Documentation/strippers.py"; sourceTree = SOURCE_ROOT; };
+		2671A5292232C880005132A5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		26970D1C222FEA6B00990D87 /* Documentation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Documentation; sourceTree = BUILT_PRODUCTS_DIR; };
 		26970D27223022D100990D87 /* Build_Max_Docs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Build_Max_Docs.cpp; path = "Max Documentation/Build_Max_Docs.cpp"; sourceTree = "<group>"; };
 		5A3CAB132052E67E001082E3 /* FrameLib_Ternary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Objects.h; sourceTree = "<group>"; };
@@ -3978,6 +3970,7 @@
 				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
 				B8A1F5BC1D5370DE00FA5FFC /* Testing */,
 				26970D1D222FEA6B00990D87 /* Documentation */,
+				2671A5282232C880005132A5 /* Build All Docmentation */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
 				B89C1A4F2069A969009CA55B /* Frameworks */,
 			);
@@ -4191,29 +4184,37 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2671A5182232C413005132A5 /* Python Scripts */ = {
+		2671A5282232C880005132A5 /* Build All Docmentation */ = {
 			isa = PBXGroup;
 			children = (
-				2671A51B2232C43D005132A5 /* Build_All_Files.py */,
-				2671A51C2232C43D005132A5 /* create_category_database.py */,
-				2671A51D2232C43D005132A5 /* create_tutorial_coll.py */,
-				2671A5192232C43D005132A5 /* edit_raw_XML.py */,
-				2671A51A2232C43D005132A5 /* keywords_seealso.py */,
-				2671A5202232C43E005132A5 /* parse_to_dlookup.py */,
-				2671A51E2232C43D005132A5 /* parse_to_qlookup.py */,
-				2671A51F2232C43E005132A5 /* parse_to_tlookup.py */,
-				2671A5212232C43E005132A5 /* strippers.py */,
+				2671A5292232C880005132A5 /* main.cpp */,
 			);
-			path = "Python Scripts";
+			path = "Build All Docmentation";
 			sourceTree = "<group>";
 		};
 		26970D1D222FEA6B00990D87 /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
+				26E05B242232C92600A0EB1F /* Python Files */,
 				26970D27223022D100990D87 /* Build_Max_Docs.cpp */,
-				2671A5182232C413005132A5 /* Python Scripts */,
 			);
 			path = Documentation;
+			sourceTree = "<group>";
+		};
+		26E05B242232C92600A0EB1F /* Python Files */ = {
+			isa = PBXGroup;
+			children = (
+				262E5BD02232C9520002CB98 /* Build_All_Files.py */,
+				262E5BD12232C9520002CB98 /* create_category_database.py */,
+				262E5BD22232C9520002CB98 /* create_tutorial_coll.py */,
+				262E5BCE2232C9510002CB98 /* edit_raw_XML.py */,
+				262E5BCF2232C9520002CB98 /* keywords_seealso.py */,
+				262E5BD52232C9530002CB98 /* parse_to_dlookup.py */,
+				262E5BD32232C9520002CB98 /* parse_to_qlookup.py */,
+				262E5BD42232C9520002CB98 /* parse_to_tlookup.py */,
+				262E5BD62232C9530002CB98 /* strippers.py */,
+			);
+			name = "Python Files";
 			sourceTree = "<group>";
 		};
 		5A3CAB102052E625001082E3 /* Ternary */ = {
@@ -6290,7 +6291,6 @@
 			buildPhases = (
 				26970D18222FEA6B00990D87 /* Sources */,
 				26970D19222FEA6B00990D87 /* Frameworks */,
-				26970D1A222FEA6B00990D87 /* CopyFiles */,
 			);
 			buildRules = (
 			);
