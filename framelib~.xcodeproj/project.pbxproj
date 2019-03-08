@@ -1887,7 +1887,7 @@
 		2668246622294D3F0068E5C4 /* FrameLib_Info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Info.h; sourceTree = "<group>"; };
 		26970D1C222FEA6B00990D87 /* Documentation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Documentation; sourceTree = BUILT_PRODUCTS_DIR; };
 		26970D27223022D100990D87 /* Build_Max_Docs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Build_Max_Docs.cpp; path = "Max Documentation/Build_Max_Docs.cpp"; sourceTree = "<group>"; };
-		26970D2B2230329200990D87 /* mob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mob.h; path = "Max Documentation/mob.h"; sourceTree = "<group>"; };
+		26970D2C2231848E00990D87 /* Doc_Storage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Doc_Storage.h; path = "Max Documentation/Doc_Storage.h"; sourceTree = "<group>"; };
 		5A3CAB132052E67E001082E3 /* FrameLib_Ternary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Objects.h; sourceTree = "<group>"; };
 		5A3CAB142052E67E001082E3 /* FrameLib_Ternary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Template.h; sourceTree = "<group>"; };
 		5A3CAB262052E7E8001082E3 /* fl.wrap~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.wrap~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4187,7 +4187,7 @@
 			isa = PBXGroup;
 			children = (
 				26970D27223022D100990D87 /* Build_Max_Docs.cpp */,
-				26970D2B2230329200990D87 /* mob.h */,
+				26970D2C2231848E00990D87 /* Doc_Storage.h */,
 			);
 			path = Documentation;
 			sourceTree = "<group>";
