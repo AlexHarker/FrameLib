@@ -93,23 +93,26 @@ private:
         allocateOutputs();
         double *output = getOutput(0, &sizeOut);
         
-        if (numFrames > mLastNumFrames)
+        if (sizeIn)
         {
-            for (unsigned long i = numFrames - 1; i > mLastNumFrames; i--)
-                add(getFrame(i), sizeIn);
+            if (numFrames > mLastNumFrames)
+            {
+                for (unsigned long i = numFrames - 1; i > mLastNumFrames; i--)
+                    add(getFrame(i), sizeIn);
+                
+                add(input, sizeIn);
+            }
+            else
+            {
+                for (unsigned long i = mLastNumFrames; i > numFrames; i--)
+                    remove(getFrame(i), sizeIn);
+                
+                exchange(input, getFrame(numFrames), sizeIn);
+            }
             
-            add(input, sizeIn);
+            result(output, sizeOut);
+            write(input, sizeIn);
         }
-        else
-        {
-            for (unsigned long i = mLastNumFrames; i > numFrames; i--)
-                remove(getFrame(i), sizeIn);
-            
-            exchange(input, getFrame(numFrames), sizeIn);
-        }
-        
-        result(output, sizeOut);
-        write(input, sizeIn);
         mLastNumFrames = numFrames;
     }
     
