@@ -42,7 +42,7 @@ protected:
     
     void smoothReset()
     {
-        FrameLib_RingBuffer::resize(0, 0);
+        resize(0, 0);
         mLastNumFrames = 0;
     }
     
@@ -87,6 +87,7 @@ private:
         {
             resize(maxFrames, sizeIn);
             resetSize(maxFrames, sizeIn);
+            mLastNumFrames = 0;
         }
 
         requestOutputSize(0, getFrameLength());
@@ -112,8 +113,9 @@ private:
             
             result(output, sizeOut);
             write(input, sizeIn);
+            
+            mLastNumFrames = numFrames;
         }
-        mLastNumFrames = numFrames;
     }
     
     static ParameterInfo sParamInfo;
