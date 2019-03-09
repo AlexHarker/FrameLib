@@ -47,7 +47,7 @@ struct SC_FrameLib_Global
         FrameLib_Parameters::AutoSerial *mInputsSerial;
     };
     
-    SC_FrameLib_Global()
+    SC_FrameLib_Global() : mGlobal(nullptr)
     {
         FrameLib_Global::get(&mGlobal);
     }
@@ -321,6 +321,7 @@ void FLTest_Ctor(FrameLib_SC_UGen* unit)
     else
         unit->mCalcFunc = (UnitCalcFunc)&FLTest_next_a_zero;
 
+    unit->mObject->autoOrderingConnections();
     unit->mObject->reset(unit->mRate->mSampleRate, unit->mRate->mBufLength);
     FLTest_next_a_zero(unit, 1);
 }

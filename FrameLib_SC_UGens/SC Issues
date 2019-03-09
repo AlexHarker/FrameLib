@@ -5,13 +5,12 @@ DONE
 
 IN PROGRESS -> PROOF OF CONCEPT (requires finessing)
 
-3 - how do I pass parameters in?  / fixed inputs with more than one value?              SERVER COMMANDS WORK
-
+3 - how do I pass parameters in?  / fixed inputs with more than one value?         SERVER COMMANDS WORK
+4 - auto synchronisation                                                           REVERSE DIRECTION (needs testing)
 OUTSTANDING
 
-4 - where do I store the global object so it is retrievable (from the world)?
-5 - how can I safely and reliably tell if a unit is a framelib thing?
-6 - auto synchronisation
+5 - where do I store the global object so it is retrievable (from the world)?
+6 - how can I safely and reliably tell if a unit is a framelib thing?
 7 - memory management
 8 - how can I deal with variable numbers of outputs/inputs?
 9 - error reporting
