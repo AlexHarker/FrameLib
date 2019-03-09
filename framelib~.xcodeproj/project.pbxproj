@@ -703,6 +703,13 @@
 			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
 			remoteInfo = framelib;
 		};
+		2695D15322330A6200CE0118 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2671A5132232C3B9005132A5;
+			remoteInfo = PythonDocs;
+		};
 		26970D292230247C00990D87 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
@@ -6295,6 +6302,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2695D15422330A6200CE0118 /* PBXTargetDependency */,
 				26970D2A2230247C00990D87 /* PBXTargetDependency */,
 			);
 			name = Documentation;
@@ -12512,6 +12520,11 @@
 			isa = PBXTargetDependency;
 			target = B89ABA8F1FA73483006DAD53 /* framelib */;
 			targetProxy = 2668245422294CD40068E5C4 /* PBXContainerItemProxy */;
+		};
+		2695D15422330A6200CE0118 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2671A5132232C3B9005132A5 /* PythonDocs */;
+			targetProxy = 2695D15322330A6200CE0118 /* PBXContainerItemProxy */;
 		};
 		26970D2A2230247C00990D87 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
