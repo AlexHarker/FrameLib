@@ -4,12 +4,6 @@ import xml.etree.ElementTree as et
 import os
 from strippers import strip_space
 
-# Directory stuff #
-dir_path = os.path.dirname(os.path.realpath(__file__))
-dir_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib')
-ref_dir = f'{dir_path}/docs/refpages'
-obj_lookup = f'{dir_path}/interfaces/FrameLib-obj-dlookup.json'
-
 # A class to parse the XML files and build a JSON file from it #
 class ParseAndBuild():
     def __init__(self):
@@ -45,7 +39,14 @@ class ParseAndBuild():
         self.build_json_file()
 
 #----------- THE GUTS ----------- #
-def main():
+def main(root):
+
+    # Directory stuff #
+    dir_path = root
+    dir_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib')
+    ref_dir = f'{dir_path}/docs/refpages'
+    obj_lookup = f'{dir_path}/interfaces/FrameLib-obj-dlookup.json'
+
     worker = ParseAndBuild()
     for filename in os.listdir(ref_dir):
         if filename != '.DS_Store':

@@ -4,12 +4,11 @@ import xml.etree.ElementTree as et
 import errno
 from strippers import strip_extension
 
-
 ### This file should be probably be made into a class as its quite messy to define the find_object_category function inside of the main(). ###
 
-def main():
+def main(root):
     ### directories ###
-    dir_path = os.path.dirname(os.path.realpath(__file__))
+    dir_path = root
     object_path = dir_path.replace('/Documentation/Max Documentation', '/FrameLib_Max_Objects')
     raw_xml_path = f'{dir_path}/RawXML'
     move_to_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib/docs/refpages')

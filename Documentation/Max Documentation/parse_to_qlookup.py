@@ -3,11 +3,6 @@ import xml.etree.ElementTree as et
 import os
 from strippers import strip_space
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
-dir_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib')
-ref_dir = f'{dir_path}/docs/refpages' 
-obj_lookup = f'{dir_path}/interfaces/FrameLib-obj-qlookup.json'
-
 class ParseAndBuild():
     def __init__(self):
         self.tree         = 0
@@ -63,7 +58,13 @@ class ParseAndBuild():
 
 # ----------- THE GUTS ----------- #
 
-def main():
+def main(root):
+
+    dir_path = root
+    dir_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib')
+    ref_dir = f'{dir_path}/docs/refpages' 
+    obj_lookup = f'{dir_path}/interfaces/FrameLib-obj-qlookup.json'
+
     worker = ParseAndBuild()
 
     for filename in os.listdir(ref_dir):
