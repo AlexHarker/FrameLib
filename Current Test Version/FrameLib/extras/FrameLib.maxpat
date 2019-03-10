@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 0.0, 45.0, 738.0, 855.0 ],
+		"rect" : [ 0.0, 45.0, 692.0, 855.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 11.0,
@@ -82,7 +82,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 738.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 692.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -583,7 +583,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 738.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 692.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -2676,7 +2676,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 71.0, 738.0, 829.0 ],
+						"rect" : [ 0.0, 71.0, 692.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -2706,6 +2706,19 @@
 						"showontab" : 1,
 						"title" : "Help",
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-24",
+									"linecount" : 2,
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 546.0, 74.0, 78.0, 35.0 ],
+									"text" : ";\rmax db.reset"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"fontface" : 0,
 									"fontname" : "Lato",
@@ -3003,7 +3016,7 @@
 									"patching_rect" : [ 23.0, 129.0, 382.0, 30.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 251.0, 97.0, 422.0, 30.0 ],
-									"text" : "fl.atan2~",
+									"text" : "fl.interval~",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -3022,7 +3035,7 @@
 									"presentation" : 1,
 									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 141.0, 422.0, 30.0 ],
-									"text" : "For each pair of input values calculates the arctangent using two arguments (left operand is y , right operand is x).",
+									"text" : "Schedules frames at regular intervals , which can be adjusted using the interval parameter.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -4028,7 +4041,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "<none>",
-										"visible" : 1,
 										"boxes" : [ 											{
 												"box" : 												{
 													"id" : "obj-4",
@@ -4965,7 +4977,7 @@
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
-									"tabs" : [ "fl.wrap~" ],
+									"tabs" : [ "fl.interval~" ],
 									"truncate" : 0
 								}
 
@@ -4987,13 +4999,13 @@
 									"presentation_rect" : [ 5.0, 90.0, 209.0, 23.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_type" : 3,
-											"parameter_longname" : "umenu",
-											"parameter_initial_enable" : 1,
 											"parameter_invisible" : 1,
 											"parameter_mmax" : 22.0,
 											"parameter_initial" : [ 0 ],
-											"parameter_shortname" : "umenu"
+											"parameter_shortname" : "umenu",
+											"parameter_type" : 3,
+											"parameter_longname" : "umenu",
+											"parameter_initial_enable" : 1
 										}
 
 									}
