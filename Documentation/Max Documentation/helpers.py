@@ -101,7 +101,7 @@ def sign_off():
     print(' ')
     print('A DSP framework for arbitrary size frame processing with arbitrary sub-sample accurate timing.')
     print('Alex Harker, ajharker@gmail.com')
-    print('Max Documentation and Tutorials by James Bradbury')      
+    print('Max Documentation and Tutorials by James Bradbury, jamesbradbury93@gmail.com')      
 
 
 
