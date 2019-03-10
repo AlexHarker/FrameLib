@@ -70,7 +70,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "#!/bin/bash&#10;&#10;python3 $SRCROOT/Documentation/Max\ Documentation/Build_All_Files.py"
+               scriptText = "#!/bin/bash&#10;&#10;python3 -B $SRCROOT/Documentation/Max\ Documentation/Build_All_Files.py"
                shellToInvoke = "/bin/sh">
                <EnvironmentBuildable>
                   <BuildableReference
