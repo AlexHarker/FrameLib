@@ -5,7 +5,10 @@ import os
 from strippers import strip_space
 
 # A class to parse the XML files and build a JSON file from it #
-class ParseAndBuild():
+class dParseAndBuild():
+    """
+    This class parses XML files, finds relevant information and then reformats it into a JSON file.
+    """
     def __init__(self):
         self.tree         = 0
         self.root         = 0
@@ -47,7 +50,7 @@ def main(root):
     ref_dir = f'{dir_path}/docs/refpages'
     obj_lookup = f'{dir_path}/interfaces/FrameLib-obj-dlookup.json'
 
-    worker = ParseAndBuild()
+    worker = dParseAndBuild()
     for filename in os.listdir(ref_dir):
         if filename != '.DS_Store':
             if filename != '_c74_ref_modules.xml':

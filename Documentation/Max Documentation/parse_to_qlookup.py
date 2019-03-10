@@ -3,7 +3,10 @@ import xml.etree.ElementTree as et
 import os
 from strippers import strip_space
 
-class ParseAndBuild():
+class qParseAndBuild():
+    """
+
+    """
     def __init__(self):
         self.tree         = 0
         self.root         = 0
@@ -65,7 +68,7 @@ def main(root):
     ref_dir = f'{dir_path}/docs/refpages' 
     obj_lookup = f'{dir_path}/interfaces/FrameLib-obj-qlookup.json'
 
-    worker = ParseAndBuild()
+    worker = qParseAndBuild()
 
     for filename in os.listdir(ref_dir):
         if filename != '.DS_Store':

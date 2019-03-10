@@ -5,7 +5,7 @@ import os
 from strippers import strip_space
 
 # A class to parse the XML files and build a JSON file from it #
-class ParseAndBuild():
+class tParseAndBuild():
     def __init__(self):
         self.tree = 0
         self.root = 0
@@ -51,7 +51,7 @@ def main(root):
     ref_dir = dir_path + '/docs/tutorials/FrameLib-tut/00_fl_index.maxtut.xml' 
     obj_lookup = dir_path + '/interfaces/FrameLib-obj-tlookup.json'
 
-    worker = ParseAndBuild()
+    worker = tParseAndBuild()
 
     worker.extract_from_refpage(ref_dir)
 
