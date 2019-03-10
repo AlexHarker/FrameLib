@@ -106,11 +106,11 @@ void write_info()
                     
                     if (defaultStr.size()) {
                         
-                        myfile << tab_2 + "<" + "entry name = " + "'" + param_num + ". " + "/" + params->getName(i) + sp + "[" + params->getTypeString(i) + "]' " + "\n";
+                        myfile << tab_2 + "<" + "entry name = " + "'" + param_num + ". " + "/" + params->getName(i) + sp + "[" + params->getTypeString(i) + "]' " + ">" + "\n";
                     }
                     else {
                         
-                        myfile << tab_2 + "<" + "entry name = " + "'" + param_num + ". " + "/" + params->getName(i) + sp + "[" + params->getTypeString(i) + "]' " + "\n";
+                        myfile << tab_2 + "<" + "entry name = " + "'" + param_num + ". " + "/" + params->getName(i) + sp + "[" + params->getTypeString(i) + "]' " + ">" + "\n";
                     }
                     // Construct the description
                     myfile << tab_3 + "<description> \n";
