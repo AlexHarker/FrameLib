@@ -7,7 +7,7 @@ from strippers import strip_space
 # A class to parse the XML files and build a JSON file from it #
 class dParseAndBuild():
     """
-    This class parses XML files, finds relevant information and then reformats it into a JSON file.
+    This class parses XML files related to Max objects, finds relevant information and then reformats it into a JSON file.
     """
     def __init__(self):
         self.tree         = 0
@@ -43,7 +43,13 @@ class dParseAndBuild():
 
 #----------- THE GUTS ----------- #
 def main(root):
+    '''
+    A simplified version of the qlookup used to display information about specific objects when hovered over in the umenu.
+    The qlookup might replace this entire script.
 
+    Args:
+        arg1: passes the root of the python files from the master script. Creates relative directories.
+    '''
     # Directory stuff #
     dir_path = root
     dir_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib')

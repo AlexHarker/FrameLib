@@ -6,6 +6,11 @@ from strippers import strip_space
 
 # A class to parse the XML files and build a JSON file from it #
 class tParseAndBuild():
+    '''
+    Takes info from the tutorial refpages /FrameLib/Current Test Version/FrameLib/docs/tutorials/FrameLib-tut/.
+    Extracts the title, number and formats it into a .json.
+    '''
+
     def __init__(self):
         self.tree = 0
         self.root = 0
@@ -22,7 +27,7 @@ class tParseAndBuild():
         self.tree = et.parse(x)
         self.root = self.tree.getroot()
 
-        # create empty master dict #
+        # create empty master dict and three dicts for different levels of difficulty
         self.d_skeleton = dict({})
         self.d_skeleton["Beginner"] = dict({})
         self.d_skeleton["Intermediate"] = dict({})
@@ -44,6 +49,13 @@ class tParseAndBuild():
     
 # ----------- THE GUTS ----------- #
 def main(root):
+    '''
+    Creates tutorial information and stores it in a dictionary format. 
+    This information is displayed to the user in a umenu.
+
+    Args:
+        arg1: passes the root of the python files from the master script. Creates relative directories.
+    '''
 
     # Directory stuff #
     dir_path = root

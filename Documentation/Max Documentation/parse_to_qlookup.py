@@ -4,9 +4,11 @@ import os
 from strippers import strip_space
 
 class qParseAndBuild():
-    """
+    '''
+    Performs a comprehensive parse of the .maxref files to interact with the umenu in real-time.
+    The information is stored in a dict.
+    '''
 
-    """
     def __init__(self):
         self.tree         = 0
         self.root         = 0
@@ -62,6 +64,13 @@ class qParseAndBuild():
 # ----------- THE GUTS ----------- #
 
 def main(root):
+    '''
+    Creates a dict for the Max Documentation system.
+    This dict contains more detailed information displayed in real-time when hovering over a certain tutorial in the umenu.
+
+    Args:
+        arg1: passes the root of the python files from the master script. Creates relative directories.
+    '''
 
     dir_path = root
     dir_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib')
