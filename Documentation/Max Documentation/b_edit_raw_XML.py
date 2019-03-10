@@ -7,6 +7,10 @@ from strippers import strip_extension
 ### This file should be probably be made into a class as its quite messy to define the find_object_category function inside of the main(). ###
 
 def main(root):
+    '''
+    The purpose of this script is to set the categories for the Raw_XML files. C++ doesnt know about the categories and its easier to iterate file structures in python. So we do it here after the xml has been generated.
+    It also copies the xml files to the refpages directory.
+    '''
     ### directories ###
     dir_path = root
     object_path = dir_path.replace('/Documentation/Max Documentation', '/FrameLib_Max_Objects')
@@ -20,6 +24,10 @@ def main(root):
     
     ### Get category of file ###
     def find_object_category(obj_string):
+        '''
+        Finds the dictionary name for an object inside of that dictionary.
+        Is used to work backwards and find which category each object belongs to.
+        '''
         for key in category_database:
             category_object_list = category_database[key]    
             for obj in category_object_list:
@@ -28,7 +36,7 @@ def main(root):
 
     raw_xml_list = os.listdir(raw_xml_path) #make a list with all the raw xml files in them
 
-    ### Complex find and replace ###
+    # Find and replace a string in the xml file with the category
     for i in range(len(raw_xml_list)):
         if raw_xml_list[i] != '.DS_Store': #filter out annoying hidden files
             raw_xml_file_path = f'{raw_xml_path}/{raw_xml_list[i]}' #make a raw file path to load the list somewhere
