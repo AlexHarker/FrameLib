@@ -1892,7 +1892,6 @@
 		2668246322294D220068E5C4 /* fl.info~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.info~.cpp"; sourceTree = "<group>"; };
 		2668246522294D3E0068E5C4 /* FrameLib_Info.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Info.cpp; sourceTree = "<group>"; };
 		2668246622294D3F0068E5C4 /* FrameLib_Info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Info.h; sourceTree = "<group>"; };
-		2671A5292232C880005132A5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		26970D1C222FEA6B00990D87 /* Documentation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Documentation; sourceTree = BUILT_PRODUCTS_DIR; };
 		26970D27223022D100990D87 /* Build_Max_Docs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Build_Max_Docs.cpp; path = "Max Documentation/Build_Max_Docs.cpp"; sourceTree = "<group>"; };
 		5A3CAB132052E67E001082E3 /* FrameLib_Ternary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Objects.h; sourceTree = "<group>"; };
@@ -3977,7 +3976,6 @@
 				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
 				B8A1F5BC1D5370DE00FA5FFC /* Testing */,
 				26970D1D222FEA6B00990D87 /* Documentation */,
-				2671A5282232C880005132A5 /* Build All Docmentation */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
 				B89C1A4F2069A969009CA55B /* Frameworks */,
 			);
@@ -4189,14 +4187,6 @@
 				26970D1C222FEA6B00990D87 /* Documentation */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		2671A5282232C880005132A5 /* Build All Docmentation */ = {
-			isa = PBXGroup;
-			children = (
-				2671A5292232C880005132A5 /* main.cpp */,
-			);
-			path = "Build All Docmentation";
 			sourceTree = "<group>";
 		};
 		26970D1D222FEA6B00990D87 /* Documentation */ = {
