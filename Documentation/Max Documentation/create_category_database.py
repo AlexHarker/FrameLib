@@ -5,7 +5,7 @@ from strippers import strip_extension
 def main(root):
     '''
     This creates a category database in .json format.
-    This generates object categories which provides organisation in the umenu.
+    This is used by edit_raw_XML.py to assign object categories to the xml files.
     '''
     dir_path = root
     object_path = dir_path.replace('/Documentation/Max Documentation', '/FrameLib_Max_Objects')
