@@ -43,6 +43,7 @@ _Notes/
 XML_Externals_
 RawXML/
 Documentation/Max\ Documentation/category_database.json
+*.maxref.xml
 
 ## Other
 *.moved-aside
