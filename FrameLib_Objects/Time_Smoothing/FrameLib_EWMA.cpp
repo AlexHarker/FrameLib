@@ -9,8 +9,8 @@ FrameLib_EWMA::FrameLib_EWMA(FrameLib_Context context, FrameLib_Parameters::Seri
     mParameters.addDouble(kAlphaDown, "alpha_down", 0.5, 0);
     mParameters.setClip(0.0, 1.0);
     
-    serialisedParameters->read(&mParameters);
-    
+    mParameters.set(serialisedParameters);
+
     setParameterInput(1);
 }
 

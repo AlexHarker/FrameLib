@@ -33,7 +33,7 @@ public:
         mParameters.addInt(sNumFrames, "num_frames", 10, 1);
         mParameters.setMin(1);
         
-        serialisedParameters->read(&mParameters);
+        mParameters.set(serialisedParameters);
 
         setParameterInput(1);
     }
