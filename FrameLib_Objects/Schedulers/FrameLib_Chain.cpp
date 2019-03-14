@@ -28,7 +28,7 @@ FrameLib_Chain::~FrameLib_Chain()
 std::string FrameLib_Chain::objectInfo(bool verbose)
 {
     return formatInfo("Schedules frames in specified times according to the input frame: The output is an empty frame.",
-                   "Schedules frames in the future at a specified time.", verbose);
+                   "Schedules frames in specified times according to the input frame.", verbose);
 }
 
 std::string FrameLib_Chain::inputInfo(unsigned long idx, bool verbose)
