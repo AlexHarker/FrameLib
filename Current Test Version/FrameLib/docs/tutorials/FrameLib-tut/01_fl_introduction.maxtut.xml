@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<?xml-stylesheet href="./_c74_tut.xsl" type="text/xsl"?>
+
+<chapter name="FrameLib Tutorial 1: Introduction">
+	<next name="02_fl_concepts">Key Concepts</next>
+	<parent name="00_fl_index">FrameLib tutorials</parent>
+
+<h1>
+	An introduction to FrameLib.
+</h1>
+	<h2>
+		What is FrameLib?
+	</h2>
+		<p>
+			FrameLib is a DSP system designed to allow quick modular constructions of frame-based networks. A frame is a self contained group of samples not dissimilar to a grain in granulation or an FFT frame. These networks can resolve time at a highly accurate subsample level and can run at different rates, and with different frame sizes.
+
+			Within a single FrameLib network you are able to mix different representations (such as time and frequency-based), efficiently process them and maintaing tightly-timed DSP constructs. A group of FrameLib objects resulting in a processing chain can be referred to as a 'network'.
+
+			If you don't know what these terms mean or are not sure if FrameLib could be useful for you rest assured it will make sense as the tutorials progress.
+		</p>
+	<h2>
+		What is possible?
+	</h2>
+
+		<p>
+			In most realtime audio environments, audio processing is built on the model of grouping continuous streams of samples into small consecutive blocks of equal size for the purpose of calculation. Whilst this offers an appropriate model to represent continuous analog signals, it is less suited to processing that functions on chunks, or frames, of audio in which the position of a sample in the frame is meaningful (e.g spectral representations), or in which the frame might be considered as a whole (e.g granular synthesis). 
+
+			FrameLib brings a wealth of processing techniques into the Max environment where rapid prototyping and experimentation is readily available to the user. Advanced multi-rate processing, based on DSP graphs that operate on frames of different sizes is not currently supported natively within Max which is where a frame based tool kit like FrameLib excels. If this doesn't make sense to you now, these tutorials will introduce you to these concepts.
+
+			If you don't know where to start, navigating through the tabs above demonstrate what you might want to do with FrameLib.		
+		</p>
+</chapter>
+

@@ -1,0 +1,35 @@
+<c74object category="Complex_Unary" module="FrameLib" name="fl.complexconj~"> 
+ 
+    <digest> 
+        Calculates the complex conjugate of each complex value at the inputs.
+    </digest> 
+ 
+    <description> 
+         Both inputs and outputs are split into real and imaginary parts. The outputs are frames of the same size as the longer of the two inputs. If one input is shorter than the other it is padded with zeros to the length of the other before calculation.
+    </description> 
+ 
+    <misc name="Parameters"> 
+        <entry> 
+            <description> 
+                This object has no parameters. 
+            </description> 
+        </entry> 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Complex_Unary</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

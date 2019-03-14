@@ -32,6 +32,17 @@ externals/
 *.o
 *.d_fat
 
+## James/Documentation
+__pycache__/
+Documentation/Max\ Documentation/_Notes
+Documentation/Max\ Documentation/XML_Externals
+RawXML/
+BuildXML.maxpat
+category_databse.json
+_Notes/
+XML_Externals_
+RawXML/
+
 ## Other
 *.moved-aside
 *.xccheckout

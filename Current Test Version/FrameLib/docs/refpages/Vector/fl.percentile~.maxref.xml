@@ -1,0 +1,37 @@
+<c74object category="Vector" module="FrameLib" name="fl.percentile~"> 
+ 
+    <digest> 
+        Calculates any percentile (for example the median at 50%) of an input frame.
+    </digest> 
+ 
+    <description> 
+         The output is a single value.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /percentile [double]"> 
+            <description> 
+                Sets the percentile to calculate [0-100].
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Vector</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

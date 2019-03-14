@@ -1,0 +1,40 @@
+<c74object category="FL_Timing" module="FrameLib" name="fl.timedelta~"> 
+ 
+    <digest> 
+        Calculates the time interval between consecutive incoming frames.
+    </digest> 
+ 
+    <description> 
+         Time is reported in the specified units. Output is a single value.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /units [instantiation enum]"> 
+            <description> 
+                Sets the time units used to for output.<br /> 
+                <bullet>[0] - samples</bullet> 
+                <bullet>[1] - ms</bullet> 
+                <bullet>[2] - seconds</bullet>
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">FL_Timing</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

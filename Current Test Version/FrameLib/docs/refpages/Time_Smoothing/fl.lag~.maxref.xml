@@ -1,0 +1,43 @@
+<c74object category="Time_Smoothing" module="FrameLib" name="fl.lag~"> 
+ 
+    <digest> 
+        Outputs vector-type frames with a lag set as an integer number of frames.
+    </digest> 
+ 
+    <description> 
+         Frames are expected to be of a uniform size, else the buffer is reset. The output is the same size as the input.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /max_frames [int]"> 
+            <description> 
+                Sets the maximum number of frames that can be set as a lag time.
+            </description> 
+        </entry> 
+ 
+        <entry name="1. /num_frames [int]"> 
+            <description> 
+                Sets the current lag as an integer number of frames.
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Time_Smoothing</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

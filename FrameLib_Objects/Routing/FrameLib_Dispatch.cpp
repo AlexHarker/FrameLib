@@ -89,8 +89,8 @@ FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Paramete
 
 std::string FrameLib_Dispatch::objectInfo(bool verbose)
 {
-    return formatInfo("Dispatches multuple input frame streams dynamically to multuple outputs. WEach output can be independently connected to any one (or none) pf a number of incoming input frame streams, or turned off: The number of inputs and outputs is variable. The selected input for each output is changed with a parameter.",
-                      "Dispatches multuple input frame streams dynamically to multiple outputs.", verbose);
+    return formatInfo("Dispatches multiple input frame streams dynamically to multiple outputs. Each output can be independently connected to any one (or none) of a number of incoming input frame streams, or turned off: The number of inputs and outputs is variable. The selected input for each output is changed with a parameter.",
+                      "Dispatches multiple input frame streams dynamically to multiple outputs.", verbose);
 }
 
 std::string FrameLib_Dispatch::inputInfo(unsigned long idx, bool verbose)

@@ -1,0 +1,35 @@
+<c74object category="Unary" module="FrameLib" name="fl.sqrt~"> 
+ 
+    <digest> 
+        Calculates the square root of each value in the input frame.
+    </digest> 
+ 
+    <description> 
+         The output is a frame of the same size as the input.
+    </description> 
+ 
+    <misc name="Parameters"> 
+        <entry> 
+            <description> 
+                This object has no parameters. 
+            </description> 
+        </entry> 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Unary</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

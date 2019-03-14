@@ -1,0 +1,43 @@
+<c74object category="Routing" module="FrameLib" name="fl.route~"> 
+ 
+    <digest> 
+        Routes input frames to one of a number of outputs.
+    </digest> 
+ 
+    <description> 
+         The number of outputs is variable. The selected output can be changed with a parameter.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /num_outs [instantiation double]"> 
+            <description> 
+                Sets the number of outputs.
+            </description> 
+        </entry> 
+ 
+        <entry name="1. /output [int]"> 
+            <description> 
+                Sets the current output counting from 1 (off if out of range).
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Routing</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>
