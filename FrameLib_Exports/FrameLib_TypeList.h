@@ -17,7 +17,7 @@ namespace detail
   };
 }
 
-using FrameLib_Typelist = detail::Typelist<
+using FrameLib_DSPList = detail::Typelist<
 
 // Filters
 
@@ -207,6 +207,7 @@ FrameLib_Diff,
 FrameLib_Modulo,
 
 // Ternary  Operators
+
 FrameLib_Clip,
 FrameLib_Fold,
 FrameLib_Wrap,
@@ -241,6 +242,7 @@ FrameLib_Complex_Divide,
 FrameLib_Complex_Pow,
 
 // Buffer
+FrameLib_Info,
 FrameLib_Read
 >;
 
