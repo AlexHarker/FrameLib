@@ -407,6 +407,7 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_MedianFilter>::makeClass("fl.medianfilter~");
     FrameLib_PDClass_Expand<FrameLib_NonZero>::makeClass("fl.nonzero~");
     FrameLib_PDClass_Expand<FrameLib_Pad>::makeClass("fl.pad~");
+    FrameLib_PDClass_Expand<FrameLib_Peaks>::makeClass("fl.pattern~");
     FrameLib_PDClass_Expand<FrameLib_Peaks>::makeClass("fl.peaks~");
     FrameLib_PDClass_Expand<FrameLib_Percentile>::makeClass("fl.percentile~");
     FrameLib_PDClass_Expand<FrameLib_Reverse>::makeClass("fl.reverse~");
@@ -534,5 +535,6 @@ extern "C" void framelib_pd_setup(void)
 
     // Buffer
     
+    FrameLib_PDClass_Expand<FrameLib_Complex_Plus, kAllInputs>::makeClass("fl.info~");
     FrameLib_PDClass_Read::makeClass<FrameLib_PDClass_Read>("fl.read~");
 }

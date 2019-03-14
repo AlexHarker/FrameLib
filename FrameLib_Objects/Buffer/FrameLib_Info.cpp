@@ -49,6 +49,8 @@ std::string FrameLib_Info::outputInfo(unsigned long idx, bool verbose)
         case 1: return "Sample Rate";
         case 2: return "Channels";
     }
+    
+    return "";
 } 
 
 // Parameter Info
