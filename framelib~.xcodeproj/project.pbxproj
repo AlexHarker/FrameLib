@@ -102,6 +102,7 @@
 		B83F0466223A772300AF1F8E /* fl.info~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B83F0465223A772300AF1F8E /* fl.info~.cpp */; };
 		B83F0467223A778E00AF1F8E /* FrameLib_Info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B83F0462223A76CF00AF1F8E /* FrameLib_Info.cpp */; };
 		B83F0468223A77B700AF1F8E /* FrameLib_Pattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EA6BA92203B07800D23A86 /* FrameLib_Pattern.cpp */; };
+		B83F046A223A85A400AF1F8E /* ibuffer_access.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8AD883619C7C2B500FFA238 /* ibuffer_access.cpp */; };
 		B843AAB519C070A1000D3476 /* fl.sink~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B843AAB419C070A1000D3476 /* fl.sink~.cpp */; };
 		B846E61919F15A25005E9718 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B846E62319F15A57005E9718 /* fl.window~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B846E62219F15A57005E9718 /* fl.window~.cpp */; };
@@ -11405,6 +11406,7 @@
 			files = (
 				B83F0464223A76CF00AF1F8E /* FrameLib_Info.cpp in Sources */,
 				B83F0466223A772300AF1F8E /* fl.info~.cpp in Sources */,
+				B83F046A223A85A400AF1F8E /* ibuffer_access.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
