@@ -683,15 +683,13 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 14.0,
 									"id" : "obj-17",
-									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 210.0, 384.0, 74.0 ],
+									"patching_rect" : [ 23.0, 210.0, 384.0, 23.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 3,
-									"presentation_rect" : [ 251.0, 152.0, 422.0, 57.0 ],
-									"text" : "A longer tutorial than the previous four that builds on previously covered information. Construct a granular synthesis engine from scratch and add increasingly complex features.",
+									"presentation_rect" : [ 251.0, 152.0, 422.0, 23.0 ],
+									"text" : "A general introduction to FrameLib.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -1303,7 +1301,7 @@
 									"presentation" : 1,
 									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 97.0, 422.0, 30.0 ],
-									"text" : "Tutorial 5: Your first FrameLib project - Building a granulator from scratch.",
+									"text" : "Tutorial 1: An introduction to FrameLib and frame based processing.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
