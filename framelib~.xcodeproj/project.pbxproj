@@ -703,13 +703,6 @@
 			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
 			remoteInfo = framelib;
 		};
-		2695D15322330A6200CE0118 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2671A5132232C3B9005132A5;
-			remoteInfo = PythonDocs;
-		};
 		26970D292230247C00990D87 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
@@ -6292,7 +6285,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				2695D15422330A6200CE0118 /* PBXTargetDependency */,
 				26970D2A2230247C00990D87 /* PBXTargetDependency */,
 			);
 			name = Documentation;
@@ -12511,11 +12503,6 @@
 			target = B89ABA8F1FA73483006DAD53 /* framelib */;
 			targetProxy = 2668245422294CD40068E5C4 /* PBXContainerItemProxy */;
 		};
-		2695D15422330A6200CE0118 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2671A5132232C3B9005132A5 /* PythonDocs */;
-			targetProxy = 2695D15322330A6200CE0118 /* PBXContainerItemProxy */;
-		};
 		26970D2A2230247C00990D87 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B8BA6FD12078D49200D3DB3D /* framelib_objects */;
@@ -13423,6 +13410,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LLVM_LTO = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 			};
 			name = Development;
 		};
@@ -13465,6 +13453,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LLVM_LTO = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 			};
 			name = Deployment;
 		};
@@ -17927,6 +17916,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LLVM_LTO = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 			};
 			name = "Public Testing";
 		};
