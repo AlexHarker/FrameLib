@@ -45,6 +45,7 @@ RawXML/
 Documentation/Max\ Documentation/category_database.json
 *.maxref.xml
 *lookup.json 
+.vscode
 
 ## Other
 *.moved-aside
