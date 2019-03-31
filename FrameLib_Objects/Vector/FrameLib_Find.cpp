@@ -1,17 +1,15 @@
 #include "FrameLib_Find.h"
 #include <algorithm>
 #include <vector>
-#include <iostream>
-#include <cmath>
+#include <limits>
 
 // Constructor
 
-FrameLib_Find::FrameLib_Find(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 3, 1)
+FrameLib_Find::FrameLib_Find(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
-    // setIO(3, 1);
     mParameters.addDouble(kRange, "range", 0.0, 0);
     mParameters.set(serialisedParameters);
-//    setParameterInput(1);
+    addParameterInput();
 }
 
 // Info
@@ -59,31 +57,22 @@ void FrameLib_Find::process()
     const double *input1 = getInput(0, &size1);
     const double *input2 = getInput(1, &size2);
     
-    // request the output size
-    requestOutputSize(0, sizeout);
-    allocateOutputs();
-
-    double *output = getOutput(0, &sizeout);
-    
-    if (input2) {
-        
-        // put the input into temporary memory
-        std::vector<double> temp;
-        temp.resize(size1);
-        for (int i = 0; i < size1; i++) {
-            temp[i] = input1[i];
-        }
-    
-        for (int j = 0; j < temp.size(); j++) {
-            if (temp[j] >= (input2[0] - range) && temp[j] <= (input2[0] + range)) {
+    // -- // method for finding within a range // -- //
+    if (size2 > 0) {
+        for (int j = 0; j < size1; j++) {
+            if (input1[j] >= (input2[0] - range) && input1[j] <= (input2[0] + range)) {
+                requestOutputSize(0, sizeout);
+                allocateOutputs();
+                double *output = getOutput(0, &sizeout);
                 output[0] = j;
-                std::cout << j << "\n";
-                std::cout << output[0] << "\n";
+                break;
             }
-            else if (temp[j] < (input2[0] - range) || temp[j] > (input2[0] + range)) {
-                output[0] = std::nan("1");
+            else {
+                requestOutputSize(0, sizeout);
+                allocateOutputs();
+                double *output = getOutput(0, &sizeout);
+                output[0] = -1;
             }
-        };
+        }
     }
-    
 }
