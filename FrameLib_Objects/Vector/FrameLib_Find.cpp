@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <vector>
 #include <iostream>
+#include <cmath>
 
 // Constructor
 
@@ -10,8 +11,7 @@ FrameLib_Find::FrameLib_Find(FrameLib_Context context, FrameLib_Parameters::Seri
     // setIO(3, 1);
     mParameters.addDouble(kRange, "range", 0.0, 0);
     mParameters.set(serialisedParameters);
-    setParameterInput(1);
-    assert(false == 0 && "False does not equal zero");
+//    setParameterInput(1);
 }
 
 // Info
@@ -73,26 +73,17 @@ void FrameLib_Find::process()
         for (int i = 0; i < size1; i++) {
             temp[i] = input1[i];
         }
-        
-        std::vector<double>::iterator it = std::find(temp.begin(), temp.end(), input2[0]);
-        
-        if (it != temp.end()) {
-            // Get index of element from iterator
-            double index = std::distance(temp.begin(), it);
-            output[0] = index;
-        }
-        else if (it == temp.end()) {  //this means we havent found an easy one and have to branch out
-            for (int i = 0; i < temp.size(); i++) {
-                if (temp[i] >= (input2[0] - range) && temp[i] <= (input2[0] + range)) {
-                    output[0] = i;
-                    //                std::cout << i << "\n";
-                }
+    
+        for (int j = 0; j < temp.size(); j++) {
+            if (temp[j] >= (input2[0] - range) && temp[j] <= (input2[0] + range)) {
+                output[0] = j;
+                std::cout << j << "\n";
+                std::cout << output[0] << "\n";
             }
-        }
-            else {
-                zeroVector(output, 0);
-                std::cout << "WOWOWOOW" << "\n";
+            else if (temp[j] < (input2[0] - range) || temp[j] > (input2[0] + range)) {
+                output[0] = std::nan("1");
             }
+        };
     }
     
 }
