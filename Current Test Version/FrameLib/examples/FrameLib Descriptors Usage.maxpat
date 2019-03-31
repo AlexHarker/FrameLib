@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 0.0, 45.0, 720.0, 855.0 ],
+		"rect" : [ 0.0, 45.0, 1440.0, 855.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -54,7 +54,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 504.0, 373.0, 51.0, 22.0 ],
+					"patching_rect" : [ 462.0, 394.0, 51.0, 22.0 ],
 					"text" : "fl.once~"
 				}
 
@@ -68,7 +68,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 466.0, 614.0, 50.0, 22.0 ]
+					"patching_rect" : [ 463.0, 583.0, 50.0, 22.0 ]
 				}
 
 			}
@@ -91,7 +91,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 504.0, 432.0, 115.0, 22.0 ],
+					"patching_rect" : [ 463.0, 443.0, 115.0, 22.0 ],
 					"text" : "fl.uniform~ 4042014"
 				}
 
@@ -100,10 +100,10 @@
 				"box" : 				{
 					"id" : "obj-62",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
+					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 470.0, 481.0, 87.0, 22.0 ],
+					"patching_rect" : [ 463.0, 508.0, 87.0, 22.0 ],
 					"text" : "fl.find~"
 				}
 

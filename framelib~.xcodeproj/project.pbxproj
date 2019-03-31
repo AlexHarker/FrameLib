@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2600437622502C3A00F5FECC /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		2600437722502C3A00F5FECC /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		2600438022502C7700F5FECC /* FrameLib_Find.h in Headers */ = {isa = PBXBuildFile; fileRef = 2600437E22502C7600F5FECC /* FrameLib_Find.h */; };
 		2600438122502C7700F5FECC /* FrameLib_Find.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2600437F22502C7700F5FECC /* FrameLib_Find.cpp */; };
 		2600438322502C9500F5FECC /* fl.find~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2600438222502C9500F5FECC /* fl.find~.cpp */; };
 		2668245B22294CD40068E5C4 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
@@ -5117,7 +5116,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2600438022502C7700F5FECC /* FrameLib_Find.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13558,7 +13556,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "fl.info~ copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (
@@ -13589,7 +13587,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "fl.info~ copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (
@@ -13620,7 +13618,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "fl.info~ copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (

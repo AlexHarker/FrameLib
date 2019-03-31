@@ -5,8 +5,10 @@
 
 class FrameLib_Find final : public FrameLib_Processor
 {
-    enum ParameterList { kMatches };
-    
+    enum ParameterList {kRange};
+
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
+
 public:
 
     // Constructor
@@ -24,6 +26,10 @@ private:
     // Process
     
     void process() override;
+
+    // Data
+
+    static ParameterInfo sParamInfo;
 };
 
 #endif
