@@ -11,7 +11,7 @@ FrameLib_Scramble::FrameLib_Scramble(FrameLib_Context context, FrameLib_Paramete
 
 std::string FrameLib_Scramble::objectInfo(bool verbose)
 {
-    return "Reverses the order of a single frame's contents.";
+    return "Scrambles the order of a single frame's contents.";
 }
 
 std::string FrameLib_Scramble::inputInfo(unsigned long idx, bool verbose)
@@ -21,7 +21,7 @@ std::string FrameLib_Scramble::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Scramble::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Reversed Frame";
+    return "Scrambled Frame";
 }
 
 // Process
@@ -30,12 +30,19 @@ void FrameLib_Scramble::process()
 {
     unsigned long size;
     const double *input = getInput(0, &size);
+    
+    // Temporary memory because you cannot past const to the std::random_shuffle
+    double *temp = alloc<double>(size);
+    copyVector(temp, input, size);
 
     requestOutputSize(0, size);
     allocateOutputs();
 
     double *output = getOutput(0, &size);
 
-    if (output)
-        std::reverse_copy(input, input+size, output);
+    if (output) {
+        std::random_shuffle(temp, temp+size);
+        copyVector(output, temp, size);
+    }
+    dealloc(temp);
 }
