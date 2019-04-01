@@ -22,6 +22,10 @@
 		26970D24222FEA8C00990D87 /* libframelib_objects.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8BA6FD22078D49200D3DB3D /* libframelib_objects.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		26970D28223022D100990D87 /* Build_Max_Docs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26970D27223022D100990D87 /* Build_Max_Docs.cpp */; };
 		26B784DF22297660008E19F0 /* ibuffer_access.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8AD883619C7C2B500FFA238 /* ibuffer_access.cpp */; };
+		26DB3F8722529BED00D8E899 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		26DB3F8822529BED00D8E899 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
+		26DB3F8F22529C2C00D8E899 /* FrameLib_Scramble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26DB3F7C22529A7A00D8E899 /* FrameLib_Scramble.cpp */; };
+		26DB3F9022529C3300D8E899 /* fl.scramble~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26DB3F7D22529A8500D8E899 /* fl.scramble~.cpp */; };
 		5A3CAB1E2052E7E8001082E3 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		5A3CAB1F2052E7E8001082E3 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		5AB54BBF2052E96E00325C14 /* fl.wrap~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AB54BBE2052E96E00325C14 /* fl.wrap~.cpp */; };
@@ -731,6 +735,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = B8BA6FD12078D49200D3DB3D;
 			remoteInfo = framelib_objects;
+		};
+		26DB3F8022529BED00D8E899 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
+			remoteInfo = framelib;
 		};
 		5A3CAB172052E7E8001082E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1902,7 +1913,6 @@
 		2600438622515D9300F5FECC /* FrameLib_Closest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Closest.cpp; sourceTree = "<group>"; };
 		2600438722515D9400F5FECC /* FrameLib_Closest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Closest.h; sourceTree = "<group>"; };
 		26004397225181F000F5FECC /* fl.closest~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.closest~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		26004398225181F000F5FECC /* fl.find~ copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "fl.find~ copy-Info.plist"; path = "/Users/jamesbradbury/FrameLib/fl.find~ copy-Info.plist"; sourceTree = "<absolute>"; };
 		262E5BCE2232C9510002CB98 /* edit_raw_XML.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = edit_raw_XML.py; path = "Max Documentation/edit_raw_XML.py"; sourceTree = "<group>"; };
 		262E5BCF2232C9520002CB98 /* keywords_seealso.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = keywords_seealso.py; path = "Max Documentation/keywords_seealso.py"; sourceTree = "<group>"; };
 		262E5BD02232C9520002CB98 /* Build_All_Files.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = Build_All_Files.py; path = "Max Documentation/Build_All_Files.py"; sourceTree = "<group>"; };
@@ -1921,6 +1931,7 @@
 		26DB3F7B22529A7900D8E899 /* FrameLib_Scramble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Scramble.h; sourceTree = "<group>"; };
 		26DB3F7C22529A7A00D8E899 /* FrameLib_Scramble.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Scramble.cpp; sourceTree = "<group>"; };
 		26DB3F7D22529A8500D8E899 /* fl.scramble~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.scramble~.cpp"; sourceTree = "<group>"; };
+		26DB3F8D22529BED00D8E899 /* fl.scramble~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.scramble~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A3CAB132052E67E001082E3 /* FrameLib_Ternary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Objects.h; sourceTree = "<group>"; };
 		5A3CAB142052E67E001082E3 /* FrameLib_Ternary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Template.h; sourceTree = "<group>"; };
 		5A3CAB262052E7E8001082E3 /* fl.wrap~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.wrap~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2516,6 +2527,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				26970D24222FEA8C00990D87 /* libframelib_objects.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26DB3F8622529BED00D8E899 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26DB3F8722529BED00D8E899 /* libframelib.a in Frameworks */,
+				26DB3F8822529BED00D8E899 /* MaxAudioAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4023,7 +4043,6 @@
 				26970D1D222FEA6B00990D87 /* Documentation */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
 				B89C1A4F2069A969009CA55B /* Frameworks */,
-				26004398225181F000F5FECC /* fl.find~ copy-Info.plist */,
 			);
 			name = "plus~";
 			sourceTree = "<group>";
@@ -4233,6 +4252,7 @@
 				26970D1C222FEA6B00990D87 /* Documentation */,
 				2600437C22502C3A00F5FECC /* fl.find~.mxo */,
 				26004397225181F000F5FECC /* fl.closest~.mxo */,
+				26DB3F8D22529BED00D8E899 /* fl.scramble~.mxo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -5161,6 +5181,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2668245522294CD40068E5C4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26DB3F8122529BED00D8E899 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -6409,6 +6436,26 @@
 			productName = Documentation;
 			productReference = 26970D1C222FEA6B00990D87 /* Documentation */;
 			productType = "com.apple.product-type.tool";
+		};
+		26DB3F7E22529BED00D8E899 /* fl.scramble~ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26DB3F8922529BED00D8E899 /* Build configuration list for PBXNativeTarget "fl.scramble~" */;
+			buildPhases = (
+				26DB3F8122529BED00D8E899 /* Headers */,
+				26DB3F8222529BED00D8E899 /* Resources */,
+				26DB3F8322529BED00D8E899 /* Sources */,
+				26DB3F8622529BED00D8E899 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				26DB3F7F22529BED00D8E899 /* PBXTargetDependency */,
+			);
+			name = "fl.scramble~";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = MSPExternal;
+			productReference = 26DB3F8D22529BED00D8E899 /* fl.scramble~.mxo */;
+			productType = "com.apple.product-type.bundle";
 		};
 		5A3CAB152052E7E8001082E3 /* fl.wrap~ */ = {
 			isa = PBXNativeTarget;
@@ -9928,6 +9975,7 @@
 				2668245222294CD40068E5C4 /* fl.info~ */,
 				2600436C22502C3A00F5FECC /* fl.find~ */,
 				26004388225181F000F5FECC /* fl.closest~ */,
+				26DB3F7E22529BED00D8E899 /* fl.scramble~ */,
 				B83E029B206674D4005925DD /* framelib_pd */,
 				B88C0A3021733BF9007A65C0 /* FrameLib */,
 				26970D1B222FEA6B00990D87 /* Documentation */,
@@ -9952,6 +10000,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2668245622294CD40068E5C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26DB3F8222529BED00D8E899 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -11138,6 +11193,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				26970D28223022D100990D87 /* Build_Max_Docs.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26DB3F8322529BED00D8E899 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26DB3F9022529C3300D8E899 /* fl.scramble~.cpp in Sources */,
+				26DB3F8F22529C2C00D8E899 /* FrameLib_Scramble.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12669,6 +12733,11 @@
 			isa = PBXTargetDependency;
 			target = B8BA6FD12078D49200D3DB3D /* framelib_objects */;
 			targetProxy = 26970D292230247C00990D87 /* PBXContainerItemProxy */;
+		};
+		26DB3F7F22529BED00D8E899 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B89ABA8F1FA73483006DAD53 /* framelib */;
+			targetProxy = 26DB3F8022529BED00D8E899 /* PBXContainerItemProxy */;
 		};
 		5A3CAB162052E7E8001082E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -14229,6 +14298,100 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+			};
+			name = "Public Testing";
+		};
+		26DB3F8A22529BED00D8E899 /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		26DB3F8B22529BED00D8E899 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		26DB3F8C22529BED00D8E899 /* Public Testing */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_PPC64 = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_UNROLL_LOOPS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
 			};
 			name = "Public Testing";
 		};
@@ -29145,6 +29308,16 @@
 				26970D20222FEA6B00990D87 /* Development */,
 				26970D21222FEA6B00990D87 /* Deployment */,
 				26970D22222FEA6B00990D87 /* Public Testing */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		26DB3F8922529BED00D8E899 /* Build configuration list for PBXNativeTarget "fl.scramble~" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26DB3F8A22529BED00D8E899 /* Development */,
+				26DB3F8B22529BED00D8E899 /* Deployment */,
+				26DB3F8C22529BED00D8E899 /* Public Testing */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
