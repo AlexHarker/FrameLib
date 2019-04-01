@@ -1918,6 +1918,9 @@
 		2668246622294D3F0068E5C4 /* FrameLib_Info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Info.h; sourceTree = "<group>"; };
 		26970D1C222FEA6B00990D87 /* Documentation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Documentation; sourceTree = BUILT_PRODUCTS_DIR; };
 		26970D27223022D100990D87 /* Build_Max_Docs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Build_Max_Docs.cpp; path = "Max Documentation/Build_Max_Docs.cpp"; sourceTree = "<group>"; };
+		26DB3F7B22529A7900D8E899 /* FrameLib_Scramble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Scramble.h; sourceTree = "<group>"; };
+		26DB3F7C22529A7A00D8E899 /* FrameLib_Scramble.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Scramble.cpp; sourceTree = "<group>"; };
+		26DB3F7D22529A8500D8E899 /* fl.scramble~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.scramble~.cpp"; sourceTree = "<group>"; };
 		5A3CAB132052E67E001082E3 /* FrameLib_Ternary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Objects.h; sourceTree = "<group>"; };
 		5A3CAB142052E67E001082E3 /* FrameLib_Ternary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Template.h; sourceTree = "<group>"; };
 		5A3CAB262052E7E8001082E3 /* fl.wrap~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.wrap~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4509,6 +4512,8 @@
 		B85B68D019F26185002D6F1D /* Vector */ = {
 			isa = PBXGroup;
 			children = (
+				26DB3F7C22529A7A00D8E899 /* FrameLib_Scramble.cpp */,
+				26DB3F7B22529A7900D8E899 /* FrameLib_Scramble.h */,
 				2600438622515D9300F5FECC /* FrameLib_Closest.cpp */,
 				2600438722515D9400F5FECC /* FrameLib_Closest.h */,
 				2600437F22502C7700F5FECC /* FrameLib_Find.cpp */,
@@ -5092,6 +5097,7 @@
 		B8F83E2719C78D7A00230CD4 /* Vector */ = {
 			isa = PBXGroup;
 			children = (
+				26DB3F7D22529A8500D8E899 /* fl.scramble~.cpp */,
 				2600438522515D7300F5FECC /* fl.closest~.cpp */,
 				2600438222502C9500F5FECC /* fl.find~.cpp */,
 				B8CEFC0A2019EA1800F5F5A0 /* fl.argmin~.cpp */,
