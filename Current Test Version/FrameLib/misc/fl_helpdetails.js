@@ -10,18 +10,17 @@ mgraphics.autofill = 0;
 var alpha = 1.0;
 var name = jsarguments[1];
 var dict;
-var shortDesc = "";
-var longDesc = "";
 var paramDesc = "";
 
 function init()
 {
 	dict = max.getrefdict(name);
 	if (typeof(dict) == "object") {
-		shortDesc = dict.get("digest");
-		paramDesc = dict.get("sometin");
-        longDesc = dict.get("description");
+		paramDesc = dict.get("description");
+		keys = dict.getkeys();
+		post(keys);
 		dict.freepeer();
+
 	}
 }
 
@@ -29,36 +28,21 @@ init();
 
 function paint()
 {
-	post(paramDesc);
 	if(name){
     	with(mgraphics) 
     	{
 			var bgcolor = this.patcher.getattr("locked_bgcolor");
 			set_source_rgba(bgcolor);
 			paint();
-    		move_to(4, 40);
     		select_font_face("Lato");
  			var textcolor = this.patcher.getattr("textcolor");
 			set_source_rgba(textcolor);
-       		set_font_size(48);
+       		set_font_size(13);
+			move_to(4, 100);
         	show_text(name);
-			move_to(4, 70);
-			set_font_size(13);
-			if (shortDesc)
-				show_text(shortDesc);
-			move_to(4, 90);
-			var detailstextcolor = this.patcher.getattr("accentcolor");
-			set_source_rgba(detailstextcolor);
-			if(longDesc!=null) {
-				wordwrap(longDesc);
-            };
+			move_to(4, 200);
             // Parameters
-            move_to(4, 110);
-            var paramtextcolor = this.patcher.getattr("textcolor");
-            set_source_rgba(paramtextcolor);
-            set_font_size(13);
-			if (paramDesc)
-            	show_text(paramDesc);
+            show_text(paramDesc);
 			fill();
     	}
 	}
