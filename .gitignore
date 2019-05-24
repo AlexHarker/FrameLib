@@ -36,6 +36,7 @@ externals/
 __pycache__/
 Documentation/Max\ Documentation/_Notes
 Documentation/Max\ Documentation/XML_Externals
+Documentation/Max\ Documentation/help_file_templates
 RawXML/
 BuildXML.maxpat
 category_databse.json
