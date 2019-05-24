@@ -3,7 +3,8 @@ import b_edit_raw_XML
 import c_parse_to_dlookup
 import d_parse_to_qlookup
 import e_parse_to_tlookup
-import f_create_tutorial_coll
+import f_parse_to_jlookup
+import g_create_tutorial_coll
 import helpers as hp
 
 def main():
@@ -31,8 +32,12 @@ def main():
     e_parse_to_tlookup.main(root)
     hp.hyp()
 
-    print('6. Building tutorial name coll')
-    f_create_tutorial_coll.main(root)
+    print('6. Building jlookup')
+    f_parse_to_jlookup.main(root)
+    hp.hyp()
+
+    print('7. Building tutorial name coll')
+    g_create_tutorial_coll.main(root)
     hp.hyp()
     print(' ')
     print("Completed all python scripts!!!")
