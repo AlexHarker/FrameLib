@@ -12,43 +12,44 @@ class jParseAndBuild():
     def __init__(self):
         self.tree         = 0
         self.root         = 0
-        self.digest       = 'none'
-        self.module       = 'none'
-        self.category     = 'none'
-        self.keywords     = []
-        self.seealso_list = []
-        self.d_master_dict = dict({})
-    
-    def build_json_file(self):
-        self.d_inner_data = dict({
-            'digest' : self.digest,
-            'module' : 'FrameLib',
-            'category' : ['FrameLib', self.category],
-            'keywords' : self.keywords,
-            'seealso' : self.seealso_list
-        })
-        self.d_outer_data = dict({self.object_name:self.d_inner_data})
-        self.d_master_dict.update(self.d_outer_data)
+        self.j_master_dict = dict({})
 
     def extract_from_refpage(self, x):
         self.tree = et.parse(x)
-        self.root = self.tree.getroot() #c74object
+        self.root = self.tree.getroot() # c74object
+        blank_param_dict = {}
+        blank_internal = {}
+        blank_descr = ''
+        enums = ''
 
         # Find Information #    
-        self.category = self.root.get('category') #finds the category 
-        self.object_name = self.root.get('name') #finds the name so you don't have to do regex
+        self.object_name = self.root.get('name') # get the object name
+        param_idx = 0 # reset a variable to track the parameter number
+        for child in self.root: # iterate over the sections
+            if child.tag == 'misc': # if the section is misc
+                if child.get('name') == 'Parameters': # if the section is misc and has name='Parameters'
+                    for elem in child: # for sub-sections
+                        blank_internal = {'name' : elem.get('name')} # store the name with the key/pair 'name'
 
-        for child in self.root:
-            print(child)
+                        for description in elem: # get the description out
+                            blank_desc = strip_space(description.text)
+                            
+                            for bullet in description: # if there are any bullet points
+                                if bullet.text != None: # and its not none
+                                    if bullet.text[1] == '0':
+                                        blank_desc += f'\n\nParameter Options:'
+
+                                    blank_desc += f'\n{bullet.text}'
+                        blank_internal['description'] = blank_desc # set the description
+                        blank_param_dict[param_idx] = blank_internal # assign the blank_internal dict to a parameter number
+                        param_idx += 1
+
+        param_dict = dict({self.object_name:blank_param_dict})
+
+        self.j_master_dict.update(param_dict)
         
-
-        # #strips whitespace from things
-        self.digest = strip_space(self.digest)
-        self.keywords = strip_space(self.keywords)
-        self.keywords = self.keywords.split(',')
-        self.keywords = [x.strip(' ') for x in self.keywords]
-
-        self.build_json_file()
+        # once we've made the param stuff we append it to a dict with the name of the object
+        # 
 
 # ----------- THE GUTS ----------- #
 
@@ -64,9 +65,9 @@ def main(root):
     dir_path = root
     dir_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib')
     ref_dir = f'{dir_path}/docs/refpages' 
-    obj_lookup = f'{dir_path}/interfaces/FrameLib-obj-qlookup.json'
+    obj_lookup = f'{dir_path}/interfaces/FrameLib-obj-jlookup.json'
 
-    worker = jParseAndBuild()
+    worker = jParseAndBuild() # make an instance of the class
 
     for filename in os.listdir(ref_dir):
         if filename != '.DS_Store':
@@ -80,9 +81,7 @@ def main(root):
                 worker.extract_from_refpage(source_file)
 
     with open(obj_lookup, 'w') as fp:
-        json.dump(worker.d_master_dict, fp, indent=4)
-
-main('/Users/jamesbradbury/FrameLib/Documentation/Max Documentation')
+        json.dump(worker.j_master_dict, fp, indent=4)
 
 
 
