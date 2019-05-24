@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 2,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -76,7 +76,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 2,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -197,15 +197,16 @@
 							}
 , 							{
 								"box" : 								{
+									"fontsize" : 15.0,
 									"id" : "obj-5",
-									"linecount" : 19,
+									"linecount" : 21,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.0, 123.0, 446.0, 261.0 ],
+									"patching_rect" : [ 8.0, 123.0, 476.0, 358.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 13,
-									"presentation_rect" : [ 8.0, 79.0, 636.0, 181.0 ],
+									"presentation_linecount" : 16,
+									"presentation_rect" : [ 8.0, 79.0, 676.0, 275.0 ],
 									"text" : "FrameLib is a DSP library for frame based processing. The underlying code is written in C++ and theoretically can be hosted in any block-based environment, but is easily compiled for Max from source. If this level of technical geekiness interests you there are links to the source/github throughout the documentation and just below.\n\nYou might be familiar working with other frame based tools such as pipo, mubu or gabor/FTM but you are encouraged to explore the FrameLib tutorials which will guide you through the fundamentals and how it works within Max. The tutorials should be perused in their numbered order, and increase with difficulty as you move through them. A number of techniques will be covered such as simple and complex FFT, and granular synthesis. \n\nThere is also a complete object reference as of 15/10/18. Gaining information about the FrameLib objects is still possible without help files and how to do this is explained in Tutorial 2: Key Concepts, \"How to get help\".\n\nYou are encouraged to move to the tutorial section next and to start learning how FrameLib works.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.910000026226044 ]
 								}
@@ -222,7 +223,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 2,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -356,7 +357,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 23.0, 681.0, 97.0, 64.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 536.0, 36.0, 105.0, 32.0 ],
+									"presentation_rect" : [ 576.0, 36.0, 105.0, 32.0 ],
 									"tabs" : [ "ICMC Paper", "GitHub Source" ]
 								}
 
@@ -402,7 +403,7 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 29.0, 639.5, 150.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 536.0, 16.0, 105.0, 20.0 ],
+									"presentation_rect" : [ 576.0, 16.0, 105.0, 20.0 ],
 									"text" : "References",
 									"textjustification" : 1
 								}
@@ -577,7 +578,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 2,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -660,7 +661,7 @@
 									"patching_rect" : [ 284.0, 248.0, 151.0, 74.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 2,
-									"presentation_rect" : [ 251.0, 225.0, 427.0, 33.0 ],
+									"presentation_rect" : [ 253.5, 225.0, 427.0, 33.0 ],
 									"text" : "Warning: At this point in time, tutorials 1-6 are included in the FrameLib package. Further tutorials (7 & 8) to come!",
 									"textcolor" : [ 0.866666674613953, 0.117647059261799, 0.117647059261799, 1.0 ]
 								}
@@ -688,7 +689,7 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 23.0, 210.0, 384.0, 23.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 251.0, 152.0, 422.0, 23.0 ],
+									"presentation_rect" : [ 258.5, 152.0, 422.0, 23.0 ],
 									"text" : "A general introduction to FrameLib.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
@@ -702,7 +703,7 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 23.0, 659.0, 150.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 536.0, 16.0, 105.0, 20.0 ],
+									"presentation_rect" : [ 573.0, 16.0, 105.0, 20.0 ],
 									"text" : "References",
 									"textjustification" : 1
 								}
@@ -719,7 +720,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 2,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -853,7 +854,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 23.0, 681.0, 97.0, 64.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 536.0, 36.0, 105.0, 32.0 ],
+									"presentation_rect" : [ 573.0, 36.0, 105.0, 32.0 ],
 									"tabs" : [ "ICMC Paper", "GitHub Source" ]
 								}
 
@@ -881,7 +882,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 2,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1318,7 +1319,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 2,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1473,7 +1474,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 0,
-															"revision" : 2,
+															"revision" : 5,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -1885,7 +1886,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 387.83331298828125, 415.0, 143.0, 22.0 ],
+													"patching_rect" : [ 387.833312999999976, 415.0, 143.0, 22.0 ],
 													"text" : "prepend textcolor 0. 0. 0."
 												}
 
@@ -2668,7 +2669,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 2,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2729,7 +2730,7 @@
 									"patching_rect" : [ 339.5, 644.0, 180.0, 84.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 3,
-									"presentation_rect" : [ 302.5, 720.0, 379.0, 53.0 ],
+									"presentation_rect" : [ 306.0, 720.0, 379.0, 53.0 ],
 									"text" : "Help files written by James Bradbury with support from the Huddersfield Creative Coding Lab and the Fluid Corpus Manipulation Project.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 									"textjustification" : 2
@@ -2776,7 +2777,7 @@
 									"patching_rect" : [ 284.0, 248.0, 151.0, 127.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 3,
-									"presentation_rect" : [ 251.0, 194.0, 427.0, 47.0 ],
+									"presentation_rect" : [ 251.0, 195.0, 427.0, 47.0 ],
 									"text" : "Warning: many categories have no help files and clicking the object name will do nothing. If you are looking for help with a particular object refer to the Reference or send an instance of the object the \"info\" message.",
 									"textcolor" : [ 0.866666674613953, 0.117647059261799, 0.117647059261799, 1.0 ]
 								}
@@ -2793,7 +2794,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 2,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2927,7 +2928,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 23.0, 681.0, 97.0, 64.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 536.0, 36.0, 105.0, 32.0 ],
+									"presentation_rect" : [ 573.0, 36.0, 105.0, 32.0 ],
 									"tabs" : [ "ICMC Paper", "GitHub Source" ]
 								}
 
@@ -3050,7 +3051,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 2,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -4006,7 +4007,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 2,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -4497,7 +4498,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 2,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -4975,7 +4976,7 @@
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
-									"tabs" : [ "fl.interval~" ],
+									"tabs" : [ "--" ],
 									"truncate" : 0
 								}
 
@@ -4994,16 +4995,16 @@
 									"parameter_enable" : 1,
 									"patching_rect" : [ 454.5, 357.0, 153.0, 23.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 5.0, 90.0, 209.0, 23.0 ],
+									"presentation_rect" : [ 5.0, 89.0, 209.0, 23.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_longname" : "umenu",
+											"parameter_initial_enable" : 1,
 											"parameter_invisible" : 1,
 											"parameter_mmax" : 22.0,
 											"parameter_initial" : [ 0 ],
 											"parameter_shortname" : "umenu",
-											"parameter_type" : 3,
-											"parameter_longname" : "umenu",
-											"parameter_initial_enable" : 1
+											"parameter_type" : 3
 										}
 
 									}
@@ -5021,7 +5022,7 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 23.0, 659.0, 150.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 536.0, 16.0, 105.0, 20.0 ],
+									"presentation_rect" : [ 573.0, 16.0, 105.0, 20.0 ],
 									"text" : "References",
 									"textjustification" : 1
 								}
