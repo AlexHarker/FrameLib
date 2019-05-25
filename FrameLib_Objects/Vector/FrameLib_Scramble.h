@@ -22,8 +22,9 @@ public:
 private:
     
     // Process
-    
     void process() override;
+    std::random_device rd;
+    std::mt19937 g(rd());
 };
 
 #endif

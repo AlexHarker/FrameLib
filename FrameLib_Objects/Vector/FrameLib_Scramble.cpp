@@ -32,8 +32,6 @@ void FrameLib_Scramble::process()
 {
     unsigned long size;
     const double *input = getInput(0, &size);
-    std::random_device rd;
-    std::mt19937 g(rd());
     
     // Temporary memory because you cannot past const to the std::random_shuffle
     double *temp = alloc<double>(size);
