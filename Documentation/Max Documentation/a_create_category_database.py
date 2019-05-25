@@ -12,9 +12,25 @@ def main(root):
     output_path = f'{dir_path}/category_database.json'
 
     file_categories = (os.listdir(object_path))
-    file_categories.remove('_MaxSDK_')
-    file_categories.remove('.DS_Store')
-    file_categories.remove('Common')
+    
+    try:
+        file_categories.remove('_MaxSDK_')
+    except ValueError:
+        print('No _MaxSDK_ to delete')
+        pass
+    
+    try:
+        file_categories.remove('.DS_Store')
+    except ValueError:
+        print('No .DS_Store')
+        pass
+
+    try:    
+        file_categories.remove('Common')
+    except ValueError:
+        print('No common folder')
+        pass
+
     file_categories.sort()
 
     category_dict = dict({})
