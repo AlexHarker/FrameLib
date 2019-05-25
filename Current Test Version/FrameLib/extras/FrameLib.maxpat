@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 0.0, 45.0, 692.0, 855.0 ],
+		"rect" : [ -1767.0, -323.0, 692.0, 855.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 11.0,
@@ -82,7 +82,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 692.0, 829.0 ],
+						"rect" : [ -1767.0, -297.0, 692.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -206,7 +206,7 @@
 									"patching_rect" : [ 8.0, 123.0, 476.0, 358.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 16,
-									"presentation_rect" : [ 8.0, 79.0, 676.0, 275.0 ],
+									"presentation_rect" : [ 8.0, 79.0, 680.0, 275.0 ],
 									"text" : "FrameLib is a DSP library for frame based processing. The underlying code is written in C++ and theoretically can be hosted in any block-based environment, but is easily compiled for Max from source. If this level of technical geekiness interests you there are links to the source/github throughout the documentation and just below.\n\nYou might be familiar working with other frame based tools such as pipo, mubu or gabor/FTM but you are encouraged to explore the FrameLib tutorials which will guide you through the fundamentals and how it works within Max. The tutorials should be perused in their numbered order, and increase with difficulty as you move through them. A number of techniques will be covered such as simple and complex FFT, and granular synthesis. \n\nThere is also a complete object reference as of 15/10/18. Gaining information about the FrameLib objects is still possible without help files and how to do this is explained in Tutorial 2: Key Concepts, \"How to get help\".\n\nYou are encouraged to move to the tutorial section next and to start learning how FrameLib works.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.910000026226044 ]
 								}
@@ -2675,7 +2675,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 71.0, 692.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 692.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -4998,13 +4998,13 @@
 									"presentation_rect" : [ 5.0, 89.0, 209.0, 23.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_shortname" : "umenu",
+											"parameter_type" : 3,
 											"parameter_longname" : "umenu",
 											"parameter_initial_enable" : 1,
 											"parameter_invisible" : 1,
 											"parameter_mmax" : 22.0,
-											"parameter_initial" : [ 0 ],
-											"parameter_shortname" : "umenu",
-											"parameter_type" : 3
+											"parameter_initial" : [ 0 ]
 										}
 
 									}
