@@ -4,6 +4,7 @@
 
 // Buffers
 
+#include "FrameLib_Info.h"
 #include "FrameLib_Read.h"
 #include "FrameLib_Info.h"
 
@@ -116,6 +117,7 @@
 #include "FrameLib_NanFilter.h"
 #include "FrameLib_NonZero.h"
 #include "FrameLib_Pad.h"
+#include "FrameLib_Pattern.h"
 #include "FrameLib_Peaks.h"
 #include "FrameLib_Percentile.h"
 #include "FrameLib_Reverse.h"

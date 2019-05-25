@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iostream>
 #include <iomanip>
+#include "FrameLib_Errors.h"
 #include "FrameLib_Memory.h"
 #include "FrameLib_RandGen.h"
 
@@ -180,6 +181,14 @@ void runTimeCompareTest(std::string name, std::string name1, std::string name2, 
 
 // ************************************************************************************** //
 
+struct NoNotifier : FrameLib_ErrorReporter::HostNotifier
+{
+    void notify() override {}
+};
+
+NoNotifier notifier;
+FrameLib_ErrorReporter reporter(&notifier);
+
 // Correctness tests
 
 size_t randomSize()
@@ -191,7 +200,7 @@ uintptr_t globalAllocTest1(uintptr_t count)
 {
     std::vector<void *> ptrs(count);
     
-    FrameLib_GlobalAllocator allocator;
+    FrameLib_GlobalAllocator allocator(reporter);
     
     for (uintptr_t i = 0; i < count; i++)
         ptrs[i] = allocator.alloc(randomSize());
@@ -204,7 +213,7 @@ uintptr_t globalAllocTest1(uintptr_t count)
 
 uintptr_t globalAllocTest2(uintptr_t count)
 {
-    FrameLib_GlobalAllocator allocator;
+    FrameLib_GlobalAllocator allocator(reporter);
     
     for (uintptr_t i = 0; i < count; i++)
         allocator.dealloc(allocator.alloc(randomSize()));
@@ -216,7 +225,7 @@ uintptr_t globalAllocTest3(uintptr_t count)
 {
     std::vector<void *> ptrs(count);
     
-    FrameLib_GlobalAllocator allocator;
+    FrameLib_GlobalAllocator allocator(reporter);
     
     for (uintptr_t i = 0; i < count; i++)
         ptrs[i] = allocator.alloc(i);
@@ -237,8 +246,8 @@ uintptr_t localAllocTest1(uintptr_t count)
 {
     std::vector<void *> ptrs(count);
     
-    FrameLib_GlobalAllocator gAllocator;
-    FrameLib_LocalAllocator allocator(&gAllocator);
+    FrameLib_GlobalAllocator gAllocator(reporter);
+    FrameLib_LocalAllocator allocator(gAllocator);
     
     for (uintptr_t i = 0; i < count; i++)
         ptrs[i] = allocator.alloc(randomSize());
@@ -251,8 +260,8 @@ uintptr_t localAllocTest1(uintptr_t count)
 
 uintptr_t localAllocTest2(uintptr_t count)
 {
-    FrameLib_GlobalAllocator gAllocator;
-    FrameLib_LocalAllocator allocator(&gAllocator);
+    FrameLib_GlobalAllocator gAllocator(reporter);
+    FrameLib_LocalAllocator allocator(gAllocator);
     
     for (uintptr_t i = 0; i < count; i++)
         allocator.dealloc(allocator.alloc(randomSize()));
@@ -264,8 +273,8 @@ uintptr_t localAllocTest3(uintptr_t count)
 {
     std::vector<void *> ptrs(count);
     
-    FrameLib_GlobalAllocator gAllocator;
-    FrameLib_LocalAllocator allocator(&gAllocator);
+    FrameLib_GlobalAllocator gAllocator(reporter);
+    FrameLib_LocalAllocator allocator(gAllocator);
     
     for (uintptr_t i = 0; i < count; i++)
         ptrs[i] = allocator.alloc(i);
@@ -288,8 +297,8 @@ uintptr_t localAllocTest3(uintptr_t count)
 
 // Speed tests
 
-FrameLib_GlobalAllocator globalAllocator;
-FrameLib_LocalAllocator localallocator(&globalAllocator);
+FrameLib_GlobalAllocator globalAllocator(reporter);
+FrameLib_LocalAllocator localallocator(globalAllocator);
 
 void mallocAllocTest(uintptr_t count)
 {

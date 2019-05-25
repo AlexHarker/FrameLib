@@ -766,7 +766,7 @@ public:
         else if (error == kExportWriteError)
             object_error(x->mUserObject, "couldn't write file");
     }
-
+    
     void info(t_symbol *sym, long ac, t_atom *av)
     {
         // Determine what to post

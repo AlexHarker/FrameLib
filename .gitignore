@@ -17,6 +17,7 @@ CVS/
 *.perspectivev3
 !default.perspectivev3
 xcuserdata/
+*.xccheckout
 _MaxSDK_/
 
 ## Latex

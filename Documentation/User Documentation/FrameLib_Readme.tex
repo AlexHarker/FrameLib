@@ -168,6 +168,7 @@ Whilst this document is not an object reference, it is worthwhile giving more de
 \item [\flobject{perblock}] trigger one frame per host audio block
 \item [\flobject{future}] schedule frames at specific points in the future
 \item [\flobject{once}] trigger one frame at the start of time, and never again
+\item [\flobject{chain}] schedule frames in specified times according to the input frame
 \end{description}
 
 \subsection{Connecting Inputs and Outputs}
@@ -250,9 +251,10 @@ Objects in bold are yet to be finalised by review.
 \subsection{Schedulers}
 \begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
 \flobjectb{audiotrigger} &
+\flobjectb{chain} &
 \flobjectb{perblock} &
-\flobjectb{future} &
-\flobjectb{interval} \\
+\flobjectb{future} \\
+\flobjectb{interval} &
 \flobjectb{once} & 
 \end{tabular}
 
@@ -362,21 +364,22 @@ Objects in bold are yet to be finalised by review.
 \flobjectb{nanfilter} &
 \flobjectb{nonzero} &
 \flobjectb{pad} \\
+\flobjectb{pattern} &
 \flobjectb{peaks} &
 \flobjectb{percentile} &
-\flobjectb{product} &
-\flobjectb{reverse} \\
+\flobjectb{product} \\
+\flobjectb{reverse} &
 \flobjectb{rms} &
 \flobjectb{shift} &
-\flobjectb{skewness} &
-\flobjectb{sort} \\
+\flobjectb{skewness} \\
+\flobjectb{sort} &
 \flobjectb{split} &
 \flobjectb{spread} &
-\flobjectb{standarddeviation} &
-\flobjectb{subframe} \\
+\flobjectb{standarddeviation} \\
+\flobjectb{subframe} &
 \flobjectb{sum} &
 \flobjectb{vmax} &
-\flobjectb{vmin} &
+\flobjectb{vmin} \\
 \end{tabular}
 
 \subsection{Generators}
@@ -411,6 +414,7 @@ Objects in bold are yet to be finalised by review.
 
 \subsection{Buffers}
 \begin{tabular}{L{3.8cm} L {3.8cm} L {3.8cm} L {3.8cm} }
+\flobjectb{info} &
 \flobjectb{read}
 \end{tabular}
 
@@ -777,6 +781,35 @@ Objects in bold are yet to be finalised by review.
 \item {\#76} More pd work (not quite ready for testing yet).
 \end{itemize}
 
+\subsection{Changes in Alpha 2.6}
+\vspace{0.1in}
 
+\subsubsection{Bug fixes}
+
+\begin{itemize}
+
+\item {\#91} Fixed error reporting with \flobject{join}.
+\item Fixed naming of \flobject{dispatch}.
+\item Fixed crash with timing smoothing objects when input frames are empty.
+\end{itemize}
+
+\subsubsection{New objects}
+
+\begin{itemize}
+\item Added \flobject{chain}.
+\item Added \flobject{pattern}.
+\end{itemize}
+
+\subsubsection{New object features}
+
+\begin{itemize}
+\item {\#70} \flobject{tomax} can now split multistream outputs into multiple outlets.
+\end{itemize}
+
+\subsubsection{Other changes}
+
+\begin{itemize}
+\item Corrected info strings for a variety of objects.
+\end{itemize}
 
 \end{document}

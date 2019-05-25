@@ -33,7 +33,7 @@ public:
         mParameters.addInt(sNumFrames, "num_frames", 10, 1);
         mParameters.setMin(1);
         
-        serialisedParameters->read(&mParameters);
+        mParameters.set(serialisedParameters);
 
         setParameterInput(1);
     }
@@ -42,7 +42,7 @@ protected:
     
     void smoothReset()
     {
-        FrameLib_RingBuffer::resize(0, 0);
+        resize(0, 0);
         mLastNumFrames = 0;
     }
     
@@ -87,30 +87,35 @@ private:
         {
             resize(maxFrames, sizeIn);
             resetSize(maxFrames, sizeIn);
+            mLastNumFrames = 0;
         }
 
         requestOutputSize(0, getFrameLength());
         allocateOutputs();
         double *output = getOutput(0, &sizeOut);
         
-        if (numFrames > mLastNumFrames)
+        if (sizeIn)
         {
-            for (unsigned long i = numFrames - 1; i > mLastNumFrames; i--)
-                add(getFrame(i), sizeIn);
+            if (numFrames > mLastNumFrames)
+            {
+                for (unsigned long i = numFrames - 1; i > mLastNumFrames; i--)
+                    add(getFrame(i), sizeIn);
+                
+                add(input, sizeIn);
+            }
+            else
+            {
+                for (unsigned long i = mLastNumFrames; i > numFrames; i--)
+                    remove(getFrame(i), sizeIn);
+                
+                exchange(input, getFrame(numFrames), sizeIn);
+            }
             
-            add(input, sizeIn);
-        }
-        else
-        {
-            for (unsigned long i = mLastNumFrames; i > numFrames; i--)
-                remove(getFrame(i), sizeIn);
+            result(output, sizeOut);
+            write(input, sizeIn);
             
-            exchange(input, getFrame(numFrames), sizeIn);
+            mLastNumFrames = numFrames;
         }
-        
-        result(output, sizeOut);
-        write(input, sizeIn);
-        mLastNumFrames = numFrames;
     }
     
     static ParameterInfo sParamInfo;

@@ -93,7 +93,7 @@ FrameLib_Tag::ParameterInfo::ParameterInfo()
     
     add("Sets the number of inputs (and hence the number of tags).");
 
-    add("Sets the behaviour when received empty frames: ignore - empty frames are ignored / reset - empty frames create empty tags to reset parameters. ");
+    add("Sets the behaviour when empty frames are received: ignore - empty frames are ignored / reset - empty frames create empty tags to reset parameters. ");
 
     for (int i = 0; i < maxNumIns; i++)
     {
