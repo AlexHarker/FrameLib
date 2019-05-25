@@ -3,6 +3,7 @@
 #define FRAMELIB_SCRAMBLE_H
 
 #include "FrameLib_DSP.h"
+#include <random>
 
 class FrameLib_Scramble final : public FrameLib_Processor
 {
