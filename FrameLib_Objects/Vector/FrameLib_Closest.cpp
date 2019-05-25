@@ -60,7 +60,7 @@ void FrameLib_Closest::process()
     
 
     
-    if (size2 != 0) { // only if there is a second input
+    if (size2) { // only if there is a second input
         
         double *differences = alloc<double>(size1);
         double min = std::numeric_limits<double>::infinity();
