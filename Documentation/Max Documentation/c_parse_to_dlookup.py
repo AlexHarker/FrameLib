@@ -50,6 +50,7 @@ def main(root):
     Args:
         arg1: passes the root of the python files from the master script. Creates relative directories.
     '''
+    bad_entries = ['.DS_Store', '_c74_ref_modules.xml']
     # Directory stuff #
     dir_path = root
     dir_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib')
@@ -57,19 +58,28 @@ def main(root):
     obj_lookup = f'{dir_path}/interfaces/FrameLib-obj-dlookup.json'
 
     worker = dParseAndBuild()
-    for filename in os.listdir(ref_dir):
-        if filename != '.DS_Store':
-            if filename != '_c74_ref_modules.xml':
+    # Make a list of file names and then check if empty or not
+    refpages = os.listdir(ref_dir)
+    for badness in bad_entries:
+        if badness in refpages:
+            refpages.remove(badness)
+    
+    if refpages:
+        for filename in refpages:
+            print(filename)
+            if filename != '.DS_Store' or filename != '_c74_ref_modules.xml':
                 current_category = filename
                 source_file_name = f'{ref_dir}/{filename}'
 
-        for filename in os.listdir(source_file_name):
-            if filename != '.DS_Store':
-                source_file = f'{ref_dir}/{current_category}/{filename}'
-                worker.extract_from_refpage(source_file)
+            for filename in os.listdir(source_file_name):
+                if filename != '.DS_Store':
+                    source_file = f'{ref_dir}/{current_category}/{filename}'
+                    worker.extract_from_refpage(source_file)
 
-    with open(obj_lookup, 'w') as fp:
-        json.dump(worker.d_master_dict, fp, indent=4)
+        with open(obj_lookup, 'w') as fp:
+            json.dump(worker.d_master_dict, fp, indent=4)
+    else:
+        print('Found no XML files to parse. Moving on to next stage.')
 
 
 

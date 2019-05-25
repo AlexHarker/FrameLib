@@ -38,8 +38,11 @@ def main(root):
     except FileNotFoundError:
         print('Unable to find any xml files to parse. Moving on without parsing object references.')
 
-    if raw_xml_list: #only do it if the raw_xml file had some xml in it
-        # Find and replace a string in the xml file with the category
+    try:
+        raw_xml_list
+    except NameError:
+        pass
+    else:
         for i in range(len(raw_xml_list)):
             if raw_xml_list[i] != '.DS_Store': #filter out annoying hidden files
                 raw_xml_file_path = f'{raw_xml_path}/{raw_xml_list[i]}' #make a raw file path to load the list somewhere
