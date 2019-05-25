@@ -26,6 +26,18 @@
 		26DB3F8822529BED00D8E899 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		26DB3F8F22529C2C00D8E899 /* FrameLib_Scramble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26DB3F7C22529A7A00D8E899 /* FrameLib_Scramble.cpp */; };
 		26DB3F9022529C3300D8E899 /* fl.scramble~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26DB3F7D22529A8500D8E899 /* fl.scramble~.cpp */; };
+		26E2EC402298C8C700F85222 /* a_create_category_database.py in Resources */ = {isa = PBXBuildFile; fileRef = 26E2EC342298C8C500F85222 /* a_create_category_database.py */; };
+		26E2EC412298C8C700F85222 /* b_edit_raw_XML.py in Resources */ = {isa = PBXBuildFile; fileRef = 26E2EC352298C8C500F85222 /* b_edit_raw_XML.py */; };
+		26E2EC422298C8C700F85222 /* help_file_templating.py in Resources */ = {isa = PBXBuildFile; fileRef = 26E2EC362298C8C500F85222 /* help_file_templating.py */; };
+		26E2EC432298C8C700F85222 /* c_parse_to_dlookup.py in Resources */ = {isa = PBXBuildFile; fileRef = 26E2EC372298C8C500F85222 /* c_parse_to_dlookup.py */; };
+		26E2EC442298C8C700F85222 /* keywords_seealso.py in Resources */ = {isa = PBXBuildFile; fileRef = 26E2EC382298C8C500F85222 /* keywords_seealso.py */; };
+		26E2EC452298C8C700F85222 /* _Build_All_Files.py in Resources */ = {isa = PBXBuildFile; fileRef = 26E2EC392298C8C600F85222 /* _Build_All_Files.py */; };
+		26E2EC462298C8C700F85222 /* strippers.py in Resources */ = {isa = PBXBuildFile; fileRef = 26E2EC3A2298C8C600F85222 /* strippers.py */; };
+		26E2EC472298C8C700F85222 /* e_parse_to_tlookup.py in Resources */ = {isa = PBXBuildFile; fileRef = 26E2EC3B2298C8C600F85222 /* e_parse_to_tlookup.py */; };
+		26E2EC482298C8C700F85222 /* g_create_tutorial_coll.py in Resources */ = {isa = PBXBuildFile; fileRef = 26E2EC3C2298C8C600F85222 /* g_create_tutorial_coll.py */; };
+		26E2EC492298C8C700F85222 /* f_parse_to_jlookup.py in Resources */ = {isa = PBXBuildFile; fileRef = 26E2EC3D2298C8C600F85222 /* f_parse_to_jlookup.py */; };
+		26E2EC4A2298C8C700F85222 /* d_parse_to_qlookup.py in Resources */ = {isa = PBXBuildFile; fileRef = 26E2EC3E2298C8C600F85222 /* d_parse_to_qlookup.py */; };
+		26E2EC4B2298C8C700F85222 /* helpers.py in Resources */ = {isa = PBXBuildFile; fileRef = 26E2EC3F2298C8C700F85222 /* helpers.py */; };
 		5A3CAB1E2052E7E8001082E3 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		5A3CAB1F2052E7E8001082E3 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		5AB54BBF2052E96E00325C14 /* fl.wrap~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AB54BBE2052E96E00325C14 /* fl.wrap~.cpp */; };
@@ -1913,15 +1925,6 @@
 		2600438622515D9300F5FECC /* FrameLib_Closest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Closest.cpp; sourceTree = "<group>"; };
 		2600438722515D9400F5FECC /* FrameLib_Closest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Closest.h; sourceTree = "<group>"; };
 		26004397225181F000F5FECC /* fl.closest~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.closest~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		262E5BCE2232C9510002CB98 /* edit_raw_XML.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = edit_raw_XML.py; path = "Max Documentation/edit_raw_XML.py"; sourceTree = "<group>"; };
-		262E5BCF2232C9520002CB98 /* keywords_seealso.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = keywords_seealso.py; path = "Max Documentation/keywords_seealso.py"; sourceTree = "<group>"; };
-		262E5BD02232C9520002CB98 /* Build_All_Files.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = Build_All_Files.py; path = "Max Documentation/Build_All_Files.py"; sourceTree = "<group>"; };
-		262E5BD12232C9520002CB98 /* create_category_database.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = create_category_database.py; path = "Max Documentation/create_category_database.py"; sourceTree = "<group>"; };
-		262E5BD22232C9520002CB98 /* create_tutorial_coll.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = create_tutorial_coll.py; path = "Max Documentation/create_tutorial_coll.py"; sourceTree = "<group>"; };
-		262E5BD32232C9520002CB98 /* parse_to_qlookup.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = parse_to_qlookup.py; path = "Max Documentation/parse_to_qlookup.py"; sourceTree = "<group>"; };
-		262E5BD42232C9520002CB98 /* parse_to_tlookup.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = parse_to_tlookup.py; path = "Max Documentation/parse_to_tlookup.py"; sourceTree = "<group>"; };
-		262E5BD52232C9530002CB98 /* parse_to_dlookup.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = parse_to_dlookup.py; path = "Max Documentation/parse_to_dlookup.py"; sourceTree = "<group>"; };
-		262E5BD62232C9530002CB98 /* strippers.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = strippers.py; path = "Max Documentation/strippers.py"; sourceTree = "<group>"; };
 		2668246122294CD40068E5C4 /* fl.info~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.info~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2668246322294D220068E5C4 /* fl.info~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.info~.cpp"; sourceTree = "<group>"; };
 		2668246522294D3E0068E5C4 /* FrameLib_Info.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Info.cpp; sourceTree = "<group>"; };
@@ -1932,6 +1935,18 @@
 		26DB3F7C22529A7A00D8E899 /* FrameLib_Scramble.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Scramble.cpp; sourceTree = "<group>"; };
 		26DB3F7D22529A8500D8E899 /* fl.scramble~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.scramble~.cpp"; sourceTree = "<group>"; };
 		26DB3F8D22529BED00D8E899 /* fl.scramble~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.scramble~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		26E2EC342298C8C500F85222 /* a_create_category_database.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = a_create_category_database.py; path = "Max Documentation/a_create_category_database.py"; sourceTree = "<group>"; };
+		26E2EC352298C8C500F85222 /* b_edit_raw_XML.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = b_edit_raw_XML.py; path = "Max Documentation/b_edit_raw_XML.py"; sourceTree = "<group>"; };
+		26E2EC362298C8C500F85222 /* help_file_templating.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = help_file_templating.py; path = "Max Documentation/help_file_templating.py"; sourceTree = "<group>"; };
+		26E2EC372298C8C500F85222 /* c_parse_to_dlookup.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = c_parse_to_dlookup.py; path = "Max Documentation/c_parse_to_dlookup.py"; sourceTree = "<group>"; };
+		26E2EC382298C8C500F85222 /* keywords_seealso.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = keywords_seealso.py; path = "Max Documentation/keywords_seealso.py"; sourceTree = "<group>"; };
+		26E2EC392298C8C600F85222 /* _Build_All_Files.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = _Build_All_Files.py; path = "Max Documentation/_Build_All_Files.py"; sourceTree = "<group>"; };
+		26E2EC3A2298C8C600F85222 /* strippers.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = strippers.py; path = "Max Documentation/strippers.py"; sourceTree = "<group>"; };
+		26E2EC3B2298C8C600F85222 /* e_parse_to_tlookup.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = e_parse_to_tlookup.py; path = "Max Documentation/e_parse_to_tlookup.py"; sourceTree = "<group>"; };
+		26E2EC3C2298C8C600F85222 /* g_create_tutorial_coll.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = g_create_tutorial_coll.py; path = "Max Documentation/g_create_tutorial_coll.py"; sourceTree = "<group>"; };
+		26E2EC3D2298C8C600F85222 /* f_parse_to_jlookup.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = f_parse_to_jlookup.py; path = "Max Documentation/f_parse_to_jlookup.py"; sourceTree = "<group>"; };
+		26E2EC3E2298C8C600F85222 /* d_parse_to_qlookup.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = d_parse_to_qlookup.py; path = "Max Documentation/d_parse_to_qlookup.py"; sourceTree = "<group>"; };
+		26E2EC3F2298C8C700F85222 /* helpers.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = helpers.py; path = "Max Documentation/helpers.py"; sourceTree = "<group>"; };
 		5A3CAB132052E67E001082E3 /* FrameLib_Ternary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Objects.h; sourceTree = "<group>"; };
 		5A3CAB142052E67E001082E3 /* FrameLib_Ternary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Template.h; sourceTree = "<group>"; };
 		5A3CAB262052E7E8001082E3 /* fl.wrap~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.wrap~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4269,15 +4284,18 @@
 		26E05B242232C92600A0EB1F /* Python Files */ = {
 			isa = PBXGroup;
 			children = (
-				262E5BD02232C9520002CB98 /* Build_All_Files.py */,
-				262E5BD12232C9520002CB98 /* create_category_database.py */,
-				262E5BD22232C9520002CB98 /* create_tutorial_coll.py */,
-				262E5BCE2232C9510002CB98 /* edit_raw_XML.py */,
-				262E5BCF2232C9520002CB98 /* keywords_seealso.py */,
-				262E5BD52232C9530002CB98 /* parse_to_dlookup.py */,
-				262E5BD32232C9520002CB98 /* parse_to_qlookup.py */,
-				262E5BD42232C9520002CB98 /* parse_to_tlookup.py */,
-				262E5BD62232C9530002CB98 /* strippers.py */,
+				26E2EC392298C8C600F85222 /* _Build_All_Files.py */,
+				26E2EC342298C8C500F85222 /* a_create_category_database.py */,
+				26E2EC352298C8C500F85222 /* b_edit_raw_XML.py */,
+				26E2EC372298C8C500F85222 /* c_parse_to_dlookup.py */,
+				26E2EC3E2298C8C600F85222 /* d_parse_to_qlookup.py */,
+				26E2EC3B2298C8C600F85222 /* e_parse_to_tlookup.py */,
+				26E2EC3D2298C8C600F85222 /* f_parse_to_jlookup.py */,
+				26E2EC3C2298C8C600F85222 /* g_create_tutorial_coll.py */,
+				26E2EC362298C8C500F85222 /* help_file_templating.py */,
+				26E2EC3F2298C8C700F85222 /* helpers.py */,
+				26E2EC382298C8C500F85222 /* keywords_seealso.py */,
+				26E2EC3A2298C8C600F85222 /* strippers.py */,
 			);
 			name = "Python Files";
 			sourceTree = "<group>";
@@ -6344,10 +6362,10 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXLegacyTarget section */
-		2671A5132232C3B9005132A5 /* PythonDocs */ = {
+		26E2EC2F2298C85900F85222 /* PythonDocs */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = 2671A5142232C3BA005132A5 /* Build configuration list for PBXLegacyTarget "PythonDocs" */;
+			buildConfigurationList = 26E2EC302298C85900F85222 /* Build configuration list for PBXLegacyTarget "PythonDocs" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/local/bin/python3;
@@ -9772,11 +9790,11 @@
 			attributes = {
 				LastUpgradeCheck = 0920;
 				TargetAttributes = {
-					2671A5132232C3B9005132A5 = {
+					26970D1B222FEA6B00990D87 = {
 						CreatedOnToolsVersion = 9.4.1;
 						ProvisioningStyle = Automatic;
 					};
-					26970D1B222FEA6B00990D87 = {
+					26E2EC2F2298C85900F85222 = {
 						CreatedOnToolsVersion = 9.4.1;
 						ProvisioningStyle = Automatic;
 					};
@@ -9979,7 +9997,7 @@
 				B83E029B206674D4005925DD /* framelib_pd */,
 				B88C0A3021733BF9007A65C0 /* FrameLib */,
 				26970D1B222FEA6B00990D87 /* Documentation */,
-				2671A5132232C3B9005132A5 /* PythonDocs */,
+				26E2EC2F2298C85900F85222 /* PythonDocs */,
 			);
 		};
 /* End PBXProject section */
@@ -10983,6 +11001,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26E2EC432298C8C700F85222 /* c_parse_to_dlookup.py in Resources */,
+				26E2EC482298C8C700F85222 /* g_create_tutorial_coll.py in Resources */,
+				26E2EC4A2298C8C700F85222 /* d_parse_to_qlookup.py in Resources */,
+				26E2EC412298C8C700F85222 /* b_edit_raw_XML.py in Resources */,
+				26E2EC4B2298C8C700F85222 /* helpers.py in Resources */,
+				26E2EC492298C8C700F85222 /* f_parse_to_jlookup.py in Resources */,
+				26E2EC472298C8C700F85222 /* e_parse_to_tlookup.py in Resources */,
+				26E2EC402298C8C700F85222 /* a_create_category_database.py in Resources */,
+				26E2EC452298C8C700F85222 /* _Build_All_Files.py in Resources */,
+				26E2EC442298C8C700F85222 /* keywords_seealso.py in Resources */,
+				26E2EC422298C8C700F85222 /* help_file_templating.py in Resources */,
+				26E2EC462298C8C700F85222 /* strippers.py in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13970,171 +14000,6 @@
 			};
 			name = "Public Testing";
 		};
-		2671A5152232C3BA005132A5 /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Development;
-		};
-		2671A5162232C3BA005132A5 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Deployment;
-		};
-		2671A5172232C3BA005132A5 /* Public Testing */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = "Public Testing";
-		};
 		26970D20222FEA6B00990D87 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -14392,6 +14257,171 @@
 					"-Wno-unknown-pragmas",
 				);
 				ZERO_LINK = NO;
+			};
+			name = "Public Testing";
+		};
+		26E2EC312298C85900F85222 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Development;
+		};
+		26E2EC322298C85900F85222 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Deployment;
+		};
+		26E2EC332298C85900F85222 /* Public Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Public Testing";
 		};
@@ -29292,16 +29322,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		2671A5142232C3BA005132A5 /* Build configuration list for PBXLegacyTarget "PythonDocs" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2671A5152232C3BA005132A5 /* Development */,
-				2671A5162232C3BA005132A5 /* Deployment */,
-				2671A5172232C3BA005132A5 /* Public Testing */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Development;
-		};
 		26970D23222FEA6B00990D87 /* Build configuration list for PBXNativeTarget "Documentation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -29318,6 +29338,16 @@
 				26DB3F8A22529BED00D8E899 /* Development */,
 				26DB3F8B22529BED00D8E899 /* Deployment */,
 				26DB3F8C22529BED00D8E899 /* Public Testing */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		26E2EC302298C85900F85222 /* Build configuration list for PBXLegacyTarget "PythonDocs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26E2EC312298C85900F85222 /* Development */,
+				26E2EC322298C85900F85222 /* Deployment */,
+				26E2EC332298C85900F85222 /* Public Testing */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;

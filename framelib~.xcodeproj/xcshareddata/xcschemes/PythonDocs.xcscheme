@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2671A5132232C3B9005132A5"
+               BlueprintIdentifier = "26E2EC2F2298C85900F85222"
                BuildableName = "PythonDocs"
                BlueprintName = "PythonDocs"
                ReferencedContainer = "container:framelib~.xcodeproj">
@@ -44,12 +44,12 @@
       allowLocationSimulation = "YES">
       <PathRunnable
          runnableDebuggingMode = "0"
-         FilePath = "/usr/local/Cellar/python/3.7.1/Frameworks/Python.framework/Versions/3.7/bin/python3.7">
+         FilePath = "/usr/local/bin/python37">
       </PathRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2671A5132232C3B9005132A5"
+            BlueprintIdentifier = "26E2EC2F2298C85900F85222"
             BuildableName = "PythonDocs"
             BlueprintName = "PythonDocs"
             ReferencedContainer = "container:framelib~.xcodeproj">
@@ -57,7 +57,7 @@
       </MacroExpansion>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "$(SRCROOT)/Documentation/Max\ Documentation/Build_All_Files.py"
+            argument = "$(SRCROOT)/Documentation/Max\ Documentation/_Build_All_Files.py"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -73,7 +73,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2671A5132232C3B9005132A5"
+            BlueprintIdentifier = "26E2EC2F2298C85900F85222"
             BuildableName = "PythonDocs"
             BlueprintName = "PythonDocs"
             ReferencedContainer = "container:framelib~.xcodeproj">
