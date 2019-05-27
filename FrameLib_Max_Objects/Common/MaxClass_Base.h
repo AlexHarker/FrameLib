@@ -66,21 +66,24 @@ public:
     
     // Static Methods for class initialisation, object creation and deletion
     
-    template <class T> static t_class **getClassPointer()
+    template <class T>
+    static t_class **getClassPointer()
     {
         static t_class *C;
         
         return &C;
     }
     
-    template <class T> static std::string *accessClassName()
+    template <class T>
+    static std::string *accessClassName()
     {
         static std::string str;
         
         return &str;
     }
 
-    template <class T> static void makeClass(t_symbol *nameSpace, const char *classname)
+    template <class T>
+    static void makeClass(t_symbol *nameSpace, const char *classname)
     {
         t_class **C = getClassPointer<T>();
         
@@ -90,14 +93,16 @@ public:
         *accessClassName<T>() = std::string(classname);
     }
     
-    template <class T> static void *create(t_symbol *sym, long ac, t_atom *av)
+    template <class T>
+    static void *create(t_symbol *sym, long ac, t_atom *av)
     {
         void *x = object_alloc(*getClassPointer<T>());
         new(x) T(sym, ac, av);
         return x;
     }
     
-    template <class T> static void destroy(t_object * x)
+    template <class T>
+    static void destroy(t_object * x)
     {
         ((T *)x)->~T();
     }
