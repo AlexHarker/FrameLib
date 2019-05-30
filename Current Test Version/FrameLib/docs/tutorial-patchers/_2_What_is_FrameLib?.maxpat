@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 2,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 2.0, 45.0, 801.0, 591.0 ],
+		"rect" : [ -1831.0, -241.0, 801.0, 591.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -77,7 +77,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 2,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -483,13 +483,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 2,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 801.0, 565.0 ],
+						"rect" : [ -1831.0, -215.0, 801.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -587,7 +587,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 2,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1159,7 +1159,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 2,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1206,7 +1206,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 2,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1329,7 +1329,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 2,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1844,13 +1844,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 2,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 2.0, 71.0, 801.0, 565.0 ],
+						"rect" : [ 0.0, 26.0, 801.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2121,7 +2121,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 2,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2343,7 +2343,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 125.0, 250.100036999999986, 298.0, 121.0 ],
-									"size" : 8191
+									"size" : 16383
 								}
 
 							}
@@ -2642,7 +2642,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 2,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -3067,7 +3067,7 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 92.0, 430.0, 298.0, 121.0 ],
-									"size" : 3575
+									"size" : 1532
 								}
 
 							}
@@ -3095,11 +3095,11 @@
 									"outlettype" : [ "", "", "", "" ],
 									"patching_rect" : [ 523.550048999999944, 494.800018000000023, 79.0, 19.0 ],
 									"restore" : 									{
-										"1_FrameInterval" : [ 193.98529052734375 ],
-										"1_FrameLength" : [ 2529.88232421875 ],
-										"2_FrameInterval" : [ 384.9705810546875 ],
-										"2_FrameLength" : [ 1046.073486328125 ],
-										"randcontrol" : [ 0.030749998986721 ]
+										"1_FrameInterval" : [ 61.764705657958984 ],
+										"1_FrameLength" : [ 76.455879211425781 ],
+										"2_FrameInterval" : [ 105.838233947753906 ],
+										"2_FrameLength" : [ 1457.426513671875 ],
+										"randcontrol" : [ 0.28999999165535 ]
 									}
 ,
 									"text" : "autopattr expose",
@@ -3368,7 +3368,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 2,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -3469,18 +3469,19 @@
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
 									"patching_rect" : [ 94.125, 432.0, 298.0, 121.0 ],
-									"size" : 1176
+									"size" : 7449
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"id" : "obj-5",
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 115.125, 274.699951171875, 306.0, 20.0 ],
-									"text" : "Change the interval at which new frames are generated"
+									"patching_rect" : [ 115.125, 274.699951171875, 306.0, 74.0 ],
+									"text" : "Change the interval at which new frames are generated.\n\nBy default, this is specified in samples for most objects as we are dealing with frames of audio samples."
 								}
 
 							}
@@ -3981,7 +3982,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 2,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -4387,14 +4388,41 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-4::obj-9::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
-			"obj-116::obj-93::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
 			"obj-9::obj-21::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
 			"obj-5::obj-93::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
 			"obj-3::obj-26::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
-			"obj-1::obj-9::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
 			"obj-2::obj-93::obj-50" : [ "live.gain~[9]", "Volume", 0 ],
+			"obj-1::obj-9::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-4::obj-9::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
+			"obj-116::obj-93::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
 			"parameterbanks" : 			{
+
+			}
+,
+			"parameter_overrides" : 			{
+				"obj-9::obj-21::obj-50" : 				{
+					"parameter_longname" : "live.gain~[3]"
+				}
+,
+				"obj-5::obj-93::obj-50" : 				{
+					"parameter_longname" : "live.gain~[5]"
+				}
+,
+				"obj-3::obj-26::obj-50" : 				{
+					"parameter_longname" : "live.gain~[4]"
+				}
+,
+				"obj-2::obj-93::obj-50" : 				{
+					"parameter_longname" : "live.gain~[9]"
+				}
+,
+				"obj-4::obj-9::obj-50" : 				{
+					"parameter_longname" : "live.gain~[7]"
+				}
+,
+				"obj-116::obj-93::obj-50" : 				{
+					"parameter_longname" : "live.gain~[2]"
+				}
 
 			}
 

@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 0,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -118,7 +118,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -678,7 +678,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -858,12 +858,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-2",
-					"linecount" : 2,
+					"linecount" : 4,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 112.0, 121.0, 166.0, 31.0 ],
-					"text" : "Generate a trigger frame at the rate of the interval parameter"
+					"patching_rect" : [ 112.0, 108.5, 166.0, 56.0 ],
+					"text" : "Generate a trigger frame at the rate of the interval parameter.\n\nIn this case its 450 samples."
 				}
 
 			}
@@ -880,7 +880,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}

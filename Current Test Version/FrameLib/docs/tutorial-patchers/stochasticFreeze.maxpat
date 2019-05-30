@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 0,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 788.0 ],
+		"rect" : [ -1684.0, -299.0, 952.0, 894.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -208,7 +208,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 725.666625999999951, 318.333344000000011, 210.833327999999995, 20.0 ],
+					"patching_rect" : [ 725.666625999999951, 334.333344000000011, 210.833327999999995, 20.0 ],
 					"text" : "Convert Max bangs to trigger frames"
 				}
 
@@ -219,7 +219,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 572.666625999999951, 251.333327999999995, 210.833327999999995, 20.0 ],
+					"patching_rect" : [ 572.666625999999951, 279.333327999999995, 210.833327999999995, 20.0 ],
 					"text" : "Compute standard deviation statistics"
 				}
 
@@ -230,7 +230,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 219.5, 251.333327999999995, 165.5, 20.0 ],
+					"patching_rect" : [ 219.5, 279.333327999999995, 165.5, 20.0 ],
 					"text" : "Compute amplitude statistics"
 				}
 
@@ -241,7 +241,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 219.5, 190.0, 170.0, 20.0 ],
+					"patching_rect" : [ 219.5, 218.0, 170.0, 20.0 ],
 					"text" : "Compute FFT of input frames"
 				}
 
@@ -252,7 +252,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 328.5, 151.0, 153.5, 20.0 ],
+					"patching_rect" : [ 328.5, 179.0, 153.5, 20.0 ],
 					"text" : "Windows the audio frames"
 				}
 
@@ -260,12 +260,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-6",
-					"linecount" : 2,
+					"linecount" : 4,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 124.0, 15.0, 658.0, 33.0 ],
-					"text" : "Trigger frame every 1024 samples. Creates a 4x overlap with the fl.source~ below (as frames are 4x the rate of the scheduler) and also causes stored FFT frames to be output at a constant rate. This creates the freeze effect."
+					"patching_rect" : [ 129.0, 15.0, 636.0, 60.0 ],
+					"text" : "This schedules a trigger frame every 1024 samples in time. The fl.source~ object below collects 4096 samples as a frame and outputs this each time it receives a trigger in its second inlet. Think about it like this, samples are generated in time by the audio host environment. Usually, each second 44100 of these are made. We are telling fl.source~ to find 4096 samples every 1024 samples. "
 				}
 
 			}
@@ -276,7 +276,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 258.0, 99.5, 192.0, 33.0 ],
+					"patching_rect" : [ 258.0, 127.5, 192.0, 33.0 ],
 					"text" : "Takes audio and converts it into frames 4096 samples long"
 				}
 
@@ -293,7 +293,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -452,7 +452,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 624.666625999999951, 318.333344000000011, 99.0, 22.0 ],
+					"patching_rect" : [ 624.666625999999951, 334.333344000000011, 99.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -485,7 +485,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 124.0, 69.333336000000003, 30.0, 30.0 ]
+					"patching_rect" : [ 124.0, 92.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -510,7 +510,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 624.666625999999951, 285.0, 30.0, 30.0 ]
+					"patching_rect" : [ 624.666625999999951, 301.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -538,7 +538,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -731,7 +731,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 124.0, 251.333327999999995, 93.5, 22.0 ],
+					"patching_rect" : [ 124.0, 279.333327999999995, 93.5, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -755,7 +755,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -822,7 +822,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 0,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1065,7 +1065,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 0,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1178,7 +1178,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 0,
-															"revision" : 0,
+															"revision" : 5,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -1383,7 +1383,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 0,
-															"revision" : 0,
+															"revision" : 5,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -1821,7 +1821,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 476.666687000000024, 251.333327999999995, 93.499968999999993, 22.0 ],
+					"patching_rect" : [ 476.666687000000024, 279.333327999999995, 93.499968999999993, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1857,7 +1857,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2189,7 +2189,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 124.0, 150.0, 202.0, 22.0 ],
+					"patching_rect" : [ 124.0, 178.0, 202.0, 22.0 ],
 					"text" : "fl.window~ hann /compensate linear"
 				}
 
@@ -2217,7 +2217,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 124.0, 188.0, 93.5, 22.0 ],
+					"patching_rect" : [ 124.0, 216.0, 93.5, 22.0 ],
 					"text" : "fl.fft~"
 				}
 
@@ -2232,7 +2232,7 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 124.0, 105.0, 132.0, 22.0 ],
+					"patching_rect" : [ 124.0, 133.0, 132.0, 22.0 ],
 					"text" : "fl.source~ /length 4096"
 				}
 
@@ -2292,7 +2292,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-32", 1 ],
-					"midpoints" : [ 208.0, 237.0, 560.666655999999989, 237.0 ],
+					"midpoints" : [ 208.0, 265.0, 560.666655999999989, 265.0 ],
 					"order" : 0,
 					"source" : [ "obj-20", 1 ]
 				}
@@ -2301,7 +2301,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-32", 0 ],
-					"midpoints" : [ 133.5, 237.0, 486.166687000000024, 237.0 ],
+					"midpoints" : [ 133.5, 265.0, 486.166687000000024, 265.0 ],
 					"order" : 0,
 					"source" : [ "obj-20", 0 ]
 				}
@@ -2563,7 +2563,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-16", 1 ],
-					"midpoints" : [ 37.5, 54.0, 190.0, 54.0 ],
+					"midpoints" : [ 37.5, 128.0, 190.0, 128.0 ],
 					"order" : 2,
 					"source" : [ "obj-62", 0 ]
 				}

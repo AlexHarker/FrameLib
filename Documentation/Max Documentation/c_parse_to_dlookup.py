@@ -58,18 +58,18 @@ def main(root):
     obj_lookup = f'{dir_path}/interfaces/FrameLib-obj-dlookup.json'
 
     worker = dParseAndBuild()
-    # Make a list of file names and then check if empty or not
+    
+    # Make a list of file names and remove bad entries
     refpages = os.listdir(ref_dir)
     for badness in bad_entries:
         if badness in refpages:
             refpages.remove(badness)
     
+    # Check if any files were found and do your thing
     if refpages:
         for filename in refpages:
-            print(filename)
-            if filename != '.DS_Store' or filename != '_c74_ref_modules.xml':
-                current_category = filename
-                source_file_name = f'{ref_dir}/{filename}'
+            current_category = filename
+            source_file_name = f'{ref_dir}/{filename}'
 
             for filename in os.listdir(source_file_name):
                 if filename != '.DS_Store':

@@ -206,7 +206,7 @@
 									"patching_rect" : [ 8.0, 123.0, 476.0, 358.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 16,
-									"presentation_rect" : [ 8.0, 79.0, 680.0, 275.0 ],
+									"presentation_rect" : [ 8.0, 79.0, 683.0, 275.0 ],
 									"text" : "FrameLib is a DSP library for frame based processing. The underlying code is written in C++ and theoretically can be hosted in any block-based environment, but is easily compiled for Max from source. If this level of technical geekiness interests you there are links to the source/github throughout the documentation and just below.\n\nYou might be familiar working with other frame based tools such as pipo, mubu or gabor/FTM but you are encouraged to explore the FrameLib tutorials which will guide you through the fundamentals and how it works within Max. The tutorials should be perused in their numbered order, and increase with difficulty as you move through them. A number of techniques will be covered such as simple and complex FFT, and granular synthesis. \n\nThere is also a complete object reference as of 15/10/18. Gaining information about the FrameLib objects is still possible without help files and how to do this is explained in Tutorial 2: Key Concepts, \"How to get help\".\n\nYou are encouraged to move to the tutorial section next and to start learning how FrameLib works.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.910000026226044 ]
 								}
@@ -229,7 +229,7 @@
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 0.0, 0.0, 640.0, 480.0 ],
+										"rect" : [ 84.0, 129.0, 640.0, 480.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -256,6 +256,7 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
+										"visible" : 1,
 										"boxes" : [ 											{
 												"box" : 												{
 													"hidden" : 1,
@@ -516,8 +517,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -661,7 +662,7 @@
 									"patching_rect" : [ 284.0, 248.0, 151.0, 74.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 2,
-									"presentation_rect" : [ 253.5, 225.0, 427.0, 33.0 ],
+									"presentation_rect" : [ 248.5, 225.0, 427.0, 33.0 ],
 									"text" : "Warning: At this point in time, tutorials 1-6 are included in the FrameLib package. Further tutorials (7 & 8) to come!",
 									"textcolor" : [ 0.866666674613953, 0.117647059261799, 0.117647059261799, 1.0 ]
 								}
@@ -689,8 +690,8 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 23.0, 210.0, 384.0, 23.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 258.5, 152.0, 422.0, 23.0 ],
-									"text" : "A general introduction to FrameLib.",
+									"presentation_rect" : [ 251.0, 153.0, 422.0, 23.0 ],
+									"text" : "Getting familiar with the FrameLib library.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -923,7 +924,7 @@
 													"maxclass" : "outlet",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 349.0, 483.5, 30.0, 30.0 ]
+													"patching_rect" : [ 306.0, 401.5, 30.0, 30.0 ]
 												}
 
 											}
@@ -934,7 +935,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 2,
 													"outlettype" : [ "", "" ],
-													"patching_rect" : [ 394.0, 445.5, 51.0, 22.0 ],
+													"patching_rect" : [ 351.0, 363.5, 51.0, 22.0 ],
 													"text" : "zl group"
 												}
 
@@ -947,7 +948,7 @@
 													"maxclass" : "outlet",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 394.0, 483.5, 30.0, 30.0 ]
+													"patching_rect" : [ 351.0, 401.5, 30.0, 30.0 ]
 												}
 
 											}
@@ -958,7 +959,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 2,
 													"outlettype" : [ "", "" ],
-													"patching_rect" : [ 179.83331298828125, 345.5, 63.0, 22.0 ],
+													"patching_rect" : [ 136.83331298828125, 263.5, 63.0, 22.0 ],
 													"text" : "zl slice 1"
 												}
 
@@ -970,7 +971,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 2,
 													"outlettype" : [ "", "" ],
-													"patching_rect" : [ 179.83331298828125, 408.5, 51.0, 22.0 ],
+													"patching_rect" : [ 136.83331298828125, 326.5, 51.0, 22.0 ],
 													"text" : "zl.group"
 												}
 
@@ -982,7 +983,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 2,
 													"outlettype" : [ "bang", "" ],
-													"patching_rect" : [ 151.33331298828125, 259.5, 47.5, 22.0 ],
+													"patching_rect" : [ 108.33331298828125, 177.5, 47.5, 22.0 ],
 													"text" : "t b l"
 												}
 
@@ -994,7 +995,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 179.83331298828125, 445.5, 79.0, 22.0 ],
+													"patching_rect" : [ 136.83331298828125, 363.5, 79.0, 22.0 ],
 													"text" : "prepend tabs"
 												}
 
@@ -1006,7 +1007,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 50.0, 133.5, 73.0, 22.0 ],
+													"patching_rect" : [ 7.0, 51.5, 73.0, 22.0 ],
 													"text" : "prepend get"
 												}
 
@@ -1018,7 +1019,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 179.83331298828125, 293.5, 47.0, 22.0 ],
+													"patching_rect" : [ 136.83331298828125, 211.5, 47.0, 22.0 ],
 													"text" : "dict.iter"
 												}
 
@@ -1030,7 +1031,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 2,
 													"outlettype" : [ "", "" ],
-													"patching_rect" : [ 115.33331298828125, 211.5, 55.0, 22.0 ],
+													"patching_rect" : [ 72.33331298828125, 129.5, 55.0, 22.0 ],
 													"text" : "zl slice 1"
 												}
 
@@ -1042,7 +1043,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 4,
 													"outlettype" : [ "dictionary", "", "", "" ],
-													"patching_rect" : [ 50.0, 177.5, 215.0, 22.0 ],
+													"patching_rect" : [ 7.0, 95.5, 215.0, 22.0 ],
 													"saved_object_attributes" : 													{
 														"embed" : 0,
 														"parameter_enable" : 0,
@@ -1062,7 +1063,7 @@
 													"numinlets" : 0,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 50.0, 40.0, 30.0, 30.0 ]
+													"patching_rect" : [ 7.0, 6.0, 30.0, 30.0 ]
 												}
 
 											}
@@ -1074,7 +1075,7 @@
 													"maxclass" : "outlet",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 179.83331298828125, 483.5, 30.0, 30.0 ]
+													"patching_rect" : [ 136.83331298828125, 401.5, 30.0, 30.0 ]
 												}
 
 											}
@@ -1131,7 +1132,7 @@
 , 											{
 												"patchline" : 												{
 													"destination" : [ "obj-3", 0 ],
-													"midpoints" : [ 160.83331298828125, 393.0, 403.5, 393.0 ],
+													"midpoints" : [ 117.83331298828125, 311.0, 360.5, 311.0 ],
 													"order" : 0,
 													"source" : [ "obj-56", 0 ]
 												}
@@ -1140,7 +1141,7 @@
 , 											{
 												"patchline" : 												{
 													"destination" : [ "obj-57", 0 ],
-													"midpoints" : [ 160.83331298828125, 393.0, 189.33331298828125, 393.0 ],
+													"midpoints" : [ 117.83331298828125, 311.0, 146.33331298828125, 311.0 ],
 													"order" : 1,
 													"source" : [ "obj-56", 0 ]
 												}
@@ -1157,7 +1158,7 @@
 , 											{
 												"patchline" : 												{
 													"destination" : [ "obj-5", 0 ],
-													"midpoints" : [ 189.33331298828125, 437.0, 358.5, 437.0 ],
+													"midpoints" : [ 146.33331298828125, 355.0, 315.5, 355.0 ],
 													"order" : 0,
 													"source" : [ "obj-57", 0 ]
 												}
@@ -1166,7 +1167,7 @@
 , 											{
 												"patchline" : 												{
 													"destination" : [ "obj-3", 0 ],
-													"midpoints" : [ 233.33331298828125, 393.0, 403.5, 393.0 ],
+													"midpoints" : [ 190.33331298828125, 311.0, 360.5, 311.0 ],
 													"source" : [ "obj-59", 1 ]
 												}
 
@@ -1302,7 +1303,7 @@
 									"presentation" : 1,
 									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 97.0, 422.0, 30.0 ],
-									"text" : "Tutorial 1: An introduction to FrameLib and frame based processing.",
+									"text" : "Tutorial 2: Getting to grips with frame based processing.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -1325,7 +1326,7 @@
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 720.0, 45.0, 720.0, 855.0 ],
+										"rect" : [ 0.0, 45.0, 1440.0, 855.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -2364,7 +2365,7 @@
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
-									"tabs" : [ "Tutorial 1: An introduction to FrameLib and frame based processing.", "Tutorial 2: Key Concepts.", "Tutorial 3: Converting data between FrameLib and Max.", "Tutorial 4: Generator objects.", "Tutorial 5: Your first FrameLib project - Building a granulator from scratch." ],
+									"tabs" : [ "Tutorial 1: An introduction to FrameLib and frame based processing.", "Tutorial 2: Getting to grips with frame based processing.", "Tutorial 3: Key Concepts.", "Tutorial 4: Converting data between FrameLib and Max.", "Tutorial 5: Generator objects.", "Tutorial 6: Your first FrameLib project - Building a granulator from scratch." ],
 									"truncate" : 0
 								}
 
@@ -2607,8 +2608,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4437,8 +4438,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-													"fontsize" : [ 12.059008 ]
+													"fontsize" : [ 12.059008 ],
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 												}
 ,
 												"parentstyle" : "",
@@ -4998,13 +4999,13 @@
 									"presentation_rect" : [ 5.0, 89.0, 209.0, 23.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_shortname" : "umenu",
-											"parameter_type" : 3,
-											"parameter_longname" : "umenu",
 											"parameter_initial_enable" : 1,
 											"parameter_invisible" : 1,
 											"parameter_mmax" : 22.0,
-											"parameter_initial" : [ 0 ]
+											"parameter_initial" : [ 0 ],
+											"parameter_shortname" : "umenu",
+											"parameter_type" : 3,
+											"parameter_longname" : "umenu"
 										}
 
 									}
@@ -5299,8 +5300,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",

@@ -2,8 +2,8 @@
 
 <?xml-stylesheet href="./_c74_tut.xsl" type="text/xsl"?>
 
-<chapter name="FrameLib Tutorial 7: Multi-stream processing">
-	<next name="08_fl_multiresfft">Generators</next>
+<chapter name="FrameLib Tutorial 8: Multi-stream processing">
+	<next name="09_fl_multiresfft">Generators</next>
 	<parent name="00_fl_index">FrameLib tutorials</parent>
 
 <h1>

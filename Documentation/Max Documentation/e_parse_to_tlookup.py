@@ -38,14 +38,13 @@ class tParseAndBuild():
         
         # Tags are the attributes stored inline, the text is the white #
         for child in self.root:
-            self.counter = 0
             for elem in child:
                 if elem.tag == 'ul':
                     for li in elem:                 
                         for title in li:
                             self.inner_dict.clear() # wipe the inner dictionary
                             self.inner_dict[title.text] = title.get('digest') #create an inner dict with the tutorial and info
-                            self.d_skeleton[title.get('diff')].update(self.inner_dict) # append inner dict to right difficulty dict
+                            self.d_skeleton[title.get('diff')].update(self.inner_dict) # append inner dict to the right difficulty dict
     
 # ----------- THE GUTS ----------- #
 def main(root):

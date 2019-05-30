@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 0,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -100,7 +100,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -137,6 +137,145 @@
 						"title" : "Audio To Max",
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-34",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 676.3125, 494.0, 150.0, 33.0 ],
+									"presentation_linecount" : 2,
+									"text" : "Output of fl.map~\nBipolar signal",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-33",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 463.3125, 494.0, 150.0, 33.0 ],
+									"text" : "Output of fl.random~\nUnipolar signal",
+									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-29",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 270.0, 593.0, 150.0, 20.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"gridcolor" : [ 0.501960784313725, 0.501960784313725, 0.501960784313725, 0.0 ],
+									"gridorigincolor" : [ 0.847058823529412, 0.101960784313725, 0.101960784313725, 1.0 ],
+									"id" : "obj-26",
+									"margins" : [ 1.0, 0.0, 1.0, 0.0 ],
+									"maxclass" : "plot~",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"numpoints" : 441,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 646.8125, 361.0, 209.0, 131.0 ],
+									"subplots" : [ 										{
+											"color" : [ 1.0, 1.0, 1.0, 1.0 ],
+											"thickness" : 1.2,
+											"point_style" : "none",
+											"line_style" : "lines",
+											"number_style" : "none",
+											"filter" : "none",
+											"domain_start" : 0.0,
+											"domain_end" : 1.0,
+											"domain_style" : "linear",
+											"domain_markers" : [ 1.0, 0.875, 0.75, 0.625, 0.5, 0.375, 0.25, 0.125, 0.0 ],
+											"domain_labels" : [  ],
+											"range_start" : -1.0,
+											"range_end" : 1.0,
+											"range_style" : "linear",
+											"range_markers" : [ 0.5, 0.0, -0.5 ],
+											"range_labels" : [  ],
+											"origin_x" : 0.0,
+											"origin_y" : 0.0
+										}
+ ],
+									"thinmode" : "none",
+									"thinto" : 0.001000000047497
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"bgcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"gridcolor" : [ 0.501960784313725, 0.501960784313725, 0.501960784313725, 0.0 ],
+									"gridorigincolor" : [ 0.847058823529412, 0.101960784313725, 0.101960784313725, 1.0 ],
+									"id" : "obj-25",
+									"margins" : [ 1.0, 0.0, 1.0, 0.0 ],
+									"maxclass" : "plot~",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"numpoints" : 441,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 433.8125, 361.0, 209.0, 131.0 ],
+									"subplots" : [ 										{
+											"color" : [ 1.0, 1.0, 1.0, 1.0 ],
+											"thickness" : 1.2,
+											"point_style" : "none",
+											"line_style" : "lines",
+											"number_style" : "none",
+											"filter" : "none",
+											"domain_start" : 0.0,
+											"domain_end" : 1.0,
+											"domain_style" : "linear",
+											"domain_markers" : [ 1.0, 0.875, 0.75, 0.625, 0.5, 0.375, 0.25, 0.125, 0.0 ],
+											"domain_labels" : [  ],
+											"range_start" : -1.0,
+											"range_end" : 1.0,
+											"range_style" : "linear",
+											"range_markers" : [ 0.5, 0.0, -0.5 ],
+											"range_labels" : [  ],
+											"origin_x" : 0.0,
+											"origin_y" : 0.0
+										}
+ ],
+									"thinmode" : "none",
+									"thinto" : 0.001000000047497
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-9",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "signal" ],
+									"patching_rect" : [ 646.8125, 337.0, 46.0, 22.0 ],
+									"text" : "fl.sink~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-8",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "signal" ],
+									"patching_rect" : [ 433.8125, 338.0, 46.0, 22.0 ],
+									"text" : "fl.sink~"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"arrows" : 1,
 									"border" : 4.0,
 									"id" : "obj-4",
@@ -144,7 +283,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 135.75, 234.0, 37.125, 19.0 ]
+									"patching_rect" : [ 135.75, 277.0, 37.125, 19.0 ]
 								}
 
 							}
@@ -155,9 +294,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 172.46875, 234.0, 211.5625, 22.0 ],
-									"presentation_linecount" : 2,
-									"text" : "Convert unipolar noise to bipolar"
+									"patching_rect" : [ 172.46875, 277.0, 198.5625, 22.0 ],
+									"text" : "Scale unipolar noise to bipolar"
 								}
 
 							}
@@ -168,7 +306,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 233.0, 125.0, 22.0 ],
+									"patching_rect" : [ 8.75, 276.0, 125.0, 22.0 ],
 									"text" : "fl.map~ linear 0 1 -1 1"
 								}
 
@@ -181,7 +319,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 73.3125, 363.0, 24.0, 24.0 ]
+									"patching_rect" : [ 61.75, 550.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -192,7 +330,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 73.3125, 326.5, 72.0, 22.0 ],
+									"patching_rect" : [ 61.75, 513.5, 72.0, 22.0 ],
 									"text" : "loadmess 0"
 								}
 
@@ -204,7 +342,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 8.75, 420.0, 61.0, 22.0 ],
+									"patching_rect" : [ 8.75, 583.0, 61.0, 22.0 ],
 									"text" : "gate~ 1 0"
 								}
 
@@ -218,7 +356,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 55.1875, 284.0, 37.125, 19.0 ]
+									"patching_rect" : [ 55.1875, 338.0, 37.125, 19.0 ]
 								}
 
 							}
@@ -231,7 +369,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 151.8125, 179.0, 37.125, 19.0 ]
+									"patching_rect" : [ 151.8125, 205.0, 37.125, 19.0 ]
 								}
 
 							}
@@ -293,7 +431,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 94.3125, 283.0, 171.5625, 22.0 ],
+									"patching_rect" : [ 94.3125, 337.0, 171.5625, 22.0 ],
 									"text" : "Convert frames into audio"
 								}
 
@@ -305,8 +443,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 191.875, 179.0, 399.0, 22.0 ],
-									"text" : "Generate a frame of 44100 random numbers between 0 and 1."
+									"patching_rect" : [ 191.875, 205.0, 402.0, 22.0 ],
+									"text" : "Generate a frame of 44100 random numbers between 0. and 1."
 								}
 
 							}
@@ -329,7 +467,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 460.0, 45.0, 45.0 ]
+									"patching_rect" : [ 8.75, 629.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -340,7 +478,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 8.75, 326.5, 40.0, 22.0 ],
+									"patching_rect" : [ 8.75, 375.5, 40.0, 22.0 ],
 									"text" : "*~ 0.1"
 								}
 
@@ -352,7 +490,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 8.75, 282.0, 47.0, 22.0 ],
+									"patching_rect" : [ 8.75, 336.0, 47.0, 22.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -364,7 +502,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 179.0, 143.0, 22.0 ],
+									"patching_rect" : [ 8.75, 205.0, 143.0, 22.0 ],
 									"text" : "fl.random~ /length 44100"
 								}
 
@@ -395,7 +533,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 263.875, 284.0, 20.0, 20.0 ],
+									"patching_rect" : [ 263.875, 338.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "4",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -416,7 +554,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 381.375, 235.0, 20.0, 20.0 ],
+									"patching_rect" : [ 367.03125, 278.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -437,7 +575,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 592.875, 179.0, 20.0, 20.0 ],
+									"patching_rect" : [ 590.8125, 206.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -469,6 +607,17 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-69", 0 ],
+									"midpoints" : [ 18.25, 300.0, 18.25, 300.0 ],
+									"order" : 1,
+									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-9", 0 ],
+									"midpoints" : [ 18.25, 321.0, 656.3125, 321.0 ],
+									"order" : 0,
 									"source" : [ "obj-1", 0 ]
 								}
 
@@ -476,6 +625,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-71", 1 ],
+									"midpoints" : [ 18.25, 615.0, 44.25, 615.0 ],
 									"order" : 0,
 									"source" : [ "obj-45", 0 ]
 								}
@@ -484,6 +634,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-71", 0 ],
+									"midpoints" : [ 18.25, 606.0, 18.25, 606.0 ],
 									"order" : 1,
 									"source" : [ "obj-45", 0 ]
 								}
@@ -492,6 +643,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-48", 0 ],
+									"midpoints" : [ 71.25, 537.0, 71.25, 537.0 ],
 									"source" : [ "obj-46", 0 ]
 								}
 
@@ -499,7 +651,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-45", 0 ],
-									"midpoints" : [ 82.8125, 406.0, 18.25, 406.0 ],
+									"midpoints" : [ 71.25, 576.0, 18.25, 576.0 ],
 									"source" : [ "obj-48", 0 ]
 								}
 
@@ -507,6 +659,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-67", 0 ],
+									"midpoints" : [ 18.25, 156.0, 18.25, 156.0 ],
 									"source" : [ "obj-66", 0 ]
 								}
 
@@ -514,6 +667,17 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-1", 0 ],
+									"midpoints" : [ 18.25, 228.0, 18.25, 228.0 ],
+									"order" : 1,
+									"source" : [ "obj-67", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-8", 0 ],
+									"midpoints" : [ 18.25, 261.0, 443.3125, 261.0 ],
+									"order" : 0,
 									"source" : [ "obj-67", 0 ]
 								}
 
@@ -521,6 +685,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-70", 0 ],
+									"midpoints" : [ 18.25, 360.0, 18.25, 360.0 ],
 									"source" : [ "obj-69", 0 ]
 								}
 
@@ -528,8 +693,24 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-45", 1 ],
-									"midpoints" : [ 18.25, 406.0, 60.25, 406.0 ],
+									"midpoints" : [ 18.25, 570.0, 57.0, 570.0, 57.0, 579.0, 60.25, 579.0 ],
 									"source" : [ "obj-70", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-25", 0 ],
+									"midpoints" : [ 443.3125, 361.0, 443.3125, 361.0 ],
+									"source" : [ "obj-8", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-26", 0 ],
+									"midpoints" : [ 656.3125, 360.0, 656.3125, 360.0 ],
+									"source" : [ "obj-9", 0 ]
 								}
 
 							}
@@ -559,7 +740,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -680,7 +861,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 0,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -802,12 +983,12 @@
 								"box" : 								{
 									"fontsize" : 14.0,
 									"id" : "obj-44",
-									"linecount" : 7,
+									"linecount" : 8,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 642.75, 271.5, 244.0, 116.0 ],
-									"text" : "These parameters adjust the window type and the internal calculation size for the window. If the size parameter is set to 0 it matches the length of the incoming frame. Observe the quality of the windowed output with different size parameters."
+									"patching_rect" : [ 642.75, 271.5, 244.0, 132.0 ],
+									"text" : "These parameters adjust the window type and the internal calculation size for the window. If the size parameter is set to 0 it matches the length of the incoming frame. Observe the quality of the windowed output with different size parameters. A small size demonstrates the difference best."
 								}
 
 							}
@@ -878,8 +1059,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 465.75, 239.5, 72.0, 22.0 ],
-									"text" : "loadmess 0"
+									"patching_rect" : [ 465.75, 239.5, 70.0, 22.0 ],
+									"text" : "loadmess 2"
 								}
 
 							}
@@ -1283,13 +1464,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 895.0, 701.0 ],
+						"rect" : [ 0.0, 71.0, 895.0, 701.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1367,7 +1548,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 330.125, 525.0, 206.0, 69.0 ],
-									"text" : "Look in here for an explanation/warning about the deay incurred from converting audio to frames."
+									"text" : "Look in here for an explanation/warning about the delay incurred from converting audio to frames."
 								}
 
 							}
@@ -1382,7 +1563,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 0,
+											"revision" : 5,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1761,7 +1942,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 50.0, 694.0, 116.0 ],
-									"text" : "The object responsible for converting audio to frames is fl.source~. The fl.source~ object requires a trigger frame, and will output frames according to its /length parameter (default 4096). A delay is incurred equal to the frame size in samples. The relationship between the rate of the trigger frame and the length of your output is important, especailly if you intend on using the frames for FFT processing.\n\nThe below example demonstrates a network that converts pink~ noises into frames and scales each frame by a random factor between 0 and 1."
+									"text" : "The object responsible for converting audio to frames is fl.source~. The fl.source~ object requires a trigger frame, and will output frames according to its /length parameter (default 4096). A delay is incurred equal to the frame size in samples. The relationship between the rate of the trigger frame and the length of your output is important, especailly if you intend on using the frames for FFT processing.\n\nThe below example demonstrates a network that converts MSP audio into frames and scales that input by a factor of 0.5 to compensate for the 2 times overlap."
 								}
 
 							}
@@ -2157,7 +2338,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2342,13 +2523,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 71.0, 895.0, 701.0 ],
+						"rect" : [ 0.0, 26.0, 895.0, 701.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2607,7 +2788,7 @@
 			}
 , 			{
 				"name" : "next_tut.maxpat",
-				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
