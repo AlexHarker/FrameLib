@@ -1,4 +1,6 @@
 
+Figure out how to use templates to generate objects
+
 ******* CODE CLEAN-UP ******* 
 
 Move to Namespaces (use only one, or multiple)?

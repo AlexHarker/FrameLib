@@ -356,6 +356,15 @@ bool FrameLib_DelegateThread::signal()
 
 bool FrameLib_DelegateThread::completed()
 {
+    if (!mSignaled || !compareAndSwap(mFlag, 2, 0))
+        return false;
+   
+    mSignaled = false;
+    return true;
+}
+
+bool FrameLib_DelegateThread::waitForCompletion()
+{
     if (!mSignaled)
         return false;
     while (!compareAndSwap(mFlag, 2, 0))

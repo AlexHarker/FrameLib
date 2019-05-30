@@ -51,7 +51,7 @@ public:
             for (auto it = reports->begin(); it != reports->end(); it++)
             {
                 std::string errorText;
-                t_object *object = dynamic_cast<FrameLib_MaxProxy *>(it->getReporter())->mMaxObject;
+                t_object *object = it->getReporter() ? dynamic_cast<FrameLib_MaxProxy *>(it->getReporter())->mMaxObject : nullptr;
                 t_object *userObject = object ? (t_object *) object_method(object, gensym("__fl.get_user_object")) : nullptr;
                 
                 it->getErrorText(errorText);

@@ -315,9 +315,13 @@ public:
     
     bool signal();
     
-    // Wait for thread's completion of a task - returns true  first time after a signal / false for subsequent calls/the thread has not been signalled
+    // Check if the task has completed (false if the task has not been signalled or has not completed)
     
     bool completed();
+    
+     // Wait for thread's completion of a task - returns true  first time after a signal / false for subsequent calls / the thread has not been signalled
+    
+    bool waitForCompletion();
     
 private:
     

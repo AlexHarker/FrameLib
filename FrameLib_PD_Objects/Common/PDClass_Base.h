@@ -55,6 +55,7 @@ public:
         ((x)->*F)(vec_size);
         return w + 3;
     }
+    
     template <class T, typename Perform<T>::MethodPerform F> void addPerform(t_signal **sp)
     {
         for (size_t i = 0; i < mSigIns.size(); i++)
