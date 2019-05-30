@@ -176,6 +176,13 @@ public:
             return false;
         }
         
+        bool addItem(size_t number)
+        {
+            char charArray[32];
+            sprintf(charArray, "%zu", number);
+            return addItem(charArray);
+        }
+        
         bool addItem(long number)
         {
             char charArray[32];
