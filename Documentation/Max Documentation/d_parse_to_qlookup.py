@@ -72,26 +72,36 @@ def main(root):
         arg1: passes the root of the python files from the master script. Creates relative directories.
     '''
 
+    bad_entries = ['.DS_Store', '_c74_ref_modules.xml']
+
     dir_path = root
     dir_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib')
     ref_dir = f'{dir_path}/docs/refpages' 
     obj_lookup = f'{dir_path}/interfaces/FrameLib-obj-qlookup.json'
 
     worker = qParseAndBuild()
+    
+    # Make a list of file names and remove bad entries
+    refpages = os.listdir(ref_dir)
+    for badness in bad_entries:
+        if badness in refpages:
+            refpages.remove(badness)
 
-    for filename in os.listdir(ref_dir):
-        if filename != '.DS_Store':
-            if filename != '_c74_ref_modules.xml':
-                current_category = filename
-                source_file_name = ref_dir + '/' + filename
-
-        for filename in os.listdir(source_file_name):
+    # Check if any files were found and do your thing
+    if refpages:  
+        for filename in os.listdir(ref_dir):
             if filename != '.DS_Store':
-                source_file = ref_dir + '/' + current_category + '/' + filename
-                worker.extract_from_refpage(source_file)
+                if filename != '_c74_ref_modules.xml':
+                    current_category = filename
+                    source_file_name = ref_dir + '/' + filename
 
-    with open(obj_lookup, 'w') as fp:
-        json.dump(worker.d_master_dict, fp, indent=4)
+            for filename in os.listdir(source_file_name):
+                if filename != '.DS_Store':
+                    source_file = ref_dir + '/' + current_category + '/' + filename
+                    worker.extract_from_refpage(source_file)
+
+        with open(obj_lookup, 'w') as fp:
+            json.dump(worker.d_master_dict, fp, indent=4)
 
 
 
