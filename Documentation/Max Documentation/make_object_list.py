@@ -1,5 +1,5 @@
 import os
-from helpers import get_path, lim_walk
+from helpers import get_path
 from strippers import *
 import re
 
