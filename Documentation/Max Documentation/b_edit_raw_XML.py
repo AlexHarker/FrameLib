@@ -14,7 +14,7 @@ def main(root):
     ### directories ###
     dir_path = root
     object_path = dir_path.replace('/Documentation/Max Documentation', '/FrameLib_Max_Objects')
-    raw_xml_path = f'{dir_path}/RawXML'
+    raw_xml_path = f'{dir_path}/tmp'
     move_to_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib/docs/refpages')
     category_database_path = f'{dir_path}/category_database.json'
 
