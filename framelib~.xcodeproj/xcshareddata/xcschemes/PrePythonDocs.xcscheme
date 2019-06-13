@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "26E2EC2F2298C85900F85222"
-               BuildableName = "PythonDocs"
-               BlueprintName = "PythonDocs"
+               BlueprintIdentifier = "26400C6322B2BE89001FBB8B"
+               BuildableName = "PrePythonDocs"
+               BlueprintName = "PrePythonDocs"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,8 +34,8 @@
    </TestAction>
    <LaunchAction
       buildConfiguration = "Development"
-      selectedDebuggerIdentifier = ""
-      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -49,15 +49,15 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "26E2EC2F2298C85900F85222"
-            BuildableName = "PythonDocs"
-            BlueprintName = "PythonDocs"
+            BlueprintIdentifier = "26400C6322B2BE89001FBB8B"
+            BuildableName = "PrePythonDocs"
+            BlueprintName = "PrePythonDocs"
             ReferencedContainer = "container:framelib~.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "$(SRCROOT)/Documentation/Max\ Documentation/_Build_All_Files.py"
+            argument = "$(SRCROOT)/Documentation/Max\ Documentation/make_object_list.py"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -73,9 +73,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "26E2EC2F2298C85900F85222"
-            BuildableName = "PythonDocs"
-            BlueprintName = "PythonDocs"
+            BlueprintIdentifier = "26400C6322B2BE89001FBB8B"
+            BuildableName = "PrePythonDocs"
+            BlueprintName = "PrePythonDocs"
             ReferencedContainer = "container:framelib~.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
