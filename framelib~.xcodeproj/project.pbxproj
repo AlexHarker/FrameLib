@@ -631,6 +631,8 @@
 		B8BEEB841FA737C800ED26F4 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8BEEB851FA737C800ED26F4 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8BEEB861FA737C900ED26F4 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
+		B8C1F80822B2B69D00818E9B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88F558E207AB15C007774AD /* Accelerate.framework */; };
+		B8C1F80922B2B6D500818E9B /* FrameLib_OnePoleZero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF0531F2D2A1E00264316 /* FrameLib_OnePoleZero.cpp */; };
 		B8C2F7F61F851FFF00075677 /* FrameLib_StreamID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B82CC2461F851D6F00077ECB /* FrameLib_StreamID.cpp */; };
 		B8C2F80B1F863A2A00075677 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8C2F8151F863A6700075677 /* fl.route~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C2F8141F863A6700075677 /* fl.route~.cpp */; };
@@ -2538,6 +2540,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8C1F80822B2B69D00818E9B /* Accelerate.framework in Frameworks */,
 				26970D24222FEA8C00990D87 /* libframelib_objects.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -12297,6 +12300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B812606C20D697C2000B81D9 /* FrameLib_Expression.cpp in Sources */,
+				B8C1F80922B2B6D500818E9B /* FrameLib_OnePoleZero.cpp in Sources */,
 				B83F0468223A77B700AF1F8E /* FrameLib_Pattern.cpp in Sources */,
 				B83F0467223A778E00AF1F8E /* FrameLib_Info.cpp in Sources */,
 				B812606B20D697BB000B81D9 /* FrameLib_ComplexExpression.cpp in Sources */,
