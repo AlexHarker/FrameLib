@@ -16,9 +16,9 @@
 
 void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
 {
-    
-    std::string dirName = dirname(__FILE__);
-    std::string tmpFolder = dirName + "/tmp/";
+    std::string fileName(__FILE__);
+    std::string dirPath = dirname(const_cast<char *>(fileName.c_str()));
+    std::string tmpFolder = dirPath + "/tmp/";
     
     enum InfoFlags { kInfoDesciption = 0x01, kInfoInputs = 0x02, kInfoOutputs = 0x04, kInfoParameters = 0x08 };
     bool verbose = true;
