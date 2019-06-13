@@ -1,5 +1,8 @@
+
 // fl includes
-#include "FrameLib_Objects.h"
+
+#include "Max_Object_List.h"
+
 #include "FrameLib_Global.h"
 #include "FrameLib_Context.h"
 #include "FrameLib_Multistream.h"
@@ -14,7 +17,7 @@
 void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
 {
 //    std::string tmpFolder(__FILE__ "../tmp/"); // This is the path of the file.
-    std::string dirName = dirname(__FILE__);
+    std::string dirName(__FILE__);
     std::string tmpFolder = dirName + "/tmp/";
     
     enum InfoFlags { kInfoDesciption = 0x01, kInfoInputs = 0x02, kInfoOutputs = 0x04, kInfoParameters = 0x08 };
@@ -145,23 +148,32 @@ void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
     
     myfile.close();
 }
+
+template<typename T>
+struct DocumentationGenerator
+{
+    void operator ()(FrameLib_Context context, FrameLib_Parameters::Serial *parameters,  FrameLib_Proxy *proxy)
+    {
+        T obj(context, parameters, proxy, 1);
         
+        write_info(&obj, FrameLib_ObjectName<T>().name());
+    }
+};
+
 int main() 
 {
-    // Create a Global, Context
+    // Create a Global, Proxy, Context and Parameters
+    
     FrameLib_Global *global = nullptr;
     FrameLib_Global::get(&global);
-    
     FrameLib_Proxy *proxy = new FrameLib_Proxy();
     FrameLib_Context context(global, nullptr);
     FrameLib_Parameters::AutoSerial parameters;
+
+    // Loop over objects using template list
     
-    // Test FrameLib_Object
-    FrameLib_Expand<FrameLib_Random> obj(context, &parameters, proxy, 1);
-    
-    // loop over files here
-    write_info(&obj,"fl.random~");
-    
+    FrameLib_DSPList::execute<DocumentationGenerator>(context, &parameters, proxy);
+
     // Cleanup
     delete proxy;
     FrameLib_Global::release(&global);
