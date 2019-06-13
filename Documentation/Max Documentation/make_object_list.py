@@ -138,16 +138,17 @@ for category_folder, name in source_file_list:
             fl_object_name = 'FrameLib_Expression'
         ## Now limit search area
         search_area = search_area.split('<')[0]
-
+        no_ext = os.path.splitext(name)[0]
+        no_ext = no_ext.split('~')[0]
         # infer type with brutal checking by looking at text in the extern bit (search area)
         if '_Expand' in search_area:
-            op.write('const char* FrameLib_ObjectName<FrameLib_Expand<{'+fl_object_name+'}>>::name() { return "{'+fl_object_name+'}"; }')
+            op.write('const char* FrameLib_ObjectName<FrameLib_Expand<'+fl_object_name+'>>::name() { return "'+no_ext+'"; }')
             op.write('\n')
 
         elif '_Expand' not in search_area and 'makeClass' in search_area:
-            op.write('const char* FrameLib_ObjectName<FrameLib_Expand<{'+fl_object_name+'}>>::name() { return "{'+fl_object_name+'}"; }')
+            op.write('const char* FrameLib_ObjectName<FrameLib_Expand<'+fl_object_name+'>>::name() { return "'+no_ext+'"; }')
             op.write('\n')
 
         elif '_Expand' not in search_area and 'makeClass' not in search_area:
-            op.write('const char* FrameLib_ObjectName<{'+fl_object_name+'}>::name() { return "{'+fl_object_name+'}"; }')
+            op.write('const char* FrameLib_ObjectName<'+fl_object_name+'>::name() { return "'+no_ext+'"; }')
             op.write('\n')
