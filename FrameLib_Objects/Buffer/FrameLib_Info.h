@@ -1,4 +1,6 @@
 
+#pragma once
+
 #include "FrameLib_DSP.h"
 #include "../../FrameLib_Dependencies/TableReader.hpp"
 
