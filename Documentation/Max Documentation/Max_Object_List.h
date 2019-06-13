@@ -147,7 +147,6 @@ FrameLib_Expand<FrameLib_Sort>,
 FrameLib_Expand<FrameLib_Mean>,
 FrameLib_Expand<FrameLib_Join>,
 FrameLib_Expand<FrameLib_Shift>,
-FrameLib_Expand<FrameLib_Closest>,
 FrameLib_Expand<FrameLib_VectorMin>,
 FrameLib_Expand<FrameLib_Sum>,
 FrameLib_Expand<FrameLib_Subframe>,
@@ -156,12 +155,10 @@ FrameLib_Expand<FrameLib_Reverse>,
 FrameLib_Expand<FrameLib_Length>,
 FrameLib_Expand<FrameLib_Peaks>,
 FrameLib_Expand<FrameLib_Pattern>,
-FrameLib_Expand<FrameLib_Scramble>,
 FrameLib_Expand<FrameLib_Product>,
 FrameLib_Expand<FrameLib_Skewness>,
 FrameLib_Expand<FrameLib_Crest>,
 FrameLib_Expand<FrameLib_Pad>,
-FrameLib_Expand<FrameLib_Find>,
 FrameLib_Expand<FrameLib_Chop>,
 FrameLib_Expand<FrameLib_Flatness>,
 FrameLib_Expand<FrameLib_RMS>,
@@ -169,7 +166,7 @@ FrameLib_Expand<FrameLib_Split>,
 FrameLib_Expand<FrameLib_MedianFilter>
 
  
->:
+>;
  
 template<>
  
@@ -318,7 +315,6 @@ const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Sort}>>::name() { retu
 const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Mean}>>::name() { return "{FrameLib_Mean}"; }
 const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Join}>>::name() { return "{FrameLib_Join}"; }
 const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Shift}>>::name() { return "{FrameLib_Shift}"; }
-const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Closest}>>::name() { return "{FrameLib_Closest}"; }
 const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_VectorMin}>>::name() { return "{FrameLib_VectorMin}"; }
 const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Sum}>>::name() { return "{FrameLib_Sum}"; }
 const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Subframe}>>::name() { return "{FrameLib_Subframe}"; }
@@ -327,12 +323,10 @@ const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Reverse}>>::name() { r
 const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Length}>>::name() { return "{FrameLib_Length}"; }
 const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Peaks}>>::name() { return "{FrameLib_Peaks}"; }
 const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Pattern}>>::name() { return "{FrameLib_Pattern}"; }
-const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Scramble}>>::name() { return "{FrameLib_Scramble}"; }
 const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Product}>>::name() { return "{FrameLib_Product}"; }
 const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Skewness}>>::name() { return "{FrameLib_Skewness}"; }
 const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Crest}>>::name() { return "{FrameLib_Crest}"; }
 const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Pad}>>::name() { return "{FrameLib_Pad}"; }
-const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Find}>>::name() { return "{FrameLib_Find}"; }
 const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Chop}>>::name() { return "{FrameLib_Chop}"; }
 const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_Flatness}>>::name() { return "{FrameLib_Flatness}"; }
 const char* FrameLib_ObjectName<FrameLib_Expand<{FrameLib_RMS}>>::name() { return "{FrameLib_RMS}"; }
