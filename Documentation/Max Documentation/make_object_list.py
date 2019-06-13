@@ -106,9 +106,6 @@ for category_folder, name in source_file_list:
 op.write('\n \n')
 op.write('>;')
 op.write('\n \n')
-op.write('template<>')
-op.write('\n \n')
-
 
 ## Start const bit
 for category_folder, name in source_file_list:
@@ -141,15 +138,15 @@ for category_folder, name in source_file_list:
         no_ext = os.path.splitext(name)[0]
         no_ext = no_ext.split('~')[0]
         # infer type with brutal checking by looking at text in the extern bit (search area)
-        op.write('template<> \n')
+        op.write('template<>\n')
         if '_Expand' in search_area:
-            op.write('const char* FrameLib_ObjectName<FrameLib_Expand<'+fl_object_name+'>>::name() { return "'+no_ext+'"; }')
+            op.write('const char* FrameLib_ObjectName<FrameLib_Expand<'+fl_object_name+'>>::name()\n{ return "'+no_ext+'"; }\n')
             op.write('\n')
 
         elif '_Expand' not in search_area and 'makeClass' in search_area:
-            op.write('const char* FrameLib_ObjectName<FrameLib_Expand<'+fl_object_name+'>>::name() { return "'+no_ext+'"; }')
+            op.write('const char* FrameLib_ObjectName<FrameLib_Expand<'+fl_object_name+'>>::name()\n{ return "'+no_ext+'"; }\n')
             op.write('\n')
 
         elif '_Expand' not in search_area and 'makeClass' not in search_area:
-            op.write('const char* FrameLib_ObjectName<'+fl_object_name+'>::name() { return "'+no_ext+'"; }')
+            op.write('const char* FrameLib_ObjectName<'+fl_object_name+'>::name()\n{ return "'+no_ext+'"; }\n')
             op.write('\n')
