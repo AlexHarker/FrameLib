@@ -91,6 +91,7 @@
 		B809C0A119C4305D00BA41F4 /* fl.sqrt~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B809BDDC19C42CC500BA41F4 /* fl.sqrt~.cpp */; };
 		B809C0A219C4306000BA41F4 /* fl.tan~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B809BDDD19C42CC500BA41F4 /* fl.tan~.cpp */; };
 		B809C0A319C4306400BA41F4 /* fl.tanh~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B809BDDE19C42CC500BA41F4 /* fl.tanh~.cpp */; };
+		B80C240C22B27D3B00920364 /* Max_Object_List.h in Headers */ = {isa = PBXBuildFile; fileRef = B80C240B22B27D3A00920364 /* Max_Object_List.h */; };
 		B812463219F476CB009833F1 /* fl.recall~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B812462219F475B8009833F1 /* fl.recall~.cpp */; };
 		B812463519F476CB009833F1 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B812464719F476D3009833F1 /* fl.store~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B812462419F475B8009833F1 /* fl.store~.cpp */; };
@@ -1969,7 +1970,6 @@
 		2668246122294CD40068E5C4 /* fl.info~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.info~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2668246322294D220068E5C4 /* fl.info~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.info~.cpp"; sourceTree = "<group>"; };
 		2668246522294D3E0068E5C4 /* FrameLib_Info.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Info.cpp; sourceTree = "<group>"; };
-		2668246622294D3F0068E5C4 /* FrameLib_Info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Info.h; sourceTree = "<group>"; };
 		26970D1C222FEA6B00990D87 /* Documentation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Documentation; sourceTree = BUILT_PRODUCTS_DIR; };
 		26970D27223022D100990D87 /* Build_Max_Docs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Build_Max_Docs.cpp; path = "Max Documentation/Build_Max_Docs.cpp"; sourceTree = "<group>"; };
 		26DB3F7B22529A7900D8E899 /* FrameLib_Scramble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Scramble.h; sourceTree = "<group>"; };
@@ -2083,6 +2083,7 @@
 		B809C06C19C42D7400BA41F4 /* fl.tan~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.tan~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B809C07B19C42D7400BA41F4 /* fl.tanh~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.tanh~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B809C08A19C42D7500BA41F4 /* fl.trunc~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.trunc~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B80C240B22B27D3A00920364 /* Max_Object_List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Max_Object_List.h; path = "Max Documentation/Max_Object_List.h"; sourceTree = "<group>"; };
 		B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_FrameLib.xcconfig; sourceTree = "<group>"; };
 		B812462219F475B8009833F1 /* fl.recall~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.recall~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B812462419F475B8009833F1 /* fl.store~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.store~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -4127,6 +4128,7 @@
 				26970D1D222FEA6B00990D87 /* Documentation */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
 				B89C1A4F2069A969009CA55B /* Frameworks */,
+				B80C240922B275C700920364 /* Recovered References */,
 			);
 			name = "plus~";
 			sourceTree = "<group>";
@@ -4347,6 +4349,7 @@
 			isa = PBXGroup;
 			children = (
 				26E05B242232C92600A0EB1F /* Python Files */,
+				B80C240B22B27D3A00920364 /* Max_Object_List.h */,
 				26970D27223022D100990D87 /* Build_Max_Docs.cpp */,
 			);
 			path = Documentation;
@@ -4449,6 +4452,15 @@
 				B8F83E2819C78DBC00230CD4 /* fl.trunc~.cpp */,
 			);
 			path = Unary;
+			sourceTree = "<group>";
+		};
+		B80C240922B275C700920364 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				2668246322294D220068E5C4 /* fl.info~.cpp */,
+				2668246522294D3E0068E5C4 /* FrameLib_Info.cpp */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		B812462119F475B8009833F1 /* Storage */ = {
@@ -5954,6 +5966,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B80C240C22B27D3B00920364 /* Max_Object_List.h in Headers */,
 				B88A482C2067DCC400CEB3AC /* FrameLib_SerialiseGraph.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -13860,7 +13873,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LLVM_LTO = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 			};
 			name = Development;
 		};
@@ -13903,7 +13916,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LLVM_LTO = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 			};
 			name = Deployment;
 		};
@@ -14241,7 +14254,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -14295,7 +14307,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -14348,7 +14359,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -18736,7 +18746,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LLVM_LTO = NO;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 			};
 			name = "Public Testing";
 		};
