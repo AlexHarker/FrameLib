@@ -49,7 +49,8 @@ for folder in max_source_categories:
     if 'ibuffer' in file_list:
         file_list.remove('ibuffer')
     for j in file_list:
-        source_file_list.append([os.path.join(category_folder), j]) ##now I know how many files I have in total
+        if j != '.DS_Store':
+            source_file_list.append([os.path.join(category_folder), j]) ##now I know how many files I have in total
 
 def write_comma(counter, ceiling):
     if counter < ceiling - 1:
@@ -60,8 +61,8 @@ def write_comma(counter, ceiling):
 ## Recreate full paths to open and parse for type cases
 counter = 0
 for category_folder, name in source_file_list:
-    
     with open(os.path.join(category_folder, name), 'r' ) as cpp:
+        print(os.path.join(category_folder, name))
         source_file = cpp.read().replace('\n', '').replace(' ', '') #flatten it with no spaces whatsoever
         search_area = source_file.split('extern"C"intC74_EXPORTmain(void){')[1]
     
