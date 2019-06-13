@@ -141,6 +141,7 @@ for category_folder, name in source_file_list:
         no_ext = os.path.splitext(name)[0]
         no_ext = no_ext.split('~')[0]
         # infer type with brutal checking by looking at text in the extern bit (search area)
+        op.write('template<> \n')
         if '_Expand' in search_area:
             op.write('const char* FrameLib_ObjectName<FrameLib_Expand<'+fl_object_name+'>>::name() { return "'+no_ext+'"; }')
             op.write('\n')
