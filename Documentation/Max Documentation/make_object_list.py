@@ -103,7 +103,7 @@ for category_folder, name in source_file_list:
 
 ## Demarcate end of this section
 op.write('\n \n')
-op.write('>:')
+op.write('>;')
 op.write('\n \n')
 op.write('template<>')
 op.write('\n \n')
