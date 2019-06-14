@@ -263,7 +263,7 @@ void FrameLib_Thread::join()
     }
 }
 
-DWORD WINAPI Thread::threadStart(LPVOID arg)
+DWORD WINAPI FrameLib_Thread::threadStart(LPVOID arg)
 {
     static_cast<FrameLib_Thread *>(arg)->call();
     

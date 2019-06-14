@@ -250,9 +250,9 @@ FL_SP operator * (const FL_SP& a, const FL_SP& b)
 
 FL_SP twoMinus(const FL_SP& b)
 {
-    uint64_t hi = 2 - b.mInt;
-    uint64_t md = -b.mFracHi;
-    uint64_t lo = -b.mFracLo;
+	uint64_t hi = 2U - b.mInt;
+	uint64_t md = 0U - b.mFracHi; 
+    uint64_t lo = 0U - b.mFracLo; 
     
     // N.B. - must be able to double carry!
     
