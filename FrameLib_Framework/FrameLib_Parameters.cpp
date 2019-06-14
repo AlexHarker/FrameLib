@@ -3,6 +3,7 @@
 #include "FrameLib_Memory.h"
 
 #include <algorithm>
+#include <cstdio>
 
 // Serial Iterator
 
@@ -731,7 +732,8 @@ std::string FrameLib_Parameters::getTypeString(unsigned long idx) const
 std::string FrameLib_Parameters::getDefaultString(unsigned long idx) const
 {
     Type type = getType(idx);
-    char numericStr[64];
+    const int strBufferSize = 64;
+    char numericStr[strBufferSize];
 
     if (type == kString)
         return "";
@@ -740,7 +742,7 @@ std::string FrameLib_Parameters::getDefaultString(unsigned long idx) const
     else if (getNumericType(idx) == kNumericBool)
         return getDefault(idx) ? "true" : "false";
     
-    sprintf(numericStr, "%lg", getDefault(idx));
+    snprintf(numericStr, strBufferSize, "%lg", getDefault(idx));
     
     return numericStr;
 }

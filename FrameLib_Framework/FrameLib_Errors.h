@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <memory>
 #include <string>
-#include <string.h>
+#include <cstdio>
 
 /**
  
@@ -178,22 +178,25 @@ public:
         
         bool addItem(size_t number)
         {
-            char charArray[32];
-            sprintf(charArray, "%zu", number);
+            const int strBufferSize = 32;
+            char charArray[strBufferSize];
+            snprintf(charArray, strBufferSize, "%zu", number);
             return addItem(charArray);
         }
         
         bool addItem(long number)
         {
-            char charArray[32];
-            sprintf(charArray, "%ld", number);
+            const int strBufferSize = 32;
+            char charArray[strBufferSize];
+            snprintf(charArray, strBufferSize, "%ld", number);
             return addItem(charArray);
         }
         
         bool addItem(double number)
         {
-            char charArray[32];
-            sprintf(charArray, "%lf", number);
+            const int strBufferSize = 32;
+            char charArray[strBufferSize];
+            snprintf(charArray, strBufferSize, "%lf", number);
             return addItem(charArray);
         }
         

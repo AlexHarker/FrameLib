@@ -5,6 +5,7 @@
 #include <cxxabi.h>
 #include <sstream>
 #include <fstream>
+#include <cstdio>
 
 bool invalidPosition(size_t pos, size_t lo, size_t hi)
 {
@@ -227,7 +228,8 @@ void serialiseVector(std::stringstream& output, size_t index, const char *type, 
     
     for (auto it = vector.begin(); it != vector.end(); it++)
     {
-        char formatted[1024];
+        const int strBufferSize = 1024;
+        char formatted[strBufferSize];
 
         if (it != vector.begin())
             output << ", ";
@@ -235,9 +237,9 @@ void serialiseVector(std::stringstream& output, size_t index, const char *type, 
         // FIX - need 100% accuracy but human readable
         
         if (round(*it) == *it)
-            sprintf(formatted, "%lld", (long long) *it);
+            snprintf(formatted, strBufferSize, "%lld", (long long) *it);
         else
-            sprintf(formatted, "%lf", *it);
+            snprintf(formatted, strBufferSize, "%lf", *it);
         output << formatted;
     }
     
