@@ -169,7 +169,7 @@ public:
             
             if (mItemsSize + size < sCharArraySize)
             {
-                strncpy(ptr, str, size);
+                std::copy(str, str + size, ptr);
                 mItemsSize += size;
                 return true;
             }

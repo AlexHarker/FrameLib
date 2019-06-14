@@ -348,7 +348,7 @@ void FrameLib_Parameters::Serial::writeString(const char *str)
 {
     size_t N = strlen(str) + 1;
     writeSize(N);
-    strncpy((char *) (mPtr + mSize), str, N);
+    std::copy(str, str + N, (char *) (mPtr + mSize));
     mSize += alignSize(N);
 }
 
