@@ -9,6 +9,7 @@
 #include <memory>
 #include <string>
 #include <cstdio>
+#include <cstring>
 
 /**
  
@@ -168,7 +169,7 @@ public:
             
             if (mItemsSize + size < sCharArraySize)
             {
-                strcpy(ptr, str);
+                strncpy(ptr, str, size);
                 mItemsSize += size;
                 return true;
             }

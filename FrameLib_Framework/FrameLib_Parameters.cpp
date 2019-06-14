@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <cstdio>
+#include <cstring>
 
 // Serial Iterator
 
@@ -347,7 +348,7 @@ void FrameLib_Parameters::Serial::writeString(const char *str)
 {
     size_t N = strlen(str) + 1;
     writeSize(N);
-    strcpy((char *) (mPtr + mSize), str);
+    strncpy((char *) (mPtr + mSize), str, N);
     mSize += alignSize(N);
 }
 
