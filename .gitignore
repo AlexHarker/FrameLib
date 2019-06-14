@@ -24,7 +24,7 @@ xcuserdata/
 
 ## VS
 .vs/
-.*.user
+*.user
 
 ## Latex
 *.aux
