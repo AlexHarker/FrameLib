@@ -164,7 +164,7 @@ public:
         bool addItem(const char *str)
         {
             char *ptr = mItems + mItemsSize;
-            size_t size = + strlen(str) + 1;
+            size_t size = strlen(str) + 1;
             
             if (mItemsSize + size < sCharArraySize)
             {
