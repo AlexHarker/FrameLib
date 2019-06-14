@@ -1,3 +1,6 @@
+##Max SDK
+_MaxSDK_/
+
 ## Build generated
 build/
 DerivedData/
@@ -18,10 +21,12 @@ CVS/
 !default.perspectivev3
 xcuserdata/
 *.xccheckout
-_MaxSDK_/
+
+## VS
+.vs/
+.*.user
 
 ## Latex
-
 *.aux
 *.synctex.gz
 *.toc
