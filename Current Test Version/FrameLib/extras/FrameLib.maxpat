@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ -1767.0, -323.0, 692.0, 855.0 ],
+		"rect" : [ 0.0, 45.0, 692.0, 855.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 11.0,
@@ -82,7 +82,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ -1767.0, -297.0, 692.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 692.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -585,7 +585,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 692.0, 829.0 ],
+						"rect" : [ 0.0, 71.0, 692.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -692,7 +692,7 @@
 									"presentation" : 1,
 									"presentation_rect" : [ 251.0, 153.0, 422.0, 23.0 ],
 									"text" : "Getting familiar with the FrameLib library.",
-									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
+									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 								}
 
 							}
@@ -1304,7 +1304,7 @@
 									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 97.0, 422.0, 30.0 ],
 									"text" : "Tutorial 2: Getting to grips with frame based processing.",
-									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
+									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 								}
 
 							}
@@ -2643,7 +2643,7 @@
 								"multi" : 0
 							}
  ],
-						"textcolor" : [ 0.0, 0.0, 0.0, 0.5 ]
+						"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 					}
 ,
 					"patching_rect" : [ 170.79998779296875, 43.999984741210938, 61.0, 21.0 ],
@@ -2652,7 +2652,7 @@
 						"digest" : "",
 						"globalpatchername" : "",
 						"tags" : "",
-						"textcolor" : [ 0.0, 0.0, 0.0, 0.5 ]
+						"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 					}
 ,
 					"text" : "p Tutorials"
@@ -2706,19 +2706,6 @@
 						"showontab" : 1,
 						"title" : "Help",
 						"boxes" : [ 							{
-								"box" : 								{
-									"id" : "obj-24",
-									"linecount" : 2,
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 546.0, 74.0, 78.0, 35.0 ],
-									"text" : ";\rmax db.reset"
-								}
-
-							}
-, 							{
 								"box" : 								{
 									"fontface" : 0,
 									"fontname" : "Lato",
@@ -4999,13 +4986,13 @@
 									"presentation_rect" : [ 5.0, 89.0, 209.0, 23.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_longname" : "umenu",
 											"parameter_initial_enable" : 1,
 											"parameter_invisible" : 1,
 											"parameter_mmax" : 22.0,
 											"parameter_initial" : [ 0 ],
 											"parameter_shortname" : "umenu",
-											"parameter_type" : 3,
-											"parameter_longname" : "umenu"
+											"parameter_type" : 3
 										}
 
 									}
