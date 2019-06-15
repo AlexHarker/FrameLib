@@ -127,13 +127,13 @@ void serialiseGraph(std::vector<FrameLib_Object<FrameLib_Multistream> *>& serial
     
     // First search up
     
-    for (int i = 0; i < object->getNumIns(); i++)
+    for (unsigned long i = 0; i < object->getNumIns(); i++)
     {
         FrameLib_Multistream::Connection connect = object->getConnection(i);
         if (connect.mObject) serialiseGraph(serial, connect.mObject);
     }
     
-    for (int i = 0; i < object->getNumOrderingConnections(); i++)
+    for (unsigned long i = 0; i < object->getNumOrderingConnections(); i++)
     {
         FrameLib_Multistream::Connection connect = object->getOrderingConnection(i);
         if (connect.mObject) serialiseGraph(serial, connect.mObject);
@@ -229,9 +229,9 @@ void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_M
         
         // Connections - Normal and Ordering
         
-        for (int i = 0; i < object->getNumIns(); i++)
+        for (unsigned long i = 0; i < object->getNumIns(); i++)
             addConnection(description, serial, object->getConnection(i), i);
-        for (int i = 0; i < object->getNumOrderingConnections(); i++)
+        for (unsigned long i = 0; i < object->getNumOrderingConnections(); i++)
             addConnection(description, serial, object->getOrderingConnection(i), kOrdering);
     }
 }
@@ -305,7 +305,7 @@ std::string serialiseGraph(FrameLib_Multistream *requestObject)
         {
             if (jt->size())
             {
-                unsigned long idx = jt - it->mInputs.begin();
+                unsigned long idx = static_cast<unsigned long>(jt - it->mInputs.begin());
                 output << exportIndent << "mObjects[" << index << "]->setFixedInput(" << idx << ", fl_" << index << "_inputs_" << idx <<" , " << jt->size() << ");\n";
             }
         }

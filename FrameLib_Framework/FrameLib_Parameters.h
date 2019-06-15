@@ -543,7 +543,7 @@ public:
     
     // Size and Index
     
-    unsigned long size() const { return mParameters.size(); }
+    unsigned long size() const { return static_cast<unsigned long>(mParameters.size()); }
     
     long getIdx(const char *name) const
     {
