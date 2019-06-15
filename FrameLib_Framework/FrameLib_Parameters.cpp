@@ -69,6 +69,8 @@ size_t FrameLib_Parameters::Serial::Iterator::getSize() const
         case kVector:           return calcSize(entry.mTag, entry.mSize);
         case kSingleString:     return calcSize(entry.mTag, entry.data<char>());
     }
+    
+    return 0;
 }
 
 // Reads

@@ -558,7 +558,7 @@ void FrameLib_DSP::dependenciesReady()
 
 void FrameLib_DSP::setOutputDependencyCount()
 {
-    mOutputMemoryCount = mOutputDependencies.size();
+    mOutputMemoryCount = static_cast<long>(mOutputDependencies.size());
 }
 
 // Manage Output Memory

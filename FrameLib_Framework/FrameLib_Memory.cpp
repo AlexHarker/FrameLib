@@ -285,7 +285,7 @@ FrameLib_LocalAllocator::Storage::~Storage()
     mAllocator.dealloc(mData);
 }
 
-void FrameLib_LocalAllocator::Storage::resize(bool tagged, size_t size)
+void FrameLib_LocalAllocator::Storage::resize(bool tagged, unsigned long size)
 {
     size_t actualSize = tagged ? Serial::inPlaceSize(size) : size * sizeof(double);
     size_t maxSize = actualSize << 1;
