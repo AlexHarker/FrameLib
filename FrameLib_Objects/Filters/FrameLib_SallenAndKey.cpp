@@ -110,7 +110,7 @@ FrameLib_SallenAndKey::ParameterInfo::ParameterInfo()
 void FrameLib_SallenAndKey::process()
 {
     SallenAndKey filter;
-    Modes mode = static_cast<Modes>(mParameters.getValue(kMode));
+    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
     
     bool staticParams = true;
     

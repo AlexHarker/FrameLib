@@ -76,7 +76,7 @@ void FrameLib_CoordinateSystem::process()
     
     double *output = getOutput(0, &sizeOut);
     
-    if (((InputModes) mParameters.getValue(kMode)) == kPolarToCartesian)
+    if ((static_cast<InputModes>(mParameters.getInt(kMode))) == kPolarToCartesian)
     {
         double azimuth = sizeIn > 0 ? input[0] : 0.0;
         double elevation = sizeIn > 1 ? input[1] : 0.0;

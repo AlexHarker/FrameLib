@@ -62,8 +62,8 @@ FrameLib_Ticks::ParameterInfo::ParameterInfo()
 void FrameLib_Ticks::process()
 {
     requestOutputSize(0, 1);
-    ModesRun mode_run = (ModesRun) mParameters.getValue(kRunMode);
-    ModesLimit mode_limit = (ModesLimit) mParameters.getValue(kLimitMode);
+    ModesRun mode_run = static_cast<ModesRun>(mParameters.getInt(kRunMode));
+    ModesLimit mode_limit = static_cast<ModesLimit>(mParameters.getInt(kLimitMode));
     
     if (allocateOutputs())
     {
