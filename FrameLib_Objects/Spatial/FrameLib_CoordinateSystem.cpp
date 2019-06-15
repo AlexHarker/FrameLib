@@ -1,5 +1,6 @@
 
 #include "FrameLib_CoordinateSystem.h"
+#include <cmath>
 
 // Constructor
 

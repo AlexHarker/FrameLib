@@ -1,5 +1,6 @@
 
 #include "FrameLib_Expression.h"
+#include <cmath>
 
 #include "../Unary/FrameLib_Unary_Template.h"
 #include "../Binary/FrameLib_Binary_Template.h"

@@ -1,5 +1,6 @@
 
 #include "FrameLib_SallenAndKey.h"
+#include <cmath>
 
 // Filter Class
 

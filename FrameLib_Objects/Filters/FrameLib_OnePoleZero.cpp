@@ -1,5 +1,6 @@
 
 #include "FrameLib_OnePoleZero.h"
+#include <cmath>
 
 // Filter Class
 

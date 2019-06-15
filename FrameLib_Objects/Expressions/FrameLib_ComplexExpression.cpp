@@ -1,5 +1,6 @@
 
 #include "FrameLib_ComplexExpression.h"
+#include <cmath>
 
 #include "../Complex_Unary/FrameLib_Complex_Unary_Template.h"
 #include "../Complex_Binary/FrameLib_Complex_Binary_Template.h"

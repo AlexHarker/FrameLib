@@ -1,5 +1,6 @@
 
 #include "FrameLib_Resonant.h"
+#include <cmath>
 
 // Filter Class
 
