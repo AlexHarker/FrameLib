@@ -729,7 +729,7 @@ public:
         if (m == ASSIST_OUTLET)
         {
             if (a == 0 && handlesAudio())
-                 sprintf(s,"(signal) Audio Synchronisation Output" );
+                sprintf(s,"(signal) Audio Synchronisation Output" );
             else if (a < getNumAudioOuts())
                 sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
             else
