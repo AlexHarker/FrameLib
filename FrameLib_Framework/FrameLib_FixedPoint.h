@@ -82,11 +82,11 @@ public:
     
     // Comparison operators (N.B. - it is faster to avoid branching using bit rather logical operators)
 
-    friend bool operator == (const FL_FP& a, const FL_FP& b)    { return (a.mInt == b.mInt & a.mFrac == b.mFrac); }
+    friend bool operator == (const FL_FP& a, const FL_FP& b)    { return ((a.mInt == b.mInt) & (a.mFrac == b.mFrac)); }
     friend bool operator != (const FL_FP& a, const FL_FP& b)    { return !(a == b); }
 
-    friend bool operator < (const FL_FP& a, const FL_FP& b)     { return ((a.mInt < b.mInt) | (a.mInt == b.mInt & a.mFrac < b.mFrac)); }
-    friend bool operator > (const FL_FP& a, const FL_FP& b)     { return ((a.mInt > b.mInt) | (a.mInt == b.mInt & a.mFrac > b.mFrac)); }
+    friend bool operator < (const FL_FP& a, const FL_FP& b)     { return ((a.mInt < b.mInt) | ((a.mInt == b.mInt) & (a.mFrac < b.mFrac))); }
+    friend bool operator > (const FL_FP& a, const FL_FP& b)     { return ((a.mInt > b.mInt) | ((a.mInt == b.mInt) & (a.mFrac > b.mFrac))); }
     friend bool operator <= (const FL_FP& a, const FL_FP& b)    { return !(a > b); }
     friend bool operator >= (const FL_FP& a, const FL_FP& b)    { return !(a < b); }
     
