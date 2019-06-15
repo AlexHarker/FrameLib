@@ -179,25 +179,25 @@ public:
         
         bool addItem(size_t number)
         {
-            const int strBufferSize = 32;
-            char charArray[strBufferSize];
-            snprintf(charArray, strBufferSize, "%zu", number);
+            const int strBufSize = 32;
+            char charArray[strBufSize];
+            snprintf(charArray, strBufSize, "%zu", number);
             return addItem(charArray);
         }
         
         bool addItem(long number)
         {
-            const int strBufferSize = 32;
-            char charArray[strBufferSize];
-            snprintf(charArray, strBufferSize, "%ld", number);
+            const int strBufSize = 32;
+            char charArray[strBufSize];
+            snprintf(charArray, strBufSize, "%ld", number);
             return addItem(charArray);
         }
         
         bool addItem(double number)
         {
-            const int strBufferSize = 32;
-            char charArray[strBufferSize];
-            snprintf(charArray, strBufferSize, "%lf", number);
+            const int strBufSize = 32;
+            char charArray[strBufSize];
+            snprintf(charArray, strBufSize, "%lf", number);
             return addItem(charArray);
         }
         

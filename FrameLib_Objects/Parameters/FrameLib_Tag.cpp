@@ -5,8 +5,10 @@
 
 FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo)
 {
-    char argStr[10];
-    char nameStr[10];
+    const int strBufSize = 10;
+    
+    char argStr[strBufSize];
+    char nameStr[strBufSize];
     
     mParameters.addInt(kNumIns, "num_ins", 1);
     mParameters.setClip(1, maxNumIns);
@@ -28,8 +30,8 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, FrameLib_Parameters::Serial
     {
         for (int i = 0; i < maxNumIns; i++)
         {
-            sprintf(argStr, "%d", i);
-            sprintf(nameStr, "tag_%02d", i + 1);
+            snprintf(argStr, strBufSize, "%d", i);
+            snprintf(nameStr, strBufSize, "tag_%02d", i + 1);
             if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(nameStr) != serialisedParameters->end())
                 mParameters.set(kNumIns, (long) (i + 1));
         }
@@ -41,7 +43,7 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, FrameLib_Parameters::Serial
     
     for (int i = 0; i < mNumIns; i++)
     {
-        sprintf(nameStr, "tag_%02d", i + 1);
+        snprintf(nameStr, strBufSize, "tag_%02d", i + 1);
         mParameters.addString(kNames + i, nameStr, i);
         mParameters.setInstantiation();
     }
@@ -89,7 +91,8 @@ FrameLib_Tag::ParameterInfo FrameLib_Tag::sParamInfo;
 
 FrameLib_Tag::ParameterInfo::ParameterInfo()
 {
-    char str[256];
+    const int strBufSize = 256;
+    char str[strBufSize];
     
     add("Sets the number of inputs (and hence the number of tags).");
 
@@ -97,7 +100,7 @@ FrameLib_Tag::ParameterInfo::ParameterInfo()
 
     for (int i = 0; i < maxNumIns; i++)
     {
-        sprintf(str, "Sets the tag for input %d.", i + 1);
+        snprintf(str, strBufSize, "Sets the tag for input %d.", i + 1);
         add(str);
     }
 }

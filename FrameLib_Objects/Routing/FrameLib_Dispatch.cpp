@@ -7,8 +7,9 @@
 
 FrameLib_Dispatch::Select::Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long numIns, long num) : FrameLib_Processor(context, proxy, nullptr, numIns, 1), mNumIns(numIns)
 {
-    char name[32];
-    sprintf(name, "input_%2ld", num + 1);
+    const int strBufSize = 32;
+    char name[strBufSize];
+    snprintf(name, strBufSize, "input_%2ld", num + 1);
     mParameters.addInt(kActiveIn, name, 0);
     
     mParameters.setErrorReportingEnabled(false);
@@ -67,8 +68,9 @@ FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Paramete
     
     for (long i = 0; i < mNumOuts; i++)
     {
-        char name[32];
-        sprintf(name, "input_%2ld", i + 1);
+        const int strBufSize = 32;
+        char name[strBufSize];
+        snprintf(name, strBufSize, "input_%2ld", i + 1);
         mParameters.addInt(kActiveIn1 + i, name, 0);
     }
               

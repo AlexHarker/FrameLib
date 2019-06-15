@@ -733,8 +733,8 @@ std::string FrameLib_Parameters::getTypeString(unsigned long idx) const
 std::string FrameLib_Parameters::getDefaultString(unsigned long idx) const
 {
     Type type = getType(idx);
-    const int strBufferSize = 64;
-    char numericStr[strBufferSize];
+    const int strBufSize = 64;
+    char numericStr[strBufSize];
 
     if (type == kString)
         return "";
@@ -743,7 +743,7 @@ std::string FrameLib_Parameters::getDefaultString(unsigned long idx) const
     else if (getNumericType(idx) == kNumericBool)
         return getDefault(idx) ? "true" : "false";
     
-    snprintf(numericStr, strBufferSize, "%lg", getDefault(idx));
+    snprintf(numericStr, strBufSize, "%lg", getDefault(idx));
     
     return numericStr;
 }

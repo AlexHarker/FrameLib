@@ -16,8 +16,9 @@ class FrameLib_ParamAlias : public FrameLib_Processor
         {
             if (argumentIdx >= 0)
             {
-                char argumentStr[64];
-                sprintf(argumentStr, "%ld", argumentIdx);
+                const int strBufSize = 64;
+                char argumentStr[strBufSize];
+                snprintf(argumentStr, strBufSize, "%ld", argumentIdx);
                 mArgumentStr = argumentStr;
             }
         }
