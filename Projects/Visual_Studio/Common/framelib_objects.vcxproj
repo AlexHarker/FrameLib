@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\FrameLib_Objects\Binary\FrameLib_Binary_Objects.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Binary\FrameLib_Binary_Template.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Buffer\FrameLib_Info.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Buffer\FrameLib_Read.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Common_Utilities\FrameLib_RandGen.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Common_Utilities\FrameLib_RingBuffer.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Common_Utilities\FrameLib_Scaling_Functions.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Common_Utilities\FrameLib_Sort_Functions.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Common_Utilities\FrameLib_Spectral_Functions.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Common_Utilities\FrameLib_VectorSet.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Complex_Binary\FrameLib_Complex_Binary_Objects.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Complex_Binary\FrameLib_Complex_Binary_Template.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Complex_Unary\FrameLib_Cartopol.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Complex_Unary\FrameLib_Complex_Unary_Objects.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Complex_Unary\FrameLib_Complex_Unary_Template.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Complex_Unary\FrameLib_Poltocar.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Expressions\FrameLib_ComplexExpression.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Expressions\FrameLib_Expression.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Expressions\FrameLib_ExprParser.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_0dfSVF.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_Filter_Constants.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_OnePole.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_OnePoleZero.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_Resonant.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Filters\FrameLib_SallenAndKey.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Gaussian.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Ramp.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Random.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Uniform.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Host_Communication\FrameLib_FromHost.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Host_Communication\FrameLib_HostProxy.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Host_Communication\FrameLib_ToHost.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\IO\FrameLib_Sink.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\IO\FrameLib_Source.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\IO\FrameLib_Trace.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Mapping\FrameLib_Constant.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Mapping\FrameLib_Convert.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Mapping\FrameLib_Lookup.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Mapping\FrameLib_Map.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Mapping\FrameLib_SampleRate.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_CombineTags.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_FilterTags.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_GetParam.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_ParamAlias.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_Tag.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_Untag.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Dispatch.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Route.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Select.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_AudioTrigger.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Chain.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Future.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Interval.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Once.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_PerBlock.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_CoordinateSystem.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_Spatial.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Convolution_Tools.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Convolve.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Correlate.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_FFT.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_iFFT.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Multitaper.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Window.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Storage\FrameLib_Recall.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Storage\FrameLib_Register.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Storage\FrameLib_Store.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Streaming\FrameLib_Pack.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Streaming\FrameLib_StreamID.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Streaming\FrameLib_Unpack.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Ternary\FrameLib_Ternary_Objects.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Ternary\FrameLib_Ternary_Template.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_EWMA.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_EWMSD.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_FrameDelta.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_Lag.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeBuffer_Template.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeMean.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeMedian.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeStdDev.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Timing\FrameLib_Now.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Timing\FrameLib_Ticks.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Timing\FrameLib_TimeDelta.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Timing\FrameLib_Timer.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Unary\FrameLib_Unary_Objects.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Unary\FrameLib_Unary_Template.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_AccumPoint.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Chop.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Join.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_MedianFilter.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_NanFilter.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_NonZero.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Pad.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Pattern.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Peaks.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Percentile.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Reverse.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Shift.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Sort.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Split.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Subframe.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Vector_Objects.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Vector_Template.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\FrameLib_Objects\Buffer\FrameLib_Info.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Buffer\FrameLib_Read.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Common_Utilities\FrameLib_RandGen.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Expressions\FrameLib_ComplexExpression.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Expressions\FrameLib_Expression.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Filters\FrameLib_0dfSVF.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Filters\FrameLib_OnePole.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Filters\FrameLib_OnePoleZero.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Filters\FrameLib_Resonant.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Filters\FrameLib_SallenAndKey.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Gaussian.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Ramp.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Random.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Generators\FrameLib_Uniform.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Host_Communication\FrameLib_FromHost.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Host_Communication\FrameLib_ToHost.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\IO\FrameLib_Sink.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\IO\FrameLib_Source.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\IO\FrameLib_Trace.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Mapping\FrameLib_Constant.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Mapping\FrameLib_Convert.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Mapping\FrameLib_Lookup.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Mapping\FrameLib_Map.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Mapping\FrameLib_SampleRate.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_CombineTags.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_FilterTags.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_GetParam.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_ParamAlias.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_Tag.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Parameters\FrameLib_Untag.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Dispatch.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Route.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Select.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_AudioTrigger.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Chain.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Future.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Interval.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Once.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_PerBlock.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_CoordinateSystem.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Spatial\FrameLib_Spatial.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Convolve.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Correlate.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_FFT.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_iFFT.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Multitaper.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Window.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Storage\FrameLib_Recall.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Storage\FrameLib_Register.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Storage\FrameLib_Store.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Streaming\FrameLib_Pack.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Streaming\FrameLib_StreamID.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Streaming\FrameLib_Unpack.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_EWMA.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_EWMSD.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_FrameDelta.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_Lag.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeMean.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeMedian.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeStdDev.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Timing\FrameLib_Now.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Timing\FrameLib_Ticks.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Timing\FrameLib_TimeDelta.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Timing\FrameLib_Timer.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_AccumPoint.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Chop.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Join.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_MedianFilter.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_NanFilter.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_NonZero.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Pad.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Pattern.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Peaks.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Percentile.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Reverse.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Shift.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Sort.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Split.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Subframe.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>framelib</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)build\</OutDir>
+    <IntDir>$(SolutionDir)build\intermediate\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)build\</OutDir>
+    <IntDir>$(SolutionDir)build\intermediate\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)build\</OutDir>
+    <IntDir>$(SolutionDir)build\intermediate\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)build\</OutDir>
+    <IntDir>$(SolutionDir)build\intermediate\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;NOMINMAX;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile />
+      <AdditionalIncludeDirectories>$(SolutionDir)\FrameLib_Framework;$(SolutionDir)\FrameLib_Objects\Common_Utilities</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_LIB;NOMINMAX;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)\FrameLib_Framework;$(SolutionDir)\FrameLib_Objects\Common_Utilities</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile />
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;NOMINMAX;_USE_MATH_DEFINES;%(PreprocessorDefinitions);</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile />
+      <AdditionalIncludeDirectories>$(SolutionDir)\FrameLib_Framework;$(SolutionDir)\FrameLib_Objects\Common_Utilities</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_LIB;NOMINMAX;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)\FrameLib_Framework;$(SolutionDir)\FrameLib_Objects\Common_Utilities</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile />
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
