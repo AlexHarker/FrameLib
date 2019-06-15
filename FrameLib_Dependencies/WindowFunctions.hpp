@@ -265,22 +265,22 @@ public:
     
     IndexedWindowFunctions()
     {
-        WindowFunctions<T, uint>::add(kWindowRect, window_rect);
-        WindowFunctions<T, uint>::add(kWindowTriangle, window_triangle);
+        WindowFunctions<T, uint16_t>::add(kWindowRect, window_rect);
+        WindowFunctions<T, uint16_t>::add(kWindowTriangle, window_triangle);
 
-        WindowFunctions<T, uint>::add(kWindowHann, window_hann);
-        WindowFunctions<T, uint>::add(kWindowHamming, window_hamming);
-        WindowFunctions<T, uint>::add(kWindowCosine, window_cosine);
+        WindowFunctions<T, uint16_t>::add(kWindowHann, window_hann);
+        WindowFunctions<T, uint16_t>::add(kWindowHamming, window_hamming);
+        WindowFunctions<T, uint16_t>::add(kWindowCosine, window_cosine);
         
-        WindowFunctions<T, uint>::add(kWindowBlackman, window_blackman);
-        WindowFunctions<T, uint>::add(kWindowBlackman62, window_blackman_62);
-        WindowFunctions<T, uint>::add(kWindowBlackman70, window_blackman_70);
-        WindowFunctions<T, uint>::add(kWindowBlackman74, window_blackman_62);
-        WindowFunctions<T, uint>::add(kWindowBlackman92, window_blackman_92);
-        WindowFunctions<T, uint>::add(kWindowBlackmanHarris, window_blackman_harris);
+        WindowFunctions<T, uint16_t>::add(kWindowBlackman, window_blackman);
+        WindowFunctions<T, uint16_t>::add(kWindowBlackman62, window_blackman_62);
+        WindowFunctions<T, uint16_t>::add(kWindowBlackman70, window_blackman_70);
+        WindowFunctions<T, uint16_t>::add(kWindowBlackman74, window_blackman_62);
+        WindowFunctions<T, uint16_t>::add(kWindowBlackman92, window_blackman_92);
+        WindowFunctions<T, uint16_t>::add(kWindowBlackmanHarris, window_blackman_harris);
 
-        WindowFunctions<T, uint>::add(kWindowFlatTop, window_kaiser);
+        WindowFunctions<T, uint16_t>::add(kWindowFlatTop, window_kaiser);
         
-        WindowFunctions<T, uint>::add(kWindowKaiser, window_flat_top);
+        WindowFunctions<T, uint16_t>::add(kWindowKaiser, window_flat_top);
     }
 };
