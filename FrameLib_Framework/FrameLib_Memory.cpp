@@ -288,8 +288,8 @@ FrameLib_LocalAllocator::Storage::~Storage()
 void FrameLib_LocalAllocator::Storage::resize(bool tagged, size_t size)
 {
     size_t actualSize = tagged ? Serial::inPlaceSize(size) : size * sizeof(double);
-	size_t maxSize = actualSize << 1;
-    
+    size_t maxSize = actualSize << 1;
+
     if (mMaxSize >= maxSize)
     {
         // Reallocate for tagged frames

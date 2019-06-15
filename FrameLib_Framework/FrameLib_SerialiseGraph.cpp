@@ -11,21 +11,21 @@
 
 void unmangleName(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj)
 {
-	int status;
-
-	const char *type_mangled_name = typeid(*obj).name();
-	char *real_name = abi::__cxa_demangle(type_mangled_name, 0, 0, &status);
-
-	name = real_name;
-	free(real_name);
+    int status;
+    
+    const char *type_mangled_name = typeid(*obj).name();
+    char *real_name = abi::__cxa_demangle(type_mangled_name, 0, 0, &status);
+    
+    name = real_name;
+    free(real_name);
 }
 #else
 void unmangleName(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj)
 {
-	// FIX - needs implementing
-
-	const char *type_mangled_name = typeid(*obj).name();
-	name = type_mangled_name;
+    // FIX - needs implementing
+    
+    const char *type_mangled_name = typeid(*obj).name();
+    name = type_mangled_name;
 }
 #endif
 
