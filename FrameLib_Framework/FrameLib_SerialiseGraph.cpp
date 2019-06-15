@@ -2,10 +2,32 @@
 #include "FrameLib_SerialiseGraph.h"
 #include "FrameLib_Export.h"
 
-#include <cxxabi.h>
 #include <sstream>
 #include <fstream>
 #include <cstdio>
+
+#ifdef __GNUC__
+#include <cxxabi.h>
+
+void unmangleName(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj)
+{
+	int status;
+
+	const char *type_mangled_name = typeid(*obj).name();
+	char *real_name = abi::__cxa_demangle(type_mangled_name, 0, 0, &status);
+
+	name = real_name;
+	free(real_name);
+}
+#else
+void unmangleName(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj)
+{
+	// FIX - needs implementing
+
+	const char *type_mangled_name = typeid(*obj).name();
+	name = type_mangled_name;
+}
+#endif
 
 bool invalidPosition(size_t pos, size_t lo, size_t hi)
 {
@@ -91,12 +113,7 @@ size_t findAndResolveFunctions(std::string& name, size_t beg, size_t end)
 
 void getTypeString(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj)
 {
-    int status;
-    const char *type_mangled_name = typeid(*obj).name();
-    char *real_name = abi::__cxa_demangle(type_mangled_name, 0, 0, &status);
-    
-    name = real_name;
-    free(real_name);
+	unmangleName(name, obj);
 
     // Resolve functions recursively
     
