@@ -22,7 +22,7 @@
  @class FrameLib_Parameters
  
  @ingroup Parameters
-
+ 
  @brief a set of parameters for a FrameLib object.
  
  */
@@ -95,7 +95,7 @@ public:
             
             bool operator == (const Iterator& it) const { return mPtr == it.mPtr; }
             bool operator != (const Iterator& it) const { return !(*this == it); }
-
+            
             Iterator& operator ++ ();
             Iterator operator ++ (int);
             
@@ -108,13 +108,13 @@ public:
             char *getString() const;
             size_t getSize() const;
             unsigned long getIndex() const { return mIndex; }
-
+            
             // Match Tag
             
             bool matchTag(const char *tag) const    {return !strcmp(tag, getTag()); }
             
             // Reads
-
+            
             void read(Serial *serial) const;
             void read(FrameLib_Parameters *parameters) const;
             size_t read(double *output, unsigned long size) const;
@@ -123,7 +123,7 @@ public:
             
             void alias(Serial *serial, const char *tag) const;
             void alias(FrameLib_Parameters *serial, const char *tag) const;
-
+            
         private:
             
             // Get Entry
@@ -180,18 +180,18 @@ public:
         // Find Item
         
         Iterator find(const char *tag)  const;
-
+        
         // Utility
         
-        unsigned long numTags() const	{ return mNumTags; };
-        unsigned long size() const		{ return mSize; }
-        void clear()					{ mSize = 0; }
+        unsigned long numTags() const       { return mNumTags; };
+        unsigned long size() const          { return mSize; }
+        void clear()                        { mSize = 0; }
         
-        static size_t alignSize(size_t size)						{ return (size + (alignment - 1)) & ~(alignment - 1); }
-        static size_t inPlaceSize(size_t size)						{ return alignSize(sizeof(Serial)) + alignSize(size); }
-
-        static Serial *newInPlace(void *ptr, unsigned long size)	{ return new (ptr) Serial(((BytePointer) ptr) + alignSize(sizeof(Serial)), size); }
-
+        static size_t alignSize(size_t size)                        {    return (size + (alignment - 1)) & ~(alignment - 1); }
+        static size_t inPlaceSize(size_t size)                      { return alignSize(sizeof(Serial)) + alignSize(size); }
+        
+        static Serial *newInPlace(void *ptr, unsigned long size)    { return new (ptr) Serial(((BytePointer) ptr) + alignSize(sizeof(Serial)), size); }
+        
     protected:
         
         // Check Size
@@ -210,7 +210,7 @@ public:
         static size_t sizeSize()                    { return alignSize(sizeof(size_t)); }
         static size_t sizeString(const char *str)   { return sizeSize() + alignSize(strlen(str) + 1); }
         static size_t sizeArray(size_t N)           { return sizeSize() + alignSize((N * sizeof(double))); }
-
+        
         // Write Item
         
         void writeType(DataType type);
@@ -223,7 +223,7 @@ public:
         static DataType readType(BytePointer *readPtr);
         static void readSize(BytePointer *readPtr, size_t *size);
         static void readItem(BytePointer *readPtr, DataType type, BytePointer *data, size_t *size);
-
+        
         // Skip Item
         
         static void skipItem(BytePointer *readPtr, DataType typ);
@@ -234,10 +234,10 @@ public:
         
         BytePointer mPtr;
         unsigned long mSize;
-		unsigned long mMaxSize;
+        unsigned long mMaxSize;
         unsigned long mNumTags;
     };
-
+    
     
     /**
      
@@ -246,13 +246,13 @@ public:
      @brief an extension of Serial that manages its own resizable memory.
      
      */
-        
+    
     class AutoSerial : public Serial
     {
         static const size_t minGrowSize = 512;
-
+        
     public:
-
+        
         AutoSerial() {};
         AutoSerial(unsigned long size) : Serial(new Byte[size], size) {}
         AutoSerial(const Serial& serial) : Serial(new Byte[serial.size()], serial.size()) { write(&serial); }
@@ -262,8 +262,8 @@ public:
         
         // Write Items
         
-        void write(const Serial *serialised)								{ if (checkSize(calcSize(serialised))) Serial::write(serialised); }
-        void write(const char *tag, const char *str)						{ if (checkSize(calcSize(tag, str))) Serial::write(tag, str); }
+        void write(const Serial *serialised)                                { if (checkSize(calcSize(serialised))) Serial::write(serialised); }
+        void write(const char *tag, const char *str)                        { if (checkSize(calcSize(tag, str))) Serial::write(tag, str); }
         void write(const char *tag, const double *values, unsigned long N)  { if (checkSize(calcSize(tag, N))) Serial::write(tag, values, N); }
         
     private:
@@ -307,14 +307,14 @@ private:
     {
         
     public:
-    
+        
         enum Flags { kFlagInstantiation = 0x1, kFlagBool = 0x2, kFlagInteger = 0x4, kFlagNonNumeric = 0x8 };
-
+        
         // Constructor / Destructor
         
         Parameter(const char *name, long argumentIdx);
         virtual ~Parameter() {};
-       
+        
         // Setters
         
         virtual void addEnumItem(const char *str);
@@ -331,7 +331,7 @@ private:
         virtual SetError set(const char *str) { return kParameterNotSetByString; }
         virtual SetError set(double value) { return kParameterNotSetByNumber; }
         virtual SetError set(double *values, unsigned long N);
-
+        
         virtual void clear() = 0;
         
         // Getters
@@ -340,26 +340,26 @@ private:
         
         virtual Type type() = 0;
         
-        const char *name() const							{ return mName.c_str(); }
-        long argumentIdx() const							{ return mArgumentIdx; }
-        int flags() const									{ return mFlags; }
+        const char *name() const                            { return mName.c_str(); }
+        long argumentIdx() const                            { return mArgumentIdx; }
+        int flags() const                                   { return mFlags; }
         
         ClipMode getClipMode() const;
-        double getMin() const								{ return mMin; }
-        double getMax()										{ return mMax; }
+        double getMin() const                               { return mMin; }
+        double getMax()                                     { return mMax; }
         void getRange(double *min, double *max) const;
         
         virtual const char *getItemString(unsigned long item) const;
-
+        
         // Values
         
-        double getDefault() const							{ return mDefault; }
-
-        virtual double getValue() const						{ return 0; }
-        virtual const char *getString() const				{ return nullptr; }
-        virtual unsigned long getArraySize() const			{ return 0; }
-        virtual unsigned long getArrayMaxSize() const		{ return 0; }
-        virtual const double *getArray() const				{ return nullptr; }
+        double getDefault() const                           { return mDefault; }
+        
+        virtual double getValue() const                     { return 0; }
+        virtual const char *getString() const               { return nullptr; }
+        virtual unsigned long getArraySize() const          { return 0; }
+        virtual unsigned long getArrayMaxSize() const       { return 0; }
+        virtual const double *getArray() const              { return nullptr; }
         const double *getArray(unsigned long *size) const;
         
         bool changed();
@@ -381,12 +381,12 @@ private:
     
     /**
      
-    @class Parameter
+     @class Parameter
+     
+     @brief an enumerated parameter class.
+     
+     */
     
-    @brief an enumerated parameter class.
-    
-    */
-
     class Enum final : public Parameter
     {
         
@@ -403,7 +403,7 @@ private:
         virtual SetError set(const char *str) override;
         
         void clear() override { Enum::set(0.0); }
-
+        
         virtual Type type() override { return kEnum; }
         
         // Getters
@@ -425,7 +425,7 @@ private:
      @brief a numeric parameter class storing a single value as a double.
      
      */
-
+    
     class Value final : public Parameter
     {
         
@@ -435,18 +435,18 @@ private:
         { mDefault = defaultValue; }
         
         // Setters
-
+        
         SetError set(double value) override;
         SetError set(double *values, unsigned long N) override;
         
         void clear() override { Value::set(mDefault); };
-
+        
         // Getters
-
+        
         Type type() override { return kValue; }
         
         double getValue() const override { return mValue; }
-       
+        
     private:
         
         double mValue;
@@ -459,7 +459,7 @@ private:
      @brief a string parameter class.
      
      */
-
+    
     class String final : public Parameter
     {
         const static size_t maxLen = 128;
@@ -473,18 +473,18 @@ private:
         SetError set(const char *str) override;
         
         void clear() override { String::set(nullptr); };
-
+        
         // Getters
         
         Type type() override { return kString; }
         
         const char *getString() const override   { return mCString; }
-
+        
     private:
         
         char mCString[maxLen + 1];
     };
-
+    
     /**
      
      @class Array
@@ -492,36 +492,36 @@ private:
      @brief a numeric parameter class storing an array of values.
      
      */
-
+    
     // Array Parameter Class
-
+    
     class Array final : public Parameter, private std::vector<double>
     {
-    
+        
     public:
         
         Array(const char *name, long argumentIdx, double defaultValue, size_t size);
         Array(const char *name, long argumentIdx, double defaultValue, size_t maxSize, size_t size);
-
+        
         // Setters
-
+        
         SetError set(double *values, unsigned long N) override;
-
+        
         void clear() override { Array::set(nullptr, 0); };
-
+        
         // Getters
-
+        
         Type type() override { return mVariableSize ? kVariableArray : kArray; }
         
-		unsigned long getArraySize() const override			{ return mSize; }
-        unsigned long getArrayMaxSize() const override		{ return static_cast<unsigned long>(mItems.size()); }
-        const double * getArray() const override			{ return mItems.data(); }
-
+        unsigned long getArraySize() const override         { return mSize; }
+        unsigned long getArrayMaxSize() const override      { return static_cast<unsigned long>(mItems.size()); }
+        const double * getArray() const override            { return mItems.data(); }
+        
     private:
         
         std::vector<double> mItems;
         unsigned long mSize;
-    
+        
         const bool mVariableSize;
     };
     
@@ -565,7 +565,7 @@ public:
         
         return -1;
     }
-
+    
     long maxArgument() const
     {
         long argument = -1;
@@ -603,7 +603,7 @@ public:
     
     void addEnum(unsigned long index, const char *name, long argumentIdx = -1)
     {
-       addParameter(index, new Enum(name, argumentIdx));
+        addParameter(index, new Enum(name, argumentIdx));
     }
     
     void addEnumItem(unsigned long index, const char *str)
@@ -644,13 +644,13 @@ public:
     {
         addParameter(index, new Array(name, argumentIdx, defaultValue, maxSize, size));
     }
-
+    
     // Setters (N.B. - setters have sanity checks as the tags are set by the end-user)
     
     // Set as Instantiation Only
     
     void setInstantiation()                     { mParameters.back()->setInstantiation(); }
-
+    
     // Set Range
     
     void setMin(double min)                     { mParameters.back()->setMin(min); }
@@ -660,13 +660,13 @@ public:
     // Set Value
     
     void set(Serial *serialised)                                { if (serialised) serialised->read(this); }
-
+    
     void set(unsigned long idx, bool value)                     { set(idx, (double) value); }
     void set(const char *name, bool value)                      { set(name, (double) value); }
     
     void set(unsigned long idx, long value)                     { set(idx, (double) value); }
     void set(const char *name, long value)                      { set(name, (double) value); }
-
+    
     void set(unsigned long idx, double value)                   { if (idx < size()) handleError(mParameters[idx]->set(value), idx, value); }
     void set(const char *name, double value)                    { set(getIdx(name), value); }
     
@@ -683,16 +683,16 @@ public:
     {
         set(getIdx(name), values, N);
     }
-
+    
     void clear(unsigned long idx)                               { if (idx < size()) mParameters[idx]->clear(); }
     void clear(const char *name)                                { clear(getIdx(name)); }
-
+    
     // Getters (N.B. - getters have no sanity checks, because they are the programmer's responsibility)
     
     // Get Name
     
     std::string getName(unsigned long idx) const                            { return mParameters[idx]->name(); }
-   
+    
     long getArgumentIdx(unsigned long idx) const                            { return mParameters[idx]->argumentIdx(); }
     long getArgumentIdx(const char *name) const                             { return mParameters[getIdx(name)]->argumentIdx(); }
     
@@ -708,12 +708,12 @@ public:
     
     std::string getTypeString(unsigned long idx) const;
     std::string getTypeString(const char *name) const                       { return getTypeString(getIdx(name)); }
-
+    
     // Get Range
     
     ClipMode getClipMode(unsigned long idx) const                           { return mParameters[idx]->getClipMode(); }
     ClipMode getClipMode(const char *name) const                            { return getClipMode(getIdx(name)); }
-
+    
     double getMin(unsigned long idx) const                                  { return mParameters[idx]->getMin(); }
     double getMin(const char *name) const                                   { return getMin(getIdx(name)); }
     
@@ -722,7 +722,7 @@ public:
     
     void getRange(unsigned long idx, double *min, double *max) const        { return mParameters[idx]->getRange(min, max); }
     void getRange(const char *name, double *min, double *max) const         { return getRange(getIdx(name), min, max); }
-        
+    
     // Get Item Strings
     
     std::string getItemString(unsigned long idx, unsigned long item) const  { return mParameters[idx]->getItemString(item); }
@@ -732,15 +732,15 @@ public:
     
     std::string getInfo(unsigned long idx) const                            { return mParameterInfo ? mParameterInfo->get(idx) : "No parameter info available"; }
     std::string getInfo(const char *name) const                             { return getInfo(getIdx(name)); }
-
+    
     // Default Values
     
     double getDefault(unsigned long idx) const                              { return mParameters[idx]->getDefault(); }
     double getDefault(const char *name) const                               { return getDefault(getIdx(name)); }
-
+    
     std::string getDefaultString(unsigned long idx) const;
     std::string getDefaultString(const char *name) const                    { return getDefaultString(getIdx(name)); }
-
+    
     // Get Value
     
     double getValue(unsigned long idx) const                                { return mParameters[idx]->getValue(); }
@@ -758,14 +758,14 @@ public:
     const double *getArray(unsigned long idx) const                         { return mParameters[idx]->getArray(); }
     const double *getArray(const char *name) const                          { return getArray(getIdx(name)); }
     const double *getArray(unsigned long idx, unsigned long *size) const    { return mParameters[idx]->getArray(size); }
-	const double *getArray(const char *name, unsigned long *size) const		{ return getArray(getIdx(name), size); }
+    const double *getArray(const char *name, unsigned long *size) const        { return getArray(getIdx(name), size); }
     
     unsigned long getArraySize(unsigned long idx) const                     { return mParameters[idx]->getArraySize(); }
     unsigned long getArraySize(const char *name) const                      { return getArraySize(getIdx(name)); }
-
+    
     unsigned long getArrayMaxSize(unsigned long idx) const                  { return mParameters[idx]->getArrayMaxSize(); }
     unsigned long getArrayMaxSize(const char *name) const                   { return getArrayMaxSize(getIdx(name)); }
-
+    
     bool changed(unsigned long idx)                                         { return mParameters[idx]->changed(); }
     bool changed(const char *name)                                          { return changed(getIdx(name)); }
     
@@ -841,3 +841,4 @@ private:
 };
 
 #endif
+
