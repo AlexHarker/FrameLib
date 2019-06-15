@@ -343,12 +343,16 @@ public:
     
     // Input Connection Queries
 
-    bool isConnected(unsigned long inIdx) const                             { return getConnection(inIdx).mObject != nullptr; }
-    Connection getConnection(unsigned long inIdx) const                     { return getConnection(inIdx, false); }
+    bool isConnected(unsigned long inIdx) const                         { return getConnection(inIdx).mObject != nullptr; }
+    Connection getConnection(unsigned long inIdx) const                 { return getConnection(inIdx, false); }
     
-    bool supportsOrderingConnections() const                                { return mSupportsOrderingConnections; }
-    unsigned long getNumOrderingConnections() const                         { return traverseOrderingAliases()->mOrderingConnections.size(); }
-    Connection getOrderingConnection(unsigned long idx) const               { return getOrderingConnection(idx, false); }
+    bool supportsOrderingConnections() const                            { return mSupportsOrderingConnections; }
+    Connection getOrderingConnection(unsigned long idx) const           { return getOrderingConnection(idx, false); }
+    
+    unsigned long getNumOrderingConnections() const
+    {
+        return static_cast<unsigned long>(traverseOrderingAliases()->mOrderingConnections.size());
+    }
     
     // Automatic Dependency Connections
     
@@ -357,7 +361,10 @@ public:
     
     // Connection Update
     
-    void callConnectionUpdate()                                            { Queue queue(static_cast<T *>(this), &T::FrameLib_Object::connectionUpdate); }
+    void callConnectionUpdate()
+    {
+        Queue queue(static_cast<T *>(this), &T::FrameLib_Object::connectionUpdate);
+    }
     
     template <class U> void addOutputDependencies(std::vector<U *> &dependencies)
     {
@@ -374,8 +381,8 @@ protected:
     
     // IO Connection Queries (protected)
     
-    Connection getConnectionInternal(unsigned long inIdx) const             { return getConnection(inIdx, true); }
-    Connection getOrderingConnectionInternal(unsigned long idx) const       { return getOrderingConnection(idx, true); }
+    Connection getConnectionInternal(unsigned long inIdx) const         { return getConnection(inIdx, true); }
+    Connection getOrderingConnectionInternal(unsigned long idx) const   { return getOrderingConnection(idx, true); }
     
     void addOutputDependencies(Queue *queue)
     {
