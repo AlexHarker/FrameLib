@@ -111,6 +111,37 @@ private:
     T *mNext;
 };
 
+/**
+ 
+ @class FrameLib_Connection
+ 
+ @ingroup DSP
+ 
+ @brief an abstract template class holds the connected object and IO indices for object connections of arbitrary type.
+ 
+ @sa FrameLib_Block, FrameLib_DSP FrameLib_Multistream
+ 
+ */
+
+template <class T>
+struct FrameLib_Connection
+{
+    FrameLib_Connection() : mObject(nullptr), mIndex(0) {}
+    FrameLib_Connection(T *object, unsigned long index) : mObject(object), mIndex(index) {}
+    
+    friend bool operator == (const FrameLib_Connection& a, const FrameLib_Connection& b)
+    {
+        return a.mObject == b.mObject && a.mIndex == b.mIndex;
+    }
+    
+    friend bool operator != (const FrameLib_Connection& a, const FrameLib_Connection& b)
+    {
+        return !(a == b);
+    }
+    
+    T *mObject;
+    unsigned long mIndex;
+};
 
 /**
  
@@ -118,7 +149,8 @@ private:
  
  @ingroup DSP
  
- @brief an abstract template class providing an interface for FrameLib objects and implementing connectivity
+ @brief an abstract template class providing an interface for FrameLib objects and implementing connectivity.
+
  
  @sa FrameLib_Block, FrameLib_DSP FrameLib_Multistream
  
@@ -131,27 +163,7 @@ class FrameLib_Object : public FrameLib_Queueable<T>
 public:
     
     using Queue = typename FrameLib_Queueable<T>::Queue;
-    
-    /**
-     
-     @class Connection
-     
-     @brief holds the connected object and IO indices for a connection to an object
-     
-     */
-    
-    struct Connection
-    {
-        Connection() : mObject(nullptr), mIndex(0) {}
-        Connection(T *object, unsigned long index) : mObject(object), mIndex(index) {}
-        
-        friend bool operator == (const Connection& a, const Connection& b) { return a.mObject == b.mObject && a.mIndex == b.mIndex; }
-        friend bool operator != (const Connection& a, const Connection& b) { return !(a == b); }
-        
-        T *mObject;
-        unsigned long mIndex;
-    };
-
+    using Connection = FrameLib_Connection<T>;
 
 private:
 

@@ -535,7 +535,7 @@ template <class T, MaxObjectArgsMode argsMode = kAsParams>
 class FrameLib_MaxClass : public MaxClass_Base
 {
     typedef FrameLib_Object<FrameLib_Multistream>::Connection FrameLibConnection;
-    typedef FrameLib_Object<t_object>::Connection MaxConnection;
+    typedef FrameLib_Connection<t_object> MaxConnection;
     typedef FrameLib_MaxGlobals::ConnectionInfo ConnectionInfo;
 
 public:
