@@ -749,8 +749,8 @@ public:
     
     const double *getArray(unsigned long idx) const                         { return mParameters[idx]->getArray(); }
     const double *getArray(const char *name) const                          { return getArray(getIdx(name)); }
-    const double *getArray(unsigned long idx, size_t *size) const           { return mParameters[idx]->getArray(size); }
-    const double *getArray(const char *name, size_t *size) const            { return getArray(getIdx(name), size); }
+    const double *getArray(unsigned long idx, unsigned long *size) const           { size_t s;  const double *x = mParameters[idx]->getArray(&s); *size = s; return x; }
+	const double *getArray(const char *name, unsigned long *size) const		{ return getArray(getIdx(name), size); }
     
     size_t getArraySize(unsigned long idx) const                            { return mParameters[idx]->getArraySize(); }
     size_t getArraySize(const char *name) const                             { return getArraySize(getIdx(name)); }

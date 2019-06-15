@@ -192,11 +192,11 @@ protected:
     // Get Inputs and Outputs
     
     FrameType getInputCurrentType(unsigned long idx) const                          { return mInputs[idx].getCurrentType(); }
-    const double *getInput(unsigned long idx, size_t *size)  const;
+    const double *getInput(unsigned long idx, unsigned long *size)  const;
     const FrameLib_Parameters::Serial *getInput(unsigned long idx)  const;
     
     FrameType getOutputCurrentType(unsigned long idx) const                         { return mOutputs[idx].mCurrentType; }
-    double *getOutput(unsigned long idx, size_t *size)  const;
+    double *getOutput(unsigned long idx, unsigned long *size)  const;
     FrameLib_Parameters::Serial *getOutput(unsigned long idx)  const;
 
     // Convience methods for copying and zeroing
