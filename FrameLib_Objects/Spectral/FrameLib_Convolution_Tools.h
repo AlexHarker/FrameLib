@@ -3,7 +3,7 @@
 #define FRAMELIB_CONVOLUTION_TOOLS_H
 
 #include <algorithm>
-#include "SIMDSupport.hpp"
+#include "../../FrameLib_Dependencies/SIMDSupport.hpp"
 #include "../../FrameLib_Dependencies/HISSTools_FFT/HISSTools_FFT.h"
 #include "FrameLib_Spectral_Functions.h"
 

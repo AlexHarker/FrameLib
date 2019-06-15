@@ -1,6 +1,6 @@
 
 #include "FrameLib_EWMA.h"
-#include "Interpolation.hpp"
+#include "../../FrameLib_Dependencies/Interpolation.hpp"
 
 FrameLib_EWMA::FrameLib_EWMA(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mAverageFrame(nullptr), mPrevFrame(nullptr), mFrameSize(0)
 {
