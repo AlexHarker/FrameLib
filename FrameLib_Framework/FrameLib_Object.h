@@ -209,27 +209,27 @@ public:
     FrameLib_Object(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy)
     : mType(type), mContext(context), mAllocator(context), mProxy(proxy), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
     
-    virtual ~FrameLib_Object()                  { clearConnections(false); }
+    virtual ~FrameLib_Object()              { clearConnections(false); }
    
     // Object Type
     
-    ObjectType getType() const                  { return mType; }
+    ObjectType getType() const              { return mType; }
     
     // Context
     
-    FrameLib_Context getContext() const         { return mContext; }
+    FrameLib_Context getContext() const     { return mContext; }
 
     // Owner
     
-    FrameLib_Proxy *getProxy() const            { return mProxy; }
+    FrameLib_Proxy *getProxy() const        { return mProxy; }
     
     // IO Queries
     
-    unsigned long getNumIns() const             { return mInputConnections.size(); }
-    unsigned long getNumOuts() const            { return mOutputConnections.size(); }
-    unsigned long getNumAudioIns() const        { return getType() != kOutput ? mNumAudioChans : 0; }
-    unsigned long getNumAudioOuts() const       { return getType() == kOutput ? mNumAudioChans : 0; }
-    unsigned long getNumAudioChans()  const     { return mNumAudioChans; }
+    unsigned long getNumIns() const         { return static_cast<unsigned long>(mInputConnections.size()); }
+    unsigned long getNumOuts() const        { return static_cast<unsigned long>(mOutputConnections.size()); }
+    unsigned long getNumAudioIns() const    { return getType() != kOutput ? mNumAudioChans : 0; }
+    unsigned long getNumAudioOuts() const   { return getType() == kOutput ? mNumAudioChans : 0; }
+    unsigned long getNumAudioChans() const  { return mNumAudioChans; }
     
     // Set / Get Fixed Inputs
     
