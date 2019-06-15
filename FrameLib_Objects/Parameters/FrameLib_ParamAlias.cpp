@@ -95,7 +95,7 @@ void FrameLib_ParamAlias::initialise()
                         
                     case Parameters::kArray:
                     {
-                        size_t size = params->getArraySize(paramIdx);
+                        auto size = params->getArraySize(paramIdx);
                         
                         switch (params->getNumericType(paramIdx))
                         {
@@ -108,8 +108,8 @@ void FrameLib_ParamAlias::initialise()
                         
                     case Parameters::kVariableArray:
                     {
-                        size_t size = params->getArraySize(paramIdx);
-                        size_t maxSize = params->getArrayMaxSize(paramIdx);
+                        auto size = params->getArraySize(paramIdx);
+                        auto maxSize = params->getArrayMaxSize(paramIdx);
 
                         switch (params->getNumericType(paramIdx))
                         {
