@@ -33,6 +33,7 @@
     <ClInclude Include="..\..\..\FrameLib_Framework\FrameLib_Object.h" />
     <ClInclude Include="..\..\..\FrameLib_Framework\FrameLib_Parameters.h" />
     <ClInclude Include="..\..\..\FrameLib_Framework\FrameLib_ProcessingQueue.h" />
+    <ClInclude Include="..\..\..\FrameLib_Framework\FrameLib_SerialiseGraph.h" />
     <ClInclude Include="..\..\..\FrameLib_Framework\FrameLib_Threading.h" />
     <ClInclude Include="..\..\..\FrameLib_Framework\FrameLib_Types.h" />
   </ItemGroup>
@@ -47,6 +48,7 @@
     <ClCompile Include="..\..\..\FrameLib_Framework\FrameLib_Multistream.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Framework\FrameLib_Parameters.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Framework\FrameLib_ProcessingQueue.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Framework\FrameLib_SerialiseGraph.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Framework\FrameLib_Threading.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
