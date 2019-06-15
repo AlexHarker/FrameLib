@@ -143,7 +143,7 @@ public:
         
         // Constructors and Destructor
         
-        Serial(BytePointer ptr, size_t size);
+        Serial(BytePointer ptr, unsigned long size);
         Serial();
         
         // Non-copyable
@@ -156,12 +156,12 @@ public:
         static size_t calcSize(const Serial *serialised)            { return serialised != nullptr ? serialised->mSize : 0; }
         static size_t calcSize(const FrameLib_Parameters *params);
         static size_t calcSize(const char *tag, const char *str)    { return sizeType() + sizeString(tag) + sizeString(str); }
-        static size_t calcSize(const char *tag, size_t N)           { return sizeType() + sizeString(tag) + sizeArray(N); }
+        static size_t calcSize(const char *tag, unsigned long N)    { return sizeType() + sizeString(tag) + sizeArray(N); }
         
         // Get Sizes
         
-        size_t getSize(const char *tag) const;
-        size_t getVectorSize(const char *tag) const;
+        unsigned long getSize(const char *tag) const;
+        unsigned long getVectorSize(const char *tag) const;
         
         // Writes
         
@@ -169,7 +169,7 @@ public:
         void write(const FrameLib_Parameters *params);
         void write(const Serial::Iterator& it);
         void write(const char *tag, const char *str);
-        void write(const char *tag, const double *values, size_t N);
+        void write(const char *tag, const double *values, unsigned long N);
         
         // Reads
         
@@ -611,36 +611,36 @@ public:
         mParameters.back()->addEnumItem(str);
     }
     
-    void addBoolArray(unsigned long index, const char *name, bool defaultValue, size_t size, long argumentIdx = -1)
+    void addBoolArray(unsigned long index, const char *name, bool defaultValue, unsigned long size, long argumentIdx = -1)
     {
         addParameter(index, new Array(name, argumentIdx, defaultValue, size));
         mParameters.back()->setBoolOnly();
     }
     
-    void addIntArray(unsigned long index, const char *name, long defaultValue, size_t size, long argumentIdx = -1)
+    void addIntArray(unsigned long index, const char *name, long defaultValue, unsigned long size, long argumentIdx = -1)
     {
         addParameter(index, new Array(name, argumentIdx, defaultValue, size));
         mParameters.back()->setIntegerOnly();
     }
     
-    void addDoubleArray(unsigned long index, const char *name, double defaultValue, size_t size, long argumentIdx = -1)
+    void addDoubleArray(unsigned long index, const char *name, double defaultValue, unsigned long size, long argumentIdx = -1)
     {
         addParameter(index, new Array(name, argumentIdx, defaultValue, size));
     }
     
-    void addVariableBoolArray(unsigned long index, const char *name, long defaultValue, size_t maxSize, size_t size, long argumentIdx = -1)
+    void addVariableBoolArray(unsigned long index, const char *name, long defaultValue, unsigned long maxSize, unsigned long size, long argumentIdx = -1)
     {
         addParameter(index, new Array(name, argumentIdx, defaultValue, maxSize, size));
         mParameters.back()->setBoolOnly();
     }
     
-    void addVariableIntArray(unsigned long index, const char *name, long defaultValue, size_t maxSize, size_t size, long argumentIdx = -1)
+    void addVariableIntArray(unsigned long index, const char *name, long defaultValue, unsigned long maxSize, unsigned long size, long argumentIdx = -1)
     {
         addParameter(index, new Array(name, argumentIdx, defaultValue, maxSize, size));
         mParameters.back()->setIntegerOnly();
     }
     
-    void addVariableDoubleArray(unsigned long index, const char *name, double defaultValue, size_t maxSize, size_t size, long argumentIdx = -1)
+    void addVariableDoubleArray(unsigned long index, const char *name, double defaultValue, unsigned long maxSize, unsigned long size, long argumentIdx = -1)
     {
         addParameter(index, new Array(name, argumentIdx, defaultValue, maxSize, size));
     }
@@ -673,8 +673,16 @@ public:
     void set(unsigned long idx, char *str)                      { if (idx < size()) handleError(mParameters[idx]->set(str), idx, str); }
     void set(const char *name, char *str)                       { set(getIdx(name), str); }
     
-    void set(unsigned long idx, double *values, size_t N)       { if (idx < size()) handleError(mParameters[idx]->set(values, N), idx, *values); }
-    void set(const char *name, double *values, size_t N)        { set(getIdx(name), values, N); }
+    void set(unsigned long idx, double *values, unsigned long N)
+    {
+        if (idx < size())
+            handleError(mParameters[idx]->set(values, N), idx, *values);
+    }
+    
+    void set(const char *name, double *values, unsigned long N)
+    {
+        set(getIdx(name), values, N);
+    }
 
     void clear(unsigned long idx)                               { if (idx < size()) mParameters[idx]->clear(); }
     void clear(const char *name)                                { clear(getIdx(name)); }
@@ -749,14 +757,14 @@ public:
     
     const double *getArray(unsigned long idx) const                         { return mParameters[idx]->getArray(); }
     const double *getArray(const char *name) const                          { return getArray(getIdx(name)); }
-    const double *getArray(unsigned long idx, unsigned long *size) const           { size_t s;  const double *x = mParameters[idx]->getArray(&s); *size = s; return x; }
+    const double *getArray(unsigned long idx, unsigned long *size) const    { return mParameters[idx]->getArray(size); }
 	const double *getArray(const char *name, unsigned long *size) const		{ return getArray(getIdx(name), size); }
     
-    size_t getArraySize(unsigned long idx) const                            { return mParameters[idx]->getArraySize(); }
-    size_t getArraySize(const char *name) const                             { return getArraySize(getIdx(name)); }
+    unsigned long getArraySize(unsigned long idx) const                     { return mParameters[idx]->getArraySize(); }
+    unsigned long getArraySize(const char *name) const                      { return getArraySize(getIdx(name)); }
 
-    size_t getArrayMaxSize(unsigned long idx) const                         { return mParameters[idx]->getArrayMaxSize(); }
-    size_t getArrayMaxSize(const char *name) const                          { return getArrayMaxSize(getIdx(name)); }
+    unsigned long getArrayMaxSize(unsigned long idx) const                  { return mParameters[idx]->getArrayMaxSize(); }
+    unsigned long getArrayMaxSize(const char *name) const                   { return getArrayMaxSize(getIdx(name)); }
 
     bool changed(unsigned long idx)                                         { return mParameters[idx]->changed(); }
     bool changed(const char *name)                                          { return changed(getIdx(name)); }
