@@ -331,8 +331,8 @@ public:
         
         FrameType getType() const               { return mType; }
         double *getVector() const               { return mType == kFrameNormal ? static_cast<double *>(mData) : nullptr; }
-        unsigned long getVectorSize() const     { return mType == kFrameNormal ? mSize : 0; }
-        unsigned long getTaggedSize() const     { return mType == kFrameTagged ? mSize : 0; }
+        unsigned long getVectorSize() const     { return mType == kFrameNormal ? static_cast<unsigned long>(mSize) : 0; }
+        unsigned long getTaggedSize() const     { return mType == kFrameTagged ? static_cast<unsigned long>(mSize) : 0; }
         Serial *getTagged() const               { return mType == kFrameTagged ? static_cast<Serial *>(mData) : nullptr; }
         
         // Resize the storage

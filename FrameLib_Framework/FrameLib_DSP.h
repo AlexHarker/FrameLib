@@ -185,8 +185,8 @@ protected:
     
     // Output Allocation
     
-    void requestOutputSize(unsigned long idx, size_t size)          { mOutputs[idx].mRequestedSize = size; }
-    void requestAddedOutputSize(unsigned long idx, size_t size)     { mOutputs[idx].mRequestedSize += size; }
+    void requestOutputSize(unsigned long idx, unsigned long size)           { mOutputs[idx].mRequestedSize = size; }
+    void requestAddedOutputSize(unsigned long idx, unsigned long size)      { mOutputs[idx].mRequestedSize += size; }
     bool allocateOutputs();
     
     // Get Inputs and Outputs
