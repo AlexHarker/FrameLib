@@ -69,7 +69,7 @@ public:
             if (!object || object->FrameLib_Queueable<T>::mNext != nullptr)
                 return;
             
-            // Add to the top /tail of the queue depending on whether the queue is open
+            // Add to the top/tail of the queue depending on whether the queue is open
             
             if (mTop)
             {
