@@ -183,14 +183,14 @@ public:
 
         // Utility
         
-        unsigned long numTags() const { return mNumTags; };
-        size_t size() const     { return mSize; }
-        void clear()            { mSize = 0; }
+        unsigned long numTags() const	{ return mNumTags; };
+        unsigned long size() const		{ return mSize; }
+        void clear()					{ mSize = 0; }
         
-        static size_t alignSize(size_t size)                    { return (size + (alignment - 1)) & ~(alignment - 1); }
-        static size_t inPlaceSize(size_t size)                  { return alignSize(sizeof(Serial)) + alignSize(size); }
+        static size_t alignSize(size_t size)						{ return (size + (alignment - 1)) & ~(alignment - 1); }
+        static size_t inPlaceSize(size_t size)						{ return alignSize(sizeof(Serial)) + alignSize(size); }
 
-        static Serial *newInPlace(void *ptr, size_t size)       { return new (ptr) Serial(((BytePointer) ptr) + alignSize(sizeof(Serial)), size); }
+        static Serial *newInPlace(void *ptr, unsigned long size)	{ return new (ptr) Serial(((BytePointer) ptr) + alignSize(sizeof(Serial)), size); }
 
     protected:
         
@@ -216,7 +216,7 @@ public:
         void writeType(DataType type);
         void writeSize(size_t size);
         void writeString(const char *str);
-        void writeDoubles(const double *ptr, size_t N);
+        void writeDoubles(const double *ptr, unsigned long N);
         
         // Read Item
         
@@ -233,8 +233,8 @@ public:
         // Member Variables
         
         BytePointer mPtr;
-        size_t mSize;
-        size_t mMaxSize;
+        unsigned long mSize;
+		unsigned long mMaxSize;
         unsigned long mNumTags;
     };
 
@@ -254,17 +254,17 @@ public:
     public:
 
         AutoSerial() {};
-        AutoSerial(size_t size) : Serial(new Byte[size], size) {}
+        AutoSerial(unsigned long size) : Serial(new Byte[size], size) {}
         AutoSerial(const Serial& serial) : Serial(new Byte[serial.size()], serial.size()) { write(&serial); }
         AutoSerial(const char *tag, const char *string) { write(tag, string); }
-        AutoSerial(const char *tag, const double *values, size_t N)  { write(tag, values, N); }
+        AutoSerial(const char *tag, const double *values, unsigned long N)  { write(tag, values, N); }
         ~AutoSerial() { if (mPtr) delete[] mPtr; }
         
         // Write Items
         
-        void write(const Serial *serialised)                            { if (checkSize(calcSize(serialised))) Serial::write(serialised); }
-        void write(const char *tag, const char *str)                    { if (checkSize(calcSize(tag, str))) Serial::write(tag, str); }
-        void write(const char *tag, const double *values, size_t N)     { if (checkSize(calcSize(tag, N))) Serial::write(tag, values, N); }
+        void write(const Serial *serialised)								{ if (checkSize(calcSize(serialised))) Serial::write(serialised); }
+        void write(const char *tag, const char *str)						{ if (checkSize(calcSize(tag, str))) Serial::write(tag, str); }
+        void write(const char *tag, const double *values, unsigned long N)  { if (checkSize(calcSize(tag, N))) Serial::write(tag, values, N); }
         
     private:
         
@@ -330,7 +330,7 @@ private:
         
         virtual SetError set(const char *str) { return kParameterNotSetByString; }
         virtual SetError set(double value) { return kParameterNotSetByNumber; }
-        virtual SetError set(double *values, size_t N);
+        virtual SetError set(double *values, unsigned long N);
 
         virtual void clear() = 0;
         
@@ -340,27 +340,27 @@ private:
         
         virtual Type type() = 0;
         
-        const char *name() const                        { return mName.c_str(); }
-        long argumentIdx() const                        { return mArgumentIdx; }
-        int flags() const                               { return mFlags; }
+        const char *name() const							{ return mName.c_str(); }
+        long argumentIdx() const							{ return mArgumentIdx; }
+        int flags() const									{ return mFlags; }
         
         ClipMode getClipMode() const;
-        double getMin() const                           { return mMin; }
-        double getMax()                                 { return mMax; }
+        double getMin() const								{ return mMin; }
+        double getMax()										{ return mMax; }
         void getRange(double *min, double *max) const;
         
         virtual const char *getItemString(unsigned long item) const;
 
         // Values
         
-        double getDefault() const                       { return mDefault; }
+        double getDefault() const							{ return mDefault; }
 
-        virtual double getValue() const                 { return 0; }
-        virtual const char *getString() const           { return nullptr; }
-        virtual size_t getArraySize() const             { return 0; }
-        virtual size_t getArrayMaxSize() const          { return 0; }
-        virtual const double *getArray() const          { return nullptr; }
-        const double *getArray(size_t *size) const;
+        virtual double getValue() const						{ return 0; }
+        virtual const char *getString() const				{ return nullptr; }
+        virtual unsigned long getArraySize() const			{ return 0; }
+        virtual unsigned long getArrayMaxSize() const		{ return 0; }
+        virtual const double *getArray() const				{ return nullptr; }
+        const double *getArray(unsigned long *size) const;
         
         bool changed();
         
@@ -399,7 +399,7 @@ private:
         void addEnumItem(const char *str) override;
         
         SetError set(double value) override;
-        SetError set(double *values, size_t N) override;
+        SetError set(double *values, unsigned long N) override;
         virtual SetError set(const char *str) override;
         
         void clear() override { Enum::set(0.0); }
@@ -437,7 +437,7 @@ private:
         // Setters
 
         SetError set(double value) override;
-        SetError set(double *values, size_t N) override;
+        SetError set(double *values, unsigned long N) override;
         
         void clear() override { Value::set(mDefault); };
 
@@ -505,7 +505,7 @@ private:
 
         // Setters
 
-        SetError set(double *values, size_t N) override;
+        SetError set(double *values, unsigned long N) override;
 
         void clear() override { Array::set(nullptr, 0); };
 
@@ -513,14 +513,14 @@ private:
 
         Type type() override { return mVariableSize ? kVariableArray : kArray; }
         
-        size_t getArraySize() const override        { return mSize; }
-        size_t getArrayMaxSize() const override     { return mItems.size(); }
-        const double * getArray() const override    { return mItems.data(); }
+		unsigned long getArraySize() const override			{ return mSize; }
+        unsigned long getArrayMaxSize() const override		{ return static_cast<unsigned long>(mItems.size()); }
+        const double * getArray() const override			{ return mItems.data(); }
 
     private:
         
         std::vector<double> mItems;
-        size_t mSize;
+        unsigned long mSize;
     
         const bool mVariableSize;
     };

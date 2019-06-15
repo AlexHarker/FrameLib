@@ -156,7 +156,7 @@ FrameLib_Parameters::Serial::Iterator::Entry FrameLib_Parameters::Serial::Iterat
 
 // Constructors / Destructor
 
-FrameLib_Parameters::Serial::Serial(BytePointer ptr, size_t size) : mPtr(ptr), mSize(0), mMaxSize(size), mNumTags(0)
+FrameLib_Parameters::Serial::Serial(BytePointer ptr, unsigned long size) : mPtr(ptr), mSize(0), mMaxSize(size), mNumTags(0)
 {
     alignmentChecks();
 }
@@ -199,14 +199,14 @@ size_t FrameLib_Parameters::Serial::calcSize(const FrameLib_Parameters *params)
 
 // Get Sizes
 
-size_t FrameLib_Parameters::Serial::getSize(const char *tag) const
+unsigned long FrameLib_Parameters::Serial::getSize(const char *tag) const
 {
     auto it = find(tag);
     
     return (it != end()) ? it.getSize() : 0;
 }
 
-size_t FrameLib_Parameters::Serial::getVectorSize(const char *tag) const
+unsigned long FrameLib_Parameters::Serial::getVectorSize(const char *tag) const
 {
     auto it = find(tag);
     
@@ -268,7 +268,7 @@ void FrameLib_Parameters::Serial::write(const char *tag, const char *str)
     mNumTags++;
 }
 
-void FrameLib_Parameters::Serial::write(const char *tag, const double *values, size_t N)
+void FrameLib_Parameters::Serial::write(const char *tag, const double *values, unsigned long N)
 {    
     if (!checkSize(calcSize(tag, N)))
         return;
@@ -352,7 +352,7 @@ void FrameLib_Parameters::Serial::writeString(const char *str)
     mSize += alignSize(N);
 }
 
-void FrameLib_Parameters::Serial::writeDoubles(const double *ptr, size_t N)
+void FrameLib_Parameters::Serial::writeDoubles(const double *ptr, unsigned long N)
 {
     size_t size = N * sizeof(double);
     writeSize(N);
@@ -481,7 +481,7 @@ void FrameLib_Parameters::Parameter::setClip(double min, double max)
     mMax = max;
 }
 
-FrameLib_Parameters::SetError FrameLib_Parameters::Parameter::set(double *values, size_t N)
+FrameLib_Parameters::SetError FrameLib_Parameters::Parameter::set(double *values, unsigned long N)
 {
     if (N)
         return set(*values);
@@ -512,7 +512,7 @@ const char *FrameLib_Parameters::Parameter::getItemString(unsigned long item) co
     return nullptr;
 }
 
-const double *FrameLib_Parameters::Parameter::getArray(size_t *size) const
+const double *FrameLib_Parameters::Parameter::getArray(unsigned long *size) const
 {
     *size = getArraySize();
     return getArray();
@@ -568,7 +568,7 @@ FrameLib_Parameters::SetError FrameLib_Parameters::Enum::set(const char *str)
     return kEnumUnknownString;
 }
 
-FrameLib_Parameters::SetError FrameLib_Parameters::Enum::set(double *values, size_t N)
+FrameLib_Parameters::SetError FrameLib_Parameters::Enum::set(double *values, unsigned long N)
 {
     if (N)
     {
@@ -593,7 +593,7 @@ FrameLib_Parameters::SetError FrameLib_Parameters::Value::set(double value)
     return kSetSucceeded;
 }
 
-FrameLib_Parameters::SetError FrameLib_Parameters::Value::set(double *values, size_t N)
+FrameLib_Parameters::SetError FrameLib_Parameters::Value::set(double *values, unsigned long N)
 {
     if (N)
         Value::set(*values);
@@ -657,7 +657,7 @@ FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double def
         mItems[i] = defaultValue;
 }
 
-FrameLib_Parameters::SetError FrameLib_Parameters::Array::set(double *values, size_t N)
+FrameLib_Parameters::SetError FrameLib_Parameters::Array::set(double *values, unsigned long N)
 {
     N = N > mItems.size() ? mItems.size() : N;
     

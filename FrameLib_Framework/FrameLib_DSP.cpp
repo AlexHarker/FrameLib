@@ -288,7 +288,7 @@ double *FrameLib_DSP::getOutput(unsigned long idx, unsigned long *size) const
 {
     if (mOutputs[0].mMemory && mOutputs[idx].mCurrentType == kFrameNormal)
     {
-        *size = mOutputs[idx].mCurrentSize;
+        *size = static_cast<unsigned long>(mOutputs[idx].mCurrentSize);
         return (double *) mOutputs[idx].mMemory;
     }
     
