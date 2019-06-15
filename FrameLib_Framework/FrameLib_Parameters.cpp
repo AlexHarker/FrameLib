@@ -101,7 +101,7 @@ size_t FrameLib_Parameters::Serial::Iterator::read(double *output, unsigned long
     
     if (entry.mType == kVector)
     {
-        size = std::min(entry.mSize, size);
+        size = std::min(entry.mSize, static_cast<size_t>(size));
         std::copy(entry.data<double>(), entry.data<double>() + entry.mSize, output);
         return size;
     }

@@ -267,7 +267,7 @@ bool FrameLib_DSP::allocateOutputs()
 
 // Get Inputs and Outputs
 
-const double *FrameLib_DSP::getInput(unsigned long idx, size_t *size) const
+const double *FrameLib_DSP::getInput(unsigned long idx, unsigned long *size) const
 {
     if (mInputs[idx].mObject)
         return mInputs[idx].mObject->getOutput(mInputs[idx].mIndex, size);
@@ -284,7 +284,7 @@ const FrameLib_Parameters::Serial *FrameLib_DSP::getInput(unsigned long idx) con
     return nullptr;
 }
 
-double *FrameLib_DSP::getOutput(unsigned long idx, size_t *size) const
+double *FrameLib_DSP::getOutput(unsigned long idx, unsigned long *size) const
 {
     if (mOutputs[0].mMemory && mOutputs[idx].mCurrentType == kFrameNormal)
     {
