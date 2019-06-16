@@ -97,7 +97,7 @@ void FrameLib_Parameters::Serial::Iterator::read(FrameLib_Parameters *parameters
     }
 }
 
-size_t FrameLib_Parameters::Serial::Iterator::read(double *output, unsigned long size) const
+unsigned long FrameLib_Parameters::Serial::Iterator::read(double *output, unsigned long size) const
 {
     Entry entry = getEntry();
     
@@ -299,7 +299,7 @@ bool FrameLib_Parameters::Serial::read(const char *tag, FrameLib_Parameters *par
     return it != end();
 }
 
-size_t FrameLib_Parameters::Serial::read(const char *tag, double *output, unsigned long size) const
+unsigned long FrameLib_Parameters::Serial::read(const char *tag, double *output, unsigned long size) const
 {
     auto it = find(tag);
     
@@ -326,7 +326,7 @@ void FrameLib_Parameters::Serial::alignmentChecks() const
     // Assume that alignment of a double is fine for all natural alignment needs (including this class)
     
     assert(Serial::alignment >= sizeof(DataType) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial::DataType");
-    assert(Serial::alignment >= sizeof(size_t) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
+    assert(Serial::alignment >= sizeof(unsigned long) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
     assert(Serial::alignment >= sizeof(char) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
     assert(Serial::alignment >= sizeof(char *) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
     assert(Serial::alignment <= FrameLib_GlobalAllocator::getAlignment() && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
@@ -340,15 +340,15 @@ void FrameLib_Parameters::Serial::writeType(DataType type)
     mSize += sizeType();
 }
 
-void FrameLib_Parameters::Serial::writeSize(size_t size)
+void FrameLib_Parameters::Serial::writeSize(unsigned long size)
 {
-    *((size_t *) (mPtr + mSize)) = size;
+    *((unsigned long *) (mPtr + mSize)) = size;
     mSize += sizeSize();
 }
 
 void FrameLib_Parameters::Serial::writeString(const char *str)
 {
-    size_t N = strlen(str) + 1;
+    unsigned long N = static_cast<unsigned long>(strlen(str) + 1);
     writeSize(N);
     std::copy(str, str + N, (char *) (mPtr + mSize));
     mSize += alignSize(N);
@@ -371,13 +371,13 @@ DataType FrameLib_Parameters::Serial::readType(BytePointer *readPtr)
     return type;
 }
 
-void FrameLib_Parameters::Serial::readSize(BytePointer *readPtr, size_t *size)
+void FrameLib_Parameters::Serial::readSize(BytePointer *readPtr, unsigned long *size)
 {
-    *size = *reinterpret_cast<size_t *>(*readPtr);
+    *size = *reinterpret_cast<unsigned long *>(*readPtr);
     *readPtr += sizeSize();
 }
 
-void FrameLib_Parameters::Serial::readItem(BytePointer *readPtr, DataType type, BytePointer *data, size_t *size)
+void FrameLib_Parameters::Serial::readItem(BytePointer *readPtr, DataType type, BytePointer *data, unsigned long *size)
 {
     readSize(readPtr, size);
     *data = *readPtr;
@@ -386,7 +386,7 @@ void FrameLib_Parameters::Serial::readItem(BytePointer *readPtr, DataType type, 
 
 void FrameLib_Parameters::Serial::skipItem(BytePointer *readPtr, DataType type)
 {
-    size_t size;
+    unsigned long size;
     Serial::readSize(readPtr, &size);
     *readPtr += alignSize(size * (type == kVector ? sizeof(double) : sizeof(char)));
 }
@@ -661,6 +661,7 @@ FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double def
 
 FrameLib_Parameters::SetError FrameLib_Parameters::Array::set(double *values, unsigned long N)
 {
+    unsigned long maxSize = static_cast<unsigned long>(mItems.size());
     N = std::min(N, static_cast<unsigned long>(mItems.size()));
     
     switch (getClipMode())

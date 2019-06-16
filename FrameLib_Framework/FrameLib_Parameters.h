@@ -80,7 +80,7 @@ public:
                 DataType mType;
                 char *mTag;
                 BytePointer mData;
-                size_t mSize;
+                unsigned long mSize;
                 
                 template <class T> T *data() { return reinterpret_cast<T *>(mData); }
             };
@@ -117,7 +117,7 @@ public:
             
             void read(Serial *serial) const;
             void read(FrameLib_Parameters *parameters) const;
-            size_t read(double *output, unsigned long size) const;
+            unsigned long read(double *output, unsigned long size) const;
             
             // Aliases (read but aliasing to a new tag)
             
@@ -174,7 +174,7 @@ public:
         // Reads
         
         void read(FrameLib_Parameters *parameters) const;
-        size_t read(const char *tag, double *output, unsigned long size) const;
+        unsigned long read(const char *tag, double *output, unsigned long size) const;
         bool read(const char *tag, FrameLib_Parameters *parameters) const;
         
         // Find Item
@@ -207,22 +207,22 @@ public:
         // Size Calculators
         
         static unsigned long sizeType()                    { return alignSize(sizeof(DataType)); }
-        static unsigned long sizeSize()                    { return alignSize(sizeof(size_t)); }
+        static unsigned long sizeSize()                    { return alignSize(sizeof(unsigned long)); }
         static unsigned long sizeString(const char *str)   { return sizeSize() + alignSize(strlen(str) + 1); }
         static unsigned long sizeArray(unsigned long N)    { return sizeSize() + alignSize((N * sizeof(double))); }
         
         // Write Item
         
         void writeType(DataType type);
-        void writeSize(size_t size);
+        void writeSize(unsigned long size);
         void writeString(const char *str);
         void writeDoubles(const double *ptr, unsigned long N);
         
         // Read Item
         
         static DataType readType(BytePointer *readPtr);
-        static void readSize(BytePointer *readPtr, size_t *size);
-        static void readItem(BytePointer *readPtr, DataType type, BytePointer *data, size_t *size);
+        static void readSize(BytePointer *readPtr, unsigned long *size);
+        static void readItem(BytePointer *readPtr, DataType type, BytePointer *data, unsigned long *size);
         
         // Skip Item
         
