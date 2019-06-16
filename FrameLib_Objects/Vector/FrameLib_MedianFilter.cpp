@@ -156,8 +156,9 @@ void FrameLib_MedianFilter::process()
 {
     // Get Input
     
-    unsigned long width = mParameters.getInt(kWidth);
+    
     unsigned long sizeIn, sizeOut;
+    long width = mParameters.getInt(kWidth);
     const double *input = getInput(0, &sizeIn);
     double padValue = mParameters.getValue(kPadding);
     Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
@@ -179,7 +180,7 @@ void FrameLib_MedianFilter::process()
                 for (long i = 0; i < width; i++)
                     temp[i] = getWrap(input, i - (width >> 1), sizeIn);
                 output[0] = median(temp, indices, width);
-                for (long i = 1; i < sizeIn; i++)
+                for (long i = 1; i < static_cast<long>(sizeIn); i++)
                 {
                     double newValue = getWrap(input, i + (width >> 1), sizeIn);
                     output[i] = insertMedian(temp, indices, newValue, (i - 1) % width, width);
@@ -190,7 +191,7 @@ void FrameLib_MedianFilter::process()
                 for (long i = 0; i < width; i++)
                     temp[i] = getPad(input, i - (width >> 1), sizeIn, padValue);
                 output[0] = median(temp, indices, width);
-                for (long i = 1; i < sizeIn; i++)
+                for (long i = 1; i < static_cast<long>(sizeIn); i++)
                 {
                     double newValue = getPad(input, i + (width >> 1), sizeIn, padValue);
                     output[i] = insertMedian(temp, indices, newValue, (i - 1) % width, width);
@@ -201,7 +202,7 @@ void FrameLib_MedianFilter::process()
                 for (long i = 0; i < width; i++)
                     temp[i] = getFold(input, i - (width >> 1), sizeIn);
                 output[0] = median(temp, indices, width);
-                for (long i = 1; i < sizeIn; i++)
+                for (long i = 1; i < static_cast<long>(sizeIn); i++)
                 {
                     double newValue = getFold(input, i + (width >> 1), sizeIn);
                     output[i] = insertMedian(temp, indices, newValue, (i - 1) % width, width);
