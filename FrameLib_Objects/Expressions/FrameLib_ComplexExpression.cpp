@@ -44,7 +44,7 @@ struct UnaryOperation final : public FrameLib_ExprParser::OpBase<std::complex<do
     
     UnaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
-    int numItems() const override                                   { return 1; }
+    size_t numItems() const override                                { return 1; }
     complex call(complex a, complex b, complex c) const override    { return Op()(a); }
     
     FrameLib_DSP *create(FrameLib_Context context) const override
@@ -60,7 +60,7 @@ struct BinaryOperation final : public FrameLib_ExprParser::OpBase<std::complex<d
 
     BinaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
-    int numItems() const override                                   { return 2; }
+    size_t numItems() const override                                { return 2; }
     complex call(complex a, complex b, complex c) const override    { return Op()(a, b); }
     
     FrameLib_DSP *create(FrameLib_Context context) const override
@@ -328,7 +328,7 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
 
         // Alias the inputs to the input processor
         
-        for (unsigned long i = 0 ; i < graph.mNumInputs * 2; i++)
+        for (long i = 0 ; i < graph.mNumInputs * 2; i++)
             mInputProcessor->setInputAlias(Connection(this, i), i);
         
         mFixedInputNode = mInputProcessor.get();

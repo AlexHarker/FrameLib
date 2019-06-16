@@ -17,7 +17,7 @@ struct UnaryOperation final : public FrameLib_ExprParser::OpBase<double>
 {
     UnaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
-    int numItems() const override                                { return 1; }
+    size_t numItems() const override                             { return 1; }
     double call(double a, double b, double c) const override     { return Op()(a); }
     
     FrameLib_DSP *create(FrameLib_Context context) const override
@@ -31,7 +31,7 @@ struct BinaryOperation final : public FrameLib_ExprParser::OpBase<double>
 {
     BinaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
-    int numItems() const override                               { return 2; }
+    size_t numItems() const override                            { return 2; }
     double call(double a, double b, double c) const override    { return Op()(a, b); }
     
     FrameLib_DSP *create(FrameLib_Context context) const override
@@ -47,7 +47,7 @@ struct TernaryOperation final : public FrameLib_ExprParser::OpBase<double>
 {
     TernaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
-    int numItems() const override                       { return 3; }
+    size_t numItems() const override                            { return 3; }
     double call(double a, double b, double c) const override    { return Op()(a, b, c); }
     
     FrameLib_DSP *create(FrameLib_Context context) const override
@@ -277,7 +277,7 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Para
 
         // Alias the inputs to the input processor
         
-        for (unsigned long i = 0 ; i < graph.mNumInputs; i++)
+        for (long i = 0 ; i < graph.mNumInputs; i++)
             mInputProcessor->setInputAlias(Connection(this, i), i);
         
         mFixedInputNode = mInputProcessor.get();
