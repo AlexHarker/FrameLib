@@ -838,7 +838,7 @@ public:
             
             // Loop over parameters
             
-            for (size_t i = 0; params && i < params->size(); i++)
+            for (unsigned long i = 0; params && i < params->size(); i++)
             {
                 FrameLib_Parameters::Type type = params->getType(i);
                 FrameLib_Parameters::NumericType numericType = params->getNumericType(i);
@@ -847,9 +847,9 @@ public:
                 // Name, type and default value
                 
                 if (defaultStr.size())
-                    object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str(), defaultStr.c_str());
+                    object_post(mUserObject, "Parameter %lu: %s [%s] (default: %s)", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str(), defaultStr.c_str());
                 else
-                    object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str());
+                    object_post(mUserObject, "Parameter %lu: %s [%s]", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str());
 
                 // Verbose - arguments, range (for numeric types), enum items (for enums), array sizes (for arrays), description
                 
@@ -868,7 +868,7 @@ public:
                         }
                     }
                     if (type == FrameLib_Parameters::kEnum)
-                        for (long j = 0; j <= params->getMax(i); j++)
+                        for (unsigned long j = 0; j <= static_cast<unsigned long>(params->getMax(i)); j++)
                             object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j).c_str());
                     else if (type == FrameLib_Parameters::kArray)
                         object_post(mUserObject, "- Array Size: %ld", params->getArraySize(i));
