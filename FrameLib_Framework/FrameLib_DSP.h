@@ -106,8 +106,8 @@ private:
         FrameType mCurrentType;
         FrameType mRequestedType;
         
-        size_t mCurrentSize;
-        size_t mRequestedSize;
+        unsigned long mCurrentSize;
+        unsigned long mRequestedSize;
         size_t mPointerOffset;
     };
     
@@ -289,8 +289,9 @@ private:
     
     inline void dependencyNotify(bool releaseMemory, bool fromInput);
     void dependenciesReady();
-    void setOutputDependencyCount();
     void incrementInputDependency();
+    void resetOutputDependencyCount();
+    long getNumOuputDependencies()         { return static_cast<long>(mOutputDependencies.size()); }
     
     // Connections
     

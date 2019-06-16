@@ -288,7 +288,7 @@ double *FrameLib_DSP::getOutput(unsigned long idx, unsigned long *size) const
 {
     if (mOutputs[0].mMemory && mOutputs[idx].mCurrentType == kFrameNormal)
     {
-        *size = static_cast<unsigned long>(mOutputs[idx].mCurrentSize);
+        *size = mOutputs[idx].mCurrentSize;
         return (double *) mOutputs[idx].mMemory;
     }
     
@@ -432,7 +432,7 @@ void FrameLib_DSP::dependenciesReady()
         {
             if (scheduleInfo.mNewFrame || mOutputDone)
             {
-                setOutputDependencyCount();
+                resetOutputDependencyCount();
                 mFrameTime = mValidTime;
             }
             
@@ -470,7 +470,7 @@ void FrameLib_DSP::dependenciesReady()
         {
             mFrameTime = prevValidTime;
             process();
-            setOutputDependencyCount();
+            resetOutputDependencyCount();
             if (mInputDependencies.size() == 1)
                 (*mInputDependencies.begin())->releaseOutputMemory();
         }
@@ -513,7 +513,7 @@ void FrameLib_DSP::dependenciesReady()
 
     // Update dependency count for outputs and updating input state starting
     
-    mDependencyCount += ((timeUpdated ? mOutputDependencies.size() : 0)) + ((mUpdatingInputs > prevUpdatingInputs) ? 1 : 0);
+    mDependencyCount += ((timeUpdated ? getNumOuputDependencies() : 0)) + ((mUpdatingInputs > prevUpdatingInputs) ? 1 : 0);
     
     // Notify input dependencies that can be released as they are up to date (releasing memory where relevant for objects with more than one input dependency)
     
@@ -556,9 +556,9 @@ void FrameLib_DSP::dependenciesReady()
     assert(mFrameTime <= mInputTime && "Output is ahead of input dependencies");
 }
 
-void FrameLib_DSP::setOutputDependencyCount()
+void FrameLib_DSP::resetOutputDependencyCount()
 {
-    mOutputMemoryCount = static_cast<long>(mOutputDependencies.size());
+    mOutputMemoryCount = getNumOuputDependencies();
 }
 
 // Manage Output Memory
