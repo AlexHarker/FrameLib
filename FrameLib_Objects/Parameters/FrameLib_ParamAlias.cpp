@@ -183,7 +183,7 @@ void FrameLib_ParamAlias::process()
                 if (!strcmp(jt->mInTag.c_str(), it.getTag()))
                 {
                     matches[it.getIndex()] = &(*jt);
-                    size_t size = it.getType() == kVector ? Serial::calcSize(jt->mOutTag.c_str(), it.getVectorSize()) :  Serial::calcSize(jt->mOutTag.c_str(), it.getString());
+                    unsigned long size = it.getType() == kVector ? Serial::calcSize(jt->mOutTag.c_str(), it.getVectorSize()) :  Serial::calcSize(jt->mOutTag.c_str(), it.getString());
                     requestAddedOutputSize(jt->mIndex, size);
                     break;
                 }

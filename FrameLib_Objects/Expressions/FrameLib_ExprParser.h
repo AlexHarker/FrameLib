@@ -491,7 +491,7 @@ namespace FrameLib_ExprParser
             if (numItems > 1)   graph.mOperations.back().mIns[1] = parseInput(arg2);
             if (numItems > 2)   graph.mOperations.back().mIns[2] = parseInput(arg3);
             
-            return Node(kIsOutput, graph.mOperations.size() - 1);
+            return Node(kIsOutput, static_cast<long>(graph.mOperations.size() - 1));
         }
         
         ExprParseError parseUnaryOperator(Graph<T>& graph, const OpBase<T> *op, NodeList& nodes, NodeListIterator& it)

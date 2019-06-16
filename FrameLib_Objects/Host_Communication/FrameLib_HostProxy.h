@@ -53,7 +53,7 @@ class FrameLib_HostProxy : public virtual FrameLib_Proxy
                 
                 it->mObjects[stream] = object;
             
-                return it - mRegistered.begin();
+                return static_cast<unsigned long>(it - mRegistered.begin());
             }
         }
 
@@ -62,7 +62,7 @@ class FrameLib_HostProxy : public virtual FrameLib_Proxy
         mRegistered.push_back(RefList(streamOwner));
         mRegistered.back().mObjects.push_back(object);
         
-        return mRegistered.size() - 1;
+        return static_cast<unsigned long>(mRegistered.size() - 1);
     }
     
     void unregisterObject(T *object, void *streamOwner, unsigned long stream)
