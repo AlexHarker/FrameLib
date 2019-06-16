@@ -18,7 +18,7 @@ void FrameLib_ParamAlias::addAlias(unsigned long idx, const char* inTag, const c
     mAliases.push_back(Alias(idx, inTag, outTag, argumentIdx));
 }
 
-FrameLib_Parameters::Serial *FrameLib_ParamAlias::aliasForConstruction(FrameLib_Parameters::Serial *parametersIn, unsigned long idx)
+FrameLib_Parameters::Serial *FrameLib_ParamAlias::aliasForConstruction(Serial *parametersIn, unsigned long idx)
 {
     mSerial.clear();
     
@@ -73,62 +73,62 @@ void FrameLib_ParamAlias::initialise()
 
                 switch(params->getType(paramIdx))
                 {
-                    case Parameters::kValue:
+                    case kValue:
                         
                         switch (params->getNumericType(paramIdx))
                         {
-                            case Parameters::kNumericBool:      mParameters.addBool(idx, tag, value);       break;
-                            case Parameters::kNumericInteger:   mParameters.addInt(idx, tag, value);        break;
-                            default:                            mParameters.addDouble(idx, tag, value);     break;
+                            case kNumericBool:      mParameters.addBool(idx, tag, static_cast<bool>(value));    break;
+                            case kNumericInteger:   mParameters.addInt(idx, tag, static_cast<long>(value));     break;
+                            default:                mParameters.addDouble(idx, tag, value);                     break;
                         }
                         break;
 
-                    case Parameters::kEnum:
+                    case kEnum:
                         mParameters.addEnum(idx, tag);
                         for (long i = 0; i <= params->getMax(paramIdx); i++)
                             mParameters.addEnumItem(idx, params->getItemString(paramIdx, i).c_str());
                         break;
                         
-                    case Parameters::kString:
+                    case kString:
                         mParameters.addString(idx, tag);
                         break;
                         
-                    case Parameters::kArray:
+                    case kArray:
                     {
                         auto size = params->getArraySize(paramIdx);
                         
                         switch (params->getNumericType(paramIdx))
                         {
-                            case Parameters::kNumericBool:      mParameters.addBoolArray(idx, tag, value, size);       break;
-                            case Parameters::kNumericInteger:   mParameters.addIntArray(idx, tag, value, size);        break;
-                            default:                            mParameters.addDoubleArray(idx, tag, value, size);
+                            case kNumericBool:      mParameters.addBoolArray(idx, tag, static_cast<bool>(value), size);     break;
+                            case kNumericInteger:   mParameters.addIntArray(idx, tag, static_cast<long>(value), size);      break;
+                            default:                mParameters.addDoubleArray(idx, tag, value, size);
                         }
                         break;
                     }
                         
-                    case Parameters::kVariableArray:
+                    case kVariableArray:
                     {
                         auto size = params->getArraySize(paramIdx);
                         auto maxSize = params->getArrayMaxSize(paramIdx);
 
                         switch (params->getNumericType(paramIdx))
                         {
-                            case Parameters::kNumericBool:      mParameters.addVariableBoolArray(idx, tag, value, maxSize, size);        break;
-                            case Parameters::kNumericInteger:   mParameters.addVariableIntArray(idx, tag, value, maxSize, size);         break;
-                            default:                            mParameters.addVariableDoubleArray(idx, tag, value, maxSize, size);      break;
+                            case kNumericBool:      mParameters.addVariableBoolArray(idx, tag, static_cast<bool>(value), maxSize, size);    break;
+                            case kNumericInteger:   mParameters.addVariableIntArray(idx, tag, static_cast<long>(value), maxSize, size);     break;
+                            default:                mParameters.addVariableDoubleArray(idx, tag, value, maxSize, size);      break;
                         }
                         break;
                     }
                 }
                 
-                if (params->getNumericType(paramIdx) == Parameters::kNumericInteger || params->getNumericType(paramIdx) == Parameters::kNumericDouble)
+                if (params->getNumericType(paramIdx) == kNumericInteger || params->getNumericType(paramIdx) == kNumericDouble)
                 {
                     switch (params->getClipMode(paramIdx))
                     {
-                        case Parameters::kNone: break;
-                        case Parameters::kMin:  mParameters.setMin(params->getMin(paramIdx));      break;
-                        case Parameters::kMax:  mParameters.setMax(params->getMax(paramIdx));      break;
-                        case Parameters::kClip: mParameters.setClip(params->getMin(paramIdx), params->getMax(paramIdx));    break;
+                        case kNone: break;
+                        case kMin:  mParameters.setMin(params->getMin(paramIdx));      break;
+                        case kMax:  mParameters.setMax(params->getMax(paramIdx));      break;
+                        case kClip: mParameters.setClip(params->getMin(paramIdx), params->getMax(paramIdx));    break;
                     }
                 }
                 
