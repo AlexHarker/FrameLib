@@ -32,7 +32,7 @@ private:
     
     // Helpers
     
-    unsigned long bufferSize() const { return truncToUInt(mBuffer.size()); }
+    unsigned long bufferSize() const { return static_cast<unsigned long>(mBuffer.size()); }
 
     unsigned long convertTimeToSamples(double time);
 
