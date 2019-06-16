@@ -31,7 +31,7 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, FrameLib_Parameters::Serial
         for (int i = 0; i < maxNumIns; i++)
         {
             snprintf(argStr, strBufSize, "%d", i);
-            snprintf(nameStr, strBufSize, "tag_%02d", i + 1);
+            snprintf(nameStr, strBufSize, "tag_%02", i + 1);
             if (serialisedParameters->find(argStr) != serialisedParameters->end() || serialisedParameters->find(nameStr) != serialisedParameters->end())
                 mParameters.set(kNumIns, (long) (i + 1));
         }
@@ -43,7 +43,7 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, FrameLib_Parameters::Serial
     
     for (unsigned long i = 0; i < mNumIns; i++)
     {
-        snprintf(nameStr, strBufSize, "tag_%02d", i + 1);
+        snprintf(nameStr, strBufSize, "tag_%02lu", i + 1);
         mParameters.addString(kNames + i, nameStr, i);
         mParameters.setInstantiation();
     }
