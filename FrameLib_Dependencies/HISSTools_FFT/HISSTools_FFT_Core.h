@@ -1263,7 +1263,7 @@ namespace hisstools_fft_impl{
         const int A = max_vec_size <  4 ? max_vec_size :  4;
         const int B = max_vec_size <  8 ? max_vec_size :  8;
         const int C = max_vec_size < 16 ? max_vec_size : 16;
-        const uintptr_t length = static_cast<uintptr_t>(1u << fft_log2);
+        const uintptr_t length = static_cast<uintptr_t>(1u) << fft_log2;
         uintptr_t i;
         
         pass_1_2_reorder<T, A>(input, length);
