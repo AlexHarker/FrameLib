@@ -319,7 +319,7 @@ public:
         long ac = 0;
         
         atom_setparse(&ac, &av, "@defrect 0 0 300 300");
-        attr_args_dictionary(d, ac, av);
+        attr_args_dictionary(d, static_cast<short>(ac), av);
         atom_setobj(&a, d);
         mPatch = (t_object *)object_new_typed(CLASS_NOBOX, gensym("jpatcher"),1, &a);
         
@@ -466,7 +466,7 @@ public:
     
     void anything(t_symbol *sym, long ac, t_atom *av)
     {
-        outlet_anything(mInOutlets[getInlet()], sym, ac, av);
+        outlet_anything(mInOutlets[getInlet()], sym, static_cast<int>(ac), av);
     }
     
     // External methods (A_CANT)
@@ -629,7 +629,7 @@ public:
                     // Get the first item in the box as a symbol
                 
                     t_atombuf *atomBuffer = (t_atombuf *) atombuf_new(0, nullptr);
-                    atombuf_text(&atomBuffer, &text, strlen(text));
+                    atombuf_text(&atomBuffer, &text, static_cast<long>(strlen(text)));
                     t_symbol *objectName = atom_getsym(atomBuffer->a_argv);
                     atombuf_free(atomBuffer);
                     
