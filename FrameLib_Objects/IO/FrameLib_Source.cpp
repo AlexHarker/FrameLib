@@ -146,7 +146,7 @@ void FrameLib_Source::process()
     
     // Calculate time offset
     
-    long offset = round(getBlockEndTime() - frameTime);
+    long offset = roundToInt(getBlockEndTime() - frameTime);
     
     // Safety
     

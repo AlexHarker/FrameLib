@@ -121,9 +121,7 @@ void FrameLib_Trace::writeToBuffer(const double *input, unsigned long offset, un
 
 void FrameLib_Trace::objectReset()
 {
-    double size = mParameters.getValue(kBufferSize);
-    
-    size = round(convertTimeToSamples(size)) + mMaxBlockSize;
+    size_t size = convertTimeToSamples(mParameters.getValue(kBufferSize)) + mMaxBlockSize;
     
     if (size != bufferSize())
     {

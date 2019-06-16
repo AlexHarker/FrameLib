@@ -94,10 +94,8 @@ void FrameLib_Sink::addToBuffer(const double *input, unsigned long offset, unsig
 // Object Reset, Block Process and Process
 
 void FrameLib_Sink::objectReset()
-{
-    double size = mParameters.getValue(kBufferSize);
-    
-    size = round(convertTimeToSamples(size)) + mMaxBlockSize;
+{    
+    size_t size = convertTimeToSamples(mParameters.getValue(kBufferSize)) + mMaxBlockSize;
     
     if (size != bufferSize())
         mBuffer.resize(size);
