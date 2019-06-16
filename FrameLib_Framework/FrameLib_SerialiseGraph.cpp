@@ -113,7 +113,7 @@ size_t findAndResolveFunctions(std::string& name, size_t beg, size_t end)
 
 void getTypeString(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj)
 {
-	unmangleName(name, obj);
+    unmangleName(name, obj);
 
     // Resolve functions recursively
     
