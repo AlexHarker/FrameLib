@@ -194,7 +194,7 @@ void FrameLib_FromHost::process()
     
     if (mMode == kValues)
     {
-        requestOutputSize(0, mVectorFrame ? mVectorFrame->size(): 0);
+        requestOutputSize(0, mVectorFrame ? static_cast<unsigned long>(mVectorFrame->size()): 0);
         allocateOutputs();
         
         double *output = getOutput(0, &size);

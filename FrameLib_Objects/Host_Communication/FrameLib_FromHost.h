@@ -63,7 +63,7 @@ class FrameLib_FromHost final : public FrameLib_Processor
             return mTop == nullptr;
         }
         
-        size_t size() const
+        unsigned long size() const
         {
             unsigned long summedSize = 0;
             
