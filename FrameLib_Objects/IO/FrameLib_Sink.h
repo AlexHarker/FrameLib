@@ -29,7 +29,7 @@ private:
     
     // Helpers
     
-    size_t bufferSize() const { return mBuffer.size(); }
+    unsigned long bufferSize() const { return truncToUInt(mBuffer.size()); }
 
     unsigned long convertTimeToSamples(double time);
 
