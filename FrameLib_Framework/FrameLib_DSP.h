@@ -231,20 +231,20 @@ protected:
 
     // Convenience methods for converting time values either in time format, or double precision
     
-    FrameLib_TimeFormat hzToSamples(const FrameLib_TimeFormat& a)       { return mSamplingRate / a; }
-    FrameLib_TimeFormat msToSamples(const FrameLib_TimeFormat& a)       { return (a * mSamplingRate) / 1000.0; }
-    FrameLib_TimeFormat secondsToSamples(const FrameLib_TimeFormat& a)  { return a * mSamplingRate; }
+    FrameLib_TimeFormat hzToSamples(const FrameLib_TimeFormat& a) const         { return mSamplingRate / a; }
+    FrameLib_TimeFormat msToSamples(const FrameLib_TimeFormat& a) const         { return (a * mSamplingRate) / 1000.0; }
+    FrameLib_TimeFormat secondsToSamples(const FrameLib_TimeFormat& a) const    { return a * mSamplingRate; }
     
-    double hzToSamples(double a)       { return mSamplingRate / a; }
-    double msToSamples(double a)       { return (a * mSamplingRate) / 1000.0; }
-    double secondsToSamples(double a)  { return a * mSamplingRate; }
+    double hzToSamples(double a) const          { return mSamplingRate / a; }
+    double msToSamples(double a) const          { return (a * mSamplingRate) / 1000.0; }
+    double secondsToSamples(double a) const     { return a * mSamplingRate; }
 
     // Convenience methods for moving from double to int values
 
-    long roundToInt(double a) { return static_cast<long>(round(a)); }
-    unsigned long roundToUInt(double a) { return static_cast<unsigned long>(round(a)); }
-    long truncToInt(double a) { return static_cast<long>(a); }
-    unsigned long truncToUInt(double a) { return static_cast<unsigned long>(a); }
+    long roundToInt(double a) const             { return static_cast<long>(round(a)); }
+    unsigned long roundToUInt(double a) const   { return static_cast<unsigned long>(round(a)); }
+    long truncToInt(double a) const             { return static_cast<long>(a); }
+    unsigned long truncToUInt(double a) const   { return static_cast<unsigned long>(a); }
 
 private:
     
