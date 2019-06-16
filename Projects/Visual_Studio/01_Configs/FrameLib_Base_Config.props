@@ -3,10 +3,10 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <OutDir>$(SolutionDir)build\</OutDir>
+    <OutDir>$(SolutionDir)build\$(configuration)_$(platform)\</OutDir>
   </PropertyGroup>
   <PropertyGroup>
-    <IntDir>$(SolutionDir)build\intermediate\$(MSBuildProjectName)\</IntDir>
+    <IntDir>$(SolutionDir)build\Build_Intermediates\$(MSBuildProjectName)\$(Configuration)_$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>FrameLib_Base</_PropertySheetDisplayName>

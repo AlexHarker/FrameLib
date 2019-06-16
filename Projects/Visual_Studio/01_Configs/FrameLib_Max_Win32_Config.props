@@ -9,6 +9,9 @@
     <ClCompile>
       <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)FrameLib_Max_Objects\_MaxSDK_\c74support\max-includes\;$(SolutionDir)FrameLib_Max_Objects\_MaxSDK_\c74support\msp-includes\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup />
 </Project>

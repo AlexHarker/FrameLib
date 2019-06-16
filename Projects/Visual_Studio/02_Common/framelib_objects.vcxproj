@@ -245,14 +245,12 @@
     <Import Project="..\01_Configs\FrameLib_Base_Config.props" />
     <Import Project="..\01_Configs\FrameLib_Objects_Base_Config.props" />
     <Import Project="..\01_Configs\FrameLib_Debug_Config.props" />
-    <Import Project="..\01_Configs\FrameLib_Win32_Config.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\01_Configs\FrameLib_Base_Config.props" />
     <Import Project="..\01_Configs\FrameLib_Objects_Base_Config.props" />
     <Import Project="..\01_Configs\FrameLib_Release_Config.props" />
-    <Import Project="..\01_Configs\FrameLib_Win32_Config.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -275,8 +273,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)build\</OutDir>
-    <IntDir>$(SolutionDir)build\intermediate\$(MSBuildProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
