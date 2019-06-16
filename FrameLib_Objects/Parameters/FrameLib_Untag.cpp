@@ -39,7 +39,7 @@ FrameLib_Untag::FrameLib_Untag(FrameLib_Context context, FrameLib_Parameters::Se
     
     for (unsigned long i = 0; i < mNumOuts; i++)
     {
-        snprintf(nameStr, strBufSize, "tag_%02d", i + 1);
+        snprintf(nameStr, strBufSize, "tag_%02lu", i + 1);
         mParameters.addString(kNames + i, nameStr, i);
         mParameters.setInstantiation();
     }

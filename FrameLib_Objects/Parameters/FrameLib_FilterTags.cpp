@@ -39,7 +39,7 @@ FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, FrameLib_Para
     
     for (unsigned long i = 0; i < mNumFilters; i++)
     {
-        snprintf(nameStr, strBufSize, "tag_%02d", i + 1);
+        snprintf(nameStr, strBufSize, "tag_%02lu", i + 1);
         mParameters.addString(kFilters + i, nameStr, i);
         mParameters.setInstantiation();
     }
