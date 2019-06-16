@@ -38,7 +38,7 @@ namespace FrameLib_ExprParser
     template <class T>
     struct OpBase
     {
-        OpBase(const char* name, int precedence) : mName(name), mPrecedence(precedence) {}
+        OpBase(const char* name, unsigned int precedence) : mName(name), mPrecedence(precedence) {}
         virtual ~OpBase() {}
         
         virtual int numItems() const = 0;
@@ -46,7 +46,7 @@ namespace FrameLib_ExprParser
         virtual FrameLib_DSP *create(FrameLib_Context context) const = 0;
 
         const char* mName;
-        int mPrecedence;
+        unsigned int mPrecedence;
     };
 
     // Graph Structure for Output
@@ -208,14 +208,14 @@ namespace FrameLib_ExprParser
         
     public:
         
-        Parser(int precedenceLevels) : mMaxLengthOp(0)
+        Parser(unsigned int precedenceLevels) : mMaxLengthOp(0)
         {
             mOperators.resize(precedenceLevels);
         }
         
         void addOperator(OpBase<T>* op)
         {
-            int precedence = op->mPrecedence;
+            unsigned int precedence = op->mPrecedence;
             
             assert((precedence < mOperators.size() && "precedence value too large"));
             
@@ -447,7 +447,7 @@ namespace FrameLib_ExprParser
         
         // Operators / Functions
         
-        const OpBase<T> *getOperator(const char *name, int precedence) const
+        const OpBase<T> *getOperator(const char *name, unsigned int precedence) const
         {
             return mOperators[precedence].getItem(name);
         }
@@ -456,7 +456,7 @@ namespace FrameLib_ExprParser
         {
             const OpBase<T> *op = nullptr;
             
-            for (int i = 0; i < mOperators.size(); i++)
+            for (size_t i = 0; i < mOperators.size(); i++)
                 if ((op = getOperator(name, i)))
                     return op;
             
@@ -554,7 +554,7 @@ namespace FrameLib_ExprParser
 
             // Now resolve binary operators in order of precedence
             
-            for (int i = 1; i < mOperators.size(); i++)
+            for (size_t i = 1; i < mOperators.size(); i++)
             {
                 for (auto it = nodes.begin(); it < nodes.end(); it++)
                     if ((op = getOperator(it->getTokenString(), i)))
