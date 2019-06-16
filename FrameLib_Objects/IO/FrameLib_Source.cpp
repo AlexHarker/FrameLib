@@ -146,11 +146,11 @@ void FrameLib_Source::process()
     
     // Calculate time offset
     
-    long offset = roundToInt(getBlockEndTime() - frameTime);
+    unsigned long offset = roundToUInt(getBlockEndTime() - frameTime) + delayTime;
     
     // Safety
     
-    if (!sizeOut || (offset + delayTime) > bufferSize())
+    if (!sizeOut || offset > bufferSize())
     {
         zeroVector(output, sizeOut);
         return;
@@ -158,7 +158,6 @@ void FrameLib_Source::process()
     
     // Calculate actual offset into buffer
     
-    offset += delayTime;
     offset = (offset <= mCounter) ? mCounter - offset : mCounter + bufferSize() - offset;
     
     // Calculate first segment size and copy segments
