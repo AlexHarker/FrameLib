@@ -71,7 +71,7 @@ void FrameLib_MaxClass_FromMax::list(t_symbol *s, long argc, t_atom *argv)
 {
     std::vector<double> temporary(argc);
     
-    for (unsigned long i = 0; i < argc; i++)
+    for (long i = 0; i < argc; i++)
         temporary[i] = atom_getfloat(argv++);
         
     mProxy->sendFromHost(0, temporary.data(), argc);
@@ -88,7 +88,7 @@ void FrameLib_MaxClass_FromMax::anything(t_symbol *s, long argc, t_atom *argv)
     {
         std::vector<double> temporary(argc);
         
-        for (unsigned long i = 0; i < argc; i++)
+        for (long i = 0; i < argc; i++)
             temporary[i] = atom_getfloat(argv++);
         
         mProxy->sendFromHost(0, s->s_name, temporary.data(), argc);

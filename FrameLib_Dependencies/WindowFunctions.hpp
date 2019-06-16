@@ -27,7 +27,7 @@ public:
     
     bool calculate(Ref reference, T window, uint32_t windowSize, uint32_t generateSize)
     {
-        for (long i = 0; i < mFunctions.size(); i++)
+        for (size_t i = 0; i < mFunctions.size(); i++)
         {
             if (reference == mFunctions[i].mReference)
             {
@@ -52,7 +52,7 @@ static double normalise(uint32_t pos, uint32_t windowSize)
 template <class T>
 void window_rect(T window, uint32_t windowSize, uint32_t generateSize)
 {
-	for (long i = 0; i < generateSize; i++)
+	for (uint32_t i = 0; i < generateSize; i++)
 		window[i] = 1;
 }
 
@@ -182,7 +182,7 @@ void window_kaiser(T window, uint32_t windowSize, uint32_t generateSize)
     
     // FIX - might not work 100%
     
-    for (long i = 0; i < generateSize; i++)
+    for (uint32_t i = 0; i < generateSize; i++)
     {
         temp = ((2.0 * (double) i) - ((double) windowSize - 1.0));
         temp = temp / windowSize;
@@ -209,12 +209,12 @@ void window_kaiser(T window, uint32_t windowSize, uint32_t generateSize)
 template <class T>
 void window_multisine_tapers(T window, uint32_t windowSize, uint32_t generateSize, uint32_t num_tapers)
 {
-	for (long j = 0; j < generateSize; j++)
+	for (uint32_t j = 0; j < generateSize; j++)
 		window[j] = 0.0;
 	
-	for (long i = 0; i < num_tapers; i++)
+	for (uint32_t i = 0; i < num_tapers; i++)
 	{
-		for (long j = 0; j < generateSize; j++)
+		for (uint32_t j = 0; j < generateSize; j++)
 			window[j] += sin(WINDOW_PI * (double) (i + 1) * (double) (j + 1) / (double) (windowSize + 1));
 	}
 }
