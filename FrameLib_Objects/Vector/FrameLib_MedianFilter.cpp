@@ -156,7 +156,6 @@ void FrameLib_MedianFilter::process()
 {
     // Get Input
     
-    
     unsigned long sizeIn, sizeOut;
     long width = mParameters.getInt(kWidth);
     const double *input = getInput(0, &sizeIn);
