@@ -8,7 +8,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)\FrameLib_Framework;$(SolutionDir)FrameLib_Max_Objects\Common\;$(SolutionDir)FrameLib_Max_Objects\_MaxSDK_\c74support\max-includes\;$(SolutionDir)FrameLib_Max_Objects\Common\;$(SolutionDir)FrameLib_Max_Objects\_MaxSDK_\c74support\msp-includes\;$(SolutionDir)FrameLib_Max_Objects\Common\;$(SolutionDir)FrameLib_Max_Objects\_MaxSDK_\c74support\max-includes\;$(SolutionDir)FrameLib_Max_Objects\Common\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Framework;$(SolutionDir)FrameLib_Objects\Common_Utilities;$(SolutionDir)FrameLib_Max_Objects\Common\;$(SolutionDir)FrameLib_Max_Objects\_MaxSDK_\c74support\max-includes\;$(SolutionDir)FrameLib_Max_Objects\Common\;$(SolutionDir)FrameLib_Max_Objects\_MaxSDK_\c74support\msp-includes\;$(SolutionDir)FrameLib_Max_Objects\Common\;$(SolutionDir)FrameLib_Max_Objects\_MaxSDK_\c74support\max-includes\;$(SolutionDir)FrameLib_Max_Objects\Common_Utilities;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NO_TRANSLATION_SUPPORT;WIN_VERSION;WINDOWS;_USRDLL;WIN_EXT_VERSION;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
