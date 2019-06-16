@@ -4,7 +4,7 @@
 
 #include "FrameLib_DSP.h"
 
-template <double func(const double *, unsigned long), bool calcZeroLength = false> class FrameLib_Vector final : public FrameLib_Processor
+template <double func(const double *, size_t), bool calcZeroLength = false> class FrameLib_Vector final : public FrameLib_Processor
 {
     
 public:
