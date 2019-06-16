@@ -157,10 +157,12 @@ void serialiseGraph(std::vector<FrameLib_Object<FrameLib_Multistream> *>& serial
 template <class T>
 void addConnection(FrameLib_ObjectDescription& description, std::vector<FrameLib_Object<T> *> serial, typename FrameLib_Object<T>::Connection connect, unsigned long idx)
 {
+    using Connection = FrameLib_ObjectDescription::Connection;
+    
     if (connect.mObject)
     {
         size_t objectIdx = std::find(serial.begin(), serial.end(), connect.mObject) - serial.begin();
-        description.mConnections.push_back(FrameLib_ObjectDescription::Connection(objectIdx, connect.mIndex, idx));
+        description.mConnections.push_back(Connection(static_cast<unsigned long>(objectIdx), connect.mIndex, idx));
     }
 }
 

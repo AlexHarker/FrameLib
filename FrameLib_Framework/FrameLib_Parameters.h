@@ -187,10 +187,20 @@ public:
         unsigned long size() const          { return mSize; }
         void clear()                        { mSize = 0; }
         
-        static unsigned long alignSize(size_t size)                 { return (size + (alignment - 1)) & ~(alignment - 1); }
-        static unsigned long inPlaceSize(size_t size)               { return alignSize(sizeof(Serial)) + alignSize(size); }
+        static unsigned long alignSize(size_t size)
+        {
+            return static_cast<unsigned long>((size + (alignment - 1)) & ~(alignment - 1));
+        }
         
-        static Serial *newInPlace(void *ptr, unsigned long size)    { return new (ptr) Serial(((BytePointer) ptr) + alignSize(sizeof(Serial)), size); }
+        static size_t inPlaceSize(unsigned long size)
+        {
+            return alignSize(sizeof(Serial)) + alignSize(size);
+        }
+        
+        static Serial *newInPlace(void *ptr, unsigned long size)
+        {
+            return new (ptr) Serial(((BytePointer) ptr) + alignSize(sizeof(Serial)), size);
+        }
         
     protected:
         
