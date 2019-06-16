@@ -54,7 +54,7 @@ FrameLib_Route::FrameLib_Route(FrameLib_Context context, FrameLib_Parameters::Se
     
     setIO(2, mNumOuts);
 
-    for (int i = 0; i < mNumOuts; i++)
+    for (long i = 0; i < mNumOuts; i++)
     {
         mValves.add(new Valve(context, serialisedParameters, proxy, i));
         mValves[i]->setInputAlias(Connection(this, 0), 0);

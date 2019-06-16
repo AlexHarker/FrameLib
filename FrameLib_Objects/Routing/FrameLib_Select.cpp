@@ -18,7 +18,7 @@ FrameLib_Select::FrameLib_Select(FrameLib_Context context, FrameLib_Parameters::
     
     setIO(mNumIns, 1);
     
-    for (unsigned long i = 0; i < mNumIns; i++)
+    for (long i = 0; i < mNumIns; i++)
         setInputMode(i, false, i == mActiveIn, true, kFrameAny);
     
     setOutputType(0, kFrameAny);
@@ -64,7 +64,7 @@ void FrameLib_Select::update()
     {        
         mActiveIn = floor(mParameters.getValue(kActiveIn) - 1.0);
         
-        for (unsigned long i = 0; i < mNumIns; i++)
+        for (long i = 0; i < mNumIns; i++)
             updateTrigger(i, i == mActiveIn);
     }
 }

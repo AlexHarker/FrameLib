@@ -17,7 +17,7 @@ FrameLib_Dispatch::Select::Select(FrameLib_Context context, FrameLib_Parameters:
     
     mActiveIn = floor(mParameters.getValue(kActiveIn) - 1.0);
     
-    for (unsigned long i = 0; i < mNumIns; i++)
+    for (long i = 0; i < mNumIns; i++)
         setInputMode(i, false, i == mActiveIn, true, kFrameAny);
     
     setOutputType(0, kFrameAny);
@@ -32,7 +32,7 @@ void FrameLib_Dispatch::Select::update()
     {
         mActiveIn = floor(mParameters.getValue(kActiveIn) - 1.0);
         
-        for (unsigned long i = 0; i < mNumIns; i++)
+        for (long i = 0; i < mNumIns; i++)
             updateTrigger(i, i == mActiveIn);
     }
 }
@@ -81,7 +81,7 @@ FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Paramete
     for (int i = 0; i < mNumOuts; i++)
     {
         mSelects.add(new Select(context, serialisedParameters, proxy, mNumIns, i));
-        for (unsigned long j = 0; j < mNumIns + 1; j++)
+        for (long j = 0; j < mNumIns + 1; j++)
             mSelects[i]->setInputAlias(Connection(this, j), j);
         mSelects[i]->setOutputAlias(Connection(this, i), 0);
     }
