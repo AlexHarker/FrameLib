@@ -333,7 +333,7 @@ public:
         
         if ((textfield = jbox_get_textfield(textfield)))
         {
-            text = (char *)object_method(textfield, gensym("getptr"));
+            text = (char *) object_method(textfield, gensym("getptr"));
             text = strchr(text, ' ');
             
             if (text)
@@ -1089,6 +1089,22 @@ private:
         return (FrameLib_Multistream *) object_method(x, gensym("__fl.get_internal_object"));
     }
     
+    // Get the number of audio ins safely from a generic pointer
+    
+    long getNumAudioInsRemote(t_object *x)
+    {
+        t_ptr_int numAudioIns = reinterpret_cast<t_ptr_int>(object_method(x, gensym("__fl.get_num_audio_outs")));
+        return static_cast<long>(numAudioIns);
+    }
+    
+    // Get the number of audio outs safely from a generic pointer
+
+    long getNumAudioOutsRemote(t_object *x)
+    {
+        t_ptr_int numAudioOuts = reinterpret_cast<t_ptr_int>(object_method(x, gensym("__fl.get_num_audio_ins")));
+        return static_cast<long>(numAudioOuts);
+    }
+    
     // Private connection methods
     
     void traversePatch(t_patcher *p, t_symbol *method, t_object *contextAssoc)
@@ -1287,7 +1303,8 @@ private:
         if (*this == dst)
         {
             unwrapConnection(src, srcout);
-            srcout -= (long) object_method(src, gensym("__fl.get_num_audio_outs"));
+            
+            srcout -= getNumAudioOutsRemote(src);
             dstin -= getNumAudioIns();
             
             if (sys_getdspobjdspstate(*this))
@@ -1329,7 +1346,7 @@ private:
             return 1;
 
         unwrapConnection(dst, dstin);
-        dstin -= (long) object_method(dst, gensym("__fl.get_num_audio_ins"));
+        dstin -= getNumAudioInsRemote(dst);
         
         if (isOrderingInput(dstin, getInternalObject(dst)) || (validInput(dstin, getInternalObject(dst)) && !object_method(dst, gensym("__fl.is_connected"), dstin)))
             return 1;
