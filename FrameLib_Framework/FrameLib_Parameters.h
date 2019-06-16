@@ -214,7 +214,7 @@ public:
         // Write Item
         
         void writeType(DataType type);
-        void writeSize(unsigned long size);
+        void writeSize(size_t size);
         void writeString(const char *str);
         void writeDoubles(const double *ptr, unsigned long N);
         

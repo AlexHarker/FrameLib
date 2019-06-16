@@ -661,7 +661,7 @@ FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double def
 
 FrameLib_Parameters::SetError FrameLib_Parameters::Array::set(double *values, unsigned long N)
 {
-    N = N > mItems.size() ? mItems.size() : N;
+    N = std::min(N, static_cast<unsigned long>(mItems.size()));
     
     switch (getClipMode())
     {
