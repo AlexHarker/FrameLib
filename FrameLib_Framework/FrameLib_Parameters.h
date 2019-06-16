@@ -106,7 +106,7 @@ public:
             const double *getVector(unsigned long *size) const;
             unsigned long getVectorSize() const;
             char *getString() const;
-            size_t getSize() const;
+            unsigned long getSize() const;
             unsigned long getIndex() const { return mIndex; }
             
             // Match Tag
@@ -153,10 +153,10 @@ public:
         
         // Size Calculations
         
-        static size_t calcSize(const Serial *serialised)            { return serialised != nullptr ? serialised->mSize : 0; }
-        static size_t calcSize(const FrameLib_Parameters *params);
-        static size_t calcSize(const char *tag, const char *str)    { return sizeType() + sizeString(tag) + sizeString(str); }
-        static size_t calcSize(const char *tag, unsigned long N)    { return sizeType() + sizeString(tag) + sizeArray(N); }
+        static unsigned long calcSize(const Serial *serialised)            { return serialised != nullptr ? serialised->mSize : 0; }
+        static unsigned long calcSize(const FrameLib_Parameters *params);
+        static unsigned long calcSize(const char *tag, const char *str)    { return sizeType() + sizeString(tag) + sizeString(str); }
+        static unsigned long calcSize(const char *tag, unsigned long N)    { return sizeType() + sizeString(tag) + sizeArray(N); }
         
         // Get Sizes
         
@@ -187,8 +187,8 @@ public:
         unsigned long size() const          { return mSize; }
         void clear()                        { mSize = 0; }
         
-        static size_t alignSize(size_t size)                        {    return (size + (alignment - 1)) & ~(alignment - 1); }
-        static size_t inPlaceSize(size_t size)                      { return alignSize(sizeof(Serial)) + alignSize(size); }
+        static unsigned long alignSize(size_t size)                 { return (size + (alignment - 1)) & ~(alignment - 1); }
+        static unsigned long inPlaceSize(size_t size)               { return alignSize(sizeof(Serial)) + alignSize(size); }
         
         static Serial *newInPlace(void *ptr, unsigned long size)    { return new (ptr) Serial(((BytePointer) ptr) + alignSize(sizeof(Serial)), size); }
         
@@ -196,7 +196,7 @@ public:
         
         // Check Size
         
-        bool checkSize(size_t writeSize);
+        bool checkSize(unsigned long writeSize);
         
     private:
         
@@ -206,15 +206,15 @@ public:
         
         // Size Calculators
         
-        static size_t sizeType()                    { return alignSize(sizeof(DataType)); }
-        static size_t sizeSize()                    { return alignSize(sizeof(size_t)); }
-        static size_t sizeString(const char *str)   { return sizeSize() + alignSize(strlen(str) + 1); }
-        static size_t sizeArray(size_t N)           { return sizeSize() + alignSize((N * sizeof(double))); }
+        static unsigned long sizeType()                    { return alignSize(sizeof(DataType)); }
+        static unsigned long sizeSize()                    { return alignSize(sizeof(size_t)); }
+        static unsigned long sizeString(const char *str)   { return sizeSize() + alignSize(strlen(str) + 1); }
+        static unsigned long sizeArray(unsigned long N)    { return sizeSize() + alignSize((N * sizeof(double))); }
         
         // Write Item
         
         void writeType(DataType type);
-        void writeSize(size_t size);
+        void writeSize(unsigned long size);
         void writeString(const char *str);
         void writeDoubles(const double *ptr, unsigned long N);
         
@@ -249,7 +249,7 @@ public:
     
     class AutoSerial : public Serial
     {
-        static const size_t minGrowSize = 512;
+        static const unsigned long minGrowSize = 512;
         
     public:
         
@@ -268,7 +268,7 @@ public:
         
     private:
         
-        bool checkSize(size_t writeSize);
+        bool checkSize(unsigned long writeSize);
     };
     
     /**
@@ -500,8 +500,8 @@ private:
         
     public:
         
-        Array(const char *name, long argumentIdx, double defaultValue, size_t size);
-        Array(const char *name, long argumentIdx, double defaultValue, size_t maxSize, size_t size);
+        Array(const char *name, long argumentIdx, double defaultValue, unsigned long size);
+        Array(const char *name, long argumentIdx, double defaultValue, unsigned long maxSize, unsigned long size);
         
         // Setters
         

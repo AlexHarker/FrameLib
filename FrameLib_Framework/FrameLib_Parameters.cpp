@@ -60,7 +60,7 @@ char *FrameLib_Parameters::Serial::Iterator::getString() const
 
 // Get Size
 
-size_t FrameLib_Parameters::Serial::Iterator::getSize() const
+unsigned long FrameLib_Parameters::Serial::Iterator::getSize() const
 {
     Entry entry = getEntry();
     
@@ -103,7 +103,7 @@ size_t FrameLib_Parameters::Serial::Iterator::read(double *output, unsigned long
     
     if (entry.mType == kVector)
     {
-        size = std::min(entry.mSize, static_cast<size_t>(size));
+        size = std::min(entry.mSize, size);
         std::copy(entry.data<double>(), entry.data<double>() + entry.mSize, output);
         return size;
     }
@@ -170,9 +170,9 @@ FrameLib_Parameters::Serial::Serial() : mPtr(nullptr), mSize(0), mMaxSize(0), mN
 
 // Size Calculation
 
-size_t FrameLib_Parameters::Serial::calcSize(const FrameLib_Parameters *params)
+unsigned long FrameLib_Parameters::Serial::calcSize(const FrameLib_Parameters *params)
 {
-    size_t size = 0;
+    unsigned long size = 0;
     
     for (unsigned long i = 0; i < params->size(); i++)
     {
@@ -393,7 +393,7 @@ void FrameLib_Parameters::Serial::skipItem(BytePointer *readPtr, DataType type)
 
 // Size Check
 
-bool FrameLib_Parameters::Serial::checkSize(size_t writeSize)
+bool FrameLib_Parameters::Serial::checkSize(unsigned long writeSize)
 {
     if (mSize + writeSize <= mMaxSize)
         return true;
@@ -405,9 +405,9 @@ bool FrameLib_Parameters::Serial::checkSize(size_t writeSize)
 
 // AutoSerial Class (owning/resizing/allocating it's own memory using system routines - not suitable for audio thread use)
 
-bool FrameLib_Parameters::AutoSerial::checkSize(size_t writeSize)
+bool FrameLib_Parameters::AutoSerial::checkSize(unsigned long writeSize)
 {
-    size_t growSize;
+    unsigned long growSize;
     
     if (Serial::checkSize(writeSize))
         return true;
@@ -637,17 +637,17 @@ FrameLib_Parameters::SetError FrameLib_Parameters::String::set(const char *str)
 
 // Array Parameter Class
 
-FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double defaultValue, size_t size)
+FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double defaultValue, unsigned long size)
 : Parameter(name, argumentIdx), mSize(size), mVariableSize(false)
 {
     mDefault = defaultValue;
     mItems.resize(size);
     
-    for (size_t i = 0; i < mSize; i++)
+    for (unsigned long i = 0; i < mSize; i++)
         mItems[i] = defaultValue;
 }
 
-FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double defaultValue, size_t maxSize, size_t size)
+FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double defaultValue, unsigned long maxSize, unsigned long size)
 : Parameter(name, argumentIdx), mVariableSize(true)
 {
     mDefault = defaultValue;
@@ -655,7 +655,7 @@ FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double def
     
     mSize = size < maxSize ? size : maxSize;
     
-    for (size_t i = 0; i < mSize; i++)
+    for (unsigned long i = 0; i < mSize; i++)
         mItems[i] = defaultValue;
 }
 
@@ -666,25 +666,25 @@ FrameLib_Parameters::SetError FrameLib_Parameters::Array::set(double *values, un
     switch (getClipMode())
     {
         case kNone:
-            for (size_t i = 0; i < N; i++)
+            for (unsigned long i = 0; i < N; i++)
                 mItems[i] = values[i];
             break;
         case kMin:
-            for (size_t i = 0; i < N; i++)
+            for (unsigned long i = 0; i < N; i++)
                 mItems[i] = values[i] < mMin ? mMin : values[i];
             break;
         case kMax:
-            for (size_t i = 0; i < N; i++)
+            for (unsigned long i = 0; i < N; i++)
                 mItems[i] = values[i] > mMax ? mMax : values[i];
             break;
         case kClip:
-            for (size_t i = 0; i < N; i++)
+            for (unsigned long i = 0; i < N; i++)
                 mItems[i] = values[i] < mMin ? mMin : (values[i] > mMax ? mMax : values[i]);
             break;
     }
     
     if (!mVariableSize)
-        for (size_t i = N; i < mItems.size(); i++)
+        for (unsigned long i = N; i < mItems.size(); i++)
             mItems[i] = mDefault;
     else
         mSize = N;
