@@ -1356,9 +1356,10 @@ private:
     {
         switch (type)
         {
-            case kFrameAny:     return "either";
-            case kFrameNormal:  return "vector";
-            case kFrameTagged:  return "tagged";
+            case kFrameNormal:          return "vector";
+            case kFrameTagged:          return "tagged";
+            // kFrameAny
+            default:                    return "either";
         }
     }
     
@@ -1491,7 +1492,7 @@ private:
                 else
                 {
                     i = parseNumericalList(values, argv, argc, i);
-                    serialisedParameters.write(sym->s_name + 1, values.data(), values.size());
+                    serialisedParameters.write(sym->s_name + 1, values.data(), static_cast<unsigned long>(values.size()));
                 }
             }
             else
@@ -1524,7 +1525,7 @@ private:
             if (argsMode == kAllInputs)
             {
                 for (long j = 0; i && j < getNumIns(); j++)
-                    mObject->setFixedInput(j, values.data(), values.size());
+                    mObject->setFixedInput(j, values.data(), static_cast<unsigned long>(values.size()));
             }
             else
             {
@@ -1547,7 +1548,7 @@ private:
             {
                 t_symbol *sym = atom_getsym(argv + i);
                 i = parseNumericalList(values, argv, argc, i + 1);
-                mObject->setFixedInput(inputNumber(sym), values.data(), values.size());
+                mObject->setFixedInput(inputNumber(sym), values.data(), static_cast<unsigned long>(values.size()));
             }
             
             if ((i + 1) >= argc)
