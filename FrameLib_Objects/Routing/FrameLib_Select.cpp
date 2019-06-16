@@ -14,7 +14,7 @@ FrameLib_Select::FrameLib_Select(FrameLib_Context context, FrameLib_Parameters::
     mParameters.set(serialisedParameters);
     
     mNumIns = mParameters.getInt(kNumIns);
-    mActiveIn = floor(mParameters.getValue(kActiveIn) - 1.0);
+    mActiveIn = truncToInt(mParameters.getValue(kActiveIn) - 1.0);
     
     setIO(mNumIns, 1);
     
@@ -62,7 +62,7 @@ void FrameLib_Select::update()
 {
     if (mParameters.changed(kActiveIn))
     {        
-        mActiveIn = floor(mParameters.getValue(kActiveIn) - 1.0);
+        mActiveIn = truncToInt(mParameters.getValue(kActiveIn) - 1.0);
         
         for (long i = 0; i < mNumIns; i++)
             updateTrigger(i, i == mActiveIn);

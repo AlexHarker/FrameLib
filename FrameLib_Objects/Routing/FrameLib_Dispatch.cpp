@@ -15,7 +15,7 @@ FrameLib_Dispatch::Select::Select(FrameLib_Context context, FrameLib_Parameters:
     mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
     
-    mActiveIn = floor(mParameters.getValue(kActiveIn) - 1.0);
+    mActiveIn = truncToInt(mParameters.getValue(kActiveIn) - 1.0);
     
     for (long i = 0; i < mNumIns; i++)
         setInputMode(i, false, i == mActiveIn, true, kFrameAny);
@@ -30,7 +30,7 @@ void FrameLib_Dispatch::Select::update()
 {
     if (mParameters.changed(kActiveIn))
     {
-        mActiveIn = floor(mParameters.getValue(kActiveIn) - 1.0);
+        mActiveIn = truncToInt(mParameters.getValue(kActiveIn) - 1.0);
         
         for (long i = 0; i < mNumIns; i++)
             updateTrigger(i, i == mActiveIn);
