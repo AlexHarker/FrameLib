@@ -95,8 +95,8 @@ void FrameLib_Spatial::process()
     const double *input = getInput(0, &sizeIn);
     
     const double *weights = mParameters.getArray(kWeights, &weightsSize);
-    unsigned long numSpeakers = mSpeakers.size();
-    unsigned long maxSpeakers = mParameters.getValue(kMaxSpeakers);
+    unsigned long numSpeakers = static_cast<unsigned long>(mSpeakers.size());
+    unsigned long maxSpeakers = mParameters.getInt(kMaxSpeakers);
     
     double blur = mParameters.getValue(kBlur);
     double rolloff = mParameters.getValue(kRolloff);
@@ -113,7 +113,7 @@ void FrameLib_Spatial::process()
     
     double norm = 0.0;
     double minDistance = 0.0;
-    int nearestIdx = 0;
+    unsigned long nearestIdx = 0;
     
     Cartesian panPosition;
     
@@ -134,7 +134,7 @@ void FrameLib_Spatial::process()
         panPosition = Cartesian(x, y, z);;
     }
     
-    for (int i = 0; i < numSpeakers; i++)
+    for (unsigned long i = 0; i < numSpeakers; i++)
     {
         double xDelta = panPosition.x - mSpeakers[i].x;
         double yDelta = panPosition.y - mSpeakers[i].y;
@@ -168,7 +168,7 @@ void FrameLib_Spatial::process()
     
     if (pointFactor > 0.0)
     {
-        for (int i = 0; i < numSpeakers; i++)
+        for (unsigned long i = 0; i < numSpeakers; i++)
         {
             if (i == nearestIdx)
                 output[i] += pointFactor * (1.0 - output[i]);
