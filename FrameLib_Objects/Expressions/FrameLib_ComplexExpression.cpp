@@ -127,10 +127,10 @@ FrameLib_ComplexExpression::Parser::Parser() : FrameLib_ExprParser::Parser<std::
 
 // Constructor
 
-FrameLib_ComplexExpression::InputProcessor::InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns)
+FrameLib_ComplexExpression::InputProcessor::InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns)
 : FrameLib_Processor(context, nullptr, nullptr, numIns * 2, numIns * 2), mMode(mode)
 {
-    for (size_t i = 0; i < numIns; i++)
+    for (unsigned long i = 0; i < numIns; i++)
     {
         setInputMode(i + 0, false, (i < triggersSize) && triggers[i], false);
         setInputMode(i + 1, false, (i < triggersSize) && triggers[i], false);
@@ -239,9 +239,9 @@ void FrameLib_ComplexExpression::InputProcessor::process()
 
 // Constructor
 
-FrameLib_ComplexExpression::ConstantOut::ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns, std::complex<double> value) : FrameLib_Processor(context, nullptr, nullptr, numIns * 2, 2), mMode(mode), mValue(value)
+FrameLib_ComplexExpression::ConstantOut::ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns, std::complex<double> value) : FrameLib_Processor(context, nullptr, nullptr, numIns * 2, 2), mMode(mode), mValue(value)
 {
-    for (size_t i = 0; i < numIns; i++)
+    for (unsigned long i = 0; i < numIns; i++)
     {
         setInputMode(i + 0, false, (i < triggersSize) && triggers[i], false);
         setInputMode(i + 1, false, (i < triggersSize) && triggers[i], false);
@@ -307,7 +307,7 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
     mParameters.set(serialisedParameters);
   
     const double *triggers = mParameters.getArray(kTriggers);
-    size_t triggersSize = mParameters.getArraySize(kTriggers);
+    unsigned long triggersSize = mParameters.getArraySize(kTriggers);
     
     MismatchModes mode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
 
