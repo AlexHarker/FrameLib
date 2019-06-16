@@ -7,7 +7,7 @@
 class FrameLib_ParamAlias : public FrameLib_Processor
 {
     using Parameters = FrameLib_Parameters;
-    using Serial = FrameLib_Parameters::Serial::Serial;
+    using Serial = FrameLib_Parameters::Serial;
     
     using Type = FrameLib_Parameters::Type;
 
