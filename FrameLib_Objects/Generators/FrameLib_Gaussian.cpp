@@ -73,7 +73,7 @@ unsigned long FrameLib_Gaussian::getLength()
         case kSeconds:  time = secondsToSamples(time);  break;
     }
     
-    return round(time);
+    return roundToUInt(time);
 }
 
 // Process

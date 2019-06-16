@@ -71,7 +71,7 @@ unsigned long FrameLib_Sink::convertTimeToSamples(double time)
         case kSeconds:  time = secondsToSamples(time);  break;
     }
     
-    return round(time);
+    return roundToUInt(time);
 }
 
 void FrameLib_Sink::copyAndZero(double *output, unsigned long offset, unsigned long size)
@@ -133,7 +133,7 @@ void FrameLib_Sink::process()
     
     // Calculate time offset
     
-    unsigned long offset = round(delayTime + frameTime - blockStartTime);
+    unsigned long offset = roundToUInt(delayTime + frameTime - blockStartTime);
     
     // Safety
     

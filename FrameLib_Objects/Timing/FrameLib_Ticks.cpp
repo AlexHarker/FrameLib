@@ -69,8 +69,8 @@ void FrameLib_Ticks::process()
     {
         unsigned long sizeOut;
         double *output = getOutput(0, &sizeOut);
-        unsigned long currentLimit = mParameters.getValue(kLimit);
-        unsigned long currentValue = mParameters.getValue(kSetValue);
+        unsigned long currentLimit = mParameters.getInt(kLimit);
+        unsigned long currentValue = mParameters.getInt(kSetValue);
         
         switch (mode_run)
         {

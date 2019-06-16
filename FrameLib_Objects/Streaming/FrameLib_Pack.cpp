@@ -8,7 +8,7 @@ FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, FrameLib_Parameters::Seri
     mParameters.addInt(0, "inputs", 2, 0 );
     mParameters.setInstantiation();
     mParameters.set(serialisedParameters);
-    setIO(mParameters.getValue(kInputs), 1);
+    setIO(mParameters.getInt(kInputs), 1);
     
     mSerialisedParameters.write(serialisedParameters);
 }

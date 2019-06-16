@@ -239,6 +239,11 @@ protected:
     double msToSamples(double a)       { return (a * mSamplingRate) / 1000.0; }
     double secondsToSamples(double a)  { return a * mSamplingRate; }
 
+    // Convenience methods for moving from double to int values
+
+    long roundToInt(double a) { return static_cast<long>(round(a)); }
+    unsigned long roundToUInt(double a) { return static_cast<unsigned long>(round(a)); }
+
 private:
     
     // Queueable Reset

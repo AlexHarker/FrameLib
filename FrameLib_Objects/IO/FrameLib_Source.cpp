@@ -84,7 +84,7 @@ unsigned long FrameLib_Source::convertTimeToSamples(double time)
         case kSeconds:  time = secondsToSamples(time);  break;
     }
     
-    return round(time);
+    return roundToUInt(time);
 }
 
 void FrameLib_Source::copy(const double *input, unsigned long offset, unsigned long size)

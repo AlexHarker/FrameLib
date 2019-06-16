@@ -79,7 +79,7 @@ unsigned long FrameLib_Ramp::getLength()
         case kScaleSeconds:  time = secondsToSamples(time);  break;
     }
     
-    return round(time);
+    return roundToUInt(time);
 }
 
 // Process

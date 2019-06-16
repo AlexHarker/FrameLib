@@ -64,7 +64,7 @@ void FrameLib_Split::process()
     if (units == kSamples)
         split = mParameters.getInt(kSplit);
     else
-        split = round(mParameters.getValue(kSplit) * sizeIn);
+        split = roundToUInt(mParameters.getValue(kSplit) * sizeIn);
     
     split = split > sizeIn ? sizeIn : split;
     

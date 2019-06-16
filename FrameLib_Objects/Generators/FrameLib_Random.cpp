@@ -70,7 +70,7 @@ unsigned long FrameLib_Random::getLength()
         case kSeconds:  time = secondsToSamples(time);  break;
     }
     
-    return round(time);
+    return roundToUInt(time);
 }
 
 // Process

@@ -79,7 +79,7 @@ void FrameLib_Shift::process()
     if (units == kSamples)
         shift = mParameters.getInt(kShift);
     else
-        shift = round(mParameters.getValue(kShift) * sizeIn);
+        shift = roundToInt(mParameters.getValue(kShift) * sizeIn);
     
     unsigned long absShift = std::abs(shift);
     
