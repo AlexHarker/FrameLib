@@ -18,7 +18,7 @@ FrameLib_CombineTags::FrameLib_CombineTags(FrameLib_Context context, FrameLib_Pa
     
     setIO(mNumIns, 1);
     
-    for (int i = 0; i < mNumIns; i++)
+    for (unsigned long i = 0; i < mNumIns; i++)
         setInputMode(i, false, true, false, kFrameTagged);
     setOutputType(0, kFrameTagged);
 }

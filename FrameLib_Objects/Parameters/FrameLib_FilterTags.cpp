@@ -37,7 +37,7 @@ FrameLib_FilterTags::FrameLib_FilterTags(FrameLib_Context context, FrameLib_Para
     
     mNumFilters = mParameters.getInt(kNumFilters);
     
-    for (int i = 0; i < mNumFilters; i++)
+    for (unsigned long i = 0; i < mNumFilters; i++)
     {
         snprintf(nameStr, strBufSize, "tag_%02d", i + 1);
         mParameters.addString(kFilters + i, nameStr, i);
@@ -92,7 +92,7 @@ FrameLib_FilterTags::ParameterInfo::ParameterInfo()
 
 int FrameLib_FilterTags::filterIndex(FrameLib_Parameters::Serial::Iterator &it)
 {
-    for (int i = 0; i < mNumFilters; i++)
+    for (unsigned long i = 0; i < mNumFilters; i++)
         if (it.matchTag(mParameters.getString(kFilters + i)))
             return 0;
     

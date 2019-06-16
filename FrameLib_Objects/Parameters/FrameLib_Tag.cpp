@@ -41,7 +41,7 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, FrameLib_Parameters::Serial
     
     mNumIns = mParameters.getInt(kNumIns);
     
-    for (int i = 0; i < mNumIns; i++)
+    for (unsigned long i = 0; i < mNumIns; i++)
     {
         snprintf(nameStr, strBufSize, "tag_%02d", i + 1);
         mParameters.addString(kNames + i, nameStr, i);
