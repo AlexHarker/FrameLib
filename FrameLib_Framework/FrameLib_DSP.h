@@ -243,6 +243,8 @@ protected:
 
     long roundToInt(double a) { return static_cast<long>(round(a)); }
     unsigned long roundToUInt(double a) { return static_cast<unsigned long>(round(a)); }
+    long truncToInt(double a) { return static_cast<long>(a); }
+    unsigned long truncToUInt(double a) { return static_cast<unsigned long>(a); }
 
 private:
     

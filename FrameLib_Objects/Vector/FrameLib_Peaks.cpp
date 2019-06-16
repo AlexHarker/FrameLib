@@ -81,7 +81,7 @@ void FrameLib_Peaks::process()
         if (sizeIn > 3 && (input[1] > input[2]) && (input[1] > input[3]) && (input[1] > input[0]))
             nPeaks++;
     }
-    for (long i = 2; i < (sizeIn - 2); i++)
+    for (unsigned long i = 2; i < (sizeIn - 2); i++)
         if ((input[i] > input[i - 2]) && (input[i] > input[i - 1]) && (input[i] > input[i + 1]) && (input[i] > input[i + 2]))
             nPeaks++;
     
@@ -116,7 +116,7 @@ void FrameLib_Peaks::process()
             }
         }
         
-        for (long i = 2; i < (sizeIn - 2); i++)
+        for (unsigned long i = 2; i < (sizeIn - 2); i++)
         {
             if ((input[i] > input[i - 2]) && (input[i] > input[i - 1]) && (input[i] > input[i + 1]) && (input[i] > input[i + 2]))
             {
@@ -128,21 +128,21 @@ void FrameLib_Peaks::process()
     
     // Set indices
     
-    long binsFilled = 0;
-    long peak = 0;
-    long minPoint = 0;
+    unsigned long binsFilled = 0;
+    unsigned long peak = 0;
+    unsigned long minPoint = 0;
     
     if (nPeaks)
     {
         for (; peak < (nPeaks - 1); peak++)
         {
-            long beg = output2[peak];
-            long end = round(output2[peak + 1]);
+            unsigned long beg = truncToUInt(output2[peak]);
+            unsigned long end = roundToUInt(output2[peak + 1]);
             
             double minValue = input[beg];
             minPoint = beg;
             
-            for (long i = beg; i < end; i++)
+            for (unsigned long i = beg; i < end; i++)
             {
                 if (input[i] < minValue)
                 {

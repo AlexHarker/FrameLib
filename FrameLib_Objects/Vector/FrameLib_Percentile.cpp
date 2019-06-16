@@ -68,7 +68,7 @@ void FrameLib_Percentile::process()
         // Linearly interpolate output
         
         double position = (mParameters.getValue(kPercentile) * (sizeIn - 1) / 100.0);
-        unsigned long idx = position;
+        unsigned long idx = truncToUInt(position);
         double fract = position - idx;
         
         output[0] = temp[idx] + fract * (temp[idx + 1] - temp[idx]);
