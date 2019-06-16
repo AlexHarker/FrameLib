@@ -123,7 +123,7 @@ private:
  
  */
 
-template <class T>
+template <class T, typename U>
 struct FrameLib_Connection
 {
     FrameLib_Connection() : mObject(nullptr), mIndex(0) {}
@@ -140,7 +140,7 @@ struct FrameLib_Connection
     }
     
     T *mObject;
-    unsigned long mIndex;
+    U mIndex;
 };
 
 /**
@@ -163,7 +163,7 @@ class FrameLib_Object : public FrameLib_Queueable<T>
 public:
     
     using Queue = typename FrameLib_Queueable<T>::Queue;
-    using Connection = FrameLib_Connection<T>;
+    using Connection = FrameLib_Connection<T, unsigned long>;
 
 private:
 
