@@ -4,6 +4,8 @@
 
 #include "FrameLib_Binary_Template.h"
 
+#include <functional>
+
 // Absolute diff functor
 
 namespace FrameLib_Binary_Ops
