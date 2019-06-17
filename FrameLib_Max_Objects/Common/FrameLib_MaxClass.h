@@ -1208,9 +1208,22 @@ private:
         return result;
     }
     
-    bool validInput(long index, FrameLib_Multistream *object) const         { return object && index >= 0 && index < getNumIns(); }
-    bool validOutput(long index, FrameLib_Multistream *object) const        { return object && index >= 0 && index < getNumOuts(); }
-    bool isOrderingInput(long index, FrameLib_Multistream *object) const    { return object && object->supportsOrderingConnections() && index == getNumIns(); }
+    bool validInput(long index, FrameLib_Multistream *object) const
+    {
+        return object && index >= 0 && static_cast<unsigned long>(index) < object->getNumIns();
+    }
+    
+    bool validOutput(long index, FrameLib_Multistream *object) const
+    {
+        return object && index >= 0 && static_cast<unsigned long>(index) < object->getNumOuts();
+        
+    }
+    bool isOrderingInput(long index, FrameLib_Multistream *object) const
+    {
+        return object && object->supportsOrderingConnections() && static_cast<unsigned long>(index) == object->getNumIns();
+        
+    }
+    
     bool validInput(long index) const                                       { return validInput(index, mObject.get()); }
     bool validOutput(long index) const                                      { return validOutput(index, mObject.get()); }
     bool isOrderingInput(long index) const                                  { return isOrderingInput(index, mObject.get()); }
