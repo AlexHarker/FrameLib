@@ -1093,7 +1093,7 @@ private:
     
     long getNumAudioInsRemote(t_object *x)
     {
-        t_ptr_int numAudioIns = reinterpret_cast<t_ptr_int>(object_method(x, gensym("__fl.get_num_audio_outs")));
+        t_ptr_int numAudioIns = reinterpret_cast<t_ptr_int>(object_method(x, gensym("__fl.get_num_audio_ins")));
         return static_cast<long>(numAudioIns);
     }
     
@@ -1101,7 +1101,7 @@ private:
 
     long getNumAudioOutsRemote(t_object *x)
     {
-        t_ptr_int numAudioOuts = reinterpret_cast<t_ptr_int>(object_method(x, gensym("__fl.get_num_audio_ins")));
+        t_ptr_int numAudioOuts = reinterpret_cast<t_ptr_int>(object_method(x, gensym("__fl.get_num_audio_outs")));
         return static_cast<long>(numAudioOuts);
     }
     
