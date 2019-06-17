@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\FrameLib_Max_Objects\Buffer\fl.info~.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Max_Objects\Buffer\ibuffer\ibuffer_access.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
