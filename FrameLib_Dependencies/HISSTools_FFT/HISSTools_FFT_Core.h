@@ -391,7 +391,7 @@ namespace hisstools_fft_impl{
     template <class T>
     Setup<T> *create_setup(uintptr_t max_fft_log2)
     {
-        Setup<T> *setup = allocate_aligned<Setup<T> >(1);
+        Setup<T> *setup = allocate_aligned<Setup<T>>(1);
         
         // Set Max FFT Size
         
