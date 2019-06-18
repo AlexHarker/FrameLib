@@ -1,10 +1,10 @@
-import a_create_category_database
-import b_edit_raw_XML
-import c_parse_to_dlookup
-import d_parse_to_qlookup
-import e_parse_to_tlookup
-import f_parse_to_jlookup
-import g_create_tutorial_coll
+create_category_database = __import__('1_create_category_database')
+edit_raw_XML = __import__('2_edit_raw_XML')
+parse_to_dlookup = __import__('3_parse_to_dlookup')
+parse_to_qlookup = __import__('4_parse_to_qlookup')
+parse_to_tlookup = __import__('5_parse_to_tlookup')
+parse_to_jlookup = __import__('6_parse_to_jlookup')
+create_tutorial_coll = __import__('7_create_tutorial_coll')
 import helpers as hp
 
 def main():
@@ -19,42 +19,42 @@ def main():
     ## Creates a category database in .json format.
     ## The JSON file is used by edit_raw_XML.py to assign object categories to the xml files.
     print('1. Building Category Database')
-    a_create_category_database.main(root)
+    create_category_database.main(root)
     hp.hyp()
 
     ## The purpose of this script is to set the categories for the Raw_XML files. 
     ## C++ doesnt know about the categories at XML creation and its easier to iterate file structures in python.
     ## Edited XML files are copied from /tmp/ to the refpages directory
     print('2. Editing XML Files')
-    b_edit_raw_XML.main(root)
+    edit_raw_XML.main(root)
     hp.hyp()
 
     ## This script creates a dictionary used to display specific object info in the extras Max Patch.
     ## Similar to the qlookup, but is specifically used to display the digest with mouse hovering
     print('3. Building dlookup')
-    c_parse_to_dlookup.main(root)
+    parse_to_dlookup.main(root)
     hp.hyp()
 
     ## This script creates a dictionary that contains specific object information.
     ## This provides the dynamic hover behaviour
     print('4. Building qlookup')
-    d_parse_to_qlookup.main(root)
+    parse_to_qlookup.main(root)
     hp.hyp()
 
     ## Creates a dictionary used to display names and descriptions of tutorials in the extras Max Patch.
     ## The tutorials are categorised by difficulty. {Beginner, Intermediate, Advanced}
     print('5. Building tlookup')
-    e_parse_to_tlookup.main(root)
+    parse_to_tlookup.main(root)
     hp.hyp()
 
     ## Creates a dict containing information about object parameters. This is used by the help file template.
     print('6. Building jlookup')
-    f_parse_to_jlookup.main(root)
+    parse_to_jlookup.main(root)
     hp.hyp()
 
     ## Creates a coll containing the file names of the tutorials. Makes it a bit easier to load them.
     print('7. Building tutorial name coll')
-    g_create_tutorial_coll.main(root)
+    create_tutorial_coll.main(root)
     hp.hyp()
     print(' ')
     print("Completed all python scripts!!!")
