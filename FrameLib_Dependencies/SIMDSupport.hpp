@@ -23,16 +23,16 @@
 #define I32_VEC_FROM_F32_ROUND			_mm_cvtps_epi32
 #define I32_VEC_FROM_F32_TRUNC			_mm_cvttps_epi32
  
-#define F64_VEC_FROM_F32				_mm_cvtps_pd
-#define F32_VEC_FROM_F64				_mm_cvtpd_ps
-
-#define F64_VEC_FROM_I32				_mm_cvtepi32_pd 
-#define I32_VEC_FROM_F64_ROUND			_mm_cvtpd_epi32
-#define I32_VEC_FROM_F64_TRUNC			_mm_cvttpd_epi32
-
-// Shuffles
+ #define F64_VEC_FROM_F32                   _mm_cvtps_pd
+ #define F32_VEC_FROM_F64                   _mm_cvtpd_ps
  
-#define I32_VEC_SHUFFLE_OP				_mm_shuffle_epi32
+ #define F64_VEC_FROM_I32                   _mm_cvtepi32_pd
+ #define I32_VEC_FROM_F64_ROUND             _mm_cvtpd_epi32
+ #define I32_VEC_FROM_F64_TRUNC             _mm_cvttpd_epi32
+ 
+ // Shuffles
+ 
+ #define I32_VEC_SHUFFLE_OP                 _mm_shuffle_epi32
 */
 
 #ifdef __APPLE__
@@ -319,6 +319,9 @@ struct SIMDType<double, 1>
     
     friend SIMDType sqrt(const SIMDType& a) { return sqrt(a.mVal); }
     
+    friend SIMDType round(const SIMDType& a) { return round(a.mVal); }
+    friend SIMDType trunc(const SIMDType& a) { return trunc(a.mVal); }
+    
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return std::min(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return std::max(a.mVal, b.mVal); }
     friend SIMDType sel(const SIMDType& a, const SIMDType& b, const SIMDType& c) { return c.mVal ? b.mVal : a.mVal; }
@@ -356,6 +359,9 @@ struct SIMDType<float, 1>
     SIMDType& operator /= (const SIMDType& b)   { return (*this = *this / b); }
     
     friend SIMDType sqrt(const SIMDType& a) { return sqrtf(a.mVal); }
+    
+    friend SIMDType round(const SIMDType& a) { return roundf(a.mVal); }
+    friend SIMDType trunc(const SIMDType& a) { return truncf(a.mVal); }
     
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return std::min(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return std::max(a.mVal, b.mVal); }
@@ -468,6 +474,9 @@ struct SIMDType<double, 2> : public SIMDVector<double, __m128d, 2>
     
     friend SIMDType sqrt(const SIMDType& a) { return _mm_sqrt_pd(a.mVal); }
     
+    friend SIMDType round(const SIMDType& a) { return _mm_round_pd(a.mVal, _MM_FROUND_TO_NEAREST_INT |_MM_FROUND_NO_EXC); }
+    friend SIMDType trunc(const SIMDType& a) { return _mm_round_pd(a.mVal, _MM_FROUND_TO_ZERO |_MM_FROUND_NO_EXC); }
+    
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm_min_pd(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm_max_pd(a.mVal, b.mVal); }
     friend SIMDType sel(const SIMDType& a, const SIMDType& b, const SIMDType& c) { return and_not(c, a) | (b & c); }
@@ -520,6 +529,9 @@ struct SIMDType<double, 4> : public SIMDVector<double, __m256d, 4>
 
     friend SIMDType sqrt(const SIMDType& a) { return _mm256_sqrt_pd(a.mVal); }
     
+    friend SIMDType round(const SIMDType& a) { return _mm256_round_pd(a.mVal, _MM_FROUND_TO_NEAREST_INT |_MM_FROUND_NO_EXC); }
+    friend SIMDType trunc(const SIMDType& a) { return _mm256_round_pd(a.mVal, _MM_FROUND_TO_ZERO |_MM_FROUND_NO_EXC); }
+    
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm256_min_pd(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm256_max_pd(a.mVal, b.mVal); }
     friend SIMDType sel(const SIMDType& a, const SIMDType& b, const SIMDType& c) { return and_not(c, a) | (b & c); }
@@ -560,6 +572,9 @@ struct SIMDType<float, 4> : public SIMDVector<float, __m128, 4>
     SIMDType& operator /= (const SIMDType& b)   { return (*this = *this / b); }
     
     friend SIMDType sqrt(const SIMDType& a) { return _mm_sqrt_ps(a.mVal); }
+    
+    friend SIMDType round(const SIMDType& a) { return _mm_round_ps(a.mVal, _MM_FROUND_TO_NEAREST_INT |_MM_FROUND_NO_EXC); }
+    friend SIMDType trunc(const SIMDType& a) { return _mm_round_ps(a.mVal, _MM_FROUND_TO_ZERO |_MM_FROUND_NO_EXC); }
     
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm_min_ps(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm_max_ps(a.mVal, b.mVal); }
@@ -660,6 +675,9 @@ struct SIMDType<float, 8> : public SIMDVector<float, __m256, 8>
     SIMDType& operator /= (const SIMDType& b)   { return (*this = *this / b); }
     
     friend SIMDType sqrt(const SIMDType& a) { return _mm256_sqrt_ps(a.mVal); }
+
+    friend SIMDType round(const SIMDType& a) { return _mm256_round_ps(a.mVal, _MM_FROUND_TO_NEAREST_INT |_MM_FROUND_NO_EXC); }
+    friend SIMDType trunc(const SIMDType& a) { return _mm256_round_ps(a.mVal, _MM_FROUND_TO_ZERO |_MM_FROUND_NO_EXC); }
     
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm256_min_ps(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm256_max_ps(a.mVal, b.mVal); }
@@ -754,6 +772,9 @@ struct SIMDType<double, 8> : public SIMDVector<double, __m512d, 8>
     
     friend SIMDType sqrt(const SIMDType& a) { return _mm512_sqrt_pd(a.mVal); }
     
+    friend SIMDType round(const SIMDType& a) { return _mm512_round_pd(a.mVal, _MM_FROUND_TO_NEAREST_INT |_MM_FROUND_NO_EXC); }
+    friend SIMDType trunc(const SIMDType& a) { return _mm512_round_pd(a.mVal, _MM_FROUND_TO_ZERO |_MM_FROUND_NO_EXC); }
+    
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm512_min_pd(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm512_max_pd(a.mVal, b.mVal); }
     friend SIMDType sel(const SIMDType& a, const SIMDType& b, const SIMDType& c) { return and_not(c, a) | (b & c); }
@@ -792,6 +813,9 @@ struct SIMDType<float, 16> : public SIMDVector<float, __m512, 16>
     SIMDType& operator /= (const SIMDType& b)   { return (*this = *this / b); }
     
     friend SIMDType sqrt(const SIMDType& a) { return _mm512_sqrt_ps(a.mVal); }
+    
+    friend SIMDType round(const SIMDType& a) { return _mm512_round_ps(a.mVal, _MM_FROUND_TO_NEAREST_INT |_MM_FROUND_NO_EXC); }
+    friend SIMDType trunc(const SIMDType& a) { return _mm512_round_ps(a.mVal, _MM_FROUND_TO_ZERO |_MM_FROUND_NO_EXC); }
     
     friend SIMDType min(const SIMDType& a, const SIMDType& b) { return _mm512_min_ps(a.mVal, b.mVal); }
     friend SIMDType max(const SIMDType& a, const SIMDType& b) { return _mm512_max_ps(a.mVal, b.mVal); }
