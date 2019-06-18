@@ -10,7 +10,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>FrameLib_Base</_PropertySheetDisplayName>
-    <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <ItemDefinitionGroup>

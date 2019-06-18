@@ -3,7 +3,6 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <LinkIncremental>true</LinkIncremental>
     <_PropertySheetDisplayName>FrameLib_Max_Base</_PropertySheetDisplayName>
   </PropertyGroup>
   <ItemDefinitionGroup>
