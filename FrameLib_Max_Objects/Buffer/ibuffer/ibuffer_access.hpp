@@ -66,10 +66,10 @@ public:
     BufferType get_type() const         { return buffer_type; };
     void *get_samples() const           { return samples; };
     t_ptr_int get_length() const        { return length; }
-    t_ptr_int get_num_chans() const     { return num_chans; }
+    long get_num_chans() const          { return num_chans; }
     double get_sample_rate() const      { return sample_rate; }
-    long get_format() const             { return format; }
-    
+    t_ibuffer_format get_format() const { return format; }
+
 private:
     
     void acquire_buffer();
@@ -81,7 +81,7 @@ private:
     
     t_ptr_int length;
     long num_chans;
-    long format;
+    t_ibuffer_format format;
     
     double sample_rate;
  
@@ -90,7 +90,8 @@ private:
 
 // Reading different formats
 
-template <class T, int64_t bit_scale> struct fetch : public table_fetcher<float>
+template <class T, int64_t bit_scale>
+struct fetch : public table_fetcher<float>
 {
     fetch(const ibuffer_data& data, long chan)
     : table_fetcher(1.0 / ((int64_t) 1 << (bit_scale - 1))), samples(((T *) data.get_samples()) + chan), num_chans(data.get_num_chans()) {}
@@ -102,7 +103,8 @@ template <class T, int64_t bit_scale> struct fetch : public table_fetcher<float>
     long num_chans;
 };
 
-template<> struct fetch<int32_t, 24> : public table_fetcher<float>
+template<>
+struct fetch<int32_t, 24> : public table_fetcher<float>
 {
     fetch(const ibuffer_data& data, long chan)
     : table_fetcher(1.0 / ((int64_t) 1 << 31)), samples(((uint8_t *) data.get_samples()) + 3 * chan), num_chans(data.get_num_chans()) {}
