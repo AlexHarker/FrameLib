@@ -32,11 +32,12 @@ template <class T, class U, class V, class Table, typename Interp> struct interp
         for (int i = 0; i < T::size; i++)
         {
             V position = *positions++;
-            intptr_t offset = static_cast<intptr_t>(position);
-            fract_array[i] = static_cast<pos_type>(position - static_cast<V>(offset));
             
-            array[i] = static_cast<out_type>(fetch(offset));
-            array[i + T::size] = static_cast<out_type>(fetch(offset + 1));
+            intptr_t offset     = static_cast<intptr_t>(position);
+            fract_array[i]      = static_cast<pos_type>(position - static_cast<V>(offset));
+            
+            array[i]            = static_cast<out_type>(fetch(offset + 0));
+            array[i + T::size]  = static_cast<out_type>(fetch(offset + 1));
         }
         
         const T y0 = U(array);
@@ -64,13 +65,14 @@ template <class T, class U, class V, class Table, typename Interp> struct interp
         for (int i = 0; i < T::size; i++)
         {
             V position = *positions++;
-            intptr_t offset = static_cast<intptr_t>(position);
-            fract_array[i] = static_cast<pos_type>(position - static_cast<V>(offset));
             
-            array[i] = static_cast<out_type>(fetch(offset - 1));
-            array[i + T::size] = static_cast<out_type>(fetch(offset));
-            array[i + T::size * 2] = static_cast<out_type>(fetch(offset + 1));
-            array[i + T::size * 3] = static_cast<out_type>(fetch(offset + 2));
+            intptr_t offset         = static_cast<intptr_t>(position);
+            fract_array[i]          = static_cast<pos_type>(position - static_cast<V>(offset));
+            
+            array[i]                = static_cast<out_type>(fetch(offset - 1));
+            array[i + T::size]      = static_cast<out_type>(fetch(offset + 0));
+            array[i + T::size * 2]  = static_cast<out_type>(fetch(offset + 1));
+            array[i + T::size * 3]  = static_cast<out_type>(fetch(offset + 2));
         }
         
         const T y0 = U(array);
