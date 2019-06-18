@@ -59,7 +59,7 @@ FrameLib_MaxClass_FromMax::FrameLib_MaxClass_FromMax(t_symbol *s, long argc, t_a
 
 void FrameLib_MaxClass_FromMax::intHandler(t_atom_long in)
 {
-    floatHandler(in);
+    floatHandler(static_cast<double>(in));
 }
 
 void FrameLib_MaxClass_FromMax::floatHandler(double in)

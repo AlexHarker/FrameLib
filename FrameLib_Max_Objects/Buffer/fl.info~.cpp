@@ -19,16 +19,15 @@ class FrameLib_MaxClass_Info : public FrameLib_MaxClass_Expand<FrameLib_Info>
         void acquire(unsigned long& length, double& samplingRate, unsigned long& chans) override
         {
             mBuffer.acquire(mBufferName);
-            length = mBuffer.get_length();
+            length = static_cast<unsigned long>(mBuffer.get_length());
             samplingRate = mBuffer.get_sample_rate();
-            chans = mBuffer.get_num_chans();
+            chans = static_cast<unsigned long>(mBuffer.get_num_chans());
         }
         
         void release() override
         {
             mBuffer.release();
         };
-    // Remove read function as fl.info~ is not reading the buffer just returning its features. 25/11/18
         
     private:
         

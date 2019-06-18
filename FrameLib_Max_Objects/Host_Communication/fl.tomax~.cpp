@@ -47,7 +47,9 @@ private:
 // Proxy Class
 
 void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(unsigned long index, unsigned long stream, const double *values, unsigned long N)
-{    
+{
+    method outletMethod = (method) &FrameLib_MaxClass_ToMax::toOutletExternal;
+    
     N = limitSize(N + 1);
     t_atom *output = alloc<t_atom>(N);
     
@@ -58,7 +60,7 @@ void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(unsigned long index, unsig
         for (unsigned long i = 1; i < N; i++)
             atom_setfloat(output + i, values[i - 1]);
         
-        schedule_delay(mObject, (method) &FrameLib_MaxClass_ToMax::toOutletExternal, 0.0, nullptr, N, output);
+        schedule_delay(mObject, outletMethod, 0, nullptr, static_cast<short>(N), output);
         
         dealloc(output);
     }
@@ -66,6 +68,8 @@ void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(unsigned long index, unsig
 
 void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial)
 {
+    method outletMethod = (method) &FrameLib_MaxClass_ToMax::toOutletExternal;
+
     // Determine maximum required size
     
     unsigned long maxSize = 0;
@@ -110,7 +114,7 @@ void FrameLib_MaxClass_ToMax::ToHostProxy::sendToHost(unsigned long index, unsig
             atom_setsym(output + 1, gensym(it.getString()));
         }
         
-        schedule_delay(mObject, (method) &FrameLib_MaxClass_ToMax::toOutletExternal, 0.0, tag, size, output);
+        schedule_delay(mObject, outletMethod, 0, tag, static_cast<short>(size), output);
     }
     
     dealloc(output);
@@ -142,7 +146,7 @@ FrameLib_MaxClass_ToMax::FrameLib_MaxClass_ToMax(t_symbol *s, long argc, t_atom 
 
 void FrameLib_MaxClass_ToMax::toOutlet(t_symbol *s, short ac, t_atom *av)
 {
-    long idx = atom_getlong(av) % mOutlets.size();
+    t_atom_long idx = atom_getlong(av) % static_cast<t_atom_long>(mOutlets.size());
     ac--;
     
     if (!ac)
