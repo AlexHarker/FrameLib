@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\FrameLib_Dependencies\HISSTools_FFT\HISSTools_FFT.h" />
+    <ClInclude Include="..\..\..\FrameLib_Dependencies\HISSTools_FFT\HISSTools_FFT_Core.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Binary\FrameLib_Binary_Objects.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Binary\FrameLib_Binary_Template.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Buffer\FrameLib_Info.h" />
@@ -124,6 +126,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Vector_Template.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\FrameLib_Dependencies\HISSTools_FFT\HISSTools_FFT.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Buffer\FrameLib_Info.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Buffer\FrameLib_Read.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Common_Utilities\FrameLib_RandGen.cpp" />

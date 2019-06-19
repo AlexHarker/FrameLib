@@ -19,8 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\FrameLib_Dependencies\HISSTools_FFT\HISSTools_FFT.h" />
-    <ClInclude Include="..\..\..\FrameLib_Dependencies\HISSTools_FFT\HISSTools_FFT_Core.h" />
     <ClInclude Include="..\..\..\FrameLib_Dependencies\tlsf\tlsf.h" />
     <ClInclude Include="..\..\..\FrameLib_Framework\FrameLib_Context.h" />
     <ClInclude Include="..\..\..\FrameLib_Framework\FrameLib_DSP.h" />
@@ -38,7 +36,6 @@
     <ClInclude Include="..\..\..\FrameLib_Framework\FrameLib_Types.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\FrameLib_Dependencies\HISSTools_FFT\HISSTools_FFT.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Dependencies\tlsf\tlsf.c" />
     <ClCompile Include="..\..\..\FrameLib_Framework\FrameLib_DSP.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Framework\FrameLib_Errors.cpp" />
