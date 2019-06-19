@@ -556,10 +556,10 @@ namespace hisstools_fft_impl{
                   Vector4x<double, 4> *ptr3,
                   Vector4x<double, 4> *ptr4)
     {
-        const __m256 v1 = _mm256_unpacklo_pd(A.mData[0].mVal, B.mData[0].mVal);
-        const __m256 v2 = _mm256_unpackhi_pd(A.mData[0].mVal, B.mData[0].mVal);
-        const __m256 v3 = _mm256_unpacklo_pd(C.mData[0].mVal, D.mData[0].mVal);
-        const __m256 v4 = _mm256_unpackhi_pd(C.mData[0].mVal, D.mData[0].mVal);
+        const __m256d v1 = _mm256_unpacklo_pd(A.mData[0].mVal, B.mData[0].mVal);
+        const __m256d v2 = _mm256_unpackhi_pd(A.mData[0].mVal, B.mData[0].mVal);
+        const __m256d v3 = _mm256_unpacklo_pd(C.mData[0].mVal, D.mData[0].mVal);
+        const __m256d v4 = _mm256_unpackhi_pd(C.mData[0].mVal, D.mData[0].mVal);
         
         ptr1->mData[0] = _mm256_unpacklo_pd(v1, v3);
         ptr2->mData[0] = _mm256_unpacklo_pd(v2, v4);
