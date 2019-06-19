@@ -90,6 +90,14 @@ template <class T> void deallocate_aligned(T *ptr)
 #define SIMD_COMPILER_SUPPORT_AVX256 2
 #define SIMD_COMPILER_SUPPORT_AVX512 3
 
+// Microsoft Visual Studio doesn't ever define __SSE__ so if necessary we derive it from other defines
+
+#ifndef __SSE__
+#if defined _M_X64 || (defined _M_IX86_FP && _M_IX86_FP > 0)
+#define __SSE__ 1
+#endif
+#endif
+
 template<class T> struct SIMDLimits
 {
     static const int max_size = 1;
