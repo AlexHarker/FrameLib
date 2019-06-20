@@ -1,6 +1,7 @@
 import os
 import json
 from strippers import strip_extension
+from helpers import write_json, cd_up
 
 def main(root):
     '''
@@ -8,8 +9,8 @@ def main(root):
     This is used by edit_raw_XML.py to assign object categories to the xml files.
     '''
     dir_path = root
-    object_path = dir_path.replace('/Documentation/Max Documentation', '/FrameLib_Max_Objects')
-    output_path = f'{dir_path}/category_database.json'
+    object_path = os.path.join(cd_up(root, 2), 'FrameLib_Max_Objects')
+    output_path = os.path.join(dir_path, 'category_database.json')
 
     file_categories = (os.listdir(object_path))
     
@@ -32,7 +33,6 @@ def main(root):
         pass
 
     file_categories.sort()
-
     category_dict = dict({})
 
     for item in file_categories:
@@ -45,5 +45,5 @@ def main(root):
             files[i] = strip_extension(files[i], 1)
         category_dict[item] = files
         
-    with open(output_path, 'w+') as fp:
-        json.dump(category_dict, fp, indent=4)
+    ## Write dict into JSON file
+    write_json(output_path, category_dict)

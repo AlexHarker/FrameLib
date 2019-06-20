@@ -2,6 +2,7 @@ import json
 import xml.etree.ElementTree as et
 import os
 from strippers import strip_space
+from helpers import write_json, cd_up
 
 class jParseAndBuild():
     '''
@@ -65,9 +66,9 @@ def main(root):
     bad_entries = ['.DS_Store', '_c74_ref_modules.xml']
 
     dir_path = root
-    dir_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib')
-    ref_dir = f'{dir_path}/docs/refpages' 
-    obj_lookup = f'{dir_path}/interfaces/FrameLib-obj-jlookup.json'
+    dir_path = os.path.join(cd_up(root, 2), 'Current Test Version', 'FrameLib')
+    ref_dir = os.path.join(dir_path, 'docs', 'refpages')
+    obj_lookup = os.path.join(dir_path, 'interfaces', 'FrameLib-obj-jlookup.json')
 
     worker = jParseAndBuild() # make an instance of the class
     
@@ -81,15 +82,14 @@ def main(root):
     if refpages:  
         for filename in refpages:
             current_category = filename
-            source_file_name = f'{ref_dir}/{filename}'
+            source_file_name = os.path.join(ref_dir, filename)
 
             for filename in os.listdir(source_file_name):
-                if filename != '.DS_Store':
-                    source_file = f'{ref_dir}/{current_category}/{filename}'    
+                if filename != '.DS_Store': 
+                    source_file = os.path.join(ref_dir, current_category, filename)
                     worker.extract_from_refpage(source_file)
-
-        with open(obj_lookup, 'w') as fp:
-            json.dump(worker.j_master_dict, fp, indent=4)
+                    
+        write_json(obj_lookup, worker.j_master_dict)
 
 
 

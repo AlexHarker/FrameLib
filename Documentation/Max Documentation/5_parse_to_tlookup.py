@@ -3,6 +3,7 @@ import json
 import xml.etree.ElementTree as et
 import os
 from strippers import strip_space
+from helpers import write_json, cd_up
 
 # A class to parse the XML files and build a JSON file from it #
 class tParseAndBuild():
@@ -58,16 +59,15 @@ def main(root):
 
     # Directory stuff #
     dir_path = root
-    dir_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib')
-    ref_dir = dir_path + '/docs/tutorials/FrameLib-tut/00_fl_index.maxtut.xml' 
-    obj_lookup = dir_path + '/interfaces/FrameLib-obj-tlookup.json'
+    dir_path = os.path.join(cd_up(root, 2), 'Current Test Version', 'FrameLib')
+    ref_dir = os.path.join(dir_path, 'docs', 'tutorials', 'FrameLib-tut', '00_fl_index.maxtut.xml')
+    obj_lookup = os.path.join(dir_path, 'interfaces', 'FrameLib-obj-tlookup.json')
 
     worker = tParseAndBuild()
 
     worker.extract_from_refpage(ref_dir)
 
-    with open(obj_lookup, 'w') as fp:
-        json.dump(worker.d_skeleton, fp, indent=4)
+    write_json(obj_lookup, worker.d_skeleton)
 
 
 

@@ -1,11 +1,12 @@
 import os
+from helpers import cd_up
 
 def main(root):
     # Directory stuff 
     dir_path = root
-    dir_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib')
-    tutorial_path = f'{dir_path}/docs/tutorial-patchers/'
-    coll_output_path = f'{tutorial_path}tutorial_names.txt'
+    dir_path = os.path.join(cd_up(root, 2), 'Current Test Version', 'FrameLib')
+    tutorial_path = os.path.join(dir_path, 'docs', 'tutorial-patchers')
+    coll_output_path = os.path.join(tutorial_path, 'tutorial_names.txt')
 
     # If dir doesnt exist make, otherwise edit existing 
     coll = open(coll_output_path, 'w+')

@@ -3,12 +3,13 @@ import json
 import xml.etree.ElementTree as et
 import os
 from strippers import strip_space
+from helpers import cd_up, write_json ,remove_ds
 
 # A class to parse the XML files and build a JSON file from it #
 class dParseAndBuild():
-    """
+    '''
     This class parses XML files related to Max objects, finds relevant information and then reformats it into a JSON file.
-    """
+    '''
     def __init__(self):
         self.tree         = 0
         self.root         = 0
@@ -53,14 +54,14 @@ def main(root):
     bad_entries = ['.DS_Store', '_c74_ref_modules.xml']
     # Directory stuff #
     dir_path = root
-    dir_path = dir_path.replace('/Documentation/Max Documentation', '/Current Test Version/FrameLib')
-    ref_dir = f'{dir_path}/docs/refpages'
-    obj_lookup = f'{dir_path}/interfaces/FrameLib-obj-dlookup.json'
+    dir_path = os.path.join(cd_up(root, 2), 'Current Test Version', 'FrameLib')
+    ref_dir = os.path.join(dir_path, 'docs', 'refpages')
+    obj_lookup = os.path.join(dir_path, 'interfaces', 'FrameLib-obj-dlookup.json')
 
     worker = dParseAndBuild()
     
     # Make a list of file names and remove bad entries
-    refpages = os.listdir(ref_dir)
+    refpages = remove_ds(os.listdir(ref_dir))
     for badness in bad_entries:
         if badness in refpages:
             refpages.remove(badness)
@@ -69,15 +70,13 @@ def main(root):
     if refpages:
         for filename in refpages:
             current_category = filename
-            source_file_name = f'{ref_dir}/{filename}'
+            source_file_name = os.path.join(ref_dir, filename)
 
             for filename in os.listdir(source_file_name):
-                if filename != '.DS_Store':
-                    source_file = f'{ref_dir}/{current_category}/{filename}'
-                    worker.extract_from_refpage(source_file)
+                source_file = os.path.join(ref_dir, current_category, filename)
+                worker.extract_from_refpage(source_file)
 
-        with open(obj_lookup, 'w') as fp:
-            json.dump(worker.d_master_dict, fp, indent=4)
+        write_json(obj_lookup, worker.d_master_dict)
     else:
         print('Found no XML files to parse. Moving on to next stage.')
 
