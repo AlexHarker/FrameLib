@@ -11,7 +11,9 @@ def main():
     root = hp.get_path()
     hp.sign_off()
     hp.space()
-    
+
+    ## This script will only work with python 3. ##
+
     ## Stage 0
     ## There is a prior stage here where make_object_list.py is called by Xcode.
     ## This produces the header file which Build_Max_Docs.cpp uses to know about FrameLib objects and types.
