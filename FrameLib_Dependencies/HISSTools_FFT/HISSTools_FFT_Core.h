@@ -216,14 +216,20 @@ namespace hisstools_fft_impl{
         
         static void deinterleave(const SIMDVector *input, SIMDVector *outReal, SIMDVector *outImag)
         {
-            *outReal = _mm256_unpacklo_pd(input[0].mVal, input[1].mVal);
-            *outImag = _mm256_unpackhi_pd(input[0].mVal, input[1].mVal);
+            const __m256d v1 = _mm256_permute2f128_pd(input[0].mVal, input[1].mVal, 0x20);
+            const __m256d v2 = _mm256_permute2f128_pd(input[0].mVal, input[1].mVal, 0x31);
+            
+            *outReal = _mm256_unpacklo_pd(v1, v2);
+            *outImag = _mm256_unpackhi_pd(v1, v2);
         }
         
         static void interleave(const SIMDVector *inReal, const SIMDVector *inImag, SIMDVector *output)
         {
-            output[0] = _mm256_unpacklo_pd(inReal->mVal, inImag->mVal);
-            output[1] = _mm256_unpackhi_pd(inReal->mVal, inImag->mVal);
+            const __m256d v1 = _mm256_unpacklo_pd(inReal->mVal, inImag->mVal);
+            const __m256d v2 = _mm256_unpackhi_pd(inReal->mVal, inImag->mVal);
+            
+            output[0] = _mm256_permute2f128_pd(v1, v2, 0x20);
+            output[1] = _mm256_permute2f128_pd(v1, v2, 0x31);
         }
     };
     
@@ -561,10 +567,20 @@ namespace hisstools_fft_impl{
         const __m256d v3 = _mm256_unpacklo_pd(C.mData[0].mVal, D.mData[0].mVal);
         const __m256d v4 = _mm256_unpackhi_pd(C.mData[0].mVal, D.mData[0].mVal);
         
-        ptr1->mData[0] = _mm256_unpacklo_pd(v1, v3);
-        ptr2->mData[0] = _mm256_unpacklo_pd(v2, v4);
-        ptr3->mData[0] = _mm256_unpackhi_pd(v1, v3);
-        ptr4->mData[0] = _mm256_unpackhi_pd(v2, v4);
+        const __m256d v5 = _mm256_permute2f128_pd(v1, v2, 0x20);
+        const __m256d v6 = _mm256_permute2f128_pd(v1, v2, 0x31);
+        const __m256d v7 = _mm256_permute2f128_pd(v3, v4, 0x20);
+        const __m256d v8 = _mm256_permute2f128_pd(v3, v4, 0x31);
+        
+        const __m256d v9 = _mm256_unpacklo_pd(v5, v7);
+        const __m256d vA = _mm256_unpackhi_pd(v5, v7);
+        const __m256d vB = _mm256_unpacklo_pd(v6, v8);
+        const __m256d vC = _mm256_unpackhi_pd(v6, v8);
+        
+        ptr1->mData[0] = _mm256_permute2f128_pd(v9, vA, 0x20);
+        ptr2->mData[0] = _mm256_permute2f128_pd(vB, vC, 0x20);
+        ptr3->mData[0] = _mm256_permute2f128_pd(v9, vA, 0x31);
+        ptr4->mData[0] = _mm256_permute2f128_pd(vB, vC, 0x31) ;
     }
     
 #endif
