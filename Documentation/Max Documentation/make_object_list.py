@@ -6,7 +6,7 @@ import re
 root = get_path()
 
 ## Create the Max_Object_list.h and add skeleton
-op = open(os.path.join(root, 'Max_Object_list.h'), 'w+')
+op = open(os.path.join(root, 'Max_Object_List.h'), 'w+')
 op.write('#include "FrameLib_TypeList.h"')
 op.write('\n \n')
 op.write('using FrameLib_DSPList = FrameLib_Typelist<')
