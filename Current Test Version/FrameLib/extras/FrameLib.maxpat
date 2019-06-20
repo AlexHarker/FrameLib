@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 0.0, 45.0, 692.0, 855.0 ],
+		"rect" : [ 34.0, 79.0, 692.0, 855.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 11.0,
@@ -21,7 +21,7 @@
 		"gridsnaponopen" : 1,
 		"objectsnaponopen" : 1,
 		"statusbarvisible" : 2,
-		"toolbarvisible" : 0,
+		"toolbarvisible" : 1,
 		"lefttoolbarpinned" : 0,
 		"toptoolbarpinned" : 0,
 		"righttoolbarpinned" : 0,
@@ -82,7 +82,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 692.0, 829.0 ],
+						"rect" : [ 34.0, 105.0, 692.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -256,7 +256,6 @@
 										"tags" : "",
 										"style" : "",
 										"subpatcher_template" : "default",
-										"visible" : 1,
 										"boxes" : [ 											{
 												"box" : 												{
 													"hidden" : 1,
@@ -517,8 +516,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -585,7 +584,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 71.0, 692.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 692.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -685,14 +684,16 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 14.0,
 									"id" : "obj-17",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 210.0, 384.0, 23.0 ],
+									"patching_rect" : [ 23.0, 210.0, 384.0, 40.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 251.0, 153.0, 422.0, 23.0 ],
-									"text" : "Getting familiar with the FrameLib library.",
-									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
+									"presentation_linecount" : 2,
+									"presentation_rect" : [ 251.0, 153.0, 422.0, 40.0 ],
+									"text" : "A general introduction to FrameLib and some foundation DSP concepts..",
+									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
 							}
@@ -1303,8 +1304,8 @@
 									"presentation" : 1,
 									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 97.0, 422.0, 30.0 ],
-									"text" : "Tutorial 2: Getting to grips with frame based processing.",
-									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
+									"text" : "Tutorial 1: An introduction to FrameLib and frame based processing.",
+									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
 							}
@@ -2608,8 +2609,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2643,7 +2644,7 @@
 								"multi" : 0
 							}
  ],
-						"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
+						"textcolor" : [ 0.0, 0.0, 0.0, 0.5 ]
 					}
 ,
 					"patching_rect" : [ 170.79998779296875, 43.999984741210938, 61.0, 21.0 ],
@@ -2652,7 +2653,7 @@
 						"digest" : "",
 						"globalpatchername" : "",
 						"tags" : "",
-						"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
+						"textcolor" : [ 0.0, 0.0, 0.0, 0.5 ]
 					}
 ,
 					"text" : "p Tutorials"
@@ -4425,8 +4426,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -5287,8 +5288,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
