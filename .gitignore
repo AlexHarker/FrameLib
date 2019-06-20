@@ -27,6 +27,7 @@ _MaxSDK_/
 *.toc
 *.log
 *.out
+*.code-workspace
 
 ## Binaries
 externals/
