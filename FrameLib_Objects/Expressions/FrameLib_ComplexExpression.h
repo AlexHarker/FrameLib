@@ -32,7 +32,7 @@ class FrameLib_ComplexExpression : public FrameLib_Block
         
         // Constructor
         
-        InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns);
+        InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns);
 
         void copyVectorZeroWrap(double* output, const double *input, unsigned long sizeOut, unsigned long sizeIn, unsigned long sizeWrap);
         
@@ -54,7 +54,7 @@ class FrameLib_ComplexExpression : public FrameLib_Block
         
         // Constructor
         
-        ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns, std::complex<double> value);
+        ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns, std::complex<double> value);
         
     private:
         

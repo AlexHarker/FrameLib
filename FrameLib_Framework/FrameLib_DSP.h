@@ -106,8 +106,8 @@ private:
         FrameType mCurrentType;
         FrameType mRequestedType;
         
-        size_t mCurrentSize;
-        size_t mRequestedSize;
+        unsigned long mCurrentSize;
+        unsigned long mRequestedSize;
         size_t mPointerOffset;
     };
     
@@ -185,18 +185,18 @@ protected:
     
     // Output Allocation
     
-    void requestOutputSize(unsigned long idx, size_t size)          { mOutputs[idx].mRequestedSize = size; }
-    void requestAddedOutputSize(unsigned long idx, size_t size)     { mOutputs[idx].mRequestedSize += size; }
+    void requestOutputSize(unsigned long idx, unsigned long size)           { mOutputs[idx].mRequestedSize = size; }
+    void requestAddedOutputSize(unsigned long idx, unsigned long size)      { mOutputs[idx].mRequestedSize += size; }
     bool allocateOutputs();
     
     // Get Inputs and Outputs
     
     FrameType getInputCurrentType(unsigned long idx) const                          { return mInputs[idx].getCurrentType(); }
-    const double *getInput(unsigned long idx, size_t *size)  const;
+    const double *getInput(unsigned long idx, unsigned long *size)  const;
     const FrameLib_Parameters::Serial *getInput(unsigned long idx)  const;
     
     FrameType getOutputCurrentType(unsigned long idx) const                         { return mOutputs[idx].mCurrentType; }
-    double *getOutput(unsigned long idx, size_t *size)  const;
+    double *getOutput(unsigned long idx, unsigned long *size)  const;
     FrameLib_Parameters::Serial *getOutput(unsigned long idx)  const;
 
     // Convience methods for copying and zeroing
@@ -231,13 +231,20 @@ protected:
 
     // Convenience methods for converting time values either in time format, or double precision
     
-    FrameLib_TimeFormat hzToSamples(const FrameLib_TimeFormat& a)       { return mSamplingRate / a; }
-    FrameLib_TimeFormat msToSamples(const FrameLib_TimeFormat& a)       { return (a * mSamplingRate) / 1000.0; }
-    FrameLib_TimeFormat secondsToSamples(const FrameLib_TimeFormat& a)  { return a * mSamplingRate; }
+    FrameLib_TimeFormat hzToSamples(const FrameLib_TimeFormat& a) const         { return mSamplingRate / a; }
+    FrameLib_TimeFormat msToSamples(const FrameLib_TimeFormat& a) const         { return (a * mSamplingRate) / 1000.0; }
+    FrameLib_TimeFormat secondsToSamples(const FrameLib_TimeFormat& a) const    { return a * mSamplingRate; }
     
-    double hzToSamples(double a)       { return mSamplingRate / a; }
-    double msToSamples(double a)       { return (a * mSamplingRate) / 1000.0; }
-    double secondsToSamples(double a)  { return a * mSamplingRate; }
+    double hzToSamples(double a) const          { return mSamplingRate / a; }
+    double msToSamples(double a) const          { return (a * mSamplingRate) / 1000.0; }
+    double secondsToSamples(double a) const     { return a * mSamplingRate; }
+
+    // Convenience methods for moving from double to int values
+
+    long roundToInt(double a) const             { return static_cast<long>(round(a)); }
+    unsigned long roundToUInt(double a) const   { return static_cast<unsigned long>(round(a)); }
+    long truncToInt(double a) const             { return static_cast<long>(a); }
+    unsigned long truncToUInt(double a) const   { return static_cast<unsigned long>(a); }
 
 private:
     
@@ -282,8 +289,9 @@ private:
     
     inline void dependencyNotify(bool releaseMemory, bool fromInput);
     void dependenciesReady();
-    void setOutputDependencyCount();
     void incrementInputDependency();
+    void resetOutputDependencyCount();
+    long getNumOuputDependencies()         { return static_cast<long>(mOutputDependencies.size()); }
     
     // Connections
     

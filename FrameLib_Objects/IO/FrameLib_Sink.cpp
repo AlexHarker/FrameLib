@@ -71,7 +71,7 @@ unsigned long FrameLib_Sink::convertTimeToSamples(double time)
         case kSeconds:  time = secondsToSamples(time);  break;
     }
     
-    return round(time);
+    return roundToUInt(time);
 }
 
 void FrameLib_Sink::copyAndZero(double *output, unsigned long offset, unsigned long size)
@@ -94,10 +94,8 @@ void FrameLib_Sink::addToBuffer(const double *input, unsigned long offset, unsig
 // Object Reset, Block Process and Process
 
 void FrameLib_Sink::objectReset()
-{
-    double size = mParameters.getValue(kBufferSize);
-    
-    size = round(convertTimeToSamples(size)) + mMaxBlockSize;
+{    
+    size_t size = convertTimeToSamples(mParameters.getValue(kBufferSize)) + mMaxBlockSize;
     
     if (size != bufferSize())
         mBuffer.resize(size);
@@ -133,7 +131,7 @@ void FrameLib_Sink::process()
     
     // Calculate time offset
     
-    unsigned long offset = round(delayTime + frameTime - blockStartTime);
+    unsigned long offset = roundToUInt(delayTime + frameTime - blockStartTime);
     
     // Safety
     

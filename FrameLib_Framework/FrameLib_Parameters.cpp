@@ -3,6 +3,8 @@
 #include "FrameLib_Memory.h"
 
 #include <algorithm>
+#include <cstdio>
+#include <cstring>
 
 // Serial Iterator
 
@@ -58,7 +60,7 @@ char *FrameLib_Parameters::Serial::Iterator::getString() const
 
 // Get Size
 
-size_t FrameLib_Parameters::Serial::Iterator::getSize() const
+unsigned long FrameLib_Parameters::Serial::Iterator::getSize() const
 {
     Entry entry = getEntry();
     
@@ -67,6 +69,8 @@ size_t FrameLib_Parameters::Serial::Iterator::getSize() const
         case kVector:           return calcSize(entry.mTag, entry.mSize);
         case kSingleString:     return calcSize(entry.mTag, entry.data<char>());
     }
+    
+    return 0;
 }
 
 // Reads
@@ -93,7 +97,7 @@ void FrameLib_Parameters::Serial::Iterator::read(FrameLib_Parameters *parameters
     }
 }
 
-size_t FrameLib_Parameters::Serial::Iterator::read(double *output, unsigned long size) const
+unsigned long FrameLib_Parameters::Serial::Iterator::read(double *output, unsigned long size) const
 {
     Entry entry = getEntry();
     
@@ -154,7 +158,7 @@ FrameLib_Parameters::Serial::Iterator::Entry FrameLib_Parameters::Serial::Iterat
 
 // Constructors / Destructor
 
-FrameLib_Parameters::Serial::Serial(BytePointer ptr, size_t size) : mPtr(ptr), mSize(0), mMaxSize(size), mNumTags(0)
+FrameLib_Parameters::Serial::Serial(BytePointer ptr, unsigned long size) : mPtr(ptr), mSize(0), mMaxSize(size), mNumTags(0)
 {
     alignmentChecks();
 }
@@ -166,9 +170,9 @@ FrameLib_Parameters::Serial::Serial() : mPtr(nullptr), mSize(0), mMaxSize(0), mN
 
 // Size Calculation
 
-size_t FrameLib_Parameters::Serial::calcSize(const FrameLib_Parameters *params)
+unsigned long FrameLib_Parameters::Serial::calcSize(const FrameLib_Parameters *params)
 {
-    size_t size = 0;
+    unsigned long size = 0;
     
     for (unsigned long i = 0; i < params->size(); i++)
     {
@@ -197,14 +201,14 @@ size_t FrameLib_Parameters::Serial::calcSize(const FrameLib_Parameters *params)
 
 // Get Sizes
 
-size_t FrameLib_Parameters::Serial::getSize(const char *tag) const
+unsigned long FrameLib_Parameters::Serial::getSize(const char *tag) const
 {
     auto it = find(tag);
     
     return (it != end()) ? it.getSize() : 0;
 }
 
-size_t FrameLib_Parameters::Serial::getVectorSize(const char *tag) const
+unsigned long FrameLib_Parameters::Serial::getVectorSize(const char *tag) const
 {
     auto it = find(tag);
     
@@ -266,7 +270,7 @@ void FrameLib_Parameters::Serial::write(const char *tag, const char *str)
     mNumTags++;
 }
 
-void FrameLib_Parameters::Serial::write(const char *tag, const double *values, size_t N)
+void FrameLib_Parameters::Serial::write(const char *tag, const double *values, unsigned long N)
 {    
     if (!checkSize(calcSize(tag, N)))
         return;
@@ -295,7 +299,7 @@ bool FrameLib_Parameters::Serial::read(const char *tag, FrameLib_Parameters *par
     return it != end();
 }
 
-size_t FrameLib_Parameters::Serial::read(const char *tag, double *output, unsigned long size) const
+unsigned long FrameLib_Parameters::Serial::read(const char *tag, double *output, unsigned long size) const
 {
     auto it = find(tag);
     
@@ -322,7 +326,7 @@ void FrameLib_Parameters::Serial::alignmentChecks() const
     // Assume that alignment of a double is fine for all natural alignment needs (including this class)
     
     assert(Serial::alignment >= sizeof(DataType) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial::DataType");
-    assert(Serial::alignment >= sizeof(size_t) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
+    assert(Serial::alignment >= sizeof(unsigned long) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
     assert(Serial::alignment >= sizeof(char) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
     assert(Serial::alignment >= sizeof(char *) && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
     assert(Serial::alignment <= FrameLib_GlobalAllocator::getAlignment() && "alignment assumptions are incorrect for FrameLib_Parameters::Serial");
@@ -336,21 +340,21 @@ void FrameLib_Parameters::Serial::writeType(DataType type)
     mSize += sizeType();
 }
 
-void FrameLib_Parameters::Serial::writeSize(size_t size)
+void FrameLib_Parameters::Serial::writeSize(unsigned long size)
 {
-    *((size_t *) (mPtr + mSize)) = size;
+    *((unsigned long *) (mPtr + mSize)) = size;
     mSize += sizeSize();
 }
 
 void FrameLib_Parameters::Serial::writeString(const char *str)
 {
-    size_t N = strlen(str) + 1;
+    unsigned long N = static_cast<unsigned long>(strlen(str) + 1);
     writeSize(N);
-    strcpy((char *) (mPtr + mSize), str);
+    std::copy(str, str + N, (char *) (mPtr + mSize));
     mSize += alignSize(N);
 }
 
-void FrameLib_Parameters::Serial::writeDoubles(const double *ptr, size_t N)
+void FrameLib_Parameters::Serial::writeDoubles(const double *ptr, unsigned long N)
 {
     size_t size = N * sizeof(double);
     writeSize(N);
@@ -367,13 +371,13 @@ DataType FrameLib_Parameters::Serial::readType(BytePointer *readPtr)
     return type;
 }
 
-void FrameLib_Parameters::Serial::readSize(BytePointer *readPtr, size_t *size)
+void FrameLib_Parameters::Serial::readSize(BytePointer *readPtr, unsigned long *size)
 {
-    *size = *reinterpret_cast<size_t *>(*readPtr);
+    *size = *reinterpret_cast<unsigned long *>(*readPtr);
     *readPtr += sizeSize();
 }
 
-void FrameLib_Parameters::Serial::readItem(BytePointer *readPtr, DataType type, BytePointer *data, size_t *size)
+void FrameLib_Parameters::Serial::readItem(BytePointer *readPtr, DataType type, BytePointer *data, unsigned long *size)
 {
     readSize(readPtr, size);
     *data = *readPtr;
@@ -382,14 +386,14 @@ void FrameLib_Parameters::Serial::readItem(BytePointer *readPtr, DataType type, 
 
 void FrameLib_Parameters::Serial::skipItem(BytePointer *readPtr, DataType type)
 {
-    size_t size;
+    unsigned long size;
     Serial::readSize(readPtr, &size);
     *readPtr += alignSize(size * (type == kVector ? sizeof(double) : sizeof(char)));
 }
 
 // Size Check
 
-bool FrameLib_Parameters::Serial::checkSize(size_t writeSize)
+bool FrameLib_Parameters::Serial::checkSize(unsigned long writeSize)
 {
     if (mSize + writeSize <= mMaxSize)
         return true;
@@ -401,9 +405,9 @@ bool FrameLib_Parameters::Serial::checkSize(size_t writeSize)
 
 // AutoSerial Class (owning/resizing/allocating it's own memory using system routines - not suitable for audio thread use)
 
-bool FrameLib_Parameters::AutoSerial::checkSize(size_t writeSize)
+bool FrameLib_Parameters::AutoSerial::checkSize(unsigned long writeSize)
 {
-    size_t growSize;
+    unsigned long growSize;
     
     if (Serial::checkSize(writeSize))
         return true;
@@ -479,7 +483,7 @@ void FrameLib_Parameters::Parameter::setClip(double min, double max)
     mMax = max;
 }
 
-FrameLib_Parameters::SetError FrameLib_Parameters::Parameter::set(double *values, size_t N)
+FrameLib_Parameters::SetError FrameLib_Parameters::Parameter::set(double *values, unsigned long N)
 {
     if (N)
         return set(*values);
@@ -510,7 +514,7 @@ const char *FrameLib_Parameters::Parameter::getItemString(unsigned long item) co
     return nullptr;
 }
 
-const double *FrameLib_Parameters::Parameter::getArray(size_t *size) const
+const double *FrameLib_Parameters::Parameter::getArray(unsigned long *size) const
 {
     *size = getArraySize();
     return getArray();
@@ -566,7 +570,7 @@ FrameLib_Parameters::SetError FrameLib_Parameters::Enum::set(const char *str)
     return kEnumUnknownString;
 }
 
-FrameLib_Parameters::SetError FrameLib_Parameters::Enum::set(double *values, size_t N)
+FrameLib_Parameters::SetError FrameLib_Parameters::Enum::set(double *values, unsigned long N)
 {
     if (N)
     {
@@ -591,7 +595,7 @@ FrameLib_Parameters::SetError FrameLib_Parameters::Value::set(double value)
     return kSetSucceeded;
 }
 
-FrameLib_Parameters::SetError FrameLib_Parameters::Value::set(double *values, size_t N)
+FrameLib_Parameters::SetError FrameLib_Parameters::Value::set(double *values, unsigned long N)
 {
     if (N)
         Value::set(*values);
@@ -633,17 +637,17 @@ FrameLib_Parameters::SetError FrameLib_Parameters::String::set(const char *str)
 
 // Array Parameter Class
 
-FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double defaultValue, size_t size)
+FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double defaultValue, unsigned long size)
 : Parameter(name, argumentIdx), mSize(size), mVariableSize(false)
 {
     mDefault = defaultValue;
     mItems.resize(size);
     
-    for (size_t i = 0; i < mSize; i++)
+    for (unsigned long i = 0; i < mSize; i++)
         mItems[i] = defaultValue;
 }
 
-FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double defaultValue, size_t maxSize, size_t size)
+FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double defaultValue, unsigned long maxSize, unsigned long size)
 : Parameter(name, argumentIdx), mVariableSize(true)
 {
     mDefault = defaultValue;
@@ -651,36 +655,36 @@ FrameLib_Parameters::Array::Array(const char *name, long argumentIdx, double def
     
     mSize = size < maxSize ? size : maxSize;
     
-    for (size_t i = 0; i < mSize; i++)
+    for (unsigned long i = 0; i < mSize; i++)
         mItems[i] = defaultValue;
 }
 
-FrameLib_Parameters::SetError FrameLib_Parameters::Array::set(double *values, size_t N)
+FrameLib_Parameters::SetError FrameLib_Parameters::Array::set(double *values, unsigned long N)
 {
-    N = N > mItems.size() ? mItems.size() : N;
+    N = std::min(N, static_cast<unsigned long>(mItems.size()));
     
     switch (getClipMode())
     {
         case kNone:
-            for (size_t i = 0; i < N; i++)
+            for (unsigned long i = 0; i < N; i++)
                 mItems[i] = values[i];
             break;
         case kMin:
-            for (size_t i = 0; i < N; i++)
+            for (unsigned long i = 0; i < N; i++)
                 mItems[i] = values[i] < mMin ? mMin : values[i];
             break;
         case kMax:
-            for (size_t i = 0; i < N; i++)
+            for (unsigned long i = 0; i < N; i++)
                 mItems[i] = values[i] > mMax ? mMax : values[i];
             break;
         case kClip:
-            for (size_t i = 0; i < N; i++)
+            for (unsigned long i = 0; i < N; i++)
                 mItems[i] = values[i] < mMin ? mMin : (values[i] > mMax ? mMax : values[i]);
             break;
     }
     
     if (!mVariableSize)
-        for (size_t i = N; i < mItems.size(); i++)
+        for (unsigned long i = N; i < mItems.size(); i++)
             mItems[i] = mDefault;
     else
         mSize = N;
@@ -731,7 +735,8 @@ std::string FrameLib_Parameters::getTypeString(unsigned long idx) const
 std::string FrameLib_Parameters::getDefaultString(unsigned long idx) const
 {
     Type type = getType(idx);
-    char numericStr[64];
+    const int strBufSize = 64;
+    char numericStr[strBufSize];
 
     if (type == kString)
         return "";
@@ -740,7 +745,7 @@ std::string FrameLib_Parameters::getDefaultString(unsigned long idx) const
     else if (getNumericType(idx) == kNumericBool)
         return getDefault(idx) ? "true" : "false";
     
-    sprintf(numericStr, "%lg", getDefault(idx));
+    snprintf(numericStr, strBufSize, "%lg", getDefault(idx));
     
     return numericStr;
 }

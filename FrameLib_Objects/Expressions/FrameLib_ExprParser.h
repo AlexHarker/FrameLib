@@ -38,15 +38,15 @@ namespace FrameLib_ExprParser
     template <class T>
     struct OpBase
     {
-        OpBase(const char* name, int precedence) : mName(name), mPrecedence(precedence) {}
+        OpBase(const char* name, unsigned int precedence) : mName(name), mPrecedence(precedence) {}
         virtual ~OpBase() {}
         
-        virtual int numItems() const = 0;
+        virtual size_t numItems() const = 0;
         virtual T call(T a, T b, T c) const = 0;
         virtual FrameLib_DSP *create(FrameLib_Context context) const = 0;
 
         const char* mName;
-        int mPrecedence;
+        unsigned int mPrecedence;
     };
 
     // Graph Structure for Output
@@ -208,14 +208,14 @@ namespace FrameLib_ExprParser
         
     public:
         
-        Parser(int precedenceLevels) : mMaxLengthOp(0)
+        Parser(unsigned int precedenceLevels) : mMaxLengthOp(0)
         {
             mOperators.resize(precedenceLevels);
         }
         
         void addOperator(OpBase<T>* op)
         {
-            int precedence = op->mPrecedence;
+            unsigned int precedence = op->mPrecedence;
             
             assert((precedence < mOperators.size() && "precedence value too large"));
             
@@ -447,7 +447,7 @@ namespace FrameLib_ExprParser
         
         // Operators / Functions
         
-        const OpBase<T> *getOperator(const char *name, int precedence) const
+        const OpBase<T> *getOperator(const char *name, unsigned int precedence) const
         {
             return mOperators[precedence].getItem(name);
         }
@@ -456,7 +456,7 @@ namespace FrameLib_ExprParser
         {
             const OpBase<T> *op = nullptr;
             
-            for (int i = 0; i < mOperators.size(); i++)
+            for (unsigned int i = 0; i < static_cast<unsigned int>(mOperators.size()); i++)
                 if ((op = getOperator(name, i)))
                     return op;
             
@@ -486,12 +486,12 @@ namespace FrameLib_ExprParser
             
             graph.mOperations.push_back(op);
             
-            int numItems = op->numItems();
+            size_t numItems = op->numItems();
             if (numItems)       graph.mOperations.back().mIns[0] = parseInput(arg1);
             if (numItems > 1)   graph.mOperations.back().mIns[1] = parseInput(arg2);
             if (numItems > 2)   graph.mOperations.back().mIns[2] = parseInput(arg3);
             
-            return Node(kIsOutput, graph.mOperations.size() - 1);
+            return Node(kIsOutput, static_cast<long>(graph.mOperations.size() - 1));
         }
         
         ExprParseError parseUnaryOperator(Graph<T>& graph, const OpBase<T> *op, NodeList& nodes, NodeListIterator& it)
@@ -527,7 +527,7 @@ namespace FrameLib_ExprParser
 
         void parseFunction(Graph<T>& graph, const OpBase<T> *function, NodeList& nodes)
         {
-            int numItems = function->numItems();
+            size_t numItems = function->numItems();
             
             if (!numItems) nodes.push_back(Node(0.0));
             
@@ -554,7 +554,7 @@ namespace FrameLib_ExprParser
 
             // Now resolve binary operators in order of precedence
             
-            for (int i = 1; i < mOperators.size(); i++)
+            for (unsigned int i = 1; i < static_cast<unsigned int>(mOperators.size()); i++)
             {
                 for (auto it = nodes.begin(); it < nodes.end(); it++)
                     if ((op = getOperator(it->getTokenString(), i)))
@@ -569,7 +569,7 @@ namespace FrameLib_ExprParser
             return (nodes.size() != 1 || nodes[0].isToken()) ? kParseError_StrayItem : kNoError;;
         }
 
-        ExprParseError recursiveParse(Graph<T>& graph, NodeList& nodes, int resultItems)
+        ExprParseError recursiveParse(Graph<T>& graph, NodeList& nodes, size_t resultItems)
         {
             NodeListIterator n1, n2;
             ExprParseError error = kNoError;
@@ -606,7 +606,7 @@ namespace FrameLib_ExprParser
                 // Copy child nodes, determine if this is a function call and how many items it requires
                 
                 NodeList childNodes(n1 + 1, n2);
-                int numItems = 1;
+                size_t numItems = 1;
                 
                 if ((n1 != nodes.begin()) && (n1 - 1)->isSymbol())
                 {

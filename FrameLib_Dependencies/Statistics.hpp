@@ -96,12 +96,12 @@ struct FixedCompare
 
 template <class T, class U> double statCountAbove(const T input, U threshold, size_t size)
 {
-    return statCount(input, size, FixedCompare<U, std::greater<U> >(threshold));
+    return statCount(input, size, FixedCompare<U, std::greater<U>>(threshold));
 }
 
 template <class T, class U> double statCountBelow(const T input, U threshold, size_t size)
 {
-    return statCount(input, size, FixedCompare<U, std::less<U> >(threshold));
+    return statCount(input, size, FixedCompare<U, std::less<U>>(threshold));
 }
 
 // Ratios

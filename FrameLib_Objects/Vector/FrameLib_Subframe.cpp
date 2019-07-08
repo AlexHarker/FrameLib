@@ -72,8 +72,8 @@ void FrameLib_Subframe::process()
     }
     else
     {
-        start = round(mParameters.getValue(kStart) * sizeIn);
-        end = round(mParameters.getValue(kEnd) * sizeIn);
+        start = roundToUInt(mParameters.getValue(kStart) * sizeIn);
+        end = roundToUInt(mParameters.getValue(kEnd) * sizeIn);
     }
     
     start = start > sizeIn ? sizeIn : start;

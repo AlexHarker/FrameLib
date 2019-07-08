@@ -4,6 +4,8 @@
 
 #include "FrameLib_Unary_Template.h"
 
+#include <functional>
+
 // Unary (operators)
 
 // Info specialisations

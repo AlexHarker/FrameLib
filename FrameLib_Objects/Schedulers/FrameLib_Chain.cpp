@@ -74,6 +74,8 @@ FrameLib_TimeFormat FrameLib_Chain::convertTime(double time, Units units)
         case kSeconds:  return secondsToSamples(FrameLib_TimeFormat(time));
         case kSamples:  return FrameLib_TimeFormat(time);
     }
+    
+    return FrameLib_TimeFormat();
 }
 
 FrameLib_Chain::SchedulerInfo FrameLib_Chain::schedule(bool newFrame, bool noAdvance)
@@ -94,7 +96,7 @@ FrameLib_Chain::SchedulerInfo FrameLib_Chain::schedule(bool newFrame, bool noAdv
         mSize = mTimes ? sizeIn : 0;
         mPosition = 0;
         
-        Units units = static_cast<Units>(mParameters.getValue(kUnits));
+        Units units = static_cast<Units>(mParameters.getInt(kUnits));
                                          
         if (mTimes && mSize)
         {

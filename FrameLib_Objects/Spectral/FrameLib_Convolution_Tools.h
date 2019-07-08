@@ -3,7 +3,7 @@
 #define FRAMELIB_CONVOLUTION_TOOLS_H
 
 #include <algorithm>
-#include "SIMDSupport.hpp"
+#include "../../FrameLib_Dependencies/SIMDSupport.hpp"
 #include "../../FrameLib_Dependencies/HISSTools_FFT/HISSTools_FFT.h"
 #include "FrameLib_Spectral_Functions.h"
 
@@ -138,7 +138,8 @@ public:
         }
         else if (dataLength < vec_size)
         {
-            const int current_vec_size = SIMDLimits<double>::max_size / 2;
+            constexpr int max_vec_size = SIMDLimits<double>::max_size / 2;
+            constexpr int current_vec_size = max_vec_size ? max_vec_size : 1;
 
             SIMDType<double, current_vec_size> *real1 = reinterpret_cast<SIMDType<double, current_vec_size> *>(io1.realp);
             SIMDType<double, current_vec_size> *imag1 = reinterpret_cast<SIMDType<double, current_vec_size> *>(io1.imagp);

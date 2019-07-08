@@ -12,7 +12,7 @@ FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Seri
     mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
     
-    mActiveValve = floor(mParameters.getValue(kActiveValve) - 1.0);
+    mActiveValve = truncToInt(mParameters.getValue(kActiveValve) - 1.0);
     
     setInputMode(0, false, mValveNumber == mActiveValve, true, kFrameAny);
     setOutputType(0, kFrameAny);
@@ -24,7 +24,7 @@ FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Seri
 
 void FrameLib_Route::Valve::update()
 {
-    mActiveValve = floor(mParameters.getValue(kActiveValve) - 1.0);
+    mActiveValve = truncToInt(mParameters.getValue(kActiveValve) - 1.0);
     updateTrigger(0, mValveNumber == mActiveValve);
 }
 
@@ -54,7 +54,7 @@ FrameLib_Route::FrameLib_Route(FrameLib_Context context, FrameLib_Parameters::Se
     
     setIO(2, mNumOuts);
 
-    for (int i = 0; i < mNumOuts; i++)
+    for (long i = 0; i < mNumOuts; i++)
     {
         mValves.add(new Valve(context, serialisedParameters, proxy, i));
         mValves[i]->setInputAlias(Connection(this, 0), 0);

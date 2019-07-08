@@ -14,11 +14,11 @@ FrameLib_Select::FrameLib_Select(FrameLib_Context context, FrameLib_Parameters::
     mParameters.set(serialisedParameters);
     
     mNumIns = mParameters.getInt(kNumIns);
-    mActiveIn = floor(mParameters.getValue(kActiveIn) - 1.0);
+    mActiveIn = truncToInt(mParameters.getValue(kActiveIn) - 1.0);
     
     setIO(mNumIns, 1);
     
-    for (unsigned long i = 0; i < mNumIns; i++)
+    for (long i = 0; i < mNumIns; i++)
         setInputMode(i, false, i == mActiveIn, true, kFrameAny);
     
     setOutputType(0, kFrameAny);
@@ -62,9 +62,9 @@ void FrameLib_Select::update()
 {
     if (mParameters.changed(kActiveIn))
     {        
-        mActiveIn = floor(mParameters.getValue(kActiveIn) - 1.0);
+        mActiveIn = truncToInt(mParameters.getValue(kActiveIn) - 1.0);
         
-        for (unsigned long i = 0; i < mNumIns; i++)
+        for (long i = 0; i < mNumIns; i++)
             updateTrigger(i, i == mActiveIn);
     }
 }

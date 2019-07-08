@@ -2,9 +2,32 @@
 #include "FrameLib_SerialiseGraph.h"
 #include "FrameLib_Export.h"
 
-#include <cxxabi.h>
 #include <sstream>
 #include <fstream>
+#include <cstdio>
+
+#ifdef __GNUC__
+#include <cxxabi.h>
+
+void unmangleName(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj)
+{
+    int status;
+    
+    const char *type_mangled_name = typeid(*obj).name();
+    char *real_name = abi::__cxa_demangle(type_mangled_name, 0, 0, &status);
+    
+    name = real_name;
+    free(real_name);
+}
+#else
+void unmangleName(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj)
+{
+    // FIX - needs implementing
+    
+    const char *type_mangled_name = typeid(*obj).name();
+    name = type_mangled_name;
+}
+#endif
 
 bool invalidPosition(size_t pos, size_t lo, size_t hi)
 {
@@ -90,12 +113,7 @@ size_t findAndResolveFunctions(std::string& name, size_t beg, size_t end)
 
 void getTypeString(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj)
 {
-    int status;
-    const char *type_mangled_name = typeid(*obj).name();
-    char *real_name = abi::__cxa_demangle(type_mangled_name, 0, 0, &status);
-    
-    name = real_name;
-    free(real_name);
+    unmangleName(name, obj);
 
     // Resolve functions recursively
     
@@ -109,13 +127,13 @@ void serialiseGraph(std::vector<FrameLib_Object<FrameLib_Multistream> *>& serial
     
     // First search up
     
-    for (int i = 0; i < object->getNumIns(); i++)
+    for (unsigned long i = 0; i < object->getNumIns(); i++)
     {
         FrameLib_Multistream::Connection connect = object->getConnection(i);
         if (connect.mObject) serialiseGraph(serial, connect.mObject);
     }
     
-    for (int i = 0; i < object->getNumOrderingConnections(); i++)
+    for (unsigned long i = 0; i < object->getNumOrderingConnections(); i++)
     {
         FrameLib_Multistream::Connection connect = object->getOrderingConnection(i);
         if (connect.mObject) serialiseGraph(serial, connect.mObject);
@@ -139,10 +157,12 @@ void serialiseGraph(std::vector<FrameLib_Object<FrameLib_Multistream> *>& serial
 template <class T>
 void addConnection(FrameLib_ObjectDescription& description, std::vector<FrameLib_Object<T> *> serial, typename FrameLib_Object<T>::Connection connect, unsigned long idx)
 {
+    using Connection = FrameLib_ObjectDescription::Connection;
+    
     if (connect.mObject)
     {
         size_t objectIdx = std::find(serial.begin(), serial.end(), connect.mObject) - serial.begin();
-        description.mConnections.push_back(FrameLib_ObjectDescription::Connection(objectIdx, connect.mIndex, idx));
+        description.mConnections.push_back(Connection(static_cast<unsigned long>(objectIdx), connect.mIndex, idx));
     }
 }
 
@@ -211,9 +231,9 @@ void serialiseGraph(std::vector<FrameLib_ObjectDescription>& objects, FrameLib_M
         
         // Connections - Normal and Ordering
         
-        for (int i = 0; i < object->getNumIns(); i++)
+        for (unsigned long i = 0; i < object->getNumIns(); i++)
             addConnection(description, serial, object->getConnection(i), i);
-        for (int i = 0; i < object->getNumOrderingConnections(); i++)
+        for (unsigned long i = 0; i < object->getNumOrderingConnections(); i++)
             addConnection(description, serial, object->getOrderingConnection(i), kOrdering);
     }
 }
@@ -227,7 +247,8 @@ void serialiseVector(std::stringstream& output, size_t index, const char *type, 
     
     for (auto it = vector.begin(); it != vector.end(); it++)
     {
-        char formatted[1024];
+        const int strBufSize = 1024;
+        char formatted[strBufSize];
 
         if (it != vector.begin())
             output << ", ";
@@ -235,9 +256,9 @@ void serialiseVector(std::stringstream& output, size_t index, const char *type, 
         // FIX - need 100% accuracy but human readable
         
         if (round(*it) == *it)
-            sprintf(formatted, "%lld", (long long) *it);
+            snprintf(formatted, strBufSize, "%lld", (long long) *it);
         else
-            sprintf(formatted, "%lf", *it);
+            snprintf(formatted, strBufSize, "%lf", *it);
         output << formatted;
     }
     
@@ -286,7 +307,7 @@ std::string serialiseGraph(FrameLib_Multistream *requestObject)
         {
             if (jt->size())
             {
-                unsigned long idx = jt - it->mInputs.begin();
+                unsigned long idx = static_cast<unsigned long>(jt - it->mInputs.begin());
                 output << exportIndent << "mObjects[" << index << "]->setFixedInput(" << idx << ", fl_" << index << "_inputs_" << idx <<" , " << jt->size() << ");\n";
             }
         }

@@ -9,7 +9,10 @@ unsigned long FrameLib_Multistream::getInputNumChans(unsigned long inIdx)
 {
     MultistreamConnection connection = getConnection(inIdx);
     
-    return connection.mObject ? connection.mObject->mOutputs[connection.mIndex].size() : 0;
+    if (connection.mObject)
+        return static_cast<unsigned long>(connection.mObject->mOutputs[connection.mIndex].size());
+    
+    return 0;
 }
 
 FrameLib_Multistream::BlockConnection FrameLib_Multistream::getInputChan(unsigned long inIdx, unsigned long chan)
@@ -23,7 +26,10 @@ unsigned long FrameLib_Multistream::getOrderingConnectionNumChans(unsigned long 
 {
     MultistreamConnection connection = getOrderingConnection(idx);
 
-    return connection.mObject ? connection.mObject->mOutputs[connection.mIndex].size() : 0;
+    if (connection.mObject)
+        return static_cast<unsigned long>(connection.mObject->mOutputs[connection.mIndex].size());
+    
+    return 0;
 }
 
 FrameLib_Multistream::BlockConnection FrameLib_Multistream::getOrderingConnectionChan(unsigned long idx, unsigned long chan)

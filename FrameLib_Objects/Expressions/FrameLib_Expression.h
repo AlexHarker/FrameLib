@@ -30,7 +30,7 @@ class FrameLib_Expression : public FrameLib_Block
         
         // Constructor
         
-        InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns);
+        InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns);
         
     private:
         
@@ -50,7 +50,7 @@ class FrameLib_Expression : public FrameLib_Block
         
         // Constructor
         
-        ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns, double value);
+        ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns, double value);
         
     private:
         

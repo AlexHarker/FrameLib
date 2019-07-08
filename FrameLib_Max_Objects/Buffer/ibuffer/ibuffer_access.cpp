@@ -24,7 +24,7 @@ t_symbol *ps_ibuffer;
 
 // IBuffer Proxy
 
-ibuffer_data::ibuffer_data(t_symbol *name) : buffer_type(kBufferNone), samples(NULL), length(0), num_chans(0), format(0), sample_rate(0.0)
+ibuffer_data::ibuffer_data(t_symbol *name) : buffer_type(kBufferNone), samples(NULL), length(0), num_chans(0), format(PCM_FLOAT), sample_rate(0.0)
 {
     buffer_object = name ? name->s_thing : NULL;
     acquire_buffer();
@@ -71,7 +71,7 @@ void ibuffer_data::release()
     samples = NULL;
     length = 0;
     num_chans = 0;
-    format = 0;
+    format = PCM_FLOAT;
     sample_rate = 0.0;
     buffer_object = NULL;
 }
@@ -164,21 +164,23 @@ void ibuffer_read(const ibuffer_data& buffer, float *out, const float *positions
     ibuffer_read_format<float>(buffer, out, positions, n_samps, chan, mul, interp);
 }
 
-template <class T, class Ft> void ibuffer_get_samps_loop(Ft fetch, T *out, intptr_t offset, intptr_t n_samps, bool reverse)
+template <class T, class Ft>
+void ibuffer_get_samps_loop(Ft fetch, T *out, intptr_t offset, intptr_t n_samps, bool reverse)
 {
 	if (reverse)
     {
         for (intptr_t i = n_samps - 1; i >= 0; i--)
-            *out++ = fetch.get(offset + i);
+            *out++ = static_cast<T>(fetch.get(offset + i));
     }
     else
     {
         for (intptr_t i = 0; i < n_samps; i++)
-            *out++ = fetch.get(offset + i);
+            *out++ = static_cast<T>(fetch.get(offset + i));
     }
 }
 
-template <class T> void ibuffer_get_samps(const ibuffer_data& buffer, T *out, intptr_t offset, intptr_t n_samps, long chan, bool reverse)
+template <class T>
+void ibuffer_get_samps(const ibuffer_data& buffer, T *out, intptr_t offset, intptr_t n_samps, long chan, bool reverse)
 {
     switch(buffer.get_format())
     {

@@ -7,16 +7,17 @@
 
 FrameLib_Dispatch::Select::Select(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long numIns, long num) : FrameLib_Processor(context, proxy, nullptr, numIns, 1), mNumIns(numIns)
 {
-    char name[32];
-    sprintf(name, "input_%2ld", num + 1);
+    const int strBufSize = 32;
+    char name[strBufSize];
+    snprintf(name, strBufSize, "input_%2ld", num + 1);
     mParameters.addInt(kActiveIn, name, 0);
     
     mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
     
-    mActiveIn = floor(mParameters.getValue(kActiveIn) - 1.0);
+    mActiveIn = truncToInt(mParameters.getValue(kActiveIn) - 1.0);
     
-    for (unsigned long i = 0; i < mNumIns; i++)
+    for (long i = 0; i < mNumIns; i++)
         setInputMode(i, false, i == mActiveIn, true, kFrameAny);
     
     setOutputType(0, kFrameAny);
@@ -29,9 +30,9 @@ void FrameLib_Dispatch::Select::update()
 {
     if (mParameters.changed(kActiveIn))
     {
-        mActiveIn = floor(mParameters.getValue(kActiveIn) - 1.0);
+        mActiveIn = truncToInt(mParameters.getValue(kActiveIn) - 1.0);
         
-        for (unsigned long i = 0; i < mNumIns; i++)
+        for (long i = 0; i < mNumIns; i++)
             updateTrigger(i, i == mActiveIn);
     }
 }
@@ -67,8 +68,9 @@ FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Paramete
     
     for (long i = 0; i < mNumOuts; i++)
     {
-        char name[32];
-        sprintf(name, "input_%2ld", i + 1);
+        const int strBufSize = 32;
+        char name[strBufSize];
+        snprintf(name, strBufSize, "input_%2ld", i + 1);
         mParameters.addInt(kActiveIn1 + i, name, 0);
     }
               
@@ -79,7 +81,7 @@ FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, FrameLib_Paramete
     for (int i = 0; i < mNumOuts; i++)
     {
         mSelects.add(new Select(context, serialisedParameters, proxy, mNumIns, i));
-        for (unsigned long j = 0; j < mNumIns + 1; j++)
+        for (long j = 0; j < mNumIns + 1; j++)
             mSelects[i]->setInputAlias(Connection(this, j), j);
         mSelects[i]->setOutputAlias(Connection(this, i), 0);
     }

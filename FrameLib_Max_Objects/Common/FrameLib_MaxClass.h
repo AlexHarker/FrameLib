@@ -138,10 +138,10 @@ public:
     {
         enum Mode { kConnect, kConfirm, kDoubleCheck };
 
-        ConnectionInfo(t_object *object, unsigned long index, Mode mode) : mObject(object), mIndex(index), mMode(mode) {}
+        ConnectionInfo(t_object *object, long index, Mode mode) : mObject(object), mIndex(index), mMode(mode) {}
         
         t_object *mObject;
-        unsigned long mIndex;
+        long mIndex;
         Mode mMode;
         
     };
@@ -319,7 +319,7 @@ public:
         long ac = 0;
         
         atom_setparse(&ac, &av, "@defrect 0 0 300 300");
-        attr_args_dictionary(d, ac, av);
+        attr_args_dictionary(d, static_cast<short>(ac), av);
         atom_setobj(&a, d);
         mPatch = (t_object *)object_new_typed(CLASS_NOBOX, gensym("jpatcher"),1, &a);
         
@@ -333,7 +333,7 @@ public:
         
         if ((textfield = jbox_get_textfield(textfield)))
         {
-            text = (char *)object_method(textfield, gensym("getptr"));
+            text = (char *) object_method(textfield, gensym("getptr"));
             text = strchr(text, ' ');
             
             if (text)
@@ -460,13 +460,13 @@ public:
         
         // Copy to output
         
-        for (long i = 0; i < internalOuts.size(); i++)
+        for (size_t i = 0; i < internalOuts.size(); i++)
             std::copy(internalOuts[i], internalOuts[i] + vec_size, outs[i]);
     }
     
     void anything(t_symbol *sym, long ac, t_atom *av)
     {
-        outlet_anything(mInOutlets[getInlet()], sym, ac, av);
+        outlet_anything(mInOutlets[getInlet()], sym, static_cast<int>(ac), av);
     }
     
     // External methods (A_CANT)
@@ -535,7 +535,7 @@ template <class T, MaxObjectArgsMode argsMode = kAsParams>
 class FrameLib_MaxClass : public MaxClass_Base
 {
     typedef FrameLib_Object<FrameLib_Multistream>::Connection FrameLibConnection;
-    typedef FrameLib_Object<t_object>::Connection MaxConnection;
+    typedef FrameLib_Connection<t_object, long> MaxConnection;
     typedef FrameLib_MaxGlobals::ConnectionInfo ConnectionInfo;
 
 public:
@@ -629,7 +629,7 @@ public:
                     // Get the first item in the box as a symbol
                 
                     t_atombuf *atomBuffer = (t_atombuf *) atombuf_new(0, nullptr);
-                    atombuf_text(&atomBuffer, &text, strlen(text));
+                    atombuf_text(&atomBuffer, &text, static_cast<long>(strlen(text)));
                     t_symbol *objectName = atom_getsym(atomBuffer->a_argv);
                     atombuf_free(atomBuffer);
                     
@@ -695,14 +695,14 @@ public:
         for (long i = numIns - 1; i >= 0; i--)
             mInputs[i] = (t_object *) ((i || handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : nullptr);
         
-        for (unsigned long i = getNumOuts(); i > 0; i--)
+        for (long i = getNumOuts(); i > 0; i--)
             mOutputs[i - 1] = outlet_new(this, nullptr);
         
         // Setup for audio, even if the object doesn't handle it, so that dsp recompile works correctly
         
         dspSetup(getNumAudioIns());
         
-        for (unsigned long i = 0; i < getNumAudioOuts(); i++)
+        for (long i = 0; i < getNumAudioOuts(); i++)
             outlet_new(this, "signal");
         
         // Add a sync outlet if we need to handle audio
@@ -729,7 +729,7 @@ public:
         if (m == ASSIST_OUTLET)
         {
             if (a == 0 && handlesAudio())
-                 sprintf(s,"(signal) Audio Synchronisation Output" );
+                sprintf(s,"(signal) Audio Synchronisation Output" );
             else if (a < getNumAudioOuts())
                 sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
             else
@@ -810,9 +810,9 @@ public:
                 object_post(mUserObject, "N.B. - arguments set the fixed array values for all inputs.");
             if (argsMode == kDistribute)
                 object_post(mUserObject, "N.B - arguments are distributed one per input.");
-            for (long i = 0; i < mObject->getNumAudioIns(); i++)
+            for (long i = 0; i < getNumAudioIns(); i++)
                 object_post(mUserObject, "Audio Input %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
-            for (long i = 0; i < mObject->getNumIns(); i++)
+            for (long i = 0; i < getNumIns(); i++)
                 object_post(mUserObject, "Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose).c_str());
             if (supportsOrderingConnections())
                 object_post(mUserObject, "Ordering Input [%s]: Connect to ensure ordering", frameTypeString(kFrameAny));
@@ -821,9 +821,9 @@ public:
         if (flags & kInfoOutputs)
         {
             object_post(mUserObject, "--- Output List ---");
-            for (long i = 0; i < mObject->getNumAudioOuts(); i++)
+            for (long i = 0; i < getNumAudioOuts(); i++)
                 object_post(mUserObject, "Audio Output %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
-            for (long i = 0; i < mObject->getNumOuts(); i++)
+            for (long i = 0; i < getNumOuts(); i++)
                 object_post(mUserObject, "Frame Output %ld [%s]: %s", i + 1, frameTypeString(mObject->outputType(i)), mObject->outputInfo(i, verbose).c_str());
         }
         
@@ -838,7 +838,7 @@ public:
             
             // Loop over parameters
             
-            for (long i = 0; params && i < params->size(); i++)
+            for (unsigned long i = 0; params && i < params->size(); i++)
             {
                 FrameLib_Parameters::Type type = params->getType(i);
                 FrameLib_Parameters::NumericType numericType = params->getNumericType(i);
@@ -847,9 +847,9 @@ public:
                 // Name, type and default value
                 
                 if (defaultStr.size())
-                    object_post(mUserObject, "Parameter %ld: %s [%s] (default: %s)", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str(), defaultStr.c_str());
+                    object_post(mUserObject, "Parameter %lu: %s [%s] (default: %s)", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str(), defaultStr.c_str());
                 else
-                    object_post(mUserObject, "Parameter %ld: %s [%s]", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str());
+                    object_post(mUserObject, "Parameter %lu: %s [%s]", i + 1, params->getName(i).c_str(), params->getTypeString(i).c_str());
 
                 // Verbose - arguments, range (for numeric types), enum items (for enums), array sizes (for arrays), description
                 
@@ -868,7 +868,7 @@ public:
                         }
                     }
                     if (type == FrameLib_Parameters::kEnum)
-                        for (long j = 0; j <= params->getMax(i); j++)
+                        for (unsigned long j = 0; j <= static_cast<unsigned long>(params->getMax(i)); j++)
                             object_post(mUserObject, "   [%ld] - %s", j, params->getItemString(i, j).c_str());
                     else if (type == FrameLib_Parameters::kArray)
                         object_post(mUserObject, "- Array Size: %ld", params->getArraySize(i));
@@ -882,20 +882,20 @@ public:
 
     // IO Helpers
     
-    bool supportsOrderingConnections()    { return mObject->supportsOrderingConnections(); }
+    bool supportsOrderingConnections()  { return mObject->supportsOrderingConnections(); }
     
-    bool handlesAudio()     { return T::handlesAudio(); }
+    bool handlesAudio() const           { return T::handlesAudio(); }
     
-    long getNumAudioIns()   { return (long) mObject->getNumAudioIns() + (handlesAudio() ? 1 : 0); }
-    long getNumAudioOuts()  { return (long) mObject->getNumAudioOuts() + (handlesAudio() ? 1 : 0); }
-    long getNumIns()        { return (long) mObject->getNumIns(); }
-    long getNumOuts()       { return (long) mObject->getNumOuts(); }
+    long getNumAudioIns() const         { return (long) mObject->getNumAudioIns() + (handlesAudio() ? 1 : 0); }
+    long getNumAudioOuts() const        { return (long) mObject->getNumAudioOuts() + (handlesAudio() ? 1 : 0); }
+    long getNumIns() const              { return (long) mObject->getNumIns(); }
+    long getNumOuts() const             { return (long) mObject->getNumOuts(); }
     
     // Perform and DSP
 
     void perform(t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam)
     {
-        if (mSigOuts.size() != (numouts - 1))
+        if (static_cast<long>(mSigOuts.size()) != (numouts - 1))
         {
             for (long i = 1; i < numouts; i++)
                 mSigOuts.push_back(outs[i]);
@@ -953,17 +953,17 @@ public:
         
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete)
         {
-            for (unsigned long i = getNumOuts(); i > 0; i--)
+            for (long i = getNumOuts(); i > 0; i--)
                 outlet_anything(mOutputs[i - 1], gensym("sync"), 0, nullptr);
             
             if (mSyncChecker.upwardsMode())
             {
-                for (unsigned long i = 0; i < getNumIns(); i++)
+                for (long i = 0; i < getNumIns(); i++)
                     if (isConnected(i))
                         object_method(getConnection(i).mObject, gensym("sync"));
                 
                 if (supportsOrderingConnections())
-                    for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
+                    for (long i = 0; i < getNumOrderingConnections(); i++)
                         object_method(getOrderingConnection(i).mObject, gensym("sync"));
                 
                 mSyncChecker.restoreMode();
@@ -1089,6 +1089,22 @@ private:
         return (FrameLib_Multistream *) object_method(x, gensym("__fl.get_internal_object"));
     }
     
+    // Get the number of audio ins safely from a generic pointer
+    
+    long getNumAudioInsRemote(t_object *x)
+    {
+        t_ptr_int numAudioIns = reinterpret_cast<t_ptr_int>(object_method(x, gensym("__fl.get_num_audio_ins")));
+        return static_cast<long>(numAudioIns);
+    }
+    
+    // Get the number of audio outs safely from a generic pointer
+
+    long getNumAudioOutsRemote(t_object *x)
+    {
+        t_ptr_int numAudioOuts = reinterpret_cast<t_ptr_int>(object_method(x, gensym("__fl.get_num_audio_outs")));
+        return static_cast<long>(numAudioOuts);
+    }
+    
     // Private connection methods
     
     void traversePatch(t_patcher *p, t_symbol *method, t_object *contextAssoc)
@@ -1132,17 +1148,17 @@ private:
         {
             // Confirm input connections
                     
-            for (unsigned long i = 0; i < getNumIns(); i++)
+            for (long i = 0; i < getNumIns(); i++)
                 confirmConnection(i, ConnectionInfo::kConfirm);
             
             // Confirm ordering connections
             
-            for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
+            for (long i = 0; i < getNumOrderingConnections(); i++)
                 confirmConnection(getOrderingConnection(i), getNumIns(), ConnectionInfo::kConfirm);
             
             // Make output connections
             
-            for (unsigned long i = getNumOuts(); i > 0; i--)
+            for (long i = getNumOuts(); i > 0; i--)
                 makeConnection(i - 1, ConnectionInfo::kConnect);
             
             mNeedsResolve = false;
@@ -1192,9 +1208,22 @@ private:
         return result;
     }
     
-    bool validInput(long index, FrameLib_Multistream *object) const         { return object && index >= 0 && index < object->getNumIns(); }
-    bool validOutput(long index, FrameLib_Multistream *object) const        { return object && index >= 0 && index < object->getNumOuts(); }
-    bool isOrderingInput(long index, FrameLib_Multistream *object) const    { return object && object->supportsOrderingConnections() && index == object->getNumIns(); }
+    bool validInput(long index, FrameLib_Multistream *object) const
+    {
+        return object && index >= 0 && static_cast<unsigned long>(index) < object->getNumIns();
+    }
+    
+    bool validOutput(long index, FrameLib_Multistream *object) const
+    {
+        return object && index >= 0 && static_cast<unsigned long>(index) < object->getNumOuts();
+        
+    }
+    bool isOrderingInput(long index, FrameLib_Multistream *object) const
+    {
+        return object && object->supportsOrderingConnections() && static_cast<unsigned long>(index) == object->getNumIns();
+        
+    }
+    
     bool validInput(long index) const                                       { return validInput(index, mObject.get()); }
     bool validOutput(long index) const                                      { return validOutput(index, mObject.get()); }
     bool isOrderingInput(long index) const                                  { return isOrderingInput(index, mObject.get()); }
@@ -1216,9 +1245,9 @@ private:
             return MaxConnection();
     }
     
-    unsigned long getNumOrderingConnections() const
+    long getNumOrderingConnections() const
     {
-        return mObject->getNumOrderingConnections();
+        return (long) mObject->getNumOrderingConnections();
     }
     
     MaxConnection getOrderingConnection(long index) const
@@ -1287,7 +1316,8 @@ private:
         if (*this == dst)
         {
             unwrapConnection(src, srcout);
-            srcout -= (long) object_method(src, gensym("__fl.get_num_audio_outs"));
+            
+            srcout -= getNumAudioOutsRemote(src);
             dstin -= getNumAudioIns();
             
             if (sys_getdspobjdspstate(*this))
@@ -1329,7 +1359,7 @@ private:
             return 1;
 
         unwrapConnection(dst, dstin);
-        dstin -= (long) object_method(dst, gensym("__fl.get_num_audio_ins"));
+        dstin -= getNumAudioInsRemote(dst);
         
         if (isOrderingInput(dstin, getInternalObject(dst)) || (validInput(dstin, getInternalObject(dst)) && !object_method(dst, gensym("__fl.is_connected"), dstin)))
             return 1;
@@ -1356,9 +1386,10 @@ private:
     {
         switch (type)
         {
-            case kFrameAny:     return "either";
-            case kFrameNormal:  return "vector";
-            case kFrameTagged:  return "tagged";
+            case kFrameNormal:          return "vector";
+            case kFrameTagged:          return "tagged";
+            // kFrameAny
+            default:                    return "either";
         }
     }
     
@@ -1491,7 +1522,7 @@ private:
                 else
                 {
                     i = parseNumericalList(values, argv, argc, i);
-                    serialisedParameters.write(sym->s_name + 1, values.data(), values.size());
+                    serialisedParameters.write(sym->s_name + 1, values.data(), static_cast<unsigned long>(values.size()));
                 }
             }
             else
@@ -1523,12 +1554,12 @@ private:
             i = parseNumericalList(values, argv, argc, 0);
             if (argsMode == kAllInputs)
             {
-                for (unsigned long j = 0; i && j < getNumIns(); j++)
-                    mObject->setFixedInput(j, values.data(), values.size());
+                for (long j = 0; i && j < getNumIns(); j++)
+                    mObject->setFixedInput(j, values.data(), static_cast<unsigned long>(values.size()));
             }
             else
             {
-                for (unsigned long j = 0; j < i && (j + 1) < getNumIns(); j++)
+                for (long j = 0; j < i && (j + 1) < getNumIns(); j++)
                     mObject->setFixedInput(j + 1, &values[j], 1);
             }
         }
@@ -1547,7 +1578,7 @@ private:
             {
                 t_symbol *sym = atom_getsym(argv + i);
                 i = parseNumericalList(values, argv, argc, i + 1);
-                mObject->setFixedInput(inputNumber(sym), values.data(), values.size());
+                mObject->setFixedInput(inputNumber(sym), values.data(), static_cast<unsigned long>(values.size()));
             }
             
             if ((i + 1) >= argc)

@@ -196,10 +196,10 @@ public:
 
         // Process and sum to outputs
 
-        for (unsigned long i = 0; i < mBlocks.size(); i++)
+        for (size_t i = 0; i < mBlocks.size(); i++)
         {
-            unsigned long inStreamOffset = internalNumIns * (i % getNumStreams());
-            unsigned long outStreamOffset = internalNumOuts * (i % getNumStreams());
+            unsigned long inStreamOffset = internalNumIns * (static_cast<unsigned long>(i) % getNumStreams());
+            unsigned long outStreamOffset = internalNumOuts * (static_cast<unsigned long>(i) % getNumStreams());
             
             mBlocks[i]->blockUpdate(ins + inStreamOffset, mAudioTemps.data(), blockSize);
             
@@ -267,8 +267,11 @@ private:
     
     void updateFixedInput(unsigned long idx)
     {
-        for (unsigned long i = 0; i < mBlocks.size(); i++)
-            mBlocks[i]->setFixedInput(idx, mFixedInputs[idx].data(), mFixedInputs[idx].size());
+        for (size_t i = 0; i < mBlocks.size(); i++)
+        {
+            unsigned long size = static_cast<unsigned long>(mFixedInputs[idx].size());
+            mBlocks[i]->setFixedInput(idx, mFixedInputs[idx].data(), size);
+        }
     }
     
     // Update (expand)
@@ -278,7 +281,7 @@ private:
         // Find number of channels (always keep at least one channel)
         
         unsigned long nChannels = 1;
-        unsigned long cChannels = mBlocks.size();
+        unsigned long cChannels = static_cast<unsigned long>(mBlocks.size());
         
         for (unsigned long i = 0; i < getNumIns(); i++)
             if (getInputNumChans(i) > nChannels)

@@ -91,7 +91,7 @@ unsigned long FrameLib_Trace::convertTimeToSamples(double time)
         case kSeconds:  time = secondsToSamples(time);  break;
     }
     
-    return round(time);
+    return roundToUInt(time);
 }
 
 void FrameLib_Trace::copyAndZero(double *output, unsigned long offset, unsigned long size)
@@ -121,9 +121,7 @@ void FrameLib_Trace::writeToBuffer(const double *input, unsigned long offset, un
 
 void FrameLib_Trace::objectReset()
 {
-    double size = mParameters.getValue(kBufferSize);
-    
-    size = round(convertTimeToSamples(size)) + mMaxBlockSize;
+    size_t size = convertTimeToSamples(mParameters.getValue(kBufferSize)) + mMaxBlockSize;
     
     if (size != bufferSize())
     {
@@ -168,7 +166,7 @@ void FrameLib_Trace::process()
     
     // Calculate time offset
     
-    unsigned long offset = round(delayTime + frameTime - getBlockStartTime());
+    unsigned long offset = roundToUInt(delayTime + frameTime - getBlockStartTime());
     
     // Safety
     

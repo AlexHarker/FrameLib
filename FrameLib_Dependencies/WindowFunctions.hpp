@@ -27,7 +27,7 @@ public:
     
     bool calculate(Ref reference, T window, uint32_t windowSize, uint32_t generateSize)
     {
-        for (long i = 0; i < mFunctions.size(); i++)
+        for (size_t i = 0; i < mFunctions.size(); i++)
         {
             if (reference == mFunctions[i].mReference)
             {
@@ -49,9 +49,10 @@ static double normalise(uint32_t pos, uint32_t windowSize)
     return static_cast<double>(pos) / static_cast<double>(windowSize);
 }
 
-template <class T> void window_rect(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_rect(T window, uint32_t windowSize, uint32_t generateSize)
 {
-	for (long i = 0; i < generateSize; i++)
+	for (uint32_t i = 0; i < generateSize; i++)
 		window[i] = 1;
 }
 
@@ -66,7 +67,8 @@ template <class T> void window_rect(T window, uint32_t windowSize, uint32_t gene
  }*/
 
 
-template <class T> void window_triangle(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_triangle(T window, uint32_t windowSize, uint32_t generateSize)
 {
     // FIX - this is approximate for now...
     
@@ -76,67 +78,78 @@ template <class T> void window_triangle(T window, uint32_t windowSize, uint32_t 
         window[i] = (double) (((double) generateSize - 1) - (double) i) / (double) (generateSize >> 1);
 }
 
-template <class T> void window_hann(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_hann(T window, uint32_t windowSize, uint32_t generateSize)
 {
 	for (uint32_t i = 0; i < generateSize; i++)
 		window[i] = 0.5 - (0.5 * cos(WINDOW_TWOPI * normalise(i, windowSize)));
 }
 
-template <class T> void window_cosine(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_cosine(T window, uint32_t windowSize, uint32_t generateSize)
 {
     for (uint32_t i = 0; i < generateSize; i++)
         window[i] = sin(WINDOW_PI * normalise(i, windowSize));
 }
 
-template <class T> void window_hamming(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_hamming(T window, uint32_t windowSize, uint32_t generateSize)
 {
 	for (uint32_t i = 0; i < generateSize; i++)
 		window[i] = 0.54347826 - (0.45652174 * cos(WINDOW_TWOPI * normalise(i, windowSize)));
 }
 
-template <class T> void window_blackman(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_blackman(T window, uint32_t windowSize, uint32_t generateSize)
 {
 	for (uint32_t i = 0; i < generateSize; i++)
 		window[i] = 0.42659071 - (0.49656062 * cos(WINDOW_TWOPI * normalise(i, windowSize))) + (0.07684867 * cos(WINDOW_FOURPI * normalise(i, windowSize)));
 }
 
-template <class T> void window_blackman_62(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_blackman_62(T window, uint32_t windowSize, uint32_t generateSize)
 {
 	for (uint32_t i = 0; i < generateSize; i++)
 		window[i] = (0.44859f - 0.49364f * cos(WINDOW_TWOPI * normalise(i, windowSize)) + 0.05677f * cos(WINDOW_FOURPI * normalise(i, windowSize)));
 }
 
-template <class T> void window_blackman_70(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_blackman_70(T window, uint32_t windowSize, uint32_t generateSize)
 {
 	for (uint32_t i = 0; i < generateSize; i++)
 		window[i] = (0.42323f - 0.49755f * cos(WINDOW_TWOPI * normalise(i, windowSize)) + 0.07922f * cos(WINDOW_FOURPI * normalise(i, windowSize)));
 }
 
-template <class T> void window_blackman_74(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_blackman_74(T window, uint32_t windowSize, uint32_t generateSize)
 {
 	for (uint32_t i = 0; i < generateSize; i++)
 		window[i] = (0.402217f - 0.49703f * cos(WINDOW_TWOPI * normalise(i, windowSize)) + 0.09892f * cos(WINDOW_FOURPI * normalise(i, windowSize)) - 0.00188 * cos(WINDOW_THREEPI * normalise(i, windowSize)));
 }
 
-template <class T> void window_blackman_92(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_blackman_92(T window, uint32_t windowSize, uint32_t generateSize)
 {
 	for (uint32_t i = 0; i < generateSize; i++)
 		window[i] = (0.35875f - 0.48829f * cos(WINDOW_TWOPI * normalise(i, windowSize)) + 0.14128f * cos(WINDOW_FOURPI * normalise(i, windowSize)) - 0.01168 * cos(WINDOW_THREEPI * normalise(i, windowSize)));
 }
 
-template <class T> void window_blackman_harris(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_blackman_harris(T window, uint32_t windowSize, uint32_t generateSize)
 {
 	for (uint32_t i = 0; i < generateSize; i++)
 		window[i] = 0.35875 - (0.48829 * cos(WINDOW_TWOPI * normalise(i, windowSize))) + (0.14128 * cos(WINDOW_FOURPI * normalise(i, windowSize))) - (0.01168 * cos(WINDOW_SIXPI * normalise(i, windowSize)));
 }
 
-template <class T> void window_flat_top(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_flat_top(T window, uint32_t windowSize, uint32_t generateSize)
 {
 	for (uint32_t i = 0; i < generateSize; i++)
 		window[i] = 0.2810639 - (0.5208972 * cos(WINDOW_TWOPI * normalise(i, windowSize))) + (0.1980399 * cos(WINDOW_FOURPI * normalise(i, windowSize)));
 }
 
-template <class T> void window_kaiser(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_kaiser(T window, uint32_t windowSize, uint32_t generateSize)
 {
     double alpha_bessel_recip;
     double new_term;
@@ -169,7 +182,7 @@ template <class T> void window_kaiser(T window, uint32_t windowSize, uint32_t ge
     
     // FIX - might not work 100%
     
-    for (long i = 0; i < generateSize; i++)
+    for (uint32_t i = 0; i < generateSize; i++)
     {
         temp = ((2.0 * (double) i) - ((double) windowSize - 1.0));
         temp = temp / windowSize;
@@ -193,44 +206,51 @@ template <class T> void window_kaiser(T window, uint32_t windowSize, uint32_t ge
 
 // The below is incorrect!!!!
 
-template <class T> void window_multisine_tapers(T window, uint32_t windowSize, uint32_t generateSize, uint32_t num_tapers)
+template <class T>
+void window_multisine_tapers(T window, uint32_t windowSize, uint32_t generateSize, uint32_t num_tapers)
 {
-	for (long j = 0; j < generateSize; j++)
+	for (uint32_t j = 0; j < generateSize; j++)
 		window[j] = 0.0;
 	
-	for (long i = 0; i < num_tapers; i++)
+	for (uint32_t i = 0; i < num_tapers; i++)
 	{
-		for (long j = 0; j < generateSize; j++)
+		for (uint32_t j = 0; j < generateSize; j++)
 			window[j] += sin(WINDOW_PI * (double) (i + 1) * (double) (j + 1) / (double) (windowSize + 1));
 	}
 }
 
-template <class T> void window_msinetaper1(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_msinetaper1(T window, uint32_t windowSize, uint32_t generateSize)
 {
 	window_multisine_tapers(window, windowSize, generateSize, 1);
 }
 
-template <class T> void window_msinetaper2(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_msinetaper2(T window, uint32_t windowSize, uint32_t generateSize)
 {
 	window_multisine_tapers(window, windowSize, generateSize, 2);
 }
 
-template <class T> void window_msinetaper3(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_msinetaper3(T window, uint32_t windowSize, uint32_t generateSize)
 {
 	window_multisine_tapers(window, windowSize, generateSize, 3);
 }
 
-template <class T> void window_msinetaper4(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_msinetaper4(T window, uint32_t windowSize, uint32_t generateSize)
 {
 	window_multisine_tapers(window, windowSize, generateSize, 4);
 }
 
-template <class T> void window_msinetaper5(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_msinetaper5(T window, uint32_t windowSize, uint32_t generateSize)
 {
 	window_multisine_tapers(window, windowSize, generateSize, 5);
 }
 
-template <class T> void window_msinetaper6(T window, uint32_t windowSize, uint32_t generateSize)
+template <class T>
+void window_msinetaper6(T window, uint32_t windowSize, uint32_t generateSize)
 {
 	window_multisine_tapers(window, windowSize, generateSize, 6);
 }
@@ -245,22 +265,22 @@ public:
     
     IndexedWindowFunctions()
     {
-        WindowFunctions<T, uint>::add(kWindowRect, window_rect);
-        WindowFunctions<T, uint>::add(kWindowTriangle, window_triangle);
+        WindowFunctions<T, uint16_t>::add(kWindowRect, window_rect);
+        WindowFunctions<T, uint16_t>::add(kWindowTriangle, window_triangle);
 
-        WindowFunctions<T, uint>::add(kWindowHann, window_hann);
-        WindowFunctions<T, uint>::add(kWindowHamming, window_hamming);
-        WindowFunctions<T, uint>::add(kWindowCosine, window_cosine);
+        WindowFunctions<T, uint16_t>::add(kWindowHann, window_hann);
+        WindowFunctions<T, uint16_t>::add(kWindowHamming, window_hamming);
+        WindowFunctions<T, uint16_t>::add(kWindowCosine, window_cosine);
         
-        WindowFunctions<T, uint>::add(kWindowBlackman, window_blackman);
-        WindowFunctions<T, uint>::add(kWindowBlackman62, window_blackman_62);
-        WindowFunctions<T, uint>::add(kWindowBlackman70, window_blackman_70);
-        WindowFunctions<T, uint>::add(kWindowBlackman74, window_blackman_62);
-        WindowFunctions<T, uint>::add(kWindowBlackman92, window_blackman_92);
-        WindowFunctions<T, uint>::add(kWindowBlackmanHarris, window_blackman_harris);
+        WindowFunctions<T, uint16_t>::add(kWindowBlackman, window_blackman);
+        WindowFunctions<T, uint16_t>::add(kWindowBlackman62, window_blackman_62);
+        WindowFunctions<T, uint16_t>::add(kWindowBlackman70, window_blackman_70);
+        WindowFunctions<T, uint16_t>::add(kWindowBlackman74, window_blackman_62);
+        WindowFunctions<T, uint16_t>::add(kWindowBlackman92, window_blackman_92);
+        WindowFunctions<T, uint16_t>::add(kWindowBlackmanHarris, window_blackman_harris);
 
-        WindowFunctions<T, uint>::add(kWindowFlatTop, window_kaiser);
+        WindowFunctions<T, uint16_t>::add(kWindowFlatTop, window_kaiser);
         
-        WindowFunctions<T, uint>::add(kWindowKaiser, window_flat_top);
+        WindowFunctions<T, uint16_t>::add(kWindowKaiser, window_flat_top);
     }
 };

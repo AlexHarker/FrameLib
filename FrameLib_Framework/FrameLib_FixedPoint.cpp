@@ -250,9 +250,9 @@ FL_SP operator * (const FL_SP& a, const FL_SP& b)
 
 FL_SP twoMinus(const FL_SP& b)
 {
-    uint64_t hi = 2 - b.mInt;
-    uint64_t md = -b.mFracHi;
-    uint64_t lo = -b.mFracLo;
+    uint64_t hi = 2U - b.mInt;
+    uint64_t md = 0U - b.mFracHi;
+    uint64_t lo = 0U - b.mFracLo; 
     
     // N.B. - must be able to double carry!
     
@@ -288,7 +288,7 @@ FL_FP::FL_FP(const FL_SP& val) : mInt(val.intVal()), mFrac(val.fracHiVal())
 {
     // Complete rounding
     
-    if (checkHighBit(val.fracLoVal()) & !(mInt == std::numeric_limits<uint64_t>::max() & mFrac == std::numeric_limits<uint64_t>::max()))
+    if (checkHighBit(val.fracLoVal()) & !((mInt == std::numeric_limits<uint64_t>::max()) & (mFrac == std::numeric_limits<uint64_t>::max())))
         *this += FL_FP(0, 1);
 }
 

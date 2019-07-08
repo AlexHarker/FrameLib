@@ -1,5 +1,6 @@
 
 #include "FrameLib_Expression.h"
+#include <cmath>
 
 #include "../Unary/FrameLib_Unary_Template.h"
 #include "../Binary/FrameLib_Binary_Template.h"
@@ -16,7 +17,7 @@ struct UnaryOperation final : public FrameLib_ExprParser::OpBase<double>
 {
     UnaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
-    int numItems() const override                                { return 1; }
+    size_t numItems() const override                             { return 1; }
     double call(double a, double b, double c) const override     { return Op()(a); }
     
     FrameLib_DSP *create(FrameLib_Context context) const override
@@ -30,7 +31,7 @@ struct BinaryOperation final : public FrameLib_ExprParser::OpBase<double>
 {
     BinaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
-    int numItems() const override                               { return 2; }
+    size_t numItems() const override                            { return 2; }
     double call(double a, double b, double c) const override    { return Op()(a, b); }
     
     FrameLib_DSP *create(FrameLib_Context context) const override
@@ -46,7 +47,7 @@ struct TernaryOperation final : public FrameLib_ExprParser::OpBase<double>
 {
     TernaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
-    int numItems() const override                       { return 3; }
+    size_t numItems() const override                            { return 3; }
     double call(double a, double b, double c) const override    { return Op()(a, b, c); }
     
     FrameLib_DSP *create(FrameLib_Context context) const override
@@ -143,9 +144,9 @@ FrameLib_Expression::Parser::Parser() : FrameLib_ExprParser::Parser<double>(7)
 
 // Constructor
 
-FrameLib_Expression::InputProcessor::InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns) : FrameLib_Processor(context, nullptr, nullptr, numIns, numIns), mMode(mode)
+FrameLib_Expression::InputProcessor::InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns) : FrameLib_Processor(context, nullptr, nullptr, numIns, numIns), mMode(mode)
 {
-    for (size_t i = 0; i < numIns; i++)
+    for (unsigned long i = 0; i < numIns; i++)
         setInputMode(i, false, (i < triggersSize) && triggers[i], false);
 }
 
@@ -202,9 +203,9 @@ void FrameLib_Expression::InputProcessor::process()
 
 // Constructor
 
-FrameLib_Expression::ConstantOut::ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns, double value) : FrameLib_Processor(context, nullptr, nullptr, numIns, 1), mMode(mode), mValue(value)
+FrameLib_Expression::ConstantOut::ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns, double value) : FrameLib_Processor(context, nullptr, nullptr, numIns, 1), mMode(mode), mValue(value)
 {
-    for (size_t i = 0; i < numIns; i++)
+    for (unsigned long i = 0; i < numIns; i++)
         setInputMode(i, false, (i < triggersSize) && triggers[i], false);
 }
 
@@ -257,7 +258,7 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Para
     MismatchModes mode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
     
     const double *triggers = mParameters.getArray(kTriggers);
-    size_t triggersSize = mParameters.getArraySize(kTriggers);
+    unsigned long triggersSize = mParameters.getArraySize(kTriggers);
     
     Graph graph;
     Parser parser;
@@ -276,7 +277,7 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, FrameLib_Para
 
         // Alias the inputs to the input processor
         
-        for (unsigned long i = 0 ; i < graph.mNumInputs; i++)
+        for (long i = 0 ; i < graph.mNumInputs; i++)
             mInputProcessor->setInputAlias(Connection(this, i), i);
         
         mFixedInputNode = mInputProcessor.get();

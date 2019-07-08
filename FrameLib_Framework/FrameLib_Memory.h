@@ -314,7 +314,7 @@ public:
             
             // Resize
             
-            void resize(bool tagged, size_t size)   { mStorage->resize(tagged, size); }
+            void resize(bool tagged, unsigned long size)   { mStorage->resize(tagged, size); }
             
         private:
             
@@ -331,13 +331,13 @@ public:
         
         FrameType getType() const               { return mType; }
         double *getVector() const               { return mType == kFrameNormal ? static_cast<double *>(mData) : nullptr; }
-        unsigned long getVectorSize() const     { return mType == kFrameNormal ? mSize : 0; }
-        unsigned long getTaggedSize() const     { return mType == kFrameTagged ? mSize : 0; }
+        unsigned long getVectorSize() const     { return mType == kFrameNormal ? static_cast<unsigned long>(mSize) : 0; }
+        unsigned long getTaggedSize() const     { return mType == kFrameTagged ? static_cast<unsigned long>(mSize) : 0; }
         Serial *getTagged() const               { return mType == kFrameTagged ? static_cast<Serial *>(mData) : nullptr; }
         
         // Resize the storage
         
-        void resize(bool tagged, size_t size);
+        void resize(bool tagged, unsigned long size);
 
         // Constructor / Destructor
         

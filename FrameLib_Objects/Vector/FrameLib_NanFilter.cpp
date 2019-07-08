@@ -76,7 +76,7 @@ void FrameLib_NanFilter::process()
                 return !std::isnan(val);
             });
             
-            requestOutputSize(0, (size_t)(tmp_end - tmp));
+            requestOutputSize(0, static_cast<unsigned long>(tmp_end - tmp));
             if(allocateOutputs())
             {
                 double* output = getOutput(0, &sizeOut);

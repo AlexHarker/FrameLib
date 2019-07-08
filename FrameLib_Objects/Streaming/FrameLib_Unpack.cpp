@@ -8,7 +8,7 @@ FrameLib_Unpack::FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::
     mParameters.addInt(kOutputs, "outputs", 2, 0);
     mParameters.setInstantiation();
     mParameters.set(serialisedParameters);
-    setIO(1, mParameters.getValue(kOutputs));
+    setIO(1, mParameters.getInt(kOutputs));
     
     mSerialisedParameters.write(serialisedParameters);
 }

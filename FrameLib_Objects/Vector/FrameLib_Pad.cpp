@@ -77,8 +77,8 @@ void FrameLib_Pad::process()
     }
     else
     {
-        padStart = round(mParameters.getValue(kStart) * sizeIn);
-        padEnd = round(mParameters.getValue(kEnd) * sizeIn);
+        padStart = roundToUInt(mParameters.getValue(kStart) * sizeIn);
+        padEnd = roundToUInt(mParameters.getValue(kEnd) * sizeIn);
     }
     
     requestOutputSize(0, padStart + sizeIn + padEnd);

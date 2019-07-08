@@ -263,7 +263,7 @@ void FrameLib_Thread::join()
     }
 }
 
-DWORD WINAPI Thread::threadStart(LPVOID arg)
+DWORD WINAPI FrameLib_Thread::threadStart(LPVOID arg)
 {
     static_cast<FrameLib_Thread *>(arg)->call();
     
@@ -293,7 +293,7 @@ void FrameLib_Semaphore::close()
 
         // Signal until the count is zero (only reliable way to signal all waiting threads
         
-        for (long releaseCount = 1; releaseCount; --releaseCount)
+        for (long releaseCount = 2; releaseCount > 1; )
             ReleaseSemaphore(mInternal, 1, &releaseCount);
     }
 }

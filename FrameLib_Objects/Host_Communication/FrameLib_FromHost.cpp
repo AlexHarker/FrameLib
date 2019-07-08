@@ -123,7 +123,7 @@ FrameLib_FromHost::FrameLib_FromHost(FrameLib_Context context, FrameLib_Paramete
         
     mParameters.set(serialisedParameters);
     
-    mMode = (Modes) mParameters.getValue(kMode);
+    mMode = static_cast<Modes>(mParameters.getInt(kMode));
     
     setOutputType(0, mMode == kValues ? kFrameNormal : kFrameTagged);
     
@@ -194,7 +194,7 @@ void FrameLib_FromHost::process()
     
     if (mMode == kValues)
     {
-        requestOutputSize(0, mVectorFrame ? mVectorFrame->size(): 0);
+        requestOutputSize(0, mVectorFrame ? static_cast<unsigned long>(mVectorFrame->size()): 0);
         allocateOutputs();
         
         double *output = getOutput(0, &size);

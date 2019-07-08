@@ -69,7 +69,7 @@ public:
             if (!object || object->FrameLib_Queueable<T>::mNext != nullptr)
                 return;
             
-            // Add to the top /tail of the queue depending on whether the queue is open
+            // Add to the top/tail of the queue depending on whether the queue is open
             
             if (mTop)
             {
@@ -111,6 +111,37 @@ private:
     T *mNext;
 };
 
+/**
+ 
+ @class FrameLib_Connection
+ 
+ @ingroup DSP
+ 
+ @brief an abstract template class holds the connected object and IO indices for object connections of arbitrary type.
+ 
+ @sa FrameLib_Block, FrameLib_DSP FrameLib_Multistream
+ 
+ */
+
+template <class T, typename U>
+struct FrameLib_Connection
+{
+    FrameLib_Connection() : mObject(nullptr), mIndex(0) {}
+    FrameLib_Connection(T *object, unsigned long index) : mObject(object), mIndex(index) {}
+    
+    friend bool operator == (const FrameLib_Connection& a, const FrameLib_Connection& b)
+    {
+        return a.mObject == b.mObject && a.mIndex == b.mIndex;
+    }
+    
+    friend bool operator != (const FrameLib_Connection& a, const FrameLib_Connection& b)
+    {
+        return !(a == b);
+    }
+    
+    T *mObject;
+    U mIndex;
+};
 
 /**
  
@@ -118,7 +149,8 @@ private:
  
  @ingroup DSP
  
- @brief an abstract template class providing an interface for FrameLib objects and implementing connectivity
+ @brief an abstract template class providing an interface for FrameLib objects and implementing connectivity.
+
  
  @sa FrameLib_Block, FrameLib_DSP FrameLib_Multistream
  
@@ -131,27 +163,7 @@ class FrameLib_Object : public FrameLib_Queueable<T>
 public:
     
     using Queue = typename FrameLib_Queueable<T>::Queue;
-    
-    /**
-     
-     @class Connection
-     
-     @brief holds the connected object and IO indices for a connection to an object
-     
-     */
-    
-    struct Connection
-    {
-        Connection() : mObject(nullptr), mIndex(0) {}
-        Connection(T *object, unsigned long index) : mObject(object), mIndex(index) {}
-        
-        friend bool operator == (const Connection& a, const Connection& b) { return a.mObject == b.mObject && a.mIndex == b.mIndex; }
-        friend bool operator != (const Connection& a, const Connection& b) { return !(a == b); }
-        
-        T *mObject;
-        unsigned long mIndex;
-    };
-
+    using Connection = FrameLib_Connection<T, unsigned long>;
 
 private:
 
@@ -197,27 +209,27 @@ public:
     FrameLib_Object(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy)
     : mType(type), mContext(context), mAllocator(context), mProxy(proxy), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
     
-    virtual ~FrameLib_Object()                  { clearConnections(false); }
+    virtual ~FrameLib_Object()              { clearConnections(false); }
    
     // Object Type
     
-    ObjectType getType() const                  { return mType; }
+    ObjectType getType() const              { return mType; }
     
     // Context
     
-    FrameLib_Context getContext() const         { return mContext; }
+    FrameLib_Context getContext() const     { return mContext; }
 
     // Owner
     
-    FrameLib_Proxy *getProxy() const            { return mProxy; }
+    FrameLib_Proxy *getProxy() const        { return mProxy; }
     
     // IO Queries
     
-    unsigned long getNumIns() const             { return mInputConnections.size(); }
-    unsigned long getNumOuts() const            { return mOutputConnections.size(); }
-    unsigned long getNumAudioIns() const        { return getType() != kOutput ? mNumAudioChans : 0; }
-    unsigned long getNumAudioOuts() const       { return getType() == kOutput ? mNumAudioChans : 0; }
-    unsigned long getNumAudioChans()  const     { return mNumAudioChans; }
+    unsigned long getNumIns() const         { return static_cast<unsigned long>(mInputConnections.size()); }
+    unsigned long getNumOuts() const        { return static_cast<unsigned long>(mOutputConnections.size()); }
+    unsigned long getNumAudioIns() const    { return getType() != kOutput ? mNumAudioChans : 0; }
+    unsigned long getNumAudioOuts() const   { return getType() == kOutput ? mNumAudioChans : 0; }
+    unsigned long getNumAudioChans() const  { return mNumAudioChans; }
     
     // Set / Get Fixed Inputs
     
@@ -331,12 +343,16 @@ public:
     
     // Input Connection Queries
 
-    bool isConnected(unsigned long inIdx) const                             { return getConnection(inIdx).mObject != nullptr; }
-    Connection getConnection(unsigned long inIdx) const                     { return getConnection(inIdx, false); }
+    bool isConnected(unsigned long inIdx) const                         { return getConnection(inIdx).mObject != nullptr; }
+    Connection getConnection(unsigned long inIdx) const                 { return getConnection(inIdx, false); }
     
-    bool supportsOrderingConnections() const                                { return mSupportsOrderingConnections; }
-    unsigned long getNumOrderingConnections() const                         { return traverseOrderingAliases()->mOrderingConnections.size(); }
-    Connection getOrderingConnection(unsigned long idx) const               { return getOrderingConnection(idx, false); }
+    bool supportsOrderingConnections() const                            { return mSupportsOrderingConnections; }
+    Connection getOrderingConnection(unsigned long idx) const           { return getOrderingConnection(idx, false); }
+    
+    unsigned long getNumOrderingConnections() const
+    {
+        return static_cast<unsigned long>(traverseOrderingAliases()->mOrderingConnections.size());
+    }
     
     // Automatic Dependency Connections
     
@@ -345,7 +361,10 @@ public:
     
     // Connection Update
     
-    void callConnectionUpdate()                                            { Queue queue(static_cast<T *>(this), &T::FrameLib_Object::connectionUpdate); }
+    void callConnectionUpdate()
+    {
+        Queue queue(static_cast<T *>(this), &T::FrameLib_Object::connectionUpdate);
+    }
     
     template <class U> void addOutputDependencies(std::vector<U *> &dependencies)
     {
@@ -362,8 +381,8 @@ protected:
     
     // IO Connection Queries (protected)
     
-    Connection getConnectionInternal(unsigned long inIdx) const             { return getConnection(inIdx, true); }
-    Connection getOrderingConnectionInternal(unsigned long idx) const       { return getOrderingConnection(idx, true); }
+    Connection getConnectionInternal(unsigned long inIdx) const         { return getConnection(inIdx, true); }
+    Connection getOrderingConnectionInternal(unsigned long idx) const   { return getOrderingConnection(idx, true); }
     
     void addOutputDependencies(Queue *queue)
     {
@@ -392,12 +411,14 @@ protected:
 
     // Memory Allocation
     
-    template <class U> U *alloc(unsigned long N)
+    template <class U>
+    U *alloc(size_t N)
     {
         return reinterpret_cast<U *>(mAllocator->alloc(sizeof(U) * N));
     }
 
-    template <class U> void dealloc(U *& ptr)
+    template <class U>
+    void dealloc(U *& ptr)
     {
         mAllocator->dealloc(ptr);
         ptr = nullptr;

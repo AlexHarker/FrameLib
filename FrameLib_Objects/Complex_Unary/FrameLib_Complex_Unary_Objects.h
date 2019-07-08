@@ -4,6 +4,8 @@
 
 #include "FrameLib_Complex_Unary_Template.h"
 
+#include <functional>
+
 // Complex Unary (functions)
 
 // Info specialisations

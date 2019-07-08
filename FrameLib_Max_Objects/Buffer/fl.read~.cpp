@@ -19,7 +19,7 @@ class FrameLib_MaxClass_Read : public FrameLib_MaxClass_Expand<FrameLib_Read>
         void acquire(unsigned long& length, double& samplingRate) override
         {
             mBuffer.acquire(mBufferName);
-            length = mBuffer.get_length();
+            length = static_cast<unsigned long>(mBuffer.get_length());
             samplingRate = mBuffer.get_sample_rate();
         }
         

@@ -1,5 +1,6 @@
 
 #include "FrameLib_ComplexExpression.h"
+#include <cmath>
 
 #include "../Complex_Unary/FrameLib_Complex_Unary_Template.h"
 #include "../Complex_Binary/FrameLib_Complex_Binary_Template.h"
@@ -43,7 +44,7 @@ struct UnaryOperation final : public FrameLib_ExprParser::OpBase<std::complex<do
     
     UnaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
-    int numItems() const override                                   { return 1; }
+    size_t numItems() const override                                { return 1; }
     complex call(complex a, complex b, complex c) const override    { return Op()(a); }
     
     FrameLib_DSP *create(FrameLib_Context context) const override
@@ -59,7 +60,7 @@ struct BinaryOperation final : public FrameLib_ExprParser::OpBase<std::complex<d
 
     BinaryOperation(const char* name, int precedence = 0) : OpBase(name, precedence) {}
     
-    int numItems() const override                                   { return 2; }
+    size_t numItems() const override                                { return 2; }
     complex call(complex a, complex b, complex c) const override    { return Op()(a, b); }
     
     FrameLib_DSP *create(FrameLib_Context context) const override
@@ -126,10 +127,10 @@ FrameLib_ComplexExpression::Parser::Parser() : FrameLib_ExprParser::Parser<std::
 
 // Constructor
 
-FrameLib_ComplexExpression::InputProcessor::InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns)
+FrameLib_ComplexExpression::InputProcessor::InputProcessor(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns)
 : FrameLib_Processor(context, nullptr, nullptr, numIns * 2, numIns * 2), mMode(mode)
 {
-    for (size_t i = 0; i < numIns; i++)
+    for (unsigned long i = 0; i < numIns; i++)
     {
         setInputMode(i + 0, false, (i < triggersSize) && triggers[i], false);
         setInputMode(i + 1, false, (i < triggersSize) && triggers[i], false);
@@ -238,9 +239,9 @@ void FrameLib_ComplexExpression::InputProcessor::process()
 
 // Constructor
 
-FrameLib_ComplexExpression::ConstantOut::ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, size_t triggersSize, unsigned long numIns, std::complex<double> value) : FrameLib_Processor(context, nullptr, nullptr, numIns * 2, 2), mMode(mode), mValue(value)
+FrameLib_ComplexExpression::ConstantOut::ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns, std::complex<double> value) : FrameLib_Processor(context, nullptr, nullptr, numIns * 2, 2), mMode(mode), mValue(value)
 {
-    for (size_t i = 0; i < numIns; i++)
+    for (unsigned long i = 0; i < numIns; i++)
     {
         setInputMode(i + 0, false, (i < triggersSize) && triggers[i], false);
         setInputMode(i + 1, false, (i < triggersSize) && triggers[i], false);
@@ -306,7 +307,7 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
     mParameters.set(serialisedParameters);
   
     const double *triggers = mParameters.getArray(kTriggers);
-    size_t triggersSize = mParameters.getArraySize(kTriggers);
+    unsigned long triggersSize = mParameters.getArraySize(kTriggers);
     
     MismatchModes mode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
 
@@ -327,7 +328,7 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
 
         // Alias the inputs to the input processor
         
-        for (unsigned long i = 0 ; i < graph.mNumInputs * 2; i++)
+        for (long i = 0 ; i < graph.mNumInputs * 2; i++)
             mInputProcessor->setInputAlias(Connection(this, i), i);
         
         mFixedInputNode = mInputProcessor.get();

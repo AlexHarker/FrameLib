@@ -1,5 +1,6 @@
 
 #include "FrameLib_Resonant.h"
+#include <cmath>
 
 // Filter Class
 
@@ -85,7 +86,7 @@ FrameLib_Resonant::ParameterInfo::ParameterInfo()
 void FrameLib_Resonant::process()
 {
     Resonant filter;
-    Modes mode = static_cast<Modes>(mParameters.getValue(kMode));
+    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
     
     bool staticParams = true;
     

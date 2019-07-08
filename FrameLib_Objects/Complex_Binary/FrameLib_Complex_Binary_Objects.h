@@ -4,6 +4,8 @@
 
 #include "FrameLib_Complex_Binary_Template.h"
 
+#include <functional>
+
 // Complex Binary (operators)
 
 // Info specialisations

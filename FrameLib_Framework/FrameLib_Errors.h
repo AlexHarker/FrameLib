@@ -8,7 +8,8 @@
 #include <algorithm>
 #include <memory>
 #include <string>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 
 /**
  
@@ -164,11 +165,11 @@ public:
         bool addItem(const char *str)
         {
             char *ptr = mItems + mItemsSize;
-            size_t size = + strlen(str) + 1;
+            size_t size = strlen(str) + 1;
             
             if (mItemsSize + size < sCharArraySize)
             {
-                strcpy(ptr, str);
+                std::copy(str, str + size, ptr);
                 mItemsSize += size;
                 return true;
             }
@@ -178,22 +179,25 @@ public:
         
         bool addItem(size_t number)
         {
-            char charArray[32];
-            sprintf(charArray, "%zu", number);
+            const int strBufSize = 32;
+            char charArray[strBufSize];
+            snprintf(charArray, strBufSize, "%zu", number);
             return addItem(charArray);
         }
         
         bool addItem(long number)
         {
-            char charArray[32];
-            sprintf(charArray, "%ld", number);
+            const int strBufSize = 32;
+            char charArray[strBufSize];
+            snprintf(charArray, strBufSize, "%ld", number);
             return addItem(charArray);
         }
         
         bool addItem(double number)
         {
-            char charArray[32];
-            sprintf(charArray, "%lf", number);
+            const int strBufSize = 32;
+            char charArray[strBufSize];
+            snprintf(charArray, strBufSize, "%lf", number);
             return addItem(charArray);
         }
         

@@ -79,7 +79,7 @@ unsigned long FrameLib_Ramp::getLength()
         case kScaleSeconds:  time = secondsToSamples(time);  break;
     }
     
-    return round(time);
+    return roundToUInt(time);
 }
 
 // Process
@@ -97,7 +97,7 @@ void FrameLib_Ramp::process()
     double *output = getOutput(0, &sizeOut);
     double multiplier = 1.0;
     
-    switch (static_cast<Scales>(mParameters.getValue(kScale)))
+    switch (static_cast<Scales>(mParameters.getInt(kScale)))
     {
         case kScaleMS:              multiplier = 1000.0 / mSamplingRate;                        break;
         case kScaleSeconds:         multiplier = 1.0 / mSamplingRate;                           break;

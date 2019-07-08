@@ -73,7 +73,7 @@ void FrameLib_Chop::process()
     if (units == kSamples)
         chop = mParameters.getInt(kSize);
     else
-        chop = round(mParameters.getValue(kSize) * sizeIn);
+        chop = roundToUInt(mParameters.getValue(kSize) * sizeIn);
     
     for (i = 0, sizeCalc = sizeIn; i < mNumOuts; i++)
     {
