@@ -3,7 +3,8 @@ import json
 import xml.etree.ElementTree as et
 import errno
 from strippers import strip_extension
-from helpers import cd_up, read_json, remove_ds
+from helpers import cd_up, read_json, remove_ds, get_path
+import yaml
 
 ### This file should be probably be made into a class as its quite messy to define the find_object_category function inside of the main(). ###
 
@@ -17,6 +18,14 @@ def main(root):
     raw_xml_path = os.path.join(dir_path, 'tmp')
     move_to_path = os.path.join(cd_up(root, 2), 'Current Test Version', 'FrameLib', 'docs', 'refpages')
     category_database_path = os.path.join(dir_path, 'category_database.json')
+    yaml_file = os.path.join(root, 'object_relationships.yaml')
+    object_info = None
+
+    with open(yaml_file, 'r') as stream:
+        try:
+            object_info = yaml.safe_load(stream)
+        except yaml.YAMLError as exc:
+            print(exc)
 
     ### Load the category_database.json ###
     category_database = read_json(category_database_path)
@@ -32,6 +41,24 @@ def main(root):
             for obj in category_object_list:
                 if obj == obj_string:
                     return key
+
+
+    def indent(elem, level=0):
+        i = "\n" + level*"  "
+        if len(elem):
+            if not elem.text or not elem.text.strip():
+                elem.text = i + "  "
+            if not elem.tail or not elem.tail.strip():
+                elem.tail = i
+            for elem in elem:
+                indent(elem, level+1)
+            if not elem.tail or not elem.tail.strip():
+                elem.tail = i
+        else:
+            if level and (not elem.tail or not elem.tail.strip()):
+                elem.tail = i
+
+
     try:
         raw_xml_list = remove_ds(os.listdir(raw_xml_path)) #make a list with all the raw xml files in them
     except FileNotFoundError:
@@ -42,9 +69,9 @@ def main(root):
     except NameError:
         pass
     else:
-        for i in range(len(raw_xml_list)):
-            raw_xml_file_path = os.path.join(raw_xml_path, raw_xml_list[i]) #make a raw file path to load the list somewhere
-            obj_name = strip_extension(raw_xml_list[i], 2) #just get the file name
+        for raw_xml in raw_xml_list:
+            raw_xml_file_path = os.path.join(raw_xml_path, raw_xml) #make a raw file path to load the list somewhere
+            obj_name = strip_extension(raw_xml, 2) #just get the file name
             category = find_object_category(obj_name) #get the category of the object name
             tree = et.parse(raw_xml_file_path) #parse the xml file
             root = tree.getroot() #get root and assign to root var
@@ -56,11 +83,30 @@ def main(root):
                         elem.text = elem.text.replace('!@#@#$', category) #try to replace specific text with category found in json
                     except AttributeError:
                         pass #else pass because it will throw some errors
-            if not os.path.exists(f'{move_to_path}/{category}'):
+            if not os.path.exists(os.path.join(move_to_path, category)):
                 try:
-                    os.makedirs(f'{move_to_path}/{category}')
+                    os.makedirs(os.path.join(move_to_path))
                 except OSError as e:
                     if e.errno != errno.EEXIST:
                         raise # if directory is made between os.path.exists and os.makedirs calls this will fail with an OSError. This raises an error to warn the user rather than pushing on
+            
+            ### Create seealso and keywords
+            details = object_info[obj_name]
+            for elem in root:
+                if elem.tag == 'seealsolist':
+                    for seealso in details['seealso']:
+                        new_element = et.Element('seealso')
+                        new_element.set('Name', seealso)
+                        elem.append(new_element)
+                if elem.tag == 'misc' and elem.attrib['name'] == 'Discussion':
+                    for sub_elem in elem:
+                        if sub_elem.tag == 'entry' and sub_elem.attrib['name'] == 'Keywords':
+                            for desc in sub_elem:
+                                temp_string = ','.join(details['keywords'])
+                                desc.text = temp_string
+            # Pretty Print #
+            indent(root)
+            tree.write(os.path.join(move_to_path, category, raw_xml)) # write out to new XML
 
-            tree.write(os.path.join(move_to_path, category, raw_xml_list[i])) # write out to new XML
+root = get_path()
+main(root)
