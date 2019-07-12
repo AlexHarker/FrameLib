@@ -40,7 +40,7 @@ def main(root):
         if 'ibuffer' in files:
             files.remove('ibuffer')
         # some max categories already overlap with framelib categories (timing for example). This just maps Timing -> fl_timing to avoid any duplication issues
-        item = f'fl_{item}'
+        item = f'FrameLib {item}'
         for i in range(len(files)):
             files[i] = strip_extension(files[i], 1)
         category_dict[item] = files
