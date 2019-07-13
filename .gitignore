@@ -54,6 +54,7 @@ Documentation/Max\ Documentation/category_database.json
 *.maxref.xml
 *lookup.json 
 .vscode
+object_relationships.txt
 
 ## Other
 *.moved-aside
