@@ -18,26 +18,26 @@
   OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 <root>
-  <module>Binary</module>
-  <module>Buffer</module>
-  <module>Complex_Binary</module>
-  <module>Complex_Unary</module>
-  <module>Expressions</module>
-  <module>Filters</module>
-  <module>Generators</module>
-  <module>Host_Communication</module>
-  <module>IO</module>
-  <module>Mapping</module>
-  <module>Parameters</module>
-  <module>Routing</module>
-  <module>Schedulers</module>
-  <module>Spatial</module>
-  <module>Spectral</module>
-  <module>Storage</module>
-  <module>Streaming</module>
-  <module>Ternary</module>
-  <module>Time_Smoothing</module>
-  <module>FL_Timing</module>
-  <module>Unary</module>
-  <module>Vector</module>
+  <module>FrameLib Binary</module>
+  <module>FrameLib Buffer</module>
+  <module>FrameLib Complex_Binary</module>
+  <module>FrameLib Complex_Unary</module>
+  <module>FrameLib Expressions</module>
+  <module>FrameLib Filters</module>
+  <module>FrameLib Generators</module>
+  <module>FrameLib Host_Communication</module>
+  <module>FrameLib IO</module>
+  <module>FrameLib Mapping</module>
+  <module>FrameLib Parameters</module>
+  <module>FrameLib Routing</module>
+  <module>FrameLib Schedulers</module>
+  <module>FrameLib Spatial</module>
+  <module>FrameLib Spectral</module>
+  <module>FrameLib Storage</module>
+  <module>FrameLib Streaming</module>
+  <module>FrameLib Ternary</module>
+  <module>FrameLib Time_Smoothing</module>
+  <module>FrameLib Timing</module>
+  <module>FrameLib Unary</module>
+  <module>FrameLib Vector</module>
 </root>
