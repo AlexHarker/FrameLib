@@ -5,7 +5,16 @@ import json
 def remove_ds(list_in):
     if '.DS_Store' in list_in:
         list_in.remove('.DS_Store')
-        return list_in
+    return list_in
+
+def thin_list(list_to_thin, things_to_thin):
+    '''
+    Takes a list_to_thin and removes each element of things_to_thin from it (if it exists)
+    '''
+    for badness in things_to_thin:
+        if badness in list_to_thin:
+            list_to_thin.remove(badness)
+    return list_to_thin
 
 def write_json(json_file, in_dict):
     '''
