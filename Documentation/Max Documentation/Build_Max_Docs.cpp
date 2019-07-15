@@ -40,7 +40,7 @@ void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
     // Write some stuff at the top of every xml file.
     myfile << "<?xml version='1.0' encoding='utf-8' standalone='yes'?> \n" ;
     myfile << "<?xml-stylesheet href='./_c74_ref.xsl' type='text/xsl'?> \n \n" ;
-    myfile << "<c74object name='" << object << "' " << "module='FrameLib' " << "category=" << "'" << object_category << std::string("'> ") << "\n \n";
+    myfile << "<c74object name='" << object + "~" << "' " << "module='FrameLib' " << "category=" << "'" << object_category << std::string("'> ") << "\n \n";
     
     // Description
     
