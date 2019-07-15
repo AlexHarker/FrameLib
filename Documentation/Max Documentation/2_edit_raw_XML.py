@@ -42,7 +42,6 @@ def main(root):
                 if obj == obj_string:
                     return key
 
-
     def indent(elem, level=0):
         i = "\n" + level*"  "
         if len(elem):
@@ -58,22 +57,15 @@ def main(root):
             if level and (not elem.tail or not elem.tail.strip()):
                 elem.tail = i
 
-
     try:
         raw_xml_list = remove_ds(os.listdir(raw_xml_path)) #make a list with all the raw xml files in them
     except FileNotFoundError:
         print('Unable to find any xml files to parse. Moving on without parsing object references.')
-
-    try:
-        raw_xml_list
-    except NameError:
-        pass
     else:
         for raw_xml in raw_xml_list:
-            raw_xml_file_path = os.path.join(raw_xml_path, raw_xml) #make a raw file path to load the list somewhere
             obj_name = strip_extension(raw_xml, 2) #just get the file name
             category = find_object_category(obj_name) #get the category of the object name
-            tree = et.parse(raw_xml_file_path) #parse the xml file
+            tree = et.parse(os.path.join(raw_xml_path, raw_xml)) #parse the xml file
             root = tree.getroot() #get root and assign to root var
             root.set('category', category) #set category attribute of root to the category found in json
             ### This replaces the meta data tag. It produces a lot of errors which are filtered by the try/except structure but it should be changed to something else ###
@@ -106,7 +98,12 @@ def main(root):
                                 desc.text = temp_string
             # Pretty Print #
             indent(root)
-            tree.write(os.path.join(move_to_path, category, raw_xml)) # write out to new XML
-
-root = get_path()
-main(root)
+            out_path = os.path.join(move_to_path, category, raw_xml)
+            try:
+                os.makedirs(os.path.join(move_to_path, category))
+            except OSError as e:
+                if e.errno != errno.EEXIST:
+                    raise
+            tree.write(out_path) # write out to new XML
+    
+main(get_path())
