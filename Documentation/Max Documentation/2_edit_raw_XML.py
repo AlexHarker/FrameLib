@@ -105,5 +105,3 @@ def main(root):
                 if e.errno != errno.EEXIST:
                     raise
             tree.write(out_path) # write out to new XML
-    
-main(get_path())
