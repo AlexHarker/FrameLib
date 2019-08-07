@@ -82,7 +82,7 @@ void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
         {
             std::string param_num = std::to_string(i);
             FrameLib_Parameters::Type type = params->getType(i);
-            FrameLib_Parameters::NumericType numericType = params->getNumericType(i); // remove possibly. its not being used
+//            FrameLib_Parameters::NumericType numericType = params->getNumericType(i); // remove possibly. its not being used
             std::string defaultStr = params->getDefaultString(i);
             
             // Name, type and default value
@@ -144,7 +144,6 @@ void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
     myfile << tab_2 + "</entry> \n";
     myfile << tab_1 + "</misc> \n \n";
     myfile << "</c74object>";
-    
     myfile.close();
 }
 
