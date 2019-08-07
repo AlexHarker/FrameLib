@@ -1,9 +1,8 @@
-# imports #
 import json
 import xml.etree.ElementTree as et
 import os
-from strippers import strip_space
-from helpers import cd_up, write_json ,remove_ds
+from FrameLibDocs.strippers import strip_space
+from FrameLibDocs.utils import cd_up, write_json ,remove_ds
 
 # A class to parse the XML files and build a JSON file from it #
 class dParseAndBuild():
@@ -54,8 +53,10 @@ def main(root):
     bad_entries = ['.DS_Store', '_c74_ref_modules.xml']
     # Directory stuff #
     dir_path = root
+    print(root)
     dir_path = os.path.join(cd_up(root, 2), 'Current Test Version', 'FrameLib')
     ref_dir = os.path.join(dir_path, 'docs', 'refpages')
+    print(ref_dir)
     obj_lookup = os.path.join(dir_path, 'interfaces', 'FrameLib-obj-dlookup.json')
 
     worker = dParseAndBuild()

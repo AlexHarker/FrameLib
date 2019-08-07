@@ -1,9 +1,8 @@
 import xml.etree.ElementTree as et
 import os
-from strippers import strip_space
-from helpers import write_json, cd_up, thin_list
 import yaml
-
+from FrameLibDocs.strippers import strip_space
+from FrameLibDocs.utils import write_json, cd_up, thin_list
 
 class qParseAndBuild():
     '''

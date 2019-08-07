@@ -1,7 +1,7 @@
 import os
 import json
-from strippers import strip_extension
-from helpers import write_json, cd_up
+from FrameLibDocs.strippers import strip_extension
+from FrameLibDocs.utils import write_json, cd_up
 
 def main(root):
     '''

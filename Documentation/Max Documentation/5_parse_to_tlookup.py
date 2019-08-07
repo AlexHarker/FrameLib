@@ -1,9 +1,8 @@
-# imports #
 import json
-import xml.etree.ElementTree as et
 import os
-from strippers import strip_space
-from helpers import write_json, cd_up
+import xml.etree.ElementTree as et
+from FrameLibDocs.strippers import strip_space
+from FrameLibDocs.utils import write_json, cd_up
 
 # A class to parse the XML files and build a JSON file from it #
 class tParseAndBuild():

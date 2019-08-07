@@ -1,5 +1,5 @@
 import os
-from helpers import cd_up
+from FrameLibDocs.utils import cd_up
 
 def main(root):
     # Directory stuff 

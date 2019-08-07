@@ -2,9 +2,10 @@ import os
 import json
 import xml.etree.ElementTree as et
 import errno
-from strippers import strip_extension
-from helpers import cd_up, read_json, remove_ds, get_path
 import yaml
+from FrameLibDocs.strippers import strip_extension
+from FrameLibDocs.utils import cd_up, read_json, remove_ds, get_path
+
 
 ### This file should be probably be made into a class as its quite messy to define the find_object_category function inside of the main(). ###
 
