@@ -1,9 +1,9 @@
 import os
-from helpers import get_path
-from strippers import *
 import re
+from FrameLibDocs.utils import get_path, cd_up
+from FrameLibDocs.strippers import strip_space, strip_extension
 
-root = get_path()
+root = cd_up(get_path(), 1)
 
 ## Create the Max_Object_list.h and add skeleton
 op = open(os.path.join(root, 'Max_Object_List.h'), 'w+')
