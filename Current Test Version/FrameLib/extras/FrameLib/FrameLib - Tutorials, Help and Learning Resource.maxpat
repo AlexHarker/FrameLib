@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 5,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 692.0, 855.0 ],
+		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 11.0,
@@ -76,13 +76,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 692.0, 829.0 ],
+						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -123,7 +123,7 @@
 									"patching_rect" : [ 292.0, 511.0, 152.0, 179.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 3,
-									"presentation_rect" : [ 4.0, 775.0, 681.0, 50.0 ],
+									"presentation_rect" : [ 8.0, 708.0, 639.0, 50.0 ],
 									"text" : "Part of the tutorial design was made possible thanks to the FluCoMa project ( http://www.flucoma.org/ ) funded by the European Research Council ( https://erc.europa.eu/ ) under the European Union’s Horizon 2020 research and innovation programme (grant agreement No 725899).",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.509999990463257 ]
 								}
@@ -142,7 +142,7 @@
 									"patching_rect" : [ 292.0, 387.0, 180.0, 116.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 3,
-									"presentation_rect" : [ 322.0, 720.0, 359.0, 53.0 ],
+									"presentation_rect" : [ 288.0, 650.0, 359.0, 53.0 ],
 									"text" : "Max Documentation and Tutorials written by James Bradbury (james.bradbury@hud.ac.uk) with support from the Huddersfield Creative Coding Lab.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 									"textjustification" : 2
@@ -205,8 +205,8 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.0, 123.0, 476.0, 358.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 16,
-									"presentation_rect" : [ 8.0, 79.0, 683.0, 275.0 ],
+									"presentation_linecount" : 17,
+									"presentation_rect" : [ 8.0, 79.0, 641.0, 291.0 ],
 									"text" : "FrameLib is a DSP library for frame based processing. The underlying code is written in C++ and theoretically can be hosted in any block-based environment, but is easily compiled for Max from source. If this level of technical geekiness interests you there are links to the source/github throughout the documentation and just below.\n\nYou might be familiar working with other frame based tools such as pipo, mubu or gabor/FTM but you are encouraged to explore the FrameLib tutorials which will guide you through the fundamentals and how it works within Max. The tutorials should be perused in their numbered order, and increase with difficulty as you move through them. A number of techniques will be covered such as simple and complex FFT, and granular synthesis. \n\nThere is also a complete object reference as of 15/10/18. Gaining information about the FrameLib objects is still possible without help files and how to do this is explained in Tutorial 2: Key Concepts, \"How to get help\".\n\nYou are encouraged to move to the tutorial section next and to start learning how FrameLib works.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.910000026226044 ]
 								}
@@ -223,7 +223,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -357,7 +357,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 23.0, 681.0, 97.0, 64.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 576.0, 36.0, 105.0, 32.0 ],
+									"presentation_rect" : [ 542.0, 36.0, 105.0, 32.0 ],
 									"tabs" : [ "ICMC Paper", "GitHub Source" ]
 								}
 
@@ -403,7 +403,7 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 29.0, 639.5, 150.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 576.0, 16.0, 105.0, 20.0 ],
+									"presentation_rect" : [ 542.0, 16.0, 105.0, 20.0 ],
 									"text" : "References",
 									"textjustification" : 1
 								}
@@ -578,13 +578,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 692.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -617,19 +617,17 @@
 								"box" : 								{
 									"fontface" : 0,
 									"fontname" : "Lato",
-									"fontsize" : 13.0,
-									"id" : "obj-20",
-									"linecount" : 5,
+									"id" : "obj-4",
+									"linecount" : 12,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 458.0, 719.7398681640625, 179.0, 84.0 ],
+									"patching_rect" : [ 292.0, 511.0, 152.0, 179.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 3,
-									"presentation_rect" : [ 302.5, 720.0, 378.0, 53.0 ],
-									"text" : "Tutorials written by James Bradbury with support from the Huddersfield Creative Coding Lab and the Fluid Corpus Manipulation Project.",
-									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
-									"textjustification" : 2
+									"presentation_rect" : [ 8.0, 708.0, 639.0, 50.0 ],
+									"text" : "Part of the tutorial design was made possible thanks to the FluCoMa project ( http://www.flucoma.org/ ) funded by the European Research Council ( https://erc.europa.eu/ ) under the European Union’s Horizon 2020 research and innovation programme (grant agreement No 725899).",
+									"textcolor" : [ 0.0, 0.0, 0.0, 0.509999990463257 ]
 								}
 
 							}
@@ -637,17 +635,49 @@
 								"box" : 								{
 									"fontface" : 0,
 									"fontname" : "Lato",
+									"fontsize" : 13.0,
 									"id" : "obj-15",
-									"linecount" : 12,
+									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 304.0, 628.0, 152.0, 179.0 ],
+									"patching_rect" : [ 292.0, 387.0, 180.0, 116.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 3,
-									"presentation_rect" : [ 4.0, 775.0, 681.0, 50.0 ],
-									"text" : "Part of the tutorial design was made possible thanks to the FluCoMa project ( http://www.flucoma.org/ ) funded by the European Research Council ( https://erc.europa.eu/ ) under the European Union’s Horizon 2020 research and innovation programme (grant agreement No 725899).",
-									"textcolor" : [ 0.0, 0.0, 0.0, 0.509999990463257 ]
+									"presentation_rect" : [ 288.0, 650.0, 359.0, 53.0 ],
+									"text" : "Max Documentation and Tutorials written by James Bradbury (james.bradbury@hud.ac.uk) with support from the Huddersfield Creative Coding Lab.",
+									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"textjustification" : 2
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"button" : 1,
+									"id" : "obj-19",
+									"maxclass" : "tab",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "int", "", "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 23.0, 681.0, 97.0, 64.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 542.0, 36.0, 105.0, 32.0 ],
+									"tabs" : [ "ICMC Paper", "GitHub Source" ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-20",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 29.0, 639.5, 150.0, 20.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 542.0, 16.0, 105.0, 20.0 ],
+									"text" : "References",
+									"textjustification" : 1
 								}
 
 							}
@@ -661,7 +691,7 @@
 									"patching_rect" : [ 284.0, 248.0, 151.0, 74.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 2,
-									"presentation_rect" : [ 248.5, 225.0, 427.0, 33.0 ],
+									"presentation_rect" : [ 248.5, 225.0, 398.5, 33.0 ],
 									"text" : "Warning: At this point in time, tutorials 1-6 are included in the FrameLib package. Further tutorials (7 & 8) to come!",
 									"textcolor" : [ 0.866666674613953, 0.117647059261799, 0.117647059261799, 1.0 ]
 								}
@@ -691,23 +721,9 @@
 									"patching_rect" : [ 23.0, 210.0, 384.0, 40.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 2,
-									"presentation_rect" : [ 251.0, 153.0, 422.0, 40.0 ],
+									"presentation_rect" : [ 251.0, 153.0, 396.0, 40.0 ],
 									"text" : "A general introduction to FrameLib and some foundation DSP concepts..",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-4",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 659.0, 150.0, 20.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 573.0, 16.0, 105.0, 20.0 ],
-									"text" : "References",
-									"textjustification" : 1
 								}
 
 							}
@@ -722,7 +738,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -803,7 +819,7 @@
 													"maxclass" : "inlet",
 													"numinlets" : 0,
 													"numoutlets" : 1,
-													"outlettype" : [ "int" ],
+													"outlettype" : [ "" ],
 													"patching_rect" : [ 50.0, 40.0, 30.0, 30.0 ]
 												}
 
@@ -847,22 +863,6 @@
 							}
 , 							{
 								"box" : 								{
-									"button" : 1,
-									"id" : "obj-19",
-									"maxclass" : "tab",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "int", "", "" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 23.0, 681.0, 97.0, 64.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 573.0, 36.0, 105.0, 32.0 ],
-									"tabs" : [ "ICMC Paper", "GitHub Source" ]
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-2",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -884,7 +884,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1321,7 +1321,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1476,7 +1476,7 @@
 														"appversion" : 														{
 															"major" : 8,
 															"minor" : 0,
-															"revision" : 5,
+															"revision" : 6,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -2362,7 +2362,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 471.0, 477.0, 53.0, 24.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 4.0, 114.0, 210.0, 659.0 ],
+									"presentation_rect" : [ 4.0, 114.0, 210.0, 589.0 ],
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
@@ -2436,13 +2436,6 @@
 							}
  ],
 						"lines" : [ 							{
-								"patchline" : 								{
-									"destination" : [ "obj-13", 0 ],
-									"source" : [ "obj-19", 0 ]
-								}
-
-							}
-, 							{
 								"patchline" : 								{
 									"destination" : [ "obj-80", 0 ],
 									"source" : [ "obj-31", 1 ]
@@ -2671,13 +2664,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 692.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -2710,19 +2703,17 @@
 								"box" : 								{
 									"fontface" : 0,
 									"fontname" : "Lato",
-									"fontsize" : 13.0,
-									"id" : "obj-20",
-									"linecount" : 5,
+									"id" : "obj-6",
+									"linecount" : 12,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 339.5, 644.0, 180.0, 84.0 ],
+									"patching_rect" : [ 292.0, 511.0, 152.0, 179.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 3,
-									"presentation_rect" : [ 306.0, 720.0, 379.0, 53.0 ],
-									"text" : "Help files written by James Bradbury with support from the Huddersfield Creative Coding Lab and the Fluid Corpus Manipulation Project.",
-									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
-									"textjustification" : 2
+									"presentation_rect" : [ 8.0, 708.0, 639.0, 50.0 ],
+									"text" : "Part of the tutorial design was made possible thanks to the FluCoMa project ( http://www.flucoma.org/ ) funded by the European Research Council ( https://erc.europa.eu/ ) under the European Union’s Horizon 2020 research and innovation programme (grant agreement No 725899).",
+									"textcolor" : [ 0.0, 0.0, 0.0, 0.509999990463257 ]
 								}
 
 							}
@@ -2730,17 +2721,49 @@
 								"box" : 								{
 									"fontface" : 0,
 									"fontname" : "Lato",
-									"id" : "obj-6",
-									"linecount" : 12,
+									"fontsize" : 13.0,
+									"id" : "obj-2",
+									"linecount" : 7,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 184.0, 644.0, 152.0, 179.0 ],
+									"patching_rect" : [ 292.0, 387.0, 180.0, 116.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 3,
-									"presentation_rect" : [ 4.0, 775.0, 681.0, 50.0 ],
-									"text" : "Part of the tutorial design was made possible thanks to the FluCoMa project ( http://www.flucoma.org/ ) funded by the European Research Council ( https://erc.europa.eu/ ) under the European Union’s Horizon 2020 research and innovation programme (grant agreement No 725899).",
-									"textcolor" : [ 0.0, 0.0, 0.0, 0.509999990463257 ]
+									"presentation_rect" : [ 288.0, 650.0, 359.0, 53.0 ],
+									"text" : "Max Documentation and Tutorials written by James Bradbury (james.bradbury@hud.ac.uk) with support from the Huddersfield Creative Coding Lab.",
+									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"textjustification" : 2
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"button" : 1,
+									"id" : "obj-19",
+									"maxclass" : "tab",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "int", "", "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 23.0, 681.0, 97.0, 64.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 542.0, 36.0, 105.0, 32.0 ],
+									"tabs" : [ "ICMC Paper", "GitHub Source" ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-16",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 29.0, 639.5, 150.0, 20.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 542.0, 16.0, 105.0, 20.0 ],
+									"text" : "References",
+									"textjustification" : 1
 								}
 
 							}
@@ -2765,8 +2788,8 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 284.0, 248.0, 151.0, 127.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 3,
-									"presentation_rect" : [ 251.0, 195.0, 427.0, 47.0 ],
+									"presentation_linecount" : 4,
+									"presentation_rect" : [ 251.0, 195.0, 396.0, 60.0 ],
 									"text" : "Warning: many categories have no help files and clicking the object name will do nothing. If you are looking for help with a particular object refer to the Reference or send an instance of the object the \"info\" message.",
 									"textcolor" : [ 0.866666674613953, 0.117647059261799, 0.117647059261799, 1.0 ]
 								}
@@ -2783,7 +2806,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2864,7 +2887,7 @@
 													"maxclass" : "inlet",
 													"numinlets" : 0,
 													"numoutlets" : 1,
-													"outlettype" : [ "int" ],
+													"outlettype" : [ "" ],
 													"patching_rect" : [ 50.0, 40.0, 30.0, 30.0 ]
 												}
 
@@ -2903,22 +2926,6 @@
 									}
 ,
 									"text" : "p papers"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"button" : 1,
-									"id" : "obj-19",
-									"maxclass" : "tab",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "int", "", "" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 23.0, 681.0, 97.0, 64.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 573.0, 36.0, 105.0, 32.0 ],
-									"tabs" : [ "ICMC Paper", "GitHub Source" ]
 								}
 
 							}
@@ -3040,7 +3047,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -3996,7 +4003,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -4487,7 +4494,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -4961,7 +4968,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 471.0, 477.0, 53.0, 24.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 4.0, 114.0, 210.0, 659.0 ],
+									"presentation_rect" : [ 4.0, 114.0, 210.0, 589.0 ],
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
@@ -4987,33 +4994,19 @@
 									"presentation_rect" : [ 5.0, 89.0, 209.0, 23.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_shortname" : "umenu",
+											"parameter_type" : 3,
 											"parameter_longname" : "umenu",
 											"parameter_initial_enable" : 1,
 											"parameter_invisible" : 1,
 											"parameter_mmax" : 22.0,
-											"parameter_initial" : [ 0 ],
-											"parameter_shortname" : "umenu",
-											"parameter_type" : 3
+											"parameter_initial" : [ 0 ]
 										}
 
 									}
 ,
 									"textjustification" : 1,
 									"varname" : "umenu"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-2",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 659.0, 150.0, 20.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 573.0, 16.0, 105.0, 20.0 ],
-									"text" : "References",
-									"textjustification" : 1
 								}
 
 							}
@@ -5085,13 +5078,6 @@
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
 									"source" : [ "obj-17", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-13", 0 ],
-									"source" : [ "obj-19", 0 ]
 								}
 
 							}
@@ -5371,7 +5357,7 @@
 , 			{
 				"name" : "tutorial_names.txt",
 				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : "../docs/tutorial-patchers",
+				"patcherrelativepath" : "../../docs/tutorial-patchers",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
