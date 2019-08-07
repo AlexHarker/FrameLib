@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 5,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 0.0, 45.0, 795.0, 855.0 ],
+		"rect" : [ 0.0, 45.0, 766.0, 855.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -39,7 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
-		"title" : "Tutorial 2: Key Concepts",
+		"title" : "Tutorial 3: Key Concepts",
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-5",
@@ -51,13 +51,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 795.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 766.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -132,7 +132,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -305,7 +305,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -576,7 +576,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 50.0, 754.0, 100.0 ],
+									"patching_rect" : [ 8.75, 50.0, 617.0, 100.0 ],
 									"text" : "There is only one 'parameter update' inlet on each FrameLib which can be problematic if you want to control multiple parameters with fl.tag~.\n\nBelow shows some methods of solving this problem.\n\nDon't worry too much about the objects outside of the black box - "
 								}
 
@@ -809,8 +809,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -878,7 +878,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 106.0, 639.0, 157.0, 21.0 ],
-					"text" : "title \"Tutorial 2: Key Concepts\""
+					"text" : "title \"Tutorial 3: Key Concepts\""
 				}
 
 			}
@@ -918,13 +918,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 795.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 766.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -955,14 +955,27 @@
 						"title" : "How to Get Help",
 						"boxes" : [ 							{
 								"box" : 								{
+									"fontface" : 1,
+									"fontsize" : 20.0,
+									"id" : "obj-1",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 8.75, 12.0, 456.0, 29.0 ],
+									"text" : "Getting Help in FrameLib"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"hidden" : 1,
 									"id" : "obj-9",
 									"linecount" : 3,
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 574.75, 574.0, 180.0, 49.0 ],
-									"text" : "next_tut _3_Converting_between_FrameLib_and_Max.maxpat"
+									"patching_rect" : [ 360.75, 475.0, 209.0, 49.0 ],
+									"text" : "next_tut _4_Converting_between_FrameLib_and_Max.maxpat"
 								}
 
 							}
@@ -975,7 +988,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 574.75, 536.0, 100.0, 20.0 ],
+									"patching_rect" : [ 579.75, 475.0, 100.0, 20.0 ],
 									"text" : "Next Tutorial",
 									"textoncolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
 								}
@@ -993,7 +1006,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1104,7 +1117,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 4.0, 562.0, 76.0, 22.0 ],
+									"patching_rect" : [ 9.0, 501.0, 76.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1125,7 +1138,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 4.0, 492.0, 97.0, 64.0 ],
+									"patching_rect" : [ 9.0, 431.0, 97.0, 64.0 ],
 									"tabs" : [ "ICMC Paper", "GitHub Source" ]
 								}
 
@@ -1138,7 +1151,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 485.0, 530.25, 5.0 ]
+									"patching_rect" : [ 8.75, 424.0, 530.25, 5.0 ]
 								}
 
 							}
@@ -1150,7 +1163,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 454.0, 456.0, 29.0 ],
+									"patching_rect" : [ 8.75, 393.0, 456.0, 29.0 ],
 									"text" : "Extra links"
 								}
 
@@ -1162,7 +1175,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 66.75, 362.0, 173.0, 22.0 ],
+									"patching_rect" : [ 71.75, 301.0, 173.0, 22.0 ],
 									"text" : "Provides a quick summary"
 								}
 
@@ -1174,7 +1187,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 96.75, 330.833344000000011, 204.0, 22.0 ],
+									"patching_rect" : [ 101.75, 269.833344000000011, 204.0, 22.0 ],
 									"text" : "Prints parameters for the object"
 								}
 
@@ -1186,7 +1199,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 48.75, 299.666655999999989, 209.0, 22.0 ],
+									"patching_rect" : [ 53.75, 238.666655999999989, 209.0, 22.0 ],
 									"text" : "Prints info on inputs and outputs"
 								}
 
@@ -1198,7 +1211,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 78.75, 268.5, 230.0, 22.0 ],
+									"patching_rect" : [ 83.75, 207.5, 230.0, 22.0 ],
 									"text" : "Prints information about the outputs"
 								}
 
@@ -1210,7 +1223,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 66.75, 237.333327999999995, 221.0, 22.0 ],
+									"patching_rect" : [ 71.75, 176.333327999999995, 221.0, 22.0 ],
 									"text" : "Prints information about the inputs"
 								}
 
@@ -1222,7 +1235,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 96.75, 206.166672000000005, 139.0, 22.0 ],
+									"patching_rect" : [ 101.75, 145.166672000000005, 139.0, 22.0 ],
 									"text" : "Prints the description"
 								}
 
@@ -1234,7 +1247,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 35.75, 175.0, 233.0, 22.0 ],
+									"patching_rect" : [ 40.75, 114.0, 233.0, 22.0 ],
 									"text" : "Prints all information to max console"
 								}
 
@@ -1246,7 +1259,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 3.75, 361.0, 61.0, 22.0 ],
+									"patching_rect" : [ 8.75, 300.0, 61.0, 22.0 ],
 									"text" : "info quick"
 								}
 
@@ -1258,7 +1271,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 3.75, 329.833344000000011, 94.0, 22.0 ],
+									"patching_rect" : [ 8.75, 268.833344000000011, 94.0, 22.0 ],
 									"text" : "info parameters"
 								}
 
@@ -1270,7 +1283,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 3.75, 298.666655999999989, 43.0, 22.0 ],
+									"patching_rect" : [ 8.75, 237.666655999999989, 43.0, 22.0 ],
 									"text" : "info io"
 								}
 
@@ -1282,7 +1295,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 3.75, 267.5, 73.0, 22.0 ],
+									"patching_rect" : [ 8.75, 206.5, 73.0, 22.0 ],
 									"text" : "info outputs"
 								}
 
@@ -1294,7 +1307,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 3.75, 236.333327999999995, 65.0, 22.0 ],
+									"patching_rect" : [ 8.75, 175.333327999999995, 65.0, 22.0 ],
 									"text" : "info inputs"
 								}
 
@@ -1306,7 +1319,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 3.75, 205.166672000000005, 91.0, 22.0 ],
+									"patching_rect" : [ 8.75, 144.166672000000005, 91.0, 22.0 ],
 									"text" : "info description"
 								}
 
@@ -1318,7 +1331,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 3.75, 174.0, 30.0, 22.0 ],
+									"patching_rect" : [ 8.75, 113.0, 30.0, 22.0 ],
 									"text" : "info"
 								}
 
@@ -1331,7 +1344,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 3.75, 408.058837890625, 84.0, 26.0 ],
+									"patching_rect" : [ 8.75, 347.058837890625, 84.0, 26.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -1344,21 +1357,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 111.0, 531.0, 53.0 ],
+									"patching_rect" : [ 8.75, 50.0, 531.0, 53.0 ],
 									"text" : "Like all Max objects there are help files that can be accessed for reference. You can also send FrameLib objects some reserved messages which post extra information to the max console. "
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontface" : 1,
-									"fontsize" : 20.0,
-									"id" : "obj-7",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 73.0, 456.0, 29.0 ],
-									"text" : "Info Messages to FrameLib objects"
 								}
 
 							}
@@ -1370,21 +1370,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 104.0, 530.25, 5.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontface" : 0,
-									"fontname" : "Lato",
-									"fontsize" : 44.0,
-									"id" : "obj-43",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 4.0, 666.0, 59.0 ],
-									"text" : "How to Get Help"
+									"patching_rect" : [ 8.75, 43.0, 530.25, 5.0 ]
 								}
 
 							}
@@ -1512,8 +1498,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1572,13 +1558,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 795.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 766.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1789,7 +1775,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2179,7 +2165,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 8.75, 770.40002400000003, 157.75, 51.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 9
+									"size" : 10
 								}
 
 							}
@@ -2310,13 +2296,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 795.0, 829.0 ],
+						"rect" : [ 0.0, 26.0, 766.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2347,11 +2333,34 @@
 						"title" : "Schedulers and Timing",
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-22",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 563.0, 704.40002400000003, 26.0, 20.0 ],
+									"text" : "=="
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-9",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 596.0, 704.40002400000003, 159.0, 22.0 ],
+									"text" : "fl.random~ /mode requested"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-19",
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 859.0, 766.40002400000003, 45.0, 45.0 ]
+									"patching_rect" : [ 710.0, 760.40002400000003, 45.0, 45.0 ]
 								}
 
 							}
@@ -2983,13 +2992,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 71.0, 795.0, 829.0 ],
+						"rect" : [ 0.0, 71.0, 766.0, 829.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3167,8 +3176,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",

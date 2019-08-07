@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 0,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -59,8 +59,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 157.0, 261.0, 281.0, 21.0 ],
-					"text" : "title \"Tutorial 4: Generator Objects\""
+					"patching_rect" : [ 157.0, 261.0, 178.0, 21.0 ],
+					"text" : "title \"Tutorial 5: Generator Objects\""
 				}
 
 			}
@@ -100,13 +100,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 71.0, 814.0, 552.0 ],
+						"rect" : [ 0.0, 26.0, 814.0, 552.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -143,7 +143,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 471.75, 516.0, 229.0, 22.0 ],
-									"text" : "next_tut _5_Your_First_FrameLib.maxpat"
+									"text" : "next_tut _6_Your_First_FrameLib.maxpat"
 								}
 
 							}
@@ -621,8 +621,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -681,7 +681,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -762,7 +762,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 170.75, 466.0, 161.0, 21.0 ],
-									"text" : "0.00 0.25 0.50 0.75 1.00"
+									"text" : "0.00 1.00 2.00 3.00 4.00"
 								}
 
 							}
@@ -1101,8 +1101,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1143,7 +1143,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1242,7 +1242,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 156.75, 364.0, 132.0, 111.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 100
+									"size" : 5
 								}
 
 							}
@@ -1534,8 +1534,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1576,13 +1576,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 814.0, 552.0 ],
+						"rect" : [ 0.0, 71.0, 814.0, 552.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1697,7 +1697,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 0,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 284.0, 795.0, 210.0 ],
+									"patching_rect" : [ 3.75, 284.0, 796.0, 210.0 ],
 									"suppressinlet" : 1,
 									"text" : "All generator objects share three parameters that are responsible for their general operation. We've already seen the /length and /mode parameters in previous tutorials, that control how incoming frames might modify the output length of the frame, or how we might directly set the frame output length. The last shared parameter is \"units\". Frames by nature contain samples and any values in the frame are interpreted as sample values. If, for example you wanted to generate a frame in terms of milliseconds, the units parameter can internally convert these values into samples rather than you having to include an mstosamps~ type object somewhere in your network. A typical implementation of this is in granular synthesis, where you might generate a grain in terms of milliseconds but convert these values and read from the buffer in sample positions.\n\nOverall, learning the generators will allow you to integrate the other key concepts of FrameLib that we have covered previously and to start building networks that can create and process sound.\n\nIn the next tutorial we are going to start building our first FrameLib project - a granular synthesiser! First, have a look through the tabs of this tutorial to get a feeling for how generators work."
 								}
@@ -1762,8 +1762,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1836,7 +1836,7 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "next_tut.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib_Distribution/docs/tutorial-patchers",
+				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

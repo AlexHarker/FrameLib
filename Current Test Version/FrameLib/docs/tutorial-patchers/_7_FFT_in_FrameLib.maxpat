@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 0,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 0.0, 45.0, 843.0, 809.0 ],
+		"rect" : [ 0.0, 45.0, 860.0, 809.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -39,7 +39,32 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
+		"title" : "Tutorial 7: FFT in FrameLib",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-14",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 143.0, 64.0, 54.0, 21.0 ],
+					"text" : "loadbang"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 143.0, 91.0, 161.0, 21.0 ],
+					"text" : "title Tutorial 7: FFT in FrameLib"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-6",
 					"maxclass" : "newobj",
@@ -75,13 +100,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 843.0, 783.0 ],
+						"rect" : [ 0.0, 26.0, 860.0, 783.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -169,7 +194,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 0,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -475,7 +500,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 0,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -737,13 +762,13 @@
 									"patching_rect" : [ 8.75, 650.0, 136.0, 47.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmax" : 6.0,
-											"parameter_initial" : [ 0.0 ],
 											"parameter_shortname" : "Volume",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 4,
 											"parameter_mmin" : -70.0,
-											"parameter_longname" : "live.gain~[3]"
+											"parameter_longname" : "live.gain~[3]",
+											"parameter_mmax" : 6.0,
+											"parameter_initial" : [ 0.0 ]
 										}
 
 									}
@@ -1066,13 +1091,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 843.0, 783.0 ],
+						"rect" : [ 0.0, 26.0, 860.0, 783.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1159,13 +1184,13 @@
 									"patching_rect" : [ 8.75, 460.0, 136.0, 47.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmax" : 6.0,
-											"parameter_initial" : [ 0.0 ],
 											"parameter_shortname" : "Volume",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 4,
 											"parameter_mmin" : -70.0,
-											"parameter_longname" : "live.gain~[4]"
+											"parameter_longname" : "live.gain~[4]",
+											"parameter_mmax" : 6.0,
+											"parameter_initial" : [ 0.0 ]
 										}
 
 									}
@@ -1224,7 +1249,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 0,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1793,13 +1818,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 843.0, 783.0 ],
+						"rect" : [ 0.0, 26.0, 860.0, 783.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1892,13 +1917,13 @@
 									"patching_rect" : [ 8.749992000000001, 643.5, 136.0, 41.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmax" : 6.0,
-											"parameter_initial" : [ 0.0 ],
 											"parameter_shortname" : "Volume",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 4,
 											"parameter_mmin" : -70.0,
-											"parameter_longname" : "live.gain~[2]"
+											"parameter_longname" : "live.gain~[2]",
+											"parameter_mmax" : 6.0,
+											"parameter_initial" : [ 0.0 ]
 										}
 
 									}
@@ -1930,7 +1955,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 0,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2115,7 +2140,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 0,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2278,7 +2303,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 0,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -3187,13 +3212,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 843.0, 783.0 ],
+						"rect" : [ 0.0, 26.0, 860.0, 783.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3272,13 +3297,13 @@
 									"patching_rect" : [ 8.75, 384.0, 136.0, 41.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmax" : 6.0,
-											"parameter_initial" : [ 0.0 ],
 											"parameter_shortname" : "Volume",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 4,
 											"parameter_mmin" : -70.0,
-											"parameter_longname" : "live.gain~[1]"
+											"parameter_longname" : "live.gain~[1]",
+											"parameter_mmax" : 6.0,
+											"parameter_initial" : [ 0.0 ]
 										}
 
 									}
@@ -3582,13 +3607,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 843.0, 783.0 ],
+						"rect" : [ 0.0, 26.0, 860.0, 783.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3738,13 +3763,13 @@
 									"patching_rect" : [ 8.75, 585.0, 136.0, 41.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmax" : 6.0,
-											"parameter_initial" : [ 0.0 ],
 											"parameter_shortname" : "Volume",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 4,
 											"parameter_mmin" : -70.0,
-											"parameter_longname" : "live.gain~"
+											"parameter_longname" : "live.gain~",
+											"parameter_mmax" : 6.0,
+											"parameter_initial" : [ 0.0 ]
 										}
 
 									}
@@ -4335,13 +4360,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 71.0, 843.0, 783.0 ],
+						"rect" : [ 0.0, 71.0, 860.0, 783.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4820,28 +4845,93 @@
 				}
 
 			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-6", 0 ],
+					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-13", 0 ],
+					"source" : [ "obj-14", 0 ]
+				}
+
+			}
  ],
 		"parameters" : 		{
-			"obj-7::obj-8::obj-35" : [ "[11]", "Level", 0 ],
-			"obj-4::obj-40" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-10::obj-40" : [ "live.gain~", "Volume", 0 ],
-			"obj-10::obj-23::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-10::obj-9::obj-35" : [ "[5]", "Level", 0 ],
-			"obj-4::obj-9::obj-21::obj-6" : [ "live.tab[5]", "live.tab[1]", 0 ],
-			"obj-3::obj-23::obj-35" : [ "[8]", "Level", 0 ],
-			"obj-5::obj-4" : [ "live.gain~[2]", "Volume", 0 ],
+			"obj-7::obj-10" : [ "live.gain~[3]", "Volume", 0 ],
 			"obj-4::obj-23::obj-21::obj-6" : [ "live.tab[6]", "live.tab[1]", 0 ],
 			"obj-5::obj-23::obj-35" : [ "[9]", "Level", 0 ],
-			"obj-7::obj-10" : [ "live.gain~[3]", "Volume", 0 ],
+			"obj-10::obj-9::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
+			"obj-4::obj-40" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-10::obj-23::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
 			"obj-4::obj-9::obj-35" : [ "[6]", "Level", 0 ],
 			"obj-7::obj-8::obj-21::obj-6" : [ "live.tab[11]", "live.tab[1]", 0 ],
 			"obj-3::obj-10" : [ "live.gain~[4]", "Volume", 0 ],
 			"obj-4::obj-23::obj-35" : [ "[7]", "Level", 0 ],
 			"obj-3::obj-23::obj-21::obj-6" : [ "live.tab[9]", "live.tab[1]", 0 ],
-			"obj-10::obj-9::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
+			"obj-10::obj-40" : [ "live.gain~", "Volume", 0 ],
+			"obj-5::obj-4" : [ "live.gain~[2]", "Volume", 0 ],
 			"obj-10::obj-23::obj-35" : [ "[1]", "Level", 0 ],
 			"obj-5::obj-23::obj-21::obj-6" : [ "live.tab[8]", "live.tab[1]", 0 ],
+			"obj-7::obj-8::obj-35" : [ "[11]", "Level", 0 ],
+			"obj-10::obj-9::obj-35" : [ "[5]", "Level", 0 ],
+			"obj-4::obj-9::obj-21::obj-6" : [ "live.tab[5]", "live.tab[1]", 0 ],
+			"obj-3::obj-23::obj-35" : [ "[8]", "Level", 0 ],
 			"parameterbanks" : 			{
+
+			}
+,
+			"parameter_overrides" : 			{
+				"obj-4::obj-23::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[6]"
+				}
+,
+				"obj-5::obj-23::obj-35" : 				{
+					"parameter_longname" : "[9]"
+				}
+,
+				"obj-10::obj-23::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[4]"
+				}
+,
+				"obj-4::obj-9::obj-35" : 				{
+					"parameter_longname" : "[6]"
+				}
+,
+				"obj-7::obj-8::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[11]"
+				}
+,
+				"obj-4::obj-23::obj-35" : 				{
+					"parameter_longname" : "[7]"
+				}
+,
+				"obj-3::obj-23::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[9]"
+				}
+,
+				"obj-10::obj-23::obj-35" : 				{
+					"parameter_longname" : "[1]"
+				}
+,
+				"obj-5::obj-23::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[8]"
+				}
+,
+				"obj-7::obj-8::obj-35" : 				{
+					"parameter_longname" : "[11]"
+				}
+,
+				"obj-4::obj-9::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[5]"
+				}
+,
+				"obj-3::obj-23::obj-35" : 				{
+					"parameter_longname" : "[8]"
+				}
 
 			}
 
@@ -4849,7 +4939,7 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "nativeFFT.maxpat",
-				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -4892,21 +4982,21 @@
 			}
 , 			{
 				"name" : "next_tut.maxpat",
-				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "basicFreeze.maxpat",
-				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "basicFreeze_pfft.maxpat",
-				"bootpath" : "~/Sync/00_fl.documentation/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

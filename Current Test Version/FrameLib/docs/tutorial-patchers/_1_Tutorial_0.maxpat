@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 2,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -60,7 +60,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 639.75, 73.0, 269.0, 29.0 ],
-					"presentation_linecount" : 2,
 					"text" : "Interactive Illustration"
 				}
 
@@ -73,8 +72,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 639.75, 104.0, 530.25, 257.0 ],
-					"presentation_linecount" : 16,
+					"patching_rect" : [ 639.75, 104.0, 537.0, 257.0 ],
 					"text" : "Drag around the waveform~ object to highlight in green different parts of the buffer. FrameLib will extract all the samples of audio in this range and keep it as a frame for you... right here!\n\nUse the 'play' button to hear the chunk of audio you have selected. You might be asking at this point how does this work conceptually?\n\nFrameLib looks at how many samples are in this frame. We have made our frame by selecting some audio from a buffer in milliseconds so it makes a conversion between time in milliseconds to time in samples. The math here is actually incredibly basic, we could do it on paper if we wanted to. If we have a sample rate of 44.1khz and we make a selection that is 1000 milliseconds long there will be 44100 samples in the frame. The Max audio scheduler is constantly processing samples \n\nLets get creative Now imagine if each time we trigger the frame we might change the location of "
 				}
 
@@ -440,7 +438,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 5.75, 338.0, 530.25, 210.0 ],
+					"patching_rect" : [ 5.75, 338.0, 531.0, 210.0 ],
 					"text" : "We traditionally conceive of digital sound as a continuous stream. This constantly 'flowing' signal can be directed to different processing routines that modify the data to achieve a sonic outcome.\n\nThis is all well and good for processing techniques that only need to know what to do with a single sample at a time. However, there are many powerful effects, analysis and synthesis techniques where we must deal with a small group or 'frame' of audio. Examples of this are the Fast Fourier Transform (FFT), where we have to create a window to be processed together. A window in this case, is simply a group of consecutive samples extracted from our continuous stream. \n\nFrameLib allows you synthesise frames from scratch or extract them from other sources such as MSP signals or buffers. "
 				}
 
@@ -479,7 +477,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 5.75, 213.0, 530.25, 85.0 ],
+					"patching_rect" : [ 5.75, 213.0, 533.0, 85.0 ],
 					"text" : "A frame is a list, vector or array of samples. All of these words refer to a similar idea, so more simply its just a group of numbers that exist as a single discrete unit. The numbers can represent a variety of different things such as audio, spectral analysis information or gestural control data. A number of FrameLib objects help create or produce these frames and to translate them into musically useful products."
 				}
 
@@ -751,8 +749,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",

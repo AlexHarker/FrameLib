@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 5,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 0.0, 45.0, 895.0, 727.0 ],
+		"rect" : [ 0.0, 45.0, 898.0, 727.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -60,7 +60,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 106.0, 639.0, 281.0, 21.0 ],
-					"text" : "title \"Tutorial 3: Converting between FrameLib and Max\""
+					"text" : "title \"Tutorial 4: Converting between FrameLib and Max\""
 				}
 
 			}
@@ -84,7 +84,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 21.0, 639.0, 76.0, 21.0 ],
+					"patching_rect" : [ 21.0, 613.0, 76.0, 21.0 ],
 					"text" : "r wclose_msg"
 				}
 
@@ -100,13 +100,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 895.0, 701.0 ],
+						"rect" : [ 0.0, 26.0, 898.0, 701.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -143,7 +143,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 676.3125, 494.0, 150.0, 33.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Output of fl.map~\nBipolar signal",
 									"textjustification" : 1
 								}
@@ -717,7 +716,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 277.0, 582.0, 80.0, 21.0 ],
+					"patching_rect" : [ 277.0, 563.0, 80.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -740,13 +739,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 895.0, 701.0 ],
+						"rect" : [ 0.0, 26.0, 898.0, 701.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -861,7 +860,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1441,7 +1440,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 187.0, 582.0, 84.0, 21.0 ],
+					"patching_rect" : [ 187.0, 563.0, 84.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1464,13 +1463,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 71.0, 895.0, 701.0 ],
+						"rect" : [ 0.0, 26.0, 898.0, 701.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1507,7 +1506,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 604.5, 668.5, 177.0, 22.0 ],
-									"text" : "next_tut _4_Generators.maxpat"
+									"text" : "next_tut _5_Generators.maxpat"
 								}
 
 							}
@@ -1563,7 +1562,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -2278,8 +2277,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2315,7 +2314,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 362.0, 582.0, 93.0, 21.0 ],
+					"patching_rect" : [ 362.0, 563.0, 93.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -2338,13 +2337,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 895.0, 701.0 ],
+						"rect" : [ 0.0, 26.0, 898.0, 701.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2500,7 +2499,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 110.0, 582.0, 72.0, 21.0 ],
+					"patching_rect" : [ 110.0, 563.0, 72.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -2523,13 +2522,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 895.0, 701.0 ],
+						"rect" : [ 0.0, 71.0, 898.0, 701.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2605,7 +2604,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 4.0, 948.0, 59.0 ],
+									"patching_rect" : [ 3.75, 4.0, 797.33332884311676, 59.0 ],
 									"text" : "Passing data between FrameLib and Max"
 								}
 
@@ -2669,8 +2668,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2706,7 +2705,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 21.0, 582.0, 85.0, 21.0 ],
+					"patching_rect" : [ 21.0, 563.0, 85.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
