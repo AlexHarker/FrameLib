@@ -58,6 +58,12 @@ void FrameLib_KernelSmooth::process()
 
     if (output)
     {
+        if (!sizeIn2)
+        {
+            copyVector(output, input, sizeOut);
+            return;
+        }
+        
         Allocator allocator(*this);
         
         unsigned long widthSize;
@@ -77,6 +83,6 @@ void FrameLib_KernelSmooth::process()
             
         }
         
-        kernel_smooth(output, input, kernel, sizeIn1, sizeIn2, width_lo, width_hi, allocator);
+        kernel_smooth(output, input, kernel, sizeIn1, sizeIn2, width_lo, width_hi, kSmoothFold, allocator);
     }
 }
