@@ -19,5 +19,14 @@ void ir_time_reverse(FFT_SPLIT_COMPLEX_D *out, const FFT_SPLIT_COMPLEX_D *in, ui
 void ir_phase(FFT_SETUP_F setup, FFT_SPLIT_COMPLEX_F *out, FFT_SPLIT_COMPLEX_F *in, uintptr_t fft_size, double phase, bool zero_center = false);
 void ir_phase(FFT_SETUP_D setup, FFT_SPLIT_COMPLEX_D *out, FFT_SPLIT_COMPLEX_D *in, uintptr_t fft_size, double phase, bool zero_center = false);
 
+void convolve_complex(FFT_SPLIT_COMPLEX_D *out, FFT_SPLIT_COMPLEX_D *in1, FFT_SPLIT_COMPLEX_D *in2, uintptr_t fft_size, double scale);
+void convolve_complex(FFT_SPLIT_COMPLEX_F *out, FFT_SPLIT_COMPLEX_F *in1, FFT_SPLIT_COMPLEX_F *in2, uintptr_t fft_size, float scale);
+void convolve_real(FFT_SPLIT_COMPLEX_D *out, FFT_SPLIT_COMPLEX_D *in1, FFT_SPLIT_COMPLEX_D *in2, uintptr_t fft_size, double scale);
+void convolve_real(FFT_SPLIT_COMPLEX_F *out, FFT_SPLIT_COMPLEX_F *in1, FFT_SPLIT_COMPLEX_F *in2, uintptr_t fft_size, float scale);
+
+void correlate_complex(FFT_SPLIT_COMPLEX_D *out, FFT_SPLIT_COMPLEX_D *in1, FFT_SPLIT_COMPLEX_D *in2, uintptr_t fft_size, double scale);
+void correlate_complex(FFT_SPLIT_COMPLEX_F *out, FFT_SPLIT_COMPLEX_F *in1, FFT_SPLIT_COMPLEX_F *in2, uintptr_t fft_size, float scale);
+void correlate_real(FFT_SPLIT_COMPLEX_D *out, FFT_SPLIT_COMPLEX_D *in1, FFT_SPLIT_COMPLEX_D *in2, uintptr_t fft_size, double scale);
+void correlate_real(FFT_SPLIT_COMPLEX_F *out, FFT_SPLIT_COMPLEX_F *in1, FFT_SPLIT_COMPLEX_F *in2, uintptr_t fft_size, float scale);
 
 #endif
