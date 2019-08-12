@@ -53,6 +53,7 @@ FrameLib_Pattern::ParameterInfo::ParameterInfo()
 void FrameLib_Pattern::objectReset()
 {
     mPosition = 0;
+    mLastPatternTime = FrameLib_TimeFormat(0);
 }
 
 // Process
@@ -67,8 +68,11 @@ void FrameLib_Pattern::process()
     requestOutputSize(0, sizeOut);
     allocateOutputs();
 
-    if (getCurrentTime() == getInputFrameTime(1))
+    if (mLastPatternTime != getInputFrameTime(1))
+    {
         mPosition = 0;
+        mLastPatternTime = getInputFrameTime(1);
+    }
     
     double *output = getOutput(0, &sizeOut);
 
