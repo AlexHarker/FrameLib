@@ -35,6 +35,7 @@ private:
     
     // Data
     
+    FrameLib_TimeFormat mLastPatternTime;
     unsigned long mPosition;
     
     static ParameterInfo sParamInfo;
