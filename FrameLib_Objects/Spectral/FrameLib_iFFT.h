@@ -7,7 +7,7 @@
 
 // FIX - review FFTSetup
 
-class FrameLib_iFFT final : public FrameLib_Processor, private Spectral_Processor
+class FrameLib_iFFT final : public FrameLib_Processor, private Spectral_Processor<double, FrameLib_DSP::Allocator>
 {
     // Parameter Enums and Info
 

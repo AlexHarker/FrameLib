@@ -3,7 +3,7 @@
 
 // Constructor / Destructor
 
-FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), Spectral_Processor(context)
+FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), Spectral_Processor(*this)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -141,7 +141,7 @@ void FrameLib_iFFT::process()
         {
             // Convert to time domain and scale
 
-            transformInverse(spectrum, FFTSizeLog2);
+            ifft(spectrum, FFTSizeLog2);
             scaleSpectrum(spectrum, sizeOut, scale);
         }
         else
@@ -153,7 +153,7 @@ void FrameLib_iFFT::process()
         
             // Convert to time domain and scale
         
-            transformInverseReal(outputR, spectrum, FFTSizeLog2);
+            rifft(outputR, spectrum, FFTSizeLog2);
             scaleVector(outputR, sizeOut, scale);
         
             dealloc(spectrum.realp);

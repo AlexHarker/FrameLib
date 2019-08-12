@@ -5,7 +5,7 @@
 #include "FrameLib_DSP.h"
 #include "FrameLib_Spectral_Processor.h"
 
-class FrameLib_Convolve final : public FrameLib_Processor, private Spectral_Processor
+class FrameLib_Convolve final : public FrameLib_Processor, private Spectral_Processor<double, FrameLib_DSP::Allocator>
 {
     // Parameter Enums and Info
 

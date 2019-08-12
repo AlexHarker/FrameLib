@@ -3,7 +3,7 @@
 
 // Constructor / Destructor
 
-FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 2), Spectral_Processor(context)
+FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 2), Spectral_Processor(*this)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -114,11 +114,11 @@ void FrameLib_FFT::process()
             copyVector(spectrum.imagp, inputI, sizeInI);
             zeroVector(spectrum.imagp + sizeInI, sizeOut - sizeInI);
             
-            transformForward(spectrum, FFTSizelog2);
+            fft(spectrum, FFTSizelog2);
         }
         else
         {
-            transformForwardReal(spectrum, inputR, sizeInR, FFTSizelog2);
+            rfft(spectrum, inputR, sizeInR, FFTSizelog2);
             
             // Move Nyquist Bin
             

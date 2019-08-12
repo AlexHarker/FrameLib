@@ -1,10 +1,9 @@
 
 #include "FrameLib_IRPhase.h"
-#include "FrameLib_Spectral_Functions.h"
 
 // Constructor / Destructor
 
-FrameLib_IRPhase::FrameLib_IRPhase(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+FrameLib_IRPhase::FrameLib_IRPhase(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1), Spectral_Processor(*this)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -14,18 +13,7 @@ FrameLib_IRPhase::FrameLib_IRPhase(FrameLib_Context context, FrameLib_Parameters
     
     mParameters.set(serialisedParameters);
     
-    unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
-    
-    hisstools_create_setup(&mFFTSetup, maxFFTSizeLog2);
-    
-    // Store parameters
-
-    mMaxFFTSize = 1 << maxFFTSizeLog2;
-}
-
-FrameLib_IRPhase::~FrameLib_IRPhase()
-{
-    hisstools_destroy_setup(mFFTSetup);
+    setMaxFFTSize(mParameters.getInt(kMaxLength));
 }
 
 // Info
@@ -63,8 +51,6 @@ FrameLib_IRPhase::ParameterInfo::ParameterInfo()
 
 void FrameLib_IRPhase::process()
 {
-    FFT_SPLIT_COMPLEX_D spectrum;
-    
     // Get Input(s)
     
     unsigned long sizeIn, sizeOut;
@@ -78,7 +64,7 @@ void FrameLib_IRPhase::process()
     
     // Check size
     
-    if (FFTSize > mMaxFFTSize || !sizeIn)
+    if (FFTSize > maxFFTSize() || !sizeIn)
         sizeOut = 0;
     
     // Calculate output size
@@ -86,27 +72,9 @@ void FrameLib_IRPhase::process()
     requestOutputSize(0, sizeOut);
     allocateOutputs();
     double *output = getOutput(0, &sizeOut);
-    
-    spectrum.realp = alloc<double>(sizeOut);
-    spectrum.imagp = spectrum.realp + (sizeOut >>1);
-    
+   
     // Transform
     
-    if (sizeOut && spectrum.realp)
-    {
-        // Take the fft
-        
-        hisstools_rfft(mFFTSetup, input, &spectrum, sizeIn, FFTSizelog2);
-        ir_phase(mFFTSetup, &spectrum, &spectrum, FFTSize, mParameters.getValue(kPhase));
-        hisstools_rifft(mFFTSetup, &spectrum, output, FFTSizelog2);
-        
-        // Scale
-        
-        const double scale = 0.5 / (double) FFTSize;
-        
-        for (unsigned long i = 0; i < sizeOut; i++)
-            output[i] *= scale;
-    }
-    
-    dealloc(spectrum.realp);
+    if (sizeOut)
+        phase(output, input, sizeIn, mParameters.getValue(kPhase));
 }
