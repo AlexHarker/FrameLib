@@ -1,10 +1,9 @@
 
 #include "FrameLib_Multitaper.h"
-#include "FrameLib_Spectral_Functions.h"
 
 // Constructor / Destructor
 
-FrameLib_Multitaper::FrameLib_Multitaper(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+FrameLib_Multitaper::FrameLib_Multitaper(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1), Spectral_Processor(context)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -17,13 +16,8 @@ FrameLib_Multitaper::FrameLib_Multitaper(FrameLib_Context context, FrameLib_Para
         
     unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
     
-    hisstools_create_setup(&mFFTSetup, maxFFTSizeLog2 + 1);
+    setMaxFFTSize(mParameters.getInt(kMaxLength) * 2);
     mMaxFFTSize = 1 << maxFFTSizeLog2;
-}
-
-FrameLib_Multitaper::~FrameLib_Multitaper()
-{
-    hisstools_destroy_setup(mFFTSetup);
 }
 
 // Helpers
@@ -118,7 +112,7 @@ void FrameLib_Multitaper::process()
         
         // Take the real fft
         
-        hisstools_rfft(mFFTSetup, input, &spectrum, sizeIn, (FFTSizelog2 + 1));
+        transformForwardReal(spectrum, input, sizeIn, (FFTSizelog2 + 1));
         
         // Move Nyquist Bin
         
@@ -128,11 +122,7 @@ void FrameLib_Multitaper::process()
         
         // Scale
         
-        for (unsigned long i = 0; i < (FFTSize + 1); i++)
-        {
-            spectrum.realp[i] *= 0.5;
-            spectrum.imagp[i] *= 0.5;
-        }
+        scaleSpectrum(spectrum, FFTSize + 1, 0.5);
         
         // Do Multitaper
         

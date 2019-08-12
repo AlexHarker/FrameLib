@@ -3,11 +3,11 @@
 #define FRAMELIB_FFT_H
 
 #include "FrameLib_DSP.h"
-#include "../../FrameLib_Dependencies/HISSTools_FFT/HISSTools_FFT.h"
+#include "FrameLib_Spectral_Processor.h"
 
 // FIX - add zero padding (why not do this prior to FFT with the pad object?)
 
-class FrameLib_FFT final : public FrameLib_Processor
+class FrameLib_FFT final : public FrameLib_Processor, private Spectral_Processor
 {
     // Parameter Enums and Info
 
@@ -18,10 +18,9 @@ class FrameLib_FFT final : public FrameLib_Processor
 
 public:
 
-    // Constructor / Destructor
+    // Constructor
 
     FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-    ~FrameLib_FFT();
     
     // Info
     
@@ -36,10 +35,6 @@ private:
     void process() override;
     
     // Data
-    
-    // FFT Setup
-
-    FFT_SETUP_D mFFTSetup;
     
     // Instantiation Params
     

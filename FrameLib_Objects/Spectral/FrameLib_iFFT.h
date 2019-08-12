@@ -3,11 +3,11 @@
 #define FRAMELIB_IFFT_H
 
 #include "FrameLib_DSP.h"
-#include "../../FrameLib_Dependencies/HISSTools_FFT/HISSTools_FFT.h"
+#include "FrameLib_Spectral_Processor.h"
 
 // FIX - review FFTSetup
 
-class FrameLib_iFFT final : public FrameLib_Processor
+class FrameLib_iFFT final : public FrameLib_Processor, private Spectral_Processor
 {
     // Parameter Enums and Info
 
@@ -18,10 +18,9 @@ class FrameLib_iFFT final : public FrameLib_Processor
 
 public:
 
-    // Constructor / Destructor
+    // Constructor
 
     FrameLib_iFFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);    
-    ~FrameLib_iFFT();
     
     // Info
     
@@ -34,12 +33,6 @@ private:
     // Process
     
     void process() override;
-
-    // Data
-    
-    // FFT Setup
-
-    FFT_SETUP_D mFFTSetup;
 
     // Instantiation Params
     

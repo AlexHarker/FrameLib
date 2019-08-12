@@ -3,9 +3,9 @@
 #define FRAMELIB_CONVOLVE_H
 
 #include "FrameLib_DSP.h"
-#include "FrameLib_Convolution_Tools.h"
+#include "FrameLib_Spectral_Processor.h"
 
-class FrameLib_Convolve final : public FrameLib_Processor, private Spectral
+class FrameLib_Convolve final : public FrameLib_Processor, private Spectral_Processor
 {
     // Parameter Enums and Info
 
@@ -16,7 +16,7 @@ class FrameLib_Convolve final : public FrameLib_Processor, private Spectral
 
 public:
 
-    // Constructor / Destructor
+    // Constructor
     
     FrameLib_Convolve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     

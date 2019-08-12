@@ -3,9 +3,9 @@
 #define FRAMELIB_MULTITAPER_H
 
 #include "FrameLib_DSP.h"
-#include "../../FrameLib_Dependencies/HISSTools_FFT/HISSTools_FFT.h"
+#include "FrameLib_Spectral_Processor.h"
 
-class FrameLib_Multitaper final : public FrameLib_Processor
+class FrameLib_Multitaper final : public FrameLib_Processor, private Spectral_Processor
 {
     // Parameter Enums and Info
 
@@ -15,10 +15,9 @@ class FrameLib_Multitaper final : public FrameLib_Processor
 
 public:
 
-    // Constructor / Destructor
+    // Constructor
 
     FrameLib_Multitaper(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-    ~FrameLib_Multitaper();
     
     // Info
     
@@ -36,12 +35,6 @@ private:
     
     void process() override;
 
-protected:
-
-    // FFT Setup
-    
-    FFT_SETUP_D mFFTSetup;
-    
     // Maximum FFT Size
 
     unsigned long mMaxFFTSize;

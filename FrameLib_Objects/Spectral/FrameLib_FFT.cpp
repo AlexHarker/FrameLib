@@ -1,10 +1,9 @@
 
 #include "FrameLib_FFT.h"
-#include "FrameLib_Spectral_Functions.h"
 
 // Constructor / Destructor
 
-FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 2)
+FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 2), Spectral_Processor(context)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -21,7 +20,7 @@ FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial
     
     unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
     
-    hisstools_create_setup(&mFFTSetup, maxFFTSizeLog2);
+    setMaxFFTSize(mParameters.getInt(kMaxLength));
     
     // Store parameters
 
@@ -33,11 +32,6 @@ FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial
 
     if (mMode == kComplex)
         setIO(2, 2);
-}
-
-FrameLib_FFT::~FrameLib_FFT()
-{
-    hisstools_destroy_setup(mFFTSetup);
 }
 
 // Info
@@ -123,11 +117,11 @@ void FrameLib_FFT::process()
             copyVector(spectrum.imagp, inputI, sizeInI);
             zeroVector(spectrum.imagp + sizeInI, sizeOut - sizeInI);
             
-            hisstools_fft(mFFTSetup, &spectrum, FFTSizelog2);
+            transformForward(spectrum, FFTSizelog2);
         }
         else
         {
-            hisstools_rfft(mFFTSetup, inputR, &spectrum, sizeInR, FFTSizelog2);
+            transformForwardReal(spectrum, inputR, sizeInR, FFTSizelog2);
             
             // Move Nyquist Bin
             
@@ -145,20 +139,12 @@ void FrameLib_FFT::process()
                     spectrum.imagp[i] = -spectrum.imagp[FFTSize - i];
                 }
             }
-
         }
         
         // Scale
         
         double scale = mNormalise ? 1.0 / (double) FFTSize : ((mMode == kComplex) ? 1.0 : 0.5);
         
-        if (scale != 1.0)
-        {
-            for (unsigned long i = 0; i < sizeOut; i++)
-            {
-                spectrum.realp[i] *= scale;
-                spectrum.imagp[i] *= scale;
-            }
-        }
+        scaleSpectrum(spectrum, sizeOut, scale);
     }
 }

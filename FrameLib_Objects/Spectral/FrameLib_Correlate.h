@@ -3,9 +3,9 @@
 #define FRAMELIB_CORRELATE_H
 
 #include "FrameLib_DSP.h"
-#include "FrameLib_Convolution_Tools.h"
+#include "FrameLib_Spectral_Processor.h"
 
-class FrameLib_Correlate final : public FrameLib_Processor, private Spectral
+class FrameLib_Correlate final : public FrameLib_Processor, private Spectral_Processor
 {
     // Parameter Enums and Info
 
@@ -16,7 +16,7 @@ class FrameLib_Correlate final : public FrameLib_Processor, private Spectral
 
 public:
 
-    // Constructor / Destructor
+    // Constructor 
     
     FrameLib_Correlate(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
