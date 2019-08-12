@@ -18,13 +18,10 @@ FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial
     
     mParameters.set(serialisedParameters);
     
-    unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
-    
     setMaxFFTSize(mParameters.getInt(kMaxLength));
     
     // Store parameters
 
-    mMaxFFTSize = 1 << maxFFTSizeLog2;
     mMode = static_cast<Mode>(mParameters.getInt(kMode));
     mNormalise = mParameters.getBool(kNormalise);
     
@@ -93,7 +90,7 @@ void FrameLib_FFT::process()
     
     // Check size
     
-    if (FFTSize > mMaxFFTSize || (!sizeInR && !sizeInI))
+    if (FFTSize > maxFFTSize() || (!sizeInR && !sizeInI))
         sizeOut = 0;
     
     // Calculate output size

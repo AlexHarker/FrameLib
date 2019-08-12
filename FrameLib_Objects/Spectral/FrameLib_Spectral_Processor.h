@@ -39,7 +39,7 @@ public:
         }
     }
     
-    // Scale Vector
+    uintptr_t maxFFTSize() const { return mMaxFFTSize; }
     
     static uintptr_t ilog2(uintptr_t value)
     {
@@ -57,24 +57,26 @@ public:
         else
             return bitCount;
     }
+
+    // Scale Vector
     
-    void scaleVector(double *io, uintptr_t dataLength, double scale)
+    void scaleVector(double *io, uintptr_t size, double scale)
     {
         if (scale == 1.0)
             return;
         
-        for (uintptr_t i = 0; i < dataLength; i++)
+        for (uintptr_t i = 0; i < size; i++)
             io[i] *= scale;
     }
     
     // Scale Spectrum
     
-    void scaleSpectrum(FFT_SPLIT_COMPLEX_D &io, uintptr_t dataLength, double scale)
+    void scaleSpectrum(FFT_SPLIT_COMPLEX_D &io, uintptr_t size, double scale)
     {
         if (scale == 1.0)
             return;
         
-        for (uintptr_t i = 0; i < dataLength; i++)
+        for (uintptr_t i = 0; i < size; i++)
         {
             io.realp[i] *= scale;
             io.imagp[i] *= scale;

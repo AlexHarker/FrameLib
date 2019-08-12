@@ -34,10 +34,6 @@ private:
     // Process
     
     void process() override;
-
-    // Maximum FFT Size
-
-    unsigned long mMaxFFTSize;
     
     static ParameterInfo sParamInfo;
 };

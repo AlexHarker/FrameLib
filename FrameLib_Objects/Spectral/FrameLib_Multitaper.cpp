@@ -13,11 +13,8 @@ FrameLib_Multitaper::FrameLib_Multitaper(FrameLib_Context context, FrameLib_Para
     mParameters.setMin(1);
     
     mParameters.set(serialisedParameters);
-        
-    unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
     
     setMaxFFTSize(mParameters.getInt(kMaxLength) * 2);
-    mMaxFFTSize = 1 << maxFFTSizeLog2;
 }
 
 // Helpers
@@ -88,7 +85,7 @@ void FrameLib_Multitaper::process()
     
     // Check size
     
-    if (FFTSize > mMaxFFTSize || !sizeIn)
+    if ((FFTSize * 2) > maxFFTSize() || !sizeIn)
         sizeOut = 0;
     
     // Calculate output size

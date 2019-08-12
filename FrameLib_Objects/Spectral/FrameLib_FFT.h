@@ -38,7 +38,6 @@ private:
     
     // Instantiation Params
     
-    unsigned long mMaxFFTSize;
     Mode mMode;
     bool mNormalise;
     
