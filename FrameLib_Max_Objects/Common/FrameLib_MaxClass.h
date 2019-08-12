@@ -810,7 +810,7 @@ public:
                 object_post(mUserObject, "N.B. - arguments set the fixed array values for all inputs.");
             if (argsMode == kDistribute)
                 object_post(mUserObject, "N.B - arguments are distributed one per input.");
-            for (long i = 0; i < getNumAudioIns(); i++)
+            for (long i = 0; i < (long) mObject->getNumAudioIns(); i++)
                 object_post(mUserObject, "Audio Input %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
             for (long i = 0; i < getNumIns(); i++)
                 object_post(mUserObject, "Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose).c_str());
@@ -821,7 +821,7 @@ public:
         if (flags & kInfoOutputs)
         {
             object_post(mUserObject, "--- Output List ---");
-            for (long i = 0; i < getNumAudioOuts(); i++)
+            for (long i = 0; i < (long) mObject->getNumAudioOuts(); i++)
                 object_post(mUserObject, "Audio Output %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
             for (long i = 0; i < getNumOuts(); i++)
                 object_post(mUserObject, "Frame Output %ld [%s]: %s", i + 1, frameTypeString(mObject->outputType(i)), mObject->outputInfo(i, verbose).c_str());
