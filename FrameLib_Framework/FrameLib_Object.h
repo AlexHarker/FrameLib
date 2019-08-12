@@ -165,6 +165,25 @@ public:
     using Queue = typename FrameLib_Queueable<T>::Queue;
     using Connection = FrameLib_Connection<T, unsigned long>;
 
+    // An allocator that you can pass to other objects/code whilst this object exists
+    
+    class Allocator
+    {
+    public:
+        
+        Allocator(FrameLib_Object& object) : mObject(object) {}
+        
+        template <class U>
+        U *allocate(size_t N)       { return mObject.alloc<U>(N); }
+        
+        template <class U>
+        void deallocate(U *& ptr)   { mObject.dealloc(ptr); }
+        
+    private:
+        
+        FrameLib_Object &mObject;
+    };
+    
 private:
 
     // A connector is a thing with one input and many outputs
