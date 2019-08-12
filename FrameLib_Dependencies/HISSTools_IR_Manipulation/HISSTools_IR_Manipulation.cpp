@@ -276,8 +276,6 @@ void ir_delay_impl(T *out, const T *in, uintptr_t fft_size, double delay)
 template <class SETUP, class SPLIT>
 void minimum_phase_components(SETUP setup, SPLIT *out, SPLIT *in, uintptr_t fft_size)
 {
-    using T = typename BaseType<SPLIT>::type;
-    
     // FIX - what is this value?
     
     uintptr_t fft_size_log2 = 0;
@@ -328,8 +326,6 @@ void minimum_phase_components(SETUP setup, SPLIT *out, SPLIT *in, uintptr_t fft_
 template <class SETUP, class SPLIT>
 void ir_phase_impl(SETUP setup, SPLIT *out, SPLIT *in, uintptr_t fft_size, double phase, bool zero_center)
 {
-    using T = typename BaseType<SPLIT>::type;
-    
     if (phase == 0.5)
     {
         if (zero_center)
