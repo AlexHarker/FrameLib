@@ -3,11 +3,11 @@
 #define FRAMELIB_IFFT_H
 
 #include "FrameLib_DSP.h"
-#include "FrameLib_Spectral_Processor.h"
+#include "../../FrameLib_Dependencies/SpectralProcessor.hpp"
 
 // FIX - review FFTSetup
 
-class FrameLib_iFFT final : public FrameLib_Processor, private Spectral_Processor<double, FrameLib_DSP::Allocator>
+class FrameLib_iFFT final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
@@ -34,12 +34,18 @@ private:
     
     void process() override;
 
+    // Param Info
+    
+    static ParameterInfo sParamInfo;
+    
     // Instantiation Params
     
     Mode mMode;
     bool mNormalise;
     
-    static ParameterInfo sParamInfo;
+    // Processor
+    
+    spectral_processor<double, FrameLib_DSP::Allocator> mProcessor;
 };
 
 #endif

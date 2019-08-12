@@ -58,8 +58,8 @@ void FrameLib_IRPhase::process()
     
     // Get FFT size log 2
     
-    unsigned long FFTSizelog2 = ilog2(sizeIn);
-    unsigned long FFTSize = 1 << FFTSizelog2;
+    unsigned long FFTSizeLog2 = ilog2(sizeIn);
+    unsigned long FFTSize = 1 << FFTSizeLog2;
     sizeOut = FFTSize;
     
     // Check size

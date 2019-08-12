@@ -3,9 +3,9 @@
 #define FRAMELIB_MULTITAPER_H
 
 #include "FrameLib_DSP.h"
-#include "FrameLib_Spectral_Processor.h"
+#include "../../FrameLib_Dependencies/SpectralProcessor.hpp"
 
-class FrameLib_Multitaper final : public FrameLib_Processor, private Spectral_Processor<double, FrameLib_DSP::Allocator>
+class FrameLib_Multitaper final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
@@ -36,6 +36,10 @@ private:
     void process() override;
     
     static ParameterInfo sParamInfo;
+    
+    // Processor
+    
+    spectral_processor<double, FrameLib_DSP::Allocator> mProcessor;
 };
 
 #endif

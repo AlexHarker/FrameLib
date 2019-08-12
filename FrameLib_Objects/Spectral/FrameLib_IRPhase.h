@@ -7,7 +7,7 @@
 
 // FIX - add zero padding (why not do this prior to FFT with the pad object?)
 
-class FrameLib_IRPhase final : public FrameLib_Processor, private Spectral_Processor<double, FrameLib_DSP::Allocator>
+class FrameLib_IRPhase final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
@@ -36,6 +36,10 @@ private:
     // Data
 
     static ParameterInfo sParamInfo;
+    
+    // Processor
+    
+    spectral_processor<double, FrameLib_DSP::Allocator> mProcessor;
 };
 
 #endif

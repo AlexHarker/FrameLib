@@ -3,7 +3,7 @@
 
 // Constructor / Destructor
 
-FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), Spectral_Processor(*this)
+FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mProcessor(*this)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -18,7 +18,7 @@ FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, FrameLib_Parameters::Seri
 
     mParameters.set(serialisedParameters);
         
-    setMaxFFTSize(mParameters.getInt(kMaxLength));
+    mProcessor.set_max_fft_size(mParameters.getInt(kMaxLength));
 
     // Store parameters
     
@@ -83,7 +83,7 @@ void FrameLib_iFFT::process()
     if (sizeIn)
     {
         unsigned long calcSize = mMode == kReal ? (sizeIn - 1) << 1 : sizeIn;
-        FFTSizeLog2 = ilog2(calcSize);
+        FFTSizeLog2 = mProcessor.calc_fft_size_log2(calcSize);
         sizeOut = 1 << FFTSizeLog2;
     }
     else
@@ -91,7 +91,7 @@ void FrameLib_iFFT::process()
     
     // Sanity Check
     
-    if (sizeOut > maxFFTSize())
+    if (sizeOut > mProcessor.max_fft_size())
         sizeOut = 0;
     
     // Calculate output size
@@ -141,8 +141,8 @@ void FrameLib_iFFT::process()
         {
             // Convert to time domain and scale
 
-            ifft(spectrum, FFTSizeLog2);
-            scaleSpectrum(spectrum, sizeOut, scale);
+            mProcessor.ifft(spectrum, FFTSizeLog2);
+            mProcessor.scale_spectrum(spectrum, sizeOut, scale);
         }
         else
         {
@@ -153,8 +153,8 @@ void FrameLib_iFFT::process()
         
             // Convert to time domain and scale
         
-            rifft(outputR, spectrum, FFTSizeLog2);
-            scaleVector(outputR, sizeOut, scale);
+            mProcessor.rifft(outputR, spectrum, FFTSizeLog2);
+            mProcessor.scale_vector(outputR, sizeOut, scale);
         
             dealloc(spectrum.realp);
         }

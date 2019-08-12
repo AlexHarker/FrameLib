@@ -3,7 +3,7 @@
 
 // Constructor / Destructor
 
-FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 2), Spectral_Processor(*this)
+FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 2), mProcessor(*this)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -18,7 +18,7 @@ FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial
     
     mParameters.set(serialisedParameters);
     
-    setMaxFFTSize(mParameters.getInt(kMaxLength));
+    mProcessor.set_max_fft_size(mParameters.getInt(kMaxLength));
     
     // Store parameters
 
@@ -84,13 +84,13 @@ void FrameLib_FFT::process()
     
     // Get FFT size log 2
     
-    unsigned long FFTSizelog2 = ilog2(std::max(sizeInR, sizeInI));
-    unsigned long FFTSize = 1 << FFTSizelog2;
+    unsigned long FFTSizeLog2 = mProcessor.calc_fft_size_log2(std::max(sizeInR, sizeInI));
+    unsigned long FFTSize = 1 << FFTSizeLog2;
     sizeOut = mMode == kReal ? (FFTSize >> 1) + 1 : FFTSize;
     
     // Check size
     
-    if (FFTSize > maxFFTSize() || (!sizeInR && !sizeInI))
+    if (FFTSize > mProcessor.max_fft_size() || (!sizeInR && !sizeInI))
         sizeOut = 0;
     
     // Calculate output size
@@ -114,11 +114,11 @@ void FrameLib_FFT::process()
             copyVector(spectrum.imagp, inputI, sizeInI);
             zeroVector(spectrum.imagp + sizeInI, sizeOut - sizeInI);
             
-            fft(spectrum, FFTSizelog2);
+            mProcessor.fft(spectrum, FFTSizeLog2);
         }
         else
         {
-            rfft(spectrum, inputR, sizeInR, FFTSizelog2);
+            mProcessor.rfft(spectrum, inputR, sizeInR, FFTSizeLog2);
             
             // Move Nyquist Bin
             
@@ -142,6 +142,6 @@ void FrameLib_FFT::process()
         
         double scale = mNormalise ? 1.0 / (double) FFTSize : ((mMode == kComplex) ? 1.0 : 0.5);
         
-        scaleSpectrum(spectrum, sizeOut, scale);
+        mProcessor.scale_spectrum(spectrum, sizeOut, scale);
     }
 }

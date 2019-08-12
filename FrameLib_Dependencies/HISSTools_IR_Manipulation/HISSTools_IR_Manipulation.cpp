@@ -398,42 +398,42 @@ void ir_phase(FFT_SETUP_D setup, FFT_SPLIT_COMPLEX_D *out, FFT_SPLIT_COMPLEX_D *
     ir_phase_impl(setup, out, in, fft_size, phase, zero_center);
 }
 
-void convolve_complex(FFT_SPLIT_COMPLEX_D *out, FFT_SPLIT_COMPLEX_D *in1, FFT_SPLIT_COMPLEX_D *in2, uintptr_t fft_size, double scale)
+void ir_convolve_complex(FFT_SPLIT_COMPLEX_D *out, FFT_SPLIT_COMPLEX_D *in1, FFT_SPLIT_COMPLEX_D *in2, uintptr_t fft_size, double scale)
 {
     ir_complex_operation(out, in1, in2, fft_size, scale, convolve_op());
 }
 
-void convolve_complex(FFT_SPLIT_COMPLEX_F *out, FFT_SPLIT_COMPLEX_F *in1, FFT_SPLIT_COMPLEX_F *in2, uintptr_t fft_size, float scale)
+void ir_convolve_complex(FFT_SPLIT_COMPLEX_F *out, FFT_SPLIT_COMPLEX_F *in1, FFT_SPLIT_COMPLEX_F *in2, uintptr_t fft_size, float scale)
 {
     ir_complex_operation(out, in1, in2, fft_size, scale, convolve_op());
 }
 
-void convolve_real(FFT_SPLIT_COMPLEX_D *out, FFT_SPLIT_COMPLEX_D *in1, FFT_SPLIT_COMPLEX_D *in2, uintptr_t fft_size, double scale)
+void ir_convolve_real(FFT_SPLIT_COMPLEX_D *out, FFT_SPLIT_COMPLEX_D *in1, FFT_SPLIT_COMPLEX_D *in2, uintptr_t fft_size, double scale)
 {
     ir_real_operation(out, in1, in2, fft_size, scale, convolve_op());
 }
 
-void convolve_real(FFT_SPLIT_COMPLEX_F *out, FFT_SPLIT_COMPLEX_F *in1, FFT_SPLIT_COMPLEX_F *in2, uintptr_t fft_size, float scale)
+void ir_convolve_real(FFT_SPLIT_COMPLEX_F *out, FFT_SPLIT_COMPLEX_F *in1, FFT_SPLIT_COMPLEX_F *in2, uintptr_t fft_size, float scale)
 {
     ir_real_operation(out, in1, in2, fft_size, scale, convolve_op());
 }
 
-void correlate_complex(FFT_SPLIT_COMPLEX_D *out, FFT_SPLIT_COMPLEX_D *in1, FFT_SPLIT_COMPLEX_D *in2, uintptr_t fft_size, double scale)
+void ir_correlate_complex(FFT_SPLIT_COMPLEX_D *out, FFT_SPLIT_COMPLEX_D *in1, FFT_SPLIT_COMPLEX_D *in2, uintptr_t fft_size, double scale)
 {
     ir_complex_operation(out, in1, in2, fft_size, scale, correlate_op());
 }
 
-void correlate_complex(FFT_SPLIT_COMPLEX_F *out, FFT_SPLIT_COMPLEX_F *in1, FFT_SPLIT_COMPLEX_F *in2, uintptr_t fft_size, float scale)
+void ir_correlate_complex(FFT_SPLIT_COMPLEX_F *out, FFT_SPLIT_COMPLEX_F *in1, FFT_SPLIT_COMPLEX_F *in2, uintptr_t fft_size, float scale)
 {
     ir_complex_operation(out, in1, in2, fft_size, scale, correlate_op());
 }
 
-void correlate_real(FFT_SPLIT_COMPLEX_D *out, FFT_SPLIT_COMPLEX_D *in1, FFT_SPLIT_COMPLEX_D *in2, uintptr_t fft_size, double scale)
+void ir_correlate_real(FFT_SPLIT_COMPLEX_D *out, FFT_SPLIT_COMPLEX_D *in1, FFT_SPLIT_COMPLEX_D *in2, uintptr_t fft_size, double scale)
 {
     ir_real_operation(out, in1, in2, fft_size, scale, correlate_op());
 }
 
-void correlate_real(FFT_SPLIT_COMPLEX_F *out, FFT_SPLIT_COMPLEX_F *in1, FFT_SPLIT_COMPLEX_F *in2, uintptr_t fft_size, float scale)
+void ir_correlate_real(FFT_SPLIT_COMPLEX_F *out, FFT_SPLIT_COMPLEX_F *in1, FFT_SPLIT_COMPLEX_F *in2, uintptr_t fft_size, float scale)
 {
     ir_real_operation(out, in1, in2, fft_size, scale, correlate_op());
 }
