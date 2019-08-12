@@ -39,6 +39,19 @@
 		"subpatcher_template" : "nobars",
 		"boxes" : [ 			{
 				"box" : 				{
+					"fontsize" : 30.211187457820653,
+					"id" : "obj-8",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 74.0, 725.539999999999964, 364.0, 74.0 ],
+					"text" : "IN ALL EXAMPLES MAKE SURE AUDIO IS ON!!!"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"arrows" : 2,
 					"border" : 3.0,
 					"id" : "obj-68",
@@ -72,7 +85,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 639.75, 104.0, 537.0, 257.0 ],
+					"patching_rect" : [ 639.75, 104.0, 540.0, 257.0 ],
 					"text" : "Drag around the waveform~ object to highlight in green different parts of the buffer. FrameLib will extract all the samples of audio in this range and keep it as a frame for you... right here!\n\nUse the 'play' button to hear the chunk of audio you have selected. You might be asking at this point how does this work conceptually?\n\nFrameLib looks at how many samples are in this frame. We have made our frame by selecting some audio from a buffer in milliseconds so it makes a conversion between time in milliseconds to time in samples. The math here is actually incredibly basic, we could do it on paper if we wanted to. If we have a sample rate of 44.1khz and we make a selection that is 1000 milliseconds long there will be 44100 samples in the frame. The Max audio scheduler is constantly processing samples \n\nLets get creative Now imagine if each time we trigger the frame we might change the location of "
 				}
 
@@ -749,8 +762,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",
