@@ -11,10 +11,10 @@ FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, FrameLib_Parame
     mParameters.addEnumItem(kComplex, "complex");
     mParameters.setInstantiation();
     mParameters.addEnum(kEdgeMode, "edges");
-    mParameters.addEnumItem(kEdgeLinear, "linear");
-    mParameters.addEnumItem(kEdgeWrap, "circular");
-    mParameters.addEnumItem(kEdgeWrapCentre, "wrap");
-    mParameters.addEnumItem(kEdgeFold, "fold");
+    mParameters.addEnumItem(EdgeMode::kEdgeLinear, "linear");
+    mParameters.addEnumItem(EdgeMode::kEdgeWrap, "circular");
+    mParameters.addEnumItem(EdgeMode::kEdgeWrapCentre, "wrap");
+    mParameters.addEnumItem(EdgeMode::kEdgeFold, "fold");
     mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
@@ -90,14 +90,14 @@ void FrameLib_Correlate::process()
         
         // Get Output Size
         
-        unsigned long sizeOut = mProcessor.calc_correlated_size(sizeIn1, sizeIn2, edgeMode);
+        unsigned long sizeOut = mProcessor.correlated_size(sizeIn1, sizeIn2, edgeMode);
         
         // Get output
         
         requestOutputSize(0, sizeOut);
         
         if (allocateOutputs())
-            mProcessor.correlate_real(getOutput(0, &sizeOut), {input1, sizeIn1}, {input2, sizeIn2}, edgeMode);
+            mProcessor.correlate(getOutput(0, &sizeOut), {input1, sizeIn1}, {input2, sizeIn2}, edgeMode);
     }
     else
     {
@@ -112,7 +112,7 @@ void FrameLib_Correlate::process()
         
         // Get Output Size
 
-        unsigned long sizeOut = mProcessor.calc_correlated_size(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edgeMode);
+        unsigned long sizeOut = mProcessor.correlated_size(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edgeMode);
 
         // Get output
         
@@ -123,6 +123,6 @@ void FrameLib_Correlate::process()
         double *iOut = getOutput(1, &sizeOut);
         
         if (allocateOutputs())
-            mProcessor.correlate_complex(rOut, iOut, {inR1, sizeR1}, {inI1, sizeI1}, {inR2, sizeR2}, {inI2, sizeI2}, edgeMode);
+            mProcessor.correlate(rOut, iOut, {inR1, sizeR1}, {inI1, sizeI1}, {inR2, sizeR2}, {inI2, sizeI2}, edgeMode);
     }
 }

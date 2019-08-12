@@ -7,6 +7,8 @@
 
 class FrameLib_Correlate final : public FrameLib_Processor
 {
+    using EdgeMode = spectral_processor<double, FrameLib_DSP::Allocator>::EdgeMode;
+
     // Parameter Enums and Info
 
     enum ParameterList { kMaxLength, kMode, kEdgeMode };

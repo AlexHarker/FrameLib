@@ -3,7 +3,7 @@
 #define FRAMELIB_IRPHASE_H
 
 #include "FrameLib_DSP.h"
-#include "FrameLib_Spectral_Processor.h"
+#include "../../FrameLib_Dependencies/SpectralProcessor.hpp"
 
 // FIX - add zero padding (why not do this prior to FFT with the pad object?)
 

@@ -11,10 +11,10 @@ FrameLib_Convolve::FrameLib_Convolve(FrameLib_Context context, FrameLib_Paramete
     mParameters.addEnumItem(kComplex, "complex");
     mParameters.setInstantiation();
     mParameters.addEnum(kEdgeMode, "edges");
-    mParameters.addEnumItem(kEdgeLinear, "linear");
-    mParameters.addEnumItem(kEdgeWrap, "circular");
-    mParameters.addEnumItem(kEdgeWrapCentre, "wrap");
-    mParameters.addEnumItem(kEdgeFold, "fold");
+    mParameters.addEnumItem(EdgeMode::kEdgeLinear, "linear");
+    mParameters.addEnumItem(EdgeMode::kEdgeWrap, "circular");
+    mParameters.addEnumItem(EdgeMode::kEdgeWrapCentre, "wrap");
+    mParameters.addEnumItem(EdgeMode::kEdgeFold, "fold");
     mParameters.setInstantiation();
 
     mParameters.set(serialisedParameters);
@@ -89,14 +89,14 @@ void FrameLib_Convolve::process()
         
         // Get Output Size
         
-        unsigned long sizeOut = mProcessor.calc_convolved_size(sizeIn1, sizeIn2, edgeMode);
+        unsigned long sizeOut = mProcessor.convolved_size(sizeIn1, sizeIn2, edgeMode);
         
         // Get output
         
         requestOutputSize(0, sizeOut);
         
         if (allocateOutputs())
-            mProcessor.convolve_real(getOutput(0, &sizeOut), {input1, sizeIn1}, {input2, sizeIn2}, edgeMode);
+            mProcessor.convolve(getOutput(0, &sizeOut), {input1, sizeIn1}, {input2, sizeIn2}, edgeMode);
     }
     else
     {
@@ -111,7 +111,7 @@ void FrameLib_Convolve::process()
         
         // Get Output Size
 
-        unsigned long sizeOut = mProcessor.calc_convolved_size(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edgeMode);
+        unsigned long sizeOut = mProcessor.convolved_size(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edgeMode);
         
         // Get output
         
@@ -122,6 +122,6 @@ void FrameLib_Convolve::process()
         double *iOut = getOutput(1, &sizeOut);
 
         if (allocateOutputs())
-            mProcessor.convolve_complex(rOut, iOut, {inR1, sizeR1}, {inI1, sizeI1}, {inR2, sizeR2}, {inI2, sizeI2}, edgeMode);
+            mProcessor.convolve(rOut, iOut, {inR1, sizeR1}, {inI1, sizeI1}, {inR2, sizeR2}, {inI2, sizeI2}, edgeMode);
     }
 }

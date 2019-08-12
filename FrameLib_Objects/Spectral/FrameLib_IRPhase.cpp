@@ -3,7 +3,7 @@
 
 // Constructor / Destructor
 
-FrameLib_IRPhase::FrameLib_IRPhase(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1), Spectral_Processor(*this)
+FrameLib_IRPhase::FrameLib_IRPhase(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1), mProcessor(*this)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -13,7 +13,7 @@ FrameLib_IRPhase::FrameLib_IRPhase(FrameLib_Context context, FrameLib_Parameters
     
     mParameters.set(serialisedParameters);
     
-    setMaxFFTSize(mParameters.getInt(kMaxLength));
+    mProcessor.set_max_fft_size(mParameters.getInt(kMaxLength));
 }
 
 // Info
@@ -58,13 +58,13 @@ void FrameLib_IRPhase::process()
     
     // Get FFT size log 2
     
-    unsigned long FFTSizeLog2 = ilog2(sizeIn);
+    unsigned long FFTSizeLog2 = mProcessor.calc_fft_size_log2(sizeIn);
     unsigned long FFTSize = 1 << FFTSizeLog2;
     sizeOut = FFTSize;
     
     // Check size
     
-    if (FFTSize > maxFFTSize() || !sizeIn)
+    if (FFTSize > mProcessor.max_fft_size() || !sizeIn)
         sizeOut = 0;
     
     // Calculate output size
@@ -76,5 +76,5 @@ void FrameLib_IRPhase::process()
     // Transform
     
     if (sizeOut)
-        phase(output, input, sizeIn, mParameters.getValue(kPhase));
+        mProcessor.change_phase(output, input, sizeIn, mParameters.getValue(kPhase));
 }

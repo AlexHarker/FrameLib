@@ -9,15 +9,15 @@ template <typename T> struct FFTTypes;
 template<>
 struct FFTTypes<float>
 {
-    using SplitType = FFT_SPLIT_COMPLEX_F;
-    using SetupType = FFT_SETUP_F;
+    using Split = FFT_SPLIT_COMPLEX_F;
+    using Setup = FFT_SETUP_F;
 };
 
 template<>
 struct FFTTypes<double>
 {
-    using SplitType = FFT_SPLIT_COMPLEX_D;
-    using SetupType = FFT_SETUP_D;
+    using Split = FFT_SPLIT_COMPLEX_D;
+    using Setup = FFT_SETUP_D;
 };
 
 
