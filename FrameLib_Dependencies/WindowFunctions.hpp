@@ -1,5 +1,5 @@
 
-#include <stdint.h>
+#include <cstdint>
 #include <vector>
 
 #define WINDOW_PI			3.14159265358979323846
