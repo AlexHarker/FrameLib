@@ -82,7 +82,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -516,8 +516,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -584,7 +584,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -714,15 +714,13 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 14.0,
 									"id" : "obj-17",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 210.0, 384.0, 40.0 ],
+									"patching_rect" : [ 23.0, 210.0, 384.0, 23.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 2,
-									"presentation_rect" : [ 251.0, 153.0, 396.0, 40.0 ],
-									"text" : "A general introduction to FrameLib and some foundation DSP concepts..",
+									"presentation_rect" : [ 251.0, 153.0, 396.0, 23.0 ],
+									"text" : "The Basics of FFT/STFT processing in FrameLib",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -1296,15 +1294,13 @@
 									"fontsize" : 20.0,
 									"frozen_box_attributes" : [ "presentation_rect" ],
 									"id" : "obj-7",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 131.0, 382.0, 54.0 ],
+									"patching_rect" : [ 23.0, 131.0, 382.0, 30.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 97.0, 422.0, 30.0 ],
-									"text" : "Tutorial 1: An introduction to FrameLib and frame based processing.",
+									"text" : "Tutorial 7: FFT with FrameLib.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -2366,7 +2362,7 @@
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
-									"tabs" : [ "Tutorial 1: An introduction to FrameLib and frame based processing.", "Tutorial 2: Getting to grips with frame based processing.", "Tutorial 3: Key Concepts.", "Tutorial 4: Converting data between FrameLib and Max.", "Tutorial 5: Generator objects.", "Tutorial 6: Your first FrameLib project - Building a granulator from scratch." ],
+									"tabs" : [ "Tutorial 7: FFT with FrameLib.", "Tutorial 8: Multi-stream processing." ],
 									"truncate" : 0
 								}
 
@@ -2602,8 +2598,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4433,8 +4429,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-													"fontsize" : [ 12.059008 ]
+													"fontsize" : [ 12.059008 ],
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 												}
 ,
 												"parentstyle" : "",
@@ -4994,13 +4990,13 @@
 									"presentation_rect" : [ 5.0, 89.0, 209.0, 23.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_shortname" : "umenu",
-											"parameter_type" : 3,
 											"parameter_longname" : "umenu",
 											"parameter_initial_enable" : 1,
 											"parameter_invisible" : 1,
 											"parameter_mmax" : 22.0,
-											"parameter_initial" : [ 0 ]
+											"parameter_initial" : [ 0 ],
+											"parameter_shortname" : "umenu",
+											"parameter_type" : 3
 										}
 
 									}
@@ -5274,8 +5270,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
