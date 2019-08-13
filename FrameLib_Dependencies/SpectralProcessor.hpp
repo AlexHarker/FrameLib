@@ -4,7 +4,7 @@
 
 #include <algorithm>
 #include "HISSTools_FFT/HISSTools_FFT.h"
-#include "HISSTools_IR_Manipulation/HISSTools_IR_Manipulation.h"
+#include "SpectralFunctions.hpp"
 
 template <typename T, typename Allocator>
 class spectral_processor

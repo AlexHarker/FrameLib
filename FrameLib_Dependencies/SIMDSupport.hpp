@@ -1,6 +1,6 @@
 
-#ifndef SIMDSUPPORT
-#define SIMDSUPPORT
+#ifndef SIMDSUPPORT_HPP
+#define SIMDSUPPORT_HPP
 
 #include <cmath>
 #include <cstdint>

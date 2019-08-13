@@ -1,4 +1,7 @@
 
+#ifndef WINDOWFUNCTIONS_HPP
+#define WINDOWFUNCTIONS_HPP
+
 #include <cstdint>
 #include <vector>
 
@@ -284,3 +287,5 @@ public:
         WindowFunctions<T, uint16_t>::add(kWindowKaiser, window_flat_top);
     }
 };
+
+#endif

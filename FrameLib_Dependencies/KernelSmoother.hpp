@@ -1,6 +1,6 @@
 
-#ifndef KERNELSMOOTHER_H
-#define KERNELSMOOTHER_H
+#ifndef KERNELSMOOTHER_HPP
+#define KERNELSMOOTHER_HPP
 
 #include <algorithm>
 #include <cmath>

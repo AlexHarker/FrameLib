@@ -1,6 +1,6 @@
 
-#ifndef INTERPOLATION_H
-#define INTERPOLATION_H
+#ifndef INTERPOLATION_HPP
+#define INTERPOLATION_HPP
 
 // Enumeration of interpolation types
 
