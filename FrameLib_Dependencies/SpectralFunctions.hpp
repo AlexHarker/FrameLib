@@ -361,47 +361,6 @@ struct FFTTypes<double>
     using Setup = FFT_SETUP_D;
 };
 
-// Helper for dealing with zipped output
-
-template <typename T>
-struct zipped_pointer
-{
-    zipped_pointer(const typename FFTTypes<T>::Split spectrum, uintptr_t offset)
-    : p1(spectrum.realp + (offset >> 1)), p2(spectrum.imagp + (offset >> 1))
-    {
-        if (offset & 1U)
-            (*this)++;
-    }
-    
-    const T *operator ++()
-    {
-        std::swap(++p1, p2);
-        return p1;
-    }
-    
-    const T *operator ++(int)
-    {
-        std::swap(p1, p2);
-        return p2++;
-    }
-    
-    const T *operator --()
-    {
-        std::swap(p1, --p2);
-        return p1;
-    }
-    
-    const T *operator --(int)
-    {
-        std::swap(p1, --p2);
-        return p2;
-    }
-    
-private:
-    
-    const T *p1, *p2;
-};
-
 // Function calls
 
 template <typename Split>

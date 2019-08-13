@@ -16,9 +16,9 @@ public:
     
     enum EdgeMode { kEdgeLinear, kEdgeWrap, kEdgeWrapCentre, kEdgeFold };
     
-    struct sized_in
+    struct in_ptr
     {
-        sized_in(const T* ptr, uintptr_t size) : m_ptr(ptr), m_size(size) {}
+        in_ptr(const T* ptr, uintptr_t size) : m_ptr(ptr), m_size(size) {}
         
         const T* m_ptr;
         const uintptr_t m_size;
@@ -87,24 +87,24 @@ public:
     
     // Convolution
     
-    void convolve(T *r_out, T *i_out, sized_in r_in1, sized_in i_in1, sized_in r_in2, sized_in i_in2, EdgeMode mode)
+    void convolve(T *r_out, T *i_out, in_ptr r_in1, in_ptr i_in1, in_ptr r_in2, in_ptr i_in2, EdgeMode mode)
     {
         binary_op<ir_convolve_complex, arrange_convolve<Split>>(r_out, i_out, r_in1, i_in1, r_in2, i_in2, mode);
     }
     
-    void convolve(T *output, sized_in in1, sized_in in2, EdgeMode mode)
+    void convolve(T *output, in_ptr in1, in_ptr in2, EdgeMode mode)
     {
         binary_op<ir_convolve_real, arrange_convolve<T*>>(output, in1, in2, mode);
     }
     
     // Correlation
     
-    void correlate(T *r_out, T *i_out, sized_in r_in1, sized_in i_in1, sized_in r_in2, sized_in i_in2, EdgeMode mode)
+    void correlate(T *r_out, T *i_out, in_ptr r_in1, in_ptr i_in1, in_ptr r_in2, in_ptr i_in2, EdgeMode mode)
     {
         binary_op<ir_correlate_complex, arrange_correlate<Split>>(r_out, i_out, r_in1, i_in1, r_in2, i_in2, mode);
     }
     
-    void correlate(T *output, sized_in in1, sized_in in2, EdgeMode mode)
+    void correlate(T *output, in_ptr in1, in_ptr in2, EdgeMode mode)
     {
         binary_op<&ir_correlate_real, &arrange_correlate<T*>>(output, in1, in2, mode);
     }
@@ -177,7 +177,7 @@ public:
         }
     }
     
-private:
+protected:
     
     // Temporary Memory
     
@@ -206,6 +206,44 @@ private:
         Split m_spectra[N];
     };
     
+    struct zipped_pointer
+    {
+        zipped_pointer(const Split spectrum, uintptr_t offset)
+        : p1(spectrum.realp + (offset >> 1)), p2(spectrum.imagp + (offset >> 1))
+        {
+            if (offset & 1U)
+                (*this)++;
+        }
+        
+        const T *operator ++()
+        {
+            std::swap(++p1, p2);
+            return p1;
+        }
+        
+        const T *operator ++(int)
+        {
+            std::swap(p1, p2);
+            return p2++;
+        }
+        
+        const T *operator --()
+        {
+            std::swap(p1, --p2);
+            return p1;
+        }
+        
+        const T *operator --(int)
+        {
+            std::swap(p1, --p2);
+            return p2;
+        }
+        
+    private:
+        
+        const T *p1, *p2;
+    };
+    
     struct binary_sizes
     {
         binary_sizes(uintptr_t size1, uintptr_t size2)
@@ -225,7 +263,7 @@ private:
     
     // Memory manipulation (complex)
     
-    static void copy_zero(T* output, sized_in in, uintptr_t size)
+    static void copy_zero(T* output, in_ptr in, uintptr_t size)
     {
         std::copy_n(in.m_ptr, in.m_size, output);
         std::fill_n(output + in.m_size, size - in.m_size, 0.0);
@@ -259,7 +297,7 @@ private:
     
     static void copy(T *output, const Split& spectrum, uintptr_t oOffset, uintptr_t offset, uintptr_t size)
     {
-        zipped_pointer<T> p(spectrum, offset);
+        zipped_pointer p(spectrum, offset);
 
         for (uintptr_t i = 0; i < size; i++)
             output[oOffset + i] = *p++;
@@ -267,7 +305,7 @@ private:
     
     static void wrap(T *output, const Split& spectrum, uintptr_t oOffset, uintptr_t offset, uintptr_t size)
     {
-        zipped_pointer<T> p(spectrum, offset);
+        zipped_pointer p(spectrum, offset);
         
         for (uintptr_t i = 0; i < size; i++)
             output[oOffset + i] += *p++;
@@ -275,7 +313,7 @@ private:
     
     static void fold(T *output, const Split& spectrum, uintptr_t oOffset, uintptr_t offset, uintptr_t size)
     {
-        zipped_pointer<T> p(spectrum, offset);
+        zipped_pointer p(spectrum, offset);
         
         for (uintptr_t i = 0; i < size; i++)
             output[oOffset + i] += *--p;
@@ -284,7 +322,7 @@ private:
     // Arranges for convolution and correlation
     
     template <class U>
-    static void arrange_convolve(U output, Split spectrum, const binary_sizes& sizes, EdgeMode mode)
+    static void arrange_convolve(U output, Split spectrum, binary_sizes& sizes, EdgeMode mode)
     {
         uintptr_t folded = sizes.min() / 2;
         uintptr_t wrapped1 = sizes.min_m1() / 2;
@@ -316,7 +354,7 @@ private:
     }
 
     template <class U>
-    static void arrange_correlate(U output, Split spectrum, const binary_sizes& sizes, EdgeMode mode)
+    static void arrange_correlate(U output, Split spectrum, binary_sizes& sizes, EdgeMode mode)
     {
         uintptr_t offset = sizes.min() / 2;
         uintptr_t wrapped = sizes.min_m1() - offset;
@@ -353,8 +391,8 @@ private:
     // Binary Operations
     
     typedef void (*SpectralOp)(Split *, Split *, Split *, uintptr_t, T);
-    typedef void (*ComplexArrange)(Split, Split, const binary_sizes&, EdgeMode);
-    typedef void (*RealArrange)(T *, Split, const binary_sizes&, EdgeMode);
+    typedef void (*ComplexArrange)(Split, Split, binary_sizes&, EdgeMode);
+    typedef void (*RealArrange)(T *, Split, binary_sizes&, EdgeMode);
 
     uintptr_t calc_conv_corr_size(uintptr_t size1, uintptr_t size2, EdgeMode mode) const
     {
@@ -371,8 +409,24 @@ private:
         return size;
     }
     
+    template<SpectralOp Op>
+    void binary_op(Split& io, Split& temp, binary_sizes& sizes, in_ptr r_in1, in_ptr i_in1, in_ptr r_in2, in_ptr i_in2)
+    {
+        copy_zero(io.realp, r_in1, sizes.fft());
+        copy_zero(io.imagp, i_in1, sizes.fft());
+        copy_zero(temp.realp, r_in2, sizes.fft());
+        copy_zero(temp.imagp, i_in2, sizes.fft());
+        
+        fft(io, sizes.fft_log2());
+        fft(temp, sizes.fft_log2());
+        
+        Op(&io, &io, &temp, sizes.fft(), 1.0 / (T) sizes.fft());
+        
+        ifft(io, sizes.fft_log2());
+    }
+    
     template<SpectralOp Op, ComplexArrange arrange>
-    void binary_op(T *r_out, T *i_out, sized_in r_in1, sized_in i_in1, sized_in r_in2, sized_in i_in2, EdgeMode mode)
+    void binary_op(T *r_out, T *i_out, in_ptr r_in1, in_ptr i_in1, in_ptr r_in2, in_ptr i_in2, EdgeMode mode)
     {
         uintptr_t size1 = std::max(r_in1.m_size, i_in1.m_size);
         uintptr_t size2 = std::max(r_in2.m_size, i_in2.m_size);
@@ -399,24 +453,24 @@ private:
         
         if (buffers)
         {
-            copy_zero(buffers.m_spectra[0].realp, r_in1, sizes.fft());
-            copy_zero(buffers.m_spectra[0].imagp, i_in1, sizes.fft());
-            copy_zero(buffers.m_spectra[1].realp, r_in2, sizes.fft());
-            copy_zero(buffers.m_spectra[1].imagp, i_in2, sizes.fft());
-            
-            fft(buffers.m_spectra[0], sizes.fft_log2());
-            fft(buffers.m_spectra[1], sizes.fft_log2());
-            
-            Op(&buffers.m_spectra[0], &buffers.m_spectra[0], &buffers.m_spectra[1], sizes.fft(), 1.0 / (T) sizes.fft());
-            
-            ifft(buffers.m_spectra[0], sizes.fft_log2());
-            
+            binary_op<Op>(buffers.m_spectra[0], buffers.m_spectra[1], sizes, r_in1, i_in1, r_in2, i_in2);
             arrange(output, buffers.m_spectra[0], sizes, mode);
         }
     }
     
+    template<SpectralOp Op>
+    void binary_op(Split& io, Split& temp, binary_sizes& sizes, in_ptr in1, in_ptr in2)
+    {
+        rfft(io, in1.m_ptr, in1.m_size, sizes.fft_log2());
+        rfft(temp, in2.m_ptr, in2.m_size, sizes.fft_log2());
+    
+        Op(&io, &io, &temp, sizes.fft(), 0.25 / (T) sizes.fft());
+    
+        rifft(io, sizes.fft_log2());
+    }
+    
     template<SpectralOp Op, RealArrange arrange>
-    void binary_op(T *output, sized_in in1, sized_in in2, EdgeMode mode)
+    void binary_op(T *output, in_ptr in1, in_ptr in2, EdgeMode mode)
     {
         if (!calc_conv_corr_size(in1.m_size, in2.m_size, mode))
             return;
@@ -438,13 +492,7 @@ private:
         
         if (buffers)
         {
-            rfft(buffers.m_spectra[0], in1.m_ptr, in1.m_size, sizes.fft_log2());
-            rfft(buffers.m_spectra[1], in2.m_ptr, in2.m_size, sizes.fft_log2());
-            
-            Op(&buffers.m_spectra[0], &buffers.m_spectra[0], &buffers.m_spectra[1], sizes.fft(), 0.25 / (T) sizes.fft());
-            
-            rifft(buffers.m_spectra[0], sizes.fft_log2());
-            
+            binary_op<Op>(buffers.m_spectra[0], buffers.m_spectra[1], sizes, in1, in2);
             arrange(output, buffers.m_spectra[0], sizes, mode);
         }
     }
