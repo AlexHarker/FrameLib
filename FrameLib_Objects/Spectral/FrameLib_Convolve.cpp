@@ -118,10 +118,12 @@ void FrameLib_Convolve::process()
         requestOutputSize(0, sizeOut);
         requestOutputSize(1, sizeOut);
         
-        double *rOut = getOutput(0, &sizeOut);
-        double *iOut = getOutput(1, &sizeOut);
-
         if (allocateOutputs())
+        {
+            double *rOut = getOutput(0, &sizeOut);
+            double *iOut = getOutput(1, &sizeOut);
+        
             mProcessor.convolve(rOut, iOut, {inR1, sizeR1}, {inI1, sizeI1}, {inR2, sizeR2}, {inI2, sizeI2}, edgeMode);
+        }
     }
 }
