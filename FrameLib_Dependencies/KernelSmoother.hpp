@@ -68,7 +68,7 @@ public:
         
         uintptr_t filter_size = std::ceil(std::max(width_lo, width_hi) * 0.5);
         uintptr_t filter_full = filter_size * 2 - 1;
-        uintptr_t max_per_filter = (2.0 / width_mul) + 1.5;
+        uintptr_t max_per_filter = width_mul ? (2.0 / width_mul) + 1.0 : length;
         uintptr_t data_width = max_per_filter + (filter_size - 1) * 2;
         
         binary_sizes sizes(filter_full, data_width);
@@ -79,9 +79,9 @@ public:
         uintptr_t fft_size = processor::max_fft_size() >= sizes.fft() ? sizes.fft() : 0;
         
         T *ptr = allocator.template allocate<T>(fft_size * 2 + filter_full + length + filter_size * 2);
-        Split io { ptr, ptr + fft_size / 2};
-        Split st { ptr + fft_size, ptr + 3 * fft_size / 2};
-        T *filter = ptr + fft_size * 2 + filter_size - 1;
+        Split io { ptr, ptr + (fft_size >> 1) };
+        Split st { io.realp + fft_size, io.imagp + fft_size };
+        T *filter = ptr + (fft_size << 1) + filter_size - 1;
         T *temp = filter + filter_size;
         
         bool non_zero_end = true;
@@ -115,7 +115,7 @@ public:
             case kSmoothFold:
                 std::reverse_copy(in + 1, in + 1 + filter_size, temp);
                 std::copy(in, in + length, temp + filter_size);
-                std::reverse_copy(in, in + filter_size, temp + filter_size + length);
+                std::reverse_copy(in + length - (filter_size + 1), in + length - 1, temp + filter_size + length);
                 break;
         }
         
@@ -128,15 +128,15 @@ public:
             
             for (j = i; (j < length) && half_width == half_width_calc(j); j++);
             
-            uintptr_t optimal_fft = 1 << processor::calc_fft_size_log2(half_width * 4);
+            //uintptr_t optimal_fft = 1 << processor::calc_fft_size_log2(half_width * 4);
             uintptr_t n = j - i;
             uintptr_t k = 0;
-            uintptr_t m = std::min(optimal_fft / 2, n);
+            uintptr_t m = n;//std::min(optimal_fft / 2, n);
                 
             m = use_fft(n, half_width, fft_size) ? m : 0;
 
             for (; k + (m - 1) < n; k += m)
-                apply_filter_fft(out + i + k, data + i + k, filter, io, st, half_width, n, filter_normalise);
+                apply_filter_fft(out + i + k, data + i + k, filter, io, st, half_width, m, filter_normalise);
                 
             for (; k + (N - 1) < n; k += N)
                 apply_filter<N>(out + i + k, data + i + k, filter, half_width, filter_normalise);
@@ -215,7 +215,7 @@ private:
         VecType filter_val = SIMDType<double, N>(data) * filter[0];
         
         for (uintptr_t j = 1; j < half_width; j++)
-            filter_val += filter[j] * (VecType(data -j) + VecType(data + j));
+            filter_val += filter[j] * (VecType(data - j) + VecType(data + j));
         
         filter_val *= gain;
         filter_val.store(out);
@@ -231,7 +231,7 @@ private:
         
         // Mirror the filter
         
-        for (uintptr_t i = 1; i < half_width; i++)
+        for (intptr_t i = 1; i < (intptr_t) half_width; i++)
             filter[-i] = filter[i];
         
         // Process
