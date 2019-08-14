@@ -7,6 +7,7 @@
 #include <cstdint>
 #include <cstdlib>
 #include <limits>
+#include <type_traits>
 
 #include "Allocator.hpp"
 #include "SIMDSupport.hpp"
@@ -26,7 +27,20 @@ public:
     
     enum SmoothMode { kSmoothZeroPad, kSmoothWrap, kSmoothFold };
     
-    kernel_smoother() : spectral_processor<T, Allocator>(aligned_allocator())
+    template <typename U = Allocator, typename = std::enable_if<std::is_default_constructible<U>::value>>
+    kernel_smoother()
+    {
+        set_max_fft_size(1 << 18);
+    }
+    
+    template <typename U = Allocator, typename = std::enable_if<std::is_copy_constructible<U>::value>>
+    kernel_smoother(const Allocator& allocator) : spectral_processor<T, Allocator>(allocator)
+    {
+        set_max_fft_size(1 << 18);
+    }
+    
+    template <typename U = Allocator, typename = std::enable_if<std::is_move_constructible<U>::value>>
+    kernel_smoother(Allocator&& allocator) : spectral_processor<T, Allocator>(allocator)
     {
         set_max_fft_size(1 << 18);
     }
