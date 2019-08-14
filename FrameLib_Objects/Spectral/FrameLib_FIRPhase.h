@@ -1,13 +1,13 @@
 
-#ifndef FRAMELIB_IRPHASE_H
-#define FRAMELIB_IRPHASE_H
+#ifndef FRAMELIB_FIRPHASE_H
+#define FRAMELIB_FIRPHASE_H
 
 #include "FrameLib_DSP.h"
 #include "../../FrameLib_Dependencies/SpectralProcessor.hpp"
 
 // FIX - add zero padding (why not do this prior to FFT with the pad object?)
 
-class FrameLib_IRPhase final : public FrameLib_Processor
+class FrameLib_FIRPhase final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
@@ -19,7 +19,7 @@ public:
 
     // Constructor
 
-    FrameLib_IRPhase(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_FIRPhase(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     

@@ -1,9 +1,9 @@
 
-#include "FrameLib_IRPhase.h"
+#include "FrameLib_FIRPhase.h"
 
 // Constructor / Destructor
 
-FrameLib_IRPhase::FrameLib_IRPhase(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1), mProcessor(*this)
+FrameLib_FIRPhase::FrameLib_FIRPhase(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1), mProcessor(*this)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -18,7 +18,7 @@ FrameLib_IRPhase::FrameLib_IRPhase(FrameLib_Context context, FrameLib_Parameters
 
 // Info
 
-std::string FrameLib_IRPhase::objectInfo(bool verbose)
+std::string FrameLib_FIRPhase::objectInfo(bool verbose)
 {
     return formatInfo("Calculate the real Fast Fourier Transform of an input frame: All FFTs performed will use a power of two size. "
                    "Output frames will be (N / 2) + 1 in length where N is the FFT size. Inputs which are not a power of two are zero-padded to the next power of two. "
@@ -26,21 +26,21 @@ std::string FrameLib_IRPhase::objectInfo(bool verbose)
                    "Calculate the real Fast Fourier Transform of an input frame.", verbose);
 }
 
-std::string FrameLib_IRPhase::inputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_FIRPhase::inputInfo(unsigned long idx, bool verbose)
 {
     return "IR Time Domain Input";
 }
 
-std::string FrameLib_IRPhase::outputInfo(unsigned long idx, bool verbose)
+std::string FrameLib_FIRPhase::outputInfo(unsigned long idx, bool verbose)
 {
     return "IR Time Domain Output";
 }
 
 // Parameter Info
 
-FrameLib_IRPhase::ParameterInfo FrameLib_IRPhase::sParamInfo;
+FrameLib_FIRPhase::ParameterInfo FrameLib_FIRPhase::sParamInfo;
 
-FrameLib_IRPhase::ParameterInfo::ParameterInfo()
+FrameLib_FIRPhase::ParameterInfo::ParameterInfo()
 {
     add("Sets the maximum input length / FFT size.");
     add("When on the output is normalised so that sine waves produce the same level output regardless of the FFT size.");
@@ -49,7 +49,7 @@ FrameLib_IRPhase::ParameterInfo::ParameterInfo()
 
 // Process
 
-void FrameLib_IRPhase::process()
+void FrameLib_FIRPhase::process()
 {
     // Get Input(s)
     
