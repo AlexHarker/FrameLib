@@ -1446,7 +1446,7 @@ private:
             if (isTag(argv + idx))
                 break;
             
-            if (atom_gettype(argv + idx) == A_SYM)
+            if (atom_gettype(argv + idx) == A_SYM && !atom_getfloat(argv + idx))
                 object_error(mUserObject, "string %s in entry list where value expected", atom_getsym(argv + idx)->s_name);
             
             values.push_back(atom_getfloat(argv + idx));
