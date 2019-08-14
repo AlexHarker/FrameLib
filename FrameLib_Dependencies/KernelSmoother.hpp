@@ -23,23 +23,26 @@ class kernel_smoother : private spectral_processor<T, Allocator>
     using zipped_pointer = typename processor::zipped_pointer;
     using in_ptr = typename processor::in_ptr;
     
+    template <bool B>
+    using enable_if_t = typename std::enable_if<B>::type;
+    
 public:
     
     enum SmoothMode { kSmoothZeroPad, kSmoothWrap, kSmoothFold };
     
-    template <typename U = Allocator, typename = std::enable_if<std::is_default_constructible<U>::value>>
+    template <typename U = Allocator, typename = enable_if_t<std::is_default_constructible<U>::value>>
     kernel_smoother()
     {
         set_max_fft_size(1 << 18);
     }
     
-    template <typename U = Allocator, typename = std::enable_if<std::is_copy_constructible<U>::value>>
+    template <typename U = Allocator, typename = enable_if_t<std::is_copy_constructible<U>::value>>
     kernel_smoother(const Allocator& allocator) : spectral_processor<T, Allocator>(allocator)
     {
         set_max_fft_size(1 << 18);
     }
     
-    template <typename U = Allocator, typename = std::enable_if<std::is_move_constructible<U>::value>>
+    template <typename U = Allocator, typename = enable_if_t<std::is_move_constructible<U>::value>>
     kernel_smoother(Allocator&& allocator) : spectral_processor<T, Allocator>(allocator)
     {
         set_max_fft_size(1 << 18);
