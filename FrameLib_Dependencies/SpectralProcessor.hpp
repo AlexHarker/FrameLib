@@ -3,10 +3,12 @@
 #define SPECTRALPROCESSOR_H
 
 #include <algorithm>
+
+#include "Allocator.hpp"
 #include "HISSTools_FFT/HISSTools_FFT.h"
 #include "SpectralFunctions.hpp"
 
-template <typename T, typename Allocator>
+template <typename T, typename Allocator = aligned_allocator>
 class spectral_processor
 {
     using Split = typename FFTTypes<T>::Split;
