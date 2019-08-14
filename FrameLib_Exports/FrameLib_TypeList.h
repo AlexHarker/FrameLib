@@ -206,17 +206,19 @@ FrameLib_Max,
 FrameLib_Diff,
 FrameLib_Modulo,
 
-// Ternary  Operators
+// Ternary Operators
 
 FrameLib_Clip,
 FrameLib_Fold,
 FrameLib_Wrap,
 
 // Expressions
+
 FrameLib_Expression,
 FrameLib_ComplexExpression,
 
 // Complex Unary Operators
+
 FrameLib_Complex_Cos,
 FrameLib_Complex_Sin,
 FrameLib_Complex_Tan,
@@ -235,6 +237,7 @@ FrameLib_Cartopol,
 FrameLib_Poltocar,
 
 // Complex Binary Operators
+
 FrameLib_Complex_Plus,
 FrameLib_Complex_Minus,
 FrameLib_Complex_Multiply,
@@ -242,6 +245,7 @@ FrameLib_Complex_Divide,
 FrameLib_Complex_Pow,
 
 // Buffer
+
 FrameLib_Info,
 FrameLib_Read
 >;
