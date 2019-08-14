@@ -3,25 +3,15 @@
 #define FRAMELIB_KERNELSMOOTH_H
 
 #include "FrameLib_DSP.h"
+#include "../../FrameLib_Dependencies/KernelSmoother.hpp"
 
 class FrameLib_KernelSmooth final : public FrameLib_Processor
 {
+    using Smoother = kernel_smoother<double, FrameLib_DSP::Allocator>;
+    
     enum ParameterList { kSmooth };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
-
-    struct Allocator
-    {
-        Allocator(FrameLib_KernelSmooth& owner) : mOwner(owner) {}
-        
-        template <typename T>
-        T* alloc(size_t size) { return mOwner.alloc<T>(size); }
-        
-        template <typename T>
-        void dealloc(T *ptr) { mOwner.dealloc(ptr); }
-        
-        FrameLib_KernelSmooth& mOwner;
-    };
     
 public:
     
@@ -44,6 +34,8 @@ private:
     // Data
     
     static ParameterInfo sParamInfo;
+    
+    Smoother mSmoother;
 };
 
 #endif
