@@ -140,7 +140,7 @@ void FrameLib_FFT::process()
         
         // Scale
         
-        double scale = mNormalise ? 1.0 / (double) FFTSize : ((mMode == kComplex) ? 1.0 : 0.5);
+        double scale = ((mMode == kComplex) ? 1.0 : 0.5) / (mNormalise ? (double) FFTSize : 1.0);
         
         mProcessor.scale_spectrum(spectrum, sizeOut, scale);
     }
