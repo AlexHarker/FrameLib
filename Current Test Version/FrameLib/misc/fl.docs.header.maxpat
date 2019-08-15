@@ -12,7 +12,7 @@
 		"classnamespace" : "box",
 		"rect" : [ 77.0, 139.0, 620.0, 157.0 ],
 		"bglocked" : 0,
-		"openinpresentation" : 0,
+		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
 		"default_fontface" : 0,
 		"default_fontname" : "Arial",
@@ -102,13 +102,13 @@
 					"filename" : "helpdetails.js",
 					"id" : "obj-130",
 					"ignoreclick" : 1,
-					"jsarguments" : [ "fl.complexsqrt~" ],
+					"jsarguments" : [ "fl.map~" ],
 					"maxclass" : "jsui",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 10.0, 10.0, 617.0, 155.0 ],
+					"patching_rect" : [ 0.0, 0.0, 617.0, 155.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 617.0, 155.0 ]
 				}
@@ -143,27 +143,12 @@
 				"patchline" : 				{
 					"destination" : [ "obj-130", 0 ],
 					"hidden" : 1,
-					"midpoints" : [ 643.5, 153.0, 627.0, 153.0, 627.0, 6.0, 19.5, 6.0 ],
+					"midpoints" : [ 643.5, 153.0, 627.0, 153.0, 627.0, 6.0, 9.5, 6.0 ],
 					"source" : [ "obj-137", 0 ]
 				}
 
 			}
- ],
-		"dependency_cache" : [ 			{
-				"name" : "helpdetails.js",
-				"bootpath" : "C74:/help/resources",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.getname.js",
-				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : ".",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
- ],
-		"autosave" : 0
+ ]
 	}
 
 }

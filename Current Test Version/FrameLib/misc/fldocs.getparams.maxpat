@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 837.0, 168.0, 712.0, 771.0 ],
+		"rect" : [ 694.0, 95.0, 712.0, 771.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -66,9 +66,8 @@
 					"fontname" : "Lato Regular",
 					"fontsize" : 13.0,
 					"id" : "obj-127",
-					"items" : "This object has no parameters.",
+					"items" : [ "0. /mode [enum]", ",", "1. /inlo [double]", ",", "2. /inhi [double]", ",", "3. /outlo [double]", ",", "4. /outhi [double]", ",", "5. /exponent [double]", ",", "6. /clip [bool]" ],
 					"maxclass" : "umenu",
-					"menumode" : 2,
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "", "" ],
@@ -91,7 +90,7 @@
 					"patching_rect" : [ 10.0, 181.0, 171.0, 23.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 4.0, 59.0, 171.0, 23.0 ],
-					"text" : "Description:"
+					"text" : "Parameter Description:"
 				}
 
 			}
@@ -102,7 +101,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 220.833333333333314, 742.0, 72.0, 22.0 ],
+					"patching_rect" : [ 220.833333333333314, 557.0, 72.0, 22.0 ],
 					"text" : "prepend set"
 				}
 
@@ -114,7 +113,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "" ],
-					"patching_rect" : [ 120.833333333333329, 624.0, 45.0, 22.0 ],
+					"patching_rect" : [ 120.833333333333329, 439.0, 45.0, 22.0 ],
 					"text" : "t b l"
 				}
 
@@ -124,13 +123,15 @@
 					"fontname" : "Lato Regular",
 					"fontsize" : 13.0,
 					"id" : "obj-91",
+					"linecount" : 15,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 10.0, 204.333333333333343, 469.0, 22.0 ],
+					"patching_rect" : [ 10.0, 204.333333333333343, 470.0, 240.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 4.0, 83.0, 469.0, 22.0 ],
-					"text" : "This object has no parameters."
+					"presentation_linecount" : 14,
+					"presentation_rect" : [ 4.0, 83.0, 614.0, 225.0 ],
+					"text" : "Sets the type of output scaling: linear / log / exp - scaling as specified. pow - scale the input range to [0-1], apply the specifiedexponent and then scale to the output range. db / invdb - output / input respectively are set in dB but scaled as gain values. transpose / invtranspose - output / input respectively are set in semitones but scaled as ratios for transposition.\n\nParameter Options:\n[0] - linear\n[1] - log\n[2] - exp\n[3] - pow\n[4] - db\n[5] - invdb\n[6] - transpose\n[7] - invtranspose"
 				}
 
 			}
@@ -141,7 +142,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 146.833333333333314, 742.0, 72.0, 22.0 ],
+					"patching_rect" : [ 146.833333333333314, 557.0, 72.0, 22.0 ],
 					"text" : "prepend set"
 				}
 
@@ -153,7 +154,7 @@
 					"numinlets" : 4,
 					"numoutlets" : 4,
 					"outlettype" : [ "", "", "", "" ],
-					"patching_rect" : [ 146.833333333333314, 694.0, 170.0, 22.0 ],
+					"patching_rect" : [ 146.833333333333314, 509.0, 170.0, 22.0 ],
 					"text" : "route description enums name"
 				}
 
@@ -165,7 +166,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 146.833333333333314, 660.0, 47.0, 22.0 ],
+					"patching_rect" : [ 146.833333333333314, 475.0, 47.0, 22.0 ],
 					"text" : "dict.iter"
 				}
 
@@ -177,7 +178,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 84.833333333333329, 588.0, 55.0, 22.0 ],
+					"patching_rect" : [ 84.833333333333329, 403.0, 55.0, 22.0 ],
 					"text" : "zl ecils 2"
 				}
 
@@ -189,7 +190,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 9.5, 526.0, 105.0, 22.0 ],
+					"patching_rect" : [ 9.5, 341.0, 105.0, 22.0 ],
 					"text" : "sprintf get %s::%s"
 				}
 
@@ -201,7 +202,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "int" ],
-					"patching_rect" : [ 10.0, 465.0, 104.5, 22.0 ],
+					"patching_rect" : [ 10.0, 280.0, 104.5, 22.0 ],
 					"text" : "t b i"
 				}
 
@@ -213,7 +214,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 10.0, 497.0, 89.0, 22.0 ],
+					"patching_rect" : [ 10.0, 312.0, 89.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "fl.getname.js",
 						"parameter_enable" : 0
@@ -230,7 +231,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 4,
 					"outlettype" : [ "dictionary", "", "", "" ],
-					"patching_rect" : [ 9.5, 556.0, 245.0, 22.0 ],
+					"patching_rect" : [ 9.5, 371.0, 245.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"parameter_enable" : 0,
@@ -247,7 +248,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 2,
-					"outlettype" : [ "clear", "" ],
+					"outlettype" : [ "", "" ],
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
@@ -286,7 +287,6 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "nobars",
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-43",
@@ -931,10 +931,10 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 10.0, 131.0, 93.0, 23.0 ],
+					"patching_rect" : [ 10.0, 131.0, 130.0, 23.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 4.0, 5.0, 93.0, 23.0 ],
-					"text" : "Parameters:"
+					"presentation_rect" : [ 4.0, 5.0, 129.0, 23.0 ],
+					"text" : "Object Parameters:"
 				}
 
 			}
@@ -973,6 +973,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-61", 0 ],
+					"midpoints" : [ 19.5, 183.0, 6.0, 183.0, 6.0, 267.0, 19.5, 267.0 ],
 					"source" : [ "obj-127", 0 ]
 				}
 
@@ -1008,6 +1009,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-91", 0 ],
+					"midpoints" : [ 71.5, 123.0, 6.0, 123.0, 6.0, 198.0, 19.5, 198.0 ],
 					"source" : [ "obj-50", 1 ]
 				}
 
@@ -1071,7 +1073,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-91", 0 ],
-					"midpoints" : [ 156.333333333333314, 765.0, 6.0, 765.0, 6.0, 198.0, 19.5, 198.0 ],
+					"midpoints" : [ 156.333333333333314, 582.0, 6.0, 582.0, 6.0, 198.0, 19.5, 198.0 ],
 					"source" : [ "obj-89", 0 ]
 				}
 
