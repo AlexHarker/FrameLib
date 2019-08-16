@@ -1,15 +1,13 @@
 
 #include "FrameLib_Window.h"
 
-#define W_PI			3.14159265358979323846
-#define W_TWOPI			6.28318530717958647692
-#define W_THREEPI		9.42477796076937971538
-#define W_FOURPI		12.56637061435817295384
-#define W_SIXPI			18.84955592153875943076
+// Window Calculator
+
+FrameLib_Window::WindowCalculator FrameLib_Window::sWindowCalculator;
 
 // Constructor / Destructor
 
-FrameLib_Window::FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 2, 1)
+FrameLib_Window::FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kWindowType, "window", 0);
     mParameters.addEnumItem(kHann, "hann");
@@ -30,7 +28,7 @@ FrameLib_Window::FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::
     
     mParameters.addBool(kSqrt, "sqrt", false, 2);
     
-    mParameters.addEnum(kCompensation, "compensation");
+    mParameters.addEnum(kCompensation, "compensate");
     mParameters.addEnumItem(kOff, "off");
     mParameters.addEnumItem(kLinear, "linear");
     mParameters.addEnumItem(kPower, "power");
@@ -44,35 +42,36 @@ FrameLib_Window::FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::
     
     mParameters.set(serialisedParameters);
     
-    mWindow = NULL;
+    mWindow = nullptr;
     mWindowType = kHann;
     mSize = 0;
     mSqrtWindow = false;
     mLinearGain = 0.0;
     mPowerGain = 0.0;
+    mEnds = kNone;
     
     setParameterInput(1);
 }
 
 FrameLib_Window::~FrameLib_Window()
 {
-    mAllocator->dealloc(mWindow);
+    dealloc(mWindow);
 }
 
 // Info
 
 std::string FrameLib_Window::objectInfo(bool verbose)
 {
-    return getInfo("Multiplies the incoming frame against a specified window: The output length will match the input length.",
+    return formatInfo("Multiplies the incoming frame against a specified window: The output length will match the input length.",
                    "Multiplies the incoming frame against a specified window.", verbose);
 }
 
 std::string FrameLib_Window::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return getInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
+        return parameterInputInfo(verbose);
     else
-        return getInfo("Input Frame", "Input Frame", idx, verbose);
+        return formatInfo("Input Frame", "Input Frame", idx, verbose);
 }
 
 std::string FrameLib_Window::outputInfo(unsigned long idx, bool verbose)
@@ -92,7 +91,7 @@ FrameLib_Window::ParameterInfo::ParameterInfo()
     add("Sets whether the window should be used directly, or the square root of the window.");
     add("Sets the gain compensation used. "
         "off - no compensation is used. linear - compensate the linear gain of the window. "
-        "power - compensate the power gain of the window. poweroverlin - compensate by the power gain divided by the linear gain");
+        "power - compensate the power gain of the window. powoverlin - compensate by the power gain divided by the linear gain");
     add("Sets which endpoints of the window used will be non-zero for windows that start and end at zero.");
 }
 
@@ -102,115 +101,68 @@ void FrameLib_Window::updateWindow(unsigned long inSize, EndPoints ends)
 {
     WindowTypes windowType = (WindowTypes) mParameters.getInt(kWindowType);
     bool sqrtWindow = mParameters.getBool(kSqrt);
-    unsigned long windowSize = mParameters.getInt(kSize);
+    uint32_t windowSize = static_cast<uint32_t>(mParameters.getInt(kSize));
     
-    windowSize = !windowSize ? inSize : windowSize;
+    windowSize = !windowSize ? static_cast<uint32_t>(inSize) : windowSize;
     
     windowSize = ends == kBoth ? windowSize - 1 : windowSize;
     windowSize = ends == kNone ? windowSize + 1 : windowSize;
     
-    if (windowSize == mSize && windowType == mWindowType && sqrtWindow == mSqrtWindow)
+    if (windowSize == mSize && windowType == mWindowType && sqrtWindow == mSqrtWindow && ends == mEnds)
         return;
     
     if (mSize != windowSize)
     {
-        mAllocator->dealloc(mWindow);
-        mWindow = (double *) mAllocator->alloc(sizeof(double) * (windowSize + 2));
+        dealloc(mWindow);
+        mWindow = alloc<double>(windowSize + 2);
     }
     
-    switch (windowType)
-    {
-        case kHann:
-            for (unsigned long i = 0; i <= windowSize; i++)
-                mWindow[i] = 0.5 - (0.5 * cos(W_TWOPI * ((double) i / (double) windowSize)));
-            break;
-            
-        case kHamming:
-            for (unsigned long i = 0; i <= windowSize; i++)
-                mWindow[i] = 0.54347826 - (0.45652174 * cos(W_TWOPI * ((double) i / (double) windowSize)));
-            break;
-            
-        case kTriangle:
-            for (unsigned long i = 0; i <= (windowSize >> 1); i++)
-                mWindow[i] = (double) i / (double) (windowSize / 2.0);
-            for (unsigned long i = (windowSize >> 1) + 1; i <= windowSize; i++)
-                mWindow[i] = (double) (((double) windowSize - 1.0) - (double) i) / (double) (windowSize / 2.0);
-            break;
-            
-        case kCosine:
-            for (unsigned long i = 0; i <= windowSize; i++)
-                mWindow[i] = sin(W_PI * ((double) i / (double) windowSize));
-            break;
-            
-        case kBlackman:
-            for (unsigned long i = 0; i <= windowSize; i++)
-                mWindow[i] = 0.42659071 - (0.49656062 * cos(W_TWOPI * ((double) i / (double) windowSize))) + (0.07684867 * cos(W_FOURPI * ((double) i / (double) windowSize)));
-            break;
-            
-        case kBlackman62:
-            for (unsigned long i = 0; i <= windowSize; i++)
-                mWindow[i] = (0.44859f - 0.49364f * cos(W_TWOPI * ((double) i / (double) windowSize)) + 0.05677f * cos(W_FOURPI * ((double) i / (double) windowSize)));
-            break;
-            
-        case kBlackman70:
-            for (unsigned long i = 0; i <= windowSize; i++)
-                mWindow[i] = (0.42323f - 0.49755f * cos(W_TWOPI * ((double) i / (double) windowSize)) + 0.07922f * cos(W_FOURPI * ((double) i / (double) windowSize)));
-            break;
-            
-        case kBlackman74:
-            for (unsigned long i = 0; i <= windowSize; i++)
-                mWindow[i] = (0.402217f - 0.49703f * cos(W_TWOPI * ((double) i / (double) windowSize)) + 0.09892f * cos(W_FOURPI * ((double) i / (double) windowSize)) - 0.00188 * cos(W_THREEPI * ((double) i / (double) windowSize)));
-            break;
-            
-        case kBlackman92:
-            for (unsigned long i = 0; i <= windowSize; i++)
-                mWindow[i] = (0.35875f - 0.48829f * cos(W_TWOPI * ((double) i / (double) windowSize)) + 0.14128f * cos(W_FOURPI * ((double) i / (double) windowSize)) - 0.01168 * cos(W_THREEPI * ((double) i / (double) windowSize)));
-            break;
-            
-        case kBlackmanHarris:
-            for (unsigned long i = 0; i <= windowSize; i++)
-                mWindow[i] = 0.35875 - (0.48829 * cos(W_TWOPI * ((double) i / (double) windowSize))) + (0.14128 * cos(W_FOURPI * ((double) i / (double) windowSize))) - (0.01168 * cos(W_SIXPI * ((double) i / (double) windowSize)));
-            break;
-            
-        case kFlatTop:
-            for (unsigned long i = 0; i <= windowSize; i++)
-                mWindow[i] = 0.2810639 - (0.5208972 * cos(W_TWOPI * ((double) i / (double) windowSize))) + (0.1980399 * cos(W_FOURPI * ((double) i / (double) windowSize)));
-            break;
-            
-        case kRectangle:
-            for (unsigned long i = 0; i <= windowSize; i++)
-                mWindow[i] = 1.0;
-            break;
-    }
+    sWindowCalculator.calculate(windowType, mWindow, windowSize, windowSize + 1);
     
-    mWindow[windowSize + 1] = 0.0;
+    mWindow[windowSize + 1] = mWindow[windowSize];
     
-    if (sqrtWindow == true)
-    {
-        for (unsigned long i = 0; i <= windowSize; i++)
+    if (sqrtWindow)
+        for (unsigned long i = 0; i <= windowSize + 1; i++)
             mWindow[i] = sqrt(mWindow[i]);
-    }
     
     // Store window parameters
     
     mWindowType = windowType;
     mSize = windowSize;
     mSqrtWindow = sqrtWindow;
+    mEnds = ends;
     
     // Calculate the gain of the window
     
     double linearGain = 0.0;
     double powerGain = 0.0;
     
-    for (unsigned long i = 0; i <= windowSize; i++)
+    for (unsigned long i = 1; i < windowSize; i++)
         linearGain += mWindow[i];
     
-    mLinearGain = linearGain / (double) (windowSize + 1);
-    
-    for (unsigned long i = 0; i <= windowSize; i++)
+    for (unsigned long i = 1; i < windowSize; i++)
         powerGain += mWindow[i] * mWindow[i];
     
-    mPowerGain = powerGain / (double) (windowSize + 1);
+    unsigned long sizeNorm = mSize;
+    
+    if (ends == kFirst || ends == kBoth)
+    {
+        linearGain += mWindow[0];
+        powerGain += mWindow[0] * mWindow[0];
+    }
+    
+    if (ends == kLast || ends == kBoth)
+    {
+        linearGain += mWindow[mSize - 1];
+        powerGain += mWindow[mSize - 1] * mWindow[mSize - 1];
+        sizeNorm++;
+    }
+    
+    if (ends == kNone)
+        sizeNorm--;
+    
+    mLinearGain = (double) sizeNorm / linearGain;
+    mPowerGain = (double) sizeNorm / powerGain;
 }
 
 double FrameLib_Window::linearInterp(double pos)
@@ -231,7 +183,7 @@ void FrameLib_Window::process()
     // Get Input
     
     unsigned long sizeIn, sizeOut, sizeFactor;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     requestOutputSize(0, sizeIn);
     allocateOutputs();
@@ -240,35 +192,23 @@ void FrameLib_Window::process()
     
     if (sizeOut)
     {
-        Compensation compensate = (Compensation) mParameters.getInt(kCompensation);
+        Compensation compensate = static_cast<Compensation>(mParameters.getInt(kCompensation));
         EndPoints ends = (EndPoints) mParameters.getInt(kEndPoints);
-        
-        double gain;
         
         sizeFactor = ends == kBoth ? sizeIn - 1 : sizeIn;
         sizeFactor = ends == kNone ? sizeIn + 1 : sizeFactor;
         
-        updateWindow(sizeIn, ends);
-        
         bool preIncrement = ends == kNone || ends == kLast;
+        double gain;
+
+        updateWindow(sizeIn, ends);
         
         switch (compensate)
         {
-            case kOff:
-                gain = 1.0;
-                break;
-                
-            case kLinear:
-                gain = mLinearGain;
-                break;
-                
-            case kPower:
-                gain = mPowerGain;
-                break;
-                
-            case kPowerOverLinear:
-                gain = mPowerGain / mLinearGain;
-                break;
+            case kOff:                  gain = 1.0;                         break;
+            case kLinear:               gain = mLinearGain;                 break;
+            case kPower:                gain = mPowerGain;                  break;
+            case kPowerOverLinear:      gain = mPowerGain / mLinearGain;    break;
         }
         
         if (mSize % sizeFactor)

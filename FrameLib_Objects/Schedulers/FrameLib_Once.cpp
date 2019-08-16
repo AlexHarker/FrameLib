@@ -5,13 +5,13 @@
 
 std::string FrameLib_Once::objectInfo(bool verbose)
 {
-    return getInfo("Schedules one frame at the begining of time, lasting forever: The output frame is empty.",
+    return formatInfo("Schedules one frame at the begining of time, lasting forever: The output is an empty frame.",
                    "Schedules one frame at the begining of time, lasting forever.", verbose);
 }
 
 std::string FrameLib_Once::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Synchronisation Input - input is ignored, but can be used for synchronsation purposes", "Synchronisation Input", verbose);
+    return formatInfo("Synchronisation Input - input is ignored, but can be used for synchronisation purposes", "Synchronisation Input", verbose);
 }
 
 std::string FrameLib_Once::outputInfo(unsigned long idx, bool verbose)
@@ -23,5 +23,5 @@ std::string FrameLib_Once::outputInfo(unsigned long idx, bool verbose)
 
 FrameLib_Once::SchedulerInfo FrameLib_Once::schedule(bool newFrame, bool noAdvance)
 {
-    return SchedulerInfo(FL_Limits<FrameLib_TimeFormat>::largest() - getValidTime(), getValidTime() == FrameLib_TimeFormat(1), true);
+    return SchedulerInfo(FrameLib_TimeFormat::largest() - getValidTime(), getValidTime() == FrameLib_TimeFormat(1), true);
 }

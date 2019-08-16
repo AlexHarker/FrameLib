@@ -5,19 +5,25 @@
 
 // Constructor
 
-FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioOutput(context, &sParamInfo, 1, 0, 1)
+FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_AudioOutput(context, proxy, &sParamInfo, 2, 0, 1)
 {
-    mParameters.addDouble(kLength, "length", 8000, 0);
+    mParameters.addDouble(kBufferSize, "buffer_size", 250000, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
+    
     mParameters.addEnum(kUnits, "units", 1);
+    mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
-    mParameters.addEnumItem(kSamples, "samples");
     mParameters.setInstantiation();
+    
+    mParameters.addDouble(kDelay, "delay", 0);
+    mParameters.setMin(0);
     
     mParameters.set(serialisedParameters);
     
+    setParameterInput(1);
+
     objectReset();
 }
 
@@ -25,14 +31,17 @@ FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, FrameLib_Parameters::Seri
 
 std::string FrameLib_Sink::objectInfo(bool verbose)
 {
-    return getInfo("Outputs audio frames to the host environment by pasting them into an overlap-add buffer: "
-                   "The length of the internal buffer determines the maximum frame length. Output suffers no latency. ",
+    return formatInfo("Outputs audio frames to the host environment by pasting them into an overlap-add buffer: "
+                   "The length of the internal buffer determines the maximum frame length. Output suffers no latency.",
                    "Outputs audio frames to the host environment by pasting them into an overlap add buffer.", verbose);
 }
 
 std::string FrameLib_Sink::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Frames to Output - overlapped to the output", "Frames to Output", verbose);
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return formatInfo("Frames to Output - overlapped to the output", "Frames to Output", verbose);
 }
 
 std::string FrameLib_Sink::FrameLib_Sink::audioInfo(unsigned long idx, bool verbose)
@@ -46,11 +55,24 @@ FrameLib_Sink::ParameterInfo FrameLib_Sink::sParamInfo;
 
 FrameLib_Sink::ParameterInfo::ParameterInfo()
 {
-    add("Sets the internal buffer length in the units specified by the units parameter.");
-    add("Sets the time units used to determine the buffer length.");
+    add("Sets the internal buffer size in the units specified by the units parameter.");
+    add("Sets the time units used to determine the buffer size and delay.");
+    add("Sets the delay before output in the units specified by the units parameter.");
 }
 
 // Helpers
+
+unsigned long FrameLib_Sink::convertTimeToSamples(double time)
+{
+    switch (static_cast<Units>(mParameters.getInt(kUnits)))
+    {
+        case kSamples:  break;
+        case kMS:       time = msToSamples(time);       break;
+        case kSeconds:  time = secondsToSamples(time);  break;
+    }
+    
+    return roundToUInt(time);
+}
 
 void FrameLib_Sink::copyAndZero(double *output, unsigned long offset, unsigned long size)
 {
@@ -63,7 +85,7 @@ void FrameLib_Sink::copyAndZero(double *output, unsigned long offset, unsigned l
     }
 }
 
-void FrameLib_Sink::addToBuffer(double *input, unsigned long offset, unsigned long size)
+void FrameLib_Sink::addToBuffer(const double *input, unsigned long offset, unsigned long size)
 {
     for (unsigned long i = 0; i < size; i++)
         mBuffer[i + offset] += input[i];
@@ -72,28 +94,18 @@ void FrameLib_Sink::addToBuffer(double *input, unsigned long offset, unsigned lo
 // Object Reset, Block Process and Process
 
 void FrameLib_Sink::objectReset()
-{
-    Units units = (Units) mParameters.getInt(kUnits);
-    double size = mParameters.getValue(kLength);
-    
-    switch (units)
-    {
-        case kSamples:  break;
-        case kMS:       size *= mSamplingRate / 1000.0;     break;
-        case kSeconds:  size *= mSamplingRate;              break;
-    }
-    
-    size = round(size) + mMaxBlockSize;
+{    
+    size_t size = convertTimeToSamples(mParameters.getValue(kBufferSize)) + mMaxBlockSize;
     
     if (size != bufferSize())
         mBuffer.resize(size);
     
-    zeroVector(&mBuffer[0], bufferSize());
+    zeroVector(mBuffer.data(), bufferSize());
     
     mCounter = 0;
 }
 
-void FrameLib_Sink::blockProcess(double **ins, double **outs, unsigned long blockSize)
+void FrameLib_Sink::blockProcess(const double * const *ins, double **outs, unsigned long blockSize)
 {    
     // Safety
     
@@ -112,17 +124,18 @@ void FrameLib_Sink::process()
 {
     unsigned long sizeIn;
     
-    FrameLib_TimeFormat inputTime = getInputFrameTime(0);
+    FrameLib_TimeFormat frameTime = getFrameTime();
+    FrameLib_TimeFormat delayTime = convertTimeToSamples(mParameters.getValue(kDelay));
     FrameLib_TimeFormat blockStartTime = getBlockStartTime();
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     // Calculate time offset
     
-    unsigned long offset = round(inputTime - blockStartTime);
+    unsigned long offset = roundToUInt(delayTime + frameTime - blockStartTime);
     
     // Safety
     
-    if (!sizeIn || inputTime < blockStartTime || (offset + sizeIn) > bufferSize())
+    if (!sizeIn || frameTime < blockStartTime || (offset + sizeIn) > bufferSize())
         return;
     
     // Calculate actual offset into buffer

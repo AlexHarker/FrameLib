@@ -5,12 +5,12 @@
 
 // Constructor
 
-FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 2, 1)
+FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addInt(kWidth, "width", 1, 0);
-    mParameters.setMin(0);
+    mParameters.setMin(1);
     
-    mParameters.addDouble(kPadding, "padding", 0.0, 1);
+    mParameters.addDouble(kPadding, "pad", 0.0, 1);
     
     mParameters.addEnum(kMode, "mode", 3);
     mParameters.addEnumItem(kPad, "pad");
@@ -26,7 +26,7 @@ FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, FrameLib_
 
 std::string FrameLib_MedianFilter::objectInfo(bool verbose)
 {
-    return getInfo("Median filter an input frame: The output is the same size as the input. "
+    return formatInfo("Median filter an input frame: The output is the same size as the input. "
                    "Each output value is the median of the area surrounding the input value. "
                    "The width of the area, and the edge behaviours are controllable.",
                    "Median filter an input frame.", verbose);
@@ -35,7 +35,7 @@ std::string FrameLib_MedianFilter::objectInfo(bool verbose)
 std::string FrameLib_MedianFilter::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return getInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
+        return parameterInputInfo(verbose);
     else
         return "Input Frames";
 }
@@ -56,7 +56,7 @@ FrameLib_MedianFilter::ParameterInfo::ParameterInfo()
     add("Sets the mode that controls the edge behaviour: "
         "pad - the edges are treated as though infinitely padded with the padding value. "
         "wrap - the edges are treated as though the frame is wrapped cyclically. "
-        "fold - the edges are treated as through they fold over (suitable for spectral purposes).");
+        "fold - the edges are treated as though they fold over (suitable for spectral purposes).");
 }
 
 // Helpers
@@ -84,11 +84,11 @@ double FrameLib_MedianFilter::insertMedian(double *temp, unsigned long *indices,
     
     // Search right
     
-    for (insert = current, std::max(1L, gap = (width - current) >> 1); gap; gap >>= 1)
+    for (insert = current, gap = std::max(1L, (width - current) >> 1); gap; gap >>= 1)
     {
         for (long i = insert + gap; i < width; i += gap)
         {
-            if (temp[indices[i]] > value)
+            if (temp[indices[i]] >= value)
                 break;
             else
                 insert = i;
@@ -103,11 +103,11 @@ double FrameLib_MedianFilter::insertMedian(double *temp, unsigned long *indices,
     
     // Search left
     
-    for (current = insert, std::max(1L, gap = current >> 1); gap; gap >>= 1)
+    for (current = insert, gap = std::max(1L, current >> 1); gap; gap >>= 1)
     {
         for (long i = insert - gap; i >= 0; i -= gap)
         {
-            if (temp[indices[i]] < value)
+            if (temp[indices[i]] <= value)
                 break;
             else
                 insert = i;
@@ -129,12 +129,12 @@ double FrameLib_MedianFilter::median(double *temp, unsigned long *indices, long 
     return temp[indices[width >> 1]];
 }
 
-double FrameLib_MedianFilter::getPad(double *input, long index, long sizeIn, long width, double padValue)
+double FrameLib_MedianFilter::getPad(const double *input, long index, long sizeIn, double padValue)
 {
     return (index >= 0 && index < sizeIn) ? input[index] : padValue;
 }
 
-double FrameLib_MedianFilter::getWrap(double *input, long index, long sizeIn, long width)
+double FrameLib_MedianFilter::getWrap(const  double *input, long index, long sizeIn)
 {
     index %= sizeIn;
     index = index < 0 ? index + sizeIn : index;
@@ -142,10 +142,10 @@ double FrameLib_MedianFilter::getWrap(double *input, long index, long sizeIn, lo
     return input[index];
 }
 
-double FrameLib_MedianFilter::getFold(double *input, long index, long sizeIn, long width)
+double FrameLib_MedianFilter::getFold(const double *input, long index, long sizeIn)
 {
     index = std::abs(index) % ((sizeIn - 1) * 2);
-    index = index > (sizeIn - 1) ? ((sizeIn - 1) * 2) - sizeIn : index;
+    index = index > (sizeIn - 1) ? ((sizeIn - 1) * 2) - index : index;
     
     return input[index];
 }
@@ -156,18 +156,18 @@ void FrameLib_MedianFilter::process()
 {
     // Get Input
     
-    unsigned long width = mParameters.getInt(kWidth);
     unsigned long sizeIn, sizeOut;
-    double *input = getInput(0, &sizeIn);
+    long width = mParameters.getInt(kWidth);
+    const double *input = getInput(0, &sizeIn);
     double padValue = mParameters.getValue(kPadding);
-    Modes mode = (Modes) mParameters.getInt(kMode);
+    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
     
     requestOutputSize(0, sizeIn);
     allocateOutputs();
     
-    double *output = getOutput(0, &sizeOut);
-    double *temp = (double *) mAllocator->alloc(sizeof(double) * width);
-    unsigned long *indices = (unsigned long *) mAllocator->alloc(sizeof(unsigned long) * width);
+    double *output = getOutput(0, &sizeOut);    
+    double *temp = alloc<double>(width);
+    unsigned long *indices = alloc<unsigned long>(width);
     
     // Do filtering
     
@@ -177,39 +177,39 @@ void FrameLib_MedianFilter::process()
         {
             case kWrap:
                 for (long i = 0; i < width; i++)
-                    temp[i] = getWrap(input, i - (width >> 1), sizeIn, width);
+                    temp[i] = getWrap(input, i - (width >> 1), sizeIn);
                 output[0] = median(temp, indices, width);
-                for (long i = 1; i < sizeIn; i++)
+                for (long i = 1; i < static_cast<long>(sizeIn); i++)
                 {
-                    double newValue = getWrap(input, i + (width >> 1) - 1, sizeIn, width);
+                    double newValue = getWrap(input, i + (width >> 1), sizeIn);
                     output[i] = insertMedian(temp, indices, newValue, (i - 1) % width, width);
                 }
                 break;
                 
             case kPad:
                 for (long i = 0; i < width; i++)
-                    temp[i] = getPad(input, i - (width >> 1), sizeIn, width, padValue);
+                    temp[i] = getPad(input, i - (width >> 1), sizeIn, padValue);
                 output[0] = median(temp, indices, width);
-                for (long i = 1; i < sizeIn; i++)
+                for (long i = 1; i < static_cast<long>(sizeIn); i++)
                 {
-                    double newValue = getPad(input, i + (width >> 1) - 1, sizeIn, width, padValue);
+                    double newValue = getPad(input, i + (width >> 1), sizeIn, padValue);
                     output[i] = insertMedian(temp, indices, newValue, (i - 1) % width, width);
                 }
                 break;
                 
             case kFold:
                 for (long i = 0; i < width; i++)
-                    temp[i] = getFold(input, i - (width >> 1), sizeIn, width);
+                    temp[i] = getFold(input, i - (width >> 1), sizeIn);
                 output[0] = median(temp, indices, width);
-                for (long i = 1; i < sizeIn; i++)
+                for (long i = 1; i < static_cast<long>(sizeIn); i++)
                 {
-                    double newValue = getFold(input, i + (width >> 1) - 1, sizeIn, width);
+                    double newValue = getFold(input, i + (width >> 1), sizeIn);
                     output[i] = insertMedian(temp, indices, newValue, (i - 1) % width, width);
                 }
                 break;
         }
     }
     
-    mAllocator->dealloc(temp);
-    mAllocator->dealloc(indices);
+    dealloc(temp);
+    dealloc(indices);
 }

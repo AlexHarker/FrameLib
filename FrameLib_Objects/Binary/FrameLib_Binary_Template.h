@@ -1,17 +1,14 @@
 
-
 #ifndef FRAMELIB_BINARY_TEMPLATE_H
 #define FRAMELIB_BINARY_TEMPLATE_H
 
 #include "FrameLib_DSP.h"
-#include "FrameLib_Info.h"
-#include <functional>
 
 // OPT - vectorise where appropriate
 
 // Binary Operator
 
-template <typename Op> class FrameLib_BinaryOp : public FrameLib_Processor
+template <typename Op> class FrameLib_BinaryOp final : public FrameLib_Processor
 {
     // Parameter Enums and Info
     
@@ -22,75 +19,78 @@ template <typename Op> class FrameLib_BinaryOp : public FrameLib_Processor
             add("Sets the mode used when dealing with mismatched input lengths: "
                 "wrap - the smaller input is read modulo against the larger input. "
                 "shrink - the output length is set to the size of the smaller input. "
-                "padin - the smaller input is padded prior to calculation to match the size of the larger input. "
-                "padout - the output is padded to match the size of the larger input.");
-            add("Sets which input(s) trigger output.");
-            add("Sets the value used for padding (for either padin or padout modes).");
+                "pad_in - the smaller input is padded prior to calculation to match the size of the larger input. "
+                "pad_out - the output is padded to match the size of the larger input.");
+            add("Sets which inputs trigger output.");
+            add("Sets the value used for padding (for either pad_in or pad_out modes).");
         }
     };
     
-    enum ParameterList { kMode, kTriggers, kPadding };
-    enum Modes { kWrap, kShrink, kPadIn, kPadOut };
+    enum ParameterList { kMismatchMode, kTriggers, kPadding };
+    enum MismatchModes { kWrap, kShrink, kPadIn, kPadOut };
     enum TriggerModes { kBoth, kLeft, kRight };
     
 public:
     
     // Constructor
     
-    FrameLib_BinaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, getParameterInfo(), 2, 1)
+    FrameLib_BinaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, getParameterInfo(), 2, 1)
     {
-        mParameters.addEnum(kMode, "mode");
+        mParameters.addEnum(kMismatchMode, "mismatch");
         mParameters.addEnumItem(kWrap, "wrap");
         mParameters.addEnumItem(kShrink, "shrink");
-        mParameters.addEnumItem(kPadIn, "padin");
-        mParameters.addEnumItem(kPadOut, "padout");
-        
-        mParameters.addEnum(kTriggers, "triggers");
+        mParameters.addEnumItem(kPadIn, "pad_in");
+        mParameters.addEnumItem(kPadOut, "pad_out");
+        mParameters.setInstantiation();
+
+        mParameters.addEnum(kTriggers, "trigger_ins");
         mParameters.addEnumItem(kBoth, "both");
         mParameters.addEnumItem(kLeft, "left");
         mParameters.addEnumItem(kRight, "right");
+        mParameters.setInstantiation();
 
-        mParameters.addDouble(kPadding, "padding", 0.0);
-        
+        mParameters.addDouble(kPadding, "pad", 0.0);
+        mParameters.setInstantiation();
+
         mParameters.set(serialisedParameters);
                                     
-        mMode = (Modes) mParameters.getInt(kMode);
+        mMismatchMode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
         mPadValue = mParameters.getValue(kPadding);
         
         TriggerModes triggers = (TriggerModes) mParameters.getInt(kTriggers);
         
         if (triggers == kLeft)
-            inputMode(1, false, false, false);
+            setInputMode(1, false, false, false);
         if (triggers == kRight)
-            inputMode(0, false, false, false);
+            setInputMode(0, false, false, false);
     }
     
     // Info
     
-    std::string objectInfo(bool verbose)
+    std::string objectInfo(bool verbose) override
     {
-        return getInfo("#: Calculation is performed on pairs of values in turn. The result is an output frame at least as long as the smaller of the two inputs. "
-                       "When frames mismatch in size the result depends on the setting of the mode parameter. Either or both inputs may be set to trigger output.",
+        return formatInfo("#: Calculation is performed on pairs of values in turn. The output is a frame at least as long as the smaller of the two inputs. "
+                       "When frames mismatch in size the result depends on the setting of the mismatch parameter. Either or both inputs may be set to trigger output.",
                        "#.", getDescriptionString(), verbose);
     }
     
-    std::string inputInfo(unsigned long idx, bool verbose)      { return idx ? "Right Operand" : "Left Operand"; }
-    std::string outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
+    std::string inputInfo(unsigned long idx, bool verbose) override     { return idx ? "Right Operand" : "Left Operand"; }
+    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Result"; }
     
-protected:
+private:
     
     // Process
     
-    void process()
+    void process() override
     {
-        Modes mode = mMode;
+        MismatchModes mode = mMismatchMode;
+        Op op;
         
         unsigned long sizeIn1, sizeIn2, sizeCommon, sizeOut;
         
-        double *input1 = getInput(0, &sizeIn1);
-        double *input2 = getInput(1, &sizeIn2);
+        const double *input1 = getInput(0, &sizeIn1);
+        const double *input2 = getInput(1, &sizeIn2);
         double defaultValue = mPadValue;
-        double *output;
         
         // Get common size
         
@@ -114,30 +114,21 @@ protected:
         
         requestOutputSize(0, sizeOut);
         allocateOutputs();
-        output = getOutput(0, &sizeOut);
+        double *output = getOutput(0, &sizeOut);
         sizeCommon = sizeCommon > sizeOut ? sizeOut : sizeCommon;
+        
+        if (!sizeOut)
+            return;
         
         // Do first part
         
         for (unsigned long i = 0; i < sizeCommon; i++)
-            output[i] = Op()(input1[i], input2[i]);
+            output[i] = op(input1[i], input2[i]);
         
         // Clean up if sizes don't match
         
         if (sizeIn1 != sizeIn2)
         {
-            if (mode == kWrap)
-            {
-                if (!sizeOut)
-                    return;
-                
-                if (sizeOut == 1)
-                {
-                    mode = kPadIn;
-                    defaultValue = (sizeIn1 == 1) ? input1[0] : input2[0];
-                }
-            }
-            
             switch (mode)
             {
                 case kShrink:
@@ -151,13 +142,13 @@ protected:
                        {
                            double value = input2[0];
                            for (unsigned long i = 1; i < sizeOut; i++)
-                               output[i] = Op()(input1[i], value);
+                               output[i] = op(input1[i], value);
                        }
                        else
                        {
                            for (unsigned long i = sizeCommon; i < sizeOut;)
-                               for (unsigned long j = 0; j < sizeIn2; i++, j++)
-                                output[i] = Op()(input1[i], input2[j]);
+                               for (unsigned long j = 0; j < sizeIn2 && i < sizeOut; i++, j++)
+                                output[i] = op(input1[i], input2[j]);
                        }
                     }
                     else
@@ -166,13 +157,13 @@ protected:
                         {
                             double value = input1[0];
                             for (unsigned long i = 1; i < sizeOut; i++)
-                                output[i] = Op()(value, input2[i]);
+                                output[i] = op(value, input2[i]);
                         }
                         else
                         {
                             for (unsigned long i = sizeCommon; i < sizeOut;)
-                                for (unsigned long j = 0; j < sizeIn1; i++, j++)
-                                    output[i] = Op()(input1[j], input2[i]);
+                                for (unsigned long j = 0; j < sizeIn1 && i < sizeOut; i++, j++)
+                                    output[i] = op(input1[j], input2[i]);
                         }
                     }
                     break;
@@ -182,12 +173,12 @@ protected:
                     if (sizeIn1 > sizeIn2)
                     {
                         for (unsigned long i = sizeCommon; i < sizeOut; i++)
-                            output[i] = Op()(input1[i], defaultValue);
+                            output[i] = op(input1[i], defaultValue);
                     }
                     else
                     {
                         for (unsigned long i = sizeCommon; i < sizeOut; i++)
-                            output[i] = Op()(defaultValue, input2[i]);
+                            output[i] = op(defaultValue, input2[i]);
                     }
                     break;
                     
@@ -202,9 +193,9 @@ protected:
     
 private:
     
-    // Description (specialise/override to change description)
+    // Description (specialise to change description)
     
-    virtual const char *getDescriptionString() { return "Binary Operator - No operator info available"; }
+    const char *getDescriptionString() { return "Binary Operator - No operator info available"; }
 
     ParameterInfo *getParameterInfo()
     {
@@ -215,33 +206,20 @@ private:
     // Data
     
     double mPadValue;
-    Modes mMode;
+    MismatchModes mMismatchMode;
 };
-
-// Binary (Function Version)
 
 // Binary Functor
 
-template <double func(double, double)> struct Binary_Functor
+template<double func(double, double)>
+struct Binary_Functor
 {
     double operator()(double x, double y) { return func(x, y); }
 };
 
-template <double func(double, double)> class FrameLib_Binary : public FrameLib_BinaryOp<Binary_Functor<func> >
-{
-    
-public:
-    
-    // Constructor
-    
-    FrameLib_Binary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-    : FrameLib_BinaryOp < Binary_Functor<func> > (context, serialisedParameters, owner) {}
+// Binary (Function Version)
 
-private:
-    
-    // Description (specialise/override to change description)
-
-    virtual const char *getDescriptionString() { return "Binary Operator - No operator info available"; }
-};
+template<double func(double, double)>
+using FrameLib_Binary = FrameLib_BinaryOp<Binary_Functor<func>>;
 
 #endif

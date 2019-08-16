@@ -4,7 +4,7 @@
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_Interval : public FrameLib_Scheduler
+class FrameLib_Interval final : public FrameLib_Scheduler
 {
     // Parameter Enums and Info
 
@@ -17,13 +17,13 @@ public:
     
     // Constructor
     
-    FrameLib_Interval(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_Interval(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string inputInfo(unsigned long idx, bool verbose);
-    std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
     
 private:
     
@@ -33,12 +33,12 @@ private:
     
     // Object Reset
     
-    void objectReset() { calculateInterval(); }
+    void objectReset() override { calculateInterval(); }
     
     // Update and Schedule
     
-    void update();
-    SchedulerInfo schedule(bool newFrame, bool noAdvance);
+    void update() override;
+    SchedulerInfo schedule(bool newFrame, bool noAdvance) override;
     
     // Data
 

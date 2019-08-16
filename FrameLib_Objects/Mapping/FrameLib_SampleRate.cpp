@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_SampleRate::FrameLib_SampleRate(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 1, 1)
+FrameLib_SampleRate::FrameLib_SampleRate(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kValue, "value");
@@ -25,7 +25,7 @@ FrameLib_SampleRate::FrameLib_SampleRate(FrameLib_Context context, FrameLib_Para
 
 std::string FrameLib_SampleRate::objectInfo(bool verbose)
 {
-    return getInfo("Convert values based on the sample rate / Output a value based on the sampling rate value: "
+    return formatInfo("Convert values based on the sample rate / Output a value based on the sampling rate value: "
                    "The output is either a single value or (when converting values) the size matches the input size. "
                    "The sample rate or the nyquist frequency can be requested. A number of conversions are offered.",
                    "Convert values based on the sample rate / Output a value based on the sampling rate value.", verbose);
@@ -33,7 +33,7 @@ std::string FrameLib_SampleRate::objectInfo(bool verbose)
 
 std::string FrameLib_SampleRate::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Trigger / Input Frame - triggers cause output of a value / input frames are converted as specified",
+    return formatInfo("Trigger / Input Frame - triggers cause output of a value / input frames are converted as specified",
                    "Trigger / Input Frame", verbose);
 }
 
@@ -67,9 +67,9 @@ void FrameLib_SampleRate::process()
 {
     unsigned long sizeIn, sizeOut;
     
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
-    Modes mode = (Modes) mParameters.getInt(kMode);
+    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
     bool outputValue = mode == kValue || mode == kNyquist;
     
     sizeOut = outputValue ? 1 : sizeIn;

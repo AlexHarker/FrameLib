@@ -1,0 +1,39 @@
+<c74object category="Storage" module="FrameLib" name="fl.register~"> 
+ 
+    <digest> 
+        Store and recall a vector frame locally.
+    </digest> 
+ 
+    <description> 
+         The left input triggers recall, whilst the right input stores (with or without output).
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /mode [instantiation enum]"> 
+            <description> 
+                Sets the behaviour of the right input: store - stores without output. pass - stores and outputs.<br /> 
+                <bullet>[0] - store</bullet> 
+                <bullet>[1] - pass</bullet>
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Storage</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

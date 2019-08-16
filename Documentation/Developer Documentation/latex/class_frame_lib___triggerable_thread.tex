@@ -1,0 +1,87 @@
+\hypertarget{class_frame_lib___triggerable_thread}{}\section{Frame\+Lib\+\_\+\+Triggerable\+Thread Class Reference}
+\label{class_frame_lib___triggerable_thread}\index{Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}}
+
+
+a thread that can be triggered from another thread (there is no mechanism to check progress)  
+
+
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+Threading.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_frame_lib___triggerable_thread_aadb78b7fcf753d3d3f98bdb234d9db42}{Frame\+Lib\+\_\+\+Triggerable\+Thread} (\hyperlink{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7ed}{Frame\+Lib\+\_\+\+Thread\+::\+Priority\+Level} priority)
+\item 
+virtual \hyperlink{class_frame_lib___triggerable_thread_a443b8f9470e10c6cf322c6f77bc792e1}{$\sim$\+Frame\+Lib\+\_\+\+Triggerable\+Thread} ()
+\item 
+\hyperlink{class_frame_lib___triggerable_thread_a8ad89a62e0d772fe59fcd9f86a93ec87}{Frame\+Lib\+\_\+\+Triggerable\+Thread} (const \hyperlink{class_frame_lib___triggerable_thread}{Frame\+Lib\+\_\+\+Triggerable\+Thread} \&)=delete
+\item 
+\hyperlink{class_frame_lib___triggerable_thread}{Frame\+Lib\+\_\+\+Triggerable\+Thread} \& \hyperlink{class_frame_lib___triggerable_thread_af0038c2c3d65d11c934413926e9a2ab0}{operator=} (const \hyperlink{class_frame_lib___triggerable_thread}{Frame\+Lib\+\_\+\+Triggerable\+Thread} \&)=delete
+\item 
+void \hyperlink{class_frame_lib___triggerable_thread_a69f8246eb1ad71c06b58e270de4e3107}{start} ()
+\item 
+void \hyperlink{class_frame_lib___triggerable_thread_a7567b1f7fe8f262f02d60c470aed5e0d}{join} ()
+\item 
+void \hyperlink{class_frame_lib___triggerable_thread_a7120d3757c35e62777eb1c20fea6f93f}{signal} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+a thread that can be triggered from another thread (there is no mechanism to check progress) 
+
+The thread should be joined before desctruction. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_frame_lib___triggerable_thread_aadb78b7fcf753d3d3f98bdb234d9db42}\label{class_frame_lib___triggerable_thread_aadb78b7fcf753d3d3f98bdb234d9db42}} 
+\index{Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}!Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}}
+\index{Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}!Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Triggerable\+Thread()}{FrameLib\_TriggerableThread()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Triggerable\+Thread\+::\+Frame\+Lib\+\_\+\+Triggerable\+Thread (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___thread_a99a5e56edcadf37e3388f5557e8ec7ed}{Frame\+Lib\+\_\+\+Thread\+::\+Priority\+Level}}]{priority }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___triggerable_thread_a443b8f9470e10c6cf322c6f77bc792e1}\label{class_frame_lib___triggerable_thread_a443b8f9470e10c6cf322c6f77bc792e1}} 
+\index{Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}!````~Frame\+Lib\+\_\+\+Triggerable\+Thread@{$\sim$\+Frame\+Lib\+\_\+\+Triggerable\+Thread}}
+\index{````~Frame\+Lib\+\_\+\+Triggerable\+Thread@{$\sim$\+Frame\+Lib\+\_\+\+Triggerable\+Thread}!Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}}
+\subsubsection{\texorpdfstring{$\sim$\+Frame\+Lib\+\_\+\+Triggerable\+Thread()}{~FrameLib\_TriggerableThread()}}
+{\footnotesize\ttfamily virtual Frame\+Lib\+\_\+\+Triggerable\+Thread\+::$\sim$\+Frame\+Lib\+\_\+\+Triggerable\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_frame_lib___triggerable_thread_a8ad89a62e0d772fe59fcd9f86a93ec87}\label{class_frame_lib___triggerable_thread_a8ad89a62e0d772fe59fcd9f86a93ec87}} 
+\index{Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}!Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}}
+\index{Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}!Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Triggerable\+Thread()}{FrameLib\_TriggerableThread()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Triggerable\+Thread\+::\+Frame\+Lib\+\_\+\+Triggerable\+Thread (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___triggerable_thread}{Frame\+Lib\+\_\+\+Triggerable\+Thread} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_frame_lib___triggerable_thread_a7567b1f7fe8f262f02d60c470aed5e0d}\label{class_frame_lib___triggerable_thread_a7567b1f7fe8f262f02d60c470aed5e0d}} 
+\index{Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}!join@{join}}
+\index{join@{join}!Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}}
+\subsubsection{\texorpdfstring{join()}{join()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Triggerable\+Thread\+::join (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___triggerable_thread_af0038c2c3d65d11c934413926e9a2ab0}\label{class_frame_lib___triggerable_thread_af0038c2c3d65d11c934413926e9a2ab0}} 
+\index{Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}!operator=@{operator=}}
+\index{operator=@{operator=}!Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \hyperlink{class_frame_lib___triggerable_thread}{Frame\+Lib\+\_\+\+Triggerable\+Thread}\& Frame\+Lib\+\_\+\+Triggerable\+Thread\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___triggerable_thread}{Frame\+Lib\+\_\+\+Triggerable\+Thread} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_frame_lib___triggerable_thread_a7120d3757c35e62777eb1c20fea6f93f}\label{class_frame_lib___triggerable_thread_a7120d3757c35e62777eb1c20fea6f93f}} 
+\index{Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}!signal@{signal}}
+\index{signal@{signal}!Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}}
+\subsubsection{\texorpdfstring{signal()}{signal()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Triggerable\+Thread\+::signal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___triggerable_thread_a69f8246eb1ad71c06b58e270de4e3107}\label{class_frame_lib___triggerable_thread_a69f8246eb1ad71c06b58e270de4e3107}} 
+\index{Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}!start@{start}}
+\index{start@{start}!Frame\+Lib\+\_\+\+Triggerable\+Thread@{Frame\+Lib\+\_\+\+Triggerable\+Thread}}
+\subsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Triggerable\+Thread\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___threading_8h}{Frame\+Lib\+\_\+\+Threading.\+h}\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___threading_8cpp}{Frame\+Lib\+\_\+\+Threading.\+cpp}\end{DoxyCompactItemize}

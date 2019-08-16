@@ -1,9 +1,10 @@
 
 #include "FrameLib_CoordinateSystem.h"
+#include <cmath>
 
 // Constructor
 
-FrameLib_CoordinateSystem::FrameLib_CoordinateSystem(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 1, 1)
+FrameLib_CoordinateSystem::FrameLib_CoordinateSystem(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
 {
     mParameters.addEnum(kMode, "mode");
     mParameters.addEnumItem(kPolarToCartesian, "polar->cartesian");
@@ -17,7 +18,7 @@ FrameLib_CoordinateSystem::FrameLib_CoordinateSystem(FrameLib_Context context, F
 
 std::string FrameLib_CoordinateSystem::objectInfo(bool verbose)
 {
-    return getInfo("Converts vectors of triples between cartesian and polar values: "
+    return formatInfo("Converts vectors of triples between cartesian and polar values: "
                    "Inputs should either be a cartesian triple (x, y, x) or polar tripe (azimuth, elevation, radius). "
                    "Missing values are assumed to be zeroes. Extra values are ignored and the output is also a triple.",
                    "Converts vectors of triples between cartesian and polar values.", verbose);
@@ -25,7 +26,7 @@ std::string FrameLib_CoordinateSystem::objectInfo(bool verbose)
 
 std::string FrameLib_CoordinateSystem::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Input Triple - cartesian or polar values to be converted.", "Input Triple", verbose);
+    return formatInfo("Input Triple - cartesian or polar values to be converted.", "Input Triple", verbose);
 }
 
 std::string FrameLib_CoordinateSystem::outputInfo(unsigned long idx, bool verbose)
@@ -68,14 +69,14 @@ FrameLib_CoordinateSystem::Polar FrameLib_CoordinateSystem::convertToPolar(Carte
 void FrameLib_CoordinateSystem::process()
 {
     unsigned long sizeIn, sizeOut;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     requestOutputSize(0, 3);
     allocateOutputs();
     
     double *output = getOutput(0, &sizeOut);
     
-    if (((InputModes) mParameters.getValue(kMode)) == kPolarToCartesian)
+    if ((static_cast<InputModes>(mParameters.getInt(kMode))) == kPolarToCartesian)
     {
         double azimuth = sizeIn > 0 ? input[0] : 0.0;
         double elevation = sizeIn > 1 ? input[1] : 0.0;

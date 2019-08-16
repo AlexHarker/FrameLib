@@ -3,15 +3,17 @@
 
 // Constructor
 
-FrameLib_Join::FrameLib_Join(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo)
+FrameLib_Join::FrameLib_Join(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo)
 {
-    mParameters.addInt(kNumIns, "numins", 2, 0);
+    mParameters.addInt(kNumIns, "num_ins", 2, 0);
     mParameters.setClip(2, 32);
     mParameters.setInstantiation();
     
+    mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
+    mParameters.setErrorReportingEnabled(true);
 
-    mParameters.addBoolArray(kTriggers, "triggers", 1.0, mParameters.getInt(kNumIns));
+    mParameters.addBoolArray(kTriggers, "trigger_ins", 1.0, mParameters.getInt(kNumIns));
     mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
@@ -23,20 +25,20 @@ FrameLib_Join::FrameLib_Join(FrameLib_Context context, FrameLib_Parameters::Seri
     // Set up triggers
     
     for (unsigned long i = 0; i < getNumIns(); i++)
-        inputMode(i, false, triggers[i], false);
+        setInputMode(i, false, triggers[i], false);
 }
 
 // Info
 
 std::string FrameLib_Join::objectInfo(bool verbose)
 {
-    return getInfo("Concatenates all input frames into a single output frame: Inputs can be set to trigger output or not.",
+    return formatInfo("Concatenates all input frames into a single output frame: Inputs can be set to trigger output or not.",
                    "Concatenates all input frames into a single output frame.", verbose);
 }
 
 std::string FrameLib_Join::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Input #", "Input #", idx, verbose);
+    return formatInfo("Input #", "Input #", idx, verbose);
 }
 
 std::string FrameLib_Join::outputInfo(unsigned long idx, bool verbose)
@@ -50,8 +52,8 @@ FrameLib_Join::ParameterInfo FrameLib_Join::sParamInfo;
 
 FrameLib_Join::ParameterInfo::ParameterInfo()
 {
-    add("Sets the number of object inputs.");
-    add("Set which inputs trigger output by default all inputs).");
+    add("Sets the number of inputs.");
+    add("Set which inputs trigger output (by default all inputs).");
 }
 
 // Process
@@ -83,7 +85,7 @@ void FrameLib_Join::process()
     {
         for (unsigned long i = 0; i < getNumIns(); i++)
         {
-            double *input = getInput(i, &sizeIn);
+            const double *input = getInput(i, &sizeIn);
             copyVector(output + offset, input, sizeIn);
             offset += sizeIn;
         }

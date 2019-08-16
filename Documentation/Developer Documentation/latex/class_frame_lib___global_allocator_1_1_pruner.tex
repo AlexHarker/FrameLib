@@ -1,0 +1,68 @@
+\hypertarget{class_frame_lib___global_allocator_1_1_pruner}{}\section{Frame\+Lib\+\_\+\+Global\+Allocator\+:\+:Pruner Class Reference}
+\label{class_frame_lib___global_allocator_1_1_pruner}\index{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner@{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner}}
+
+
+an R\+A\+II utility for repeated deallocation with only a single lock.  
+
+
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+Memory.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_frame_lib___global_allocator_1_1_pruner_aaeef6460d559456c61e25854f016625c}{Pruner} (\hyperlink{class_frame_lib___global_allocator}{Frame\+Lib\+\_\+\+Global\+Allocator} $\ast$allocator)
+\item 
+\hyperlink{class_frame_lib___global_allocator_1_1_pruner_af1b947e70e93d005e5a996ea2010e51a}{$\sim$\+Pruner} ()
+\item 
+\hyperlink{class_frame_lib___global_allocator_1_1_pruner_a39d760f7c11898823f0d6eb8fc9fa996}{Pruner} (const \hyperlink{class_frame_lib___global_allocator_1_1_pruner}{Pruner} \&)=delete
+\item 
+\hyperlink{class_frame_lib___global_allocator_1_1_pruner}{Pruner} \& \hyperlink{class_frame_lib___global_allocator_1_1_pruner_a223ed75d883318ef6d350ab9ce48bdc2}{operator=} (const \hyperlink{class_frame_lib___global_allocator_1_1_pruner}{Pruner} \&)=delete
+\item 
+void \hyperlink{class_frame_lib___global_allocator_1_1_pruner_ad261c2fb12e19ce40ed3af4c550c479c}{dealloc} (void $\ast$ptr)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+an R\+A\+II utility for repeated deallocation with only a single lock. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_frame_lib___global_allocator_1_1_pruner_aaeef6460d559456c61e25854f016625c}\label{class_frame_lib___global_allocator_1_1_pruner_aaeef6460d559456c61e25854f016625c}} 
+\index{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner@{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner}!Pruner@{Pruner}}
+\index{Pruner@{Pruner}!Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner@{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner}}
+\subsubsection{\texorpdfstring{Pruner()}{Pruner()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner\+::\+Pruner (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___global_allocator}{Frame\+Lib\+\_\+\+Global\+Allocator} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___global_allocator_1_1_pruner_af1b947e70e93d005e5a996ea2010e51a}\label{class_frame_lib___global_allocator_1_1_pruner_af1b947e70e93d005e5a996ea2010e51a}} 
+\index{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner@{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner}!````~Pruner@{$\sim$\+Pruner}}
+\index{````~Pruner@{$\sim$\+Pruner}!Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner@{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner}}
+\subsubsection{\texorpdfstring{$\sim$\+Pruner()}{~Pruner()}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner\+::$\sim$\+Pruner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___global_allocator_1_1_pruner_a39d760f7c11898823f0d6eb8fc9fa996}\label{class_frame_lib___global_allocator_1_1_pruner_a39d760f7c11898823f0d6eb8fc9fa996}} 
+\index{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner@{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner}!Pruner@{Pruner}}
+\index{Pruner@{Pruner}!Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner@{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner}}
+\subsubsection{\texorpdfstring{Pruner()}{Pruner()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner\+::\+Pruner (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___global_allocator_1_1_pruner}{Pruner} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_frame_lib___global_allocator_1_1_pruner_ad261c2fb12e19ce40ed3af4c550c479c}\label{class_frame_lib___global_allocator_1_1_pruner_ad261c2fb12e19ce40ed3af4c550c479c}} 
+\index{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner@{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner}!dealloc@{dealloc}}
+\index{dealloc@{dealloc}!Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner@{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner}}
+\subsubsection{\texorpdfstring{dealloc()}{dealloc()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner\+::dealloc (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___global_allocator_1_1_pruner_a223ed75d883318ef6d350ab9ce48bdc2}\label{class_frame_lib___global_allocator_1_1_pruner_a223ed75d883318ef6d350ab9ce48bdc2}} 
+\index{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner@{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner}!operator=@{operator=}}
+\index{operator=@{operator=}!Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner@{Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \hyperlink{class_frame_lib___global_allocator_1_1_pruner}{Pruner}\& Frame\+Lib\+\_\+\+Global\+Allocator\+::\+Pruner\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___global_allocator_1_1_pruner}{Pruner} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___memory_8h}{Frame\+Lib\+\_\+\+Memory.\+h}\end{DoxyCompactItemize}

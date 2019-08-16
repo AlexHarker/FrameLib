@@ -1,0 +1,118 @@
+\hypertarget{_frame_lib___serialise_graph_8cpp}{}\section{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Serialise\+Graph.cpp File Reference}
+\label{_frame_lib___serialise_graph_8cpp}\index{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}}
+{\ttfamily \#include \char`\"{}Frame\+Lib\+\_\+\+Serialise\+Graph.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Frame\+Lib\+\_\+\+Export.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$cxxabi.\+h$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{_frame_lib___serialise_graph_8cpp_a2ac3e34ee5cda0251224532ddf0461b8}{invalid\+Position} (size\+\_\+t pos, size\+\_\+t lo, size\+\_\+t hi)
+\item 
+void \hyperlink{_frame_lib___serialise_graph_8cpp_abcaa252064848c9dbfd0afd466341126}{remove\+Characters} (std\+::string \&name, size\+\_\+t pos, size\+\_\+t count, size\+\_\+t \&end, size\+\_\+t \&removed)
+\item 
+size\+\_\+t \hyperlink{_frame_lib___serialise_graph_8cpp_abce52f09d6cae59d4bca935388241166}{resolve\+Function\+Type} (std\+::string \&name, size\+\_\+t beg, size\+\_\+t end)
+\item 
+size\+\_\+t \hyperlink{_frame_lib___serialise_graph_8cpp_a93645358d1c0b18b47a912f044f76b02}{find\+And\+Resolve\+Functions} (std\+::string \&name, size\+\_\+t beg, size\+\_\+t end)
+\item 
+void \hyperlink{_frame_lib___serialise_graph_8cpp_a94616b4945f303357024d5cfee2affac}{get\+Type\+String} (std\+::string \&name, \hyperlink{class_frame_lib___object}{Frame\+Lib\+\_\+\+Object}$<$ \hyperlink{class_frame_lib___multistream}{Frame\+Lib\+\_\+\+Multistream} $>$ $\ast$obj)
+\item 
+void \hyperlink{_frame_lib___serialise_graph_8cpp_ac0693aea76dc2e7c1123df483086a8b5}{serialise\+Graph} (std\+::vector$<$ \hyperlink{class_frame_lib___object}{Frame\+Lib\+\_\+\+Object}$<$ \hyperlink{class_frame_lib___multistream}{Frame\+Lib\+\_\+\+Multistream} $>$ $\ast$$>$ \&serial, \hyperlink{class_frame_lib___multistream}{Frame\+Lib\+\_\+\+Multistream} $\ast$object)
+\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{_frame_lib___serialise_graph_8cpp_a0711c686532fdc9f1377360cb3a9fc62}{add\+Connection} (\hyperlink{struct_frame_lib___object_description}{Frame\+Lib\+\_\+\+Object\+Description} \&description, std\+::vector$<$ \hyperlink{class_frame_lib___object}{Frame\+Lib\+\_\+\+Object}$<$ T $>$ $\ast$$>$ serial, typename \hyperlink{class_frame_lib___object}{Frame\+Lib\+\_\+\+Object}$<$ T $>$\+::Connection connect, unsigned long idx)
+\item 
+void \hyperlink{_frame_lib___serialise_graph_8cpp_a0b53b313529c784e82cf6e568cb2b43c}{serialise\+Graph} (std\+::vector$<$ \hyperlink{struct_frame_lib___object_description}{Frame\+Lib\+\_\+\+Object\+Description} $>$ \&objects, \hyperlink{class_frame_lib___multistream}{Frame\+Lib\+\_\+\+Multistream} $\ast$request\+Object)
+\item 
+void \hyperlink{_frame_lib___serialise_graph_8cpp_a32d6c345922b09200d290fa4303b3114}{serialise\+Vector} (std\+::stringstream \&output, size\+\_\+t index, const char $\ast$type, size\+\_\+t idx, const std\+::vector$<$ double $>$ \&vector)
+\item 
+std\+::string \hyperlink{_frame_lib___serialise_graph_8cpp_a2385b44c8c2f70995a1f9266ad459d1c}{serialise\+Graph} (\hyperlink{class_frame_lib___multistream}{Frame\+Lib\+\_\+\+Multistream} $\ast$request\+Object)
+\item 
+void \hyperlink{_frame_lib___serialise_graph_8cpp_a9a503f6a010009e7d293056af67c7176}{export\+Replace\+Class\+Name} (std\+::string \&code, const char $\ast$classname)
+\item 
+void \hyperlink{_frame_lib___serialise_graph_8cpp_ace50e312ddc5b2e10dc308ac69c98878}{export\+File\+Path} (std\+::string \&path, const char $\ast$class\+Name, const char $\ast$ext)
+\item 
+\hyperlink{_frame_lib___serialise_graph_8h_a57b7c588232a6b207bb4908d28ce980e}{Export\+Error} \hyperlink{_frame_lib___serialise_graph_8cpp_a567944f77cf71c2b7f14ea3cdcee5d4c}{export\+Graph} (\hyperlink{class_frame_lib___multistream}{Frame\+Lib\+\_\+\+Multistream} $\ast$request\+Object, const char $\ast$path, const char $\ast$class\+Name)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_frame_lib___serialise_graph_8cpp_a0711c686532fdc9f1377360cb3a9fc62}\label{_frame_lib___serialise_graph_8cpp_a0711c686532fdc9f1377360cb3a9fc62}} 
+\index{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}!add\+Connection@{add\+Connection}}
+\index{add\+Connection@{add\+Connection}!Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}}
+\subsubsection{\texorpdfstring{add\+Connection()}{addConnection()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void add\+Connection (\begin{DoxyParamCaption}\item[{\hyperlink{struct_frame_lib___object_description}{Frame\+Lib\+\_\+\+Object\+Description} \&}]{description,  }\item[{std\+::vector$<$ \hyperlink{class_frame_lib___object}{Frame\+Lib\+\_\+\+Object}$<$ T $>$ $\ast$$>$}]{serial,  }\item[{typename \hyperlink{class_frame_lib___object}{Frame\+Lib\+\_\+\+Object}$<$ T $>$\+::Connection}]{connect,  }\item[{unsigned long}]{idx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___serialise_graph_8cpp_ace50e312ddc5b2e10dc308ac69c98878}\label{_frame_lib___serialise_graph_8cpp_ace50e312ddc5b2e10dc308ac69c98878}} 
+\index{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}!export\+File\+Path@{export\+File\+Path}}
+\index{export\+File\+Path@{export\+File\+Path}!Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}}
+\subsubsection{\texorpdfstring{export\+File\+Path()}{exportFilePath()}}
+{\footnotesize\ttfamily void export\+File\+Path (\begin{DoxyParamCaption}\item[{std\+::string \&}]{path,  }\item[{const char $\ast$}]{class\+Name,  }\item[{const char $\ast$}]{ext }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___serialise_graph_8cpp_a567944f77cf71c2b7f14ea3cdcee5d4c}\label{_frame_lib___serialise_graph_8cpp_a567944f77cf71c2b7f14ea3cdcee5d4c}} 
+\index{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}!export\+Graph@{export\+Graph}}
+\index{export\+Graph@{export\+Graph}!Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}}
+\subsubsection{\texorpdfstring{export\+Graph()}{exportGraph()}}
+{\footnotesize\ttfamily \hyperlink{_frame_lib___serialise_graph_8h_a57b7c588232a6b207bb4908d28ce980e}{Export\+Error} export\+Graph (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___multistream}{Frame\+Lib\+\_\+\+Multistream} $\ast$}]{request\+Object,  }\item[{const char $\ast$}]{path,  }\item[{const char $\ast$}]{class\+Name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___serialise_graph_8cpp_a9a503f6a010009e7d293056af67c7176}\label{_frame_lib___serialise_graph_8cpp_a9a503f6a010009e7d293056af67c7176}} 
+\index{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}!export\+Replace\+Class\+Name@{export\+Replace\+Class\+Name}}
+\index{export\+Replace\+Class\+Name@{export\+Replace\+Class\+Name}!Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}}
+\subsubsection{\texorpdfstring{export\+Replace\+Class\+Name()}{exportReplaceClassName()}}
+{\footnotesize\ttfamily void export\+Replace\+Class\+Name (\begin{DoxyParamCaption}\item[{std\+::string \&}]{code,  }\item[{const char $\ast$}]{classname }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___serialise_graph_8cpp_a93645358d1c0b18b47a912f044f76b02}\label{_frame_lib___serialise_graph_8cpp_a93645358d1c0b18b47a912f044f76b02}} 
+\index{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}!find\+And\+Resolve\+Functions@{find\+And\+Resolve\+Functions}}
+\index{find\+And\+Resolve\+Functions@{find\+And\+Resolve\+Functions}!Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}}
+\subsubsection{\texorpdfstring{find\+And\+Resolve\+Functions()}{findAndResolveFunctions()}}
+{\footnotesize\ttfamily size\+\_\+t find\+And\+Resolve\+Functions (\begin{DoxyParamCaption}\item[{std\+::string \&}]{name,  }\item[{size\+\_\+t}]{beg,  }\item[{size\+\_\+t}]{end }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___serialise_graph_8cpp_a94616b4945f303357024d5cfee2affac}\label{_frame_lib___serialise_graph_8cpp_a94616b4945f303357024d5cfee2affac}} 
+\index{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}!get\+Type\+String@{get\+Type\+String}}
+\index{get\+Type\+String@{get\+Type\+String}!Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}}
+\subsubsection{\texorpdfstring{get\+Type\+String()}{getTypeString()}}
+{\footnotesize\ttfamily void get\+Type\+String (\begin{DoxyParamCaption}\item[{std\+::string \&}]{name,  }\item[{\hyperlink{class_frame_lib___object}{Frame\+Lib\+\_\+\+Object}$<$ \hyperlink{class_frame_lib___multistream}{Frame\+Lib\+\_\+\+Multistream} $>$ $\ast$}]{obj }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___serialise_graph_8cpp_a2ac3e34ee5cda0251224532ddf0461b8}\label{_frame_lib___serialise_graph_8cpp_a2ac3e34ee5cda0251224532ddf0461b8}} 
+\index{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}!invalid\+Position@{invalid\+Position}}
+\index{invalid\+Position@{invalid\+Position}!Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}}
+\subsubsection{\texorpdfstring{invalid\+Position()}{invalidPosition()}}
+{\footnotesize\ttfamily bool invalid\+Position (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{pos,  }\item[{size\+\_\+t}]{lo,  }\item[{size\+\_\+t}]{hi }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___serialise_graph_8cpp_abcaa252064848c9dbfd0afd466341126}\label{_frame_lib___serialise_graph_8cpp_abcaa252064848c9dbfd0afd466341126}} 
+\index{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}!remove\+Characters@{remove\+Characters}}
+\index{remove\+Characters@{remove\+Characters}!Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}}
+\subsubsection{\texorpdfstring{remove\+Characters()}{removeCharacters()}}
+{\footnotesize\ttfamily void remove\+Characters (\begin{DoxyParamCaption}\item[{std\+::string \&}]{name,  }\item[{size\+\_\+t}]{pos,  }\item[{size\+\_\+t}]{count,  }\item[{size\+\_\+t \&}]{end,  }\item[{size\+\_\+t \&}]{removed }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___serialise_graph_8cpp_abce52f09d6cae59d4bca935388241166}\label{_frame_lib___serialise_graph_8cpp_abce52f09d6cae59d4bca935388241166}} 
+\index{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}!resolve\+Function\+Type@{resolve\+Function\+Type}}
+\index{resolve\+Function\+Type@{resolve\+Function\+Type}!Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}}
+\subsubsection{\texorpdfstring{resolve\+Function\+Type()}{resolveFunctionType()}}
+{\footnotesize\ttfamily size\+\_\+t resolve\+Function\+Type (\begin{DoxyParamCaption}\item[{std\+::string \&}]{name,  }\item[{size\+\_\+t}]{beg,  }\item[{size\+\_\+t}]{end }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___serialise_graph_8cpp_ac0693aea76dc2e7c1123df483086a8b5}\label{_frame_lib___serialise_graph_8cpp_ac0693aea76dc2e7c1123df483086a8b5}} 
+\index{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}!serialise\+Graph@{serialise\+Graph}}
+\index{serialise\+Graph@{serialise\+Graph}!Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}}
+\subsubsection{\texorpdfstring{serialise\+Graph()}{serialiseGraph()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void serialise\+Graph (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{class_frame_lib___object}{Frame\+Lib\+\_\+\+Object}$<$ \hyperlink{class_frame_lib___multistream}{Frame\+Lib\+\_\+\+Multistream} $>$ $\ast$$>$ \&}]{serial,  }\item[{\hyperlink{class_frame_lib___multistream}{Frame\+Lib\+\_\+\+Multistream} $\ast$}]{object }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___serialise_graph_8cpp_a0b53b313529c784e82cf6e568cb2b43c}\label{_frame_lib___serialise_graph_8cpp_a0b53b313529c784e82cf6e568cb2b43c}} 
+\index{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}!serialise\+Graph@{serialise\+Graph}}
+\index{serialise\+Graph@{serialise\+Graph}!Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}}
+\subsubsection{\texorpdfstring{serialise\+Graph()}{serialiseGraph()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void serialise\+Graph (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{struct_frame_lib___object_description}{Frame\+Lib\+\_\+\+Object\+Description} $>$ \&}]{objects,  }\item[{\hyperlink{class_frame_lib___multistream}{Frame\+Lib\+\_\+\+Multistream} $\ast$}]{request\+Object }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___serialise_graph_8cpp_a2385b44c8c2f70995a1f9266ad459d1c}\label{_frame_lib___serialise_graph_8cpp_a2385b44c8c2f70995a1f9266ad459d1c}} 
+\index{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}!serialise\+Graph@{serialise\+Graph}}
+\index{serialise\+Graph@{serialise\+Graph}!Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}}
+\subsubsection{\texorpdfstring{serialise\+Graph()}{serialiseGraph()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily std\+::string serialise\+Graph (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___multistream}{Frame\+Lib\+\_\+\+Multistream} $\ast$}]{request\+Object }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___serialise_graph_8cpp_a32d6c345922b09200d290fa4303b3114}\label{_frame_lib___serialise_graph_8cpp_a32d6c345922b09200d290fa4303b3114}} 
+\index{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}!serialise\+Vector@{serialise\+Vector}}
+\index{serialise\+Vector@{serialise\+Vector}!Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp@{Frame\+Lib\+\_\+\+Serialise\+Graph.\+cpp}}
+\subsubsection{\texorpdfstring{serialise\+Vector()}{serialiseVector()}}
+{\footnotesize\ttfamily void serialise\+Vector (\begin{DoxyParamCaption}\item[{std\+::stringstream \&}]{output,  }\item[{size\+\_\+t}]{index,  }\item[{const char $\ast$}]{type,  }\item[{size\+\_\+t}]{idx,  }\item[{const std\+::vector$<$ double $>$ \&}]{vector }\end{DoxyParamCaption})}
+

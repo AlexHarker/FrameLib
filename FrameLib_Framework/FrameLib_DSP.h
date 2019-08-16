@@ -5,14 +5,22 @@
 #include "FrameLib_Types.h"
 #include "FrameLib_Context.h"
 #include "FrameLib_Object.h"
-#include "FrameLib_DSPQueue.h"
-#include <limits>
-#include <vector>
+#include "FrameLib_ProcessingQueue.h"
+
 #include <algorithm>
+#include <limits>
+#include <memory>
+#include <vector>
 
-// FrameLib_DSP
+/**
+ 
+ @class FrameLib_DSP
+ 
+ @ingroup DSP
 
-// This abstract class is the core of the DSP processing system and handles low level single channel connections and timing
+ @brief an abstract class containing the core of the DSP processing system, which handles single-stream scheduling.
+ 
+ */
 
 class FrameLib_DSP;
 
@@ -22,14 +30,23 @@ struct QueueItem
     FrameLib_DSP *mNext;
 };
 
-class FrameLib_DSP : public FrameLib_Block
+class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_DSP>
 {
-    // Type definition for concision / Queue access
+    using Queue = FrameLib_Queueable<FrameLib_Block>::Queue;
+    using LocalQueue = FrameLib_Queueable<FrameLib_DSP>::Queue;
+    using Serial = FrameLib_Parameters::Serial;
 
-    typedef FrameLib_Parameters::Serial Serial;
-    friend class FrameLib_DSPQueue;   
+    friend class FrameLib_ProcessingQueue;
     
 protected:
+    
+    /**
+     
+     @struct SchedulerInfo
+     
+     @brief a struct for returning scheduling info from the schedule() method.
+     
+     */
     
     struct SchedulerInfo
     {
@@ -46,21 +63,19 @@ protected:
     
 private:
     
+    /**
+     
+     @struct Input
+     
+     @brief a struct that represents an input, its options, connections and any fixed input.
+     
+     */
+    
     struct Input
     {
-        Input() : mObject(NULL), mIndex(0), mSize(0), mFixedInput(NULL), mType(kFrameNormal), mUpdate(false), mParameters(false), mTrigger(true), mSwitchable(false) {}
+        Input() : mObject(nullptr), mIndex(0), mSize(0), mFixedInput(nullptr), mType(kFrameNormal), mUpdate(false), mParameters(false), mTrigger(true), mSwitchable(false) {}
         
-        void setInput()
-        {
-            mObject = NULL;
-            mIndex = 0;
-        }
-        
-        void setInput(FrameLib_DSP *object, unsigned long idx)
-        {
-            mObject = object;
-            mIndex = idx;
-        }
+        FrameType getCurrentType() const { return mObject ? mObject->mOutputs[mIndex].mCurrentType : kFrameNormal; }
         
         // Connection Info
         
@@ -82,16 +97,25 @@ private:
         bool mSwitchable;
     };
    
+    /**
+     
+     @struct Output
+     
+     @brief a struct that represents an output frame.
+     
+     */
     struct Output
     {
-        Output() : mMemory(NULL), mType(kFrameNormal), mCurrentSize(0), mRequestedSize(0), mPointerOffset(0) {}
+        Output() : mMemory(nullptr), mType(kFrameNormal), mCurrentType(kFrameNormal), mRequestedType(kFrameNormal), mCurrentSize(0), mRequestedSize(0), mPointerOffset(0) {}
         
         void *mMemory;
         
         FrameType mType;
+        FrameType mCurrentType;
+        FrameType mRequestedType;
         
-        size_t mCurrentSize;
-        size_t mRequestedSize;
+        unsigned long mCurrentSize;
+        unsigned long mRequestedSize;
         size_t mPointerOffset;
     };
     
@@ -99,33 +123,35 @@ public:
 
     // Constructor / Destructor
 
-    FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0);
+    FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0);
     ~FrameLib_DSP();
     
+    // Non-copyable
+    
+    FrameLib_DSP(const FrameLib_DSP&) = delete;
+    FrameLib_DSP& operator=(const FrameLib_DSP&) = delete;
+
     // Set Fixed Inputs
     
-    virtual void setFixedInput(unsigned long idx, double *input, unsigned long size);
-
+    void setFixedInput(unsigned long idx, const double *input, unsigned long size) final;
+    const double *getFixedInput(unsigned long idx, unsigned long *size) final;
+    
     // Audio Processing
     
-    virtual void blockUpdate(double **ins, double **outs, unsigned long blockSize);
-    virtual void reset(double samplingRate, unsigned long maxBlockSize);
-    
-    // Connection Methods
-    
-    // N.B. - No sanity checks here to maximise speed / help debugging (better for it to crash if a mistake is made)
-    
-    virtual void deleteConnection(unsigned long inIdx);
-    virtual void addConnection(FrameLib_DSP *object, unsigned long outIdx, unsigned long inIdx);
-    virtual void clearConnections();
-    virtual bool isConnected(unsigned long inIdx);
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) final;
+    void reset(double samplingRate, unsigned long maxBlockSize) final;
     
     // Info (individual objects should override other methods to provide info)
     
-    virtual const FrameLib_Parameters *getParameters() { return &mParameters;  }
+    const FrameLib_Parameters *getParameters() const final { return &mParameters;  }
 
-    virtual FrameType inputType(unsigned long idx)  { return mInputs[idx].mType; }
-    virtual FrameType outputType(unsigned long idx) { return mOutputs[idx].mType; }
+    FrameType inputType(unsigned long idx) const final  { return mInputs[idx].mType; }
+    FrameType outputType(unsigned long idx) const final { return mOutputs[idx].mType; }
+
+    // Automatic Ordering Connections
+    
+    void autoOrderingConnections() final;
+    void clearAutoOrderingConnections() final;
 
 protected:
         
@@ -134,11 +160,15 @@ protected:
     // Call these from your constructor only (unsafe elsewhere)
    
     void setIO(unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans = 0);
-    void inputMode(unsigned long idx, bool update, bool trigger, bool switchable, FrameType type = kFrameNormal);
+    void setInputMode(unsigned long idx, bool update, bool trigger, bool switchable, FrameType type = kFrameNormal);
     void setParameterInput(unsigned long idx);
     void addParameterInput();
-    void outputMode(unsigned long idx, FrameType type);
-    
+    void setOutputType(unsigned long idx, FrameType type);
+
+    // You should only call this from your process method (it is unsafe anywhere else)
+
+    void setCurrentOutputType(unsigned long idx, FrameType type);
+
     // You should only call this from your update method (it is unsafe anywhere else)
     
     void updateTrigger(unsigned long idx, bool trigger);
@@ -147,54 +177,94 @@ protected:
     
     // Test if an Input Triggered the Current Frame
     
-    bool isTrigger(unsigned long idx) { return mInputs[idx].mTrigger && mInputs[idx].mObject && (mInputs[idx].mObject->mFrameTime == mFrameTime); }
+    bool isTrigger(unsigned long idx) const { return mInputs[idx].mTrigger && mInputs[idx].mObject && (mInputs[idx].mObject->mFrameTime == mFrameTime); }
     
     // Timing
     
-    FrameLib_TimeFormat getFrameTime()      { return mFrameTime; }
-    FrameLib_TimeFormat getValidTime()      { return mValidTime; }
-    FrameLib_TimeFormat getInputTime()      { return mInputTime; }
-    FrameLib_TimeFormat getCurrentTime()    { return getType() == kScheduler ? mValidTime : mFrameTime; }
-    FrameLib_TimeFormat getBlockStartTime() { return mBlockStartTime; }
-    FrameLib_TimeFormat getBlockEndTime()   { return mBlockEndTime; }
+    FrameLib_TimeFormat getFrameTime() const        { return mFrameTime; }
+    FrameLib_TimeFormat getValidTime() const        { return mValidTime; }
+    FrameLib_TimeFormat getInputTime() const        { return mInputTime; }
+    FrameLib_TimeFormat getCurrentTime() const      { return getType() == kScheduler ? mValidTime : mFrameTime; }
+    FrameLib_TimeFormat getBlockStartTime() const   { return getType() == kOutput ? mBlockEndTime : mBlockStartTime; }
+    FrameLib_TimeFormat getBlockEndTime() const     { return mBlockEndTime; }
     
-    FrameLib_TimeFormat getInputFrameTime(unsigned long idx)    { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : FrameLib_TimeFormat(0); }
-    FrameLib_TimeFormat getInputValidTime(unsigned long idx)    { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : FrameLib_TimeFormat(0); }
+    FrameLib_TimeFormat getInputFrameTime(unsigned long idx) const  { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : FrameLib_TimeFormat(0); }
+    FrameLib_TimeFormat getInputValidTime(unsigned long idx) const  { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : FrameLib_TimeFormat(0); }
     
     // Output Allocation
     
-    void requestOutputSize(unsigned long idx, size_t size)          { mOutputs[idx].mRequestedSize = size; }
+    void requestOutputSize(unsigned long idx, unsigned long size)           { mOutputs[idx].mRequestedSize = size; }
+    void requestAddedOutputSize(unsigned long idx, unsigned long size)      { mOutputs[idx].mRequestedSize += size; }
     bool allocateOutputs();
     
     // Get Inputs and Outputs
     
-    double *getInput(unsigned long idx, size_t *size);
-    FrameLib_Parameters::Serial *getInput(unsigned long idx);
+    FrameType getInputCurrentType(unsigned long idx) const                          { return mInputs[idx].getCurrentType(); }
+    const double *getInput(unsigned long idx, unsigned long *size)  const;
+    const FrameLib_Parameters::Serial *getInput(unsigned long idx)  const;
     
-    double *getOutput(unsigned long idx, size_t *size);
-    FrameLib_Parameters::Serial *getOutput(unsigned long idx);
+    FrameType getOutputCurrentType(unsigned long idx) const                         { return mOutputs[idx].mCurrentType; }
+    double *getOutput(unsigned long idx, unsigned long *size)  const;
+    FrameLib_Parameters::Serial *getOutput(unsigned long idx)  const;
 
     // Convience methods for copying and zeroing
+
+    void prepareCopyInputToOutput(unsigned long inIdx, unsigned long outIdx);
+    void copyInputToOutput(unsigned long inIdx, unsigned long outIdx);
+
+    static void copyVector(double *output, const double *input, unsigned long size)     { std::copy(input, input + size, output); }
+    static void zeroVector(double *output, unsigned long size)                          { std::fill_n(output, size, 0.0); }
     
-    void copyVector(double *output, double *input, unsigned long size)      { std::copy(input, input + size, output); }
-    void zeroVector(double *output, unsigned long size)                     { std::fill_n(output, size, 0.0); }
+    static void copyVectorExtend(double* output, const double *input, unsigned long sizeOut, unsigned long sizeIn)
+    {
+        copyVector(output, input, std::min(sizeIn, sizeOut));
+        std::fill_n(output + sizeIn, (sizeOut > sizeIn) ? sizeOut - sizeIn : 0, input[sizeIn - 1]);
+    }
     
-    // Get DSP Object for a Given Output
+    static void copyVectorWrap(double* output, const double *input, unsigned long sizeOut, unsigned long sizeIn)
+    {
+        unsigned long excess = sizeOut % sizeIn;
+        
+        for (unsigned long i = 0; i < (sizeOut - excess); i += sizeIn)
+            copyVector(output + i, input, sizeIn);
+        
+        copyVector(output + (sizeOut - excess), input, excess);
+    }
     
-    FrameLib_DSP *getOutputObject(unsigned long outIdx)     { return this; }
+    static void copyVectorZero(double* output, const double *input, unsigned long sizeOut, unsigned long sizeIn)
+    {
+        copyVector(output, input, std::min(sizeIn, sizeOut));
+        zeroVector(output + sizeIn, (sizeOut > sizeIn) ? sizeOut - sizeIn : 0);
+    }
+
+    // Convenience methods for converting time values either in time format, or double precision
     
+    FrameLib_TimeFormat hzToSamples(const FrameLib_TimeFormat& a) const         { return mSamplingRate / a; }
+    FrameLib_TimeFormat msToSamples(const FrameLib_TimeFormat& a) const         { return (a * mSamplingRate) / 1000.0; }
+    FrameLib_TimeFormat secondsToSamples(const FrameLib_TimeFormat& a) const    { return a * mSamplingRate; }
+    
+    double hzToSamples(double a) const          { return mSamplingRate / a; }
+    double msToSamples(double a) const          { return (a * mSamplingRate) / 1000.0; }
+    double secondsToSamples(double a) const     { return a * mSamplingRate; }
+
+    // Convenience methods for moving from double to int values
+
+    long roundToInt(double a) const             { return static_cast<long>(round(a)); }
+    unsigned long roundToUInt(double a) const   { return static_cast<unsigned long>(round(a)); }
+    long truncToInt(double a) const             { return static_cast<long>(a); }
+    unsigned long truncToUInt(double a) const   { return static_cast<unsigned long>(a); }
+
 private:
     
-    // Deleted
+    // Queueable Reset
     
-    FrameLib_DSP(const FrameLib_DSP&);
-    FrameLib_DSP& operator=(const FrameLib_DSP&);
-
+    void reset(LocalQueue *queue);
+    
     // Customisable Processing
 
     // Override to handle audio at the block level
     
-    virtual void blockProcess(double **ins, double **outs, unsigned long blockSize) {}
+    virtual void blockProcess(const double * const *ins, double **outs, unsigned long blockSize) {}
 
     // Override to get called on audio reset
     
@@ -225,24 +295,18 @@ private:
 
     // Dependency Notification
     
-    inline void dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, bool audioNotify = false);
-    void dependenciesReady();
-    void setOutputDependencyCount();
-    void resetDependencyCount();
-    
-    // Dependency Updating
-    
-    std::vector <FrameLib_DSP *>::iterator removeInputDependency(FrameLib_DSP *object);
-    std::vector <FrameLib_DSP *>::iterator removeOutputDependency(FrameLib_DSP *object);
-    void addInputDependency(FrameLib_DSP *object);
-    void addOutputDependency(FrameLib_DSP *object);
-    
-    // Connection Methods (private)
+    inline void dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, bool audioNotify,  bool fromInpute);
 
-    void clearConnection(unsigned long inIdx);
-    void removeConnection(unsigned long inIdx);
-    std::vector <FrameLib_DSP *>::iterator disconnect(FrameLib_DSP *object);
+    void dependenciesReady();
+    void incrementInputDependency();
+    void resetOutputDependencyCount();
+    int32_t getNumOuputDependencies()         { return static_cast<int32_t>(mOutputDependencies.size()); }
     
+    // Connections
+    
+    void connectionUpdate(Queue *queue) final;
+    void autoOrderingConnections(LocalQueue *queue);
+
 protected:
    
     // Member Variables
@@ -252,34 +316,31 @@ protected:
     double mSamplingRate;
     unsigned long mMaxBlockSize;
     
-    // Memory Allocator
-    
-    FrameLib_Context::Allocator mAllocator;
-
     // Parameters
     
     FrameLib_Parameters mParameters;
 
 private:
     
-    // DSP Queue
+    // Processing Queue
     
-    FrameLib_Context::DSPQueue mQueue;
+    FrameLib_Context::ProcessingQueue mProcessingQueue;
     QueueItem mQueueItem;
     FrameLib_DSP *mNextInThread;
     
     // IO Info
     
-    std::vector <Input> mInputs;
-    std::vector <Output> mOutputs;
-    
-    std::vector <FrameLib_DSP *> mInputDependencies;
-    std::vector <FrameLib_DSP *> mOutputDependencies;
+    std::vector<FrameLib_DSP *> mInputDependencies;
+    std::vector<FrameLib_DSP *> mOutputDependencies;
+
+    std::vector<Input> mInputs;
+    std::vector<Output> mOutputs;
     
     // Dependency Counts
     
-    FrameLib_Atomic32 mDependencyCount;
-    FrameLib_Atomic32 mOutputMemoryCount;
+    std::atomic<int32_t> mInputCount;
+    std::atomic<int32_t> mDependencyCount;
+    std::atomic<int32_t> mOutputMemoryCount;
     
     // Frame and Block Timings
     
@@ -289,21 +350,32 @@ private:
     FrameLib_TimeFormat mBlockStartTime;
     FrameLib_TimeFormat mBlockEndTime;
     
+    bool mUpdatingInputs;
+    bool mNoLiveInputs;
     bool mInUpdate;
     bool mOutputDone;
 };
 
-// ************************************************************************************** //
 
-// FrameLib_Processor - Simple class for process type objects (can't handle audio)
+/**
+
+ @class FrameLib_Processor
+
+ @ingroup DSP
+
+ @brief a convenience class for creating processor FrameLib_DSP classes that do not handle audio.
+ 
+ Processor classes do not schedule frames and do not handle block-based audio IO. This object provides an empty implementation of schedule() to avoid the end class developer needing to override this method  (never called by a processor class) and also provides a simplified setIO() that does not take a parameter for audio channels.
+ 
+ */
 
 class FrameLib_Processor : public FrameLib_DSP
 {
     
 public:
     
-    FrameLib_Processor(FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0)
-    : FrameLib_DSP(kProcessor, context, info, nIns, nOuts) {}
+    FrameLib_Processor(FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0)
+    : FrameLib_DSP(kProcessor, context, proxy, info, nIns, nOuts) {}
     
     static ObjectType getType() { return kProcessor; }
     static bool handlesAudio()  { return false; }
@@ -317,17 +389,26 @@ protected:
     void setIO(unsigned long nIns, unsigned long nOuts) { FrameLib_DSP::setIO(nIns, nOuts); }
 };
 
-// ************************************************************************************** //
 
-// FrameLib_AudioInput - Simple class for process type objects (can handle audio input)
+/**
+ 
+ @class FrameLib_AudioInput
+
+ @ingroup DSP
+
+ @brief a convenience class for creating processor type FrameLib_DSP classes which handle audio input.
+ 
+ Audio input classes do not schedule frames and take block-based audio input (but cannot output audio). This object provides an empty implementation of schedule() to avoid the end class developer needing to override this method (never called by a processor class).
+ 
+ */
 
 class FrameLib_AudioInput : public FrameLib_DSP
 {
     
 public:
     
-    FrameLib_AudioInput(FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
-    : FrameLib_DSP(kProcessor, context, info, nIns, nOuts, nAudioIns) {}
+    FrameLib_AudioInput(FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
+    : FrameLib_DSP(kProcessor, context, proxy, info, nIns, nOuts, nAudioIns) {}
 
     static ObjectType getType() { return kProcessor; }
     static bool handlesAudio()  { return true; }
@@ -339,17 +420,26 @@ protected:
     virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) { return SchedulerInfo(); }
 };
 
-// ************************************************************************************** //
 
-// FrameLib_AudioOutput - Simple class for process type objects (can handle audio output)
+/**
+ 
+ @class FrameLib_AudioOutput
+ 
+ @ingroup DSP
+
+ @brief a convenience class for creating processor type FrameLib_DSP classes which handle audio output.
+ 
+ Audio output classes do not schedule frames and create block-based audio output (but not audio input). This object provides an empty implementation of schedule() to avoid the end class developer needing to override this method (never called by a processor class).
+ 
+ */
 
 class FrameLib_AudioOutput : public FrameLib_DSP
 {
     
 public:
     
-    FrameLib_AudioOutput(FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioOuts = 0)
-    : FrameLib_DSP(kOutput, context, info, nIns, nOuts, nAudioOuts) {}
+    FrameLib_AudioOutput(FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioOuts = 0)
+    : FrameLib_DSP(kOutput, context, proxy, info, nIns, nOuts, nAudioOuts) {}
     
     static ObjectType getType() { return kOutput; }
     static bool handlesAudio()  { return true; }
@@ -361,17 +451,26 @@ protected:
     virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) { return SchedulerInfo(); }
 };
 
-// ************************************************************************************** //
 
-// FrameLib_Scheduler - Simple class for scheduler type objects
+/**
+ 
+ @class FrameLib_Scheduler
+
+ @ingroup DSP
+
+ @brief a convenience class for creating scheduler type FrameLib_DSP classes.
+ 
+ Scheduler classes schedule frames and may deal with  block-based audio input (but not audio ioutput). This object provides an empty implementation of process() to avoid the end class developer needing to override this method (never called by a scheduler class).
+ 
+ */
 
 class FrameLib_Scheduler : public FrameLib_DSP
 {
 
 public:
     
-    FrameLib_Scheduler(FrameLib_Context context, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
-    : FrameLib_DSP(kScheduler, context, info, nIns, nOuts, nAudioIns) {}
+    FrameLib_Scheduler(FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
+    : FrameLib_DSP(kScheduler, context, proxy, info, nIns, nOuts, nAudioIns) {}
     
     static ObjectType getType() { return kScheduler; }
     static bool handlesAudio()  { return true; }

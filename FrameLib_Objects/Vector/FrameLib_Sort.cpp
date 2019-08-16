@@ -4,28 +4,33 @@
 
 // Constructor
 
-FrameLib_Sort::FrameLib_Sort(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 1, 1)
+FrameLib_Sort::FrameLib_Sort(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kOrder, "order", 0);
     mParameters.addEnumItem(kUp, "up");
     mParameters.addEnumItem(kDown, "down");
     
+    mParameters.addBool(kOutputIndices, "indices_mode");
+    
     mParameters.set(serialisedParameters);
     
-    mOrder = (Orders) mParameters.getInt(kOrder);
+    setParameterInput(1);
 }
 
 // Info
 
 std::string FrameLib_Sort::objectInfo(bool verbose)
 {
-    return getInfo("Sorts an input frame in ascending or descending order.",
+    return formatInfo("Sorts an input frame in ascending or descending order.",
                    "Sorts an input frame in ascending or descending order.", verbose);
 }
 
 std::string FrameLib_Sort::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Frames to Sort";
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Frames to Sort";
 }
 
 std::string FrameLib_Sort::outputInfo(unsigned long idx, bool verbose)
@@ -47,21 +52,41 @@ FrameLib_Sort::ParameterInfo::ParameterInfo()
 void FrameLib_Sort::process()
 {
     unsigned long size;
-    double *input = getInput(0, &size);
+    const double *input = getInput(0, &size);
     
     requestOutputSize(0, size);
     allocateOutputs();
     
     double *output = getOutput(0, &size);
     
-    switch (mOrder)
+    if (!mParameters.getBool(kOutputIndices))
     {
-        case kUp:
-            sortAscending(output, input, size);
-            break;
+        switch (static_cast<Orders>(mParameters.getInt(kOrder)))
+        {
+            case kUp:       sortAscending(output, input, size);     break;
+            case kDown:     sortDescending(output, input, size);    break;
+        }
+    }
+    else
+    {
+        unsigned long *indices = alloc<unsigned long>(size);
+        
+        if (indices)
+        {
+            switch (static_cast<Orders>(mParameters.getInt(kOrder)))
+            {
+                case kUp:       sortIndicesAscending(indices, input, size);     break;
+                case kDown:     sortIndicesDescending(indices, input, size);    break;
+            }
             
-        case kDown:
-            sortDescending(output, input, size);
-            break;
+            for (unsigned long i = 0; i < size; i++)
+                output[i] = static_cast<double>(indices[i]);
+        }
+        else
+        {
+            zeroVector(output, size);
+        }
+        
+        dealloc(indices);
     }
 }

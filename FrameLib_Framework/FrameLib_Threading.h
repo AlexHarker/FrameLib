@@ -2,166 +2,137 @@
 #ifndef FrameLib_THREADING_H
 #define FrameLib_THREADING_H
 
-#ifdef __APPLE__
+#include "FrameLib_Types.h"
 
-#include <libkern/OSAtomic.h>
-#include <pthread.h>
-#include <mach/semaphore.h>
-#include <mach/task.h>
+#include <atomic>
 #include <vector>
 
-// Mac OS specific definitions
+/**
+ 
+ @defgroup Threading
+ 
+ */
 
-typedef volatile int32_t Atomic32;
+#ifdef __linux__
 
-static inline int32_t increment32(Atomic32 *a) { return OSAtomicIncrement32Barrier(a); }
-static inline int32_t decrement32(Atomic32 *a) { return OSAtomicDecrement32Barrier(a); }
-static inline int32_t add32(Atomic32 *a, int32_t b) { return OSAtomicAdd32Barrier(b, a); }
-static inline bool compareAndSwap32(Atomic32 *loc, int32_t comp, int32_t exch) { return OSAtomicCompareAndSwap32Barrier(comp, exch, loc); }
+// Linux specific definitions
 
-typedef void * volatile AtomicPtr;
+#include <pthread.h>
+#include <semaphore.h>
 
-static inline bool compareAndSwapPtr(AtomicPtr *loc, void *comp, void *exch) { return OSAtomicCompareAndSwapPtrBarrier(comp, exch, loc); }
-static inline void *swapPtr(AtomicPtr *loc, void *swap)
+namespace OS_Specific
 {
-    void *ptr = *loc;
-    
-    while (!compareAndSwapPtr(loc, ptr, swap))
-        ptr = *loc;
-    
-    return ptr;
+    typedef pthread_t OSThreadType;
+    typedef sem_t OSSemaphoreType;
+    typedef void *OSThreadFunctionType(void *arg);
 }
 
-typedef pthread_t OSThreadType;
-typedef semaphore_t OSSemaphoreType;
-typedef void *OSThreadFunctionType(void *arg);
+#elif defined(__APPLE__)
+
+// OSX specific definitions
+
+#include <pthread.h>
+#include <mach/mach.h>
+
+namespace OS_Specific
+{
+    typedef pthread_t OSThreadType;
+    typedef semaphore_t OSSemaphoreType;
+    typedef void *OSThreadFunctionType(void *arg);
+}
 
 #else
-
+    
 // Windows OS specific definitions
-
+    
 #include <windows.h>
 
-typedef volatile long Atomic32;
-
-static inline long increment32(Atomic32 *a) { return InterlockedIncrement(a); }
-static inline long decrement32(Atomic32 *a) { return InterlockedDecrement(a); }
-static inline long add32(Atomic32 *a, long b) { return InterlockedAdd(a, b); }
-static inline bool compareAndSwap32(Atomic32 *loc, long comp, long exch) { return InterlockedCompareExchange(loc, exch, comp) == comp; }
-
-typedef volatile PVOID AtomicPtr;
-
-static inline bool compareAndSwapPtr(AtomicPtr *loc, void *comp, void *exch) { return InterlockedCompareExchangePointer(loc, exch, comp) == comp; }
-static inline void *swapPtr(AtomicPtr *loc, void *swap) { return InterlockedExchangePointer(loc, swap); }
-
-typedef HANDLE OSThreadType;
-typedef HANDLE OSSemaphoreType;
-typedef DWORD WINAPI OSThreadFunctionType(LPVOID arg);
+namespace OS_Specific
+{
+    typedef HANDLE OSThreadType;
+    typedef HANDLE OSSemaphoreType;
+    typedef DWORD WINAPI OSThreadFunctionType(LPVOID arg);
+}
 
 #endif
 
-// An atomic 32 bit integer
+// Helpers for exchange fixed values with atomic types
 
-class FrameLib_Atomic32
+template <class T>
+bool compareAndSwap(std::atomic<T>& value, T comparand, T exchange)
 {
-    
-public:
+    return value.compare_exchange_strong(comparand, exchange);
+}
 
-    FrameLib_Atomic32(int32_t value) : mValue(value) {}
-    FrameLib_Atomic32() : mValue(0)	{}
-	
-	bool compareAndSwap(int32_t comparand, int32_t exchange) { return compareAndSwap32(&mValue, comparand, exchange); }
-    
-    int32_t operator = (const int32_t value)
-    {
-        mValue = value;
-        return value;
-    }
-    
-    int32_t operator += (const int32_t& a)      { return add32(&mValue, a); }
-    
-    int32_t operator ++ ()                      { return increment32(&mValue); }
-    int32_t operator ++ (int)                   { return operator++() - 1; }
-    int32_t operator -- ()                      { return decrement32(&mValue); }
-    int32_t operator -- (int)                   { return operator--() + 1; }
-
-    operator int32_t() const                    { return mValue; }
-    
-private:
-	
-    // Deleted
-    
-    FrameLib_Atomic32(const FrameLib_Atomic32&);
-    FrameLib_Atomic32& operator=(const FrameLib_Atomic32&);
-    
-	Atomic32 mValue;
-};
-
-
-// An atomic pointer
-
-template <class T> class FrameLib_AtomicPtr
+template <class T>
+bool nullSwap(std::atomic<T *>& value, T *exchange)
 {
-    
-public:
-    
-    FrameLib_AtomicPtr()	{ mValue = NULL; }
-    
-    bool compareAndSwap(T *comparand, T *exchange) { return compareAndSwapPtr(&mValue, comparand, exchange); }
-    T *swap(T *exchange) { return (T *) swapPtr(&mValue, exchange); }
-    T *clear() { return swap(NULL); }
-    
-private:
-    
-    // Deleted
-    
-    FrameLib_AtomicPtr(const FrameLib_AtomicPtr&);
-    FrameLib_AtomicPtr& operator=(const FrameLib_AtomicPtr&);
-    
-    AtomicPtr mValue;
-};
+    T *comparand = nullptr;
+    return value.compare_exchange_strong(comparand, exchange);
+}
 
 
-// A spinlock that can be locked, attempted or acquired
+/**
+ 
+ @class FrameLib_SpinLock
+ 
+ @ingroup Threading
+
+ @brief a spinlock that can be locked, attempted or acquired.
+ 
+ */
 
 class FrameLib_SpinLock
 {
     
 public:
     
-    FrameLib_SpinLock() {}
+    FrameLib_SpinLock() : mAtomicLock(false) {}
     ~FrameLib_SpinLock() { acquire(); }
     
-    bool attempt() { return mAtomicLock.compareAndSwap(0, 1); }
-	void acquire() { while(attempt() == false); }
-	void release() { mAtomicLock.compareAndSwap(1, 0); }
+    // Non-copyable
+    
+    FrameLib_SpinLock(const FrameLib_SpinLock&) = delete;
+    FrameLib_SpinLock& operator=(const FrameLib_SpinLock&) = delete;
+    
+    bool attempt() { return compareAndSwap(mAtomicLock, false, true); }
+    void acquire() { while(attempt() == false); }
+    void release() { compareAndSwap(mAtomicLock, true, false); }
     
 private:
-	
-    // Deleted
     
-    FrameLib_SpinLock(const FrameLib_SpinLock&);
-    FrameLib_SpinLock& operator=(const FrameLib_SpinLock&);
-    
-	FrameLib_Atomic32 mAtomicLock;
+    std::atomic<bool> mAtomicLock;
 };
 
 
-// A class for holding a lock using RAII
+/**
+ 
+ @class FrameLib_SpinLockHolder
+ 
+ @ingroup Threading
 
-class FrameLib_SpinLockHold
+ @brief a RAII hold utility for a FrameLib_SpinLock
+ 
+ */
+
+class FrameLib_SpinLockHolder
 {
     
 public:
     
-    FrameLib_SpinLockHold(FrameLib_SpinLock *lock) : mLock(lock) { if (mLock) mLock->acquire(); }
-    ~FrameLib_SpinLockHold() { if (mLock) mLock->release(); }
+    FrameLib_SpinLockHolder(FrameLib_SpinLock *lock) : mLock(lock) { if (mLock) mLock->acquire(); }
+    ~FrameLib_SpinLockHolder() { if (mLock) mLock->release(); }
+    
+    // Non-copyable
+    
+    FrameLib_SpinLockHolder(const FrameLib_SpinLockHolder&) = delete;
+    FrameLib_SpinLockHolder& operator=(const FrameLib_SpinLockHolder&) = delete;
     
     void destroy()
     {
         if (mLock)
             mLock->release();
-        mLock = NULL;
+        mLock = nullptr;
     }
     
 private:
@@ -170,40 +141,50 @@ private:
 };
 
 
-// Lightweight joinable thread
+/**
+ 
+ @class FrameLib_Thread
+ 
+ @ingroup Threading
 
-class Thread
+ @brief lightweight joinable thread with variable priority level
+ 
+ The thread must be joined before destruction.
+ 
+ */
+
+class FrameLib_Thread
 {
-    
     typedef void ThreadFunctionType(void *);
     
 public:
     
     enum PriorityLevel {kLowPriority, kMediumPriority, kHighPriority, kAudioPriority};
 
-    Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void *arg)
-    : mInternal(NULL), mPriority(priority), mThreadFunction(threadFunction), mArg(arg), mValid(false) {}
+    FrameLib_Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void *arg)
+    : mInternal(nullptr), mPriority(priority), mThreadFunction(threadFunction), mArg(arg), mValid(false)
+    {}
 
-    ~Thread();
+    ~FrameLib_Thread();
 
+    // Non-copyable
+    
+    FrameLib_Thread(const FrameLib_Thread&) = delete;
+    FrameLib_Thread& operator=(const FrameLib_Thread&) = delete;
+    
     void start();
     void join();
 
 private:
     
-    // Deleted
-    
-    Thread(const Thread&);
-    Thread& operator=(const Thread&);
-    
     // threadStart is a quick OS-style wrapper to call the object which calls the relevant static function
     
-    static OSThreadFunctionType threadStart;
+    static OS_Specific::OSThreadFunctionType threadStart;
     void call() { mThreadFunction(mArg); }
     
     // Data
     
-    OSThreadType mInternal;
+    OS_Specific::OSThreadType mInternal;
     PriorityLevel mPriority;
     ThreadFunctionType *mThreadFunction;
     void *mArg;
@@ -211,15 +192,30 @@ private:
 };
 
 
-// Semaphore (note that you should most likely close() before the destructor is called)
+/**
+ 
+ @class FrameLib_Semaphore
+ 
+ @brief a semaphore class wrapping an OS-level semaphore
+ 
+ @ingroup Threading
 
-class Semaphore
+ The semaphore must be clsed before destruction.
+ 
+ */
+
+class FrameLib_Semaphore
 {
 
 public:
     
-    Semaphore(long maxCount);
-    ~Semaphore();
+    FrameLib_Semaphore(long maxCount);
+    ~FrameLib_Semaphore();
+    
+    // Non-copyable
+
+    FrameLib_Semaphore(const FrameLib_Semaphore&) = delete;
+    FrameLib_Semaphore& operator=(const FrameLib_Semaphore&) = delete;
     
     void close();
     void signal(long n);
@@ -227,27 +223,37 @@ public:
     
 private:
     
-    // Deleted
-    
-    Semaphore(const Semaphore&);
-    Semaphore& operator=(const Semaphore&);
-    
     // Data
     
-    OSSemaphoreType mInternal;
+    OS_Specific::OSSemaphoreType mInternal;
     bool mValid;
 };
 
 
-// A thread that can be triggered from another thread but without any built-in mechanism to check progress
+/**
+ 
+ @class FrameLib_TriggerableThread
 
-class TriggerableThread
+ @ingroup Threading
+
+ @brief a thread that can be triggered from another thread (there is no mechanism to check progress)
+ 
+ The thread should be joined before desctruction.
+ 
+ */
+
+class FrameLib_TriggerableThread
 {
     
 public:
 
-    TriggerableThread(Thread::PriorityLevel priority) : mThread(priority, threadEntry, this), mSemaphore(1) {}
-    virtual ~TriggerableThread() {}
+    FrameLib_TriggerableThread(FrameLib_Thread::PriorityLevel priority) : mThread(priority, threadEntry, this), mSemaphore(1) {}
+    virtual ~FrameLib_TriggerableThread() {}
+    
+    // Non-copyable
+    
+    FrameLib_TriggerableThread(const FrameLib_TriggerableThread&) = delete;
+    FrameLib_TriggerableThread& operator=(const FrameLib_TriggerableThread&) = delete;
     
     // Start and join
     
@@ -260,11 +266,6 @@ public:
     
 private:
     
-    // Deleted
-    
-    TriggerableThread(const TriggerableThread&);
-    TriggerableThread& operator=(const TriggerableThread&);
-    
     // threadEntry simply calls threadClassEntry which calls the task handler
     
     static void threadEntry(void *thread);
@@ -276,21 +277,36 @@ private:
     
     // Data
     
-    Thread mThread;
-    Semaphore mSemaphore;
+    FrameLib_Thread mThread;
+    FrameLib_Semaphore mSemaphore;
 };
 
 
-// A thread to delegate tasks to, which can be then be checked for completion
+/**
+ 
+ @class FrameLib_DelegateThread
+ 
+ @ingroup Threading
 
-class DelegateThread
+ @brief a thread to delegate tasks to, which can be then be checked for completion
+ 
+ The thread should be joined before desctruction.
+ 
+ */
+
+class FrameLib_DelegateThread
 {
     
 public:
 
-    DelegateThread(Thread::PriorityLevel priority) : mThread(priority, threadEntry, this), mSemaphore(1), mSignaled(false) {}
-    virtual ~DelegateThread() {}
+    FrameLib_DelegateThread(FrameLib_Thread::PriorityLevel priority) : mThread(priority, threadEntry, this), mSemaphore(1), mSignaled(false), mFlag(0) {}
+    virtual ~FrameLib_DelegateThread() {}
 
+    // Non-copyable
+    
+    FrameLib_DelegateThread(const FrameLib_DelegateThread&) = delete;
+    FrameLib_DelegateThread& operator=(const FrameLib_DelegateThread&) = delete;
+    
     // Start and join
 
     void start() { mThread.start(); }
@@ -300,16 +316,15 @@ public:
     
     bool signal();
     
-    // Wait for thread's completion of a task - returns true  first time after a signal / false for subsequent calls/the thread has not been signalled
+    // Check if the task has completed (false if the task has not been signalled or has not completed)
     
     bool completed();
     
+     // Wait for thread's completion of a task - returns true  first time after a signal / false for subsequent calls / the thread has not been signalled
+    
+    bool waitForCompletion();
+    
 private:
-    
-    // Deleted
-    
-    DelegateThread(const DelegateThread&);
-    DelegateThread& operator=(const DelegateThread&);
     
     // threadEntry simply calls threadClassEntry which calls the task handler
     
@@ -322,11 +337,11 @@ private:
     
     // Data
 
-    Thread mThread;
-    Semaphore mSemaphore;
+    FrameLib_Thread mThread;
+    FrameLib_Semaphore mSemaphore;
     
     bool mSignaled;
-    FrameLib_Atomic32 mFlag;
+    std::atomic<int> mFlag;
 };
 
 // A set of threads that can be triggered from another thread but without any built-in mechanism to check progress
@@ -336,8 +351,8 @@ class TriggerableThreadSet
     
 public:
     
-    TriggerableThreadSet(Thread::PriorityLevel priority, unsigned int size);
-    ~TriggerableThreadSet();
+    TriggerableThreadSet(FrameLib_Thread::PriorityLevel priority, unsigned int size);
+    virtual ~TriggerableThreadSet();
     
     // Start and join
     
@@ -370,8 +385,8 @@ private:
     
     // Data
     
-    std::vector<Thread *> mThreads;
-    Semaphore mSemaphore;
+    std::vector<FrameLib_Thread *> mThreads;
+    FrameLib_Semaphore mSemaphore;
 };
 
 #endif

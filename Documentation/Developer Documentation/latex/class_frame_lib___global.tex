@@ -1,0 +1,93 @@
+\hypertarget{class_frame_lib___global}{}\section{Frame\+Lib\+\_\+\+Global Class Reference}
+\label{class_frame_lib___global}\index{Frame\+Lib\+\_\+\+Global@{Frame\+Lib\+\_\+\+Global}}
+
+
+a class for containing and managing Frame\+Lib\textquotesingle{}s global resources.  
+
+
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+Global.\+h$>$}
+
+Inheritance diagram for Frame\+Lib\+\_\+\+Global\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_frame_lib___global}
+\end{center}
+\end{figure}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_frame_lib___global}{Frame\+Lib\+\_\+\+Global} $\ast$ \hyperlink{class_frame_lib___global_a2d24a293da4c71e089e4738cfbbf6aec}{get} (\hyperlink{class_frame_lib___global}{Frame\+Lib\+\_\+\+Global} $\ast$$\ast$global, \hyperlink{struct_frame_lib___error_reporter_1_1_host_notifier}{Frame\+Lib\+\_\+\+Error\+Reporter\+::\+Host\+Notifier} $\ast$notifier=nullptr)
+\item 
+static void \hyperlink{class_frame_lib___global_a079e2b866b66d477ae551e0b0e12ea11}{release} (\hyperlink{class_frame_lib___global}{Frame\+Lib\+\_\+\+Global} $\ast$$\ast$global)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_frame_lib___global_a6a4d0dd2956393d740d97600370f6ef8}{Frame\+Lib\+\_\+\+Context}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+a class for containing and managing Frame\+Lib\textquotesingle{}s global resources. 
+
+The global object represents a self-\/contained Freme\+Lib environment with a single memory-\/management and error reporting system. The host environment needs to maintain at least one global object in order to create Frame\+Lib networks. Global objects are not constructed/deleted directly, but managed via calls to the static \hyperlink{class_frame_lib___global_a2d24a293da4c71e089e4738cfbbf6aec}{get()}/release() methods which take a handle and maintain an internal reference count. The global object can be used as a singleton via a globally-\/accessible handle, or if preferred separate networks may use individual global objects, in which case they share no resources.
+
+The global objects manages memory allocation, error reporting and the resources for scheduling D\+SP. Frame\+Lib objects do not deal directly with the global object -\/ it is the responsibility of the host to create an manage these objects, and they are identified to Frame\+Lib objects via a \hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} object. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_frame_lib___global_a2d24a293da4c71e089e4738cfbbf6aec}\label{class_frame_lib___global_a2d24a293da4c71e089e4738cfbbf6aec}} 
+\index{Frame\+Lib\+\_\+\+Global@{Frame\+Lib\+\_\+\+Global}!get@{get}}
+\index{get@{get}!Frame\+Lib\+\_\+\+Global@{Frame\+Lib\+\_\+\+Global}}
+\subsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \hyperlink{class_frame_lib___global}{Frame\+Lib\+\_\+\+Global} $\ast$ Frame\+Lib\+\_\+\+Global\+::get (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___global}{Frame\+Lib\+\_\+\+Global} $\ast$$\ast$}]{global,  }\item[{\hyperlink{struct_frame_lib___error_reporter_1_1_host_notifier}{Frame\+Lib\+\_\+\+Error\+Reporter\+::\+Host\+Notifier} $\ast$}]{notifier = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Get a pointer to a \hyperlink{class_frame_lib___global}{Frame\+Lib\+\_\+\+Global} object
+
+If the handle points to a nullptr, on return it will point to a valid \hyperlink{class_frame_lib___global}{Frame\+Lib\+\_\+\+Global} object. Otherwise the reference count of the global object will be incremented. If a new global object is created it will use the object pointed to by notifier to report errors to the host.
+
+
+\begin{DoxyParams}{Parameters}
+{\em global} & a handle to a \hyperlink{class_frame_lib___global}{Frame\+Lib\+\_\+\+Global} object. \\
+\hline
+{\em notifier} & a pointer to a class that extends \hyperlink{struct_frame_lib___error_reporter_1_1_host_notifier}{Frame\+Lib\+\_\+\+Error\+Reporter\+::\+Host\+Notifier}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_frame_lib___global_a079e2b866b66d477ae551e0b0e12ea11}{release()} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_frame_lib___global_a079e2b866b66d477ae551e0b0e12ea11}\label{class_frame_lib___global_a079e2b866b66d477ae551e0b0e12ea11}} 
+\index{Frame\+Lib\+\_\+\+Global@{Frame\+Lib\+\_\+\+Global}!release@{release}}
+\index{release@{release}!Frame\+Lib\+\_\+\+Global@{Frame\+Lib\+\_\+\+Global}}
+\subsubsection{\texorpdfstring{release()}{release()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+Global\+::release (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___global}{Frame\+Lib\+\_\+\+Global} $\ast$$\ast$}]{global }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Release a \hyperlink{class_frame_lib___global}{Frame\+Lib\+\_\+\+Global} object
+
+If the handle points a valid \hyperlink{class_frame_lib___global}{Frame\+Lib\+\_\+\+Global} object then its reference count will be decremented. If the count becomes zero the object will be deleted and the contents of the handle replaced with a nullptr.
+
+
+\begin{DoxyParams}{Parameters}
+{\em global} & a handle to a \hyperlink{class_frame_lib___global}{Frame\+Lib\+\_\+\+Global} object.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_frame_lib___global_a2d24a293da4c71e089e4738cfbbf6aec}{get()} 
+\end{DoxySeeAlso}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_frame_lib___global_a6a4d0dd2956393d740d97600370f6ef8}\label{class_frame_lib___global_a6a4d0dd2956393d740d97600370f6ef8}} 
+\index{Frame\+Lib\+\_\+\+Global@{Frame\+Lib\+\_\+\+Global}!Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}}
+\index{Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}!Frame\+Lib\+\_\+\+Global@{Frame\+Lib\+\_\+\+Global}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Context}{FrameLib\_Context}}
+{\footnotesize\ttfamily friend class \hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___global_8h}{Frame\+Lib\+\_\+\+Global.\+h}\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___global_8cpp}{Frame\+Lib\+\_\+\+Global.\+cpp}\end{DoxyCompactItemize}

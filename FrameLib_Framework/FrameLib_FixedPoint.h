@@ -6,11 +6,23 @@
 #include <cmath>
 #include <limits>
 
-// ************************************************************************************** //
+/**
+ 
+ @defgroup FixedPoint Fixed-Point
+ 
+ */
 
-// FL_SP
-
-// This is a minimal class for super precision that aids the calculation of division in fixed point (giving added precision where needed)
+/**
+ 
+ @struct FL_SP
+ 
+ @ingroup FixedPoint
+ 
+ @brief a minimal class for "super precision" fixed-point calculations where required.
+ 
+ This unsigned type allows for 64 bits of integer precision and 128 bits of fractional precision.
+ 
+ */
 
 struct FL_SP
 {
@@ -38,11 +50,18 @@ private:
     uint64_t mFracLo;
 };
 
-// ************************************************************************************** //
 
-// FL_FP
+/**
+ 
+ @class FL_FP
+ 
+ @ingroup FixedPoint
 
-// This class provides a very high precision fixed point format for dealing with time
+ @brief  high-precision unsigned fixed-point numerical format.
+ 
+ This unsigned type allows for 64 bits of integer precision and 64 bits of fractional precision. Basic arithmetic and comparison operators are supported, for this type, and when used in conjunction with double-precision floating-point numbers. The primary purpose of this type is to precisely represent the time in samples in FrameLib.
+ 
+ */
 
 class FL_FP
 {
@@ -58,19 +77,16 @@ public:
     
     // Int and Fract
     
-    uint64_t intVal()   { return mInt; }
-    uint64_t fracVal()  { return mFrac; }
-    
-    // Absolute value
-    
-    friend bool nonZeroPositive(const FL_FP& a)                 { return a.mInt | a.mFrac; }
+    uint64_t intVal() const   { return mInt; }
+    uint64_t fracVal() const  { return mFrac; }
     
     // Comparison operators (N.B. - it is faster to avoid branching using bit rather logical operators)
 
-    friend bool operator == (const FL_FP& a, const FL_FP& b)    { return (a.mInt == b.mInt & a.mFrac == b.mFrac); }
-    
-    friend bool operator < (const FL_FP& a, const FL_FP& b)     { return ((a.mInt < b.mInt) | (a.mInt == b.mInt & a.mFrac < b.mFrac)); }
-    friend bool operator > (const FL_FP& a, const FL_FP& b)     { return ((a.mInt > b.mInt) | (a.mInt == b.mInt & a.mFrac > b.mFrac)); }
+    friend bool operator == (const FL_FP& a, const FL_FP& b)    { return ((a.mInt == b.mInt) & (a.mFrac == b.mFrac)); }
+    friend bool operator != (const FL_FP& a, const FL_FP& b)    { return !(a == b); }
+
+    friend bool operator < (const FL_FP& a, const FL_FP& b)     { return ((a.mInt < b.mInt) | ((a.mInt == b.mInt) & (a.mFrac < b.mFrac))); }
+    friend bool operator > (const FL_FP& a, const FL_FP& b)     { return ((a.mInt > b.mInt) | ((a.mInt == b.mInt) & (a.mFrac > b.mFrac))); }
     friend bool operator <= (const FL_FP& a, const FL_FP& b)    { return !(a > b); }
     friend bool operator >= (const FL_FP& a, const FL_FP& b)    { return !(a < b); }
     
@@ -121,9 +137,9 @@ public:
         return *this;
     }
    
-    FL_FP& operator ++ (int)
+    FL_FP operator ++ (int)
     {
-        FL_FP& result = *this;
+        FL_FP result = *this;
         operator++();
         return result;
     }
@@ -159,6 +175,8 @@ public:
    
     friend bool operator == (const FL_FP& a, const double& b)   { return a == FL_FP(b); }
     friend bool operator == (const double& a, const FL_FP& b)   { return FL_FP(a) == b; }
+    friend bool operator != (const FL_FP& a, const double& b)   { return a != FL_FP(b); }
+    friend bool operator != (const double& a, const FL_FP& b)   { return FL_FP(a) != b; }
     
     friend bool operator < (const FL_FP& a, const double& b)    { return a < FL_FP(b); }
     friend bool operator < (const double& a, const FL_FP& b)    { return FL_FP(a) < b; }
@@ -180,7 +198,7 @@ public:
     friend FL_FP operator / (const FL_FP& a, const double& b)   { return a / FL_FP(b); }
     friend FL_FP operator / (const double& a, const FL_FP& b)   { return FL_FP(a) / b; }
 
-    // Arithmetic Operators with Assignmnet
+    // Arithmetic Operators with Assignment
 
     FL_FP& operator += (const double& b)                        { return operator +=(FL_FP(b)); }
     FL_FP& operator -= (const double& b)                        { return operator -=(FL_FP(b)); }
@@ -192,34 +210,5 @@ private:
     uint64_t mInt;
     uint64_t mFrac;
 };
-
-// ************************************************************************************** //
-
-// Numeric Limits
-
-template <class T> struct FL_Limits
-{
-    // N.B. there is basically no good value for smallest for a floating point unit, because all values will fail at some point before total overflow
-    
-    static T smallest()    { return std::numeric_limits<T>::epsilon() * 65536.0; }
-    
-    static T largest()
-    {
-        if (std::numeric_limits<T>::has_infinity)
-            return std::numeric_limits<T>::infinity();
-        else
-            return std::numeric_limits<T>::max();
-    }
-};
-
-template<> struct FL_Limits <FL_FP>
-{
-    static FL_FP smallest() { return FL_FP(0,1); }
-    static FL_FP largest() { return FL_FP(std::numeric_limits<uint64_t>::max(), std::numeric_limits<uint64_t>::max()); }
-};
-
-// Double Helper Utility
-
-inline double nonZeroPositive(double& a)  {return a > 0.0; }
 
 #endif

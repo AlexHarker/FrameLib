@@ -3,12 +3,13 @@
 
 // Constructor
 
-FrameLib_Map::FrameLib_Map(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 2, 1)
+FrameLib_Map::FrameLib_Map(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kLinear, "linear");
     mParameters.addEnumItem(kLog, "log");
     mParameters.addEnumItem(kExp, "exp");
+    mParameters.addEnumItem(kPow, "pow");
     mParameters.addEnumItem(kDB, "db");
     mParameters.addEnumItem(kInvDB, "invdb");
     mParameters.addEnumItem(kTranspose, "transpose");
@@ -18,6 +19,7 @@ FrameLib_Map::FrameLib_Map(FrameLib_Context context, FrameLib_Parameters::Serial
     mParameters.addDouble(kInHi, "inhi", 1., 2);
     mParameters.addDouble(kOutLo, "outlo", 0., 3);
     mParameters.addDouble(kOutHi, "outhi", 1., 4);
+    mParameters.addDouble(kExponent, "exponent", 1.);
     
     mParameters.addBool(kClip, "clip", true, 5);
     
@@ -32,7 +34,7 @@ FrameLib_Map::FrameLib_Map(FrameLib_Context context, FrameLib_Parameters::Serial
 
 std::string FrameLib_Map::objectInfo(bool verbose)
 {
-    return getInfo("Maps values in the input via a given scaling to corresponding output values: The output size matches the input size. "
+    return formatInfo("Maps values in the input via a given scaling to corresponding output values: The output size matches the input size. "
                    "Scaling maps a specified range of values in the input to a specified range of output values. Different modes of scaling are offered. "
                    "Values may be optionally constrained within the specified ranges.",
                    "Maps values in the input via a given scaling to corresponding output values.", verbose);
@@ -41,7 +43,7 @@ std::string FrameLib_Map::objectInfo(bool verbose)
 std::string FrameLib_Map::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+        return parameterInputInfo(verbose);
     else
         return "Input Frame";
 }
@@ -58,12 +60,14 @@ FrameLib_Map::ParameterInfo FrameLib_Map::sParamInfo;
 FrameLib_Map::ParameterInfo::ParameterInfo()
 {
     add("Sets the type of output scaling: linear / log / exp - scaling as specified. "
+        "pow - scale the input range to [0-1], apply the specifiedexponent and then scale to the output range. "
         "db / invdb - output / input respectively are set in dB but scaled as gain values. "
         "transpose / invtranspose - output / input respectively are set in semitones but scaled as ratios for transposition.");
     add("Sets the low input value.");
     add("Sets the high input value.");
     add("Sets the low output value.");
     add("Sets the high output value.");
+    add("Sets the exponent for the pow mode.");
     add("If true then the output is clipped between the low and high output value.");
 }
 
@@ -75,66 +79,19 @@ void FrameLib_Map::setScaling()
     double inHi = mParameters.getValue(kInHi);
     double outLo = mParameters.getValue(kOutLo);
     double outHi = mParameters.getValue(kOutHi);
+    double exponent = mParameters.getValue(kExponent);
     
-    switch ((Modes) mParameters.getInt(kMode))
+    switch (static_cast<Modes>(mParameters.getInt(kMode)))
     {
-        case kLinear:
-            mMode = kScaleLinear;
-            break;
-        case kLog:
-            mMode = kScaleLog;
-            break;
-        case kExp:
-            mMode = kScaleExp;
-            break;
-        case kDB:
-            mMode = kScaleExp;
-            outLo = pow(10, outLo / 20.);
-            outHi = pow(10, outHi / 20.);
-            break;
-        case kInvDB:
-            mMode = kScaleLog;
-            inLo = pow(10, inLo / 20.);
-            inHi = pow(10, inHi / 20.);
-            break;
-        case kTranspose:
-            mMode = kScaleExp;
-            outLo = pow(2, outLo / 12.);
-            outHi = pow(2, outHi / 12.);
-            break;
-        case kInvTranspose:
-            mMode = kScaleLog;
-            inLo = pow(2, inLo / 12.);
-            inHi = pow(2, inHi / 12.);
-            break;
+        case kLinear:           setLin(inLo, inHi, outLo, outHi);                                           break;
+        case kLog:              setLog(inLo, inHi, outLo, outHi);                                           break;
+        case kExp:              setExp(inLo, inHi, outLo, outHi);                                           break;
+        case kPow:              setPow(inLo, inHi, outLo, outHi, exponent);                                 break;
+        case kDB:               setExp(inLo, inHi, dbtoa(outLo), dbtoa(outHi));                             break;
+        case kInvDB:            setLog(dbtoa(inLo), dbtoa(inHi), outLo, outHi);                             break;
+        case kTranspose:        setExp(inLo, inHi, semitonesToRatio(outLo), semitonesToRatio(outHi));       break;
+        case kInvTranspose:     setLog(semitonesToRatio(inLo), semitonesToRatio(inHi), outLo, outHi);       break;
     }
-    
-    mMin = outLo < outHi ? outLo : outHi;
-    mMax = outLo < outHi ? outHi : outLo;
-    
-    // Calculate simplified linear scaling values
-    
-    switch (mMode)
-    {
-        case kScaleLinear:
-            break;
-            
-        case kScaleLog:
-            inLo = log(inLo);
-            inHi = log(inHi);
-            break;
-            
-        case kScaleExp:
-            outLo = log(outLo);
-            outHi = log(outHi);
-            break;
-    }
-    
-    double mul = (inLo == inHi) ? 0.0 : (outHi - outLo) / (inHi - inLo);
-    double sub = (inLo * mul) - outLo;
-    
-    mMul = mul;
-    mSub = sub;
 }
 
 // Update and Process
@@ -147,42 +104,15 @@ void FrameLib_Map::update()
 void FrameLib_Map::process()
 {
     unsigned long size;
-    double *input = getInput(0, &size);
+    const double *input = getInput(0, &size);
     
     requestOutputSize(0, size);
     allocateOutputs();
     
     double *output = getOutput(0, &size);
-    
-    double mul = mMul;
-    double sub = mSub;
-    
-    switch (mMode)
-    {
-        case kScaleLinear:
-            
-            for (unsigned long i = 0; i < size; i++)
-                output[i] = (input[i] * mul) - sub;
-            break;
-            
-        case kScaleLog:
-            for (unsigned long i = 0; i < size; i++)
-                output[i] = log(input[i]) * mul - sub;
-            break;
-            
-        case kScaleExp:
-            for (unsigned long i = 0; i < size; i++)
-                output[i] = exp((input[i] * mul) - sub);
-            break;
-    }
-    
-    if (mParameters.getBool(kClip))
-    {
-        double min = mMin;
-        double max = mMax;
         
-        for (unsigned long i = 0; i < size; i++)
-            output[i] = (output[i] > max) ? max : (output[i] < min) ? min : output[i];
-    }
-    
+    if (mParameters.getBool(kClip))
+        scaleClip(output, input, size);
+    else
+        scale(output, input, size);
 }

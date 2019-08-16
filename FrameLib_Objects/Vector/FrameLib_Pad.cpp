@@ -3,9 +3,9 @@
 
 // Constructor
 
-FrameLib_Pad::FrameLib_Pad(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 1, 1)
+FrameLib_Pad::FrameLib_Pad(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
-    mParameters.addDouble(kPadding, "padding", 0.0, 0);
+    mParameters.addDouble(kPadding, "pad", 0.0, 0);
     
     mParameters.addDouble(kStart, "start", 0.0, 1);
     mParameters.setMin(0.0);
@@ -18,13 +18,15 @@ FrameLib_Pad::FrameLib_Pad(FrameLib_Context context, FrameLib_Parameters::Serial
     mParameters.addEnumItem(kRatio, "ratios");
     
     mParameters.set(serialisedParameters);
+    
+    setParameterInput(1);
 }
 
 // Info
 
 std::string FrameLib_Pad::objectInfo(bool verbose)
 {
-    return getInfo("Pads an input frame with a fixed value at either the start the end, or both: "
+    return formatInfo("Pads an input frame with a fixed value at either the start the end, or both: "
                    "The output frame size is at least the same length as the input, plus the number of padding values. "
                    "Padding amounts may be set in samples, or as a ratio of the input length.",
                    "Pads an input frame with a fixed value at either the start the end, or both.", verbose);
@@ -32,7 +34,10 @@ std::string FrameLib_Pad::objectInfo(bool verbose)
 
 std::string FrameLib_Pad::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Frames to Pad";
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Frames to Pad";
 }
 
 std::string FrameLib_Pad::outputInfo(unsigned long idx, bool verbose)
@@ -54,12 +59,12 @@ FrameLib_Pad::ParameterInfo::ParameterInfo()
 
 // Process
 
-void FrameLib_Pad::process ()
+void FrameLib_Pad::process()
 {
     // Get Input
     
     unsigned long sizeIn, sizeOut, padStart, padEnd;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     double padValue = mParameters.getValue(kPadding);
     Units units = (Units) mParameters.getInt(kUnits);
     
@@ -72,8 +77,8 @@ void FrameLib_Pad::process ()
     }
     else
     {
-        padStart = round(mParameters.getValue(kStart) * sizeIn);
-        padEnd = round(mParameters.getValue(kEnd) * sizeIn);
+        padStart = roundToUInt(mParameters.getValue(kStart) * sizeIn);
+        padEnd = roundToUInt(mParameters.getValue(kEnd) * sizeIn);
     }
     
     requestOutputSize(0, padStart + sizeIn + padEnd);

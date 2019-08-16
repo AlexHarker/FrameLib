@@ -1,0 +1,69 @@
+\hypertarget{class_frame_lib___error_reporter}{}\section{Frame\+Lib\+\_\+\+Error\+Reporter Class Reference}
+\label{class_frame_lib___error_reporter}\index{Frame\+Lib\+\_\+\+Error\+Reporter@{Frame\+Lib\+\_\+\+Error\+Reporter}}
+
+
+a class used to report errors to the host environment.  
+
+
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+Errors.\+h$>$}
+
+Inheritance diagram for Frame\+Lib\+\_\+\+Error\+Reporter\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_frame_lib___error_reporter}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_frame_lib___error_reporter_1_1_error_list}{Error\+List}
+\begin{DoxyCompactList}\small\item\em a list of \hyperlink{class_frame_lib___error_reporter_1_1_error_report}{Error\+Report} objects. \end{DoxyCompactList}\item 
+class \hyperlink{class_frame_lib___error_reporter_1_1_error_report}{Error\+Report}
+\begin{DoxyCompactList}\small\item\em a report for a single error. \end{DoxyCompactList}\item 
+class \hyperlink{struct_frame_lib___error_reporter_1_1_host_notifier}{Host\+Notifier}
+\begin{DoxyCompactList}\small\item\em a virtual struct used to supply a method for notifying the host of errors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_frame_lib___error_reporter_a6caa37f2bec568844bdccf55ce1d6c74}{Frame\+Lib\+\_\+\+Error\+Reporter} (\hyperlink{struct_frame_lib___error_reporter_1_1_host_notifier}{Host\+Notifier} $\ast$notifier)
+\item 
+{\footnotesize template$<$typename... Args$>$ }\\void \hyperlink{class_frame_lib___error_reporter_a69301a8520fa2d90ce84a637f7bc7827}{report\+Error} (\hyperlink{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39}{Error\+Source} source, \hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy} $\ast$reporter, const char $\ast$error, Args... args)
+\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{class_frame_lib___error_reporter_1_1_error_list}{Error\+List} $>$ \hyperlink{class_frame_lib___error_reporter_a95924f411be44edbe7e69f92e983e89e}{get\+Errors} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+a class used to report errors to the host environment. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_frame_lib___error_reporter_a6caa37f2bec568844bdccf55ce1d6c74}\label{class_frame_lib___error_reporter_a6caa37f2bec568844bdccf55ce1d6c74}} 
+\index{Frame\+Lib\+\_\+\+Error\+Reporter@{Frame\+Lib\+\_\+\+Error\+Reporter}!Frame\+Lib\+\_\+\+Error\+Reporter@{Frame\+Lib\+\_\+\+Error\+Reporter}}
+\index{Frame\+Lib\+\_\+\+Error\+Reporter@{Frame\+Lib\+\_\+\+Error\+Reporter}!Frame\+Lib\+\_\+\+Error\+Reporter@{Frame\+Lib\+\_\+\+Error\+Reporter}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Error\+Reporter()}{FrameLib\_ErrorReporter()}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Error\+Reporter\+::\+Frame\+Lib\+\_\+\+Error\+Reporter (\begin{DoxyParamCaption}\item[{\hyperlink{struct_frame_lib___error_reporter_1_1_host_notifier}{Host\+Notifier} $\ast$}]{notifier }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_frame_lib___error_reporter_a95924f411be44edbe7e69f92e983e89e}\label{class_frame_lib___error_reporter_a95924f411be44edbe7e69f92e983e89e}} 
+\index{Frame\+Lib\+\_\+\+Error\+Reporter@{Frame\+Lib\+\_\+\+Error\+Reporter}!get\+Errors@{get\+Errors}}
+\index{get\+Errors@{get\+Errors}!Frame\+Lib\+\_\+\+Error\+Reporter@{Frame\+Lib\+\_\+\+Error\+Reporter}}
+\subsubsection{\texorpdfstring{get\+Errors()}{getErrors()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \hyperlink{class_frame_lib___error_reporter_1_1_error_list}{Frame\+Lib\+\_\+\+Error\+Reporter\+::\+Error\+List} $>$ Frame\+Lib\+\_\+\+Error\+Reporter\+::get\+Errors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___error_reporter_a69301a8520fa2d90ce84a637f7bc7827}\label{class_frame_lib___error_reporter_a69301a8520fa2d90ce84a637f7bc7827}} 
+\index{Frame\+Lib\+\_\+\+Error\+Reporter@{Frame\+Lib\+\_\+\+Error\+Reporter}!report\+Error@{report\+Error}}
+\index{report\+Error@{report\+Error}!Frame\+Lib\+\_\+\+Error\+Reporter@{Frame\+Lib\+\_\+\+Error\+Reporter}}
+\subsubsection{\texorpdfstring{report\+Error()}{reportError()}}
+{\footnotesize\ttfamily template$<$typename... Args$>$ \\
+void Frame\+Lib\+\_\+\+Error\+Reporter\+::report\+Error (\begin{DoxyParamCaption}\item[{\hyperlink{_frame_lib___errors_8h_acdeab3b10c3aca41a844aa51b90b6f39}{Error\+Source}}]{source,  }\item[{\hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy} $\ast$}]{reporter,  }\item[{const char $\ast$}]{error,  }\item[{Args...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___errors_8h}{Frame\+Lib\+\_\+\+Errors.\+h}\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___errors_8cpp}{Frame\+Lib\+\_\+\+Errors.\+cpp}\end{DoxyCompactItemize}

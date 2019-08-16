@@ -1,0 +1,86 @@
+\hypertarget{struct_frame_lib___object_description}{}\section{Frame\+Lib\+\_\+\+Object\+Description Struct Reference}
+\label{struct_frame_lib___object_description}\index{Frame\+Lib\+\_\+\+Object\+Description@{Frame\+Lib\+\_\+\+Object\+Description}}
+
+
+a data-\/based representation of a Frame\+Lib object in a network, used for serialisation purposes.  
+
+
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+Serialise\+Graph.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_frame_lib___object_description_1_1_connection}{Connection}
+\begin{DoxyCompactList}\small\item\em a description of a connection to the input of the described object. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_frame_lib___object_description_1_1_tagged}{Tagged}
+\begin{DoxyCompactList}\small\item\em a description of a single tagged string or vector of doubles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_frame_lib___object_description_a1e5fcc8625dc93572b5adc9f52ec568e}{Frame\+Lib\+\_\+\+Object\+Description} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{struct_frame_lib___object_description_aa3a4437f51fa6f84202e41d0d363b844}{m\+Object\+Type}
+\item 
+std\+::vector$<$ \hyperlink{struct_frame_lib___object_description_1_1_tagged}{Tagged} $>$ \hyperlink{struct_frame_lib___object_description_a45297bfeb12aa74520edaddfd03fc12c}{m\+Parameters}
+\item 
+std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \hyperlink{struct_frame_lib___object_description_a536003edf9fa0cf89df7fd95b73d79f5}{m\+Inputs}
+\item 
+std\+::vector$<$ \hyperlink{struct_frame_lib___object_description_1_1_connection}{Connection} $>$ \hyperlink{struct_frame_lib___object_description_a10df93df1ad0f5c75d333434947790c5}{m\+Connections}
+\item 
+unsigned long \hyperlink{struct_frame_lib___object_description_a7323ef1dbe80f28d68acdb1aafdc6fe6}{m\+Num\+Streams}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+a data-\/based representation of a Frame\+Lib object in a network, used for serialisation purposes. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct_frame_lib___object_description_a1e5fcc8625dc93572b5adc9f52ec568e}\label{struct_frame_lib___object_description_a1e5fcc8625dc93572b5adc9f52ec568e}} 
+\index{Frame\+Lib\+\_\+\+Object\+Description@{Frame\+Lib\+\_\+\+Object\+Description}!Frame\+Lib\+\_\+\+Object\+Description@{Frame\+Lib\+\_\+\+Object\+Description}}
+\index{Frame\+Lib\+\_\+\+Object\+Description@{Frame\+Lib\+\_\+\+Object\+Description}!Frame\+Lib\+\_\+\+Object\+Description@{Frame\+Lib\+\_\+\+Object\+Description}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Object\+Description()}{FrameLib\_ObjectDescription()}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Object\+Description\+::\+Frame\+Lib\+\_\+\+Object\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_frame_lib___object_description_a10df93df1ad0f5c75d333434947790c5}\label{struct_frame_lib___object_description_a10df93df1ad0f5c75d333434947790c5}} 
+\index{Frame\+Lib\+\_\+\+Object\+Description@{Frame\+Lib\+\_\+\+Object\+Description}!m\+Connections@{m\+Connections}}
+\index{m\+Connections@{m\+Connections}!Frame\+Lib\+\_\+\+Object\+Description@{Frame\+Lib\+\_\+\+Object\+Description}}
+\subsubsection{\texorpdfstring{m\+Connections}{mConnections}}
+{\footnotesize\ttfamily std\+::vector$<$\hyperlink{struct_frame_lib___object_description_1_1_connection}{Connection}$>$ Frame\+Lib\+\_\+\+Object\+Description\+::m\+Connections}
+
+\mbox{\Hypertarget{struct_frame_lib___object_description_a536003edf9fa0cf89df7fd95b73d79f5}\label{struct_frame_lib___object_description_a536003edf9fa0cf89df7fd95b73d79f5}} 
+\index{Frame\+Lib\+\_\+\+Object\+Description@{Frame\+Lib\+\_\+\+Object\+Description}!m\+Inputs@{m\+Inputs}}
+\index{m\+Inputs@{m\+Inputs}!Frame\+Lib\+\_\+\+Object\+Description@{Frame\+Lib\+\_\+\+Object\+Description}}
+\subsubsection{\texorpdfstring{m\+Inputs}{mInputs}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$double$>$ $>$ Frame\+Lib\+\_\+\+Object\+Description\+::m\+Inputs}
+
+\mbox{\Hypertarget{struct_frame_lib___object_description_a7323ef1dbe80f28d68acdb1aafdc6fe6}\label{struct_frame_lib___object_description_a7323ef1dbe80f28d68acdb1aafdc6fe6}} 
+\index{Frame\+Lib\+\_\+\+Object\+Description@{Frame\+Lib\+\_\+\+Object\+Description}!m\+Num\+Streams@{m\+Num\+Streams}}
+\index{m\+Num\+Streams@{m\+Num\+Streams}!Frame\+Lib\+\_\+\+Object\+Description@{Frame\+Lib\+\_\+\+Object\+Description}}
+\subsubsection{\texorpdfstring{m\+Num\+Streams}{mNumStreams}}
+{\footnotesize\ttfamily unsigned long Frame\+Lib\+\_\+\+Object\+Description\+::m\+Num\+Streams}
+
+\mbox{\Hypertarget{struct_frame_lib___object_description_aa3a4437f51fa6f84202e41d0d363b844}\label{struct_frame_lib___object_description_aa3a4437f51fa6f84202e41d0d363b844}} 
+\index{Frame\+Lib\+\_\+\+Object\+Description@{Frame\+Lib\+\_\+\+Object\+Description}!m\+Object\+Type@{m\+Object\+Type}}
+\index{m\+Object\+Type@{m\+Object\+Type}!Frame\+Lib\+\_\+\+Object\+Description@{Frame\+Lib\+\_\+\+Object\+Description}}
+\subsubsection{\texorpdfstring{m\+Object\+Type}{mObjectType}}
+{\footnotesize\ttfamily std\+::string Frame\+Lib\+\_\+\+Object\+Description\+::m\+Object\+Type}
+
+\mbox{\Hypertarget{struct_frame_lib___object_description_a45297bfeb12aa74520edaddfd03fc12c}\label{struct_frame_lib___object_description_a45297bfeb12aa74520edaddfd03fc12c}} 
+\index{Frame\+Lib\+\_\+\+Object\+Description@{Frame\+Lib\+\_\+\+Object\+Description}!m\+Parameters@{m\+Parameters}}
+\index{m\+Parameters@{m\+Parameters}!Frame\+Lib\+\_\+\+Object\+Description@{Frame\+Lib\+\_\+\+Object\+Description}}
+\subsubsection{\texorpdfstring{m\+Parameters}{mParameters}}
+{\footnotesize\ttfamily std\+::vector$<$\hyperlink{struct_frame_lib___object_description_1_1_tagged}{Tagged}$>$ Frame\+Lib\+\_\+\+Object\+Description\+::m\+Parameters}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___serialise_graph_8h}{Frame\+Lib\+\_\+\+Serialise\+Graph.\+h}\end{DoxyCompactItemize}

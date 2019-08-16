@@ -3,48 +3,51 @@
 #define FRAMELIB_VECTOR_TEMPLATE_H
 
 #include "FrameLib_DSP.h"
-#include "FrameLib_Info.h"
-#include <functional>
 
-template <double func(double *, unsigned long) > class FrameLib_Vector : public FrameLib_Processor
+template <double func(const double *, size_t), bool calcZeroLength = false> class FrameLib_Vector final : public FrameLib_Processor
 {
     
 public:
     
     // Constructor
     
-    FrameLib_Vector(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, NULL, 1, 1) {}
+    FrameLib_Vector(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 1, 1) {}
     
     // Info
     
-    std::string objectInfo(bool verbose)
+    std::string objectInfo(bool verbose) override
     {
-        return getInfo("Calculates the # of the input frame: The result is a single value.",
+        return formatInfo("Calculates the # of the input frame: The output is a single value.",
                        "Calculates the # of the input frame.", getOpString(), verbose);
     }
     
-    std::string inputInfo(unsigned long idx, bool verbose)      { return "Input"; }
-    std::string outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
+    std::string inputInfo(unsigned long idx, bool verbose) override     { return "Input"; }
+    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Result"; }
 
-protected:
+private:
     
     // Process
     
-    void process()
+    void process() override
     {
         unsigned long sizeIn, sizeOut;
+        const double *input = getInput(0, &sizeIn);
         
-        requestOutputSize(0, 1);
+        // FIX - what is the operation if the input is empty?
+        
+        if (calcZeroLength)
+            requestOutputSize(0, 1);
+        else
+            requestOutputSize(0, sizeIn ? 1 : 0);
         allocateOutputs();
         
         double *output = getOutput(0, &sizeOut);
-        double *input = getInput(0, &sizeIn);
         
         if (sizeOut)
             output[0] = func(input, sizeIn);
     }
     
-    // Operator description (specialise to change description)
+    // Operator Description (specialise to change description)
 
     const char *getOpString() { return "<vector operation>"; }
 };

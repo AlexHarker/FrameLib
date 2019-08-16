@@ -1,0 +1,43 @@
+\hypertarget{struct_frame_lib___proxy}{}\section{Frame\+Lib\+\_\+\+Proxy Struct Reference}
+\label{struct_frame_lib___proxy}\index{Frame\+Lib\+\_\+\+Proxy@{Frame\+Lib\+\_\+\+Proxy}}
+
+
+a virtual struct allowing for extensible communication to/from the host environment.  
+
+
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+Types.\+h$>$}
+
+Inheritance diagram for Frame\+Lib\+\_\+\+Proxy\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{struct_frame_lib___proxy}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{struct_frame_lib___proxy_a1c334d129eba0aaccb23e286e742771f}{$\sim$\+Frame\+Lib\+\_\+\+Proxy} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+a virtual struct allowing for extensible communication to/from the host environment. 
+
+This structure is used to facilitate host environment communication with Frame\+Lib objects. On construction each \hyperlink{class_frame_lib___object}{Frame\+Lib\+\_\+\+Object} takes a pointer to a proxy which may be a nullptr or a valid pointer to a type inheriting from \hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy}. By default the object does nothing, but hosts may wish to use inheriting types to store typesafe pointers to owning objects (thus allowing the owning object to be retrieved from Frame\+Lib classes.
+
+More importantly, specific objects (such as Frame\+Lib\+\_\+\+To\+Host, Frame\+Lib\+\_\+\+From\+Host and Frame\+Lib\+\_\+\+Read) make use of \hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy} to allow custom host-\/specific functionality. In these cases such classes extend \hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy} into abstract interfaces which a host can later implement. Pointers to the proxy are dynamically cast to the desired type in order to ensure that host support has been provided. It is advised that \hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy} is always inherited as a virtual in order to allow a single type to multiply inherit different functionaility. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct_frame_lib___proxy_a1c334d129eba0aaccb23e286e742771f}\label{struct_frame_lib___proxy_a1c334d129eba0aaccb23e286e742771f}} 
+\index{Frame\+Lib\+\_\+\+Proxy@{Frame\+Lib\+\_\+\+Proxy}!````~Frame\+Lib\+\_\+\+Proxy@{$\sim$\+Frame\+Lib\+\_\+\+Proxy}}
+\index{````~Frame\+Lib\+\_\+\+Proxy@{$\sim$\+Frame\+Lib\+\_\+\+Proxy}!Frame\+Lib\+\_\+\+Proxy@{Frame\+Lib\+\_\+\+Proxy}}
+\subsubsection{\texorpdfstring{$\sim$\+Frame\+Lib\+\_\+\+Proxy()}{~FrameLib\_Proxy()}}
+{\footnotesize\ttfamily virtual Frame\+Lib\+\_\+\+Proxy\+::$\sim$\+Frame\+Lib\+\_\+\+Proxy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+A virtual destructor 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___types_8h}{Frame\+Lib\+\_\+\+Types.\+h}\end{DoxyCompactItemize}

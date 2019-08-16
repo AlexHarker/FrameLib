@@ -1,0 +1,90 @@
+\hypertarget{class_frame_lib___context}{}\section{Frame\+Lib\+\_\+\+Context Class Reference}
+\label{class_frame_lib___context}\index{Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}}
+
+
+a class used to represent distinct non-\/connectable areas in the host environment.  
+
+
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+Context.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{class_frame_lib___context_a5282f95b5825866bc4bb2aad500ccfa3}{Allocator} = Managed\+Pointer$<$ \hyperlink{class_frame_lib___local_allocator}{Frame\+Lib\+\_\+\+Local\+Allocator}, \&Global\+::get\+Allocator, \&Global\+::release\+Allocator $>$
+\item 
+using \hyperlink{class_frame_lib___context_aa1c7f3c910b75dbc827a140e5ad33d12}{Processing\+Queue} = Managed\+Pointer$<$ \hyperlink{class_frame_lib___processing_queue}{Frame\+Lib\+\_\+\+Processing\+Queue}, \&Global\+::get\+Processing\+Queue, \&Global\+::release\+Processing\+Queue $>$
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_frame_lib___context_a2cfe1912e3e9d835de291277c8979ed8}{Frame\+Lib\+\_\+\+Context} (\hyperlink{class_frame_lib___global}{Frame\+Lib\+\_\+\+Global} $\ast$global, void $\ast$reference)
+\item 
+\hyperlink{class_frame_lib___context_a497e6bee6cea6f053ad04086bbc07e50}{operator Frame\+Lib\+\_\+\+Error\+Reporter \&} ()
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_frame_lib___context_ab0382454ba28ee3ff302be24ffc861c0}{operator==} (const \hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} \&a, const \hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} \&b)
+\item 
+bool \hyperlink{class_frame_lib___context_a7aed82ce3d334858032a3c45e3c70169}{operator!=} (const \hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} \&a, const \hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} \&b)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+a class used to represent distinct non-\/connectable areas in the host environment. 
+
+The context acts as a proxy to \hyperlink{class_frame_lib___global}{Frame\+Lib\+\_\+\+Global}, and contains a suitable pointer reference to the context in the host environment. Resources for each context are held in the global object, and the context is passed as a parameter when creating any Frame\+Lib object. 
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_frame_lib___context_a5282f95b5825866bc4bb2aad500ccfa3}\label{class_frame_lib___context_a5282f95b5825866bc4bb2aad500ccfa3}} 
+\index{Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}!Allocator@{Allocator}}
+\index{Allocator@{Allocator}!Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}}
+\subsubsection{\texorpdfstring{Allocator}{Allocator}}
+{\footnotesize\ttfamily using \hyperlink{class_frame_lib___context_a5282f95b5825866bc4bb2aad500ccfa3}{Frame\+Lib\+\_\+\+Context\+::\+Allocator} =  Managed\+Pointer$<$\hyperlink{class_frame_lib___local_allocator}{Frame\+Lib\+\_\+\+Local\+Allocator}, \&Global\+::get\+Allocator, \&Global\+::release\+Allocator$>$}
+
+\mbox{\Hypertarget{class_frame_lib___context_aa1c7f3c910b75dbc827a140e5ad33d12}\label{class_frame_lib___context_aa1c7f3c910b75dbc827a140e5ad33d12}} 
+\index{Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}!Processing\+Queue@{Processing\+Queue}}
+\index{Processing\+Queue@{Processing\+Queue}!Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}}
+\subsubsection{\texorpdfstring{Processing\+Queue}{ProcessingQueue}}
+{\footnotesize\ttfamily using \hyperlink{class_frame_lib___context_aa1c7f3c910b75dbc827a140e5ad33d12}{Frame\+Lib\+\_\+\+Context\+::\+Processing\+Queue} =  Managed\+Pointer$<$\hyperlink{class_frame_lib___processing_queue}{Frame\+Lib\+\_\+\+Processing\+Queue}, \&Global\+::get\+Processing\+Queue, \&Global\+::release\+Processing\+Queue$>$}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_frame_lib___context_a2cfe1912e3e9d835de291277c8979ed8}\label{class_frame_lib___context_a2cfe1912e3e9d835de291277c8979ed8}} 
+\index{Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}!Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}}
+\index{Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}!Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Context()}{FrameLib\_Context()}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Context\+::\+Frame\+Lib\+\_\+\+Context (\begin{DoxyParamCaption}\item[{\hyperlink{class_frame_lib___global}{Frame\+Lib\+\_\+\+Global} $\ast$}]{global,  }\item[{void $\ast$}]{reference }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_frame_lib___context_a497e6bee6cea6f053ad04086bbc07e50}\label{class_frame_lib___context_a497e6bee6cea6f053ad04086bbc07e50}} 
+\index{Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}!operator Frame\+Lib\+\_\+\+Error\+Reporter \&@{operator Frame\+Lib\+\_\+\+Error\+Reporter \&}}
+\index{operator Frame\+Lib\+\_\+\+Error\+Reporter \&@{operator Frame\+Lib\+\_\+\+Error\+Reporter \&}!Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}}
+\subsubsection{\texorpdfstring{operator Frame\+Lib\+\_\+\+Error\+Reporter \&()}{operator FrameLib\_ErrorReporter \&()}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Context\+::operator \hyperlink{class_frame_lib___error_reporter}{Frame\+Lib\+\_\+\+Error\+Reporter} \& (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_frame_lib___context_a7aed82ce3d334858032a3c45e3c70169}\label{class_frame_lib___context_a7aed82ce3d334858032a3c45e3c70169}} 
+\index{Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}}
+\subsubsection{\texorpdfstring{operator"!=}{operator!=}}
+{\footnotesize\ttfamily bool operator!= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} \&}]{a,  }\item[{const \hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{class_frame_lib___context_ab0382454ba28ee3ff302be24ffc861c0}\label{class_frame_lib___context_ab0382454ba28ee3ff302be24ffc861c0}} 
+\index{Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}!operator==@{operator==}}
+\index{operator==@{operator==}!Frame\+Lib\+\_\+\+Context@{Frame\+Lib\+\_\+\+Context}}
+\subsubsection{\texorpdfstring{operator==}{operator==}}
+{\footnotesize\ttfamily bool operator== (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} \&}]{a,  }\item[{const \hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___context_8h}{Frame\+Lib\+\_\+\+Context.\+h}\end{DoxyCompactItemize}

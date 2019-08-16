@@ -4,27 +4,30 @@
 
 // Constructor
 
-FrameLib_Percentile::FrameLib_Percentile(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 1, 1)
+FrameLib_Percentile::FrameLib_Percentile(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addDouble(kPercentile, "percentile", 50.0, 0);
     mParameters.setClip(0.0, 100.0);
     
     mParameters.set(serialisedParameters);
     
-    mPercentile = mParameters.getValue(kPercentile);
+    setParameterInput(1);
 }
 
 // Info
 
 std::string FrameLib_Percentile::objectInfo(bool verbose)
 {
-    return getInfo("Calculates any percentile (for example the median at 50%) of an input frame: The output is a single value.",
+    return formatInfo("Calculates any percentile (for example the median at 50%) of an input frame: The output is a single value.",
                    "Calculates any percentile (for example the median at 50%) of an input frame.", verbose);
 }
 
 std::string FrameLib_Percentile::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Input Frame";
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Input Frame";
 }
 
 std::string FrameLib_Percentile::outputInfo(unsigned long idx, bool verbose)
@@ -46,13 +49,13 @@ FrameLib_Percentile::ParameterInfo::ParameterInfo()
 void FrameLib_Percentile::process()
 {
     unsigned long sizeIn, sizeOut;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     requestOutputSize(0, sizeIn ? 1 : 0);
     allocateOutputs();
     
     double *output = getOutput(0, &sizeOut);
-    double *temp = (double *) mAllocator->alloc(sizeof(double) * (sizeIn + 1));
+    double *temp = alloc<double>(sizeIn + 1);
     
     if (sizeOut && temp)
     {
@@ -64,12 +67,12 @@ void FrameLib_Percentile::process()
         
         // Linearly interpolate output
         
-        double position = (mPercentile * (sizeIn - 1) / 100.0);
-        unsigned long idx = position;
+        double position = (mParameters.getValue(kPercentile) * (sizeIn - 1) / 100.0);
+        unsigned long idx = truncToUInt(position);
         double fract = position - idx;
         
-        output[0] = input[idx] + fract * (input[idx + 1] - input[idx]);
+        output[0] = temp[idx] + fract * (temp[idx + 1] - temp[idx]);
     }
     
-    mAllocator->dealloc(temp);
+    dealloc(temp);
 }

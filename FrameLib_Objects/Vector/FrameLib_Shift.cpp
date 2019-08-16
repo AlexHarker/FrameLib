@@ -3,11 +3,11 @@
 
 // Constructor
 
-FrameLib_Shift::FrameLib_Shift(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 1, 1)
+FrameLib_Shift::FrameLib_Shift(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addDouble(kShift, "shift", 0.0, 0);
     
-    mParameters.addDouble(kPadding, "padding", 0.0, 1);
+    mParameters.addDouble(kPadding, "pad", 0.0, 1);
     
     mParameters.addEnum(kMode, "mode", 2);
     mParameters.addEnumItem(kPad, "pad");
@@ -18,13 +18,15 @@ FrameLib_Shift::FrameLib_Shift(FrameLib_Context context, FrameLib_Parameters::Se
     mParameters.addEnumItem(kRatio, "ratios");
     
     mParameters.set(serialisedParameters);
+    
+    setParameterInput(1);
 }
 
 // Info
 
 std::string FrameLib_Shift::objectInfo(bool verbose)
 {
-    return getInfo("Shifts an input frame either with padding, or cyclically: "
+    return formatInfo("Shifts an input frame either with padding, or cyclically: "
                    "The output is the same length as the input. Output can be shifted left or right in the frame. "
                    "When in pad mode values are moved out on one side and padded on the other, otherwise the shift is cyclical.",
                    "Shifts an input frame either with padding, or cyclically.", verbose);
@@ -32,7 +34,10 @@ std::string FrameLib_Shift::objectInfo(bool verbose)
 
 std::string FrameLib_Shift::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Frames to Shift";
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Frames to Shift";
 }
 
 std::string FrameLib_Shift::outputInfo(unsigned long idx, bool verbose)
@@ -60,7 +65,7 @@ void FrameLib_Shift::process()
     
     long shift;
     unsigned long sizeIn, sizeOut;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     double padValue = mParameters.getValue(kPadding);
     Units units = (Units) mParameters.getInt(kUnits);
     
@@ -74,7 +79,7 @@ void FrameLib_Shift::process()
     if (units == kSamples)
         shift = mParameters.getInt(kShift);
     else
-        shift = round(mParameters.getValue(kShift) * sizeIn);
+        shift = roundToInt(mParameters.getValue(kShift) * sizeIn);
     
     unsigned long absShift = std::abs(shift);
     
@@ -101,9 +106,9 @@ void FrameLib_Shift::process()
         }
         else
         {
-            // Limit shift to maximum (all padding - doesn't matter which direction)
+            // Limit abs shift to maximum (all padding - doesn't matter which direction)
             
-            shift = (absShift >= sizeIn) ? sizeIn : shift;
+            absShift = (absShift >= sizeIn) ? sizeIn : absShift;
             
             if (shift >= 0)
             {

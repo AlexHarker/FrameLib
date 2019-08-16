@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass<FrameLib_Expand <FrameLib_Interval> >::makeClass(CLASS_BOX, "fl.interval~");
+    FrameLib_MaxClass_Expand<FrameLib_Interval>::makeClass(CLASS_BOX, "fl.interval~");
 }

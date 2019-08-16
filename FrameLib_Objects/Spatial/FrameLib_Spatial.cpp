@@ -1,10 +1,11 @@
 
 #include "FrameLib_Spatial.h"
 #include "FrameLib_Sort_Functions.h"
+#include <cmath>
 
 // Constructor
 
-FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 1, 1)
+FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
 {
     mParameters.addEnum(kInputMode, "inputmode");
     mParameters.addEnumItem(kPolar, "polar");
@@ -41,7 +42,7 @@ FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, FrameLib_Parameters
 
 std::string FrameLib_Spatial::objectInfo(bool verbose)
 {
-    return getInfo("Generates multiplication factors for a number of speakers from an input coordinate triple: "
+    return formatInfo("Generates multiplication factors for a number of speakers from an input coordinate triple: "
                    "The alogirthm used is a modified version of DBAP, with extra features. "
                    "Input may be in cartesian coordinates (x, y, z) or polar ones (azimuth, elevation, radius. "
                    "Missing values at the input are assumed zero. Extra values are ignored. "
@@ -51,13 +52,13 @@ std::string FrameLib_Spatial::objectInfo(bool verbose)
 
 std::string FrameLib_Spatial::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Input Triple - cartesian or polar values for which to generate factors.", "Input Triple", verbose);
+    return formatInfo("Input Triple - cartesian or polar values for which to generate factors.", "Input Triple", verbose);
 
 }
 
 std::string FrameLib_Spatial::outputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Multiplication Factors - one per loudspeaker.", "Multiplication Factors", verbose);
+    return formatInfo("Multiplication Factors - one per loudspeaker.", "Multiplication Factors", verbose);
 }
 
 // Parameter Info
@@ -91,11 +92,11 @@ FrameLib_Spatial::Cartesian FrameLib_Spatial::convertToCartesian(Polar position)
 void FrameLib_Spatial::process()
 {
     unsigned long sizeIn, weightsSize;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     const double *weights = mParameters.getArray(kWeights, &weightsSize);
-    unsigned long numSpeakers = mSpeakers.size();
-    unsigned long maxSpeakers = mParameters.getValue(kMaxSpeakers);
+    unsigned long numSpeakers = static_cast<unsigned long>(mSpeakers.size());
+    unsigned long maxSpeakers = mParameters.getInt(kMaxSpeakers);
     
     double blur = mParameters.getValue(kBlur);
     double rolloff = mParameters.getValue(kRolloff);
@@ -111,12 +112,12 @@ void FrameLib_Spatial::process()
     double *output = getOutput(0, &numSpeakers);
     
     double norm = 0.0;
-    double minDistance;
-    int nearestIdx = 0;
+    double minDistance = 0.0;
+    unsigned long nearestIdx = 0;
     
     Cartesian panPosition;
     
-    if (((InputModes) mParameters.getValue(kInputMode)) == kPolar)
+    if ((static_cast<InputModes>(mParameters.getInt(kInputMode))) == kPolar)
     {
         double azimuth = sizeIn > 0 ? input[0] : 0.0;
         double elevation = sizeIn > 1 ? input[1] : 0.0;
@@ -154,20 +155,20 @@ void FrameLib_Spatial::process()
     
     if (maxSpeakers < numSpeakers)
     {
-        unsigned long *indices = (unsigned long *) mAllocator->alloc(numSpeakers * sizeof(unsigned long));
+        unsigned long *indices = alloc<unsigned long>(numSpeakers);
         sortIndicesDescending(indices, output, numSpeakers);
         
         for (unsigned long i = maxSpeakers; i < numSpeakers; i++)
             output[indices[i]] = 0.0;
         
-        mAllocator->dealloc(indices);
+        dealloc(indices);
     }
     
     // Interpolate to points
     
     if (pointFactor > 0.0)
     {
-        for (int i = 0; i < numSpeakers; i++)
+        for (unsigned long i = 0; i < numSpeakers; i++)
         {
             if (i == nearestIdx)
                 output[i] += pointFactor * (1.0 - output[i]);

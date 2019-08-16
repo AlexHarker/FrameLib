@@ -4,7 +4,7 @@
 
 // Constructor
 
-FrameLib_AudioTrigger::FrameLib_AudioTrigger(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Scheduler(context, NULL, 0, 1, 1)
+FrameLib_AudioTrigger::FrameLib_AudioTrigger(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Scheduler(context, proxy, nullptr, 0, 1, 1)
 {
     objectReset();
 }
@@ -13,7 +13,7 @@ FrameLib_AudioTrigger::FrameLib_AudioTrigger(FrameLib_Context context, FrameLib_
 
 std::string FrameLib_AudioTrigger::objectInfo(bool verbose)
 {
-    return getInfo("Translates non-zero samples into trigger frames: The output is an empty vector. Any non-zero audio sample triggers a frame.",
+    return formatInfo("Translates non-zero samples into trigger frames: The output is an empty frame. Any non-zero audio sample triggers a frame.",
                    "Translates non-zero samples into trigger frames.", verbose);
 }
 
@@ -24,7 +24,7 @@ std::string FrameLib_AudioTrigger::outputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_AudioTrigger::audioInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Audio Input (non-zero triggers frames)", "Audio Input", verbose);
+    return formatInfo("Audio Input (non-zero triggers frames)", "Audio Input", verbose);
 }
 
 // Object Reset, Block Process and Process
@@ -39,7 +39,7 @@ void FrameLib_AudioTrigger::objectReset()
     mBlockSize = 0;
 }
 
-void FrameLib_AudioTrigger::blockProcess(double **ins, double **outs, unsigned long blockSize)
+void FrameLib_AudioTrigger::blockProcess(const double * const *ins, double **outs, unsigned long blockSize)
 {    
     // Safety
     
@@ -54,8 +54,7 @@ void FrameLib_AudioTrigger::blockProcess(double **ins, double **outs, unsigned l
 
 FrameLib_AudioTrigger::SchedulerInfo FrameLib_AudioTrigger::schedule(bool newFrame, bool noAdvance)
 {
-    unsigned long time = getCurrentTime().intVal();
-    unsigned long offset = time - getBlockStartTime().intVal();
+    unsigned long offset = static_cast<unsigned long>(getCurrentTime().intVal() - getBlockStartTime().intVal());
     unsigned long i;
     
     // Find next trigger

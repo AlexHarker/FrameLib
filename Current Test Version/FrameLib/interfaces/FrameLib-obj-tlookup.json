@@ -1,0 +1,16 @@
+{
+    "Beginner": {
+        "Tutorial 1: An introduction to FrameLib and frame based processing.": "A general introduction to FrameLib.",
+        "Tutorial 2: Key Concepts.": "An overview and explanation of the key concepts of FrameLib, such as its timing and patching architecture.",
+        "Tutorial 3: Converting data between FrameLib and Max.": "Methods for converting data between the Max and FrameLib domains.",
+        "Tutorial 4: Generator objects.": "An overview of the various 'generator' objects belonging to the FrameLib eco-system.",
+        "Tutorial 5: Your first FrameLib project - Building a granulator from scratch.": "A longer tutorial than the previous four that builds on previously covered information. Construct a granular synthesis engine from scratch and add increasingly complex features."
+    },
+    "Intermediate": {
+        "Tutorial 6: FFT with FrameLib.": "The Basics of FFT/STFT processing in FrameLib",
+        "Tutorial 7: Multi-stream processing.": "A feature unique to FrameLib and somewhat similar to the Max 'mc' system, multi-streaming allows you to manipulate multiple streams of data at varying rates and sizes with only one set of processing objects."
+    },
+    "Advanced": {
+        "Tutorial 8: Multi-resolution FFT.": "An extension of the FFT tutorial, this crash course introduces you to the possibilities of multi-resolution FFT's."
+    }
+}

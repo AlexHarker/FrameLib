@@ -2,31 +2,58 @@
 #ifndef FRAMELIB_MEMORY_H
 #define FRAMELIB_MEMORY_H
 
-#include "tlsf.h"
+#include "../FrameLib_Dependencies/tlsf/tlsf.h"
+#include "FrameLib_Types.h"
+#include "FrameLib_Errors.h"
+#include "FrameLib_Parameters.h"
 #include "FrameLib_Threading.h"
 
 #include <vector>
 #include <ctime>
 #include <string>
 
-// The Global Allocator (adds threadsafety to the CoreAllocator)
+/**
+
+@defgroup Memory
+
+*/
+
+/**
+ 
+ @class FrameLib_GlobalAllocator
+ 
+ @ingroup Memory
+ 
+ @brief a global threadsafe memory allocator suitable for realtime usage.
+ 
+ */
 
 class FrameLib_GlobalAllocator
 {
 
 private:
     
-    // The Core Allocator (has no threadsafety)
+    /**
+     
+     @class CoreAllocator
+     
+     @brief the underlying single-threaded allocator.
+     
+     */
     
     class CoreAllocator
     {        
-        // ************************************************************************************** //
-        
-        // Memory Pools
+        /**
+         
+         @struct Pool
+         
+         @brief a memory pool from system memory.
+         
+         */
         
         struct Pool
         {
-            Pool(void *mem, size_t size)  : mUsedRecently(true), mTime(0), mSize(size), mPrev(NULL), mNext(NULL), mMem(mem) {}
+            Pool(void *mem, size_t size)  : mUsedRecently(true), mTime(0), mSize(size), mPrev(nullptr), mNext(nullptr), mMem(mem) {}
             
             bool isFree() { return tlsf_pool_is_free(mMem); }
             
@@ -38,47 +65,53 @@ private:
             void *mMem;
         };
         
-        // ************************************************************************************** //
+        /**
+         
+         @class NewThread
+         
+         @brief a thread for allocating new memory pools from system memory.
+         
+         */
         
-        // Thread for Allocating System Memory
-        
-        class NewThread : public DelegateThread
+        class NewThread final : public FrameLib_DelegateThread
         {
             
         public:
             
-            NewThread(CoreAllocator *allocator) : DelegateThread(Thread::kHighPriority), mAllocator(allocator) {}
+            NewThread(CoreAllocator& allocator) : FrameLib_DelegateThread(FrameLib_Thread::kHighPriority), mAllocator(allocator) {}
             
         private:
             
-            virtual void doTask() { mAllocator->addScheduledPool(); };
+            void doTask() override { mAllocator.addScheduledPool(); };
             
-            CoreAllocator *mAllocator;
+            CoreAllocator& mAllocator;
         };
         
-        // ************************************************************************************** //
-        
-        // Thread for Freeing System Memory
-        
-        class FreeThread : public TriggerableThread
+        /**
+         
+         @class FreeThread
+         
+         @brief a thread for freeing memory pools back to system memory.
+         
+         */
+
+        class FreeThread final : public FrameLib_TriggerableThread
         {
             
         public:
             
-            FreeThread(CoreAllocator *allocator) : TriggerableThread(Thread::kLowPriority), mAllocator(allocator) {}
+            FreeThread(CoreAllocator& allocator) : FrameLib_TriggerableThread(FrameLib_Thread::kLowPriority), mAllocator(allocator) {}
             
         private:
             
-            virtual void doTask() { mAllocator->destroyScheduledPool(); };
+            void doTask() override { mAllocator.destroyScheduledPool(); };
             
-            CoreAllocator *mAllocator;
+            CoreAllocator& mAllocator;
         };
-        
-        // ************************************************************************************** //
-        
+                
     public:
         
-        CoreAllocator();
+        CoreAllocator(FrameLib_ErrorReporter& errorReporter);
         ~CoreAllocator();
         
         // Allocate and deallocate memory (plus pruning)
@@ -118,54 +151,63 @@ private:
         size_t mAllocated;
         
         size_t mLastDisposedPoolSize;
-        FrameLib_AtomicPtr<Pool> mScheduledNewPool;
-        FrameLib_AtomicPtr<Pool> mScheduledDisposePool;
+        std::atomic<Pool *> mScheduledNewPool;
+        std::atomic<Pool *> mScheduledDisposePool;
         NewThread mAllocThread;
         FreeThread mFreeThread;
+        
+        FrameLib_ErrorReporter& mErrorReporter;
     };
-    
-    // ************************************************************************************** //
     
 public:
 
-    // The Pruner uses RAII to lock the CoreAllocator allowing repeated deallocation followed by a prune with a single lock
-    
+    /**
+     
+     @class Pruner
+     
+     @brief an RAII utility for repeated deallocation with only a single lock.
+     
+     */
+        
     class Pruner
     {
         
     public:
         
-        Pruner(FrameLib_GlobalAllocator *allocator) : mAllocator(allocator)
+        Pruner(FrameLib_GlobalAllocator& allocator) : mAllocator(allocator)
         {
-            mAllocator->mLock.acquire();
+            mAllocator.mLock.acquire();
         }
         
         ~Pruner()
         {
-            mAllocator->mAllocator.prune();
-            mAllocator->mLock.release();
+            mAllocator.mAllocator.prune();
+            mAllocator.mLock.release();
         }
         
-        void dealloc(void *ptr) { mAllocator->mAllocator.dealloc(ptr); }
+        // Non-copyable
+        
+        Pruner(const Pruner&) = delete;
+        Pruner& operator=(const Pruner&) = delete;
+        
+        void dealloc(void *ptr) { mAllocator.mAllocator.dealloc(ptr); }
 
     private:
         
-        // Deleted
-        
-        Pruner(const Pruner&);
-        Pruner& operator=(const Pruner&);
-        
         // Allocator
         
-        FrameLib_GlobalAllocator *mAllocator;
+        FrameLib_GlobalAllocator& mAllocator;
     };
-
-    // ************************************************************************************** //
 
     // Constructor / Destructor
     
-    FrameLib_GlobalAllocator() {}
+    FrameLib_GlobalAllocator(FrameLib_ErrorReporter& errorReporter) : mAllocator(errorReporter) {}
     ~FrameLib_GlobalAllocator() {}
+    
+    // Non-copyable
+    
+    FrameLib_GlobalAllocator(const FrameLib_GlobalAllocator&) = delete;
+    FrameLib_GlobalAllocator& operator=(const FrameLib_GlobalAllocator&) = delete;
     
     // Allocate / Deallocate Memory
     
@@ -178,31 +220,41 @@ public:
     static size_t alignSize(size_t x);
     
 private:
-    
-    // Deleted
-    
-    FrameLib_GlobalAllocator(const FrameLib_GlobalAllocator&);
-    FrameLib_GlobalAllocator& operator=(const FrameLib_GlobalAllocator&);
-    
+   
     // Member Variables
     
     FrameLib_SpinLock mLock;
     CoreAllocator mAllocator;
 };
 
-// ************************************************************************************** //
 
-// The Local Allocator
+/**
+ 
+ @class FrameLib_LocalAllocator
+ 
+ @ingroup Memory
+
+ @brief a memory allocator suitable for usage in a given FrameLib context.
+ 
+ @sa FrameLib_Context
+ 
+ */
 
 class FrameLib_LocalAllocator
 {
-    // Local Blocks (free memory in double linked list (using internal pointers))
- 
     static const int numLocalFreeBlocks = 16;
 
+    /**
+     
+     @struct FreeBlock
+     
+     @brief a memory block that can be addressed as part of double-linked list.
+     
+     */
+    
     struct FreeBlock
     {
-        FreeBlock() : mMemory(NULL), mSize(0), mPrev(NULL), mNext(NULL) {}
+        FreeBlock() : mMemory(nullptr), mSize(0), mPrev(nullptr), mNext(nullptr) {}
         
         void *mMemory;
         size_t mSize;
@@ -211,34 +263,91 @@ class FrameLib_LocalAllocator
         FreeBlock *mNext;
     };
     
-    // ************************************************************************************** //
-    
 public:
 
-    // Named Storage Local to Each Context
+    /**
+     
+     @class Storage
+     
+     @brief named storage local to a specific context.
+     
+     */
     
     class Storage
     {
+        using Serial = FrameLib_Parameters::Serial;
+        
         friend class FrameLib_LocalAllocator;
 
     public:
         
+        /**
+         
+         @class Access
+         
+         @brief an RAII utility for safely accessing a Storage object.
+         
+         */
+        
+        class Access
+        {
+            
+        public:
+            
+            // Constructor and Destructor
+            
+            Access(Storage *storage) : mStorage(storage)    { mStorage->mLock.acquire(); }
+            ~Access()                                       { mStorage->mLock.release(); }
+            
+            // Non-copyable
+            
+            Access(const Access&) = delete;
+            Access& operator=(const Access&) = delete;
+            
+            // Getters
+            
+            FrameType getType() const               { return mStorage->getType(); }
+            double *getVector() const               { return mStorage->getVector(); }
+            unsigned long getVectorSize() const     { return mStorage->getVectorSize(); }
+            unsigned long getTaggedSize() const     { return mStorage->getTaggedSize(); }
+            Serial *getTagged() const               { return mStorage->getTagged(); }
+            
+            // Resize
+            
+            void resize(bool tagged, unsigned long size)   { mStorage->resize(tagged, size); }
+            
+        private:
+            
+            // Data
+            
+            Storage *mStorage;
+        };
+      
+        const char *getName() const             { return mName.c_str(); }
+        
+    protected:
+
         // Getters
         
-        double *getData() const         { return mData; }
-        unsigned long getSize() const   { return mSize; }
-        const char *getName() const     { return mName.c_str(); }
+        FrameType getType() const               { return mType; }
+        double *getVector() const               { return mType == kFrameNormal ? static_cast<double *>(mData) : nullptr; }
+        unsigned long getVectorSize() const     { return mType == kFrameNormal ? static_cast<unsigned long>(mSize) : 0; }
+        unsigned long getTaggedSize() const     { return mType == kFrameTagged ? static_cast<unsigned long>(mSize) : 0; }
+        Serial *getTagged() const               { return mType == kFrameTagged ? static_cast<Serial *>(mData) : nullptr; }
         
         // Resize the storage
         
-        void resize(unsigned long size);
+        void resize(bool tagged, unsigned long size);
 
-    protected:
-        
         // Constructor / Destructor
         
-        Storage(const char *name, FrameLib_LocalAllocator *allocator);
+        Storage(const char *name, FrameLib_LocalAllocator& allocator);
         ~Storage();
+        
+        // Non-copyable
+        
+        Storage(const Storage&) = delete;
+        Storage& operator=(const Storage&) = delete;
         
         // Reference Counting
         
@@ -247,29 +356,29 @@ public:
 
     private:
 
-        // Deleted
-        
-        Storage(const Storage&);
-        Storage& operator=(const Storage&);
-        
         // Member Variables
         
         std::string mName;
-        
-        double *mData;
-        unsigned long mSize;
-        unsigned long mMaxSize;
+        FrameType mType;
+        void *mData;
+        size_t mSize;
+        size_t mMaxSize;
         unsigned long mCount;
         
-        FrameLib_LocalAllocator *mAllocator;
+        FrameLib_SpinLock mLock;
+        FrameLib_LocalAllocator& mAllocator;
     };
     
-    // ************************************************************************************** //
-
     // Constructor / Destructor
     
-    FrameLib_LocalAllocator(FrameLib_GlobalAllocator *allocator);
+    FrameLib_LocalAllocator(FrameLib_GlobalAllocator& allocator);
     ~FrameLib_LocalAllocator();
+    
+    // Non-copyable
+    
+    FrameLib_LocalAllocator(const FrameLib_LocalAllocator&) = delete;
+    FrameLib_LocalAllocator& operator=(const FrameLib_LocalAllocator&) = delete;
+    
     
     // Allocate / Deallocate Memory
 
@@ -292,11 +401,6 @@ public:
     
 private:
     
-    // Deleted
-    
-    FrameLib_LocalAllocator(const FrameLib_LocalAllocator&);
-    FrameLib_LocalAllocator& operator=(const FrameLib_LocalAllocator&);
-    
     // Find Storage by Name
     
     std::vector<Storage *>::iterator findStorage(const char *name);
@@ -307,12 +411,12 @@ private:
     
     // Member Variables
     
-    FrameLib_GlobalAllocator *mAllocator;
+    FrameLib_GlobalAllocator& mAllocator;
     
     FreeBlock mFreeLists[numLocalFreeBlocks];
     FreeBlock *mTail;
     
-    std::vector <Storage *> mStorage;
+    std::vector<Storage *> mStorage;
 };
 
 #endif

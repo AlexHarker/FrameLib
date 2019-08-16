@@ -3,33 +3,39 @@
 
 // Constructor / Destructor
 
-FrameLib_Store::FrameLib_Store(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 2, 1)
+FrameLib_Store::FrameLib_Store(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
 {
     mParameters.addString(kName, "name", 0);
     mParameters.setInstantiation();
         
     mParameters.set(serialisedParameters);
     
-    mStorage = mAllocator->registerStorage(mParameters.getString(kName));
+    enableOrderingConnections();
+
+    mName = mParameters.getString(kName);
+    mStorage = registerStorage(mName.c_str());
+    
+    setInputMode(0, false, true, false, kFrameAny);
+    setOutputType(0, kFrameAny);
 }
 
 FrameLib_Store::~FrameLib_Store()
 {
-    mAllocator->releaseStorage(mParameters.getString(kName));
+    releaseStorage(mStorage);
 }
 
 // Info
 
 std::string FrameLib_Store::objectInfo(bool verbose)
 {
-    return getInfo("Stores a vector frame in named memory for recall: The output can be used to control ordering/synchronsation.",
+    return formatInfo("Stores a vector frame in named memory for recall: The output can be used to control ordering/synchronisation.",
                    "Stores a vector frame in named memory for recall.", verbose);
 }
 
 std::string FrameLib_Store::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return getInfo("Synchronisation Input - use to control ordering", "Synchronisation Input", verbose);
+        return formatInfo("Synchronisation Input - use to control ordering", "Synchronisation Input", verbose);
     else
         return "Input to Store";
 }
@@ -37,6 +43,14 @@ std::string FrameLib_Store::inputInfo(unsigned long idx, bool verbose)
 std::string FrameLib_Store::outputInfo(unsigned long idx, bool verbose)
 {
     return "Synchronisation Output";
+}
+
+// Stream Awareness
+
+void FrameLib_Store::setStream(void *streamOwner, unsigned long stream)
+{
+    releaseStorage(mStorage);
+    mStorage = registerStorage(numberedString(mName.c_str(), stream).c_str());
 }
 
 // Parameter Info
@@ -48,26 +62,56 @@ FrameLib_Store::ParameterInfo::ParameterInfo()
     add("Sets the name of the memory location to use.");
 }
 
+// Object Rest
+
+void FrameLib_Store::objectReset()
+{
+    FrameLib_LocalAllocator::Storage::Access access(mStorage);
+
+    access.resize(false, 0);
+}
+
 // Process
 
 void FrameLib_Store::process()
 {
-    // Get Input
+    // Threadsafety
     
-    unsigned long sizeIn, sizeOut;
-    double *input = getInput(0, &sizeIn);
+    FrameLib_LocalAllocator::Storage::Access access(mStorage);
+
+    // Resize storage
     
-    mStorage->resize(sizeIn);
+    FrameType type = getInputCurrentType(0);
+    unsigned long size;
     
-    requestOutputSize(0, sizeIn);
+    if (type == kFrameTagged)
+        size = getInput(0)->size();
+    else
+        getInput(0, &size);
+    
+    access.resize(type == kFrameTagged, size);
+    
+    // Prepare and allocate outputs
+    
+    prepareCopyInputToOutput(0, 0);
     allocateOutputs();
     
-    double *output = getOutput(0, &sizeOut);
+    // Copy to storage
     
-    // Copy to storage and output
+    if (type == kFrameNormal)
+    {
+        const double *input = getInput(0, &size);
+        double *storage = access.getVector();
+        copyVector(storage, input, std::min(access.getVectorSize(), size));
+    }
+    else
+    {
+        FrameLib_Parameters::Serial *storage = access.getTagged();
+        if (storage)
+            storage->write(getInput(0));
+    }
     
-    if (mStorage->getSize() == sizeOut)
-        copyVector(mStorage->getData(), input, sizeOut);
+    // Copy to output
     
-    copyVector(output, input, sizeOut);
+    copyInputToOutput(0, 0);
 }

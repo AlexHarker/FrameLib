@@ -1,0 +1,100 @@
+\hypertarget{struct_f_l___s_p}{}\section{F\+L\+\_\+\+SP Struct Reference}
+\label{struct_f_l___s_p}\index{F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}}
+
+
+a minimal class for \char`\"{}super precision\char`\"{} fixed-\/point calculations where required.  
+
+
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+Fixed\+Point.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_f_l___s_p_a862ed441d9da9edd82d368ee09686d63}{F\+L\+\_\+\+SP} ()
+\item 
+\hyperlink{struct_f_l___s_p_ac5e188b9e44e98f6311b6969bb1658be}{F\+L\+\_\+\+SP} (uint64\+\_\+t a, uint64\+\_\+t b, uint64\+\_\+t c)
+\item 
+uint64\+\_\+t \hyperlink{struct_f_l___s_p_ac515b72596b07a75ab80173537e0358a}{int\+Val} () const
+\item 
+uint64\+\_\+t \hyperlink{struct_f_l___s_p_a8717bf668103c1de5dfa31cdfabe1b8f}{frac\+Hi\+Val} () const
+\item 
+uint64\+\_\+t \hyperlink{struct_f_l___s_p_a4121e057fe776544e13014bc15aaceea}{frac\+Lo\+Val} () const
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \hyperlink{struct_f_l___s_p_a78c2b8a9405fd9e810db0a43bbe03abc}{q\+Mul} (const \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \&a, const uint64\+\_\+t \&\hyperlink{struct_f_l___s_p_ac515b72596b07a75ab80173537e0358a}{int\+Val}, const uint64\+\_\+t \&frac\+Val)
+\item 
+\hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \hyperlink{struct_f_l___s_p_a871a8c7c5ecf72cb21a348b1e86dd17b}{operator$\ast$} (const \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \&a, const \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \&b)
+\item 
+\hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \hyperlink{struct_f_l___s_p_a2b7132318d02956c6416fef80ad2e29a}{two\+Minus} (const \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \&b)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+a minimal class for \char`\"{}super precision\char`\"{} fixed-\/point calculations where required. 
+
+This unsigned type allows for 64 bits of integer precision and 128 bits of fractional precision. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct_f_l___s_p_a862ed441d9da9edd82d368ee09686d63}\label{struct_f_l___s_p_a862ed441d9da9edd82d368ee09686d63}} 
+\index{F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}!F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}}
+\index{F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}!F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}}
+\subsubsection{\texorpdfstring{F\+L\+\_\+\+S\+P()}{FL\_SP()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily F\+L\+\_\+\+S\+P\+::\+F\+L\+\_\+\+SP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_f_l___s_p_ac5e188b9e44e98f6311b6969bb1658be}\label{struct_f_l___s_p_ac5e188b9e44e98f6311b6969bb1658be}} 
+\index{F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}!F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}}
+\index{F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}!F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}}
+\subsubsection{\texorpdfstring{F\+L\+\_\+\+S\+P()}{FL\_SP()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily F\+L\+\_\+\+S\+P\+::\+F\+L\+\_\+\+SP (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{a,  }\item[{uint64\+\_\+t}]{b,  }\item[{uint64\+\_\+t}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_f_l___s_p_a8717bf668103c1de5dfa31cdfabe1b8f}\label{struct_f_l___s_p_a8717bf668103c1de5dfa31cdfabe1b8f}} 
+\index{F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}!frac\+Hi\+Val@{frac\+Hi\+Val}}
+\index{frac\+Hi\+Val@{frac\+Hi\+Val}!F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}}
+\subsubsection{\texorpdfstring{frac\+Hi\+Val()}{fracHiVal()}}
+{\footnotesize\ttfamily uint64\+\_\+t F\+L\+\_\+\+S\+P\+::frac\+Hi\+Val (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_f_l___s_p_a4121e057fe776544e13014bc15aaceea}\label{struct_f_l___s_p_a4121e057fe776544e13014bc15aaceea}} 
+\index{F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}!frac\+Lo\+Val@{frac\+Lo\+Val}}
+\index{frac\+Lo\+Val@{frac\+Lo\+Val}!F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}}
+\subsubsection{\texorpdfstring{frac\+Lo\+Val()}{fracLoVal()}}
+{\footnotesize\ttfamily uint64\+\_\+t F\+L\+\_\+\+S\+P\+::frac\+Lo\+Val (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_f_l___s_p_ac515b72596b07a75ab80173537e0358a}\label{struct_f_l___s_p_ac515b72596b07a75ab80173537e0358a}} 
+\index{F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}!int\+Val@{int\+Val}}
+\index{int\+Val@{int\+Val}!F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}}
+\subsubsection{\texorpdfstring{int\+Val()}{intVal()}}
+{\footnotesize\ttfamily uint64\+\_\+t F\+L\+\_\+\+S\+P\+::int\+Val (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{struct_f_l___s_p_a871a8c7c5ecf72cb21a348b1e86dd17b}\label{struct_f_l___s_p_a871a8c7c5ecf72cb21a348b1e86dd17b}} 
+\index{F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}}
+\subsubsection{\texorpdfstring{operator$\ast$}{operator*}}
+{\footnotesize\ttfamily \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} operator$\ast$ (\begin{DoxyParamCaption}\item[{const \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \&}]{a,  }\item[{const \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{struct_f_l___s_p_a78c2b8a9405fd9e810db0a43bbe03abc}\label{struct_f_l___s_p_a78c2b8a9405fd9e810db0a43bbe03abc}} 
+\index{F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}!q\+Mul@{q\+Mul}}
+\index{q\+Mul@{q\+Mul}!F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}}
+\subsubsection{\texorpdfstring{q\+Mul}{qMul}}
+{\footnotesize\ttfamily \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} q\+Mul (\begin{DoxyParamCaption}\item[{const \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \&}]{a,  }\item[{const uint64\+\_\+t \&}]{int\+Val,  }\item[{const uint64\+\_\+t \&}]{frac\+Val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{struct_f_l___s_p_a2b7132318d02956c6416fef80ad2e29a}\label{struct_f_l___s_p_a2b7132318d02956c6416fef80ad2e29a}} 
+\index{F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}!two\+Minus@{two\+Minus}}
+\index{two\+Minus@{two\+Minus}!F\+L\+\_\+\+SP@{F\+L\+\_\+\+SP}}
+\subsubsection{\texorpdfstring{two\+Minus}{twoMinus}}
+{\footnotesize\ttfamily \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} two\+Minus (\begin{DoxyParamCaption}\item[{const \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___fixed_point_8h}{Frame\+Lib\+\_\+\+Fixed\+Point.\+h}\end{DoxyCompactItemize}

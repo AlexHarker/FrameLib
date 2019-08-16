@@ -1,0 +1,56 @@
+<c74object category="Binary" module="FrameLib" name="fl.equals~"> 
+ 
+    <digest> 
+        Compares frame values for equality (output is 1 for true and 0 for false).
+    </digest> 
+ 
+    <description> 
+         Calculation is performed on pairs of values in turn. The output is a frame at least as long as the smaller of the two inputs. When frames mismatch in size the result depends on the setting of the mismatch parameter. Either or both inputs may be set to trigger output.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /mismatch [instantiation enum]"> 
+            <description> 
+                Sets the mode used when dealing with mismatched input lengths: wrap - the smaller input is read modulo against the larger input. shrink - the output length is set to the size of the smaller input. pad_in - the smaller input is padded prior to calculation to match the size of the larger input. pad_out - the output is padded to match the size of the larger input.<br /> 
+                <bullet>[0] - wrap</bullet> 
+                <bullet>[1] - shrink</bullet> 
+                <bullet>[2] - pad_in</bullet> 
+                <bullet>[3] - pad_out</bullet>
+            </description> 
+        </entry> 
+ 
+        <entry name="1. /trigger_ins [instantiation enum]"> 
+            <description> 
+                Sets which inputs trigger output.<br /> 
+                <bullet>[0] - both</bullet> 
+                <bullet>[1] - left</bullet> 
+                <bullet>[2] - right</bullet>
+            </description> 
+        </entry> 
+ 
+        <entry name="2. /pad [instantiation double]"> 
+            <description> 
+                Sets the value used for padding (for either pad_in or pad_out modes).
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Binary</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

@@ -1,0 +1,45 @@
+<c74object category="Filters" module="FrameLib" name="fl.onepole~"> 
+ 
+    <digest> 
+        Filters input frames using a one pole filter.
+    </digest> 
+ 
+    <description> 
+         The size of the output is equal to the input.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /freq [double]"> 
+            <description> 
+                Sets the filter cutoff frequency.
+            </description> 
+        </entry> 
+ 
+        <entry name="1. /mode [enum]"> 
+            <description> 
+                Sets the filter mode.<br /> 
+                <bullet>[0] - lpf</bullet> 
+                <bullet>[1] - hpf</bullet>
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Filters</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

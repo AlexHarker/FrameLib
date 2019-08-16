@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Subframe::FrameLib_Subframe(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 1, 1)
+FrameLib_Subframe::FrameLib_Subframe(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addDouble(kStart, "start", 0.0, 0);
     mParameters.setMin(0.0);
@@ -16,19 +16,24 @@ FrameLib_Subframe::FrameLib_Subframe(FrameLib_Context context, FrameLib_Paramete
     mParameters.addEnumItem(kRatio, "ratios");
     
     mParameters.set(serialisedParameters);
+    
+    setParameterInput(1);
 }
 
 // Info
 
 std::string FrameLib_Subframe::objectInfo(bool verbose)
 {
-    return getInfo("Output part of an input frame: The subframe is specified by a start and end point in the input frame.",
+    return formatInfo("Output part of an input frame: The subframe is specified by a start and end point in the input frame.",
                    "Output part of an input frame.", verbose);
 }
 
 std::string FrameLib_Subframe::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Input Frames";
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Input Frames";
 }
 
 std::string FrameLib_Subframe::outputInfo(unsigned long idx, bool verbose)
@@ -54,7 +59,7 @@ void FrameLib_Subframe::process()
     // Get Input
     
     unsigned long sizeIn, sizeOut;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     unsigned long start, end;
     
@@ -67,8 +72,8 @@ void FrameLib_Subframe::process()
     }
     else
     {
-        start = round(mParameters.getValue(kStart) * sizeIn);
-        end = round(mParameters.getValue(kEnd) * sizeIn);
+        start = roundToUInt(mParameters.getValue(kStart) * sizeIn);
+        end = roundToUInt(mParameters.getValue(kEnd) * sizeIn);
     }
     
     start = start > sizeIn ? sizeIn : start;

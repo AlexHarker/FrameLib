@@ -4,7 +4,7 @@
 
 // Constructor / Destructor
 
-FrameLib_Multitaper::FrameLib_Multitaper(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 1, 1)
+FrameLib_Multitaper::FrameLib_Multitaper(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -17,13 +17,13 @@ FrameLib_Multitaper::FrameLib_Multitaper(FrameLib_Context context, FrameLib_Para
         
     unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
     
-    mFFTSetup = hisstools_create_setup_d(maxFFTSizeLog2 + 1);
+    hisstools_create_setup(&mFFTSetup, maxFFTSizeLog2 + 1);
     mMaxFFTSize = 1 << maxFFTSizeLog2;
 }
 
 FrameLib_Multitaper::~FrameLib_Multitaper()
 {
-    hisstools_destroy_setup_d(mFFTSetup);
+    hisstools_destroy_setup(mFFTSetup);
 }
 
 // Helpers
@@ -49,7 +49,7 @@ void FrameLib_Multitaper::getWrapped(double &rOut, double&iOut, double *real, do
 
 std::string FrameLib_Multitaper::objectInfo(bool verbose)
 {
-    return getInfo("Calculates the multitaper power spectrum of a real input using the cosinre tapers: All FFTs performed will use a power of two size. "
+    return formatInfo("Calculates the multitaper power spectrum of a real input using the cosine tapers: All FFTs performed will use a power of two size. "
                    "Output frames will be (N / 2) + 1 in length where N is the FFT size. Inputs which are not a power of two are zero-padded to the next power of two.",
                    "Calculates the multitaper power spectrum of a real input using the cosinre tapers.", verbose);
 }
@@ -57,9 +57,9 @@ std::string FrameLib_Multitaper::objectInfo(bool verbose)
 std::string FrameLib_Multitaper::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return getInfo("Frequency Domain Real Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Real Values", verbose);
+        return formatInfo("Frequency Domain Real Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Real Values", verbose);
     else
-        return getInfo("Frequency Domain Imaginary Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Imag Values", verbose);
+        return formatInfo("Frequency Domain Imaginary Values - inputs should match in size and be (N / 2) + 1 in length.", "Freq Domain Imag Values", verbose);
 }
 
 std::string FrameLib_Multitaper::outputInfo(unsigned long idx, bool verbose)
@@ -84,11 +84,11 @@ void FrameLib_Multitaper::process()
     // Get Input
     
     unsigned long sizeIn, sizeOut;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     // Get FFT size log 2
     
-    unsigned long FFTSizelog2 = log2(sizeIn);
+    unsigned long FFTSizelog2 = ilog2(sizeIn);
     unsigned long FFTSize = 1 << FFTSizelog2;
     sizeOut = (FFTSize >> 1) + 1;
     
@@ -102,10 +102,10 @@ void FrameLib_Multitaper::process()
     requestOutputSize(0, sizeOut);
     allocateOutputs();
     
-    double *tempMem = (double *) mAllocator->alloc(sizeof(double) * ((FFTSize + 1) << 1));
     double *output = getOutput(0, &sizeOut);
+    double *tempMem = alloc<double>((FFTSize + 1) << 1);
     
-    long nTapers = mParameters.getInt(kNumTapers);
+    unsigned long nTapers = mParameters.getInt(kNumTapers);
     
     // Transform
     
@@ -118,8 +118,7 @@ void FrameLib_Multitaper::process()
         
         // Take the real fft
         
-        hisstools_unzip_zero_d(input, &spectrum, sizeIn, (FFTSizelog2 + 1));
-        hisstools_rfft_d(mFFTSetup, &spectrum, (FFTSizelog2 + 1));
+        hisstools_rfft(mFFTSetup, input, &spectrum, sizeIn, (FFTSizelog2 + 1));
         
         // Move Nyquist Bin
         
@@ -164,8 +163,8 @@ void FrameLib_Multitaper::process()
                 
                 // FIX - possible these should be flipped...
                 
-                r3 = (r1 - r2);
-                i3 = (i1 - i2);
+                r3 = (i1 - i2);
+                i3 = (r2 - r1);
                 
                 output[j] += ((r3 * r3) + (i3 * i3)) * taperScale;
             }
@@ -173,5 +172,5 @@ void FrameLib_Multitaper::process()
         
     }
     
-    mAllocator->dealloc(tempMem);
+    dealloc(tempMem);
 }

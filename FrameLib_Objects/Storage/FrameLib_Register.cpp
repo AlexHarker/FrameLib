@@ -1,11 +1,9 @@
 
 #include "FrameLib_Register.h"
 
-// FIX - needs to work for either frame type...
-
 // Constructor
 
-FrameLib_Register::FrameLib_Register(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 2, 1)
+FrameLib_Register::FrameLib_Register(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kStore, "store");
@@ -17,25 +15,25 @@ FrameLib_Register::FrameLib_Register(FrameLib_Context context, FrameLib_Paramete
     Modes mode = (Modes) mParameters.getInt(kMode);
     
     if (mode == kStore)
-        inputMode(1, false, false, false, kFrameAny);
+        setInputMode(1, false, false, false, kFrameAny);
     else
-        inputMode(1, false, true, false);
+        setInputMode(1, false, true, false, kFrameAny);
 }
 
 // Info
 
 std::string FrameLib_Register::objectInfo(bool verbose)
 {
-    return getInfo("Store and recall a vector frame locally: The left input triggers recall, whilst the right input stores (with or without output).",
+    return formatInfo("Store and recall a vector frame locally: The left input triggers recall, whilst the right input stores (with or without output).",
                    "Store and recall a vector frame locally.", verbose);
 }
 
 std::string FrameLib_Register::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return getInfo("Frame to Store - output is optional based on the mode parameter", "Frame to Store", verbose);
+        return formatInfo("Frame to Store - output is optional based on the mode parameter", "Frame to Store", verbose);
     else
-        return getInfo("Trigger Input", "Trigger Input", verbose);
+        return formatInfo("Trigger Input", "Trigger Input", verbose);
 }
 
 std::string FrameLib_Register::outputInfo(unsigned long idx, bool verbose)
@@ -58,17 +56,9 @@ FrameLib_Register::ParameterInfo::ParameterInfo()
 
 void FrameLib_Register::process()
 {
-    // Get Register Input (we can ignore the first input as it is just a trigger)
+    // Copy register input (we can ignore the first input as it is just a trigger)
     
-    unsigned long sizeIn, sizeOut;
-    double *input = getInput(1, &sizeIn);
-    
-    requestOutputSize(0, sizeIn);
+    prepareCopyInputToOutput(1, 0);
     allocateOutputs();
-    
-    double *output = getOutput(0, &sizeOut);
-    
-    // Copy to output
-    
-    copyVector(output, input, sizeOut);
+    copyInputToOutput(1, 0);
 }

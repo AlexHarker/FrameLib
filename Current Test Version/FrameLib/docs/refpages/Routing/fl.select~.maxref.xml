@@ -1,0 +1,43 @@
+<c74object category="Routing" module="FrameLib" name="fl.select~"> 
+ 
+    <digest> 
+        Selects between a number of input frame streams.
+    </digest> 
+ 
+    <description> 
+         The number of inputs is variable. The selected input can be changed with a parameter.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /num_ins [instantiation double]"> 
+            <description> 
+                Sets the number of inputs.
+            </description> 
+        </entry> 
+ 
+        <entry name="1. /input [int]"> 
+            <description> 
+                Sets the current input counting from 1 (or off if out of range).
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Routing</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

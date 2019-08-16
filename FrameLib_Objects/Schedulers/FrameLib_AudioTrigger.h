@@ -6,26 +6,20 @@
 #include "FrameLib_DSP.h"
 #include <vector>
 
-class FrameLib_AudioTrigger : public FrameLib_Scheduler
+class FrameLib_AudioTrigger final : public FrameLib_Scheduler
 {
-    // Parameter Enums and Info
 
-    enum ParameterList { kMaxLength, kLength, kUnits };
-    enum Units { kSamples, kMS, kSeconds };
-    
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
-    
 public:
     
     // Constructor
     
-    FrameLib_AudioTrigger(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_AudioTrigger(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string outputInfo(unsigned long idx, bool verbose);
-    std::string audioInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
+    std::string audioInfo(unsigned long idx, bool verbose) override;
     
 private:
     
@@ -35,12 +29,12 @@ private:
     
     // Object Reset and Block Process
     
-    void objectReset();
-    void blockProcess(double **ins, double **outs, unsigned long blockSize);
+    void objectReset() override;
+    void blockProcess(const double * const *ins, double **outs, unsigned long blockSize) override;
     
     // Schedule
     
-    SchedulerInfo schedule(bool newFrame, bool noAdvance);
+    SchedulerInfo schedule(bool newFrame, bool noAdvance) override;
     
     // Data
     

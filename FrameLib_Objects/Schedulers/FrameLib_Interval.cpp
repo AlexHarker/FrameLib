@@ -1,7 +1,7 @@
 
 #include "FrameLib_Interval.h"
 
-FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Scheduler(context, &sParamInfo, 1, 1)
+FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Scheduler(context, proxy, &sParamInfo, 1, 1)
 {
     mParameters.addDouble(kInterval, "interval", 64, 0);
     mParameters.setMin(0);
@@ -23,13 +23,13 @@ FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, FrameLib_Paramete
 
 std::string FrameLib_Interval::objectInfo(bool verbose)
 {
-    return getInfo("Schedules frames at regular intervals, which can be adjusted using the interval parameter: Output frames are empty.",
+    return formatInfo("Schedules frames at regular intervals, which can be adjusted using the interval parameter: The output is an empty frame.",
                    "Schedules frames at regular intervals, which can be adjusted using the interval parameter.", verbose);
 }
 
 std::string FrameLib_Interval::inputInfo(unsigned long idx, bool verbose)
 {
-    return getInfo("Parameter Update - tagged input updates parameters", "Parameter Update", verbose);
+    return parameterInputInfo(verbose);
 }
 
 std::string FrameLib_Interval::outputInfo(unsigned long idx, bool verbose)
@@ -53,16 +53,16 @@ void FrameLib_Interval::calculateInterval()
 {
     FrameLib_TimeFormat interval = mParameters.getValue(kInterval);
     
-    switch ((Units) (mParameters.getValue(kUnits)))
+    switch (static_cast<Units>(mParameters.getInt(kUnits)))
     {
-        case kHz:           interval = mSamplingRate / interval;    break;
-        case kMS:           interval *= mSamplingRate / 1000.0;     break;
-        case kSeconds:      interval *= mSamplingRate;              break;
+        case kHz:           interval = hzToSamples(interval);           break;
+        case kMS:           interval = msToSamples(interval);           break;
+        case kSeconds:      interval = secondsToSamples(interval);      break;
         case kSamples:      break;
     }
     
     if (!interval)
-        interval = FL_Limits<FrameLib_TimeFormat>::smallest();
+        interval = FrameLib_TimeFormat::smallest();
     
     mInterval = interval;
 }

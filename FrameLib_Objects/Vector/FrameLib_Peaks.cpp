@@ -1,7 +1,7 @@
 
 #include "FrameLib_Peaks.h"
 
-FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, NULL, 1, 3)
+FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 1, 3)
 {
     mParameters.set(serialisedParameters);
 }
@@ -10,7 +10,7 @@ FrameLib_Peaks::FrameLib_Peaks(FrameLib_Context context, FrameLib_Parameters::Se
 
 std::string FrameLib_Peaks::objectInfo(bool verbose)
 {
-    return getInfo("Finds peaks in an input frame (spectrum): "
+    return formatInfo("Finds peaks in an input frame (spectrum): "
                    "Peaks are output in terms of interpolated sample position, interpolated amplitude and peak index. "
                    "The first output is the same size as the input, other outputs are as long as the number of detected peaks.",
                    "Finds peaks in an input frame (spectrum).", verbose);
@@ -23,9 +23,9 @@ std::string FrameLib_Peaks::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Peaks::outputInfo(unsigned long idx, bool verbose)
 {
-    if (idx == 0) return getInfo("Peak Index - for each input sample / bin the output lists the peak it belongs to", "Peak Index", verbose);
-    else if (idx == 1) return getInfo("Peak Position - an interpolated position in samples / bins for each peak", "Peak Position", verbose);
-    else return getInfo("Peak Amplitude - an interpolated amplitude for each peak", "Peak Amplitude", verbose);
+    if (idx == 0) return formatInfo("Peak Index - for each input sample / bin the output lists the peak it belongs to", "Peak Index", verbose);
+    else if (idx == 1) return formatInfo("Peak Position - an interpolated position in samples / bins for each peak", "Peak Position", verbose);
+    else return formatInfo("Peak Amplitude - an interpolated amplitude for each peak", "Peak Amplitude", verbose);
 }
 
 // Helpers
@@ -34,16 +34,18 @@ double FrameLib_Peaks::logValue(double val)
 {
     val = log(val);
     
-    return val < -200.0 ? -200.0 : val;
+    return val < -500.0 ? -500.0 : val;
 }
 
 void FrameLib_Peaks::refinePeak(double& pos, double& amp, double posUncorrected, double vm1, double v0, double vp1)
 {
+    // FIX - neg values won't work with this interpolation - problem??
+    
     // Take log values (avoiding values that are too low)
     
-    vm1 = logValue(vm1);
-    v0 = logValue(v0);
-    vp1 = logValue(vp1);
+    vm1 = logValue(std::max(vm1, 0.0));
+    v0 = logValue(std::max(v0, 0.0));
+    vp1 = logValue(std::max(vp1, 0.0));
     
     // Parabolic interpolation
     
@@ -65,7 +67,7 @@ void FrameLib_Peaks::process()
     unsigned long sizeIn, sizeOut1, sizeOut2, sizeOut3;
     unsigned long nPeaks = 0;
     
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     if (!sizeIn)
         return;
@@ -79,7 +81,7 @@ void FrameLib_Peaks::process()
         if (sizeIn > 3 && (input[1] > input[2]) && (input[1] > input[3]) && (input[1] > input[0]))
             nPeaks++;
     }
-    for (long i = 2; i < (sizeIn - 2); i++)
+    for (unsigned long i = 2; i < (sizeIn - 2); i++)
         if ((input[i] > input[i - 2]) && (input[i] > input[i - 1]) && (input[i] > input[i + 1]) && (input[i] > input[i + 2]))
             nPeaks++;
     
@@ -114,7 +116,7 @@ void FrameLib_Peaks::process()
             }
         }
         
-        for (long i = 2; i < (sizeIn - 2); i++)
+        for (unsigned long i = 2; i < (sizeIn - 2); i++)
         {
             if ((input[i] > input[i - 2]) && (input[i] > input[i - 1]) && (input[i] > input[i + 1]) && (input[i] > input[i + 2]))
             {
@@ -126,21 +128,21 @@ void FrameLib_Peaks::process()
     
     // Set indices
     
-    long binsFilled = 0;
-    long peak = 0;
-    long minPoint = 0;
+    unsigned long binsFilled = 0;
+    unsigned long peak = 0;
+    unsigned long minPoint = 0;
     
     if (nPeaks)
     {
         for (; peak < (nPeaks - 1); peak++)
         {
-            long beg = output2[peak];
-            long end = output2[peak + 1];
+            unsigned long beg = truncToUInt(output2[peak]);
+            unsigned long end = roundToUInt(output2[peak + 1]);
             
             double minValue = input[beg];
             minPoint = beg;
             
-            for (long i = beg; i < end; i++)
+            for (unsigned long i = beg; i < end; i++)
             {
                 if (input[i] < minValue)
                 {

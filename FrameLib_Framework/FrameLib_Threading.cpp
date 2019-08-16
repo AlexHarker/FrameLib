@@ -1,18 +1,18 @@
 
-#include <assert.h>
-
 #include "FrameLib_Threading.h"
 
-#ifdef __APPLE__
+#include <assert.h>
 
-// Thread Mac OS implementation
+#ifdef __linux__
 
-Thread::~Thread()
+// Thread Linux OS implementation
+
+FrameLib_Thread::~FrameLib_Thread()
 {
     assert(!mValid && "Thread not joined before deletion");
 }
 
-void Thread::start()
+void FrameLib_Thread::start()
 {
     // Valid
     
@@ -49,57 +49,169 @@ void Thread::start()
     pthread_create(&mInternal, &threadAttributes, threadStart, this);
 }
 
-void Thread::join()
+void FrameLib_Thread::join()
 {
     if (mValid)
     {
         mValid = false;
-        OSMemoryBarrier();
+        std::atomic_thread_fence(std::memory_order_seq_cst);
         
         // Wait for thread to join before we allow the program to continue
         
-        pthread_join(mInternal, NULL);
+        pthread_join(mInternal, nullptr);
     }
 }
 
-void *Thread::threadStart(void *arg)
+void *FrameLib_Thread::threadStart(void *arg)
 {
-    static_cast<Thread *>(arg)->call();
+    static_cast<FrameLib_Thread *>(arg)->call();
     
-    return NULL;
+    return nullptr;
+}
+
+// Semaphore Linux OS implementation
+
+FrameLib_Semaphore::FrameLib_Semaphore(long maxCount) : mValid(true)
+{
+    sem_init(&mInternal, 0, 0);
+}
+
+FrameLib_Semaphore::~FrameLib_Semaphore()
+{
+    assert(!mValid && "Semaphore not joined before deletion");
+    sem_destroy(&mInternal);
+}
+
+void FrameLib_Semaphore::close()
+{
+    if (mValid)
+    {
+        mValid = false;
+        std::atomic_thread_fence(std::memory_order_seq_cst);
+        
+        // It appears we get the opposite value to the one we want...
+    
+        int value = 0;
+        
+        do {
+            sem_post(&mInternal);
+            sem_getvalue(&mInternal, &value);
+        } while (value < 1);
+    }
+}
+
+void FrameLib_Semaphore::signal(long n)
+{
+    std::atomic_thread_fence(std::memory_order_seq_cst);
+    for (long i = 0; i < n; i++)
+        sem_post(&mInternal);
+}
+
+bool FrameLib_Semaphore::wait()
+{
+    if (mValid)
+        sem_wait(&mInternal);
+    
+    return mValid;
+}
+
+#elif defined(__APPLE__)
+
+// Thread Mac OS implementation
+
+FrameLib_Thread::~FrameLib_Thread()
+{
+    assert(!mValid && "Thread not joined before deletion");
+}
+
+void FrameLib_Thread::start()
+{
+    // Valid
+    
+    mValid = true;
+    
+    // Create thread
+    
+    pthread_attr_t threadAttributes;
+    sched_param schedulingParameters;
+    
+    // Get default attributes and scheduling parameters
+    
+    pthread_attr_init(&threadAttributes);
+    pthread_attr_getschedparam(&threadAttributes, &schedulingParameters);
+    
+    // Set detach state and policy
+    
+    pthread_attr_setdetachstate(&threadAttributes, PTHREAD_CREATE_JOINABLE);
+    pthread_attr_setschedpolicy(&threadAttributes, (mPriority == kAudioPriority) ? SCHED_FIFO : SCHED_OTHER);
+    
+    // Set the priority of the thread before we create it
+    
+    switch (mPriority)
+    {
+        case kAudioPriority:        schedulingParameters.sched_priority = 75;       break;
+        case kHighPriority:         schedulingParameters.sched_priority = 52;       break;
+        case kMediumPriority:       schedulingParameters.sched_priority = 31;       break;
+        case kLowPriority:          schedulingParameters.sched_priority = 15;       break;
+    }
+    
+    // Set the scheduling attributes and create the thread
+    
+    pthread_attr_setschedparam(&threadAttributes, &schedulingParameters);
+    pthread_create(&mInternal, &threadAttributes, threadStart, this);
+}
+
+void FrameLib_Thread::join()
+{
+    if (mValid)
+    {
+        mValid = false;
+        std::atomic_thread_fence(std::memory_order_seq_cst);
+        
+        // Wait for thread to join before we allow the program to continue
+        
+        pthread_join(mInternal, nullptr);
+    }
+}
+
+void *FrameLib_Thread::threadStart(void *arg)
+{
+    static_cast<FrameLib_Thread *>(arg)->call();
+    
+    return nullptr;
 }
 
 // Semaphore Mac OS implementation
 
-Semaphore::Semaphore(long maxCount) : mValid(true)
+FrameLib_Semaphore::FrameLib_Semaphore(long maxCount) : mValid(true)
 {
     semaphore_create(mach_task_self(), &mInternal, SYNC_POLICY_FIFO, 0);
 }
 
-Semaphore::~Semaphore()
+FrameLib_Semaphore::~FrameLib_Semaphore()
 {
     assert(!mValid && "Semaphore not closed before deletion");
     semaphore_destroy(mach_task_self(), mInternal);
 }
 
-void Semaphore::close()
+void FrameLib_Semaphore::close()
 {
     if (mValid)
     {
         mValid = false;
-        OSMemoryBarrier();
+        std::atomic_thread_fence(std::memory_order_seq_cst);
         semaphore_signal_all(mInternal);
     }
 }
 
-void Semaphore::signal(long n)
+void FrameLib_Semaphore::signal(long n)
 {
-    OSMemoryBarrier();
+    std::atomic_thread_fence(std::memory_order_seq_cst);
     for (long i = 0; i < n; i++)
         semaphore_signal(mInternal);
 }
 
-bool Semaphore::wait()
+bool FrameLib_Semaphore::wait()
 {
     if (mValid)
         semaphore_wait(mInternal);
@@ -111,13 +223,13 @@ bool Semaphore::wait()
 
 // Thread Windows OS implementation
 
-Thread::~Thread()
+FrameLib_Thread::~FrameLib_Thread()
 {
-    assert(!mValid && "Thread not closed before deletion");
+    assert(!mValid && "Thread not joined before deletion");
     CloseHandle(mInternal);
 }
 
-void start()
+void FrameLib_Thread::start()
 {
     // Valid
     
@@ -125,7 +237,7 @@ void start()
     
     // Create thread
     
-    mInternal = CreateThread(NULL, 0, threadStart, this, 0, NULL);
+    mInternal = CreateThread(nullptr, 0, threadStart, this, 0, nullptr);
     
     // Set priority
     
@@ -138,22 +250,22 @@ void start()
     }
 }
 
-void Thread::join()
+void FrameLib_Thread::join()
 {
     if (mValid)
     {
         mValid = false;
-        MemoryBarrier();
-        
+        std::atomic_thread_fence(std::memory_order_seq_cst);
+
         // Wait for thread to join before we allow the program to continue
         
         WaitForSingleObject(mInternal, INFINITE);
     }
 }
 
-DWORD WINAPI Thread::threadStart(LPVOID arg)
+DWORD WINAPI FrameLib_Thread::threadStart(LPVOID arg)
 {
-    static_cast<Thread *>(arg)->call();
+    static_cast<FrameLib_Thread *>(arg)->call();
     
     return 0;
 }
@@ -161,40 +273,40 @@ DWORD WINAPI Thread::threadStart(LPVOID arg)
 
 // Semaphore Windows OS implementation
 
-Semaphore::Semaphore(long maxCount) : mValid(true)
+FrameLib_Semaphore::FrameLib_Semaphore(long maxCount) : mValid(true)
 {
-    mInternal = CreateSemaphore(NULL, 0, maxCount, NULL);
+    mInternal = CreateSemaphore(nullptr, 0, maxCount, nullptr);
 }
 
-Semaphore::~Semaphore()
+FrameLib_Semaphore::~FrameLib_Semaphore()
 {
     assert(!mValid && "Semaphore not closed before deletion");
     CloseHandle(mInternal);
 }
 
-void Semaphore::close()
+void FrameLib_Semaphore::close()
 {
     if (mValid)
     {
         mValid = false;
-        MemoryBarrier();
+        std::atomic_thread_fence(std::memory_order_seq_cst);
+
+        // Signal until the count is zero (only reliable way to signal all waiting threads
         
-        // Signal until the count is zero (only realiable way to signal all waiting threads
-        
-        for (long releaseCount = 1; releaseCount; --releaseCount)
+        for (long releaseCount = 2; releaseCount > 1; )
             ReleaseSemaphore(mInternal, 1, &releaseCount);
     }
 }
 
-void Semaphore::signal(long n)
+void FrameLib_Semaphore::signal(long n)
 {
     // N.B. - signalling is unsafe after the semaphore has been closed
     
     MemoryBarrier();
-    ReleaseSemaphore(mInternal, n, NULL);
+    ReleaseSemaphore(mInternal, n, nullptr);
 }
 
-bool Semaphore::wait()
+bool FrameLib_Semaphore::wait()
 {
     if (mValid)
         WaitForSingleObject(mInternal, INFINITE);
@@ -207,18 +319,18 @@ bool Semaphore::wait()
 
 // Triggerable Thread
 
-void TriggerableThread::join()
+void FrameLib_TriggerableThread::join()
 {
     mSemaphore.close();
     mThread.join();
 }
 
-void TriggerableThread::threadEntry(void *thread)
+void FrameLib_TriggerableThread::threadEntry(void *thread)
 {
-    static_cast<TriggerableThread *>(thread)->threadClassEntry();
+    static_cast<FrameLib_TriggerableThread *>(thread)->threadClassEntry();
 }
 
-void TriggerableThread::threadClassEntry()
+void FrameLib_TriggerableThread::threadClassEntry()
 {
     while (mSemaphore.wait())
         doTask();
@@ -227,74 +339,83 @@ void TriggerableThread::threadClassEntry()
 
 // Delegate Thread
 
-void DelegateThread::join()
+void FrameLib_DelegateThread::join()
 {
     mSemaphore.close();
     mThread.join();
 }
 
-bool DelegateThread::signal()
+bool FrameLib_DelegateThread::signal()
 {
-    if (mSignaled || !mFlag.compareAndSwap(0, 1))
+    if (mSignaled || !compareAndSwap(mFlag, 0, 1))
         return false;
     mSignaled = true;
     mSemaphore.signal(1);
     return true;
 }
 
-bool DelegateThread::completed()
+bool FrameLib_DelegateThread::completed()
+{
+    if (!mSignaled || !compareAndSwap(mFlag, 2, 0))
+        return false;
+   
+    mSignaled = false;
+    return true;
+}
+
+bool FrameLib_DelegateThread::waitForCompletion()
 {
     if (!mSignaled)
         return false;
-    while (!mFlag.compareAndSwap(2, 0))
+    while (!compareAndSwap(mFlag, 2, 0))
     {
-        if (mFlag.compareAndSwap(0, 0))
+        if (compareAndSwap(mFlag, 0, 0))
             return false;
     }
     mSignaled = false;
     return true;
 }
 
-void DelegateThread::threadEntry(void *thread)
+void FrameLib_DelegateThread::threadEntry(void *thread)
 {
-    static_cast<DelegateThread *>(thread)->threadClassEntry();
+    static_cast<FrameLib_DelegateThread *>(thread)->threadClassEntry();
 }
 
-void DelegateThread::threadClassEntry()
+void FrameLib_DelegateThread::threadClassEntry()
 {
     while (mSemaphore.wait())
     {
         doTask();
-        mFlag.compareAndSwap(1, 2);
+        compareAndSwap(mFlag, 1, 2);
     }
 }
 
 // Triggerable Thread Set
 
-TriggerableThreadSet::TriggerableThreadSet(Thread::PriorityLevel priority, unsigned int size) : mSemaphore(size)
+TriggerableThreadSet::TriggerableThreadSet(FrameLib_Thread::PriorityLevel priority, unsigned int size) : mSemaphore(size)
 {
     mThreads.resize(size);
     
-    for (std::vector<Thread *>::iterator it = mThreads.begin(); it != mThreads.end(); it++)
-        *it = new Thread(priority, threadEntry, this);
+    for (auto it = mThreads.begin(); it != mThreads.end(); it++)
+        *it = new FrameLib_Thread(priority, threadEntry, this);
 }
 
 TriggerableThreadSet::~TriggerableThreadSet()
 {
-    for (std::vector<Thread *>::iterator it = mThreads.begin(); it != mThreads.end(); it++)
+    for (auto it = mThreads.begin(); it != mThreads.end(); it++)
         delete (*it);
 }
 
 void TriggerableThreadSet::start()
 {
-    for (std::vector<Thread *>::iterator it = mThreads.begin(); it != mThreads.end(); it++)
+    for (auto it = mThreads.begin(); it != mThreads.end(); it++)
         (*it)->start();
 }
 
 void TriggerableThreadSet::join()
 {
     mSemaphore.close();
-    for (std::vector<Thread *>::iterator it = mThreads.begin(); it != mThreads.end(); it++)
+    for (auto it = mThreads.begin(); it != mThreads.end(); it++)
         (*it)->join();
 }
 

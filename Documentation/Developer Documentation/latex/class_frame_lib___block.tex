@@ -1,0 +1,61 @@
+\hypertarget{class_frame_lib___block}{}\section{Frame\+Lib\+\_\+\+Block Class Reference}
+\label{class_frame_lib___block}\index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}}
+
+
+an abstract class that represents either a single \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} object, or a group of connected \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} objects.  
+
+
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+Object.\+h$>$}
+
+Inheritance diagram for Frame\+Lib\+\_\+\+Block\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.723735cm]{class_frame_lib___block}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_frame_lib___block_a00c67dce2872ec851851570f32b2af5b}{Frame\+Lib\+\_\+\+Block} (\hyperlink{_frame_lib___types_8h_a842c5e2e69277690b064bf363c017980}{Object\+Type} type, \hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} context, \hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy} $\ast$proxy)
+\item 
+virtual \hyperlink{class_frame_lib___block_a17c0048595334cb8d63abfcbb77c980d}{$\sim$\+Frame\+Lib\+\_\+\+Block} ()
+\item 
+virtual void \hyperlink{class_frame_lib___block_ac1e9dee6bc2b3f67cb6635d27797a0ea}{set\+Stream} (void $\ast$stream\+Owner, unsigned long stream)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+an abstract class that represents either a single \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} object, or a group of connected \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} objects. 
+
+This abstract class provides a connectivity interface to \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} objects or blocks (groups of \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} objects). Most objects inherit this in the \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} class. Objects that have asynchronous outputs can use this class to host multiple \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} objects and alias the connections correctly. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_frame_lib___block_a00c67dce2872ec851851570f32b2af5b}\label{class_frame_lib___block_a00c67dce2872ec851851570f32b2af5b}} 
+\index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}!Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}}
+\index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}!Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Block()}{FrameLib\_Block()}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+Block\+::\+Frame\+Lib\+\_\+\+Block (\begin{DoxyParamCaption}\item[{\hyperlink{_frame_lib___types_8h_a842c5e2e69277690b064bf363c017980}{Object\+Type}}]{type,  }\item[{\hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context}}]{context,  }\item[{\hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy} $\ast$}]{proxy }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_frame_lib___block_a17c0048595334cb8d63abfcbb77c980d}\label{class_frame_lib___block_a17c0048595334cb8d63abfcbb77c980d}} 
+\index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}!````~Frame\+Lib\+\_\+\+Block@{$\sim$\+Frame\+Lib\+\_\+\+Block}}
+\index{````~Frame\+Lib\+\_\+\+Block@{$\sim$\+Frame\+Lib\+\_\+\+Block}!Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}}
+\subsubsection{\texorpdfstring{$\sim$\+Frame\+Lib\+\_\+\+Block()}{~FrameLib\_Block()}}
+{\footnotesize\ttfamily virtual Frame\+Lib\+\_\+\+Block\+::$\sim$\+Frame\+Lib\+\_\+\+Block (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_frame_lib___block_ac1e9dee6bc2b3f67cb6635d27797a0ea}\label{class_frame_lib___block_ac1e9dee6bc2b3f67cb6635d27797a0ea}} 
+\index{Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}!set\+Stream@{set\+Stream}}
+\index{set\+Stream@{set\+Stream}!Frame\+Lib\+\_\+\+Block@{Frame\+Lib\+\_\+\+Block}}
+\subsubsection{\texorpdfstring{set\+Stream()}{setStream()}}
+{\footnotesize\ttfamily virtual void Frame\+Lib\+\_\+\+Block\+::set\+Stream (\begin{DoxyParamCaption}\item[{void $\ast$}]{stream\+Owner,  }\item[{unsigned long}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___object_8h}{Frame\+Lib\+\_\+\+Object.\+h}\end{DoxyCompactItemize}

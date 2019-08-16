@@ -1,44 +1,42 @@
 
-
-#ifndef FRAMELIB_TEMPLATES_H
-#define FRAMELIB_TEMPLATES_H
+#ifndef FRAMELIB_UNARY_TEMPLATE_H
+#define FRAMELIB_UNARY_TEMPLATE_H
 
 #include "FrameLib_DSP.h"
-#include "FrameLib_Info.h"
-#include <functional>
 
 // OPT - vectorise where appropriate
 
 // Unary (Operator Version)
 
-template <typename Op> class FrameLib_UnaryOp : public FrameLib_Processor
+template <typename Op> class FrameLib_UnaryOp final : public FrameLib_Processor
 {
     
 public:
     
     // Constructor
     
-    FrameLib_UnaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, NULL, 1, 1) {}
+    FrameLib_UnaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 1, 1) {}
     
     // Info
     
-    std::string objectInfo(bool verbose)
+    std::string objectInfo(bool verbose) override
     {
-        return getInfo("Calculates the # of each value in the input frame: The result is a frame of the same size as the input.",
+        return formatInfo("Calculates the # of each value in the input frame: The output is a frame of the same size as the input.",
                        "Calculates the # of each value in the input frame.", getOpString(), verbose);
     }
 
-    std::string inputInfo(unsigned long idx, bool verbose)      { return "Input"; }
-    std::string outputInfo(unsigned long idx, bool verbose)     { return "Result"; }
+    std::string inputInfo(unsigned long idx, bool verbose) override     { return "Input"; }
+    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Result"; }
 
-protected:
+private:
     
     // Process
     
-    void process()
+    void process() override
     {
+        Op op;
         unsigned long size;
-        double *input = getInput(0, &size);
+        const double *input = getInput(0, &size);
         
         requestOutputSize(0, size);
         allocateOutputs();
@@ -46,38 +44,25 @@ protected:
         double *output = getOutput(0, &size);
         
         for (unsigned long i = 0; i < size; i++)
-            output[i] = Op()(input[i]);
+            output[i] = op(input[i]);
     }
     
-    // Description (specialise/override to change description)
+    // Description (specialise to change description)
 
-    virtual const char *getOpString() { return "<unary operation>"; }
+    const char *getOpString() { return "<unary operation>"; }
 };
 
 // Unary Functor
 
-template <double func(double)> struct Unary_Functor
+template<double func(double)>
+struct Unary_Functor
 {
     double operator()(double x) { return func(x); }
 };
 
 // Unary (Function Version)
 
-template <double func(double)> class FrameLib_Unary : public FrameLib_UnaryOp<Unary_Functor<func> >
-{
-    
-public:
-    
-    // Constructor
-    
-    FrameLib_Unary(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner)
-    : FrameLib_UnaryOp < Unary_Functor<func> > (context, serialisedParameters, owner) {}
-
-private:
-    
-    // Description (specialise/override to change description)
-
-    virtual const char *getOpString() { return "<unary operation>"; }
-};
+template<double func(double)>
+using FrameLib_Unary = FrameLib_UnaryOp<Unary_Functor<func>>;
 
 #endif

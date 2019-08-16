@@ -1,0 +1,14 @@
+{
+	"name": "FrameLib",
+	"type": "package",
+	"author": "Alex Harker",
+	"description": "A DSP framework for arbitrary size frame processing with arbitrary sub-sample accurate timing.",
+	"version": "2.1",
+	"major_version": "2",
+	"minor_version": "1",
+	"min_max_version": "7.3",
+	"min_osx_version": "10.7",
+	"min_win_version": "7",
+	"website": "https://github.com/AlexHarker/FrameLib",
+	"relative_path": " "
+}

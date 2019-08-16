@@ -2,62 +2,72 @@
 #ifndef FRAMELIB_CONTEXT_H
 #define FRAMELIB_CONTEXT_H
 
+#include "FrameLib_Types.h"
 #include "FrameLib_Global.h"
+#include "FrameLib_Errors.h"
 
-// The Context Object (used to define non-connectable areas in the host environment)
-// This acts as a proxy to the global object with a suitable reference to the context
+/**
+ 
+ @class FrameLib_Context
+ 
+ @ingroup Hosting
+
+ @brief a class used to represent distinct non-connectable areas in the host environment.
+ 
+ The context acts as a proxy to FrameLib_Global, and contains a suitable pointer reference to the context in the host environment. Resources for each context are held in the global object, and the context is passed as a parameter when creating any FrameLib object.
+ 
+ */
 
 class FrameLib_Context
 {
-    // Type definition for concision
+    /**
+     
+     @class ManagedPointer
+     
+     @brief a managed pointer for a context-related resource.
+
+     This is a non-copyable class that uses RAII to update the reference counted pointer in FrameLib_Global
+     
+     */
     
-    typedef FrameLib_Global Global;
-    
-    // Non-copyable template class for retaining reference counted pointers using RAII
-    
-    template <class T, T *(Global::*getMethod)(void *), void(Global::*releaseMethod)(void *)> class ManagedPointer
+    template <class T, FrameLib_Global::PointerSet<T> FrameLib_Global::*PointerSet>
+    class ManagedPointer
     {
         
     public:
         
+        // Constructor / Destructor
+        
         ManagedPointer(const FrameLib_Context &context) : mGlobal(context.mGlobal), mReference(context.mReference)
         {
-            mPointer = (mGlobal->*getMethod)(mReference);
+            mPointer = (mGlobal->*PointerSet).get(mReference);
         }
         
         ~ManagedPointer()
         {
-            release();
+            (mGlobal->*PointerSet).release(mReference);
+            mPointer = nullptr;
+            mGlobal = nullptr;
+            mReference = nullptr;
         }
         
-        // Release
+        // Non-copyable
         
-        void release()
-        {
-            if (mGlobal)
-                (mGlobal->*releaseMethod)(mReference);
-            mPointer = NULL;
-            mGlobal = NULL;
-            mReference  = NULL;
-        }
-        
-        // Pointer  / Bool Conversion
+        ManagedPointer(const ManagedPointer&) = delete;
+        ManagedPointer& operator=(const ManagedPointer&) = delete;
+    
+        // Pointer dereferencing
         
         T *operator->()         { return mPointer; }
-        operator bool() const   { return mPointer != NULL; }
+        T& operator*()          { return *mPointer; }
         
     private:
         
-        // Deleted
-        
-        ManagedPointer(const ManagedPointer&);
-        ManagedPointer& operator=(const ManagedPointer&);
-        
         // Member Variables
         
-        T *mPointer;
         FrameLib_Global *mGlobal;
         void *mReference;
+        T *mPointer;
     };
 
 public:
@@ -66,14 +76,31 @@ public:
     
     FrameLib_Context(FrameLib_Global *global, void *reference) : mGlobal(global), mReference(reference) {}
     
+    // Comparisions
+    
+    friend bool operator == (const FrameLib_Context& a, const FrameLib_Context& b)
+    {
+        return a.mGlobal == b.mGlobal && a.mReference == b.mReference;
+    }
+    
+    friend bool operator != (const FrameLib_Context& a, const FrameLib_Context& b)
+    {
+        return !(a == b);
+    }
+    
     // Construct one of these objects to retain a relevant object
     
-    typedef ManagedPointer<FrameLib_LocalAllocator, &Global::getAllocator, &Global::releaseAllocator>               Allocator;
-    typedef ManagedPointer<FrameLib_ConnectionQueue, &Global::getConnectionQueue, &Global::releaseConnectionQueue>  ConnectionQueue;
-    typedef ManagedPointer<FrameLib_DSPQueue, &Global::getDSPQueue, &Global::releaseDSPQueue>                       DSPQueue;
+    using Allocator = ManagedPointer<FrameLib_LocalAllocator, &FrameLib_Global::mLocalAllocators>;
+    using ProcessingQueue = ManagedPointer<FrameLib_ProcessingQueue, &FrameLib_Global::mProcessingQueues>;
 
+    // Get the global as a FrameLib_ErrorReporter from the context
+    
+    operator FrameLib_ErrorReporter&() { return *mGlobal; }
+    
 private:
     
+    // Member Variables
+
     FrameLib_Global *mGlobal;
     void *mReference;
 };

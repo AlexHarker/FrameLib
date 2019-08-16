@@ -4,7 +4,7 @@
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_MedianFilter : public FrameLib_Processor
+class FrameLib_MedianFilter final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
@@ -17,13 +17,13 @@ public:
     
     // Constructor
     
-    FrameLib_MedianFilter(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner);
+    FrameLib_MedianFilter(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     
-    std::string objectInfo(bool verbose);
-    std::string inputInfo(unsigned long idx, bool verbose);
-    std::string outputInfo(unsigned long idx, bool verbose);
+    std::string objectInfo(bool verbose) override;
+    std::string inputInfo(unsigned long idx, bool verbose) override;
+    std::string outputInfo(unsigned long idx, bool verbose) override;
 
 private:
     
@@ -32,13 +32,13 @@ private:
     double insertMedian(double *temp, unsigned long *indices, double value, long index, long width);
     double median(double *temp, unsigned long *indices, long width);
     
-    double getPad(double *input, long index, long sizeIn, long width, double padValue);
-    double getWrap(double *input, long index, long sizeIn, long width);
-    double getFold(double *input, long index, long sizeIn, long width);
+    double getPad(const double *input, long index, long sizeIn, double padValue);
+    double getWrap(const double *input, long index, long sizeIn);
+    double getFold(const double *input, long index, long sizeIn);
     
     // Process
     
-    void process();
+    void process() override;
     
     // Data
     

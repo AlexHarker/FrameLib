@@ -2,21 +2,27 @@
 #include "FrameLib_Source.h"
 
 // FIX - source is only sample accurate (not subsample) - add a function to interpolate if neceesary
-// FIX - add delay for alignment purposes
 
 // Constructor
 
-FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_AudioInput(context, &sParamInfo, 2, 1, 1)
+FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_AudioInput(context, proxy, &sParamInfo, 2, 1, 1)
 {
-    mParameters.addDouble(kMaxLength, "length", 16384, 0);
+    // FIX - defaults for when the units are not in samples!
+    
+    mParameters.addDouble(kBufferSize, "buffer_size", 16384, 0);
     mParameters.setMin(0.0);
     mParameters.setInstantiation();
-    mParameters.addInt(kLength, "size", 4096, 1);
+    
+    mParameters.addInt(kLength, "length", 4096, 1);
     mParameters.setMin(0);
+    
     mParameters.addEnum(kUnits, "units", 2);
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
+    
+    mParameters.addDouble(kDelay, "delay", 0);
+    mParameters.setMin(0);
     
     mParameters.set(serialisedParameters);
         
@@ -31,7 +37,7 @@ FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::
 
 std::string FrameLib_Source::objectInfo(bool verbose)
 {
-    return getInfo("Captures audio from the host environment and outputs the most recent values as frames: The size of captured frames is variable. "
+    return formatInfo("Captures audio from the host environment and outputs the most recent values as frames: The size of captured frames is variable. "
                    "Latency is equivalent to the length of the captured frame. The length of the internal buffer determines the maximum frame length.",
                    "Captures audio from the host environment and outputs the most recent values as frames.", verbose);
 }
@@ -39,9 +45,9 @@ std::string FrameLib_Source::objectInfo(bool verbose)
 std::string FrameLib_Source::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+        return parameterInputInfo(verbose);
     else
-        return getInfo("Trigger Frame - triggers capture to output", "Trigger Frame", verbose);
+        return formatInfo("Trigger Frame - triggers capture to output", "Trigger Frame", verbose);
 }
 
 std::string FrameLib_Source::outputInfo(unsigned long idx, bool verbose)
@@ -60,28 +66,28 @@ FrameLib_Source::ParameterInfo FrameLib_Source::sParamInfo;
 
 FrameLib_Source::ParameterInfo::ParameterInfo()
 {
-    add("Sets the internal buffer length in the units specified by the units parameter.");
-    add("Sets the size of output frames.");
-    add("Sets the time units used to determine the buffer length and output size.");
+    add("Sets the internal buffer size in the units specified by the units parameter.");
+    add("Sets the length of output frames in the units specified by the units parameter.");
+    add("Sets the time units used to determine the buffer size and output length.");
+    add("Sets the input delay in the units specified by the units parameter: "
+        "N.B. - there is a minimum delay or latency of the output length.");
 }
 
 // Helpers
 
 unsigned long FrameLib_Source::convertTimeToSamples(double time)
-{
-    Units units = (Units) mParameters.getInt(kUnits);
-    
-    switch (units)
+{    
+    switch (static_cast<Units>(mParameters.getInt(kUnits)))
     {
         case kSamples:  break;
-        case kMS:       time *= mSamplingRate / 1000.0;     break;
-        case kSeconds:  time *= mSamplingRate;              break;
+        case kMS:       time = msToSamples(time);       break;
+        case kSeconds:  time = secondsToSamples(time);  break;
     }
     
-    return round(time);
+    return roundToUInt(time);
 }
 
-void FrameLib_Source::copy(double *input, unsigned long offset, unsigned long size)
+void FrameLib_Source::copy(const double *input, unsigned long offset, unsigned long size)
 {
     if (size)
     {
@@ -90,21 +96,21 @@ void FrameLib_Source::copy(double *input, unsigned long offset, unsigned long si
     }
 }
 
-// Object Reset, Block Process and Process
+// Object Reset, Block Process, Update and Process
 
 void FrameLib_Source::objectReset()
 {
-    unsigned long size = convertTimeToSamples(mParameters.getValue(kMaxLength)) + mMaxBlockSize;
+    unsigned long size = convertTimeToSamples(mParameters.getValue(kBufferSize)) + mMaxBlockSize;
     
     if (size != bufferSize())
         mBuffer.resize(size);
     
-    zeroVector(&mBuffer[0], bufferSize());
+    zeroVector(mBuffer.data(), bufferSize());
     
     mCounter = 0;
 }
 
-void FrameLib_Source::blockProcess(double **ins, double **outs, unsigned long blockSize)
+void FrameLib_Source::blockProcess(const double * const *ins, double **outs, unsigned long blockSize)
 {    
     // Safety
     
@@ -119,11 +125,18 @@ void FrameLib_Source::blockProcess(double **ins, double **outs, unsigned long bl
     copy(ins[0] + size, 0, blockSize - size);
 }
 
+void FrameLib_Source::update()
+{
+    mLength = convertTimeToSamples(mParameters.getValue(kLength));
+}
+
 void FrameLib_Source::process()
 {
     unsigned long sizeOut = mLength;
     
-    FrameLib_TimeFormat inputTime = getInputFrameTime(0);
+    FrameLib_TimeFormat frameTime = getFrameTime();
+    unsigned long delayTime = convertTimeToSamples(mParameters.getValue(kDelay));
+    delayTime = std::max(sizeOut, delayTime);
     
     // Calculate output size
     
@@ -133,16 +146,18 @@ void FrameLib_Source::process()
     
     // Calculate time offset
     
-    long offset = round(getBlockEndTime() - inputTime);
+    unsigned long offset = roundToUInt(getBlockEndTime() - frameTime) + delayTime;
     
     // Safety
     
-    if (!sizeOut || (offset + sizeOut) > bufferSize())
+    if (!sizeOut || offset > bufferSize())
+    {
+        zeroVector(output, sizeOut);
         return;
+    }
     
     // Calculate actual offset into buffer
     
-    offset += sizeOut;
     offset = (offset <= mCounter) ? mCounter - offset : mCounter + bufferSize() - offset;
     
     // Calculate first segment size and copy segments
@@ -150,5 +165,5 @@ void FrameLib_Source::process()
     unsigned long size = ((offset + sizeOut) > bufferSize()) ? bufferSize() - offset : sizeOut;
     
     copyVector(output, &mBuffer[offset], size);
-    copyVector(output + size, &mBuffer[0], (sizeOut - size));
+    copyVector(output + size, mBuffer.data(), (sizeOut - size));
 }

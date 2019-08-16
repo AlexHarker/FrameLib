@@ -1,0 +1,121 @@
+\hypertarget{_frame_lib___fixed_point_8cpp}{}\section{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Fixed\+Point.cpp File Reference}
+\label{_frame_lib___fixed_point_8cpp}\index{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\+Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}}
+{\ttfamily \#include \char`\"{}Frame\+Lib\+\_\+\+Fixed\+Point.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint64\+\_\+t \hyperlink{_frame_lib___fixed_point_8cpp_aee0053b3a3406e08fdab648fdb0dc44b}{lo32\+Bits} (uint64\+\_\+t a)
+\item 
+uint64\+\_\+t \hyperlink{_frame_lib___fixed_point_8cpp_aa6ab1536cd8a80e2309b7c92d7c99b7c}{hi32\+Bits} (uint64\+\_\+t a)
+\item 
+uint64\+\_\+t \hyperlink{_frame_lib___fixed_point_8cpp_ada3dc742db0d208b451634649e7b43f2}{join\+Bits} (uint64\+\_\+t hi, uint64\+\_\+t lo)
+\item 
+uint64\+\_\+t \hyperlink{_frame_lib___fixed_point_8cpp_ab81f7ffd59adc8ab5ca92fcd93779f95}{lo\+To\+Hi\+Bits} (uint64\+\_\+t a)
+\item 
+bool \hyperlink{_frame_lib___fixed_point_8cpp_ac299063112fbf7d932916981cdac3ed5}{check\+High\+Bit} (uint64\+\_\+t a)
+\item 
+bool \hyperlink{_frame_lib___fixed_point_8cpp_adfb3316b227f3540fd09213a21f187d1}{add\+With\+Carry} (uint64\+\_\+t $\ast$result, const uint64\+\_\+t \&a, const uint64\+\_\+t \&b)
+\item 
+bool \hyperlink{_frame_lib___fixed_point_8cpp_a3bc0c126a75bb31b52f82bae1620cfd0}{sub\+With\+Carry} (uint64\+\_\+t $\ast$result, const uint64\+\_\+t \&a, const uint64\+\_\+t \&b)
+\item 
+\hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \hyperlink{_frame_lib___fixed_point_8cpp_a78c2b8a9405fd9e810db0a43bbe03abc}{q\+Mul} (const \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \&a, const uint64\+\_\+t \&int\+Val, const uint64\+\_\+t \&frac\+Val)
+\item 
+\hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \hyperlink{_frame_lib___fixed_point_8cpp_a871a8c7c5ecf72cb21a348b1e86dd17b}{operator$\ast$} (const \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \&a, const \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \&b)
+\item 
+\hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \hyperlink{_frame_lib___fixed_point_8cpp_a2b7132318d02956c6416fef80ad2e29a}{two\+Minus} (const \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \&b)
+\item 
+\hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \hyperlink{_frame_lib___fixed_point_8cpp_a96dfe1fef405deebcdd77739a80baf4e}{operator+} (const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&a, const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&b)
+\item 
+\hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \hyperlink{_frame_lib___fixed_point_8cpp_a29c8d46e78c5c3a20fdfbf9904f0a25d}{operator-\/} (const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&a, const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&b)
+\item 
+\hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \hyperlink{_frame_lib___fixed_point_8cpp_a7c9e13210a3e8f9ef270a4895b1fc0d3}{operator$\ast$} (const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&a, const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&b)
+\item 
+\hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \hyperlink{_frame_lib___fixed_point_8cpp_a746b7c97a3194b33df5e6e04ce0ce5e8}{operator/} (const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&a, const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&b)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_frame_lib___fixed_point_8cpp_adfb3316b227f3540fd09213a21f187d1}\label{_frame_lib___fixed_point_8cpp_adfb3316b227f3540fd09213a21f187d1}} 
+\index{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}!add\+With\+Carry@{add\+With\+Carry}}
+\index{add\+With\+Carry@{add\+With\+Carry}!Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}}
+\subsubsection{\texorpdfstring{add\+With\+Carry()}{addWithCarry()}}
+{\footnotesize\ttfamily bool add\+With\+Carry (\begin{DoxyParamCaption}\item[{uint64\+\_\+t $\ast$}]{result,  }\item[{const uint64\+\_\+t \&}]{a,  }\item[{const uint64\+\_\+t \&}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___fixed_point_8cpp_ac299063112fbf7d932916981cdac3ed5}\label{_frame_lib___fixed_point_8cpp_ac299063112fbf7d932916981cdac3ed5}} 
+\index{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}!check\+High\+Bit@{check\+High\+Bit}}
+\index{check\+High\+Bit@{check\+High\+Bit}!Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}}
+\subsubsection{\texorpdfstring{check\+High\+Bit()}{checkHighBit()}}
+{\footnotesize\ttfamily bool check\+High\+Bit (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{a }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___fixed_point_8cpp_aa6ab1536cd8a80e2309b7c92d7c99b7c}\label{_frame_lib___fixed_point_8cpp_aa6ab1536cd8a80e2309b7c92d7c99b7c}} 
+\index{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}!hi32\+Bits@{hi32\+Bits}}
+\index{hi32\+Bits@{hi32\+Bits}!Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}}
+\subsubsection{\texorpdfstring{hi32\+Bits()}{hi32Bits()}}
+{\footnotesize\ttfamily uint64\+\_\+t hi32\+Bits (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{a }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___fixed_point_8cpp_ada3dc742db0d208b451634649e7b43f2}\label{_frame_lib___fixed_point_8cpp_ada3dc742db0d208b451634649e7b43f2}} 
+\index{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}!join\+Bits@{join\+Bits}}
+\index{join\+Bits@{join\+Bits}!Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}}
+\subsubsection{\texorpdfstring{join\+Bits()}{joinBits()}}
+{\footnotesize\ttfamily uint64\+\_\+t join\+Bits (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{hi,  }\item[{uint64\+\_\+t}]{lo }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___fixed_point_8cpp_aee0053b3a3406e08fdab648fdb0dc44b}\label{_frame_lib___fixed_point_8cpp_aee0053b3a3406e08fdab648fdb0dc44b}} 
+\index{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}!lo32\+Bits@{lo32\+Bits}}
+\index{lo32\+Bits@{lo32\+Bits}!Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}}
+\subsubsection{\texorpdfstring{lo32\+Bits()}{lo32Bits()}}
+{\footnotesize\ttfamily uint64\+\_\+t lo32\+Bits (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{a }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___fixed_point_8cpp_ab81f7ffd59adc8ab5ca92fcd93779f95}\label{_frame_lib___fixed_point_8cpp_ab81f7ffd59adc8ab5ca92fcd93779f95}} 
+\index{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}!lo\+To\+Hi\+Bits@{lo\+To\+Hi\+Bits}}
+\index{lo\+To\+Hi\+Bits@{lo\+To\+Hi\+Bits}!Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}}
+\subsubsection{\texorpdfstring{lo\+To\+Hi\+Bits()}{loToHiBits()}}
+{\footnotesize\ttfamily uint64\+\_\+t lo\+To\+Hi\+Bits (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{a }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___fixed_point_8cpp_a871a8c7c5ecf72cb21a348b1e86dd17b}\label{_frame_lib___fixed_point_8cpp_a871a8c7c5ecf72cb21a348b1e86dd17b}} 
+\index{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} operator$\ast$ (\begin{DoxyParamCaption}\item[{const \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \&}]{a,  }\item[{const \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \&}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___fixed_point_8cpp_a7c9e13210a3e8f9ef270a4895b1fc0d3}\label{_frame_lib___fixed_point_8cpp_a7c9e13210a3e8f9ef270a4895b1fc0d3}} 
+\index{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} operator$\ast$ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&}]{a,  }\item[{const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___fixed_point_8cpp_a96dfe1fef405deebcdd77739a80baf4e}\label{_frame_lib___fixed_point_8cpp_a96dfe1fef405deebcdd77739a80baf4e}} 
+\index{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}!operator+@{operator+}}
+\index{operator+@{operator+}!Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} operator+ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&}]{a,  }\item[{const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___fixed_point_8cpp_a29c8d46e78c5c3a20fdfbf9904f0a25d}\label{_frame_lib___fixed_point_8cpp_a29c8d46e78c5c3a20fdfbf9904f0a25d}} 
+\index{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} operator-\/ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&}]{a,  }\item[{const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___fixed_point_8cpp_a746b7c97a3194b33df5e6e04ce0ce5e8}\label{_frame_lib___fixed_point_8cpp_a746b7c97a3194b33df5e6e04ce0ce5e8}} 
+\index{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}!operator/@{operator/}}
+\index{operator/@{operator/}!Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}}
+\subsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} operator/ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&}]{a,  }\item[{const \hyperlink{class_f_l___f_p}{F\+L\+\_\+\+FP} \&}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___fixed_point_8cpp_a78c2b8a9405fd9e810db0a43bbe03abc}\label{_frame_lib___fixed_point_8cpp_a78c2b8a9405fd9e810db0a43bbe03abc}} 
+\index{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}!q\+Mul@{q\+Mul}}
+\index{q\+Mul@{q\+Mul}!Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}}
+\subsubsection{\texorpdfstring{q\+Mul()}{qMul()}}
+{\footnotesize\ttfamily \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} q\+Mul (\begin{DoxyParamCaption}\item[{const \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \&}]{a,  }\item[{const uint64\+\_\+t \&}]{int\+Val,  }\item[{const uint64\+\_\+t \&}]{frac\+Val }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___fixed_point_8cpp_a3bc0c126a75bb31b52f82bae1620cfd0}\label{_frame_lib___fixed_point_8cpp_a3bc0c126a75bb31b52f82bae1620cfd0}} 
+\index{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}!sub\+With\+Carry@{sub\+With\+Carry}}
+\index{sub\+With\+Carry@{sub\+With\+Carry}!Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}}
+\subsubsection{\texorpdfstring{sub\+With\+Carry()}{subWithCarry()}}
+{\footnotesize\ttfamily bool sub\+With\+Carry (\begin{DoxyParamCaption}\item[{uint64\+\_\+t $\ast$}]{result,  }\item[{const uint64\+\_\+t \&}]{a,  }\item[{const uint64\+\_\+t \&}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_frame_lib___fixed_point_8cpp_a2b7132318d02956c6416fef80ad2e29a}\label{_frame_lib___fixed_point_8cpp_a2b7132318d02956c6416fef80ad2e29a}} 
+\index{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}!two\+Minus@{two\+Minus}}
+\index{two\+Minus@{two\+Minus}!Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp@{Frame\+Lib\+\_\+\+Fixed\+Point.\+cpp}}
+\subsubsection{\texorpdfstring{two\+Minus()}{twoMinus()}}
+{\footnotesize\ttfamily \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} two\+Minus (\begin{DoxyParamCaption}\item[{const \hyperlink{struct_f_l___s_p}{F\+L\+\_\+\+SP} \&}]{b }\end{DoxyParamCaption})}
+

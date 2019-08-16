@@ -1,0 +1,52 @@
+<c74object category="Vector" module="FrameLib" name="fl.medianfilter~"> 
+ 
+    <digest> 
+        Median filter an input frame.
+    </digest> 
+ 
+    <description> 
+         The output is the same size as the input. Each output value is the median of the area surrounding the input value. The width of the area, and the edge behaviours are controllable.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /width [int]"> 
+            <description> 
+                Sets the width of the median filtering in samples.
+            </description> 
+        </entry> 
+ 
+        <entry name="1. /pad [double]"> 
+            <description> 
+                Sets the padding value.
+            </description> 
+        </entry> 
+ 
+        <entry name="2. /mode [enum]"> 
+            <description> 
+                Sets the mode that controls the edge behaviour: pad - the edges are treated as though infinitely padded with the padding value. wrap - the edges are treated as though the frame is wrapped cyclically. fold - the edges are treated as though they fold over (suitable for spectral purposes).<br /> 
+                <bullet>[0] - pad</bullet> 
+                <bullet>[1] - wrap</bullet> 
+                <bullet>[2] - fold</bullet>
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Vector</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>

@@ -1,5 +1,6 @@
 
 #include "FrameLib_OnePoleZero.h"
+#include <cmath>
 
 // Filter Class
 
@@ -29,7 +30,7 @@ double FrameLib_OnePoleZero::OnePoleZero::calculateFilter(double x)
 
 // Constructor
 
-FrameLib_OnePoleZero::FrameLib_OnePoleZero(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, void *owner) : FrameLib_Processor(context, &sParamInfo, 2, 1)
+FrameLib_OnePoleZero::FrameLib_OnePoleZero(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addDouble(kFreq, "freq", 0.0, 0);
     mParameters.setMin(0.0);
@@ -47,16 +48,16 @@ FrameLib_OnePoleZero::FrameLib_OnePoleZero(FrameLib_Context context, FrameLib_Pa
 
 std::string FrameLib_OnePoleZero::objectInfo(bool verbose)
 {
-    return getInfo("Filters input frames using a one pole, one zero filter: The size of the output is equal to the input.",
+    return formatInfo("Filters input frames using a one pole, one zero filter: The size of the output is equal to the input.",
                    "Filters input frames using a one pole, one zero filter.", verbose);
 }
 
 std::string FrameLib_OnePoleZero::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return getInfo("Parameter Update - tagged input updates paramaeters", "Parameter Update", verbose);
+        return parameterInputInfo(verbose);
     else
-        return getInfo("Input Frame - input to be triggered", "Input Frame", verbose);
+        return formatInfo("Input Frame - input to be triggered", "Input Frame", verbose);
 }
 
 std::string FrameLib_OnePoleZero::outputInfo(unsigned long idx, bool verbose)
@@ -79,7 +80,7 @@ FrameLib_OnePoleZero::ParameterInfo::ParameterInfo()
 void FrameLib_OnePoleZero::process()
 {
     OnePoleZero filter;
-    Modes mode = (Modes) mParameters.getValue(kMode);
+    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
     
     bool staticParams = true;
     
@@ -88,7 +89,7 @@ void FrameLib_OnePoleZero::process()
     // Get Input
     
     unsigned long sizeIn, sizeOut;
-    double *input = getInput(0, &sizeIn);
+    const double *input = getInput(0, &sizeIn);
     
     requestOutputSize(0, sizeIn);
     allocateOutputs();

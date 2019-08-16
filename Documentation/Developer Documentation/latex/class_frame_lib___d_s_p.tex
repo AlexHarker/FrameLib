@@ -1,0 +1,535 @@
+\hypertarget{class_frame_lib___d_s_p}{}\section{Frame\+Lib\+\_\+\+D\+SP Class Reference}
+\label{class_frame_lib___d_s_p}\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+
+
+an abstract class containing the core of the D\+SP processing system, which handles single-\/stream scheduling.  
+
+
+
+
+{\ttfamily \#include $<$Frame\+Lib\+\_\+\+D\+S\+P.\+h$>$}
+
+Inheritance diagram for Frame\+Lib\+\_\+\+D\+SP\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.723735cm]{class_frame_lib___d_s_p}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_frame_lib___d_s_p_1_1_scheduler_info}{Scheduler\+Info}
+\begin{DoxyCompactList}\small\item\em a struct for returning scheduling info from the schedule() method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_frame_lib___d_s_p_a05ee5380cce6fa82c2b91c3f08693cc0}{Frame\+Lib\+\_\+\+D\+SP} (\hyperlink{_frame_lib___types_8h_a842c5e2e69277690b064bf363c017980}{Object\+Type} type, \hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context} context, \hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy} $\ast$proxy, \hyperlink{class_frame_lib___parameters_1_1_info}{Frame\+Lib\+\_\+\+Parameters\+::\+Info} $\ast$info, unsigned long n\+Ins, unsigned long n\+Outs, unsigned long n\+Audio\+Chans=0)
+\item 
+\hyperlink{class_frame_lib___d_s_p_a2cf489678b72fe7e46956e69fac182ed}{$\sim$\+Frame\+Lib\+\_\+\+D\+SP} ()
+\item 
+\hyperlink{class_frame_lib___d_s_p_afd70a8e76dc70ac0fbe4d3f9a7a5beaf}{Frame\+Lib\+\_\+\+D\+SP} (const \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} \&)=delete
+\item 
+\hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} \& \hyperlink{class_frame_lib___d_s_p_ab6c001c4768ed250fe9b223de1dc4d5f}{operator=} (const \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} \&)=delete
+\item 
+void \hyperlink{class_frame_lib___d_s_p_a426afa0cf5d8f5c625619da2ccbf9be4}{set\+Fixed\+Input} (unsigned long idx, double $\ast$input, unsigned long size) final
+\item 
+const double $\ast$ \hyperlink{class_frame_lib___d_s_p_aabcf3bae08ab571f455f08bd7cf5e625}{get\+Fixed\+Input} (unsigned long idx, unsigned long $\ast$size) final
+\item 
+void \hyperlink{class_frame_lib___d_s_p_a106b275882df26129c1af0ab89487b65}{block\+Update} (const double $\ast$const $\ast$ins, double $\ast$$\ast$outs, unsigned long \hyperlink{_frame_lib___memory_8cpp_a8ef7d53a4cac28bf580a61f265fcaaa6}{block\+Size}) final
+\item 
+void \hyperlink{class_frame_lib___d_s_p_a0b0edaaaa82b80f3800918283a6a46f0}{reset} (double sampling\+Rate, unsigned long max\+Block\+Size) final
+\item 
+const \hyperlink{class_frame_lib___parameters}{Frame\+Lib\+\_\+\+Parameters} $\ast$ \hyperlink{class_frame_lib___d_s_p_ab1b692f7fe4340b7837319ceed334f02}{get\+Parameters} () const final
+\item 
+\hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} \hyperlink{class_frame_lib___d_s_p_abbe65d74de56ab71e7fba34380bd19dc}{input\+Type} (unsigned long idx) const final
+\item 
+\hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} \hyperlink{class_frame_lib___d_s_p_a14154f7fe15aa51b683e56e8a368b9ad}{output\+Type} (unsigned long idx) const final
+\item 
+void \hyperlink{class_frame_lib___d_s_p_a6584230fa17c0b76a045fd1ec99f0482}{auto\+Ordering\+Connections} () final
+\item 
+void \hyperlink{class_frame_lib___d_s_p_a8c9843103d691ed57e3e265528f575be}{clear\+Auto\+Ordering\+Connections} () final
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_frame_lib___d_s_p_a3d184baeb7b55fa099cb9c4a7393c70c}{set\+IO} (unsigned long n\+Ins, unsigned long n\+Outs, unsigned long n\+Audio\+Chans=0)
+\item 
+void \hyperlink{class_frame_lib___d_s_p_ae88480e015d70507fd1f7853fc17ffa2}{set\+Input\+Mode} (unsigned long idx, bool update, bool trigger, bool switchable, \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} type=\hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854a4bc2388cbdd721f5039a32f95cd92b03}{k\+Frame\+Normal})
+\item 
+void \hyperlink{class_frame_lib___d_s_p_abcbe8babb74a7b85faf8846b4a0ff95f}{set\+Parameter\+Input} (unsigned long idx)
+\item 
+void \hyperlink{class_frame_lib___d_s_p_aa000b56c19ad1fbdc4f3fe56b0ca762d}{add\+Parameter\+Input} ()
+\item 
+void \hyperlink{class_frame_lib___d_s_p_a43da3ff5b57b3c1da655b0e6c7c0b37f}{set\+Output\+Type} (unsigned long idx, \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} type)
+\item 
+void \hyperlink{class_frame_lib___d_s_p_aa2854abee0acbd4e3192a38cb5dc4155}{set\+Current\+Output\+Type} (unsigned long idx, \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} type)
+\item 
+void \hyperlink{class_frame_lib___d_s_p_a2e3084ad267a330ec021bd558edd3f57}{update\+Trigger} (unsigned long idx, bool trigger)
+\item 
+bool \hyperlink{class_frame_lib___d_s_p_a13e269a66e0b9fb40ead089530e49eaa}{is\+Trigger} (unsigned long idx) const
+\item 
+\hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} \hyperlink{class_frame_lib___d_s_p_a2eedff2474f665b5bf7d2f2fa7a1cdc4}{get\+Frame\+Time} () const
+\item 
+\hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} \hyperlink{class_frame_lib___d_s_p_afa420e10b7ea7a300bf106631167cac0}{get\+Valid\+Time} () const
+\item 
+\hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} \hyperlink{class_frame_lib___d_s_p_afd7cae225f75c8cd4bd773bf188961b2}{get\+Input\+Time} () const
+\item 
+\hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} \hyperlink{class_frame_lib___d_s_p_a5734f973e603be4a85764d5f77fa4004}{get\+Current\+Time} () const
+\item 
+\hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} \hyperlink{class_frame_lib___d_s_p_a9c34c56420ff9da196150e8a5307e812}{get\+Block\+Start\+Time} () const
+\item 
+\hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} \hyperlink{class_frame_lib___d_s_p_a8cd169b635307807b29f1d02ea23635e}{get\+Block\+End\+Time} () const
+\item 
+\hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} \hyperlink{class_frame_lib___d_s_p_a705ddc874bc5643f81a0f71894f1ae0c}{get\+Input\+Frame\+Time} (unsigned long idx) const
+\item 
+\hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} \hyperlink{class_frame_lib___d_s_p_a699dda68553ddebd5ca8c70326fb40a5}{get\+Input\+Valid\+Time} (unsigned long idx) const
+\item 
+void \hyperlink{class_frame_lib___d_s_p_a018be5346f473c3c21d5251d6acb85c7}{request\+Output\+Size} (unsigned long idx, size\+\_\+t size)
+\item 
+void \hyperlink{class_frame_lib___d_s_p_a7716bc548b4418d6951dbbada499d9d3}{request\+Added\+Output\+Size} (unsigned long idx, size\+\_\+t size)
+\item 
+bool \hyperlink{class_frame_lib___d_s_p_abbf404ed95c61cfa713c988b10f76202}{allocate\+Outputs} ()
+\item 
+\hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} \hyperlink{class_frame_lib___d_s_p_aba80b7c3546f6e65ab0378628dd2be62}{get\+Input\+Current\+Type} (unsigned long idx) const
+\item 
+const double $\ast$ \hyperlink{class_frame_lib___d_s_p_aea9dee37e1093a12f7764b12ab430a19}{get\+Input} (unsigned long idx, size\+\_\+t $\ast$size) const
+\item 
+const \hyperlink{class_frame_lib___parameters_1_1_serial}{Frame\+Lib\+\_\+\+Parameters\+::\+Serial} $\ast$ \hyperlink{class_frame_lib___d_s_p_ae2d4474b0545fcc2cbb5ffcfcf75fc94}{get\+Input} (unsigned long idx) const
+\item 
+\hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} \hyperlink{class_frame_lib___d_s_p_ad870d652a2ce82ca2dee8eba91ad8dd8}{get\+Output\+Current\+Type} (unsigned long idx) const
+\item 
+double $\ast$ \hyperlink{class_frame_lib___d_s_p_a5d72363b6d5ee02e0c52e499fd28205d}{get\+Output} (unsigned long idx, size\+\_\+t $\ast$size) const
+\item 
+\hyperlink{class_frame_lib___parameters_1_1_serial}{Frame\+Lib\+\_\+\+Parameters\+::\+Serial} $\ast$ \hyperlink{class_frame_lib___d_s_p_a18dc23246a8c9d67a0cc468e782fd5c3}{get\+Output} (unsigned long idx) const
+\item 
+void \hyperlink{class_frame_lib___d_s_p_ab2cd55c5a42a4c0489503a95a7ce0853}{prepare\+Copy\+Input\+To\+Output} (unsigned long in\+Idx, unsigned long out\+Idx)
+\item 
+void \hyperlink{class_frame_lib___d_s_p_abe84c66d723767ef803c58f9ada7a7de}{copy\+Input\+To\+Output} (unsigned long in\+Idx, unsigned long out\+Idx)
+\item 
+\hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} \hyperlink{class_frame_lib___d_s_p_a057aba18ccdae856a2d3db37caab496c}{hz\+To\+Samples} (const \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} \&a)
+\item 
+\hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} \hyperlink{class_frame_lib___d_s_p_a00480b59f602bac240106d31f89cd293}{ms\+To\+Samples} (const \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} \&a)
+\item 
+\hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} \hyperlink{class_frame_lib___d_s_p_a61da3eb72a4528839fd0dd40a6c36ec6}{seconds\+To\+Samples} (const \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} \&a)
+\item 
+double \hyperlink{class_frame_lib___d_s_p_a56400e47d4d4b9fb579734af888245c7}{hz\+To\+Samples} (double a)
+\item 
+double \hyperlink{class_frame_lib___d_s_p_a353058bf6287b8677324c64e12b1ae27}{ms\+To\+Samples} (double a)
+\item 
+double \hyperlink{class_frame_lib___d_s_p_a4162905cc8f98f87081a268e0fbe40e4}{seconds\+To\+Samples} (double a)
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_frame_lib___d_s_p_acd722a6a2939ed16f748288901f75119}{copy\+Vector} (double $\ast$output, const double $\ast$input, unsigned long size)
+\item 
+static void \hyperlink{class_frame_lib___d_s_p_a9da9216b727050afef88ff8e1ec01ba0}{zero\+Vector} (double $\ast$output, unsigned long size)
+\item 
+static void \hyperlink{class_frame_lib___d_s_p_a53100cc66147cbb05374e5d877ad4bd7}{copy\+Vector\+Extend} (double $\ast$output, const double $\ast$input, unsigned long size\+Out, unsigned long size\+In)
+\item 
+static void \hyperlink{class_frame_lib___d_s_p_a11ceb4866739ced35e33ce353d293130}{copy\+Vector\+Wrap} (double $\ast$output, const double $\ast$input, unsigned long size\+Out, unsigned long size\+In)
+\item 
+static void \hyperlink{class_frame_lib___d_s_p_aeb49d3b2882291b61acaefe1182f0e2e}{copy\+Vector\+Zero} (double $\ast$output, const double $\ast$input, unsigned long size\+Out, unsigned long size\+In)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{class_frame_lib___d_s_p_ad638dccde211f80eedca3d898f2c6ff6}{m\+Sampling\+Rate}
+\item 
+unsigned long \hyperlink{class_frame_lib___d_s_p_a92c6d7101aee042e778fc8e09d5c8f77}{m\+Max\+Block\+Size}
+\item 
+\hyperlink{class_frame_lib___parameters}{Frame\+Lib\+\_\+\+Parameters} \hyperlink{class_frame_lib___d_s_p_a01fec01b8ecbf2a80b98f989a568105c}{m\+Parameters}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_frame_lib___d_s_p_a71376d0a2e88daa0b12d080d6b5184a5}{Frame\+Lib\+\_\+\+Processing\+Queue}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+an abstract class containing the core of the D\+SP processing system, which handles single-\/stream scheduling. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a05ee5380cce6fa82c2b91c3f08693cc0}\label{class_frame_lib___d_s_p_a05ee5380cce6fa82c2b91c3f08693cc0}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+D\+S\+P()}{FrameLib\_DSP()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+D\+S\+P\+::\+Frame\+Lib\+\_\+\+D\+SP (\begin{DoxyParamCaption}\item[{\hyperlink{_frame_lib___types_8h_a842c5e2e69277690b064bf363c017980}{Object\+Type}}]{type,  }\item[{\hyperlink{class_frame_lib___context}{Frame\+Lib\+\_\+\+Context}}]{context,  }\item[{\hyperlink{struct_frame_lib___proxy}{Frame\+Lib\+\_\+\+Proxy} $\ast$}]{proxy,  }\item[{\hyperlink{class_frame_lib___parameters_1_1_info}{Frame\+Lib\+\_\+\+Parameters\+::\+Info} $\ast$}]{info,  }\item[{unsigned long}]{n\+Ins,  }\item[{unsigned long}]{n\+Outs,  }\item[{unsigned long}]{n\+Audio\+Chans = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a2cf489678b72fe7e46956e69fac182ed}\label{class_frame_lib___d_s_p_a2cf489678b72fe7e46956e69fac182ed}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!````~Frame\+Lib\+\_\+\+D\+SP@{$\sim$\+Frame\+Lib\+\_\+\+D\+SP}}
+\index{````~Frame\+Lib\+\_\+\+D\+SP@{$\sim$\+Frame\+Lib\+\_\+\+D\+SP}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{$\sim$\+Frame\+Lib\+\_\+\+D\+S\+P()}{~FrameLib\_DSP()}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+D\+S\+P\+::$\sim$\+Frame\+Lib\+\_\+\+D\+SP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_afd70a8e76dc70ac0fbe4d3f9a7a5beaf}\label{class_frame_lib___d_s_p_afd70a8e76dc70ac0fbe4d3f9a7a5beaf}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+D\+S\+P()}{FrameLib\_DSP()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Frame\+Lib\+\_\+\+D\+S\+P\+::\+Frame\+Lib\+\_\+\+D\+SP (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_frame_lib___d_s_p_aa000b56c19ad1fbdc4f3fe56b0ca762d}\label{class_frame_lib___d_s_p_aa000b56c19ad1fbdc4f3fe56b0ca762d}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!add\+Parameter\+Input@{add\+Parameter\+Input}}
+\index{add\+Parameter\+Input@{add\+Parameter\+Input}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{add\+Parameter\+Input()}{addParameterInput()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+D\+S\+P\+::add\+Parameter\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_abbf404ed95c61cfa713c988b10f76202}\label{class_frame_lib___d_s_p_abbf404ed95c61cfa713c988b10f76202}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!allocate\+Outputs@{allocate\+Outputs}}
+\index{allocate\+Outputs@{allocate\+Outputs}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{allocate\+Outputs()}{allocateOutputs()}}
+{\footnotesize\ttfamily bool Frame\+Lib\+\_\+\+D\+S\+P\+::allocate\+Outputs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a6584230fa17c0b76a045fd1ec99f0482}\label{class_frame_lib___d_s_p_a6584230fa17c0b76a045fd1ec99f0482}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!auto\+Ordering\+Connections@{auto\+Ordering\+Connections}}
+\index{auto\+Ordering\+Connections@{auto\+Ordering\+Connections}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{auto\+Ordering\+Connections()}{autoOrderingConnections()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+D\+S\+P\+::auto\+Ordering\+Connections (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_frame_lib___object_afa5bb93302a641c23b5eac7ab0dfe516}{Frame\+Lib\+\_\+\+Object$<$ Frame\+Lib\+\_\+\+Block $>$}.
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a106b275882df26129c1af0ab89487b65}\label{class_frame_lib___d_s_p_a106b275882df26129c1af0ab89487b65}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!block\+Update@{block\+Update}}
+\index{block\+Update@{block\+Update}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{block\+Update()}{blockUpdate()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+D\+S\+P\+::block\+Update (\begin{DoxyParamCaption}\item[{const double $\ast$const $\ast$}]{ins,  }\item[{double $\ast$$\ast$}]{outs,  }\item[{unsigned long}]{block\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_frame_lib___object_abd8e6ba645082041000b7a0b67c9b011}{Frame\+Lib\+\_\+\+Object$<$ Frame\+Lib\+\_\+\+Block $>$}.
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a8c9843103d691ed57e3e265528f575be}\label{class_frame_lib___d_s_p_a8c9843103d691ed57e3e265528f575be}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!clear\+Auto\+Ordering\+Connections@{clear\+Auto\+Ordering\+Connections}}
+\index{clear\+Auto\+Ordering\+Connections@{clear\+Auto\+Ordering\+Connections}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{clear\+Auto\+Ordering\+Connections()}{clearAutoOrderingConnections()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+D\+S\+P\+::clear\+Auto\+Ordering\+Connections (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_frame_lib___object_aac43ebfacb59081f7f60957380df7481}{Frame\+Lib\+\_\+\+Object$<$ Frame\+Lib\+\_\+\+Block $>$}.
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_abe84c66d723767ef803c58f9ada7a7de}\label{class_frame_lib___d_s_p_abe84c66d723767ef803c58f9ada7a7de}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!copy\+Input\+To\+Output@{copy\+Input\+To\+Output}}
+\index{copy\+Input\+To\+Output@{copy\+Input\+To\+Output}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{copy\+Input\+To\+Output()}{copyInputToOutput()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+D\+S\+P\+::copy\+Input\+To\+Output (\begin{DoxyParamCaption}\item[{unsigned long}]{in\+Idx,  }\item[{unsigned long}]{out\+Idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_acd722a6a2939ed16f748288901f75119}\label{class_frame_lib___d_s_p_acd722a6a2939ed16f748288901f75119}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!copy\+Vector@{copy\+Vector}}
+\index{copy\+Vector@{copy\+Vector}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{copy\+Vector()}{copyVector()}}
+{\footnotesize\ttfamily static void Frame\+Lib\+\_\+\+D\+S\+P\+::copy\+Vector (\begin{DoxyParamCaption}\item[{double $\ast$}]{output,  }\item[{const double $\ast$}]{input,  }\item[{unsigned long}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a53100cc66147cbb05374e5d877ad4bd7}\label{class_frame_lib___d_s_p_a53100cc66147cbb05374e5d877ad4bd7}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!copy\+Vector\+Extend@{copy\+Vector\+Extend}}
+\index{copy\+Vector\+Extend@{copy\+Vector\+Extend}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{copy\+Vector\+Extend()}{copyVectorExtend()}}
+{\footnotesize\ttfamily static void Frame\+Lib\+\_\+\+D\+S\+P\+::copy\+Vector\+Extend (\begin{DoxyParamCaption}\item[{double $\ast$}]{output,  }\item[{const double $\ast$}]{input,  }\item[{unsigned long}]{size\+Out,  }\item[{unsigned long}]{size\+In }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a11ceb4866739ced35e33ce353d293130}\label{class_frame_lib___d_s_p_a11ceb4866739ced35e33ce353d293130}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!copy\+Vector\+Wrap@{copy\+Vector\+Wrap}}
+\index{copy\+Vector\+Wrap@{copy\+Vector\+Wrap}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{copy\+Vector\+Wrap()}{copyVectorWrap()}}
+{\footnotesize\ttfamily static void Frame\+Lib\+\_\+\+D\+S\+P\+::copy\+Vector\+Wrap (\begin{DoxyParamCaption}\item[{double $\ast$}]{output,  }\item[{const double $\ast$}]{input,  }\item[{unsigned long}]{size\+Out,  }\item[{unsigned long}]{size\+In }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_aeb49d3b2882291b61acaefe1182f0e2e}\label{class_frame_lib___d_s_p_aeb49d3b2882291b61acaefe1182f0e2e}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!copy\+Vector\+Zero@{copy\+Vector\+Zero}}
+\index{copy\+Vector\+Zero@{copy\+Vector\+Zero}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{copy\+Vector\+Zero()}{copyVectorZero()}}
+{\footnotesize\ttfamily static void Frame\+Lib\+\_\+\+D\+S\+P\+::copy\+Vector\+Zero (\begin{DoxyParamCaption}\item[{double $\ast$}]{output,  }\item[{const double $\ast$}]{input,  }\item[{unsigned long}]{size\+Out,  }\item[{unsigned long}]{size\+In }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a8cd169b635307807b29f1d02ea23635e}\label{class_frame_lib___d_s_p_a8cd169b635307807b29f1d02ea23635e}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!get\+Block\+End\+Time@{get\+Block\+End\+Time}}
+\index{get\+Block\+End\+Time@{get\+Block\+End\+Time}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{get\+Block\+End\+Time()}{getBlockEndTime()}}
+{\footnotesize\ttfamily \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} Frame\+Lib\+\_\+\+D\+S\+P\+::get\+Block\+End\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a9c34c56420ff9da196150e8a5307e812}\label{class_frame_lib___d_s_p_a9c34c56420ff9da196150e8a5307e812}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!get\+Block\+Start\+Time@{get\+Block\+Start\+Time}}
+\index{get\+Block\+Start\+Time@{get\+Block\+Start\+Time}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{get\+Block\+Start\+Time()}{getBlockStartTime()}}
+{\footnotesize\ttfamily \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} Frame\+Lib\+\_\+\+D\+S\+P\+::get\+Block\+Start\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a5734f973e603be4a85764d5f77fa4004}\label{class_frame_lib___d_s_p_a5734f973e603be4a85764d5f77fa4004}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!get\+Current\+Time@{get\+Current\+Time}}
+\index{get\+Current\+Time@{get\+Current\+Time}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{get\+Current\+Time()}{getCurrentTime()}}
+{\footnotesize\ttfamily \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} Frame\+Lib\+\_\+\+D\+S\+P\+::get\+Current\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_aabcf3bae08ab571f455f08bd7cf5e625}\label{class_frame_lib___d_s_p_aabcf3bae08ab571f455f08bd7cf5e625}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!get\+Fixed\+Input@{get\+Fixed\+Input}}
+\index{get\+Fixed\+Input@{get\+Fixed\+Input}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{get\+Fixed\+Input()}{getFixedInput()}}
+{\footnotesize\ttfamily const double $\ast$ Frame\+Lib\+\_\+\+D\+S\+P\+::get\+Fixed\+Input (\begin{DoxyParamCaption}\item[{unsigned long}]{idx,  }\item[{unsigned long $\ast$}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_frame_lib___object_ab34877668c8b6a2ca5efa6bc10368820}{Frame\+Lib\+\_\+\+Object$<$ Frame\+Lib\+\_\+\+Block $>$}.
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a2eedff2474f665b5bf7d2f2fa7a1cdc4}\label{class_frame_lib___d_s_p_a2eedff2474f665b5bf7d2f2fa7a1cdc4}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!get\+Frame\+Time@{get\+Frame\+Time}}
+\index{get\+Frame\+Time@{get\+Frame\+Time}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{get\+Frame\+Time()}{getFrameTime()}}
+{\footnotesize\ttfamily \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} Frame\+Lib\+\_\+\+D\+S\+P\+::get\+Frame\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_aea9dee37e1093a12f7764b12ab430a19}\label{class_frame_lib___d_s_p_aea9dee37e1093a12f7764b12ab430a19}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!get\+Input@{get\+Input}}
+\index{get\+Input@{get\+Input}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{get\+Input()}{getInput()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const double $\ast$ Frame\+Lib\+\_\+\+D\+S\+P\+::get\+Input (\begin{DoxyParamCaption}\item[{unsigned long}]{idx,  }\item[{size\+\_\+t $\ast$}]{size }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_ae2d4474b0545fcc2cbb5ffcfcf75fc94}\label{class_frame_lib___d_s_p_ae2d4474b0545fcc2cbb5ffcfcf75fc94}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!get\+Input@{get\+Input}}
+\index{get\+Input@{get\+Input}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{get\+Input()}{getInput()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \hyperlink{class_frame_lib___parameters_1_1_serial}{Frame\+Lib\+\_\+\+Parameters\+::\+Serial} $\ast$ Frame\+Lib\+\_\+\+D\+S\+P\+::get\+Input (\begin{DoxyParamCaption}\item[{unsigned long}]{idx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_aba80b7c3546f6e65ab0378628dd2be62}\label{class_frame_lib___d_s_p_aba80b7c3546f6e65ab0378628dd2be62}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!get\+Input\+Current\+Type@{get\+Input\+Current\+Type}}
+\index{get\+Input\+Current\+Type@{get\+Input\+Current\+Type}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{get\+Input\+Current\+Type()}{getInputCurrentType()}}
+{\footnotesize\ttfamily \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} Frame\+Lib\+\_\+\+D\+S\+P\+::get\+Input\+Current\+Type (\begin{DoxyParamCaption}\item[{unsigned long}]{idx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a705ddc874bc5643f81a0f71894f1ae0c}\label{class_frame_lib___d_s_p_a705ddc874bc5643f81a0f71894f1ae0c}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!get\+Input\+Frame\+Time@{get\+Input\+Frame\+Time}}
+\index{get\+Input\+Frame\+Time@{get\+Input\+Frame\+Time}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{get\+Input\+Frame\+Time()}{getInputFrameTime()}}
+{\footnotesize\ttfamily \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} Frame\+Lib\+\_\+\+D\+S\+P\+::get\+Input\+Frame\+Time (\begin{DoxyParamCaption}\item[{unsigned long}]{idx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_afd7cae225f75c8cd4bd773bf188961b2}\label{class_frame_lib___d_s_p_afd7cae225f75c8cd4bd773bf188961b2}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!get\+Input\+Time@{get\+Input\+Time}}
+\index{get\+Input\+Time@{get\+Input\+Time}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{get\+Input\+Time()}{getInputTime()}}
+{\footnotesize\ttfamily \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} Frame\+Lib\+\_\+\+D\+S\+P\+::get\+Input\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a699dda68553ddebd5ca8c70326fb40a5}\label{class_frame_lib___d_s_p_a699dda68553ddebd5ca8c70326fb40a5}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!get\+Input\+Valid\+Time@{get\+Input\+Valid\+Time}}
+\index{get\+Input\+Valid\+Time@{get\+Input\+Valid\+Time}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{get\+Input\+Valid\+Time()}{getInputValidTime()}}
+{\footnotesize\ttfamily \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} Frame\+Lib\+\_\+\+D\+S\+P\+::get\+Input\+Valid\+Time (\begin{DoxyParamCaption}\item[{unsigned long}]{idx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a5d72363b6d5ee02e0c52e499fd28205d}\label{class_frame_lib___d_s_p_a5d72363b6d5ee02e0c52e499fd28205d}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!get\+Output@{get\+Output}}
+\index{get\+Output@{get\+Output}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{get\+Output()}{getOutput()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily double $\ast$ Frame\+Lib\+\_\+\+D\+S\+P\+::get\+Output (\begin{DoxyParamCaption}\item[{unsigned long}]{idx,  }\item[{size\+\_\+t $\ast$}]{size }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a18dc23246a8c9d67a0cc468e782fd5c3}\label{class_frame_lib___d_s_p_a18dc23246a8c9d67a0cc468e782fd5c3}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!get\+Output@{get\+Output}}
+\index{get\+Output@{get\+Output}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{get\+Output()}{getOutput()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{class_frame_lib___parameters_1_1_serial}{Frame\+Lib\+\_\+\+Parameters\+::\+Serial} $\ast$ Frame\+Lib\+\_\+\+D\+S\+P\+::get\+Output (\begin{DoxyParamCaption}\item[{unsigned long}]{idx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_ad870d652a2ce82ca2dee8eba91ad8dd8}\label{class_frame_lib___d_s_p_ad870d652a2ce82ca2dee8eba91ad8dd8}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!get\+Output\+Current\+Type@{get\+Output\+Current\+Type}}
+\index{get\+Output\+Current\+Type@{get\+Output\+Current\+Type}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{get\+Output\+Current\+Type()}{getOutputCurrentType()}}
+{\footnotesize\ttfamily \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} Frame\+Lib\+\_\+\+D\+S\+P\+::get\+Output\+Current\+Type (\begin{DoxyParamCaption}\item[{unsigned long}]{idx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_ab1b692f7fe4340b7837319ceed334f02}\label{class_frame_lib___d_s_p_ab1b692f7fe4340b7837319ceed334f02}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!get\+Parameters@{get\+Parameters}}
+\index{get\+Parameters@{get\+Parameters}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{get\+Parameters()}{getParameters()}}
+{\footnotesize\ttfamily const \hyperlink{class_frame_lib___parameters}{Frame\+Lib\+\_\+\+Parameters}$\ast$ Frame\+Lib\+\_\+\+D\+S\+P\+::get\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{class_frame_lib___object_ac90a6770aeef26ee1601889dc16dba56}{Frame\+Lib\+\_\+\+Object$<$ Frame\+Lib\+\_\+\+Block $>$}.
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_afa420e10b7ea7a300bf106631167cac0}\label{class_frame_lib___d_s_p_afa420e10b7ea7a300bf106631167cac0}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!get\+Valid\+Time@{get\+Valid\+Time}}
+\index{get\+Valid\+Time@{get\+Valid\+Time}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{get\+Valid\+Time()}{getValidTime()}}
+{\footnotesize\ttfamily \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} Frame\+Lib\+\_\+\+D\+S\+P\+::get\+Valid\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a057aba18ccdae856a2d3db37caab496c}\label{class_frame_lib___d_s_p_a057aba18ccdae856a2d3db37caab496c}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!hz\+To\+Samples@{hz\+To\+Samples}}
+\index{hz\+To\+Samples@{hz\+To\+Samples}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{hz\+To\+Samples()}{hzToSamples()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} Frame\+Lib\+\_\+\+D\+S\+P\+::hz\+To\+Samples (\begin{DoxyParamCaption}\item[{const \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a56400e47d4d4b9fb579734af888245c7}\label{class_frame_lib___d_s_p_a56400e47d4d4b9fb579734af888245c7}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!hz\+To\+Samples@{hz\+To\+Samples}}
+\index{hz\+To\+Samples@{hz\+To\+Samples}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{hz\+To\+Samples()}{hzToSamples()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double Frame\+Lib\+\_\+\+D\+S\+P\+::hz\+To\+Samples (\begin{DoxyParamCaption}\item[{double}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_abbe65d74de56ab71e7fba34380bd19dc}\label{class_frame_lib___d_s_p_abbe65d74de56ab71e7fba34380bd19dc}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!input\+Type@{input\+Type}}
+\index{input\+Type@{input\+Type}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{input\+Type()}{inputType()}}
+{\footnotesize\ttfamily \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} Frame\+Lib\+\_\+\+D\+S\+P\+::input\+Type (\begin{DoxyParamCaption}\item[{unsigned long}]{idx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_frame_lib___object_ab1ab1ae8180bb8b7e881aac6a4e1066c}{Frame\+Lib\+\_\+\+Object$<$ Frame\+Lib\+\_\+\+Block $>$}.
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a13e269a66e0b9fb40ead089530e49eaa}\label{class_frame_lib___d_s_p_a13e269a66e0b9fb40ead089530e49eaa}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!is\+Trigger@{is\+Trigger}}
+\index{is\+Trigger@{is\+Trigger}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{is\+Trigger()}{isTrigger()}}
+{\footnotesize\ttfamily bool Frame\+Lib\+\_\+\+D\+S\+P\+::is\+Trigger (\begin{DoxyParamCaption}\item[{unsigned long}]{idx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a00480b59f602bac240106d31f89cd293}\label{class_frame_lib___d_s_p_a00480b59f602bac240106d31f89cd293}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!ms\+To\+Samples@{ms\+To\+Samples}}
+\index{ms\+To\+Samples@{ms\+To\+Samples}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{ms\+To\+Samples()}{msToSamples()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} Frame\+Lib\+\_\+\+D\+S\+P\+::ms\+To\+Samples (\begin{DoxyParamCaption}\item[{const \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a353058bf6287b8677324c64e12b1ae27}\label{class_frame_lib___d_s_p_a353058bf6287b8677324c64e12b1ae27}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!ms\+To\+Samples@{ms\+To\+Samples}}
+\index{ms\+To\+Samples@{ms\+To\+Samples}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{ms\+To\+Samples()}{msToSamples()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double Frame\+Lib\+\_\+\+D\+S\+P\+::ms\+To\+Samples (\begin{DoxyParamCaption}\item[{double}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_ab6c001c4768ed250fe9b223de1dc4d5f}\label{class_frame_lib___d_s_p_ab6c001c4768ed250fe9b223de1dc4d5f}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!operator=@{operator=}}
+\index{operator=@{operator=}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP}\& Frame\+Lib\+\_\+\+D\+S\+P\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_frame_lib___d_s_p}{Frame\+Lib\+\_\+\+D\+SP} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a14154f7fe15aa51b683e56e8a368b9ad}\label{class_frame_lib___d_s_p_a14154f7fe15aa51b683e56e8a368b9ad}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!output\+Type@{output\+Type}}
+\index{output\+Type@{output\+Type}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{output\+Type()}{outputType()}}
+{\footnotesize\ttfamily \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type} Frame\+Lib\+\_\+\+D\+S\+P\+::output\+Type (\begin{DoxyParamCaption}\item[{unsigned long}]{idx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_frame_lib___object_a03eb408844f15d8f73cee67f43149b9d}{Frame\+Lib\+\_\+\+Object$<$ Frame\+Lib\+\_\+\+Block $>$}.
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_ab2cd55c5a42a4c0489503a95a7ce0853}\label{class_frame_lib___d_s_p_ab2cd55c5a42a4c0489503a95a7ce0853}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!prepare\+Copy\+Input\+To\+Output@{prepare\+Copy\+Input\+To\+Output}}
+\index{prepare\+Copy\+Input\+To\+Output@{prepare\+Copy\+Input\+To\+Output}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{prepare\+Copy\+Input\+To\+Output()}{prepareCopyInputToOutput()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+D\+S\+P\+::prepare\+Copy\+Input\+To\+Output (\begin{DoxyParamCaption}\item[{unsigned long}]{in\+Idx,  }\item[{unsigned long}]{out\+Idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a7716bc548b4418d6951dbbada499d9d3}\label{class_frame_lib___d_s_p_a7716bc548b4418d6951dbbada499d9d3}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!request\+Added\+Output\+Size@{request\+Added\+Output\+Size}}
+\index{request\+Added\+Output\+Size@{request\+Added\+Output\+Size}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{request\+Added\+Output\+Size()}{requestAddedOutputSize()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+D\+S\+P\+::request\+Added\+Output\+Size (\begin{DoxyParamCaption}\item[{unsigned long}]{idx,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a018be5346f473c3c21d5251d6acb85c7}\label{class_frame_lib___d_s_p_a018be5346f473c3c21d5251d6acb85c7}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!request\+Output\+Size@{request\+Output\+Size}}
+\index{request\+Output\+Size@{request\+Output\+Size}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{request\+Output\+Size()}{requestOutputSize()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+D\+S\+P\+::request\+Output\+Size (\begin{DoxyParamCaption}\item[{unsigned long}]{idx,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a0b0edaaaa82b80f3800918283a6a46f0}\label{class_frame_lib___d_s_p_a0b0edaaaa82b80f3800918283a6a46f0}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!reset@{reset}}
+\index{reset@{reset}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+D\+S\+P\+::reset (\begin{DoxyParamCaption}\item[{double}]{sampling\+Rate,  }\item[{unsigned long}]{max\+Block\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_frame_lib___object_aeb02311ab422dd569aeb982e31a66893}{Frame\+Lib\+\_\+\+Object$<$ Frame\+Lib\+\_\+\+Block $>$}.
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a61da3eb72a4528839fd0dd40a6c36ec6}\label{class_frame_lib___d_s_p_a61da3eb72a4528839fd0dd40a6c36ec6}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!seconds\+To\+Samples@{seconds\+To\+Samples}}
+\index{seconds\+To\+Samples@{seconds\+To\+Samples}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{seconds\+To\+Samples()}{secondsToSamples()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} Frame\+Lib\+\_\+\+D\+S\+P\+::seconds\+To\+Samples (\begin{DoxyParamCaption}\item[{const \hyperlink{struct_frame_lib___time_format}{Frame\+Lib\+\_\+\+Time\+Format} \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a4162905cc8f98f87081a268e0fbe40e4}\label{class_frame_lib___d_s_p_a4162905cc8f98f87081a268e0fbe40e4}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!seconds\+To\+Samples@{seconds\+To\+Samples}}
+\index{seconds\+To\+Samples@{seconds\+To\+Samples}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{seconds\+To\+Samples()}{secondsToSamples()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double Frame\+Lib\+\_\+\+D\+S\+P\+::seconds\+To\+Samples (\begin{DoxyParamCaption}\item[{double}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_aa2854abee0acbd4e3192a38cb5dc4155}\label{class_frame_lib___d_s_p_aa2854abee0acbd4e3192a38cb5dc4155}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!set\+Current\+Output\+Type@{set\+Current\+Output\+Type}}
+\index{set\+Current\+Output\+Type@{set\+Current\+Output\+Type}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{set\+Current\+Output\+Type()}{setCurrentOutputType()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+D\+S\+P\+::set\+Current\+Output\+Type (\begin{DoxyParamCaption}\item[{unsigned long}]{idx,  }\item[{\hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a426afa0cf5d8f5c625619da2ccbf9be4}\label{class_frame_lib___d_s_p_a426afa0cf5d8f5c625619da2ccbf9be4}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!set\+Fixed\+Input@{set\+Fixed\+Input}}
+\index{set\+Fixed\+Input@{set\+Fixed\+Input}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{set\+Fixed\+Input()}{setFixedInput()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+D\+S\+P\+::set\+Fixed\+Input (\begin{DoxyParamCaption}\item[{unsigned long}]{idx,  }\item[{double $\ast$}]{input,  }\item[{unsigned long}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{class_frame_lib___object_a0d3bed42a21ebf248366f4457722beff}{Frame\+Lib\+\_\+\+Object$<$ Frame\+Lib\+\_\+\+Block $>$}.
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_ae88480e015d70507fd1f7853fc17ffa2}\label{class_frame_lib___d_s_p_ae88480e015d70507fd1f7853fc17ffa2}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!set\+Input\+Mode@{set\+Input\+Mode}}
+\index{set\+Input\+Mode@{set\+Input\+Mode}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{set\+Input\+Mode()}{setInputMode()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+D\+S\+P\+::set\+Input\+Mode (\begin{DoxyParamCaption}\item[{unsigned long}]{idx,  }\item[{bool}]{update,  }\item[{bool}]{trigger,  }\item[{bool}]{switchable,  }\item[{\hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type}}]{type = {\ttfamily \hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854a4bc2388cbdd721f5039a32f95cd92b03}{k\+Frame\+Normal}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a3d184baeb7b55fa099cb9c4a7393c70c}\label{class_frame_lib___d_s_p_a3d184baeb7b55fa099cb9c4a7393c70c}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!set\+IO@{set\+IO}}
+\index{set\+IO@{set\+IO}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{set\+I\+O()}{setIO()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+D\+S\+P\+::set\+IO (\begin{DoxyParamCaption}\item[{unsigned long}]{n\+Ins,  }\item[{unsigned long}]{n\+Outs,  }\item[{unsigned long}]{n\+Audio\+Chans = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a43da3ff5b57b3c1da655b0e6c7c0b37f}\label{class_frame_lib___d_s_p_a43da3ff5b57b3c1da655b0e6c7c0b37f}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!set\+Output\+Type@{set\+Output\+Type}}
+\index{set\+Output\+Type@{set\+Output\+Type}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{set\+Output\+Type()}{setOutputType()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+D\+S\+P\+::set\+Output\+Type (\begin{DoxyParamCaption}\item[{unsigned long}]{idx,  }\item[{\hyperlink{_frame_lib___types_8h_ad495a9f61af7fff07d7e97979d1ab854}{Frame\+Type}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_abcbe8babb74a7b85faf8846b4a0ff95f}\label{class_frame_lib___d_s_p_abcbe8babb74a7b85faf8846b4a0ff95f}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!set\+Parameter\+Input@{set\+Parameter\+Input}}
+\index{set\+Parameter\+Input@{set\+Parameter\+Input}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{set\+Parameter\+Input()}{setParameterInput()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+D\+S\+P\+::set\+Parameter\+Input (\begin{DoxyParamCaption}\item[{unsigned long}]{idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a2e3084ad267a330ec021bd558edd3f57}\label{class_frame_lib___d_s_p_a2e3084ad267a330ec021bd558edd3f57}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!update\+Trigger@{update\+Trigger}}
+\index{update\+Trigger@{update\+Trigger}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{update\+Trigger()}{updateTrigger()}}
+{\footnotesize\ttfamily void Frame\+Lib\+\_\+\+D\+S\+P\+::update\+Trigger (\begin{DoxyParamCaption}\item[{unsigned long}]{idx,  }\item[{bool}]{trigger }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a9da9216b727050afef88ff8e1ec01ba0}\label{class_frame_lib___d_s_p_a9da9216b727050afef88ff8e1ec01ba0}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!zero\+Vector@{zero\+Vector}}
+\index{zero\+Vector@{zero\+Vector}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{zero\+Vector()}{zeroVector()}}
+{\footnotesize\ttfamily static void Frame\+Lib\+\_\+\+D\+S\+P\+::zero\+Vector (\begin{DoxyParamCaption}\item[{double $\ast$}]{output,  }\item[{unsigned long}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a71376d0a2e88daa0b12d080d6b5184a5}\label{class_frame_lib___d_s_p_a71376d0a2e88daa0b12d080d6b5184a5}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}}
+\index{Frame\+Lib\+\_\+\+Processing\+Queue@{Frame\+Lib\+\_\+\+Processing\+Queue}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{Frame\+Lib\+\_\+\+Processing\+Queue}{FrameLib\_ProcessingQueue}}
+{\footnotesize\ttfamily friend class \hyperlink{class_frame_lib___processing_queue}{Frame\+Lib\+\_\+\+Processing\+Queue}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a92c6d7101aee042e778fc8e09d5c8f77}\label{class_frame_lib___d_s_p_a92c6d7101aee042e778fc8e09d5c8f77}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!m\+Max\+Block\+Size@{m\+Max\+Block\+Size}}
+\index{m\+Max\+Block\+Size@{m\+Max\+Block\+Size}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{m\+Max\+Block\+Size}{mMaxBlockSize}}
+{\footnotesize\ttfamily unsigned long Frame\+Lib\+\_\+\+D\+S\+P\+::m\+Max\+Block\+Size\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_a01fec01b8ecbf2a80b98f989a568105c}\label{class_frame_lib___d_s_p_a01fec01b8ecbf2a80b98f989a568105c}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!m\+Parameters@{m\+Parameters}}
+\index{m\+Parameters@{m\+Parameters}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{m\+Parameters}{mParameters}}
+{\footnotesize\ttfamily \hyperlink{class_frame_lib___parameters}{Frame\+Lib\+\_\+\+Parameters} Frame\+Lib\+\_\+\+D\+S\+P\+::m\+Parameters\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_frame_lib___d_s_p_ad638dccde211f80eedca3d898f2c6ff6}\label{class_frame_lib___d_s_p_ad638dccde211f80eedca3d898f2c6ff6}} 
+\index{Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}!m\+Sampling\+Rate@{m\+Sampling\+Rate}}
+\index{m\+Sampling\+Rate@{m\+Sampling\+Rate}!Frame\+Lib\+\_\+\+D\+SP@{Frame\+Lib\+\_\+\+D\+SP}}
+\subsubsection{\texorpdfstring{m\+Sampling\+Rate}{mSamplingRate}}
+{\footnotesize\ttfamily double Frame\+Lib\+\_\+\+D\+S\+P\+::m\+Sampling\+Rate\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___d_s_p_8h}{Frame\+Lib\+\_\+\+D\+S\+P.\+h}\item 
+/\+Users/alexharker/\+Documents/\+Max Externals/\+Frame\+Lib/\+Frame\+Lib\+\_\+\+Framework/\hyperlink{_frame_lib___d_s_p_8cpp}{Frame\+Lib\+\_\+\+D\+S\+P.\+cpp}\end{DoxyCompactItemize}

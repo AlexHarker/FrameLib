@@ -1,0 +1,59 @@
+<c74object category="Vector" module="FrameLib" name="fl.shift~"> 
+ 
+    <digest> 
+        Shifts an input frame either with padding, or cyclically.
+    </digest> 
+ 
+    <description> 
+         The output is the same length as the input. Output can be shifted left or right in the frame. When in pad mode values are moved out on one side and padded on the other, otherwise the shift is cyclical.
+    </description> 
+ 
+    <misc name="Parameters"> 
+ 
+        <entry name="0. /shift [double]"> 
+            <description> 
+                Sets the shift amount (-ve for left shift / +ve for right shift).
+            </description> 
+        </entry> 
+ 
+        <entry name="1. /pad [double]"> 
+            <description> 
+                Sets the padding value.
+            </description> 
+        </entry> 
+ 
+        <entry name="2. /mode [enum]"> 
+            <description> 
+                Sets the shift mode. pad - values are replaced with the padding value. wrap - values are wrapped cyclically.<br /> 
+                <bullet>[0] - pad</bullet> 
+                <bullet>[1] - wrap</bullet>
+            </description> 
+        </entry> 
+ 
+        <entry name="3. /units [enum]"> 
+            <description> 
+                Sets units for the shift (samples or ratio of the input length [-1 to 1]).<br /> 
+                <bullet>[0] - samples</bullet> 
+                <bullet>[1] - ratios</bullet>
+            </description> 
+        </entry> 
+ 
+    </misc> 
+ 
+    <metadatalist> 
+        <metadata name="author">Alex Harker</metadata> 
+        <metadata name="tag">FrameLib</metadata> 
+        <metadata name="tag">Vector</metadata> 
+    </metadatalist> 
+ 
+    <seealsolist> 
+    </seealsolist> 
+    <misc name="Discussion"> 
+        <entry name="Keywords"> 
+            <description> 
+                boilerplate keywords
+            </description> 
+        </entry> 
+    </misc> 
+ 
+</c74object>
