@@ -351,7 +351,7 @@ class TriggerableThreadSet
     
 public:
     
-    TriggerableThreadSet(FrameLib_Thread::PriorityLevel priority, unsigned int size);
+    TriggerableThreadSet(FrameLib_Thread::PriorityLevel priority, int32_t size);
     virtual ~TriggerableThreadSet();
     
     // Start and join
@@ -361,11 +361,11 @@ public:
     
     // Trigger the threads to do something
     
-    void signal(long n) { mSemaphore.signal(n); };
+    void signal(int32_t n) { mSemaphore.signal(n); };
 
     // Get the size
     
-    unsigned long size() { return mThreads.size(); };
+    int32_t size() { return static_cast<int32_t>(mThreads.size()); };
 
 private:
     
