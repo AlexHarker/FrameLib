@@ -19,7 +19,7 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object)
         // Get time
         
         mClock.start();
-        unsigned long count = 0;
+        int count = 0;
         
         while (mTop)
         {
