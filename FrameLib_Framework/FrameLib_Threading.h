@@ -351,7 +351,7 @@ class TriggerableThreadSet
     
 public:
     
-    TriggerableThreadSet(FrameLib_Thread::PriorityLevel priority, int32_t size);
+    TriggerableThreadSet(FrameLib_Thread::PriorityLevel priority, unsigned int size);
     virtual ~TriggerableThreadSet();
     
     // Start and join
@@ -365,7 +365,7 @@ public:
 
     // Get the size
     
-    int32_t size() { return static_cast<int32_t>(mThreads.size()); };
+    unsigned int size() { return static_cast<unsigned int>(mThreads.size()); };
 
 private:
     

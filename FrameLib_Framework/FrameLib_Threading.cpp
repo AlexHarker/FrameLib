@@ -392,7 +392,8 @@ void FrameLib_DelegateThread::threadClassEntry()
 
 // Triggerable Thread Set
 
-TriggerableThreadSet::TriggerableThreadSet(FrameLib_Thread::PriorityLevel priority, unsigned int size) : mSemaphore(size)
+TriggerableThreadSet::TriggerableThreadSet(FrameLib_Thread::PriorityLevel priority, unsigned int size)
+: mSemaphore(size)
 {
     mThreads.resize(size);
     
