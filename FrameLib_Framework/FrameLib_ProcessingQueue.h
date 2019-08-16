@@ -73,17 +73,14 @@ class FrameLib_ProcessingQueue
         
     public:
         
-        WorkerThreads(FrameLib_ProcessingQueue *queue) : TriggerableThreadSet(FrameLib_Thread::kHighPriority, 7), mQueue(queue) {}
+        WorkerThreads(FrameLib_ProcessingQueue *queue)
+        : TriggerableThreadSet(FrameLib_Thread::kHighPriority, 7), mQueue(queue)
+        {}
         
     private:
         
-        virtual void doTask()
-        {
-            mQueue->mInQueue++;
-            mQueue->serviceQueue();
-            mQueue->mInQueue--;
-        }
-        
+        void doTask() override { mQueue->serviceQueue(); }
+
         FrameLib_ProcessingQueue *mQueue;
     };
     
@@ -103,8 +100,7 @@ public:
     FrameLib_ProcessingQueue& operator=(const FrameLib_ProcessingQueue&) = delete;
     
     void process(FrameLib_DSP *object);
-    void start(FrameLib_DSP *object);
-    void add(FrameLib_DSP *object);
+    void add(FrameLib_DSP *object, FrameLib_DSP *addedBy);
     void reset() { mTimedOut = false; }
     bool isTimedOut() { return mTimedOut; }
 

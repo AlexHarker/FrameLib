@@ -345,7 +345,7 @@ void FrameLib_DSP::copyInputToOutput(unsigned long inIdx, unsigned long outIdx)
 
 // Dependency Notification
 
-inline void FrameLib_DSP::dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, bool audioNotify,  bool fromInput)
+inline void FrameLib_DSP::dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, bool audioNotify, bool fromInput)
 {
     if (mProcessingQueue->isTimedOut())
         return;
@@ -360,7 +360,7 @@ inline void FrameLib_DSP::dependencyNotify(FrameLib_DSP *notifier, bool releaseM
     if (fromInput && mUpdatingInputs)
     {
         if (--mInputCount == 0)
-           mProcessingQueue->add(this);
+           mProcessingQueue->add(this, audioNotify ? nullptr : notifier);
     }
     else if (--mDependencyCount == 0 && !mUpdatingInputs)
     {
@@ -368,15 +368,7 @@ inline void FrameLib_DSP::dependencyNotify(FrameLib_DSP *notifier, bool releaseM
         
         mDependencyCount++;
         
-        if (audioNotify)
-            mProcessingQueue->start(this);
-        else
-        {
-            if (notifier->mNextInThread)
-                mProcessingQueue->add(this);
-            else
-                notifier->mNextInThread = this;
-        }
+        mProcessingQueue->add(this, audioNotify ? nullptr : notifier);
     }
 }
 

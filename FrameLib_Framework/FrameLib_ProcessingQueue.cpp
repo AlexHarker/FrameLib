@@ -2,43 +2,34 @@
 #include "FrameLib_ProcessingQueue.h"
 #include "FrameLib_DSP.h"
 
-void FrameLib_ProcessingQueue::process(FrameLib_DSP *object)
+// Processing Queue
+
+void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
 {
-    while (object)
+    assert(object->mInputTime != FrameLib_TimeFormat::largest() && "Object has already reached the end of time");
+    assert((!object->mNextInThread) && "Object is already in the queue");
+    
+    //object->mNextInThread = nullptr;
+    
+    if (!addedBy || addedBy->mNextInThread)
     {
-        object->dependenciesReady();
-        FrameLib_DSP *newObject = object->mNextInThread;
-        object->mNextInThread = nullptr;
-        object = newObject;
+        int32_t queueSize = ++mQueueSize;
+        int32_t inQueue = mInQueue;
+        int32_t sigSize = queueSize - inQueue;
+        int32_t maxSigSize = static_cast<int32_t>(mWorkers.size()) - inQueue;
+    
+        sigSize = sigSize > maxSigSize ? maxSigSize : sigSize;
+    
+        if (sigSize > 0)
+            mWorkers.signal(sigSize);
+    
+        OSAtomicFifoEnqueue(&mQueue, &object->mQueueItem, offsetof(QueueItem, mNext));
+        
+        if (!addedBy)
+            serviceQueue();
     }
-    mQueueSize--;
-}
-
-void FrameLib_ProcessingQueue::start(FrameLib_DSP *object)
-{
-    mInQueue++;
-    mQueueSize++;
-    mWorkers.signal(1);
-    object->mNextInThread = nullptr;
-    process(object);
-    serviceQueue();
-    --mInQueue;
-}
-
-void FrameLib_ProcessingQueue::add(FrameLib_DSP *object)
-{
-    int32_t queueSize = ++mQueueSize;
-    int32_t inQueue = mInQueue;
-    int32_t sigSize = queueSize - inQueue;
-    int32_t maxSigSize = mWorkers.size() - inQueue;
-    
-    sigSize = sigSize > maxSigSize ? maxSigSize : sigSize;
-    
-    if (sigSize > 0)
-        mWorkers.signal(sigSize);
-    
-    object->mNextInThread = nullptr;
-    OSAtomicFifoEnqueue(&mQueue, &object->mQueueItem, offsetof(QueueItem, mNext));
+    else
+        addedBy->mNextInThread = object;
 }
 
 void FrameLib_ProcessingQueue::serviceQueue()
@@ -47,15 +38,31 @@ void FrameLib_ProcessingQueue::serviceQueue()
     a.tv_sec = 0;
     a.tv_nsec = 100;
     
+    mInQueue++;
+    
     while (true)
     {
         while (QueueItem *next = (QueueItem *) OSAtomicFifoDequeue(&mQueue, offsetof(QueueItem, mNext)))
-            process(next->mThis);
+        {
+            FrameLib_DSP *object = next->mThis;
+            
+            while (object)
+            {
+                object->dependenciesReady();
+                mQueueSize--;
+                FrameLib_DSP *newObject = object->mNextInThread;
+                object->mNextInThread = nullptr;
+                object = newObject;
+            }
+        }
         
         // FIX - quick reliable and non-contentious exit strategies are needed here...
         
         if (mQueueSize == 0)
+        {
+            mInQueue--;
             return;
+        }
         
         // FIX - how long is a good time to yield for in a high performance thread?
         
