@@ -8,7 +8,7 @@ void FrameLib_ProcessingQueue::process(FrameLib_DSP *object)
     {
         object->dependenciesReady();
         FrameLib_DSP *newObject = object->mNextInThread;
-        object->mNextInThread = NULL;
+        object->mNextInThread = nullptr;
         object = newObject;
     }
     mQueueSize--;
@@ -19,7 +19,7 @@ void FrameLib_ProcessingQueue::start(FrameLib_DSP *object)
     mInQueue++;
     mQueueSize++;
     mWorkers.signal(1);
-    object->mNextInThread = NULL;
+    object->mNextInThread = nullptr;
     process(object);
     serviceQueue();
     --mInQueue;
@@ -37,7 +37,7 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object)
     if (sigSize > 0)
         mWorkers.signal(sigSize);
     
-    object->mNextInThread = NULL;
+    object->mNextInThread = nullptr;
     OSAtomicFifoEnqueue(&mQueue, &object->mQueueItem, offsetof(QueueItem, mNext));
 }
 
@@ -61,7 +61,7 @@ void FrameLib_ProcessingQueue::serviceQueue()
         
         // Keep pointless contention down and give way to other threads?
         
-        nanosleep(&a,NULL);
+        nanosleep(&a, nullptr);
     }
 }
 
