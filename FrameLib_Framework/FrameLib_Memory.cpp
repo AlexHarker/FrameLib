@@ -305,9 +305,7 @@ void FrameLib_LocalAllocator::Storage::resize(bool tagged, unsigned long size)
         mSize = size;
     }
     else
-    {
-        // FIX - this needs some kind of threadsafety!!!
-   
+    {   
         void *newData = mAllocator.alloc(maxSize);
         
         if (newData)
@@ -335,11 +333,11 @@ void FrameLib_LocalAllocator::Storage::resize(bool tagged, unsigned long size)
 
 // ************************************************************************************** //
 
-// The Local Allocator
+// Free Blocks
 
 // Constructor / Destructor
 
-FrameLib_LocalAllocator::FrameLib_LocalAllocator(FrameLib_GlobalAllocator& allocator) : mAllocator(allocator)
+FrameLib_FreeBlocks::FrameLib_FreeBlocks(FrameLib_GlobalAllocator& allocator) : mAllocator(allocator)
 {
     // Setup the free lists as a circularly linked list
     
@@ -354,18 +352,18 @@ FrameLib_LocalAllocator::FrameLib_LocalAllocator(FrameLib_GlobalAllocator& alloc
     mTail->mNext->mPrev = mTail;
 }
 
-FrameLib_LocalAllocator::~FrameLib_LocalAllocator()
+FrameLib_FreeBlocks::~FrameLib_FreeBlocks()
 {
     clear();
 }
 
 // Allocate / Deallocate Memory
 
-void *FrameLib_LocalAllocator::alloc(size_t size)
+void *FrameLib_FreeBlocks::alloc(size_t size)
 {
     if (!size)
         return nullptr;
-    /*
+    
     // N.B. - all memory should be aligned to alignment / memory returned will be between size and size << 1
     
     size_t maxSize = size << 1;
@@ -375,18 +373,16 @@ void *FrameLib_LocalAllocator::alloc(size_t size)
     for (FreeBlock *block = mTail->mNext; block && block->mMemory; block = block == mTail ? nullptr : block->mNext)
         if (block->mSize >= size && block->mSize <= maxSize)
             return removeBlock(block);
-    
-    // If this fails call the global allocator
-    */
-    return mAllocator.alloc(size);
+     
+    // If this fails call the gloabal allocator
+
+    return mAllocator.alloc(size);;
 }
 
-void FrameLib_LocalAllocator::dealloc(void *ptr)
+void FrameLib_FreeBlocks::dealloc(void *ptr)
 {
     if (ptr)
     {
-        mAllocator.dealloc(ptr);
-        /*
         // If the free lists are full send the tail back to the global allocator
         
         if (mTail->mMemory)
@@ -399,18 +395,50 @@ void FrameLib_LocalAllocator::dealloc(void *ptr)
         
         // Move top and tail back one (old tail is now the top)
         
-        mTail = mTail->mPrev;*/
+        mTail = mTail->mPrev;
     }
 }
 
-// Clear Local Free Blocks (and prune global allocator)
+// Remove a Free Block after Allocation and Return the Pointer
 
-void FrameLib_LocalAllocator::clear()
+void *FrameLib_FreeBlocks::removeBlock(FreeBlock *block)
+{
+    void *ptr = block->mMemory;
+    
+    // Set to default values
+    
+    block->mMemory = nullptr;
+    block->mSize = 0;
+    
+    // If at the tail there is no need to do anything
+    
+    if (block == mTail)
+        return ptr;
+    
+    // Join list
+    
+    block->mNext->mPrev = block->mPrev;
+    block->mPrev->mNext = block->mNext;
+    
+    // Place at the tail
+    
+    block->mPrev = mTail;
+    block->mNext = mTail->mNext;
+    
+    mTail->mNext->mPrev = block;
+    mTail->mNext = block;
+    
+    mTail = block;
+    
+    return ptr;
+}
+
+void FrameLib_FreeBlocks::clear()
 {
     // Acquire the main allocator and then free all blocks before releasing
     
     FrameLib_GlobalAllocator::Pruner pruner(mAllocator);
-    /*
+    
     for (unsigned int i = 0; i < numLocalFreeBlocks; i++)
     {
         if (mFreeLists[i].mMemory)
@@ -419,7 +447,66 @@ void FrameLib_LocalAllocator::clear()
             mFreeLists[i].mMemory = nullptr;
             mFreeLists[i].mSize = 0;
         }
-    }*/
+     }
+}
+
+// ************************************************************************************** //
+
+// The Local Allocator
+
+// Constructor / Destructor
+
+FrameLib_LocalAllocator::FrameLib_LocalAllocator(FrameLib_GlobalAllocator& allocator)
+: mAllocator(allocator), mFreeBlocks(nullptr)
+{}
+
+FrameLib_LocalAllocator::~FrameLib_LocalAllocator()
+{
+    clear();
+}
+
+// Allocate / Deallocate Memory
+
+void *FrameLib_LocalAllocator::alloc(size_t size)
+{
+    if (!size)
+        return nullptr;
+
+    // Allocate using free blocks if present
+
+    if (mFreeBlocks)
+        return mFreeBlocks->alloc(size);
+    
+    return mAllocator.alloc(size);
+}
+
+void FrameLib_LocalAllocator::dealloc(void *ptr)
+{
+    // Deallocate using free blocks if present
+    
+    if (ptr)
+    {
+        if (mFreeBlocks)
+            mFreeBlocks->dealloc(ptr);
+        else
+             mAllocator.dealloc(ptr);
+    }
+}
+
+// Clear Local Free Blocks (and prune global allocator)
+
+void FrameLib_LocalAllocator::clear()
+{
+    if (mFreeBlocks)
+    {
+        mFreeBlocks->clear();
+    }
+    else
+    {
+        // Prune the global allocator
+    
+        FrameLib_GlobalAllocator::Pruner pruner(mAllocator);
+    }
 }
 
 // Register and Release Storage
@@ -458,38 +545,4 @@ std::vector<FrameLib_LocalAllocator::Storage *>::iterator FrameLib_LocalAllocato
             return it;
     
     return mStorage.end();
-}
-
-// Remove a Free Block after Allocation and Return the Pointer
-
-void *FrameLib_LocalAllocator::removeBlock(FreeBlock *block)
-{
-    void *ptr = block->mMemory;
-    
-    // Set to default values
-    
-    block->mMemory = nullptr;
-    block->mSize = 0;
-    
-    // If at the tail there is no need to do anything
-    
-    if (block == mTail)
-        return ptr;
-    
-    // Join list
-    
-    block->mNext->mPrev = block->mPrev;
-    block->mPrev->mNext = block->mNext;
-    
-    // Place at the tail
-    
-    block->mPrev = mTail;
-    block->mNext = mTail->mNext;
-    
-    mTail->mNext->mPrev = block;
-    mTail->mNext = block;
-    
-    mTail = block;
-    
-    return ptr;
 }

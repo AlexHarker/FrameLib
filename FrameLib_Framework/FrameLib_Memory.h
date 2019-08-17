@@ -230,20 +230,18 @@ private:
 
 /**
  
- @class FrameLib_LocalAllocator
+ @class FrameLib_FreeBlocks
  
  @ingroup Memory
-
- @brief a memory allocator suitable for usage in a given FrameLib context.
  
- @sa FrameLib_Context
+ @brief a memory allocator with local free blocks.
  
  */
 
-class FrameLib_LocalAllocator
+class FrameLib_FreeBlocks
 {
     static const int numLocalFreeBlocks = 16;
-
+    
     /**
      
      @struct FreeBlock
@@ -262,6 +260,56 @@ class FrameLib_LocalAllocator
         FreeBlock *mPrev;
         FreeBlock *mNext;
     };
+    
+    // Non-copyable
+
+    FrameLib_FreeBlocks(const FrameLib_FreeBlocks&) = delete;
+    FrameLib_FreeBlocks& operator=(const FrameLib_FreeBlocks&) = delete;
+    
+public:
+    
+    FrameLib_FreeBlocks(FrameLib_GlobalAllocator& allocator);
+    ~FrameLib_FreeBlocks();
+    
+    // Allocate / Deallocate Memory
+    
+    void *alloc(size_t size);
+    void dealloc(void *ptr);
+    
+    // Clear Local Free Blocks (and prune global allocator)
+    
+    void clear();
+    
+private:
+    
+    // Remove a Free Block after Allocation and Return the Pointer
+    
+    void *removeBlock(FreeBlock *block);
+    
+    // Member Variables
+
+    FrameLib_GlobalAllocator& mAllocator;
+    
+    FreeBlock mFreeLists[numLocalFreeBlocks];
+    FreeBlock *mTail;
+};
+
+
+/**
+ 
+ @class FrameLib_LocalAllocator
+ 
+ @ingroup Memory
+
+ @brief a memory allocator suitable for usage in a given FrameLib context.
+ 
+ @sa FrameLib_Context
+ 
+ */
+
+
+class FrameLib_LocalAllocator
+{
     
 public:
 
@@ -379,13 +427,17 @@ public:
     FrameLib_LocalAllocator(const FrameLib_LocalAllocator&) = delete;
     FrameLib_LocalAllocator& operator=(const FrameLib_LocalAllocator&) = delete;
     
-    
     // Allocate / Deallocate Memory
 
     void *alloc(size_t size);
     void dealloc(void *ptr);
 
-    // Clear Local Free Blocks (and prune global allocator)
+    // Set / Remove Local Free Blocks
+    
+    void setBlocks(FrameLib_FreeBlocks *blocks)     { mFreeBlocks = blocks; }
+    void removeBlocks()                             { mFreeBlocks = nullptr; }
+
+    // Clear Local Free Blocks (if present) - and prune global allocator
     
     void clear();
     
@@ -405,16 +457,10 @@ private:
     
     std::vector<Storage *>::iterator findStorage(const char *name);
     
-    // Remove a Free Block after Allocation and Return the Pointer
-
-    void *removeBlock(FreeBlock *block);
-    
     // Member Variables
     
     FrameLib_GlobalAllocator& mAllocator;
-    
-    FreeBlock mFreeLists[numLocalFreeBlocks];
-    FreeBlock *mTail;
+    FrameLib_FreeBlocks* mFreeBlocks;
     
     std::vector<Storage *> mStorage;
 };
