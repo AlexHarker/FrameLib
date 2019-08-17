@@ -212,8 +212,6 @@ public:
         
         if (getNumAudioOuts())
            dealloc(mAudioTemps[0]);
-                
-        clearAllocator();
     }
    
     // Reset

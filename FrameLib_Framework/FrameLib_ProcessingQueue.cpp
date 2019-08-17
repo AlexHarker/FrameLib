@@ -1,8 +1,23 @@
 
 #include "FrameLib_ProcessingQueue.h"
+#include "FrameLib_Global.h"
 #include "FrameLib_DSP.h"
 
 #include <algorithm>
+
+// Constructor / Destructor
+
+FrameLib_ProcessingQueue::FrameLib_ProcessingQueue(FrameLib_Global& global)
+: mWorkers(this), mNumItems(0), mNumWorkersActive(0), mTimedOut(false), mErrorReporter(global)
+{
+    for (unsigned int i = 0; i < FrameLib_Thread::maxThreads(); i++)
+        mFreeBlocks.push_back(std::unique_ptr<FrameLib_FreeBlocks>(new FrameLib_FreeBlocks(global)));
+}
+
+FrameLib_ProcessingQueue::~FrameLib_ProcessingQueue()
+{
+    mWorkers.join();
+}
 
 // Processing Queue
 
@@ -39,7 +54,7 @@ void FrameLib_ProcessingQueue::serviceQueue()
     a.tv_sec = 0;
     a.tv_nsec = 100;
     
-    mNumWorkersActive++;
+    int32_t index = mNumWorkersActive++;
     
     while (true)
     {
@@ -49,7 +64,9 @@ void FrameLib_ProcessingQueue::serviceQueue()
             
             while (object)
             {
+                object->setFreeBlocks(mFreeBlocks[index].get());
                 object->dependenciesReady();
+                object->removeFreeBlocks();
                 FrameLib_DSP *newObject = object->mNextInThread;
                 object->mNextInThread = nullptr;
                 object = newObject;
@@ -61,6 +78,7 @@ void FrameLib_ProcessingQueue::serviceQueue()
         
         if (mNumItems == 0)
         {
+            mFreeBlocks[index]->clear();
             mNumWorkersActive--;
             return;
         }

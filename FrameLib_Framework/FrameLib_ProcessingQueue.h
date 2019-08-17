@@ -4,15 +4,18 @@
 
 #include "FrameLib_Types.h"
 #include "FrameLib_Errors.h"
+#include "FrameLib_Memory.h"
 #include "FrameLib_Threading.h"
 
 #include <chrono>
+#include <vector>
 
 // FIX - mac only
 #include <libkern/OSAtomicQueue.h>
 
 // Forward Declarations
 
+class FrameLib_Global;
 class FrameLib_DSP;
 
 /**
@@ -86,13 +89,10 @@ class FrameLib_ProcessingQueue
     
 public:
     
-    FrameLib_ProcessingQueue(FrameLib_ErrorReporter& errorReporter)
-    : mWorkers(this), mNumItems(0), mNumWorkersActive(0), mTimedOut(false), mErrorReporter(errorReporter) {}
+    // Constructor / Destructor
     
-    ~FrameLib_ProcessingQueue()
-    {
-        mWorkers.join();
-    }
+    FrameLib_ProcessingQueue(FrameLib_Global& global);
+    ~FrameLib_ProcessingQueue();
     
     // Non-copyable
     
@@ -109,7 +109,8 @@ private:
     void serviceQueue();
 
     WorkerThreads mWorkers;
-    
+    FrameLib_OwnedList<FrameLib_FreeBlocks> mFreeBlocks;
+
     std::atomic<int32_t> mNumItems;
     std::atomic<int32_t> mNumWorkersActive;
     OSFifoQueueHead mQueue = OS_ATOMIC_FIFO_QUEUE_INIT;
