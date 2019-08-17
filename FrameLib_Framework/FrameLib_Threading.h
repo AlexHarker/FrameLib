@@ -5,6 +5,8 @@
 #include "FrameLib_Types.h"
 
 #include <atomic>
+#include <algorithm>
+#include <thread>
 #include <vector>
 
 /**
@@ -167,6 +169,11 @@ public:
 
     ~FrameLib_Thread();
 
+    static unsigned int maxThreads()
+    {
+        return std::max(1U, std::thread::hardware_concurrency());
+    }
+    
     // Non-copyable
     
     FrameLib_Thread(const FrameLib_Thread&) = delete;

@@ -38,6 +38,14 @@ class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_D
 
     friend class FrameLib_ProcessingQueue;
     
+    enum NotificationType
+    {
+        kSelfConnection,
+        kOutputConnection,
+        kInputConnection,
+        kAudioBlock,
+    };
+    
 protected:
     
     /**
@@ -295,7 +303,7 @@ private:
 
     // Dependency Notification
     
-    inline void dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, bool audioNotify,  bool fromInpute);
+    inline void dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, NotificationType type);
 
     void dependenciesReady();
     void incrementInputDependency();

@@ -68,7 +68,7 @@ void FrameLib_DSP::blockUpdate(const double * const *ins, double **outs, unsigne
     // If the object is handling audio updates (but is not an output object) then notify
     
     if (requiresAudioNotification())
-        dependencyNotify(this, false, true, true);
+        dependencyNotify(this, false, kAudioBlock);
 }
 
 // Reset
@@ -345,7 +345,7 @@ void FrameLib_DSP::copyInputToOutput(unsigned long inIdx, unsigned long outIdx)
 
 // Dependency Notification
 
-inline void FrameLib_DSP::dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, bool audioNotify, bool fromInput)
+inline void FrameLib_DSP::dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, NotificationType type)
 {
     if (mProcessingQueue->isTimedOut())
         return;
@@ -357,18 +357,16 @@ inline void FrameLib_DSP::dependencyNotify(FrameLib_DSP *notifier, bool releaseM
     
     // If ready add to queue
     
-    if (fromInput && mUpdatingInputs)
+    bool useInputCount = mUpdatingInputs && (type == kInputConnection || type == kAudioBlock);
+    
+    if ((useInputCount && --mInputCount == 0) || --mDependencyCount == 0)
     {
-        if (--mInputCount == 0)
-           mProcessingQueue->add(this, audioNotify ? nullptr : notifier);
-    }
-    else if (--mDependencyCount == 0 && !mUpdatingInputs)
-    {
-        // N.B. For multithreading re-entrancy needs to be avoided by increasing the dependency count before adding to the queue (with matching notification)
-        
+        assert((mDependencyCount > 0) || !mUpdatingInputs && "Dependency count should not be zero if updating inputs");
+
+        // N.B. Avoid re-entrancy by increasing the dependency count before processing (plus matched notification)
+
         mDependencyCount++;
-        
-        mProcessingQueue->add(this, audioNotify ? nullptr : notifier);
+        mProcessingQueue->add(this, type == kAudioBlock ? nullptr : notifier);
     }
 }
 
@@ -390,8 +388,6 @@ void FrameLib_DSP::dependenciesReady()
 #ifndef NDEBUG
     FrameLib_TimeFormat prevInputTime = mInputTime;
 #endif
-    
-    mDependencyCount++;
     
     bool timeUpdated = false;
     bool callUpdate = false;
@@ -532,7 +528,7 @@ void FrameLib_DSP::dependenciesReady()
             if (mInputTime == (*it)->mValidTime)
             {
                 incrementInputDependency();
-                (*it)->dependencyNotify(this, (getType() == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone, false, false);
+                (*it)->dependencyNotify(this, (getType() == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone, kOutputConnection);
             }
         }
     }
@@ -541,17 +537,17 @@ void FrameLib_DSP::dependenciesReady()
     
     if (timeUpdated)
         for (auto it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-            (*it)->dependencyNotify(this, false, false, true);
+            (*it)->dependencyNotify(this, false, kInputConnection);
     
     // See if the updating input status has expired (must be done after resolving all other dependencies)
     
     if (mUpdatingInputs < prevUpdatingInputs)
-        dependencyNotify(this, false, false, false);
+        dependencyNotify(this, false, kSelfConnection);
     
     // Allow self-triggering if we haven't reached the end of time
     
     if (!endOfTime)
-        dependencyNotify(this, false, false, false);
+        dependencyNotify(this, false, kSelfConnection);
     
     // Debug
     

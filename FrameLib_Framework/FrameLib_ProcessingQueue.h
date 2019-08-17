@@ -74,7 +74,7 @@ class FrameLib_ProcessingQueue
     public:
         
         WorkerThreads(FrameLib_ProcessingQueue *queue)
-        : TriggerableThreadSet(FrameLib_Thread::kHighPriority, 7), mQueue(queue)
+        : TriggerableThreadSet(FrameLib_Thread::kHighPriority, FrameLib_Thread::maxThreads() - 1), mQueue(queue)
         {}
         
     private:
@@ -87,7 +87,7 @@ class FrameLib_ProcessingQueue
 public:
     
     FrameLib_ProcessingQueue(FrameLib_ErrorReporter& errorReporter)
-    : mWorkers(this), mTimedOut(false), mErrorReporter(errorReporter) {}
+    : mWorkers(this), mNumItems(0), mNumWorkersActive(0), mTimedOut(false), mErrorReporter(errorReporter) {}
     
     ~FrameLib_ProcessingQueue()
     {
@@ -110,9 +110,9 @@ private:
 
     WorkerThreads mWorkers;
     
-    std::atomic<int32_t> mQueueSize;
-    std::atomic<int32_t> mInQueue;
-    OSFifoQueueHead mQueue;
+    std::atomic<int32_t> mNumItems;
+    std::atomic<int32_t> mNumWorkersActive;
+    OSFifoQueueHead mQueue = OS_ATOMIC_FIFO_QUEUE_INIT;
     
     bool mTimedOut;
     IntervalSecondsClock mClock;

@@ -2,6 +2,8 @@
 #include "FrameLib_ProcessingQueue.h"
 #include "FrameLib_DSP.h"
 
+#include <algorithm>
+
 // Processing Queue
 
 void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
@@ -9,19 +11,18 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
     assert(object->mInputTime != FrameLib_TimeFormat::largest() && "Object has already reached the end of time");
     assert((!object->mNextInThread) && "Object is already in the queue");
     
-    //object->mNextInThread = nullptr;
+    // Try to process this next in this thread, but if that isn't possible add to the queue
     
     if (!addedBy || addedBy->mNextInThread)
     {
-        int32_t queueSize = ++mQueueSize;
-        int32_t inQueue = mInQueue;
-        int32_t sigSize = queueSize - inQueue;
-        int32_t maxSigSize = static_cast<int32_t>(mWorkers.size()) - inQueue;
+        int32_t numItems = ++mNumItems;
+        int32_t numWorkersActive = mNumWorkersActive;
+        int32_t numWorkersNeeded = numItems - numWorkersActive;
     
-        sigSize = sigSize > maxSigSize ? maxSigSize : sigSize;
+        numWorkersNeeded = std::min(numWorkersNeeded, static_cast<int32_t>(mWorkers.size()) - numWorkersActive);
     
-        if (sigSize > 0)
-            mWorkers.signal(sigSize);
+        if (numWorkersNeeded > 0)
+            mWorkers.signal(numWorkersNeeded);
     
         OSAtomicFifoEnqueue(&mQueue, &object->mQueueItem, offsetof(QueueItem, mNext));
         
@@ -38,7 +39,7 @@ void FrameLib_ProcessingQueue::serviceQueue()
     a.tv_sec = 0;
     a.tv_nsec = 100;
     
-    mInQueue++;
+    mNumWorkersActive++;
     
     while (true)
     {
@@ -49,18 +50,18 @@ void FrameLib_ProcessingQueue::serviceQueue()
             while (object)
             {
                 object->dependenciesReady();
-                mQueueSize--;
                 FrameLib_DSP *newObject = object->mNextInThread;
                 object->mNextInThread = nullptr;
                 object = newObject;
             }
+            mNumItems--;
         }
         
         // FIX - quick reliable and non-contentious exit strategies are needed here...
         
-        if (mQueueSize == 0)
+        if (mNumItems == 0)
         {
-            mInQueue--;
+            mNumWorkersActive--;
             return;
         }
         
