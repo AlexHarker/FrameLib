@@ -105,5 +105,4 @@ private:
     void *mReference;
 };
 
-
 #endif

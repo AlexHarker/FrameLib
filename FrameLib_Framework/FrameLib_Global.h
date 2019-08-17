@@ -27,7 +27,6 @@
 
 class FrameLib_Global : public FrameLib_ErrorReporter
 {
-
     friend class FrameLib_Context;
     
 private:
