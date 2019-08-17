@@ -434,8 +434,8 @@ public:
 
     // Set / Remove Local Free Blocks
     
-    void setBlocks(FrameLib_FreeBlocks *blocks)     { mFreeBlocks = blocks; }
-    void removeBlocks()                             { mFreeBlocks = nullptr; }
+    void setFreeBlocks(FrameLib_FreeBlocks *blocks)     { mFreeBlocks = blocks; }
+    void removeFreeBlocks()                             { mFreeBlocks = nullptr; }
 
     // Clear Local Free Blocks (if present) - and prune global allocator
     

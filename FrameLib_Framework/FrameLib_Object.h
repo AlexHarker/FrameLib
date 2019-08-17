@@ -424,7 +424,9 @@ protected:
         ptr = nullptr;
     }
     
-    void clearAllocator() { mAllocator->clear(); }
+    void setFreeBlocks(FrameLib_FreeBlocks *blocks)     { mAllocator->setFreeBlocks(blocks); }
+    void removeFreeBlocks()                             { mAllocator->removeFreeBlocks(); }
+    void clearAllocator()                               { mAllocator->clear(); }
     
     FrameLib_LocalAllocator::Storage *registerStorage(const char *name)     { return mAllocator->registerStorage(name); }
     
