@@ -60,7 +60,7 @@ public:
 
     class ErrorReport
     {
-        friend FrameLib_ErrorReporter;
+        friend class FrameLib_ErrorReporter;
         
         ErrorReport(ErrorSource source, FrameLib_Proxy *reporter, const char *error, const char *items, unsigned long numItems)
         : mSource(source), mReporter(reporter), mError(error), mItems(items), mNumItems(numItems) {}
@@ -94,7 +94,7 @@ public:
     
     class ErrorList
     {
-        friend FrameLib_ErrorReporter;
+        friend class FrameLib_ErrorReporter;
         
         const static int sCharArraySize = 8192;
         const static int sReportArraySize = 1024;
@@ -113,7 +113,7 @@ public:
         
         class ConstIterator
         {
-            friend ErrorList;
+            friend class ErrorList;
             
             ConstIterator(const ErrorReport *ptr) : mPtr(ptr) {};
             

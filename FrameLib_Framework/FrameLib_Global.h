@@ -28,7 +28,8 @@
 class FrameLib_Global : public FrameLib_ErrorReporter
 {
     friend class FrameLib_Context;
-    
+    friend class FrameLib_ProcessingQueue;
+
 private:
 
     template <class T>
