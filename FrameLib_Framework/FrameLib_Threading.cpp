@@ -395,16 +395,10 @@ void FrameLib_DelegateThread::threadClassEntry()
 FrameLib_TriggerableThreadSet::FrameLib_TriggerableThreadSet(FrameLib_Thread::PriorityLevel priority, unsigned int size)
 : mSemaphore(size)
 {
-    mThreads.resize(size);
+    mThreads.reserve(size);
     
-    for (auto it = mThreads.begin(); it != mThreads.end(); it++)
-        *it = new IndexedThread(priority, this, it - mThreads.begin());
-}
-
-FrameLib_TriggerableThreadSet::~FrameLib_TriggerableThreadSet()
-{
-    for (auto it = mThreads.begin(); it != mThreads.end(); it++)
-        delete (*it);
+    for (unsigned int i = 0; i < size; i++)
+        mThreads.add(new IndexedThread(priority, this, i));
 }
 
 void FrameLib_TriggerableThreadSet::start()

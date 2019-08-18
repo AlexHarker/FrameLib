@@ -4,7 +4,6 @@
 #include "FrameLib_DSP.h"
 
 #include <algorithm>
-#include <thread>
 
 // Constructor / Destructor
 
@@ -12,7 +11,7 @@ FrameLib_ProcessingQueue::FrameLib_ProcessingQueue(FrameLib_Global& global)
 : mWorkers(this), mNumItems(0), mNumWorkersActive(0), mTimedOut(false), mErrorReporter(global)
 {
     for (unsigned int i = 0; i < FrameLib_Thread::maxThreads(); i++)
-        mFreeBlocks.push_back(std::unique_ptr<FrameLib_FreeBlocks>(new FrameLib_FreeBlocks(global)));
+        mFreeBlocks.add(new FrameLib_FreeBlocks(global));
     
     mWorkers.start();
 }
@@ -87,9 +86,9 @@ void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
         
         // FIX - how long is a good time to yield for in a high performance thread?
         
-        // Keep pointless contention down and give way to other threads?
+        // Reduce contention down and give way to other threads
         
-        std::this_thread::sleep_for(std::chrono::nanoseconds(1000));
+        FrameLib_Thread::sleepCurrentThread(1000);
     }
 }
 

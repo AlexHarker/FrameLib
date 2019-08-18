@@ -6,6 +6,7 @@
 
 #include <atomic>
 #include <algorithm>
+#include <chrono>
 #include <thread>
 #include <vector>
 
@@ -172,6 +173,11 @@ public:
     static unsigned int maxThreads()
     {
         return std::max(1U, std::thread::hardware_concurrency());
+    }
+    
+    static void sleepCurrentThread(unsigned long nanoseconds)
+    {
+        std::this_thread::sleep_for(std::chrono::nanoseconds(nanoseconds));
     }
     
     // Non-copyable
@@ -379,7 +385,7 @@ class FrameLib_TriggerableThreadSet
 public:
     
     FrameLib_TriggerableThreadSet(FrameLib_Thread::PriorityLevel priority, unsigned int size);
-    virtual ~FrameLib_TriggerableThreadSet();
+    virtual ~FrameLib_TriggerableThreadSet() {}
     
     // Start and join
     
@@ -412,7 +418,7 @@ private:
     
     // Data
     
-    std::vector<IndexedThread *> mThreads;
+    FrameLib_OwnedList<IndexedThread> mThreads;
     FrameLib_Semaphore mSemaphore;
 };
 
