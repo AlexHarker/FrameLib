@@ -417,10 +417,11 @@ public:
         FrameLib_LocalAllocator& mAllocator;
     };
     
-    // Constructor / Destructor
+    // Constructor
     
-    FrameLib_LocalAllocator(FrameLib_GlobalAllocator& allocator);
-    ~FrameLib_LocalAllocator();
+    FrameLib_LocalAllocator(FrameLib_GlobalAllocator& allocator)
+    : mAllocator(allocator)
+    {}
     
     // Non-copyable
     
@@ -432,14 +433,9 @@ public:
     void *alloc(size_t size);
     void dealloc(void *ptr);
 
-    // Set / Remove Local Free Blocks
+    // Prune global allocator
     
-    void setFreeBlocks(FrameLib_FreeBlocks *blocks)     { mFreeBlocks = blocks; }
-    void removeFreeBlocks()                             { mFreeBlocks = nullptr; }
-
-    // Clear Local Free Blocks (if present) - and prune global allocator
-    
-    void clear();
+    void prune();
     
     // Alignment Helpers
     
@@ -460,7 +456,6 @@ private:
     // Member Variables
     
     FrameLib_GlobalAllocator& mAllocator;
-    FrameLib_FreeBlocks* mFreeBlocks;
     
     std::vector<Storage *> mStorage;
 };

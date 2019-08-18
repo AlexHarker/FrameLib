@@ -374,7 +374,7 @@ void *FrameLib_FreeBlocks::alloc(size_t size)
         if (block->mSize >= size && block->mSize <= maxSize)
             return removeBlock(block);
      
-    // If this fails call the gloabal allocator
+    // If this fails call the global allocator
 
     return mAllocator.alloc(size);;
 }
@@ -454,28 +454,12 @@ void FrameLib_FreeBlocks::clear()
 
 // The Local Allocator
 
-// Constructor / Destructor
-
-FrameLib_LocalAllocator::FrameLib_LocalAllocator(FrameLib_GlobalAllocator& allocator)
-: mAllocator(allocator), mFreeBlocks(nullptr)
-{}
-
-FrameLib_LocalAllocator::~FrameLib_LocalAllocator()
-{
-    clear();
-}
-
 // Allocate / Deallocate Memory
 
 void *FrameLib_LocalAllocator::alloc(size_t size)
 {
     if (!size)
         return nullptr;
-
-    // Allocate using free blocks if present
-
-    if (mFreeBlocks)
-        return mFreeBlocks->alloc(size);
     
     return mAllocator.alloc(size);
 }
@@ -485,28 +469,16 @@ void FrameLib_LocalAllocator::dealloc(void *ptr)
     // Deallocate using free blocks if present
     
     if (ptr)
-    {
-        if (mFreeBlocks)
-            mFreeBlocks->dealloc(ptr);
-        else
-             mAllocator.dealloc(ptr);
-    }
+        mAllocator.dealloc(ptr);
 }
 
 // Clear Local Free Blocks (and prune global allocator)
 
-void FrameLib_LocalAllocator::clear()
+void FrameLib_LocalAllocator::prune()
 {
-    if (mFreeBlocks)
-    {
-        mFreeBlocks->clear();
-    }
-    else
-    {
-        // Prune the global allocator
+    // Prune the global allocator
     
-        FrameLib_GlobalAllocator::Pruner pruner(mAllocator);
-    }
+    FrameLib_GlobalAllocator::Pruner pruner(mAllocator);
 }
 
 // Register and Release Storage

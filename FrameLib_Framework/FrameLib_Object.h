@@ -414,19 +414,30 @@ protected:
     template <class U>
     U *alloc(size_t N)
     {
-        return reinterpret_cast<U *>(mAllocator->alloc(sizeof(U) * N));
+        FrameLib_FreeBlocks *freeBlocks = mFreeBlocks;
+        
+        if (freeBlocks)
+            return reinterpret_cast<U *>(freeBlocks->alloc(sizeof(U) * N));
+        else
+            return reinterpret_cast<U *>(mAllocator->alloc(sizeof(U) * N));
     }
 
     template <class U>
     void dealloc(U *& ptr)
     {
-        mAllocator->dealloc(ptr);
+        FrameLib_FreeBlocks *freeBlocks = mFreeBlocks;
+
+        if (freeBlocks)
+            freeBlocks->dealloc(ptr);
+        else
+            mAllocator->dealloc(ptr);
+        
         ptr = nullptr;
     }
     
-    void setFreeBlocks(FrameLib_FreeBlocks *blocks)     { mAllocator->setFreeBlocks(blocks); }
-    void removeFreeBlocks()                             { mAllocator->removeFreeBlocks(); }
-    void clearAllocator()                               { mAllocator->clear(); }
+    void setFreeBlocks(FrameLib_FreeBlocks *blocks)     { mFreeBlocks = blocks; }
+    void removeFreeBlocks()                             { mFreeBlocks = nullptr; }
+    void pruneAllocator()                               { mAllocator->prune(); }
     
     FrameLib_LocalAllocator::Storage *registerStorage(const char *name)     { return mAllocator->registerStorage(name); }
     
@@ -920,7 +931,8 @@ private:
     const ObjectType mType;
     FrameLib_Context mContext;
     FrameLib_Context::Allocator mAllocator;
-    
+    FrameLib_FreeBlocks* mFreeBlocks;
+
     FrameLib_Proxy *mProxy;
     
     // Audio IO Counts
