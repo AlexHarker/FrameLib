@@ -180,6 +180,8 @@ public:
         std::this_thread::sleep_for(std::chrono::nanoseconds(nanoseconds));
     }
     
+    static int currentThreadPriority();
+    
     // Non-copyable
     
     FrameLib_Thread(const FrameLib_Thread&) = delete;

@@ -37,7 +37,7 @@ void FrameLib_Thread::start()
     
     switch (mPriority)
     {
-        case kAudioPriority:        schedulingParameters.sched_priority = 75;       break;
+        case kAudioPriority:        schedulingParameters.sched_priority = 63;       break;
         case kHighPriority:         schedulingParameters.sched_priority = 52;       break;
         case kMediumPriority:       schedulingParameters.sched_priority = 31;       break;
         case kLowPriority:          schedulingParameters.sched_priority = 15;       break;
@@ -122,6 +122,16 @@ bool FrameLib_Semaphore::wait()
 FrameLib_Thread::~FrameLib_Thread()
 {
     assert(!mValid && "Thread not joined before deletion");
+}
+
+int FrameLib_Thread::currentThreadPriority()
+{
+    sched_param schedulingParameters;
+    int policy;
+    
+    pthread_getschedparam(pthread_self(), &policy, &schedulingParameters);
+    
+    return schedulingParameters.sched_priority;
 }
 
 void FrameLib_Thread::start()

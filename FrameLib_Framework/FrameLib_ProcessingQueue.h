@@ -77,7 +77,7 @@ class FrameLib_ProcessingQueue
     public:
         
         WorkerThreads(FrameLib_ProcessingQueue *queue)
-        : FrameLib_TriggerableThreadSet(FrameLib_Thread::kHighPriority, FrameLib_Thread::maxThreads() - 1), mQueue(queue)
+        : FrameLib_TriggerableThreadSet(FrameLib_Thread::kAudioPriority, FrameLib_Thread::maxThreads() - 1), mQueue(queue)
         {}
         
     private:
