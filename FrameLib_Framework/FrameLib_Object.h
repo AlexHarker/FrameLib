@@ -207,7 +207,7 @@ public:
     // Constructor / Destructor
     
     FrameLib_Object(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy)
-    : mType(type), mContext(context), mAllocator(context), mProxy(proxy), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
+    : mType(type), mContext(context), mAllocator(context), mFreeBlocks(nullptr), mProxy(proxy), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
     
     virtual ~FrameLib_Object()              { clearConnections(false); }
    
