@@ -78,7 +78,11 @@ void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
         
         if (mNumItems.load() == 0)
         {
-            mFreeBlocks[index]->clear();
+            if (index ==0)
+            {
+                for (auto it = mFreeBlocks.begin(); it != mFreeBlocks.end(); it++)
+                    it->get()->clear();
+            }
             mNumWorkersActive--;
             return;
         }
