@@ -67,7 +67,7 @@ void FrameLib_DSP::blockUpdate(const double * const *ins, double **outs, unsigne
     
     // If the object is handling audio updates (but is not an output object) then notify
     
-    if (requiresAudioNotification())
+    if (needsAudioNotification())
         dependencyNotify(this, false, kAudioBlock);
 }
 
@@ -98,7 +98,7 @@ void FrameLib_DSP::reset(LocalQueue *queue)
     mUpdatingInputs = false;
     mInputCount = 0;
     mOutputMemoryCount = 0;
-    mDependencyCount = ((requiresAudioNotification()) ? 1 : 0);
+    mDependencyCount = ((needsAudioNotification()) ? 1 : 0);
     
     for (auto it = mInputDependencies.begin(); it != mInputDependencies.end(); it++)
         if (!(*it)->mNoLiveInputs)
@@ -386,7 +386,7 @@ void FrameLib_DSP::dependenciesReady()
 {
     
 #ifndef NDEBUG
-    FrameLib_TimeFormat prevInputTime = mInputTime;
+    FrameLib_TimeFormat inputTime = mInputTime;
 #endif
     
     bool timeUpdated = false;
@@ -495,9 +495,9 @@ void FrameLib_DSP::dependenciesReady()
         }
     }
 
-    // Check for host alignment for objects requiring audio notification (treating the audio notification as a time dependency)
+    // Check for host alignment for objects needing audio notification (treating the audio notification as a time dependency)
 
-    bool hostAligned = requiresAudioNotification() && mInputTime >= mBlockEndTime;
+    bool hostAligned = needsAudioNotification() && mInputTime >= mBlockEndTime;
     
     if (hostAligned)
         mInputTime = mBlockEndTime;
@@ -508,7 +508,7 @@ void FrameLib_DSP::dependenciesReady()
     bool prevUpdatingInputs = mUpdatingInputs;
     mUpdatingInputs = mInputTime < mValidTime;
     
-    // Increment the input dependency for the audio update if necessary (must be after we know if we are updating inputs only)
+    // Increment  input dependency for the audio update if needed (must be after we know if we are updating inputs only)
     
     if (hostAligned)
         incrementInputDependency();
@@ -544,18 +544,17 @@ void FrameLib_DSP::dependenciesReady()
     if (mUpdatingInputs < prevUpdatingInputs)
         dependencyNotify(this, false, kSelfConnection);
     
+    // Debug (before re-entering)
+    
+    assert(!needsAudioNotification() || (inputTime >= mBlockStartTime && inputTime < mBlockEndTime) && "Out of sync with host");
+    assert(mInputTime > inputTime && "Failed to move time forward");
+    assert(mInputTime <= mValidTime && "Inputs are ahead of output");
+    assert(mFrameTime <= mInputTime && "Output is ahead of input dependencies");
+    
     // Allow self-triggering if we haven't reached the end of time
     
     if (!endOfTime)
         dependencyNotify(this, false, kSelfConnection);
-    
-    // Debug
-    
-    if (requiresAudioNotification())
-        assert(prevInputTime >= mBlockStartTime && prevInputTime < mBlockEndTime && "Out of sync with host");
-    assert(mInputTime > prevInputTime && "Failed to move time forward");
-    assert(mInputTime <= mValidTime && "Inputs are ahead of output");
-    assert(mFrameTime <= mInputTime && "Output is ahead of input dependencies");
 }
 
 void FrameLib_DSP::resetOutputDependencyCount()

@@ -292,9 +292,9 @@ private:
     
     // Scheduling
     
-    // This returns true if the object requires notification from an audio thread (is a scheduler/has audio input)
+    // This returns true if the object needs notification from an audio thread (is a scheduler/has audio input)
     
-    bool requiresAudioNotification()    { return getType() == kScheduler || getNumAudioIns(); }
+    bool needsAudioNotification() { return getType() == kScheduler || getNumAudioIns(); }
     
     // Manage Output Memory
 
