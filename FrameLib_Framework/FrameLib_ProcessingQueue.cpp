@@ -4,6 +4,7 @@
 #include "FrameLib_DSP.h"
 
 #include <algorithm>
+#include <thread>
 
 // Constructor / Destructor
 
@@ -33,7 +34,7 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
     if (!addedBy || addedBy->mNextInThread)
     {
         int32_t numItems = ++mNumItems;
-        int32_t numWorkersActive = mNumWorkersActive.load() + (addedBy ? 0 : 1);
+        int32_t numWorkersActive = mNumWorkersActive.load();// + (addedBy ? 0 : 1);
         int32_t numWorkersNeeded = numItems - numWorkersActive;
     
         numWorkersNeeded = std::min(numWorkersNeeded, static_cast<int32_t>(mWorkers.size()) - numWorkersActive);
@@ -52,10 +53,7 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
 
 void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
 {
-    struct timespec a;
-    a.tv_sec = 0;
-    a.tv_nsec = 100;
-    
+    FrameLib_FreeBlocks *blocks = mFreeBlocks[index].get();
     mNumWorkersActive++;
     
     while (true)
@@ -66,7 +64,7 @@ void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
             
             while (object)
             {
-                object->dependenciesReady(mFreeBlocks[index].get());
+                object->dependenciesReady(blocks);
                 FrameLib_DSP *newObject = object->mNextInThread;
                 object->mNextInThread = nullptr;
                 object = newObject;
@@ -78,7 +76,7 @@ void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
         
         if (mNumItems.load() == 0)
         {
-            if (index ==0)
+            if (index == 0)
             {
                 for (auto it = mFreeBlocks.begin(); it != mFreeBlocks.end(); it++)
                     it->get()->clear();
@@ -91,7 +89,7 @@ void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
         
         // Keep pointless contention down and give way to other threads?
         
-        nanosleep(&a, nullptr);
+        std::this_thread::sleep_for(std::chrono::nanoseconds(1000));
     }
 }
 
