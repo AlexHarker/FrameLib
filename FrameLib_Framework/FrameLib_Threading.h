@@ -245,7 +245,7 @@ private:
 
  @brief a thread that can be triggered from another thread (there is no mechanism to check progress)
  
- The thread should be joined before desctruction.
+ The thread should be joined before destruction.
  
  */
 
@@ -306,7 +306,8 @@ class FrameLib_DelegateThread
     
 public:
 
-    FrameLib_DelegateThread(FrameLib_Thread::PriorityLevel priority) : mThread(priority, threadEntry, this), mSemaphore(1), mSignaled(false), mFlag(0) {}
+    FrameLib_DelegateThread(FrameLib_Thread::PriorityLevel priority)
+    : mThread(priority, threadEntry, this), mSemaphore(1), mSignaled(false), mFlag(0) {}
     virtual ~FrameLib_DelegateThread() {}
 
     // Non-copyable
@@ -351,15 +352,34 @@ private:
     std::atomic<int> mFlag;
 };
 
-// A set of threads that can be triggered from another thread but without any built-in mechanism to check progress
 
-class TriggerableThreadSet
+/**
+ 
+ @class FrameLib_TriggerableThreadSet
+ 
+ @ingroup Threading
+ 
+ @brief a set of indexed thread to use as a worker pool
+ 
+ The threads should be joined before desctruction.
+ 
+ */
+
+class FrameLib_TriggerableThreadSet
 {
+    struct IndexedThread : public FrameLib_Thread
+    {
+        IndexedThread(PriorityLevel priority, FrameLib_TriggerableThreadSet *owner, unsigned int index)
+        : FrameLib_Thread(priority, threadEntry, this), mOwner(owner), mIndex(index) {}
+        
+        FrameLib_TriggerableThreadSet *mOwner;
+        unsigned int mIndex;
+    };
     
 public:
     
-    TriggerableThreadSet(FrameLib_Thread::PriorityLevel priority, unsigned int size);
-    virtual ~TriggerableThreadSet();
+    FrameLib_TriggerableThreadSet(FrameLib_Thread::PriorityLevel priority, unsigned int size);
+    virtual ~FrameLib_TriggerableThreadSet();
     
     // Start and join
     
@@ -378,21 +398,21 @@ private:
     
     // Deleted
     
-    TriggerableThreadSet(const TriggerableThreadSet&);
-    TriggerableThreadSet& operator=(const TriggerableThreadSet&);
+    FrameLib_TriggerableThreadSet(const FrameLib_TriggerableThreadSet&);
+    FrameLib_TriggerableThreadSet& operator=(const FrameLib_TriggerableThreadSet&);
     
     // threadEntry simply calls threadClassEntry which calls the task handler
     
     static void threadEntry(void *thread);
-    void threadClassEntry();
+    void threadClassEntry(unsigned int index);
     
     // Override this and provide code for the thread's functionality
     
-    virtual void doTask() = 0;
+    virtual void doTask(unsigned int index) = 0;
     
     // Data
     
-    std::vector<FrameLib_Thread *> mThreads;
+    std::vector<IndexedThread *> mThreads;
     FrameLib_Semaphore mSemaphore;
 };
 

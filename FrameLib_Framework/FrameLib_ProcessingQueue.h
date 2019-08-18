@@ -71,18 +71,18 @@ class FrameLib_ProcessingQueue
      
      */
     
-    class WorkerThreads : public TriggerableThreadSet
+    class WorkerThreads : public FrameLib_TriggerableThreadSet
     {
         
     public:
         
         WorkerThreads(FrameLib_ProcessingQueue *queue)
-        : TriggerableThreadSet(FrameLib_Thread::kHighPriority, FrameLib_Thread::maxThreads() - 1), mQueue(queue)
+        : FrameLib_TriggerableThreadSet(FrameLib_Thread::kHighPriority, FrameLib_Thread::maxThreads() - 1), mQueue(queue)
         {}
         
     private:
         
-        void doTask() override { mQueue->serviceQueue(); }
+        void doTask(unsigned int index) override { mQueue->serviceQueue(index + 1); }
 
         FrameLib_ProcessingQueue *mQueue;
     };
@@ -106,7 +106,7 @@ public:
 
 private:
     
-    void serviceQueue();
+    void serviceQueue(int32_t index);
 
     WorkerThreads mWorkers;
     FrameLib_OwnedList<FrameLib_FreeBlocks> mFreeBlocks;

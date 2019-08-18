@@ -44,19 +44,19 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
         OSAtomicFifoEnqueue(&mQueue, &object->mQueueItem, offsetof(QueueItem, mNext));
         
         if (!addedBy)
-            serviceQueue();
+            serviceQueue(0);
     }
     else
         addedBy->mNextInThread = object;
 }
 
-void FrameLib_ProcessingQueue::serviceQueue()
+void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
 {
     struct timespec a;
     a.tv_sec = 0;
     a.tv_nsec = 100;
     
-    int32_t index = mNumWorkersActive++;
+    mNumWorkersActive++;
     
     while (true)
     {

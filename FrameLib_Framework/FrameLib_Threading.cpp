@@ -392,42 +392,43 @@ void FrameLib_DelegateThread::threadClassEntry()
 
 // Triggerable Thread Set
 
-TriggerableThreadSet::TriggerableThreadSet(FrameLib_Thread::PriorityLevel priority, unsigned int size)
+FrameLib_TriggerableThreadSet::FrameLib_TriggerableThreadSet(FrameLib_Thread::PriorityLevel priority, unsigned int size)
 : mSemaphore(size)
 {
     mThreads.resize(size);
     
     for (auto it = mThreads.begin(); it != mThreads.end(); it++)
-        *it = new FrameLib_Thread(priority, threadEntry, this);
+        *it = new IndexedThread(priority, this, it - mThreads.begin());
 }
 
-TriggerableThreadSet::~TriggerableThreadSet()
+FrameLib_TriggerableThreadSet::~FrameLib_TriggerableThreadSet()
 {
     for (auto it = mThreads.begin(); it != mThreads.end(); it++)
         delete (*it);
 }
 
-void TriggerableThreadSet::start()
+void FrameLib_TriggerableThreadSet::start()
 {
     for (auto it = mThreads.begin(); it != mThreads.end(); it++)
         (*it)->start();
 }
 
-void TriggerableThreadSet::join()
+void FrameLib_TriggerableThreadSet::join()
 {
     mSemaphore.close();
     for (auto it = mThreads.begin(); it != mThreads.end(); it++)
         (*it)->join();
 }
 
-void TriggerableThreadSet::threadEntry(void *thread)
+void FrameLib_TriggerableThreadSet::threadEntry(void *thread)
 {
-    static_cast<TriggerableThreadSet *>(thread)->threadClassEntry();
+    IndexedThread *typedThread = static_cast<IndexedThread *>(thread);
+    typedThread->mOwner->threadClassEntry(typedThread->mIndex);
 }
 
-void TriggerableThreadSet::threadClassEntry()
+void FrameLib_TriggerableThreadSet::threadClassEntry(unsigned int index)
 {
     while (mSemaphore.wait())
-        doTask();
+        doTask(index);
 }
 
