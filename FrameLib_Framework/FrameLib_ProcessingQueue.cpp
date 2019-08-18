@@ -12,6 +12,8 @@ FrameLib_ProcessingQueue::FrameLib_ProcessingQueue(FrameLib_Global& global)
 {
     for (unsigned int i = 0; i < FrameLib_Thread::maxThreads(); i++)
         mFreeBlocks.push_back(std::unique_ptr<FrameLib_FreeBlocks>(new FrameLib_FreeBlocks(global)));
+    
+    mWorkers.start();
 }
 
 FrameLib_ProcessingQueue::~FrameLib_ProcessingQueue()
@@ -31,7 +33,7 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
     if (!addedBy || addedBy->mNextInThread)
     {
         int32_t numItems = ++mNumItems;
-        int32_t numWorkersActive = mNumWorkersActive;
+        int32_t numWorkersActive = mNumWorkersActive.load() + (addedBy ? 0 : 1);
         int32_t numWorkersNeeded = numItems - numWorkersActive;
     
         numWorkersNeeded = std::min(numWorkersNeeded, static_cast<int32_t>(mWorkers.size()) - numWorkersActive);
@@ -64,9 +66,7 @@ void FrameLib_ProcessingQueue::serviceQueue()
             
             while (object)
             {
-                object->setFreeBlocks(mFreeBlocks[index].get());
-                object->dependenciesReady();
-                object->removeFreeBlocks();
+                object->dependenciesReady(mFreeBlocks[index].get());
                 FrameLib_DSP *newObject = object->mNextInThread;
                 object->mNextInThread = nullptr;
                 object = newObject;
@@ -76,7 +76,7 @@ void FrameLib_ProcessingQueue::serviceQueue()
         
         // FIX - quick reliable and non-contentious exit strategies are needed here...
         
-        if (mNumItems == 0)
+        if (mNumItems.load() == 0)
         {
             mFreeBlocks[index]->clear();
             mNumWorkersActive--;

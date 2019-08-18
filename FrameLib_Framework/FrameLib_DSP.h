@@ -305,7 +305,7 @@ private:
     
     inline void dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, NotificationType type);
 
-    void dependenciesReady();
+    void dependenciesReady(FrameLib_FreeBlocks *freeBlocks);
     void incrementInputDependency();
     void resetOutputDependencyCount();
     int32_t getNumOuputDependencies()         { return static_cast<int32_t>(mOutputDependencies.size()); }

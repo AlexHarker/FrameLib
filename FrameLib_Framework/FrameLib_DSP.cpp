@@ -382,8 +382,9 @@ void FrameLib_DSP::incrementInputDependency()
 
 // Main code to control time flow (called when all input/output dependencies are ready)
 
-void FrameLib_DSP::dependenciesReady()
+void FrameLib_DSP::dependenciesReady(FrameLib_FreeBlocks *freeBlocks)
 {
+    setFreeBlocks(freeBlocks);
     
 #ifndef NDEBUG
     FrameLib_TimeFormat inputTime = mInputTime;
@@ -544,6 +545,8 @@ void FrameLib_DSP::dependenciesReady()
     if (mUpdatingInputs < prevUpdatingInputs)
         dependencyNotify(this, false, kSelfConnection);
     
+    removeFreeBlocks();
+
     // Debug (before re-entering)
     
     assert(!needsAudioNotification() || (inputTime >= mBlockStartTime && inputTime < mBlockEndTime) && "Out of sync with host");
