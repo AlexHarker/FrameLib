@@ -2,8 +2,8 @@
 #ifndef FRAMELIB_FIXEDPOINT_H
 #define FRAMELIB_FIXEDPOINT_H
 
-#include <stdint.h>
 #include <cmath>
+#include <cstdint>
 #include <limits>
 
 /**
