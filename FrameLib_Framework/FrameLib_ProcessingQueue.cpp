@@ -10,6 +10,8 @@
 FrameLib_ProcessingQueue::FrameLib_ProcessingQueue(FrameLib_Global& global)
 : mWorkers(this), mNumItems(0), mNumWorkersActive(0), mTimedOut(false), mErrorReporter(global)
 {
+    init();
+    
     for (unsigned int i = 0; i < FrameLib_Thread::maxThreads(); i++)
         mFreeBlocks.add(new FrameLib_FreeBlocks(global));
     
@@ -41,7 +43,9 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
         if (numWorkersNeeded > 0)
             mWorkers.signal(numWorkersNeeded);
     
-        OSAtomicFifoEnqueue(&mQueue, &object->mQueueItem, offsetof(QueueItem, mNext));
+        enqueue(object);
+        
+        int prio = FrameLib_Thread::currentThreadPriority();
         
         if (!addedBy)
             serviceQueue(0);
@@ -57,10 +61,8 @@ void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
     
     while (true)
     {
-        while (QueueItem *next = (QueueItem *) OSAtomicFifoDequeue(&mQueue, offsetof(QueueItem, mNext)))
+        while (FrameLib_DSP *object = dequeue())
         {
-            FrameLib_DSP *object = next->mThis;
-            
             while (object)
             {
                 object->dependenciesReady(blocks);
@@ -91,6 +93,24 @@ void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
         FrameLib_Thread::sleepCurrentThread(1000);
     }
 }
+
+void FrameLib_ProcessingQueue::init()
+{
+}
+
+void FrameLib_ProcessingQueue::enqueue(FrameLib_DSP *object)
+{
+    OSAtomicFifoEnqueue(&mQueue, &object->mQueueItem, offsetof(QueueItem, mNext));
+
+}
+
+FrameLib_DSP *FrameLib_ProcessingQueue::dequeue()
+{
+    QueueItem *item = (QueueItem *)  OSAtomicFifoDequeue(&mQueue, offsetof(QueueItem, mNext));
+    
+    return item ? item->mThis : nullptr;
+}
+
 
 // FIX - old version - need to add timeout to the above
 /*

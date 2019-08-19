@@ -107,13 +107,17 @@ public:
 private:
     
     void serviceQueue(int32_t index);
+    
+    void init();
+    void enqueue(FrameLib_DSP *object);
+    FrameLib_DSP *dequeue();
 
     WorkerThreads mWorkers;
     FrameLib_OwnedList<FrameLib_FreeBlocks> mFreeBlocks;
 
     std::atomic<int32_t> mNumItems;
     std::atomic<int32_t> mNumWorkersActive;
-    OSFifoQueueHead mQueue = OS_ATOMIC_FIFO_QUEUE_INIT;
+    OSFifoQueueHead mQueue OS_ATOMIC_FIFO_QUEUE_INIT;
     
     bool mTimedOut;
     IntervalSecondsClock mClock;
