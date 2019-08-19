@@ -10,12 +10,6 @@
 // Simple, Fast, and Practical Non-Blocking and Blocking Concurrent Queue Algorithms.
 // No. TR-600. ROCHESTER UNIV NY DEPT OF COMPUTER SCIENCE, 1995.
 
-template <class T>
-bool compareAndSwapS(std::atomic<T>& value, T comparand, T exchange)
-{
-    return value.compare_exchange_strong(comparand, exchange, std::memory_order_relaxed);
-}
-
 // Constructor / Destructor
 
 FrameLib_ProcessingQueue::FrameLib_ProcessingQueue(FrameLib_Global& global)
@@ -123,15 +117,15 @@ void FrameLib_ProcessingQueue::enqueue(FrameLib_DSP *object)
         
         if (tail == mTail)
         {
-            if (next.mPointer == nullptr)
+            if (!next.mPointer)
             {
                 // If tail was pointing to the last node then we can attempt to enqueue
                 
-                if (compareAndSwapS(tail.mPointer->mNext, next, NodePointer{node, next.mCount + 1}))
+                if (compareAndSwap(tail.mPointer->mNext, next, NodePointer{node, next.mCount + 1}))
                 {
                     // Try to update tail to the inserted node
                     
-                    compareAndSwapS(mTail, tail, NodePointer{node, tail.mCount + 1});
+                    compareAndSwap(mTail, tail, NodePointer{node, tail.mCount + 1});
                     return;
                 }
             }
@@ -139,7 +133,7 @@ void FrameLib_ProcessingQueue::enqueue(FrameLib_DSP *object)
             {
                 // Try to advance tail if falling behind
 
-                compareAndSwapS(mTail, tail, NodePointer{next.mPointer, tail.mCount + 1});
+                compareAndSwap(mTail, tail, NodePointer{next.mPointer, tail.mCount + 1});
             }
         }
     }
@@ -151,26 +145,24 @@ FrameLib_DSP *FrameLib_ProcessingQueue::dequeue()
     {
         // Read head, tail and next
         
-        NodePointer head = mHead;
-        NodePointer tail = mTail;
-        NodePointer next = head.mPointer->mNext;
+        const NodePointer head = mHead.load(std::memory_order_relaxed);
+        const NodePointer tail = mTail.load(std::memory_order_relaxed);
+        const NodePointer next = head.mPointer->mNext.load(std::memory_order_relaxed);
         
         // Check that head has not changed
         
-        if (head == mHead)
+        if (head == mHead.load(std::memory_order_relaxed))
         {
             // Check if either the queue is empty or tail is falling behind
             
             if (head.mPointer == tail.mPointer)
             {
-                // Check for empty queue
+                // Check for empty queue or try to advance tail if falling behind
                 
-                if (next.mPointer == nullptr)
+                if (!next.mPointer)
                     return nullptr;
                 
-                // Try to advance tail if falling behind
-                
-                compareAndSwapS(mTail, tail, NodePointer(next.mPointer, tail.mCount + 1));
+                compareAndSwap(mTail, tail, NodePointer(next.mPointer, tail.mCount + 1));
             }
             else
             {
@@ -180,9 +172,9 @@ FrameLib_DSP *FrameLib_ProcessingQueue::dequeue()
                 
                 // Attempt to change the head and complete dequeue
                 
-                if (compareAndSwapS(mHead, head, NodePointer(next.mPointer, head.mCount + 1)))
+                if (compareAndSwap(mHead, head, NodePointer(next.mPointer, head.mCount + 1)))
                 {
-                    head.mPointer->mNext = NodePointer();
+                    head.mPointer->mNext.store(NodePointer(), std::memory_order_relaxed);
                     return object;
                 }
             }

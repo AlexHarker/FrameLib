@@ -59,7 +59,10 @@ public:
             Pointer() : mPointer(nullptr), mCount(0) {}
             Pointer(Node *node, uintptr_t count) : mPointer(node), mCount(count) {}
             
-            bool operator==(const Pointer& a) { return a.mPointer == mPointer && a.mCount == mCount; }
+            bool operator==(const Pointer& a) const
+            {
+                return a.mPointer == mPointer && a.mCount == mCount;
+            }
             
             // This structure must not have padding bits, so we use a pointer sized mCount
             
