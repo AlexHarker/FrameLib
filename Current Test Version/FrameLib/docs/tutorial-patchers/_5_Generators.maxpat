@@ -800,7 +800,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 590.25, 114.0, 199.0, 137.0 ],
+									"patching_rect" : [ 590.25, 114.0, 201.0, 137.0 ],
 									"text" : "fl.ramp~ has a scale parameter. By default it outputs samples counting up to the length parameter minus one. In this example, \"/scale normalised\" causes fl.ramp~ to normalise its output between 0 and 1. Change between the modes to get a feeling for what's going on here."
 								}
 
@@ -1170,7 +1170,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 810.0, 510.0 ],
+						"rect" : [ 34.0, 105.0, 810.0, 510.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1220,7 +1220,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 580.25, 168.0, 215.0, 152.0 ],
+									"patching_rect" : [ 580.25, 168.0, 219.0, 152.0 ],
 									"text" : "Change the between requested and input of the right most fl.random~ object.\n\nIn requested mode, the object uses its stored /length parameter as the output length. Input mode allows it to spy on the length of the trigger frame, and configure the length of the output frame to match this."
 								}
 
@@ -1614,7 +1614,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 810.0, 510.0 ],
+						"rect" : [ 0.0, 26.0, 810.0, 510.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1677,7 +1677,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 3.75, 103.0, 793.0, 123.0 ],
-									"text" : "Generators are a fundamental part of FrameLib as they facilitate the generation of new frames according to some key algorithms (linear ramps, uniform/gaussian distributed random numbers, uniform frames).\n\nTo start, lets understand three primary generators in FrameLib:\n\n1. fl.random~ - generates uniformly distributed random numbers between 0 and 1.\n2. fl.ramp~ - generates frames of linear counting values (e.g 0, 1, 2, 3, 4, 5, 6)\n3. fl.uniform~ - generates frames of a single uniform value (e.g 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)"
+									"text" : "Generators are a fundamental part of FrameLib as they facilitate the generation of new frames according to some key algorithms (linear ramps, uniform/gaussian distributed random numbers, uniform frames).\n\nTo start, lets understand three primary generators in FrameLib:\n\n1. fl.random~ - generates uniformly distributed random numbers between 0. and 1.\n2. fl.ramp~ - generates frames of linear counting values (e.g 0, 1, 2, 3, 4, 5, 6)\n3. fl.uniform~ - generates frames of a single uniform value (e.g 0.5, 0.5, 0.5, 0.5, 0.5, 0.5)"
 								}
 
 							}

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 947.0, 591.0 ],
+		"rect" : [ 34.0, 79.0, 948.0, 591.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -42,6 +42,17 @@
 		"globalpatchername" : "Tutorial_1",
 		"title" : "Tutorial 2: What is FrameLib?",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-11",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 229.0, 404.0, 50.0, 21.0 ],
+					"text" : "onecopy"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-13",
 					"maxclass" : "newobj",
@@ -120,7 +131,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 947.0, 565.0 ],
+						"rect" : [ 0.0, 26.0, 948.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -537,7 +548,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 947.0, 565.0 ],
+						"rect" : [ 0.0, 26.0, 948.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1259,7 +1270,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 947.0, 565.0 ],
+						"rect" : [ 0.0, 26.0, 948.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1944,7 +1955,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 947.0, 565.0 ],
+						"rect" : [ 0.0, 26.0, 948.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2031,7 +2042,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 5.75, 106.0, 935.0, 123.0 ],
+									"patching_rect" : [ 5.75, 106.0, 939.0, 123.0 ],
 									"text" : "FrameLib is a DSP system designed to allow quick modular constructions of frame-based networks. A frame is a self contained group of samples similar to a grain in granulation or an FFT frame. These networks can resolve time at a highly accurate subsample level and can run at different rates and with different frame sizes.\n\nWithin a single FrameLib network you are able to mix different representations (such as time and frequency-based), efficiently process them and maintaining tightly-timed DSP constructs. A group of FrameLib objects resulting in a processing chain can be referred to as a 'network'.\n\nIf you don't know what these terms mean or are not sure if FrameLib could be useful for you rest assured it will make sense as the tutorials progress."
 								}
 
@@ -2186,7 +2197,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 947.0, 565.0 ],
+						"rect" : [ 34.0, 105.0, 948.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2742,7 +2753,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 947.0, 565.0 ],
+						"rect" : [ 0.0, 26.0, 948.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3468,7 +3479,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 947.0, 565.0 ],
+						"rect" : [ 0.0, 26.0, 948.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4085,7 +4096,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 947.0, 565.0 ],
+						"rect" : [ 0.0, 26.0, 948.0, 565.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4510,36 +4521,24 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-5::obj-5::obj-21::obj-6" : [ "live.tab[5]", "live.tab[1]", 0 ],
-			"obj-5::obj-5::obj-35" : [ "[2]", "Level", 0 ],
-			"obj-2::obj-93::obj-50" : [ "live.gain~[9]", "Volume", 0 ],
-			"obj-116::obj-12::obj-35" : [ "[5]", "Level", 0 ],
-			"obj-116::obj-12::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
 			"obj-4::obj-9::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
 			"obj-2::obj-12::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-2::obj-12::obj-35" : [ "[1]", "Level", 0 ],
 			"obj-116::obj-93::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
+			"obj-1::obj-9::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-5::obj-5::obj-35" : [ "[2]", "Level", 0 ],
 			"obj-9::obj-21::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
 			"obj-5::obj-93::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
-			"obj-1::obj-9::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-2::obj-12::obj-35" : [ "[1]", "Level", 0 ],
 			"obj-3::obj-26::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
+			"obj-2::obj-93::obj-50" : [ "live.gain~[9]", "Volume", 0 ],
+			"obj-116::obj-12::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
+			"obj-5::obj-5::obj-21::obj-6" : [ "live.tab[5]", "live.tab[1]", 0 ],
+			"obj-116::obj-12::obj-35" : [ "[5]", "Level", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-5::obj-5::obj-21::obj-6" : 				{
-					"parameter_longname" : "live.tab[5]"
-				}
-,
-				"obj-5::obj-5::obj-35" : 				{
-					"parameter_longname" : "[2]"
-				}
-,
-				"obj-2::obj-93::obj-50" : 				{
-					"parameter_longname" : "live.gain~[9]"
-				}
-,
 				"obj-4::obj-9::obj-50" : 				{
 					"parameter_longname" : "live.gain~[7]"
 				}
@@ -4548,12 +4547,12 @@
 					"parameter_longname" : "live.tab[4]"
 				}
 ,
-				"obj-2::obj-12::obj-35" : 				{
-					"parameter_longname" : "[1]"
-				}
-,
 				"obj-116::obj-93::obj-50" : 				{
 					"parameter_longname" : "live.gain~[2]"
+				}
+,
+				"obj-5::obj-5::obj-35" : 				{
+					"parameter_longname" : "[2]"
 				}
 ,
 				"obj-9::obj-21::obj-50" : 				{
@@ -4564,8 +4563,20 @@
 					"parameter_longname" : "live.gain~[5]"
 				}
 ,
+				"obj-2::obj-12::obj-35" : 				{
+					"parameter_longname" : "[1]"
+				}
+,
 				"obj-3::obj-26::obj-50" : 				{
 					"parameter_longname" : "live.gain~[4]"
+				}
+,
+				"obj-2::obj-93::obj-50" : 				{
+					"parameter_longname" : "live.gain~[9]"
+				}
+,
+				"obj-5::obj-5::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[5]"
 				}
 
 			}

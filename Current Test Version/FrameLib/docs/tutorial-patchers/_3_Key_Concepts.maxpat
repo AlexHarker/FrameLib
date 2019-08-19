@@ -57,7 +57,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 1247.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1247.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1630,7 +1630,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 743.5, 50.0, 5.0, 496.0 ]
+									"patching_rect" : [ 743.5, 50.0, 5.0, 467.0 ]
 								}
 
 							}
@@ -1673,6 +1673,7 @@
 							}
 , 							{
 								"box" : 								{
+									"fontface" : 2,
 									"fontsize" : 13.0,
 									"id" : "obj-8",
 									"maxclass" : "comment",
@@ -1700,12 +1701,12 @@
 								"box" : 								{
 									"fontsize" : 13.0,
 									"id" : "obj-14",
-									"linecount" : 13,
+									"linecount" : 12,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 336.0, 733.0, 210.0 ],
-									"text" : "3. fl.tag~\n\nReal-time control of parameters is managed uniquely in FrameLib. Unlike Max objects, each parameter does not have its own inlet. Instead, tagged frames are created with the fl.tag~ object and sent to the 'parameter update' inlet. Tagging frames occurs at audio rate inside of FrameLib networks and simply sending a Max message like \"parameter $1\" directly will not work. In fact, you will find that connecting the message box is impossible. There is a method to use Max message boxes to change parameters as a matter of convenience but this will be discussed later.\n\nIn the example to the right, every 200 milliseconds a frame is generated with a random length parameter and is filled with random values between 0 and 1. This demonstrates the tightly-timed nature of FrameLib, as the control of the length parameter is synchronised with the generation of the frame and its values. The multislider gives you a visual representation of this behaviour. In the next tutorial you'll be introduced to how you might change parameters with a Max interface.\n\n"
+									"patching_rect" : [ 8.75, 336.0, 733.0, 181.0 ],
+									"text" : "3. fl.tag~\n\nReal-time control of parameters is managed uniquely in FrameLib. Unlike Max objects, each parameter does not have its own inlet. Instead, tagged frames are created with the fl.tag~ object and sent to the 'parameter update' inlet. Tagging frames occurs at audio rate inside of FrameLib networks and simply sending a Max message like \"parameter $1\" directly will not work. In fact, you will find that connecting the message box is impossible. There is a method to use Max message boxes to change parameters as a matter of convenience but this will be discussed later.\n\nIn the example to the right, every 200 milliseconds a frame of random length and values is created. This demonstrates the tightly-timed nature of FrameLib, as the control of the length parameter is synchronised with the generation of the frame and its values. The multislider gives you a visual representation of this behaviour. In the next tutorial you'll be introduced to how you might change parameters with a Max interface."
 								}
 
 							}
@@ -2221,7 +2222,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 787.75, 243.40002400000003, 157.75, 51.0 ],
 									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 16
+									"size" : 18
 								}
 
 							}
@@ -2449,7 +2450,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 513.450012000000015, 537.4000244140625, 280.0, 79.0 ],
+									"patching_rect" : [ 513.450012000000015, 537.4000244140625, 283.0, 79.0 ],
 									"text" : "By default fl.random~ is created in \"requested\" mode. When it receives the frame from the top most fl.random~, it generates a frame set by its own /length parameter . See point 4 and how the \"input\" mode differs."
 								}
 
@@ -3079,7 +3080,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1247.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 1247.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3112,12 +3113,12 @@
 								"box" : 								{
 									"fontsize" : 13.0,
 									"id" : "obj-2",
-									"linecount" : 15,
+									"linecount" : 19,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 281.0, 642.0, 224.0 ],
-									"text" : "FrameLib objects have a unique system for managing parameters at instantiation and with real-time control. It is is not dissimilar to max messages but there are some differences.\n\nThere are two ways to assign parameters to a FrameLib object at load time. Like many Max objects you can input values in the order of the arguments you want to address. Additionally you can directly address parameters through the \"/parameter <value>\" syntax. This is similar to the \"@attribute\" system in Max, however FrameLib objects cannot be addressed through the 'attrui' object. The /parameter syntax is a more direct way of addressing each parameter and is particularly useful in two scenarios.\n\n1. The default parameters are useful apart from one specific parameter you would like to change.\n2. Making parameter configurations explicit and easy to read.\n\nReal-time control is managed through a 'parameter update' inlet which receives special 'tagged frames'. Because frames are used to change the parameters, the configuration of the object is tightly synchronised to the network. More details can be found in the corresponding tabs above."
+									"patching_rect" : [ 3.75, 281.0, 642.0, 282.0 ],
+									"text" : "FrameLib objects have a unique system for managing parameters at instantiation and with real-time control. It is is not dissimilar to max messages but there are some differences.\n\nThere are two ways to assign parameters to a FrameLib object at load time. Like many Max objects you can input values in the order of the arguments you want to address. Additionally you can directly address parameters through the \"/parameter <value>\" syntax. This is similar to the \"@attribute\" system in Max, however FrameLib objects cannot be addressed through the 'attrui' object. The /parameter syntax is a more direct way of addressing each parameter and is particularly useful in two scenarios.\n\n1. The default parameters are useful apart from one specific parameter you would like to change.\n2. Making parameter configurations explicit and easy to read.\n\nReal-time control is managed through a 'parameter update' inlet which receives special 'tagged frames'. This is universally the right most inlet, except in the case that there is only the parameter update inlet (in which case it will be the first). Because frames are used to change the parameters, the configuration of the object is tightly synchronised to the network. \n\nThere is a lot of information just in these two paragraphs. Start moving through each tab which will inform you more deeply on the schedulers and parameters."
 								}
 
 							}

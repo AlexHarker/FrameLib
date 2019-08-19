@@ -9161,7 +9161,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1126.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 1126.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -9192,6 +9192,115 @@
 						"title" : "Creating a Grain",
 						"boxes" : [ 							{
 								"box" : 								{
+									"fontsize" : 13.0,
+									"id" : "obj-47",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 703.75, 239.0, 105.0, 36.0 ],
+									"text" : "Minimum: 0\nMaximum: 8820",
+									"textcolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 13.0,
+									"id" : "obj-45",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 703.75, 333.0, 162.0, 21.0 ],
+									"text" : "The output of fl.ramp~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"candycane" : 3,
+									"ghostbar" : 30,
+									"id" : "obj-43",
+									"maxclass" : "multislider",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 703.75, 239.0, 314.0, 92.0 ],
+									"setminmax" : [ 0.0, 8820.0 ],
+									"size" : 8820
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-42",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 703.75, 210.0, 58.0, 22.0 ],
+									"text" : "fl.tomax~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"color" : [ 0.792156862745098, 0.282352941176471, 0.282352941176471, 1.0 ],
+									"fontsize" : 13.0,
+									"id" : "obj-40",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 548.0, 692.0, 158.0, 23.0 ],
+									"text" : "fl.read~ myGran /units ms"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"color" : [ 0.792156862745098, 0.282352941176471, 0.282352941176471, 1.0 ],
+									"fontsize" : 13.0,
+									"id" : "obj-41",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 548.0, 640.0, 238.0, 23.0 ],
+									"text" : "fl.ramp~ /length 200 /units ms /scale ms"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"angle" : 270.0,
+									"bgcolor" : [ 0.2, 0.2, 0.2, 0.0 ],
+									"border" : 2,
+									"bordercolor" : [ 0.96078431372549, 0.364705882352941, 0.364705882352941, 1.0 ],
+									"id" : "obj-39",
+									"maxclass" : "panel",
+									"mode" : 0,
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 542.75, 626.0, 249.0, 99.0 ],
+									"proportion" : 0.5
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-20",
+									"justification" : 1,
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 52.75, 339.5, 368.0, 5.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"arrows" : 1,
 									"border" : 4.0,
 									"id" : "obj-16",
@@ -9199,7 +9308,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 199.75, 490.0, 37.25, 15.0 ]
+									"patching_rect" : [ 745.75, 166.0, 37.25, 15.0 ]
 								}
 
 							}
@@ -9210,7 +9319,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 239.0, 482.5, 275.0, 21.0 ],
+									"patching_rect" : [ 785.0, 161.0, 275.0, 21.0 ],
 									"text" : "Extract the samples from a buffer with fl.read~"
 								}
 
@@ -9230,7 +9339,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 8.75, 563.0, 43.0, 92.0 ],
+									"patching_rect" : [ 554.75, 239.0, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -9244,7 +9353,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 189.75, 436.5, 37.25, 15.0 ]
+									"patching_rect" : [ 825.75, 113.0, 37.25, 15.0 ]
 								}
 
 							}
@@ -9256,7 +9365,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 229.0, 425.0, 215.0, 36.0 ],
+									"patching_rect" : [ 865.0, 101.5, 215.0, 36.0 ],
 									"text" : "How long will the grain be (200 milliseconds converted to samples)"
 								}
 
@@ -9270,7 +9379,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 127.75, 377.5, 37.25, 15.0 ]
+									"patching_rect" : [ 673.75, 53.5, 37.25, 15.0 ]
 								}
 
 							}
@@ -9282,7 +9391,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 167.0, 360.0, 156.0, 50.0 ],
+									"patching_rect" : [ 713.0, 36.0, 156.0, 50.0 ],
 									"text" : "How often are we generating a new grain (Every 500 milliseconds)"
 								}
 
@@ -9295,7 +9404,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 374.0, 117.0, 23.0 ],
+									"patching_rect" : [ 554.75, 50.0, 117.0, 23.0 ],
 									"text" : "fl.interval~ 500 ms"
 								}
 
@@ -9307,7 +9416,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 663.5, 45.0, 45.0 ]
+									"patching_rect" : [ 554.75, 339.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -9319,7 +9428,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 8.75, 534.0, 52.0, 23.0 ],
+									"patching_rect" : [ 554.75, 210.0, 52.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -9332,7 +9441,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 485.0, 189.0, 23.0 ],
+									"patching_rect" : [ 554.75, 161.0, 189.0, 23.0 ],
 									"text" : "fl.read~ myGran /units samples"
 								}
 
@@ -9345,8 +9454,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.75, 433.0, 179.0, 23.0 ],
-									"text" : "fl.ramp~ /length 200 /units ms"
+									"patching_rect" : [ 554.75, 109.0, 269.0, 23.0 ],
+									"text" : "fl.ramp~ /length 200 /units ms /scale samples"
 								}
 
 							}
@@ -9354,12 +9463,12 @@
 								"box" : 								{
 									"fontsize" : 13.0,
 									"id" : "obj-3",
-									"linecount" : 19,
+									"linecount" : 46,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 50.0, 672.0, 297.0 ],
-									"text" : "Granular synthesis uses the \"grain\" as a unit of sound. These grains are often short and derived from a sample or selection of samples. We're going to use fl.ramp~ and fl.read~ to generate grains in this step.\n\nEverything is going to be thought of in milliseconds and FrameLib will convert these values to samples. The reason for doing this that it's difficult to think about a 5 second buffer in terms of samples unless you're a computer. If we want the sample at 1.5 seconds we have to multiply the sample rate of the audio buffer by this number and then use that. Instead we should just be able to use milliseconds and leave the calculation under the hood.\n\nFirst, we have to consider two things for creating a grain.\n\n1. How often are we going to generate a new grain\n2. How long will the grain be\n\nRemember, nothing in FrameLib happens without a scheduler so the rate at which we schedule trigger frames will control how often a new grain is created.\n\nGrains are created by taking short selections from a larger sample and playing them back. To do this, fl.ramp~ will generate frames containing a selection of sequential sample values. These values tell fl.read~ which samples to store in a frame. Therefore, the length of fl.ramp~'s frame will dictate how long the grain will be. \n"
+									"patching_rect" : [ 8.75, 50.0, 530.25, 675.0 ],
+									"text" : "Granular synthesis uses the \"grain\" as a unit of sound. These grains are often short and derived from a sample or selection of samples. We're going to use fl.ramp~ and fl.read~ to generate grains in this step.\n\nFirst, we have to consider two things for creating a grain.\n\n1. How often are we going to generate a new grain\n2. How long will the grain be\n\nRemember, nothing in FrameLib happens without a scheduler so the rate at which we schedule trigger frames will control how often a new grain is created.\n\nSecondly, we need to ask fl.read~ for some samples at specific positions. We will use fl.ramp~ for this purpose, an object which generates frames containing consecutive incremental values (0, 1, 2, 3, 4). The frame created by fl.ramp~ is going to be sent to the to the fl.read~ object which interprets these numbers as specific audio samples to retrieve from the buffer it is pointed to. You can think of the relationship between fl.ramp~ and fl.read~ as something very similar to the one bewteen uzi and peek~ for extracting buffer values. \n\n\nThe confusing aspect of this is that although FrameLib would like you to specify everything in samples, it is both musically and logically difficult to conceive of a buffer and time in terms of how many samples will pass. As a result, we are going to specify everything in milliseconds and let FrameLib convert these values to samples auto-magically. This lets us think about everything in durations that make intuitive sense, however, a caveat of working in this way is that we have to tell all of the corresponding objects what kind of units they should expect. Let's break down the example on the right to explain this further.\n\n1. Our scheduler is set to output a trigger frame every 500 milliseconds. That one is easy to understand.\n\n2. fl.ramp~ is going to create a frame which has a length of 200 set by the /length parameter. The /units parameter tells fl.ramp~ how to interpret the length parameter, in this case the object will know we are specifiying 200 milliseconds and not samples. Finally, the /scale parameter dictates how fl.ramp~ should scale its output. The /scale function will remap the output to whatever units of time you would like. The combination of these parameters is effectively asking these three commands: I would like a frame of numbers that relate to samples (/scale), that directly reflect 200 (/length) milliseconds (units) of time. The final result is actually a list which is 8820 samples long at 44.1khz.\n\n3. In this case, fl.ramp~ is providing us with a frame containing sample positions so we tell fl.read~ to interpret the incoming frame as /units samples. In the small snippet to the right, the /scale is set to milliseconds and the /units for fl.read~ are set to milliseconds. This is an equivalent method of patching the fl.ramp~ / fl.read~ combination for creating grains where everything would be specified in millisecond values, rather than samples."
 								}
 
 							}
@@ -9402,7 +9511,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 516.0, 482.5, 20.0, 20.0 ],
+									"patching_rect" : [ 1060.0, 161.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -9423,7 +9532,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 444.75, 436.5, 20.0, 20.0 ],
+									"patching_rect" : [ 1080.75, 113.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -9444,7 +9553,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 325.0, 377.5, 20.0, 20.0 ],
+									"patching_rect" : [ 871.0, 53.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -9477,8 +9586,32 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-6", 0 ],
+									"destination" : [ "obj-42", 0 ],
+									"midpoints" : [ 564.25, 147.0, 540.0, 147.0, 540.0, 195.0, 713.25, 195.0 ],
+									"order" : 0,
 									"source" : [ "obj-2", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-6", 0 ],
+									"order" : 1,
+									"source" : [ "obj-2", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-40", 0 ],
+									"source" : [ "obj-41", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-43", 0 ],
+									"source" : [ "obj-42", 0 ]
 								}
 
 							}
@@ -9680,7 +9813,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.75, 50.0, 675.0, 50.0 ],
-									"text" : "The fl.read~ object reads data from a normal Max/MSP buffer. Like the play~, groove~, index~ or poke~ objects fl.read~ must be pointed to a named buffer~ object. By default it reads from buffers sample by sample, but it can also function in milliseconds as a format, set by the \"units\" paramater."
+									"text" : "The fl.read~ object reads data from a normal Max buffer. Like the play~, groove~, index~ or poke~ objects fl.read~ must be pointed to a named buffer~ object. By default it reads from buffers sample by sample, but it can also function in milliseconds as a format, set by the \"units\" parameter."
 								}
 
 							}
@@ -10011,7 +10144,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 1126.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1126.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -10044,12 +10177,12 @@
 								"box" : 								{
 									"fontsize" : 13.0,
 									"id" : "obj-3",
-									"linecount" : 19,
+									"linecount" : 18,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 103.0, 669.0, 282.0 ],
-									"text" : "So far we've covered the key principles of FrameLib including:\n\n1. Scheduling (fl.interval~ mainly)\n\n2. Parameters and Tagging (fl.tag~, fl.frommax~ /mode params)\n\n3. Converting data to and from frames (fl.tomax~, fl.frommax~, fl.source~, fl.sink~)\n\n4. Generator objects\n\nIf you need a refresher on how any of those work revisit the tutorials and additionally look at the help files for each object.\n\nNow that we've become familiar with these four areas it's time to make something where they work together. In the very first tutorial there is a granulator example which we're going to build step-by-step. One tool that we're missing currently is something to read audio from buffers and output it as frames. To solve this problem this we need to use the fl.read~ object.\n\nStart with the next tab and move along through the stages while you build your own granulator in FrameLib."
+									"patching_rect" : [ 3.75, 103.0, 671.0, 268.0 ],
+									"text" : "So far we've covered the key principles of FrameLib including:\n\n1. Scheduling (fl.interval~ mainly)\n\n2. Parameters and Tagging (fl.tag~, fl.frommax~ /mode params)\n\n3. Converting data to and from frames (fl.tomax~, fl.frommax~, fl.source~, fl.sink~)\n\n4. Generator objects\n\nIf you need a refresher on how any of those work revisit the tutorials and additionally look at the help files for each object.\n\nNow that we've become familiar with these four areas it's time to make something where they work together. In the very first tutorial there is a granulator example which we're going to build step-by-step. One tool that we're missing currently is something to read audio from buffers and output it as frames. We will use fl.read~ for this purpose.\n\nStart with the next tab and move along through the stages while you build your own granulator in FrameLib."
 								}
 
 							}
@@ -10224,23 +10357,19 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-8::obj-15::obj-50" : [ "live.gain~[8]", "Volume", 0 ],
 			"obj-7::obj-15::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
 			"obj-1::obj-15::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
-			"obj-6::obj-15::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
+			"obj-10::obj-6::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-8::obj-15::obj-50" : [ "live.gain~[8]", "Volume", 0 ],
 			"obj-3::obj-15::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
 			"obj-5::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
-			"obj-10::obj-6::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
 			"obj-4::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
+			"obj-6::obj-15::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-8::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[8]"
-				}
-,
 				"obj-7::obj-15::obj-50" : 				{
 					"parameter_longname" : "live.gain~[7]"
 				}
@@ -10249,8 +10378,8 @@
 					"parameter_longname" : "live.gain~[2]"
 				}
 ,
-				"obj-6::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[6]"
+				"obj-8::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[8]"
 				}
 ,
 				"obj-3::obj-15::obj-50" : 				{
@@ -10263,6 +10392,10 @@
 ,
 				"obj-4::obj-15::obj-50" : 				{
 					"parameter_longname" : "live.gain~[4]"
+				}
+,
+				"obj-6::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[6]"
 				}
 
 			}
@@ -10312,6 +10445,10 @@
 			}
 , 			{
 				"name" : "fl.sink~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.tomax~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
