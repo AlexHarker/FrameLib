@@ -22,14 +22,6 @@
  
  */
 
-class FrameLib_DSP;
-
-struct QueueItem
-{    
-    FrameLib_DSP *mThis;
-    FrameLib_DSP *mNext;
-};
-
 class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_DSP>
 {
     using Queue = FrameLib_Queueable<FrameLib_Block>::Queue;
@@ -333,8 +325,7 @@ private:
     // Processing Queue
     
     FrameLib_Context::ProcessingQueue mProcessingQueue;
-    QueueItem mQueueItem;
-    FrameLib_DSP *mNextInThread;
+    FrameLib_ProcessingQueue::Node mNode;
     
     // IO Info
     

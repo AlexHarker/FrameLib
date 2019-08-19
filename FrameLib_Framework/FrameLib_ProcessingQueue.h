@@ -10,9 +10,6 @@
 #include <chrono>
 #include <vector>
 
-// FIX - mac only
-#include <libkern/OSAtomicQueue.h>
-
 // Forward Declarations
 
 class FrameLib_Global;
@@ -36,6 +33,52 @@ class FrameLib_DSP;
 
 class FrameLib_ProcessingQueue
 {
+    
+public:
+    
+    /**
+     
+     @class Node
+     
+     @brief a node in the processing queue.
+     
+     */
+    
+    struct Node
+    {
+        /**
+         
+         @class Pointer
+         
+         @brief a pointer with a count attached
+         
+         */
+        
+        struct Pointer
+        {
+            Pointer() : mPointer(nullptr), mCount(0) {}
+            Pointer(Node *node, uintptr_t count) : mPointer(node), mCount(count) {}
+            
+            bool operator==(const Pointer& a) { return a.mPointer == mPointer && a.mCount == mCount; }
+            
+            // This structure must not have padding bits, so we use a pointer sized mCount
+            
+            Node *mPointer;
+            uintptr_t mCount;
+        };
+        
+        Node(FrameLib_DSP *owner)
+        : mOwner(owner), mNextInThread(nullptr), mNext(Pointer()) {}
+        
+        FrameLib_DSP *mOwner;
+        FrameLib_DSP *mNextInThread;
+        std::atomic<Pointer> mNext;
+    };
+    
+private:
+    
+    using NodePointer = Node::Pointer;
+
     /**
      
      @class IntervalSecondsClock
@@ -111,13 +154,16 @@ private:
     void init();
     void enqueue(FrameLib_DSP *object);
     FrameLib_DSP *dequeue();
-
+    
     WorkerThreads mWorkers;
     FrameLib_OwnedList<FrameLib_FreeBlocks> mFreeBlocks;
 
+    Node mDummyNode;
+    std::atomic<NodePointer> mHead;
+    std::atomic<NodePointer> mTail;
+    
     std::atomic<int32_t> mNumItems;
     std::atomic<int32_t> mNumWorkersActive;
-    OSFifoQueueHead mQueue OS_ATOMIC_FIFO_QUEUE_INIT;
     
     bool mTimedOut;
     IntervalSecondsClock mClock;
