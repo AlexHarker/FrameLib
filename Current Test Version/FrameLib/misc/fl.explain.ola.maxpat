@@ -54,6 +54,7 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-152",
+					"ignoreclick" : 1,
 					"maxclass" : "multislider",
 					"numinlets" : 1,
 					"numoutlets" : 2,
@@ -1677,6 +1678,7 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-71",
+					"ignoreclick" : 1,
 					"maxclass" : "multislider",
 					"numinlets" : 1,
 					"numoutlets" : 2,
@@ -1693,6 +1695,7 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-67",
+					"ignoreclick" : 1,
 					"maxclass" : "multislider",
 					"numinlets" : 1,
 					"numoutlets" : 2,
@@ -1709,6 +1712,7 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-51",
+					"ignoreclick" : 1,
 					"maxclass" : "multislider",
 					"numinlets" : 1,
 					"numoutlets" : 2,
