@@ -45,7 +45,7 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
     
         enqueue(object);
         
-        int prio = FrameLib_Thread::currentThreadPriority();
+        //int prio = FrameLib_Thread::currentThreadPriority();
         
         if (!addedBy)
             serviceQueue(0);
