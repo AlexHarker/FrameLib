@@ -74,9 +74,9 @@ public:
             mSize = 0;
         }
 
-        unsigned int mSize;
         Node *mHead;
         Node *mTail;
+        unsigned int mSize;
     };
     
 private:
