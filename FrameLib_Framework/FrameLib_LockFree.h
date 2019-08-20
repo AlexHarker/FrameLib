@@ -6,6 +6,8 @@
 
 #include "FrameLib_Threading.h"
 
+#include <libkern/OSAtomicQueue.h>
+
 template <class T>
 class FrameLib_LockFreeStack
 {
@@ -94,5 +96,39 @@ public:
     std::atomic<Pointer> mHead;
 };
 
+template <class T>
+class FrameLib_AppleLockFreeQueue
+{
+    
+public:
+    
+    // A node in the stack
+    
+    struct Node
+    {
+        Node(T *owner)
+        : mOwner(owner), mNextInThread(nullptr), mNext(nullptr) {}
+        
+        T *mOwner;
+        T *mNextInThread;
+        T *mNext;
+    };
+    
+public:
+    
+    void enqueue(Node *node)
+    {
+        OSAtomicFifoEnqueue(&mQueue, node, offsetof(Node, mNext));
+    }
+    
+    T *dequeue()
+    {
+        Node *node = (Node *) OSAtomicFifoDequeue(&mQueue, offsetof(Node, mNext));
+        
+        return node ? node->mOwner : nullptr;
+    }
+    
+    OSFifoQueueHead mQueue OS_ATOMIC_FIFO_QUEUE_INIT;
+};
 
 #endif /* FRAMELIB_LOCKFREE_H */
