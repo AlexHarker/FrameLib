@@ -38,6 +38,9 @@ externals/
 *.o
 *.d_fat
 
+## Package Testing
+test-builds/
+
 ## James/Documentation
 __pycache__/
 Documentation/Max\ Documentation/_Notes
