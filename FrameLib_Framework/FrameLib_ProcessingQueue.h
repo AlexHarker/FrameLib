@@ -111,6 +111,7 @@ public:
 
 private:
     
+    void wakeWorkers(bool addItem, bool countThisThread);
     void serviceQueue(int32_t index);
     
     WorkerThreads mWorkers;

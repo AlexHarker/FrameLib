@@ -32,15 +32,7 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
     
     if (!addedBy || addedBy->mNextInThread)
     {
-        int32_t numItems = ++mNumItems;
-        int32_t numWorkersActive = mNumWorkersActive.load();// + (addedBy ? 0 : 1);
-        int32_t numWorkersNeeded = numItems - numWorkersActive;
-    
-        numWorkersNeeded = std::min(numWorkersNeeded, static_cast<int32_t>(mWorkers.size()) - numWorkersActive);
-    
-        if (numWorkersNeeded > 0)
-            mWorkers.signal(numWorkersNeeded);
-    
+        wakeWorkers(true, false); // !addedBy
         mQueue.enqueue(&object->mNode);
         
         if (!addedBy)
@@ -48,6 +40,24 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
     }
     else
         addedBy->mNextInThread = object;
+}
+
+void FrameLib_ProcessingQueue::wakeWorkers(bool addItem, bool countThisThread)
+{
+    int32_t numItems = 0;
+    
+    if (addItem)
+        numItems = ++mNumItems;
+    else
+        numItems = mNumItems;
+    
+    int32_t numWorkersActive = mNumWorkersActive.load() + (countThisThread ? 1 : 0);
+    int32_t numWorkersNeeded = numItems - numWorkersActive;
+    
+    numWorkersNeeded = std::min(numWorkersNeeded, static_cast<int32_t>(mWorkers.size()) - numWorkersActive);
+    
+    if (numWorkersNeeded > 0)
+        mWorkers.signal(numWorkersNeeded);
 }
 
 void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
