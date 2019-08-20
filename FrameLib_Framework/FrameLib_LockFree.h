@@ -58,7 +58,9 @@ public:
             Node *node = mHead;
             mHead = node->mNext;
             mSize--;
-                
+            
+            node->mNext = nullptr;
+            
             return node;
         }
         
