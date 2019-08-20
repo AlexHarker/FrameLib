@@ -105,7 +105,15 @@ public:
     FrameLib_ProcessingQueue(const FrameLib_ProcessingQueue&) = delete;
     FrameLib_ProcessingQueue& operator=(const FrameLib_ProcessingQueue&) = delete;
     
+    // Start and add items to the queue
+    
+    void start(NodeList &list);
+    void start(FrameLib_DSP *object);
     void add(NodeList &list, FrameLib_DSP *addedBy);
+    void add(FrameLib_DSP *object, FrameLib_DSP *addedBy);
+    
+    // Additional functionality
+    
     void reset() { mTimedOut = false; }
     bool isTimedOut() { return mTimedOut; }
     void setMultithreading(bool multihread) { mMultithread = multihread; }

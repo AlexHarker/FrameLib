@@ -23,18 +23,39 @@ FrameLib_ProcessingQueue::~FrameLib_ProcessingQueue()
 
 // Processing Queue
 
+void FrameLib_ProcessingQueue::start(NodeList &list)
+{
+    if (list.size())
+    {
+        mNumItems += list.size();
+        wakeWorkers(false); // !addedBy
+        mQueue.enqueue(list);
+        serviceQueue(0);
+    }
+}
+
+void FrameLib_ProcessingQueue::start(FrameLib_DSP *object)
+{
+    assert(object->mInputTime != FrameLib_TimeFormat::largest() && "Object has already reached the end of time");
+    assert((!object->mNextInThread) && "Object is already in the queue");
+    assert((!object->mNode.mNext) && "Object is already in the queue");
+    
+    mNumItems++;
+    wakeWorkers(false); // !addedBy
+    mQueue.enqueue(&object->mNode);
+    serviceQueue(0);
+}
+
 void FrameLib_ProcessingQueue::add(NodeList &list, FrameLib_DSP *addedBy)
 {
-    //assert(object->mInputTime != FrameLib_TimeFormat::largest() && "Object has already reached the end of time");
-    //assert((!object->mNextInThread) && "Object is already in the queue");
-    //assert((!object->mNode.mNext) && "Object is already in the queue");
-    
     // Try to process this next in this thread, but if that isn't possible add to the queue
     
     if (!list.size())
         return;
     
-    if (addedBy && !addedBy->mNextInThread)
+    // Try to process one item in this thread
+
+    if (!addedBy->mNextInThread)
         addedBy->mNextInThread = list.remove()->mOwner;
     
     if (list.size())
@@ -43,9 +64,26 @@ void FrameLib_ProcessingQueue::add(NodeList &list, FrameLib_DSP *addedBy)
         wakeWorkers(false); // !addedBy
         mQueue.enqueue(list);
     }
+}
+
+void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
+{
+    assert(object->mInputTime != FrameLib_TimeFormat::largest() && "Object has already reached the end of time");
+    assert((!object->mNextInThread) && "Object is already in the queue");
+    assert((!object->mNode.mNext) && "Object is already in the queue");
     
-    if (!addedBy)
-        serviceQueue(0);
+    // Try to process this next in this thread, but if that isn't possible add to the queue
+
+    if (!addedBy->mNextInThread)
+    {
+        addedBy->mNextInThread = object;
+    }
+    else
+    {
+        mNumItems++;
+        wakeWorkers(false); // !addedBy
+        mQueue.enqueue(&object->mNode);
+    }
 }
 
 void FrameLib_ProcessingQueue::wakeWorkers(bool countThisThread)
@@ -108,7 +146,7 @@ void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
 FrameLib_AudioQueue::~FrameLib_AudioQueue()
 {
     if (mUser)
-        mUser->mProcessingQueue->add(*this, nullptr);
+        mUser->mProcessingQueue->start(*this);
 }
 
 // FIX -  need to add timeout to the above
