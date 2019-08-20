@@ -30,6 +30,7 @@ class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_D
     using Serial = FrameLib_Parameters::Serial;
 
     friend class FrameLib_ProcessingQueue;
+    friend class FrameLib_AudioQueue;
     
     enum NotificationType
     {
@@ -139,6 +140,7 @@ public:
     
     // Audio Processing
     
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& notifier) final;
     void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) final;
     void reset(double samplingRate, unsigned long maxBlockSize) final;
     

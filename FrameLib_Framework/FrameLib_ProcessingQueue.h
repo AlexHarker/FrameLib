@@ -130,4 +130,20 @@ private:
     FrameLib_ErrorReporter& mErrorReporter;
 };
 
+class FrameLib_AudioQueue : private FrameLib_ProcessingQueue::NodeList
+{
+    friend class FrameLib_DSP;
+    
+public:
+    
+    FrameLib_AudioQueue() : mUser(nullptr) {}
+    ~FrameLib_AudioQueue(); 
+    
+private:
+    
+    void setUser(FrameLib_DSP *object) { mUser = object; }
+    
+    FrameLib_DSP *mUser;
+};
+
 #endif /* FRAMELIB_PROCESSINGQUEUE_H */

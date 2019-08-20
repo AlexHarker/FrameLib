@@ -177,7 +177,7 @@ public:
 
     // Audio Processing
         
-    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& notifier) override
     {
         unsigned long internalNumIns = mBlocks[0]->getNumAudioIns();
         unsigned long internalNumOuts = mBlocks[0]->getNumAudioOuts();
@@ -201,7 +201,7 @@ public:
             unsigned long inStreamOffset = internalNumIns * (static_cast<unsigned long>(i) % getNumStreams());
             unsigned long outStreamOffset = internalNumOuts * (static_cast<unsigned long>(i) % getNumStreams());
             
-            mBlocks[i]->blockUpdate(ins + inStreamOffset, mAudioTemps.data(), blockSize);
+            mBlocks[i]->blockUpdate(ins + inStreamOffset, mAudioTemps.data(), blockSize, notifier);
             
             for (unsigned long j = 0; j < internalNumOuts; j++)
                 for (unsigned long k = 0; k < blockSize; k++)
@@ -213,6 +213,13 @@ public:
         if (getNumAudioOuts())
            dealloc(mAudioTemps[0]);
     }
+    
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override
+    {
+        FrameLib_AudioQueue notifier;
+        blockUpdate(ins, outs, blockSize, notifier);
+    }
+
    
     // Reset
     

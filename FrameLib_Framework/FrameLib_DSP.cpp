@@ -53,9 +53,17 @@ const double *FrameLib_DSP::getFixedInput(unsigned long idx, unsigned long *size
 
 // Audio Processing
 
-// Block updates for objects with audio IO
+// Block updates for objects with audio IO (calls through to the group notifier version)
 
 void FrameLib_DSP::blockUpdate(const double * const *ins, double **outs, unsigned long blockSize)
+{
+    FrameLib_AudioQueue notifier;
+    blockUpdate(ins, outs, blockSize, notifier);
+}
+
+// This version is usable for making block notifcations together, prinarily in FrameLib_Expand
+
+void FrameLib_DSP::blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& notifier)
 {
     // Update block time and process the block
     
@@ -65,12 +73,11 @@ void FrameLib_DSP::blockUpdate(const double * const *ins, double **outs, unsigne
     
     // If the object is handling audio updates (but is not an output object) then notify
     
-    NodeList list;
-    
     if (needsAudioNotification())
-        dependencyNotify(list, false, kAudioBlock);
-    
-    mProcessingQueue->add(list, nullptr);
+    {
+        notifier.setUser(this);
+        dependencyNotify(notifier, false, kAudioBlock);
+    }
 }
 
 // Reset

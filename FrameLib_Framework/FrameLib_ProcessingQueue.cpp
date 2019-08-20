@@ -104,6 +104,13 @@ void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
     }
 }
 
+
+FrameLib_AudioQueue::~FrameLib_AudioQueue()
+{
+    if (mUser)
+        mUser->mProcessingQueue->add(*this, nullptr);
+}
+
 // FIX -  need to add timeout to the above
 /*
 void FrameLib_ProcessingQueue::add(FrameLib_DSP *object)
