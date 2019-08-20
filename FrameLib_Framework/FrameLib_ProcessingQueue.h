@@ -104,11 +104,11 @@ public:
     FrameLib_ProcessingQueue(const FrameLib_ProcessingQueue&) = delete;
     FrameLib_ProcessingQueue& operator=(const FrameLib_ProcessingQueue&) = delete;
     
-    void process(FrameLib_DSP *object);
     void add(FrameLib_DSP *object, FrameLib_DSP *addedBy);
     void reset() { mTimedOut = false; }
     bool isTimedOut() { return mTimedOut; }
-
+    void setMultithreading(bool multihread) { mMultithread = multihread; }
+    
 private:
     
     void wakeWorkers(bool addItem, bool countThisThread);
@@ -122,6 +122,7 @@ private:
     std::atomic<int32_t> mNumItems;
     std::atomic<int32_t> mNumWorkersActive;
     
+    bool mMultithread;
     bool mTimedOut;
     IntervalSecondsClock mClock;
     

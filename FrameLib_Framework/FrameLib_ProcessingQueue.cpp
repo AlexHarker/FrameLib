@@ -8,7 +8,7 @@
 // Constructor / Destructor
 
 FrameLib_ProcessingQueue::FrameLib_ProcessingQueue(FrameLib_Global& global)
-: mWorkers(this), mNumItems(0), mNumWorkersActive(0), mTimedOut(false), mErrorReporter(global)
+: mWorkers(this), mNumItems(0), mNumWorkersActive(0), mMultithread(true), mTimedOut(false), mErrorReporter(global)
 {
     for (unsigned int i = 0; i < FrameLib_Thread::maxThreads(); i++)
         mFreeBlocks.add(new FrameLib_FreeBlocks(global));
@@ -51,6 +51,9 @@ void FrameLib_ProcessingQueue::wakeWorkers(bool addItem, bool countThisThread)
         numItems = ++mNumItems;
     else
         numItems = mNumItems;
+    
+    if (!mMultithread)
+        return;
     
     int32_t numWorkersActive = mNumWorkersActive.load() + (countThisThread ? 1 : 0);
     int32_t numWorkersNeeded = numItems - numWorkersActive;
