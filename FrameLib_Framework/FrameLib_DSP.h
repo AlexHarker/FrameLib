@@ -326,6 +326,7 @@ private:
     
     FrameLib_Context::ProcessingQueue mProcessingQueue;
     FrameLib_ProcessingQueue::Node mNode;
+    FrameLib_DSP *mNextInThread;
     
     // IO Info
     

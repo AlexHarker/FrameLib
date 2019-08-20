@@ -4,7 +4,7 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
-: FrameLib_Block(type, context, proxy), mSamplingRate(44100.0), mMaxBlockSize(4096), mParameters(context, proxy, info), mProcessingQueue(context), mNode(this), mNoLiveInputs(true), mInUpdate(false)
+: FrameLib_Block(type, context, proxy), mSamplingRate(44100.0), mMaxBlockSize(4096), mParameters(context, proxy, info), mProcessingQueue(context), mNode(this), mNextInThread(nullptr), mNoLiveInputs(true), mInUpdate(false)
 {    
     // Set IO
     
@@ -116,6 +116,10 @@ void FrameLib_DSP::reset(LocalQueue *queue)
     mValidTime = mNoLiveInputs ? FrameLib_TimeFormat::largest() : FrameLib_TimeFormat(1.0);
     mBlockStartTime = 1.0;
     mBlockEndTime = 1.0;
+    
+    // Reset thread local queue
+    
+    mNextInThread = nullptr;
     
     // Update output dependencies for changes in live input status
     

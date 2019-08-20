@@ -5,18 +5,11 @@
 
 #include <algorithm>
 
-// N.B. - the current implementation of a lock-free queue is taken from:
-// Michael, Maged M., and Michael L. Scott.
-// Simple, Fast, and Practical Non-Blocking and Blocking Concurrent Queue Algorithms.
-// No. TR-600. ROCHESTER UNIV NY DEPT OF COMPUTER SCIENCE, 1995.
-
 // Constructor / Destructor
 
 FrameLib_ProcessingQueue::FrameLib_ProcessingQueue(FrameLib_Global& global)
-: mWorkers(this), mDummyNode(nullptr), mNumItems(0), mNumWorkersActive(0), mTimedOut(false), mErrorReporter(global)
+: mWorkers(this), mNumItems(0), mNumWorkersActive(0), mTimedOut(false), mErrorReporter(global)
 {
-    init();
-    
     for (unsigned int i = 0; i < FrameLib_Thread::maxThreads(); i++)
         mFreeBlocks.add(new FrameLib_FreeBlocks(global));
     
@@ -33,11 +26,11 @@ FrameLib_ProcessingQueue::~FrameLib_ProcessingQueue()
 void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
 {
     assert(object->mInputTime != FrameLib_TimeFormat::largest() && "Object has already reached the end of time");
-    assert((!object->mNode.mNextInThread) && "Object is already in the queue");
+    assert((!object->mNextInThread) && "Object is already in the queue");
     
     // Try to process this next in this thread, but if that isn't possible add to the queue
     
-    if (!addedBy || addedBy->mNode.mNextInThread)
+    if (!addedBy || addedBy->mNextInThread)
     {
         int32_t numItems = ++mNumItems;
         int32_t numWorkersActive = mNumWorkersActive.load();// + (addedBy ? 0 : 1);
@@ -48,13 +41,13 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
         if (numWorkersNeeded > 0)
             mWorkers.signal(numWorkersNeeded);
     
-        enqueue(object);
+        mQueue.enqueue(&object->mNode);
         
         if (!addedBy)
             serviceQueue(0);
     }
     else
-        addedBy->mNode.mNextInThread = object;
+        addedBy->mNextInThread = object;
 }
 
 void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
@@ -64,13 +57,13 @@ void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
     
     while (true)
     {
-        while (FrameLib_DSP *object = dequeue())
+        while (FrameLib_DSP *object = mQueue.dequeue())
         {
             while (object)
             {
                 object->dependenciesReady(blocks);
-                FrameLib_DSP *newObject = object->mNode.mNextInThread;
-                object->mNode.mNextInThread = nullptr;
+                FrameLib_DSP *newObject = object->mNextInThread;
+                object->mNextInThread = nullptr;
                 object = newObject;
             }
             mNumItems--;
@@ -93,97 +86,9 @@ void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
         
         // Reduce contention down and give way to other threads
         
-        FrameLib_Thread::sleepCurrentThread(1000);
+        FrameLib_Thread::sleepCurrentThread(100);
     }
 }
-
-void FrameLib_ProcessingQueue::init()
-{
-    mHead = NodePointer(&mDummyNode, 0);
-    mTail = NodePointer(&mDummyNode, 0);
-}
-
-void FrameLib_ProcessingQueue::enqueue(FrameLib_DSP *object)
-{
-    Node *node = &object->mNode;
-    node->mNext = NodePointer();
-    
-    while (true)
-    {
-        NodePointer tail = mTail;
-        NodePointer next = tail.mPointer->mNext;
-        
-        // Check that tail has not changed
-        
-        if (tail == mTail)
-        {
-            if (!next.mPointer)
-            {
-                // If tail was pointing to the last node then we can attempt to enqueue
-                
-                if (compareAndSwap(tail.mPointer->mNext, next, NodePointer{node, next.mCount + 1}))
-                {
-                    // Try to update tail to the inserted node
-                    
-                    compareAndSwap(mTail, tail, NodePointer{node, tail.mCount + 1});
-                    return;
-                }
-            }
-            else
-            {
-                // Try to advance tail if falling behind
-
-                compareAndSwap(mTail, tail, NodePointer{next.mPointer, tail.mCount + 1});
-            }
-        }
-    }
-}
-
-FrameLib_DSP *FrameLib_ProcessingQueue::dequeue()
-{
-    while (true)
-    {
-        // Read head, tail and next
-        
-        const NodePointer head = mHead.load(std::memory_order_relaxed);
-        const NodePointer tail = mTail.load(std::memory_order_relaxed);
-        const NodePointer next = head.mPointer->mNext.load(std::memory_order_relaxed);
-        
-        // Check that head has not changed
-        
-        if (head == mHead.load(std::memory_order_relaxed))
-        {
-            // Check if either the queue is empty or tail is falling behind
-            
-            if (head.mPointer == tail.mPointer)
-            {
-                // Check for empty queue or try to advance tail if falling behind
-                
-                if (!next.mPointer)
-                    return nullptr;
-                
-                compareAndSwap(mTail, tail, NodePointer(next.mPointer, tail.mCount + 1));
-            }
-            else
-            {
-                // Read the pointer before CAS otherwise another dequeue may free the next node
-                
-                FrameLib_DSP *object = next.mPointer->mOwner;
-                
-                // Attempt to change the head and complete dequeue
-                
-                if (compareAndSwap(mHead, head, NodePointer(next.mPointer, head.mCount + 1)))
-                {
-                    head.mPointer->mNext.store(NodePointer(), std::memory_order_relaxed);
-                    return object;
-                }
-            }
-        }
-    }
-    
-    return nullptr;
-}
-
 
 // FIX - old version - need to add timeout to the above
 /*
