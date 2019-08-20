@@ -29,6 +29,11 @@ class FrameLib_MaxClass_Info : public FrameLib_MaxClass_Expand<FrameLib_Info>
             mBuffer.release();
         };
         
+        FrameLib_Info::Proxy *clone() const override
+        {
+            return new ReadProxy(*this);
+        }
+        
     private:
         
         ibuffer_data mBuffer;

@@ -23,6 +23,10 @@ public:
         
         virtual void acquire(unsigned long& length, double& samplingRate, unsigned long& chans) = 0;
         virtual void release() = 0;
+        
+        // Clone (we need unique instances per object for threading reasons)
+        
+        virtual Proxy *clone() const = 0;
     };
     
     // Constructor
@@ -44,7 +48,7 @@ private:
     
     // Data
     
-    Proxy *mProxy;
+    std::unique_ptr<Proxy> mProxy;
     Units mUnits;
     
     static ParameterInfo sParamInfo;

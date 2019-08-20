@@ -34,6 +34,11 @@ class FrameLib_MaxClass_Read : public FrameLib_MaxClass_Expand<FrameLib_Read>
             ibuffer_read(mBuffer, output, positions, size, chan, 1.0, interpType);
         }
         
+        FrameLib_Read::Proxy *clone() const override
+        {
+            return new ReadProxy(*this);
+        }
+        
     private:
         
         ibuffer_data mBuffer;

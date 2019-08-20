@@ -32,6 +32,10 @@ public:
         // Read
         
         virtual void read(double *output, const double *positions, unsigned long size, long chan, InterpType interpType) = 0;
+        
+        // Clone (we need unique instances per object for threading reasons)
+        
+        virtual Proxy *clone() const = 0;
     };
     
     // Constructor
@@ -56,7 +60,7 @@ private:
     long mChan;
     Interpolation mInterpolation;
     Units mUnits;
-    Proxy *mProxy;
+    std::unique_ptr<Proxy> mProxy;
 
     static ParameterInfo sParamInfo;
 };

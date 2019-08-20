@@ -7,11 +7,10 @@
 #include "FrameLib_Memory.h"
 #include "FrameLib_Threading.h"
 
+#include "FrameLib_LockFree.h"
+
 #include <chrono>
 #include <vector>
-
-// FIX - mac only
-#include <libkern/OSAtomicQueue.h>
 
 // Forward Declarations
 
@@ -36,6 +35,12 @@ class FrameLib_DSP;
 
 class FrameLib_ProcessingQueue
 {
+    
+public:
+    
+    using Queue = FrameLib_LockFreeStack<FrameLib_DSP>;
+    using Node = Queue::Node;
+    
     /**
      
      @class IntervalSecondsClock
@@ -108,16 +113,13 @@ private:
     
     void serviceQueue(int32_t index);
     
-    void init();
-    void enqueue(FrameLib_DSP *object);
-    FrameLib_DSP *dequeue();
-
     WorkerThreads mWorkers;
     FrameLib_OwnedList<FrameLib_FreeBlocks> mFreeBlocks;
 
+    Queue mQueue;
+    
     std::atomic<int32_t> mNumItems;
     std::atomic<int32_t> mNumWorkersActive;
-    OSFifoQueueHead mQueue OS_ATOMIC_FIFO_QUEUE_INIT;
     
     bool mTimedOut;
     IntervalSecondsClock mClock;
