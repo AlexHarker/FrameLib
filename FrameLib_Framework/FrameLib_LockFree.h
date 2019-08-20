@@ -40,11 +40,26 @@ public:
             assert(!node->mNext && "Node is already in a queue");
             
             if (mSize)
+            {
                 mTail->mNext = node;
+                mTail = node;
+            }
             else
                 mHead = mTail = node;
             
             mSize++;
+        }
+        
+        Node *remove()
+        {
+            if (!mSize)
+                return nullptr;
+            
+            Node *node = mHead;
+            mHead = node->mNext;
+            mSize--;
+                
+            return node;
         }
         
         unsigned int size() const { return mSize; }
@@ -54,6 +69,7 @@ public:
         void clear()
         {
             mHead = mTail = nullptr;
+            mSize = 0;
         }
 
         unsigned int mSize;
