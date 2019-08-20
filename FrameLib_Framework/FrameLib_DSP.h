@@ -26,6 +26,7 @@ class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_D
 {
     using Queue = FrameLib_Queueable<FrameLib_Block>::Queue;
     using LocalQueue = FrameLib_Queueable<FrameLib_DSP>::Queue;
+    using NodeList = FrameLib_ProcessingQueue::Queue::NodeList;
     using Serial = FrameLib_Parameters::Serial;
 
     friend class FrameLib_ProcessingQueue;
@@ -295,7 +296,7 @@ private:
 
     // Dependency Notification
     
-    inline void dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, NotificationType type);
+    inline void dependencyNotify(NodeList &list, bool releaseMemory, NotificationType type);
 
     void dependenciesReady(FrameLib_FreeBlocks *freeBlocks);
     void incrementInputDependency();

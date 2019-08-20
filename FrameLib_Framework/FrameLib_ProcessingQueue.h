@@ -40,7 +40,8 @@ public:
     
     using Queue = FrameLib_LockFreeStack<FrameLib_DSP>;
     using Node = Queue::Node;
-    
+    using NodeList = Queue::NodeList;
+
     /**
      
      @class IntervalSecondsClock
@@ -104,14 +105,14 @@ public:
     FrameLib_ProcessingQueue(const FrameLib_ProcessingQueue&) = delete;
     FrameLib_ProcessingQueue& operator=(const FrameLib_ProcessingQueue&) = delete;
     
-    void add(FrameLib_DSP *object, FrameLib_DSP *addedBy);
+    void add(NodeList &list, FrameLib_DSP *addedBy);
     void reset() { mTimedOut = false; }
     bool isTimedOut() { return mTimedOut; }
     void setMultithreading(bool multihread) { mMultithread = multihread; }
     
 private:
     
-    void wakeWorkers(bool addItem, bool countThisThread);
+    void wakeWorkers(bool countThisThread);
     void serviceQueue(int32_t index);
     
     WorkerThreads mWorkers;
