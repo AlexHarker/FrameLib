@@ -25,6 +25,42 @@ public:
         Node *mNext;
     };
     
+    // A pre-pared linked list of nodes to be enqued together
+    
+    class NodeList
+    {
+        friend class FrameLib_LockFreeStack;
+        
+    public:
+        
+        NodeList() : mHead(nullptr), mTail(nullptr), mSize(0) {}
+        
+        void add(Node* node)
+        {
+            assert(!node->mNext && "Node is already in a queue");
+            
+            if (mSize)
+                mTail->mNext = node;
+            else
+                mHead = mTail = node;
+            
+            mSize++;
+        }
+        
+        unsigned int size() const { return mSize; }
+        
+    private:
+
+        void clear()
+        {
+            mHead = mTail = nullptr;
+        }
+
+        unsigned int mSize;
+        Node *mHead;
+        Node *mTail;
+    };
+    
 private:
     
     // A counted pointer
@@ -63,6 +99,25 @@ public:
         }
     }
     
+    void enqueue(NodeList& nodeList)
+    {
+        Node *listHead = nodeList.mHead;
+        Node *listTail = nodeList.mTail;
+        
+        nodeList.clear();
+        
+        while (true)
+        {
+            const Pointer head = mHead.load(std::memory_order_relaxed);
+            listTail->mNext = head.mPointer;
+            
+            // Attempt to swap head
+            
+            if (compareAndSwap(mHead, head, Pointer{listHead, head.mCount + 1}))
+                return;
+        }
+    }
+    
     T *dequeue()
     {
         while (true)
@@ -91,6 +146,8 @@ public:
         
         return nullptr;
     }
+    
+private:
     
     std::atomic<Pointer> mHead;
 };
@@ -217,6 +274,8 @@ public:
 
     }
     
+private:
+    
     Node mDummyNode;
     std::atomic<NodePointer> mHead;
     std::atomic<NodePointer> mTail;
@@ -233,7 +292,7 @@ class FrameLib_AppleLockFreeQueue
     
 public:
     
-    // A node in the stack
+    // A node in the queue
     
     struct Node
     {
@@ -257,6 +316,8 @@ public:
         
         return node ? node->mOwner : nullptr;
     }
+    
+private:
     
     OSFifoQueueHead mQueue OS_ATOMIC_FIFO_QUEUE_INIT;
 };
