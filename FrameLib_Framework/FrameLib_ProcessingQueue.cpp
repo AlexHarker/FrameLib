@@ -27,6 +27,7 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
 {
     assert(object->mInputTime != FrameLib_TimeFormat::largest() && "Object has already reached the end of time");
     assert((!object->mNextInThread) && "Object is already in the queue");
+    assert((!object->mNode.mNext) && "Object is already in the queue");
     
     // Try to process this next in this thread, but if that isn't possible add to the queue
     
@@ -100,63 +101,38 @@ void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
     }
 }
 
-// FIX - old version - need to add timeout to the above
+// FIX -  need to add timeout to the above
 /*
 void FrameLib_ProcessingQueue::add(FrameLib_DSP *object)
 {
-    assert(object->mInputTime != FrameLib_TimeFormat::largest() && "Object has already reached the end of time");
-    assert((!object->mNext || mTop == object) && "Object is already in the queue and not at the top");
-
-    if (mTimedOut)
+     if (mTimedOut)
         return;
-    
-    if (!mTop)
+
+    // Get time
+        
+    mClock.start();
+    unsigned long count = 0;
+        
+    //do loop
+ 
+    // Every so often check whether we're taking too long
+            
+    if (++count == sProcessPerTimeCheck)
     {
-        // Queue is empty - add and start processing the queue
-        
-        mTop = mTail = object;
-        
-        // Get time
-        
-        mClock.start();
-        unsigned long count = 0;
-        
-        while (mTop)
+        if (mClock.elapsed() > sMaxTime)
         {
-            object = mTop;
-            object->dependenciesReady();
-            mTop = object->mNext;
-            object->mNext = nullptr;
-            
-            // Every so often check whether we're taking too long
-            
-            if (++count == sProcessPerTimeCheck)
+            mTimedOut = true;
+                    
+            // Clear the list
+                    
+            while (mTop)
             {
-                if (mClock.elapsed() > sMaxTime)
-                {
-                    mTimedOut = true;
-                    
-                    // Clear the list
-                    
-                    while (mTop)
-                    {
-                        mErrorReporter.reportError(kErrorDSP, mTop->getProxy(), "FrameLib - DSP time out - FrameLib is disabled in this context until this is resolved");
+               mErrorReporter.reportError(kErrorDSP, mTop->getProxy(), "FrameLib - DSP time out - FrameLib is disabled in this context until this is resolved");
                         object = mTop;
-                        mTop = object->mNext;
-                        object->mNext = nullptr;
-                    }
-                }
-                count = 0;
+                mTop = object->mNext;
+                object->mNext = nullptr;
             }
         }
-        
-        mTail = nullptr;
-    }
-    else
-    {
-        // Add to the queue (which is already processing)
-        
-        mTail->mNext = object;
-        mTail = object;
+        count = 0;
     }
 }*/
