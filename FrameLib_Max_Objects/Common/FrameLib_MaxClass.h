@@ -565,6 +565,7 @@ public:
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
+        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::multithread>(c, "multithread");
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
         addMethod(c, (method) &externalResolveConnections, "__fl.resolve_connections");
@@ -664,7 +665,7 @@ public:
     
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy()) : mFrameLibProxy(proxy), mConfirmObject(nullptr), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mPatch(gensym("#P")->s_thing), mContextPatch(contextPatcher(mPatch)), mSyncIn(nullptr), mUserObject(detectUserObjectAtLoad()), mNeedsResolve(true)
+    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy()) : mFrameLibProxy(proxy), mConfirmObject(nullptr), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mPatch(gensym("#P")->s_thing), mContextPatch(contextPatcher(mPatch)), mSyncIn(nullptr), mUserObject(detectUserObjectAtLoad()), mProcessingQueue(FrameLib_Context(mGlobal->getGlobal(), mContextPatch)), mNeedsResolve(true)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -1000,6 +1001,13 @@ public:
         }
     }
 
+    // Multithreading
+    
+    void multithread(t_atom_long on)
+    {
+        mProcessingQueue->setMultithreading(on);
+    }
+    
     // External methods (A_CANT)
     
     static t_ptr_int externalConnectionAccept(FrameLib_MaxClass *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
@@ -1616,6 +1624,8 @@ private:
     t_object *mSyncIn;
     t_object *mUserObject;
     
+    FrameLib_Context::ProcessingQueue mProcessingQueue;
+
     bool mNeedsResolve;
 };
 
