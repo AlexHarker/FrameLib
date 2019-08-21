@@ -5,6 +5,9 @@
 
 class FrameLib_MaxClass_Context : public MaxClass_Base
 {
+
+public:
+    
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
         addMethod<FrameLib_MaxClass_Context, &FrameLib_MaxClass_Context::multithread>(c, "multithread");
@@ -28,6 +31,8 @@ class FrameLib_MaxClass_Context : public MaxClass_Base
         sprintf(s,"(messages) Commands In" );
     }
     
+private:
+    
     // Members
     
     t_object *mPatch;
@@ -36,3 +41,10 @@ class FrameLib_MaxClass_Context : public MaxClass_Base
     FrameLib_Context mContext;
     FrameLib_Context::ProcessingQueue mProcessingQueue;
 };
+
+// Main
+
+extern "C" int C74_EXPORT main(void)
+{
+    FrameLib_MaxClass_Context::makeClass<FrameLib_MaxClass_Context>(CLASS_BOX, "fl.context~");
+}
