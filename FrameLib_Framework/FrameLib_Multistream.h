@@ -219,8 +219,7 @@ public:
         FrameLib_AudioQueue notifier;
         blockUpdate(ins, outs, blockSize, notifier);
     }
-
-   
+    
     // Reset
     
     void reset(double samplingRate, unsigned long maxBlockSize) override
