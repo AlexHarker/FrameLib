@@ -332,7 +332,7 @@ void FrameLib_TriggerableThread::threadEntry(void *thread)
 
 void FrameLib_TriggerableThread::threadClassEntry()
 {
-    while(mSemaphore.wait())
+    while (mSemaphore.wait())
         doTask();
 }
 
