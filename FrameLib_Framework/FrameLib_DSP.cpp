@@ -527,9 +527,10 @@ void FrameLib_DSP::dependenciesReady(FrameLib_FreeBlocks *freeBlocks)
     
     mDependencyCount += ((timeUpdated ? getNumOuputDependencies() : 0)) + ((mUpdatingInputs > prevUpdatingInputs) ? 1 : 0);
     
-    // Notify input dependencies that can be released as they are up to date (releasing memory where relevant for objects with more than one input dependency)
+    FrameLib_AudioQueue notifier;
+    notifier.setUser(this);
     
-    NodeList list;
+    // Notify input dependencies that can be released as they are up to date (releasing memory where relevant for objects with more than one input dependency)
     
     if (!endOfTime)
     {
@@ -540,7 +541,7 @@ void FrameLib_DSP::dependenciesReady(FrameLib_FreeBlocks *freeBlocks)
             if (mInputTime == (*it)->mValidTime)
             {
                 incrementInputDependency();
-                (*it)->dependencyNotify(list, (getType() == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone, kOutputConnection);
+                (*it)->dependencyNotify(notifier, (getType() == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone, kOutputConnection);
             }
         }
     }
@@ -549,12 +550,12 @@ void FrameLib_DSP::dependenciesReady(FrameLib_FreeBlocks *freeBlocks)
     
     if (timeUpdated)
         for (auto it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-            (*it)->dependencyNotify(list, false, kInputConnection);
+            (*it)->dependencyNotify(notifier, false, kInputConnection);
     
     // See if the updating input status has expired (must be done after resolving all other dependencies)
     
     if (mUpdatingInputs < prevUpdatingInputs)
-        dependencyNotify(list, false, kSelfConnection);
+        dependencyNotify(notifier, false, kSelfConnection);
     
     removeFreeBlocks();
 
@@ -568,9 +569,7 @@ void FrameLib_DSP::dependenciesReady(FrameLib_FreeBlocks *freeBlocks)
     // Allow self-triggering if we haven't reached the end of time
     
     if (!endOfTime)
-        dependencyNotify(list, false, kSelfConnection);
-    
-    mProcessingQueue->add(list, this);
+        dependencyNotify(notifier, false, kSelfConnection);
 }
 
 void FrameLib_DSP::resetOutputDependencyCount()
