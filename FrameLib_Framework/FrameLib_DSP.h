@@ -298,8 +298,10 @@ private:
 
     // Dependency Notification
     
-    inline void dependencyNotify(NodeList &list, bool releaseMemory, NotificationType type);
-
+    bool dependencyNotify(bool releaseMemory, NotificationType type);
+    void dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, NotificationType type);
+    void dependencyNotify(FrameLib_AudioQueue &notifier, bool releaseMemory, NotificationType type);
+    
     void dependenciesReady(FrameLib_FreeBlocks *freeBlocks);
     void incrementInputDependency();
     void resetOutputDependencyCount();

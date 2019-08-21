@@ -354,29 +354,42 @@ void FrameLib_DSP::copyInputToOutput(unsigned long inIdx, unsigned long outIdx)
 
 // Dependency Notification
 
-inline void FrameLib_DSP::dependencyNotify(NodeList &list, bool releaseMemory, NotificationType type)
+bool FrameLib_DSP::dependencyNotify(bool releaseMemory, NotificationType type)
 {
     if (mProcessingQueue->isTimedOut())
-        return;
+        return false;
     
     assert(((mDependencyCount > 0) || (mUpdatingInputs && (mInputCount > 0))) && "Dependency count is already zero");
     
     if (releaseMemory)
         releaseOutputMemory();
     
-    // If ready add to queue
+    // If ready then this item should be added to the processing queue
     
     bool useInputCount = mUpdatingInputs && (type == kInputConnection || type == kAudioBlock);
     
     if ((useInputCount && --mInputCount == 0) || --mDependencyCount == 0)
     {
-        assert((mDependencyCount > 0) || !mUpdatingInputs && "Dependency count should not be zero if updating inputs");
-
         // N.B. Avoid re-entrancy by increasing the dependency count before processing (plus matched notification)
 
+        assert((mDependencyCount > 0) || !mUpdatingInputs && "Dependency count should not be zero if updating inputs");
         mDependencyCount++;
-        list.add(&mNode);
+        return true;
     }
+    
+    return false;
+}
+
+void FrameLib_DSP::dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, NotificationType type)
+{
+    if (dependencyNotify(releaseMemory, type))
+        mProcessingQueue->add(this, notifier);
+}
+
+void FrameLib_DSP::dependencyNotify(FrameLib_AudioQueue &notifier, bool releaseMemory, NotificationType type)
+{
+    if (dependencyNotify(releaseMemory, type))
+        notifier.add(&mNode);
 }
 
 // For updating the correct input count
@@ -527,9 +540,6 @@ void FrameLib_DSP::dependenciesReady(FrameLib_FreeBlocks *freeBlocks)
     
     mDependencyCount += ((timeUpdated ? getNumOuputDependencies() : 0)) + ((mUpdatingInputs > prevUpdatingInputs) ? 1 : 0);
     
-    FrameLib_AudioQueue notifier;
-    notifier.setUser(this);
-    
     // Notify input dependencies that can be released as they are up to date (releasing memory where relevant for objects with more than one input dependency)
     
     if (!endOfTime)
@@ -541,7 +551,7 @@ void FrameLib_DSP::dependenciesReady(FrameLib_FreeBlocks *freeBlocks)
             if (mInputTime == (*it)->mValidTime)
             {
                 incrementInputDependency();
-                (*it)->dependencyNotify(notifier, (getType() == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone, kOutputConnection);
+                (*it)->dependencyNotify(this, (getType() == kScheduler || mInputDependencies.size() != 1) && (*it)->mOutputDone, kOutputConnection);
             }
         }
     }
@@ -550,12 +560,12 @@ void FrameLib_DSP::dependenciesReady(FrameLib_FreeBlocks *freeBlocks)
     
     if (timeUpdated)
         for (auto it = mOutputDependencies.begin(); it != mOutputDependencies.end(); it++)
-            (*it)->dependencyNotify(notifier, false, kInputConnection);
+            (*it)->dependencyNotify(this, false, kInputConnection);
     
     // See if the updating input status has expired (must be done after resolving all other dependencies)
     
     if (mUpdatingInputs < prevUpdatingInputs)
-        dependencyNotify(notifier, false, kSelfConnection);
+        dependencyNotify(this, false, kSelfConnection);
     
     removeFreeBlocks();
 
@@ -569,7 +579,7 @@ void FrameLib_DSP::dependenciesReady(FrameLib_FreeBlocks *freeBlocks)
     // Allow self-triggering if we haven't reached the end of time
     
     if (!endOfTime)
-        dependencyNotify(notifier, false, kSelfConnection);
+        dependencyNotify(this, false, kSelfConnection);
 }
 
 void FrameLib_DSP::resetOutputDependencyCount()
