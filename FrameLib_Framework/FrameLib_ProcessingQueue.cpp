@@ -37,7 +37,7 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
 void FrameLib_ProcessingQueue::start(FrameLib_DSP *object)
 {
     assert(object->mInputTime != FrameLib_TimeFormat::largest() && "Object has already reached the end of time");
-    assert((!object->mNextInThread) && "Object is already in the queue");
+    assert((!object->ThreadNode::mNext) && "Object is already in the queue");
     
     mNumItems++;
     wakeWorkers(false); // !addedBy
@@ -54,8 +54,8 @@ void FrameLib_ProcessingQueue::add(PrepQueue &queue, FrameLib_DSP *addedBy)
     
     // Try to process one item in this thread
 
-    if (!addedBy->mNextInThread)
-        addedBy->mNextInThread = queue.pop();
+    if (!addedBy->ThreadNode::mNext)
+        addedBy->ThreadNode::mNext = queue.pop();
     
     if (queue.size())
     {
@@ -68,13 +68,13 @@ void FrameLib_ProcessingQueue::add(PrepQueue &queue, FrameLib_DSP *addedBy)
 void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
 {
     assert(object->mInputTime != FrameLib_TimeFormat::largest() && "Object has already reached the end of time");
-    assert((!object->mNextInThread) && "Object is already in the queue");
+    assert((!object->ThreadNode::mNext) && "Object is already in the queue");
     
     // Try to process this next in this thread, but if that isn't possible add to the queue
 
-    if (!addedBy->mNextInThread)
+    if (!addedBy->ThreadNode::mNext)
     {
-        addedBy->mNextInThread = object;
+        addedBy->ThreadNode::mNext = object;
     }
     else
     {
@@ -112,8 +112,8 @@ void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
             while (object)
             {
                 object->dependenciesReady(blocks);
-                FrameLib_DSP *newObject = object->mNextInThread;
-                object->mNextInThread = nullptr;
+                FrameLib_DSP *newObject = object->ThreadNode::mNext;
+                object->ThreadNode::mNext = nullptr;
                 object = newObject;
             }
             mNumItems--;

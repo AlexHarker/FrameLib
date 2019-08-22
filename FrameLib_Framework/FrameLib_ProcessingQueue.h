@@ -41,6 +41,7 @@ public:
     using MainQueue = FrameLib_LockFreeStack<FrameLib_DSP>;
     using PrepQueue = MainQueue::Queue;
     using Node = MainQueue::Node;
+    using ThreadNode = FrameLib_Node<FrameLib_DSP, FrameLib_ProcessingQueue>;
 
     /**
      
