@@ -38,11 +38,10 @@ void FrameLib_ProcessingQueue::start(FrameLib_DSP *object)
 {
     assert(object->mInputTime != FrameLib_TimeFormat::largest() && "Object has already reached the end of time");
     assert((!object->mNextInThread) && "Object is already in the queue");
-    assert((!object->mNode.mNext) && "Object is already in the queue");
     
     mNumItems++;
     wakeWorkers(false); // !addedBy
-    mQueue.enqueue(&object->mNode);
+    mQueue.enqueue(object);
     serviceQueue(0);
 }
 
@@ -56,7 +55,7 @@ void FrameLib_ProcessingQueue::add(NodeList &list, FrameLib_DSP *addedBy)
     // Try to process one item in this thread
 
     if (!addedBy->mNextInThread)
-        addedBy->mNextInThread = list.remove()->mOwner;
+        addedBy->mNextInThread = list.pop();
     
     if (list.size())
     {
@@ -70,7 +69,6 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
 {
     assert(object->mInputTime != FrameLib_TimeFormat::largest() && "Object has already reached the end of time");
     assert((!object->mNextInThread) && "Object is already in the queue");
-    assert((!object->mNode.mNext) && "Object is already in the queue");
     
     // Try to process this next in this thread, but if that isn't possible add to the queue
 
@@ -82,7 +80,7 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
     {
         mNumItems++;
         wakeWorkers(false); // !addedBy
-        mQueue.enqueue(&object->mNode);
+        mQueue.enqueue(object);
     }
 }
 

@@ -6,6 +6,7 @@
 #include "FrameLib_Context.h"
 #include "FrameLib_Parameters.h"
 #include "FrameLib_ProcessingQueue.h"
+#include "FrameLib_Queues.h"
 
 #include <algorithm>
 #include <string>
@@ -18,99 +19,6 @@
   
  */
 
-/**
- 
- @class FrameLib_Queueable
- 
- @brief a template class for items that can be placed on a queue
- 
- */
-
-template <class T>
-class FrameLib_Queueable
-{
-    
-public:
-    
-    FrameLib_Queueable() : mNext(nullptr) {}
-    
-    /**
-     
-     @class Queue
-     
-     @brief a single-threaded queue for non-recursive queuing of items for processing
-     
-     An item can only be in one position in a single queue at a time.
-     
-     */
-    
-    class Queue
-    {
-        typedef void (T::*Method)(Queue *);
-
-    public:
-        
-        Queue() : mFirst(nullptr), mTop(nullptr), mTail(nullptr) {}
-
-        Queue(T *object, Method method) : mFirst(nullptr), mTop(nullptr), mTail(nullptr)
-        {
-            add(object);
-            start(method);
-        }
-        
-        // Non-copyable
-        
-        Queue(const Queue&) = delete;
-        Queue& operator=(const Queue&) = delete;
-
-        void add(T *object)
-        {
-            // Do not add if nullptr or re-add if already in queue
-            
-            if (!object || object->FrameLib_Queueable<T>::mNext != nullptr)
-                return;
-            
-            // Add to the top/tail of the queue depending on whether the queue is open
-            
-            if (mTop)
-            {
-                mTail->FrameLib_Queueable<T>::mNext = object;
-                mTail = object;
-            }
-            else
-                mTop = mTail = object;
-        }
-        
-        void start(Method method)
-        {
-            assert(!mFirst && "Can't restart queue");
-            
-            mFirst = mTop;
-            
-            while (mTop)
-            {
-                T *object = mTop;
-                (object->*method)(this);
-                mTop = object->FrameLib_Queueable<T>::mNext;
-                object->FrameLib_Queueable<T>::mNext = nullptr;
-            }
-            
-            mFirst = mTail = nullptr;
-        }
-        
-        T *getFirst() const { return mFirst; }
-        
-    private:
-        
-        T *mFirst;
-        T *mTop;
-        T *mTail;
-    };
-    
-private:
-
-    T *mNext;
-};
 
 /**
  
@@ -158,12 +66,12 @@ struct FrameLib_Connection
  */
 
 template <class T>
-class FrameLib_Object : public FrameLib_Queueable<T>
+class FrameLib_Object : public FrameLib_MethodQueue<T>::Node
 {
     
 public:
     
-    using Queue = typename FrameLib_Queueable<T>::Queue;
+    using Queue = FrameLib_MethodQueue<T>;
     using Connection = FrameLib_Connection<T, unsigned long>;
 
 private:

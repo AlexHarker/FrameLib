@@ -5,9 +5,8 @@
 #include "FrameLib_Types.h"
 #include "FrameLib_Errors.h"
 #include "FrameLib_Memory.h"
+#include "FrameLib_Queues.h"
 #include "FrameLib_Threading.h"
-
-#include "FrameLib_LockFree.h"
 
 #include <chrono>
 #include <vector>
@@ -40,7 +39,7 @@ public:
     
     using Queue = FrameLib_LockFreeStack<FrameLib_DSP>;
     using Node = Queue::Node;
-    using NodeList = Queue::NodeList;
+    using NodeList = Queue::Queue;
 
     /**
      

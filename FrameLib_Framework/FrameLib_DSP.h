@@ -22,11 +22,11 @@
  
  */
 
-class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_DSP>
+class FrameLib_DSP : public FrameLib_Block, public FrameLib_MethodQueue<FrameLib_DSP>::Node, public FrameLib_ProcessingQueue::Node
 {
-    using Queue = FrameLib_Queueable<FrameLib_Block>::Queue;
-    using LocalQueue = FrameLib_Queueable<FrameLib_DSP>::Queue;
-    using NodeList = FrameLib_ProcessingQueue::Queue::NodeList;
+    using BlockQueue = FrameLib_MethodQueue<FrameLib_Block>;
+    using LocalQueue = FrameLib_MethodQueue<FrameLib_DSP>;
+    using NodeList = FrameLib_ProcessingQueue::NodeList;
     using Serial = FrameLib_Parameters::Serial;
 
     friend class FrameLib_ProcessingQueue;
@@ -309,7 +309,7 @@ private:
     
     // Connections
     
-    void connectionUpdate(Queue *queue) final;
+    void connectionUpdate(BlockQueue *queue) final;
     void autoOrderingConnections(LocalQueue *queue);
 
 protected:
@@ -330,7 +330,6 @@ private:
     // Processing Queue
     
     FrameLib_Context::ProcessingQueue mProcessingQueue;
-    FrameLib_ProcessingQueue::Node mNode;
     FrameLib_DSP *mNextInThread;
     
     // IO Info

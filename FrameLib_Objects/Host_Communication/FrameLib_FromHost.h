@@ -13,96 +13,42 @@ class FrameLib_FromHost final : public FrameLib_Processor
     
     // A FIFO list for storing parameter frame additions
     
-    struct SerialList
+    // Forward declaration
+    
+    struct SerialList;
+    
+    struct SerialItem : public FrameLib_Queue<SerialItem, SerialItem, SerialList>::Node
     {
-        SerialList() : mTop(nullptr), mTail(nullptr) {}
-        ~SerialList() { clear(); }
+        SerialItem(const FrameLib_Parameters::Serial& serial) : mSerial(serial) {}
         
-        struct Item
+        SerialItem(const SerialList& list)
         {
-            Item() : mNext(nullptr) {}
-            Item(const FrameLib_Parameters::Serial& serial) : mSerial(serial), mNext(nullptr) {}
-            Item(const SerialList& list) : mNext(nullptr)
-            {
-                for (Item *item = list.mTop; item; item = item->mNext)
-                    mSerial.write(&item->mSerial);
-            }
-            
-            FrameLib_Parameters::AutoSerial mSerial;
-            Item *mNext;
-        };
-        
-        void push(Item *item)
-        {
-            assert (item->mNext == nullptr && "item already in a list");
-            
-            if (mTail)
-            {
-                mTail->mNext = item;
-                mTail = item;
-            }
-            else
-                mTop = mTail = item;
+            for (SerialItem *item = list.mHead; item; item = item->mNext)
+                mSerial.write(&item->mSerial);
         }
         
-        Item *pop()
-        {
-            Item *item = mTop;
-            
-            mTop = mTop ? mTop->mNext : nullptr;
-            mTail = (mTail == item) ? nullptr : mTail;
-            
-            if (item)
-                item->mNext = nullptr;
-            
-            return item;
-        }
+        FrameLib_Parameters::AutoSerial mSerial;
+    };
+    
+    struct SerialList : public FrameLib_Queue<SerialItem, SerialItem, SerialList>
+    {
+        friend SerialItem;
         
-        bool empty() const
+        ~SerialList()
         {
-            return mTop == nullptr;
+            while (SerialItem *item = pop())
+                delete item;
         }
-        
-        unsigned long size() const
+
+        unsigned long memorySize() const
         {
             unsigned long summedSize = 0;
             
-            for (Item *item = mTop; item; item = item->mNext)
+            for (SerialItem *item = mHead; item; item = item->mNext)
                 summedSize += item->mSerial.size();
                 
             return summedSize;
         }
-        
-        void clear()
-        {
-            for (Item *item = pop(); item; item = pop())
-                delete item;
-        }
-        
-        void reassign(SerialList& list)
-        {
-            if (!mTop)
-                mTop = list.mTop;
-            else
-                mTail->mNext = list.mTop;
-            if (list.mTail)
-                mTail = list.mTail;
-            
-            list.mTop = nullptr;
-            list.mTail = nullptr;
-        }
-        
-    private:
-        
-        // Deleted
-
-        SerialList(const SerialList&) = delete;
-        SerialList& operator=(const SerialList&) = delete;
-        
-        // Data
-        
-        Item *mTop;
-        Item *mTail;
     };
     
 public:
@@ -173,7 +119,7 @@ private:
     // Swapping data with the proxy
     
     OwnedFrame swapVectorFrame(OwnedFrame& swapVector);
-    void updateSerialFrame(SerialList &freeList, SerialList::Item *addSerial);
+    void updateSerialFrame(SerialList &freeList, SerialItem *addSerial);
 
 // Data
     

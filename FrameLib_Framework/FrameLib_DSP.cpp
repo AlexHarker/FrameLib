@@ -4,7 +4,7 @@
 // Constructor / Destructor
 
 FrameLib_DSP::FrameLib_DSP(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns, unsigned long nOuts, unsigned long nAudioChans)
-: FrameLib_Block(type, context, proxy), mSamplingRate(44100.0), mMaxBlockSize(4096), mParameters(context, proxy, info), mProcessingQueue(context), mNode(this), mNextInThread(nullptr), mNoLiveInputs(true), mInUpdate(false)
+: FrameLib_Block(type, context, proxy), mSamplingRate(44100.0), mMaxBlockSize(4096), mParameters(context, proxy, info), mProcessingQueue(context), mNextInThread(nullptr), mNoLiveInputs(true), mInUpdate(false)
 {    
     // Set IO
     
@@ -389,7 +389,7 @@ void FrameLib_DSP::dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, 
 void FrameLib_DSP::dependencyNotify(FrameLib_AudioQueue &notifier, bool releaseMemory, NotificationType type)
 {
     if (dependencyNotify(releaseMemory, type))
-        notifier.add(&mNode);
+        notifier.push(this);
 }
 
 // For updating the correct input count
@@ -613,7 +613,7 @@ inline void FrameLib_DSP::releaseOutputMemory()
 
 // Connection Updating
 
-void FrameLib_DSP::connectionUpdate(Queue *queue)
+void FrameLib_DSP::connectionUpdate(BlockQueue *queue)
 {
     std::vector<FrameLib_DSP *>::iterator it;
     

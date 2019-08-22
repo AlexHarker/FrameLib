@@ -2032,7 +2032,7 @@
 		B82CC2461F851D6F00077ECB /* FrameLib_StreamID.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_StreamID.cpp; sourceTree = "<group>"; };
 		B82CC2471F851D6F00077ECB /* FrameLib_StreamID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_StreamID.h; sourceTree = "<group>"; };
 		B82CC24A1F851DBC00077ECB /* fl.streamid~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.streamid~.cpp"; sourceTree = "<group>"; };
-		B833C2FC230BF621009253F3 /* FrameLib_LockFree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_LockFree.h; sourceTree = "<group>"; };
+		B833C2FC230BF621009253F3 /* FrameLib_Queues.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Queues.h; sourceTree = "<group>"; };
 		B835F31019A61128003CD5E7 /* FrameLib_Threading.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Threading.h; sourceTree = "<group>"; };
 		B83E029220667499005925DD /* framelib_pd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framelib_pd.cpp; sourceTree = "<group>"; };
 		B83E0295206674CD005925DD /* FrameLib_PDClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_PDClass.h; sourceTree = "<group>"; };
@@ -4674,6 +4674,7 @@
 			isa = PBXGroup;
 			children = (
 				B8FD919E197F40B200437EB5 /* FrameLib_Types.h */,
+				B833C2FC230BF621009253F3 /* FrameLib_Queues.h */,
 				B8B32FE520CDA9F700C5FA53 /* FrameLib_Errors.h */,
 				B823C12D20CFFE9200476F03 /* FrameLib_Errors.cpp */,
 				B8FD919D197F0F6C00437EB5 /* FrameLib_FixedPoint.h */,
@@ -4690,7 +4691,6 @@
 				B8E058AE198DA34D00721359 /* FrameLib_Object.h */,
 				B8075B131979173E00EB3A35 /* FrameLib_DSP.h */,
 				B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */,
-				B833C2FC230BF621009253F3 /* FrameLib_LockFree.h */,
 				B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */,
 				B88BD2741F03F7830045E737 /* FrameLib_ProcessingQueue.cpp */,
 				B85B20E619938415004FFF22 /* FrameLib_Multistream.h */,

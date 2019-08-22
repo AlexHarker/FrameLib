@@ -32,12 +32,12 @@ void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, const FrameLib_
 {
     SerialList freeList;
     const std::vector<FrameLib_FromHost *>& objects = getObjectList(index);
-    std::vector<SerialList::Item *> addSerials(objects.size());
+    std::vector<SerialItem *> addSerials(objects.size());
 
     // Create one serial structure per object, swap and then the free list will clear on destruct
     
     for (unsigned long i = 0; i < objects.size(); i++)
-        addSerials[i] = new SerialList::Item(*serial);
+        addSerials[i] = new SerialItem(*serial);
     
     for (unsigned long i = 0; i < objects.size(); i++)
         objects[i]->updateSerialFrame(freeList, addSerials[i]);
@@ -48,7 +48,7 @@ void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, unsigned long s
     // Copy serial date, update and then the free list will clear on destruct
     
     SerialList freeList;
-    SerialList::Item *addSerial = new SerialList::Item(*serial);
+    SerialItem *addSerial = new SerialItem(*serial);
     getObject(index, stream)->updateSerialFrame(freeList, addSerial);
 }
 
@@ -103,7 +103,7 @@ void FrameLib_FromHost::Proxy::copyData(void *streamOwner, unsigned long stream)
             SerialList freeList;
 
             first->mLock.acquire();
-            SerialList::Item *addSerial = first->mSerialFrame.empty() ? nullptr : new SerialList::Item(first->mSerialFrame);
+            SerialItem *addSerial = first->mSerialFrame.empty() ? nullptr : new SerialItem(first->mSerialFrame);
             first->mLock.release();
             if (addSerial)
                 current->updateSerialFrame(freeList, addSerial);
@@ -202,15 +202,18 @@ void FrameLib_FromHost::process()
     }
     else
     {
-        requestOutputSize(0, mSerialFrame.size());
+        requestOutputSize(0, mSerialFrame.memorySize());
         allocateOutputs();
         
         FrameLib_Parameters::Serial *output = getOutput(0);
         
-        for (SerialList::Item *item = mSerialFrame.pop(); output && item; item = mSerialFrame.pop())
+        if (output)
         {
-            output->write(&item->mSerial);
-            mSerialFreeFrame.push(item);
+            while (SerialItem *item = mSerialFrame.pop())
+            {
+                output->write(&item->mSerial);
+                mSerialFreeFrame.push(item);
+            }
         }
     }
 }
@@ -226,9 +229,9 @@ FrameLib_FromHost::OwnedFrame FrameLib_FromHost::swapVectorFrame(OwnedFrame& swa
 
 // Swap vector frame
 
-void FrameLib_FromHost::updateSerialFrame(SerialList &freeList, SerialList::Item *addSerial)
+void FrameLib_FromHost::updateSerialFrame(SerialList &freeList, SerialItem *addSerial)
 {
     FrameLib_SpinLockHolder lock(&mLock);
     mSerialFrame.push(addSerial);
-    freeList.reassign(mSerialFreeFrame);
+    freeList.transfer(mSerialFreeFrame);
 }
