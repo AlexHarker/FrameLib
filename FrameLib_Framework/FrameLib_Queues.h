@@ -60,7 +60,7 @@ struct FrameLib_Node<T, MainUser, Users...>
  
  @ingroup Queues
 
- @brief a general purpose queue for objects of a given type (which inherit from the inner Node type)
+ @brief a general purpose queue for objects of a given type (which inherits from the inner Node type)
  
  An item can only be in one position in a single queue at a time.
  
