@@ -15,13 +15,13 @@ class FrameLib_FromHost final : public FrameLib_Processor
     
     // Forward declaration
     
-    struct SerialList;
+    struct SerialQueue;
     
-    struct SerialItem : public FrameLib_Queue<SerialItem, SerialItem, SerialList>::Node
+    struct SerialItem : public FrameLib_Queue<SerialItem, SerialItem, SerialQueue>::Node
     {
         SerialItem(const FrameLib_Parameters::Serial& serial) : mSerial(serial) {}
         
-        SerialItem(const SerialList& list)
+        SerialItem(const SerialQueue& list)
         {
             for (SerialItem *item = list.mHead; item; item = item->mNext)
                 mSerial.write(&item->mSerial);
@@ -30,11 +30,11 @@ class FrameLib_FromHost final : public FrameLib_Processor
         FrameLib_Parameters::AutoSerial mSerial;
     };
     
-    struct SerialList : public FrameLib_Queue<SerialItem, SerialItem, SerialList>
+    struct SerialQueue : public FrameLib_Queue<SerialItem, SerialItem, SerialQueue>
     {
         friend SerialItem;
         
-        ~SerialList()
+        ~SerialQueue()
         {
             while (SerialItem *item = pop())
                 delete item;
@@ -119,14 +119,14 @@ private:
     // Swapping data with the proxy
     
     OwnedFrame swapVectorFrame(OwnedFrame& swapVector);
-    void updateSerialFrame(SerialList &freeList, SerialItem *addSerial);
+    void updateSerialFrame(SerialQueue &freeList, SerialItem *addSerial);
 
 // Data
     
     FrameLib_SpinLock mLock;
     OwnedFrame mVectorFrame;
-    SerialList mSerialFrame;
-    SerialList mSerialFreeFrame;
+    SerialQueue mSerialFrame;
+    SerialQueue mSerialFreeFrame;
     Modes mMode;
     
     Proxy *mProxy;

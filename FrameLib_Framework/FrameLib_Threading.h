@@ -77,6 +77,61 @@ bool nullSwap(std::atomic<T *>& value, T *exchange)
 
 /**
  
+ @class FrameLib_CountedPointer
+ 
+ @ingroup Threading
+ 
+ @brief a templated counted pointer for the purpose of lock-free operations.
+ 
+ */
+
+template <class T>
+struct FrameLib_CountedPointer
+{
+    FrameLib_CountedPointer() : FrameLib_CountedPointer(nullptr), mCount(0) {}
+    FrameLib_CountedPointer(T *item, uintptr_t count) : mPointer(item), mCount(count) {}
+    
+    bool operator==(const FrameLib_CountedPointer& a) const
+    {
+        return a.mPointer == mPointer && a.mCount == mCount;
+    }
+    
+    // This structure must not have padding bits, so we use a pointer sized mCount
+    
+    T *mPointer;
+    uintptr_t mCount;
+};
+
+
+/**
+ 
+ @class FrameLib_LockFreePointer
+ 
+ @ingroup Threading
+ 
+ @brief a templated lock-free pointer that can be swapped safely.
+ 
+ */
+
+template <class T>
+struct FrameLib_LockFreePointer : public std::atomic<FrameLib_CountedPointer<T>>
+{
+    using Pointer = FrameLib_CountedPointer<T>;
+    using Base = std::atomic<Pointer>;
+    
+    FrameLib_LockFreePointer() : Base(Pointer()) {}
+    
+    FrameLib_LockFreePointer(const Pointer& pointer) : Base(pointer) {}
+    
+    bool trySwap(T *item, Pointer compare)
+    {
+        return compareAndSwap(*this, compare, Pointer(item, compare.mCount + 1));
+    }
+};
+
+
+/**
+ 
  @class FrameLib_SpinLock
  
  @ingroup Threading

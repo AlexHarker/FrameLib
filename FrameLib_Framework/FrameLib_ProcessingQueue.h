@@ -22,6 +22,7 @@ class FrameLib_DSP;
  
  */
 
+
 /**
  
  @class FrameLib_ProcessingQueue
@@ -37,9 +38,9 @@ class FrameLib_ProcessingQueue
     
 public:
     
-    using Queue = FrameLib_LockFreeStack<FrameLib_DSP>;
-    using Node = Queue::Node;
-    using NodeList = Queue::Queue;
+    using MainQueue = FrameLib_LockFreeStack<FrameLib_DSP>;
+    using PrepQueue = MainQueue::Queue;
+    using Node = MainQueue::Node;
 
     /**
      
@@ -106,9 +107,9 @@ public:
     
     // Start and add items to the queue
     
-    void start(NodeList &list);
+    void start(PrepQueue &queue);
     void start(FrameLib_DSP *object);
-    void add(NodeList &list, FrameLib_DSP *addedBy);
+    void add(PrepQueue &queue, FrameLib_DSP *addedBy);
     void add(FrameLib_DSP *object, FrameLib_DSP *addedBy);
     
     // Additional functionality
@@ -125,7 +126,7 @@ private:
     WorkerThreads mWorkers;
     FrameLib_OwnedList<FrameLib_FreeBlocks> mFreeBlocks;
 
-    Queue mQueue;
+    MainQueue mQueue;
     
     std::atomic<int32_t> mNumItems;
     std::atomic<int32_t> mNumWorkersActive;
@@ -137,7 +138,18 @@ private:
     FrameLib_ErrorReporter& mErrorReporter;
 };
 
-class FrameLib_AudioQueue : private FrameLib_ProcessingQueue::NodeList
+
+/**
+ 
+ @class FrameLib_AudioQueue
+ 
+ @ingroup ProcessingQueue
+ 
+ @brief a small queue that is used to combine multiple audio block notifications to a single call to the main processing queue.
+ 
+ */
+
+class FrameLib_AudioQueue : private FrameLib_ProcessingQueue::PrepQueue
 {
     friend class FrameLib_DSP;
     

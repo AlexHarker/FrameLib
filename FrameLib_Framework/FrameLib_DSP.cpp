@@ -57,13 +57,13 @@ const double *FrameLib_DSP::getFixedInput(unsigned long idx, unsigned long *size
 
 void FrameLib_DSP::blockUpdate(const double * const *ins, double **outs, unsigned long blockSize)
 {
-    FrameLib_AudioQueue notifier;
-    blockUpdate(ins, outs, blockSize, notifier);
+    FrameLib_AudioQueue queue;
+    blockUpdate(ins, outs, blockSize, queue);
 }
 
 // This version is usable for making block notifcations together, prinarily in FrameLib_Expand
 
-void FrameLib_DSP::blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& notifier)
+void FrameLib_DSP::blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& queue)
 {
     // Update block time and process the block
     
@@ -75,8 +75,8 @@ void FrameLib_DSP::blockUpdate(const double * const *ins, double **outs, unsigne
     
     if (needsAudioNotification())
     {
-        notifier.setUser(this);
-        dependencyNotify(notifier, false, kAudioBlock);
+        queue.setUser(this);
+        dependencyNotify(queue, false, kAudioBlock);
     }
 }
 
@@ -386,10 +386,10 @@ void FrameLib_DSP::dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, 
         mProcessingQueue->add(this, notifier);
 }
 
-void FrameLib_DSP::dependencyNotify(FrameLib_AudioQueue &notifier, bool releaseMemory, NotificationType type)
+void FrameLib_DSP::dependencyNotify(FrameLib_AudioQueue &queue, bool releaseMemory, NotificationType type)
 {
     if (dependencyNotify(releaseMemory, type))
-        notifier.push(this);
+        queue.push(this);
 }
 
 // For updating the correct input count

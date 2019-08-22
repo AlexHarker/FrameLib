@@ -23,13 +23,13 @@ FrameLib_ProcessingQueue::~FrameLib_ProcessingQueue()
 
 // Processing Queue
 
-void FrameLib_ProcessingQueue::start(NodeList &list)
+void FrameLib_ProcessingQueue::start(PrepQueue &queue)
 {
-    if (list.size())
+    if (queue.size())
     {
-        mNumItems += list.size();
+        mNumItems += queue.size();
         wakeWorkers(false); // !addedBy
-        mQueue.enqueue(list);
+        mQueue.enqueue(queue);
         serviceQueue(0);
     }
 }
@@ -45,23 +45,23 @@ void FrameLib_ProcessingQueue::start(FrameLib_DSP *object)
     serviceQueue(0);
 }
 
-void FrameLib_ProcessingQueue::add(NodeList &list, FrameLib_DSP *addedBy)
+void FrameLib_ProcessingQueue::add(PrepQueue &queue, FrameLib_DSP *addedBy)
 {
     // Try to process this next in this thread, but if that isn't possible add to the queue
     
-    if (!list.size())
+    if (!queue.size())
         return;
     
     // Try to process one item in this thread
 
     if (!addedBy->mNextInThread)
-        addedBy->mNextInThread = list.pop();
+        addedBy->mNextInThread = queue.pop();
     
-    if (list.size())
+    if (queue.size())
     {
-        mNumItems += list.size();
+        mNumItems += queue.size();
         wakeWorkers(false); // !addedBy
-        mQueue.enqueue(list);
+        mQueue.enqueue(queue);
     }
 }
 

@@ -26,7 +26,6 @@ class FrameLib_DSP : public FrameLib_Block, public FrameLib_MethodQueue<FrameLib
 {
     using BlockQueue = FrameLib_MethodQueue<FrameLib_Block>;
     using LocalQueue = FrameLib_MethodQueue<FrameLib_DSP>;
-    using NodeList = FrameLib_ProcessingQueue::NodeList;
     using Serial = FrameLib_Parameters::Serial;
 
     friend class FrameLib_ProcessingQueue;
@@ -140,7 +139,7 @@ public:
     
     // Audio Processing
     
-    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& notifier) final;
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& queue) final;
     void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) final;
     void reset(double samplingRate, unsigned long maxBlockSize) final;
     
@@ -300,7 +299,7 @@ private:
     
     bool dependencyNotify(bool releaseMemory, NotificationType type);
     void dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, NotificationType type);
-    void dependencyNotify(FrameLib_AudioQueue &notifier, bool releaseMemory, NotificationType type);
+    void dependencyNotify(FrameLib_AudioQueue &queue, bool releaseMemory, NotificationType type);
     
     void dependenciesReady(FrameLib_FreeBlocks *freeBlocks);
     void incrementInputDependency();

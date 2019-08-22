@@ -4,33 +4,67 @@
 
 #include "FrameLib_Threading.h"
 
-#include <atomic>
 
-#include <libkern/OSAtomicQueue.h>
+/**
+ 
+ @defgroup Queues
+ 
+ */
 
-// An item in a single linked list
+
+/**
+ 
+ @class FrameLib_NodeBase
+ 
+ @ingroup Queues
+
+ @brief an object to store a pointer the next object in a single linked list
+ 
+ */
 
 template <class T>
-class FrameLib_Item { protected: T * mNext = nullptr; };
+class FrameLib_NodeBase { protected: T * mNext = nullptr; };
 
-// Basic template
+/**
+ 
+ @class FrameLib_Node
+ 
+ @ingroup Queues
+
+ @brief  a node in a linked list with specific access for a set of "user" types
+ 
+ */
+
+// Non specialised empty template
 
 template <class T, typename... Users>
-struct FrameLib_SingleLinked {} ;
+struct FrameLib_Node {};
 
-// Template specialisation inheriting virtual members of FrameLib_Item and adding one friend
+// Template specialisation inheriting virtual FrameLib_NodeBase and adding one friend
 
 template <class T, class User>
-struct FrameLib_SingleLinked<T, User> : virtual FrameLib_Item<T>
+struct FrameLib_Node<T, User> : virtual FrameLib_NodeBase<T>
 {
     friend User;
 };
 
-// Template specialisation allowing a list of one or more classes access to FrameLib_Item
+// Template specialisation allowing one or more classes access to FrameLib_NodeBase
 
 template <class T, class MainUser, class ... Users>
-struct FrameLib_SingleLinked<T, MainUser, Users...>
-: FrameLib_SingleLinked<T, MainUser>, FrameLib_SingleLinked<T, Users...> {};
+struct FrameLib_Node<T, MainUser, Users...>
+: FrameLib_Node<T, MainUser>, FrameLib_Node<T, Users...> {};
+
+/**
+ 
+ @class FrameLib_Queue
+ 
+ @ingroup Queues
+
+ @brief a general purpose queue for objects of a given type (which inherit from the inner Node type)
+ 
+ An item can only be in one position in a single queue at a time.
+ 
+ */
 
 template <class T, class...Users>
 class FrameLib_Queue
@@ -38,8 +72,10 @@ class FrameLib_Queue
     
 public:
 
-    using Node = FrameLib_SingleLinked<T, FrameLib_Queue, Users...>;
+    using Node = FrameLib_Node<T, FrameLib_Queue, Users...>;
 
+    // Constructor
+    
     FrameLib_Queue() : mHead(nullptr), mTail(nullptr), mSize(0) {}
     
     // Non-copyable
@@ -106,7 +142,7 @@ public:
 
 protected:
 
-    // Determine if the item is already in a queue
+    // Determine if the item is already in the queue
     
     bool queued(T* item) const
     {
@@ -130,7 +166,9 @@ protected:
  
  @class FrameLib_MethodQueue
  
- @brief a single-threaded queue for non-recursive queuing of items for processing
+ @ingroup Queues
+
+ @brief a single-threaded queue for non-recursive queuing of a specified method
  
  An item can only be in one position in a single queue at a time.
  
@@ -146,6 +184,8 @@ public:
 
     using Node = typename FrameLib_Queue<T>::Node;
     
+    // Constructors (default and starting with an object / method)
+
     FrameLib_MethodQueue() : mFirst(nullptr) {}
     
     FrameLib_MethodQueue(T *object, Method method) : mFirst(nullptr)
@@ -153,6 +193,8 @@ public:
         add(object);
         start(method);
     }
+    
+    // Add an item to the queue
     
     void add(T *object)
     {
@@ -163,6 +205,8 @@ public:
 
         FrameLib_Queue<T>::push(object);
     }
+    
+    // Start the queue
     
     void start(Method method)
     {
@@ -183,28 +227,17 @@ protected:
     T *mFirst;
 };
 
-// FIX - move to threading header
-// A counted pointer
+/**
+ 
+ @class FrameLib_LockFreeStack
+ 
+ @ingroup Queues
 
-template <class T>
-struct FrameLib_CountedPointer
-{
-    FrameLib_CountedPointer() : FrameLib_CountedPointer(nullptr), mCount(0) {}
-    FrameLib_CountedPointer(T *item, uintptr_t count) : mPointer(item), mCount(count) {}
-    
-    bool operator==(const FrameLib_CountedPointer& a) const
-    {
-        return a.mPointer == mPointer && a.mCount == mCount;
-    }
-    
-    // This structure must not have padding bits, so we use a pointer sized mCount
-    
-    T *mPointer;
-    uintptr_t mCount;
-};
+ @brief a lock-free stack for queuing items in a multithreaded context
+ 
+ An item can only be in one position in a single queue at a time.
 
-template <class T>
-using FrameLib_LockFreePointer = std::atomic<FrameLib_CountedPointer<T>>;
+ */
 
 template <class T>
 class FrameLib_LockFreeStack
@@ -213,15 +246,21 @@ class FrameLib_LockFreeStack
 public:
     
     using Node = typename FrameLib_Queue<T, FrameLib_LockFreeStack>::Node;
-    using Pointer = FrameLib_CountedPointer<T>;
+    using Pointer = typename FrameLib_LockFreePointer<T>::Pointer;
 
+    // Internal queue type
+    
     class Queue : public FrameLib_Queue<T, FrameLib_LockFreeStack>
     {
         friend FrameLib_LockFreeStack;
     };
     
+    // Constructor
+    
     FrameLib_LockFreeStack() : mHead(Pointer(nullptr, 0)) {}
     
+    // Enqueue an item
+
     void enqueue(T *item)
     {
         assert((!item->Node::mNext) && "Object is already in the queue");
@@ -233,29 +272,31 @@ public:
             
             // Attempt to swap head
             
-            if (compareAndSwap(mHead, head, Pointer{item, head.mCount + 1}))
+            if (mHead.trySwap(item, head))
                 return;
         }
     }
     
+    // Enqueue a pre=prepared queue
+    
     void enqueue(Queue& queue)
     {
-        T *queueHead = queue.mHead;
-        T *queueTail = queue.mTail;
-        
-        queue.clear();
-        
         while (true)
         {
             const Pointer head = mHead.load(std::memory_order_relaxed);
-            queueTail->Node::mNext = head.mPointer;
+            queue.mTail->Node::mNext = head.mPointer;
             
             // Attempt to swap head
             
-            if (compareAndSwap(mHead, head, Pointer{queueHead, head.mCount + 1}))
+            if (mHead.trySwap(queue.mHead, head))
                 return;
         }
+        
+        queue.clear();
+
     }
+    
+    // Dequeue one item
     
     T *dequeue()
     {
@@ -270,13 +311,13 @@ public:
             if (!head.mPointer)
                 return nullptr;
             
-            // Read the pointer before CAS otherwise another dequeue may free the next node
+            // Read the pointer before CAS otherwise another dequeue may free the head
             
             T *item = head.mPointer;
             
             // Attempt to change the head and complete dequeue
             
-            if (compareAndSwap(mHead, head, Pointer(item->Node::mNext, head.mCount + 1)))
+            if (mHead.trySwap(item->Node::mNext, head))
             {
                 item->Node::mNext = nullptr;
                 return item;
@@ -292,6 +333,20 @@ private:
 };
 
 
+#ifdef __APPLE__
+
+/**
+ 
+ @class FrameLib_AppleLockFreeQueue
+ 
+ @ingroup Queues
+
+ @brief apple-specific lock-free queue for testing purposes only
+ 
+ */
+
+#include <libkern/OSAtomicQueue.h>
+
 template <class T>
 class FrameLib_AppleLockFreeQueue
 {
@@ -300,19 +355,25 @@ public:
     
     // A node in the queue
     
-    using Node = FrameLib_SingleLinked<T, FrameLib_AppleLockFreeQueue>;
+    using Node = FrameLib_Node<T, FrameLib_AppleLockFreeQueue>;
     using Queue = FrameLib_Queue<T, FrameLib_AppleLockFreeQueue>;
+    
+    // Enqueue an item
     
     void enqueue(T *item)
     {
         OSAtomicFifoEnqueue(&mQueue, static_cast<Node *>(item), offsetof(Node, mNext));
     }
     
+    // Enqueue a pre-prepared queue
+
     void enqueue(Queue& queue)
     {
         while (queue.size())
             enqueue(queue.remove());
     }
+    
+    // Dequeue an item
     
     T *dequeue()
     {
@@ -325,4 +386,6 @@ private:
     OSFifoQueueHead mQueue OS_ATOMIC_FIFO_QUEUE_INIT;
 };
 
-#endif /* FRAMELIB_LOCKFREE_H */
+#endif
+
+#endif /* FRAMELIB_QUEUES_H */
