@@ -494,7 +494,7 @@ namespace FrameLib_ExprParser
             return Node(kIsOutput, static_cast<long>(graph.mOperations.size() - 1));
         }
         
-        ExprParseError parseUnaryOperator(Graph<T>& graph, const OpBase<T> *op, NodeList& nodes, NodeListIterator& it)
+        ExprParseError parseUnaryOperator(Graph<T>& graph, const OpBase<T> *op, NodeList& nodes, const NodeListIterator& it)
         {
             // Check the operator isn't last, that its either first, or precededed by an operator and not followed by one
             // N.B. return no error in case this is also an operator later, otherwise it'll be picked up as a stray item
@@ -547,11 +547,11 @@ namespace FrameLib_ExprParser
             
             // Now resolve unary operators by searching right-to-left
             
-             for (auto it = nodes.end() - 1; it >= nodes.begin(); it--)
-                 if ((op = getOperator(it->getTokenString(), 0)))
-                    if ((error = parseUnaryOperator(graph, op, nodes, it)))
+            for (auto it = nodes.end(); it != nodes.begin(); it--)
+                if ((op = getOperator((it - 1)->getTokenString(), 0)))
+                    if ((error = parseUnaryOperator(graph, op, nodes, it - 1)))
                         return error;
-
+            
             // Now resolve binary operators in order of precedence
             
             for (unsigned int i = 1; i < static_cast<unsigned int>(mOperators.size()); i++)
@@ -591,21 +591,24 @@ namespace FrameLib_ExprParser
                     if (n2->isRHSParenthesis())
                         break;
 
-                for (n1 = n2 == nodes.end() ? n2 - 1 : n2; n1 >= nodes.begin(); n1--)
-                    if (n1->isLHSParenthesis())
+                // N.B. n1 is offset to stay in range
+                
+                for (n1 = n2; n1 != nodes.begin(); n1--)
+                    if ((n1 - 1)->isLHSParenthesis())
                         break;
             
                 // Check that there are parentheses found (if not continue) and for stray parentheses
                 
-                if ((n1 < nodes.begin()) && (n2 == nodes.end()))
+                if ((n1 == nodes.begin()) && (n2 == nodes.end()))
                     break;
                 
-                if ((n1 < nodes.begin()) != (n2 == nodes.end()))
+                if ((n1 == nodes.begin()) != (n2 == nodes.end()))
                     return kParseError_StrayParenthesis;
                 
                 // Copy child nodes, determine if this is a function call and how many items it requires
+                // N.B. - here n1 is decremented to indicate the actual LHS parenthesis
                 
-                NodeList childNodes(n1 + 1, n2);
+                NodeList childNodes(n1--, n2);
                 size_t numItems = 1;
                 
                 if ((n1 != nodes.begin()) && (n1 - 1)->isSymbol())
