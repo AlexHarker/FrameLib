@@ -51,9 +51,10 @@ public:
     
     void push(T* item)
     {
-        assert(!item->Node::mNext && "item is already in a queue");
+        assert(item && "item is null");
+        assert(!queued(item) && "item is already in a queue");
         
-        if (mHead)
+        if (!empty())
         {
             mTail->Node::mNext = item;
             mTail = item;
@@ -68,14 +69,14 @@ public:
     
     T *pop()
     {
-        if (!mSize)
+        if (empty())
             return nullptr;
         
         T *item = mHead;
-        mHead = mHead->Node::mNext;
-        mTail = (mTail == item) ? nullptr : mTail;
+        mHead = item->Node::mNext;
+        if (--mSize == 0)
+            mTail = nullptr;
         item->Node::mNext = nullptr;
-        mSize--;
         
         return item;
     }
@@ -84,13 +85,14 @@ public:
     
     void transfer(FrameLib_Queue& queue)
     {
-        if (!mHead)
+        if (empty())
             mHead = queue.mHead;
         else
             mTail->mNext = queue.mHead;
         if (queue.mTail)
             mTail = queue.mTail;
         
+        mSize += queue.size();
         queue.clear();
     }
     
@@ -108,7 +110,7 @@ protected:
     
     bool queued(T* item) const
     {
-        return item->Node::mNext;
+        return item->Node::mNext || item == mTail;
     }
     
     // Reset the data structure once the items have been transferred elswhere
