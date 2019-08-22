@@ -2,8 +2,8 @@
 #ifndef FRAMELIB_ERRORS_H
 #define FRAMELIB_ERRORS_H
 
-#include "FrameLib_Threading.h"
 #include "FrameLib_Types.h"
+#include "FrameLib_Threading.h"
 
 #include <algorithm>
 #include <memory>

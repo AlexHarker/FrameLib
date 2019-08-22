@@ -3,8 +3,8 @@
 #define FRAMELIB_CONTEXT_H
 
 #include "FrameLib_Types.h"
-#include "FrameLib_Global.h"
 #include "FrameLib_Errors.h"
+#include "FrameLib_Global.h"
 
 /**
  
