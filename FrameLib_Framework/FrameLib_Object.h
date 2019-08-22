@@ -368,13 +368,15 @@ public:
         Queue queue(static_cast<T *>(this), &T::FrameLib_Object::connectionUpdate);
     }
     
-    template <class U> void addOutputDependencies(std::vector<U *> &dependencies)
+    template <class U>
+    void addOutputDependencies(std::vector<U *> &dependencies)
     {
         for (unsigned long i = 0; i < getNumOuts(); i++)
             addOutputDependencies(dependencies, i);
     }
     
-    template <class U> void addOutputDependencies(std::vector<U *> &dependencies, unsigned long outIdx)
+    template <class U>
+    void addOutputDependencies(std::vector<U *> &dependencies, unsigned long outIdx)
     {
         addOutputDependencies<std::vector<U *>>(dependencies, outIdx);
     }
@@ -506,7 +508,8 @@ protected:
     
     // Unique List Helpers
     
-    template <class U> static bool addUniqueItem(std::vector<U>& list, U item)
+    template <class U>
+    static bool addUniqueItem(std::vector<U>& list, U item)
     {
         if (std::find(list.begin(), list.end(), item) != list.end())
             return false;
@@ -515,7 +518,8 @@ protected:
         return true;
     }
     
-    template <class U> static bool deleteUniqueItem(std::vector<U>& list, U item)
+    template <class U>
+    static bool deleteUniqueItem(std::vector<U>& list, U item)
     {
         auto it = std::find(list.begin(), list.end(), item);
         
@@ -815,7 +819,8 @@ private:
         queue->add(dynamic_cast<T *>(const_cast<FrameLib_Object *>(this)));
     }
     
-    template <class U> void addDependency(std::vector<U *>& dependencies) const
+    template <class U>
+    void addDependency(std::vector<U *>& dependencies) const
     {
         U *object = dynamic_cast<U *>(const_cast<FrameLib_Object *>(this));
 
@@ -830,7 +835,8 @@ private:
             (it->mObject->*method)(dependencies, it->mIndex);
     }
     
-    template <class U> void addOutputDependencies(U &dependencies, unsigned long outIdx) const
+    template <class U>
+    void addOutputDependencies(U &dependencies, unsigned long outIdx) const
     {
         if (mOutputConnections[outIdx].mInternal)
             traverseDependencies(dependencies, mOutputConnections[outIdx], &FrameLib_Object::addOutputDependencies<U>);
@@ -838,7 +844,8 @@ private:
             traverseDependencies(dependencies, mOutputConnections[outIdx], &FrameLib_Object::unwrapInputAliases<U>);
     }
     
-    template <class U> void unwrapInputAliases(U& dependencies, unsigned long inIdx) const
+    template <class U>
+    void unwrapInputAliases(U& dependencies, unsigned long inIdx) const
     {
         if (inIdx == kOrdering && mOrderingConnector.mOut.size())
             traverseDependencies(dependencies, mOrderingConnector, &FrameLib_Object::unwrapInputAliases<U>);
