@@ -62,10 +62,10 @@ def main():
 
     ## Deletes all temporay files and cleans up process
     print("8. Cleaning up")
-    create_tutorial_coll.main(root)
+    cleanup.main(root)
     hp.hyp()
     print(" ")
-    print("Completed all python scripts!!!")
+    print("Completed all python scripts.")
 
 
 if __name__ == "__main__":
