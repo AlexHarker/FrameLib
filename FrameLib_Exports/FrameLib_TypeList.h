@@ -17,7 +17,7 @@ namespace detail
   };
 }
 
-using FrameLib_DSPList = detail::Typelist<
+using FrameLib_ObjectList = detail::FrameLib_Typelist<
 
 // Filters
 

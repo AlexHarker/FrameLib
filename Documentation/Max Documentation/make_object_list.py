@@ -9,7 +9,7 @@ root = cd_up(get_path(), 1)
 op = open(os.path.join(root, "Max_Object_List.h"), "w+")
 op.write('#include "FrameLib_TypeList.h"')
 op.write("\n \n")
-op.write("using FrameLib_DSPList = FrameLib_Typelist<")
+op.write("using FrameLib_DSPList = detail::FrameLib_Typelist<")
 op.write("\n \n")
 
 ## Directory formation
