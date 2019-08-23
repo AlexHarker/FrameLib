@@ -17,6 +17,12 @@ namespace detail
   };
 }
 
+template<typename T>
+struct FrameLib_ObjectName
+{
+    const char *name() { return "unknown"; }
+};
+
 using FrameLib_ObjectList = detail::FrameLib_Typelist<
 
 // Filters
