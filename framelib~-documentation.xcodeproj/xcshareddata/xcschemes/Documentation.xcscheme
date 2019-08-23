@@ -3,7 +3,7 @@
    LastUpgradeVersion = "0940"
    version = "1.7">
    <BuildAction
-      parallelizeBuildables = "YES"
+      parallelizeBuildables = "NO"
       buildImplicitDependencies = "YES">
       <PreActions>
          <ExecutionAction
@@ -14,10 +14,10 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "26970D1B222FEA6B00990D87"
+                     BlueprintIdentifier = "262AEAD323101CE10016ECF3"
                      BuildableName = "Documentation"
                      BlueprintName = "Documentation"
-                     ReferencedContainer = "container:framelib~.xcodeproj">
+                     ReferencedContainer = "container:framelib~-documentation.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -32,10 +32,10 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "26970D1B222FEA6B00990D87"
+                     BlueprintIdentifier = "262AEAD323101CE10016ECF3"
                      BuildableName = "Documentation"
                      BlueprintName = "Documentation"
-                     ReferencedContainer = "container:framelib~.xcodeproj">
+                     ReferencedContainer = "container:framelib~-documentation.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
