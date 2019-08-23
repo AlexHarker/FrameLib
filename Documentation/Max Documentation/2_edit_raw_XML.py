@@ -18,7 +18,7 @@ def main(root):
     move_to_path = os.path.join(
         cd_up(root, 2), "Current Test Version", "FrameLib", "docs", "refpages"
     )
-    category_database_path = os.path.join(dir_path, "category_database.json")
+    category_database_path = os.path.join(dir_path, "__tmp__", "db", "category_database.json")
     yaml_file = os.path.join(root, "object_relationships.yaml")
     object_info = None
 
