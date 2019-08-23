@@ -25,7 +25,7 @@ void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
     std::ofstream myfile;
     std::string sp = " "; // code is more readable with sp rather than " "
     std::string object = inputName; // refactor to not copy variable.
-    myfile.open (tmpFolder + object + "~" + ".maxref.xml"); // change to some temporary relative location
+    myfile.open (tmpFolder + object + "~.maxref.xml"); // change to some temporary relative location
     std::string object_category = "!@#@#$";
     std::string object_keywords = "boilerplate keywords";
     std::string object_info;
