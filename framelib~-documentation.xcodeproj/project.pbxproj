@@ -16,6 +16,10 @@
 		B83F045E223A769800AF1F8E /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88F558E207AB15C007774AD /* Accelerate.framework */; };
 		B83F0467223A778E00AF1F8E /* FrameLib_Info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B83F0462223A76CF00AF1F8E /* FrameLib_Info.cpp */; };
 		B83F0468223A77B700AF1F8E /* FrameLib_Pattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8EA6BA92203B07800D23A86 /* FrameLib_Pattern.cpp */; };
+		B846DEDF2310423700E660FA /* libframelib_objects.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B846DEDB231041E100E660FA /* libframelib_objects.a */; };
+		B846DEE0231042D900E660FA /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88F558E207AB15C007774AD /* Accelerate.framework */; };
+		B846DEE22310433F00E660FA /* FrameLib_OnePoleZero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF0531F2D2A1E00264316 /* FrameLib_OnePoleZero.cpp */; };
+		B846DEE32310434D00E660FA /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B846DEDA231041E100E660FA /* libframelib.a */; };
 		B85426AC2175CA0C007FA185 /* FrameLib.sc in CopyFiles */ = {isa = PBXBuildFile; fileRef = B85426AB2175CA05007FA185 /* FrameLib.sc */; };
 		B88A482B2067DCC400CEB3AC /* FrameLib_SerialiseGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88A48292067DCC400CEB3AC /* FrameLib_SerialiseGraph.cpp */; };
 		B88A482C2067DCC400CEB3AC /* FrameLib_SerialiseGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = B88A482A2067DCC400CEB3AC /* FrameLib_SerialiseGraph.h */; };
@@ -114,6 +118,13 @@
 			remoteInfo = framelib;
 		};
 		B83FCCED222FEC2A00B52C0D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8BA6FD12078D49200D3DB3D;
+			remoteInfo = framelib_objects;
+		};
+		B846DEDD2310423100E660FA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
 			proxyType = 1;
@@ -238,6 +249,9 @@
 		B84120C31D9D484700C2D5C0 /* FrameLib_Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Global.h; sourceTree = "<group>"; };
 		B843AAA219C05435000D3476 /* FrameLib_Sink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Sink.h; sourceTree = "<group>"; };
 		B843AAB419C070A1000D3476 /* fl.sink~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.sink~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B846DEDA231041E100E660FA /* libframelib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libframelib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B846DEDB231041E100E660FA /* libframelib_objects.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libframelib_objects.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B846DEDC231041E100E660FA /* FrameLib.scx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FrameLib.scx; sourceTree = BUILT_PRODUCTS_DIR; };
 		B846E61119F15A12005E9718 /* FrameLib_Window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Window.h; sourceTree = "<group>"; };
 		B846E62219F15A57005E9718 /* fl.window~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.window~.cpp"; sourceTree = "<group>"; };
 		B847EB551FB474FF00CFA52D /* FrameLib_TimeBuffer_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_TimeBuffer_Template.h; sourceTree = "<group>"; };
@@ -369,7 +383,6 @@
 		B88BD2751F03F7830045E737 /* FrameLib_ProcessingQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_ProcessingQueue.h; sourceTree = "<group>"; };
 		B88C0A1E21732710007A65C0 /* FrameLib_SC.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_SC.cpp; sourceTree = "<group>"; };
 		B88C0A1F21732753007A65C0 /* Config_FrameLib_SC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config_FrameLib_SC.xcconfig; sourceTree = "<group>"; };
-		B88C0A3121733BF9007A65C0 /* FrameLib.scx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = FrameLib.scx; path = /Users/jamesbradbury/FrameLib/build/Development/FrameLib.scx; sourceTree = "<absolute>"; };
 		B88F5557207A5872007774AD /* FrameLib_Reverse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Reverse.h; sourceTree = "<group>"; };
 		B88F5558207A5873007774AD /* FrameLib_Reverse.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Reverse.cpp; sourceTree = "<group>"; };
 		B88F556F207A59E9007774AD /* fl.reverse~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.reverse~.cpp"; sourceTree = "<group>"; };
@@ -383,7 +396,6 @@
 		B8985EA11FAB3F100006B7E0 /* FrameLib_CombineTags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_CombineTags.h; sourceTree = "<group>"; };
 		B8985EB51FAB3FAB0006B7E0 /* fl.combinetags~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.combinetags~.cpp"; sourceTree = "<group>"; };
 		B8985EB71FAB3FD90006B7E0 /* FrameLib_CombineTags.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_CombineTags.cpp; sourceTree = "<group>"; };
-		B89ABA901FA73483006DAD53 /* libframelib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libframelib.a; path = /Users/jamesbradbury/FrameLib/build/Development/libframelib.a; sourceTree = "<absolute>"; };
 		B89C46B520777F0F00579BE7 /* FrameLib_Read.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Read.h; sourceTree = "<group>"; };
 		B89C46B620777F0F00579BE7 /* FrameLib_Read.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Read.cpp; sourceTree = "<group>"; };
 		B89F14EB1F829FA800315736 /* fl.modulo~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.modulo~.cpp"; sourceTree = "<group>"; };
@@ -446,7 +458,6 @@
 		B8B4C8E41F33D88D008E5D31 /* FrameLib_AudioTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_AudioTrigger.h; sourceTree = "<group>"; };
 		B8B4C8E71F33D956008E5D31 /* fl.audiotrigger~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.audiotrigger~.cpp"; sourceTree = "<group>"; };
 		B8B961801F0FDA9500D174F2 /* FrameLib_FixedPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_FixedPoint.cpp; sourceTree = "<group>"; };
-		B8BA6FD22078D49200D3DB3D /* libframelib_objects.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libframelib_objects.a; path = /Users/jamesbradbury/FrameLib/build/Development/libframelib_objects.a; sourceTree = "<absolute>"; };
 		B8BA70372078F36200D3DB3D /* FrameLib_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Objects.h; sourceTree = "<group>"; };
 		B8BA70382078F38100D3DB3D /* FrameLib_Objects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Objects.cpp; sourceTree = "<group>"; };
 		B8BCCF46199CEF230038259B /* FrameLib_Memory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Memory.h; sourceTree = "<group>"; };
@@ -557,6 +568,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B846DEDF2310423700E660FA /* libframelib_objects.a in Frameworks */,
+				B846DEE0231042D900E660FA /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +591,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B846DEE32310434D00E660FA /* libframelib.a in Frameworks */,
 				B83F045E223A769800AF1F8E /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -635,6 +649,9 @@
 			isa = PBXGroup;
 			children = (
 				262AEAD423101CE10016ECF3 /* Documentation */,
+				B846DEDA231041E100E660FA /* libframelib.a */,
+				B846DEDB231041E100E660FA /* libframelib_objects.a */,
+				B846DEDC231041E100E660FA /* FrameLib.scx */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1538,6 +1555,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B846DEDE2310423100E660FA /* PBXTargetDependency */,
 			);
 			name = Documentation;
 			productName = Documentation;
@@ -1559,7 +1577,7 @@
 			);
 			name = FrameLib;
 			productName = FLTest2;
-			productReference = B88C0A3121733BF9007A65C0 /* FrameLib.scx */;
+			productReference = B846DEDC231041E100E660FA /* FrameLib.scx */;
 			productType = "com.apple.product-type.tool";
 		};
 		B89ABA8F1FA73483006DAD53 /* framelib */ = {
@@ -1576,7 +1594,7 @@
 			);
 			name = framelib;
 			productName = FrameLib_Framework;
-			productReference = B89ABA901FA73483006DAD53 /* libframelib.a */;
+			productReference = B846DEDA231041E100E660FA /* libframelib.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		B8BA6FD12078D49200D3DB3D /* framelib_objects */ = {
@@ -1594,7 +1612,7 @@
 			);
 			name = framelib_objects;
 			productName = framelib_objects;
-			productReference = B8BA6FD22078D49200D3DB3D /* libframelib_objects.a */;
+			productReference = B846DEDB231041E100E660FA /* libframelib_objects.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -1683,6 +1701,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B846DEE22310433F00E660FA /* FrameLib_OnePoleZero.cpp in Sources */,
 				B812606C20D697C2000B81D9 /* FrameLib_Expression.cpp in Sources */,
 				B83F0468223A77B700AF1F8E /* FrameLib_Pattern.cpp in Sources */,
 				B83F0467223A778E00AF1F8E /* FrameLib_Info.cpp in Sources */,
@@ -1778,6 +1797,11 @@
 			isa = PBXTargetDependency;
 			target = B8BA6FD12078D49200D3DB3D /* framelib_objects */;
 			targetProxy = B83FCCED222FEC2A00B52C0D /* PBXContainerItemProxy */;
+		};
+		B846DEDE2310423100E660FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8BA6FD12078D49200D3DB3D /* framelib_objects */;
+			targetProxy = B846DEDD2310423100E660FA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

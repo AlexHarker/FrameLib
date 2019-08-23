@@ -1,6 +1,6 @@
 #include "FrameLib_TypeList.h"
  
-using FrameLib_DSPList = FrameLib_Typelist<
+using FrameLib_DSPList = detail::FrameLib_Typelist<
  
 FrameLib_Expand<FrameLib_LessThan>,
 FrameLib_Expand<FrameLib_Atan2>,
