@@ -139,6 +139,7 @@
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		26107EEB2310610900BAC824 /* Build_Max_Docs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Build_Max_Docs.cpp; path = "Documentation/Max Documentation/Build_Max_Docs.cpp"; sourceTree = SOURCE_ROOT; };
+		26107EED231064C400BAC824 /* Max_Object_List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Max_Object_List.h; path = "Documentation/Max Documentation/Max_Object_List.h"; sourceTree = SOURCE_ROOT; };
 		262AEAD423101CE10016ECF3 /* DocumentationTarget */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DocumentationTarget; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A3CAB132052E67E001082E3 /* FrameLib_Ternary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Objects.h; sourceTree = "<group>"; };
 		5A3CAB142052E67E001082E3 /* FrameLib_Ternary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Template.h; sourceTree = "<group>"; };
@@ -622,6 +623,7 @@
 			isa = PBXGroup;
 			children = (
 				26107EEB2310610900BAC824 /* Build_Max_Docs.cpp */,
+				26107EED231064C400BAC824 /* Max_Object_List.h */,
 			);
 			name = Documentation;
 			path = "New Group";
