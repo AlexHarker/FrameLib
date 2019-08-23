@@ -1,6 +1,6 @@
-import xml.etree.ElementTree as et
 import os
 import yaml
+import xml.etree.ElementTree as et
 from FrameLibDocs.strippers import strip_space
 from FrameLibDocs.utils import write_json, cd_up, thin_list
 
