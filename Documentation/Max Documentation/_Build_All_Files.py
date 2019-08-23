@@ -15,8 +15,6 @@ def main():
     hp.sign_off()
     hp.space()
 
-    ## This script will only work with python 3. ##
-
     ## Stage 0
     ## There is a prior stage here where make_object_list.py is called by Xcode.
     ## This produces the header file which Build_Max_Docs.cpp uses to know about FrameLib objects and types.
@@ -59,6 +57,11 @@ def main():
 
     ## Creates a coll containing the file names of the tutorials. Makes it a bit easier to load them.
     print("7. Building tutorial name coll")
+    create_tutorial_coll.main(root)
+    hp.hyp()
+
+    ## Deletes all temporay files and cleans up process
+    print("8. Cleaning up")
     create_tutorial_coll.main(root)
     hp.hyp()
     print(" ")
