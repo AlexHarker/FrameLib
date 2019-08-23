@@ -1,4 +1,4 @@
-﻿##Max SDK
+##Max SDK
 _MaxSDK_/
 
 ## Build generated
@@ -42,12 +42,16 @@ externals/
 ## Package Testing
 test-builds/
 
-## James/Documentation
+## James Documentation
 __pycache__/
-_tmp_/
+__tmp__/
 refpages/
+help_files/templates/
 object_relationships.py
 Max_Object_List.h
+
+## Max Docs
+interfaces/
 
 
 ## Other
