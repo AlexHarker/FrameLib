@@ -49,6 +49,10 @@ The easiest way is to open the `framelib~-documentation.xcodeproj` and build (Cm
 
 `xcodebuild -project framelib~-documentation.xcodeproj -scheme Documentation build`
 
+More information on building xcode projects on the command line can be found here:
+
+https://developer.apple.com/library/archive/technotes/tn2339/_index.html
+
 
 ### Incorporating your own objects into the docs
 
