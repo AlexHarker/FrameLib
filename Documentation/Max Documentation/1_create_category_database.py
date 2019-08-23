@@ -11,7 +11,7 @@ def main(root):
     """
     dir_path = root
     object_path = os.path.join(cd_up(root, 2), "FrameLib_Max_Objects")
-    output_path = os.path.join(dir_path, "category_database.json")
+    output_path = os.path.join(dir_path, "__tmp__", "db" "category_database.json")
 
     file_categories = os.listdir(object_path)
 

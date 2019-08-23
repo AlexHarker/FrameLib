@@ -14,7 +14,7 @@ def main(root):
     """
     ### directories ###
     dir_path = root
-    raw_xml_path = os.path.join(dir_path, "tmp")
+    raw_xml_path = os.path.join(dir_path, "__tmp__", "raw_xml")
     move_to_path = os.path.join(
         cd_up(root, 2), "Current Test Version", "FrameLib", "docs", "refpages"
     )
