@@ -44,10 +44,11 @@ test-builds/
 
 ## James/Documentation
 __pycache__/
+_tmp_/
 refpages/
 object_relationships.py
 Max_Object_List.h
-docs_tmp/
+
 
 ## Other
 *.moved-aside
