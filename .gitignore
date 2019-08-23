@@ -58,6 +58,7 @@ Documentation/Max\ Documentation/category_database.json
 *lookup.json 
 .vscode
 object_relationships.txt
+Max_Object_List.h
 
 ## Other
 *.moved-aside
