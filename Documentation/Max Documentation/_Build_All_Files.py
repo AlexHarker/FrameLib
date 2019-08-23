@@ -5,6 +5,7 @@ parse_to_qlookup = __import__("4_parse_to_qlookup")
 parse_to_tlookup = __import__("5_parse_to_tlookup")
 parse_to_jlookup = __import__("6_parse_to_jlookup")
 create_tutorial_coll = __import__("7_create_tutorial_coll")
+cleanup = __import__("8_cleanup")
 import FrameLibDocs.utils as hp
 import os
 
