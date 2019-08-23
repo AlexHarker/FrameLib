@@ -8,10 +8,6 @@ You are able to build the documentation for FrameLib yourself, except for certai
 
 Some elements of the above resources are automatically generated though, like `.json` files and `.txt` files that are automatically loaded into dictionaries in colls. For example, the landing page of the FrameLib tutorials contains `umenu` objects which are automatically populated with all the objects that exist in the source code. This means that if you fork FrameLib and create your own objects using the Framework, the documentation builder can be run in order to automatically create a number of things for you.
 
-### What is created?
-
-1. f
-
 ## How to build
 
 ### Installing Xcode 9.4.1
@@ -29,11 +25,17 @@ A large part of the project uses Python to generate and parse XML files as well 
 
 THe easiest way to do this is to use a package manager like `brew` which not only manages the install and updates but will create all the useful symlinks and aliases for the python executables and pip.
 
-The website and guide on installing brew can be found here: https://brew.sh
+The website and guide on installing brew can be found here: 
 
-To install brew copy this command into your shell: `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+https://brew.sh
 
-Once brew is installed you can install python by running the command: `brew install python3`
+To install brew copy this command into your shell: 
+
+`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+
+Once brew is installed you can install python by running the command: 
+
+`brew install python3`
 
 This will create the alias `python3` to your python 3 executable. This is essential as the Xcode project will ask your shell
 
@@ -55,3 +57,20 @@ There are a number of things you will have to do to incorporate your own objects
 Once you have created your FrameLib_YOUROBJECT.cpp, FrameLib_YOUROBJECT.h and fl.YOUROBJECT~.cpp source code, the build process takes care of producing `.maxref.xml` files for you (adding it to the Max database) as well as adding it into the custom database for the FrameLib package. This means that your object will have autocompletion, help strings and will appear in the reference under the FrameLib package. It will also appear in the tutorials and extras.
 
 You will need to make your own help files and tutorials for the object however, which is not covered in the automatic building of FrameLib documentation.
+
+
+## An deeper explanation
+
+The docs are built in a number of stages that involve creating instances of those objects and extracting the information that way. It is important to note that all information is stored in the source code itself as info strings. This means that you should make this information as concise and clear as possible. Try and follow the convention of objects that exist in the native FrameLib package. 
+
+1. Execute Python to create Max_Object_List.h
+
+This python script creates the Max_Object_List.h header file. This is essential for the next stage of the project which iterates over this file to create an instance of each object and to extract its information strings.
+
+2. Extract information strings using Build_Max_Docs.cpp
+
+This creates an instance of every FrameLib object and calls a method that will extract the output from each and format it into a .maxref.xml file.
+
+3. Call "_Build_All_files.py" to execute the other python scripts. The specific functions of each of these is tersely documented in _Build_All_Files.py as well as each file itself.
+
+Done!
