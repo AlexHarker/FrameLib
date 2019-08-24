@@ -92,17 +92,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "#!/bin/sh&#10;python3 ${SRCROOT}/Documentation/Max\ Documentation/_create_tmp.py&#10;python3 ${SRCROOT}/Documentation/Max\ Documentation/0_generate_Max_Object_List.h.py&#10;"
-               shellToInvoke = "/bin/sh">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "26E2EC2F2298C85900F85222"
-                     BuildableName = "PostPythonDocs"
-                     BlueprintName = "PostPythonDocs"
-                     ReferencedContainer = "container:framelib~.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
+               scriptText = "python3 ${SRCROOT}/Documentation/Max\ Documentation/_create_tmp.py&#10;python3 ${SRCROOT}/Documentation/Max\ Documentation/0_generate_Max_Object_List.h.py&#10;">
             </ActionContent>
          </ExecutionAction>
       </PreActions>
@@ -111,17 +101,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "#!/bin/sh&#10;&#10;python3 ${SRCROOT}/Documentation/Max\ Documentation/_Build_All_Files.py"
-               shellToInvoke = "/bin/sh">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "26E2EC2F2298C85900F85222"
-                     BuildableName = "PostPythonDocs"
-                     BlueprintName = "PostPythonDocs"
-                     ReferencedContainer = "container:framelib~.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
+               scriptText = "python3 ${SRCROOT}/Documentation/Max\ Documentation/_Build_All_Files.py">
             </ActionContent>
          </ExecutionAction>
       </PostActions>
