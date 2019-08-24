@@ -4,23 +4,26 @@ from FrameLibDocs.utils import get_path, cd_up
 from FrameLibDocs.strippers import strip_space, strip_extension
 
 root = cd_up(get_path(), 1)
+print(root)
 
-## Create the Max_Object_list.h and add skeleton
+# Create the Max_Object_list.h and add skeleton
 op = open(os.path.join(root, "Max_Object_List.h"), "w+")
 op.write('#include "FrameLib_TypeList.h"')
 op.write("\n \n")
 op.write("using FrameLib_DSPList = detail::FrameLib_Typelist<")
 op.write("\n \n")
 
-## Directory formation
-max_source_folder = root.replace(
-    "/Documentation/Max Documentation", "/FrameLib_Max_Objects/"
-)  ## Folder containing folders of categories
+# Directory formation
+max_source_folder = os.path.join(
+    cd_up(root, 2),
+    'FrameLib_Max_Objects',
+)
+# A list of the categories. Is used to find all the source files.
 max_source_categories = os.listdir(
     max_source_folder
-)  ## A list of the categories. Is used to find all the source files.
+)  
 
-## Try removing unnecessary stuff, otherwise throw some info that it was not there
+# Try removing unnecessary stuff, otherwise throw some info that it was not there
 try:
     max_source_categories.remove("_MaxSDK_")
 except ValueError:
@@ -67,23 +70,23 @@ def write_comma(counter, ceiling):
         op.write("\n")
 
 
-## Recreate full paths to open and parse for type cases
+# Recreate full paths to open and parse for type cases
 counter = 0
 for category_folder, name in source_file_list:
     with open(os.path.join(category_folder, name), "r") as cpp:
         print(os.path.join(category_folder, name))
+        # flatten it with no spaces whatsoever
         source_file = (
             cpp.read().replace("\n", "").replace(" ", "")
-        )  # flatten it with no spaces whatsoever
+        ) 
         search_area = source_file.split('extern"C"intC74_EXPORTmain(void){')[1]
-
-        ## Do this just before info gets cleaved
+        # Do this just before info gets cleaved
         fl_object_name = search_area.split("<")[1]
         fl_object_name = fl_object_name.split(">")[0]
-        ## if it contains ,kAllInputs remove
+        # if it contains ,kAllInputs remove
         if "," in fl_object_name:
             fl_object_name = fl_object_name.split(",")[0]
-        ## a bit more pruning
+        # a bit more pruning
         if fl_object_name == "FrameLib_MaxClass_ToMax":
             fl_object_name = "FrameLib_ToHost"
         elif fl_object_name == "FrameLib_MaxClass_FromMax":

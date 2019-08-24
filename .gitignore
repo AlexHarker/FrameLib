@@ -42,22 +42,12 @@ externals/
 ## Package Testing
 test-builds/
 
-## James/Documentation
+## James Documentation
 __pycache__/
-Documentation/Max\ Documentation/_Notes
-Documentation/Max\ Documentation/XML_Externals
-Documentation/Max\ Documentation/help_file_templates
-RawXML/
-BuildXML.maxpat
-category_databse.json
-_Notes/
-XML_Externals_
-RawXML/
-Documentation/Max\ Documentation/category_database.json
-*.maxref.xml
-*lookup.json 
-.vscode
-object_relationships.txt
+__tmp__/
+refpages/
+help_files/templates/
+object_relationships.py
 Max_Object_List.h
 
 ## Other

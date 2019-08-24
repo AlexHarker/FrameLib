@@ -10,13 +10,13 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "#!/bin/sh&#10;python3 ${SRCROOT}/Documentation/Max\ Documentation/make_object_list.py&#10;">
+               scriptText = "#!/bin/sh&#10;python3 ${SRCROOT}/Documentation/Max\ Documentation/_create_tmp.py&#10;python3 ${SRCROOT}/Documentation/Max\ Documentation/0_generate_Max_Object_list.h.py&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "262AEAD323101CE10016ECF3"
-                     BuildableName = "Documentation"
-                     BlueprintName = "Documentation"
+                     BuildableName = "DocumentationTarget"
+                     BlueprintName = "DocumentationTarget"
                      ReferencedContainer = "container:framelib~-documentation.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -33,8 +33,8 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "262AEAD323101CE10016ECF3"
-                     BuildableName = "Documentation"
-                     BlueprintName = "Documentation"
+                     BuildableName = "DocumentationTarget"
+                     BlueprintName = "DocumentationTarget"
                      ReferencedContainer = "container:framelib~-documentation.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -51,8 +51,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "262AEAD323101CE10016ECF3"
-               BuildableName = "Documentation"
-               BlueprintName = "Documentation"
+               BuildableName = "DocumentationTarget"
+               BlueprintName = "DocumentationTarget"
                ReferencedContainer = "container:framelib~-documentation.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -65,6 +65,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "262AEAD323101CE10016ECF3"
+            BuildableName = "DocumentationTarget"
+            BlueprintName = "DocumentationTarget"
+            ReferencedContainer = "container:framelib~-documentation.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -83,17 +92,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "#!/bin/bash&#10;&#10;python3 -B ${SRCROOT}/Documentation/Max\ Documentation/make_object_list.py"
-               shellToInvoke = "/bin/sh">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "26E2EC2F2298C85900F85222"
-                     BuildableName = "PostPythonDocs"
-                     BlueprintName = "PostPythonDocs"
-                     ReferencedContainer = "container:framelib~.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
+               scriptText = "python3 ${SRCROOT}/Documentation/Max\ Documentation/_create_tmp.py&#10;python3 ${SRCROOT}/Documentation/Max\ Documentation/0_generate_Max_Object_List.h.py&#10;">
             </ActionContent>
          </ExecutionAction>
       </PreActions>
@@ -102,29 +101,20 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "#!/bin/bash&#10;&#10;python3 -B ${SRCROOT}/Documentation/Max\ Documentation/_Build_All_Files.py"
-               shellToInvoke = "/bin/bash">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "26E2EC2F2298C85900F85222"
-                     BuildableName = "PostPythonDocs"
-                     BlueprintName = "PostPythonDocs"
-                     ReferencedContainer = "container:framelib~.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
+               scriptText = "python3 ${SRCROOT}/Documentation/Max\ Documentation/_Build_All_Files.py">
             </ActionContent>
          </ExecutionAction>
       </PostActions>
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "262AEAD323101CE10016ECF3"
-            BuildableName = "Documentation"
-            BlueprintName = "Documentation"
+            BuildableName = "DocumentationTarget"
+            BlueprintName = "DocumentationTarget"
             ReferencedContainer = "container:framelib~-documentation.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -138,8 +128,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "262AEAD323101CE10016ECF3"
-            BuildableName = "Documentation"
-            BlueprintName = "Documentation"
+            BuildableName = "DocumentationTarget"
+            BlueprintName = "DocumentationTarget"
             ReferencedContainer = "container:framelib~-documentation.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

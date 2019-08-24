@@ -11,7 +11,7 @@ def main(root):
     """
     dir_path = root
     object_path = os.path.join(cd_up(root, 2), "FrameLib_Max_Objects")
-    output_path = os.path.join(dir_path, "category_database.json")
+    output_path = os.path.join(dir_path, "__tmp__", "db", "category_database.json")
 
     file_categories = os.listdir(object_path)
 
@@ -34,10 +34,12 @@ def main(root):
         pass
 
     file_categories.sort()
-    category_dict = dict({})
+    category_dict = {}
 
     for item in file_categories:
-        files = os.listdir(f"{object_path}/{item}")
+        files = os.listdir(
+            os.path.join(object_path, item)
+            )
         if "ibuffer" in files:
             files.remove("ibuffer")
         # some max categories already overlap with framelib categories (timing for example). This just maps Timing -> fl_timing to avoid any duplication issues

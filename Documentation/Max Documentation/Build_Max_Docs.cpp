@@ -18,14 +18,14 @@ void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
 {
     std::string fileName(__FILE__);
     std::string dirPath = dirname(const_cast<char *>(fileName.c_str()));
-    std::string tmpFolder = dirPath + "/tmp/";
+    std::string tmpFolder = dirPath + "/__tmp__/raw_xml/";
     
     enum InfoFlags { kInfoDesciption = 0x01, kInfoInputs = 0x02, kInfoOutputs = 0x04, kInfoParameters = 0x08 };
     bool verbose = true;
     std::ofstream myfile;
     std::string sp = " "; // code is more readable with sp rather than " "
     std::string object = inputName; // refactor to not copy variable.
-    myfile.open (tmpFolder + object + "~" + ".maxref.xml"); // change to some temporary relative location
+    myfile.open (tmpFolder + object + "~.maxref.xml"); // change to some temporary relative location
     std::string object_category = "!@#@#$";
     std::string object_keywords = "boilerplate keywords";
     std::string object_info;
