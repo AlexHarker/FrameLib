@@ -92,7 +92,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "#!/bin/sh&#10;python3 ${SRCROOT}/Documentation/Max\ Documentation/_create_tmp.py&#10;python3 ${SRCROOT}/Documentation/Max\ Documentation/0_generate_Max_Object_list.h.py&#10;"
+               scriptText = "#!/bin/sh&#10;python3 ${SRCROOT}/Documentation/Max\ Documentation/_create_tmp.py&#10;python3 ${SRCROOT}/Documentation/Max\ Documentation/0_generate_Max_Object_List.h.py&#10;"
                shellToInvoke = "/bin/sh">
                <EnvironmentBuildable>
                   <BuildableReference
@@ -111,8 +111,8 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "#!/bin/bash&#10;&#10;python3 -B ${SRCROOT}/Documentation/Max\ Documentation/_Build_All_Files.py"
-               shellToInvoke = "/bin/bash">
+               scriptText = "#!/bin/sh&#10;&#10;python3 ${SRCROOT}/Documentation/Max\ Documentation/_Build_All_Files.py"
+               shellToInvoke = "/bin/sh">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -125,7 +125,8 @@
             </ActionContent>
          </ExecutionAction>
       </PostActions>
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "262AEAD323101CE10016ECF3"
@@ -133,7 +134,7 @@
             BlueprintName = "DocumentationTarget"
             ReferencedContainer = "container:framelib~-documentation.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
