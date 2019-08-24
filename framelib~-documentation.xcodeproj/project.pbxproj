@@ -626,7 +626,6 @@
 				26107EED231064C400BAC824 /* Max_Object_List.h */,
 			);
 			name = Documentation;
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		262AEAD523101CE10016ECF3 /* Products */ = {
