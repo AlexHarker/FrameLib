@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 0,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -63,7 +63,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -415,13 +415,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 445.0, 250.0, 425.0, 480.0 ],
+						"rect" : [ 445.0, 250.0, 575.0, 285.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -448,7 +448,6 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "default",
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"fontface" : 1,
@@ -458,7 +457,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 151.5, 40.0, 449.0, 33.0 ],
+									"patching_rect" : [ 120.5, 16.0, 449.0, 33.0 ],
 									"text" : "This sub patch serves a similar purpose to fftout~, although in a FrameLib context and with control over the window type."
 								}
 
@@ -469,7 +468,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 100.0, 208.0, 134.0, 20.0 ],
+									"patching_rect" : [ 69.0, 184.0, 134.0, 20.0 ],
 									"text" : "Convert frames to MSP"
 								}
 
@@ -480,7 +479,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 282.0, 153.0, 51.0, 20.0 ],
+									"patching_rect" : [ 141.0, 130.0, 51.0, 20.0 ],
 									"text" : "Window"
 								}
 
@@ -491,7 +490,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 106.0, 100.0, 73.0, 20.0 ],
+									"patching_rect" : [ 75.0, 76.0, 73.0, 20.0 ],
 									"text" : "Inverse FFT"
 								}
 
@@ -503,7 +502,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 153.0, 120.0, 22.0 ],
+									"patching_rect" : [ 19.0, 129.0, 120.0, 22.0 ],
 									"text" : "fl.window~ blackman"
 								}
 
@@ -515,7 +514,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 50.0, 207.0, 47.0, 22.0 ],
+									"patching_rect" : [ 19.0, 183.0, 47.0, 22.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -527,7 +526,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 100.0, 54.0, 22.0 ],
+									"patching_rect" : [ 19.0, 76.0, 54.0, 22.0 ],
 									"text" : "fl.ifft~"
 								}
 
@@ -546,7 +545,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 236.0, 208.0, 22.0, 20.0 ],
+									"patching_rect" : [ 205.0, 184.0, 22.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "9",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -567,7 +566,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 335.0, 153.0, 20.0, 20.0 ],
+									"patching_rect" : [ 194.0, 130.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "8",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -588,7 +587,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 178.0, 100.0, 20.0, 20.0 ],
+									"patching_rect" : [ 147.0, 76.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "7",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -604,7 +603,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 40.0, 30.0, 30.0 ]
+									"patching_rect" : [ 19.0, 16.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -617,7 +616,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 85.0, 40.0, 30.0, 30.0 ]
+									"patching_rect" : [ 54.0, 16.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -629,7 +628,7 @@
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 50.0, 268.0, 30.0, 30.0 ]
+									"patching_rect" : [ 19.0, 244.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -719,7 +718,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
