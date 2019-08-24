@@ -3,6 +3,13 @@ import random as rn
 import json
 
 
+def check_make(folder_check):
+    """
+    Takes a directory name, checks if it exists and makes.
+    """
+    if not os.path.isdir(folder_check):
+        os.mkdir(folder_check)
+
 def remove_ds(list_in):
     if ".DS_Store" in list_in:
         list_in.remove(".DS_Store")
