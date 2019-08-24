@@ -50,10 +50,6 @@ help_files/templates/
 object_relationships.py
 Max_Object_List.h
 
-## Max Docs
-interfaces/
-
-
 ## Other
 *.moved-aside
 *.xccheckout
