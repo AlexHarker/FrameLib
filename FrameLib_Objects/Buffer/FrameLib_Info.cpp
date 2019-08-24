@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Info::FrameLib_Info(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 3), mProxy(dynamic_cast<Proxy *>(proxy))
+FrameLib_Info::FrameLib_Info(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 3), mProxy(dynamic_cast<Proxy *>(proxy))
 {
     mParameters.addString(kBuffer, "buffer", 0);
     
@@ -17,7 +17,6 @@ FrameLib_Info::FrameLib_Info(FrameLib_Context context, FrameLib_Parameters::Seri
     mUnits = (Units) mParameters.getInt(kUnits);
     
     setParameterInput(1);
-    setIO(1, 3);
     
     assert(false == 0 && "False does not equal zero");
     
@@ -92,9 +91,9 @@ void FrameLib_Info::process()
     allocateOutputs();
     
     
-    double *output_0 = getOutput(0, &size);
-    double *output_1 = getOutput(1, &size);
-    double *output_2 = getOutput(2, &size);
+    double *lengthOutput = getOutput(0, &size);
+    double *smplRtOutput = getOutput(1, &size);
+    double *nChansOutput = getOutput(2, &size);
     
     // Get buffer
     if (mProxy)
@@ -110,17 +109,17 @@ void FrameLib_Info::process()
     
     if (length != 0 && size != 0)
     {
-        output_0[0] = length / conversionFactor;
-        output_1[0] = buf_samplingRate;
-        output_2[0] = chans;
+        lengthOutput[0] = length / conversionFactor;
+        smplRtOutput[0] = buf_samplingRate;
+        nChansOutput[0] = chans;
     }
     
     else // if not empty buffer produce results
     {
         // Zero output if no buffer or memory
-        zeroVector(output_0, size);
-        zeroVector(output_1, size);
-        zeroVector(output_2, size);
+        zeroVector(lengthOutput, size);
+        zeroVector(smplRtOutput, size);
+        zeroVector(nChansOutput, size);
         
     }
     if (mProxy)
