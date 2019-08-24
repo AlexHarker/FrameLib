@@ -43,7 +43,7 @@ FrameLib_Spatial::FrameLib_Spatial(FrameLib_Context context, FrameLib_Parameters
 std::string FrameLib_Spatial::objectInfo(bool verbose)
 {
     return formatInfo("Generates multiplication factors for a number of speakers from an input coordinate triple: "
-                   "The alogirthm used is a modified version of DBAP, with extra features. "
+                   "The algorithm used is a modified version of DBAP, with extra features. "
                    "Input may be in cartesian coordinates (x, y, z) or polar ones (azimuth, elevation, radius. "
                    "Missing values at the input are assumed zero. Extra values are ignored. "
                    "The output size is equal to the number of loudspeakers.",
