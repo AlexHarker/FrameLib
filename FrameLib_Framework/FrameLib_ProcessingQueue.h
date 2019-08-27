@@ -121,10 +121,11 @@ public:
     
 private:
     
-    void wakeWorkers(bool countThisThread);
+    void mainThread();
+    void wakeWorkers();
     void serviceQueue(int32_t index);
-    void cleanup();
-    
+    void startTimer(FrameLib_DSP *object);
+
     WorkerThreads mWorkers;
     FrameLib_OwnedList<FrameLib_FreeBlocks> mFreeBlocks;
 

@@ -27,12 +27,10 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
 {
     if (queue.size() && !mTimedOut)
     {
-        mEntryObject = queue.peek();
-        mClock.start();
+        startTimer(queue.peek());
         mNumItems += queue.size();
-        wakeWorkers(false); // !addedBy
         mQueue.enqueue(queue);
-        serviceQueue(0);
+        mainThread();
     }
 }
 
@@ -44,12 +42,10 @@ void FrameLib_ProcessingQueue::start(FrameLib_DSP *object)
     if (mTimedOut)
         return;
     
-    mEntryObject = object;
-    mClock.start();
+    startTimer(object);
     mNumItems++;
-    wakeWorkers(false); // !addedBy
     mQueue.enqueue(object);
-    serviceQueue(0);
+    mainThread();
 }
 
 void FrameLib_ProcessingQueue::add(PrepQueue &queue, FrameLib_DSP *addedBy)
@@ -67,8 +63,8 @@ void FrameLib_ProcessingQueue::add(PrepQueue &queue, FrameLib_DSP *addedBy)
     if (queue.size())
     {
         mNumItems += queue.size();
-        wakeWorkers(false); // !addedBy
         mQueue.enqueue(queue);
+        wakeWorkers();
     }
 }
 
@@ -89,81 +85,96 @@ void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
     else
     {
         mNumItems++;
-        wakeWorkers(false); // !addedBy
         mQueue.enqueue(object);
+        wakeWorkers();
     }
 }
 
-void FrameLib_ProcessingQueue::wakeWorkers(bool countThisThread)
+void FrameLib_ProcessingQueue::wakeWorkers()
 {
-    int32_t numItems = mNumItems;
-    
     if (!mMultithread)
         return;
     
-    int32_t numWorkersActive = mNumWorkersActive.load() + (countThisThread ? 1 : 0);
-    int32_t numWorkersNeeded = numItems - numWorkersActive;
+    int32_t numWorkersNeeded = 1;
     
-    numWorkersNeeded = std::min(numWorkersNeeded, static_cast<int32_t>(mWorkers.size()) - numWorkersActive);
-    
-    if (numWorkersNeeded > 0)
-        mWorkers.signal(numWorkersNeeded);
+    while (numWorkersNeeded > 0)
+    {
+        int32_t numItems = mNumItems;
+        int32_t numWorkersActive = mNumWorkersActive.load();
+        numWorkersNeeded = numItems - (numWorkersActive + 1);
+        numWorkersNeeded = std::min(numWorkersNeeded, static_cast<int32_t>(mWorkers.size()) - numWorkersActive);
+        
+        if (numWorkersNeeded > 0)
+        {
+            if (compareAndSwap(mNumWorkersActive, numWorkersActive, numWorkersActive + numWorkersNeeded))
+            {
+                mWorkers.signal(numWorkersNeeded);
+                numWorkersNeeded = 0;
+            }
+        }
+    }
 }
 
 void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
 {
     FrameLib_FreeBlocks *blocks = mFreeBlocks[index].get();
-    mNumWorkersActive++;
     
     unsigned long timedOutCount = 0;
     
-    while (true)
+    while (FrameLib_DSP *object = mQueue.dequeue())
     {
-        while (FrameLib_DSP *object = mQueue.dequeue())
+        while (object && !mTimedOut)
         {
-            while (object && !mTimedOut)
-            {
-                object->dependenciesReady(blocks);
-                FrameLib_DSP *newObject = object->ThreadNode::mNext;
-                object->ThreadNode::mNext = nullptr;
-                object = newObject;
-                
-                // Check for time out
-                
-                if (++timedOutCount == sProcessPerTimeCheck)
-                {
-                    if (mClock.elapsed() > sMaxTime)
-                        mTimedOut = true;
-                    timedOutCount = 0;
-                }
-            }
-            mNumItems--;
+            object->dependenciesReady(blocks);
+            FrameLib_DSP *newObject = object->ThreadNode::mNext;
+            object->ThreadNode::mNext = nullptr;
+            object = newObject;
             
-            if (mTimedOut)
-                break;
+            // Check for time out
+            
+            if (++timedOutCount == sProcessPerTimeCheck)
+            {
+                if (mClock.elapsed() > sMaxTime)
+                    mTimedOut = true;
+                timedOutCount = 0;
+            }
         }
+        mNumItems--;
         
-        // FIX - quick reliable and non-contentious exit strategies are needed here...
-        
-        if (mNumItems.load() == 0 || mTimedOut)
-        {
-            if (index == 0)
-                cleanup();
-            mNumWorkersActive--;
-            return;
-        }
-        
-        // FIX - how long is a good time to yield for in a high performance thread?
-        // Reduce contention down and give way to other threads
-        
-        FrameLib_Thread::sleepCurrentThread(100);
+        if (mTimedOut)
+            break;
     }
+    
+    if (index != 0)
+        mNumWorkersActive--;
 }
 
-void FrameLib_ProcessingQueue::cleanup()
+void FrameLib_ProcessingQueue::mainThread()
 {
+    // Wake workers
+    
+    wakeWorkers();
+    
+    // Service queue until done
+    
+    while (true)
+    {
+        serviceQueue(0);
+        
+        if (mNumItems.load() == 0 || mTimedOut)
+            break;
+     
+        // FIX - how long is a good time to yield for in a high performance thread?
+
+        FrameLib_Thread::sleepCurrentThread(100);
+    }
+    
+    // Cleanup free blocks
+    
     for (auto it = mFreeBlocks.begin(); it != mFreeBlocks.end(); it++)
         it->get()->clear();
+    
+    // Check for time out
     
     if (mTimedOut)
     {
@@ -178,6 +189,12 @@ void FrameLib_ProcessingQueue::cleanup()
     }
 }
 
+void FrameLib_ProcessingQueue::startTimer(FrameLib_DSP *object)
+{
+    mEntryObject = object;
+    mClock.start();
+}
+
 // Audio Queue
 
 FrameLib_AudioQueue::~FrameLib_AudioQueue()
@@ -185,4 +202,3 @@ FrameLib_AudioQueue::~FrameLib_AudioQueue()
     if (mUser)
         mUser->mProcessingQueue->start(*this);
 }
-
