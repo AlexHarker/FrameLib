@@ -123,6 +123,7 @@ private:
     
     void wakeWorkers(bool countThisThread);
     void serviceQueue(int32_t index);
+    void cleanup();
     
     WorkerThreads mWorkers;
     FrameLib_OwnedList<FrameLib_FreeBlocks> mFreeBlocks;
@@ -136,6 +137,7 @@ private:
     bool mTimedOut;
     IntervalSecondsClock mClock;
     
+    FrameLib_DSP *mEntryObject;
     FrameLib_ErrorReporter& mErrorReporter;
 };
 

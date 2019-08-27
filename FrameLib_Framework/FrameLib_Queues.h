@@ -117,6 +117,11 @@ public:
         return item;
     }
     
+    T *peek() const
+    {
+        return mHead;
+    }
+    
     // Transfer the contents of another queue to this one (clearing the original)
     
     void transfer(FrameLib_Queue& queue)
