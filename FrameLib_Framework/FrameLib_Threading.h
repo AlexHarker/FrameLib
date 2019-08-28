@@ -88,7 +88,7 @@ bool nullSwap(std::atomic<T *>& value, T *exchange)
 template <class T>
 struct FrameLib_CountedPointer
 {
-    FrameLib_CountedPointer() : FrameLib_CountedPointer(nullptr), mCount(0) {}
+    FrameLib_CountedPointer() : mPointer(nullptr), mCount(0) {}
     FrameLib_CountedPointer(T *item, uintptr_t count) : mPointer(item), mCount(count) {}
     
     bool operator==(const FrameLib_CountedPointer& a) const
