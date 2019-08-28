@@ -35,7 +35,7 @@ template <class T> struct Split
 
 // Type defintions for Apple / HISSTools FFT
 
-#ifdef USE_APPLE_FFT
+#if defined(USE_APPLE_FFT)
 
 #include <Accelerate/Accelerate.h>
 

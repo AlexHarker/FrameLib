@@ -3,10 +3,12 @@
 #include <algorithm>
 #include <functional>
 
-#ifdef __arm__
+#if defined(__arm__) || defined(__arm64)
 #include <arm_neon.h>
+#include <memory.h>
 #else
-#ifndef __APPLE__
+#if defined(__WIN32__)
+#include <malloc.h>
 #include <intrin.h>
 #endif
 #include <emmintrin.h>
@@ -15,8 +17,8 @@
 
 // Microsoft Visual Studio doesn't ever define __SSE__ so if necessary we derive it from other defines
 
-#ifndef __SSE__
-#if defined _M_X64 || (defined _M_IX86_FP && _M_IX86_FP > 0)
+#if !defined(__SSE__)
+#if defined(_M_X64) || (defined(_M_IX86_FP) && _M_IX86_FP > 0)
 #define __SSE__ 1
 #endif
 #endif
@@ -52,15 +54,15 @@ namespace hisstools_fft_impl{
     template<> struct SIMDLimits<double>    { static const int max_size = 2; };
     template<> struct SIMDLimits<float>     { static const int max_size = 4; };
     
-#elif defined(__arm__)
+#elif defined(__arm__) || defined(__arm64__)
 
     template<> struct SIMDLimits<float>     { static const int max_size = 4; };
 
 #endif
     
-    // Aligned Allocation
-    
-#ifdef __APPLE__
+// Aligned Allocation
+
+#if defined(__APPLE__)
     
     template <class T>
     T *allocate_aligned(size_t size)
@@ -68,15 +70,17 @@ namespace hisstools_fft_impl{
         return static_cast<T *>(malloc(size * sizeof(T)));
     }
     
+#elif defined(__linux__)
+    
     template <class T>
-    void deallocate_aligned(T *ptr)
+    T *allocate_aligned(size_t size)
     {
-        free(ptr);
+        void *mem;
+        posix_memalign(&mem, SIMDLimits<T>::max_size * sizeof(T), size * sizeof(T));
+        return static_cast<T *>(mem);
     }
     
-#elif defined(__arm__)
-    
-#include <memory.h>
+#elif defined(__arm__) || defined(__arm64__)
     
     template <class T>
     T *allocate_aligned(size_t size)
@@ -84,14 +88,7 @@ namespace hisstools_fft_impl{
         return static_cast<T *>(aligned_alloc(16, size * sizeof(T)));
     }
     
-    template <class T>
-    void deallocate_aligned(T *ptr)
-    {
-        free(ptr);
-    }
-    
-#else
-#include <malloc.h>
+#elif defined(__WIN32__)
     
     template <class T>
     T *allocate_aligned(size_t size)
@@ -99,16 +96,24 @@ namespace hisstools_fft_impl{
         return static_cast<T *>(_aligned_malloc(size * sizeof(T), 16));
     }
     
+#endif
+    
+// Aligned deallocation
+    
+#if !defined(__WIN32__)
+    
     template <class T>
-    void deallocate_aligned(T *ptr)
-    {
-        _aligned_free(ptr);
-    }
+    void deallocate_aligned(T *ptr) { free(ptr); }
+    
+#else
+    
+    template <class T>
+    void deallocate_aligned(T *ptr) { _aligned_free(ptr); }
     
 #endif
     
     template <class T>
-    bool isAligned(const T *ptr) { return !(reinterpret_cast<uintptr_t>(ptr) % 16); }
+    bool is_aligned(const T *ptr) { return !(reinterpret_cast<uintptr_t>(ptr) % 16); }
     
     // Offset for Table
     
@@ -305,7 +310,7 @@ namespace hisstools_fft_impl{
     
 #endif
     
-#if defined(__arm__)
+#if defined(__arm__) || defined(__arm64__)
     
     template<>
     struct SIMDVector<float, 4> : public SIMDVectorBase<float, float32x4_t, 4>
@@ -585,7 +590,7 @@ namespace hisstools_fft_impl{
     
 #endif
     
-#if defined (__arm__)
+#if defined(__arm__) || defined(__arm64__)
     
     // Template Specialisation for an ARM Float Packed (1 SIMD Element)
     
@@ -1142,7 +1147,7 @@ namespace hisstools_fft_impl{
     
     // ******************** Unzip and Zip ******************** //
     
-#ifdef USE_APPLE_FFT
+#if defined(USE_APPLE_FFT)
     
     template<class T>
     void unzip_complex(const T *input, DSPSplitComplex *output, uintptr_t half_length)
@@ -1204,7 +1209,7 @@ namespace hisstools_fft_impl{
     {
         const int v_size = SIMDLimits<T>::max_size;
         
-        if (isAligned(input) && isAligned(output->realp) && isAligned(output->imagp))
+        if (is_aligned(input) && is_aligned(output->realp) && is_aligned(output->imagp))
         {
             uintptr_t v_length = (half_length / v_size) * v_size;
             unzip_impl<T, v_size>(input, output->realp, output->imagp, v_length);
@@ -1234,7 +1239,7 @@ namespace hisstools_fft_impl{
     {
         const int v_size = SIMDLimits<T>::max_size;
         
-        if (isAligned(output) && isAligned(input->realp) && isAligned(input->imagp))
+        if (is_aligned(output) && is_aligned(input->realp) && is_aligned(input->imagp))
         {
             uintptr_t v_length = (half_length / v_size) * v_size;
             zip_impl<T, v_size>(input->realp, input->imagp, output, v_length);
@@ -1318,7 +1323,7 @@ namespace hisstools_fft_impl{
     {
         if (fft_log2 >= 4)
         {
-            if (!isAligned(input->realp) || !isAligned(input->imagp))
+            if (!is_aligned(input->realp) || !is_aligned(input->imagp))
                 fft_passes<T, 1>(input, setup, fft_log2);
             else
                 fft_passes<T, SIMDLimits<T>::max_size>(input, setup, fft_log2);
