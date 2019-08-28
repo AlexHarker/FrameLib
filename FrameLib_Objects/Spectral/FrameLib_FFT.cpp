@@ -1,10 +1,9 @@
 
 #include "FrameLib_FFT.h"
-#include "FrameLib_Spectral_Functions.h"
 
 // Constructor / Destructor
 
-FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 2)
+FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 2), mProcessor(*this)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -19,13 +18,10 @@ FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial
     
     mParameters.set(serialisedParameters);
     
-    unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
-    
-    hisstools_create_setup(&mFFTSetup, maxFFTSizeLog2);
+    mProcessor.set_max_fft_size(mParameters.getInt(kMaxLength));
     
     // Store parameters
 
-    mMaxFFTSize = 1 << maxFFTSizeLog2;
     mMode = static_cast<Mode>(mParameters.getInt(kMode));
     mNormalise = mParameters.getBool(kNormalise);
     
@@ -33,11 +29,6 @@ FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial
 
     if (mMode == kComplex)
         setIO(2, 2);
-}
-
-FrameLib_FFT::~FrameLib_FFT()
-{
-    hisstools_destroy_setup(mFFTSetup);
 }
 
 // Info
@@ -93,13 +84,13 @@ void FrameLib_FFT::process()
     
     // Get FFT size log 2
     
-    unsigned long FFTSizelog2 = ilog2(std::max(sizeInR, sizeInI));
-    unsigned long FFTSize = 1 << FFTSizelog2;
+    unsigned long FFTSizeLog2 = mProcessor.calc_fft_size_log2(std::max(sizeInR, sizeInI));
+    unsigned long FFTSize = 1 << FFTSizeLog2;
     sizeOut = mMode == kReal ? (FFTSize >> 1) + 1 : FFTSize;
     
     // Check size
     
-    if (FFTSize > mMaxFFTSize || (!sizeInR && !sizeInI))
+    if (FFTSize > mProcessor.max_fft_size() || (!sizeInR && !sizeInI))
         sizeOut = 0;
     
     // Calculate output size
@@ -123,11 +114,11 @@ void FrameLib_FFT::process()
             copyVector(spectrum.imagp, inputI, sizeInI);
             zeroVector(spectrum.imagp + sizeInI, sizeOut - sizeInI);
             
-            hisstools_fft(mFFTSetup, &spectrum, FFTSizelog2);
+            mProcessor.fft(spectrum, FFTSizeLog2);
         }
         else
         {
-            hisstools_rfft(mFFTSetup, inputR, &spectrum, sizeInR, FFTSizelog2);
+            mProcessor.rfft(spectrum, inputR, sizeInR, FFTSizeLog2);
             
             // Move Nyquist Bin
             
@@ -145,20 +136,12 @@ void FrameLib_FFT::process()
                     spectrum.imagp[i] = -spectrum.imagp[FFTSize - i];
                 }
             }
-
         }
         
         // Scale
         
-        double scale = mNormalise ? 1.0 / (double) FFTSize : ((mMode == kComplex) ? 1.0 : 0.5);
+        double scale = ((mMode == kComplex) ? 1.0 : 0.5) / (mNormalise ? (double) FFTSize : 1.0);
         
-        if (scale != 1.0)
-        {
-            for (unsigned long i = 0; i < sizeOut; i++)
-            {
-                spectrum.realp[i] *= scale;
-                spectrum.imagp[i] *= scale;
-            }
-        }
+        mProcessor.scale_spectrum(spectrum, sizeOut, scale);
     }
 }

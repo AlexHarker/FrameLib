@@ -31,9 +31,7 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, FrameLib_Parameters::Seri
     mUnits = (Units) mParameters.getInt(kUnits);
     
     setParameterInput(1);
-    
-    assert(false == 0 && "False does not equal zero");
-    
+        
     if (mProxy)
         mProxy->update(mParameters.getString(kBuffer));
 }

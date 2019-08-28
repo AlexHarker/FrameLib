@@ -1,11 +1,11 @@
 
-#ifndef SIMDSUPPORT
-#define SIMDSUPPORT
+#ifndef SIMDSUPPORT_HPP
+#define SIMDSUPPORT_HPP
 
 #include <cmath>
+#include <cstdint>
 #include <emmintrin.h>
 #include <immintrin.h>
-#include <stdint.h>
 
 #ifdef __APPLE__
 
@@ -23,10 +23,14 @@ template <class T> void deallocate_aligned(T *ptr)
 
 #include <stdlib.h>
 
+// Forward declation
+
+template <class T> struct SIMDLimits;
+
 template <class T> T *allocate_aligned(size_t size)
 {
     void *mem;
-    posix_memalign(&mem, 16, size * sizeof(T));
+    posix_memalign(&mem, SIMDLimits<T>::byte_width, size * sizeof(T));
     return static_cast<T *>(mem);
 }
 

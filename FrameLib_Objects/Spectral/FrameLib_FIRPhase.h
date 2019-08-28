@@ -1,26 +1,25 @@
 
-#ifndef FRAMELIB_CORRELATE_H
-#define FRAMELIB_CORRELATE_H
+#ifndef FRAMELIB_FIRPHASE_H
+#define FRAMELIB_FIRPHASE_H
 
 #include "FrameLib_DSP.h"
 #include "../../FrameLib_Dependencies/SpectralProcessor.hpp"
 
-class FrameLib_Correlate final : public FrameLib_Processor
-{
-    using EdgeMode = spectral_processor<double, FrameLib_DSP::Allocator>::EdgeMode;
+// FIX - add zero padding (why not do this prior to FFT with the pad object?)
 
+class FrameLib_FIRPhase final : public FrameLib_Processor
+{
     // Parameter Enums and Info
 
-    enum ParameterList { kMaxLength, kMode, kEdgeMode };
-    enum Mode { kReal, kComplex };
+    enum ParameterList { kMaxLength, kPhase };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
 
-    // Constructor 
-    
-    FrameLib_Correlate(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    // Constructor
+
+    FrameLib_FIRPhase(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     
@@ -33,12 +32,8 @@ private:
     // Process
     
     void process() override;
-
-private:
     
     // Data
-    
-    Mode mMode;
 
     static ParameterInfo sParamInfo;
     

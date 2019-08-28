@@ -1,5 +1,8 @@
 
-#include <stdint.h>
+#ifndef WINDOWFUNCTIONS_HPP
+#define WINDOWFUNCTIONS_HPP
+
+#include <cstdint>
 #include <vector>
 
 #define WINDOW_PI			3.14159265358979323846
@@ -284,3 +287,5 @@ public:
         WindowFunctions<T, uint16_t>::add(kWindowKaiser, window_flat_top);
     }
 };
+
+#endif

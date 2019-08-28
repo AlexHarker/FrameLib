@@ -3,7 +3,7 @@
 #define FRAMELIB_IFFT_H
 
 #include "FrameLib_DSP.h"
-#include "../../FrameLib_Dependencies/HISSTools_FFT/HISSTools_FFT.h"
+#include "../../FrameLib_Dependencies/SpectralProcessor.hpp"
 
 // FIX - review FFTSetup
 
@@ -18,10 +18,9 @@ class FrameLib_iFFT final : public FrameLib_Processor
 
 public:
 
-    // Constructor / Destructor
+    // Constructor
 
     FrameLib_iFFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);    
-    ~FrameLib_iFFT();
     
     // Info
     
@@ -35,19 +34,18 @@ private:
     
     void process() override;
 
-    // Data
+    // Param Info
     
-    // FFT Setup
-
-    FFT_SETUP_D mFFTSetup;
-
+    static ParameterInfo sParamInfo;
+    
     // Instantiation Params
     
-    unsigned long mMaxFFTSize;
     Mode mMode;
     bool mNormalise;
     
-    static ParameterInfo sParamInfo;
+    // Processor
+    
+    spectral_processor<double, FrameLib_DSP::Allocator> mProcessor;
 };
 
 #endif

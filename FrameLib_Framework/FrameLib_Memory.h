@@ -379,7 +379,6 @@ public:
     FrameLib_LocalAllocator(const FrameLib_LocalAllocator&) = delete;
     FrameLib_LocalAllocator& operator=(const FrameLib_LocalAllocator&) = delete;
     
-    
     // Allocate / Deallocate Memory
 
     void *alloc(size_t size);

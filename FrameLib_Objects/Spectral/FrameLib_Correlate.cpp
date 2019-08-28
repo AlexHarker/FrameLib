@@ -1,8 +1,7 @@
 
 #include "FrameLib_Correlate.h"
-#include "FrameLib_Spectral_Functions.h"
 
-FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), Spectral(context)
+FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mProcessor(*this)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -12,15 +11,15 @@ FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, FrameLib_Parame
     mParameters.addEnumItem(kComplex, "complex");
     mParameters.setInstantiation();
     mParameters.addEnum(kEdgeMode, "edges");
-    mParameters.addEnumItem(kEdgeLinear, "linear");
-    mParameters.addEnumItem(kEdgeWrap, "circular");
-    mParameters.addEnumItem(kEdgeWrapCentre, "wrap");
-    mParameters.addEnumItem(kEdgeFold, "fold");
+    mParameters.addEnumItem(EdgeMode::kEdgeLinear, "linear");
+    mParameters.addEnumItem(EdgeMode::kEdgeWrap, "circular");
+    mParameters.addEnumItem(EdgeMode::kEdgeWrapCentre, "wrap");
+    mParameters.addEnumItem(EdgeMode::kEdgeFold, "fold");
     mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
         
-    setMaxFFTSize(mParameters.getInt(kMaxLength));
+    mProcessor.set_max_fft_size(mParameters.getInt(kMaxLength));
     
     mMode = static_cast<Mode>(mParameters.getInt(kMode));
     
@@ -91,14 +90,14 @@ void FrameLib_Correlate::process()
         
         // Get Output Size
         
-        unsigned long sizeOut = calcSize(sizeIn1, sizeIn2, edgeMode);
+        unsigned long sizeOut = mProcessor.correlated_size(sizeIn1, sizeIn2, edgeMode);
         
         // Get output
         
         requestOutputSize(0, sizeOut);
         
         if (allocateOutputs())
-            correlateReal(getOutput(0, &sizeOut), input1, sizeIn1, input2, sizeIn2, edgeMode);
+            mProcessor.correlate(getOutput(0, &sizeOut), {input1, sizeIn1}, {input2, sizeIn2}, edgeMode);
     }
     else
     {
@@ -113,7 +112,7 @@ void FrameLib_Correlate::process()
         
         // Get Output Size
 
-        unsigned long sizeOut = calcSize(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edgeMode);
+        unsigned long sizeOut = mProcessor.correlated_size(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edgeMode);
 
         // Get output
         
@@ -121,6 +120,11 @@ void FrameLib_Correlate::process()
         requestOutputSize(1, sizeOut);
         
         if (allocateOutputs())
-            correlate(getOutput(0, &sizeOut), getOutput(1, &sizeOut), inR1, sizeR1, inI1, sizeI1, inR2, sizeR2, inI2, sizeI2, edgeMode);
+        {
+            double *rOut = getOutput(0, &sizeOut);
+            double *iOut = getOutput(1, &sizeOut);
+        
+            mProcessor.correlate(rOut, iOut, {inR1, sizeR1}, {inI1, sizeI1}, {inR2, sizeR2}, {inI2, sizeI2}, edgeMode);
+        }
     }
 }
