@@ -5,6 +5,14 @@
 
 #include <algorithm>
 
+// Worker Threads
+
+void FrameLib_ProcessingQueue::WorkerThreads::doTask(unsigned int index)
+{
+    mQueue->serviceQueue(index + 1);
+    mQueue->mNumWorkersActive--;
+}
+
 // Constructor / Destructor
 
 FrameLib_ProcessingQueue::FrameLib_ProcessingQueue(FrameLib_Global& global)
@@ -27,25 +35,11 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
 {
     if (queue.size() && !mTimedOut)
     {
-        startTimer(queue.peek());
-        mNumItems += queue.size();
-        mQueue.enqueue(queue);
+        mEntryObject = queue.peek();
+        mClock.start();
+        enqueue(queue);
         mainThread();
     }
-}
-
-void FrameLib_ProcessingQueue::start(FrameLib_DSP *object)
-{
-    assert(object->mInputTime != FrameLib_TimeFormat::largest() && "Object has already reached the end of time");
-    assert((!object->ThreadNode::mNext) && "Object is already in the queue");
-    
-    if (mTimedOut)
-        return;
-    
-    startTimer(object);
-    mNumItems++;
-    mQueue.enqueue(object);
-    mainThread();
 }
 
 void FrameLib_ProcessingQueue::add(PrepQueue &queue, FrameLib_DSP *addedBy)
@@ -60,34 +54,20 @@ void FrameLib_ProcessingQueue::add(PrepQueue &queue, FrameLib_DSP *addedBy)
     if (!addedBy->ThreadNode::mNext)
         addedBy->ThreadNode::mNext = queue.pop();
     
+    // Add the rest to the queue
+    
     if (queue.size())
-    {
-        mNumItems += queue.size();
-        mQueue.enqueue(queue);
-        wakeWorkers();
-    }
+        enqueue(queue);
 }
 
-void FrameLib_ProcessingQueue::add(FrameLib_DSP *object, FrameLib_DSP *addedBy)
+void FrameLib_ProcessingQueue::enqueue(PrepQueue &queue)
 {
-    assert(object->mInputTime != FrameLib_TimeFormat::largest() && "Object has already reached the end of time");
-    assert((!object->ThreadNode::mNext) && "Object is already in the queue");
-    
-    if (mTimedOut)
-        return;
-    
-    // Try to process this next in this thread, but if that isn't possible add to the queue
-
-    if (!addedBy->ThreadNode::mNext)
-    {
-        addedBy->ThreadNode::mNext = object;
-    }
-    else
-    {
-        mNumItems++;
-        mQueue.enqueue(object);
-        wakeWorkers();
-    }
+    mNumItems += queue.size();
+    mQueue.enqueue(queue);
+        
+    // Wake workers
+        
+    wakeWorkers();
 }
 
 void FrameLib_ProcessingQueue::wakeWorkers()
@@ -144,17 +124,10 @@ void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
         if (mTimedOut)
             break;
     }
-    
-    if (index != 0)
-        mNumWorkersActive--;
 }
 
 void FrameLib_ProcessingQueue::mainThread()
 {
-    // Wake workers
-    
-    wakeWorkers();
-    
     // Service queue until done
     
     while (true)
@@ -187,12 +160,6 @@ void FrameLib_ProcessingQueue::mainThread()
         
         mNumItems = 0;
     }
-}
-
-void FrameLib_ProcessingQueue::startTimer(FrameLib_DSP *object)
-{
-    mEntryObject = object;
-    mClock.start();
 }
 
 // Audio Queue

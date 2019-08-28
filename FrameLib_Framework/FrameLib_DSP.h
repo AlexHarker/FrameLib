@@ -29,6 +29,7 @@ class FrameLib_DSP : public FrameLib_Block
 {
     using BlockQueue = FrameLib_MethodQueue<FrameLib_Block>;
     using LocalQueue = FrameLib_MethodQueue<FrameLib_DSP>;
+    using NotificationQueue = FrameLib_ProcessingQueue::PrepQueue;
     using Serial = FrameLib_Parameters::Serial;
 
     friend class FrameLib_ProcessingQueue;
@@ -301,8 +302,7 @@ private:
     // Dependency Notification
     
     bool dependencyNotify(bool releaseMemory, NotificationType type);
-    void dependencyNotify(FrameLib_DSP *notifier, bool releaseMemory, NotificationType type);
-    void dependencyNotify(FrameLib_AudioQueue &queue, bool releaseMemory, NotificationType type);
+    void dependencyNotify(NotificationQueue &queue, bool releaseMemory, NotificationType type);
     
     void dependenciesReady(FrameLib_FreeBlocks *freeBlocks);
     void incrementInputDependency();

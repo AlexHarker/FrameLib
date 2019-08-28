@@ -89,7 +89,7 @@ public:
         
     private:
         
-        void doTask(unsigned int index) override { mQueue->serviceQueue(index + 1); }
+        void doTask(unsigned int index) override;
 
         FrameLib_ProcessingQueue *mQueue;
     };
@@ -109,10 +109,8 @@ public:
     // Start and add items to the queue
     
     void start(PrepQueue &queue);
-    void start(FrameLib_DSP *object);
     void add(PrepQueue &queue, FrameLib_DSP *addedBy);
-    void add(FrameLib_DSP *object, FrameLib_DSP *addedBy);
-    
+
     // Additional functionality
     
     void reset() { mTimedOut = false; }
@@ -121,10 +119,10 @@ public:
     
 private:
     
+    void enqueue(PrepQueue &queue);
     void mainThread();
     void wakeWorkers();
     void serviceQueue(int32_t index);
-    void startTimer(FrameLib_DSP *object);
 
     WorkerThreads mWorkers;
     FrameLib_OwnedList<FrameLib_FreeBlocks> mFreeBlocks;
