@@ -78,7 +78,7 @@ public:
      
      */
     
-    class WorkerThreads : public FrameLib_TriggerableThreadSet
+    class WorkerThreads final : public FrameLib_TriggerableThreadSet
     {
         
     public:
