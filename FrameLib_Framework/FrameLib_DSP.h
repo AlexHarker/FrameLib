@@ -31,7 +31,7 @@ class FrameLib_DSP : public FrameLib_Block
     using LocalQueue = FrameLib_MethodQueue<FrameLib_DSP>;
     using NotificationQueue = FrameLib_ProcessingQueue::PrepQueue;
     using Serial = FrameLib_Parameters::Serial;
-
+    
     friend class FrameLib_ProcessingQueue;
     friend class FrameLib_AudioQueue;
     
@@ -109,6 +109,7 @@ private:
      @brief a struct that represents an output frame.
      
      */
+    
     struct Output
     {
         Output() : mMemory(nullptr), mType(kFrameNormal), mCurrentType(kFrameNormal), mRequestedType(kFrameNormal), mCurrentSize(0), mRequestedSize(0), mPointerOffset(0) {}
@@ -125,6 +126,8 @@ private:
     };
     
 public:
+
+    using Allocator = FrameLib_Block::Allocator;
 
     // Constructor / Destructor
 

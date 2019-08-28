@@ -3,10 +3,12 @@
 #define FRAMELIB_CONVOLVE_H
 
 #include "FrameLib_DSP.h"
-#include "FrameLib_Convolution_Tools.h"
+#include "../../FrameLib_Dependencies/SpectralProcessor.hpp"
 
-class FrameLib_Convolve final : public FrameLib_Processor, private Spectral
+class FrameLib_Convolve final : public FrameLib_Processor
 {
+    using EdgeMode = spectral_processor<double, FrameLib_DSP::Allocator>::EdgeMode;
+    
     // Parameter Enums and Info
 
     enum ParameterList { kMaxLength, kMode, kEdgeMode };
@@ -16,7 +18,7 @@ class FrameLib_Convolve final : public FrameLib_Processor, private Spectral
 
 public:
 
-    // Constructor / Destructor
+    // Constructor
     
     FrameLib_Convolve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
@@ -39,6 +41,10 @@ private:
     Mode mMode;
 
     static ParameterInfo sParamInfo;
+    
+    // Processor
+    
+    spectral_processor<double, FrameLib_DSP::Allocator> mProcessor;
 };
 
 #endif

@@ -60,7 +60,7 @@ FrameLib_Map::ParameterInfo FrameLib_Map::sParamInfo;
 FrameLib_Map::ParameterInfo::ParameterInfo()
 {
     add("Sets the type of output scaling: linear / log / exp - scaling as specified. "
-        "pow - scale the input range to [0-1], apply the specifiedexponent and then scale to the output range. "
+        "pow - scale the input range to [0-1], apply the specified exponent and then scale to the output range. "
         "db / invdb - output / input respectively are set in dB but scaled as gain values. "
         "transpose / invtranspose - output / input respectively are set in semitones but scaled as ratios for transposition.");
     add("Sets the low input value.");
