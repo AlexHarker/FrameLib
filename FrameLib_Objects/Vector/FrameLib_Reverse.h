@@ -1,6 +1,6 @@
 
-#ifndef FRAMELIB_REV_H
-#define FRAMELIB_REV_H
+#ifndef FRAMELIB_REVERSE_H
+#define FRAMELIB_REVERSE_H
 
 #include "FrameLib_DSP.h"
 

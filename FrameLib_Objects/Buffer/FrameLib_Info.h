@@ -1,4 +1,7 @@
 
+#ifndef FRAMELIB_INFO_H
+#define FRAMELIB_INFO_H
+
 #include "FrameLib_DSP.h"
 #include "../../FrameLib_Dependencies/TableReader.hpp"
 
@@ -54,3 +57,4 @@ private:
     static ParameterInfo sParamInfo;
 };
 
+#endif

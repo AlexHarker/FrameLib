@@ -1,42 +1,156 @@
 {
-    "fl.wrap~": {
-        "digest": "Wraps the incoming frame into the range delimited by the low and high parameters.."
+    "fl.spatial~": {
+        "digest": "Generates multiplication factors for a number of speakers from an input coordinate triple."
     },
-    "fl.fold~": {
-        "digest": "Folds the incoming frame into the range delimited by the low and high parameters."
+    "fl.coordinatesystem~": {
+        "digest": "Converts vectors of triples between cartesian and polar values."
     },
-    "fl.clip~": {
-        "digest": "Clips the incoming frame to the range delimited by the low and high parameters.."
+    "fl.unpack~": {
+        "digest": "Unpacks multi-stream input into individual streams."
     },
-    "fl.onepolezero~": {
-        "digest": "Filters input frames using a one pole, one zero filter."
+    "fl.streamid~": {
+        "digest": "Outputs consecutively numbered stream ids for each stream of a multi-stream connection when triggered."
     },
-    "fl.0dfsvf~": {
-        "digest": "Filters input frames using a zero delay state variable filter."
+    "fl.pack~": {
+        "digest": "Packs multiple frame streams into a multi-stream output."
     },
-    "fl.resonant~": {
-        "digest": "Filters input frames using a resonant filter."
+    "fl.dispatch~": {
+        "digest": "Dispatches multiple input frame streams dynamically to multiple outputs. Each output can be independently connected to any one (or none) of a number of incoming input frame streams, or turned off."
     },
-    "fl.sallenkey~": {
-        "digest": "Filters input frames using a sallen and key filter."
+    "fl.route~": {
+        "digest": "Routes input frames to one of a number of outputs."
     },
-    "fl.onepole~": {
-        "digest": "Filters input frames using a one pole filter."
+    "fl.select~": {
+        "digest": "Selects between a number of input frame streams."
     },
-    "fl.lookup~": {
-        "digest": "Use one frame as a lookup table for another."
+    "fl.timedelta~": {
+        "digest": "Calculates the time interval between consecutive incoming frames."
     },
-    "fl.convert~": {
-        "digest": "Converts the input vector with the specified conversion."
+    "fl.timer~": {
+        "digest": "Calculates the time elapsed between trigger frame inputs and the subsequent reset frame."
     },
-    "fl.constant~": {
-        "digest": "Outputs the specified useful constant."
+    "fl.now~": {
+        "digest": "Outputs the current time."
     },
-    "fl.map~": {
-        "digest": "Maps values in the input via a given scaling to corresponding output values."
+    "fl.ticks~": {
+        "digest": "Counts how many frames have passed up to a specified value (0 based).."
     },
-    "fl.samplerate~": {
-        "digest": "Convert values based on the sample rate / Output a value based on the sampling rate value."
+    "fl.argmin~": {
+        "digest": "Calculates the index of the minimum value of the input frame."
+    },
+    "fl.sort~": {
+        "digest": "Sorts an input frame in ascending or descending order.."
+    },
+    "fl.shift~": {
+        "digest": "Shifts an input frame either with padding, or cyclically."
+    },
+    "fl.standarddeviation~": {
+        "digest": "Calculates the standard deviation of the input frame."
+    },
+    "fl.geometricmean~": {
+        "digest": "Calculates the geometric mean of the input frame."
+    },
+    "fl.accumpoint~": {
+        "digest": "Calculates the point in a vector at which the sum reaches a given percentage of the total sum."
+    },
+    "fl.centroid~": {
+        "digest": "Calculates the centroid of the input frame."
+    },
+    "fl.medianfilter~": {
+        "digest": "Median filter an input frame."
+    },
+    "fl.percentile~": {
+        "digest": "Calculates any percentile (for example the median at 50%) of an input frame."
+    },
+    "fl.kurtosis~": {
+        "digest": "Calculates the kurtosis of the input frame."
+    },
+    "fl.nonzero~": {
+        "digest": "Outputs indices that are non-zero."
+    },
+    "fl.vmin~": {
+        "digest": "Calculates the minimum value of the input frame."
+    },
+    "fl.flatness~": {
+        "digest": "Calculates the flatness of the input frame."
+    },
+    "fl.skewness~": {
+        "digest": "Calculates the skewness of the input frame."
+    },
+    "fl.join~": {
+        "digest": "Concatenates all input frames into a single output frame."
+    },
+    "fl.length~": {
+        "digest": "Calculates the length of the input frame."
+    },
+    "fl.argmax~": {
+        "digest": "Calculates the index of the maximum value of the input frame."
+    },
+    "fl.mean~": {
+        "digest": "Calculates the mean of the input frame."
+    },
+    "fl.rms~": {
+        "digest": "Calculates the rms of the input frame."
+    },
+    "fl.pad~": {
+        "digest": "Pads an input frame with a fixed value at either the start the end, or both."
+    },
+    "fl.reverse~": {
+        "digest": "Reverses the order of a single frame's contents.."
+    },
+    "fl.pattern~": {
+        "digest": "Splits a frame sequentially into smaller frames based on the trigger input.."
+    },
+    "fl.sum~": {
+        "digest": "Calculates the sum of the input frame."
+    },
+    "fl.nanfilter~": {
+        "digest": "Replaces or removes NaNs in a vector."
+    },
+    "fl.vmax~": {
+        "digest": "Calculates the maximum value of the input frame."
+    },
+    "fl.split~": {
+        "digest": "Splits input frames into two parts, given a specified split point."
+    },
+    "fl.subframe~": {
+        "digest": "Output part of an input frame."
+    },
+    "fl.product~": {
+        "digest": "Calculates the product of the input frame."
+    },
+    "fl.crest~": {
+        "digest": "Calculates the crest factor of the input frame."
+    },
+    "fl.chop~": {
+        "digest": "Chops input frames into equally sized output frames."
+    },
+    "fl.peaks~": {
+        "digest": "Finds peaks in an input frame (spectrum)."
+    },
+    "fl.spread~": {
+        "digest": "Calculates the spread of the input frame."
+    },
+    "fl.complexminus~": {
+        "digest": "Subtracts the right complex pair of input frame values from the left complex pair of input frame values."
+    },
+    "fl.complexdivide~": {
+        "digest": "Divides the left complex pair of input frame values by the right complex pair of input frame values."
+    },
+    "fl.complexmultiply~": {
+        "digest": "Multiplies complexvalues in the two sets of input frames."
+    },
+    "fl.complexpow~": {
+        "digest": "Calculates left complex pair of input frame values to the power of right complex pair of input frame values."
+    },
+    "fl.complexplus~": {
+        "digest": "Adds complex values in the two sets of input frames."
+    },
+    "fl.read~": {
+        "digest": "Reads from a buffer~ given an input frame of sample positions."
+    },
+    "fl.info~": {
+        "digest": "Outputs the sample rate, number of channels and size of a buffer (in milliseconds). The size units can be changed.."
     },
     "fl.exp2~": {
         "digest": "Calculates the exponent base 2 (2 to the power of) of each value in the input frame."
@@ -119,165 +233,6 @@
     "fl.ceil~": {
         "digest": "Calculates the ceiling value of each value in the input frame."
     },
-    "fl.tomax~": {
-        "digest": "Turn frames into host messages. The maximum length of the output message may be limited by the host environment."
-    },
-    "fl.frommax~": {
-        "digest": "Turn host messages into frames."
-    },
-    "fl.ewmsd~": {
-        "digest": "Calculates a per sample exponentially weighted moving standard deviation."
-    },
-    "fl.timemedian~": {
-        "digest": "Outputs the median per sample over a given number of frames."
-    },
-    "fl.framedelta~": {
-        "digest": "Outputs the delta between two consecutive frames."
-    },
-    "fl.lag~": {
-        "digest": "Outputs vector-type frames with a lag set as an integer number of frames."
-    },
-    "fl.ewma~": {
-        "digest": "Calculates a per sample exponentially weighted moving average."
-    },
-    "fl.timemean~": {
-        "digest": "Outputs the mean per sample over a given number of frames."
-    },
-    "fl.timestddev~": {
-        "digest": "Outputs the standard deviation per sample over a given number of frames."
-    },
-    "fl.sink~": {
-        "digest": "Outputs audio frames to the host environment by pasting them into an overlap-add buffer."
-    },
-    "fl.trace~": {
-        "digest": "Outputs audio frames (or values from the frame) to the host environment without overlapping, continuing the last value till a new frame arrives."
-    },
-    "fl.source~": {
-        "digest": "Captures audio from the host environment and outputs the most recent values as frames."
-    },
-    "fl.timedelta~": {
-        "digest": "Calculates the time interval between consecutive incoming frames."
-    },
-    "fl.timer~": {
-        "digest": "Calculates the time elapsed between trigger frame inputs and the subsequent reset frame."
-    },
-    "fl.now~": {
-        "digest": "Outputs the current time."
-    },
-    "fl.ticks~": {
-        "digest": "Counts how many frames have passed up to a specified value (0 based).."
-    },
-    "fl.convolve~": {
-        "digest": "Convolve two input frames, (using frequency domain processing internally)."
-    },
-    "fl.multitaper~": {
-        "digest": "Calculates the multitaper power spectrum of a real input using the cosine tapers."
-    },
-    "fl.correlate~": {
-        "digest": "Calculate the correlation of two input frames, (using frequency domain processing internally)."
-    },
-    "fl.fft~": {
-        "digest": "Calculate the real Fast Fourier Transform of an input frame."
-    },
-    "fl.ifft~": {
-        "digest": "Calculate the inverse real Fast Fourier Transform of two input frames (comprising the real and imaginary values)."
-    },
-    "fl.window~": {
-        "digest": "Multiplies the incoming frame against a specified window."
-    },
-    "fl.store~": {
-        "digest": "Stores a vector frame in named memory for recall."
-    },
-    "fl.register~": {
-        "digest": "Store and recall a vector frame locally."
-    },
-    "fl.recall~": {
-        "digest": "Recall a vector frame from named memory for use."
-    },
-    "fl.complexsinh~": {
-        "digest": "Calculates the hyperbolic sine of each complex value at the inputs."
-    },
-    "fl.complextan~": {
-        "digest": "Calculates the tangent (for arguments in radians) of each complex value at the inputs."
-    },
-    "fl.poltocar~": {
-        "digest": "Converts from polar values at the input to cartesian values at output."
-    },
-    "fl.complexcos~": {
-        "digest": "Calculates the cosine (for arguments in radians) of each complex value at the inputs."
-    },
-    "fl.complexsin~": {
-        "digest": "Calculates the sine (for arguments in radians) of each complex value at the inputs."
-    },
-    "fl.complexcosh~": {
-        "digest": "Calculates the hyperbolic cosine of each complex value at the inputs."
-    },
-    "fl.complexlog10~": {
-        "digest": "Calculates the logarithm base 10 of each complex value at the inputs."
-    },
-    "fl.complextanh~": {
-        "digest": "Calculates the hyperbolic tangent of each complex value at the inputs."
-    },
-    "fl.complexconj~": {
-        "digest": "Calculates the complex conjugate of each complex value at the inputs."
-    },
-    "fl.complexexp~": {
-        "digest": "Calculates the exponent base e (e to the power of) of each complex value at the inputs."
-    },
-    "fl.complexlog~": {
-        "digest": "Calculates the logarithm base e of each complex value at the inputs."
-    },
-    "fl.complexsqrt~": {
-        "digest": "Calculates the square root of each complex value at the inputs."
-    },
-    "fl.cartopol~": {
-        "digest": "Converts from cartesian values at the input to polar values at output."
-    },
-    "fl.unpack~": {
-        "digest": "Unpacks multi-stream input into individual streams."
-    },
-    "fl.streamid~": {
-        "digest": "Outputs consecutively numbered stream ids for each stream of a multi-stream connection when triggered."
-    },
-    "fl.pack~": {
-        "digest": "Packs multiple frame streams into a multi-stream output."
-    },
-    "fl.complexexpr~": {
-        "digest": "Applies a mathematical expression to complex pairs of inputs."
-    },
-    "fl.expr~": {
-        "digest": "Applies a mathematical expression to the inputs."
-    },
-    "fl.filtertags~": {
-        "digest": "Filters tagged frames into two parts given a number of tags."
-    },
-    "fl.getparam~": {
-        "digest": "Retrieves parameter values from a connected object."
-    },
-    "fl.tag~": {
-        "digest": "Tags vectors with names ready to send to the parameter input of an object, or for routing purposes."
-    },
-    "fl.untag~": {
-        "digest": "Separates vectors from a tagged frame according to a given set of tags."
-    },
-    "fl.combinetags~": {
-        "digest": "Combines a number of tagged input frames into a single tagged output frame."
-    },
-    "fl.complexminus~": {
-        "digest": "Subtracts the right complex pair of input frame values from the left complex pair of input frame values."
-    },
-    "fl.complexdivide~": {
-        "digest": "Divides the left complex pair of input frame values by the right complex pair of input frame values."
-    },
-    "fl.complexmultiply~": {
-        "digest": "Multiplies complexvalues in the two sets of input frames."
-    },
-    "fl.complexpow~": {
-        "digest": "Calculates left complex pair of input frame values to the power of right complex pair of input frame values."
-    },
-    "fl.complexplus~": {
-        "digest": "Adds complex values in the two sets of input frames."
-    },
     "fl.copysign~": {
         "digest": "Outputs a frame with the magnitude values of the left input frame and the sign values of right input frame."
     },
@@ -350,110 +305,68 @@
     "fl.ramp~": {
         "digest": "Generates frames that consist of linear ramps from [0-x]."
     },
-    "fl.route~": {
-        "digest": "Routes input frames to one of a number of outputs."
+    "fl.tomax~": {
+        "digest": "Turn frames into host messages. The maximum length of the output message may be limited by the host environment."
     },
-    "fl.select~": {
-        "digest": "Selects between a number of input frame streams."
+    "fl.frommax~": {
+        "digest": "Turn host messages into frames."
     },
-    "fl.spatial~": {
-        "digest": "Generates multiplication factors for a number of speakers from an input coordinate triple."
+    "fl.sink~": {
+        "digest": "Outputs audio frames to the host environment by pasting them into an overlap-add buffer."
     },
-    "fl.coordinatesystem~": {
-        "digest": "Converts vectors of triples between cartesian and polar values."
+    "fl.trace~": {
+        "digest": "Outputs audio frames (or values from the frame) to the host environment without overlapping, continuing the last value till a new frame arrives."
     },
-    "fl.argmin~": {
-        "digest": "Calculates the index of the minimum value of the input frame."
+    "fl.source~": {
+        "digest": "Captures audio from the host environment and outputs the most recent values as frames."
     },
-    "fl.sort~": {
-        "digest": "Sorts an input frame in ascending or descending order.."
+    "fl.convolve~": {
+        "digest": "Convolve two input frames, (using frequency domain processing internally)."
     },
-    "fl.shift~": {
-        "digest": "Shifts an input frame either with padding, or cyclically."
+    "fl.multitaper~": {
+        "digest": "Calculates the multitaper power spectrum of a real input using the cosine tapers."
     },
-    "fl.standarddeviation~": {
-        "digest": "Calculates the standard deviation of the input frame."
+    "fl.correlate~": {
+        "digest": "Calculate the correlation of two input frames, (using frequency domain processing internally)."
     },
-    "fl.geometricmean~": {
-        "digest": "Calculates the geometric mean of the input frame."
+    "fl.fft~": {
+        "digest": "Calculate the real Fast Fourier Transform of an input frame."
     },
-    "fl.accumpoint~": {
-        "digest": "Calculates the point in a vector at which the sum reaches a given percentage of the total sum."
+    "fl.ifft~": {
+        "digest": "Calculate the inverse real Fast Fourier Transform of two input frames (comprising the real and imaginary values)."
     },
-    "fl.centroid~": {
-        "digest": "Calculates the centroid of the input frame."
+    "fl.window~": {
+        "digest": "Multiplies the incoming frame against a specified window."
     },
-    "fl.medianfilter~": {
-        "digest": "Median filter an input frame."
+    "fl.store~": {
+        "digest": "Stores a vector frame in named memory for recall."
     },
-    "fl.percentile~": {
-        "digest": "Calculates any percentile (for example the median at 50%) of an input frame."
+    "fl.register~": {
+        "digest": "Store and recall a vector frame locally."
     },
-    "fl.kurtosis~": {
-        "digest": "Calculates the kurtosis of the input frame."
+    "fl.recall~": {
+        "digest": "Recall a vector frame from named memory for use."
     },
-    "fl.nonzero~": {
-        "digest": "Outputs indices that are non-zero."
+    "fl.ewmsd~": {
+        "digest": "Calculates a per sample exponentially weighted moving standard deviation."
     },
-    "fl.vmin~": {
-        "digest": "Calculates the minimum value of the input frame."
+    "fl.timemedian~": {
+        "digest": "Outputs the median per sample over a given number of frames."
     },
-    "fl.flatness~": {
-        "digest": "Calculates the flatness of the input frame."
+    "fl.framedelta~": {
+        "digest": "Outputs the delta between two consecutive frames."
     },
-    "fl.skewness~": {
-        "digest": "Calculates the skewness of the input frame."
+    "fl.lag~": {
+        "digest": "Outputs vector-type frames with a lag set as an integer number of frames."
     },
-    "fl.join~": {
-        "digest": "Concatenates all input frames into a single output frame."
+    "fl.ewma~": {
+        "digest": "Calculates a per sample exponentially weighted moving average."
     },
-    "fl.length~": {
-        "digest": "Calculates the length of the input frame."
+    "fl.timemean~": {
+        "digest": "Outputs the mean per sample over a given number of frames."
     },
-    "fl.argmax~": {
-        "digest": "Calculates the index of the maximum value of the input frame."
-    },
-    "fl.mean~": {
-        "digest": "Calculates the mean of the input frame."
-    },
-    "fl.rms~": {
-        "digest": "Calculates the rms of the input frame."
-    },
-    "fl.pad~": {
-        "digest": "Pads an input frame with a fixed value at either the start the end, or both."
-    },
-    "fl.reverse~": {
-        "digest": "Reverses the order of a single frame's contents.."
-    },
-    "fl.sum~": {
-        "digest": "Calculates the sum of the input frame."
-    },
-    "fl.nanfilter~": {
-        "digest": "Replaces or removes NaNs in a vector."
-    },
-    "fl.vmax~": {
-        "digest": "Calculates the maximum value of the input frame."
-    },
-    "fl.split~": {
-        "digest": "Splits input frames into two parts, given a specified split point."
-    },
-    "fl.subframe~": {
-        "digest": "Output part of an input frame."
-    },
-    "fl.product~": {
-        "digest": "Calculates the product of the input frame."
-    },
-    "fl.crest~": {
-        "digest": "Calculates the crest factor of the input frame."
-    },
-    "fl.chop~": {
-        "digest": "Chops input frames into equally sized output frames."
-    },
-    "fl.peaks~": {
-        "digest": "Finds peaks in an input frame (spectrum)."
-    },
-    "fl.spread~": {
-        "digest": "Calculates the spread of the input frame."
+    "fl.timestddev~": {
+        "digest": "Outputs the standard deviation per sample over a given number of frames."
     },
     "fl.perblock~": {
         "digest": "Schedules one frame at the start of each of the hosts audio blocks."
@@ -470,7 +383,106 @@
     "fl.interval~": {
         "digest": "Schedules frames at regular intervals, which can be adjusted using the interval parameter."
     },
-    "fl.read~": {
-        "digest": "Reads from a buffer~ given an input frame of sample positions."
+    "fl.chain~": {
+        "digest": "Schedules frames in specified times according to the input frame."
+    },
+    "fl.complexsinh~": {
+        "digest": "Calculates the hyperbolic sine of each complex value at the inputs."
+    },
+    "fl.complextan~": {
+        "digest": "Calculates the tangent (for arguments in radians) of each complex value at the inputs."
+    },
+    "fl.poltocar~": {
+        "digest": "Converts from polar values at the input to cartesian values at output."
+    },
+    "fl.complexcos~": {
+        "digest": "Calculates the cosine (for arguments in radians) of each complex value at the inputs."
+    },
+    "fl.complexsin~": {
+        "digest": "Calculates the sine (for arguments in radians) of each complex value at the inputs."
+    },
+    "fl.complexcosh~": {
+        "digest": "Calculates the hyperbolic cosine of each complex value at the inputs."
+    },
+    "fl.complexlog10~": {
+        "digest": "Calculates the logarithm base 10 of each complex value at the inputs."
+    },
+    "fl.complextanh~": {
+        "digest": "Calculates the hyperbolic tangent of each complex value at the inputs."
+    },
+    "fl.complexconj~": {
+        "digest": "Calculates the complex conjugate of each complex value at the inputs."
+    },
+    "fl.complexexp~": {
+        "digest": "Calculates the exponent base e (e to the power of) of each complex value at the inputs."
+    },
+    "fl.complexlog~": {
+        "digest": "Calculates the logarithm base e of each complex value at the inputs."
+    },
+    "fl.complexsqrt~": {
+        "digest": "Calculates the square root of each complex value at the inputs."
+    },
+    "fl.cartopol~": {
+        "digest": "Converts from cartesian values at the input to polar values at output."
+    },
+    "fl.wrap~": {
+        "digest": "Wraps the incoming frame into the range delimited by the low and high parameters.."
+    },
+    "fl.fold~": {
+        "digest": "Folds the incoming frame into the range delimited by the low and high parameters."
+    },
+    "fl.clip~": {
+        "digest": "Clips the incoming frame to the range delimited by the low and high parameters.."
+    },
+    "fl.lookup~": {
+        "digest": "Use one frame as a lookup table for another."
+    },
+    "fl.convert~": {
+        "digest": "Converts the input vector with the specified conversion."
+    },
+    "fl.constant~": {
+        "digest": "Outputs the specified useful constant."
+    },
+    "fl.map~": {
+        "digest": "Maps values in the input via a given scaling to corresponding output values."
+    },
+    "fl.samplerate~": {
+        "digest": "Convert values based on the sample rate / Output a value based on the sampling rate value."
+    },
+    "fl.onepolezero~": {
+        "digest": "Filters input frames using a one pole, one zero filter."
+    },
+    "fl.0dfsvf~": {
+        "digest": "Filters input frames using a zero delay state variable filter."
+    },
+    "fl.resonant~": {
+        "digest": "Filters input frames using a resonant filter."
+    },
+    "fl.sallenkey~": {
+        "digest": "Filters input frames using a sallen and key filter."
+    },
+    "fl.onepole~": {
+        "digest": "Filters input frames using a one pole filter."
+    },
+    "fl.complexexpr~": {
+        "digest": "Applies a mathematical expression to complex pairs of inputs."
+    },
+    "fl.expr~": {
+        "digest": "Applies a mathematical expression to the inputs."
+    },
+    "fl.filtertags~": {
+        "digest": "Filters tagged frames into two parts given a number of tags."
+    },
+    "fl.getparam~": {
+        "digest": "Retrieves parameter values from a connected object."
+    },
+    "fl.tag~": {
+        "digest": "Tags vectors with names ready to send to the parameter input of an object, or for routing purposes."
+    },
+    "fl.untag~": {
+        "digest": "Separates vectors from a tagged frame according to a given set of tags."
+    },
+    "fl.combinetags~": {
+        "digest": "Combines a number of tagged input frames into a single tagged output frame."
     }
 }

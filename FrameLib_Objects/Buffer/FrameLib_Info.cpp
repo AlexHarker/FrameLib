@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Info::FrameLib_Info(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mProxy(dynamic_cast<Proxy *>(proxy)->clone())
+FrameLib_Info::FrameLib_Info(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 3), mProxy(dynamic_cast<Proxy *>(proxy)->clone())
 {
     mParameters.addString(kBuffer, "buffer", 0);
     
@@ -17,10 +17,7 @@ FrameLib_Info::FrameLib_Info(FrameLib_Context context, FrameLib_Parameters::Seri
     mUnits = (Units) mParameters.getInt(kUnits);
     
     setParameterInput(1);
-    setIO(1, 3);
-    
-    assert(false == 0 && "False does not equal zero");
-    
+        
     if (mProxy)
         mProxy->update(mParameters.getString(kBuffer));
 }
@@ -77,28 +74,27 @@ void FrameLib_Info::update()
 
 void FrameLib_Info::process()
 {
-    // declare vars
-    double buf_samplingRate = 0.0;
+    double bufferSamplingRate = 0.0;
     double conversionFactor = 1.0;
-    unsigned long length    = 0;
-    unsigned long chans     = 0;
-    unsigned long size      = 1; // output size is 1 - 1 value per outlet
+    unsigned long length = 0;
+    unsigned long chans = 0;
+    unsigned long size = 1;
     
-    // allocate inputs and outputs
+    // Allocate inputs and outputs
     
     requestOutputSize(0, size);
     requestOutputSize(1, size);
     requestOutputSize(2, size);
     allocateOutputs();
     
-    
-    double *output_0 = getOutput(0, &size);
-    double *output_1 = getOutput(1, &size);
-    double *output_2 = getOutput(2, &size);
+    double *lengthOutput = getOutput(0, &size);
+    double *smplRtOutput = getOutput(1, &size);
+    double *nChansOutput = getOutput(2, &size);
     
     // Get buffer
+    
     if (mProxy)
-        mProxy->acquire(length, buf_samplingRate, chans);
+        mProxy->acquire(length, bufferSamplingRate, chans);
     
     switch (mUnits)
     {
@@ -107,22 +103,21 @@ void FrameLib_Info::process()
         case kSamples:      conversionFactor = 1.0;                         break;
     }
     
-    
     if (length != 0 && size != 0)
     {
-        output_0[0] = length / conversionFactor;
-        output_1[0] = buf_samplingRate;
-        output_2[0] = chans;
+        lengthOutput[0] = length / conversionFactor;
+        smplRtOutput[0] = bufferSamplingRate;
+        nChansOutput[0] = chans;
     }
-    
-    else // if not empty buffer produce results
+    else
     {
         // Zero output if no buffer or memory
-        zeroVector(output_0, size);
-        zeroVector(output_1, size);
-        zeroVector(output_2, size);
         
+        zeroVector(lengthOutput, size);
+        zeroVector(smplRtOutput, size);
+        zeroVector(nChansOutput, size);
     }
+    
     if (mProxy)
         mProxy->release();
 }

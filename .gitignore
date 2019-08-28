@@ -32,6 +32,7 @@ xcuserdata/
 *.toc
 *.log
 *.out
+*.code-workspace
 
 ## Binaries
 externals/
@@ -41,16 +42,13 @@ externals/
 ## Package Testing
 test-builds/
 
-## James/Documentation
+## James Documentation
 __pycache__/
-Documentation/Max\ Documentation/_Notes
-Documentation/Max\ Documentation/XML_Externals
-RawXML/
-BuildXML.maxpat
-category_databse.json
-_Notes/
-XML_Externals_
-RawXML/
+__tmp__/
+refpages/
+help_files/templates/
+object_relationships.py
+Max_Object_List.h
 
 ## Other
 *.moved-aside
