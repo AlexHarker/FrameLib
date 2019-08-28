@@ -2274,34 +2274,6 @@
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B85536D922FEB88100D10495"
-               BuildableName = "fl.kernelsmooth~.mxo"
-               BlueprintName = "fl.kernelsmooth~"
-               ReferencedContainer = "container:framelib~.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8A20FEB22FCD7E300DF86D8"
-               BuildableName = "fl.firphase~.mxo"
-               BlueprintName = "fl.firphase~"
-               ReferencedContainer = "container:framelib~.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
