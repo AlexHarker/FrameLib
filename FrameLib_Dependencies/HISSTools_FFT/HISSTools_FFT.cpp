@@ -2,7 +2,7 @@
 #include "HISSTools_FFT.h"
 #include "HISSTools_FFT_Core.h"
 
-#ifdef USE_APPLE_FFT
+#if defined(USE_APPLE_FFT)
 
 // This file provides bindings to the relevant Apple or HISSTools template routines.
 

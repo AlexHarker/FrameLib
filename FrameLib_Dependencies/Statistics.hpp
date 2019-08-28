@@ -1,6 +1,6 @@
 
-#ifndef STATISTICS_H
-#define STATISTICS_H
+#ifndef STATISTICS_HPP
+#define STATISTICS_HPP
 
 #include <algorithm>
 #include <numeric>

@@ -1,10 +1,9 @@
 
 #include "FrameLib_Multitaper.h"
-#include "FrameLib_Spectral_Functions.h"
 
 // Constructor / Destructor
 
-FrameLib_Multitaper::FrameLib_Multitaper(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+FrameLib_Multitaper::FrameLib_Multitaper(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1), mProcessor(*this)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -14,16 +13,8 @@ FrameLib_Multitaper::FrameLib_Multitaper(FrameLib_Context context, FrameLib_Para
     mParameters.setMin(1);
     
     mParameters.set(serialisedParameters);
-        
-    unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
     
-    hisstools_create_setup(&mFFTSetup, maxFFTSizeLog2 + 1);
-    mMaxFFTSize = 1 << maxFFTSizeLog2;
-}
-
-FrameLib_Multitaper::~FrameLib_Multitaper()
-{
-    hisstools_destroy_setup(mFFTSetup);
+    mProcessor.set_max_fft_size(mParameters.getInt(kMaxLength) * 2);
 }
 
 // Helpers
@@ -88,13 +79,13 @@ void FrameLib_Multitaper::process()
     
     // Get FFT size log 2
     
-    unsigned long FFTSizelog2 = ilog2(sizeIn);
-    unsigned long FFTSize = 1 << FFTSizelog2;
+    unsigned long FFTSizeLog2 = mProcessor.calc_fft_size_log2(sizeIn);
+    unsigned long FFTSize = 1 << FFTSizeLog2;
     sizeOut = (FFTSize >> 1) + 1;
     
     // Check size
     
-    if (FFTSize > mMaxFFTSize || !sizeIn)
+    if ((FFTSize * 2) > mProcessor.max_fft_size() || !sizeIn)
         sizeOut = 0;
     
     // Calculate output size
@@ -118,7 +109,7 @@ void FrameLib_Multitaper::process()
         
         // Take the real fft
         
-        hisstools_rfft(mFFTSetup, input, &spectrum, sizeIn, (FFTSizelog2 + 1));
+        mProcessor.rfft(spectrum, input, sizeIn, (FFTSizeLog2 + 1));
         
         // Move Nyquist Bin
         
@@ -128,11 +119,7 @@ void FrameLib_Multitaper::process()
         
         // Scale
         
-        for (unsigned long i = 0; i < (FFTSize + 1); i++)
-        {
-            spectrum.realp[i] *= 0.5;
-            spectrum.imagp[i] *= 0.5;
-        }
+        mProcessor.scale_spectrum(spectrum, FFTSize + 1, 0.5);
         
         // Do Multitaper
         
