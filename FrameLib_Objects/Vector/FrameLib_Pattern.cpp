@@ -1,6 +1,5 @@
 
 #include "FrameLib_Pattern.h"
-#include <algorithm>
 
 // Constructor
 

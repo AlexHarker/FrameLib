@@ -1,10 +1,9 @@
 
 #include "FrameLib_iFFT.h"
-#include "FrameLib_Spectral_Functions.h"
 
 // Constructor / Destructor
 
-FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mProcessor(*this)
 {
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
@@ -18,14 +17,11 @@ FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, FrameLib_Parameters::Seri
     mParameters.setInstantiation();
 
     mParameters.set(serialisedParameters);
-    
-    unsigned long maxFFTSizeLog2 = ilog2(mParameters.getInt(kMaxLength));
-    
-    hisstools_create_setup(&mFFTSetup, maxFFTSizeLog2);
-    
+        
+    mProcessor.set_max_fft_size(mParameters.getInt(kMaxLength));
+
     // Store parameters
     
-    mMaxFFTSize = 1 << maxFFTSizeLog2;
     mMode = static_cast<Mode>(mParameters.getInt(kMode));
     mNormalise = mParameters.getBool(kNormalise);
     
@@ -33,11 +29,6 @@ FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, FrameLib_Parameters::Seri
     
     if (mMode == kComplex)
         setIO(2, 2);
-}
-
-FrameLib_iFFT::~FrameLib_iFFT()
-{
-    hisstools_destroy_setup(mFFTSetup);
 }
 
 // Info
@@ -80,7 +71,7 @@ void FrameLib_iFFT::process()
     FFT_SPLIT_COMPLEX_D spectrum;
     
     unsigned long sizeInR, sizeInI, sizeIn, sizeOut, spectrumSize;
-    unsigned long FFTSizelog2 = 0;
+    unsigned long FFTSizeLog2 = 0;
     
     // Get Inputs
     
@@ -92,15 +83,15 @@ void FrameLib_iFFT::process()
     if (sizeIn)
     {
         unsigned long calcSize = mMode == kReal ? (sizeIn - 1) << 1 : sizeIn;
-        FFTSizelog2 = ilog2(calcSize);
-        sizeOut = 1 << FFTSizelog2;
+        FFTSizeLog2 = mProcessor.calc_fft_size_log2(calcSize);
+        sizeOut = 1 << FFTSizeLog2;
     }
     else
         sizeOut = 0;
     
     // Sanity Check
     
-    if (sizeOut > mMaxFFTSize)
+    if (sizeOut > mProcessor.max_fft_size())
         sizeOut = 0;
     
     // Calculate output size
@@ -134,7 +125,7 @@ void FrameLib_iFFT::process()
     
     if (sizeOut && spectrum.realp)
     {
-        double scale = mNormalise ? 1.0 : 1.0 / static_cast<double>(1 << FFTSizelog2);
+        double scale = mNormalise ? 1.0 : 1.0 / static_cast<double>(1 << FFTSizeLog2);
         
         // Copy Spectrum
         
@@ -148,17 +139,10 @@ void FrameLib_iFFT::process()
         
         if (mMode == kComplex)
         {
-            // Convert to time domain
+            // Convert to time domain and scale
 
-            hisstools_ifft(mFFTSetup, &spectrum, FFTSizelog2);
-
-            // Scale
-            
-            for (unsigned long i = 0; i < sizeOut; i++)
-            {
-                spectrum.realp[i] *= scale;
-                spectrum.imagp[i] *= scale;
-            }
+            mProcessor.ifft(spectrum, FFTSizeLog2);
+            mProcessor.scale_spectrum(spectrum, sizeOut, scale);
         }
         else
         {
@@ -167,14 +151,10 @@ void FrameLib_iFFT::process()
             if (sizeInR >= ((sizeOut >> 1) + 1))
                 spectrum.imagp[0] = inputR[sizeOut >> 1];
         
-            // Convert to time domain
+            // Convert to time domain and scale
         
-            hisstools_rifft(mFFTSetup, &spectrum, outputR, FFTSizelog2);
-        
-            // Scale
-        
-            for (unsigned long i = 0; i < sizeOut; i++)
-                outputR[i] *= scale;
+            mProcessor.rifft(outputR, spectrum, FFTSizeLog2);
+            mProcessor.scale_vector(outputR, sizeOut, scale);
         
             dealloc(spectrum.realp);
         }

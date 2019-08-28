@@ -1,6 +1,6 @@
 
-#ifndef TABLEREADER_H
-#define TABLEREADER_H
+#ifndef TABLEREADER_HPP
+#define TABLEREADER_HPP
 
 #include "SIMDSupport.hpp"
 #include "Interpolation.hpp"
