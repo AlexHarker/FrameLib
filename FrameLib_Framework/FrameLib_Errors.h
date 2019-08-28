@@ -252,7 +252,9 @@ public:
     template<typename... Args>
     void reportError(ErrorSource source, FrameLib_Proxy *reporter, const char *error, Args... args)
     {
+        mLock.acquire();
         mReports->add(source, reporter, error, args...);
+        mLock.release();
         
         if (mNotifier && !mNotified)
         {
