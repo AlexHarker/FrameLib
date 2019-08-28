@@ -364,11 +364,11 @@ bool FrameLib_DSP::dependencyNotify(bool releaseMemory, NotificationType type)
     
     bool useInputCount = mUpdatingInputs && (type == kInputConnection || type == kAudioBlock);
     
-    if ((useInputCount && --mInputCount == 0) || --mDependencyCount == 0)
+    if ((useInputCount && --mInputCount == 0) || (!useInputCount && --mDependencyCount == 0))
     {
         // N.B. Avoid re-entrancy by increasing the dependency count before processing (plus matched notification)
 
-        assert((mDependencyCount > 0) || !mUpdatingInputs && "Dependency count should not be zero if updating inputs");
+        assert((mDependencyCount > 0) || !mUpdatingInputs && "Dependency count shouldn't be zero if updating inputs");
         mDependencyCount++;
         return true;
     }
