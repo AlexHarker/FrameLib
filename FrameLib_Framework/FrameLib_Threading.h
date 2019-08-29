@@ -74,7 +74,6 @@ bool nullSwap(std::atomic<T *>& value, T *exchange)
     return value.compare_exchange_strong(comparand, exchange);
 }
 
-
 /**
  
  @class FrameLib_CountedPointer
@@ -142,7 +141,9 @@ struct FrameLib_LockFreePointer : public std::atomic<FrameLib_CountedPointer<T>>
 
 class FrameLib_SpinLock
 {
-    
+    using Clock = std::chrono::high_resolution_clock;
+    using NanoSeconds = std::chrono::nanoseconds;
+
 public:
     
     FrameLib_SpinLock() : mAtomicLock(false) {}
@@ -153,13 +154,28 @@ public:
     FrameLib_SpinLock(const FrameLib_SpinLock&) = delete;
     FrameLib_SpinLock& operator=(const FrameLib_SpinLock&) = delete;
     
-    bool attempt() { return compareAndSwap(mAtomicLock, false, true); }
-    void acquire() { while (attempt() == false); }
-    void release() { compareAndSwap(mAtomicLock, true, false); }
+    void acquire()
+    {
+        for (int i = 0; i < 10; i++)
+            if (attempt())
+                return;
+        
+        auto timeOut = Clock::now() + NanoSeconds(10000);
+        
+        while (Clock::now() < timeOut)
+            if (attempt())
+                return;
+        
+        while (!attempt())
+            std::this_thread::sleep_for(NanoSeconds(100));
+    }
+    
+    bool attempt() { return !mAtomicLock.test_and_set(); }
+    void release() { mAtomicLock.clear(); }
     
 private:
     
-    std::atomic<bool> mAtomicLock;
+    std::atomic_flag mAtomicLock;
 };
 
 
