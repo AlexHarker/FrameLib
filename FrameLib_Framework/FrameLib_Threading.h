@@ -25,8 +25,8 @@
 
 namespace OS_Specific
 {
-    typedef pthread_t OSThreadType;
-    typedef sem_t OSSemaphoreType;
+    using OSThreadType = pthread_t;
+    using OSSemaphoreType = sem_t;
     typedef void *OSThreadFunctionType(void *arg);
 }
 
@@ -39,8 +39,8 @@ namespace OS_Specific
 
 namespace OS_Specific
 {
-    typedef pthread_t OSThreadType;
-    typedef semaphore_t OSSemaphoreType;
+    using OSThreadType = pthread_t;
+    using OSSemaphoreType = semaphore_t;
     typedef void *OSThreadFunctionType(void *arg);
 }
 
@@ -52,8 +52,8 @@ namespace OS_Specific
 
 namespace OS_Specific
 {
-    typedef HANDLE OSThreadType;
-    typedef HANDLE OSSemaphoreType;
+    using OSThreadType = HANDLE;
+    using OSSemaphoreType = HANDLE;
     typedef DWORD WINAPI OSThreadFunctionType(LPVOID arg);
 }
 

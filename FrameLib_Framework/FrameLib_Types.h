@@ -21,8 +21,8 @@
 
 // Raw Bytes
 
-typedef unsigned char Byte;
-typedef unsigned char *BytePointer;
+using Byte = unsigned char;
+using BytePointer = Byte *;
 
 
 /**
