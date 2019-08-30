@@ -105,13 +105,14 @@ public:
      If the handle points to a nullptr, on return it will point to a valid FrameLib_Global object. Otherwise the reference count of the global object will be incremented. If a new global object is created it will use the object pointed to by notifier to report errors to the host.
      
      @param global a handle to a FrameLib_Global object.
+     @param priorities a set of values to set threading priorities.
      @param notifier a pointer to a class that extends FrameLib_ErrorReporter::HostNotifier.
 
      @sa release()
      
      */
     
-    static FrameLib_Global *get(FrameLib_Global **global, FrameLib_ErrorReporter::HostNotifier *notifier = nullptr);
+    static FrameLib_Global *get(FrameLib_Global **global, FrameLib_Thread::Priorities priorities, FrameLib_ErrorReporter::HostNotifier *notifier = nullptr);
     
     /** Release a FrameLib_Global object
      
@@ -128,8 +129,8 @@ private:
     
     // Constructor / Destructor
     
-    FrameLib_Global(FrameLib_ErrorReporter::HostNotifier *notifier)
-    : FrameLib_ErrorReporter(notifier), mAllocator(*this), mLocalAllocators(*this), mProcessingQueues(*this), mCount(0) {}
+    FrameLib_Global(FrameLib_Thread::Priorities priorities, FrameLib_ErrorReporter::HostNotifier *notifier)
+    : FrameLib_ErrorReporter(notifier), mAllocator(priorities, *this), mLocalAllocators(*this), mProcessingQueues(*this), mPriorities(priorities), mCount(0) {}
     ~FrameLib_Global() {};
     
     // Non-copyable
@@ -146,6 +147,10 @@ private:
     
     operator FrameLib_GlobalAllocator& () { return mAllocator; }
     
+    // Get thread priorities
+    
+    const FrameLib_Thread::Priorities& getPriorities() { return mPriorities; }
+    
     // Member Variables
     
     // Global Memory Allocator
@@ -156,6 +161,10 @@ private:
     
     PointerSet<FrameLib_LocalAllocator> mLocalAllocators;
     PointerSet<FrameLib_ProcessingQueue> mProcessingQueues;
+    
+    // Thread Priorities
+    
+    FrameLib_Thread::Priorities mPriorities;
     
     // Lock and Reference Count
     

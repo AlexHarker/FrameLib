@@ -111,7 +111,7 @@ private:
                 
     public:
         
-        CoreAllocator(FrameLib_ErrorReporter& errorReporter);
+        CoreAllocator(FrameLib_Thread::Priorities priorities, FrameLib_ErrorReporter& errorReporter);
         ~CoreAllocator();
         
         // Allocate and deallocate memory (plus pruning)
@@ -201,7 +201,8 @@ public:
 
     // Constructor / Destructor
     
-    FrameLib_GlobalAllocator(FrameLib_ErrorReporter& errorReporter) : mAllocator(errorReporter) {}
+    FrameLib_GlobalAllocator(FrameLib_Thread::Priorities priorities, FrameLib_ErrorReporter& errorReporter)
+    : mAllocator(priorities, errorReporter) {}
     ~FrameLib_GlobalAllocator() {}
     
     // Non-copyable

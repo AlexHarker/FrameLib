@@ -30,6 +30,8 @@ namespace OS_Specific
     typedef void *OSThreadFunctionType(void *arg);
 }
 
+#define DEFAULT_THREAD_PRIORITIES { 31, 52, 63, SCHED_FIFO }
+
 #elif defined(__APPLE__)
 
 // OSX specific definitions
@@ -44,6 +46,8 @@ namespace OS_Specific
     typedef void *OSThreadFunctionType(void *arg);
 }
 
+#define DEFAULT_THREAD_PRIORITIES { 31, 52, 63, SCHED_FIFO }
+
 #else
     
 // Windows OS specific definitions
@@ -56,6 +60,8 @@ namespace OS_Specific
     using OSSemaphoreType = HANDLE;
     typedef DWORD WINAPI OSThreadFunctionType(LPVOID arg);
 }
+
+#define DEFAULT_THREAD_PRIORITIES { THREAD_PRIORITY_LOWEST, THREAD_PRIORITY_HIGHEST THREAD_PRIORITY_TIME_CRITICAL, 0 }
 
 #endif
 
@@ -233,7 +239,21 @@ class FrameLib_Thread
     
 public:
     
-    enum PriorityLevel {kLowPriority, kMediumPriority, kHighPriority, kAudioPriority};
+    enum PriorityLevel {kLowPriority, kHighPriority, kAudioPriority};
+
+    // Structure for passing in priority settings from a host
+    
+    struct Priorities
+    {
+        int mLow, mHigh, mAudio, mRTPolicy;
+    };
+    
+    // Defaults priorities per platform
+    
+    static Priorities defaultPriorities()
+    {
+        return DEFAULT_THREAD_PRIORITIES;
+    }
 
     FrameLib_Thread(PriorityLevel priority, ThreadFunctionType *threadFunction, void *arg)
     : mInternal(nullptr), mPriority(priority), mThreadFunction(threadFunction), mArg(arg), mValid(false)
@@ -250,15 +270,13 @@ public:
     {
         std::this_thread::sleep_for(std::chrono::nanoseconds(nanoseconds));
     }
-    
-    static int currentThreadPriority();
-    
+        
     // Non-copyable
     
     FrameLib_Thread(const FrameLib_Thread&) = delete;
     FrameLib_Thread& operator=(const FrameLib_Thread&) = delete;
     
-    void start();
+    void start(const Priorities& priorities);
     void join();
 
 private:
@@ -330,6 +348,7 @@ private:
 
 class FrameLib_TriggerableThread
 {
+    using Priorities = FrameLib_Thread::Priorities;
     
 public:
 
@@ -343,7 +362,7 @@ public:
     
     // Start and join
     
-    void start() { mThread.start(); }
+    void start(const Priorities& priorities) { mThread.start(priorities); }
     void join();
     
     // Trigger the thread to do something
@@ -382,7 +401,8 @@ private:
 
 class FrameLib_DelegateThread
 {
-    
+    using Priorities = FrameLib_Thread::Priorities;
+
 public:
 
     FrameLib_DelegateThread(FrameLib_Thread::PriorityLevel priority)
@@ -396,7 +416,7 @@ public:
     
     // Start and join
 
-    void start() { mThread.start(); }
+    void start(const Priorities& priorities) { mThread.start(priorities); }
     void join();
     
     // Signal the thread to do something if it is not busy (returns true if the thread was signalled, false if busy)
@@ -446,6 +466,8 @@ private:
 
 class FrameLib_TriggerableThreadSet
 {
+    using Priorities = FrameLib_Thread::Priorities;
+    
     struct IndexedThread : public FrameLib_Thread
     {
         IndexedThread(PriorityLevel priority, FrameLib_TriggerableThreadSet *owner, unsigned int index)
@@ -462,7 +484,7 @@ public:
     
     // Start and join
     
-    void start();
+    void start(const Priorities& priorities);
     void join();
     
     // Trigger the threads to do something

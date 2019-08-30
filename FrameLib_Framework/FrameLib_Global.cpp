@@ -5,10 +5,10 @@
 
 // Retrieve and release the global object
 
-FrameLib_Global *FrameLib_Global::get(FrameLib_Global **global, FrameLib_ErrorReporter::HostNotifier *notifier)
+FrameLib_Global *FrameLib_Global::get(FrameLib_Global **global, FrameLib_Thread::Priorities priorities,  FrameLib_ErrorReporter::HostNotifier *notifier)
 {
     if (!*global)
-        *global = new FrameLib_Global(notifier);
+        *global = new FrameLib_Global(priorities, notifier);
 
     (*global)->increment();
     return *global;

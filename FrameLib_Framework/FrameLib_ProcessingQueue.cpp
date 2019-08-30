@@ -23,7 +23,7 @@ FrameLib_ProcessingQueue::FrameLib_ProcessingQueue(FrameLib_Global& global)
     for (unsigned int i = 0; i < FrameLib_Thread::maxThreads(); i++)
         mFreeBlocks.add(new FrameLib_FreeBlocks(global));
     
-    mWorkers.start();
+    mWorkers.start(global.getPriorities());
 }
 
 FrameLib_ProcessingQueue::~FrameLib_ProcessingQueue()

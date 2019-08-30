@@ -183,6 +183,17 @@ public:
     
 private:
     
+    // Generate some relevant thread priorities
+    
+    static FrameLib_Thread::Priorities priorities()
+    {
+#ifdef __APPLE__
+        if (maxversion() >= 0x800)
+            return { 31, 31, 43, SCHED_RR };
+#endif
+        return FrameLib_Thread::defaultPriorities();
+    }
+    
     // Get and release the max global items (singleton)
     
     static FrameLib_MaxGlobals *get()
@@ -203,7 +214,7 @@ private:
         if (!x)
             x = (FrameLib_MaxGlobals *) object_register(nameSpace, globalTag, object_new_typed(CLASS_NOBOX, gensym(maxGlobalClass), 0, nullptr));
         
-        FrameLib_Global::get(&x->mGlobal, x->mNotifier.get());
+        FrameLib_Global::get(&x->mGlobal, priorities(), x->mNotifier.get());
         
         return x;
     }
