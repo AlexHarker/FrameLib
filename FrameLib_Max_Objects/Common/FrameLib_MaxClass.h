@@ -1320,7 +1320,12 @@ private:
             srcout -= getNumAudioOutsRemote(src);
             dstin -= getNumAudioIns();
             
-            if (sys_getdspobjdspstate(*this))
+            // Check load update before we check the dspchain (in case we are loading in poly~ etc.)
+            
+            short loadupdate = dsp_setloadupdate(false);
+            dsp_setloadupdate(loadupdate);
+
+            if (loadupdate && sys_getdspobjdspstate(*this))
             {
                 if ((isOrderingInput(dstin) || validInput(dstin)) && updatetype != JPATCHLINE_ORDER)
                     dspchain_setbroken(dspchain_fromobject(*this));
