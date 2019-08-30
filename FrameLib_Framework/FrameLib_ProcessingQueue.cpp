@@ -41,13 +41,13 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
     // Get the free blocks for this thread
     
     FrameLib_FreeBlocks *blocks = mFreeBlocks[0].get();
-
+    
     // Set the entry object and start the clock
     
     mEntryObject = queue.peek();
     mClock.start();
     
-    // Enqueue Items
+    // Enqueue items
     
     enqueue(queue);
     
