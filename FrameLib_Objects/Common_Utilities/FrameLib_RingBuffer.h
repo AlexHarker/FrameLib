@@ -11,7 +11,7 @@ public:
     
     // Constructor
     
-    FrameLib_RingBuffer(FrameLib_Context context) : FrameLib_VectorSet(context), mCounter(0)
+    FrameLib_RingBuffer(FrameLib_DSP *owner) : FrameLib_VectorSet(owner), mCounter(0)
     {}
     
 public:

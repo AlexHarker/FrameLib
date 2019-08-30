@@ -2,7 +2,7 @@
 #ifndef FRAMELIB_VECTORSET_H
 #define FRAMELIB_VECTORSET_H
 
-#include "FrameLib_Context.h"
+#include "FrameLib_DSP.h"
 
 class FrameLib_VectorSet
 {
@@ -11,7 +11,7 @@ public:
     
     // Constructor
     
-    FrameLib_VectorSet(FrameLib_Context context) : mFrames(nullptr), mNumFrames(0), mFrameLength(0), mAllocator(context)
+    FrameLib_VectorSet(FrameLib_DSP *owner) : mFrames(nullptr), mNumFrames(0), mFrameLength(0), mAllocator(*owner)
     {}
     
     ~FrameLib_VectorSet()
@@ -45,20 +45,19 @@ private:
     
     double *allocVector(unsigned long N)
     {
-        return reinterpret_cast<double *>(mAllocator->alloc(sizeof(double) * N));
+        return mAllocator.allocate<double>(N);
     }
     
     void deallocVector(double *& ptr)
     {
-        mAllocator->dealloc(ptr);
-        ptr = nullptr;
+        mAllocator.deallocate(ptr);
     }
 
     double *mFrames;
     unsigned long mNumFrames;
     unsigned long mFrameLength;
     
-    FrameLib_Context::Allocator mAllocator;
+    FrameLib_DSP::Allocator mAllocator;
 };
 
 #endif
