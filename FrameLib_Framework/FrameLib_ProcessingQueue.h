@@ -120,7 +120,6 @@ public:
 private:
     
     void enqueue(PrepQueue &queue);
-    void mainThread();
     void wakeWorkers();
     void serviceQueue(int32_t index);
 

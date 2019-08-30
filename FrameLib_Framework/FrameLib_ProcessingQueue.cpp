@@ -33,12 +33,44 @@ FrameLib_ProcessingQueue::~FrameLib_ProcessingQueue()
 
 void FrameLib_ProcessingQueue::start(PrepQueue &queue)
 {
-    if (queue.size() && !mTimedOut)
+    if (!queue.size() || mTimedOut)
+        return;
+    
+    mEntryObject = queue.peek();
+    mClock.start();
+    enqueue(queue);
+    
+    // Service queue until done
+    
+    while (true)
     {
-        mEntryObject = queue.peek();
-        mClock.start();
-        enqueue(queue);
-        mainThread();
+        serviceQueue(0);
+        
+        if (mNumItems.load() == 0 || mTimedOut)
+            break;
+        
+        // FIX - how long is a good time to yield for in a high performance thread?
+        
+        FrameLib_Thread::sleepCurrentThread(100);
+    }
+    
+    // Cleanup free blocks
+    
+    for (auto it = mFreeBlocks.begin(); it != mFreeBlocks.end(); it++)
+        it->get()->clear();
+    
+    // Check for time out
+    
+    if (mTimedOut)
+    {
+        mErrorReporter.reportError(kErrorDSP, mEntryObject->getProxy(), "FrameLib - DSP time out - FrameLib is disabled in this context until this is resolved");
+        
+        // Clear the queue
+        
+        while (FrameLib_DSP *object = mQueue.dequeue())
+            object->ThreadNode::mNext = nullptr;
+        
+        mNumItems = 0;
     }
 }
 
@@ -123,42 +155,6 @@ void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
         
         if (mTimedOut)
             break;
-    }
-}
-
-void FrameLib_ProcessingQueue::mainThread()
-{
-    // Service queue until done
-    
-    while (true)
-    {
-        serviceQueue(0);
-        
-        if (mNumItems.load() == 0 || mTimedOut)
-            break;
-     
-        // FIX - how long is a good time to yield for in a high performance thread?
-
-        FrameLib_Thread::sleepCurrentThread(100);
-    }
-    
-    // Cleanup free blocks
-    
-    for (auto it = mFreeBlocks.begin(); it != mFreeBlocks.end(); it++)
-        it->get()->clear();
-    
-    // Check for time out
-    
-    if (mTimedOut)
-    {
-        mErrorReporter.reportError(kErrorDSP, mEntryObject->getProxy(), "FrameLib - DSP time out - FrameLib is disabled in this context until this is resolved");
-        
-        // Clear the queue
-        
-        while (FrameLib_DSP *object = mQueue.dequeue())
-            object->ThreadNode::mNext = nullptr;
-        
-        mNumItems = 0;
     }
 }
 
