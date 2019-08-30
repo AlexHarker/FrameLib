@@ -303,6 +303,7 @@
 		B88F556E207A59B9007774AD /* FrameLib_Reverse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88F5558207A5873007774AD /* FrameLib_Reverse.cpp */; };
 		B88F5570207A59E9007774AD /* fl.reverse~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B88F556F207A59E9007774AD /* fl.reverse~.cpp */; };
 		B88F558D207AAFBB007774AD /* HISSTools_FFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85435731F65BF03001BA1AA /* HISSTools_FFT.cpp */; };
+		B896BDB9231916C9007D0B26 /* FrameLib_OnePoleZero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF0531F2D2A1E00264316 /* FrameLib_OnePoleZero.cpp */; };
 		B8985E7A1FAA41410006B7E0 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8985E7B1FAA41410006B7E0 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8985E851FAA41B10006B7E0 /* FrameLib_GetParam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8985E841FAA41B10006B7E0 /* FrameLib_GetParam.cpp */; };
@@ -12307,6 +12308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B812606C20D697C2000B81D9 /* FrameLib_Expression.cpp in Sources */,
+				B896BDB9231916C9007D0B26 /* FrameLib_OnePoleZero.cpp in Sources */,
 				B83F0468223A77B700AF1F8E /* FrameLib_Pattern.cpp in Sources */,
 				B83F0467223A778E00AF1F8E /* FrameLib_Info.cpp in Sources */,
 				B812606B20D697BB000B81D9 /* FrameLib_ComplexExpression.cpp in Sources */,
