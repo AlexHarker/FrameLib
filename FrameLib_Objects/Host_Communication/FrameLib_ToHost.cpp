@@ -12,10 +12,7 @@ FrameLib_ToHost::FrameLib_ToHost(FrameLib_Context context, FrameLib_Parameters::
     setInputMode(0, false, true, false, kFrameAny);
 
     if (mProxy)
-    {
         mID = mProxy->registerObject(this, mStreamOwner, mStream);
-        mProxy->mObject = this;
-    }
 }
 
 FrameLib_ToHost::~FrameLib_ToHost()
@@ -62,18 +59,20 @@ void FrameLib_ToHost::process()
 {
     if (mProxy)
     {
+        Allocator allocator(*this);
+        
         if (getInputCurrentType(0) == kFrameNormal)
         {
             unsigned long sizeIn;
             const double *input = getInput(0, &sizeIn);
             
-            mProxy->sendToHost(mID, mStream, input, sizeIn);
+            mProxy->sendToHost(allocator, mID, mStream, input, sizeIn);
         }
         else
         {
             const FrameLib_Parameters::Serial *input = getInput(0);
             
-            mProxy->sendToHost(mID, mStream, input);
+            mProxy->sendToHost(allocator, mID, mStream, input);
         }
     }
 }
