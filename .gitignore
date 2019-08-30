@@ -46,7 +46,7 @@ test-builds/
 __pycache__/
 __tmp__/
 refpages/
-help_files/templates/
+Documentation/Max Documentation/help_files/templates/
 object_relationships.py
 Max_Object_List.h
 
@@ -57,3 +57,4 @@ Max_Object_List.h
 
 Icon?
 .DS_Stor*
+Documentation/Max Documentation/help_files/templates
