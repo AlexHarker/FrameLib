@@ -38,10 +38,17 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
     if (!queue.size() || mTimedOut)
         return;
     
+    // Get the free blocks for this thread
+    
     FrameLib_FreeBlocks *blocks = mFreeBlocks[0].get();
 
+    // Set the entry object and start the clock
+    
     mEntryObject = queue.peek();
     mClock.start();
+    
+    // Enqueue Items
+    
     enqueue(queue);
     
     // Service queue until done
@@ -67,7 +74,7 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
     
     if (mTimedOut)
     {
-        mErrorReporter.reportError(kErrorDSP, mEntryObject->getProxy(), "FrameLib - DSP time out - FrameLib is disabled in this context until this is resolved");
+        mErrorReporter.reportError(kErrorDSP, mEntryObject->getProxy(), "FrameLib - DSP time out - FrameLib disabled in this context");
         
         // Clear the queue
         
