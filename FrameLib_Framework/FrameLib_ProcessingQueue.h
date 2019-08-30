@@ -121,7 +121,7 @@ private:
     
     void enqueue(PrepQueue &queue);
     void wakeWorkers();
-    void serviceQueue(int32_t index);
+    void serviceQueue(FrameLib_FreeBlocks *blocks);
 
     WorkerThreads mWorkers;
     FrameLib_OwnedList<FrameLib_FreeBlocks> mFreeBlocks;

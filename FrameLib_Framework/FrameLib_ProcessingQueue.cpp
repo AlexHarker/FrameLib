@@ -9,7 +9,9 @@
 
 void FrameLib_ProcessingQueue::WorkerThreads::doTask(unsigned int index)
 {
-    mQueue->serviceQueue(index + 1);
+    FrameLib_FreeBlocks *blocks = mQueue->mFreeBlocks[index + 1].get();
+
+    mQueue->serviceQueue(blocks);
     mQueue->mNumWorkersActive--;
 }
 
@@ -36,6 +38,8 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
     if (!queue.size() || mTimedOut)
         return;
     
+    FrameLib_FreeBlocks *blocks = mFreeBlocks[0].get();
+
     mEntryObject = queue.peek();
     mClock.start();
     enqueue(queue);
@@ -44,7 +48,7 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
     
     while (true)
     {
-        serviceQueue(0);
+        serviceQueue(blocks);
         
         if (mNumItems.load() == 0 || mTimedOut)
             break;
@@ -127,10 +131,8 @@ void FrameLib_ProcessingQueue::wakeWorkers()
     }
 }
 
-void FrameLib_ProcessingQueue::serviceQueue(int32_t index)
+void FrameLib_ProcessingQueue::serviceQueue(FrameLib_FreeBlocks *blocks)
 {
-    FrameLib_FreeBlocks *blocks = mFreeBlocks[index].get();
-    
     unsigned long timedOutCount = 0;
     
     while (FrameLib_DSP *object = mQueue.dequeue())
