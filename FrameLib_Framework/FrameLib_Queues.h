@@ -22,7 +22,7 @@
  
  */
 
-template <class T>
+template <class T, class TopUser>
 class FrameLib_NodeBase { protected: T * mNext = nullptr; };
 
 /**
@@ -35,24 +35,29 @@ class FrameLib_NodeBase { protected: T * mNext = nullptr; };
  
  */
 
-// Non specialised empty template
+// Non specialised template inheriting virtual FrameLib_NodeBase that will be called for a single user
 
-template <class T, typename... Users>
-struct FrameLib_Node {};
-
-// Template specialisation inheriting virtual FrameLib_NodeBase and adding one friend
-
-template <class T, class User>
-struct FrameLib_Node<T, User> : virtual FrameLib_NodeBase<T>
+template <class T, class TopUser, typename... Users>
+struct FrameLib_Node : virtual FrameLib_NodeBase<T, TopUser>
 {
+    friend TopUser;
+};
+
+// Template specialisation inheriting virtual FrameLib_NodeBase and adding an additional friend
+
+template <class T, class TopUser, class User>
+struct FrameLib_Node<T, TopUser, User> : virtual FrameLib_NodeBase<T, TopUser>
+{
+    friend TopUser;
     friend User;
 };
 
-// Template specialisation allowing one or more classes access to FrameLib_NodeBase
+// Template specialisation allowing more than two classes access to FrameLib_NodeBase
 
-template <class T, class MainUser, class ... Users>
-struct FrameLib_Node<T, MainUser, Users...>
-: FrameLib_Node<T, MainUser>, FrameLib_Node<T, Users...> {};
+template <class T, class TopUser, class User, class ... OtherUsers>
+struct FrameLib_Node<T, TopUser, User, OtherUsers...>
+: FrameLib_Node<T, TopUser, User>, FrameLib_Node<T, TopUser, OtherUsers...> {};
+
 
 /**
  
@@ -66,13 +71,13 @@ struct FrameLib_Node<T, MainUser, Users...>
  
  */
 
-template <class T, class...Users>
+template <class T, class TopUser, class...OtherUsers>
 class FrameLib_Queue
 {
     
 public:
 
-    using Node = FrameLib_Node<T, FrameLib_Queue, Users...>;
+    using Node = FrameLib_Node<T, TopUser, FrameLib_Queue, OtherUsers...>;
 
     // Constructor
     
@@ -92,7 +97,7 @@ public:
         
         if (!empty())
         {
-            mTail->Node::mNext = item;
+            static_cast<Node *>(mTail)->mNext = item;
             mTail = item;
         }
         else
@@ -109,10 +114,10 @@ public:
             return nullptr;
         
         T *item = mHead;
-        mHead = item->Node::mNext;
+        mHead = static_cast<Node *>(item)->mNext;
         if (--mSize == 0)
             mTail = nullptr;
-        item->Node::mNext = nullptr;
+        static_cast<Node *>(item)->mNext = nullptr;
         
         return item;
     }
@@ -151,7 +156,7 @@ protected:
     
     bool queued(T* item) const
     {
-        return item->Node::mNext || item == mTail;
+        return static_cast<Node *>(item)->mNext || item == mTail;
     }
     
     // Reset the data structure once the items have been transferred elswhere
@@ -180,14 +185,15 @@ protected:
  */
 
 template <class T>
-class FrameLib_MethodQueue : private FrameLib_Queue<T>
+class FrameLib_MethodQueue : private FrameLib_Queue<T, FrameLib_MethodQueue<T>>
 {
 
 public:
     
     typedef void (T::*Method)(FrameLib_MethodQueue *);
 
-    using Node = typename FrameLib_Queue<T>::Node;
+    using Node = typename FrameLib_Queue<T, FrameLib_MethodQueue>::Node;
+    using Queue = FrameLib_Queue<T, FrameLib_MethodQueue>;
     
     // Constructors (default and starting with an object / method)
 
@@ -205,10 +211,10 @@ public:
     {
         // Do not add if nullptr or re-add if already in queue
         
-        if (!object || FrameLib_Queue<T>::queued(object))
+        if (!object || Queue::queued(object))
             return;
 
-        FrameLib_Queue<T>::push(object);
+        Queue::push(object);
     }
     
     // Start the queue
@@ -217,9 +223,9 @@ public:
     {
         assert(!mFirst && "Can't restart queue");
         
-        mFirst = FrameLib_Queue<T>::mHead;
+        mFirst = Queue::mHead;
         
-        while (T *object = FrameLib_Queue<T>::pop())
+        while (T *object = Queue::pop())
             (object->*method)(this);
         
         mFirst = nullptr;
@@ -289,7 +295,7 @@ public:
         while (true)
         {
             const Pointer head = mHead.load(std::memory_order_relaxed);
-            queue.mTail->Node::mNext = head.mPointer;
+            static_cast<Node *>(queue.mTail)->mNext = head.mPointer;
             
             // Attempt to swap head
             
@@ -321,9 +327,9 @@ public:
             
             // Attempt to change the head and complete dequeue
             
-            if (mHead.trySwap(item->Node::mNext, head))
+            if (mHead.trySwap(static_cast<Node *>(item)->mNext, head))
             {
-                item->Node::mNext = nullptr;
+                static_cast<Node *>(item)->mNext = nullptr;
                 return item;
             }
         }
