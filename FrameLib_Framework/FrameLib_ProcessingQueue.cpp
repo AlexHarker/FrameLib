@@ -9,7 +9,7 @@
 
 void FrameLib_ProcessingQueue::WorkerThreads::doTask(unsigned int index)
 {
-    FrameLib_FreeBlocks *blocks = mQueue->mFreeBlocks[index + 1].get();
+    FrameLib_FreeBlocks *blocks = mQueue->mFreeBlocks.get(index + 1);
 
     mQueue->serviceQueue(blocks);
     mQueue->mNumWorkersActive--;
@@ -18,12 +18,9 @@ void FrameLib_ProcessingQueue::WorkerThreads::doTask(unsigned int index)
 // Constructor / Destructor
 
 FrameLib_ProcessingQueue::FrameLib_ProcessingQueue(FrameLib_Global& global)
-: mWorkers(this), mNumItems(0), mNumWorkersActive(0), mMultithread(true), mTimedOut(false), mEntryObject(nullptr), mErrorReporter(global)
+: mWorkers(this), mFreeBlocks(global, FrameLib_Thread::maxThreads()),  mNumItems(0), mNumWorkersActive(0), mMultithread(true), mTimedOut(false), mEntryObject(nullptr), mErrorReporter(global)
 {
-    for (unsigned int i = 0; i < FrameLib_Thread::maxThreads(); i++)
-        mFreeBlocks.add(new FrameLib_FreeBlocks(global));
-    
-    mWorkers.start(global.getPriorities());
+   mWorkers.start(global.getPriorities());
 }
 
 FrameLib_ProcessingQueue::~FrameLib_ProcessingQueue()
@@ -40,7 +37,7 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
     
     // Get the free blocks for this thread
     
-    FrameLib_FreeBlocks *blocks = mFreeBlocks[0].get();
+    FrameLib_FreeBlocks *blocks = mFreeBlocks.get(0);
     
     // Set the entry object and start the clock
     
@@ -67,8 +64,7 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
     
     // Cleanup free blocks
     
-    for (auto it = mFreeBlocks.begin(); it != mFreeBlocks.end(); it++)
-        it->get()->clear();
+    mFreeBlocks.clear();
     
     // Check for time out
     

@@ -243,6 +243,8 @@ class FrameLib_FreeBlocks
 {
     static const int numLocalFreeBlocks = 16;
     
+    friend class FrameLib_FreeBlocksSet;
+    
     /**
      
      @struct FreeBlock
@@ -295,6 +297,28 @@ private:
     FreeBlock *mTail;
 };
 
+
+class FrameLib_FreeBlocksSet
+{
+    
+public:
+    
+    // Constructor
+    
+    FrameLib_FreeBlocksSet(FrameLib_GlobalAllocator& allocator, unsigned int size);
+    
+    // Get indexed blocks
+    
+    FrameLib_FreeBlocks *get(unsigned int idx) { return mBlocks[idx].get(); }
+    
+    // Clear Local Free Blocks (and prune global allocator)
+    
+    void clear();
+    
+private:
+    
+    FrameLib_OwnedList<FrameLib_FreeBlocks> mBlocks;
+};
 
 /**
  

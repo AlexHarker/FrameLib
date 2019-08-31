@@ -126,7 +126,7 @@ private:
     void serviceQueue(FrameLib_FreeBlocks *blocks);
 
     WorkerThreads mWorkers;
-    FrameLib_OwnedList<FrameLib_FreeBlocks> mFreeBlocks;
+    FrameLib_FreeBlocksSet mFreeBlocks;
 
     MainQueue mQueue;
     
