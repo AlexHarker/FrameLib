@@ -117,7 +117,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 10.0, 181.0, 171.0, 23.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 4.0, 80.999999999999972, 171.0, 23.0 ],
+					"presentation_rect" : [ 4.0, 80.999999999999972, 157.0, 23.0 ],
 					"text" : "Parameter Description:"
 				}
 
@@ -158,7 +158,7 @@
 					"patching_rect" : [ 356.0, 312.0, 408.833333333333258, 256.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 14,
-					"presentation_rect" : [ 4.0, 104.999999999999972, 616.0, 225.0 ],
+					"presentation_rect" : [ 4.0, 104.999999999999972, 618.0, 225.0 ],
 					"text" : "Sets the type of output scaling: linear / log / exp - scaling as specified. pow - scale the input range to [0-1], apply the specified exponent and then scale to the output range. db / invdb - output / input respectively are set in dB but scaled as gain values. transpose / invtranspose - output / input respectively are set in semitones but scaled as ratios for transposition.\n\nParameter Options:\n[0] - linear\n[1] - log\n[2] - exp\n[3] - pow\n[4] - db\n[5] - invdb\n[6] - transpose\n[7] - invtranspose"
 				}
 
