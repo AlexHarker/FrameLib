@@ -9,16 +9,16 @@
 
 void FrameLib_ProcessingQueue::WorkerThreads::doTask(unsigned int index)
 {
-    FrameLib_FreeBlocks *blocks = mQueue->mFreeBlocks.get(index + 1);
+    FrameLib_LocalAllocator *allocator = mQueue->mAllocators.get(index + 1);
 
-    mQueue->serviceQueue(blocks);
+    mQueue->serviceQueue(allocator);
     mQueue->mNumWorkersActive--;
 }
 
 // Constructor / Destructor
 
 FrameLib_ProcessingQueue::FrameLib_ProcessingQueue(FrameLib_Global& global)
-: mWorkers(this), mFreeBlocks(global, FrameLib_Thread::maxThreads()),  mNumItems(0), mNumWorkersActive(0), mMultithread(true), mTimedOut(false), mEntryObject(nullptr), mErrorReporter(global)
+: mWorkers(this), mAllocators(global, FrameLib_Thread::maxThreads()),  mNumItems(0), mNumWorkersActive(0), mMultithread(true), mTimedOut(false), mEntryObject(nullptr), mErrorReporter(global)
 {
    mWorkers.start(global.getPriorities());
 }
@@ -37,7 +37,7 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
     
     // Get the free blocks for this thread
     
-    FrameLib_FreeBlocks *blocks = mFreeBlocks.get(0);
+    FrameLib_LocalAllocator *allocator = mAllocators.get(0);
     
     // Set the entry object and start the clock
     
@@ -52,7 +52,7 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
     
     while (true)
     {
-        serviceQueue(blocks);
+        serviceQueue(allocator);
         
         if (mNumItems.load() == 0 || mTimedOut)
             break;
@@ -62,9 +62,9 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
         FrameLib_Thread::sleepCurrentThread(100);
     }
     
-    // Cleanup free blocks
+    // Clear the thread local allocator
     
-    mFreeBlocks.clear();
+    mAllocators.clear();
     
     // Check for time out
     
@@ -134,7 +134,7 @@ void FrameLib_ProcessingQueue::wakeWorkers()
     }
 }
 
-void FrameLib_ProcessingQueue::serviceQueue(FrameLib_FreeBlocks *blocks)
+void FrameLib_ProcessingQueue::serviceQueue(FrameLib_LocalAllocator *allocator)
 {
     unsigned long timedOutCount = 0;
     
@@ -142,7 +142,7 @@ void FrameLib_ProcessingQueue::serviceQueue(FrameLib_FreeBlocks *blocks)
     {
         while (object && !mTimedOut)
         {
-            object->dependenciesReady(blocks);
+            object->dependenciesReady(allocator);
             FrameLib_DSP *newObject = object->ThreadNode::mNext;
             object->ThreadNode::mNext = nullptr;
             object = newObject;

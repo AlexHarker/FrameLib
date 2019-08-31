@@ -394,9 +394,9 @@ void FrameLib_DSP::incrementInputDependency()
 
 // Main code to control time flow (called when all input/output dependencies are ready)
 
-void FrameLib_DSP::dependenciesReady(FrameLib_FreeBlocks *freeBlocks)
+void FrameLib_DSP::dependenciesReady(FrameLib_LocalAllocator *allocator)
 {
-    setFreeBlocks(freeBlocks);
+    setLocalAllocator(allocator);
     
 #ifndef NDEBUG
     FrameLib_TimeFormat inputTime = mInputTime;
@@ -559,7 +559,7 @@ void FrameLib_DSP::dependenciesReady(FrameLib_FreeBlocks *freeBlocks)
     if (mUpdatingInputs < prevUpdatingInputs)
         dependencyNotify(queue, false, kSelfConnection);
     
-    removeFreeBlocks();
+    removeLocalAllocator();
 
     // Debug (before re-entering)
     

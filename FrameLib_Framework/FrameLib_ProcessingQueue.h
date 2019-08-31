@@ -123,10 +123,10 @@ private:
     
     void enqueue(PrepQueue &queue);
     void wakeWorkers();
-    void serviceQueue(FrameLib_FreeBlocks *blocks);
+    void serviceQueue(FrameLib_LocalAllocator *allocator);
 
     WorkerThreads mWorkers;
-    FrameLib_FreeBlocksSet mFreeBlocks;
+    FrameLib_LocalAllocatorSet mAllocators;
 
     MainQueue mQueue;
     

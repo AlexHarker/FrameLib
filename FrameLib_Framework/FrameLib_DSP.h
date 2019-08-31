@@ -306,7 +306,7 @@ private:
     bool dependencyNotify(bool releaseMemory, NotificationType type);
     void dependencyNotify(NotificationQueue &queue, bool releaseMemory, NotificationType type);
     
-    void dependenciesReady(FrameLib_FreeBlocks *freeBlocks);
+    void dependenciesReady(FrameLib_LocalAllocator *allocator);
     void incrementInputDependency();
     void resetOutputDependencyCount();
     int32_t getNumOuputDependencies()         { return static_cast<int32_t>(mOutputDependencies.size()); }

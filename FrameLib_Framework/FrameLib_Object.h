@@ -135,7 +135,7 @@ public:
     // Constructor / Destructor
     
     FrameLib_Object(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy)
-    : mType(type), mContext(context), mAllocator(context), mFreeBlocks(nullptr), mProxy(proxy), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
+    : mType(type), mContext(context), mAllocator(context), mLocalAllocator(nullptr), mProxy(proxy), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
     
     virtual ~FrameLib_Object()              { clearConnections(false); }
    
@@ -345,10 +345,10 @@ protected:
     template <class U>
     U *alloc(size_t N)
     {
-        FrameLib_FreeBlocks *freeBlocks = mFreeBlocks;
-        
-        if (freeBlocks)
-            return reinterpret_cast<U *>(freeBlocks->alloc(sizeof(U) * N));
+        FrameLib_LocalAllocator *allocator = mLocalAllocator;
+
+        if (allocator)
+            return reinterpret_cast<U *>(allocator->alloc(sizeof(U) * N));
         else
             return reinterpret_cast<U *>(mAllocator->alloc(sizeof(U) * N));
     }
@@ -356,21 +356,24 @@ protected:
     template <class U>
     void dealloc(U *& ptr)
     {
-        FrameLib_FreeBlocks *freeBlocks = mFreeBlocks;
+        FrameLib_LocalAllocator *allocator = mLocalAllocator;
 
-        if (freeBlocks)
-            freeBlocks->dealloc(ptr);
+        if (allocator)
+            allocator->dealloc(ptr);
         else
             mAllocator->dealloc(ptr);
         
         ptr = nullptr;
     }
     
-    void setFreeBlocks(FrameLib_FreeBlocks *blocks)     { mFreeBlocks = blocks; }
-    void removeFreeBlocks()                             { mFreeBlocks = nullptr; }
-    void pruneAllocator()                               { mAllocator->prune(); }
+    void setLocalAllocator(FrameLib_LocalAllocator *allocator)      { mLocalAllocator = allocator; }
+    void removeLocalAllocator()                                     { mLocalAllocator = nullptr; }
+    void pruneAllocator()                                           { mAllocator->prune(); }
     
-    FrameLib_ContextAllocator::Storage *registerStorage(const char *name)     { return mAllocator->registerStorage(name); }
+    FrameLib_ContextAllocator::Storage *registerStorage(const char *name)
+    {
+        return mAllocator->registerStorage(name);
+    }
     
     void releaseStorage(FrameLib_ContextAllocator::Storage *&storage)
     {
@@ -867,7 +870,7 @@ private:
     const ObjectType mType;
     FrameLib_Context mContext;
     FrameLib_Context::Allocator mAllocator;
-    FrameLib_FreeBlocks* mFreeBlocks;
+    FrameLib_LocalAllocator* mLocalAllocator;
 
     FrameLib_Proxy *mProxy;
     

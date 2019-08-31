@@ -333,11 +333,12 @@ void FrameLib_ContextAllocator::Storage::resize(bool tagged, unsigned long size)
 
 // ************************************************************************************** //
 
-// Free Blocks
+// Thread Local Allocator
 
 // Constructor / Destructor
 
-FrameLib_FreeBlocks::FrameLib_FreeBlocks(FrameLib_GlobalAllocator& allocator) : mAllocator(allocator)
+FrameLib_LocalAllocator::FrameLib_LocalAllocator(FrameLib_GlobalAllocator& allocator)
+: mAllocator(allocator)
 {
     // Setup the free lists as a circularly linked list
     
@@ -352,14 +353,14 @@ FrameLib_FreeBlocks::FrameLib_FreeBlocks(FrameLib_GlobalAllocator& allocator) : 
     mTail->mNext->mPrev = mTail;
 }
 
-FrameLib_FreeBlocks::~FrameLib_FreeBlocks()
+FrameLib_LocalAllocator::~FrameLib_LocalAllocator()
 {
     clear();
 }
 
 // Allocate / Deallocate Memory
 
-void *FrameLib_FreeBlocks::alloc(size_t size)
+void *FrameLib_LocalAllocator::alloc(size_t size)
 {
     if (!size)
         return nullptr;
@@ -379,7 +380,7 @@ void *FrameLib_FreeBlocks::alloc(size_t size)
     return mAllocator.alloc(size);;
 }
 
-void FrameLib_FreeBlocks::dealloc(void *ptr)
+void FrameLib_LocalAllocator::dealloc(void *ptr)
 {
     if (ptr)
     {
@@ -401,7 +402,7 @@ void FrameLib_FreeBlocks::dealloc(void *ptr)
 
 // Remove a Free Block after Allocation and Return the Pointer
 
-void *FrameLib_FreeBlocks::removeBlock(FreeBlock *block)
+void *FrameLib_LocalAllocator::removeBlock(FreeBlock *block)
 {
     void *ptr = block->mMemory;
     
@@ -433,7 +434,7 @@ void *FrameLib_FreeBlocks::removeBlock(FreeBlock *block)
     return ptr;
 }
 
-void FrameLib_FreeBlocks::clear()
+void FrameLib_LocalAllocator::clear()
 {
     // Acquire the main allocator and then free all blocks before releasing
     
@@ -452,31 +453,31 @@ void FrameLib_FreeBlocks::clear()
 
 // ************************************************************************************** //
 
-// Free Blocks Set
+// Thread Local Allocator Set
 
-FrameLib_FreeBlocksSet::FrameLib_FreeBlocksSet(FrameLib_GlobalAllocator& allocator, unsigned int size)
+FrameLib_LocalAllocatorSet::FrameLib_LocalAllocatorSet(FrameLib_GlobalAllocator& allocator, unsigned int size)
 {
     for (unsigned int i = 0; i < size; i++)
-        mBlocks.add(new FrameLib_FreeBlocks(allocator));
+        mAllocators.add(new FrameLib_LocalAllocator(allocator));
 }
 
-void FrameLib_FreeBlocksSet::clear()
+void FrameLib_LocalAllocatorSet::clear()
 {
     // Acquire the main allocator and then free all blocks before releasing
     
-    FrameLib_GlobalAllocator::Pruner pruner(mBlocks[0]->mAllocator);
+    FrameLib_GlobalAllocator::Pruner pruner(mAllocators[0]->mAllocator);
     
-    for (unsigned int i = 0; i < mBlocks.size(); i++)
+    for (unsigned int i = 0; i < mAllocators.size(); i++)
     {
-        FrameLib_FreeBlocks *blocks = get(i);
+        FrameLib_LocalAllocator *allocator = get(i);
         
-        for (unsigned int j = 0; j < FrameLib_FreeBlocks::numLocalFreeBlocks; j++)
+        for (unsigned int j = 0; j < FrameLib_LocalAllocator::numLocalFreeBlocks; j++)
         {
-            if (blocks->mFreeLists[i].mMemory)
+            if (allocator->mFreeLists[i].mMemory)
             {
-                pruner.dealloc(blocks->mFreeLists[i].mMemory);
-                blocks->mFreeLists[i].mMemory = nullptr;
-                blocks->mFreeLists[i].mSize = 0;
+                pruner.dealloc(allocator->mFreeLists[i].mMemory);
+                allocator->mFreeLists[i].mMemory = nullptr;
+                allocator->mFreeLists[i].mSize = 0;
             }
         }
     }

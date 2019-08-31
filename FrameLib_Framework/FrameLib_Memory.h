@@ -231,7 +231,7 @@ private:
 
 /**
  
- @class FrameLib_FreeBlocks
+ @class FrameLib_LocalAllocator
  
  @ingroup Memory
  
@@ -239,11 +239,11 @@ private:
  
  */
 
-class FrameLib_FreeBlocks
+class FrameLib_LocalAllocator
 {
     static const int numLocalFreeBlocks = 16;
     
-    friend class FrameLib_FreeBlocksSet;
+    friend class FrameLib_LocalAllocatorSet;
     
     /**
      
@@ -266,13 +266,13 @@ class FrameLib_FreeBlocks
     
     // Non-copyable
 
-    FrameLib_FreeBlocks(const FrameLib_FreeBlocks&) = delete;
-    FrameLib_FreeBlocks& operator=(const FrameLib_FreeBlocks&) = delete;
+    FrameLib_LocalAllocator(const FrameLib_LocalAllocator&) = delete;
+    FrameLib_LocalAllocator& operator=(const FrameLib_LocalAllocator&) = delete;
     
 public:
     
-    FrameLib_FreeBlocks(FrameLib_GlobalAllocator& allocator);
-    ~FrameLib_FreeBlocks();
+    FrameLib_LocalAllocator(FrameLib_GlobalAllocator& allocator);
+    ~FrameLib_LocalAllocator();
     
     // Allocate / Deallocate Memory
     
@@ -300,7 +300,7 @@ private:
 
 /**
  
- @class FrameLib_FreeBlocksSet
+ @class FrameLib_LocalAllocatorSet
  
  @ingroup Memory
  
@@ -308,18 +308,18 @@ private:
  
  */
 
-class FrameLib_FreeBlocksSet
+class FrameLib_LocalAllocatorSet
 {
     
 public:
     
     // Constructor
     
-    FrameLib_FreeBlocksSet(FrameLib_GlobalAllocator& allocator, unsigned int size);
+    FrameLib_LocalAllocatorSet(FrameLib_GlobalAllocator& allocator, unsigned int size);
     
     // Get indexed blocks
     
-    FrameLib_FreeBlocks *get(unsigned int idx) { return mBlocks[idx].get(); }
+    FrameLib_LocalAllocator *get(unsigned int idx) { return mAllocators[idx].get(); }
     
     // Clear Free Blocks (and prune global allocator)
     
@@ -327,7 +327,7 @@ public:
     
 private:
     
-    FrameLib_OwnedList<FrameLib_FreeBlocks> mBlocks;
+    FrameLib_OwnedList<FrameLib_LocalAllocator> mAllocators;
 };
 
 /**
