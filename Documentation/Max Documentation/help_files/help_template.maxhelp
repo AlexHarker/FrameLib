@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 42.0, 85.0, 662.0, 808.0 ],
+		"rect" : [ 42.0, 85.0, 662.0, 809.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -56,7 +56,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 42.0, 111.0, 662.0, 782.0 ],
+						"rect" : [ 42.0, 111.0, 662.0, 783.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -86,6 +86,22 @@
 						"showontab" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
+									"border" : 0,
+									"filename" : "fl.helpdetails.js",
+									"id" : "obj-4",
+									"ignoreclick" : 1,
+									"jsarguments" : [ "jsarguments" ],
+									"maxclass" : "jsui",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 15.0, 15.0, 630.0, 150.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"fontsize" : 13.0,
 									"id" : "obj-3",
 									"maxclass" : "comment",
@@ -104,25 +120,6 @@
 									"clickthrough" : 0,
 									"enablehscroll" : 0,
 									"enablevscroll" : 0,
-									"id" : "obj-2",
-									"lockeddragscroll" : 0,
-									"maxclass" : "bpatcher",
-									"name" : "fl.docs.header.maxpat",
-									"numinlets" : 0,
-									"numoutlets" : 0,
-									"offset" : [ 0.0, 0.0 ],
-									"patching_rect" : [ 15.0, 15.0, 617.0, 155.0 ],
-									"viewvisibility" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bgmode" : 0,
-									"border" : 0,
-									"clickthrough" : 0,
-									"enablehscroll" : 0,
-									"enablevscroll" : 0,
 									"id" : "obj-128",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
@@ -130,7 +127,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 0,
 									"offset" : [ 0.0, 0.0 ],
-									"patching_rect" : [ 15.0, 172.0, 630.0, 565.0 ],
+									"patching_rect" : [ 15.0, 165.0, 630.0, 565.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -165,13 +162,6 @@
 				"bootpath" : "~/Documents/Max 8/Packages/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Documents/Max 8/Packages/FrameLib/misc",
 				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.docs.header.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/FrameLib/misc",
-				"patcherrelativepath" : "../../../../Documents/Max 8/Packages/FrameLib/misc",
-				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
