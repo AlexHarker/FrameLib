@@ -282,7 +282,7 @@ public:
         }
     }
     
-    // Enqueue a pre=prepared queue
+    // Enqueue a pre-prepared queue
     
     void enqueue(Queue& queue)
     {
@@ -298,7 +298,6 @@ public:
         }
         
         queue.clear();
-
     }
     
     // Dequeue one item
