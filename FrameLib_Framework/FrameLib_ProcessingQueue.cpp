@@ -77,6 +77,10 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
         while (FrameLib_DSP *object = mQueue.dequeue())
             object->ThreadNode::mNext = nullptr;
         
+        // Wait for all thhreads to return
+        
+        while (mNumWorkersActive.load());
+        
         mNumItems = 0;
     }
 }
@@ -151,16 +155,23 @@ void FrameLib_ProcessingQueue::serviceQueue(FrameLib_LocalAllocator *allocator)
             
             if (++timedOutCount == sProcessPerTimeCheck)
             {
-                if (mClock.elapsed() > sMaxTime)
-                    mTimedOut = true;
+                if (checkForTimeOut())
+                    return;
                 timedOutCount = 0;
             }
         }
         mNumItems--;
-        
-        if (mTimedOut)
-            break;
     }
+    
+    checkForTimeOut();
+}
+
+bool FrameLib_ProcessingQueue::checkForTimeOut()
+{
+    if (!mTimedOut && mClock.elapsed() > sMaxTime)
+        mTimedOut = true;
+    
+    return isTimedOut();
 }
 
 // Audio Queue

@@ -124,7 +124,8 @@ private:
     void enqueue(PrepQueue &queue);
     void wakeWorkers();
     void serviceQueue(FrameLib_LocalAllocator *allocator);
-
+    bool checkForTimeOut();
+    
     WorkerThreads mWorkers;
     FrameLib_LocalAllocatorSet mAllocators;
 
@@ -134,7 +135,7 @@ private:
     std::atomic<int32_t> mNumWorkersActive;
     
     bool mMultithread;
-    bool mTimedOut;
+    std::atomic<bool> mTimedOut;
     IntervalSecondsClock mClock;
     
     FrameLib_DSP *mEntryObject;
