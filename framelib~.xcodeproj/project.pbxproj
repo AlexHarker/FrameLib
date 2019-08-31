@@ -17011,6 +17011,7 @@
 		};
 		B83E02AC206674D4005925DD /* Development */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -17051,6 +17052,7 @@
 		};
 		B83E02AD206674D4005925DD /* Deployment */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -17090,6 +17092,7 @@
 		};
 		B83E02AE206674D4005925DD /* Public Testing */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -23518,6 +23521,7 @@
 		};
 		B89ABA911FA73484006DAD53 /* Development */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -23561,6 +23565,7 @@
 		};
 		B89ABA921FA73484006DAD53 /* Deployment */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -23600,6 +23605,7 @@
 		};
 		B89ABA931FA73484006DAD53 /* Public Testing */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -26295,6 +26301,7 @@
 		};
 		B8BA6FD42078D49500D3DB3D /* Development */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -26348,6 +26355,7 @@
 		};
 		B8BA6FD52078D49500D3DB3D /* Deployment */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -26396,6 +26404,7 @@
 		};
 		B8BA6FD62078D49500D3DB3D /* Public Testing */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
