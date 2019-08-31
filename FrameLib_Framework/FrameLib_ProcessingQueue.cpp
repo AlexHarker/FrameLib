@@ -18,7 +18,7 @@ void FrameLib_ProcessingQueue::WorkerThreads::doTask(unsigned int index)
 // Constructor / Destructor
 
 FrameLib_ProcessingQueue::FrameLib_ProcessingQueue(FrameLib_Global& global)
-: mWorkers(this), mAllocators(global, FrameLib_Thread::maxThreads()),  mNumItems(0), mNumWorkersActive(0), mMultithread(true), mTimedOut(false), mEntryObject(nullptr), mErrorReporter(global)
+: mWorkers(this), mAllocators(global, FrameLib_Thread::maxThreads()), mNumItems(0), mNumWorkersActive(0), mMultithread(true), mTimedOut(false), mEntryObject(nullptr), mErrorReporter(global)
 {
    mWorkers.start(global.getPriorities());
 }
