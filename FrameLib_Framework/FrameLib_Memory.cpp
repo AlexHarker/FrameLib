@@ -271,13 +271,13 @@ size_t FrameLib_GlobalAllocator::alignSize(size_t x)
 
 // ************************************************************************************** //
 
-// Local Storage
+// Context Local Storage
 
-FrameLib_LocalAllocator::Storage::Storage(const char *name, FrameLib_LocalAllocator& allocator)
+FrameLib_ContextAllocator::Storage::Storage(const char *name, FrameLib_ContextAllocator& allocator)
 :  mName(name), mType(kFrameNormal), mData(nullptr), mSize(0), mMaxSize(0), mCount(1), mAllocator(allocator)
 {}
 
-FrameLib_LocalAllocator::Storage::~Storage()
+FrameLib_ContextAllocator::Storage::~Storage()
 {
     if (mType == kFrameTagged)
         getTagged()->~Serial();
@@ -285,7 +285,7 @@ FrameLib_LocalAllocator::Storage::~Storage()
     mAllocator.dealloc(mData);
 }
 
-void FrameLib_LocalAllocator::Storage::resize(bool tagged, unsigned long size)
+void FrameLib_ContextAllocator::Storage::resize(bool tagged, unsigned long size)
 {
     size_t actualSize = tagged ? Serial::inPlaceSize(size) : size * sizeof(double);
     size_t maxSize = actualSize << 1;
@@ -484,11 +484,11 @@ void FrameLib_FreeBlocksSet::clear()
 
 // ************************************************************************************** //
 
-// The Local Allocator
+// The Context Allocator
 
 // Allocate / Deallocate Memory
 
-void *FrameLib_LocalAllocator::alloc(size_t size)
+void *FrameLib_ContextAllocator::alloc(size_t size)
 {
     if (!size)
         return nullptr;
@@ -496,7 +496,7 @@ void *FrameLib_LocalAllocator::alloc(size_t size)
     return mAllocator.alloc(size);
 }
 
-void FrameLib_LocalAllocator::dealloc(void *ptr)
+void FrameLib_ContextAllocator::dealloc(void *ptr)
 {
     // Deallocate using free blocks if present
     
@@ -504,9 +504,9 @@ void FrameLib_LocalAllocator::dealloc(void *ptr)
         mAllocator.dealloc(ptr);
 }
 
-// Clear Local Free Blocks (and prune global allocator)
+// Prune the global allocator
 
-void FrameLib_LocalAllocator::prune()
+void FrameLib_ContextAllocator::prune()
 {
     // Prune the global allocator
     
@@ -515,7 +515,7 @@ void FrameLib_LocalAllocator::prune()
 
 // Register and Release Storage
 
-FrameLib_LocalAllocator::Storage *FrameLib_LocalAllocator::registerStorage(const char *name)
+FrameLib_ContextAllocator::Storage *FrameLib_ContextAllocator::registerStorage(const char *name)
 {
     auto it = findStorage(name);
     
@@ -529,7 +529,7 @@ FrameLib_LocalAllocator::Storage *FrameLib_LocalAllocator::registerStorage(const
     return mStorage.back();
 }
 
-void FrameLib_LocalAllocator::releaseStorage(const char *name)
+void FrameLib_ContextAllocator::releaseStorage(const char *name)
 {
     auto it = findStorage(name);
     
@@ -542,7 +542,7 @@ void FrameLib_LocalAllocator::releaseStorage(const char *name)
 
 // Find Storage by Name
 
-std::vector<FrameLib_LocalAllocator::Storage *>::iterator FrameLib_LocalAllocator::findStorage(const char *name)
+std::vector<FrameLib_ContextAllocator::Storage *>::iterator FrameLib_ContextAllocator::findStorage(const char *name)
 {
     for (auto it = mStorage.begin(); it != mStorage.end(); it++)
         if (!strcmp((*it)->getName(), name))

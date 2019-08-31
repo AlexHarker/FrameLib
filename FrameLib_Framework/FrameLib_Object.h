@@ -370,9 +370,9 @@ protected:
     void removeFreeBlocks()                             { mFreeBlocks = nullptr; }
     void pruneAllocator()                               { mAllocator->prune(); }
     
-    FrameLib_LocalAllocator::Storage *registerStorage(const char *name)     { return mAllocator->registerStorage(name); }
+    FrameLib_ContextAllocator::Storage *registerStorage(const char *name)     { return mAllocator->registerStorage(name); }
     
-    void releaseStorage(FrameLib_LocalAllocator::Storage *&storage)
+    void releaseStorage(FrameLib_ContextAllocator::Storage *&storage)
     {
         mAllocator->releaseStorage(storage->getName());
         storage = nullptr;

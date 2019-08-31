@@ -233,7 +233,7 @@ bool FrameLib_DSP::allocateOutputs()
         // Calculate allocation size, including necessary alignment padding and assuming success
         
         size_t unalignedSize = outs->mCurrentType == kFrameNormal ? outs->mRequestedSize * sizeof(double) : Serial::inPlaceSize(outs->mRequestedSize);
-        size_t alignedSize = FrameLib_LocalAllocator::alignSize(unalignedSize);
+        size_t alignedSize = FrameLib_ContextAllocator::alignSize(unalignedSize);
         
         outs->mCurrentSize = outs->mRequestedSize;
         outs->mPointerOffset = allocationSize;

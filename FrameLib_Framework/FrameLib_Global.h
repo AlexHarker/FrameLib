@@ -130,7 +130,7 @@ private:
     // Constructor / Destructor
     
     FrameLib_Global(FrameLib_Thread::Priorities priorities, FrameLib_ErrorReporter::HostNotifier *notifier)
-    : FrameLib_ErrorReporter(notifier), mAllocator(priorities, *this), mLocalAllocators(*this), mProcessingQueues(*this), mPriorities(priorities), mCount(0) {}
+    : FrameLib_ErrorReporter(notifier), mAllocator(priorities, *this), mContextAllocators(*this), mProcessingQueues(*this), mPriorities(priorities), mCount(0) {}
     ~FrameLib_Global() {};
     
     // Non-copyable
@@ -143,7 +143,7 @@ private:
     void increment();
     FrameLib_Global *decrement();
     
-    // Conversion to allocator for initisation of local allocators
+    // Conversion to allocator for initialisation of context and local allocators
     
     operator FrameLib_GlobalAllocator& () { return mAllocator; }
     
@@ -159,7 +159,7 @@ private:
     
     // Context-specific Resources
     
-    PointerSet<FrameLib_LocalAllocator> mLocalAllocators;
+    PointerSet<FrameLib_ContextAllocator> mContextAllocators;
     PointerSet<FrameLib_ProcessingQueue> mProcessingQueues;
     
     // Thread Priorities

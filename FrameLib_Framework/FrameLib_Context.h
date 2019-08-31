@@ -90,7 +90,7 @@ public:
     
     // Construct one of these objects to retain a relevant object
     
-    using Allocator = ManagedPointer<FrameLib_LocalAllocator, &FrameLib_Global::mLocalAllocators>;
+    using Allocator = ManagedPointer<FrameLib_ContextAllocator, &FrameLib_Global::mContextAllocators>;
     using ProcessingQueue = ManagedPointer<FrameLib_ProcessingQueue, &FrameLib_Global::mProcessingQueues>;
 
     // Get the global as a FrameLib_ErrorReporter from the context

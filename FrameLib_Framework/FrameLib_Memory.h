@@ -235,7 +235,7 @@ private:
  
  @ingroup Memory
  
- @brief a memory allocator with local free blocks.
+ @brief a memory allocator with thread local free blocks.
  
  */
 
@@ -279,7 +279,7 @@ public:
     void *alloc(size_t size);
     void dealloc(void *ptr);
     
-    // Clear Local Free Blocks (and prune global allocator)
+    // Clear Free Blocks (and prune global allocator)
     
     void clear();
     
@@ -298,6 +298,16 @@ private:
 };
 
 
+/**
+ 
+ @class FrameLib_FreeBlocksSet
+ 
+ @ingroup Memory
+ 
+ @brief a set of allocators for thread local allocation.
+ 
+ */
+
 class FrameLib_FreeBlocksSet
 {
     
@@ -311,7 +321,7 @@ public:
     
     FrameLib_FreeBlocks *get(unsigned int idx) { return mBlocks[idx].get(); }
     
-    // Clear Local Free Blocks (and prune global allocator)
+    // Clear Free Blocks (and prune global allocator)
     
     void clear();
     
@@ -322,7 +332,7 @@ private:
 
 /**
  
- @class FrameLib_LocalAllocator
+ @class FrameLib_ContextAllocator
  
  @ingroup Memory
 
@@ -333,7 +343,7 @@ private:
  */
 
 
-class FrameLib_LocalAllocator
+class FrameLib_ContextAllocator
 {
     
 public:
@@ -350,7 +360,7 @@ public:
     {
         using Serial = FrameLib_Parameters::Serial;
         
-        friend class FrameLib_LocalAllocator;
+        friend class FrameLib_ContextAllocator;
 
     public:
         
@@ -414,7 +424,7 @@ public:
 
         // Constructor / Destructor
         
-        Storage(const char *name, FrameLib_LocalAllocator& allocator);
+        Storage(const char *name, FrameLib_ContextAllocator& allocator);
         ~Storage();
         
         // Non-copyable
@@ -439,19 +449,19 @@ public:
         unsigned long mCount;
         
         FrameLib_SpinLock mLock;
-        FrameLib_LocalAllocator& mAllocator;
+        FrameLib_ContextAllocator& mAllocator;
     };
     
     // Constructor
     
-    FrameLib_LocalAllocator(FrameLib_GlobalAllocator& allocator)
+    FrameLib_ContextAllocator(FrameLib_GlobalAllocator& allocator)
     : mAllocator(allocator)
     {}
     
     // Non-copyable
     
-    FrameLib_LocalAllocator(const FrameLib_LocalAllocator&) = delete;
-    FrameLib_LocalAllocator& operator=(const FrameLib_LocalAllocator&) = delete;
+    FrameLib_ContextAllocator(const FrameLib_ContextAllocator&) = delete;
+    FrameLib_ContextAllocator& operator=(const FrameLib_ContextAllocator&) = delete;
     
     // Allocate / Deallocate Memory
 
