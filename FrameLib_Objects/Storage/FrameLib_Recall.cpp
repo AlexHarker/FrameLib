@@ -69,7 +69,7 @@ void FrameLib_Recall::process()
 
     // Threadsafety
     
-    FrameLib_LocalAllocator::Storage::Access access(mStorage);
+    FrameLib_ContextAllocator::Storage::Access access(mStorage);
 
     // Get types and size
     

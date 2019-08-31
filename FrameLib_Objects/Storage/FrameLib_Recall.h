@@ -37,7 +37,7 @@ private:
     
     // Data
     
-    FrameLib_LocalAllocator::Storage *mStorage;
+    FrameLib_ContextAllocator::Storage *mStorage;
         
     static ParameterInfo sParamInfo;
     

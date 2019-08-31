@@ -66,7 +66,7 @@ FrameLib_Store::ParameterInfo::ParameterInfo()
 
 void FrameLib_Store::objectReset()
 {
-    FrameLib_LocalAllocator::Storage::Access access(mStorage);
+    FrameLib_ContextAllocator::Storage::Access access(mStorage);
 
     access.resize(false, 0);
 }
@@ -77,7 +77,7 @@ void FrameLib_Store::process()
 {
     // Threadsafety
     
-    FrameLib_LocalAllocator::Storage::Access access(mStorage);
+    FrameLib_ContextAllocator::Storage::Access access(mStorage);
 
     // Resize storage
     
