@@ -6,6 +6,7 @@ from FrameLibDocs.strippers import strip_extension
 from FrameLibDocs.utils import remove_ds, cd_up, check_make
 
 
+
 this_script = os.path.dirname(os.path.realpath(__file__))
 help_file_folder = os.path.join(this_script, "templates")
 
@@ -23,7 +24,7 @@ check_make(help_file_folder)
 root = cd_up(this_script, 3)
 externals = os.path.join(root, "Current Test Version", "FrameLib", "externals")
 
-master_template = os.path.join(this_script, "fl.template.maxhelp")
+master_template = os.path.join(this_script, "help_template.maxhelp")
 
 # Create Help Files
 print("Creating templated help files. \n")
