@@ -74,7 +74,7 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
         
         // Clear the queue
         
-        while (FrameLib_DSP *object = mQueue.dequeue())
+        while (FrameLib_DSP *object = mQueue.pop())
             object->ThreadNode::mNext = nullptr;
         
         // Wait for all thhreads to return
@@ -142,7 +142,7 @@ void FrameLib_ProcessingQueue::serviceQueue(FrameLib_LocalAllocator *allocator)
 {
     unsigned long timedOutCount = 0;
     
-    while (FrameLib_DSP *object = mQueue.dequeue())
+    while (FrameLib_DSP *object = mQueue.pop())
     {
         while (object && !mTimedOut)
         {

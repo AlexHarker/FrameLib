@@ -270,9 +270,9 @@ public:
     
     FrameLib_LockFreeStack() : mHead(Pointer(nullptr, 0)) {}
     
-    // Enqueue an item
+    // Push an item to the head
 
-    void enqueue(T *item)
+    void push(T *item)
     {
         assert((!item->Node::mNext) && "Object is already in the queue");
 
@@ -288,9 +288,9 @@ public:
         }
     }
     
-    // Enqueue a pre-prepared queue
+    // Push a pre-prepared queue to the head
     
-    void enqueue(Queue& queue)
+    void push(Queue& queue)
     {
         while (true)
         {
@@ -306,9 +306,9 @@ public:
         queue.clear();
     }
     
-    // Dequeue one item
+    // Pop one item from the head
     
-    T *dequeue()
+    T *pop()
     {
         while (true)
         {
