@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Gaussian>::makeClass(CLASS_BOX, "fl.gaussian~");
+    FrameLib_MaxClass_Expand<FrameLib_Gaussian>::makeClass("fl.gaussian~");
 }

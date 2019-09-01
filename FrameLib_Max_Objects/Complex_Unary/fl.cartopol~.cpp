@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Cartopol>::makeClass(CLASS_BOX, "fl.cartopol~");
+    FrameLib_MaxClass_Expand<FrameLib_Cartopol>::makeClass("fl.cartopol~");
 }

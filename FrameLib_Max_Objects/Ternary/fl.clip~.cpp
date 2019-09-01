@@ -4,6 +4,6 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Clip, kDistribute>::makeClass(CLASS_BOX, "fl.clip~");
+    FrameLib_MaxClass_Expand<FrameLib_Clip, kDistribute>::makeClass("fl.clip~");
 }
 

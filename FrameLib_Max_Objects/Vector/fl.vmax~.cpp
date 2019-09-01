@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_VectorMax>::makeClass(CLASS_BOX, "fl.vmax~");
+    FrameLib_MaxClass_Expand<FrameLib_VectorMax>::makeClass("fl.vmax~");
 }

@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_FIRPhase>::makeClass(CLASS_BOX, "fl.firphase~");
+    FrameLib_MaxClass_Expand<FrameLib_FIRPhase>::makeClass("fl.firphase~");
 }
