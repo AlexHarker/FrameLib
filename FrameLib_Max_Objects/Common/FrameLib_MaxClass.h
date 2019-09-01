@@ -1,4 +1,7 @@
 
+#ifndef FRAMELIB_MAX_CLASS_H
+#define FRAMELIB_MAX_CLASS_H
+
 #include "MaxClass_Base.h"
 
 #include "FrameLib_Global.h"
@@ -1628,3 +1631,5 @@ private:
 
 template <class T, MaxObjectArgsMode argsSetAllInputs = kAsParams>
 using FrameLib_MaxClass_Expand = FrameLib_MaxClass<FrameLib_Expand<T>, argsSetAllInputs>;
+
+#endif
