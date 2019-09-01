@@ -4,6 +4,7 @@
 
 #include "FrameLib_DSP.h"
 #include "../../FrameLib_Dependencies/WindowFunctions.hpp"
+#include "../../FrameLib_Dependencies/TableReader.hpp"
 
 // FIX - review gain calculation
 
@@ -44,6 +45,15 @@ private:
 
 private:
 
+    struct Fetch : table_fetcher<double>
+    {
+        Fetch(const double *data) : table_fetcher(1.0), mData(data) {}
+        
+        double operator()(intptr_t offset) { return mData[offset]; }
+        
+        const double *mData;
+    };
+    
     struct WindowCalculator : public WindowFunctions<double *, WindowTypes>
     {
         WindowCalculator()
