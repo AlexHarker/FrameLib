@@ -106,7 +106,7 @@ void FrameLib_ProcessingQueue::add(PrepQueue &queue, FrameLib_DSP *addedBy)
 void FrameLib_ProcessingQueue::enqueue(PrepQueue &queue)
 {
     mNumItems += queue.size();
-    mQueue.enqueue(queue);
+    mQueue.push(queue);
         
     // Wake workers
         
