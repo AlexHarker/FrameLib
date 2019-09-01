@@ -4,12 +4,12 @@
 
 // This object parses it's arguments differently to normal, which is handled by pre-parsing the atoms into a different format
 
-class ArgumentParser
+class ComplexArgumentParser
 {
     
 public:
     
-    ArgumentParser(t_symbol *s, long argc, t_atom *argv) : mSymbol(s)
+    ComplexArgumentParser(t_symbol *s, long argc, t_atom *argv) : mSymbol(s)
     {
         concatenate(argc, argv);
         
@@ -93,7 +93,7 @@ private:
 
 struct FrameLib_MaxClass_ComplexExpression_Parsed : public FrameLib_MaxClass_Expand<FrameLib_ComplexExpression>
 {
-    FrameLib_MaxClass_ComplexExpression_Parsed(const ArgumentParser &parsed) :
+    FrameLib_MaxClass_ComplexExpression_Parsed(const ComplexArgumentParser &parsed) :
     FrameLib_MaxClass(parsed.symbol(), parsed.count(), parsed.args(), new FrameLib_MaxProxy()) {}
 };
 
@@ -104,10 +104,14 @@ struct FrameLib_MaxClass_ComplexExpression : public FrameLib_MaxClass_ComplexExp
     // Constructor
     
     FrameLib_MaxClass_ComplexExpression(t_symbol *s, long argc, t_atom *argv) :
-        FrameLib_MaxClass_ComplexExpression_Parsed(ArgumentParser(s, argc, argv)) {}
+        FrameLib_MaxClass_ComplexExpression_Parsed(ComplexArgumentParser(s, argc, argv)) {}
 };
+
+#ifndef FRAMELIB_MAX_SINGLE_OBJECT
 
 extern "C" int C74_EXPORT main(void)
 {
     FrameLib_MaxClass_ComplexExpression::makeClass<FrameLib_MaxClass_ComplexExpression>("fl.complexexpr~");
 }
+
+#endif

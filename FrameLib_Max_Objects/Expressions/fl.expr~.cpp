@@ -107,7 +107,11 @@ struct FrameLib_MaxClass_Expression : public FrameLib_MaxClass_Expression_Parsed
         FrameLib_MaxClass_Expression_Parsed(ArgumentParser(s, argc, argv)) {}
 };
 
+#ifndef FRAMELIB_MAX_SINGLE_OBJECT
+
 extern "C" int C74_EXPORT main(void)
 {
     FrameLib_MaxClass_Expression::makeClass<FrameLib_MaxClass_Expression>("fl.expr~");
 }
+
+#endif
