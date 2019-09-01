@@ -44,7 +44,11 @@ private:
 
 // Main
 
+#ifndef FRAMELIB_MAX_SINGLE_OBJECT
+
 extern "C" int C74_EXPORT main(void)
 {
     FrameLib_MaxClass_Context::makeClass<FrameLib_MaxClass_Context>(CLASS_BOX, "fl.context~");
 }
+
+#endif

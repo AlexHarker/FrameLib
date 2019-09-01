@@ -143,6 +143,10 @@
 #include "../Host_Communication/fl.tomax~.cpp"
 #include "../Host_Communication/fl.frommax~.cpp"
 
+// Context
+
+#include "../Context/fl.context~.cpp"
+
 struct FrameLib_Dummy : public MaxClass_Base
 {
     FrameLib_Dummy(t_symbol *sym, long ac, t_atom *av)
@@ -394,4 +398,8 @@ extern "C" int C74_EXPORT main(void)
     
     FrameLib_MaxClass_ToMax::makeClass("fl.tomax~");
     FrameLib_MaxClass_FromMax::makeClass("fl.frommax~");
+    
+    // Context
+    
+    FrameLib_MaxClass_Context::makeClass<FrameLib_MaxClass_Context>(CLASS_BOX, "fl.tomax~");
 }
