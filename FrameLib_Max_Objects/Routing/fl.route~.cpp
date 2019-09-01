@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Route>::makeClass(CLASS_BOX, "fl.route~");
+    FrameLib_MaxClass_Expand<FrameLib_Route>::makeClass("fl.route~");
 }

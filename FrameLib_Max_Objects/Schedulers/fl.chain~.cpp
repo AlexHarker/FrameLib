@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Chain>::makeClass(CLASS_BOX, "fl.chain~");
+    FrameLib_MaxClass_Expand<FrameLib_Chain>::makeClass("fl.chain~");
 }

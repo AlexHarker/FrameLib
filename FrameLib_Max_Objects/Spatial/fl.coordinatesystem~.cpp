@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_CoordinateSystem>::makeClass(CLASS_BOX, "fl.coordinatesystem~");
+    FrameLib_MaxClass_Expand<FrameLib_CoordinateSystem>::makeClass("fl.coordinatesystem~");
 }

@@ -109,5 +109,5 @@ struct FrameLib_MaxClass_ComplexExpression : public FrameLib_MaxClass_ComplexExp
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_ComplexExpression::makeClass<FrameLib_MaxClass_ComplexExpression>(CLASS_BOX, "fl.complexexpr~");
+    FrameLib_MaxClass_ComplexExpression::makeClass<FrameLib_MaxClass_ComplexExpression>("fl.complexexpr~");
 }

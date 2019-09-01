@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Trunc>::makeClass(CLASS_BOX, "fl.trunc~");
+    FrameLib_MaxClass_Expand<FrameLib_Trunc>::makeClass("fl.trunc~");
 }

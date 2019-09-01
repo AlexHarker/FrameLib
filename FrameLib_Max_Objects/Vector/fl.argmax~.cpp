@@ -9,5 +9,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_VectorArgMax>::makeClass(CLASS_BOX, "fl.argmax~");
+    FrameLib_MaxClass_Expand<FrameLib_VectorArgMax>::makeClass("fl.argmax~");
 }

@@ -173,5 +173,5 @@ void FrameLib_MaxClass_Expand<FrameLib_ToHost>::assist(void *b, long m, long a, 
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_ToMax::makeClass<FrameLib_MaxClass_ToMax>(CLASS_BOX, "fl.tomax~");
+    FrameLib_MaxClass_ToMax::makeClass<FrameLib_MaxClass_ToMax>("fl.tomax~");
 }

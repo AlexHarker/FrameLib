@@ -4,6 +4,6 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Lag>::makeClass(CLASS_BOX, "fl.lag~");
+    FrameLib_MaxClass_Expand<FrameLib_Lag>::makeClass("fl.lag~");
 }
 

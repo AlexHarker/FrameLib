@@ -543,7 +543,7 @@ public:
     // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_MaxClass<>)
     
     template <class U = FrameLib_MaxClass<T, argsMode>>
-    static void makeClass(t_symbol *nameSpace, const char *className)
+    static void makeClass(const char *className)
     {
         // If handles audio/scheduler then make wrapper class and name the inner object differently..
         
@@ -555,7 +555,7 @@ public:
             internalClassName.insert(0, "unsynced.");
         }
         
-        MaxClass_Base::makeClass<U>(nameSpace, internalClassName.c_str());
+        MaxClass_Base::makeClass<U>(CLASS_BOX, internalClassName.c_str());
     }
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)

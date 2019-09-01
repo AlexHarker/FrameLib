@@ -67,5 +67,5 @@ FrameLib_MaxClass_Read::ReadProxy::ReadProxy() : mBuffer(nullptr)
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Read::makeClass<FrameLib_MaxClass_Read>(CLASS_BOX, "fl.read~");
+    FrameLib_MaxClass_Read::makeClass<FrameLib_MaxClass_Read>("fl.read~");
 }

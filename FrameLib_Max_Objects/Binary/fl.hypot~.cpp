@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Hypot, kAllInputs>::makeClass(CLASS_BOX, "fl.hypot~");
+    FrameLib_MaxClass_Expand<FrameLib_Hypot, kAllInputs>::makeClass("fl.hypot~");
 }

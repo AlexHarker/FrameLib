@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_AudioTrigger>::makeClass(CLASS_BOX, "fl.audiotrigger~");
+    FrameLib_MaxClass_Expand<FrameLib_AudioTrigger>::makeClass("fl.audiotrigger~");
 }

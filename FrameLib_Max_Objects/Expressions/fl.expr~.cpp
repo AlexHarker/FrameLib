@@ -109,5 +109,5 @@ struct FrameLib_MaxClass_Expression : public FrameLib_MaxClass_Expression_Parsed
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expression::makeClass<FrameLib_MaxClass_Expression>(CLASS_BOX, "fl.expr~");
+    FrameLib_MaxClass_Expression::makeClass<FrameLib_MaxClass_Expression>("fl.expr~");
 }
