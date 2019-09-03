@@ -225,7 +225,7 @@ extern "C" int C74_EXPORT main(void)
     // Storage
     
     FrameLib_MaxClass_Expand<FrameLib_Recall>::makeClass("fl.recall~");
-    FrameLib_MaxClass_Expand<FrameLib_Register>::makeClass("fl.register~");
+    FrameLib_MaxClass_Expand<FrameLib_Register, kAllInputs>::makeClass("fl.register~");
     FrameLib_MaxClass_Expand<FrameLib_Store>::makeClass("fl.store~");
     
     // Streaming
