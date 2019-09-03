@@ -391,13 +391,13 @@ extern "C" int C74_EXPORT main(void)
     
     // Expressions
     
-    FrameLib_MaxClass_Expression::makeClass("fl.expr~");
-    FrameLib_MaxClass_ComplexExpression::makeClass("fl.complexexpr~");
+    FrameLib_MaxClass_Expression::makeClass<FrameLib_MaxClass_Expression>("fl.expr~");
+    FrameLib_MaxClass_ComplexExpression::makeClass<FrameLib_MaxClass_ComplexExpression>("fl.complexexpr~");
     
     // Host Communication
     
-    FrameLib_MaxClass_ToMax::makeClass("fl.tomax~");
-    FrameLib_MaxClass_FromMax::makeClass("fl.frommax~");
+    FrameLib_MaxClass_ToMax::makeClass<FrameLib_MaxClass_ToMax>("fl.tomax~");
+    FrameLib_MaxClass_FromMax::makeClass<FrameLib_MaxClass_ToMax>("fl.frommax~");
     
     // Context
     
