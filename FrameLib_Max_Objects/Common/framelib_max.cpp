@@ -397,7 +397,7 @@ extern "C" int C74_EXPORT main(void)
     // Host Communication
     
     FrameLib_MaxClass_ToMax::makeClass<FrameLib_MaxClass_ToMax>("fl.tomax~");
-    FrameLib_MaxClass_FromMax::makeClass<FrameLib_MaxClass_ToMax>("fl.frommax~");
+    FrameLib_MaxClass_FromMax::makeClass<FrameLib_MaxClass_FromMax>("fl.frommax~");
     
     // Context
     
