@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 85.0, 494.0, 739.0 ],
+		"rect" : [ 865.0, 95.0, 494.0, 739.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -117,7 +117,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 111.0, 494.0, 713.0 ],
+						"rect" : [ 865.0, 121.0, 494.0, 713.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -198,13 +198,13 @@
 									"patching_rect" : [ 15.0, 537.33331298828125, 112.0, 41.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_shortname" : "Volume",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 4,
 											"parameter_mmin" : -70.0,
 											"parameter_longname" : "live.gain~",
 											"parameter_mmax" : 6.0,
-											"parameter_initial" : [ 0.0 ]
+											"parameter_initial" : [ 0.0 ],
+											"parameter_shortname" : "Volume"
 										}
 
 									}
@@ -388,7 +388,7 @@
 										"loopend" : [ 0.0, "ms" ],
 										"loopstart" : [ 0.0, "ms" ],
 										"mode" : "basic",
-										"originallength" : [ 2708.876060802340362, "ticks" ],
+										"originallength" : [ 2708.876140768406913, "ticks" ],
 										"originaltempo" : 120.0,
 										"phase" : [ 0.0, "ticks" ],
 										"pitchcorrection" : 0,
@@ -679,40 +679,40 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.source~.mxe64",
-				"type" : "mx64"
+				"name" : "fl.source~.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.source~.mxe64",
-				"type" : "mx64"
+				"name" : "fl.source~.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.interval~.mxe64",
-				"type" : "mx64"
+				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.interval~.mxe64",
-				"type" : "mx64"
+				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.0dfsvf~.mxe64",
-				"type" : "mx64"
+				"name" : "fl.0dfsvf~.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.times~.mxe64",
-				"type" : "mx64"
+				"name" : "fl.times~.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.sink~.mxe64",
-				"type" : "mx64"
+				"name" : "fl.sink~.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.sink~.mxe64",
-				"type" : "mx64"
+				"name" : "fl.sink~.mxo",
+				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.frommax~.mxe64",
-				"type" : "mx64"
+				"name" : "fl.frommax~.mxo",
+				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0,
