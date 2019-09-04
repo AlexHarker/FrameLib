@@ -20,7 +20,7 @@ internal_tabs = os.listdir(
 for i in templated_files:
     template = read_json(os.path.join(this_script, 'templates', i))
     object_name = strip_extension(i, 1)
-    companion_name = f'{object_name}.maxpat'
+    companion_name = f'{object_name}.maxhelp'
     # now look for a patcher containing tabs
     if companion_name in internal_tabs:
         template_boxes = template['patcher']['boxes']
@@ -28,6 +28,7 @@ for i in templated_files:
         tabs_boxes = tabs['patcher']['boxes']
         for box in tabs_boxes:
             template['patcher']['boxes'].append(box)
+        
         write_json(
             os.path.join(this_script, 'templates', f'{object_name}.maxhelp'),
             template, 
