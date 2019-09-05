@@ -514,15 +514,19 @@ public:
     
     // Non-realtime processing
     
+    static unsigned long maxBlockSize() { return 16384UL; }
+    
     void resolveGraph(bool forceReset = false)
     {
+        // FIX - where does this come from?
+        
         t_ptr_int sampleRate = 44100;
-        t_ptr_int maxBlockSize = 16384;
+        t_ptr_int blockSize = maxBlockSize();
         
         bool updated = internalObject()->resolveGraph();
         
         if (updated || forceReset)
-            internalObject()->traversePatch(gensym("__fl.reset"), sampleRate, maxBlockSize);
+            internalObject()->traversePatch(gensym("__fl.reset"), sampleRate, blockSize);
     }
     
     void reset()
@@ -532,10 +536,10 @@ public:
     
     void process()
     {
-        // FIX - store somewhere better...
-        
-        unsigned long maxBlockSize = 16384;
+        // FIX - where does this come from?
+
         unsigned long updateLength = 44100;
+        unsigned long currentSampleTime = 0;
         
         resolveGraph();
         
@@ -558,24 +562,22 @@ public:
             maxAudioOuts = std::max(maxAudioOuts, it->mObject->getNumAudioOuts());
         }
         
-        audioBuffer.resize(maxBlockSize * (maxAudioIns + maxAudioOuts));
+        audioBuffer.resize(maxBlockSize() * (maxAudioIns + maxAudioOuts));
         inputs.resize(maxAudioIns);
         outputs.resize(maxAudioOuts);
         
         for (unsigned long i = 0; i < maxAudioIns; i++)
-            inputs[i] = audioBuffer.data() + i * maxBlockSize;
+            inputs[i] = audioBuffer.data() + i * maxBlockSize();
         
         for (unsigned long i = 0; i < maxAudioOuts; i++)
-            outputs[i] = audioBuffer.data() + (maxAudioIns + i) * maxBlockSize;
+            outputs[i] = audioBuffer.data() + (maxAudioIns + i) * maxBlockSize();
         
         // Loop to process audio
 
-        for (unsigned long i = 0; (i + maxBlockSize - 1) < updateLength; i += maxBlockSize)
+        for (unsigned long i = 0; (i + maxBlockSize() - 1) < updateLength; i += maxBlockSize())
         {
-            // FIX - restarts
-            
-            unsigned long blockSize = std::min(maxBlockSize, updateLength - i);
-            unsigned long start = i;
+            unsigned long blockSize = std::min(maxBlockSize(), updateLength - i);
+            unsigned long start = currentSampleTime + i;
             
             // Process inputs and schedulers
             
