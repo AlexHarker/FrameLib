@@ -2071,6 +2071,7 @@
 		B822F4311FAE15DD003DC4CB /* fl.filtertags~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.filtertags~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B822F4331FAE162D003DC4CB /* fl.filtertags~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.filtertags~.cpp"; sourceTree = "<group>"; };
 		B822F4351FAE1685003DC4CB /* FrameLib_FilterTags.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_FilterTags.cpp; sourceTree = "<group>"; };
+		B82347462321BBDC008755E0 /* MaxBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaxBuffer.h; sourceTree = "<group>"; };
 		B823C12D20CFFE9200476F03 /* FrameLib_Errors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Errors.cpp; sourceTree = "<group>"; };
 		B826E4AC1F3148AB00B920C8 /* fl.once~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.once~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B826E4AE1F31490100B920C8 /* FrameLib_Once.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Once.cpp; sourceTree = "<group>"; };
@@ -4838,6 +4839,7 @@
 			isa = PBXGroup;
 			children = (
 				B878DB731D819C15001A5151 /* MaxClass_Base.h */,
+				B82347462321BBDC008755E0 /* MaxBuffer.h */,
 				B8DE14DC0EB46B030050BDFE /* FrameLib_MaxClass.h */,
 				B8020487231BDD0A0062447A /* framelib_max.cpp */,
 			);
