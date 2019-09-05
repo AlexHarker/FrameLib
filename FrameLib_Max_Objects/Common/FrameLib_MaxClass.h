@@ -388,13 +388,13 @@ public:
         long numAudioIns = internal->getNumAudioIns();
         long numAudioOuts = internal->getNumAudioOuts();
         long numLocalAudioIns = std::max(0L, numAudioIns - 1);
-        long numLocalAudioOuts = std::max(0L, numAudioIns - 1);
+        long numLocalAudioOuts = std::max(0L, numAudioOuts - 1);
         
         // Create I/O
         
         mInOutlets.resize(numIns + numLocalAudioIns);
         mProxyIns.resize(numIns + numLocalAudioIns);
-        mAudioOuts.resize(std::max(0L, numLocalAudioOuts - 1));
+        mAudioOuts.resize(numLocalAudioOuts);
         mOuts.resize(numOuts);
         
         // Inlets for messages/signals (we need one audio in for the purposes of sync)
