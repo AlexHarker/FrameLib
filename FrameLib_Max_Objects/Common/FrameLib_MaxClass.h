@@ -1314,10 +1314,10 @@ private:
         return object && index >= 0 && static_cast<unsigned long>(index) < object->getNumOuts();
         
     }
+    
     bool isOrderingInput(long index, FrameLib_Multistream *object) const
     {
         return object && object->supportsOrderingConnections() && static_cast<unsigned long>(index) == object->getNumIns();
-        
     }
     
     bool validInput(long index) const                                       { return validInput(index, mObject.get()); }
