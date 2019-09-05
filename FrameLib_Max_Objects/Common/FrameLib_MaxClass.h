@@ -1190,7 +1190,7 @@ private:
     
     // Private connection methods
     
-    void traversePatch(t_patcher *p, t_symbol *method, t_object *contextAssoc)
+    void traversePatch(t_patcher *p, t_symbol *theMethod, t_object *contextAssoc)
     {
         t_object *assoc = 0;
         object_method(mContextPatch, gensym("getassoc"), &assoc);
@@ -1207,9 +1207,9 @@ private:
             long index = 0;
             
             while (b && (p = (t_patcher *)object_subpatcher(jbox_get_object(b), &index, this)))
-                traversePatch(p, method, contextAssoc);
+                traversePatch(p, theMethod, contextAssoc);
 
-            object_method(jbox_get_object(b), method);
+            object_method(jbox_get_object(b), theMethod);
         }
     }
 
