@@ -1362,18 +1362,6 @@ private:
                 }
             }
         }
-        else
-        {
-            /*
-            srcout -= getNumAudioOuts();
-            
-            if (validOutput(srcout) && == JPATCHLINE_CONNECT)
-            {
-                double color[4] = { 0.0, 0.0, 1.0, 1.0 };
-                object_attr_setdouble_array(patchline, gensym("patchlinecolor"), 4, color);
-            }
-             */
-        }
         
         return MAX_ERR_NONE;
     }
