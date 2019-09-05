@@ -304,7 +304,8 @@ public:
         addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "anything");
         addMethod<Wrapper<T>, &Wrapper<T>::sync>(c, "sync");
         addMethod<Wrapper<T>, &Wrapper<T>::dsp>(c);
-        addMethod<Wrapper<T>, &Wrapper<T>::testGraph>(c, "graph");
+        addMethod<Wrapper<T>, &Wrapper<T>::reset>(c, "reset");
+        addMethod<Wrapper<T>, &Wrapper<T>::process>(c, "process");
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
         addMethod(c, (method) &externalWrapperUnwrap, "__fl.wrapper_unwrap");
@@ -504,15 +505,32 @@ public:
     
     // Non-realtime processing
     
-    void testGraph()
+    void resolveGraph(bool forceReset = false)
     {
         t_ptr_int sampleRate = 44100;
-        t_ptr_int blockSize = 16384;
+        t_ptr_int maxBlockSize = 16384;
         
-        if (internalObject()->resolveGraph())
-            internalObject()->traversePatch(gensym("__fl.reset"), sampleRate, blockSize);
+        bool updated = internalObject()->resolveGraph();
         
-        // Now get all the audio objects in a list
+        if (updated || forceReset)
+            internalObject()->traversePatch(gensym("__fl.reset"), sampleRate, maxBlockSize);
+    }
+    
+    void reset()
+    {
+        resolveGraph(true);
+    }
+    
+    void process()
+    {
+        // FIX - store somewhere better...
+        
+        unsigned long maxBlockSize = 16384;
+        unsigned long updateLength = 44100;
+        
+        resolveGraph();
+        
+        // Retrieve all the audio objects in a list
         
         std::vector<FrameLib_Multistream *> audioObjects;
         std::vector<double> audioBuffer;
@@ -520,6 +538,8 @@ public:
         std::vector<double *> audioOutputs;
         
         internalObject()->traversePatch(gensym("__fl.find_audio_objects"), &audioObjects);
+        
+        // Set up buffers
         
         unsigned long maxAudioIns = 0;
         unsigned long maxAudioOuts = 0;
@@ -530,27 +550,40 @@ public:
             maxAudioOuts = std::max(maxAudioOuts, (*it)->getNumAudioOuts());
         }
         
-        audioBuffer.resize(blockSize * (maxAudioIns + maxAudioOuts), 0.0);
+        audioBuffer.resize(maxBlockSize * (maxAudioIns + maxAudioOuts));
         audioInputs.resize(maxAudioIns);
         audioOutputs.resize(maxAudioOuts);
         
         for (unsigned long i = 0; i < maxAudioIns; i++)
-            audioInputs[i] = audioBuffer.data() + i * blockSize;
+            audioInputs[i] = audioBuffer.data() + i * maxBlockSize;
         
         for (unsigned long i = 0; i < maxAudioOuts; i++)
-            audioOutputs[i] = audioBuffer.data() + (maxAudioIns + i) * blockSize;
+            audioOutputs[i] = audioBuffer.data() + (maxAudioIns + i) * maxBlockSize;
         
         // Loop to process audio
-        
-        FrameLib_AudioQueue queue;
-        
-        for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
-            if ((*it)->getType() != kOutput)
-                (*it)->blockUpdate(audioInputs.data(), audioOutputs.data(), blockSize, queue);
-        
-        for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
-            if ((*it)->getType() == kOutput)
-                (*it)->blockUpdate(audioInputs.data(), audioOutputs.data(), blockSize, queue);
+
+        for (unsigned long i = 0; (i + maxBlockSize - 1) < updateLength; i += maxBlockSize)
+        {
+            FrameLib_AudioQueue queue;
+
+            unsigned long blockSize = std::max(maxBlockSize, updateLength - i);
+            
+            // Zero buffers
+            
+            std::fill_n(audioBuffer.data(), audioBuffer.size(), 0.0);
+            
+            // Process inputs and schedulers
+            
+            for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
+                if ((*it)->getType() != kOutput)
+                    (*it)->blockUpdate(audioInputs.data(), audioOutputs.data(), blockSize, queue);
+            
+            // Process outputs
+            
+            for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
+                if ((*it)->getType() == kOutput)
+                    (*it)->blockUpdate(audioInputs.data(), audioOutputs.data(), blockSize, queue);
+        }
     }
     
     // External methods (A_CANT)
