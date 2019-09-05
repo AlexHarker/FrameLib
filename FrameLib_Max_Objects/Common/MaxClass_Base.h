@@ -69,8 +69,7 @@ public:
     template <typename...Args>
     static void objectMethod(t_object *object, t_symbol* theMethod, Args...args)
     {
-        void *pad = nullptr;
-        objectMethod(object, theMethod, args..., pad);
+        objectMethod(object, theMethod, args..., (void *) nullptr);
     }
     
     // Specialisation to prevent infinite padding
@@ -162,7 +161,6 @@ private:
     static void *objectMethodArg(T a)
     {
         static_assert(sizeof(T) == sizeof(void *), "Argument is not the correct size");
-        
         return reinterpret_cast<void *>(a);
     }
     
