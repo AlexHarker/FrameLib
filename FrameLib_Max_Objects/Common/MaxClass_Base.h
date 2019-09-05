@@ -64,6 +64,31 @@ public:
     template <class T, typename Perform<T>::MethodPerform F> static void call(T *x, t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam) { ((x)->*F)(dsp64, ins, numins, outs, numouts, vec_size, flags, userparam); }
     template <class T, typename Perform<T>::MethodPerform F> void addPerform(t_object *dsp64) { auto f = call<T, F>; object_method(dsp64, gensym("dsp_add64"), this, (method) f, 0, nullptr); }
     
+    // C++ style variadic call to object_method_imp
+    
+    template <typename...Args>
+    static void objectMethod(t_object *object, t_symbol* theMethod, Args...args)
+    {
+        void *pad = nullptr;
+        objectMethod(object, theMethod, args..., pad);
+    }
+    
+    // Specialisation to prevent infinite padding
+    
+    template <class S, class T, class U, class V, class W, class X, class Y, class Z>
+    static void objectMethod(t_object *object, t_symbol* theMethod, S s, T t, U u, V v, W w, X x, Y y, Z z)
+    {
+        object_method_imp(object, theMethod,
+                          objectMethodArg(s),
+                          objectMethodArg(t),
+                          objectMethodArg(u),
+                          objectMethodArg(v),
+                          objectMethodArg(w),
+                          objectMethodArg(x),
+                          objectMethodArg(y),
+                          objectMethodArg(z));
+    }
+    
     // Static Methods for class initialisation, object creation and deletion
     
     template <class T>
@@ -132,6 +157,14 @@ public:
     operator t_object* () { return (t_object *) this; }
     
 private:
+    
+    template <class T>
+    static void *objectMethodArg(T a)
+    {
+        static_assert(sizeof(T) == sizeof(void *), "Argument is not the correct size");
+        
+        return reinterpret_cast<void *>(a);
+    }
     
     // Deleted
     

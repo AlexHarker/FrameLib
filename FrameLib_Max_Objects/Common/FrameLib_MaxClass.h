@@ -1103,31 +1103,31 @@ public:
         return x->patchLineUpdate(patchline, updatetype, src, srcout, dst, dstin);
     }
 
-    static void externalResolveConnections(FrameLib_MaxClass *x, bool realtime, bool *flag)
+    static void externalResolveConnections(FrameLib_MaxClass *x, t_ptr_int realtime, t_ptr_int *flag)
     {
         if (x->isRealtime() == realtime)
             *flag |= x->resolveConnections();
     }
     
-    static void externalMarkUnresolved(FrameLib_MaxClass *x, bool realtime)
+    static void externalMarkUnresolved(FrameLib_MaxClass *x, t_ptr_int realtime)
     {
         if (x->isRealtime() == realtime)
             x->mRealtimeResolved = false;
     }
     
-    static void externalAutoOrderingConnections(FrameLib_MaxClass *x, bool realtime)
+    static void externalAutoOrderingConnections(FrameLib_MaxClass *x, t_ptr_int realtime)
     {
         if (x->isRealtime() == realtime)
             x->mObject->autoOrderingConnections();
     }
     
-    static void externalClearAutoOrderingConnections(FrameLib_MaxClass *x, bool realtime)
+    static void externalClearAutoOrderingConnections(FrameLib_MaxClass *x, t_ptr_int realtime)
     {
         if (x->isRealtime() == realtime)
             x->mObject->clearAutoOrderingConnections();
     }
 
-    static void externalReset(FrameLib_MaxClass *x, bool realtime, double samplerate, long maxvectorsize)
+    static void externalReset(FrameLib_MaxClass *x, t_ptr_int realtime, t_ptr_int samplerate, t_ptr_int maxvectorsize)
     {
         if (x->isRealtime() == realtime)
             x->mObject->reset(samplerate, maxvectorsize);
@@ -1231,7 +1231,7 @@ private:
             while (b && (p = (t_patcher *)object_subpatcher(jbox_get_object(b), &index, this)))
                 traversePatch(p, contextAssoc, theMethod, args...);
 
-            object_method(jbox_get_object(b), theMethod, isRealtime(), args...);
+            objectMethod(jbox_get_object(b), theMethod, static_cast<t_ptr_int>(isRealtime()), args...);
         }
     }
     
@@ -1243,7 +1243,7 @@ private:
     
     bool resolveGraph()
     {
-        bool updated = false;
+        t_ptr_int updated = false;
         
         traversePatch(gensym("__fl.resolve_connections"), &updated);
         
