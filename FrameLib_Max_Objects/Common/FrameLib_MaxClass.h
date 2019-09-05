@@ -3,6 +3,7 @@
 #define FRAMELIB_MAX_CLASS_H
 
 #include "MaxClass_Base.h"
+#include "MaxBuffer.h"
 
 #include "FrameLib_Global.h"
 #include "FrameLib_Context.h"
@@ -587,7 +588,7 @@ public:
             {
                 if (it->mObject->getType() != kOutput)
                 {
-                    read(it->mBuffer, inputs.data(), it->mObject->getNumAudioIns(), start, blockSize);
+                    read(it->mBuffer, inputs.data(), it->mObject->getNumAudioIns(), blockSize, start);
                     it->mObject->blockUpdate(inputs.data(), nullptr, blockSize, queue);
                 }
             }
@@ -599,7 +600,7 @@ public:
                 if (it->mObject->getType() == kOutput)
                 {
                     it->mObject->blockUpdate(nullptr, outputs.data(), blockSize);
-                    write(it->mBuffer, outputs.data(), it->mObject->getNumAudioOuts(), start, blockSize);
+                    write(it->mBuffer, outputs.data(), it->mObject->getNumAudioOuts(), blockSize, start);
                 }
             }
         }
@@ -643,17 +644,58 @@ private:
     
     // Buffer access
     
-    void read(t_symbol *buffer, double **outs, size_t numChans, size_t offset, size_t blockSize)
+    void constrain(MaxBufferAccess& access, size_t& numChans, size_t& size, size_t offset)
     {
-        // Zero
-        
-        for (size_t i = 0; i < numChans; i++)
-            std::fill_n(outs[i], blockSize, 0.0);
+        size = (access.length() + offset) < size ? size : access.length() - offset;
+        numChans = numChans < access.chans() ? numChans : access.chans();
     }
     
-    void write(t_symbol *buffer, const double * const *ins, size_t numChans, size_t offset, size_t blockSize)
+    void read(t_symbol *buffer, double **outs, size_t numChans, size_t size, size_t offset)
     {
+        MaxBufferAccess access(*this, buffer);
         
+        size_t readChans = numChans;
+        size_t readSize = size;
+        
+        constrain(access, readChans, readSize, offset);
+        
+        // Read samples by channel
+        
+        for (size_t i = 0; i < readChans; i++)
+        {
+            float *samples = access.samples() + offset * access.chans() + i;
+            size_t chans = access.chans();
+            
+            for (size_t j = 0; j < size; j++, samples += chans)
+                outs[i][j] = *samples;
+            
+            // Pad if needed
+            
+            std::fill_n(outs[i] + readSize, size - readSize, 0.0);
+        }
+        
+        // Zero if reading was not possible
+        
+        for (size_t i = readChans; i < numChans; i++)
+            std::fill_n(outs[i], size, 0.0);
+    }
+    
+    void write(t_symbol *buffer, const double * const *ins, size_t numChans, size_t size, size_t offset)
+    {
+        MaxBufferAccess access(*this, buffer);
+
+        constrain(access, numChans, size, offset);
+        
+        // Write samples by channel
+        
+        for (size_t i = 0; i < numChans; i++)
+        {
+            float *samples = access.samples() + offset * access.chans() + i;
+            size_t chans = access.chans();
+            
+            for (size_t j = 0; j < size; j++, samples += chans)
+                *samples = ins[i][j];
+        }
     }
 
     // Owned Objects (need freeing)
