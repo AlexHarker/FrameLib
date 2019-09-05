@@ -19,6 +19,15 @@ struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
     t_object *mMaxObject;
 };
 
+struct FrameLib_MaxNRTAudio
+{
+    FrameLib_MaxNRTAudio(FrameLib_Multistream *object, t_symbol *buffer)
+    : mObject(object), mBuffer(buffer) {}
+    
+    FrameLib_Multistream *mObject;
+    t_symbol *mBuffer;
+};
+
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////// Max Globals Class ///////////////////////////
 //////////////////////////////////////////////////////////////////////////
@@ -532,57 +541,65 @@ public:
         
         // Retrieve all the audio objects in a list
         
-        std::vector<FrameLib_Multistream *> audioObjects;
+        std::vector<FrameLib_MaxNRTAudio> audioObjects;
         std::vector<double> audioBuffer;
-        std::vector<double *> audioInputs;
-        std::vector<double *> audioOutputs;
+        std::vector<double *> inputs;
+        std::vector<double *> outputs;
+        unsigned long maxAudioIns = 0;
+        unsigned long maxAudioOuts = 0;
         
         internalObject()->traversePatch(gensym("__fl.find_audio_objects"), &audioObjects);
         
         // Set up buffers
         
-        unsigned long maxAudioIns = 0;
-        unsigned long maxAudioOuts = 0;
-        
         for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
         {
-            maxAudioIns = std::max(maxAudioIns, (*it)->getNumAudioIns());
-            maxAudioOuts = std::max(maxAudioOuts, (*it)->getNumAudioOuts());
+            maxAudioIns = std::max(maxAudioIns, it->mObject->getNumAudioIns());
+            maxAudioOuts = std::max(maxAudioOuts, it->mObject->getNumAudioOuts());
         }
         
         audioBuffer.resize(maxBlockSize * (maxAudioIns + maxAudioOuts));
-        audioInputs.resize(maxAudioIns);
-        audioOutputs.resize(maxAudioOuts);
+        inputs.resize(maxAudioIns);
+        outputs.resize(maxAudioOuts);
         
         for (unsigned long i = 0; i < maxAudioIns; i++)
-            audioInputs[i] = audioBuffer.data() + i * maxBlockSize;
+            inputs[i] = audioBuffer.data() + i * maxBlockSize;
         
         for (unsigned long i = 0; i < maxAudioOuts; i++)
-            audioOutputs[i] = audioBuffer.data() + (maxAudioIns + i) * maxBlockSize;
+            outputs[i] = audioBuffer.data() + (maxAudioIns + i) * maxBlockSize;
         
         // Loop to process audio
 
         for (unsigned long i = 0; (i + maxBlockSize - 1) < updateLength; i += maxBlockSize)
         {
-            FrameLib_AudioQueue queue;
-
+            // FIX - restarts
+            
             unsigned long blockSize = std::min(maxBlockSize, updateLength - i);
-            
-            // Zero buffers
-            
-            std::fill_n(audioBuffer.data(), audioBuffer.size(), 0.0);
+            unsigned long start = i;
             
             // Process inputs and schedulers
             
+            FrameLib_AudioQueue queue;
+            
             for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
-                if ((*it)->getType() != kOutput)
-                    (*it)->blockUpdate(audioInputs.data(), audioOutputs.data(), blockSize, queue);
+            {
+                if (it->mObject->getType() != kOutput)
+                {
+                    read(it->mBuffer, inputs.data(), it->mObject->getNumAudioIns(), start, blockSize);
+                    it->mObject->blockUpdate(inputs.data(), nullptr, blockSize, queue);
+                }
+            }
             
             // Process outputs
             
             for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
-                if ((*it)->getType() == kOutput)
-                    (*it)->blockUpdate(audioInputs.data(), audioOutputs.data(), blockSize, queue);
+            {
+                if (it->mObject->getType() == kOutput)
+                {
+                    it->mObject->blockUpdate(nullptr, outputs.data(), blockSize);
+                    write(it->mBuffer, outputs.data(), it->mObject->getNumAudioOuts(), start, blockSize);
+                }
+            }
         }
     }
     
@@ -622,6 +639,21 @@ private:
     
     long offset(long connectionIdx) {return isRealtime() ? connectionIdx + 1 : connectionIdx; }
     
+    // Buffer access
+    
+    void read(t_symbol *buffer, double **outs, size_t numChans, size_t offset, size_t blockSize)
+    {
+        // Zero
+        
+        for (size_t i = 0; i < numChans; i++)
+            std::fill_n(outs[i], blockSize, 0.0);
+    }
+    
+    void write(t_symbol *buffer, const double * const *ins, size_t numChans, size_t offset, size_t blockSize)
+    {
+        
+    }
+
     // Owned Objects (need freeing)
     
     t_object *mPatch;
@@ -1237,10 +1269,10 @@ public:
         return x->patchLineUpdate(patchline, updatetype, src, srcout, dst, dstin);
     }
 
-    static void externalFindAudio(FrameLib_MaxClass *x, t_ptr_int realtime, std::vector<FrameLib_Multistream *> objects)
+    static void externalFindAudio(FrameLib_MaxClass *x, t_ptr_int realtime, std::vector<FrameLib_MaxNRTAudio> objects)
     {
         if (x->isRealtime() == realtime && T::handlesAudio())
-            objects.push_back(x->mObject.get());
+            objects.push_back(FrameLib_MaxNRTAudio(x->mObject.get(), nullptr));
     }
     
     static void externalResolveConnections(FrameLib_MaxClass *x, t_ptr_int realtime, t_ptr_int *flag)
