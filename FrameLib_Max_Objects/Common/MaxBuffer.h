@@ -54,7 +54,7 @@ public:
     
     void setDirty()                 { object_method(getBuffer(), gensym("dirty")); }
 
-    void *samples() const           { return mSamples; };
+    float *samples() const          { return mSamples; };
     t_ptr_int length() const        { return mLength; }
     long chans() const              { return mChans; }
     double sampleRate() const       { return mSampleRate; }
