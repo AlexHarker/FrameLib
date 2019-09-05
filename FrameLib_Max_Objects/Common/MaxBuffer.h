@@ -52,7 +52,11 @@ public:
         mBuffer = nullptr;
     }
     
-    void setDirty()                 { object_method(getBuffer(), gensym("dirty")); }
+    void setDirty()
+    {
+        if (getBuffer())
+            object_method(getBuffer(), gensym("dirty"));
+    }
 
     float *samples() const          { return mSamples; };
     t_ptr_int length() const        { return mLength; }
