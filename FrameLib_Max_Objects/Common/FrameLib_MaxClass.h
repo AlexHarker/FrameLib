@@ -87,7 +87,7 @@ public:
         enum Mode { kDownOnly, kDown, kAcross };
         enum Action { kSyncComplete, kSync, kAttachAndSync };
         
-        SyncCheck() : mGlobal(get()), mObject(nullptr), mTime(-1), mMode(kDownOnly) {}
+        SyncCheck() : mGlobal(get(false)), mObject(nullptr), mTime(-1), mMode(kDownOnly) {}
         ~SyncCheck() { mGlobal->release(); }
         
         Action operator()(void *object, bool handlesAudio, bool isOutput)
@@ -153,7 +153,7 @@ public:
     
     struct ManagedPointer
     {
-        ManagedPointer() : mPointer(get()) {}
+        ManagedPointer(bool nonRealtime) : mPointer(get(nonRealtime)) {}
         ~ManagedPointer() { mPointer->release(); }
         
         FrameLib_MaxGlobals *operator->() { return mPointer; }
@@ -188,8 +188,10 @@ private:
     
     // Generate some relevant thread priorities
     
-    static FrameLib_Thread::Priorities priorities()
+    static FrameLib_Thread::Priorities priorities(bool nonRealtime)
     {
+        if (nonRealtime)
+            return { 31, 31, 31, SCHED_OTHER };
 #ifdef __APPLE__
         if (maxversion() >= 0x800)
             return { 31, 31, 43, SCHED_RR };
@@ -199,11 +201,11 @@ private:
     
     // Get and release the max global items (singleton)
     
-    static FrameLib_MaxGlobals *get()
+    static FrameLib_MaxGlobals *get(bool nonRealtime)
     {
         const char maxGlobalClass[] = "__fl.max_global_items";
         t_symbol *nameSpace = gensym("__fl.framelib_private");
-        t_symbol *globalTag = gensym("__fl.max_global_tag");
+        t_symbol *globalTag = gensym(nonRealtime ? "__fl.max_global_nrt_tag" : "__fl.max_global_tag");
      
         // Make sure the max globals class exists
 
@@ -217,7 +219,7 @@ private:
         if (!x)
             x = (FrameLib_MaxGlobals *) object_register(nameSpace, globalTag, object_new_typed(CLASS_NOBOX, gensym(maxGlobalClass), 0, nullptr));
         
-        FrameLib_Global::get(&x->mGlobal, priorities(), x->mNotifier.get());
+        FrameLib_Global::get(&x->mGlobal, priorities(nonRealtime), x->mNotifier.get());
         
         return x;
     }
@@ -676,9 +678,28 @@ public:
         return (assoc && object_method(assoc, gensym("__fl.wrapper_is_wrapper"))) ? assoc : *this;
     }
     
+    // Detect non-realtime setting
+    
+    static bool detectNonRealtime(t_symbol *s, long argc, t_atom *argv)
+    {
+        return true;
+    }
+    
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy()) : mFrameLibProxy(proxy), mConfirmObject(nullptr), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mPatch(gensym("#P")->s_thing), mContextPatch(contextPatcher(mPatch)), mSyncIn(nullptr), mUserObject(detectUserObjectAtLoad()), mNeedsResolve(true)
+    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy())
+    : mFrameLibProxy(proxy)
+    , mGlobal(detectNonRealtime(s, argc, argv))
+    , mConfirmObject(nullptr)
+    , mConfirmInIndex(-1)
+    , mConfirmOutIndex(-1)
+    , mConfirm(false)
+    , mPatch(gensym("#P")->s_thing)
+    , mContextPatch(contextPatcher(mPatch))
+    , mSyncIn(nullptr)
+    , mUserObject(detectUserObjectAtLoad())
+    , mNonRealtime(detectNonRealtime(s, argc, argv))
+    , mNeedsResolve(true)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -1623,6 +1644,7 @@ private:
     t_object *mSyncIn;
     t_object *mUserObject;
     
+    bool mNonRealtime;
     bool mNeedsResolve;
 };
 
