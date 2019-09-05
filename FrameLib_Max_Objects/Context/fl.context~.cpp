@@ -14,7 +14,12 @@ public:
         addMethod<FrameLib_MaxClass_Context, &FrameLib_MaxClass_Context::assist>(c, "assist");
     }
     
-    FrameLib_MaxClass_Context(t_symbol *sym, long ac, t_atom *av) : mPatch(gensym("#P")->s_thing), mContext(mGlobal->getGlobal(), FrameLib_MaxClass<void>::contextPatcher(mPatch)), mProcessingQueue(mContext)
+    FrameLib_MaxClass_Context(t_symbol *sym, long ac, t_atom *av)
+    : mPatch(gensym("#P")->s_thing)
+    , mGlobal(FrameLib_MaxClass<void>::detectNonRealtime(sym, ac, av))
+    , mContext(mGlobal->getGlobal()
+    , FrameLib_MaxClass<void>::contextPatcher(mPatch))
+    , mProcessingQueue(mContext)
     {}
     
     // Multithreading
