@@ -535,12 +535,15 @@ public:
         resolveGraph(true);
     }
     
-    void process()
+    void process(t_atom_long length)
     {
-        // FIX - where does this come from?
+        // FIX - need to be able to specifiy time in different ways (must be in whole samples)
 
-        unsigned long updateLength = 44100;
+        unsigned long updateLength = length > 0 ? length : 0;
         unsigned long currentSampleTime = 0;
+        
+        if (!updateLength)
+            return;
         
         resolveGraph();
         
@@ -699,6 +702,8 @@ private:
             for (size_t j = 0; j < size; j++, samples += chans)
                 *samples = ins[i][j];
         }
+        
+        access.setDirty();
     }
 
     // Owned Objects (need freeing)
