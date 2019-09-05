@@ -725,33 +725,37 @@ public:
         
         // Create frame inlets and outlets
         
-        // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles audio)
+        // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles realtime audio)
         
         for (long i = numIns - 1; i >= 0; i--)
-            mInputs[i] = (t_object *) ((i || handlesAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : nullptr);
+            mInputs[i] = (t_object *) ((i || handlesRealtimeAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : nullptr);
         
         for (long i = getNumOuts(); i > 0; i--)
             mOutputs[i - 1] = outlet_new(this, nullptr);
         
         // Setup for audio, even if the object doesn't handle it, so that dsp recompile works correctly
         
-        dspSetup(getNumAudioIns());
-        
-        for (long i = 0; i < getNumAudioOuts(); i++)
-            outlet_new(this, "signal");
-        
-        // Add a sync outlet if we need to handle audio
-        
-        if (handlesAudio())
+        if (isRealtime())
         {
-            mSyncIn = (t_object *) outlet_new(nullptr, nullptr);
-            outlet_add(mSyncIn, inlet_nth(*this, 0));
+            dspSetup(getNumAudioIns());
+        
+            for (long i = 0; i < getNumAudioOuts(); i++)
+                outlet_new(this, "signal");
+        
+            // Add a sync outlet if we need to handle audio
+        
+            if (handlesAudio())
+            {
+                mSyncIn = (t_object *) outlet_new(nullptr, nullptr);
+                outlet_add(mSyncIn, inlet_nth(*this, 0));
+            }
         }
     }
 
     ~FrameLib_MaxClass()
     {
-        dspFree();
+        if (isRealtime())
+            dspFree();
 
         for (auto it = mInputs.begin(); it != mInputs.end(); it++)
             object_free(*it);
@@ -763,7 +767,7 @@ public:
     {
         if (m == ASSIST_OUTLET)
         {
-            if (a == 0 && handlesAudio())
+            if (a == 0 && handlesRealtimeAudio())
                 sprintf(s,"(signal) Audio Synchronisation Output" );
             else if (a < getNumAudioOuts())
                 sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
@@ -772,7 +776,7 @@ public:
         }
         else
         {
-            if (a == 0 && handlesAudio())
+            if (a == 0 && handlesRealtimeAudio())
                 sprintf(s,"(signal) Audio Synchronisation Input");
             else if (a < getNumAudioIns())
                 sprintf(s,"(signal) %s", mObject->audioInfo(a - 1).c_str());
@@ -920,9 +924,25 @@ public:
     bool supportsOrderingConnections()  { return mObject->supportsOrderingConnections(); }
     
     bool handlesAudio() const           { return T::handlesAudio(); }
+    bool isRealtime() const             { return !mNonRealtime; }
+    bool handlesRealtimeAudio() const   { return handlesAudio() && isRealtime(); }
+
+    long getNumAudioIns() const
+    {
+        if (!isRealtime())
+            return 0;
+        
+        return (long) mObject->getNumAudioIns() + (handlesAudio() ? 1 : 0);
+    }
     
-    long getNumAudioIns() const         { return (long) mObject->getNumAudioIns() + (handlesAudio() ? 1 : 0); }
-    long getNumAudioOuts() const        { return (long) mObject->getNumAudioOuts() + (handlesAudio() ? 1 : 0); }
+    long getNumAudioOuts() const
+    {
+        if (!isRealtime())
+            return 0;
+        
+        return (long) mObject->getNumAudioOuts() + (handlesAudio() ? 1 : 0);
+    }
+    
     long getNumIns() const              { return (long) mObject->getNumIns(); }
     long getNumOuts() const             { return (long) mObject->getNumOuts(); }
     
@@ -943,6 +963,9 @@ public:
 
     void dsp(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
     {
+        if (!isRealtime())
+            return;
+        
         mSigOuts.clear();
         
         // Resolve connections (in case there are no schedulers left in the patch) and mark unresolved for next time
@@ -1089,7 +1112,7 @@ public:
     
     static t_ptr_int externalIsOutput(FrameLib_MaxClass *x)
     {
-        return x->handlesAudio() && (x->getNumAudioOuts() > 1);
+        return x->getType() == kOutput;
     }
     
     static t_ptr_int externalGetNumAudioIns(FrameLib_MaxClass *x)
@@ -1355,14 +1378,14 @@ private:
             srcout -= getNumAudioOutsRemote(src);
             dstin -= getNumAudioIns();
             
-            // Check load update before we check the dspchain (in case we are loading in poly~ etc.)
-            
-            short loadupdate = dsp_setloadupdate(false);
-            dsp_setloadupdate(loadupdate);
-
-            if (loadupdate && sys_getdspobjdspstate(*this))
+            if (isRealtime() && sys_getdspobjdspstate(*this))
             {
-                if ((isOrderingInput(dstin) || validInput(dstin)) && updatetype != JPATCHLINE_ORDER)
+                // Check load update before we check the dspchain (in case we are loading in poly~ etc.)
+                
+                short loadupdate = dsp_setloadupdate(false);
+                dsp_setloadupdate(loadupdate);
+                
+                if (loadupdate && (isOrderingInput(dstin) || validInput(dstin)) && updatetype != JPATCHLINE_ORDER)
                     dspchain_setbroken(dspchain_fromobject(*this));
             }
             else
