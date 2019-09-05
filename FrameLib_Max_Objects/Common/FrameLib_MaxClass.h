@@ -720,7 +720,8 @@ public:
     , mSyncIn(nullptr)
     , mUserObject(detectUserObjectAtLoad())
     , mNonRealtime(detectNonRealtime(s, argc, argv))
-    , mNeedsResolve(true)
+    , mConnectionsUpdated(false)
+    , mRealtimeResolved(false)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -992,7 +993,7 @@ public:
         // Resolve connections (in case there are no schedulers left in the patch) and mark unresolved for next time
         
         resolveConnections();
-        mNeedsResolve = true;
+        mRealtimeResolved = false;
         
         // Reset DSP
         
@@ -1031,7 +1032,7 @@ public:
     {
         FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), externalIsOutput(this));
        
-        if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && mNeedsResolve)
+        if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && !mRealtimeResolved)
             resolveGraph(false);
         
         if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
@@ -1107,7 +1108,7 @@ public:
     static void externalMarkUnresolved(FrameLib_MaxClass *x, bool realtime, bool *flag)
     {
         if (x->isRealtime() == realtime)
-            x->mNeedsResolve = true;
+            x->mRealtimeResolved = false;
     }
     
     static void externalAutoOrderingConnections(FrameLib_MaxClass *x, bool realtime, bool *flag)
@@ -1235,27 +1236,30 @@ private:
     
     bool resolveConnections()
     {
-        bool updated = false;
+        if (isRealtime() && mRealtimeResolved)
+            return false;
         
-        if (mNeedsResolve)
-        {
-            // Confirm input connections
-                    
-            for (long i = 0; i < getNumIns(); i++)
-                updated |= !confirmConnection(i, ConnectionInfo::kConfirm);
-            
-            // Confirm ordering connections
-            
-            for (long i = 0; i < getNumOrderingConnections(); i++)
-                updated |= !confirmConnection(getOrderingConnection(i), getNumIns(), ConnectionInfo::kConfirm);
-            
-            // Make output connections
-            
-            for (long i = getNumOuts(); i > 0; i--)
-                makeConnection(i - 1, ConnectionInfo::kConnect);
-            
-            mNeedsResolve = false;
-        }
+        // Check if anything has updated since the last call to this method
+        
+        bool updated = mConnectionsUpdated;
+        mConnectionsUpdated = false;
+        
+        // Confirm input connections
+        
+        for (long i = 0; i < getNumIns(); i++)
+            updated |= !confirmConnection(i, ConnectionInfo::kConfirm);
+        
+        // Confirm ordering connections
+        
+        for (long i = 0; i < getNumOrderingConnections(); i++)
+            updated |= !confirmConnection(getOrderingConnection(i), getNumIns(), ConnectionInfo::kConfirm);
+        
+        // Make output connections
+        
+        for (long i = getNumOuts(); i > 0; i--)
+            makeConnection(i - 1, ConnectionInfo::kConnect);
+        
+        mRealtimeResolved = isRealtime() ? true : false;
         
         return updated;
     }
@@ -1382,6 +1386,9 @@ private:
                 break;
                 
             case kConnectSuccess:
+                mConnectionsUpdated = true;
+                break;
+                
             case kConnectNoOrderingSupport:
             case kConnectAliased:
                 break;
@@ -1399,6 +1406,8 @@ private:
             mObject->deleteOrderingConnection(FrameLibConnection(object, outIdx));
         else
             mObject->deleteConnection(inIdx);
+        
+        mConnectionsUpdated = true;
     }
 
     // Patchline connections
@@ -1702,7 +1711,8 @@ private:
     t_object *mUserObject;
     
     bool mNonRealtime;
-    bool mNeedsResolve;
+    bool mConnectionsUpdated;
+    bool mRealtimeResolved;
 };
 
 // Convenience for Objects Using FrameLib_Expand (use FrameLib_MaxClass_Expand<T>::makeClass() to create)
