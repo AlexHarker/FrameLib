@@ -689,7 +689,7 @@ public:
     
     // Detect the user object at load time
     
-    static t_object *detectUserObjectAtLoad()
+    t_object *detectUserObjectAtLoad()
     {
         t_object *assoc = 0;
         t_object *patch = gensym("#P")->s_thing;
