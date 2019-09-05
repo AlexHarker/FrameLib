@@ -382,19 +382,21 @@ public:
         long numOuts = internal->getNumOuts();
         long numAudioIns = internal->getNumAudioIns();
         long numAudioOuts = internal->getNumAudioOuts();
+        long numLocalAudioIns = std::max(0L, numAudioIns - 1);
+        long numLocalAudioOuts = std::max(0L, numAudioIns - 1);
         
         // Create I/O
         
-        mInOutlets.resize(numIns + numAudioIns - 1);
-        mProxyIns.resize(numIns + numAudioIns - 1);
-        mAudioOuts.resize(numAudioOuts - 1);
+        mInOutlets.resize(numIns + numLocalAudioIns);
+        mProxyIns.resize(numIns + numLocalAudioIns);
+        mAudioOuts.resize(std::max(0L, numLocalAudioOuts - 1));
         mOuts.resize(numOuts);
         
         // Inlets for messages/signals (we need one audio in for the purposes of sync)
         
         dspSetup(1);
 
-        for (long i = numIns + numAudioIns - 2; i >= 0 ; i--)
+        for (long i = numIns + numLocalAudioIns - 1; i >= 0 ; i--)
         {
             mInOutlets[i] = (t_object *) outlet_new(nullptr, nullptr);
             mProxyIns[i] = (t_object *)  (i ? proxy_new(this, i, &mProxyNum) : nullptr);
@@ -404,7 +406,7 @@ public:
         
         for (long i = numOuts - 1; i >= 0 ; i--)
             mOuts[i] = (t_object *) outlet_new(this, nullptr);
-        for (long i = numAudioOuts - 2; i >= 0 ; i--)
+        for (long i = numLocalAudioOuts - 1; i >= 0 ; i--)
             mAudioOuts[i] = (t_object *) outlet_new(this, "signal");
         
         // Connect first signal outlet to the mutator
@@ -413,8 +415,14 @@ public:
         
         // Connect inlets (all types)
         
-        for (long i = 0; i < numAudioIns + numIns - 1; i++)
-            outlet_add(mInOutlets[i], inlet_nth(mObject, i + 1));
+        for (long i = 0; i < numLocalAudioIns + numIns; i++)
+        {
+            // Get the inlet (if there is none then add the object directly as it has only one inlet)
+            
+            void *p = inlet_nth(mObject, offset(i));
+            p = !p ? mObject : p;
+            outlet_add(mInOutlets[i], p);
+        }
         
         // Connect non-audio outlets
         
