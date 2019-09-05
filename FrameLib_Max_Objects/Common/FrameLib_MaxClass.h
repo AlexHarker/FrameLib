@@ -1239,20 +1239,15 @@ private:
         if (isRealtime() && mRealtimeResolved)
             return false;
         
-        // Check if anything has updated since the last call to this method
-        
-        bool updated = mConnectionsUpdated;
-        mConnectionsUpdated = false;
-        
         // Confirm input connections
         
         for (long i = 0; i < getNumIns(); i++)
-            updated |= !confirmConnection(i, ConnectionInfo::kConfirm);
+            confirmConnection(i, ConnectionInfo::kConfirm);
         
         // Confirm ordering connections
         
         for (long i = 0; i < getNumOrderingConnections(); i++)
-            updated |= !confirmConnection(getOrderingConnection(i), getNumIns(), ConnectionInfo::kConfirm);
+            confirmConnection(getOrderingConnection(i), getNumIns(), ConnectionInfo::kConfirm);
         
         // Make output connections
         
@@ -1260,6 +1255,11 @@ private:
             makeConnection(i - 1, ConnectionInfo::kConnect);
         
         mRealtimeResolved = isRealtime() ? true : false;
+        
+        // Check if anything has updated since the last call to this method
+        
+        bool updated = mConnectionsUpdated;
+        mConnectionsUpdated = false;
         
         return updated;
     }
