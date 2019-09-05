@@ -486,7 +486,7 @@ public:
     {
         // Set the order of the wrapper after the internal object by doing this before calling internal sync
         
-        if (internalObject()->isRealtime())
+        if (isRealtime())
             (*sigMethodCache())(this);
         
         internalObject()->sync();
