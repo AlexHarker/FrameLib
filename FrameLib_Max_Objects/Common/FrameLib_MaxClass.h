@@ -304,6 +304,7 @@ public:
         addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "anything");
         addMethod<Wrapper<T>, &Wrapper<T>::sync>(c, "sync");
         addMethod<Wrapper<T>, &Wrapper<T>::dsp>(c);
+        addMethod<Wrapper<T>, &Wrapper<T>::testGraph>(c, "graph");
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
         addMethod(c, (method) &externalWrapperUnwrap, "__fl.wrapper_unwrap");
@@ -501,6 +502,57 @@ public:
         outlet_anything(mInOutlets[getInlet()], sym, static_cast<int>(ac), av);
     }
     
+    // Non-realtime processing
+    
+    void testGraph()
+    {
+        t_ptr_int sampleRate = 44100;
+        t_ptr_int blockSize = 16384;
+        
+        if (internalObject()->resolveGraph())
+            internalObject()->traversePatch(gensym("__fl.reset"), sampleRate, blockSize);
+        
+        // Now get all the audio objects in a list
+        
+        std::vector<FrameLib_Multistream *> audioObjects;
+        std::vector<double> audioBuffer;
+        std::vector<double *> audioInputs;
+        std::vector<double *> audioOutputs;
+        
+        internalObject()->traversePatch(gensym("__fl.find_audio_objects"), &audioObjects);
+        
+        unsigned long maxAudioIns = 0;
+        unsigned long maxAudioOuts = 0;
+        
+        for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
+        {
+            maxAudioIns = std::max(maxAudioIns, (*it)->getNumAudioIns());
+            maxAudioOuts = std::max(maxAudioOuts, (*it)->getNumAudioOuts());
+        }
+        
+        audioBuffer.resize(blockSize * (maxAudioIns + maxAudioOuts), 0.0);
+        audioInputs.resize(maxAudioIns);
+        audioOutputs.resize(maxAudioOuts);
+        
+        for (unsigned long i = 0; i < maxAudioIns; i++)
+            audioInputs[i] = audioBuffer.data() + i * blockSize;
+        
+        for (unsigned long i = 0; i < maxAudioOuts; i++)
+            audioOutputs[i] = audioBuffer.data() + (maxAudioIns + i) * blockSize;
+        
+        // Loop to process audio
+        
+        FrameLib_AudioQueue queue;
+        
+        for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
+            if ((*it)->getType() != kOutput)
+                (*it)->blockUpdate(audioInputs.data(), audioOutputs.data(), blockSize, queue);
+        
+        for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
+            if ((*it)->getType() == kOutput)
+                (*it)->blockUpdate(audioInputs.data(), audioOutputs.data(), blockSize, queue);
+    }
+    
     // External methods (A_CANT)
     
     static t_max_err externalPatchLineUpdate(Wrapper *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
@@ -602,20 +654,24 @@ public:
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
+        
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
         addMethod(c, (method) &externalResolveConnections, "__fl.resolve_connections");
         addMethod(c, (method) &externalMarkUnresolved, "__fl.mark_unresolved");
         addMethod(c, (method) &externalAutoOrderingConnections, "__fl.auto_ordering_connections");
+        addMethod(c, (method) &externalFindAudio, "__fl.find_audio_objects");
         addMethod(c, (method) &externalReset, "__fl.reset");
         addMethod(c, (method) &externalClearAutoOrderingConnections, "__fl.clear_auto_ordering_connections");
         addMethod(c, (method) &externalIsConnected, "__fl.is_connected");
         addMethod(c, (method) &externalConnectionConfirm, "__fl.connection_confirm");
+        addMethod(c, (method) &externalConnectionUpdate, "__fl.connection_update");
         addMethod(c, (method) &externalGetInternalObject, "__fl.get_internal_object");
         addMethod(c, (method) &externalGetUserObject, "__fl.get_user_object");
         addMethod(c, (method) &externalIsOutput, "__fl.is_output");
         addMethod(c, (method) &externalGetNumAudioIns, "__fl.get_num_audio_ins");
         addMethod(c, (method) &externalGetNumAudioOuts, "__fl.get_num_audio_outs");
+        
         class_addmethod(c, (method) &codeexport, "export", A_SYM, A_SYM, 0);
         
         dspInit(c);
@@ -1009,13 +1065,6 @@ public:
             addPerform<FrameLib_MaxClass, &FrameLib_MaxClass<T>::perform>(dsp64);
     }
 
-    // Non-realtime processing (handled from the Wrapper class)
-    
-    void offline(const double * const * ins, double** outs, uintptr_t vec_size, FrameLib_AudioQueue& queue)
-    {
-        mObject->blockUpdate(ins, outs, vec_size, queue);
-    }
-    
     // Get Audio Outputs
     
     std::vector<double *> &getAudioOuts()
@@ -1091,6 +1140,58 @@ public:
         }
     }
     
+    // Graph rouines (public so they can be accesed by the wrapper class)
+    
+    template <typename...Args>
+    void traversePatch(t_patcher *p, t_object *contextAssoc, t_symbol *theMethod, Args...args)
+    {
+        t_object *assoc = getAssociation();
+        
+        // Avoid recursion into a poly / pfft / etc. - If the subpatcher is a wrapper we do need to deal with it
+        
+        if (assoc != contextAssoc && !object_method(assoc, gensym("__fl.wrapper_is_wrapper")))
+            return;
+        
+        // Search for subpatchers, and call method on objects that don't have subpatchers
+        
+        for (t_box *b = jpatcher_get_firstobject(p); b; b = jbox_get_nextobject(b))
+        {
+            long index = 0;
+            
+            while (b && (p = (t_patcher *)object_subpatcher(jbox_get_object(b), &index, this)))
+                traversePatch(p, contextAssoc, theMethod, args...);
+            
+            objectMethod(jbox_get_object(b), theMethod, static_cast<t_ptr_int>(isRealtime()), args...);
+        }
+    }
+    
+    template <typename...Args>
+    void traversePatch(t_symbol *theMethod, Args...args)
+    {
+        traversePatch(mContextPatch, getAssociation(), theMethod, args...);
+    }
+    
+    bool resolveGraph()
+    {
+        t_ptr_int updated = false;
+        
+        traversePatch(gensym("__fl.resolve_connections"), &updated);
+        traversePatch(gensym("__fl.connection_update"), t_ptr_int(false));
+        
+        // If updated then redo auto ordering connections
+        
+        if (updated)
+        {
+            traversePatch(gensym("__fl.clear_auto_ordering_connections"));
+            traversePatch(gensym("__fl.auto_ordering_connections"));
+        }
+        
+        if (updated)
+            post("Graph Updated - realtime %d", isRealtime());
+        
+        return updated;
+    }
+    
     // External methods (A_CANT)
     
     static t_ptr_int externalConnectionAccept(FrameLib_MaxClass *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
@@ -1103,6 +1204,12 @@ public:
         return x->patchLineUpdate(patchline, updatetype, src, srcout, dst, dstin);
     }
 
+    static void externalFindAudio(FrameLib_MaxClass *x, t_ptr_int realtime, std::vector<FrameLib_Multistream *> objects)
+    {
+        if (x->isRealtime() == realtime && T::handlesAudio())
+            objects.push_back(x->mObject.get());
+    }
+    
     static void externalResolveConnections(FrameLib_MaxClass *x, t_ptr_int realtime, t_ptr_int *flag)
     {
         if (x->isRealtime() == realtime)
@@ -1215,56 +1322,6 @@ private:
         t_object *assoc = 0;
         object_method(mContextPatch, gensym("getassoc"), &assoc);
         return assoc;
-    }
-    
-    template <typename...Args>
-    void traversePatch(t_patcher *p, t_object *contextAssoc, t_symbol *theMethod, Args...args)
-    {
-        t_object *assoc = getAssociation();
-        
-        // Avoid recursion into a poly / pfft / etc. - If the subpatcher is a wrapper we do need to deal with it
-         
-        if (assoc != contextAssoc && !object_method(assoc, gensym("__fl.wrapper_is_wrapper")))
-            return;
-        
-        // Search for subpatchers, and call method on objects that don't have subpatchers
-        
-        for (t_box *b = jpatcher_get_firstobject(p); b; b = jbox_get_nextobject(b))
-        {
-            long index = 0;
-            
-            while (b && (p = (t_patcher *)object_subpatcher(jbox_get_object(b), &index, this)))
-                traversePatch(p, contextAssoc, theMethod, args...);
-
-            objectMethod(jbox_get_object(b), theMethod, static_cast<t_ptr_int>(isRealtime()), args...);
-        }
-    }
-    
-    template <typename...Args>
-    void traversePatch(t_symbol *theMethod, Args...args)
-    {
-        traversePatch(mContextPatch, getAssociation(), theMethod, args...);
-    }
-    
-    bool resolveGraph()
-    {
-        t_ptr_int updated = false;
-        
-        traversePatch(gensym("__fl.resolve_connections"), &updated);
-        traversePatch(gensym("__fl.connection_update"), t_ptr_int(false));
-
-        // If updated then redo auto ordering connections
-        
-        if (updated)
-        {
-            traversePatch(gensym("__fl.clear_auto_ordering_connections"));
-            traversePatch(gensym("__fl.auto_ordering_connections"));
-        }
-        
-        if (updated)
-            post("Graph Updated - realtime %d", isRealtime());
-        
-        return updated;
     }
     
     bool resolveConnections()
