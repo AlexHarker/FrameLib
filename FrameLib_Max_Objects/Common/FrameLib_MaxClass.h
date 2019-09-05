@@ -1004,6 +1004,13 @@ public:
             addPerform<FrameLib_MaxClass, &FrameLib_MaxClass<T>::perform>(dsp64);
     }
 
+    // Non-realtime processing (handled from the Wrapper class)
+    
+    void offline(const double * const * ins, double** outs, uintptr_t vec_size, FrameLib_AudioQueue& queue)
+    {
+        mObject->blockUpdate(ins, outs, vec_size, queue);
+    }
+    
     // Get Audio Outputs
     
     std::vector<double *> &getAudioOuts()
