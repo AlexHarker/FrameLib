@@ -417,7 +417,7 @@ public:
         {
             // Get the inlet (if there is none then add the object directly as it has only one inlet)
             
-            void *p = inlet_nth(mObject, offset(i));
+            void *p = inlet_nth(mObject, i);
             p = !p ? mObject : p;
             outlet_add(mInOutlets[i], p);
         }
