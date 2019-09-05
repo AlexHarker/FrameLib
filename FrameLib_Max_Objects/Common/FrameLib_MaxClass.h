@@ -1143,6 +1143,11 @@ public:
         x->makeConnection(index, mode);
     }
     
+    static void externalConnectionUpdate(FrameLib_MaxClass *x, t_ptr_int state)
+    {
+        x->mConnectionsUpdated = state;
+    }
+    
     static FrameLib_Multistream *externalGetInternalObject(FrameLib_MaxClass *x)
     {
         return x->mObject.get();
@@ -1246,7 +1251,8 @@ private:
         t_ptr_int updated = false;
         
         traversePatch(gensym("__fl.resolve_connections"), &updated);
-        
+        traversePatch(gensym("__fl.connection_update"), t_ptr_int(false));
+
         // If updated then redo auto ordering connections
         
         if (updated)
@@ -1255,7 +1261,8 @@ private:
             traversePatch(gensym("__fl.auto_ordering_connections"));
         }
         
-        post("Graph Updated - realtime %d", isRealtime());
+        if (updated)
+            post("Graph Updated - realtime %d", isRealtime());
         
         return updated;
     }
@@ -1413,6 +1420,7 @@ private:
                 
             case kConnectSuccess:
                 mConnectionsUpdated = true;
+                object_method(src, gensym("__fl.connection_update"), t_ptr_int(true));
                 break;
                 
             case kConnectNoOrderingSupport:
