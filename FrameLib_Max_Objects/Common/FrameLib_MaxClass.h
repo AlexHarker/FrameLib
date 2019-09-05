@@ -566,7 +566,7 @@ public:
         {
             FrameLib_AudioQueue queue;
 
-            unsigned long blockSize = std::max(maxBlockSize, updateLength - i);
+            unsigned long blockSize = std::min(maxBlockSize, updateLength - i);
             
             // Zero buffers
             
