@@ -1259,9 +1259,6 @@ private:
     
     bool confirmConnection(unsigned long inIndex, ConnectionInfo::Mode mode)
     {
-        if (!validInput(inIndex))
-            return false;
-        
         return confirmConnection(getConnection(inIndex), inIndex, mode);
     }
     
