@@ -1098,24 +1098,28 @@ public:
         return x->patchLineUpdate(patchline, updatetype, src, srcout, dst, dstin);
     }
 
-    static void externalResolveConnections(FrameLib_MaxClass *x)
+    static void externalResolveConnections(FrameLib_MaxClass *x, bool realtime, bool *flag)
     {
-        x->resolveConnections();
+        if (x->isRealtime() == realtime)
+            *flag |= x->resolveConnections();
     }
     
-    static void externalMarkUnresolved(FrameLib_MaxClass *x)
+    static void externalMarkUnresolved(FrameLib_MaxClass *x, bool realtime, bool *flag)
     {
-        x->mNeedsResolve = true;
+        if (x->isRealtime() == realtime)
+            x->mNeedsResolve = true;
     }
     
-    static void externalAutoOrderingConnections(FrameLib_MaxClass *x)
+    static void externalAutoOrderingConnections(FrameLib_MaxClass *x, bool realtime, bool *flag)
     {
-        x->mObject->autoOrderingConnections();
+        if (x->isRealtime() == realtime)
+            x->mObject->autoOrderingConnections();
     }
     
-    static void externalClearAutoOrderingConnections(FrameLib_MaxClass *x)
+    static void externalClearAutoOrderingConnections(FrameLib_MaxClass *x, bool realtime, bool *flag)
     {
-        x->mObject->clearAutoOrderingConnections();
+        if (x->isRealtime() == realtime)
+            x->mObject->clearAutoOrderingConnections();
     }
 
     static t_ptr_int externalIsConnected(FrameLib_MaxClass *x, unsigned long index)
@@ -1190,7 +1194,7 @@ private:
     
     // Private connection methods
     
-    void traversePatch(t_patcher *p, t_symbol *theMethod, t_object *contextAssoc)
+    void traversePatch(t_patcher *p, t_symbol *theMethod, t_object *contextAssoc, bool *flag)
     {
         t_object *assoc = 0;
         object_method(mContextPatch, gensym("getassoc"), &assoc);
@@ -1207,37 +1211,43 @@ private:
             long index = 0;
             
             while (b && (p = (t_patcher *)object_subpatcher(jbox_get_object(b), &index, this)))
-                traversePatch(p, theMethod, contextAssoc);
+                traversePatch(p, theMethod, contextAssoc, flag);
 
-            object_method(jbox_get_object(b), theMethod);
+            object_method(jbox_get_object(b), theMethod, isRealtime(), flag);
         }
     }
 
     void resolveGraph(bool markUnresolved)
     {
+        bool updated = false;
         t_object *assoc = 0;
         object_method(mContextPatch, gensym("getassoc"), &assoc);
         
-        traversePatch(mContextPatch, gensym("__fl.resolve_connections"), assoc);
-        traversePatch(mContextPatch, gensym("__fl.clear_auto_ordering_connections"), assoc);
-        traversePatch(mContextPatch, gensym("__fl.auto_ordering_connections"), assoc);
+        traversePatch(mContextPatch, gensym("__fl.resolve_connections"), assoc, &updated);
+        traversePatch(mContextPatch, gensym("__fl.clear_auto_ordering_connections"), assoc, nullptr);
+        traversePatch(mContextPatch, gensym("__fl.auto_ordering_connections") , assoc, nullptr);
+        
+        // If we need to leave the graph marked unresolved do so
+        
         if (markUnresolved)
-            traversePatch(mContextPatch, gensym("__fl.mark_unresolved"), assoc);
+            traversePatch(mContextPatch, gensym("__fl.mark_unresolved"), assoc, nullptr);
     }
     
-    void resolveConnections()
+    bool resolveConnections()
     {
+        bool updated = false;
+        
         if (mNeedsResolve)
         {
             // Confirm input connections
                     
             for (long i = 0; i < getNumIns(); i++)
-                confirmConnection(i, ConnectionInfo::kConfirm);
+                updated |= !confirmConnection(i, ConnectionInfo::kConfirm);
             
             // Confirm ordering connections
             
             for (long i = 0; i < getNumOrderingConnections(); i++)
-                confirmConnection(getOrderingConnection(i), getNumIns(), ConnectionInfo::kConfirm);
+                updated |= !confirmConnection(getOrderingConnection(i), getNumIns(), ConnectionInfo::kConfirm);
             
             // Make output connections
             
@@ -1246,6 +1256,8 @@ private:
             
             mNeedsResolve = false;
         }
+        
+        return updated;
     }
 
     void makeConnection(unsigned long index, ConnectionInfo::Mode mode)
