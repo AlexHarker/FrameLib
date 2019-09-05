@@ -306,7 +306,7 @@ public:
         addMethod<Wrapper<T>, &Wrapper<T>::dsp>(c);
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
-        addMethod(c, (method) &externalWrapperInternalObject, "__fl.wrapper_internal_object");
+        addMethod(c, (method) &externalWrapperUnwrap, "__fl.wrapper_unwrap");
         addMethod(c, (method) &externalWrapperIsWrapper, "__fl.wrapper_is_wrapper");
 
         // N.B. MUST add signal handling after dspInit to override the builtin responses
@@ -518,8 +518,9 @@ public:
         return T::externalConnectionAccept(src->internalObject(), dst, src->offset(srcout), dstin, outlet, inlet);
     }
     
-    static void *externalWrapperInternalObject(Wrapper *x)
+    static void *externalWrapperUnwrap(Wrapper *x, long* idx)
     {
+        *idx = x->offset(*idx);
         return x->mObject;
     }
     
@@ -1151,13 +1152,10 @@ private:
     
     void unwrapConnection(t_object *& object, long& connection)
     {
-        t_object *wrapped = (t_object *) object_method(object, gensym("__fl.wrapper_internal_object"));
+        t_object *wrapped = (t_object *) object_method(object, gensym("__fl.wrapper_unwrap"), &connection);
         
         if (wrapped)
-        {
             object = wrapped;
-            connection++;
-        }
     }
     
     // Get an internal object from a generic pointer safely
