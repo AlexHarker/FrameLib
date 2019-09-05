@@ -367,8 +367,13 @@ public:
         
         // Make Mutator (with argument referencing the internal object)
         
-        atom_setobj(&a, mObject);
-        mMutator = (t_object *) object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 1, &a);
+        if (isRealtime())
+        {
+            atom_setobj(&a, mObject);
+            mMutator = (t_object *) object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 1, &a);
+        }
+        else
+            mMutator = nullptr;
         
         // Free the dictionary
     
@@ -394,7 +399,8 @@ public:
         
         // Inlets for messages/signals (we need one audio in for the purposes of sync)
         
-        dspSetup(1);
+        if (isRealtime())
+            dspSetup(1);
 
         for (long i = numIns + numLocalAudioIns - 1; i >= 0 ; i--)
         {
@@ -411,7 +417,8 @@ public:
         
         // Connect first signal outlet to the mutator
         
-        outlet_add(outlet_nth(mObject, 0), inlet_nth(mMutator, 0));
+        if (isRealtime())
+            outlet_add(outlet_nth(mObject, 0), inlet_nth(mMutator, 0));
         
         // Connect inlets (all types)
         
@@ -460,21 +467,22 @@ public:
     
     void assist(void *b, long m, long a, char *s)
     {
-        internalObject()->assist(b, m, a + 1, s);
+        internalObject()->assist(b, m, offset(a), s);
     }
     
     void sync()
     {
         // Must set the order of the wrapper after the internal object before calling internal sync
         
-        (*sigMethodCache())(this);
+        if (internalObject()->isRealtime())
+            (*sigMethodCache())(this);
         
         internalObject()->sync();
     }
     
     void dsp(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
     {
-        if (internalObject()->getType() == kOutput)
+        if (isRealtime() && internalObject()->getType() == kOutput)
             addPerform<Wrapper, &Wrapper<T>::perform>(dsp64);
     }
     
@@ -498,16 +506,16 @@ public:
     static t_max_err externalPatchLineUpdate(Wrapper *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
     {
         if ((t_object *) x == dst)
-            return T::externalPatchLineUpdate(x->internalObject(), patchline, updatetype, src, srcout, x->mObject, dstin + 1);
+            return T::externalPatchLineUpdate(x->internalObject(), patchline, updatetype, src, srcout, x->mObject, x->offset(dstin));
         else
-            return T::externalPatchLineUpdate(x->internalObject(), patchline, updatetype, x->mObject, srcout + 1, dst, dstin);
+            return T::externalPatchLineUpdate(x->internalObject(), patchline, updatetype, x->mObject, x->offset(srcout), dst, dstin);
     }
     
     static t_ptr_int externalConnectionAccept(Wrapper *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
     {
         // Only called for sources / account for internal sync connections
 
-        return T::externalConnectionAccept(src->internalObject(), dst, srcout + 1, dstin, outlet, inlet);
+        return T::externalConnectionAccept(src->internalObject(), dst, src->offset(srcout), dstin, outlet, inlet);
     }
     
     static void *externalWrapperInternalObject(Wrapper *x)
@@ -524,6 +532,10 @@ private:
     
     T *internalObject() { return (T *) mObject; }
 
+    bool isRealtime() { return internalObject()->isRealtime(); }
+    
+    long offset(long connectionIdx) {return isRealtime() ? connectionIdx + 1 : connectionIdx; }
+    
     // Owned Objects (need freeing)
     
     t_object *mPatch;
