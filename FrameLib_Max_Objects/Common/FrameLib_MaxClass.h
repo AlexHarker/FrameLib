@@ -575,21 +575,24 @@ public:
         
         // Loop to process audio
 
-        for (unsigned long i = 0; (i + maxBlockSize() - 1) < updateLength; i += maxBlockSize())
+        for (unsigned long i = 0; i < updateLength; i += maxBlockSize())
         {
             unsigned long blockSize = std::min(maxBlockSize(), updateLength - i);
             unsigned long start = currentSampleTime + i;
             
-            // Process inputs and schedulers
+            // Process inputs and schedulers (block controls object lifetime)
             
-            FrameLib_AudioQueue queue;
-            
-            for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
+            if (true)
             {
-                if (it->mObject->getType() != kOutput)
+                FrameLib_AudioQueue queue;
+            
+                for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
                 {
-                    read(it->mBuffer, inputs.data(), it->mObject->getNumAudioIns(), blockSize, start);
-                    it->mObject->blockUpdate(inputs.data(), nullptr, blockSize, queue);
+                    if (it->mObject->getType() != kOutput)
+                    {
+                        read(it->mBuffer, inputs.data(), it->mObject->getNumAudioIns(), blockSize, start);
+                        it->mObject->blockUpdate(inputs.data(), nullptr, blockSize, queue);
+                    }
                 }
             }
             
@@ -646,7 +649,7 @@ private:
     
     void constrain(MaxBufferAccess& access, size_t& numChans, size_t& size, size_t offset)
     {
-        size = (access.length() + offset) < size ? size : access.length() - offset;
+        size = (access.length() + offset + size) > size ? size : access.length() - offset;
         numChans = numChans < access.chans() ? numChans : access.chans();
     }
     
