@@ -69,7 +69,8 @@ public:
     template <typename...Args>
     static void objectMethod(t_object *object, t_symbol* theMethod, Args...args)
     {
-        objectMethod(object, theMethod, args..., (void *) nullptr);
+        void *pad = nullptr;
+        objectMethod(object, theMethod, args..., pad);
     }
     
     // Specialisation to prevent infinite padding
