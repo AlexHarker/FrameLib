@@ -607,6 +607,7 @@ public:
         addMethod(c, (method) &externalResolveConnections, "__fl.resolve_connections");
         addMethod(c, (method) &externalMarkUnresolved, "__fl.mark_unresolved");
         addMethod(c, (method) &externalAutoOrderingConnections, "__fl.auto_ordering_connections");
+        addMethod(c, (method) &externalReset, "__fl.reset");
         addMethod(c, (method) &externalClearAutoOrderingConnections, "__fl.clear_auto_ordering_connections");
         addMethod(c, (method) &externalIsConnected, "__fl.is_connected");
         addMethod(c, (method) &externalConnectionConfirm, "__fl.connection_confirm");
@@ -817,7 +818,10 @@ public:
         char conformedPath[MAX_PATH_CHARS];
         
         if (!sys_getdspobjdspstate(*x))
-            x->resolveGraph(true);
+        {
+            x->resolveGraph();
+            x->traversePatch(gensym("__fl.mark_unresolved"));
+        }
 
         path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
         ExportError error = exportGraph(x->mObject.get(), conformedPath, className->s_name);
@@ -1033,7 +1037,7 @@ public:
         FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), externalIsOutput(this));
        
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && !mRealtimeResolved)
-            resolveGraph(false);
+            resolveGraph();
         
         if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
             outlet_anything(mSyncIn, gensym("signal"), 0, nullptr);
@@ -1105,24 +1109,30 @@ public:
             *flag |= x->resolveConnections();
     }
     
-    static void externalMarkUnresolved(FrameLib_MaxClass *x, bool realtime, bool *flag)
+    static void externalMarkUnresolved(FrameLib_MaxClass *x, bool realtime)
     {
         if (x->isRealtime() == realtime)
             x->mRealtimeResolved = false;
     }
     
-    static void externalAutoOrderingConnections(FrameLib_MaxClass *x, bool realtime, bool *flag)
+    static void externalAutoOrderingConnections(FrameLib_MaxClass *x, bool realtime)
     {
         if (x->isRealtime() == realtime)
             x->mObject->autoOrderingConnections();
     }
     
-    static void externalClearAutoOrderingConnections(FrameLib_MaxClass *x, bool realtime, bool *flag)
+    static void externalClearAutoOrderingConnections(FrameLib_MaxClass *x, bool realtime)
     {
         if (x->isRealtime() == realtime)
             x->mObject->clearAutoOrderingConnections();
     }
 
+    static void externalReset(FrameLib_MaxClass *x, bool realtime, double samplerate, long maxvectorsize)
+    {
+        if (x->isRealtime() == realtime)
+            x->mObject->reset(samplerate, maxvectorsize);
+    }
+    
     static t_ptr_int externalIsConnected(FrameLib_MaxClass *x, unsigned long index)
     {
         return x->confirmConnection(index, ConnectionInfo::kConfirm);
@@ -1195,10 +1205,17 @@ private:
     
     // Private connection methods
     
-    void traversePatch(t_patcher *p, t_symbol *theMethod, t_object *contextAssoc, bool *flag)
+    t_object *getAssociation()
     {
         t_object *assoc = 0;
         object_method(mContextPatch, gensym("getassoc"), &assoc);
+        return assoc;
+    }
+    
+    template <typename...Args>
+    void traversePatch(t_patcher *p, t_object *contextAssoc, t_symbol *theMethod, Args...args)
+    {
+        t_object *assoc = getAssociation();
         
         // Avoid recursion into a poly / pfft / etc. - If the subpatcher is a wrapper we do need to deal with it
          
@@ -1212,26 +1229,35 @@ private:
             long index = 0;
             
             while (b && (p = (t_patcher *)object_subpatcher(jbox_get_object(b), &index, this)))
-                traversePatch(p, theMethod, contextAssoc, flag);
+                traversePatch(p, contextAssoc, theMethod, args...);
 
-            object_method(jbox_get_object(b), theMethod, isRealtime(), flag);
+            object_method(jbox_get_object(b), theMethod, isRealtime(), args...);
         }
     }
-
-    void resolveGraph(bool markUnresolved)
+    
+    template <typename...Args>
+    void traversePatch(t_symbol *theMethod, Args...args)
+    {
+        traversePatch(mContextPatch, getAssociation(), theMethod, args...);
+    }
+    
+    bool resolveGraph()
     {
         bool updated = false;
-        t_object *assoc = 0;
-        object_method(mContextPatch, gensym("getassoc"), &assoc);
         
-        traversePatch(mContextPatch, gensym("__fl.resolve_connections"), assoc, &updated);
-        traversePatch(mContextPatch, gensym("__fl.clear_auto_ordering_connections"), assoc, nullptr);
-        traversePatch(mContextPatch, gensym("__fl.auto_ordering_connections") , assoc, nullptr);
+        traversePatch(gensym("__fl.resolve_connections"), &updated);
         
-        // If we need to leave the graph marked unresolved do so
+        // If updated then redo auto ordering connections
         
-        if (markUnresolved)
-            traversePatch(mContextPatch, gensym("__fl.mark_unresolved"), assoc, nullptr);
+        if (updated)
+        {
+            traversePatch(gensym("__fl.clear_auto_ordering_connections"));
+            traversePatch(gensym("__fl.auto_ordering_connections"));
+        }
+        
+        post("Graph Updated - realtime %d", isRealtime());
+        
+        return updated;
     }
     
     bool resolveConnections()
