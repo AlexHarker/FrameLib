@@ -537,10 +537,10 @@ public:
     
     void process(t_atom_long length)
     {
-        // FIX - need to be able to specifiy time in different ways (must be in whole samples)
+        // FIX - need to be able to specify time in different ways (must be in whole samples)
 
         unsigned long updateLength = length > 0 ? length : 0;
-        unsigned long currentSampleTime = 0;
+        unsigned long currentSampleTime = internalObject()->getBlockTime();
         
         if (!updateLength)
             return;
@@ -1152,6 +1152,11 @@ public:
         return (long) mObject->getNumOuts();
     }
     
+    uint64_t getBlockTime() const
+    {
+        return mObject->getBlockTime();
+    }
+    
     // Perform and DSP
 
     void perform(t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam)
@@ -1330,8 +1335,10 @@ public:
 
     static void externalFindAudio(FrameLib_MaxClass *x, t_ptr_int realtime, std::vector<FrameLib_MaxNRTAudio> objects)
     {
+        // FIX - need to be able to set the buffer manually!
+        
         if (x->isRealtime() == realtime && T::handlesAudio())
-            objects.push_back(FrameLib_MaxNRTAudio(x->mObject.get(), nullptr));
+            objects.push_back(FrameLib_MaxNRTAudio(x->mObject.get(), gensym("outbuffer")));
     }
     
     static void externalResolveConnections(FrameLib_MaxClass *x, t_ptr_int realtime, t_ptr_int *flag)

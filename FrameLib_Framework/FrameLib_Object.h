@@ -168,6 +168,7 @@ public:
 
     // Override to handle audio at the block level (reset called with the audio engine resets)
     
+    virtual uint64_t getBlockTime() const = 0;
     virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& queue) = 0;
     virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) = 0;
     virtual void reset(double samplingRate, unsigned long maxBlockSize) = 0;

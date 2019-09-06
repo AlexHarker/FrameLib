@@ -176,7 +176,9 @@ public:
     }
 
     // Audio Processing
-        
+    
+    uint64_t getBlockTime() const override { return mBlocks[0]->getBlockTime(); }
+
     void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& queue) override
     {
         unsigned long internalNumIns = mBlocks[0]->getNumAudioIns();

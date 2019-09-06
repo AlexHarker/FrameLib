@@ -145,6 +145,7 @@ public:
     
     // Audio Processing
     
+    uint64_t getBlockTime() const final { return mBlockEndTime.intVal(); }
     void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& queue) final;
     void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) final;
     void reset(double samplingRate, unsigned long maxBlockSize) final;
