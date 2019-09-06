@@ -1132,7 +1132,7 @@ private:
     void traversePatch(t_patcher *p, t_symbol *method, t_object *contextAssoc)
     {
         t_object *assoc = 0;
-        object_method(mContextPatch, gensym("getassoc"), &assoc);
+        object_method(p, gensym("getassoc"), &assoc);
         
         // Avoid recursion into a poly / pfft / etc. - If the subpatcher is a wrapper we do need to deal with it
          
