@@ -666,8 +666,7 @@ public:
         
         for (t_object *parent = nullptr; traverse && (parent = jpatcher_get_parentpatcher(patch)); patch = traverse ? parent : patch)
         {
-            t_object *assoc = 0;
-            object_method(patch, gensym("getassoc"), &assoc);
+            t_object *assoc = getAssociation(patch);
             
             // Traverse if the patch is in a box (subpatcher or abstraction) it belongs to a wrapper
             
@@ -714,9 +713,8 @@ public:
     
     t_object *detectUserObjectAtLoad()
     {
-        t_object *assoc = 0;
         t_object *patch = gensym("#P")->s_thing;
-        object_method(patch, gensym("getassoc"), &assoc);
+        t_object *assoc = getAssociation(patch);
     
         return (assoc && object_method(assoc, gensym("__fl.wrapper_is_wrapper"))) ? assoc : *this;
     }
@@ -1336,7 +1334,7 @@ private:
     template <typename...Args>
     void traversePatch(t_patcher *p, t_object *contextAssoc, t_symbol *theMethod, Args...args)
     {
-        t_object *assoc = getAssociation();
+        t_object *assoc = getAssociation(p);
         
         // Avoid recursion into a poly / pfft / etc. - If the subpatcher is a wrapper we do need to deal with it
         
@@ -1359,7 +1357,7 @@ private:
     template <typename...Args>
     void traversePatch(t_symbol *theMethod, Args...args)
     {
-        traversePatch(mContextPatch, getAssociation(), theMethod, args...);
+        traversePatch(mContextPatch, getAssociation(mContextPatch), theMethod, args...);
     }
     
     bool resolveGraph()
@@ -1395,10 +1393,10 @@ private:
     
     // Private connection methods
     
-    t_object *getAssociation()
+    static t_object *getAssociation(t_object *patch)
     {
         t_object *assoc = 0;
-        object_method(mContextPatch, gensym("getassoc"), &assoc);
+        object_method(patch, gensym("getassoc"), &assoc);
         return assoc;
     }
     
