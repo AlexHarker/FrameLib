@@ -314,8 +314,7 @@ public:
         addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "anything");
         addMethod<Wrapper<T>, &Wrapper<T>::sync>(c, "sync");
         addMethod<Wrapper<T>, &Wrapper<T>::dsp>(c);
-        addMethod<Wrapper<T>, &Wrapper<T>::reset>(c, "reset");
-        addMethod<Wrapper<T>, &Wrapper<T>::process>(c, "process");
+
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
         addMethod(c, (method) &externalWrapperUnwrap, "__fl.wrapper_unwrap");
@@ -513,105 +512,6 @@ public:
         outlet_anything(mInOutlets[getInlet()], sym, static_cast<int>(ac), av);
     }
     
-    // Non-realtime processing
-    
-    static unsigned long maxBlockSize() { return 16384UL; }
-    
-    void resolveGraph(bool forceReset = false)
-    {
-        // FIX - where does this come from?
-        
-        t_ptr_int sampleRate = 44100;
-        t_ptr_int blockSize = maxBlockSize();
-        
-        bool updated = internalObject()->resolveGraph();
-        
-        if (updated || forceReset)
-            internalObject()->traversePatch(gensym("__fl.reset"), sampleRate, blockSize);
-    }
-    
-    void reset()
-    {
-        resolveGraph(true);
-    }
-    
-    void process(t_atom_long length)
-    {
-        // FIX - need to be able to specify time in different ways (must be in whole samples)
-
-        unsigned long updateLength = length > 0 ? length : 0;
-        unsigned long currentSampleTime = static_cast<unsigned long>(internalObject()->getBlockTime());
-        
-        if (!updateLength)
-            return;
-        
-        resolveGraph();
-        
-        // Retrieve all the audio objects in a list
-        
-        std::vector<FrameLib_MaxNRTAudio> audioObjects;
-        std::vector<double> audioBuffer;
-        std::vector<double *> inputs;
-        std::vector<double *> outputs;
-        unsigned long maxAudioIns = 0;
-        unsigned long maxAudioOuts = 0;
-        
-        internalObject()->traversePatch(gensym("__fl.find_audio_objects"), &audioObjects);
-        
-        // Set up buffers
-        
-        for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
-        {
-            maxAudioIns = std::max(maxAudioIns, it->mObject->getNumAudioIns());
-            maxAudioOuts = std::max(maxAudioOuts, it->mObject->getNumAudioOuts());
-        }
-        
-        audioBuffer.resize(maxBlockSize() * (maxAudioIns + maxAudioOuts));
-        inputs.resize(maxAudioIns);
-        outputs.resize(maxAudioOuts);
-        
-        for (unsigned long i = 0; i < maxAudioIns; i++)
-            inputs[i] = audioBuffer.data() + i * maxBlockSize();
-        
-        for (unsigned long i = 0; i < maxAudioOuts; i++)
-            outputs[i] = audioBuffer.data() + (maxAudioIns + i) * maxBlockSize();
-        
-        // Loop to process audio
-
-        for (unsigned long i = 0; i < updateLength; i += maxBlockSize())
-        {
-            unsigned long blockSize = std::min(maxBlockSize(), updateLength - i);
-            unsigned long start = currentSampleTime + i;
-            
-            // Process inputs and schedulers (block controls object lifetime)
-            
-            if (true)
-            {
-                FrameLib_AudioQueue queue;
-            
-                for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
-                {
-                    if (it->mObject->getType() != kOutput)
-                    {
-                        read(it->mBuffer, inputs.data(), it->mObject->getNumAudioIns(), blockSize, start);
-                        it->mObject->blockUpdate(inputs.data(), nullptr, blockSize, queue);
-                    }
-                }
-            }
-            
-            // Process outputs
-            
-            for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
-            {
-                if (it->mObject->getType() == kOutput)
-                {
-                    it->mObject->blockUpdate(nullptr, outputs.data(), blockSize);
-                    write(it->mBuffer, outputs.data(), it->mObject->getNumAudioOuts(), blockSize, start);
-                }
-            }
-        }
-    }
-    
     // External methods (A_CANT)
     
     static t_max_err externalPatchLineUpdate(Wrapper *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
@@ -647,65 +547,6 @@ private:
     bool isRealtime() { return internalObject()->isRealtime(); }
     
     long offset(long connectionIdx) {return isRealtime() ? connectionIdx + 1 : connectionIdx; }
-    
-    // Buffer access
-    
-    void constrain(MaxBufferAccess& access, size_t& numChans, size_t& size, size_t offset)
-    {
-        size_t length = access.length();
-        size = length > (offset + size) ? size : ((length > offset) ? length - offset : 0);
-        numChans = numChans < access.chans() ? numChans : access.chans();
-    }
-    
-    void read(t_symbol *buffer, double **outs, size_t numChans, size_t size, size_t offset)
-    {
-        MaxBufferAccess access(*this, buffer);
-        
-        size_t readChans = numChans;
-        size_t readSize = size;
-        
-        constrain(access, readChans, readSize, offset);
-        
-        // Read samples by channel
-        
-        for (size_t i = 0; i < readChans; i++)
-        {
-            float *samples = access.samples() + offset * access.chans() + i;
-            size_t chans = access.chans();
-            
-            for (size_t j = 0; j < size; j++, samples += chans)
-                outs[i][j] = *samples;
-            
-            // Pad if needed
-            
-            std::fill_n(outs[i] + readSize, size - readSize, 0.0);
-        }
-        
-        // Zero if reading was not possible
-        
-        for (size_t i = readChans; i < numChans; i++)
-            std::fill_n(outs[i], size, 0.0);
-    }
-    
-    void write(t_symbol *buffer, const double * const *ins, size_t numChans, size_t size, size_t offset)
-    {
-        MaxBufferAccess access(*this, buffer);
-
-        constrain(access, numChans, size, offset);
-        
-        // Write samples by channel
-        
-        for (size_t i = 0; i < numChans; i++)
-        {
-            float *samples = access.samples() + offset * access.chans() + i;
-            size_t chans = access.chans();
-            
-            for (size_t j = 0; j < size; j++, samples += chans)
-                *samples = ins[i][j];
-        }
-        
-        access.setDirty();
-    }
 
     // Owned Objects (need freeing)
     
@@ -772,6 +613,12 @@ public:
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::frame>(c, "frame");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
+        
+        if (T::handlesAudio())
+        {
+            addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::reset>(c, "reset");
+            addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::process>(c, "process");
+        }
         
         addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
@@ -1195,6 +1042,92 @@ public:
             addPerform<FrameLib_MaxClass, &FrameLib_MaxClass<T>::perform>(dsp64);
     }
 
+    // Non-realtime processing
+    
+    static unsigned long maxBlockSize() { return 16384UL; }
+    
+    void reset()
+    {
+        checkGraph(true);
+    }
+    
+    void process(t_atom_long length)
+    {
+        // FIX - need to be able to specify time in different ways (must be in whole samples)
+        
+        unsigned long updateLength = length > 0 ? length : 0;
+        unsigned long currentSampleTime = static_cast<unsigned long>(getBlockTime());
+        
+        if (!updateLength)
+            return;
+        
+        checkGraph();
+        
+        // Retrieve all the audio objects in a list
+        
+        std::vector<FrameLib_MaxNRTAudio> audioObjects;
+        std::vector<double> audioBuffer;
+        std::vector<double *> inputs;
+        std::vector<double *> outputs;
+        unsigned long maxAudioIns = 0;
+        unsigned long maxAudioOuts = 0;
+        
+        traversePatch(gensym("__fl.find_audio_objects"), &audioObjects);
+        
+        // Set up buffers
+        
+        for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
+        {
+            maxAudioIns = std::max(maxAudioIns, it->mObject->getNumAudioIns());
+            maxAudioOuts = std::max(maxAudioOuts, it->mObject->getNumAudioOuts());
+        }
+        
+        audioBuffer.resize(maxBlockSize() * (maxAudioIns + maxAudioOuts));
+        inputs.resize(maxAudioIns);
+        outputs.resize(maxAudioOuts);
+        
+        for (unsigned long i = 0; i < maxAudioIns; i++)
+            inputs[i] = audioBuffer.data() + i * maxBlockSize();
+        
+        for (unsigned long i = 0; i < maxAudioOuts; i++)
+            outputs[i] = audioBuffer.data() + (maxAudioIns + i) * maxBlockSize();
+        
+        // Loop to process audio
+        
+        for (unsigned long i = 0; i < updateLength; i += maxBlockSize())
+        {
+            unsigned long blockSize = std::min(maxBlockSize(), updateLength - i);
+            unsigned long start = currentSampleTime + i;
+            
+            // Process inputs and schedulers (block controls object lifetime)
+            
+            if (true)
+            {
+                FrameLib_AudioQueue queue;
+                
+                for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
+                {
+                    if (it->mObject->getType() != kOutput)
+                    {
+                        read(it->mBuffer, inputs.data(), it->mObject->getNumAudioIns(), blockSize, start);
+                        it->mObject->blockUpdate(inputs.data(), nullptr, blockSize, queue);
+                    }
+                }
+            }
+            
+            // Process outputs
+            
+            for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
+            {
+                if (it->mObject->getType() == kOutput)
+                {
+                    it->mObject->blockUpdate(nullptr, outputs.data(), blockSize);
+                    write(it->mBuffer, outputs.data(), it->mObject->getNumAudioOuts(), blockSize, start);
+                }
+            }
+        }
+    }
+    
     // Get Audio Outputs
     
     std::vector<double *> &getAudioOuts()
@@ -1268,58 +1201,6 @@ public:
                 }
                 break;
         }
-    }
-    
-    // Graph rouines (public so they can be accesed by the wrapper class)
-    
-    template <typename...Args>
-    void traversePatch(t_patcher *p, t_object *contextAssoc, t_symbol *theMethod, Args...args)
-    {
-        t_object *assoc = getAssociation();
-        
-        // Avoid recursion into a poly / pfft / etc. - If the subpatcher is a wrapper we do need to deal with it
-        
-        if (assoc != contextAssoc && !object_method(assoc, gensym("__fl.wrapper_is_wrapper")))
-            return;
-        
-        // Search for subpatchers, and call method on objects that don't have subpatchers
-        
-        for (t_box *b = jpatcher_get_firstobject(p); b; b = jbox_get_nextobject(b))
-        {
-            long index = 0;
-            
-            while (b && (p = (t_patcher *)object_subpatcher(jbox_get_object(b), &index, this)))
-                traversePatch(p, contextAssoc, theMethod, args...);
-            
-            objectMethod(jbox_get_object(b), theMethod, static_cast<t_ptr_int>(isRealtime()), args...);
-        }
-    }
-    
-    template <typename...Args>
-    void traversePatch(t_symbol *theMethod, Args...args)
-    {
-        traversePatch(mContextPatch, getAssociation(), theMethod, args...);
-    }
-    
-    bool resolveGraph()
-    {
-        t_ptr_int updated = false;
-        
-        traversePatch(gensym("__fl.resolve_connections"), &updated);
-        traversePatch(gensym("__fl.connection_update"), t_ptr_int(false));
-        
-        // If updated then redo auto ordering connections
-        
-        if (updated)
-        {
-            traversePatch(gensym("__fl.clear_auto_ordering_connections"));
-            traversePatch(gensym("__fl.auto_ordering_connections"));
-        }
-        
-        if (updated)
-            post("Graph Updated - realtime %d", isRealtime());
-        
-        return updated;
     }
     
     // External methods (A_CANT)
@@ -1445,6 +1326,71 @@ private:
     {
         t_ptr_int numAudioOuts = reinterpret_cast<t_ptr_int>(object_method(x, gensym("__fl.get_num_audio_outs")));
         return static_cast<long>(numAudioOuts);
+    }
+    
+    // Graph methods
+    
+    template <typename...Args>
+    void traversePatch(t_patcher *p, t_object *contextAssoc, t_symbol *theMethod, Args...args)
+    {
+        t_object *assoc = getAssociation();
+        
+        // Avoid recursion into a poly / pfft / etc. - If the subpatcher is a wrapper we do need to deal with it
+        
+        if (assoc != contextAssoc && !object_method(assoc, gensym("__fl.wrapper_is_wrapper")))
+            return;
+        
+        // Search for subpatchers, and call method on objects that don't have subpatchers
+        
+        for (t_box *b = jpatcher_get_firstobject(p); b; b = jbox_get_nextobject(b))
+        {
+            long index = 0;
+            
+            while (b && (p = (t_patcher *)object_subpatcher(jbox_get_object(b), &index, this)))
+                traversePatch(p, contextAssoc, theMethod, args...);
+            
+            objectMethod(jbox_get_object(b), theMethod, static_cast<t_ptr_int>(isRealtime()), args...);
+        }
+    }
+    
+    template <typename...Args>
+    void traversePatch(t_symbol *theMethod, Args...args)
+    {
+        traversePatch(mContextPatch, getAssociation(), theMethod, args...);
+    }
+    
+    bool resolveGraph()
+    {
+        t_ptr_int updated = false;
+        
+        traversePatch(gensym("__fl.resolve_connections"), &updated);
+        traversePatch(gensym("__fl.connection_update"), t_ptr_int(false));
+        
+        // If updated then redo auto ordering connections
+        
+        if (updated)
+        {
+            traversePatch(gensym("__fl.clear_auto_ordering_connections"));
+            traversePatch(gensym("__fl.auto_ordering_connections"));
+        }
+        
+        if (updated)
+            post("Graph Updated - realtime %d", isRealtime());
+        
+        return updated;
+    }
+    
+    void checkGraph(bool forceReset = false)
+    {
+        // FIX - where does this come from?
+        
+        t_ptr_int sampleRate = 44100;
+        t_ptr_int blockSize = maxBlockSize();
+        
+        bool updated = resolveGraph();
+        
+        if (updated || forceReset)
+            traversePatch(gensym("__fl.reset"), sampleRate, blockSize);
     }
     
     // Private connection methods
@@ -1903,6 +1849,65 @@ private:
         }
     }
 
+    // Buffer access
+    
+    void constrain(MaxBufferAccess& access, size_t& numChans, size_t& size, size_t offset)
+    {
+        size_t length = access.length();
+        size = length > (offset + size) ? size : ((length > offset) ? length - offset : 0);
+        numChans = numChans < access.chans() ? numChans : access.chans();
+    }
+    
+    void read(t_symbol *buffer, double **outs, size_t numChans, size_t size, size_t offset)
+    {
+        MaxBufferAccess access(*this, buffer);
+        
+        size_t readChans = numChans;
+        size_t readSize = size;
+        
+        constrain(access, readChans, readSize, offset);
+        
+        // Read samples by channel
+        
+        for (size_t i = 0; i < readChans; i++)
+        {
+            float *samples = access.samples() + offset * access.chans() + i;
+            size_t chans = access.chans();
+            
+            for (size_t j = 0; j < size; j++, samples += chans)
+                outs[i][j] = *samples;
+            
+            // Pad if needed
+            
+            std::fill_n(outs[i] + readSize, size - readSize, 0.0);
+        }
+        
+        // Zero if reading was not possible
+        
+        for (size_t i = readChans; i < numChans; i++)
+            std::fill_n(outs[i], size, 0.0);
+    }
+    
+    void write(t_symbol *buffer, const double * const *ins, size_t numChans, size_t size, size_t offset)
+    {
+        MaxBufferAccess access(*this, buffer);
+        
+        constrain(access, numChans, size, offset);
+        
+        // Write samples by channel
+        
+        for (size_t i = 0; i < numChans; i++)
+        {
+            float *samples = access.samples() + offset * access.chans() + i;
+            size_t chans = access.chans();
+            
+            for (size_t j = 0; j < size; j++, samples += chans)
+                *samples = ins[i][j];
+        }
+        
+        access.setDirty();
+    }
+    
 protected:
    
     unsigned long getNumStreams() { return mObject->getNumStreams(); }
