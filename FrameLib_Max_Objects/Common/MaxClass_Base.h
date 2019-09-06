@@ -11,6 +11,19 @@
 // This is a very lightweight C++ template wrapper for writing max objects as C++ classes
 // This work is loosely based on https://github.com/grrrwaaa/maxcpp by Graham Wakefield
 
+template <class T>
+class DefaultArg
+{
+public:
+    DefaultArg(T value) : mValue(value) {}
+    operator T() { return mValue; }
+private:
+    T mValue;
+};
+
+using def_atom_long = DefaultArg<t_atom_long>;
+using def_double = DefaultArg<double>;
+
 class MaxClass_Base
 {
 
@@ -43,6 +56,16 @@ public:
     template <class T, typename Float<T>::MethodFloat F> static void call(T *x, double v) { ((x)->*F)(v); }
     template <class T, typename Float<T>::MethodFloat F>
     static void addMethod(t_class *c, const char *name) { auto f = call<T, F>; class_addmethod(c, (method) f, name, A_FLOAT, 0); }
+    
+    template <class T> struct DefLong { typedef void (T::*MethodDefLong)(def_atom_long v); };
+    template <class T, typename DefLong<T>::MethodDefLong F> static void call(T *x, t_atom_long v) { ((x)->*F)(v); }
+    template <class T, typename DefLong<T>::MethodDefLong F>
+    static void addMethod(t_class *c, const char *name) { auto f = call<T, F>;  class_addmethod(c, (method) f, name, A_DEFLONG, 0); }
+    
+    template <class T> struct DefFloat { typedef void (T::*MethodDefFloat)(def_double v); };
+    template <class T, typename DefFloat<T>::MethodDefFloat F> static void call(T *x, double v) { ((x)->*F)(v); }
+    template <class T, typename DefFloat<T>::MethodDefFloat F>
+    static void addMethod(t_class *c, const char *name) { auto f = call<T, F>; class_addmethod(c, (method) f, name, A_DEFFLOAT, 0); }
     
     template <class T> struct Sym { typedef void (T::*MethodSym)(t_symbol *s); };
     template <class T, typename Sym<T>::MethodSym F> static void call(T *x, t_symbol *s) { ((x)->*F)(s); }

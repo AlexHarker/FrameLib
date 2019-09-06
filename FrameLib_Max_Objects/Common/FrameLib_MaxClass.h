@@ -1046,7 +1046,7 @@ public:
     
     static unsigned long maxBlockSize() { return 16384UL; }
     
-    void reset(double sampleRate = 0.0)
+    void reset(def_double sampleRate = 0.0)
     {
         if (!sampleRate)
             sampleRate = sys_getsr();
