@@ -652,7 +652,8 @@ private:
     
     void constrain(MaxBufferAccess& access, size_t& numChans, size_t& size, size_t offset)
     {
-        size = (access.length() + offset + size) > size ? size : access.length() - offset;
+        size_t length = access.length();
+        size = length > (offset + size) ? size : ((length > offset) ? length - offset : 0);
         numChans = numChans < access.chans() ? numChans : access.chans();
     }
     
