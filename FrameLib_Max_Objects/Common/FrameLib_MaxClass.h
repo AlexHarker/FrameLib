@@ -1046,9 +1046,12 @@ public:
     
     static unsigned long maxBlockSize() { return 16384UL; }
     
-    void reset()
+    void reset(double sampleRate = 0.0)
     {
-        checkGraph(true);
+        if (!sampleRate)
+            sampleRate = sys_getsr()
+            
+        checkGraph(fabs(sampleRate), true);
     }
     
     void process(t_atom_long length)
@@ -1061,7 +1064,7 @@ public:
         if (!updateLength)
             return;
         
-        checkGraph();
+        checkGraph(0.0, false);
         
         // Retrieve all the audio objects in a list
         
@@ -1247,10 +1250,10 @@ public:
             x->mObject->clearAutoOrderingConnections();
     }
 
-    static void externalReset(FrameLib_MaxClass *x, t_ptr_int realtime, t_ptr_int samplerate, t_ptr_int maxvectorsize)
+    static void externalReset(FrameLib_MaxClass *x, t_ptr_int realtime, double *samplerate, t_ptr_int maxvectorsize)
     {
         if (x->isRealtime() == realtime)
-            x->mObject->reset(samplerate, maxvectorsize);
+            x->mObject->reset(*samplerate, maxvectorsize);
     }
     
     static t_ptr_int externalIsConnected(FrameLib_MaxClass *x, unsigned long index)
@@ -1380,17 +1383,14 @@ private:
         return updated;
     }
     
-    void checkGraph(bool forceReset = false)
+    void checkGraph(double sampleRate, bool forceReset)
     {
-        // FIX - where does this come from?
-        
-        t_ptr_int sampleRate = 44100;
         t_ptr_int blockSize = maxBlockSize();
         
         bool updated = resolveGraph();
         
         if (updated || forceReset)
-            traversePatch(gensym("__fl.reset"), sampleRate, blockSize);
+            traversePatch(gensym("__fl.reset"), &sampleRate, blockSize);
     }
     
     // Private connection methods
