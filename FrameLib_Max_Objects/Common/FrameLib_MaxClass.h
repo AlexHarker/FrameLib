@@ -640,6 +640,9 @@ public:
         class_addmethod(c, (method) &codeexport, "export", A_SYM, A_SYM, 0);
         
         dspInit(c);
+        
+        if (T::handlesAudio())
+            CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mBuffer);
     }
 
     // Check if a patch in memory matches a symbol representing a path
@@ -742,8 +745,19 @@ public:
     , mNonRealtime(detectNonRealtime(s, argc, argv))
     , mConnectionsUpdated(false)
     , mRealtimeResolved(false)
+    , mBuffer(nullptr)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
+        
+        // Deal with attributes for non-realtime objects
+        
+        if (!isRealtime() && handlesAudio())
+        {
+            attr_args_process(this, argc, argv);
+            argc = attr_args_offset(argc, argv);
+        }
+        
+        // Stream count
         
         unsigned long nStreams = 1;
         
@@ -1217,7 +1231,7 @@ public:
     static void externalFindAudio(FrameLib_MaxClass *x, t_ptr_int realtime, std::vector<FrameLib_MaxNRTAudio> objects)
     {
         if (x->isRealtime() == realtime && T::handlesAudio())
-            objects.push_back(FrameLib_MaxNRTAudio(x->mObject.get(), gensym("outbuffer")));
+            objects.push_back(FrameLib_MaxNRTAudio(x->mObject.get(), x->mBuffer));
     }
     
     static void externalResolveConnections(FrameLib_MaxClass *x, t_ptr_int realtime, t_ptr_int *flag)
@@ -1935,6 +1949,12 @@ private:
     bool mNonRealtime;
     bool mConnectionsUpdated;
     bool mRealtimeResolved;
+    
+public:
+    
+    // Attribute
+    
+    t_symbol *mBuffer;
 };
 
 // Convenience for Objects Using FrameLib_Expand (use FrameLib_MaxClass_Expand<T>::makeClass() to create)
