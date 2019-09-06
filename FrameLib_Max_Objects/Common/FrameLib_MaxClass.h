@@ -1142,8 +1142,15 @@ public:
         return (long) mObject->getNumAudioOuts() + (handlesAudio() ? 1 : 0);
     }
     
-    long getNumIns() const              { return (long) mObject->getNumIns(); }
-    long getNumOuts() const             { return (long) mObject->getNumOuts(); }
+    long getNumIns() const
+    {
+        return (long) mObject->getNumIns();
+    }
+    
+    long getNumOuts() const
+    {
+        return (long) mObject->getNumOuts();
+    }
     
     // Perform and DSP
 
