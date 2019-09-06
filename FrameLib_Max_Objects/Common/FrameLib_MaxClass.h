@@ -1049,7 +1049,7 @@ public:
     void reset(double sampleRate = 0.0)
     {
         if (!sampleRate)
-            sampleRate = sys_getsr()
+            sampleRate = sys_getsr();
             
         checkGraph(fabs(sampleRate), true);
     }
