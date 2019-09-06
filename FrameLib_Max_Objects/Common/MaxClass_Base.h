@@ -26,39 +26,48 @@ public:
     
     template <class T> struct NoArgs { typedef void (T::*Method)(); };
     template <class T, typename NoArgs<T>::Method F> static void call(T *x) { ((x)->*F)(); }
-    template <class T, typename NoArgs<T>::Method F> static void addMethod(t_class *c, const char *name) { auto f = call<T, F>; class_addmethod(c, (method) f, name, 0); }
+    template <class T, typename NoArgs<T>::Method F>
+    static void addMethod(t_class *c, const char *name) { auto f = call<T, F>; class_addmethod(c, (method) f, name, 0); }
     
     template <class T>struct Gimme { typedef void (T::*MethodGimme) (t_symbol *s, long ac, t_atom *av); };
     template <class T, typename Gimme<T>::MethodGimme F> static void call(T *x, t_symbol *s, long ac, t_atom *av) {((x)->*F)(s, ac, av); };
-	template <class T, typename Gimme<T>::MethodGimme F> static void addMethod(t_class *c, const char *name) { auto f = call<T, F>;  class_addmethod(c, (method) f, name, A_GIMME, 0); }
+	template <class T, typename Gimme<T>::MethodGimme F>
+    static void addMethod(t_class *c, const char *name) { auto f = call<T, F>;  class_addmethod(c, (method) f, name, A_GIMME, 0); }
     
     template <class T> struct Long { typedef void (T::*MethodLong)(t_atom_long v); };
     template <class T, typename Long<T>::MethodLong F> static void call(T *x, t_atom_long v) { ((x)->*F)(v); }
-    template <class T, typename Long<T>::MethodLong F> static void addMethod(t_class *c, const char *name) { auto f = call<T, F>;  class_addmethod(c, (method) f, name, A_LONG, 0); }
+    template <class T, typename Long<T>::MethodLong F>
+    static void addMethod(t_class *c, const char *name) { auto f = call<T, F>;  class_addmethod(c, (method) f, name, A_LONG, 0); }
     
     template <class T> struct Float { typedef void (T::*MethodFloat)(double v); };
     template <class T, typename Float<T>::MethodFloat F> static void call(T *x, double v) { ((x)->*F)(v); }
-    template <class T, typename Float<T>::MethodFloat F> static void addMethod(t_class *c, const char *name) { auto f = call<T, F>; class_addmethod(c, (method) f, name, A_FLOAT, 0); }
+    template <class T, typename Float<T>::MethodFloat F>
+    static void addMethod(t_class *c, const char *name) { auto f = call<T, F>; class_addmethod(c, (method) f, name, A_FLOAT, 0); }
     
     template <class T> struct Sym { typedef void (T::*MethodSym)(t_symbol *s); };
     template <class T, typename Sym<T>::MethodSym F> static void call(T *x, t_symbol *s) { ((x)->*F)(s); }
-    template <class T, typename Sym<T>::MethodSym F> static void addMethod(t_class *c, const char *name) { auto f = call<T, F>;  class_addmethod(c, (method) f, name, A_DEFSYM, 0); }
+    template <class T, typename Sym<T>::MethodSym F>
+    static void addMethod(t_class *c, const char *name) { auto f = call<T, F>;  class_addmethod(c, (method) f, name, A_DEFSYM, 0); }
     
     template <class T> struct Assist { typedef void (T::*MethodAssist)(void *b, long msg, long a, char *dst); };
     template <class T, typename Assist<T>::MethodAssist F> static void call(T *x, void *b, long msg, long a, char *dst) { ((x)->*F)(b, msg, a, dst); }
-    template <class T, typename Assist<T>::MethodAssist F> static void addMethod(t_class *c, const char *name) { auto f = call<T, F>;  class_addmethod(c, (method) f, name, A_CANT, 0); }
+    template <class T, typename Assist<T>::MethodAssist F>
+    static void addMethod(t_class *c, const char *name) { auto f = call<T, F>;  class_addmethod(c, (method) f, name, A_CANT, 0); }
     
     template <class T> struct Subpatch { typedef void *(T::*MethodSubPatch)(long index, void *arg); };
     template <class T, typename Subpatch<T>::MethodSubPatch F> static void *call(T *x, long index, void *arg) { return ((x)->*F)(index, arg); }
-    template <class T, typename Subpatch<T>::MethodSubPatch F> static void addMethod(t_class *c, const char *name) { auto f = call<T, F>; class_addmethod(c, (method) f, name, A_CANT, 0); }
+    template <class T, typename Subpatch<T>::MethodSubPatch F>
+    static void addMethod(t_class *c, const char *name) { auto f = call<T, F>; class_addmethod(c, (method) f, name, A_CANT, 0); }
     
     template <class T> struct ParentPatch { typedef void (T::*MethodParentPatch)(t_object **parent); };
     template <class T, typename ParentPatch<T>::MethodParentPatch F> static void call(T *x, t_object **parent) { ((x)->*F)(parent); }
-    template <class T, typename ParentPatch<T>::MethodParentPatch F> static void addMethod(t_class *c, const char *name) { auto f = call<T, F>;  class_addmethod(c, (method) f, name, A_CANT, 0); }
+    template <class T, typename ParentPatch<T>::MethodParentPatch F>
+    static void addMethod(t_class *c, const char *name) { auto f = call<T, F>;  class_addmethod(c, (method) f, name, A_CANT, 0); }
 
     template <class T> struct DSP { typedef void (T::*MethodDSP)(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags); };
     template <class T, typename DSP<T>::MethodDSP F> static void call(T *x, t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags) { ((x)->*F)(dsp64, count, samplerate, maxvectorsize, flags); }
-    template <class T, typename DSP<T>::MethodDSP F> static void addMethod(t_class *c) { auto f = call<T, F>;  class_addmethod(c, (method) f, "dsp64", A_CANT, 0); }
+    template <class T, typename DSP<T>::MethodDSP F>
+    static void addMethod(t_class *c) { auto f = call<T, F>;  class_addmethod(c, (method) f, "dsp64", A_CANT, 0); }
     
     template <class T>  struct Perform { typedef void (T::*MethodPerform)(t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam); };
     template <class T, typename Perform<T>::MethodPerform F> static void call(T *x, t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam) { ((x)->*F)(dsp64, ins, numins, outs, numouts, vec_size, flags, userparam); }
