@@ -540,7 +540,7 @@ public:
         // FIX - need to be able to specify time in different ways (must be in whole samples)
 
         unsigned long updateLength = length > 0 ? length : 0;
-        unsigned long currentSampleTime = internalObject()->getBlockTime();
+        unsigned long currentSampleTime = static_cast<unsigned long>(internalObject()->getBlockTime());
         
         if (!updateLength)
             return;
