@@ -1054,8 +1054,6 @@ public:
     
     void process(t_atom_long length)
     {
-        // FIX - need to be able to specify time in different ways (must be in whole samples)
-        
         unsigned long updateLength = length > 0 ? length : 0;
         unsigned long currentSampleTime = static_cast<unsigned long>(getBlockTime());
         
@@ -1218,8 +1216,6 @@ public:
 
     static void externalFindAudio(FrameLib_MaxClass *x, t_ptr_int realtime, std::vector<FrameLib_MaxNRTAudio> objects)
     {
-        // FIX - need to be able to set the buffer manually!
-        
         if (x->isRealtime() == realtime && T::handlesAudio())
             objects.push_back(FrameLib_MaxNRTAudio(x->mObject.get(), gensym("outbuffer")));
     }
