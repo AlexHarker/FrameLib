@@ -98,27 +98,29 @@ public:
     
     // C++ style variadic call to object_method_imp
     
-    template <typename...Args>
-    static void objectMethod(t_object *object, t_symbol* theMethod, Args...args)
+    template <class ReturnType = void *, typename...Args>
+    static ReturnType objectMethod(t_object *object, t_symbol* theMethod, Args...args)
     {
         void *pad = nullptr;
-        objectMethod(object, theMethod, args..., pad);
+        return objectMethod<ReturnType>(object, theMethod, args..., pad);
     }
     
     // Specialisation to prevent infinite padding
     
-    template <class S, class T, class U, class V, class W, class X, class Y, class Z>
-    static void objectMethod(t_object *object, t_symbol* theMethod, S s, T t, U u, V v, W w, X x, Y y, Z z)
+    template <class ReturnType, class S, class T, class U, class V, class W, class X, class Y, class Z>
+    static ReturnType objectMethod(t_object *object, t_symbol* theMethod, S s, T t, U u, V v, W w, X x, Y y, Z z)
     {
-        object_method_imp(object, theMethod,
-                          objectMethodArg(s),
-                          objectMethodArg(t),
-                          objectMethodArg(u),
-                          objectMethodArg(v),
-                          objectMethodArg(w),
-                          objectMethodArg(x),
-                          objectMethodArg(y),
-                          objectMethodArg(z));
+        void *ret = object_method_imp(object, theMethod,
+                                      objectMethodArg(s),
+                                      objectMethodArg(t),
+                                      objectMethodArg(u),
+                                      objectMethodArg(v),
+                                      objectMethodArg(w),
+                                      objectMethodArg(x),
+                                      objectMethodArg(y),
+                                      objectMethodArg(z));
+        
+        return reinterpret_cast<ReturnType>(ret);
     }
     
     // Static Methods for class initialisation, object creation and deletion

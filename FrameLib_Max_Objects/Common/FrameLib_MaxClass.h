@@ -65,7 +65,7 @@ public:
             {
                 std::string errorText;
                 t_object *object = it->getReporter() ? dynamic_cast<FrameLib_MaxProxy *>(it->getReporter())->mMaxObject : nullptr;
-                t_object *userObject = object ? (t_object *) object_method(object, gensym("__fl.get_user_object")) : nullptr;
+                t_object *userObject = object ? objectMethod<t_object *>(object, gensym("__fl.get_user_object")) : nullptr;
                 
                 it->getErrorText(errorText);
                 
@@ -149,7 +149,7 @@ public:
     
     struct ConnectionInfo
     {
-        enum Mode { kConnect, kConfirm, kDoubleCheck };
+        enum Mode : t_ptr_int { kConnect, kConfirm, kDoubleCheck };
 
         using MaxConnection = FrameLib_Connection<t_object, long>;
 
@@ -265,8 +265,8 @@ public:
     
     Mutator(t_symbol *sym, long ac, t_atom *av)
     {
-        mObject = ac ? atom_getobj(av) : nullptr;
-        mMode = object_method(mObject, gensym("__fl.is_output")) ? FrameLib_MaxGlobals::SyncCheck::kDownOnly : FrameLib_MaxGlobals::SyncCheck::kDown;
+        mObject = reinterpret_cast<t_object *>(ac ? atom_getobj(av) : nullptr);
+        mMode = objectMethod(mObject, gensym("__fl.is_output")) ? FrameLib_MaxGlobals::SyncCheck::kDownOnly : FrameLib_MaxGlobals::SyncCheck::kDown;
     }
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
@@ -277,7 +277,7 @@ public:
     void mutate(t_symbol *sym, long ac, t_atom *av)
     {
         mSyncChecker.sync(mObject, gettime(), mMode);
-        object_method(mObject, gensym("sync"));
+        objectMethod(mObject, gensym("sync"));
         mSyncChecker.sync();
     }
     
@@ -285,7 +285,7 @@ private:
     
     FrameLib_MaxGlobals::SyncCheck mSyncChecker;
     FrameLib_MaxGlobals::SyncCheck::Mode mMode;
-    void *mObject;
+    t_object *mObject;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -368,7 +368,7 @@ public:
         
         if ((textfield = jbox_get_textfield(textfield)))
         {
-            text = (char *) object_method(textfield, gensym("getptr"));
+            text = objectMethod<char *>(textfield, gensym("getptr"));
             text = strchr(text, ' ');
             
             if (text)
@@ -377,12 +377,12 @@ public:
         
         // Set the patch association
         
-        object_method(mPatch, gensym("setassoc"), this);
+        objectMethod(mPatch, gensym("setassoc"), this);
         
         // Make internal object and disallow editing
 
         mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch, "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", newObjectText.c_str()));
-        object_method(mPatch, gensym("noedit"));
+        objectMethod(mPatch, gensym("noedit"));
         
         // Make Mutator (with argument referencing the internal object)
         
@@ -729,7 +729,7 @@ public:
             
             // Traverse if the patch is in a box (subpatcher or abstraction) it belongs to a wrapper
             
-            traverse = jpatcher_get_box(patch) || (assoc && object_method(assoc, gensym("__fl.wrapper_is_wrapper")));
+            traverse = jpatcher_get_box(patch) || (assoc && objectMethod(assoc, gensym("__fl.wrapper_is_wrapper")));
             
             if (!traverse && !assoc)
             {
@@ -739,7 +739,7 @@ public:
                 
                 for (t_object *b = jpatcher_get_firstobject(parent); b && !text; b = jbox_get_nextobject(b))
                     if (jbox_get_maxclass(b) == gensym("newobj") && jbox_get_textfield(b))
-                        text = (char *) object_method(jbox_get_textfield(b), gensym("getptr"));
+                        text = objectMethod<char *>(jbox_get_textfield(b), gensym("getptr"));
 
                 if (text)
                 {
@@ -775,7 +775,7 @@ public:
         t_object *patch = gensym("#P")->s_thing;
         t_object *assoc = getAssociation(patch);
     
-        return (assoc && object_method(assoc, gensym("__fl.wrapper_is_wrapper"))) ? assoc : *this;
+        return (assoc && objectMethod(assoc, gensym("__fl.wrapper_is_wrapper"))) ? assoc : *this;
     }
     
     // Detect non-realtime setting
@@ -1203,11 +1203,11 @@ public:
             {
                 for (long i = 0; i < getNumIns(); i++)
                     if (isConnected(i))
-                        object_method(getConnection(i).mObject, gensym("sync"));
+                        objectMethod(getConnection(i).mObject, gensym("sync"));
                 
                 if (supportsOrderingConnections())
                     for (long i = 0; i < getNumOrderingConnections(); i++)
-                        object_method(getOrderingConnection(i).mObject, gensym("sync"));
+                        objectMethod(getOrderingConnection(i).mObject, gensym("sync"));
                 
                 mSyncChecker.restoreMode();
             }
@@ -1340,7 +1340,7 @@ private:
     
     void unwrapConnection(t_object *& object, long& connection)
     {
-        t_object *wrapped = (t_object *) object_method(object, gensym("__fl.wrapper_unwrap"), &connection);
+        t_object *wrapped = objectMethod<t_object *>(object, gensym("__fl.wrapper_unwrap"), &connection);
         object = wrapped ? wrapped : object;
     }
     
@@ -1348,23 +1348,21 @@ private:
     
     FrameLib_Multistream *getFLObject(t_object *x)
     {
-        return (FrameLib_Multistream *) object_method(x, gensym("__fl.get_framelib_object"));
+        return objectMethod<FrameLib_Multistream *>(x, gensym("__fl.get_framelib_object"));
     }
     
     // Get the number of audio ins safely from a generic pointer
     
     long getNumAudioInsRemote(t_object *x)
     {
-        t_ptr_int numAudioIns = reinterpret_cast<t_ptr_int>(object_method(x, gensym("__fl.get_num_audio_ins")));
-        return static_cast<long>(numAudioIns);
+        return static_cast<long>(objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_ins")));
     }
     
     // Get the number of audio outs safely from a generic pointer
 
     long getNumAudioOutsRemote(t_object *x)
     {
-        t_ptr_int numAudioOuts = reinterpret_cast<t_ptr_int>(object_method(x, gensym("__fl.get_num_audio_outs")));
-        return static_cast<long>(numAudioOuts);
+        return static_cast<long>(objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_outs")));
     }
     
     // Graph methods
@@ -1376,7 +1374,7 @@ private:
         
         // Avoid recursion into a poly / pfft / etc. - If the subpatcher is a wrapper we do need to deal with it
         
-        if (assoc != contextAssoc && !object_method(assoc, gensym("__fl.wrapper_is_wrapper")))
+        if (assoc != contextAssoc && !objectMethod(assoc, gensym("__fl.wrapper_is_wrapper")))
             return;
         
         // Search for subpatchers, and call method on objects that don't have subpatchers
@@ -1434,7 +1432,7 @@ private:
     static t_object *getAssociation(t_object *patch)
     {
         t_object *assoc = 0;
-        object_method(patch, gensym("getassoc"), &assoc);
+        objectMethod(patch, gensym("getassoc"), &assoc);
         return assoc;
     }
     
@@ -1489,7 +1487,7 @@ private:
         
         ConnectionConfirmation confirmation(connection, inIndex);
         mConfirmation = &confirmation;
-        object_method(connection.mObject, gensym("__fl.connection_confirm"), connection.mIndex, mode);
+        objectMethod(connection.mObject, gensym("__fl.connection_confirm"), connection.mIndex, mode);
         mConfirmation = nullptr;
         
         if (!confirmation.mConfirm)
@@ -1516,7 +1514,6 @@ private:
     bool validInput(long index) const                                       { return validInput(index, mObject.get()); }
     bool validOutput(long index) const                                      { return validOutput(index, mObject.get()); }
     bool isOrderingInput(long index) const                                  { return isOrderingInput(index, mObject.get()); }
-    
     bool isConnected(long index) const                                      { return mObject->isConnected(index); }
     
     MaxConnection toMaxConnection(const FLConnection& connection) const
@@ -1564,7 +1561,7 @@ private:
         {
             case kConnectSuccess:
                 mConnectionsUpdated = true;
-                object_method(connection.mObject, gensym("__fl.connection_update"), t_ptr_int(true));
+                objectMethod(connection.mObject, gensym("__fl.connection_update"), t_ptr_int(true));
                 break;
                 
             case kConnectFeedbackDetected:
@@ -1643,7 +1640,7 @@ private:
         unwrapConnection(dst, dstin);
         dstin -= getNumAudioInsRemote(dst);
         
-        if (isOrderingInput(dstin, getFLObject(dst)) || (validInput(dstin, getFLObject(dst)) && !object_method(dst, gensym("__fl.is_connected"), dstin)))
+        if (isOrderingInput(dstin, getFLObject(dst)) || (validInput(dstin, getFLObject(dst)) && !objectMethod(dst, gensym("__fl.is_connected"), dstin)))
             return 1;
         
         return 0;
