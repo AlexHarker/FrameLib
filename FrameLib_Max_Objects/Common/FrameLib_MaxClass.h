@@ -149,15 +149,14 @@ public:
     
     struct ConnectionInfo
     {
-        enum Mode : t_ptr_int { kConnect, kConfirm, kDoubleCheck };
-
         using MaxConnection = FrameLib_Connection<t_object, long>;
+
+        enum Mode : t_ptr_int { kConnect, kConfirm, kDoubleCheck };
 
         ConnectionInfo(MaxConnection connection, Mode mode) : mConnection(connection), mMode(mode) {}
         
         MaxConnection mConnection;
         Mode mMode;
-        
     };
 
     // Convenience Pointer for automatic deletion and RAII
@@ -167,15 +166,13 @@ public:
         ManagedPointer(bool nonRealtime) : mPointer(get(nonRealtime)) {}
         ~ManagedPointer() { mPointer->release(); }
         
+        ManagedPointer(const ManagedPointer&) = delete;
+        ManagedPointer& operator=(const ManagedPointer&) = delete;
+
         FrameLib_MaxGlobals *operator->() { return mPointer; }
         
     private:
         
-        // Deleted
-        
-        ManagedPointer(const ManagedPointer&) = delete;
-        ManagedPointer& operator=(const ManagedPointer&) = delete;
-
         FrameLib_MaxGlobals *mPointer;
     };
     
