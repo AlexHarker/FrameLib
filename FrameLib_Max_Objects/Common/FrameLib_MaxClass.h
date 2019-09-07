@@ -761,8 +761,7 @@ public:
     , mConfirmInIndex(-1)
     , mConfirmOutIndex(-1)
     , mConfirm(false)
-    , mPatch(gensym("#P")->s_thing)
-    , mContextPatch(contextPatcher(mPatch))
+    , mContextPatch(contextPatcher(gensym("#P")->s_thing))
     , mSyncIn(nullptr)
     , mUserObject(detectUserObjectAtLoad())
     , mNonRealtime(detectNonRealtime(s, argc, argv))
@@ -1927,7 +1926,6 @@ private:
     long mConfirmOutIndex;
     bool mConfirm;
     
-    t_object *mPatch;
     t_object *mContextPatch;
     t_object *mSyncIn;
     t_object *mUserObject;

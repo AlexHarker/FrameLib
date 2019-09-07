@@ -15,10 +15,9 @@ public:
     }
     
     FrameLib_MaxClass_Context(t_symbol *sym, long ac, t_atom *av)
-    : mPatch(gensym("#P")->s_thing)
-    , mGlobal(FrameLib_MaxClass<void>::detectNonRealtime(sym, ac, av))
+    : mGlobal(FrameLib_MaxClass<void>::detectNonRealtime(sym, ac, av))
     , mContext(mGlobal->getGlobal()
-    , FrameLib_MaxClass<void>::contextPatcher(mPatch))
+    , FrameLib_MaxClass<void>::contextPatcher(gensym("#P")->s_thing))
     , mProcessingQueue(mContext)
     {}
     
@@ -39,9 +38,7 @@ public:
 private:
     
     // Members
-    
-    t_object *mPatch;
-    
+        
     FrameLib_MaxGlobals::ManagedPointer mGlobal;
     FrameLib_Context mContext;
     FrameLib_Context::ProcessingQueue mProcessingQueue;
