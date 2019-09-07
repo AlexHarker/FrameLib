@@ -616,7 +616,7 @@ template <class T, MaxObjectArgsMode argsMode = kAsParams>
 class FrameLib_MaxClass : public MaxClass_Base
 {
     using ConnectionInfo = FrameLib_MaxGlobals::ConnectionInfo;
-    using FrameLibConnection = FrameLib_Object<FrameLib_Multistream>::Connection;
+    using FLConnection = FrameLib_Object<FrameLib_Multistream>::Connection;
     using MaxConnection = ConnectionInfo::MaxConnection;
 
     struct ConnectionConfirmation
@@ -684,7 +684,7 @@ public:
         addMethod(c, (method) &externalIsConnected, "__fl.is_connected");
         addMethod(c, (method) &externalConnectionConfirm, "__fl.connection_confirm");
         addMethod(c, (method) &externalConnectionUpdate, "__fl.connection_update");
-        addMethod(c, (method) &externalGetInternalObject, "__fl.get_internal_object");
+        addMethod(c, (method) &externalGetFLObject, "__fl.get_framelib_object");
         addMethod(c, (method) &externalGetUserObject, "__fl.get_user_object");
         addMethod(c, (method) &externalIsOutput, "__fl.is_output");
         addMethod(c, (method) &externalGetNumAudioIns, "__fl.get_num_audio_ins");
@@ -1334,7 +1334,7 @@ public:
         x->mConnectionsUpdated = state;
     }
     
-    static FrameLib_Multistream *externalGetInternalObject(FrameLib_MaxClass *x)
+    static FrameLib_Multistream *externalGetFLObject(FrameLib_MaxClass *x)
     {
         return x->mObject.get();
     }
@@ -1373,9 +1373,9 @@ private:
     
     // Get an internal object from a generic pointer safely
     
-    FrameLib_Multistream *getInternalObject(t_object *x)
+    FrameLib_Multistream *getFLObject(t_object *x)
     {
-        return (FrameLib_Multistream *) object_method(x, gensym("__fl.get_internal_object"));
+        return (FrameLib_Multistream *) object_method(x, gensym("__fl.get_framelib_object"));
     }
     
     // Get the number of audio ins safely from a generic pointer
@@ -1546,21 +1546,21 @@ private:
     
     bool isConnected(long index) const                                      { return mObject->isConnected(index); }
     
-    MaxConnection getMaxConnection(const FrameLibConnection& connection) const
+    MaxConnection toMaxConnection(const FLConnection& connection) const
     {
         FrameLib_MaxProxy *proxy = dynamic_cast<FrameLib_MaxProxy *>(connection.mObject->getProxy());
         return MaxConnection(proxy->mMaxObject, connection.mIndex);
     }
     
-    FrameLibConnection getFrameLibConnection(const MaxConnection& connection)
+    FLConnection toFLConnection(const MaxConnection& connection)
     {
-        return FrameLibConnection(getInternalObject(connection.mObject), connection.mIndex);
+        return FLConnection(getFLObject(connection.mObject), connection.mIndex);
     }
     
     MaxConnection getConnection(long index) const
     {
         if (isConnected(index))
-            return getMaxConnection(mObject->getConnection(index));
+            return toMaxConnection(mObject->getConnection(index));
         else
             return MaxConnection();
     }
@@ -1572,20 +1572,20 @@ private:
     
     MaxConnection getOrderingConnection(long index) const
     {
-        return getMaxConnection(mObject->getOrderingConnection(index));
+        return toMaxConnection(mObject->getOrderingConnection(index));
     }
     
     void connect(MaxConnection connection, long inIdx)
     {
         ConnectionResult result;
 
-        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !validOutput(connection.mIndex, getInternalObject(connection.mObject)) || getConnection(inIdx) == connection || confirmConnection(inIdx, ConnectionInfo::kDoubleCheck)))
+        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !validOutput(connection.mIndex, getFLObject(connection.mObject)) || getConnection(inIdx) == connection || confirmConnection(inIdx, ConnectionInfo::kDoubleCheck)))
             return;
         
         if (isOrderingInput(inIdx))
-            result = mObject->addOrderingConnection(getFrameLibConnection(connection));
+            result = mObject->addOrderingConnection(toFLConnection(connection));
         else
-            result = mObject->addConnection(getFrameLibConnection(connection), inIdx);
+            result = mObject->addConnection(toFLConnection(connection), inIdx);
 
         switch (result)
         {
@@ -1618,7 +1618,7 @@ private:
             return;
         
         if (isOrderingInput(inIdx))
-            mObject->deleteOrderingConnection(getFrameLibConnection(connection));
+            mObject->deleteOrderingConnection(toFLConnection(connection));
         else
             mObject->deleteConnection(inIdx);
         
@@ -1670,7 +1670,7 @@ private:
         unwrapConnection(dst, dstin);
         dstin -= getNumAudioInsRemote(dst);
         
-        if (isOrderingInput(dstin, getInternalObject(dst)) || (validInput(dstin, getInternalObject(dst)) && !object_method(dst, gensym("__fl.is_connected"), dstin)))
+        if (isOrderingInput(dstin, getFLObject(dst)) || (validInput(dstin, getFLObject(dst)) && !object_method(dst, gensym("__fl.is_connected"), dstin)))
             return 1;
         
         return 0;
