@@ -1032,42 +1032,17 @@ public:
 
     // IO Helpers
     
-    bool supportsOrderingConnections()  { return mObject->supportsOrderingConnections(); }
-    
-    bool handlesAudio() const           { return T::handlesAudio(); }
-    bool isRealtime() const             { return !mNonRealtime; }
-    bool handlesRealtimeAudio() const   { return handlesAudio() && isRealtime(); }
+    bool isRealtime() const                     { return !mNonRealtime; }
+    bool handlesAudio() const                   { return T::handlesAudio(); }
+    bool handlesRealtimeAudio() const           { return handlesAudio() && isRealtime(); }
+    bool supportsOrderingConnections() const    { return mObject->supportsOrderingConnections(); }
 
-    long getNumAudioIns() const
-    {
-        if (!isRealtime())
-            return 0;
-        
-        return (long) mObject->getNumAudioIns() + (handlesAudio() ? 1 : 0);
-    }
-    
-    long getNumAudioOuts() const
-    {
-        if (!isRealtime())
-            return 0;
-        
-        return (long) mObject->getNumAudioOuts() + (handlesAudio() ? 1 : 0);
-    }
-    
-    long getNumIns() const
-    {
-        return (long) mObject->getNumIns();
-    }
-    
-    long getNumOuts() const
-    {
-        return (long) mObject->getNumOuts();
-    }
-    
-    uint64_t getBlockTime() const
-    {
-        return mObject->getBlockTime();
-    }
+    long audioIOSize(long chans) const           { return isRealtime() ? (chans + (handlesAudio() ? 1 : 0)) : 0; }
+
+    long getNumIns() const                      { return (long) mObject->getNumIns(); }
+    long getNumOuts() const                     { return (long) mObject->getNumOuts(); }
+    long getNumAudioIns() const                 { return audioIOSize(mObject->getNumAudioIns()); }
+    long getNumAudioOuts() const                { return audioIOSize(mObject->getNumAudioOuts()); }
     
     // Perform and DSP
 
@@ -1121,7 +1096,7 @@ public:
     void process(t_atom_long length)
     {
         unsigned long updateLength = length > 0 ? length : 0;
-        unsigned long currentSampleTime = static_cast<unsigned long>(getBlockTime());
+        unsigned long currentSampleTime = static_cast<unsigned long>(mObject->getBlockTime());
         
         if (!updateLength)
             return;
@@ -1366,9 +1341,7 @@ private:
     void unwrapConnection(t_object *& object, long& connection)
     {
         t_object *wrapped = (t_object *) object_method(object, gensym("__fl.wrapper_unwrap"), &connection);
-        
-        if (wrapped)
-            object = wrapped;
+        object = wrapped ? wrapped : object;
     }
     
     // Get an internal object from a generic pointer safely
