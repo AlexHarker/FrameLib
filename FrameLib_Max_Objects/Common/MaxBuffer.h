@@ -63,6 +63,31 @@ public:
     long chans() const              { return mChans; }
     double sampleRate() const       { return mSampleRate; }
     
+    void read(double *output, t_ptr_uint length, t_ptr_uint offset, t_ptr_uint chan)
+    {
+        t_ptr_uint readLength = constrainLength(length, chan, offset);
+        float *samples = mSamples + offset * mChans + chan;
+        
+        for (t_ptr_uint i = 0; i < readLength; i++, samples += mChans)
+            output[i] = *samples;
+            
+        // Zero remaining samples if needed
+            
+        std::fill_n(output + readLength, length - readLength, 0.0);
+    }
+    
+    void write(const double *input, t_ptr_uint length, t_ptr_uint offset, t_ptr_uint chan)
+    {
+        length = constrainLength(length, chan, offset);
+        
+        float *samples = mSamples + offset * mChans + chan;
+        
+        for (size_t i = 0; i < length; i++, samples += mChans)
+            *samples = input[i];
+        
+        setDirty();
+    }
+    
 private:
     
     t_object *getBuffer() const     { return buffer_ref_getobject(mBuffer); }
@@ -76,6 +101,21 @@ private:
         mLength = mSamples ? info.b_frames : 0;
         mChans = mSamples ? info.b_nchans : 0;
         mSampleRate = mSamples ? info.b_sr : 0.0;
+    }
+    
+    t_ptr_uint constrainLength(t_ptr_uint length, t_ptr_uint chan, t_ptr_uint offset)
+    {
+        // Request is entirely outside of the buffer's memory
+        
+        if (chan >= mChans || offset >= mLength)
+            return 0;
+        
+        // Request is partially outside of the buffer's memory
+        
+        if (offset + length > mLength)
+            return mLength - offset;
+        
+        return length;
     }
     
     t_object *mOwner;
