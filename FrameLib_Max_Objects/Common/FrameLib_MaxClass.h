@@ -498,7 +498,7 @@ public:
     
     void dsp(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
     {
-        if (isRealtime() && internalObject()->getType() == kOutput)
+        if (isRealtime() && T::externalIsOutput(internalObject()))
             addPerform<Wrapper, &Wrapper<T>::perform>(dsp64);
     }
     
@@ -613,7 +613,8 @@ template <class T, MaxObjectArgsMode argsMode = kAsParams>
 class FrameLib_MaxClass : public MaxClass_Base
 {
     using ConnectionInfo = FrameLib_MaxGlobals::ConnectionInfo;
-    using FLConnection = FrameLib_Object<FrameLib_Multistream>::Connection;
+    using FLObject = FrameLib_Multistream;
+    using FLConnection = FrameLib_Object<FLObject>::Connection;
     using MaxConnection = ConnectionInfo::MaxConnection;
 
     struct ConnectionConfirmation
@@ -1027,14 +1028,14 @@ public:
         }
     }
 
-    // IO Helpers
+    // IO and Mode Helpers
     
     bool isRealtime() const                     { return !mNonRealtime; }
     bool handlesAudio() const                   { return T::handlesAudio(); }
     bool handlesRealtimeAudio() const           { return handlesAudio() && isRealtime(); }
     bool supportsOrderingConnections() const    { return mObject->supportsOrderingConnections(); }
 
-    long audioIOSize(long chans) const           { return isRealtime() ? (chans + (handlesAudio() ? 1 : 0)) : 0; }
+    long audioIOSize(long chans) const          { return isRealtime() ? (chans + (handlesAudio() ? 1 : 0)) : 0; }
 
     long getNumIns() const                      { return (long) mObject->getNumIns(); }
     long getNumOuts() const                     { return (long) mObject->getNumOuts(); }
@@ -1162,20 +1163,6 @@ public:
         }
     }
     
-    // Get Audio Outputs
-    
-    std::vector<double *> &getAudioOuts()
-    {
-        return mSigOuts;
-    }
-    
-    // Type
-    
-    ObjectType getType()
-    {
-        return mObject->getType();
-    }
-    
     // Audio Synchronisation
     
     void sync()
@@ -1225,19 +1212,22 @@ public:
         if (!info)
             return;
         
-        switch (info->mMode)
+        if (info->mMode == ConnectionInfo::kConnect)
         {
-            case ConnectionInfo::kConnect:
-                connect(info->mConnection, index);
-                break;
-                
-            case ConnectionInfo::kConfirm:
-            case ConnectionInfo::kDoubleCheck:
-
-                if (mConfirmation && mConfirmation->confirm(info->mConnection, index) && info->mMode == ConnectionInfo::kDoubleCheck)
-                    object_error(mUserObject, "extra connection to input %ld", index + 1);
-                break;
+            connect(info->mConnection, index);
         }
+        else if (mConfirmation)
+        {
+            if (mConfirmation->confirm(info->mConnection, index) && info->mMode == ConnectionInfo::kDoubleCheck)
+                object_error(mUserObject, "extra connection to input %ld", index + 1);
+        }
+    }
+    
+    // Get Audio Outputs
+    
+    std::vector<double *> &getAudioOuts()
+    {
+        return mSigOuts;
     }
     
     // External methods (A_CANT)
@@ -1303,7 +1293,7 @@ public:
         x->mConnectionsUpdated = state;
     }
     
-    static FrameLib_Multistream *externalGetFLObject(FrameLib_MaxClass *x)
+    static FLObject *externalGetFLObject(FrameLib_MaxClass *x)
     {
         return x->mObject.get();
     }
@@ -1330,33 +1320,13 @@ public:
 
 private:
     
-    // Unwrapping connections
+    // Get the associaation of a patch
     
-    void unwrapConnection(t_object *& object, long& connection)
+    static t_object *getAssociation(t_object *patch)
     {
-        t_object *wrapped = objectMethod<t_object *>(object, gensym("__fl.wrapper_unwrap"), &connection);
-        object = wrapped ? wrapped : object;
-    }
-    
-    // Get an internal object from a generic pointer safely
-    
-    FrameLib_Multistream *getFLObject(t_object *x)
-    {
-        return objectMethod<FrameLib_Multistream *>(x, gensym("__fl.get_framelib_object"));
-    }
-    
-    // Get the number of audio ins safely from a generic pointer
-    
-    long getNumAudioInsRemote(t_object *x)
-    {
-        return static_cast<long>(objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_ins")));
-    }
-    
-    // Get the number of audio outs safely from a generic pointer
-
-    long getNumAudioOutsRemote(t_object *x)
-    {
-        return static_cast<long>(objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_outs")));
+        t_object *assoc = 0;
+        objectMethod(patch, gensym("getassoc"), &assoc);
+        return assoc;
     }
     
     // Graph methods
@@ -1421,15 +1391,57 @@ private:
             traversePatch(gensym("__fl.reset"), &sampleRate, blockSize);
     }
     
-    // Private connection methods
+    // Convert from framlib object to max object and vice versa
     
-    static t_object *getAssociation(t_object *patch)
+    static FLObject *getFLObject(t_object *x)
     {
-        t_object *assoc = 0;
-        objectMethod(patch, gensym("getassoc"), &assoc);
-        return assoc;
+        return objectMethod<FLObject *>(x, gensym("__fl.get_framelib_object"));
     }
     
+    static t_object *getMaxObject(FLObject *object)
+    {
+        return object ? (dynamic_cast<FrameLib_MaxProxy *>(object->getProxy()))->mMaxObject : nullptr;
+    }
+    
+    // Get the number of audio ins/outs safely from a generic pointer
+    
+    long getNumAudioInsRemote(t_object *x)
+    {
+        return static_cast<long>(objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_ins")));
+    }
+    
+    long getNumAudioOutsRemote(t_object *x)
+    {
+        return static_cast<long>(objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_outs")));
+    }
+    
+    // Helpers for connection methods
+    
+    static bool isOrderingInput(long index, FLObject *object)
+    {
+        return object && object->supportsOrderingConnections() && index == (long) object->getNumIns();
+    }
+    
+    bool isOrderingInput(long index) const                  { return isOrderingInput(index, mObject.get()); }
+    bool isConnected(long index) const                      { return mObject->isConnected(index); }
+    
+    static bool validIO(long index, unsigned long count)    { return index >= 0 && index < (long) count; }
+    static bool validInput(long index, FLObject *object)    { return object && validIO(index, object->getNumIns()); }
+    static bool validOutput(long index, FLObject *object)   { return object && validIO(index, object->getNumOuts()); }
+    
+    bool validInput(long index) const                       { return validInput(index, mObject.get()); }
+    bool validOutput(long index) const                      { return validOutput(index, mObject.get()); }
+    
+    MaxConnection getConnection(long index)                 { return toMaxConnection(mObject->getConnection(index)); }
+    MaxConnection getOrderingConnection(long index)         { return toMaxConnection(mObject->getOrderingConnection(index)); }
+    
+    long getNumOrderingConnections() const                  { return (long) mObject->getNumOrderingConnections(); }
+    
+    static MaxConnection toMaxConnection(FLConnection c)    { return MaxConnection(getMaxObject(c.mObject), c.mIndex); }
+    static FLConnection toFLConnection(MaxConnection c)     { return FLConnection(getFLObject(c.mObject), c.mIndex); }
+    
+    // Private connection methods
+
     bool resolveConnections()
     {
         if (isRealtime() && mRealtimeResolved)
@@ -1490,55 +1502,6 @@ private:
         return confirmation.mConfirm;
     }
     
-    bool validInput(long index, FrameLib_Multistream *object) const
-    {
-        return object && index >= 0 && static_cast<unsigned long>(index) < object->getNumIns();
-    }
-    
-    bool validOutput(long index, FrameLib_Multistream *object) const
-    {
-        return object && index >= 0 && static_cast<unsigned long>(index) < object->getNumOuts();
-    }
-    
-    bool isOrderingInput(long index, FrameLib_Multistream *object) const
-    {
-        return object && object->supportsOrderingConnections() && static_cast<unsigned long>(index) == object->getNumIns();
-    }
-    
-    bool validInput(long index) const                                       { return validInput(index, mObject.get()); }
-    bool validOutput(long index) const                                      { return validOutput(index, mObject.get()); }
-    bool isOrderingInput(long index) const                                  { return isOrderingInput(index, mObject.get()); }
-    bool isConnected(long index) const                                      { return mObject->isConnected(index); }
-    
-    MaxConnection toMaxConnection(const FLConnection& connection) const
-    {
-        FrameLib_MaxProxy *proxy = dynamic_cast<FrameLib_MaxProxy *>(connection.mObject->getProxy());
-        return MaxConnection(proxy->mMaxObject, connection.mIndex);
-    }
-    
-    FLConnection toFLConnection(const MaxConnection& connection)
-    {
-        return FLConnection(getFLObject(connection.mObject), connection.mIndex);
-    }
-    
-    MaxConnection getConnection(long index) const
-    {
-        if (isConnected(index))
-            return toMaxConnection(mObject->getConnection(index));
-        else
-            return MaxConnection();
-    }
-    
-    long getNumOrderingConnections() const
-    {
-        return (long) mObject->getNumOrderingConnections();
-    }
-    
-    MaxConnection getOrderingConnection(long index) const
-    {
-        return toMaxConnection(mObject->getOrderingConnection(index));
-    }
-    
     void connect(MaxConnection connection, long inIdx)
     {
         ConnectionResult result;
@@ -1590,6 +1553,12 @@ private:
     }
 
     // Patchline connections
+    
+    void unwrapConnection(t_object *& object, long& connection)
+    {
+        t_object *wrapped = objectMethod<t_object *>(object, gensym("__fl.wrapper_unwrap"), &connection);
+        object = wrapped ? wrapped : object;
+    }
     
     t_max_err patchLineUpdate(t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
     {
@@ -1859,13 +1828,11 @@ private:
         }
     }
 
-    // Buffer access
+    // Buffer access (read and write multichannel buffers)
     
     void read(t_symbol *buffer, double **outs, size_t numChans, size_t size, size_t offset)
     {
         MaxBufferAccess access(*this, buffer);
-
-        // Read samples by channel
         
         for (size_t i = 0; i < numChans; i++)
             access.read(outs[i], size, offset, i);
@@ -1875,15 +1842,18 @@ private:
     {
         MaxBufferAccess access(*this, buffer);
         
-        // Write samples by channel
-        
         for (size_t i = 0; i < numChans; i++)
             access.write(ins[i], size, offset, i);
     }
     
 protected:
    
-    unsigned long getNumStreams() { return mObject->getNumStreams(); }
+    // Type and streams helpers
+    
+    ObjectType getType() const              { return mObject->getType(); }
+    unsigned long getNumStreams() const     { return mObject->getNumStreams(); }
+    
+    // Proxy
     
     std::unique_ptr<FrameLib_MaxProxy> mFrameLibProxy;
     
@@ -1894,7 +1864,7 @@ private:
     FrameLib_MaxGlobals::ManagedPointer mGlobal;
     FrameLib_MaxGlobals::SyncCheck mSyncChecker;
     
-    std::unique_ptr<FrameLib_Multistream> mObject;
+    std::unique_ptr<FLObject> mObject;
     
     std::vector<t_object *> mInputs;
     std::vector<void *> mOutputs;
