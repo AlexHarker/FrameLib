@@ -1084,10 +1084,7 @@ public:
     
     void reset(def_double sampleRate = 0.0)
     {
-        if (!sampleRate)
-            sampleRate = sys_getsr();
-            
-        checkGraph(fabs(sampleRate), true);
+        checkGraph(sampleRate > 0.0 ? sampleRate.mValue : sys_getsr(), true);
     }
     
     void process(t_atom_long length)

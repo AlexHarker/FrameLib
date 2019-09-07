@@ -12,12 +12,11 @@
 // This work is loosely based on https://github.com/grrrwaaa/maxcpp by Graham Wakefield
 
 template <class T>
-class DefaultArg
+struct DefaultArg
 {
-public:
     DefaultArg(T value) : mValue(value) {}
     operator T() { return mValue; }
-private:
+
     T mValue;
 };
 
