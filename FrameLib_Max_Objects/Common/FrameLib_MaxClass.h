@@ -1259,7 +1259,7 @@ public:
         switch (info->mMode)
         {
             case ConnectionInfo::kConnect:
-                connect(info->mConnection.mObject, info->mConnection.mIndex, index);
+                connect(info->mConnection, index);
                 break;
                 
             case ConnectionInfo::kConfirm:
@@ -1520,7 +1520,7 @@ private:
         mConfirmation = nullptr;
         
         if (!confirmation.mConfirm)
-            disconnect(connection.mObject, connection.mIndex, inIndex);
+            disconnect(connection, inIndex);
         
         return confirmation.mConfirm;
     }
@@ -1533,7 +1533,6 @@ private:
     bool validOutput(long index, FrameLib_Multistream *object) const
     {
         return object && index >= 0 && static_cast<unsigned long>(index) < object->getNumOuts();
-        
     }
     
     bool isOrderingInput(long index, FrameLib_Multistream *object) const
@@ -1551,6 +1550,11 @@ private:
     {
         FrameLib_MaxProxy *proxy = dynamic_cast<FrameLib_MaxProxy *>(connection.mObject->getProxy());
         return MaxConnection(proxy->mMaxObject, connection.mIndex);
+    }
+    
+    FrameLibConnection getFrameLibConnection(const MaxConnection& connection)
+    {
+        return FrameLibConnection(getInternalObject(connection.mObject), connection.mIndex);
     }
     
     MaxConnection getConnection(long index) const
@@ -1571,27 +1575,25 @@ private:
         return getMaxConnection(mObject->getOrderingConnection(index));
     }
     
-    bool matchConnection(t_object *src, long outIdx, long inIdx) const
+    void connect(MaxConnection connection, long inIdx)
     {
-        return getConnection(inIdx) == MaxConnection(src, outIdx);
-    }
-    
-    void connect(t_object *src, long outIdx, long inIdx)
-    {
-        FrameLib_Multistream *object = getInternalObject(src);
-        
-        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !validOutput(outIdx, object) || matchConnection(src, outIdx, inIdx) || confirmConnection(inIdx, ConnectionInfo::kDoubleCheck)))
-            return;
-
         ConnectionResult result;
+
+        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !validOutput(connection.mIndex, getInternalObject(connection.mObject)) || getConnection(inIdx) == connection || confirmConnection(inIdx, ConnectionInfo::kDoubleCheck)))
+            return;
         
         if (isOrderingInput(inIdx))
-            result = mObject->addOrderingConnection(FrameLibConnection(object, outIdx));
+            result = mObject->addOrderingConnection(getFrameLibConnection(connection));
         else
-            result = mObject->addConnection(FrameLibConnection(object, outIdx), inIdx);
+            result = mObject->addConnection(getFrameLibConnection(connection), inIdx);
 
         switch (result)
         {
+            case kConnectSuccess:
+                mConnectionsUpdated = true;
+                object_method(connection.mObject, gensym("__fl.connection_update"), t_ptr_int(true));
+                break;
+                
             case kConnectFeedbackDetected:
                 object_error(mUserObject, "feedback loop detected");
                 break;
@@ -1604,26 +1606,19 @@ private:
                 object_error(mUserObject, "direct feedback loop detected");
                 break;
                 
-            case kConnectSuccess:
-                mConnectionsUpdated = true;
-                object_method(src, gensym("__fl.connection_update"), t_ptr_int(true));
-                break;
-                
             case kConnectNoOrderingSupport:
             case kConnectAliased:
                 break;
         }
     }
     
-    void disconnect(t_object *src, long outIdx, long inIdx)
+    void disconnect(MaxConnection connection, long inIdx)
     {
-        FrameLib_Multistream *object = getInternalObject(src);
-
-        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !matchConnection(src, outIdx, inIdx)))
+        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || getConnection(inIdx) != connection))
             return;
         
         if (isOrderingInput(inIdx))
-            mObject->deleteOrderingConnection(FrameLibConnection(object, outIdx));
+            mObject->deleteOrderingConnection(getFrameLibConnection(connection));
         else
             mObject->deleteConnection(inIdx);
         
@@ -1655,9 +1650,9 @@ private:
             {
                 switch (updatetype)
                 {
-                    case JPATCHLINE_CONNECT:        connect(src, srcout, dstin);        break;
-                    case JPATCHLINE_DISCONNECT:     disconnect(src, srcout, dstin);     break;
-                    case JPATCHLINE_ORDER:                                              break;
+                    case JPATCHLINE_CONNECT:        connect(MaxConnection(src, srcout), dstin);         break;
+                    case JPATCHLINE_DISCONNECT:     disconnect(MaxConnection(src, srcout), dstin);      break;
+                    case JPATCHLINE_ORDER:                                                              break;
                 }
             }
         }
