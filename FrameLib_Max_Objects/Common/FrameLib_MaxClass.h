@@ -151,10 +151,11 @@ public:
     {
         enum Mode { kConnect, kConfirm, kDoubleCheck };
 
-        ConnectionInfo(t_object *object, long index, Mode mode) : mObject(object), mIndex(index), mMode(mode) {}
+        using MaxConnection = FrameLib_Connection<t_object, long>;
+
+        ConnectionInfo(MaxConnection connection, Mode mode) : mConnection(connection), mMode(mode) {}
         
-        t_object *mObject;
-        long mIndex;
+        MaxConnection mConnection;
         Mode mMode;
         
     };
@@ -605,10 +606,30 @@ enum MaxObjectArgsMode { kAsParams, kAllInputs, kDistribute };
 template <class T, MaxObjectArgsMode argsMode = kAsParams>
 class FrameLib_MaxClass : public MaxClass_Base
 {
-    typedef FrameLib_Object<FrameLib_Multistream>::Connection FrameLibConnection;
-    typedef FrameLib_Connection<t_object, long> MaxConnection;
-    typedef FrameLib_MaxGlobals::ConnectionInfo ConnectionInfo;
+    using ConnectionInfo = FrameLib_MaxGlobals::ConnectionInfo;
+    using FrameLibConnection = FrameLib_Object<FrameLib_Multistream>::Connection;
+    using MaxConnection = ConnectionInfo::MaxConnection;
 
+    struct ConnectionConfirmation
+    {
+        ConnectionConfirmation(MaxConnection connection, long inIdx)
+        : mConfirm(false), mConnection(connection), mInIndex(inIdx) {}
+        
+        bool confirm(MaxConnection connection, long inIdx)
+        {
+            bool result = inIdx == mInIndex && connection == mConnection;
+            
+            if (result)
+                mConfirm = true;
+            
+            return result;
+        }
+        
+        bool mConfirm;
+        MaxConnection mConnection;
+        long mInIndex;
+    };
+    
 public:
     
     // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_MaxClass<>)
@@ -757,10 +778,7 @@ public:
     FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy())
     : mFrameLibProxy(proxy)
     , mGlobal(detectNonRealtime(s, argc, argv))
-    , mConfirmObject(nullptr)
-    , mConfirmInIndex(-1)
-    , mConfirmOutIndex(-1)
-    , mConfirm(false)
+    , mConfirmation(nullptr)
     , mContextPatch(contextPatcher(gensym("#P")->s_thing))
     , mSyncIn(nullptr)
     , mUserObject(detectUserObjectAtLoad())
@@ -1222,18 +1240,14 @@ public:
         switch (info->mMode)
         {
             case ConnectionInfo::kConnect:
-                connect(info->mObject, info->mIndex, index);
+                connect(info->mConnection.mObject, info->mConnection.mIndex, index);
                 break;
                 
             case ConnectionInfo::kConfirm:
             case ConnectionInfo::kDoubleCheck:
 
-                if (index == mConfirmInIndex && mConfirmObject == info->mObject && mConfirmOutIndex == info->mIndex)
-                {
-                    mConfirm = true;
-                    if (info->mMode == ConnectionInfo::kDoubleCheck)
-                        object_error(mUserObject, "extra connection to input %ld", index + 1);
-                }
+                if (mConfirmation && mConfirmation->confirm(info->mConnection, index) && info->mMode == ConnectionInfo::kDoubleCheck)
+                    object_error(mUserObject, "extra connection to input %ld", index + 1);
                 break;
         }
     }
@@ -1464,7 +1478,7 @@ private:
 
     void makeConnection(unsigned long index, ConnectionInfo::Mode mode)
     {
-        ConnectionInfo info(*this, index, mode);
+        ConnectionInfo info(MaxConnection(*this, index), mode);
         
         mGlobal->setConnectionInfo(&info);
         outlet_anything(mOutputs[index], gensym("frame"), 0, nullptr);
@@ -1478,28 +1492,18 @@ private:
     
     bool confirmConnection(MaxConnection connection, unsigned long inIndex, ConnectionInfo::Mode mode)
     {
-        if (!validInput(inIndex))
+        if (!validInput(inIndex) || !connection.mObject)
             return false;
         
-        mConfirm = false;
-        mConfirmObject = connection.mObject;
-        mConfirmInIndex = inIndex;
-        mConfirmOutIndex = connection.mIndex;
-    
-        // Check for connection *only* if the internal object is connected (otherwise assume the previously connected object has been deleted)
+        ConnectionConfirmation confirmation(connection, inIndex);
+        mConfirmation = &confirmation;
+        object_method(connection.mObject, gensym("__fl.connection_confirm"), connection.mIndex, mode);
+        mConfirmation = nullptr;
         
-        if (mConfirmObject)
-            object_method(mConfirmObject, gensym("__fl.connection_confirm"), mConfirmOutIndex, mode);
+        if (!confirmation.mConfirm)
+            disconnect(connection.mObject, connection.mIndex, inIndex);
         
-        if (mConfirmObject && !mConfirm)
-            disconnect(mConfirmObject, mConfirmOutIndex, mConfirmInIndex);
-        
-        bool result = mConfirm;
-        mConfirm = false;
-        mConfirmObject = nullptr;
-        mConfirmInIndex = mConfirmOutIndex = -1;
-        
-        return result;
+        return confirmation.mConfirm;
     }
     
     bool validInput(long index, FrameLib_Multistream *object) const
@@ -1527,8 +1531,7 @@ private:
     MaxConnection getMaxConnection(const FrameLibConnection& connection) const
     {
         FrameLib_MaxProxy *proxy = dynamic_cast<FrameLib_MaxProxy *>(connection.mObject->getProxy());
-        t_object *object = proxy->mMaxObject;
-        return MaxConnection(object, connection.mIndex);
+        return MaxConnection(proxy->mMaxObject, connection.mIndex);
     }
     
     MaxConnection getConnection(long index) const
@@ -1551,8 +1554,7 @@ private:
     
     bool matchConnection(t_object *src, long outIdx, long inIdx) const
     {
-        MaxConnection connection = getConnection(inIdx);
-        return connection.mObject == src && connection.mIndex == outIdx;
+        return getConnection(inIdx) == MaxConnection(src, outIdx);
     }
     
     void connect(t_object *src, long outIdx, long inIdx)
@@ -1921,10 +1923,7 @@ private:
     std::vector<double *> mSigOuts;
 
     long mProxyNum;
-    t_object *mConfirmObject;
-    long mConfirmInIndex;
-    long mConfirmOutIndex;
-    bool mConfirm;
+    ConnectionConfirmation *mConfirmation;
     
     t_object *mContextPatch;
     t_object *mSyncIn;
