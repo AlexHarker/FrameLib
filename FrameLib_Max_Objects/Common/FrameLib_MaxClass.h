@@ -332,6 +332,11 @@ public:
         
         if (!class_findbyname(CLASS_NOBOX, gensym(mutatorClassName)))
             Mutator::makeClass<Mutator>(CLASS_NOBOX, mutatorClassName);
+        
+        // Declare attribute in wrapper as well as FrameLib_MaxClass
+        
+        CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
+        CLASS_ATTR_ACCESSORS(c, "buffer", &Wrapper<T>::bufferGet, &Wrapper<T>::bufferSet);
     }
 
     // Constructor and Destructor
@@ -510,6 +515,24 @@ public:
     void anything(t_symbol *sym, long ac, t_atom *av)
     {
         outlet_anything(mInOutlets[getInlet()], sym, static_cast<int>(ac), av);
+    }
+    
+    // Buffer attribute
+    
+    static t_max_err bufferGet(Wrapper *x, t_object *attr, long *argc, t_atom **argv)
+    {
+        char alloc;
+        atom_alloc(argc, argv, &alloc);
+        atom_setsym(*argv, x->internalObject()->mBuffer);
+        
+        return MAX_ERR_NONE;
+    }
+    
+    static t_max_err bufferSet(Wrapper *x, t_object *attr, long argc, t_atom *argv)
+    {
+        x->internalObject()->mBuffer = argv ? atom_getsym(argv) : gensym("");
+        
+        return MAX_ERR_NONE;
     }
     
     // External methods (A_CANT)
@@ -745,7 +768,7 @@ public:
     , mNonRealtime(detectNonRealtime(s, argc, argv))
     , mConnectionsUpdated(false)
     , mRealtimeResolved(false)
-    , mBuffer(nullptr)
+    , mBuffer(gensym(""))
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
@@ -1230,7 +1253,7 @@ public:
 
     static void externalFindAudio(FrameLib_MaxClass *x, t_ptr_int realtime, std::vector<FrameLib_MaxNRTAudio> objects)
     {
-        if (x->isRealtime() == realtime && T::handlesAudio())
+        if (x->isRealtime() == realtime && x->handlesAudio())
             objects.push_back(FrameLib_MaxNRTAudio(x->mObject.get(), x->mBuffer));
     }
     
