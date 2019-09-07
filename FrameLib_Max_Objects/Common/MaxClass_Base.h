@@ -6,27 +6,39 @@
 #include <ext_obex.h>
 #include <ext_obex_util.h>
 #include <z_dsp.h>
+#include <memory>
 #include <string>
 
 // This is a very lightweight C++ template wrapper for writing max objects as C++ classes
 // This work is loosely based on https://github.com/grrrwaaa/maxcpp by Graham Wakefield
 
-template <class T>
-struct DefaultArg
-{
-    DefaultArg(T value) : mValue(value) {}
-    operator T() { return mValue; }
-
-    T mValue;
-};
-
-using def_atom_long = DefaultArg<t_atom_long>;
-using def_double = DefaultArg<double>;
-
 class MaxClass_Base
 {
-
+    template <class T>
+    struct DefaultArg
+    {
+        DefaultArg(T value) : mValue(value) {}
+        operator T() { return mValue; }
+        
+        T mValue;
+    };
+    
+    struct ObjectFree
+    {
+        void operator()(t_object *ptr) { object_free(ptr); }
+    };
+    
 public:
+
+    // Types for defining methods with DEFLONG or DEFFLOAT arguments
+    
+    using def_atom_long = DefaultArg<t_atom_long>;
+    using def_double = DefaultArg<double>;
+    
+    // Unique pointers to t_objects
+    
+    using unique_object_ptr = std::unique_ptr<t_object, ObjectFree>;
+    unique_object_ptr toUnique(void *ptr) { return unique_object_ptr(reinterpret_cast<t_object *>(ptr)); }
     
     // Default Constructor
     

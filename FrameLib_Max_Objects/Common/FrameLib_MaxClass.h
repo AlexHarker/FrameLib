@@ -353,7 +353,7 @@ public:
         atom_setparse(&ac, &av, "@defrect 0 0 300 300");
         attr_args_dictionary(d, static_cast<short>(ac), av);
         atom_setobj(&a, d);
-        mPatch = (t_object *)object_new_typed(CLASS_NOBOX, gensym("jpatcher"),1, &a);
+        mPatch = toUnique(object_new_typed(CLASS_NOBOX, gensym("jpatcher"),1, &a));
         
         // Get box text (and strip object name from the top - relace with stored name in case the object name is an alias)
         
@@ -374,19 +374,19 @@ public:
         
         // Set the patch association
         
-        objectMethod(mPatch, gensym("setassoc"), this);
+        objectMethod(mPatch.get(), gensym("setassoc"), this);
         
         // Make internal object and disallow editing
 
-        mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch, "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", newObjectText.c_str()));
-        objectMethod(mPatch, gensym("noedit"));
+        mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch.get(), "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", newObjectText.c_str()));
+        objectMethod(mPatch.get(), gensym("noedit"));
         
         // Make Mutator (with argument referencing the internal object)
         
         if (isRealtime())
         {
             atom_setobj(&a, mObject);
-            mMutator = (t_object *) object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 1, &a);
+            mMutator = toUnique(object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 1, &a));
         }
         else
             mMutator = nullptr;
@@ -410,7 +410,6 @@ public:
         
         mInOutlets.resize(numIns + numLocalAudioIns);
         mProxyIns.resize(numIns + numLocalAudioIns);
-        mAudioOuts.resize(numLocalAudioOuts);
         mOuts.resize(numOuts);
         
         // Inlets for messages/signals (we need one audio in for the purposes of sync)
@@ -420,21 +419,21 @@ public:
 
         for (long i = numIns + numLocalAudioIns - 1; i >= 0 ; i--)
         {
-            mInOutlets[i] = (t_object *) outlet_new(nullptr, nullptr);
-            mProxyIns[i] = (t_object *)  (i ? proxy_new(this, i, &mProxyNum) : nullptr);
+            mInOutlets[i] = toUnique(outlet_new(nullptr, nullptr));
+            mProxyIns[i] = toUnique(i ? proxy_new(this, i, &mProxyNum) : nullptr);
         }
         
         // Outlets for messages/signals
         
         for (long i = numOuts - 1; i >= 0 ; i--)
-            mOuts[i] = (t_object *) outlet_new(this, nullptr);
+            mOuts[i] = outlet_new(this, nullptr);
         for (long i = numLocalAudioOuts - 1; i >= 0 ; i--)
-            mAudioOuts[i] = (t_object *) outlet_new(this, "signal");
+            outlet_new(this, "signal");
         
         // Connect first signal outlet to the mutator
         
         if (isRealtime())
-            outlet_add(outlet_nth(mObject, 0), inlet_nth(mMutator, 0));
+            outlet_add(outlet_nth(mObject, 0), inlet_nth(mMutator.get(), 0));
         
         // Connect inlets (all types)
         
@@ -443,30 +442,13 @@ public:
             // Get the inlet (if there is none then add the object directly as it has only one inlet)
             
             void *p = inlet_nth(mObject, offset(i));
-            p = !p ? mObject : p;
-            outlet_add(mInOutlets[i], p);
+            outlet_add(mInOutlets[i].get(), p ? p : mObject);
         }
         
         // Connect non-audio outlets
         
         for (long i = 0; i < numOuts; i++)
             outlet_add(outlet_nth(mObject, i + numAudioOuts), mOuts[i]);
-    }
-    
-    ~Wrapper()
-    {
-        // Delete ins and proxies
-        
-        for (auto it = mProxyIns.begin(); it != mProxyIns.end(); it++)
-            object_free(*it);
-        
-        for (auto it = mInOutlets.begin(); it != mInOutlets.end(); it++)
-            object_free(*it);
-        
-        // Free objects - N.B. - free the patch, but not the object within it (which will be freed by deleting the patch)
-        
-        object_free(mMutator);
-        object_free(mPatch);
     }
     
     // Standard methods
@@ -478,7 +460,7 @@ public:
     
     void *subpatcher(long index, void *arg)
     {
-        return (((t_ptr_uint) arg <= 1) || ((t_ptr_uint) arg > 1 && !NOGOOD(arg))) && index == 0 ? (void *) mPatch : nullptr;
+        return (((t_ptr_uint) arg <= 1) || ((t_ptr_uint) arg > 1 && !NOGOOD(arg))) && index == 0 ? mPatch.get() : nullptr;
     }
     
     void assist(void *b, long m, long a, char *s)
@@ -514,7 +496,7 @@ public:
     
     void anything(t_symbol *sym, long ac, t_atom *av)
     {
-        outlet_anything(mInOutlets[getInlet()], sym, static_cast<int>(ac), av);
+        outlet_anything(mInOutlets[getInlet()].get(), sym, static_cast<int>(ac), av);
     }
     
     // Double-click for buffer viewing
@@ -546,7 +528,7 @@ public:
     
     static t_max_err externalPatchLineUpdate(Wrapper *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
     {
-        if ((t_object *) x == dst)
+        if (*x == dst)
             return T::externalPatchLineUpdate(x->internalObject(), patchline, updatetype, src, srcout, x->mObject, x->offset(dstin));
         else
             return T::externalPatchLineUpdate(x->internalObject(), patchline, updatetype, x->mObject, x->offset(srcout), dst, dstin);
@@ -580,8 +562,8 @@ private:
 
     // Owned Objects (need freeing)
     
-    t_object *mPatch;
-    t_object *mMutator;
+    unique_object_ptr mPatch;
+    unique_object_ptr mMutator;
     
     // Unowned objects (the internal object is owned by the patch)
     
@@ -590,13 +572,12 @@ private:
     
     // Inlets (must be freed)
     
-    std::vector<t_object *> mInOutlets;
-    std::vector<t_object *> mProxyIns;
+    std::vector<unique_object_ptr> mInOutlets;
+    std::vector<unique_object_ptr> mProxyIns;
     
     // Outlets (don't need to free)
     
-    std::vector<t_object *> mAudioOuts;
-    std::vector<t_object *> mOuts;
+    std::vector<void *> mOuts;
     
     // Dummy for stuffloc on proxies
     
@@ -790,7 +771,6 @@ public:
     , mGlobal(detectNonRealtime(s, argc, argv))
     , mConfirmation(nullptr)
     , mContextPatch(contextPatcher(gensym("#P")->s_thing))
-    , mSyncIn(nullptr)
     , mUserObject(detectUserObjectAtLoad())
     , mNonRealtime(detectNonRealtime(s, argc, argv))
     , mConnectionsUpdated(false)
@@ -834,7 +814,7 @@ public:
         // N.B. - we create a proxy if the inlet is not the first inlet (not the first frame input or the object handles realtime audio)
         
         for (long i = numIns - 1; i >= 0; i--)
-            mInputs[i] = (t_object *) ((i || handlesRealtimeAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : nullptr);
+            mInputs[i] = toUnique((i || handlesRealtimeAudio()) ? proxy_new(this, getNumAudioIns() + i, &mProxyNum) : nullptr);
         
         for (long i = getNumOuts(); i > 0; i--)
             mOutputs[i - 1] = outlet_new(this, nullptr);
@@ -852,8 +832,8 @@ public:
         
             if (handlesAudio())
             {
-                mSyncIn = (t_object *) outlet_new(nullptr, nullptr);
-                outlet_add(mSyncIn, inlet_nth(*this, 0));
+                mSyncIn = toUnique(outlet_new(nullptr, nullptr));
+                outlet_add(mSyncIn.get(), inlet_nth(*this, 0));
             }
         }
     }
@@ -862,11 +842,6 @@ public:
     {
         if (isRealtime())
             dspFree();
-
-        for (auto it = mInputs.begin(); it != mInputs.end(); it++)
-            object_free(*it);
-        
-        object_free(mSyncIn);
     }
     
     void assist(void *b, long m, long a, char *s)
@@ -1173,7 +1148,7 @@ public:
             resolveGraph();
         
         if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
-            outlet_anything(mSyncIn, gensym("signal"), 0, nullptr);
+            outlet_anything(mSyncIn.get(), gensym("signal"), 0, nullptr);
         
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete)
         {
@@ -1866,15 +1841,16 @@ private:
     
     std::unique_ptr<FLObject> mObject;
     
-    std::vector<t_object *> mInputs;
+    std::vector<unique_object_ptr> mInputs;
     std::vector<void *> mOutputs;
     std::vector<double *> mSigOuts;
 
     long mProxyNum;
     ConnectionConfirmation *mConfirmation;
+
+    unique_object_ptr mSyncIn;
     
     t_object *mContextPatch;
-    t_object *mSyncIn;
     t_object *mUserObject;
     
     bool mNonRealtime;
