@@ -88,6 +88,12 @@ public:
         setDirty();
     }
     
+    void display()
+    {
+        if (getBuffer())
+            buffer_view(getBuffer());
+    }
+    
 private:
     
     t_object *getBuffer() const     { return buffer_ref_getobject(mBuffer); }

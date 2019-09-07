@@ -321,6 +321,8 @@ public:
         addMethod(c, (method) &externalWrapperUnwrap, "__fl.wrapper_unwrap");
         addMethod(c, (method) &externalWrapperIsWrapper, "__fl.wrapper_is_wrapper");
 
+        addMethod(c, (method) &Wrapper<T>::dblclick, "dblclick");
+
         // N.B. MUST add signal handling after dspInit to override the builtin responses
         
         dspInit(c);
@@ -518,6 +520,13 @@ public:
         outlet_anything(mInOutlets[getInlet()], sym, static_cast<int>(ac), av);
     }
     
+    // Double-click for buffer viewing
+    
+    static void dblclick(Wrapper *x)
+    {
+        T::dblclick(x->internalObject());
+    }
+    
     // Buffer attribute
     
     static t_max_err bufferGet(Wrapper *x, t_object *attr, long *argc, t_atom **argv)
@@ -686,7 +695,10 @@ public:
         dspInit(c);
         
         if (T::handlesAudio())
+        {
+            addMethod(c, (method) &FrameLib_MaxClass<T>::dblclick, "dblclick");
             CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mBuffer);
+        }
     }
 
     // Check if a patch in memory matches a symbol representing a path
@@ -1227,7 +1239,14 @@ public:
         }
     }
     
-    // Connection Routines
+    // Double-click for buffer viewing
+    
+    static void dblclick(FrameLib_MaxClass *x)
+    {
+        MaxBufferAccess(*x, x->mBuffer).display();
+    }
+    
+    // Frame method
     
     void frame()
     {
