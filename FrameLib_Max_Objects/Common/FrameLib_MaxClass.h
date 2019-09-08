@@ -257,13 +257,14 @@ private:
 
 class Mutator : public MaxClass_Base
 {
+    using SyncCheck = FrameLib_MaxGlobals::SyncCheck;
     
 public:
     
     Mutator(t_symbol *sym, long ac, t_atom *av)
     {
         mObject = reinterpret_cast<t_object *>(ac ? atom_getobj(av) : nullptr);
-        mMode = objectMethod(mObject, gensym("__fl.is_output")) ? FrameLib_MaxGlobals::SyncCheck::kDownOnly : FrameLib_MaxGlobals::SyncCheck::kDown;
+        mMode = objectMethod(mObject, gensym("__fl.is_output")) ? SyncCheck::kDownOnly : SyncCheck::kDown;
     }
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
@@ -280,8 +281,8 @@ public:
     
 private:
     
-    FrameLib_MaxGlobals::SyncCheck mSyncChecker;
-    FrameLib_MaxGlobals::SyncCheck::Mode mMode;
+    SyncCheck mSyncChecker;
+    SyncCheck::Mode mMode;
     t_object *mObject;
 };
 
@@ -1069,7 +1070,7 @@ public:
     void process(t_atom_long length)
     {
         unsigned long updateLength = length > 0 ? length : 0;
-        unsigned long currentSampleTime = static_cast<unsigned long>(mObject->getBlockTime());
+        unsigned long time = static_cast<unsigned long>(mObject->getBlockTime());
         
         if (!updateLength)
             return;
@@ -1099,7 +1100,6 @@ public:
         for (unsigned long i = 0; i < updateLength; i += maxBlockSize())
         {
             unsigned long blockSize = std::min(maxBlockSize(), updateLength - i);
-            unsigned long start = currentSampleTime + i;
             
             // Process inputs and schedulers (block controls object lifetime)
             
@@ -1109,11 +1109,11 @@ public:
                 
                 for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
                 {
-                    if (it->mObject->getType() != kOutput)
-                    {
-                        read(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioIns(), blockSize, start);
-                        it->mObject->blockUpdate(ioBuffers.data(), nullptr, blockSize, queue);
-                    }
+                    if (it->mObject->getType() == kOutput)
+                        continue;
+                    
+                    read(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioIns(), blockSize, time + i);
+                    it->mObject->blockUpdate(ioBuffers.data(), nullptr, blockSize, queue);
                 }
             }
             
@@ -1121,11 +1121,11 @@ public:
             
             for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
             {
-                if (it->mObject->getType() == kOutput)
-                {
-                    it->mObject->blockUpdate(nullptr, ioBuffers.data(), blockSize);
-                    write(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioOuts(), blockSize, start);
-                }
+                if (it->mObject->getType() != kOutput)
+                    continue;
+                
+                it->mObject->blockUpdate(nullptr, ioBuffers.data(), blockSize);
+                write(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioOuts(), blockSize, time + i);
             }
         }
     }
@@ -1278,14 +1278,14 @@ public:
         return x->getNumAudioOuts();
     }
     
+    static void extConnectionConfirm(FrameLib_MaxClass *x, unsigned long index, ConnectionInfo::Mode mode)
+    {
+        x->makeConnection(index, mode);
+    }
+    
     static t_ptr_int extIsConnected(FrameLib_MaxClass *x, unsigned long index)
     {
         return x->confirmConnection(index, ConnectionInfo::kConfirm);
-    }
-    
-    static void extConnectionConfirm(FrameLib_MaxClass *x, unsigned long index, FrameLib_MaxGlobals::ConnectionInfo::Mode mode)
-    {
-        x->makeConnection(index, mode);
     }
 
 private:
@@ -1588,9 +1588,9 @@ private:
     void postSplit(const char *text, const char *firstLineTag, const char *lineTag)
     {
         std::string str(text);
-        size_t prev, pos;
+        size_t prev = 0;
         
-        for (prev = 0, pos = str.find_first_of(":."); prev < str.size(); pos = str.find_first_of(":.", pos + 1))
+        for (size_t pos = str.find_first_of(":."); prev < str.size(); pos = str.find_first_of(":.", pos + 1))
         {
             pos = pos == std::string::npos ? str.size() : pos;
             object_post(mUserObject, "%s%s", prev ? lineTag : firstLineTag, str.substr(prev, (pos - prev) + 1).c_str());
