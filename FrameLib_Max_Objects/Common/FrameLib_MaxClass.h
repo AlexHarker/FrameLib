@@ -1166,6 +1166,9 @@ public:
     
     static void dblclick(FrameLib_MaxClass *x)
     {
+        if (isRealtime())
+            return;
+        
         MaxBufferAccess(*x, x->mBuffer).display();
     }
     
