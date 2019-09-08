@@ -30,7 +30,7 @@ namespace OS_Specific
     typedef void *OSThreadFunctionType(void *arg);
 }
 
-#define DEFAULT_THREAD_PRIORITIES { 31, 52, 63, SCHED_FIFO }
+#define DEFAULT_THREAD_PRIORITIES { 31, 52, 63, SCHED_FIFO, false }
 
 #elif defined(__APPLE__)
 
@@ -46,7 +46,7 @@ namespace OS_Specific
     typedef void *OSThreadFunctionType(void *arg);
 }
 
-#define DEFAULT_THREAD_PRIORITIES { 31, 52, 63, SCHED_FIFO }
+#define DEFAULT_THREAD_PRIORITIES { 31, 52, 63, SCHED_FIFO, false }
 
 #else
     
@@ -61,7 +61,7 @@ namespace OS_Specific
     typedef DWORD WINAPI OSThreadFunctionType(LPVOID arg);
 }
 
-#define DEFAULT_THREAD_PRIORITIES { THREAD_PRIORITY_LOWEST, THREAD_PRIORITY_HIGHEST THREAD_PRIORITY_TIME_CRITICAL, 0 }
+#define DEFAULT_THREAD_PRIORITIES { THREAD_PRIORITY_LOWEST, THREAD_PRIORITY_HIGHEST THREAD_PRIORITY_TIME_CRITICAL, 0, false }
 
 #endif
 
@@ -246,6 +246,7 @@ public:
     struct Priorities
     {
         int mLow, mHigh, mAudio, mRTPolicy;
+        bool mMultithread;
     };
     
     // Defaults priorities per platform

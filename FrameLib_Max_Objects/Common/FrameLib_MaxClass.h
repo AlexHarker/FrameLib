@@ -199,10 +199,10 @@ private:
     static FrameLib_Thread::Priorities priorities(bool nonRealtime)
     {
         if (nonRealtime)
-            return { 31, 31, 31, SCHED_OTHER };
+            return { 31, 31, 31, SCHED_OTHER, true };
 #ifdef __APPLE__
         if (maxversion() >= 0x800)
-            return { 31, 31, 43, SCHED_RR };
+            return { 31, 31, 43, SCHED_RR, false };
 #endif
         return FrameLib_Thread::defaultPriorities();
     }
