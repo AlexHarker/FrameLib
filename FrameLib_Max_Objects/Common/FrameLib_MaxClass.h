@@ -1074,31 +1074,20 @@ public:
         // Retrieve all the audio objects in a list
         
         std::vector<FrameLib_MaxNRTAudio> audioObjects;
-        std::vector<double> audioBuffer;
-        std::vector<double *> inputs;
-        std::vector<double *> outputs;
-        unsigned long maxAudioIns = 0;
-        unsigned long maxAudioOuts = 0;
-        
         traversePatch(gensym("__fl.find_audio_objects"), &audioObjects);
         
         // Set up buffers
         
+        unsigned long maxAudioIO = 0;
+        
         for (auto it = audioObjects.begin(); it != audioObjects.end(); it++)
-        {
-            maxAudioIns = std::max(maxAudioIns, it->mObject->getNumAudioIns());
-            maxAudioOuts = std::max(maxAudioOuts, it->mObject->getNumAudioOuts());
-        }
+            maxAudioIO = std::max(maxAudioIO, it->mObject->getNumAudioChans());
         
-        audioBuffer.resize(maxBlockSize() * (maxAudioIns + maxAudioOuts));
-        inputs.resize(maxAudioIns);
-        outputs.resize(maxAudioOuts);
+        std::vector<double> audioBuffer(maxBlockSize() * maxAudioIO);
+        std::vector<double *> ioBuffers(maxAudioIO);
         
-        for (unsigned long i = 0; i < maxAudioIns; i++)
-            inputs[i] = audioBuffer.data() + i * maxBlockSize();
-        
-        for (unsigned long i = 0; i < maxAudioOuts; i++)
-            outputs[i] = audioBuffer.data() + (maxAudioIns + i) * maxBlockSize();
+        for (unsigned long i = 0; i < maxAudioIO; i++)
+            ioBuffers[i] = audioBuffer.data() + i * maxBlockSize();
         
         // Loop to process audio
         
@@ -1117,8 +1106,8 @@ public:
                 {
                     if (it->mObject->getType() != kOutput)
                     {
-                        read(it->mBuffer, inputs.data(), it->mObject->getNumAudioIns(), blockSize, start);
-                        it->mObject->blockUpdate(inputs.data(), nullptr, blockSize, queue);
+                        read(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioIns(), blockSize, start);
+                        it->mObject->blockUpdate(ioBuffers.data(), nullptr, blockSize, queue);
                     }
                 }
             }
@@ -1129,8 +1118,8 @@ public:
             {
                 if (it->mObject->getType() == kOutput)
                 {
-                    it->mObject->blockUpdate(nullptr, outputs.data(), blockSize);
-                    write(it->mBuffer, outputs.data(), it->mObject->getNumAudioOuts(), blockSize, start);
+                    it->mObject->blockUpdate(nullptr, ioBuffers.data(), blockSize);
+                    write(it->mBuffer, ioBuffers.data(), it->mObject->getNumAudioOuts(), blockSize, start);
                 }
             }
         }
