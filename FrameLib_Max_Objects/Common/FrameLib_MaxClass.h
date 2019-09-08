@@ -757,9 +757,16 @@ public:
     
     // Detect non-realtime setting
     
-    static bool detectNonRealtime(t_symbol *s, long argc, t_atom *argv)
+    static bool detectNonRealtime(t_symbol *s, long& argc, t_atom *& argv)
     {
-        return true;
+        if (argc && atom_getsym(argv) == gensym("nrt"))
+        {
+            argc--;
+            argv++;
+            return true;
+        }
+        
+        return false;
     }
     
     // Constructor and Destructor
