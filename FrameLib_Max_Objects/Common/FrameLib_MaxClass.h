@@ -176,7 +176,7 @@ public:
         FrameLib_MaxGlobals *mPointer;
     };
     
-    // Constructor and Destructor (public for the max API, but use the ManagedPointer for use from outside this class)
+    // Constructor and Destructor (public for max API, but use ManagedPointer from outside this class)
     
     FrameLib_MaxGlobals(t_symbol *sym, long ac, t_atom *av)
     : mNotifier(new ErrorNotifier(this)), mGlobal(nullptr), mConnectionInfo(nullptr), mSyncCheck(nullptr)
@@ -184,13 +184,13 @@ public:
 
     // Getters and setters for max global items
     
-    FrameLib_Global *getGlobal() const                          { return mGlobal; }
+    FrameLib_Global *getGlobal() const                  { return mGlobal; }
     
-    const ConnectionInfo *getConnectionInfo() const             { return mConnectionInfo; }
-    void setConnectionInfo(ConnectionInfo *info = nullptr)      { mConnectionInfo = info; }
+    const ConnectionInfo *getConnectionInfo() const     { return mConnectionInfo; }
+    void setConnectionInfo(ConnectionInfo *info)        { mConnectionInfo = info; }
     
-    SyncCheck *getSyncCheck() const                             { return mSyncCheck; }
-    void setSyncCheck(SyncCheck *check = nullptr)               { mSyncCheck = check; }
+    SyncCheck *getSyncCheck() const                     { return mSyncCheck; }
+    void setSyncCheck(SyncCheck *check)                 { mSyncCheck = check; }
     
 private:
     
@@ -313,10 +313,10 @@ public:
         addMethod<Wrapper<T>, &Wrapper<T>::sync>(c, "sync");
         addMethod<Wrapper<T>, &Wrapper<T>::dsp>(c);
 
-        addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
-        addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
-        addMethod(c, (method) &externalWrapperUnwrap, "__fl.wrapper_unwrap");
-        addMethod(c, (method) &externalWrapperIsWrapper, "__fl.wrapper_is_wrapper");
+        addMethod(c, (method) &patchLineUpdate, "patchlineupdate");
+        addMethod(c, (method) &connectionAccept, "connectionaccept");
+        addMethod(c, (method) &unwrap, "__fl.wrapper_unwrap");
+        addMethod(c, (method) &isWrapper, "__fl.wrapper_is_wrapper");
 
         addMethod(c, (method) &Wrapper<T>::dblclick, "dblclick");
 
@@ -355,7 +355,7 @@ public:
         atom_setobj(&a, d);
         mPatch = toUnique(object_new_typed(CLASS_NOBOX, gensym("jpatcher"),1, &a));
         
-        // Get box text (and strip object name from the top - relace with stored name in case the object name is an alias)
+        // Get box text (and strip object name - replace with stored name in case the name is an alias)
         
         t_object *textfield = nullptr;
         const char *text = nullptr;
@@ -397,7 +397,7 @@ public:
         
         // Get the object itself (typed)
         
-        T *internal = internalObject();
+        T *internal = object();
         
         long numIns = internal->getNumIns() + (internal->supportsOrderingConnections() ? 1 : 0);
         long numOuts = internal->getNumOuts();
@@ -465,28 +465,28 @@ public:
     
     void assist(void *b, long m, long a, char *s)
     {
-        internalObject()->assist(b, m, offset(a), s);
+        object()->assist(b, m, offset(a), s);
     }
     
     void sync()
     {
-        // Set the order of the wrapper after the internal object by doing this before calling internal sync
+        // Set the order of the wrapper after the owned object by doing this before calling internal sync
         
         if (isRealtime())
             (*sigMethodCache())(this);
         
-        internalObject()->sync();
+        object()->sync();
     }
     
     void dsp(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
     {
-        if (isRealtime() && T::externalIsOutput(internalObject()))
+        if (isRealtime() && T::extIsOutput(object()))
             addPerform<Wrapper, &Wrapper<T>::perform>(dsp64);
     }
     
     void perform(t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam)
     {
-        std::vector<double*> &internalOuts = internalObject()->getAudioOuts();
+        std::vector<double*> &internalOuts = object()->getAudioOuts();
         
         // Copy to output
         
@@ -503,7 +503,7 @@ public:
     
     static void dblclick(Wrapper *x)
     {
-        T::dblclick(x->internalObject());
+        T::dblclick(x->object());
     }
     
     // Buffer attribute
@@ -512,51 +512,49 @@ public:
     {
         char alloc;
         atom_alloc(argc, argv, &alloc);
-        atom_setsym(*argv, x->internalObject()->mBuffer);
+        atom_setsym(*argv, x->object()->mBuffer);
         
         return MAX_ERR_NONE;
     }
     
     static t_max_err bufferSet(Wrapper *x, t_object *attr, long argc, t_atom *argv)
     {
-        x->internalObject()->mBuffer = argv ? atom_getsym(argv) : gensym("");
+        x->object()->mBuffer = argv ? atom_getsym(argv) : gensym("");
         
         return MAX_ERR_NONE;
     }
     
     // External methods (A_CANT)
     
-    static t_max_err externalPatchLineUpdate(Wrapper *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
+    static t_max_err patchLineUpdate(Wrapper *x, t_object *line, long type, t_object *src, long srcout, t_object *dst, long dstin)
     {
         if (*x == dst)
-            return T::externalPatchLineUpdate(x->internalObject(), patchline, updatetype, src, srcout, x->mObject, x->offset(dstin));
+            return T::extPatchLineUpdate(x->object(), line, type, src, srcout, x->mObject, x->offset(dstin));
         else
-            return T::externalPatchLineUpdate(x->internalObject(), patchline, updatetype, x->mObject, x->offset(srcout), dst, dstin);
+            return T::extPatchLineUpdate(x->object(), line, type, x->mObject, x->offset(srcout), dst, dstin);
     }
     
-    static t_ptr_int externalConnectionAccept(Wrapper *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
+    static t_ptr_int connectionAccept(Wrapper *x, t_object *dst, long srcout, long dstin, t_object *op, t_object *ip)
     {
-        // Only called for sources / account for internal sync connections
-
-        return T::externalConnectionAccept(src->internalObject(), dst, src->offset(srcout), dstin, outlet, inlet);
+        return T::extConnectionAccept(x->object(), dst, x->offset(srcout), dstin, op, ip);
     }
     
-    static void *externalWrapperUnwrap(Wrapper *x, long* idx)
+    static void *unwrap(Wrapper *x, long* idx)
     {
         *idx = x->offset(*idx);
         return x->mObject;
     }
     
-    static void *externalWrapperIsWrapper(Wrapper *x)
+    static void *isWrapper(Wrapper *x)
     {
         return (void *) 1;
     }
     
 private:
     
-    T *internalObject() { return (T *) mObject; }
+    T *object() { return (T *) mObject; }
 
-    bool isRealtime() { return internalObject()->isRealtime(); }
+    bool isRealtime() { return object()->isRealtime(); }
     
     long offset(long connectionIdx) {return isRealtime() ? connectionIdx + 1 : connectionIdx; }
 
@@ -652,22 +650,22 @@ public:
             addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::process>(c, "process");
         }
         
-        addMethod(c, (method) &externalPatchLineUpdate, "patchlineupdate");
-        addMethod(c, (method) &externalConnectionAccept, "connectionaccept");
-        addMethod(c, (method) &externalResolveConnections, "__fl.resolve_connections");
-        addMethod(c, (method) &externalMarkUnresolved, "__fl.mark_unresolved");
-        addMethod(c, (method) &externalAutoOrderingConnections, "__fl.auto_ordering_connections");
-        addMethod(c, (method) &externalFindAudio, "__fl.find_audio_objects");
-        addMethod(c, (method) &externalReset, "__fl.reset");
-        addMethod(c, (method) &externalClearAutoOrderingConnections, "__fl.clear_auto_ordering_connections");
-        addMethod(c, (method) &externalIsConnected, "__fl.is_connected");
-        addMethod(c, (method) &externalConnectionConfirm, "__fl.connection_confirm");
-        addMethod(c, (method) &externalConnectionUpdate, "__fl.connection_update");
-        addMethod(c, (method) &externalGetFLObject, "__fl.get_framelib_object");
-        addMethod(c, (method) &externalGetUserObject, "__fl.get_user_object");
-        addMethod(c, (method) &externalIsOutput, "__fl.is_output");
-        addMethod(c, (method) &externalGetNumAudioIns, "__fl.get_num_audio_ins");
-        addMethod(c, (method) &externalGetNumAudioOuts, "__fl.get_num_audio_outs");
+        addMethod(c, (method) &extPatchLineUpdate, "patchlineupdate");
+        addMethod(c, (method) &extConnectionAccept, "connectionaccept");
+        addMethod(c, (method) &extResolveConnections, "__fl.resolve_connections");
+        addMethod(c, (method) &extMarkUnresolved, "__fl.mark_unresolved");
+        addMethod(c, (method) &extAutoOrderingConnections, "__fl.auto_ordering_connections");
+        addMethod(c, (method) &extFindAudio, "__fl.find_audio_objects");
+        addMethod(c, (method) &extReset, "__fl.reset");
+        addMethod(c, (method) &extClearAutoOrderingConnections, "__fl.clear_auto_ordering_connections");
+        addMethod(c, (method) &extIsConnected, "__fl.is_connected");
+        addMethod(c, (method) &extConnectionConfirm, "__fl.connection_confirm");
+        addMethod(c, (method) &extConnectionUpdate, "__fl.connection_update");
+        addMethod(c, (method) &extGetFLObject, "__fl.get_framelib_object");
+        addMethod(c, (method) &extGetUserObject, "__fl.get_user_object");
+        addMethod(c, (method) &extIsOutput, "__fl.is_output");
+        addMethod(c, (method) &extGetNumAudioIns, "__fl.get_num_audio_ins");
+        addMethod(c, (method) &extGetNumAudioOuts, "__fl.get_num_audio_outs");
         
         class_addmethod(c, (method) &codeexport, "export", A_SYM, A_SYM, 0);
         
@@ -1142,7 +1140,7 @@ public:
     
     void sync()
     {
-        FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), externalIsOutput(this));
+        FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), extIsOutput(this));
        
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && !mRealtimeResolved)
             resolveGraph();
@@ -1207,90 +1205,90 @@ public:
     
     // External methods (A_CANT)
     
-    static t_ptr_int externalConnectionAccept(FrameLib_MaxClass *src, t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
+    static t_ptr_int extConnectionAccept(FrameLib_MaxClass *x, t_object *dst, long srcout, long dstin, t_object *op, t_object *ip)
     {
-        return src->connectionAccept(dst, srcout, dstin, outlet, inlet);
+        return x->connectionAccept(dst, srcout, dstin, op, ip);
     }
     
-    static t_max_err externalPatchLineUpdate(FrameLib_MaxClass *x, t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
+    static t_max_err extPatchLineUpdate(FrameLib_MaxClass *x, t_object *line, long type, t_object *src, long srcout, t_object *dst, long dstin)
     {
-        return x->patchLineUpdate(patchline, updatetype, src, srcout, dst, dstin);
+        return x->patchLineUpdate(line, type, src, srcout, dst, dstin);
     }
 
-    static void externalFindAudio(FrameLib_MaxClass *x, t_ptr_int realtime, std::vector<FrameLib_MaxNRTAudio> objects)
+    static void extFindAudio(FrameLib_MaxClass *x, t_ptr_int realtime, std::vector<FrameLib_MaxNRTAudio> objects)
     {
         if (x->isRealtime() == realtime && x->handlesAudio())
             objects.push_back(FrameLib_MaxNRTAudio(x->mObject.get(), x->mBuffer));
     }
     
-    static void externalResolveConnections(FrameLib_MaxClass *x, t_ptr_int realtime, t_ptr_int *flag)
+    static void extResolveConnections(FrameLib_MaxClass *x, t_ptr_int realtime, t_ptr_int *flag)
     {
         if (x->isRealtime() == realtime)
             *flag |= x->resolveConnections();
     }
     
-    static void externalMarkUnresolved(FrameLib_MaxClass *x, t_ptr_int realtime)
+    static void extMarkUnresolved(FrameLib_MaxClass *x, t_ptr_int realtime)
     {
         if (x->isRealtime() == realtime)
             x->mRealtimeResolved = false;
     }
     
-    static void externalAutoOrderingConnections(FrameLib_MaxClass *x, t_ptr_int realtime)
+    static void extAutoOrderingConnections(FrameLib_MaxClass *x, t_ptr_int realtime)
     {
         if (x->isRealtime() == realtime)
             x->mObject->autoOrderingConnections();
     }
     
-    static void externalClearAutoOrderingConnections(FrameLib_MaxClass *x, t_ptr_int realtime)
+    static void extClearAutoOrderingConnections(FrameLib_MaxClass *x, t_ptr_int realtime)
     {
         if (x->isRealtime() == realtime)
             x->mObject->clearAutoOrderingConnections();
     }
 
-    static void externalReset(FrameLib_MaxClass *x, t_ptr_int realtime, double *samplerate, t_ptr_int maxvectorsize)
+    static void extReset(FrameLib_MaxClass *x, t_ptr_int realtime, double *samplerate, t_ptr_int maxvectorsize)
     {
         if (x->isRealtime() == realtime)
             x->mObject->reset(*samplerate, maxvectorsize);
     }
     
-    static t_ptr_int externalIsConnected(FrameLib_MaxClass *x, unsigned long index)
-    {
-        return x->confirmConnection(index, ConnectionInfo::kConfirm);
-    }
-    
-    static void externalConnectionConfirm(FrameLib_MaxClass *x, unsigned long index, FrameLib_MaxGlobals::ConnectionInfo::Mode mode)
-    {
-        x->makeConnection(index, mode);
-    }
-    
-    static void externalConnectionUpdate(FrameLib_MaxClass *x, t_ptr_int state)
+    static void extConnectionUpdate(FrameLib_MaxClass *x, t_ptr_int state)
     {
         x->mConnectionsUpdated = state;
     }
     
-    static FLObject *externalGetFLObject(FrameLib_MaxClass *x)
+    static FLObject *extGetFLObject(FrameLib_MaxClass *x)
     {
         return x->mObject.get();
     }
     
-    static t_object *externalGetUserObject(FrameLib_MaxClass *x)
+    static t_object *extGetUserObject(FrameLib_MaxClass *x)
     {
         return x->mUserObject;
     }
     
-    static t_ptr_int externalIsOutput(FrameLib_MaxClass *x)
+    static t_ptr_int extIsOutput(FrameLib_MaxClass *x)
     {
         return x->getType() == kOutput;
     }
     
-    static t_ptr_int externalGetNumAudioIns(FrameLib_MaxClass *x)
+    static t_ptr_int extGetNumAudioIns(FrameLib_MaxClass *x)
     {
         return x->getNumAudioIns();
     }
     
-    static t_ptr_int externalGetNumAudioOuts(FrameLib_MaxClass *x)
+    static t_ptr_int extGetNumAudioOuts(FrameLib_MaxClass *x)
     {
         return x->getNumAudioOuts();
+    }
+    
+    static t_ptr_int extIsConnected(FrameLib_MaxClass *x, unsigned long index)
+    {
+        return x->confirmConnection(index, ConnectionInfo::kConfirm);
+    }
+    
+    static void extConnectionConfirm(FrameLib_MaxClass *x, unsigned long index, FrameLib_MaxGlobals::ConnectionInfo::Mode mode)
+    {
+        x->makeConnection(index, mode);
     }
 
 private:
@@ -1450,7 +1448,7 @@ private:
         
         mGlobal->setConnectionInfo(&info);
         outlet_anything(mOutputs[index], gensym("frame"), 0, nullptr);
-        mGlobal->setConnectionInfo();
+        mGlobal->setConnectionInfo(nullptr);
     }
     
     bool confirmConnection(unsigned long inIndex, ConnectionInfo::Mode mode)
@@ -1532,9 +1530,9 @@ private:
         object = wrapped ? wrapped : object;
     }
     
-    t_max_err patchLineUpdate(t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
+    t_max_err patchLineUpdate(t_object *line, long type, t_object *src, long srcout, t_object *dst, long dstin)
     {
-        if (*this != dst || updatetype == JPATCHLINE_ORDER)
+        if (*this != dst || type == JPATCHLINE_ORDER)
             return MAX_ERR_NONE;
         
         // Unwrap and offset connections
@@ -1555,7 +1553,7 @@ private:
         }
         else
         {
-            switch (updatetype)
+            switch (type)
             {
                 case JPATCHLINE_CONNECT:        connect(MaxConnection(src, srcout), dstin);         break;
                 case JPATCHLINE_DISCONNECT:     disconnect(MaxConnection(src, srcout), dstin);      break;
@@ -1565,7 +1563,7 @@ private:
         return MAX_ERR_NONE;
     }
     
-    long connectionAccept(t_object *dst, long srcout, long dstin, t_object *outlet, t_object *inlet)
+    long connectionAccept(t_object *dst, long srcout, long dstin, t_object *op, t_object *ip)
     {
         t_symbol *className = object_classname(dst);
         
@@ -1580,7 +1578,7 @@ private:
         dstin -= getNumAudioIns(dst);
         srcout -= getNumAudioOuts();
         
-        // Allow if not a frame outlet / the connection is to the ordering inlet / a valid input, currently with no connection
+        // Allow connections - if not a frame outlet / to the ordering inlet / to a valid unconnected input
         
         if (!validOutput(srcout) || isOrderingInput(dstin, getFLObject(dst)) || (validInput(dstin, getFLObject(dst)) && !objectMethod(dst, gensym("__fl.is_connected"), dstin)))
             return 1;
