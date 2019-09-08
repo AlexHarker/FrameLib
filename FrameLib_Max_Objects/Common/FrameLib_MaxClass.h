@@ -1348,10 +1348,8 @@ private:
         {
             traversePatch(gensym("__fl.clear_auto_ordering_connections"));
             traversePatch(gensym("__fl.auto_ordering_connections"));
-        }
-        
-        if (updated)
             post("Graph Updated - realtime %d", isRealtime());
+        }
         
         return updated;
     }
@@ -1366,7 +1364,7 @@ private:
             traversePatch(gensym("__fl.reset"), &sampleRate, blockSize);
     }
     
-    // Convert from framlib object to max object and vice versa
+    // Convert from framelib object to max object and vice versa
     
     static FLObject *getFLObject(t_object *x)
     {
@@ -1380,12 +1378,12 @@ private:
     
     // Get the number of audio ins/outs safely from a generic pointer
     
-    long getNumAudioInsRemote(t_object *x)
+    static long getNumAudioIns(t_object *x)
     {
         return static_cast<long>(objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_ins")));
     }
     
-    long getNumAudioOutsRemote(t_object *x)
+    static long getNumAudioOuts(t_object *x)
     {
         return static_cast<long>(objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_outs")));
     }
@@ -1437,13 +1435,12 @@ private:
         for (long i = getNumOuts(); i > 0; i--)
             makeConnection(i - 1, ConnectionInfo::kConnect);
         
-        mRealtimeResolved = isRealtime() ? true : false;
-        
-        // Check if anything has updated since the last call to this method
+        // Check if anything has updated since the last call to this method and make realtime resolved
         
         bool updated = mConnectionsUpdated;
         mConnectionsUpdated = false;
-        
+        mRealtimeResolved = isRealtime();
+
         return updated;
     }
 
@@ -1537,31 +1534,31 @@ private:
     
     t_max_err patchLineUpdate(t_object *patchline, long updatetype, t_object *src, long srcout, t_object *dst, long dstin)
     {
-        if (*this == dst)
+        if (*this != dst || updatetype == JPATCHLINE_ORDER)
+            return MAX_ERR_NONE;
+        
+        // Unwrap and offset connections
+            
+        unwrapConnection(src, srcout);
+        srcout -= getNumAudioOuts(src);
+        dstin -= getNumAudioIns();
+            
+        if (isRealtime() && sys_getdspobjdspstate(*this))
         {
-            unwrapConnection(src, srcout);
+            // Check load update before we check the dspchain (in case we are loading in poly~ etc.)
             
-            srcout -= getNumAudioOutsRemote(src);
-            dstin -= getNumAudioIns();
-            
-            if (isRealtime() && sys_getdspobjdspstate(*this))
-            {
-                // Check load update before we check the dspchain (in case we are loading in poly~ etc.)
+            short loadupdate = dsp_setloadupdate(false);
+            dsp_setloadupdate(loadupdate);
                 
-                short loadupdate = dsp_setloadupdate(false);
-                dsp_setloadupdate(loadupdate);
-                
-                if (loadupdate && (isOrderingInput(dstin) || validInput(dstin)) && updatetype != JPATCHLINE_ORDER)
-                    dspchain_setbroken(dspchain_fromobject(*this));
-            }
-            else
+            if (loadupdate && (isOrderingInput(dstin) || validInput(dstin)))
+                dspchain_setbroken(dspchain_fromobject(*this));
+        }
+        else
+        {
+            switch (updatetype)
             {
-                switch (updatetype)
-                {
-                    case JPATCHLINE_CONNECT:        connect(MaxConnection(src, srcout), dstin);         break;
-                    case JPATCHLINE_DISCONNECT:     disconnect(MaxConnection(src, srcout), dstin);      break;
-                    case JPATCHLINE_ORDER:                                                              break;
-                }
+                case JPATCHLINE_CONNECT:        connect(MaxConnection(src, srcout), dstin);         break;
+                case JPATCHLINE_DISCONNECT:     disconnect(MaxConnection(src, srcout), dstin);      break;
             }
         }
         
@@ -1572,13 +1569,20 @@ private:
     {
         t_symbol *className = object_classname(dst);
         
-        if (!validOutput(srcout - getNumAudioOuts()) || className == gensym("outlet") || className == gensym("jpatcher"))
+        // Allow if connecting to an outlet or patcher
+        
+        if (className == gensym("outlet") || className == gensym("jpatcher"))
             return 1;
 
+        // Unwrap and offset connections
+
         unwrapConnection(dst, dstin);
-        dstin -= getNumAudioInsRemote(dst);
+        dstin -= getNumAudioIns(dst);
+        srcout -= getNumAudioOuts();
         
-        if (isOrderingInput(dstin, getFLObject(dst)) || (validInput(dstin, getFLObject(dst)) && !objectMethod(dst, gensym("__fl.is_connected"), dstin)))
+        // Allow if not a frame outlet / the connection is to the ordering inlet / a valid input, currently with no connection
+        
+        if (!validOutput(srcout) || isOrderingInput(dstin, getFLObject(dst)) || (validInput(dstin, getFLObject(dst)) && !objectMethod(dst, gensym("__fl.is_connected"), dstin)))
             return 1;
         
         return 0;
@@ -1589,13 +1593,13 @@ private:
     void postSplit(const char *text, const char *firstLineTag, const char *lineTag)
     {
         std::string str(text);
-        size_t oldPos, pos;
+        size_t prev, pos;
         
-        for (oldPos = 0, pos = str.find_first_of(":."); oldPos < str.size(); pos = str.find_first_of(":.", pos + 1))
+        for (prev = 0, pos = str.find_first_of(":."); prev < str.size(); pos = str.find_first_of(":.", pos + 1))
         {
             pos = pos == std::string::npos ? str.size() : pos;
-            object_post(mUserObject, "%s%s", oldPos ? lineTag : firstLineTag, str.substr(oldPos, (pos - oldPos) + 1).c_str());
-            oldPos = pos + 1;
+            object_post(mUserObject, "%s%s", prev ? lineTag : firstLineTag, str.substr(prev, (pos - prev) + 1).c_str());
+            prev = pos + 1;
         }
     }
     
