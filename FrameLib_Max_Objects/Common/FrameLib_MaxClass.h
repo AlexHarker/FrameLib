@@ -777,7 +777,7 @@ public:
     {
         // Ignore non-realtime specifier
         
-        if (detectNonRealtime)
+        if (detectNonRealtime(s, argc, argv))
         {
             argc--;
             argv++;
