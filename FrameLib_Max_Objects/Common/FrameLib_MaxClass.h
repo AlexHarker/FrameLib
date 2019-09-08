@@ -757,16 +757,9 @@ public:
     
     // Detect non-realtime setting
     
-    static bool detectNonRealtime(t_symbol *s, long& argc, t_atom *& argv)
+    static bool detectNonRealtime(t_symbol *s, long argc, t_atom * argv)
     {
-        if (argc && atom_getsym(argv) == gensym("nrt"))
-        {
-            argc--;
-            argv++;
-            return true;
-        }
-        
-        return false;
+        return (argc && atom_getsym(argv) == gensym("nrt"));
     }
     
     // Constructor and Destructor
@@ -782,15 +775,18 @@ public:
     , mRealtimeResolved(false)
     , mBuffer(gensym(""))
     {
-        // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
+        // Ignore non-realtime specifier
         
-        // Deal with attributes for non-realtime objects
-        
-        if (!isRealtime() && handlesAudio())
+        if (detectNonRealtime)
         {
-            attr_args_process(this, argc, argv);
-            argc = attr_args_offset(argc, argv);
+            argc--;
+            argv++;
         }
+        
+        // Deal with attributes for non-realtime objects (and to correctly report issues otherwise
+        
+        attr_args_process(this, argc, argv);
+        argc = attr_args_offset(argc, argv);
         
         // Stream count
         
@@ -803,6 +799,8 @@ public:
             argc--;
         }
         
+        // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
+
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
         mFrameLibProxy->mMaxObject = *this;
