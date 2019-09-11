@@ -773,7 +773,7 @@ public:
     , mUserObject(detectUserObjectAtLoad())
     , mNonRealtime(detectNonRealtime(s, argc, argv))
     , mConnectionsUpdated(false)
-    , mRealtimeResolved(false)
+    , mResolved(false)
     , mBuffer(gensym(""))
     {
         // Ignore non-realtime specifier
@@ -1046,7 +1046,7 @@ public:
         // Resolve connections (in case there are no schedulers left in the patch) and mark unresolved for next time
         
         resolveConnections();
-        mRealtimeResolved = false;
+        mResolved = false;
         
         // Reset DSP
         
@@ -1136,7 +1136,7 @@ public:
     {
         FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), extIsOutput(this));
        
-        if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && !mRealtimeResolved)
+        if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && !mResolved)
             resolveGraph();
         
         if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
@@ -1227,7 +1227,7 @@ public:
     static void extMarkUnresolved(FrameLib_MaxClass *x, t_ptr_int realtime)
     {
         if (x->isRealtime() == realtime)
-            x->mRealtimeResolved = false;
+            x->mResolved = false;
     }
     
     static void extAutoOrderingConnections(FrameLib_MaxClass *x, t_ptr_int realtime)
@@ -1353,6 +1353,8 @@ private:
     {
         t_ptr_int blockSize = maxBlockSize();
         
+        traversePatch(gensym("__fl.mark_unresolved"));
+        
         bool updated = resolveGraph();
         
         if (updated || forceReset)
@@ -1412,9 +1414,9 @@ private:
 
     bool resolveConnections()
     {
-        if (isRealtime() && mRealtimeResolved)
+        if (mResolved)
             return false;
-        
+
         // Confirm input connections
         
         for (long i = 0; i < getNumIns(); i++)
@@ -1434,7 +1436,7 @@ private:
         
         bool updated = mConnectionsUpdated;
         mConnectionsUpdated = false;
-        mRealtimeResolved = isRealtime();
+        mResolved = true;
 
         return updated;
     }
@@ -1854,7 +1856,7 @@ private:
     
     bool mNonRealtime;
     bool mConnectionsUpdated;
-    bool mRealtimeResolved;
+    bool mResolved;
     
 public:
     
