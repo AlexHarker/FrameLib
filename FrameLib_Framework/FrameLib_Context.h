@@ -88,6 +88,11 @@ public:
         return !(a == b);
     }
     
+    // Return members
+    
+    FrameLib_Global *getGlobal() const      { return mGlobal; }
+    void *getReference() const              { return mReference; }
+
     // Construct one of these objects to retain a relevant object
     
     using Allocator = ManagedPointer<FrameLib_ContextAllocator, &FrameLib_Global::mContextAllocators>;
