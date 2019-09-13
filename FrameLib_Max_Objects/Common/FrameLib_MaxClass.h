@@ -171,10 +171,7 @@ public:
     
     FrameLib_MaxGlobals(t_symbol *sym, long ac, t_atom *av)
     : mRTNotifier(&mRTGlobal), mNRTNotifier(&mNRTGlobal), mRTGlobal(nullptr), mNRTGlobal(nullptr), mSyncCheck(nullptr)
-    {
-        FrameLib_Global::get(&mRTGlobal, priorities(false), &mRTNotifier);
-        FrameLib_Global::get(&mNRTGlobal, priorities(true), &mNRTNotifier);
-    }
+    {}
 
     // Getters and setters for max global items
     
@@ -241,6 +238,9 @@ private:
         
         if (!x)
             x = (FrameLib_MaxGlobals *) object_register(nameSpace, globalTag, object_new_typed(CLASS_NOBOX, gensym(maxGlobalClass), 0, nullptr));
+        
+        FrameLib_Global::get(&x->mRTGlobal, priorities(false), &x->mRTNotifier);
+        FrameLib_Global::get(&x->mNRTGlobal, priorities(true), &x->mNRTNotifier);
         
         return x;
     }
