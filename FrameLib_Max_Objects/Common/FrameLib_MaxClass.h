@@ -690,6 +690,7 @@ public:
         addMethod(c, (method) &extConnectionUpdate, "__fl.connection_update");
         addMethod(c, (method) &extGetFLObject, "__fl.get_framelib_object");
         addMethod(c, (method) &extGetUserObject, "__fl.get_user_object");
+        addMethod(c, (method) &extIsRealtime, "__fl.is_realtime");
         addMethod(c, (method) &extIsOutput, "__fl.is_output");
         addMethod(c, (method) &extGetNumAudioIns, "__fl.get_num_audio_ins");
         addMethod(c, (method) &extGetNumAudioOuts, "__fl.get_num_audio_outs");
@@ -1226,7 +1227,7 @@ public:
     
     static t_ptr_int extConnectionAccept(FrameLib_MaxClass *x, t_object *dst, long srcout, long dstin, t_object *op, t_object *ip)
     {
-        return x->connectionAccept(dst, srcout, dstin, op, ip);
+        return (t_ptr_int) x->connectionAccept(dst, srcout, dstin, op, ip);
     }
     
     static t_max_err extPatchLineUpdate(FrameLib_MaxClass *x, t_object *line, long type, t_object *src, long srcout, t_object *dst, long dstin)
@@ -1234,40 +1235,35 @@ public:
         return x->patchLineUpdate(line, type, src, srcout, dst, dstin);
     }
 
-    static void extFindAudio(FrameLib_MaxClass *x, t_ptr_int realtime, std::vector<FrameLib_MaxNRTAudio> objects)
+    static void extFindAudio(FrameLib_MaxClass *x, std::vector<FrameLib_MaxNRTAudio> objects)
     {
-        if (x->isRealtime() == realtime && x->handlesAudio())
+        if (x->handlesAudio())
             objects.push_back(FrameLib_MaxNRTAudio(x->mObject.get(), x->mBuffer));
     }
     
-    static void extResolveConnections(FrameLib_MaxClass *x, t_ptr_int realtime, t_ptr_int *flag)
+    static void extResolveConnections(FrameLib_MaxClass *x, t_ptr_int *flag)
     {
-        if (x->isRealtime() == realtime)
-            *flag |= x->resolveConnections();
+        *flag |= x->resolveConnections();
     }
     
-    static void extMarkUnresolved(FrameLib_MaxClass *x, t_ptr_int realtime)
+    static void extMarkUnresolved(FrameLib_MaxClass *x)
     {
-        if (x->isRealtime() == realtime)
-            x->mResolved = false;
+        x->mResolved = false;
     }
     
-    static void extAutoOrderingConnections(FrameLib_MaxClass *x, t_ptr_int realtime)
+    static void extAutoOrderingConnections(FrameLib_MaxClass *x)
     {
-        if (x->isRealtime() == realtime)
-            x->mObject->autoOrderingConnections();
+        x->mObject->autoOrderingConnections();
     }
     
-    static void extClearAutoOrderingConnections(FrameLib_MaxClass *x, t_ptr_int realtime)
+    static void extClearAutoOrderingConnections(FrameLib_MaxClass *x)
     {
-        if (x->isRealtime() == realtime)
-            x->mObject->clearAutoOrderingConnections();
+        x->mObject->clearAutoOrderingConnections();
     }
 
-    static void extReset(FrameLib_MaxClass *x, t_ptr_int realtime, double *samplerate, t_ptr_int maxvectorsize)
+    static void extReset(FrameLib_MaxClass *x, double *samplerate, t_ptr_int maxvectorsize)
     {
-        if (x->isRealtime() == realtime)
-            x->mObject->reset(*samplerate, maxvectorsize);
+        x->mObject->reset(*samplerate, maxvectorsize);
     }
     
     static void extConnectionUpdate(FrameLib_MaxClass *x, t_ptr_int state)
@@ -1287,17 +1283,22 @@ public:
     
     static t_ptr_int extIsOutput(FrameLib_MaxClass *x)
     {
-        return x->getType() == kOutput;
+        return (t_ptr_int) x->getType() == kOutput;
+    }
+    
+    static t_ptr_int extIsRealtime(FrameLib_MaxClass *x)
+    {
+        return (t_ptr_int) x->isRealtime();
     }
     
     static t_ptr_int extGetNumAudioIns(FrameLib_MaxClass *x)
     {
-        return x->getNumAudioIns();
+        return (t_ptr_int) x->getNumAudioIns();
     }
     
     static t_ptr_int extGetNumAudioOuts(FrameLib_MaxClass *x)
     {
-        return x->getNumAudioOuts();
+        return (t_ptr_int) x->getNumAudioOuts();
     }
     
     static void extConnectionConfirm(FrameLib_MaxClass *x, unsigned long index, ConnectionMode mode)
@@ -1307,7 +1308,7 @@ public:
     
     static t_ptr_int extIsConnected(FrameLib_MaxClass *x, unsigned long index)
     {
-        return x->confirmConnection(index, ConnectionMode::kConfirm);
+        return (t_ptr_int) x->confirmConnection(index, ConnectionMode::kConfirm);
     }
 
 private:
@@ -1373,7 +1374,8 @@ private:
             while (b && (p = (t_patcher *)object_subpatcher(jbox_get_object(b), &index, this)))
                 traversePatch(p, contextAssoc, theMethod, args...);
             
-            objectMethod(jbox_get_object(b), theMethod, static_cast<t_ptr_int>(isRealtime()), args...);
+            if (objectMethod<t_ptr_int>(jbox_get_object(b), gensym("__fl.is_realtime")) == isRealtime())
+                objectMethod(jbox_get_object(b), theMethod, args...);
         }
     }
     
@@ -1385,7 +1387,7 @@ private:
         // If objects have been added to the queue then call them also
         
         while (t_object *object = mGlobal->popFromQueue())
-            objectMethod(object, theMethod, static_cast<t_ptr_int>(isRealtime()), args...);
+            objectMethod(object, theMethod, args...);
     }
     
     bool resolveGraph()
