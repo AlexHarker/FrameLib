@@ -798,7 +798,7 @@ public:
     , mContextPatch(contextPatcher(gensym("#P")->s_thing))
     , mUserObject(detectUserObjectAtLoad())
     , mNumSpecifiedStreams(1)
-    , mNonRealtime(handlesAudio() ? detectNonRealtime(argc, argv) : false)
+    , mRealtime(handlesAudio() ? detectRealtime(argc, argv) : false)
     , mConnectionsUpdated(false)
     , mResolved(false)
     , mBuffer(gensym(""))
