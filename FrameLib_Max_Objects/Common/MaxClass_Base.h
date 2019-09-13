@@ -191,6 +191,23 @@ public:
     
     void dspFree() { dsp_free(&mObject); }
     
+    bool dspSetBroken()
+    {
+        if (sys_getdspobjdspstate(*this))
+        {
+            short loadupdate = dsp_setloadupdate(false);
+            dsp_setloadupdate(loadupdate);
+        
+            if (loadupdate)
+            {
+                dspchain_setbroken(dspchain_fromobject(*this));
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
     long getInlet() { return proxy_getinlet(*this); }
     
     // Allows type conversion to a t_object

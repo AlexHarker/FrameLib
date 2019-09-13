@@ -13,6 +13,7 @@
 #include "FrameLib_SerialiseGraph.h"
 
 #include <string>
+#include <queue>
 #include <vector>
 
 struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
@@ -38,13 +39,17 @@ class FrameLib_MaxGlobals : public MaxClass_Base
     
 public:
     
+    enum ConnectionMode : t_ptr_int { kConnect, kConfirm, kDoubleCheck };
+
+    using MaxConnection = FrameLib_Connection<t_object, long>;
+    
     // Error Notification Class
     
     struct ErrorNotifier : public FrameLib_ErrorReporter::HostNotifier
     {
-        ErrorNotifier(FrameLib_MaxGlobals *maxGlobals)
+        ErrorNotifier(FrameLib_Global **globalHandle)
         {
-            mQelem = qelem_new(maxGlobals, (method) &errorReport);
+            mQelem = qelem_new(globalHandle, (method) &errorReport);
         }
         
         ~ErrorNotifier()
@@ -57,9 +62,9 @@ public:
             qelem_set(mQelem);
         }
         
-        static void errorReport(FrameLib_MaxGlobals* x)
+        static void errorReport(FrameLib_Global **globalHandle)
         {
-            auto reports = x->mGlobal->getErrors();
+            auto reports = (*globalHandle)->getErrors();
 
             for (auto it = reports->begin(); it != reports->end(); it++)
             {
@@ -97,7 +102,7 @@ public:
         enum Mode { kDownOnly, kDown, kAcross };
         enum Action { kSyncComplete, kSync, kAttachAndSync };
         
-        SyncCheck() : mGlobal(get(false)), mObject(nullptr), mTime(-1), mMode(kDownOnly) {}
+        SyncCheck() : mGlobal(get()), mObject(nullptr), mTime(-1), mMode(kDownOnly) {}
         ~SyncCheck() { mGlobal->release(); }
         
         Action operator()(void *object, bool handlesAudio, bool isOutput)
@@ -145,25 +150,11 @@ public:
         Mode mMode;
     };
 
-    // ConnectionInfo Struct
-    
-    struct ConnectionInfo
-    {
-        using MaxConnection = FrameLib_Connection<t_object, long>;
-
-        enum Mode : t_ptr_int { kConnect, kConfirm, kDoubleCheck };
-
-        ConnectionInfo(MaxConnection connection, Mode mode) : mConnection(connection), mMode(mode) {}
-        
-        MaxConnection mConnection;
-        Mode mMode;
-    };
-
     // Convenience Pointer for automatic deletion and RAII
     
     struct ManagedPointer
     {
-        ManagedPointer(bool nonRealtime) : mPointer(get(nonRealtime)) {}
+        ManagedPointer() : mPointer(get()) {}
         ~ManagedPointer() { mPointer->release(); }
         
         ManagedPointer(const ManagedPointer&) = delete;
@@ -179,15 +170,39 @@ public:
     // Constructor and Destructor (public for max API, but use ManagedPointer from outside this class)
     
     FrameLib_MaxGlobals(t_symbol *sym, long ac, t_atom *av)
-    : mNotifier(new ErrorNotifier(this)), mGlobal(nullptr), mConnectionInfo(nullptr), mSyncCheck(nullptr)
-    {}
+    : mRTNotifier(&mRTGlobal), mNRTNotifier(&mNRTGlobal), mRTGlobal(nullptr), mNRTGlobal(nullptr), mSyncCheck(nullptr)
+    {
+        FrameLib_Global::get(&mRTGlobal, priorities(false), &mRTNotifier);
+        FrameLib_Global::get(&mNRTGlobal, priorities(true), &mNRTNotifier);
+    }
 
     // Getters and setters for max global items
     
-    FrameLib_Global *getGlobal() const                  { return mGlobal; }
+    FrameLib_Global *getGlobal(bool nonRealtime) const  { return nonRealtime ? mNRTGlobal : mRTGlobal; }
+
+    void pushToQueue(t_object * object)                 { return mQueue.push(object); }
     
-    const ConnectionInfo *getConnectionInfo() const     { return mConnectionInfo; }
-    void setConnectionInfo(ConnectionInfo *info)        { mConnectionInfo = info; }
+    t_object *popFromQueue()
+    {
+        if (mQueue.empty())
+            return nullptr;
+        
+        t_object *object = mQueue.front();
+        mQueue.pop();
+        
+        return object;
+    }
+
+    void setConnection(MaxConnection connection, ConnectionMode mode)
+    {
+        mConnection = connection;
+        mConnectionMode = mode;
+    }
+
+    void clearConnection()                              { setConnection(MaxConnection(), kConnect); }
+
+    MaxConnection getConnection() const                 { return mConnection; }
+    ConnectionMode getConnectionMode() const            { return mConnectionMode; }
     
     SyncCheck *getSyncCheck() const                     { return mSyncCheck; }
     void setSyncCheck(SyncCheck *check)                 { mSyncCheck = check; }
@@ -209,11 +224,11 @@ private:
     
     // Get and release the max global items (singleton)
     
-    static FrameLib_MaxGlobals *get(bool nonRealtime)
+    static FrameLib_MaxGlobals *get()
     {
         const char maxGlobalClass[] = "__fl.max_global_items";
         t_symbol *nameSpace = gensym("__fl.framelib_private");
-        t_symbol *globalTag = gensym(nonRealtime ? "__fl.max_global_nrt_tag" : "__fl.max_global_tag");
+        t_symbol *globalTag = gensym("__fl.max_global_tag");
      
         // Make sure the max globals class exists
 
@@ -227,27 +242,38 @@ private:
         if (!x)
             x = (FrameLib_MaxGlobals *) object_register(nameSpace, globalTag, object_new_typed(CLASS_NOBOX, gensym(maxGlobalClass), 0, nullptr));
         
-        FrameLib_Global::get(&x->mGlobal, priorities(nonRealtime), x->mNotifier.get());
-        
         return x;
     }
     
     void release()
     {
-        FrameLib_Global::release(&mGlobal);
-        
-        if (!mGlobal)
+        FrameLib_Global::release(&mRTGlobal);
+        FrameLib_Global::release(&mNRTGlobal);
+
+        if (!mRTGlobal)
         {
+            assert(!mNRTGlobal && "Reference counting error");
+            
             object_unregister(this);
             object_free(this);
         }
     }
     
-    // Pointers
+    // Connection Info
     
-    std::unique_ptr<ErrorNotifier> mNotifier;
-    FrameLib_Global *mGlobal;
-    ConnectionInfo *mConnectionInfo;
+    MaxConnection mConnection;
+    ConnectionMode mConnectionMode;
+
+    // Member Objects / Pointers
+    
+    ErrorNotifier mRTNotifier;
+    ErrorNotifier mNRTNotifier;
+    
+    std::queue<t_object *> mQueue;
+
+    FrameLib_Global *mRTGlobal;
+    FrameLib_Global *mNRTGlobal;
+    
     SyncCheck *mSyncCheck;
 };
 
@@ -592,10 +618,10 @@ enum MaxObjectArgsMode { kAsParams, kAllInputs, kDistribute };
 template <class T, MaxObjectArgsMode argsMode = kAsParams>
 class FrameLib_MaxClass : public MaxClass_Base
 {
-    using ConnectionInfo = FrameLib_MaxGlobals::ConnectionInfo;
+    using ConnectionMode = FrameLib_MaxGlobals::ConnectionMode;
     using FLObject = FrameLib_Multistream;
     using FLConnection = FrameLib_Object<FLObject>::Connection;
-    using MaxConnection = ConnectionInfo::MaxConnection;
+    using MaxConnection = FrameLib_MaxGlobals::MaxConnection;
 
     struct ConnectionConfirmation
     {
@@ -758,7 +784,7 @@ public:
     
     // Detect non-realtime setting
     
-    static bool detectNonRealtime(t_symbol *s, long argc, t_atom * argv)
+    static bool detectNonRealtime(long argc, t_atom * argv)
     {
         return (argc && atom_getsym(argv) == gensym("nrt"));
     }
@@ -767,18 +793,18 @@ public:
     
     FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy())
     : mFrameLibProxy(proxy)
-    , mGlobal(detectNonRealtime(s, argc, argv))
     , mConfirmation(nullptr)
     , mContextPatch(contextPatcher(gensym("#P")->s_thing))
     , mUserObject(detectUserObjectAtLoad())
-    , mNonRealtime(detectNonRealtime(s, argc, argv))
+    , mNumSpecifiedStreams(1)
+    , mNonRealtime(handlesAudio() ? detectNonRealtime(argc, argv) : false)
     , mConnectionsUpdated(false)
     , mResolved(false)
     , mBuffer(gensym(""))
     {
         // Ignore non-realtime specifier
         
-        if (detectNonRealtime(s, argc, argv))
+        if (handlesAudio() && detectNonRealtime(argc, argv))
         {
             argc--;
             argv++;
@@ -791,11 +817,9 @@ public:
         
         // Stream count
         
-        unsigned long nStreams = 1;
-        
         if (argc && getStreamCount(argv))
         {
-            nStreams = getStreamCount(argv);
+            mNumSpecifiedStreams = getStreamCount(argv);
             argv++;
             argc--;
         }
@@ -804,8 +828,9 @@ public:
 
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
+        FrameLib_Context context(mGlobal->getGlobal(mNonRealtime), mContextPatch);
         mFrameLibProxy->mMaxObject = *this;
-        mObject.reset(new T(FrameLib_Context(mGlobal->getGlobal(), mContextPatch), &serialisedParameters, mFrameLibProxy.get(), nStreams));
+        mObject.reset(new T(context, &serialisedParameters, mFrameLibProxy.get(), mNumSpecifiedStreams));
         parseInputs(argc, argv);
         
         long numIns = getNumIns() + (supportsOrderingConnections() ? 1 : 0);
@@ -825,27 +850,23 @@ public:
         
         // Setup for audio, even if the object doesn't handle it, so that dsp recompile works correctly
         
-        if (isRealtime())
-        {
-            dspSetup(getNumAudioIns());
+        dspSetup(getNumAudioIns());
         
+        if (handlesAudio() && isRealtime())
+        {
             for (long i = 0; i < getNumAudioOuts(); i++)
                 outlet_new(this, "signal");
         
             // Add a sync outlet if we need to handle audio
         
-            if (handlesAudio())
-            {
-                mSyncIn = toUnique(outlet_new(nullptr, nullptr));
-                outlet_add(mSyncIn.get(), inlet_nth(*this, 0));
-            }
+            mSyncIn = toUnique(outlet_new(nullptr, nullptr));
+            outlet_add(mSyncIn.get(), inlet_nth(*this, 0));
         }
     }
 
     ~FrameLib_MaxClass()
     {
-        if (isRealtime())
-            dspFree();
+        dspFree();
     }
     
     void assist(void *b, long m, long a, char *s)
@@ -1176,19 +1197,20 @@ public:
     
     void frame()
     {
-        const ConnectionInfo *info = mGlobal->getConnectionInfo();
+        const MaxConnection connection = mGlobal->getConnection();
+        
         long index = getInlet() - getNumAudioIns();
         
-        if (!info)
+        if (!connection.mObject)
             return;
         
-        if (info->mMode == ConnectionInfo::kConnect)
+        if (mGlobal->getConnectionMode() == ConnectionMode::kConnect)
         {
-            connect(info->mConnection, index);
+            connect(connection, index);
         }
         else if (mConfirmation)
         {
-            if (mConfirmation->confirm(info->mConnection, index) && info->mMode == ConnectionInfo::kDoubleCheck)
+            if (mConfirmation->confirm(connection, index) && mGlobal->getConnectionMode() == ConnectionMode::kDoubleCheck)
                 object_error(mUserObject, "extra connection to input %ld", index + 1);
         }
     }
@@ -1278,19 +1300,50 @@ public:
         return x->getNumAudioOuts();
     }
     
-    static void extConnectionConfirm(FrameLib_MaxClass *x, unsigned long index, ConnectionInfo::Mode mode)
+    static void extConnectionConfirm(FrameLib_MaxClass *x, unsigned long index, ConnectionMode mode)
     {
         x->makeConnection(index, mode);
     }
     
     static t_ptr_int extIsConnected(FrameLib_MaxClass *x, unsigned long index)
     {
-        return x->confirmConnection(index, ConnectionInfo::kConfirm);
+        return x->confirmConnection(index, ConnectionMode::kConfirm);
     }
 
 private:
     
-    // Get the associaation of a patch
+    // Attempt to match the context to that of a given framelib object
+    
+    void matchContext(FLObject *object)
+    {
+        FrameLib_Context current = mObject->getContext();
+        FrameLib_Context context = object->getContext();
+        unsigned long size =  0;
+        
+        if (handlesAudio() || current == context || current.getReference() != context.getReference())
+            return;
+        
+        mNonRealtime = !mNonRealtime;
+        mResolved = false;
+        
+        mGlobal->pushToQueue(*this);
+
+        FrameLib_Parameters::AutoSerial serialisedParams(*mObject->getSerialised());
+        
+        T *newObject = new T(context, &serialisedParams, mFrameLibProxy.get(), mNumSpecifiedStreams);
+        
+        for (unsigned long i = 0; i < getNumIns(); i++)
+            if (const double *values = mObject->getFixedInput(i, &size))
+                newObject->setFixedInput(i, values, size);
+        
+        // FIX - does this need to be cleverer?
+        
+        dspSetBroken();
+        
+        mObject.reset(newObject);
+    }
+    
+    // Get the association of a patch
     
     static t_object *getAssociation(t_object *patch)
     {
@@ -1328,6 +1381,11 @@ private:
     void traversePatch(t_symbol *theMethod, Args...args)
     {
         traversePatch(mContextPatch, getAssociation(mContextPatch), theMethod, args...);
+        
+        // If objects have been added to the queue then call them also
+        
+        while (t_object *object = mGlobal->popFromQueue())
+            objectMethod(object, theMethod, static_cast<t_ptr_int>(isRealtime()), args...);
     }
     
     bool resolveGraph()
@@ -1420,17 +1478,17 @@ private:
         // Confirm input connections
         
         for (long i = 0; i < getNumIns(); i++)
-            confirmConnection(i, ConnectionInfo::kConfirm);
+            confirmConnection(i, ConnectionMode::kConfirm);
         
         // Confirm ordering connections
         
         for (long i = 0; i < getNumOrderingConnections(); i++)
-            confirmConnection(getOrderingConnection(i), getNumIns(), ConnectionInfo::kConfirm);
+            confirmConnection(getOrderingConnection(i), getNumIns(), ConnectionMode::kConfirm);
         
         // Make output connections
         
         for (long i = getNumOuts(); i > 0; i--)
-            makeConnection(i - 1, ConnectionInfo::kConnect);
+            makeConnection(i - 1, ConnectionMode::kConnect);
         
         // Check if anything has updated since the last call to this method and make realtime resolved
         
@@ -1441,21 +1499,19 @@ private:
         return updated;
     }
 
-    void makeConnection(unsigned long index, ConnectionInfo::Mode mode)
+    void makeConnection(unsigned long index, ConnectionMode mode)
     {
-        ConnectionInfo info(MaxConnection(*this, index), mode);
-        
-        mGlobal->setConnectionInfo(&info);
+        mGlobal->setConnection(MaxConnection(*this, index), mode);
         outlet_anything(mOutputs[index], gensym("frame"), 0, nullptr);
-        mGlobal->setConnectionInfo(nullptr);
+        mGlobal->clearConnection();
     }
     
-    bool confirmConnection(unsigned long inIndex, ConnectionInfo::Mode mode)
+    bool confirmConnection(unsigned long inIndex, ConnectionMode mode)
     {
         return confirmConnection(getConnection(inIndex), inIndex, mode);
     }
     
-    bool confirmConnection(MaxConnection connection, unsigned long inIndex, ConnectionInfo::Mode mode)
+    bool confirmConnection(MaxConnection connection, unsigned long inIndex, ConnectionMode mode)
     {
         if (!validInput(inIndex) || !connection.mObject)
             return false;
@@ -1474,14 +1530,17 @@ private:
     void connect(MaxConnection connection, long inIdx)
     {
         ConnectionResult result;
-
-        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !validOutput(connection.mIndex, getFLObject(connection.mObject)) || getConnection(inIdx) == connection || confirmConnection(inIdx, ConnectionInfo::kDoubleCheck)))
+        FLConnection internalConnection = toFLConnection(connection);
+        
+        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !validOutput(connection.mIndex, internalConnection.mObject) || getConnection(inIdx) == connection || confirmConnection(inIdx, ConnectionMode::kDoubleCheck)))
             return;
         
+        matchContext(internalConnection.mObject);
+
         if (isOrderingInput(inIdx))
-            result = mObject->addOrderingConnection(toFLConnection(connection));
+            result = mObject->addOrderingConnection(internalConnection);
         else
-            result = mObject->addConnection(toFLConnection(connection), inIdx);
+            result = mObject->addConnection(internalConnection, inIdx);
 
         switch (result)
         {
@@ -1495,7 +1554,7 @@ private:
                 break;
                 
             case kConnectWrongContext:
-                object_error(mUserObject, "cannot connect objects from different patching contexts");
+                object_error(mUserObject, "can't connect objects in different patching contexts");
                 break;
                 
             case kConnectSelfConnection:
@@ -1540,17 +1599,7 @@ private:
         srcout -= getNumAudioOuts(src);
         dstin -= getNumAudioIns();
             
-        if (isRealtime() && sys_getdspobjdspstate(*this))
-        {
-            // Check load update before we check the dspchain (in case we are loading in poly~ etc.)
-            
-            short loadupdate = dsp_setloadupdate(false);
-            dsp_setloadupdate(loadupdate);
-                
-            if (loadupdate && (isOrderingInput(dstin) || validInput(dstin)))
-                dspchain_setbroken(dspchain_fromobject(*this));
-        }
-        else
+        if (!isRealtime() || !dspSetBroken())
         {
             switch (type)
             {
@@ -1826,8 +1875,8 @@ protected:
    
     // Type and streams helpers
     
-    ObjectType getType() const              { return mObject->getType(); }
-    unsigned long getNumStreams() const     { return mObject->getNumStreams(); }
+    ObjectType getType() const                      { return mObject->getType(); }
+    unsigned long getNumSpecifiedStreams() const    { return mNumSpecifiedStreams; }
     
     // Proxy
     
@@ -1854,6 +1903,8 @@ private:
     t_object *mContextPatch;
     t_object *mUserObject;
     
+    unsigned long mNumSpecifiedStreams;
+
     bool mNonRealtime;
     bool mConnectionsUpdated;
     bool mResolved;
