@@ -1266,7 +1266,7 @@ public:
         x->mObject->clearAutoOrderingConnections();
     }
 
-    static void extReset(FrameLib_MaxClass *x, double *samplerate, t_ptr_int maxvectorsize)
+    static void extReset(FrameLib_MaxClass *x, const double *samplerate, t_ptr_int maxvectorsize)
     {
         x->mObject->reset(*samplerate, maxvectorsize);
     }
