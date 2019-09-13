@@ -170,7 +170,7 @@ public:
     // Constructor and Destructor (public for max API, but use ManagedPointer from outside this class)
     
     FrameLib_MaxGlobals(t_symbol *sym, long ac, t_atom *av)
-    : mRTNotifier(&mRTGlobal), mNRTNotifier(&mNRTGlobal), mRTGlobal(nullptr), mNRTGlobal(nullptr), mSyncCheck(nullptr)
+    : mReportContextErrors(false), mRTNotifier(&mRTGlobal), mNRTNotifier(&mNRTGlobal), mRTGlobal(nullptr), mNRTGlobal(nullptr), mSyncCheck(nullptr)
     {}
 
     // Getters and setters for max global items
@@ -190,6 +190,9 @@ public:
         
         return object;
     }
+
+    void setReportContextErrors(bool report)            { mReportContextErrors = report; }
+    bool getReportContextErrors() const                 { return mReportContextErrors; }
 
     void setConnection(MaxConnection connection, ConnectionMode mode)
     {
@@ -264,7 +267,8 @@ private:
     
     MaxConnection mConnection;
     ConnectionMode mConnectionMode;
-
+    bool mReportContextErrors;
+    
     // Member Objects / Pointers
     
     ErrorNotifier mRTNotifier;
@@ -1397,9 +1401,11 @@ private:
     {
         t_ptr_int updated = false;
         
+        mGlobal->setReportContextErrors(true);
         traversePatch(gensym("__fl.resolve_connections"), &updated);
         traversePatch(gensym("__fl.connection_update"), t_ptr_int(false));
-        
+        mGlobal->setReportContextErrors(false);
+
         // If updated then redo auto ordering connections
         
         if (updated)
@@ -1559,7 +1565,8 @@ private:
                 break;
                 
             case kConnectWrongContext:
-                object_error(mUserObject, "can't connect objects in different patching contexts");
+                if (mGlobal->getReportContextErrors())
+                    object_error(mUserObject, "can't connect objects in different patching contexts");
                 break;
                 
             case kConnectSelfConnection:
