@@ -805,7 +805,7 @@ public:
     {
         // Ignore non-realtime specifier
         
-        if (handlesAudio() && detectNonRealtime(argc, argv))
+        if (handlesAudio() && !detectRealtime(argc, argv))
         {
             argc--;
             argv++;
