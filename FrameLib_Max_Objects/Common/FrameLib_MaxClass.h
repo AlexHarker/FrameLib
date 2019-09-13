@@ -583,7 +583,7 @@ private:
 
     bool isRealtime() { return object()->isRealtime(); }
     
-    long offset(long connectionIdx) {return isRealtime() ? connectionIdx + 1 : connectionIdx; }
+    long offset(long connectionIdx) { return isRealtime() ? connectionIdx + 1 : connectionIdx; }
 
     // Owned Objects (need freeing)
     
