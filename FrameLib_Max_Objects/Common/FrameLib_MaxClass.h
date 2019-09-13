@@ -680,6 +680,8 @@ public:
         {
             addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::reset>(c, "reset");
             addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::process>(c, "process");
+            
+            addMethod(c, (method) &extFindAudio, "__fl.find_audio_objects");
         }
         
         addMethod(c, (method) &extPatchLineUpdate, "patchlineupdate");
@@ -687,9 +689,8 @@ public:
         addMethod(c, (method) &extResolveConnections, "__fl.resolve_connections");
         addMethod(c, (method) &extMarkUnresolved, "__fl.mark_unresolved");
         addMethod(c, (method) &extAutoOrderingConnections, "__fl.auto_ordering_connections");
-        addMethod(c, (method) &extFindAudio, "__fl.find_audio_objects");
-        addMethod(c, (method) &extReset, "__fl.reset");
         addMethod(c, (method) &extClearAutoOrderingConnections, "__fl.clear_auto_ordering_connections");
+        addMethod(c, (method) &extReset, "__fl.reset");
         addMethod(c, (method) &extIsConnected, "__fl.is_connected");
         addMethod(c, (method) &extConnectionConfirm, "__fl.connection_confirm");
         addMethod(c, (method) &extConnectionUpdate, "__fl.connection_update");
@@ -1242,8 +1243,7 @@ public:
 
     static void extFindAudio(FrameLib_MaxClass *x, std::vector<FrameLib_MaxNRTAudio> objects)
     {
-        if (x->handlesAudio())
-            objects.push_back(FrameLib_MaxNRTAudio(x->mObject.get(), x->mBuffer));
+        objects.push_back(FrameLib_MaxNRTAudio(x->mObject.get(), x->mBuffer));
     }
     
     static void extResolveConnections(FrameLib_MaxClass *x, t_ptr_int *flag)
