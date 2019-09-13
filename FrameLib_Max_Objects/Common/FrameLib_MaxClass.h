@@ -1598,7 +1598,10 @@ private:
         unwrapConnection(src, srcout);
         srcout -= getNumAudioOuts(src);
         dstin -= getNumAudioIns();
-            
+        
+        if (!isOrderingInput(dstin) && !validInput(dstin))
+            return MAX_ERR_NONE;
+
         if (!isRealtime() || !dspSetBroken())
         {
             switch (type)
