@@ -191,12 +191,9 @@ public:
     
     void dspFree() { dsp_free(&mObject); }
     
-    bool dspSetBroken(t_object *object = nullptr)
+    bool dspSetBroken(t_object *object)
     {
-        if (!object)
-            object = *this;
-        
-        if (sys_getdspobjdspstate(object))
+        if (object && sys_getdspobjdspstate(object))
         {
             short loadupdate = dsp_setloadupdate(false);
             dsp_setloadupdate(loadupdate);
