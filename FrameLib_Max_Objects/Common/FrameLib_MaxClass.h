@@ -785,9 +785,9 @@ public:
     
     // Detect non-realtime setting
     
-    static bool detectNonRealtime(long argc, t_atom * argv)
+    static bool detectRealtime(long argc, t_atom * argv)
     {
-        return (argc && atom_getsym(argv) == gensym("nrt"));
+        return (!argc || atom_getsym(argv) != gensym("nrt"));
     }
     
     // Constructor and Destructor
@@ -829,7 +829,7 @@ public:
 
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        FrameLib_Context context(mGlobal->getGlobal(mNonRealtime), mContextPatch);
+        FrameLib_Context context(mGlobal->getGlobal(!isRealtime()), mContextPatch);
         mFrameLibProxy->mMaxObject = *this;
         mObject.reset(new T(context, &serialisedParameters, mFrameLibProxy.get(), mNumSpecifiedStreams));
         parseInputs(argc, argv);
@@ -1031,7 +1031,7 @@ public:
 
     // IO and Mode Helpers
     
-    bool isRealtime() const                     { return !mNonRealtime; }
+    bool isRealtime() const                     { return mRealtime; }
     bool handlesAudio() const                   { return T::handlesAudio(); }
     bool handlesRealtimeAudio() const           { return handlesAudio() && isRealtime(); }
     bool supportsOrderingConnections() const    { return mObject->supportsOrderingConnections(); }
@@ -1324,7 +1324,7 @@ private:
         if (handlesAudio() || current == context || current.getReference() != context.getReference())
             return;
         
-        mNonRealtime = !mNonRealtime;
+        mRealtime = !mRealtime;
         mResolved = false;
         
         mGlobal->pushToQueue(*this);
@@ -1910,7 +1910,7 @@ private:
     
     unsigned long mNumSpecifiedStreams;
 
-    bool mNonRealtime;
+    bool mRealtime;
     bool mConnectionsUpdated;
     bool mResolved;
     
