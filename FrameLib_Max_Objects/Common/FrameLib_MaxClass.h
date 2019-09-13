@@ -690,6 +690,8 @@ public:
         addMethod(c, (method) &extMarkUnresolved, "__fl.mark_unresolved");
         addMethod(c, (method) &extAutoOrderingConnections, "__fl.auto_ordering_connections");
         addMethod(c, (method) &extClearAutoOrderingConnections, "__fl.clear_auto_ordering_connections");
+        addMethod(c, (method) &extGetDSPObject, "__fl.get_realtime_scheduler");
+        addMethod(c, (method) &extSetDSPObject, "__fl.set_realtime_scheduler");
         addMethod(c, (method) &extReset, "__fl.reset");
         addMethod(c, (method) &extIsConnected, "__fl.is_connected");
         addMethod(c, (method) &extConnectionConfirm, "__fl.connection_confirm");
@@ -703,10 +705,10 @@ public:
         
         class_addmethod(c, (method) &codeexport, "export", A_SYM, A_SYM, 0);
         
-        dspInit(c);
-        
         if (T::handlesAudio())
         {
+            dspInit(c);
+
             addMethod(c, (method) &FrameLib_MaxClass<T>::dblclick, "dblclick");
             CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mBuffer);
         }
@@ -803,6 +805,7 @@ public:
     , mConfirmation(nullptr)
     , mContextPatch(contextPatcher(gensym("#P")->s_thing))
     , mUserObject(detectUserObjectAtLoad())
+    , mDSPObject(nullptr)
     , mNumSpecifiedStreams(1)
     , mRealtime(handlesAudio() ? detectRealtime(argc, argv) : false)
     , mConnectionsUpdated(false)
@@ -857,10 +860,10 @@ public:
         
         // Setup for audio, even if the object doesn't handle it, so that dsp recompile works correctly
         
-        dspSetup(getNumAudioIns());
-        
         if (handlesAudio() && isRealtime())
         {
+            dspSetup(getNumAudioIns());
+            
             for (long i = 0; i < getNumAudioOuts(); i++)
                 outlet_new(this, "signal");
         
@@ -873,7 +876,16 @@ public:
 
     ~FrameLib_MaxClass()
     {
-        dspFree();
+        if (isRealtime())
+        {
+            if (handlesAudio())
+            {
+                dspFree();
+                traversePatch(gensym("__fl.set_realtime_scheduler"), static_cast<void *>(nullptr));
+            }
+            else
+                dspSetBroken(mDSPObject);
+        }
     }
     
     void assist(void *b, long m, long a, char *s)
@@ -1165,7 +1177,10 @@ public:
         FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), extIsOutput(this));
        
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && !mResolved)
+        {
             resolveGraph();
+            traversePatch(gensym("__fl.set_realtime_scheduler"), this);
+        }
         
         if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
             outlet_anything(mSyncIn.get(), gensym("signal"), 0, nullptr);
@@ -1256,6 +1271,16 @@ public:
         x->mResolved = false;
     }
     
+    static void extSetDSPObject(FrameLib_MaxClass *x, t_object *object)
+    {
+        x->mDSPObject = object;
+    }
+    
+    static t_object *extGetDSPObject(FrameLib_MaxClass *x)
+    {
+        return x->mDSPObject;
+    }
+    
     static void extAutoOrderingConnections(FrameLib_MaxClass *x)
     {
         x->mObject->autoOrderingConnections();
@@ -1344,7 +1369,11 @@ private:
         
         // FIX - does this need to be cleverer?
         
-        dspSetBroken();
+        if (isRealtime() && !mDSPObject)
+            mDSPObject = objectMethod<t_object *>(object, gensym("__fl.get_realtime_scheduler"));
+        
+        dspSetBroken(mDSPObject);
+        mDSPObject = nullptr;
         
         mObject.reset(newObject);
     }
@@ -1614,7 +1643,7 @@ private:
         if (!isOrderingInput(dstin) && !validInput(dstin))
             return MAX_ERR_NONE;
 
-        if (!isRealtime() || !dspSetBroken())
+        if (!isRealtime() || !dspSetBroken(mDSPObject))
         {
             switch (type)
             {
@@ -1917,6 +1946,7 @@ private:
     
     t_object *mContextPatch;
     t_object *mUserObject;
+    t_object *mDSPObject;
     
     unsigned long mNumSpecifiedStreams;
 
