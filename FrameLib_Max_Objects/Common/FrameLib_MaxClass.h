@@ -13,7 +13,7 @@
 #include "FrameLib_SerialiseGraph.h"
 
 #include <string>
-#include <queue>
+#include <deque>
 #include <vector>
 
 struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
@@ -177,7 +177,8 @@ public:
     
     FrameLib_Global *getGlobal(bool nonRealtime) const  { return nonRealtime ? mNRTGlobal : mRTGlobal; }
 
-    void pushToQueue(t_object * object)                 { return mQueue.push(object); }
+    void clearQueue()                                   { mQueue.clear(); }
+    void pushToQueue(t_object * object)                 { return mQueue.push_back(object); }
     
     t_object *popFromQueue()
     {
@@ -185,7 +186,7 @@ public:
             return nullptr;
         
         t_object *object = mQueue.front();
-        mQueue.pop();
+        mQueue.pop_front();
         
         return object;
     }
@@ -269,7 +270,7 @@ private:
     ErrorNotifier mRTNotifier;
     ErrorNotifier mNRTNotifier;
     
-    std::queue<t_object *> mQueue;
+    std::deque<t_object *> mQueue;
 
     FrameLib_Global *mRTGlobal;
     FrameLib_Global *mNRTGlobal;
@@ -1382,9 +1383,11 @@ private:
     template <typename...Args>
     void traversePatch(t_symbol *theMethod, Args...args)
     {
-        traversePatch(mContextPatch, getAssociation(mContextPatch), theMethod, args...);
+        // Clear the queue and after traversing call objects added to the queue
         
-        // If objects have been added to the queue then call them also
+        mGlobal->clearQueue();
+        
+        traversePatch(mContextPatch, getAssociation(mContextPatch), theMethod, args...);
         
         while (t_object *object = mGlobal->popFromQueue())
             objectMethod(object, theMethod, args...);
