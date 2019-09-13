@@ -1315,10 +1315,10 @@ private:
     
     // Attempt to match the context to that of a given framelib object
     
-    void matchContext(FLObject *object)
+    void matchContext(t_object *object)
     {
         FrameLib_Context current = mObject->getContext();
-        FrameLib_Context context = object->getContext();
+        FrameLib_Context context = toFLObject(object)->getContext();
         unsigned long size =  0;
         
         if (handlesAudio() || current == context || current.getReference() != context.getReference())
@@ -1423,12 +1423,12 @@ private:
     
     // Convert from framelib object to max object and vice versa
     
-    static FLObject *getFLObject(t_object *x)
+    static FLObject *toFLObject(t_object *x)
     {
         return objectMethod<FLObject *>(x, gensym("__fl.get_framelib_object"));
     }
     
-    static t_object *getMaxObject(FLObject *object)
+    static t_object *toMaxObject(FLObject *object)
     {
         return object ? (dynamic_cast<FrameLib_MaxProxy *>(object->getProxy()))->mMaxObject : nullptr;
     }
@@ -1467,8 +1467,8 @@ private:
     
     long getNumOrderingConnections() const                  { return (long) mObject->getNumOrderingConnections(); }
     
-    static MaxConnection toMaxConnection(FLConnection c)    { return MaxConnection(getMaxObject(c.mObject), c.mIndex); }
-    static FLConnection toFLConnection(MaxConnection c)     { return FLConnection(getFLObject(c.mObject), c.mIndex); }
+    static MaxConnection toMaxConnection(FLConnection c)    { return MaxConnection(toMaxObject(c.mObject), c.mIndex); }
+    static FLConnection toFLConnection(MaxConnection c)     { return FLConnection(toFLObject(c.mObject), c.mIndex); }
     
     // Private connection methods
 
@@ -1537,7 +1537,7 @@ private:
         if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !validOutput(connection.mIndex, internalConnection.mObject) || getConnection(inIdx) == connection || confirmConnection(inIdx, ConnectionMode::kDoubleCheck)))
             return;
         
-        matchContext(internalConnection.mObject);
+        matchContext(connection.mObject);
 
         if (isOrderingInput(inIdx))
             result = mObject->addOrderingConnection(internalConnection);
@@ -1633,7 +1633,7 @@ private:
         
         // Allow connections - if not a frame outlet / to the ordering inlet / to a valid unconnected input
         
-        if (!validOutput(srcout) || isOrderingInput(dstin, getFLObject(dst)) || (validInput(dstin, getFLObject(dst)) && !objectMethod(dst, gensym("__fl.is_connected"), dstin)))
+        if (!validOutput(srcout) || isOrderingInput(dstin, toFLObject(dst)) || (validInput(dstin, toFLObject(dst)) && !objectMethod(dst, gensym("__fl.is_connected"), dstin)))
             return 1;
         
         return 0;
