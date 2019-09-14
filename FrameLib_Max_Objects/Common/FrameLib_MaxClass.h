@@ -413,19 +413,23 @@ public:
         mObject = jbox_get_object((t_object *) newobject_sprintf(mPatch.get(), "@maxclass newobj @text \"unsynced.%s\" @patching_rect 0 0 30 10", newObjectText.c_str()));
         objectMethod(mPatch.get(), gensym("noedit"));
         
-        // Make Mutator (with argument referencing the internal object)
+        // Free the dictionary
+        
+        object_free(d);
+        
+        // For realtime versions setup DSP and make/connect mutator
         
         if (isRealtime())
         {
+            dspSetup(1);
+            
             atom_setobj(&a, mObject);
             mMutator = toUnique(object_new_typed(CLASS_NOBOX, gensym("__fl.signal.mutator"), 1, &a));
+            
+            outlet_add(outlet_nth(mObject, 0), inlet_nth(mMutator.get(), 0));
         }
         else
             mMutator = nullptr;
-        
-        // Free the dictionary
-    
-        object_free(d);
         
         // Get the object itself (typed)
         
@@ -445,9 +449,6 @@ public:
         mOuts.resize(numOuts);
         
         // Inlets for messages/signals (we need one audio in for the purposes of sync)
-        
-        if (isRealtime())
-            dspSetup(1);
 
         for (long i = numIns + numLocalAudioIns - 1; i >= 0 ; i--)
         {
@@ -461,11 +462,6 @@ public:
             mOuts[i] = outlet_new(this, nullptr);
         for (long i = numLocalAudioOuts - 1; i >= 0 ; i--)
             outlet_new(this, "signal");
-        
-        // Connect first signal outlet to the mutator
-        
-        if (isRealtime())
-            outlet_add(outlet_nth(mObject, 0), inlet_nth(mMutator.get(), 0));
         
         // Connect inlets (all types)
         
