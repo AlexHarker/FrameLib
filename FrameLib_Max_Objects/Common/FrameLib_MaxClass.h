@@ -187,7 +187,7 @@ public:
 
     // Getters and setters for max global items
     
-    FrameLib_Global *getGlobal(bool nonRealtime) const  { return nonRealtime ? mNRTGlobal : mRTGlobal; }
+    FrameLib_Global *getGlobal(bool realtime) const     { return realtime ? mRTGlobal : mNRTGlobal; }
 
     void clearQueue()                                   { mQueue.clear(); }
     void pushToQueue(t_object * object)                 { return mQueue.push_back(object); }
@@ -243,9 +243,9 @@ private:
     
     // Generate some relevant thread priorities
     
-    static FrameLib_Thread::Priorities priorities(bool nonRealtime)
+    static FrameLib_Thread::Priorities priorities(bool realtime)
     {
-        if (nonRealtime)
+        if (!realtime)
             return { 31, 31, 31, SCHED_OTHER, true };
 #ifdef __APPLE__
         if (maxversion() >= 0x800)
@@ -274,8 +274,8 @@ private:
         if (!x)
             x = (FrameLib_MaxGlobals *) object_register(nameSpace, globalTag, object_new_typed(CLASS_NOBOX, gensym(maxGlobalClass), 0, nullptr));
         
-        FrameLib_Global::get(&x->mRTGlobal, priorities(false), &x->mRTNotifier);
-        FrameLib_Global::get(&x->mNRTGlobal, priorities(true), &x->mNRTNotifier);
+        FrameLib_Global::get(&x->mRTGlobal, priorities(true), &x->mRTNotifier);
+        FrameLib_Global::get(&x->mNRTGlobal, priorities(false), &x->mNRTNotifier);
         
         return x;
     }
@@ -865,7 +865,7 @@ public:
 
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        FrameLib_Context context(mGlobal->getGlobal(!isRealtime()), mContextPatch);
+        FrameLib_Context context(mGlobal->getGlobal(isRealtime()), mContextPatch);
         mFrameLibProxy->mMaxObject = *this;
         mObject.reset(new T(context, &serialisedParameters, mFrameLibProxy.get(), mSpecifiedStreams));
         parseInputs(argc, argv);
@@ -1366,12 +1366,12 @@ private:
     {
         FrameLib_Context current = mObject->getContext();
         FrameLib_Context context = toFLObject(object)->getContext();
-        unsigned long size =  0;
+        unsigned long size = 0;
             
         if (handlesAudio() || current == context || current.getReference() != context.getReference())
             return;
         
-        mRealtime = !mRealtime;
+        mRealtime = context.getGlobal() == mGlobal->getGlobal(true);
         mResolved = false;
         
         mGlobal->pushToQueue(*this);
