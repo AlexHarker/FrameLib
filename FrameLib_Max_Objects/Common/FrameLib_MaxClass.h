@@ -918,8 +918,8 @@ public:
     static void codeexport(FrameLib_MaxClass *x, t_symbol *className, t_symbol *path)
     {
         char conformedPath[MAX_PATH_CHARS];
-        
-        if (!sys_getdspobjdspstate(*x))
+                
+        if (!x->mDSPObject || !sys_getdspobjdspstate(x->mDSPObject))
         {
             x->resolveGraph();
             x->traversePatch(gensym("__fl.mark_unresolved"));
