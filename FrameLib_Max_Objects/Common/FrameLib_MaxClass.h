@@ -321,13 +321,15 @@ private:
 class Mutator : public MaxClass_Base
 {
     using SyncCheck = FrameLib_MaxGlobals::SyncCheck;
+    using FLObject = FrameLib_Multistream;
     
 public:
     
     Mutator(t_symbol *sym, long ac, t_atom *av)
     {
         mObject = reinterpret_cast<t_object *>(ac ? atom_getobj(av) : nullptr);
-        mMode = objectMethod(mObject, gensym("__fl.is_output")) ? SyncCheck::kDownOnly : SyncCheck::kDown;
+        FLObject *object = mObject ? objectMethod<FLObject *>(mObject, gensym("__fl.get_framelib_object")) : nullptr;
+        mMode = object && object->getType() == kOutput ? SyncCheck::kDownOnly : SyncCheck::kDown;
     }
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
@@ -540,7 +542,7 @@ public:
     
     void dsp(t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
     {
-        if (isRealtime() && T::extIsOutput(object()))
+        if (isRealtime() && object()->getType() == kOutput)
             addPerform<Wrapper, &Wrapper<T>::perform>(dsp64);
     }
     
@@ -719,7 +721,7 @@ public:
         addMethod(c, (method) &extMarkUnresolved, "__fl.mark_unresolved");
         addMethod(c, (method) &extAutoOrderingConnections, "__fl.auto_ordering_connections");
         addMethod(c, (method) &extClearAutoOrderingConnections, "__fl.clear_auto_ordering_connections");
-        addMethod(c, (method) &extGetDSPObject, "__fl.get_realtime_scheduler");
+        addMethod(c, (method) &extGetDSPObject, "__fl.get_dsp_object");
         addMethod(c, (method) &extSetDSPObject, "__fl.set_dsp_object");
         addMethod(c, (method) &extReset, "__fl.reset");
         addMethod(c, (method) &extIsConnected, "__fl.is_connected");
@@ -728,9 +730,6 @@ public:
         addMethod(c, (method) &extGetFLObject, "__fl.get_framelib_object");
         addMethod(c, (method) &extGetUserObject, "__fl.get_user_object");
         addMethod(c, (method) &extIsRealtime, "__fl.is_realtime");
-        addMethod(c, (method) &extIsOutput, "__fl.is_output");
-        addMethod(c, (method) &extGetNumAudioIns, "__fl.get_num_audio_ins");
-        addMethod(c, (method) &extGetNumAudioOuts, "__fl.get_num_audio_outs");
         
         class_addmethod(c, (method) &codeexport, "export", A_SYM, A_SYM, 0);
         
@@ -835,7 +834,7 @@ public:
     , mContextPatch(contextPatcher(gensym("#P")->s_thing))
     , mUserObject(detectUserObjectAtLoad())
     , mDSPObject(nullptr)
-    , mNumSpecifiedStreams(1)
+    , mSpecifiedStreams(1)
     , mRealtime(handlesAudio() ? detectRealtime(argc, argv) : false)
     , mConnectionsUpdated(false)
     , mResolved(false)
@@ -858,7 +857,7 @@ public:
         
         if (argc && getStreamCount(argv))
         {
-            mNumSpecifiedStreams = getStreamCount(argv);
+            mSpecifiedStreams = getStreamCount(argv);
             argv++;
             argc--;
         }
@@ -869,7 +868,7 @@ public:
         parseParameters(serialisedParameters, argc, argv);
         FrameLib_Context context(mGlobal->getGlobal(!isRealtime()), mContextPatch);
         mFrameLibProxy->mMaxObject = *this;
-        mObject.reset(new T(context, &serialisedParameters, mFrameLibProxy.get(), mNumSpecifiedStreams));
+        mObject.reset(new T(context, &serialisedParameters, mFrameLibProxy.get(), mSpecifiedStreams));
         parseInputs(argc, argv);
         
         long numIns = getNumIns() + (supportsOrderingConnections() ? 1 : 0);
@@ -1078,6 +1077,8 @@ public:
 
     // IO and Mode Helpers
     
+    ObjectType getType() const                  { return mObject->getType(); }
+    
     bool isRealtime() const                     { return mRealtime; }
     bool handlesAudio() const                   { return T::handlesAudio(); }
     bool handlesRealtimeAudio() const           { return handlesAudio() && isRealtime(); }
@@ -1090,6 +1091,8 @@ public:
     long getNumAudioIns() const                 { return audioIOSize(mObject->getNumAudioIns()); }
     long getNumAudioOuts() const                { return audioIOSize(mObject->getNumAudioOuts()); }
     
+    unsigned long getSpecifiedStreams() const   { return mSpecifiedStreams; }
+
     // Perform and DSP
 
     void perform(t_object *dsp64, double **ins, long numins, double **outs, long numouts, long vec_size, long flags, void *userparam)
@@ -1203,7 +1206,7 @@ public:
     
     void sync()
     {
-        FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), extIsOutput(this));
+        FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), getType() == kOutput);
        
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && !mResolved)
         {
@@ -1346,24 +1349,9 @@ public:
         return x->mUserObject;
     }
     
-    static t_ptr_int extIsOutput(FrameLib_MaxClass *x)
-    {
-        return (t_ptr_int) x->getType() == kOutput;
-    }
-    
     static t_ptr_int extIsRealtime(FrameLib_MaxClass *x)
     {
         return (t_ptr_int) x->isRealtime();
-    }
-    
-    static t_ptr_int extGetNumAudioIns(FrameLib_MaxClass *x)
-    {
-        return (t_ptr_int) x->getNumAudioIns();
-    }
-    
-    static t_ptr_int extGetNumAudioOuts(FrameLib_MaxClass *x)
-    {
-        return (t_ptr_int) x->getNumAudioOuts();
     }
     
     static void extConnectionConfirm(FrameLib_MaxClass *x, unsigned long index, ConnectionMode mode)
@@ -1396,14 +1384,14 @@ private:
 
         FrameLib_Parameters::AutoSerial serialisedParams(*mObject->getSerialised());
         
-        T *newObject = new T(context, &serialisedParams, mFrameLibProxy.get(), mNumSpecifiedStreams);
+        T *newObject = new T(context, &serialisedParams, mFrameLibProxy.get(), mSpecifiedStreams);
         
         for (unsigned long i = 0; i < getNumIns(); i++)
             if (const double *values = mObject->getFixedInput(i, &size))
                 newObject->setFixedInput(i, values, size);
                 
         if (isRealtime() && !mDSPObject)
-            mDSPObject = objectMethod<t_object *>(object, gensym("__fl.get_realtime_scheduler"));
+            mDSPObject = objectMethod<t_object *>(object, gensym("__fl.get_dsp_object"));
         
         dspSetBroken(mDSPObject);
         mDSPObject = nullptr;
@@ -1508,12 +1496,14 @@ private:
     
     static long getNumAudioIns(t_object *x)
     {
-        return static_cast<long>(objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_ins")));
+        FLObject *object = toFLObject(x);
+        return static_cast<long>(object ? object->getNumAudioIns() : 0);
     }
     
     static long getNumAudioOuts(t_object *x)
     {
-        return static_cast<long>(objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_outs")));
+        FLObject *object = toFLObject(x);
+        return static_cast<long>(object ? object->getNumAudioOuts() : 0);
     }
     
     // Helpers for connection methods
@@ -1956,13 +1946,8 @@ private:
         for (size_t i = 0; i < numChans; i++)
             access.write(ins[i], size, offset, i);
     }
-    
+
 protected:
-   
-    // Type and streams helpers
-    
-    ObjectType getType() const                      { return mObject->getType(); }
-    unsigned long getNumSpecifiedStreams() const    { return mNumSpecifiedStreams; }
     
     // Proxy
     
@@ -1990,7 +1975,7 @@ private:
     t_object *mUserObject;
     t_object *mDSPObject;
     
-    unsigned long mNumSpecifiedStreams;
+    unsigned long mSpecifiedStreams;
 
     bool mRealtime;
     bool mConnectionsUpdated;
