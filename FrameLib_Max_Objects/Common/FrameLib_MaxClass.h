@@ -1385,9 +1385,7 @@ private:
         FrameLib_Context current = mObject->getContext();
         FrameLib_Context context = toFLObject(object)->getContext();
         unsigned long size =  0;
-        
-        FLObject *test = toFLObject(object);
-        
+            
         if (handlesAudio() || current == context || current.getReference() != context.getReference())
             return;
         
