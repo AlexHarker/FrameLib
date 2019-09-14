@@ -1205,7 +1205,7 @@ public:
        
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && !mResolved)
         {
-            resolveGraph(false);
+            resolveGraph(false, true);
             traversePatch(gensym("__fl.set_dsp_object"), this);
         }
         
@@ -1439,9 +1439,9 @@ private:
             objectMethod(object, theMethod, args...);
     }
     
-    bool resolveGraph(bool markUnresolved)
+    bool resolveGraph(bool markUnresolved, bool forceRealtime = false)
     {
-        if (isRealtime() && mDSPObject && sys_getdspobjdspstate(mDSPObject))
+        if (forceRealtime || isRealtime() && mDSPObject && sys_getdspobjdspstate(mDSPObject))
             return false;
         
         t_ptr_int updated = false;
