@@ -730,7 +730,7 @@ public:
         addMethod(c, (method) &extGetFLObject, "__fl.get_framelib_object");
         addMethod(c, (method) &extGetUserObject, "__fl.get_user_object");
         
-        class_addmethod(c, (method) &codeexport, "export", A_SYM, A_SYM, 0);
+        class_addmethod(c, (method) &codeExport, "export", A_SYM, A_SYM, 0);
         
         if (T::handlesAudio())
         {
@@ -942,16 +942,12 @@ public:
         }
     }
     
-    static void codeexport(FrameLib_MaxClass *x, t_symbol *className, t_symbol *path)
+    static void codeExport(FrameLib_MaxClass *x, t_symbol *className, t_symbol *path)
     {
         char conformedPath[MAX_PATH_CHARS];
                 
-        if (!x->mDSPObject || !sys_getdspobjdspstate(x->mDSPObject))
-        {
-            x->resolveGraph();
-            x->traversePatch(gensym("__fl.mark_unresolved"));
-        }
-
+        x->resolveGraph(true);
+        
         path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
         ExportError error = exportGraph(x->mObject.get(), conformedPath, className->s_name);
         
@@ -1209,7 +1205,7 @@ public:
        
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && !mResolved)
         {
-            resolveGraph();
+            resolveGraph(false);
             traversePatch(gensym("__fl.set_dsp_object"), this);
         }
         
@@ -1295,7 +1291,7 @@ public:
     static void extResolveGraph(FrameLib_MaxClass *x, const FrameLib_Context &context)
     {
         if (context == x->mObject->getContext())
-            x->resolveGraph();
+            x->resolveGraph(true);
     }
     
     static void extResolveConnections(FrameLib_MaxClass *x, t_ptr_int *flag)
@@ -1443,7 +1439,7 @@ private:
             objectMethod(object, theMethod, args...);
     }
     
-    bool resolveGraph()
+    bool resolveGraph(bool markUnresolved)
     {
         if (isRealtime() && mDSPObject && sys_getdspobjdspstate(mDSPObject))
             return false;
@@ -1465,12 +1461,15 @@ private:
             post("Graph Updated - realtime %d", isRealtime());
         }
         
+        if (markUnresolved)
+            traversePatch(gensym("__fl.mark_unresolved"));
+        
         return updated;
     }
     
     void checkGraph(double sampleRate, bool forceReset)
     {
-        bool updated = resolveGraph();
+        bool updated = resolveGraph(false);
         
         if (updated || forceReset)
             traversePatch(gensym("__fl.reset"), &sampleRate, static_cast<t_ptr_int>(maxBlockSize()));
