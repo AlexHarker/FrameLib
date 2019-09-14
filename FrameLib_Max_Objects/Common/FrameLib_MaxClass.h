@@ -860,7 +860,7 @@ public:
         
         // Setup for audio, even if the object doesn't handle it, so that dsp recompile works correctly
         
-        if (handlesAudio() && isRealtime())
+        if (handlesRealtimeAudio())
         {
             dspSetup(getNumAudioIns());
             
