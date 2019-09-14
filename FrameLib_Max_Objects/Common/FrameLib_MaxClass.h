@@ -1441,7 +1441,7 @@ private:
     
     bool resolveGraph(bool markUnresolved, bool forceRealtime = false)
     {
-        if (forceRealtime || isRealtime() && mDSPObject && sys_getdspobjdspstate(mDSPObject))
+        if (forceRealtime || (isRealtime() && mDSPObject && sys_getdspobjdspstate(mDSPObject)))
             return false;
         
         t_ptr_int updated = false;
