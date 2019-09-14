@@ -691,7 +691,7 @@ public:
         addMethod(c, (method) &extAutoOrderingConnections, "__fl.auto_ordering_connections");
         addMethod(c, (method) &extClearAutoOrderingConnections, "__fl.clear_auto_ordering_connections");
         addMethod(c, (method) &extGetDSPObject, "__fl.get_realtime_scheduler");
-        addMethod(c, (method) &extSetDSPObject, "__fl.set_realtime_scheduler");
+        addMethod(c, (method) &extSetDSPObject, "__fl.set_dsp_object");
         addMethod(c, (method) &extReset, "__fl.reset");
         addMethod(c, (method) &extIsConnected, "__fl.is_connected");
         addMethod(c, (method) &extConnectionConfirm, "__fl.connection_confirm");
@@ -881,7 +881,7 @@ public:
             if (handlesAudio())
             {
                 dspFree();
-                traversePatch(gensym("__fl.set_realtime_scheduler"), static_cast<void *>(nullptr));
+                traversePatch(gensym("__fl.set_dsp_object"), static_cast<void *>(nullptr));
             }
             else
                 dspSetBroken(mDSPObject);
@@ -1179,7 +1179,7 @@ public:
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && !mResolved)
         {
             resolveGraph();
-            traversePatch(gensym("__fl.set_realtime_scheduler"), this);
+            traversePatch(gensym("__fl.set_dsp_object"), this);
         }
         
         if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
@@ -1429,6 +1429,7 @@ private:
         t_ptr_int updated = false;
         
         mGlobal->setReportContextErrors(true);
+        traversePatch(gensym("__fl.mark_unresolved"));
         traversePatch(gensym("__fl.resolve_connections"), &updated);
         traversePatch(gensym("__fl.connection_update"), t_ptr_int(false));
         mGlobal->setReportContextErrors(false);
@@ -1447,14 +1448,10 @@ private:
     
     void checkGraph(double sampleRate, bool forceReset)
     {
-        t_ptr_int blockSize = maxBlockSize();
-        
-        traversePatch(gensym("__fl.mark_unresolved"));
-        
         bool updated = resolveGraph();
         
         if (updated || forceReset)
-            traversePatch(gensym("__fl.reset"), &sampleRate, blockSize);
+            traversePatch(gensym("__fl.reset"), &sampleRate, static_cast<t_ptr_int>(maxBlockSize()));
     }
     
     // Convert from framelib object to max object and vice versa
