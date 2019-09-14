@@ -1678,20 +1678,19 @@ private:
 
         if (!isRealtime() || !dspSetBroken(mDSPObject))
         {
-            FrameLib_Context context = mObject->getContext();
-            
-            switch (type)
+            FLObject *object = toFLObject(src);
+
+            if (object && object->getContext() != mObject->getContext())
             {
-                case JPATCHLINE_CONNECT:        connect(MaxConnection(src, srcout), dstin);         break;
-                case JPATCHLINE_DISCONNECT:     disconnect(MaxConnection(src, srcout), dstin);      break;
-            }
-            
-            if (context != mObject->getContext())
-            {
-                FLObject *object = toFLObject(src);
-                
                 if (object->getType() == kScheduler || object->getNumAudioChans())
-                    mGlobal->addContextToResolve(mObject->getContext(), *this);
+                    mGlobal->addContextToResolve(object->getContext(), src);
+            }
+            else
+            {
+                if (type == JPATCHLINE_CONNECT)
+                    connect(MaxConnection(src, srcout), dstin);
+                else
+                    disconnect(MaxConnection(src, srcout), dstin);
             }
         }
         
