@@ -1366,9 +1366,7 @@ private:
         for (unsigned long i = 0; i < getNumIns(); i++)
             if (const double *values = mObject->getFixedInput(i, &size))
                 newObject->setFixedInput(i, values, size);
-        
-        // FIX - does this need to be cleverer?
-        
+                
         if (isRealtime() && !mDSPObject)
             mDSPObject = objectMethod<t_object *>(object, gensym("__fl.get_realtime_scheduler"));
         
