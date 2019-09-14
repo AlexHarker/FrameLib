@@ -1425,7 +1425,7 @@ private:
             
             FLObject *object = toFLObject(jbox_get_object(b));
             
-            if (object && object->getContext() = mObject->getContext)
+            if (object && object->getContext() == mObject->getContext())
                 objectMethod(jbox_get_object(b), theMethod, args...);
         }
     }
