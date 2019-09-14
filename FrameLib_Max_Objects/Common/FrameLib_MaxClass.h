@@ -15,6 +15,7 @@
 #include <string>
 #include <deque>
 #include <vector>
+#include <unordered_map>
 
 struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
 {
@@ -36,6 +37,17 @@ struct FrameLib_MaxNRTAudio
 
 class FrameLib_MaxGlobals : public MaxClass_Base
 {
+    struct Hash
+    {
+        size_t operator()(FrameLib_Context context) const
+        {
+            size_t hash = 0;
+            hash ^= std::hash<void *>()(context.getGlobal()) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+            hash ^= std::hash<void *>()(context.getReference()) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+            
+            return hash;
+        }
+    };
     
 public:
     
@@ -191,6 +203,14 @@ public:
         return object;
     }
 
+    void addContextToResolve(FrameLib_Context context, t_object *object)
+    {
+        mContexts[context] = object;
+        
+        if (mContexts.size() == 1)
+            defer_low(*this, (method) serviceContexts, nullptr, 0, nullptr);
+    }
+    
     void setReportContextErrors(bool report)            { mReportContextErrors = report; }
     bool getReportContextErrors() const                 { return mReportContextErrors; }
 
@@ -209,6 +229,17 @@ public:
     void setSyncCheck(SyncCheck *check)                 { mSyncCheck = check; }
     
 private:
+    
+    static void serviceContexts(FrameLib_MaxGlobals *x)
+    {
+        for (auto it = x->mContexts.begin(); it != x->mContexts.end(); it++)
+        {
+            FrameLib_Context context = it->first;
+            objectMethod(it->second, gensym("__fl.resolve_graph"), &context);
+        }
+            
+        x->mContexts.clear();
+    }
     
     // Generate some relevant thread priorities
     
@@ -275,7 +306,8 @@ private:
     ErrorNotifier mNRTNotifier;
     
     std::deque<t_object *> mQueue;
-
+    std::unordered_map<FrameLib_Context, t_object *, Hash> mContexts;
+    
     FrameLib_Global *mRTGlobal;
     FrameLib_Global *mNRTGlobal;
     
@@ -682,6 +714,7 @@ public:
         
         addMethod(c, (method) &extPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &extConnectionAccept, "connectionaccept");
+        addMethod(c, (method) &extResolveGraph, "__fl.resolve_graph");
         addMethod(c, (method) &extResolveConnections, "__fl.resolve_connections");
         addMethod(c, (method) &extMarkUnresolved, "__fl.mark_unresolved");
         addMethod(c, (method) &extAutoOrderingConnections, "__fl.auto_ordering_connections");
@@ -1257,6 +1290,12 @@ public:
         objects.push_back(FrameLib_MaxNRTAudio(x->mObject.get(), x->mBuffer));
     }
     
+    static void extResolveGraph(FrameLib_MaxClass *x, const FrameLib_Context &context)
+    {
+        if (context == x->mObject->getContext())
+            x->resolveGraph();
+    }
+    
     static void extResolveConnections(FrameLib_MaxClass *x, t_ptr_int *flag)
     {
         *flag |= x->resolveConnections();
@@ -1347,6 +1386,8 @@ private:
         FrameLib_Context context = toFLObject(object)->getContext();
         unsigned long size =  0;
         
+        FLObject *test = toFLObject(object);
+        
         if (handlesAudio() || current == context || current.getReference() != context.getReference())
             return;
         
@@ -1422,6 +1463,9 @@ private:
     
     bool resolveGraph()
     {
+        if (isRealtime() && mDSPObject && sys_getdspobjdspstate(mDSPObject))
+            return false;
+        
         t_ptr_int updated = false;
         
         mGlobal->setReportContextErrors(true);
@@ -1636,10 +1680,20 @@ private:
 
         if (!isRealtime() || !dspSetBroken(mDSPObject))
         {
+            FrameLib_Context context = mObject->getContext();
+            
             switch (type)
             {
                 case JPATCHLINE_CONNECT:        connect(MaxConnection(src, srcout), dstin);         break;
                 case JPATCHLINE_DISCONNECT:     disconnect(MaxConnection(src, srcout), dstin);      break;
+            }
+            
+            if (context != mObject->getContext())
+            {
+                FLObject *object = toFLObject(src);
+                
+                if (object->getType() == kScheduler || object->getNumAudioChans())
+                    mGlobal->addContextToResolve(mObject->getContext(), *this);
             }
         }
         
