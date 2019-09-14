@@ -729,7 +729,6 @@ public:
         addMethod(c, (method) &extConnectionUpdate, "__fl.connection_update");
         addMethod(c, (method) &extGetFLObject, "__fl.get_framelib_object");
         addMethod(c, (method) &extGetUserObject, "__fl.get_user_object");
-        addMethod(c, (method) &extIsRealtime, "__fl.is_realtime");
         
         class_addmethod(c, (method) &codeexport, "export", A_SYM, A_SYM, 0);
         
@@ -1349,11 +1348,6 @@ public:
         return x->mUserObject;
     }
     
-    static t_ptr_int extIsRealtime(FrameLib_MaxClass *x)
-    {
-        return (t_ptr_int) x->isRealtime();
-    }
-    
     static void extConnectionConfirm(FrameLib_MaxClass *x, unsigned long index, ConnectionMode mode)
     {
         x->makeConnection(index, mode);
@@ -1429,7 +1423,9 @@ private:
             while (b && (p = (t_patcher *)object_subpatcher(jbox_get_object(b), &index, this)))
                 traversePatch(p, contextAssoc, theMethod, args...);
             
-            if (objectMethod<t_ptr_int>(jbox_get_object(b), gensym("__fl.is_realtime")) == isRealtime())
+            FLObject *object = toFLObject(jbox_get_object(b));
+            
+            if (object && object->getContext() = mObject->getContext)
                 objectMethod(jbox_get_object(b), theMethod, args...);
         }
     }
