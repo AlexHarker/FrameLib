@@ -203,6 +203,16 @@ public:
         return object;
     }
 
+    FrameLib_Context getContext(bool realtime, t_object *patch, t_symbol *name)
+    {
+        return FrameLib_Context(getGlobal(realtime), patch);
+    }
+    
+    void retainContext(FrameLib_Context context) {}
+    void releaseContext(FrameLib_Context context) {}
+
+    bool isRealtime(FrameLib_Context context) { return context.getGlobal() == mRTGlobal; }
+
     void addContextToResolve(FrameLib_Context context, t_object *object)
     {
         mContexts[context] = object;
@@ -862,7 +872,7 @@ public:
 
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        FrameLib_Context context(mGlobal->getGlobal(isRealtime()), mContextPatch);
+        FrameLib_Context context = mGlobal->getContext(isRealtime(), mContextPatch, nullptr);
         mFrameLibProxy->mMaxObject = *this;
         mObject.reset(new T(context, &serialisedParameters, mFrameLibProxy.get(), mSpecifiedStreams));
         parseInputs(argc, argv);
@@ -910,6 +920,8 @@ public:
             else
                 dspSetBroken(mDSPObject);
         }
+        
+        mGlobal->releaseContext(mObject->getContext());
     }
     
     void assist(void *b, long m, long a, char *s)
@@ -1364,7 +1376,7 @@ private:
         if (handlesAudio() || current == context || current.getReference() != context.getReference())
             return;
         
-        mRealtime = context.getGlobal() == mGlobal->getGlobal(true);
+        mRealtime = mGlobal->isRealtime(context);
         mResolved = false;
         
         mGlobal->pushToQueue(*this);
@@ -1382,6 +1394,9 @@ private:
         
         dspSetBroken(mDSPObject);
         mDSPObject = nullptr;
+        
+        mGlobal->retainContext(context);
+        mGlobal->releaseContext(current);
         
         mObject.reset(newObject);
     }
