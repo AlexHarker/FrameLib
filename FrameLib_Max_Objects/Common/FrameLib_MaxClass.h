@@ -233,10 +233,7 @@ private:
     static void serviceContexts(FrameLib_MaxGlobals *x)
     {
         for (auto it = x->mContexts.begin(); it != x->mContexts.end(); it++)
-        {
-            FrameLib_Context context = it->first;
-            objectMethod(it->second, gensym("__fl.resolve_context"), &context);
-        }
+            objectMethod(it->second, gensym("__fl.resolve_context"));
             
         x->mContexts.clear();
     }
@@ -1289,7 +1286,7 @@ public:
         objects.push_back(FrameLib_MaxNRTAudio(x->mObject.get(), x->mBuffer));
     }
     
-    static void extResolveContext(FrameLib_MaxClass *x, const FrameLib_Context &context)
+    static void extResolveContext(FrameLib_MaxClass *x)
     {
         x->resolveContext();
     }
