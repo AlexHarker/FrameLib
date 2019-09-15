@@ -39,15 +39,30 @@ class FrameLib_MaxGlobals : public MaxClass_Base
 {
     struct Hash
     {
-        size_t operator()(FrameLib_Context context) const
+        size_t operator()(void *a, void*b) const
         {
             size_t hash = 0;
-            hash ^= std::hash<void *>()(context.getGlobal()) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
-            hash ^= std::hash<void *>()(context.getReference()) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+            hash ^= std::hash<void *>()(a) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+            hash ^= std::hash<void *>()(b) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
             
             return hash;
         }
+        
+        size_t operator()(FrameLib_Context context) const
+        {
+            return operator()(context.getGlobal(), context.getReference());
+        }
+        
+        size_t operator()(std::pair<t_object *, t_symbol*> key) const
+        {
+            return operator()(key.first, key.second);
+        }
     };
+    
+    using RefKey = std::pair<t_object *, t_symbol *>;
+    using RefData = std::pair<RefKey, int>;
+    using RefMap = std::unordered_map<RefKey, std::unique_ptr<RefData>, Hash>;
+    using ResolveMap = std::unordered_map<FrameLib_Context, t_object *, Hash>;
     
 public:
     
@@ -185,12 +200,10 @@ public:
     : mReportContextErrors(false), mRTNotifier(&mRTGlobal), mNRTNotifier(&mNRTGlobal), mRTGlobal(nullptr), mNRTGlobal(nullptr), mSyncCheck(nullptr)
     {}
 
-    // Getters and setters for max global items
+    // Max global item methods
     
-    FrameLib_Global *getGlobal(bool realtime) const     { return realtime ? mRTGlobal : mNRTGlobal; }
-
-    void clearQueue()                                   { mQueue.clear(); }
-    void pushToQueue(t_object * object)                 { return mQueue.push_back(object); }
+    void clearQueue()                           { mQueue.clear(); }
+    void pushToQueue(t_object * object)         { return mQueue.push_back(object); }
     
     t_object *popFromQueue()
     {
@@ -203,49 +216,57 @@ public:
         return object;
     }
 
-    FrameLib_Context getContext(bool realtime, t_object *patch, t_symbol *name)
-    {
-        return FrameLib_Context(getGlobal(realtime), patch);
-    }
-    
-    void retainContext(FrameLib_Context context) {}
-    void releaseContext(FrameLib_Context context) {}
-
-    bool isRealtime(FrameLib_Context context) { return context.getGlobal() == mRTGlobal; }
-
     void addContextToResolve(FrameLib_Context context, t_object *object)
     {
-        mContexts[context] = object;
+        mUnresolvedContexts[context] = object;
         
-        if (mContexts.size() == 1)
+        if (mUnresolvedContexts.size() == 1)
             defer_low(*this, (method) serviceContexts, nullptr, 0, nullptr);
     }
     
-    void setReportContextErrors(bool report)            { mReportContextErrors = report; }
-    bool getReportContextErrors() const                 { return mReportContextErrors; }
-
-    void setConnection(MaxConnection connection, ConnectionMode mode)
+    FrameLib_Context makeContext(bool realtime, t_object *patch, t_symbol *name)
     {
-        mConnection = connection;
-        mConnectionMode = mode;
+        std::unique_ptr<RefData>& item = mContextRefs[RefKey(patch, name)];
+        
+        if (!item)
+            item.reset(new RefData(RefKey(patch, name), 1));
+        else
+            item->second++;
+        
+        return FrameLib_Context(realtime ? mRTGlobal : mNRTGlobal, item.get());
     }
-
-    void clearConnection()                              { setConnection(MaxConnection(), kConnect); }
-
-    MaxConnection getConnection() const                 { return mConnection; }
-    ConnectionMode getConnectionMode() const            { return mConnectionMode; }
     
-    SyncCheck *getSyncCheck() const                     { return mSyncCheck; }
-    void setSyncCheck(SyncCheck *check)                 { mSyncCheck = check; }
+    void retainContext(FrameLib_Context c)      { data(c).second++; }
+    void releaseContext(FrameLib_Context c)     { if (--data(c).second == 0) mContextRefs.erase(data(c).first); }
+    
+    bool isRealtimeContext(FrameLib_Context c)  { return c.getGlobal() == mRTGlobal; }
+    
+    void setReportContextErrors(bool report)    { mReportContextErrors = report; }
+    bool getReportContextErrors() const         { return mReportContextErrors; }
+
+    void setConnection(MaxConnection c)         { mConnection = c; }
+    void setConnectionMode(ConnectionMode m)    { mConnectionMode = m; }
+    MaxConnection getConnection() const         { return mConnection; }
+    ConnectionMode getConnectionMode() const    { return mConnectionMode; }
+    
+    SyncCheck *getSyncCheck() const             { return mSyncCheck; }
+    void setSyncCheck(SyncCheck *check)         { mSyncCheck = check; }
     
 private:
     
+    // Context methods
+    
     static void serviceContexts(FrameLib_MaxGlobals *x)
     {
-        for (auto it = x->mContexts.begin(); it != x->mContexts.end(); it++)
+        for (auto it = x->mUnresolvedContexts.begin(); it != x->mUnresolvedContexts.end(); it++)
             objectMethod(it->second, gensym("__fl.resolve_context"));
             
-        x->mContexts.clear();
+        x->mUnresolvedContexts.clear();
+    }
+    
+    RefData& data(FrameLib_Context context)
+    {
+        return *static_cast<RefData *>(context.getReference());
     }
     
     // Generate some relevant thread priorities
@@ -313,8 +334,9 @@ private:
     ErrorNotifier mNRTNotifier;
     
     std::deque<t_object *> mQueue;
-    std::unordered_map<FrameLib_Context, t_object *, Hash> mContexts;
-    
+    ResolveMap mUnresolvedContexts;
+    RefMap mContextRefs;
+
     FrameLib_Global *mRTGlobal;
     FrameLib_Global *mNRTGlobal;
     
@@ -872,7 +894,7 @@ public:
 
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        FrameLib_Context context = mGlobal->getContext(isRealtime(), mContextPatch, nullptr);
+        FrameLib_Context context = mGlobal->makeContext(isRealtime(), mContextPatch, nullptr);
         mFrameLibProxy->mMaxObject = *this;
         mObject.reset(new T(context, &serialisedParameters, mFrameLibProxy.get(), mSpecifiedStreams));
         parseInputs(argc, argv);
@@ -1376,7 +1398,7 @@ private:
         if (handlesAudio() || current == context || current.getReference() != context.getReference())
             return;
         
-        mRealtime = mGlobal->isRealtime(context);
+        mRealtime = mGlobal->isRealtimeContext(context);
         mResolved = false;
         
         mGlobal->pushToQueue(*this);
@@ -1579,9 +1601,10 @@ private:
 
     void makeConnection(unsigned long index, ConnectionMode mode)
     {
-        mGlobal->setConnection(MaxConnection(*this, index), mode);
+        mGlobal->setConnection(MaxConnection(*this, index));
+        mGlobal->setConnectionMode(mode);
         outlet_anything(mOutputs[index], gensym("frame"), 0, nullptr);
-        mGlobal->clearConnection();
+        mGlobal->setConnection(MaxConnection());
     }
     
     bool confirmConnection(unsigned long inIndex, ConnectionMode mode)
