@@ -235,7 +235,7 @@ private:
         for (auto it = x->mContexts.begin(); it != x->mContexts.end(); it++)
         {
             FrameLib_Context context = it->first;
-            objectMethod(it->second, gensym("__fl.resolve_graph"), &context);
+            objectMethod(it->second, gensym("__fl.resolve_context"), &context);
         }
             
         x->mContexts.clear();
@@ -716,7 +716,7 @@ public:
         
         addMethod(c, (method) &extPatchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &extConnectionAccept, "connectionaccept");
-        addMethod(c, (method) &extResolveGraph, "__fl.resolve_graph");
+        addMethod(c, (method) &extResolveContext, "__fl.resolve_context");
         addMethod(c, (method) &extResolveConnections, "__fl.resolve_connections");
         addMethod(c, (method) &extMarkUnresolved, "__fl.mark_unresolved");
         addMethod(c, (method) &extAutoOrderingConnections, "__fl.auto_ordering_connections");
@@ -946,7 +946,7 @@ public:
     {
         char conformedPath[MAX_PATH_CHARS];
                 
-        x->resolveGraph(true);
+        x->resolveContext();
         
         path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
         ExportError error = exportGraph(x->mObject.get(), conformedPath, className->s_name);
@@ -1131,7 +1131,8 @@ public:
     
     void reset(def_double sampleRate = 0.0)
     {
-        checkGraph(sampleRate > 0.0 ? sampleRate.mValue : sys_getsr(), true);
+        if (!isRealtime())
+            resolveNRTGraph(sampleRate > 0.0 ? sampleRate.mValue : sys_getsr(), true);
     }
     
     void process(t_atom_long length)
@@ -1139,10 +1140,10 @@ public:
         unsigned long updateLength = length > 0 ? length : 0;
         unsigned long time = static_cast<unsigned long>(mObject->getBlockTime());
         
-        if (!updateLength)
+        if (!updateLength || isRealtime())
             return;
         
-        checkGraph(0.0, false);
+        resolveNRTGraph(0.0, false);
         
         // Retrieve all the audio objects in a list
         
@@ -1288,10 +1289,9 @@ public:
         objects.push_back(FrameLib_MaxNRTAudio(x->mObject.get(), x->mBuffer));
     }
     
-    static void extResolveGraph(FrameLib_MaxClass *x, const FrameLib_Context &context)
+    static void extResolveContext(FrameLib_MaxClass *x, const FrameLib_Context &context)
     {
-        if (context == x->mObject->getContext())
-            x->resolveGraph(true);
+        x->resolveContext();
     }
     
     static void extResolveConnections(FrameLib_MaxClass *x, t_ptr_int *flag)
@@ -1467,12 +1467,20 @@ private:
         return updated;
     }
     
-    void checkGraph(double sampleRate, bool forceReset)
+    void resolveNRTGraph(double sampleRate, bool forceReset)
     {
         bool updated = resolveGraph(false);
         
         if (updated || forceReset)
             traversePatch(gensym("__fl.reset"), &sampleRate, static_cast<t_ptr_int>(maxBlockSize()));
+    }
+    
+    void resolveContext()
+    {
+        if (isRealtime())
+            resolveGraph(true);
+        else
+            resolveNRTGraph(0.0, false);
     }
     
     // Convert from framelib object to max object and vice versa
