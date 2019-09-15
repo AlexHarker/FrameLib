@@ -13,5 +13,7 @@ CLANG_CXX_LANGUAGE_STANDARD = c++11
 CLANG_CXX_LIBRARY = libc++
 CLANG_X86_VECTOR_INSTRUCTIONS = avx
 
+LLVM_LTO = Monolithic
+
 OTHER_CFLAGS = -fvisibility=hidden
 OTHER_CPLUSPLUSFLAGS = -fvisibility=hidden -Winconsistent-missing-override
