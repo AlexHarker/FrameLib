@@ -408,12 +408,11 @@ public:
         addMethod<Wrapper<T>, &Wrapper<T>::sync>(c, "sync");
         addMethod<Wrapper<T>, &Wrapper<T>::dsp>(c);
 
+        addMethod(c, (method) &dblclick, "dblclick");
         addMethod(c, (method) &patchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &connectionAccept, "connectionaccept");
         addMethod(c, (method) &unwrap, "__fl.wrapper_unwrap");
         addMethod(c, (method) &isWrapper, "__fl.wrapper_is_wrapper");
-
-        addMethod(c, (method) &Wrapper<T>::dblclick, "dblclick");
 
         // N.B. MUST add signal handling after dspInit to override the builtin responses
         
@@ -740,7 +739,7 @@ public:
             addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::reset>(c, "reset");
             addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::process>(c, "process");
 
-            addMethod(c, (method) &FrameLib_MaxClass<T>::dblclick, "dblclick");
+            addMethod(c, (method) &dblclick, "dblclick");
             addMethod(c, (method) &extFindAudio, "__fl.find_audio_objects");
 
             class_addmethod(c, (method) &codeExport, "export", A_SYM, A_SYM, 0);
