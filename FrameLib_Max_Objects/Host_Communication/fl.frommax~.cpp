@@ -8,7 +8,7 @@ class FrameLib_MaxClass_FromMax : public FrameLib_MaxClass_Expand<FrameLib_FromH
 {
     struct FromHostProxy : public FrameLib_FromHost::Proxy, public FrameLib_MaxProxy
     {
-        FromHostProxy() : FrameLib_FromHost::Proxy(true) {}
+        FromHostProxy() : FrameLib_FromHost::Proxy(true, true) {}
     };
     
 public:

@@ -57,7 +57,8 @@ public:
 
     struct Proxy : public FrameLib_HostProxy<FrameLib_FromHost>
     {
-        Proxy(bool copyStreams) : mCopyStreams(copyStreams) {}
+        Proxy(bool copyStreams, bool copyFirstOwner)
+        : mCopyStreams(copyStreams), mCopyFirstOwner(copyFirstOwner) {}
         
         // Send a vector frame
         
@@ -84,6 +85,7 @@ public:
         void copyData(void *streamOwner, unsigned long stream);
         
         bool mCopyStreams;
+        bool mCopyFirstOwner;
     };
     
 private:

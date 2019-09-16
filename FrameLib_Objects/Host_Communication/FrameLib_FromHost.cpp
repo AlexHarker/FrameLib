@@ -84,9 +84,13 @@ void FrameLib_FromHost::Proxy::sendFromHost(unsigned long index, unsigned long s
 
 void FrameLib_FromHost::Proxy::copyData(void *streamOwner, unsigned long stream)
 {
-    if (stream && mCopyStreams)
+    void *firstOwner = mRegistered[0].mStreamOwner;
+    bool copyStream = stream && mCopyStreams;
+    bool copyFirstOwner = !stream && mCopyFirstOwner && firstOwner != streamOwner;
+    
+    if (copyStream || copyFirstOwner)
     {
-        FrameLib_FromHost *first = getObject(streamOwner, 0);
+        FrameLib_FromHost *first = getObject(copyFirstOwner ? firstOwner : streamOwner, 0);
         FrameLib_FromHost *current = getObject(streamOwner, stream);
         
         if (first->mMode == kValues && current->mMode == kValues)
