@@ -50,7 +50,7 @@ namespace impl
     void complex_operation(Split *out, Split *in1, Split *in2, uintptr_t fft_size, typename Infer<Split>::Type scale, Op op)
     {
         const int N = SIMDLimits<typename Infer<Split>::Type>::max_size;
-        constexpr int M = N / 2 ? N / 2: 1;
+        constexpr int M = N / 2 ? N / 2 : 1;
         
         if (fft_size == 1 || fft_size < M)
             simd_operation<1>(out, in1, in2, fft_size, scale, op);
@@ -72,8 +72,8 @@ namespace impl
         
         // DC and Nyquist
         
-        op(dc_value, temp1, in1->realp[0], temp1, in2->realp[0], temp1, scale, 0);
-        op(nq_value, temp2, in1->imagp[0], temp1, in2->imagp[0], temp1, scale, fft_size >> 1);
+        op(dc_value, temp1, in1->realp[0], temp2, in2->realp[0], temp2, scale, 0);
+        op(nq_value, temp1, in1->imagp[0], temp2, in2->imagp[0], temp2, scale, fft_size >> 1);
         
         complex_operation(out, in1, in2, fft_size >> 1, scale, op);
         
@@ -98,8 +98,8 @@ namespace impl
         
         // DC and Nyquist
         
-        op(r_out[0], temp1, r_in[0], temp1, 0);
-        op(i_out[0], temp2, i_in[0], temp2, fft_size >> 1);
+        op(r_out[0], temp1, r_in[0], temp2, 0);
+        op(i_out[0], temp1, i_in[0], temp2, fft_size >> 1);
         
         // Other bins
         
@@ -129,7 +129,7 @@ namespace impl
     }
     
     template <class T>
-    void store(T& r_out, T& i_out, T r_in, T i_in)
+    void store(T& r_out, T& i_out, T&& r_in, T&& i_in)
     {
         r_out = r_in;
         i_out = i_in;
@@ -140,16 +140,16 @@ namespace impl
     struct copy
     {
         template <typename T>
-        void operator()(T& r_out, T& i_out, T r_in, T i_in, uintptr_t i)
+        void operator()(T& r_out, T& i_out, const T& r_in, const T& i_in, uintptr_t i)
         {
-            store(r_out, i_out, r_in, i_in);
+            store(r_out, i_out, T(r_in), T(i_in));
         }
     };
     
     struct amplitude
     {
         template <typename T>
-        void operator()(T& r_out, T& i_out, T r_in, T i_in, uintptr_t i)
+        void operator()(T& r_out, T& i_out, const T& r_in, const T& i_in, uintptr_t i)
         {
             store(r_out, i_out, std::sqrt(r_in * r_in + i_in * i_in), T(0));
         }
@@ -158,7 +158,7 @@ namespace impl
     struct amplitude_linear
     {
         template <typename T>
-        void operator()(T& r_out, T& i_out, T r_in, T i_in, uintptr_t i)
+        void operator()(T& r_out, T& i_out, const T& r_in, const T& i_in, uintptr_t i)
         {
             store(r_out, i_out, std::sqrt(r_in * r_in + i_in * i_in) * (i & 0x1 ? T(-1) : T(1)), T(0));
         }
@@ -167,16 +167,16 @@ namespace impl
     struct conjugate
     {
         template <typename T>
-        void operator()(T& r_out, T& i_out, T r_in, T i_in, uintptr_t i)
+        void operator()(T& r_out, T& i_out, const T& r_in, const T& i_in, uintptr_t i)
         {
-            store(r_out, i_out, r_in, -i_in);
+            store(r_out, i_out, T(r_in), T(-i_in));
         }
     };
     
     struct log_power
     {
         template <typename T>
-        void operator()(T& r_out, T& i_out, T r_in, T i_in, uintptr_t i)
+        void operator()(T& r_out, T& i_out, const T& r_in, const T& i_in, uintptr_t i)
         {
             static T min_power = std::pow(10.0, -300.0 / 10.0);
             store(r_out, i_out, T(0.5) * log(std::max(r_in * r_in + i_in * i_in, min_power)), T(0));
@@ -186,7 +186,7 @@ namespace impl
     struct complex_exponential
     {
         template <typename T>
-        void operator()(T& r_out, T& i_out, T r_in, T i_in, uintptr_t i)
+        void operator()(T& r_out, T& i_out, const T& r_in, const T& i_in, uintptr_t i)
         {
             const std::complex<T> c = std::exp(std::complex<T>(r_in, i_in));
             store(r_out, i_out, std::real(c), std::imag(c));
@@ -196,7 +196,7 @@ namespace impl
     struct complex_exponential_conjugate
     {
         template <typename T>
-        void operator()(T& r_out, T& i_out, T r_in, T i_in, uintptr_t i)
+        void operator()(T& r_out, T& i_out, const T& r_in, const T& i_in, uintptr_t i)
         {
             const std::complex<T> c = std::exp(std::complex<T>(r_in, i_in));
             store(r_out, i_out, std::real(c), -std::imag(c));
@@ -217,7 +217,7 @@ namespace impl
         }
         
         template <typename T>
-        void operator()(T& r_out, T& i_out, T r_in, T i_in, uintptr_t i)
+        void operator()(T& r_out, T& i_out, const T& r_in, const T& i_in, uintptr_t i)
         {
             const double amp = std::exp(r_in);
             const double phase = lin_factor * i + min_factor * i_in;
@@ -251,7 +251,7 @@ namespace impl
         delay_calc(double delay, double fft_size) : spike(delay, fft_size) {}
         
         template <typename T>
-        void operator()(T& r_out, T& i_out, T r_in, T i_in, uintptr_t i)
+        void operator()(T& r_out, T& i_out, const T& r_in, const T& i_in, uintptr_t i)
         {
             using complex = std::complex<T>;
             
@@ -267,8 +267,7 @@ namespace impl
         template<class T>
         void operator()(T& r_out, T& i_out, const T& a, const T& b, const T& c, const T& d, const T& scale, uintptr_t i)
         {
-            r_out = scale * (a * c + b * d);
-            i_out = scale * (b * c - a * d);
+            store(r_out, i_out, scale * (a * c + b * d), scale * (b * c - a * d));
         }
     };
     
@@ -277,8 +276,7 @@ namespace impl
         template<class T>
         void operator()(T& r_out, T& i_out, const T& a, const T& b, const T& c, const T& d, const T& scale, uintptr_t i)
         {
-            r_out = scale * (a * c - b * d);
-            i_out = scale * (a * d + b * c);
+            store(r_out, i_out, scale * (a * c - b * d), scale * (b * c + a * d));
         }
     };
     
