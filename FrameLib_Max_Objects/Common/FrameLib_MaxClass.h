@@ -1724,19 +1724,17 @@ private:
         if (!isRealtime() || !dspSetBroken(mDSPObject))
         {
             FLObject *object = toFLObject(src);
-
-            if (object && object->getContext() != mObject->getContext())
-            {
-                if (object->getType() == kScheduler || object->getNumAudioChans())
-                    mGlobal->addContextToResolve(object->getContext(), src);
-            }
-            else
+            bool objectHandlesAudio = object && (object->getType() == kScheduler || object->getNumAudioChans());
+            
+            if (!objectHandlesAudio || object->getContext() == mObject->getContext())
             {
                 if (type == JPATCHLINE_CONNECT)
                     connect(MaxConnection(src, srcout), dstin);
                 else
                     disconnect(MaxConnection(src, srcout), dstin);
             }
+            else
+                mGlobal->addContextToResolve(object->getContext(), src);
         }
         
         return MAX_ERR_NONE;
