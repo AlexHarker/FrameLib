@@ -97,7 +97,7 @@ struct FrameLib_MaxClass_Expression_Parsed : public FrameLib_MaxClass_Expand<Fra
     FrameLib_MaxClass(parsed.symbol(), parsed.count(), parsed.args(), new FrameLib_MaxProxy()) {}
 };
 
-// Max Class (inherits from the parsed version which inherits the standard max class
+// Max Class (inherits from the parsed version which inherits the standard max class)
 
 struct FrameLib_MaxClass_Expression : public FrameLib_MaxClass_Expression_Parsed
 {
