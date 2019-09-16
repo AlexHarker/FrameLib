@@ -14,6 +14,7 @@
 
 #include <string>
 #include <deque>
+#include <tuple>
 #include <vector>
 #include <unordered_map>
 
@@ -37,6 +38,14 @@ struct FrameLib_MaxNRTAudio
 
 class FrameLib_MaxGlobals : public MaxClass_Base
 {
+    
+public:
+    
+    using Lock = FrameLib_SpinLock;
+    using LockHold = FrameLib_SpinLockHolder;
+    
+private:
+    
     struct Hash
     {
         size_t operator()(void *a, void*b) const
@@ -60,7 +69,7 @@ class FrameLib_MaxGlobals : public MaxClass_Base
     };
     
     using RefKey = std::pair<t_object *, t_symbol *>;
-    using RefData = std::pair<RefKey, int>;
+    using RefData = std::tuple<RefKey, int, Lock>;
     using RefMap = std::unordered_map<RefKey, std::unique_ptr<RefData>, Hash>;
     using ResolveMap = std::unordered_map<FrameLib_Context, t_object *, Hash>;
     
@@ -231,13 +240,15 @@ public:
         if (!item)
             item.reset(new RefData(RefKey(patch, name), 1));
         else
-            item->second++;
+            std::get<1>(*item)++;
         
         return FrameLib_Context(realtime ? mRTGlobal : mNRTGlobal, item.get());
     }
     
-    void retainContext(FrameLib_Context c)      { data(c).second++; }
-    void releaseContext(FrameLib_Context c)     { if (--data(c).second == 0) mContextRefs.erase(data(c).first); }
+    void retainContext(FrameLib_Context c)      { data<1>(c)++; }
+    void releaseContext(FrameLib_Context c)     { if (--data<1>(c) == 0) mContextRefs.erase(data<0>(c)); }
+    
+    Lock *contextLock(FrameLib_Context c)       { return &data<2>(c); }
     
     bool isRealtimeContext(FrameLib_Context c)  { return c.getGlobal() == mRTGlobal; }
     
@@ -264,9 +275,10 @@ private:
         x->mUnresolvedContexts.clear();
     }
     
-    RefData& data(FrameLib_Context context)
+    template <size_t N>
+    typename std::tuple_element<N, RefData>::type& data(FrameLib_Context context)
     {
-        return *static_cast<RefData *>(context.getReference());
+        return std::get<N>(*static_cast<RefData *>(context.getReference()));
     }
     
     // Generate some relevant thread priorities
@@ -685,7 +697,8 @@ class FrameLib_MaxClass : public MaxClass_Base
     using FLObject = FrameLib_Multistream;
     using FLConnection = FrameLib_Object<FLObject>::Connection;
     using MaxConnection = FrameLib_MaxGlobals::MaxConnection;
-
+    using LockHold = FrameLib_MaxGlobals::LockHold;
+    
     struct ConnectionConfirmation
     {
         ConnectionConfirmation(MaxConnection connection, long inIdx)
@@ -1159,7 +1172,10 @@ public:
     void reset(def_double sampleRate = 0.0)
     {
         if (!isRealtime())
+        {
+            LockHold lock(mGlobal->contextLock(mObject->getContext()));
             resolveNRTGraph(sampleRate > 0.0 ? sampleRate.mValue : sys_getsr(), true);
+        }
     }
     
     void process(t_atom_long length)
@@ -1170,6 +1186,8 @@ public:
         if (!updateLength || isRealtime())
             return;
         
+        LockHold lock(mGlobal->contextLock(mObject->getContext()));
+
         resolveNRTGraph(0.0, false);
         
         // Retrieve all the audio objects in a list
@@ -1510,7 +1528,10 @@ private:
         if (isRealtime())
             resolveGraph(true);
         else
+        {
+            LockHold lock(mGlobal->contextLock(mObject->getContext()));
             resolveNRTGraph(0.0, false);
+        }
     }
     
     // Convert from framelib object to max object and vice versa
