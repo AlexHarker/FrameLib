@@ -739,8 +739,15 @@ public:
         {
             addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::reset>(c, "reset");
             addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::process>(c, "process");
-            
+
+            addMethod(c, (method) &FrameLib_MaxClass<T>::dblclick, "dblclick");
             addMethod(c, (method) &extFindAudio, "__fl.find_audio_objects");
+
+            class_addmethod(c, (method) &codeExport, "export", A_SYM, A_SYM, 0);
+
+            dspInit(c);
+            
+            CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mBuffer);
         }
         
         addMethod(c, (method) &extPatchLineUpdate, "patchlineupdate");
@@ -758,16 +765,6 @@ public:
         addMethod(c, (method) &extConnectionUpdate, "__fl.connection_update");
         addMethod(c, (method) &extGetFLObject, "__fl.get_framelib_object");
         addMethod(c, (method) &extGetUserObject, "__fl.get_user_object");
-        
-        class_addmethod(c, (method) &codeExport, "export", A_SYM, A_SYM, 0);
-        
-        if (T::handlesAudio())
-        {
-            dspInit(c);
-
-            addMethod(c, (method) &FrameLib_MaxClass<T>::dblclick, "dblclick");
-            CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mBuffer);
-        }
     }
 
     // Check if a patch in memory matches a symbol representing a path
