@@ -404,11 +404,12 @@ public:
     
     // Initialise Class
     
-    static method *sigMethodCache()
+    template <int>
+    static method *methodCache()
     {
-        static method sigMethod;
+        static method theMethod;
         
-        return &sigMethod;
+        return &theMethod;
     }
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
@@ -420,18 +421,20 @@ public:
         addMethod<Wrapper<T>, &Wrapper<T>::sync>(c, "sync");
         addMethod<Wrapper<T>, &Wrapper<T>::dsp>(c);
 
+        // N.B. MUST add signal handling after dspInit to override the builtin responses
+        
+        dspInit(c);
+        *methodCache<0>() = class_method(c, gensym("signal"));
+        *methodCache<1>() = class_method(c, gensym("userconnect"));
+        addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "signal");
+        
         addMethod(c, (method) &dblclick, "dblclick");
+        addMethod(c, (method) &userConnect, "userconnect");
         addMethod(c, (method) &patchLineUpdate, "patchlineupdate");
         addMethod(c, (method) &connectionAccept, "connectionaccept");
         addMethod(c, (method) &unwrap, "__fl.wrapper_unwrap");
         addMethod(c, (method) &isWrapper, "__fl.wrapper_is_wrapper");
 
-        // N.B. MUST add signal handling after dspInit to override the builtin responses
-        
-        dspInit(c);
-        *sigMethodCache() = class_method(c, gensym("signal"));
-        addMethod<Wrapper<T>, &Wrapper<T>::anything>(c, "signal");
-        
         // Make sure the mutator class exists
         
         const char mutatorClassName[] = "__fl.signal.mutator";
@@ -575,7 +578,7 @@ public:
         // Set the order of the wrapper after the owned object by doing this before calling internal sync
         
         if (isRealtime())
-            (*sigMethodCache())(this);
+            (*methodCache<0>())(this);
         
         object()->sync();
     }
@@ -650,6 +653,12 @@ public:
     static void *isWrapper(Wrapper *x)
     {
         return (void *) 1;
+    }
+    
+    static void userConnect(Wrapper *x)
+    {
+        if (x->isRealtime())
+            (*methodCache<1>())(x);
     }
     
 private:
@@ -769,8 +778,6 @@ public:
         addMethod(c, (method) &extMarkUnresolved, "__fl.mark_unresolved");
         addMethod(c, (method) &extAutoOrderingConnections, "__fl.auto_ordering_connections");
         addMethod(c, (method) &extClearAutoOrderingConnections, "__fl.clear_auto_ordering_connections");
-        addMethod(c, (method) &extGetDSPObject, "__fl.get_dsp_object");
-        addMethod(c, (method) &extSetDSPObject, "__fl.set_dsp_object");
         addMethod(c, (method) &extReset, "__fl.reset");
         addMethod(c, (method) &extIsConnected, "__fl.is_connected");
         addMethod(c, (method) &extConnectionConfirm, "__fl.connection_confirm");
@@ -870,7 +877,6 @@ public:
     , mConfirmation(nullptr)
     , mContextPatch(contextPatcher(gensym("#P")->s_thing))
     , mUserObject(detectUserObjectAtLoad())
-    , mDSPObject(nullptr)
     , mSpecifiedStreams(1)
     , mRealtime(handlesAudio() ? detectRealtime(argc, argv) : false)
     , mConnectionsUpdated(false)
@@ -944,12 +950,9 @@ public:
         if (isRealtime())
         {
             if (handlesAudio())
-            {
                 dspFree();
-                traversePatch(gensym("__fl.set_dsp_object"), static_cast<void *>(nullptr));
-            }
             else
-                dspSetBroken(mDSPObject);
+                dspSetBroken();
         }
         
         mGlobal->releaseContext(mObject->getContext());
@@ -1250,10 +1253,7 @@ public:
         FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), getType() == kOutput);
        
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && !mResolved)
-        {
             resolveGraph(false, true);
-            traversePatch(gensym("__fl.set_dsp_object"), this);
-        }
         
         if (action == FrameLib_MaxGlobals::SyncCheck::kAttachAndSync)
             outlet_anything(mSyncIn.get(), gensym("signal"), 0, nullptr);
@@ -1349,16 +1349,6 @@ public:
         x->mResolved = false;
     }
     
-    static void extSetDSPObject(FrameLib_MaxClass *x, t_object *object)
-    {
-        x->mDSPObject = object;
-    }
-    
-    static t_object *extGetDSPObject(FrameLib_MaxClass *x)
-    {
-        return x->mDSPObject;
-    }
-    
     static void extAutoOrderingConnections(FrameLib_MaxClass *x)
     {
         x->mObject->autoOrderingConnections();
@@ -1425,11 +1415,8 @@ private:
             if (const double *values = mObject->getFixedInput(i, &size))
                 newObject->setFixedInput(i, values, size);
                 
-        if (isRealtime() && !mDSPObject)
-            mDSPObject = objectMethod<t_object *>(object, gensym("__fl.get_dsp_object"));
-        
-        dspSetBroken(mDSPObject);
-        mDSPObject = nullptr;
+        if (mRealtime || mGlobal->isRealtimeContext(current))
+            dspSetBroken();
         
         mGlobal->retainContext(context);
         mGlobal->releaseContext(current);
@@ -1489,7 +1476,7 @@ private:
     
     bool resolveGraph(bool markUnresolved, bool forceRealtime = false)
     {
-        if (!forceRealtime && isRealtime() && mDSPObject && sys_getdspobjdspstate(mDSPObject))
+        if (!forceRealtime && isRealtime() && dspIsRunning())
             return false;
         
         t_ptr_int updated = false;
@@ -1721,7 +1708,7 @@ private:
         if (!isOrderingInput(dstin) && !validInput(dstin))
             return MAX_ERR_NONE;
 
-        if (!isRealtime() || !dspSetBroken(mDSPObject))
+        if (!isRealtime() || !dspSetBroken())
         {
             FLObject *object = toFLObject(src);
             bool objectHandlesAudio = object && (object->getType() == kScheduler || object->getNumAudioChans());
@@ -2026,7 +2013,6 @@ private:
     
     t_object *mContextPatch;
     t_object *mUserObject;
-    t_object *mDSPObject;
     
     unsigned long mSpecifiedStreams;
 

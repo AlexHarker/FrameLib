@@ -191,21 +191,23 @@ public:
     
     void dspFree() { dsp_free(&mObject); }
     
-    bool dspSetBroken(t_object *object)
+    bool dspIsRunning()
     {
-        if (object && sys_getdspobjdspstate(object))
-        {
-            short loadupdate = dsp_setloadupdate(false);
-            dsp_setloadupdate(loadupdate);
+        return (bool) dspchain_fromobject(*this);
+    }
+    
+    bool dspSetBroken()
+    {
+        t_dspchain *chain = dspchain_fromobject(*this);
         
-            if (loadupdate)
-            {
-                dspchain_setbroken(dspchain_fromobject(object));
-                return true;
-            }
-        }
+        short loadupdate = dsp_setloadupdate(false);
+        dsp_setloadupdate(loadupdate);
         
-        return false;
+        if (!loadupdate || !chain)
+            return false;
+      
+        dspchain_setbroken(chain);
+        return true;
     }
     
     long getInlet() { return proxy_getinlet(*this); }
