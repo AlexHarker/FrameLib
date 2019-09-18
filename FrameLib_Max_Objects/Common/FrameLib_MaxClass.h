@@ -891,7 +891,7 @@ public:
             argv++;
         }
         
-        // Deal with attributes for non-realtime objects (and to correctly report issues otherwise
+        // Deal with attributes for non-realtime objects (and to correctly report issues otherwise)
         
         attr_args_process(this, argc, argv);
         argc = attr_args_offset(argc, argv);
