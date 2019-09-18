@@ -1406,10 +1406,8 @@ private:
         mResolved = false;
         
         mGlobal->pushToQueue(*this);
-
-        FrameLib_Parameters::AutoSerial serialisedParams(*mObject->getSerialised());
         
-        T *newObject = new T(context, &serialisedParams, mFrameLibProxy.get(), mSpecifiedStreams);
+        T *newObject = new T(context, mObject->getSerialised(), mFrameLibProxy.get(), mSpecifiedStreams);
         
         for (unsigned long i = 0; i < getNumIns(); i++)
             if (const double *values = mObject->getFixedInput(i, &size))
