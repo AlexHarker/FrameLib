@@ -1776,13 +1776,13 @@ private:
     
     // Parameter Parsing
     
-    unsigned long safeCount(char *str, unsigned long maxCount)
+    static unsigned long safeCount(char *str, unsigned long maxCount)
     {
         unsigned long number = std::max(1, atoi(str));
         return std::min(maxCount, number);
     }
     
-    long getStreamCount(t_atom *a)
+    static long getStreamCount(t_atom *a)
     {
         if (atom_gettype(a) == A_SYM)
         {
@@ -1795,12 +1795,12 @@ private:
         return 0;
     }
     
-    bool isParameterTag(t_symbol *sym)
+    static bool isParameterTag(t_symbol *sym)
     {        
         return strlen(sym->s_name) > 1 && sym->s_name[0] == '/';
     }
     
-    bool isInputTag(t_symbol *sym)
+    static bool isInputTag(t_symbol *sym)
     {
         size_t len = strlen(sym->s_name);
         
@@ -1810,7 +1810,7 @@ private:
         return false;
     }
     
-    bool isTag(t_atom *a)
+    static bool isTag(t_atom *a)
     {
         t_symbol *sym = atom_getsym(a);
         return isParameterTag(sym) || isInputTag(sym);
@@ -1918,7 +1918,7 @@ private:
     
     // Input Parsing
     
-    unsigned long inputNumber(t_symbol *sym)
+    static unsigned long inputNumber(t_symbol *sym)
     {
         return safeCount(sym->s_name + 1, 16384) - 1;
     }
