@@ -11,6 +11,12 @@ public:
     
     ArgumentParser(t_symbol *s, long argc, t_atom *argv) : mSymbol(s)
     {
+        if (argc && isStreamSpecifier(argv))
+        {
+            argc--;
+            mArgs.push_back(*argv++);
+        }
+        
         concatenate(argc, argv);
         
         while (argc--)
@@ -28,12 +34,30 @@ public:
 
 private:
     
+    // Stream Specifier Detector
+    
+    bool isStreamSpecifier(t_atom *a)
+    {
+        if (atom_gettype(a) == A_SYM)
+        {
+            t_symbol *sym = atom_getsym(a);
+            return strlen(sym->s_name) > 1 && sym->s_name[0] == '=';
+        }
+        
+        return false;
+    }
+    
     // Tag Detection
 
     bool isValidTag(t_atom *a)
     {
         t_symbol *sym = atom_getsym(a);
         size_t len = strlen(sym->s_name);
+        
+        // Attribute
+        
+        if (len > 1 && sym->s_name[0] == '@')
+            return true;
         
         // Input tag
         
