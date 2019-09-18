@@ -119,7 +119,7 @@ void FrameLib_FromHost::Proxy::copyData(void *streamOwner, unsigned long stream)
 
 // Constructor
 
-FrameLib_FromHost::FrameLib_FromHost(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1), mProxy(dynamic_cast<Proxy *>(proxy)), mStreamOwner(this), mStream(0)
+FrameLib_FromHost::FrameLib_FromHost(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1), mProxy(dynamic_cast<Proxy *>(proxy)), mStreamOwner(this), mStream(0)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kValues, "values");

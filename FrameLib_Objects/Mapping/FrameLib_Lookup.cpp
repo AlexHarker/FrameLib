@@ -1,7 +1,7 @@
 
 #include "FrameLib_Lookup.h"
 
-FrameLib_Lookup::FrameLib_Lookup(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 2, 1)
+FrameLib_Lookup::FrameLib_Lookup(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 2, 1)
 {
     // FIX - loads of different mode options here (mapping of positions + padding values
     

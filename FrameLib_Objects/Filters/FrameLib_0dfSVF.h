@@ -55,7 +55,7 @@ class FrameLib_0dfSVF final : public FrameLib_Processor
 
 public:
 
-    FrameLib_0dfSVF(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_0dfSVF(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     

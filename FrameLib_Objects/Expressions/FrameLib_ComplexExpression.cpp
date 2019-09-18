@@ -284,7 +284,7 @@ void FrameLib_ComplexExpression::ConstantOut::process()
 
 // Constructor
 
-FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mParameters(context, proxy, &sParamInfo)
+FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Block(kProcessor, context, proxy), mParameters(context, proxy, &sParamInfo)
 {
     typedef FrameLib_ExprParser::Graph<std::complex<double>> Graph;
     typedef FrameLib_Block::Connection Connection;

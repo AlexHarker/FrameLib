@@ -5,7 +5,7 @@
 
 // Constructor
 
-FrameLib_Route::Valve::Valve(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long num) : FrameLib_Processor(context, proxy, nullptr, 2, 1), mValveNumber(num)
+FrameLib_Route::Valve::Valve(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long num) : FrameLib_Processor(context, proxy, nullptr, 2, 1), mValveNumber(num)
 {
     mParameters.addInt(kActiveValve, "output", 0);
 
@@ -39,7 +39,7 @@ void FrameLib_Route::Valve::process()
 
 // Constructor
 
-FrameLib_Route::FrameLib_Route(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+FrameLib_Route::FrameLib_Route(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
 : FrameLib_Block(kProcessor, context, proxy), mParameters(context, proxy, &sParamInfo)
 {
     mParameters.addDouble(kNumOuts, "num_outs", 2, 0);

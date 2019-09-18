@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Split::FrameLib_Split(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 2)
+FrameLib_Split::FrameLib_Split(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 2)
 {
     mParameters.addDouble(kSplit, "split", 0.0, 0);
     mParameters.setMin(0.0);

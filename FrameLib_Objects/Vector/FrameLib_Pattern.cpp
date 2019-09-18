@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Pattern::FrameLib_Pattern(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mPosition(0)
+FrameLib_Pattern::FrameLib_Pattern(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mPosition(0)
 {
     mParameters.addEnum(kMode, "mode");
     mParameters.addEnumItem(kOnce, "once");

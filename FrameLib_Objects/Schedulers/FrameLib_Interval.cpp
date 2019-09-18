@@ -1,7 +1,7 @@
 
 #include "FrameLib_Interval.h"
 
-FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Scheduler(context, proxy, &sParamInfo, 1, 1)
+FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Scheduler(context, proxy, &sParamInfo, 1, 1)
 {
     mParameters.addDouble(kInterval, "interval", 64, 0);
     mParameters.setMin(0);

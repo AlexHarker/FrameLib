@@ -4,7 +4,7 @@
 
 // Constructor
 
-FrameLib_AccumPoint::FrameLib_AccumPoint(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_AccumPoint::FrameLib_AccumPoint(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addDouble(kPercentage, "percentage", 50.0, 0);
     mParameters.setClip(0.0, 100.0);

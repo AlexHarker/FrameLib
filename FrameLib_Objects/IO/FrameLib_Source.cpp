@@ -5,7 +5,7 @@
 
 // Constructor
 
-FrameLib_Source::FrameLib_Source(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_AudioInput(context, proxy, &sParamInfo, 2, 1, 1)
+FrameLib_Source::FrameLib_Source(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_AudioInput(context, proxy, &sParamInfo, 2, 1, 1)
 {
     // FIX - defaults for when the units are not in samples!
     

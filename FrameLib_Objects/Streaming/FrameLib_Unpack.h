@@ -18,7 +18,7 @@ public:
 
     const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
     
-    FrameLib_Unpack(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams);
+    FrameLib_Unpack(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams);
     
     // Set Fixed Inputs
     

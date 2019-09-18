@@ -4,7 +4,7 @@
 
 // Constructor
 
-FrameLib_CoordinateSystem::FrameLib_CoordinateSystem(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+FrameLib_CoordinateSystem::FrameLib_CoordinateSystem(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
 {
     mParameters.addEnum(kMode, "mode");
     mParameters.addEnumItem(kPolarToCartesian, "polar->cartesian");

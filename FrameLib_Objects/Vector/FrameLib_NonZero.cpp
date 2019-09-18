@@ -2,7 +2,7 @@
 
 // Constructor
 
-FrameLib_NonZero::FrameLib_NonZero(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 1, 1)
+FrameLib_NonZero::FrameLib_NonZero(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 1, 1)
 {}
 
 // Info

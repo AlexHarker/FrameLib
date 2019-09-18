@@ -1,7 +1,7 @@
 
 #include "FrameLib_TimeStdDev.h"
 
-FrameLib_TimeStdDev::FrameLib_TimeStdDev(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_TimeBuffer<FrameLib_TimeStdDev>(context, serialisedParameters, proxy), mSum(nullptr), mCompensate(nullptr), mSqSum(nullptr), mSqCompensate(nullptr)
+FrameLib_TimeStdDev::FrameLib_TimeStdDev(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_TimeBuffer<FrameLib_TimeStdDev>(context, serialisedParameters, proxy), mSum(nullptr), mCompensate(nullptr), mSqSum(nullptr), mSqCompensate(nullptr)
 {
 }
 

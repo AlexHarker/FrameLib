@@ -128,7 +128,7 @@ public:
     
     const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
 
-    FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
+    FrameLib_Expand(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
     : FrameLib_Multistream(T::getType(), context, proxy, nStreams), mSerialisedParameters(serialisedParameters ? serialisedParameters->size() : 0)
     {
         // Make first block
