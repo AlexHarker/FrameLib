@@ -19,31 +19,28 @@ You will need to download Xcode. Building has been tested on version 9.4.1. The 
 
 Note you may need an account to get the older versions of xcode.
 
-### Installing Python 3.6+
+### Installing Dependencies
 
 A large part of the project uses Python to generate and parse XML files as well as form `.json` and `.txt` references. MacOS version 10.14 and lower come preinstalled with Python 2 but this project is written using Python 3. As such, you will need to install a new version of Python. 
 
-THe easiest way to do this is to use a package manager like `brew` which not only manages the install and updates but will create all the useful symlinks and aliases for the python executables and pip.
+THe easiest way to do this is to use a package manager like `brew` or `macports` which not only manage the install and updates but will create all the useful symlinks and aliases for the python executables and pip.
 
 The website and guide on installing brew can be found here: 
 
 https://brew.sh
 
-To install brew copy this command into your shell: 
+If you don't want to install `brew` to manage your python install, or you already have it managed another way then you will need to make sure that python version 3 can be called by invoking the command `python3` from your terminal. As a last resort you can modify the build settings for the xcode project scheme 'Documentation'. You will want to modify the pre and post shell commands and the syntax that is used for calling on Python.
 
-`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+Once you have Python configured you will need to install the FrameLibDocs package using `pip`. Usually, `pip` for your Python 3 installation is aliased to the command `pip3` so the following commands refer to that usage.
 
-Once brew is installed you can install python by running the command: 
+`cd` into FrameLib/Documentation/Max Documentation
+`pip3 install -e FrameLibDocs`
 
-`brew install python3`
-
-This will create the alias `python3` to your python 3 executable. This is essential as the Xcode project will ask your shell
-
-If you don't want to install brew to manage your python install, or you already have it managed another way then you will need to make sure that python version 3 can be called by invoking the command `python3` from your terminal. As a last resort you can modify the build settings for the xcode project scheme 'Documentation'. You will want to modify the pre and post shell commands and the language that is used for calling on python.
+This installs the FrameLibDocs in an editable mode, meaning you can make edits to the package for your own purpose without having to reinstall it everytime a change is mode. If you aren't interested in making changes then you can simply run the command and forget about it.
 
 ### Building
 
-Once you have a working version of Xcode 9.4.1 and Python 3.6+ there are a few options to build.
+Once you have a working version of Xcode 9.4.1 and Python 3 there are a few options to build.
 
 The easiest way is to open the `framelib~-documentation.xcodeproj` and build (Cmd + B) the 'Documentation' scheme. Alternatively you can execute the build from the command-line assuming you have the xcode command line tools installed. The command for doing so is:
 
