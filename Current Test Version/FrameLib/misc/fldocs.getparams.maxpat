@@ -39,34 +39,6 @@
 		"subpatcher_template" : "nobars",
 		"boxes" : [ 			{
 				"box" : 				{
-					"fontface" : 2,
-					"fontname" : "Lato Regular",
-					"fontsize" : 12.0,
-					"id" : "obj-20",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 25.0, 146.0, 260.0, 21.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 4.0, 30.0, 320.0, 21.0 ],
-					"text" : "Select Parameter to Display Information"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-7",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 141.0, 70.0, 48.0, 22.0 ],
-					"text" : "fl.map~"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-2",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -94,15 +66,15 @@
 					"fontname" : "Lato Regular",
 					"fontsize" : 13.0,
 					"id" : "obj-127",
-					"items" : [ "1. /mode [enum]", ",", "2. /inlo [double]", ",", "3. /inhi [double]", ",", "4. /outlo [double]", ",", "5. /outhi [double]", ",", "6. /exponent [double]", ",", "7. /clip [bool]" ],
+					"items" : [ "0. /mode [enum]", ",", "1. /inlo [double]", ",", "2. /inhi [double]", ",", "3. /outlo [double]", ",", "4. /outhi [double]", ",", "5. /exponent [double]", ",", "6. /clip [bool]" ],
 					"maxclass" : "umenu",
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "", "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 10.0, 157.000000000000028, 267.0, 24.0 ],
+					"patching_rect" : [ 10.0, 157.000000000000028, 203.0, 24.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 4.0, 53.0, 269.0, 24.0 ]
+					"presentation_rect" : [ 4.0, 31.000000000000028, 221.0, 24.0 ]
 				}
 
 			}
@@ -117,7 +89,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 10.0, 181.0, 171.0, 23.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 4.0, 80.999999999999972, 157.0, 23.0 ],
+					"presentation_rect" : [ 4.0, 59.0, 171.0, 23.0 ],
 					"text" : "Parameter Description:"
 				}
 
@@ -151,15 +123,15 @@
 					"fontname" : "Lato Regular",
 					"fontsize" : 13.0,
 					"id" : "obj-91",
-					"linecount" : 16,
+					"linecount" : 15,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 356.0, 312.0, 408.833333333333258, 256.0 ],
+					"patching_rect" : [ 10.0, 204.333333333333343, 470.0, 240.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 14,
-					"presentation_rect" : [ 4.0, 104.999999999999972, 618.0, 225.0 ],
-					"text" : "Sets the type of output scaling: linear / log / exp - scaling as specified. pow - scale the input range to [0-1], apply the specified exponent and then scale to the output range. db / invdb - output / input respectively are set in dB but scaled as gain values. transpose / invtranspose - output / input respectively are set in semitones but scaled as ratios for transposition.\n\nParameter Options:\n[0] - linear\n[1] - log\n[2] - exp\n[3] - pow\n[4] - db\n[5] - invdb\n[6] - transpose\n[7] - invtranspose"
+					"presentation_rect" : [ 4.0, 83.0, 614.0, 225.0 ],
+					"text" : "Sets the type of output scaling: linear / log / exp - scaling as specified. pow - scale the input range to [0-1], apply the specifiedexponent and then scale to the output range. db / invdb - output / input respectively are set in dB but scaled as gain values. transpose / invtranspose - output / input respectively are set in semitones but scaled as ratios for transposition.\n\nParameter Options:\n[0] - linear\n[1] - log\n[2] - exp\n[3] - pow\n[4] - db\n[5] - invdb\n[6] - transpose\n[7] - invtranspose"
 				}
 
 			}
@@ -218,8 +190,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 9.5, 341.0, 101.0, 22.0 ],
-					"text" : "sprintf get %s::%i"
+					"patching_rect" : [ 9.5, 341.0, 105.0, 22.0 ],
+					"text" : "sprintf get %s::%s"
 				}
 
 			}
@@ -288,7 +260,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 590.0, 235.0, 850.0, 589.0 ],
+						"rect" : [ 649.0, 235.0, 850.0, 589.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -959,9 +931,9 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 10.0, 131.0, 321.833333333333314, 23.0 ],
+					"patching_rect" : [ 10.0, 131.0, 130.0, 23.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 4.0, 5.0, 396.0, 23.0 ],
+					"presentation_rect" : [ 4.0, 5.0, 129.0, 23.0 ],
 					"text" : "Object Parameters:"
 				}
 
@@ -1037,7 +1009,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-91", 0 ],
-					"midpoints" : [ 71.5, 123.0, 6.0, 123.0, 6.0, 198.0, 365.5, 198.0 ],
+					"midpoints" : [ 71.5, 123.0, 6.0, 123.0, 6.0, 198.0, 19.5, 198.0 ],
 					"source" : [ "obj-50", 1 ]
 				}
 
@@ -1072,13 +1044,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-50", 0 ],
-					"source" : [ "obj-7", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-104", 0 ],
 					"source" : [ "obj-71", 1 ]
 				}
@@ -1108,7 +1073,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-91", 0 ],
-					"midpoints" : [ 156.333333333333314, 582.0, 6.0, 582.0, 6.0, 198.0, 365.5, 198.0 ],
+					"midpoints" : [ 156.333333333333314, 582.0, 6.0, 582.0, 6.0, 198.0, 19.5, 198.0 ],
 					"source" : [ "obj-89", 0 ]
 				}
 

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 77.0, 139.0, 818.0, 272.0 ],
+		"rect" : [ 77.0, 139.0, 620.0, 157.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -99,7 +99,7 @@
 , 			{
 				"box" : 				{
 					"border" : 0,
-					"filename" : "fl.helpdetails.js",
+					"filename" : "helpdetails.js",
 					"id" : "obj-130",
 					"ignoreclick" : 1,
 					"jsarguments" : [ "fl.map~" ],
