@@ -106,7 +106,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1126.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 1126.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -198,7 +198,7 @@
 													"fontsize" : 13.0,
 													"id" : "obj-33",
 													"maxclass" : "newobj",
-													"numinlets" : 1,
+													"numinlets" : 2,
 													"numoutlets" : 3,
 													"outlettype" : [ "", "", "" ],
 													"patching_rect" : [ 88.0, 76.87451171875, 153.0, 23.0 ],
@@ -3356,8 +3356,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4410,8 +4410,8 @@
 , 															{
 																"name" : "newobjYellow-1",
 																"default" : 																{
-																	"fontsize" : [ 12.059008 ],
-																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+																	"fontsize" : [ 12.059008 ]
 																}
 ,
 																"parentstyle" : "",
@@ -4600,8 +4600,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -5086,8 +5086,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -5802,8 +5802,8 @@
 , 															{
 																"name" : "newobjYellow-1",
 																"default" : 																{
-																	"fontsize" : [ 12.059008 ],
-																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+																	"fontsize" : [ 12.059008 ]
 																}
 ,
 																"parentstyle" : "",
@@ -5992,8 +5992,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -6458,8 +6458,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -7170,8 +7170,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"fontsize" : [ 12.059008 ],
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+													"fontsize" : [ 12.059008 ]
 												}
 ,
 												"parentstyle" : "",
@@ -7689,8 +7689,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -8652,8 +8652,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -9113,8 +9113,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -9161,7 +9161,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 1126.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1126.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -9198,7 +9198,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 703.75, 239.0, 105.0, 36.0 ],
+									"patching_rect" : [ 721.75, 333.0, 105.0, 36.0 ],
 									"text" : "Minimum: 0\nMaximum: 8820",
 									"textcolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
 								}
@@ -9211,7 +9211,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 703.75, 333.0, 162.0, 21.0 ],
+									"patching_rect" : [ 721.75, 427.0, 162.0, 21.0 ],
 									"text" : "The output of fl.ramp~"
 								}
 
@@ -9226,7 +9226,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 703.75, 239.0, 314.0, 92.0 ],
+									"patching_rect" : [ 721.75, 333.0, 314.0, 92.0 ],
 									"setminmax" : [ 0.0, 8820.0 ],
 									"size" : 8820
 								}
@@ -9239,7 +9239,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 703.75, 210.0, 58.0, 22.0 ],
+									"patching_rect" : [ 721.75, 304.0, 58.0, 22.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -9308,7 +9308,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 745.75, 166.0, 37.25, 15.0 ]
+									"patching_rect" : [ 763.75, 260.0, 37.25, 15.0 ]
 								}
 
 							}
@@ -9319,7 +9319,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 785.0, 161.0, 275.0, 21.0 ],
+									"patching_rect" : [ 803.0, 255.0, 275.0, 21.0 ],
 									"text" : "Extract the samples from a buffer with fl.read~"
 								}
 
@@ -9339,7 +9339,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 554.75, 239.0, 43.0, 92.0 ],
+									"patching_rect" : [ 572.75, 333.0, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -9353,7 +9353,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 825.75, 113.0, 37.25, 15.0 ]
+									"patching_rect" : [ 843.75, 207.0, 37.25, 15.0 ]
 								}
 
 							}
@@ -9365,7 +9365,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 865.0, 101.5, 215.0, 36.0 ],
+									"patching_rect" : [ 883.0, 195.5, 215.0, 36.0 ],
 									"text" : "How long will the grain be (200 milliseconds converted to samples)"
 								}
 
@@ -9379,7 +9379,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 673.75, 53.5, 37.25, 15.0 ]
+									"patching_rect" : [ 691.75, 147.5, 37.25, 15.0 ]
 								}
 
 							}
@@ -9391,7 +9391,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 713.0, 36.0, 156.0, 50.0 ],
+									"patching_rect" : [ 731.0, 130.0, 156.0, 50.0 ],
 									"text" : "How often are we generating a new grain (Every 500 milliseconds)"
 								}
 
@@ -9404,7 +9404,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 554.75, 50.0, 117.0, 23.0 ],
+									"patching_rect" : [ 572.75, 144.0, 117.0, 23.0 ],
 									"text" : "fl.interval~ 500 ms"
 								}
 
@@ -9416,7 +9416,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 554.75, 339.5, 45.0, 45.0 ]
+									"patching_rect" : [ 572.75, 433.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -9428,7 +9428,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 554.75, 210.0, 52.0, 23.0 ],
+									"patching_rect" : [ 572.75, 304.0, 52.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -9441,7 +9441,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 554.75, 161.0, 189.0, 23.0 ],
+									"patching_rect" : [ 572.75, 255.0, 189.0, 23.0 ],
 									"text" : "fl.read~ myGran /units samples"
 								}
 
@@ -9454,7 +9454,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 554.75, 109.0, 269.0, 23.0 ],
+									"patching_rect" : [ 572.75, 203.0, 269.0, 23.0 ],
 									"text" : "fl.ramp~ /length 200 /units ms /scale samples"
 								}
 
@@ -9467,7 +9467,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 50.0, 530.25, 675.0 ],
+									"patching_rect" : [ 8.75, 50.0, 533.0, 675.0 ],
 									"text" : "Granular synthesis uses the \"grain\" as a unit of sound. These grains are often short and derived from a sample or selection of samples. We're going to use fl.ramp~ and fl.read~ to generate grains in this step.\n\nFirst, we have to consider two things for creating a grain.\n\n1. How often are we going to generate a new grain\n2. How long will the grain be\n\nRemember, nothing in FrameLib happens without a scheduler so the rate at which we schedule trigger frames will control how often a new grain is created.\n\nSecondly, we need to ask fl.read~ for some samples at specific positions. We will use fl.ramp~ for this purpose, an object which generates frames containing consecutive incremental values (0, 1, 2, 3, 4). The frame created by fl.ramp~ is going to be sent to the to the fl.read~ object which interprets these numbers as specific audio samples to retrieve from the buffer it is pointed to. You can think of the relationship between fl.ramp~ and fl.read~ as something very similar to the one bewteen uzi and peek~ for extracting buffer values. \n\n\nThe confusing aspect of this is that although FrameLib would like you to specify everything in samples, it is both musically and logically difficult to conceive of a buffer and time in terms of how many samples will pass. As a result, we are going to specify everything in milliseconds and let FrameLib convert these values to samples auto-magically. This lets us think about everything in durations that make intuitive sense, however, a caveat of working in this way is that we have to tell all of the corresponding objects what kind of units they should expect. Let's break down the example on the right to explain this further.\n\n1. Our scheduler is set to output a trigger frame every 500 milliseconds. That one is easy to understand.\n\n2. fl.ramp~ is going to create a frame which has a length of 200 set by the /length parameter. The /units parameter tells fl.ramp~ how to interpret the length parameter, in this case the object will know we are specifiying 200 milliseconds and not samples. Finally, the /scale parameter dictates how fl.ramp~ should scale its output. The /scale function will remap the output to whatever units of time you would like. The combination of these parameters is effectively asking these three commands: I would like a frame of numbers that relate to samples (/scale), that directly reflect 200 (/length) milliseconds (units) of time. The final result is actually a list which is 8820 samples long at 44.1khz.\n\n3. In this case, fl.ramp~ is providing us with a frame containing sample positions so we tell fl.read~ to interpret the incoming frame as /units samples. In the small snippet to the right, the /scale is set to milliseconds and the /units for fl.read~ are set to milliseconds. This is an equivalent method of patching the fl.ramp~ / fl.read~ combination for creating grains where everything would be specified in millisecond values, rather than samples."
 								}
 
@@ -9511,7 +9511,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 1060.0, 161.0, 20.0, 20.0 ],
+									"patching_rect" : [ 1078.0, 255.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -9532,7 +9532,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 1080.75, 113.0, 20.0, 20.0 ],
+									"patching_rect" : [ 1098.75, 207.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -9553,7 +9553,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 871.0, 53.5, 20.0, 20.0 ],
+									"patching_rect" : [ 889.0, 147.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -9587,7 +9587,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-42", 0 ],
-									"midpoints" : [ 564.25, 147.0, 540.0, 147.0, 540.0, 195.0, 713.25, 195.0 ],
+									"midpoints" : [ 582.25, 241.0, 558.0, 241.0, 558.0, 289.0, 731.25, 289.0 ],
 									"order" : 0,
 									"source" : [ "obj-2", 0 ]
 								}
@@ -9642,8 +9642,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -10096,8 +10096,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -10284,8 +10284,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -10357,45 +10357,45 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-7::obj-15::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
 			"obj-1::obj-15::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
+			"obj-7::obj-15::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
 			"obj-10::obj-6::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-8::obj-15::obj-50" : [ "live.gain~[8]", "Volume", 0 ],
-			"obj-3::obj-15::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
 			"obj-5::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
-			"obj-4::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
+			"obj-3::obj-15::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
+			"obj-8::obj-15::obj-50" : [ "live.gain~[8]", "Volume", 0 ],
 			"obj-6::obj-15::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
+			"obj-4::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-7::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[7]"
-				}
-,
 				"obj-1::obj-15::obj-50" : 				{
 					"parameter_longname" : "live.gain~[2]"
 				}
 ,
-				"obj-8::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[8]"
-				}
-,
-				"obj-3::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[3]"
+				"obj-7::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[7]"
 				}
 ,
 				"obj-5::obj-15::obj-50" : 				{
 					"parameter_longname" : "live.gain~[5]"
 				}
 ,
-				"obj-4::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[4]"
+				"obj-3::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[3]"
+				}
+,
+				"obj-8::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[8]"
 				}
 ,
 				"obj-6::obj-15::obj-50" : 				{
 					"parameter_longname" : "live.gain~[6]"
+				}
+,
+				"obj-4::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[4]"
 				}
 
 			}
@@ -10582,8 +10582,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",

@@ -1031,8 +1031,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1758,8 +1758,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3152,8 +3152,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3565,8 +3565,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4318,8 +4318,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4788,8 +4788,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4861,52 +4861,48 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-4::obj-9::obj-21::obj-6" : [ "live.tab[5]", "live.tab[1]", 0 ],
-			"obj-7::obj-8::obj-21::obj-6" : [ "live.tab[11]", "live.tab[1]", 0 ],
 			"obj-4::obj-9::obj-35" : [ "[6]", "Level", 0 ],
-			"obj-10::obj-9::obj-35" : [ "[5]", "Level", 0 ],
+			"obj-5::obj-4" : [ "live.gain~[2]", "Volume", 0 ],
+			"obj-7::obj-8::obj-21::obj-6" : [ "live.tab[11]", "live.tab[1]", 0 ],
+			"obj-10::obj-23::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
+			"obj-4::obj-40" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-4::obj-23::obj-35" : [ "[7]", "Level", 0 ],
 			"obj-10::obj-9::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
 			"obj-3::obj-23::obj-21::obj-6" : [ "live.tab[9]", "live.tab[1]", 0 ],
-			"obj-10::obj-23::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-10::obj-23::obj-35" : [ "[1]", "Level", 0 ],
-			"obj-5::obj-23::obj-21::obj-6" : [ "live.tab[8]", "live.tab[1]", 0 ],
-			"obj-5::obj-4" : [ "live.gain~[2]", "Volume", 0 ],
-			"obj-7::obj-8::obj-35" : [ "[11]", "Level", 0 ],
 			"obj-10::obj-40" : [ "live.gain~", "Volume", 0 ],
-			"obj-4::obj-23::obj-21::obj-6" : [ "live.tab[6]", "live.tab[1]", 0 ],
-			"obj-3::obj-23::obj-35" : [ "[8]", "Level", 0 ],
+			"obj-5::obj-23::obj-21::obj-6" : [ "live.tab[8]", "live.tab[1]", 0 ],
 			"obj-7::obj-10" : [ "live.gain~[3]", "Volume", 0 ],
-			"obj-4::obj-23::obj-35" : [ "[7]", "Level", 0 ],
-			"obj-4::obj-40" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-7::obj-8::obj-35" : [ "[11]", "Level", 0 ],
+			"obj-10::obj-9::obj-35" : [ "[5]", "Level", 0 ],
+			"obj-4::obj-9::obj-21::obj-6" : [ "live.tab[5]", "live.tab[1]", 0 ],
+			"obj-3::obj-23::obj-35" : [ "[8]", "Level", 0 ],
+			"obj-4::obj-23::obj-21::obj-6" : [ "live.tab[6]", "live.tab[1]", 0 ],
 			"obj-5::obj-23::obj-35" : [ "[9]", "Level", 0 ],
 			"obj-3::obj-10" : [ "live.gain~[4]", "Volume", 0 ],
+			"obj-10::obj-23::obj-35" : [ "[1]", "Level", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-4::obj-9::obj-21::obj-6" : 				{
-					"parameter_longname" : "live.tab[5]"
+				"obj-4::obj-9::obj-35" : 				{
+					"parameter_longname" : "[6]"
 				}
 ,
 				"obj-7::obj-8::obj-21::obj-6" : 				{
 					"parameter_longname" : "live.tab[11]"
 				}
 ,
-				"obj-4::obj-9::obj-35" : 				{
-					"parameter_longname" : "[6]"
-				}
-,
-				"obj-3::obj-23::obj-21::obj-6" : 				{
-					"parameter_longname" : "live.tab[9]"
-				}
-,
 				"obj-10::obj-23::obj-21::obj-6" : 				{
 					"parameter_longname" : "live.tab[4]"
 				}
 ,
-				"obj-10::obj-23::obj-35" : 				{
-					"parameter_longname" : "[1]"
+				"obj-4::obj-23::obj-35" : 				{
+					"parameter_longname" : "[7]"
+				}
+,
+				"obj-3::obj-23::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[9]"
 				}
 ,
 				"obj-5::obj-23::obj-21::obj-6" : 				{
@@ -4917,20 +4913,24 @@
 					"parameter_longname" : "[11]"
 				}
 ,
-				"obj-4::obj-23::obj-21::obj-6" : 				{
-					"parameter_longname" : "live.tab[6]"
+				"obj-4::obj-9::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[5]"
 				}
 ,
 				"obj-3::obj-23::obj-35" : 				{
 					"parameter_longname" : "[8]"
 				}
 ,
-				"obj-4::obj-23::obj-35" : 				{
-					"parameter_longname" : "[7]"
+				"obj-4::obj-23::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[6]"
 				}
 ,
 				"obj-5::obj-23::obj-35" : 				{
 					"parameter_longname" : "[9]"
+				}
+,
+				"obj-10::obj-23::obj-35" : 				{
+					"parameter_longname" : "[1]"
 				}
 
 			}
