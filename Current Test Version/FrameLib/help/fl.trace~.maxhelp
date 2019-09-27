@@ -12,8 +12,8 @@
         "rect": [
             34.0,
             79.0,
-            772.0,
-            937.0
+            662.0,
+            793.0
         ],
         "bglocked": 0,
         "openinpresentation": 0,
@@ -66,8 +66,8 @@
                         "rect": [
                             34.0,
                             105.0,
-                            772.0,
-                            911.0
+                            662.0,
+                            767.0
                         ],
                         "bglocked": 0,
                         "openinpresentation": 0,
@@ -100,6 +100,26 @@
                         "subpatcher_template": "nobars",
                         "showontab": 1,
                         "boxes": [
+                            {
+                                "box": {
+                                    "hidden": 1,
+                                    "id": "obj-1",
+                                    "linecount": 7,
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [
+                                        "bang"
+                                    ],
+                                    "patching_rect": [
+                                        626.0,
+                                        63.0,
+                                        19.0,
+                                        102.0
+                                    ],
+                                    "text": "loadbang"
+                                }
+                            },
                             {
                                 "box": {
                                     "border": 0,
@@ -150,7 +170,7 @@
                                     "lockeddragscroll": 0,
                                     "maxclass": "bpatcher",
                                     "name": "fldocs.getparams.maxpat",
-                                    "numinlets": 0,
+                                    "numinlets": 1,
                                     "numoutlets": 0,
                                     "offset": [
                                         0.0,
@@ -158,7 +178,7 @@
                                     ],
                                     "patching_rect": [
                                         15.0,
-                                        165.0,
+                                        167.0,
                                         630.0,
                                         565.0
                                     ],
@@ -166,7 +186,31 @@
                                 }
                             }
                         ],
-                        "lines": []
+                        "lines": [
+                            {
+                                "patchline": {
+                                    "destination": [
+                                        "obj-128",
+                                        0
+                                    ],
+                                    "hidden": 1,
+                                    "midpoints": [
+                                        635.5,
+                                        168.0,
+                                        657.0,
+                                        168.0,
+                                        657.0,
+                                        166.0,
+                                        24.5,
+                                        166.0
+                                    ],
+                                    "source": [
+                                        "obj-1",
+                                        0
+                                    ]
+                                }
+                            }
+                        ]
                     },
                     "patching_rect": [
                         2.0,
