@@ -71,7 +71,7 @@ def main(root):
                         elem.text = elem.text.replace("!@#@#$", category)  # try to replace specific text with category found in json
                     except AttributeError:
                         pass  # else pass because it will throw some errors
-                        print('Error trying to replace category string.')
+                        # print('Error trying to replace category string.')
                         
             if not os.path.exists(os.path.join(move_to_path, category)):
                 try:
