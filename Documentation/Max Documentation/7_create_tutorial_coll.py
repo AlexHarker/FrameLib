@@ -1,5 +1,18 @@
 import os
+import re
 from FrameLibDocs.utils import cd_up
+
+def try_integer(s):
+    try:
+        return int(s)
+    except ValueError:
+        return s
+
+def alphanum_key(s):
+    """ 
+    Turn a string into a list of string and number chunks.
+    """
+    return [ try_integer(c) for c in re.split('([0-9]+)', s) ]
 
 
 def main(root):
@@ -25,7 +38,7 @@ def main(root):
     for item in all_files:
         if item.startswith("_"):
             tutorial_names.append(item)
-    tutorial_names.sort()
+    tutorial_names.sort(key=alphanum_key)
 
     # Write the contents of tutorial_names to the coll with some f strings
     idx = 0
