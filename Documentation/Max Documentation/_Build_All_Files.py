@@ -10,8 +10,7 @@ from FrameLibDocs.utils import cd_up, get_path, sign_off, space, hyp
 import os
 def main():
 
-    root = cd_up(get_path(), 1)
-    
+    root = cd_up(get_path(), 2)
     sign_off()
     space()
 
