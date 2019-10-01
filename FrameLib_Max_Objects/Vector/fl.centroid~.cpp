@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Centroid>::makeClass(CLASS_BOX, "fl.centroid~");
+    FrameLib_MaxClass_Expand<FrameLib_Centroid>::makeClass("fl.centroid~");
 }

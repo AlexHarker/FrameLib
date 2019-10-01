@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Timer>::makeClass(CLASS_BOX, "fl.timer~");
+    FrameLib_MaxClass_Expand<FrameLib_Timer>::makeClass("fl.timer~");
 }

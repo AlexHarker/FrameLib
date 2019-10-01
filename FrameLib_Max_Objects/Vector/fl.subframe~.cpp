@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Subframe>::makeClass(CLASS_BOX, "fl.subframe~");
+    FrameLib_MaxClass_Expand<FrameLib_Subframe>::makeClass("fl.subframe~");
 }

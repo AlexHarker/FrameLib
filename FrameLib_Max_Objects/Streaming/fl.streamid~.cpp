@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_StreamID>::makeClass(CLASS_BOX, "fl.streamid~");
+    FrameLib_MaxClass_Expand<FrameLib_StreamID>::makeClass("fl.streamid~");
 }

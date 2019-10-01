@@ -36,6 +36,7 @@ xcuserdata/
 
 ## Binaries
 externals/
+maxframelib.mxo/
 *.o
 *.d_fat
 

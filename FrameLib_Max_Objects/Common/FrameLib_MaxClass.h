@@ -1,4 +1,7 @@
 
+#ifndef FRAMELIB_MAX_CLASS_H
+#define FRAMELIB_MAX_CLASS_H
+
 #include "MaxClass_Base.h"
 
 #include "FrameLib_Global.h"
@@ -543,7 +546,7 @@ public:
     // Class Initialisation (must explicitly give U for classes that inherit from FrameLib_MaxClass<>)
     
     template <class U = FrameLib_MaxClass<T, argsMode>>
-    static void makeClass(t_symbol *nameSpace, const char *className)
+    static void makeClass(const char *className)
     {
         // If handles audio/scheduler then make wrapper class and name the inner object differently..
         
@@ -555,7 +558,7 @@ public:
             internalClassName.insert(0, "unsynced.");
         }
         
-        MaxClass_Base::makeClass<U>(nameSpace, internalClassName.c_str());
+        MaxClass_Base::makeClass<U>(CLASS_BOX, internalClassName.c_str());
     }
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
@@ -1110,7 +1113,7 @@ private:
     void traversePatch(t_patcher *p, t_symbol *method, t_object *contextAssoc)
     {
         t_object *assoc = 0;
-        object_method(mContextPatch, gensym("getassoc"), &assoc);
+        object_method(p, gensym("getassoc"), &assoc);
         
         // Avoid recursion into a poly / pfft / etc. - If the subpatcher is a wrapper we do need to deal with it
          
@@ -1320,7 +1323,12 @@ private:
             srcout -= getNumAudioOutsRemote(src);
             dstin -= getNumAudioIns();
             
-            if (sys_getdspobjdspstate(*this))
+            // Check load update before we check the dspchain (in case we are loading in poly~ etc.)
+            
+            short loadupdate = dsp_setloadupdate(false);
+            dsp_setloadupdate(loadupdate);
+
+            if (loadupdate && sys_getdspobjdspstate(*this))
             {
                 if ((isOrderingInput(dstin) || validInput(dstin)) && updatetype != JPATCHLINE_ORDER)
                     dspchain_setbroken(dspchain_fromobject(*this));
@@ -1623,3 +1631,5 @@ private:
 
 template <class T, MaxObjectArgsMode argsSetAllInputs = kAsParams>
 using FrameLib_MaxClass_Expand = FrameLib_MaxClass<FrameLib_Expand<T>, argsSetAllInputs>;
+
+#endif

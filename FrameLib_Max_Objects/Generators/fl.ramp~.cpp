@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Ramp>::makeClass(CLASS_BOX, "fl.ramp~");
+    FrameLib_MaxClass_Expand<FrameLib_Ramp>::makeClass("fl.ramp~");
 }

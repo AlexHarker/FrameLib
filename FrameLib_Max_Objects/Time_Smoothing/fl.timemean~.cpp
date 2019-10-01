@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_TimeMean>::makeClass(CLASS_BOX, "fl.timemean~");
+    FrameLib_MaxClass_Expand<FrameLib_TimeMean>::makeClass("fl.timemean~");
 }

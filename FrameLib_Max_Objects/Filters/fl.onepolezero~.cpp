@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_OnePoleZero>::makeClass(CLASS_BOX, "fl.onepolezero~");
+    FrameLib_MaxClass_Expand<FrameLib_OnePoleZero>::makeClass("fl.onepolezero~");
 }

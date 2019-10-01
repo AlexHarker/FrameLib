@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Log>::makeClass(CLASS_BOX, "fl.complexlog~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Log>::makeClass("fl.complexlog~");
 }

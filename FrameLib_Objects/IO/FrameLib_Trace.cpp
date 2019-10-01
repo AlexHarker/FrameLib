@@ -140,8 +140,11 @@ void FrameLib_Trace::blockProcess(const double * const *ins, double **outs, unsi
 {    
     // Safety
     
-    if (blockSize > bufferSize())
+    if (blockSize > bufferSize() || isTimedOut())
+    {
+        zeroVector(outs[0], blockSize);
         return;
+    }
     
     // Calculate first segment size and copy segments
     

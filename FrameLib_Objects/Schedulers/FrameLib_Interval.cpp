@@ -12,6 +12,8 @@ FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, FrameLib_Paramete
     mParameters.addEnumItem(kSeconds, "seconds");
     mParameters.addEnumItem(kHz, "hz");
     
+    mParameters.addBool(kOn, "on", true, 2);
+
     mParameters.set(serialisedParameters);
     
     setParameterInput(0);
@@ -67,6 +69,14 @@ void FrameLib_Interval::calculateInterval()
     mInterval = interval;
 }
 
+// Object Reset
+
+void FrameLib_Interval::objectReset()
+{
+    mRemaining = FrameLib_TimeFormat();
+    calculateInterval();
+}
+
 // Update and Schedule
 
 void FrameLib_Interval::update()
@@ -77,5 +87,30 @@ void FrameLib_Interval::update()
 
 FrameLib_Interval::SchedulerInfo FrameLib_Interval::schedule(bool newFrame, bool noAdvance)
 {
-    return SchedulerInfo(mInterval, true, true);
+    bool on = mParameters.getBool(kOn);
+    bool timeRemaining = mRemaining.greaterThanZero();
+    
+    FrameLib_TimeFormat inputTime = getInputTime();
+    FrameLib_TimeFormat now = getCurrentTime();
+    FrameLib_TimeFormat interval = timeRemaining ? mRemaining : mInterval;
+    
+    // Calculate if we can schedule up to the next new frame
+    
+    bool complete = on && (now + interval) < inputTime;
+    
+    // Adjust the interval if we need to track input / block updates or if not allowed to update
+    
+    interval = complete ? interval : std::min(inputTime, getBlockEndTime()) - now;
+    interval = noAdvance ? FrameLib_TimeFormat() : interval;
+    
+    // Update the remaining time
+    
+    if (on && timeRemaining)
+        mRemaining -= interval;
+    else if (on)
+        mRemaining = mInterval - interval;
+    else
+        mRemaining = FrameLib_TimeFormat();
+    
+    return SchedulerInfo(interval, on && !timeRemaining, complete);
 }

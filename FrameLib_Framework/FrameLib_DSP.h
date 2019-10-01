@@ -160,6 +160,10 @@ protected:
     void addParameterInput();
     void setOutputType(unsigned long idx, FrameType type);
 
+    // Test to see if processing is currently suspended
+    
+    bool isTimedOut() { return mProcessingQueue->isTimedOut(); }
+    
     // You should only call this from your process method (it is unsafe anywhere else)
 
     void setCurrentOutputType(unsigned long idx, FrameType type);

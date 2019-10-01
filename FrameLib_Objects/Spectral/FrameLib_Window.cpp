@@ -180,6 +180,9 @@ double FrameLib_Window::linearInterp(double pos)
 
 void FrameLib_Window::process()
 {
+    const int VecSize = SIMDLimits<double>::max_size;
+    using VectorType = SIMDType<double, VecSize>;
+    
     // Get Input
     
     unsigned long sizeIn, sizeOut, sizeFactor;
@@ -213,10 +216,35 @@ void FrameLib_Window::process()
         
         if (mSize % sizeFactor)
         {
+            const int workSize = VecSize * 8;
             double incr = (double) mSize / (double) sizeFactor;
             double pos = preIncrement ? incr : 0.0;
+            unsigned long i = 0;
             
-            for (unsigned long i = 0; i < sizeIn; i++, pos += incr)
+            if (sizeOut > (VecSize * 4))
+            {
+                for (; i + workSize - 1 < sizeIn; i += workSize)
+                {
+                    const VectorType *VecInput = reinterpret_cast<const VectorType *>(input + i);
+                    VectorType *VecOutput = reinterpret_cast<VectorType *>(output + i);
+
+                    // Accumulate positions
+                
+                    for (unsigned long j = 0; j < workSize; j++, pos += incr)
+                        output[i + j] = pos;
+                
+                    // Interpolate from the window
+                
+                    table_read(Fetch(mWindow), output + i, output + i, workSize, 1.0, kInterpLinear);
+                
+                    // Multiply
+                
+                    for (unsigned long j = 0; j + VecSize - 1 < workSize; j += VecSize)
+                        *VecOutput++ *= *VecInput++;
+                }
+            }
+            
+            for (; i < sizeIn; i++, pos += incr)
                 output[i] = input[i] * gain * linearInterp(pos);
         }
         else

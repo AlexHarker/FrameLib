@@ -4,6 +4,6 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_GetParam>::makeClass(CLASS_BOX, "fl.getparam~");
+    FrameLib_MaxClass_Expand<FrameLib_GetParam>::makeClass("fl.getparam~");
 }
 

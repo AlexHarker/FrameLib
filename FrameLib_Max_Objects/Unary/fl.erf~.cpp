@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Erf>::makeClass(CLASS_BOX, "fl.erf~");
+    FrameLib_MaxClass_Expand<FrameLib_Erf>::makeClass("fl.erf~");
 }
