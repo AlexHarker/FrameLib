@@ -106,7 +106,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1126.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 1126.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -476,8 +476,8 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 777.75, 731.0, 213.0, 22.0 ],
-									"text" : "next_tut _7_FFT_in_FrameLib.maxpat"
+									"patching_rect" : [ 754.75, 731.0, 233.0, 22.0 ],
+									"text" : "FL_next_tut _7_FFT_in_FrameLib.maxpat"
 								}
 
 							}
@@ -2293,9 +2293,10 @@
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
 									"name" : "FL_monoVolume.maxpat",
-									"numinlets" : 0,
-									"numoutlets" : 0,
+									"numinlets" : 1,
+									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
+									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 8.75, 592.0, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
@@ -3489,10 +3490,11 @@
 									"id" : "obj-18",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "grain_control.maxpat",
+									"name" : "FL_grain_control.maxpat",
 									"numinlets" : 0,
-									"numoutlets" : 0,
+									"numoutlets" : 4,
 									"offset" : [ 0.0, 0.0 ],
+									"outlettype" : [ "", "", "float", "float" ],
 									"patching_rect" : [ 8.75, 87.0, 258.0, 112.0 ],
 									"viewvisibility" : 1
 								}
@@ -4773,9 +4775,10 @@
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
 									"name" : "FL_monoVolume.maxpat",
-									"numinlets" : 0,
-									"numoutlets" : 0,
+									"numinlets" : 1,
+									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
+									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 8.75, 613.75, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
@@ -5200,10 +5203,11 @@
 									"id" : "obj-26",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "grain_control.maxpat",
+									"name" : "FL_grain_control.maxpat",
 									"numinlets" : 0,
-									"numoutlets" : 0,
+									"numoutlets" : 4,
 									"offset" : [ 0.0, 0.0 ],
+									"outlettype" : [ "", "", "float", "float" ],
 									"patching_rect" : [ 8.75, 119.0, 258.0, 112.0 ],
 									"viewvisibility" : 1
 								}
@@ -6112,9 +6116,10 @@
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
 									"name" : "FL_monoVolume.maxpat",
-									"numinlets" : 0,
-									"numoutlets" : 0,
+									"numinlets" : 1,
+									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
+									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 8.75, 574.75, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
@@ -7301,9 +7306,10 @@
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
 									"name" : "FL_monoVolume.maxpat",
-									"numinlets" : 0,
-									"numoutlets" : 0,
+									"numinlets" : 1,
+									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
+									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 8.75, 504.75, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
@@ -8142,9 +8148,10 @@
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
 									"name" : "FL_monoVolume.maxpat",
-									"numinlets" : 0,
-									"numoutlets" : 0,
+									"numinlets" : 1,
+									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
+									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 8.75, 596.0, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
@@ -8522,7 +8529,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 1126.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1126.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -8696,9 +8703,10 @@
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
 									"name" : "FL_monoVolume.maxpat",
-									"numinlets" : 0,
-									"numoutlets" : 0,
+									"numinlets" : 1,
+									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
+									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 8.75, 570.0, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
@@ -9261,11 +9269,11 @@
 								"box" : 								{
 									"fontsize" : 13.0,
 									"id" : "obj-3",
-									"linecount" : 46,
+									"linecount" : 45,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 50.0, 536.0, 675.0 ],
+									"patching_rect" : [ 8.75, 50.0, 539.0, 660.0 ],
 									"text" : "Granular synthesis uses the \"grain\" as a unit of sound. These grains are often short and derived from a sample or selection of samples. We're going to use fl.ramp~ and fl.read~ to generate grains in this step.\n\nFirst, we have to consider two things for creating a grain.\n\n1. How often are we going to generate a new grain\n2. How long will the grain be\n\nRemember, nothing in FrameLib happens without a scheduler so the rate at which we schedule trigger frames will control how often a new grain is created.\n\nSecondly, we need to ask fl.read~ for some samples at specific positions. We will use fl.ramp~ for this purpose, an object which generates frames containing consecutive incremental values (0, 1, 2, 3, 4). The frame created by fl.ramp~ is going to be sent to the to the fl.read~ object which interprets these numbers as specific audio samples to retrieve from the buffer it is pointed to. You can think of the relationship between fl.ramp~ and fl.read~ as something very similar to the one bewteen uzi and peek~ for extracting buffer values. \n\n\nThe confusing aspect of this is that although FrameLib would like you to specify everything in samples, it is both musically and logically difficult to conceive of a buffer and time in terms of how many samples will pass. As a result, we are going to specify everything in milliseconds and let FrameLib convert these values to samples auto-magically. This lets us think about everything in durations that make intuitive sense, however, a caveat of working in this way is that we have to tell all of the corresponding objects what kind of units they should expect. Let's break down the example on the right to explain this further.\n\n1. Our scheduler is set to output a trigger frame every 500 milliseconds. That one is easy to understand.\n\n2. fl.ramp~ is going to create a frame which has a length of 200 set by the /length parameter. The /units parameter tells fl.ramp~ how to interpret the length parameter, in this case the object will know we are specifiying 200 milliseconds and not samples. Finally, the /scale parameter dictates how fl.ramp~ should scale its output. The /scale function will remap the output to whatever units of time you would like. The combination of these parameters is effectively asking these three commands: I would like a frame of numbers that relate to samples (/scale), that directly reflect 200 (/length) milliseconds (units) of time. The final result is actually a list which is 8820 samples long at 44.1khz.\n\n3. In this case, fl.ramp~ is providing us with a frame containing sample positions so we tell fl.read~ to interpret the incoming frame as /units samples. In the small snippet to the right, the /scale is set to milliseconds and the /units for fl.read~ are set to milliseconds. This is an equivalent method of patching the fl.ramp~ / fl.read~ combination for creating grains where everything would be specified in millisecond values, rather than samples."
 								}
 
@@ -10154,8 +10162,68 @@
 
 			}
  ],
+		"parameters" : 		{
+			"obj-6::obj-15::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
+			"obj-8::obj-15::obj-50" : [ "live.gain~[8]", "Volume", 0 ],
+			"obj-3::obj-15::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
+			"obj-5::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
+			"obj-7::obj-15::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
+			"obj-1::obj-15::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
+			"obj-10::obj-6::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-4::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
+			"parameterbanks" : 			{
+
+			}
+,
+			"parameter_overrides" : 			{
+				"obj-6::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[6]"
+				}
+,
+				"obj-8::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[8]"
+				}
+,
+				"obj-3::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[3]"
+				}
+,
+				"obj-5::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[5]"
+				}
+,
+				"obj-7::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[7]"
+				}
+,
+				"obj-1::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[2]"
+				}
+,
+				"obj-4::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[4]"
+				}
+
+			}
+
+		}
+,
 		"dependency_cache" : [ 			{
 				"name" : "FL_monoVolume.maxpat",
+				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "FL_grain_control.maxpat",
+				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "FL_next_tut.maxpat",
 				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
