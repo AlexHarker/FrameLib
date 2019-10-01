@@ -485,7 +485,7 @@
 									"id" : "obj-20",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "monoVolume.maxpat",
+									"name" : "FL_monoVolume.maxpat",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
@@ -944,7 +944,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1247.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 1247.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -990,12 +990,11 @@
 								"box" : 								{
 									"hidden" : 1,
 									"id" : "obj-9",
-									"linecount" : 3,
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 360.75, 475.0, 209.0, 49.0 ],
-									"text" : "next_tut _4_Converting_between_FrameLib_and_Max.maxpat"
+									"patching_rect" : [ 216.75, 475.0, 361.0, 22.0 ],
+									"text" : "FL_next_tut _4_Converting_between_FrameLib_and_Max.maxpat"
 								}
 
 							}
@@ -3080,7 +3079,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 1247.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1247.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3330,23 +3329,15 @@
 
 			}
  ],
-		"parameters" : 		{
-			"obj-5::obj-20::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
-			"parameterbanks" : 			{
-
-			}
-
-		}
-,
 		"dependency_cache" : [ 			{
-				"name" : "next_tut.maxpat",
+				"name" : "FL_next_tut.maxpat",
 				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "monoVolume.maxpat",
+				"name" : "FL_monoVolume.maxpat",
 				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",

@@ -106,7 +106,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 1126.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1126.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2292,11 +2292,10 @@
 									"id" : "obj-15",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "monoVolume.maxpat",
-									"numinlets" : 1,
-									"numoutlets" : 1,
+									"name" : "FL_monoVolume.maxpat",
+									"numinlets" : 0,
+									"numoutlets" : 0,
 									"offset" : [ 0.0, 0.0 ],
-									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 8.75, 592.0, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
@@ -3056,22 +3055,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-8", 1 ],
-									"order" : 0,
-									"source" : [ "obj-15", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-8", 0 ],
-									"order" : 1,
-									"source" : [ "obj-15", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
 									"hidden" : 1,
 									"source" : [ "obj-16", 0 ]
@@ -3286,13 +3269,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-15", 0 ],
-									"source" : [ "obj-7", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-23", 0 ],
 									"source" : [ "obj-9", 0 ]
 								}
@@ -3356,8 +3332,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3515,9 +3491,8 @@
 									"maxclass" : "bpatcher",
 									"name" : "grain_control.maxpat",
 									"numinlets" : 0,
-									"numoutlets" : 4,
+									"numoutlets" : 0,
 									"offset" : [ 0.0, 0.0 ],
-									"outlettype" : [ "", "", "float", "float" ],
 									"patching_rect" : [ 8.75, 87.0, 258.0, 112.0 ],
 									"viewvisibility" : 1
 								}
@@ -4410,8 +4385,8 @@
 , 															{
 																"name" : "newobjYellow-1",
 																"default" : 																{
-																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-																	"fontsize" : [ 12.059008 ]
+																	"fontsize" : [ 12.059008 ],
+																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 																}
 ,
 																"parentstyle" : "",
@@ -4600,8 +4575,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-													"fontsize" : [ 12.059008 ]
+													"fontsize" : [ 12.059008 ],
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 												}
 ,
 												"parentstyle" : "",
@@ -4797,11 +4772,10 @@
 									"id" : "obj-15",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "monoVolume.maxpat",
-									"numinlets" : 1,
-									"numoutlets" : 1,
+									"name" : "FL_monoVolume.maxpat",
+									"numinlets" : 0,
+									"numoutlets" : 0,
 									"offset" : [ 0.0, 0.0 ],
-									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 8.75, 613.75, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
@@ -4940,52 +4914,8 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-8", 1 ],
-									"order" : 0,
-									"source" : [ "obj-15", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-8", 0 ],
-									"order" : 1,
-									"source" : [ "obj-15", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-14", 0 ],
 									"source" : [ "obj-16", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-21", 0 ],
-									"source" : [ "obj-18", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-24", 0 ],
-									"source" : [ "obj-18", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-25", 0 ],
-									"source" : [ "obj-18", 2 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-26", 0 ],
-									"source" : [ "obj-18", 3 ]
 								}
 
 							}
@@ -5066,13 +4996,6 @@
 								}
 
 							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-15", 0 ],
-									"source" : [ "obj-7", 0 ]
-								}
-
-							}
  ],
 						"styles" : [ 							{
 								"name" : "newobjBlue-1",
@@ -5086,8 +5009,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -5279,9 +5202,8 @@
 									"maxclass" : "bpatcher",
 									"name" : "grain_control.maxpat",
 									"numinlets" : 0,
-									"numoutlets" : 4,
+									"numoutlets" : 0,
 									"offset" : [ 0.0, 0.0 ],
-									"outlettype" : [ "", "", "float", "float" ],
 									"patching_rect" : [ 8.75, 119.0, 258.0, 112.0 ],
 									"viewvisibility" : 1
 								}
@@ -5802,8 +5724,8 @@
 , 															{
 																"name" : "newobjYellow-1",
 																"default" : 																{
-																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-																	"fontsize" : [ 12.059008 ]
+																	"fontsize" : [ 12.059008 ],
+																	"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 																}
 ,
 																"parentstyle" : "",
@@ -5992,8 +5914,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-													"fontsize" : [ 12.059008 ]
+													"fontsize" : [ 12.059008 ],
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 												}
 ,
 												"parentstyle" : "",
@@ -6189,11 +6111,10 @@
 									"id" : "obj-15",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "monoVolume.maxpat",
-									"numinlets" : 1,
-									"numoutlets" : 1,
+									"name" : "FL_monoVolume.maxpat",
+									"numinlets" : 0,
+									"numoutlets" : 0,
 									"offset" : [ 0.0, 0.0 ],
-									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 8.75, 574.75, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
@@ -6319,22 +6240,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-8", 1 ],
-									"order" : 0,
-									"source" : [ "obj-15", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-8", 0 ],
-									"order" : 1,
-									"source" : [ "obj-15", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-23", 0 ],
 									"source" : [ "obj-19", 0 ]
 								}
@@ -6391,34 +6296,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-21", 0 ],
-									"source" : [ "obj-26", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-24", 0 ],
-									"source" : [ "obj-26", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-25", 0 ],
-									"source" : [ "obj-26", 2 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-9", 0 ],
-									"source" : [ "obj-26", 3 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
 									"source" : [ "obj-28", 0 ]
 								}
@@ -6428,13 +6305,6 @@
 								"patchline" : 								{
 									"destination" : [ "obj-7", 0 ],
 									"source" : [ "obj-6", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-15", 0 ],
-									"source" : [ "obj-7", 0 ]
 								}
 
 							}
@@ -6458,8 +6328,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -7170,8 +7040,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-													"fontsize" : [ 12.059008 ]
+													"fontsize" : [ 12.059008 ],
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 												}
 ,
 												"parentstyle" : "",
@@ -7430,11 +7300,10 @@
 									"id" : "obj-15",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "monoVolume.maxpat",
-									"numinlets" : 1,
-									"numoutlets" : 1,
+									"name" : "FL_monoVolume.maxpat",
+									"numinlets" : 0,
+									"numoutlets" : 0,
 									"offset" : [ 0.0, 0.0 ],
-									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 8.75, 504.75, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
@@ -7576,22 +7445,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-8", 1 ],
-									"order" : 0,
-									"source" : [ "obj-15", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-8", 0 ],
-									"order" : 1,
-									"source" : [ "obj-15", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
 									"source" : [ "obj-16", 0 ]
 								}
@@ -7664,13 +7517,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-15", 0 ],
-									"source" : [ "obj-7", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-4", 0 ],
 									"source" : [ "obj-9", 0 ]
 								}
@@ -7689,8 +7535,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -8295,11 +8141,10 @@
 									"id" : "obj-15",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "monoVolume.maxpat",
-									"numinlets" : 1,
-									"numoutlets" : 1,
+									"name" : "FL_monoVolume.maxpat",
+									"numinlets" : 0,
+									"numoutlets" : 0,
 									"offset" : [ 0.0, 0.0 ],
-									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 8.75, 596.0, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
@@ -8476,22 +8321,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-8", 1 ],
-									"order" : 0,
-									"source" : [ "obj-15", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-8", 0 ],
-									"order" : 1,
-									"source" : [ "obj-15", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-23", 0 ],
 									"source" : [ "obj-16", 0 ]
 								}
@@ -8627,13 +8456,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-15", 0 ],
-									"source" : [ "obj-7", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-4", 0 ],
 									"source" : [ "obj-9", 0 ]
 								}
@@ -8652,8 +8474,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -8700,7 +8522,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1126.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 1126.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -8873,11 +8695,10 @@
 									"id" : "obj-15",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "monoVolume.maxpat",
-									"numinlets" : 1,
-									"numoutlets" : 1,
+									"name" : "FL_monoVolume.maxpat",
+									"numinlets" : 0,
+									"numoutlets" : 0,
 									"offset" : [ 0.0, 0.0 ],
-									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 8.75, 570.0, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
@@ -9029,22 +8850,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-8", 1 ],
-									"order" : 0,
-									"source" : [ "obj-15", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-8", 0 ],
-									"order" : 1,
-									"source" : [ "obj-15", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-6", 0 ],
 									"source" : [ "obj-2", 0 ]
 								}
@@ -9088,13 +8893,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-15", 0 ],
-									"source" : [ "obj-7", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-4", 0 ],
 									"source" : [ "obj-9", 0 ]
 								}
@@ -9113,8 +8911,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -9334,7 +9132,7 @@
 									"id" : "obj-15",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "monoVolume.maxpat",
+									"name" : "FL_monoVolume.maxpat",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
@@ -9353,7 +9151,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 843.75, 207.0, 37.25, 15.0 ]
+									"patching_rect" : [ 826.75, 207.0, 37.25, 15.0 ]
 								}
 
 							}
@@ -9365,7 +9163,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 883.0, 195.5, 215.0, 36.0 ],
+									"patching_rect" : [ 866.0, 195.5, 215.0, 36.0 ],
 									"text" : "How long will the grain be (200 milliseconds converted to samples)"
 								}
 
@@ -9454,8 +9252,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 572.75, 203.0, 269.0, 23.0 ],
-									"text" : "fl.ramp~ /length 200 /units ms /scale samples"
+									"patching_rect" : [ 572.75, 203.0, 252.0, 23.0 ],
+									"text" : "fl.ramp~ /length 200 /units ms /scale count"
 								}
 
 							}
@@ -9467,7 +9265,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 50.0, 533.0, 675.0 ],
+									"patching_rect" : [ 8.75, 50.0, 536.0, 675.0 ],
 									"text" : "Granular synthesis uses the \"grain\" as a unit of sound. These grains are often short and derived from a sample or selection of samples. We're going to use fl.ramp~ and fl.read~ to generate grains in this step.\n\nFirst, we have to consider two things for creating a grain.\n\n1. How often are we going to generate a new grain\n2. How long will the grain be\n\nRemember, nothing in FrameLib happens without a scheduler so the rate at which we schedule trigger frames will control how often a new grain is created.\n\nSecondly, we need to ask fl.read~ for some samples at specific positions. We will use fl.ramp~ for this purpose, an object which generates frames containing consecutive incremental values (0, 1, 2, 3, 4). The frame created by fl.ramp~ is going to be sent to the to the fl.read~ object which interprets these numbers as specific audio samples to retrieve from the buffer it is pointed to. You can think of the relationship between fl.ramp~ and fl.read~ as something very similar to the one bewteen uzi and peek~ for extracting buffer values. \n\n\nThe confusing aspect of this is that although FrameLib would like you to specify everything in samples, it is both musically and logically difficult to conceive of a buffer and time in terms of how many samples will pass. As a result, we are going to specify everything in milliseconds and let FrameLib convert these values to samples auto-magically. This lets us think about everything in durations that make intuitive sense, however, a caveat of working in this way is that we have to tell all of the corresponding objects what kind of units they should expect. Let's break down the example on the right to explain this further.\n\n1. Our scheduler is set to output a trigger frame every 500 milliseconds. That one is easy to understand.\n\n2. fl.ramp~ is going to create a frame which has a length of 200 set by the /length parameter. The /units parameter tells fl.ramp~ how to interpret the length parameter, in this case the object will know we are specifiying 200 milliseconds and not samples. Finally, the /scale parameter dictates how fl.ramp~ should scale its output. The /scale function will remap the output to whatever units of time you would like. The combination of these parameters is effectively asking these three commands: I would like a frame of numbers that relate to samples (/scale), that directly reflect 200 (/length) milliseconds (units) of time. The final result is actually a list which is 8820 samples long at 44.1khz.\n\n3. In this case, fl.ramp~ is providing us with a frame containing sample positions so we tell fl.read~ to interpret the incoming frame as /units samples. In the small snippet to the right, the /scale is set to milliseconds and the /units for fl.read~ are set to milliseconds. This is an equivalent method of patching the fl.ramp~ / fl.read~ combination for creating grains where everything would be specified in millisecond values, rather than samples."
 								}
 
@@ -9642,8 +9440,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -9794,7 +9592,7 @@
 									"id" : "obj-6",
 									"lockeddragscroll" : 0,
 									"maxclass" : "bpatcher",
-									"name" : "monoVolume.maxpat",
+									"name" : "FL_monoVolume.maxpat",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
@@ -10096,8 +9894,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -10284,8 +10082,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -10356,68 +10154,8 @@
 
 			}
  ],
-		"parameters" : 		{
-			"obj-1::obj-15::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
-			"obj-7::obj-15::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
-			"obj-10::obj-6::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-5::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
-			"obj-3::obj-15::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
-			"obj-8::obj-15::obj-50" : [ "live.gain~[8]", "Volume", 0 ],
-			"obj-6::obj-15::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
-			"obj-4::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
-			"parameterbanks" : 			{
-
-			}
-,
-			"parameter_overrides" : 			{
-				"obj-1::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[2]"
-				}
-,
-				"obj-7::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[7]"
-				}
-,
-				"obj-5::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[5]"
-				}
-,
-				"obj-3::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[3]"
-				}
-,
-				"obj-8::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[8]"
-				}
-,
-				"obj-6::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[6]"
-				}
-,
-				"obj-4::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[4]"
-				}
-
-			}
-
-		}
-,
 		"dependency_cache" : [ 			{
-				"name" : "monoVolume.maxpat",
-				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "grain_control.maxpat",
-				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "next_tut.maxpat",
+				"name" : "FL_monoVolume.maxpat",
 				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
@@ -10582,8 +10320,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",
