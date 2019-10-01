@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Sort>::makeClass(CLASS_BOX, "fl.sort~");
+    FrameLib_MaxClass_Expand<FrameLib_Sort>::makeClass("fl.sort~");
 }

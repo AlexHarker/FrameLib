@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Flatness>::makeClass(CLASS_BOX, "fl.flatness~");
+    FrameLib_MaxClass_Expand<FrameLib_Flatness>::makeClass("fl.flatness~");
 }

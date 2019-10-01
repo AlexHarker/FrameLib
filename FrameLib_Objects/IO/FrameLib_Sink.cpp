@@ -109,8 +109,11 @@ void FrameLib_Sink::blockProcess(const double * const *ins, double **outs, unsig
 {    
     // Safety
     
-    if (blockSize > bufferSize())
+    if (blockSize > bufferSize() || isTimedOut())
+    {
+        zeroVector(outs[0], blockSize);
         return;
+    }
     
     // Calculate first segment size and copy segments
     

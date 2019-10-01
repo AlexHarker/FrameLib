@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Peaks>::makeClass(CLASS_BOX, "fl.peaks~");
+    FrameLib_MaxClass_Expand<FrameLib_Peaks>::makeClass("fl.peaks~");
 }

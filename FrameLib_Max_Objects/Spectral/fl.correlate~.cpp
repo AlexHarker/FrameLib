@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Correlate>::makeClass(CLASS_BOX, "fl.correlate~");
+    FrameLib_MaxClass_Expand<FrameLib_Correlate>::makeClass("fl.correlate~");
 }

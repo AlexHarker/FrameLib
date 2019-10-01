@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_GeometricMean>::makeClass(CLASS_BOX, "fl.geometricmean~");
+    FrameLib_MaxClass_Expand<FrameLib_GeometricMean>::makeClass("fl.geometricmean~");
 }

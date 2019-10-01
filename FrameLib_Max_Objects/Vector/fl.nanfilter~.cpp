@@ -5,5 +5,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_NanFilter>::makeClass(CLASS_BOX, "fl.nanfilter~");
+    FrameLib_MaxClass_Expand<FrameLib_NanFilter>::makeClass("fl.nanfilter~");
 }

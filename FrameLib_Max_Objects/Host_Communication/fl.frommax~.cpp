@@ -97,7 +97,11 @@ void FrameLib_MaxClass_FromMax::anything(t_symbol *s, long argc, t_atom *argv)
 
 // Main
 
+#ifndef FRAMELIB_MAX_SINGLE_OBJECT
+
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_FromMax::makeClass<FrameLib_MaxClass_FromMax>(CLASS_BOX, "fl.frommax~");
+    FrameLib_MaxClass_FromMax::makeClass<FrameLib_MaxClass_FromMax>("fl.frommax~");
 }
+
+#endif

@@ -81,7 +81,8 @@ void FrameLib_Peaks::process()
         if (sizeIn > 3 && (input[1] > input[2]) && (input[1] > input[3]) && (input[1] > input[0]))
             nPeaks++;
     }
-    for (unsigned long i = 2; i < (sizeIn - 2); i++)
+    
+    for (unsigned long i = 2; i < (std::max(sizeIn, 2UL) - 2); i++)
         if ((input[i] > input[i - 2]) && (input[i] > input[i - 1]) && (input[i] > input[i + 1]) && (input[i] > input[i + 2]))
             nPeaks++;
     
@@ -116,7 +117,7 @@ void FrameLib_Peaks::process()
             }
         }
         
-        for (unsigned long i = 2; i < (sizeIn - 2); i++)
+        for (unsigned long i = 2; i < (std::max(sizeIn, 2UL) - 2); i++)
         {
             if ((input[i] > input[i - 2]) && (input[i] > input[i - 1]) && (input[i] > input[i + 1]) && (input[i] > input[i + 2]))
             {

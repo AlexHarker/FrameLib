@@ -4,6 +4,6 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Untag>::makeClass(CLASS_BOX, "fl.untag~");
+    FrameLib_MaxClass_Expand<FrameLib_Untag>::makeClass("fl.untag~");
 }
 

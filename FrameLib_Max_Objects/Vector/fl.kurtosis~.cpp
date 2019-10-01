@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Kurtosis>::makeClass(CLASS_BOX, "fl.kurtosis~");
+    FrameLib_MaxClass_Expand<FrameLib_Kurtosis>::makeClass("fl.kurtosis~");
 }

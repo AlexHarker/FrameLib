@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Sin>::makeClass(CLASS_BOX, "fl.sin~");
+    FrameLib_MaxClass_Expand<FrameLib_Sin>::makeClass("fl.sin~");
 }

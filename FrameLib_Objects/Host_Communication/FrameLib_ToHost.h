@@ -16,19 +16,10 @@ public:
     {
         friend FrameLib_ToHost;
         
-        Proxy() : mObject(nullptr) {}
+        Proxy() {}
         
-        virtual void sendToHost(unsigned long index, unsigned long stream, const double *values, unsigned long N) = 0;
-        virtual void sendToHost(unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial)= 0;
-        
-        // These methods should only be used to allocate temporary memory in the overrides of the output methods
-        
-        template <class T> T *alloc(unsigned long N) { return mObject->alloc<T>(N); }
-        template <class T> void dealloc(T *& ptr) { return mObject->dealloc(ptr); }
-        
-    private:
-        
-        FrameLib_ToHost *mObject;
+        virtual void sendToHost(Allocator& allocator, unsigned long index, unsigned long stream, const double *values, unsigned long N) = 0;
+        virtual void sendToHost(Allocator& allocator, unsigned long index, unsigned long stream, const FrameLib_Parameters::Serial *serial)= 0;
     };
     
 public:
