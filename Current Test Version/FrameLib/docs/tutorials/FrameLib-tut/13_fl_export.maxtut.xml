@@ -2,12 +2,12 @@
 
 <?xml-stylesheet href="./_c74_tut.xsl" type="text/xsl"?>
 
-<chapter name="FrameLib Tutorial 9: Multi-resolution FFT">
-	<next name="10_fl_something">Generators</next>
+<chapter name="FrameLib Tutorial 13: Exporting Code to C++">
+	<next name="13_fl_export">Code Export</next>
 	<parent name="00_fl_index">FrameLib tutorials</parent>
 
 <h1>
-	FrameLib: Multi-resolution FFT
+	FrameLib: Code Export Feature
 </h1>
 	<h2>
 		Basics of Conversion

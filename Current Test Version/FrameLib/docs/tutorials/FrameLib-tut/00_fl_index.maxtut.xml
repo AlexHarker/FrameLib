@@ -16,10 +16,10 @@ FrameLib Tutorials - Table of Contents
 
             <ul>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="01_introduction" diff="Beginner" digest="A general introduction to FrameLib and some foundation DSP concepts..">Tutorial 1: An introduction to FrameLib and frame based processing.</link>
+                    <link type="tutorial" module="FrameLib" name="01_fl_introduction" diff="Beginner" digest="A general introduction to FrameLib and some foundation DSP concepts..">Tutorial 1: An introduction to FrameLib and frame based processing.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="02_whatis" diff="Beginner" digest="Getting familiar with the FrameLib library.">Tutorial 2: Getting to grips with frame based processing.</link>
+                    <link type="tutorial" module="FrameLib" name="02_fl_whatis" diff="Beginner" digest="Getting familiar with the FrameLib library.">Tutorial 2: Getting to grips with frame based processing.</link>
                 </li>
                 <li>
                     <link type="tutorial" module="FrameLib" name="03_fl_concepts" diff="Beginner" digest="An overview and explanation of the key concepts of FrameLib, such as its timing and patching architecture.">Tutorial 3: Key Concepts.</link>
@@ -54,10 +54,21 @@ FrameLib Tutorials - Table of Contents
 
             <ul>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="09_fl_multiresfft" diff="Advanced" digest="An extension of the FFT tutorial, this crash course introduces you to the possibilities of multi-resolution FFT's.">Tutorial 9: Multi-resolution FFT.</link>
+                    <link type="tutorial" module="FrameLib" name="09_fl_multiresfft" diff="Advanced" digest="In this tutorial you introduces you to multi-resolution FFT's in FrameLib. ">Tutorial 9: Multi-resolution FFT.</link>
+                </li>
+                <li>
+                    <link type="tutorial" module="FrameLib" name="10_fl_ir" diff="Advanced" digest="A small overview of working with impulse responses and convolution.">Tutorial 10: Working with impulse responses (IR) in FrameLib.</link>
+                </li>
+                <li>    
+                    <link type="tutorial" module="FrameLib" name="11_fl_nrt" diff="Advanced" digest="Designing, converting and understanding FrameLib networks in the non-realtime mode.">Tutorial 11: Non-realtime networks in FrameLib.</link>
+                </li>
+                <li>    
+                    <link type="tutorial" module="FrameLib" name="12_fl_threading" diff="Advanced" digest="How to manage threads, multi-threading and the concept of a 'context'.">Tutorial 12: Threading and 'contexts'.</link>
+                </li>
+                <li>
+                    <link type="tutorial" module="FrameLib" name="13_fl_export" diff="Advanced" digest="Exporting your FrameLib networks from Max to C++ to be used in other environments and applications.">Tutorial 13: Exporting FrameLib in Max to C++.</link>
                 </li>
             </ul>
-
 	</p>
 
 </chapter>

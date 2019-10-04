@@ -2,12 +2,12 @@
 
 <?xml-stylesheet href="./_c74_tut.xsl" type="text/xsl"?>
 
-<chapter name="FrameLib Tutorial 9: Multi-resolution FFT">
-	<next name="10_fl_something">Generators</next>
+<chapter name="FrameLib Tutorial 11: Non-realtime networks in FrameLib">
+	<next name="12_fl_threading">Threading and Contexts</next>
 	<parent name="00_fl_index">FrameLib tutorials</parent>
 
 <h1>
-	FrameLib: Multi-resolution FFT
+	FrameLib: NRT
 </h1>
 	<h2>
 		Basics of Conversion
