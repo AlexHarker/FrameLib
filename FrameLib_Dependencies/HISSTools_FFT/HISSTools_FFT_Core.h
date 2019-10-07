@@ -7,7 +7,7 @@
 #include <arm_neon.h>
 #include <memory.h>
 #else
-#if defined(__WIN32__)
+#if defined(_WIN32)
 #include <malloc.h>
 #include <intrin.h>
 #endif
@@ -88,7 +88,7 @@ namespace hisstools_fft_impl{
         return static_cast<T *>(aligned_alloc(16, size * sizeof(T)));
     }
     
-#elif defined(__WIN32__)
+#elif defined(_WIN32)
     
     template <class T>
     T *allocate_aligned(size_t size)
@@ -100,7 +100,7 @@ namespace hisstools_fft_impl{
     
 // Aligned deallocation
     
-#if !defined(__WIN32__)
+#if !defined(_WIN32)
     
     template <class T>
     void deallocate_aligned(T *ptr) { free(ptr); }
