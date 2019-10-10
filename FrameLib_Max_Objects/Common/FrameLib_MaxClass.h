@@ -1817,7 +1817,6 @@ private:
     static bool isContextTag(t_symbol *sym)
     {
         return isContextNameTag(sym) || !strcmp(sym->s_name, "#nrt");
-;
     }
     
     static bool isParameterTag(t_symbol *sym)
