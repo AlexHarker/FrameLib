@@ -179,7 +179,7 @@ public:
         
         // Find Item
         
-        Iterator find(const char *tag)  const;
+        Iterator find(const char *tag) const;
         
         // Utility
         
