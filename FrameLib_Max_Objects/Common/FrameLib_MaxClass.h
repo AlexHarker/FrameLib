@@ -1848,11 +1848,8 @@ private:
         
         // Collect doubles
         
-        for ( ; idx < argc; idx++)
+        for ( ; idx < argc && !isTag(argv + idx); idx++)
         {
-            if (isTag(argv + idx))
-                break;
-            
             if (atom_gettype(argv + idx) == A_SYM && !atom_getfloat(argv + idx))
                 object_error(mUserObject, "string %s in entry list where value expected", atom_getsym(argv + idx)->s_name);
             
