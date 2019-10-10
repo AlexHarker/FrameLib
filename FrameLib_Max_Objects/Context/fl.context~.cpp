@@ -15,7 +15,7 @@ public:
     }
     
     FrameLib_MaxClass_Context(t_symbol *sym, long ac, t_atom *av)
-    : mContext(mGlobal->makeContext(FrameLib_MaxClass<void>::detectRealtime(ac, av), FrameLib_MaxClass<void>::contextPatcher(gensym("#P")->s_thing), nullptr))
+    : mContext(mGlobal->makeContext(FrameLib_MaxClass<void>::parseContext(FrameLib_MaxClass<void>::contextPatcher(gensym("#P")->s_thing), ac, av)))
     , mProcessingQueue(mContext)
     {}
     

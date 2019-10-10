@@ -25,11 +25,15 @@ struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
 
 struct FrameLib_MaxNRTAudio
 {
-    FrameLib_MaxNRTAudio(FrameLib_Multistream *object, t_symbol *buffer)
-    : mObject(object), mBuffer(buffer) {}
-    
     FrameLib_Multistream *mObject;
     t_symbol *mBuffer;
+};
+
+struct FrameLib_MaxContext
+{
+    bool mRealtime;
+    t_object *mPatch;
+    t_symbol *mName;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -197,7 +201,8 @@ public:
         ManagedPointer& operator=(const ManagedPointer&) = delete;
 
         FrameLib_MaxGlobals *operator->() { return mPointer; }
-        
+        const FrameLib_MaxGlobals *operator->() const { return mPointer; }
+
     private:
         
         FrameLib_MaxGlobals *mPointer;
@@ -233,24 +238,26 @@ public:
             defer_low(*this, (method) serviceContexts, nullptr, 0, nullptr);
     }
     
-    FrameLib_Context makeContext(bool realtime, t_object *patch, t_symbol *name)
+    FrameLib_Context makeContext(const FrameLib_MaxContext& specifier)
     {
-        std::unique_ptr<RefData>& item = mContextRefs[RefKey(patch, name)];
+        std::unique_ptr<RefData>& item = mContextRefs[RefKey(specifier.mPatch, specifier.mName)];
         
         if (!item)
-            item.reset(new RefData(RefKey(patch, name), 1));
+            item.reset(new RefData(RefKey(specifier.mPatch, specifier.mName), 1));
         else
             std::get<1>(*item)++;
         
-        return FrameLib_Context(realtime ? mRTGlobal : mNRTGlobal, item.get());
+        return FrameLib_Context(specifier.mRealtime ? mRTGlobal : mNRTGlobal, item.get());
     }
+    
+    bool isRealtimeContext(FrameLib_Context c) const { return c.getGlobal() == mRTGlobal; }
+
+    t_object *getContextPatch(FrameLib_Context c) { return data<0>(c).first; }
     
     void retainContext(FrameLib_Context c)      { data<1>(c)++; }
     void releaseContext(FrameLib_Context c)     { if (--data<1>(c) == 0) mContextRefs.erase(data<0>(c)); }
     
     Lock *contextLock(FrameLib_Context c)       { return &data<2>(c); }
-    
-    bool isRealtimeContext(FrameLib_Context c)  { return c.getGlobal() == mRTGlobal; }
     
     void setReportContextErrors(bool report)    { mReportContextErrors = report; }
     bool getReportContextErrors() const         { return mReportContextErrors; }
@@ -853,6 +860,26 @@ public:
         return patch;
     }
     
+    // Context Parsing
+    
+    static FrameLib_MaxContext parseContext(t_object *contextPatch, long argc, t_atom *argv)
+    {
+        FrameLib_MaxContext context{true, contextPatch, gensym("")};
+        
+        for (long i = 0; i < argc; )
+        {
+            if ((i + 1) < argc && isContextTag(atom_getsym(argv + i)) && !isTag(argv + i + 1))
+            {
+                if (isContextNameTag(atom_getsym(argv + i++)))
+                    context.mName = atom_getsym(argv + i++);
+                else
+                    context.mRealtime = !atom_getlong(argv + i++);
+            }
+        }
+        
+        return context;
+    }
+    
     // Detect the user object at load time
     
     t_object *detectUserObjectAtLoad()
@@ -863,13 +890,6 @@ public:
         return (assoc && objectMethod(assoc, gensym("__fl.wrapper_is_wrapper"))) ? assoc : *this;
     }
     
-    // Detect non-realtime setting
-    
-    static bool detectRealtime(long argc, t_atom * argv)
-    {
-        return (!argc || atom_getsym(argv) != gensym("nrt"));
-    }
-    
     // Constructor and Destructor
     
     FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy())
@@ -878,19 +898,10 @@ public:
     , mContextPatch(contextPatcher(gensym("#P")->s_thing))
     , mUserObject(detectUserObjectAtLoad())
     , mSpecifiedStreams(1)
-    , mRealtime(handlesAudio() ? detectRealtime(argc, argv) : false)
     , mConnectionsUpdated(false)
     , mResolved(false)
     , mBuffer(gensym(""))
     {
-        // Ignore non-realtime specifier
-        
-        if (handlesAudio() && !detectRealtime(argc, argv))
-        {
-            argc--;
-            argv++;
-        }
-        
         // Deal with attributes for non-realtime objects (and to correctly report issues otherwise)
         
         attr_args_process(this, argc, argv);
@@ -909,7 +920,8 @@ public:
 
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        FrameLib_Context context = mGlobal->makeContext(isRealtime(), mContextPatch, nullptr);
+        FrameLib_MaxContext contextSpecifier = parseContext(mContextPatch, argc, argv);
+        FrameLib_Context context = mGlobal->makeContext(contextSpecifier);
         mFrameLibProxy->mMaxObject = *this;
         mObject.reset(new T(context, &serialisedParameters, mFrameLibProxy.get(), mSpecifiedStreams));
         parseInputs(argc, argv);
@@ -1117,7 +1129,7 @@ public:
     
     ObjectType getType() const                  { return mObject->getType(); }
     
-    bool isRealtime() const                     { return mRealtime; }
+    bool isRealtime() const                     { return mGlobal->isRealtimeContext(mObject->getContext()); }
     bool handlesAudio() const                   { return T::handlesAudio(); }
     bool handlesRealtimeAudio() const           { return handlesAudio() && isRealtime(); }
     bool supportsOrderingConnections() const    { return mObject->supportsOrderingConnections(); }
@@ -1331,7 +1343,7 @@ public:
 
     static void extFindAudio(FrameLib_MaxClass *x, std::vector<FrameLib_MaxNRTAudio> objects)
     {
-        objects.push_back(FrameLib_MaxNRTAudio(x->mObject.get(), x->mBuffer));
+        objects.push_back(FrameLib_MaxNRTAudio{x->mObject.get(), x->mBuffer});
     }
     
     static void extResolveContext(FrameLib_MaxClass *x)
@@ -1397,12 +1409,15 @@ private:
     {
         FrameLib_Context current = mObject->getContext();
         FrameLib_Context context = toFLObject(object)->getContext();
+        
+        bool mismatchedNRT = mGlobal->isRealtimeContext(context) != mGlobal->isRealtimeContext(current);
+        bool mismatchedPatch = mGlobal->getContextPatch(current) != mGlobal->getContextPatch(context);
+
         unsigned long size = 0;
-            
-        if (handlesAudio() || current == context || current.getReference() != context.getReference())
+
+        if (getType() == kScheduler || (handlesAudio() && mismatchedNRT) || mismatchedPatch || current == context)
             return;
         
-        mRealtime = mGlobal->isRealtimeContext(context);
         mResolved = false;
         
         mGlobal->pushToQueue(*this);
@@ -1413,7 +1428,7 @@ private:
             if (const double *values = mObject->getFixedInput(i, &size))
                 newObject->setFixedInput(i, values, size);
                 
-        if (mRealtime || mGlobal->isRealtimeContext(current))
+        if (mGlobal->isRealtimeContext(context) || mGlobal->isRealtimeContext(current))
             dspSetBroken();
         
         mGlobal->retainContext(context);
@@ -1795,6 +1810,17 @@ private:
         return 0;
     }
     
+    static bool isContextNameTag(t_symbol *sym)
+    {
+        return !strcmp(sym->s_name, "#id");
+    }
+    
+    static bool isContextTag(t_symbol *sym)
+    {
+        return isContextNameTag(sym) || !strcmp(sym->s_name, "#nrt");
+;
+    }
+    
     static bool isParameterTag(t_symbol *sym)
     {        
         return strlen(sym->s_name) > 1 && sym->s_name[0] == '/';
@@ -1813,7 +1839,7 @@ private:
     static bool isTag(t_atom *a)
     {
         t_symbol *sym = atom_getsym(a);
-        return isParameterTag(sym) || isInputTag(sym);
+        return isParameterTag(sym) || isInputTag(sym) || isContextTag(sym);
     }
     
     long parseNumericalList(std::vector<double> &values, t_atom *argv, long argc, long idx)
@@ -2004,7 +2030,6 @@ private:
     
     unsigned long mSpecifiedStreams;
 
-    bool mRealtime;
     bool mConnectionsUpdated;
     bool mResolved;
     
