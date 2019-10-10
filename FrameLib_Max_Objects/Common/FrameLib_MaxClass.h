@@ -1942,24 +1942,17 @@ private:
             }
         }
         
-        // Parse tags
+        // Parse input tags
         
         while (i < argc)
         {
-            // Advance to next input tag
+            t_symbol *sym = atom_getsym(argv + i++);
             
-            for ( ; i < argc && !isInputTag(atom_getsym(argv + i)); i++);
-            
-            // If there are values to read then do so
-            
-            if ((i + 1) < argc && !isTag(argv + i + 1))
+            if (i < argc && isInputTag(sym) && !isTag(argv + i))
             {
-                unsigned long inputNum = inputNumber(atom_getsym(argv + i));
-                i = parseNumericalList(values, argv, argc, i + 1);
-                mObject->setFixedInput(inputNum, values.data(), static_cast<unsigned long>(values.size()));
+                i = parseNumericalList(values, argv, argc, i);
+                mObject->setFixedInput(inputNumber(sym), values.data(), static_cast<unsigned long>(values.size()));
             }
-            else
-                i++;
         }
     }
 
