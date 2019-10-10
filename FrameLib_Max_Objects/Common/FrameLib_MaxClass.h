@@ -1930,6 +1930,7 @@ private:
         if (argsMode == kAllInputs || argsMode == kDistribute)
         {
             i = parseNumericalList(values, argv, argc, 0);
+            
             if (argsMode == kAllInputs)
             {
                 for (long j = 0; i && j < getNumIns(); j++)
