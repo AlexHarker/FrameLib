@@ -1864,8 +1864,8 @@ private:
     
     void parseParameters(FrameLib_Parameters::AutoSerial& serialisedParameters, long argc, t_atom *argv)
     {
-        t_symbol *sym = nullptr;
         std::vector<double> values;
+        t_symbol *sym = nullptr;
         long i;
         
         // Parse arguments
@@ -1894,33 +1894,27 @@ private:
         
         while (i < argc)
         {
-            // Strip stray items
+            // Detect stray items and get to the next tag
             
-            for (long j = 0; i < argc; i++, j++)
+            if (sym && isParameterTag(sym) && !isTag(argv + i))
+                object_error(mUserObject, "stray items after entry %s", sym->s_name);
+            
+            for ( ; i < argc && !isTag(argv + i); i++);
+            
+            sym = i < argc ? atom_getsym(argv + i) : gensym("");
+            
+            // Check for tags with no values
+            
+            if (i < argc && (++i >= argc) || isTag(argv + i))
             {
-                if (isTag(argv + i))
-                {
-                    sym = atom_getsym(argv + i);
-                    break;
-                }
-                
-                if (j == 0)
-                    object_error(mUserObject, "stray items after entry %s", sym->s_name);
-            }
-            
-            // Check for lack of values or end of list
-            
-            if ((++i >= argc) || isTag(argv + i))
-            {
-                if (i < (argc + 1))
-                    object_error(mUserObject, "no values given for entry %s", sym->s_name);
+                object_error(mUserObject, "no values given for entry %s", sym->s_name);
                 continue;
             }
             
+            // Parse parameter tags
+            
             if (isParameterTag(sym))
             {
-                // Do strings or values
-                
                 if (atom_getsym(argv + i) != gensym(""))
                     serialisedParameters.write(sym->s_name + 1, atom_getsym(argv + i++)->s_name);
                 else
@@ -1929,13 +1923,6 @@ private:
                     serialisedParameters.write(sym->s_name + 1, values.data(), static_cast<unsigned long>(values.size()));
                 }
             }
-            else
-            {
-                // Advance to next tag
-                
-                for ( ; i < argc && !isTag(argv + i); i++);
-            }
-                
         }
     }
     
