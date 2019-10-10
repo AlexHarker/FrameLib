@@ -866,14 +866,14 @@ public:
     {
         FrameLib_MaxContext context{true, contextPatch, gensym("")};
         
-        for (long i = 0; i < argc; )
+        for (long i = 0; i < argc; i++)
         {
             if ((i + 1) < argc && isContextTag(atom_getsym(argv + i)) && !isTag(argv + i + 1))
             {
                 if (isContextNameTag(atom_getsym(argv + i++)))
-                    context.mName = atom_getsym(argv + i++);
+                    context.mName = atom_getsym(argv + i);
                 else
-                    context.mRealtime = !atom_getlong(argv + i++);
+                    context.mRealtime = !atom_getlong(argv + i);
             }
         }
         
@@ -920,8 +920,7 @@ public:
 
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        FrameLib_MaxContext contextSpecifier = parseContext(mContextPatch, argc, argv);
-        FrameLib_Context context = mGlobal->makeContext(contextSpecifier);
+        FrameLib_Context context = mGlobal->makeContext(parseContext(mContextPatch, argc, argv));
         mFrameLibProxy->mMaxObject = *this;
         mObject.reset(new T(context, &serialisedParameters, mFrameLibProxy.get(), mSpecifiedStreams));
         parseInputs(argc, argv);
