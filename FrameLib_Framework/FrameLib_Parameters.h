@@ -111,7 +111,7 @@ public:
             
             // Match Tag
             
-            bool matchTag(const char *tag) const    {return !strcmp(tag, getTag()); }
+            bool matchTag(const char *tag) const    { return !strcmp(tag, getTag()); }
             
             // Reads
             
