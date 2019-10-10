@@ -1866,11 +1866,8 @@ private:
         
         // Parse arguments
         
-        for (i = 0; i < argc; i++)
+        for (i = 0; i < argc && !isTag(argv + i); i++)
         {
-            if (isTag(argv + i))
-                break;
-            
             if (argsMode == kAsParams)
             {
                 if (atom_gettype(argv + i) == A_SYM)
