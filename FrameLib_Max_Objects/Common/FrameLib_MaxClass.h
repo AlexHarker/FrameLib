@@ -1851,18 +1851,15 @@ private:
             
             if (argsMode == kAsParams)
             {
-                char argNames[64];
-                sprintf(argNames, "%ld", i);
-                
                 if (atom_gettype(argv + i) == A_SYM)
                 {
                     t_symbol *str = atom_getsym(argv + i);
-                    serialisedParameters.write(argNames, str->s_name);
+                    serialisedParameters.write(std::to_string(i).c_str(), str->s_name);
                 }
                 else
                 {
                     double value = atom_getfloat(argv + i);
-                    serialisedParameters.write(argNames, &value, 1);
+                    serialisedParameters.write(std::to_string(i).c_str(), &value, 1);
                 }
             }
         }
@@ -1957,13 +1954,12 @@ private:
             
             if ((i + 1) < argc && !isTag(argv + i + 1))
             {
-                t_symbol *sym = atom_getsym(argv + i);
+                unsigned long inputNum = inputNumber(atom_getsym(argv + i));
                 i = parseNumericalList(values, argv, argc, i + 1);
-                mObject->setFixedInput(inputNumber(sym), values.data(), static_cast<unsigned long>(values.size()));
+                mObject->setFixedInput(inputNum, values.data(), static_cast<unsigned long>(values.size()));
             }
-            
-            if ((i + 1) >= argc)
-                break;
+            else
+                i++;
         }
     }
 
