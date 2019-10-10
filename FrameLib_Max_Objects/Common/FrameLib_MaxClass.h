@@ -1861,7 +1861,6 @@ private:
     void parseParameters(FrameLib_Parameters::AutoSerial& serialisedParameters, long argc, t_atom *argv)
     {
         std::vector<double> values;
-        t_symbol *sym = nullptr;
         long i;
         
         // Parse arguments
@@ -1887,29 +1886,27 @@ private:
         
         while (i < argc)
         {
-            // Detect stray items and get to the next tag
-            
-            if (sym && isParameterTag(sym) && !isTag(argv + i))
-                object_error(mUserObject, "stray items after entry %s", sym->s_name);
-            
-            for ( ; i < argc && !isTag(argv + i); i++);
-            
-            sym = i < argc ? atom_getsym(argv + i) : gensym("");
-            
-            // Check for tags with no values
-            
-            if (i < argc && ((++i >= argc) || isTag(argv + i)))
-            {
-                object_error(mUserObject, "no values given for entry %s", sym->s_name);
-                continue;
-            }
-            
-            // Parse parameter tags
+            t_symbol *sym = atom_getsym(argv + i++);
             
             if (isParameterTag(sym))
             {
+                // Check for missing values
+                
+                if ((i >= argc) || isTag(argv + i))
+                {
+                    object_error(mUserObject, "no values given for entry %s", sym->s_name);
+                    continue;
+                }
+                
+                // Add to parameters with stray item detection
+                
                 if (atom_getsym(argv + i) != gensym(""))
+                {
                     serialisedParameters.write(sym->s_name + 1, atom_getsym(argv + i++)->s_name);
+                    
+                    if (i < argc && !isTag(argv + i))
+                        object_error(mUserObject, "stray items after entry %s", sym->s_name);
+                }
                 else
                 {
                     i = parseNumericalList(values, argv, argc, i);
