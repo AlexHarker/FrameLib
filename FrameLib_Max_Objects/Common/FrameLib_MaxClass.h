@@ -1905,7 +1905,7 @@ private:
             
             // Check for tags with no values
             
-            if (i < argc && (++i >= argc) || isTag(argv + i))
+            if (i < argc && ((++i >= argc) || isTag(argv + i)))
             {
                 object_error(mUserObject, "no values given for entry %s", sym->s_name);
                 continue;
