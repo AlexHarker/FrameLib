@@ -1,7 +1,7 @@
 import os
 from FrameLibDocs.utils import get_path, check_make, cd_up
 
-root = cd_up(get_path(), 1)
+root = cd_up(get_path(), 2)
 
 # Directories
 temporary = os.path.join(root, "__tmp__")
