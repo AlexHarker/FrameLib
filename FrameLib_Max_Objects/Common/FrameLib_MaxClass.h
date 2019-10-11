@@ -1955,6 +1955,9 @@ private:
             {
                 i = parseNumericalList(values, argv, argc, i);
                 mObject->setFixedInput(inputNumber(sym), values.data(), static_cast<unsigned long>(values.size()));
+                
+                if (inputNumber(sym) >= getNumIns())
+                    object_error(mUserObject, "input out of bounds");
             }
         }
     }
