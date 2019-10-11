@@ -584,7 +584,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -683,22 +683,6 @@
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-16",
-									"linecount" : 5,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 284.0, 248.0, 151.0, 74.0 ],
-									"presentation" : 1,
-									"presentation_linecount" : 2,
-									"presentation_rect" : [ 248.5, 225.0, 398.5, 33.0 ],
-									"text" : "Warning: At this point in time, tutorials 1-6 are included in the FrameLib package. Further tutorials (7 & 8) to come!",
-									"textcolor" : [ 0.866666674613953, 0.117647059261799, 0.117647059261799, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-6",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -722,7 +706,7 @@
 									"presentation" : 1,
 									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 153.0, 396.0, 40.0 ],
-									"text" : "An overview and explanation of the key concepts of FrameLib , such as its timing and patching architecture.",
+									"text" : "A general introduction to FrameLib and some foundation DSP concepts..",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -1296,13 +1280,15 @@
 									"fontsize" : 20.0,
 									"frozen_box_attributes" : [ "presentation_rect" ],
 									"id" : "obj-7",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 131.0, 382.0, 30.0 ],
+									"patching_rect" : [ 23.0, 131.0, 382.0, 54.0 ],
 									"presentation" : 1,
+									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 97.0, 422.0, 30.0 ],
-									"text" : "Tutorial 3: Key Concepts.",
+									"text" : "Tutorial 1: An introduction to FrameLib and frame based processing.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -1647,12 +1633,12 @@
 																	"numinlets" : 1,
 																	"numoutlets" : 4,
 																	"outlettype" : [ "", "", "", "" ],
-																	"patching_rect" : [ 89.0, 215.0, 125.0, 22.0 ],
+																	"patching_rect" : [ 89.0, 215.0, 145.0, 22.0 ],
 																	"saved_object_attributes" : 																	{
 																		"embed" : 0
 																	}
 ,
-																	"text" : "coll tutorial_names.txt"
+																	"text" : "coll FL_tutorial_names.txt"
 																}
 
 															}
@@ -2668,7 +2654,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -4992,13 +4978,13 @@
 									"presentation_rect" : [ 5.0, 89.0, 209.0, 23.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_longname" : "umenu",
+											"parameter_initial_enable" : 1,
+											"parameter_invisible" : 1,
 											"parameter_mmax" : 22.0,
 											"parameter_initial" : [ 0 ],
 											"parameter_shortname" : "umenu",
-											"parameter_type" : 3,
-											"parameter_longname" : "umenu",
-											"parameter_initial_enable" : 1,
-											"parameter_invisible" : 1
+											"parameter_type" : 3
 										}
 
 									}
@@ -5353,7 +5339,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "tutorial_names.txt",
+				"name" : "FL_tutorial_names.txt",
 				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : "../../docs/tutorial-patchers",
 				"type" : "TEXT",
