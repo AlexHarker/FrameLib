@@ -272,7 +272,7 @@ protected:
         uintptr_t min() const           { return std::min(m_size1, m_size2); }
         uintptr_t max() const           { return std::max(m_size1, m_size2); }
         uintptr_t min_m1() const        { return min() - 1; }
-        uintptr_t fft() const           { return 1 << m_fft_size_log2; }
+        uintptr_t fft() const           { return uintptr_t(1) << m_fft_size_log2; }
         uintptr_t fft_log2() const      { return m_fft_size_log2; }
         
     private:
