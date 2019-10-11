@@ -584,7 +584,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
@@ -704,9 +704,8 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 23.0, 210.0, 384.0, 40.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 2,
-									"presentation_rect" : [ 251.0, 153.0, 396.0, 40.0 ],
-									"text" : "A general introduction to FrameLib and some foundation DSP concepts..",
+									"presentation_rect" : [ 251.0, 153.0, 396.0, 23.0 ],
+									"text" : "A step-by-step guide on building a granular synth from scratch.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -1288,7 +1287,7 @@
 									"presentation" : 1,
 									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 97.0, 422.0, 30.0 ],
-									"text" : "Tutorial 1: An introduction to FrameLib and frame based processing.",
+									"text" : "Tutorial 6: Your first FrameLib project - Building a granulator from scratch.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -2654,7 +2653,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,

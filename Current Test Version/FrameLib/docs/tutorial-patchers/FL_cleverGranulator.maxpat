@@ -1312,8 +1312,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 28.0, 271.0, 206.0, 21.0 ],
-					"text" : "fl.read~ jongles /mode hermite /units ms"
+					"patching_rect" : [ 28.0, 271.0, 130.0, 21.0 ],
+					"text" : "fl.read~ jongles /units ms"
 				}
 
 			}

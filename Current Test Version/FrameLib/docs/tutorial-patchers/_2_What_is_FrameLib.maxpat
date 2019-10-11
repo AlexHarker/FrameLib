@@ -10,15 +10,15 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 948.0, 591.0 ],
+		"rect" : [ 34.0, 79.0, 1397.0, 628.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
 		"default_fontface" : 0,
 		"default_fontname" : "Arial",
-		"gridonopen" : 1,
+		"gridonopen" : 2,
 		"gridsize" : [ 15.0, 15.0 ],
-		"gridsnaponopen" : 1,
+		"gridsnaponopen" : 2,
 		"objectsnaponopen" : 1,
 		"statusbarvisible" : 2,
 		"toolbarvisible" : 1,
@@ -131,15 +131,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 948.0, 565.0 ],
+						"rect" : [ 0.0, 26.0, 1397.0, 602.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -162,6 +162,19 @@
 						"title" : "Better Freeze",
 						"boxes" : [ 							{
 								"box" : 								{
+									"filename" : "fl.tut.nav.js",
+									"id" : "obj-3",
+									"maxclass" : "jsui",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 945.0, 15.0, 435.0, 573.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"args" : [ 2 ],
 									"bgmode" : 0,
 									"border" : 0,
@@ -176,7 +189,7 @@
 									"numoutlets" : 1,
 									"offset" : [ -4.0, -3.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 16.0, 82.0, 219.0, 89.0 ],
+									"patching_rect" : [ 15.0, 90.0, 219.0, 89.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -188,7 +201,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "" ],
-									"patching_rect" : [ 16.0, 257.5, 97.0, 22.0 ],
+									"patching_rect" : [ 15.0, 265.5, 97.0, 22.0 ],
 									"text" : "FL_betterFreeze"
 								}
 
@@ -200,7 +213,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 407.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 415.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -212,7 +225,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 71.0, 530.25, 5.0 ]
+									"patching_rect" : [ 16.0, 46.0, 530.25, 5.0 ]
 								}
 
 							}
@@ -223,7 +236,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 48.0, 494.0, 21.0 ],
+									"patching_rect" : [ 15.0, 59.0, 494.0, 21.0 ],
 									"text" : "An improvement on the BasicFreeze patch."
 								}
 
@@ -236,7 +249,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 94.0, 331.0, 298.0, 121.0 ],
+									"patching_rect" : [ 93.0, 339.0, 298.0, 121.0 ],
 									"size" : 4096
 								}
 
@@ -249,7 +262,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 17.0, 214.0, 29.0 ],
+									"patching_rect" : [ 16.0, 15.0, 214.0, 29.0 ],
 									"text" : "Better FFT Freeze"
 								}
 
@@ -261,7 +274,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 186.25, 200.5, 188.0, 21.0 ],
+									"patching_rect" : [ 185.25, 208.5, 188.0, 21.0 ],
 									"text" : "Press when you want to freeze"
 								}
 
@@ -275,7 +288,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 144.0, 204.5, 40.25, 13.0 ]
+									"patching_rect" : [ 143.0, 212.5, 40.25, 13.0 ]
 								}
 
 							}
@@ -286,7 +299,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 281.0, 115.5, 148.0, 21.0 ],
+									"patching_rect" : [ 280.0, 123.5, 148.0, 21.0 ],
 									"text" : "Choose a sound source"
 								}
 
@@ -300,7 +313,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 237.0, 120.0, 40.25, 13.0 ]
+									"patching_rect" : [ 236.0, 128.0, 40.25, 13.0 ]
 								}
 
 							}
@@ -319,7 +332,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 16.0, 304.5, 40.875, 93.0 ],
+									"patching_rect" : [ 15.0, 312.5, 40.875, 93.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -332,7 +345,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 94.0, 199.5, 48.0, 23.0 ],
+									"patching_rect" : [ 93.0, 207.5, 48.0, 23.0 ],
 									"text" : "freeze"
 								}
 
@@ -351,7 +364,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 372.0, 200.5, 20.0, 20.0 ],
+									"patching_rect" : [ 371.0, 208.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -372,7 +385,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 431.0, 115.5, 20.0, 20.0 ],
+									"patching_rect" : [ 430.0, 123.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -548,15 +561,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 948.0, 565.0 ],
+						"rect" : [ 0.0, 26.0, 1397.0, 602.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -579,12 +592,25 @@
 						"title" : "Basic Freeze",
 						"boxes" : [ 							{
 								"box" : 								{
+									"filename" : "fl.tut.nav.js",
+									"id" : "obj-7",
+									"maxclass" : "jsui",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 945.0, 15.0, 435.0, 573.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"fontsize" : 13.0,
 									"id" : "obj-9",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 232.0, 137.5, 175.0, 21.0 ],
+									"patching_rect" : [ 227.5, 144.5, 175.0, 21.0 ],
 									"text" : "Compare pfft~ and FrameLib"
 								}
 
@@ -598,7 +624,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 189.75, 142.5, 40.25, 13.0 ]
+									"patching_rect" : [ 185.25, 149.5, 40.25, 13.0 ]
 								}
 
 							}
@@ -618,7 +644,7 @@
 									"numoutlets" : 1,
 									"offset" : [ -4.0, -3.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 92.0, 176.0, 219.0, 89.0 ],
+									"patching_rect" : [ 87.5, 183.0, 219.0, 89.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -630,7 +656,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 20.5, 98.0, 72.0, 22.0 ],
+									"patching_rect" : [ 16.0, 105.0, 72.0, 22.0 ],
 									"text" : "loadmess 0"
 								}
 
@@ -645,7 +671,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 20.5, 137.0, 168.0, 24.0 ]
+									"patching_rect" : [ 16.0, 144.0, 168.0, 24.0 ]
 								}
 
 							}
@@ -656,7 +682,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 20.5, 496.0, 45.0, 45.0 ]
+									"patching_rect" : [ 16.0, 503.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -675,7 +701,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 20.5, 393.5, 40.875, 93.0 ],
+									"patching_rect" : [ 16.0, 400.5, 40.875, 93.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -704,9 +730,9 @@
 										"default_fontsize" : 12.0,
 										"default_fontface" : 0,
 										"default_fontname" : "Arial",
-										"gridonopen" : 1,
+										"gridonopen" : 2,
 										"gridsize" : [ 15.0, 15.0 ],
-										"gridsnaponopen" : 1,
+										"gridsnaponopen" : 2,
 										"objectsnaponopen" : 1,
 										"statusbarvisible" : 2,
 										"toolbarvisible" : 1,
@@ -846,7 +872,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 20.5, 176.0, 65.0, 22.0 ],
+									"patching_rect" : [ 16.0, 183.0, 65.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -865,7 +891,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "list" ],
-									"patching_rect" : [ 20.5, 367.00006103515625, 120.0, 22.0 ],
+									"patching_rect" : [ 16.0, 374.00006103515625, 120.0, 22.0 ],
 									"text" : "matrix~ 2 1 1."
 								}
 
@@ -877,7 +903,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 192.125, 314.5, 185.0, 22.0 ],
+									"patching_rect" : [ 187.625, 321.5, 185.0, 22.0 ],
 									"text" : "pfft~ FL_basicFreeze_pfft 4096 4"
 								}
 
@@ -889,7 +915,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 92.0, 314.5, 95.0, 22.0 ],
+									"patching_rect" : [ 87.5, 321.5, 95.0, 22.0 ],
 									"text" : "FL_basicFreeze"
 								}
 
@@ -902,7 +928,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 86.0, 530.25, 5.0 ]
+									"patching_rect" : [ 16.0, 46.0, 530.25, 5.0 ]
 								}
 
 							}
@@ -914,7 +940,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 48.0, 466.0, 36.0 ],
+									"patching_rect" : [ 16.0, 60.0, 466.0, 36.0 ],
 									"text" : "A basic FFT freeze that holds the last FFT frame and repeats it. A side-by-side comparison of the same process realised with pfft~ is demonstrated."
 								}
 
@@ -927,7 +953,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 17.0, 214.0, 29.0 ],
+									"patching_rect" : [ 16.0, 15.0, 214.0, 29.0 ],
 									"text" : "Basic FFT Freeze"
 								}
 
@@ -939,7 +965,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 352.25, 275.5, 188.0, 21.0 ],
+									"patching_rect" : [ 347.75, 282.5, 188.0, 21.0 ],
 									"text" : "Press when you want to freeze"
 								}
 
@@ -953,7 +979,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 310.0, 280.5, 40.25, 13.0 ]
+									"patching_rect" : [ 305.5, 287.5, 40.25, 13.0 ]
 								}
 
 							}
@@ -964,7 +990,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 352.25, 209.5, 149.0, 21.0 ],
+									"patching_rect" : [ 347.75, 216.5, 149.0, 21.0 ],
 									"text" : "Choose a sound source"
 								}
 
@@ -978,7 +1004,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 310.0, 214.0, 40.25, 13.0 ]
+									"patching_rect" : [ 305.5, 221.0, 40.25, 13.0 ]
 								}
 
 							}
@@ -990,7 +1016,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 263.0, 275.5, 48.0, 23.0 ],
+									"patching_rect" : [ 258.5, 282.5, 48.0, 23.0 ],
 									"text" : "freeze"
 								}
 
@@ -1009,7 +1035,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 541.375, 275.5, 20.0, 20.0 ],
+									"patching_rect" : [ 536.875, 282.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1030,7 +1056,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 503.25, 209.5, 20.0, 20.0 ],
+									"patching_rect" : [ 498.75, 216.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1051,7 +1077,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 409.0, 137.5, 20.0, 20.0 ],
+									"patching_rect" : [ 404.5, 144.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1062,7 +1088,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-3", 0 ],
-									"midpoints" : [ 30.0, 177.0, 30.0, 177.0 ],
+									"midpoints" : [ 25.5, 184.0, 25.5, 184.0 ],
 									"source" : [ "obj-12", 0 ]
 								}
 
@@ -1070,7 +1096,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-3", 0 ],
-									"midpoints" : [ 101.5, 354.0, 30.0, 354.0 ],
+									"midpoints" : [ 97.0, 361.0, 25.5, 361.0 ],
 									"source" : [ "obj-27", 0 ]
 								}
 
@@ -1092,7 +1118,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-3", 1 ],
-									"midpoints" : [ 201.625, 354.0, 131.0, 354.0 ],
+									"midpoints" : [ 197.125, 361.0, 126.5, 361.0 ],
 									"source" : [ "obj-4", 0 ]
 								}
 
@@ -1114,7 +1140,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-27", 1 ],
-									"midpoints" : [ 272.5, 300.0, 177.5, 300.0 ],
+									"midpoints" : [ 268.0, 307.0, 173.0, 307.0 ],
 									"order" : 1,
 									"source" : [ "obj-86", 0 ]
 								}
@@ -1123,7 +1149,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-4", 0 ],
-									"midpoints" : [ 272.5, 300.0, 201.625, 300.0 ],
+									"midpoints" : [ 268.0, 307.0, 197.125, 307.0 ],
 									"order" : 0,
 									"source" : [ "obj-86", 0 ]
 								}
@@ -1269,15 +1295,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 948.0, 565.0 ],
+						"rect" : [ 0.0, 26.0, 1397.0, 602.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -1301,6 +1327,19 @@
 						"title" : "Basic Granulator",
 						"boxes" : [ 							{
 								"box" : 								{
+									"filename" : "fl.tut.nav.js",
+									"id" : "obj-2",
+									"maxclass" : "jsui",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 945.0, 15.0, 435.0, 573.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-4",
 									"maxclass" : "newobj",
 									"numinlets" : 0,
@@ -1322,9 +1361,9 @@
 										"default_fontsize" : 12.0,
 										"default_fontface" : 0,
 										"default_fontname" : "Arial",
-										"gridonopen" : 1,
+										"gridonopen" : 2,
 										"gridsize" : [ 15.0, 15.0 ],
-										"gridsnaponopen" : 1,
+										"gridsnaponopen" : 2,
 										"objectsnaponopen" : 1,
 										"statusbarvisible" : 2,
 										"toolbarvisible" : 1,
@@ -1397,7 +1436,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 209.0, 517.5, 89.0, 22.0 ],
+									"patching_rect" : [ 208.0, 529.5, 89.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1416,7 +1455,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 16.0, 168.0, 72.0, 22.0 ],
+									"patching_rect" : [ 15.0, 180.0, 72.0, 22.0 ],
 									"text" : "loadmess 0"
 								}
 
@@ -1445,9 +1484,9 @@
 										"default_fontsize" : 12.0,
 										"default_fontface" : 0,
 										"default_fontname" : "Arial",
-										"gridonopen" : 1,
+										"gridonopen" : 2,
 										"gridsize" : [ 15.0, 15.0 ],
-										"gridsnaponopen" : 1,
+										"gridsnaponopen" : 2,
 										"objectsnaponopen" : 1,
 										"statusbarvisible" : 2,
 										"toolbarvisible" : 1,
@@ -1587,7 +1626,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 16.0, 270.000030999999979, 65.0, 22.0 ],
+									"patching_rect" : [ 15.0, 282.000030999999979, 65.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1606,7 +1645,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "list" ],
-									"patching_rect" : [ 16.0, 331.000030999999979, 120.0, 22.0 ],
+									"patching_rect" : [ 15.0, 343.000030999999979, 120.0, 22.0 ],
 									"text" : "matrix~ 2 1 1."
 								}
 
@@ -1621,7 +1660,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 16.0, 197.000031000000007, 168.0, 24.0 ]
+									"patching_rect" : [ 15.0, 209.000031000000007, 168.0, 24.0 ]
 								}
 
 							}
@@ -1632,7 +1671,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 494.5, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 506.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -1651,7 +1690,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 16.0, 375.66668701171875, 40.875, 93.0 ],
+									"patching_rect" : [ 15.0, 387.66668701171875, 40.875, 93.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -1663,7 +1702,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 89.0, 270.000030999999979, 114.0, 22.0 ],
+									"patching_rect" : [ 88.0, 282.000030999999979, 114.0, 22.0 ],
 									"text" : "FL_basicGranulator"
 								}
 
@@ -1675,7 +1714,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 209.0, 238.000060999999988, 81.0, 22.0 ],
+									"patching_rect" : [ 208.0, 250.00006099999996, 81.0, 22.0 ],
 									"text" : "prepend note"
 								}
 
@@ -1687,7 +1726,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
-									"patching_rect" : [ 209.0, 197.000031000000007, 115.0, 22.0 ],
+									"patching_rect" : [ 208.0, 209.000031000000007, 115.0, 22.0 ],
 									"text" : "metro 75 @active 1"
 								}
 
@@ -1699,7 +1738,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 209.0, 270.000030999999979, 180.0, 22.0 ],
+									"patching_rect" : [ 208.0, 282.000030999999979, 180.0, 22.0 ],
 									"text" : "poly~ FL_basicGranulatorPoly 8"
 								}
 
@@ -1711,7 +1750,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 69.0, 517.5, 135.0, 22.0 ],
+									"patching_rect" : [ 68.0, 529.5, 135.0, 22.0 ],
 									"text" : "buffer~ rain rainstick.aif"
 								}
 
@@ -1724,7 +1763,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 158.0, 530.25, 5.0 ]
+									"patching_rect" : [ 15.0, 46.0, 530.25, 5.0 ]
 								}
 
 							}
@@ -1736,7 +1775,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 48.0, 638.0, 108.0 ],
+									"patching_rect" : [ 15.0, 60.0, 915.0, 108.0 ],
 									"text" : "Below is an example of granulation in FrameLib.\n\nEvery 150 milliseconds the first 150 milliseconds of a buffer are played back creating a stutter/repeat effect. Look inside the basicGranulator patch to see how this works in detail.\n\nA side-by-side comparison is implemented in a poly~ allowing you to compare the sound result, and see the simplicity of FrameLib compared to traditional Max objects."
 								}
 
@@ -1749,7 +1788,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 17.0, 200.0, 29.0 ],
+									"patching_rect" : [ 15.0, 15.0, 200.0, 29.0 ],
 									"text" : "Basic Granulator"
 								}
 
@@ -1758,7 +1797,7 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-3", 0 ],
-									"midpoints" : [ 25.5, 293.0, 25.5, 293.0 ],
+									"midpoints" : [ 24.5, 305.0, 24.5, 305.0 ],
 									"source" : [ "obj-12", 0 ]
 								}
 
@@ -1773,7 +1812,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-3", 1 ],
-									"midpoints" : [ 218.5, 318.0, 126.5, 318.0 ],
+									"midpoints" : [ 217.5, 330.0, 125.5, 330.0 ],
 									"source" : [ "obj-20", 0 ]
 								}
 
@@ -1795,7 +1834,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-3", 0 ],
-									"midpoints" : [ 98.5, 317.0, 25.5, 317.0 ],
+									"midpoints" : [ 97.5, 329.0, 24.5, 329.0 ],
 									"source" : [ "obj-29", 0 ]
 								}
 
@@ -1954,15 +1993,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 948.0, 565.0 ],
+						"rect" : [ 34.0, 105.0, 1397.0, 602.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -1984,13 +2023,26 @@
 						"showontab" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
+									"filename" : "fl.tut.nav.js",
+									"id" : "obj-1",
+									"maxclass" : "jsui",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 945.0, 15.0, 435.0, 573.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"fontname" : "Lato",
 									"fontsize" : 44.0,
 									"id" : "obj-6",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 5.75, 6.0, 197.0, 59.0 ],
+									"patching_rect" : [ 14.75, 16.0, 197.0, 59.0 ],
 									"text" : "FrameLib"
 								}
 
@@ -2003,7 +2055,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 5.75, 275.500030517578125, 935.0, 152.0 ],
+									"patching_rect" : [ 14.75, 315.0, 915.25, 152.0 ],
 									"text" : "In most realtime audio environments, audio processing is built on the model of grouping continuous streams of samples into small consecutive blocks of equal size for the purpose of calculation. Whilst this offers an appropriate model to represent continuous analog signals, it is less suited to processing that functions on chunks, or frames, of audio in which the position of a sample in the frame is meaningful (e.g spectral representations), or in which the frame might be considered as a whole (e.g granular synthesis). \n\nFrameLib brings a wealth of processing techniques into the Max environment where rapid prototyping and experimentation is readily available to the user. Advanced multi-rate processing, based on DSP graphs that operate on frames of different sizes is not currently supported natively within Max which is where a frame based tool kit like FrameLib excels. If this doesn't make sense to you now, these tutorials will introduce you to these concepts.\n\nIf you don't know where to start, navigating through the tabs above demonstrate what you might want to do with FrameLib."
 								}
 
@@ -2016,7 +2068,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 5.75, 267.000030999999979, 530.25, 5.0 ]
+									"patching_rect" : [ 14.75, 301.0, 530.25, 5.0 ]
 								}
 
 							}
@@ -2028,7 +2080,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 5.75, 240.0, 187.0, 29.0 ],
+									"patching_rect" : [ 14.75, 270.0, 187.0, 29.0 ],
 									"text" : "What is possible?"
 								}
 
@@ -2037,11 +2089,11 @@
 								"box" : 								{
 									"fontsize" : 13.0,
 									"id" : "obj-2",
-									"linecount" : 7,
+									"linecount" : 8,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 5.75, 106.0, 943.0, 108.0 ],
+									"patching_rect" : [ 14.75, 135.0, 915.25, 123.0 ],
 									"text" : "FrameLib is a DSP system designed to allow quick modular constructions of frame-based networks. A frame is a self contained group of samples similar to a grain in granulation or an FFT frame. These networks can resolve time at a highly accurate subsample level and can run at different rates and with different frame sizes.\n\nWithin a single FrameLib network you are able to mix different representations (such as time and frequency-based), efficiently process them and maintaining tightly-timed DSP constructs. A group of FrameLib objects resulting in a processing chain can be referred to as a 'network'.\n\nIf you don't know what these terms mean or are not sure if FrameLib could be useful for you rest assured it will make sense as the tutorials progress."
 								}
 
@@ -2054,7 +2106,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 5.75, 99.0, 530.25, 5.0 ]
+									"patching_rect" : [ 14.75, 121.0, 530.25, 5.0 ]
 								}
 
 							}
@@ -2066,7 +2118,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 5.75, 67.0, 205.0, 29.0 ],
+									"patching_rect" : [ 14.75, 90.0, 205.0, 29.0 ],
 									"text" : "What is FrameLib?"
 								}
 
@@ -2196,15 +2248,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 948.0, 565.0 ],
+						"rect" : [ 0.0, 26.0, 1397.0, 602.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -2226,28 +2278,43 @@
 						"showontab" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
-									"hidden" : 1,
-									"id" : "obj-9",
-									"maxclass" : "newobj",
+									"fontface" : 3,
+									"fontsize" : 14.0,
+									"id" : "obj-3",
+									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 618.75, 531.0, 216.0, 22.0 ],
-									"text" : "FL_next_tut _3_Key_Concepts.maxpat"
+									"patching_rect" : [ 758.0, 146.600036999999986, 93.0, 22.0 ],
+									"presentation_linecount" : 2,
+									"text" : "Next tutorial",
+									"textcolor" : [ 0.235294117647059, 0.180392156862745, 0.180392156862745, 1.0 ],
+									"textjustification" : 2
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 14.0,
-									"id" : "obj-10",
-									"maxclass" : "textbutton",
+									"arrows" : 2,
+									"border" : 4.0,
+									"id" : "obj-1",
+									"justification" : 1,
+									"maxclass" : "live.line",
 									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
+									"numoutlets" : 0,
+									"patching_rect" : [ 853.0, 150.100036999999986, 90.0, 15.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"filename" : "fl.tut.nav.js",
+									"id" : "obj-2",
+									"maxclass" : "jsui",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 836.75, 531.0, 100.0, 20.0 ],
-									"text" : "Next Tutorial",
-									"textoncolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
+									"patching_rect" : [ 945.0, 15.0, 435.0, 573.0 ]
 								}
 
 							}
@@ -2258,7 +2325,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 294.0, 45.0, 45.0 ]
+									"patching_rect" : [ 16.0, 297.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -2271,7 +2338,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 356.0, 286.5, 40.25, 13.0 ]
+									"patching_rect" : [ 356.0, 301.5, 40.25, 13.0 ]
 								}
 
 							}
@@ -2282,7 +2349,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 398.25, 282.5, 61.0, 33.0 ],
+									"patching_rect" : [ 398.25, 297.5, 61.0, 33.0 ],
 									"text" : "Replace source 2"
 								}
 
@@ -2294,7 +2361,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 240.25, 282.5, 59.0, 33.0 ],
+									"patching_rect" : [ 240.25, 297.5, 59.0, 33.0 ],
 									"text" : "Replace source 1"
 								}
 
@@ -2308,7 +2375,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 198.0, 286.5, 40.25, 13.0 ]
+									"patching_rect" : [ 198.0, 301.5, 40.25, 13.0 ]
 								}
 
 							}
@@ -2319,7 +2386,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 304.0, 282.5, 50.0, 22.0 ],
+									"patching_rect" : [ 304.0, 297.5, 50.0, 22.0 ],
 									"text" : "replace"
 								}
 
@@ -2331,7 +2398,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 144.0, 282.0, 50.0, 22.0 ],
+									"patching_rect" : [ 144.0, 297.0, 50.0, 22.0 ],
 									"text" : "replace"
 								}
 
@@ -2363,7 +2430,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 16.0, 196.100036999999986, 43.0, 92.0 ],
+									"patching_rect" : [ 16.0, 165.0, 43.0, 92.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -2376,7 +2443,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 144.0, 150.100036999999986, 298.0, 121.0 ],
+									"patching_rect" : [ 144.0, 165.100036999999986, 298.0, 121.0 ],
 									"size" : 8191
 								}
 
@@ -2390,7 +2457,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 304.0, 321.5, 134.0, 22.0 ],
+									"patching_rect" : [ 304.0, 336.5, 134.0, 22.0 ],
 									"text" : "buffer~ cello cello-f2.aif"
 								}
 
@@ -2404,7 +2471,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 144.0, 321.0, 139.0, 22.0 ],
+									"patching_rect" : [ 144.0, 336.0, 139.0, 22.0 ],
 									"text" : "buffer~ jongles jongly.aif"
 								}
 
@@ -2417,7 +2484,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 103.0, 530.25, 5.0 ]
+									"patching_rect" : [ 16.0, 48.0, 530.25, 5.0 ]
 								}
 
 							}
@@ -2429,7 +2496,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 48.0, 530.25, 38.0 ],
+									"patching_rect" : [ 16.0, 60.0, 530.25, 38.0 ],
 									"text" : "A typical convolution of two granular streams. This example convolves the rhythmic properties of jongly.aif with the harmonic properties of cello-f2.aif. "
 								}
 
@@ -2449,14 +2516,6 @@
 							}
  ],
 						"lines" : [ 							{
-								"patchline" : 								{
-									"destination" : [ "obj-9", 0 ],
-									"hidden" : 1,
-									"source" : [ "obj-10", 0 ]
-								}
-
-							}
-, 							{
 								"patchline" : 								{
 									"destination" : [ "obj-19", 1 ],
 									"order" : 0,
@@ -2625,15 +2684,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 948.0, 565.0 ],
+						"rect" : [ 0.0, 26.0, 1397.0, 602.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -2655,6 +2714,19 @@
 						"showontab" : 1,
 						"title" : "Stochastic Synth",
 						"boxes" : [ 							{
+								"box" : 								{
+									"filename" : "fl.tut.nav.js",
+									"id" : "obj-4",
+									"maxclass" : "jsui",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 945.0, 15.0, 435.0, 573.0 ]
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-1",
 									"local" : 1,
@@ -2695,7 +2767,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 129.0, 530.25, 5.0 ]
+									"patching_rect" : [ 16.0, 46.0, 530.25, 5.0 ]
 								}
 
 							}
@@ -2826,11 +2898,11 @@
 								"box" : 								{
 									"fontsize" : 13.0,
 									"id" : "obj-23",
-									"linecount" : 5,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 48.0, 518.0, 79.0 ],
+									"patching_rect" : [ 16.0, 60.0, 914.0, 50.0 ],
 									"text" : "This stochastic synth works by generating two spline like frames of varying lengths and convolving them. Each time frames are generated (dependent on the interval setting) they are slightly randomised, causing transformations of the frame content each time. The two generated frames are independently timed to each other and can be of differing lengths."
 								}
 
@@ -3055,7 +3127,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 17.0, 235.0, 29.0 ],
+									"patching_rect" : [ 16.0, 15.0, 235.0, 29.0 ],
 									"text" : "Stochastic Synthesiser"
 								}
 
@@ -3350,15 +3422,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 948.0, 565.0 ],
+						"rect" : [ 0.0, 26.0, 1397.0, 602.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -3382,6 +3454,19 @@
 						"title" : "Clever Granulator",
 						"boxes" : [ 							{
 								"box" : 								{
+									"filename" : "fl.tut.nav.js",
+									"id" : "obj-2",
+									"maxclass" : "jsui",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 945.0, 15.0, 435.0, 573.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-19",
 									"local" : 1,
 									"maxclass" : "ezdac~",
@@ -3399,7 +3484,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 129.0, 530.25, 5.0 ]
+									"patching_rect" : [ 15.0, 46.0, 530.25, 5.0 ]
 								}
 
 							}
@@ -3411,7 +3496,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 48.0, 618.0, 79.0 ],
+									"patching_rect" : [ 15.0, 60.0, 618.0, 79.0 ],
 									"text" : "This network adds some extra features to the Basic Granulator and demonstrates how scalable FrameLib can be. In addition to generating random frame positions, the length of the frame is dynamically changed. Each frame (or grain) is being band pass filtered and spatialised across the stereo field according to its filter frequency. An interface is added allowing you to constrain the area of the buffer from which the FrameLib network extracts grains."
 								}
 
@@ -3561,7 +3646,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 17.0, 200.0, 29.0 ],
+									"patching_rect" : [ 15.0, 15.0, 200.0, 29.0 ],
 									"text" : "Clever Granulator"
 								}
 
@@ -3967,15 +4052,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 948.0, 565.0 ],
+						"rect" : [ 0.0, 26.0, 1397.0, 602.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -3998,6 +4083,19 @@
 						"title" : "Stochastic Freeze",
 						"boxes" : [ 							{
 								"box" : 								{
+									"filename" : "fl.tut.nav.js",
+									"id" : "obj-3",
+									"maxclass" : "jsui",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 945.0, 15.0, 435.0, 573.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"args" : [ 2 ],
 									"bgmode" : 0,
 									"border" : 0,
@@ -4012,7 +4110,7 @@
 									"numoutlets" : 1,
 									"offset" : [ -4.0, -3.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 16.0, 122.0, 219.0, 89.0 ],
+									"patching_rect" : [ 15.0, 135.0, 219.0, 89.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -4024,7 +4122,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 420.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 433.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -4036,7 +4134,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 115.0, 530.25, 5.0 ]
+									"patching_rect" : [ 16.0, 46.0, 530.25, 5.0 ]
 								}
 
 							}
@@ -4048,7 +4146,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 48.0, 532.0, 65.0 ],
+									"patching_rect" : [ 16.0, 60.0, 532.0, 65.0 ],
 									"text" : "Stochastic Freeze is an improvement on the 'Better Freeze' and demonstrates some of the convenient capabilities of working in a frame based environment like FrameLib. The process calculates the mean and standard deviation of the FFT frames over a period of time. New frames are generated using these statistics."
 								}
 
@@ -4061,7 +4159,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 117.0, 344.0, 298.0, 121.0 ],
+									"patching_rect" : [ 116.0, 357.0, 298.0, 121.0 ],
 									"size" : 4096
 								}
 
@@ -4074,7 +4172,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 16.0, 17.0, 226.0, 29.0 ],
+									"patching_rect" : [ 16.0, 15.0, 226.0, 29.0 ],
 									"text" : "Stochastic FFT Freeze"
 								}
 
@@ -4086,7 +4184,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 209.25, 242.5, 188.0, 21.0 ],
+									"patching_rect" : [ 208.25, 255.5, 188.0, 21.0 ],
 									"text" : "Press when you want to freeze"
 								}
 
@@ -4100,7 +4198,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 167.0, 246.5, 40.25, 13.0 ]
+									"patching_rect" : [ 166.0, 259.5, 40.25, 13.0 ]
 								}
 
 							}
@@ -4111,7 +4209,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 281.0, 159.0, 149.0, 21.0 ],
+									"patching_rect" : [ 280.0, 172.0, 149.0, 21.0 ],
 									"text" : "Choose a sound source"
 								}
 
@@ -4125,7 +4223,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 237.0, 163.5, 40.25, 13.0 ]
+									"patching_rect" : [ 236.0, 176.5, 40.25, 13.0 ]
 								}
 
 							}
@@ -4144,7 +4242,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 16.0, 317.5, 40.875, 93.0 ],
+									"patching_rect" : [ 15.0, 330.5, 40.875, 93.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -4157,7 +4255,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 117.0, 241.5, 48.0, 23.0 ],
+									"patching_rect" : [ 116.0, 254.5, 48.0, 23.0 ],
 									"text" : "freeze"
 								}
 
@@ -4169,7 +4267,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "" ],
-									"patching_rect" : [ 16.0, 285.5, 120.0, 22.0 ],
+									"patching_rect" : [ 15.0, 298.5, 120.0, 22.0 ],
 									"text" : "FL_stochasticFreeze"
 								}
 
@@ -4188,7 +4286,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 399.25, 242.5, 20.0, 20.0 ],
+									"patching_rect" : [ 398.25, 255.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -4209,7 +4307,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 426.0, 159.0, 20.0, 20.0 ],
+									"patching_rect" : [ 425.0, 172.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -4392,32 +4490,62 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-5::obj-5::obj-35" : [ "[2]", "Level", 0 ],
-			"obj-2::obj-12::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
-			"obj-2::obj-12::obj-35" : [ "[1]", "Level", 0 ],
 			"obj-5::obj-5::obj-21::obj-6" : [ "live.tab[5]", "live.tab[1]", 0 ],
+			"obj-9::obj-21::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
+			"obj-4::obj-9::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
+			"obj-2::obj-12::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
+			"obj-1::obj-9::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
 			"obj-116::obj-12::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
+			"obj-5::obj-5::obj-35" : [ "[2]", "Level", 0 ],
+			"obj-5::obj-93::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
+			"obj-2::obj-12::obj-35" : [ "[1]", "Level", 0 ],
+			"obj-116::obj-93::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-3::obj-26::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
+			"obj-2::obj-93::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
 			"obj-116::obj-12::obj-35" : [ "[5]", "Level", 0 ],
-			"obj-3::obj-26::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-5::obj-5::obj-35" : 				{
-					"parameter_longname" : "[2]"
+				"obj-5::obj-5::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[5]"
+				}
+,
+				"obj-9::obj-21::obj-50" : 				{
+					"parameter_longname" : "live.gain~[3]"
+				}
+,
+				"obj-4::obj-9::obj-50" : 				{
+					"parameter_longname" : "live.gain~[5]"
 				}
 ,
 				"obj-2::obj-12::obj-21::obj-6" : 				{
 					"parameter_longname" : "live.tab[4]"
 				}
 ,
+				"obj-1::obj-9::obj-50" : 				{
+					"parameter_longname" : "live.gain~[2]"
+				}
+,
+				"obj-5::obj-5::obj-35" : 				{
+					"parameter_longname" : "[2]"
+				}
+,
+				"obj-5::obj-93::obj-50" : 				{
+					"parameter_longname" : "live.gain~[6]"
+				}
+,
 				"obj-2::obj-12::obj-35" : 				{
 					"parameter_longname" : "[1]"
 				}
 ,
-				"obj-5::obj-5::obj-21::obj-6" : 				{
-					"parameter_longname" : "live.tab[5]"
+				"obj-3::obj-26::obj-50" : 				{
+					"parameter_longname" : "live.gain~[4]"
+				}
+,
+				"obj-2::obj-93::obj-50" : 				{
+					"parameter_longname" : "live.gain~[7]"
 				}
 
 			}
@@ -4475,6 +4603,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "fl.tut.nav.js",
+				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/misc",
+				"patcherrelativepath" : "../../misc",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "FL_cleverGranulator.maxpat",
 				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
@@ -4497,13 +4632,6 @@
 			}
 , 			{
 				"name" : "FL_convolutionGranulator.maxpat",
-				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "FL_next_tut.maxpat",
 				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
