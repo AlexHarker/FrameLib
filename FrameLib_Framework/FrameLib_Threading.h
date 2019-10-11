@@ -61,7 +61,7 @@ namespace OS_Specific
     typedef DWORD WINAPI OSThreadFunctionType(LPVOID arg);
 }
 
-#define DEFAULT_THREAD_PRIORITIES { THREAD_PRIORITY_LOWEST, THREAD_PRIORITY_HIGHEST THREAD_PRIORITY_TIME_CRITICAL, 0, false }
+#define DEFAULT_THREAD_PRIORITIES { THREAD_PRIORITY_LOWEST, THREAD_PRIORITY_HIGHEST, THREAD_PRIORITY_TIME_CRITICAL, 0, false }
 
 #endif
 
@@ -152,7 +152,7 @@ class FrameLib_SpinLock
 
 public:
     
-    FrameLib_SpinLock() : mAtomicLock(false) {}
+    FrameLib_SpinLock() {}
     ~FrameLib_SpinLock() { acquire(); }
     
     // Non-copyable
@@ -181,7 +181,7 @@ public:
     
 private:
     
-    std::atomic_flag mAtomicLock;
+    std::atomic_flag mAtomicLock = ATOMIC_FLAG_INIT;
 };
 
 

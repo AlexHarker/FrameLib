@@ -242,8 +242,12 @@ public:
     {
         std::unique_ptr<RefData>& item = mContextRefs[RefKey(specifier.mPatch, specifier.mName)];
         
-        if (!item)
-            item.reset(new RefData(RefKey(specifier.mPatch, specifier.mName), 1));
+		if (!item)
+		{
+			item.reset(new RefData());
+			std::get<0>(*item) = RefKey(specifier.mPatch, specifier.mName);
+			std::get<1>(*item) = 1;
+		}
         else
             std::get<1>(*item)++;
         
@@ -292,11 +296,15 @@ private:
     
     static FrameLib_Thread::Priorities priorities(bool realtime)
     {
+#ifdef __APPLE__
         if (!realtime)
             return { 31, 31, 31, SCHED_OTHER, true };
-#ifdef __APPLE__
+
         if (maxversion() >= 0x800)
             return { 31, 31, 43, SCHED_RR, false };
+#else
+		if (!realtime)
+			return { 31, 31, 31, 0, true };
 #endif
         return FrameLib_Thread::defaultPriorities();
     }
@@ -1635,7 +1643,7 @@ private:
         
         ConnectionConfirmation confirmation(connection, inIndex);
         mConfirmation = &confirmation;
-        objectMethod(connection.mObject, gensym("__fl.connection_confirm"), connection.mIndex, mode);
+        objectMethod(connection.mObject, gensym("__fl.connection_confirm"), t_ptr_int(connection.mIndex), mode);
         mConfirmation = nullptr;
         
         if (!confirmation.mConfirm)
@@ -1756,7 +1764,7 @@ private:
         
         // Allow connections - if not a frame outlet / to the ordering inlet / to a valid unconnected input
         
-        if (!validOutput(srcout) || isOrderingInput(dstin, toFLObject(dst)) || (validInput(dstin, toFLObject(dst)) && !objectMethod(dst, gensym("__fl.is_connected"), dstin)))
+        if (!validOutput(srcout) || isOrderingInput(dstin, toFLObject(dst)) || (validInput(dstin, toFLObject(dst)) && !objectMethod(dst, gensym("__fl.is_connected"), t_ptr_int(dstin))))
             return 1;
         
         return 0;
