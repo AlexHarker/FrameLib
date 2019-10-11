@@ -43,12 +43,11 @@ maxframelib.mxo/
 ## Package Testing
 test-builds/
 
-## James Documentation
+## Documentation
 __pycache__/
 __tmp__/
-refpages/
+*.maxref.xml
 Documentation/Max Documentation/help_files/templates/
-object_relationships.py
 Max_Object_List.h
 
 ## Other
