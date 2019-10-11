@@ -70,7 +70,7 @@ public:
         }
     }
     
-    uintptr_t max_fft_size() const { return 1 << m_max_fft_size_log2; }
+    uintptr_t max_fft_size() const { return uintptr_t(1) << m_max_fft_size_log2; }
     
     // Transforms
     
@@ -133,7 +133,7 @@ public:
     void change_phase(T *output, const T *input, uintptr_t size, double phase)
     {
         uintptr_t fft_size_log2 = calc_fft_size_log2(size);
-        uintptr_t fft_size = 1 << fft_size_log2;
+        uintptr_t fft_size = uintptr_t(1) << fft_size_log2;
         
         temporary_buffers<1> buffer(m_allocator, fft_size >> 1);
         
@@ -161,12 +161,12 @@ public:
         
         while (bit_shift)
         {
-            bit_shift >>= 1U;
+            bit_shift >>= uintptr_t(1);
             bit_count++;
         }
         
-        if (bit_count && size == 1U << (bit_count - 1U))
-            return bit_count - 1U;
+        if (bit_count && size == uintptr_t(1) << (bit_count - 1U))
+            return bit_count - uintptr_t(1);
         else
             return bit_count;
     }
