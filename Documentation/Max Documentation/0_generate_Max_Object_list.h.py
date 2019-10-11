@@ -9,8 +9,6 @@ for arg in sys.argv:
     ignored_objects.append(arg)
 ignored_objects = ignored_objects[1:]
 
-print(ignored_objects)
-
 root = cd_up(get_path(), 2)
 
 # Create the Max_Object_list.h and add skeleton
@@ -68,7 +66,7 @@ for folder in max_source_categories:
 
     for k in ignored_objects:
         try:
-            file_list.remove(k)
+            file_list.remove(f'{k}.cpp')
         except:
             pass
 
