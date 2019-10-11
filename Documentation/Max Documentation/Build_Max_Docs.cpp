@@ -1,7 +1,7 @@
 
 // fl includes
 
-#include "FrameLibDocs/Max_Object_List.h"
+#include "Max_Object_List.h"
 
 #include "FrameLib_Global.h"
 #include "FrameLib_Context.h"
