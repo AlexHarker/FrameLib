@@ -1790,9 +1790,9 @@ private:
     
     // Parameter Parsing
     
-    static unsigned long safeCount(char *str, unsigned long maxCount)
+    static unsigned long safeCount(char *str, unsigned long minCount, unsigned long maxCount)
     {
-        unsigned long number = std::max(1, atoi(str));
+        unsigned long number = std::max(minCount, (unsigned long) atoi(str));
         return std::min(maxCount, number);
     }
     
@@ -1803,7 +1803,7 @@ private:
             t_symbol *sym = atom_getsym(a);
             
             if (strlen(sym->s_name) > 1 && sym->s_name[0] == '=')
-                return safeCount(sym->s_name + 1, 1024);
+                return safeCount(sym->s_name + 1, 1, 1024);
         }
         
         return 0;
@@ -1848,10 +1848,10 @@ private:
         
         for ( ; idx < argc && !isTag(argv + idx); idx++)
         {
-            if (atom_gettype(argv + idx) == A_SYM && !atom_getfloat(argv + idx))
-                object_error(mUserObject, "string %s in entry list where value expected", atom_getsym(argv + idx)->s_name);
-            
             values.push_back(atom_getfloat(argv + idx));
+
+            if (atom_gettype(argv + idx) == A_SYM && !values.back())
+                object_error(mUserObject, "string %s in entry list where value expected", atom_getsym(argv + idx)->s_name);
         }
         
         return idx;
@@ -1893,7 +1893,7 @@ private:
                 
                 if ((i >= argc) || isTag(argv + i))
                 {
-                    object_error(mUserObject, "no values given for entry %s", sym->s_name);
+                    object_error(mUserObject, "no values given for parameter %s", sym->s_name);
                     continue;
                 }
                 
@@ -1904,7 +1904,7 @@ private:
                     serialisedParameters.write(sym->s_name + 1, atom_getsym(argv + i++)->s_name);
                     
                     if (i < argc && !isTag(argv + i))
-                        object_error(mUserObject, "stray items after entry %s", sym->s_name);
+                        object_error(mUserObject, "stray items after parameter %s", sym->s_name);
                 }
                 else
                 {
@@ -1919,7 +1919,7 @@ private:
     
     static unsigned long inputNumber(t_symbol *sym)
     {
-        return safeCount(sym->s_name + 1, 16384) - 1;
+        return safeCount(sym->s_name + 1, 0, 16384) - 1;
     }
     
     void parseInputs(long argc, t_atom *argv)
@@ -1951,13 +1951,13 @@ private:
         {
             t_symbol *sym = atom_getsym(argv + i++);
             
-            if (i < argc && isInputTag(sym) && !isTag(argv + i))
+            if (isInputTag(sym))
             {
                 i = parseNumericalList(values, argv, argc, i);
                 mObject->setFixedInput(inputNumber(sym), values.data(), static_cast<unsigned long>(values.size()));
                 
                 if (inputNumber(sym) >= getNumIns())
-                    object_error(mUserObject, "input out of bounds");
+                    object_error(mUserObject, "input %s out of bounds", sym);
             }
         }
     }
