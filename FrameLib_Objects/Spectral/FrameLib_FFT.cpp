@@ -84,7 +84,7 @@ void FrameLib_FFT::process()
     
     // Get FFT size log 2
     
-    unsigned long FFTSizeLog2 = mProcessor.calc_fft_size_log2(std::max(sizeInR, sizeInI));
+    unsigned long FFTSizeLog2 = static_cast<unsigned long>(mProcessor.calc_fft_size_log2(std::max(sizeInR, sizeInI)));
     unsigned long FFTSize = 1 << FFTSizeLog2;
     sizeOut = mMode == kReal ? (FFTSize >> 1) + 1 : FFTSize;
     

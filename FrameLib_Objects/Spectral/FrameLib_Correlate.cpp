@@ -90,7 +90,7 @@ void FrameLib_Correlate::process()
         
         // Get Output Size
         
-        unsigned long sizeOut = mProcessor.correlated_size(sizeIn1, sizeIn2, edgeMode);
+        unsigned long sizeOut = static_cast<unsigned long>(mProcessor.correlated_size(sizeIn1, sizeIn2, edgeMode));
         
         // Get output
         
@@ -112,7 +112,7 @@ void FrameLib_Correlate::process()
         
         // Get Output Size
 
-        unsigned long sizeOut = mProcessor.correlated_size(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edgeMode);
+        unsigned long sizeOut = static_cast<unsigned long>(mProcessor.correlated_size(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edgeMode));
 
         // Get output
         

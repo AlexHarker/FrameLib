@@ -83,7 +83,7 @@ void FrameLib_iFFT::process()
     if (sizeIn)
     {
         unsigned long calcSize = mMode == kReal ? (sizeIn - 1) << 1 : sizeIn;
-        FFTSizeLog2 = mProcessor.calc_fft_size_log2(calcSize);
+        FFTSizeLog2 = static_cast<unsigned long>(mProcessor.calc_fft_size_log2(calcSize));
         sizeOut = 1 << FFTSizeLog2;
     }
     else

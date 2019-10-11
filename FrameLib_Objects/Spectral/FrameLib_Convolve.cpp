@@ -89,7 +89,7 @@ void FrameLib_Convolve::process()
         
         // Get Output Size
         
-        unsigned long sizeOut = mProcessor.convolved_size(sizeIn1, sizeIn2, edgeMode);
+        unsigned long sizeOut = static_cast<unsigned long>(mProcessor.convolved_size(sizeIn1, sizeIn2, edgeMode));
         
         // Get output
         
@@ -111,7 +111,7 @@ void FrameLib_Convolve::process()
         
         // Get Output Size
 
-        unsigned long sizeOut = mProcessor.convolved_size(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edgeMode);
+        unsigned long sizeOut = static_cast<unsigned long>(mProcessor.convolved_size(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edgeMode));
         
         // Get output
         
