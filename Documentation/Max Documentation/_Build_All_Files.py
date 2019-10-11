@@ -61,7 +61,7 @@ def main():
 
     ## Deletes all temporay files and cleans up process
     print("8. Cleaning up")
-    # cleanup.main(root)
+    cleanup.main(root)
     hyp()
     print(" ")
     print("Completed all python scripts.")
