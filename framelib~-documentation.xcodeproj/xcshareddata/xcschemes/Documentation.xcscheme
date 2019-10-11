@@ -95,6 +95,15 @@
             <ActionContent
                title = "Run Script"
                scriptText = "python3 &quot;${SRCROOT}/Documentation/Max Documentation/_create_tmp.py&quot;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "262AEAD323101CE10016ECF3"
+                     BuildableName = "Documentation"
+                     BlueprintName = "Documentation"
+                     ReferencedContainer = "container:framelib~-documentation.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
             </ActionContent>
          </ExecutionAction>
       </PreActions>
@@ -103,7 +112,16 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "ghj&#10;python3 &quot;${SRCROOT}/Documentation/Max Documentation/_Build_All_Files.py&quot;">
+               scriptText = "python3 &quot;${SRCROOT}/Documentation/Max Documentation/_Build_All_Files.py&quot;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "262AEAD323101CE10016ECF3"
+                     BuildableName = "Documentation"
+                     BlueprintName = "Documentation"
+                     ReferencedContainer = "container:framelib~-documentation.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
             </ActionContent>
          </ExecutionAction>
       </PostActions>
