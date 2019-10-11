@@ -912,8 +912,8 @@ public:
     {
         // Deal with attributes for non-realtime objects (and to correctly report issues otherwise)
         
-        attr_args_process(this, argc, argv);
-        argc = attr_args_offset(argc, argv);
+        attr_args_process(this, static_cast<short>(argc), argv);
+        argc = attr_args_offset(static_cast<short>(argc), argv);
         
         // Stream count
         
@@ -1062,7 +1062,7 @@ public:
                 object_post(mUserObject, "N.B. - arguments set the fixed array values for all inputs.");
             if (argsMode == kDistribute)
                 object_post(mUserObject, "N.B - arguments are distributed one per input.");
-            for (long i = 0; i < (long) mObject->getNumAudioIns(); i++)
+            for (long i = 0; i < static_cast<long>(mObject->getNumAudioIns()); i++)
                 object_post(mUserObject, "Audio Input %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
             for (long i = 0; i < getNumIns(); i++)
                 object_post(mUserObject, "Frame Input %ld [%s]: %s", i + 1, frameTypeString(mObject->inputType(i)), mObject->inputInfo(i, verbose).c_str());
@@ -1073,7 +1073,7 @@ public:
         if (flags & kInfoOutputs)
         {
             object_post(mUserObject, "--- Output List ---");
-            for (long i = 0; i < (long) mObject->getNumAudioOuts(); i++)
+            for (long i = 0; i < static_cast<long>(mObject->getNumAudioOuts()); i++)
                 object_post(mUserObject, "Audio Output %ld: %s", i + 1, mObject->audioInfo(i, verbose).c_str());
             for (long i = 0; i < getNumOuts(); i++)
                 object_post(mUserObject, "Frame Output %ld [%s]: %s", i + 1, frameTypeString(mObject->outputType(i)), mObject->outputInfo(i, verbose).c_str());
@@ -1143,8 +1143,8 @@ public:
 
     long audioIOSize(long chans) const          { return isRealtime() ? (chans + (handlesAudio() ? 1 : 0)) : 0; }
 
-    long getNumIns() const                      { return (long) mObject->getNumIns(); }
-    long getNumOuts() const                     { return (long) mObject->getNumOuts(); }
+    long getNumIns() const                      { return static_cast<long>(mObject->getNumIns()); }
+    long getNumOuts() const                     { return static_cast<long>(mObject->getNumOuts()); }
     long getNumAudioIns() const                 { return audioIOSize(mObject->getNumAudioIns()); }
     long getNumAudioOuts() const                { return audioIOSize(mObject->getNumAudioOuts()); }
     
@@ -1202,7 +1202,7 @@ public:
     
     void process(t_atom_long length)
     {
-        unsigned long updateLength = length > 0 ? length : 0;
+        unsigned long updateLength = length > 0 ? static_cast<unsigned long>(length) : 0UL;
         unsigned long time = static_cast<unsigned long>(mObject->getBlockTime());
         
         if (!updateLength || isRealtime())
@@ -1360,7 +1360,8 @@ public:
     
     static void extResolveConnections(FrameLib_MaxClass *x, t_ptr_int *flag)
     {
-        *flag |= x->resolveConnections();
+		bool updated = x->resolveConnections();
+		*flag = *flag || updated;
     }
     
     static void extMarkUnresolved(FrameLib_MaxClass *x)
@@ -1380,7 +1381,7 @@ public:
 
     static void extReset(FrameLib_MaxClass *x, const double *samplerate, t_ptr_int maxvectorsize)
     {
-        x->mObject->reset(*samplerate, maxvectorsize);
+        x->mObject->reset(*samplerate, static_cast<unsigned long>(maxvectorsize));
     }
     
     static void extConnectionUpdate(FrameLib_MaxClass *x, t_ptr_int state)
@@ -1431,7 +1432,7 @@ private:
         
         T *newObject = new T(context, mObject->getSerialised(), mFrameLibProxy.get(), mSpecifiedStreams);
         
-        for (unsigned long i = 0; i < getNumIns(); i++)
+        for (unsigned long i = 0; i < mObject->getNumIns(); i++)
             if (const double *values = mObject->getFixedInput(i, &size))
                 newObject->setFixedInput(i, values, size);
                 
@@ -1571,13 +1572,13 @@ private:
     
     static bool isOrderingInput(long index, FLObject *object)
     {
-        return object && object->supportsOrderingConnections() && index == (long) object->getNumIns();
+        return object && object->supportsOrderingConnections() && index == static_cast<long>(object->getNumIns());
     }
     
     bool isOrderingInput(long index) const                  { return isOrderingInput(index, mObject.get()); }
     bool isConnected(long index) const                      { return mObject->isConnected(index); }
     
-    static bool validIO(long index, unsigned long count)    { return index >= 0 && index < (long) count; }
+    static bool validIO(long index, unsigned long count)    { return index >= 0 && index < static_cast<long>(count); }
     static bool validInput(long index, FLObject *object)    { return object && validIO(index, object->getNumIns()); }
     static bool validOutput(long index, FLObject *object)   { return object && validIO(index, object->getNumOuts()); }
     
@@ -1587,7 +1588,7 @@ private:
     MaxConnection getConnection(long index)                 { return toMaxConnection(mObject->getConnection(index)); }
     MaxConnection getOrderingConnection(long index)         { return toMaxConnection(mObject->getOrderingConnection(index)); }
     
-    long getNumOrderingConnections() const                  { return (long) mObject->getNumOrderingConnections(); }
+    long getNumOrderingConnections() const                  { return  static_cast<long>(mObject->getNumOrderingConnections()); }
     
     static MaxConnection toMaxConnection(FLConnection c)    { return MaxConnection(toMaxObject(c.mObject), c.mIndex); }
     static FLConnection toFLConnection(MaxConnection c)     { return FLConnection(toFLObject(c.mObject), c.mIndex); }
@@ -1800,7 +1801,7 @@ private:
     
     static unsigned long safeCount(char *str, unsigned long minCount, unsigned long maxCount)
     {
-        unsigned long number = std::max(minCount, (unsigned long) atoi(str));
+        unsigned long number = std::max(minCount, static_cast<unsigned long>(atoi(str)));
         return std::min(maxCount, number);
     }
     
@@ -1964,7 +1965,7 @@ private:
                 i = parseNumericalList(values, argv, argc, i);
                 mObject->setFixedInput(inputNumber(sym), values.data(), static_cast<unsigned long>(values.size()));
                 
-                if (inputNumber(sym) >= getNumIns())
+                if (inputNumber(sym) >= static_cast<unsigned long>(getNumIns()))
                     object_error(mUserObject, "input %s out of bounds", sym->s_name);
             }
         }

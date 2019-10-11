@@ -83,7 +83,7 @@ public:
         float *samples = mSamples + offset * mChans + chan;
         
         for (size_t i = 0; i < length; i++, samples += mChans)
-            *samples = input[i];
+            *samples = static_cast<float>(input[i]);
         
         setDirty();
     }
@@ -113,12 +113,12 @@ private:
     {
         // Request is entirely outside of the buffer's memory
         
-        if (chan >= mChans || offset >= mLength)
+        if (chan >= static_cast<t_ptr_uint>(mChans) || offset >= static_cast<t_ptr_uint>(mLength))
             return 0;
         
         // Request is partially outside of the buffer's memory
         
-        if (offset + length > mLength)
+        if ((offset + length) > static_cast<t_ptr_uint>(mLength))
             return mLength - offset;
         
         return length;
