@@ -1957,7 +1957,7 @@ private:
                 mObject->setFixedInput(inputNumber(sym), values.data(), static_cast<unsigned long>(values.size()));
                 
                 if (inputNumber(sym) >= getNumIns())
-                    object_error(mUserObject, "input %s out of bounds", sym);
+                    object_error(mUserObject, "input %s out of bounds", sym->s_name);
             }
         }
     }
