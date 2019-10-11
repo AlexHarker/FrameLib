@@ -42,14 +42,7 @@ This installs the FrameLibDocs in an editable mode, meaning you can make edits t
 
 Once you have a working version of Xcode 9.4.1 and Python 3 there are a few options to build.
 
-The easiest way is to open the `framelib~-documentation.xcodeproj` and build (Cmd + B) the 'Documentation' scheme. Alternatively you can execute the build from the command-line assuming you have the xcode command line tools installed. The command for doing so is:
-
-`xcodebuild -project framelib~-documentation.xcodeproj -scheme Documentation build`
-
-More information on building xcode projects on the command line can be found here:
-
-https://developer.apple.com/library/archive/technotes/tn2339/_index.html
-
+The easiest way is to open the `framelib~-documentation.xcodeproj` and run (Cmd + R) the 'Documentation' scheme. 
 
 ### Incorporating your own objects into the docs
 
