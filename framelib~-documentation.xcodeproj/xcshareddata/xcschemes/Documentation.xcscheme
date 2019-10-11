@@ -94,7 +94,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "">
+               scriptText = "python3 &quot;${SRCROOT}/Documentation/Max Documentation/_create_tmp.py&quot;">
             </ActionContent>
          </ExecutionAction>
       </PreActions>
@@ -103,7 +103,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "python3 ${SRCROOT}/Documentation/Max\ Documentation/_Build_All_Files.py">
+               scriptText = "ghj&#10;python3 &quot;${SRCROOT}/Documentation/Max Documentation/_Build_All_Files.py&quot;">
             </ActionContent>
          </ExecutionAction>
       </PostActions>
