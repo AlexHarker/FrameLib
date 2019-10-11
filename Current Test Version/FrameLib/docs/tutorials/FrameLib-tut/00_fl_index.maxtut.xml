@@ -16,22 +16,22 @@ FrameLib Tutorials - Table of Contents
 
             <ul>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="01_fl_introduction" diff="Beginner" digest="A general introduction to FrameLib and some foundation DSP concepts..">Tutorial 1: An introduction to FrameLib and frame based processing.</link>
+                    <link type="tutorial" module="FrameLib" name="01_fl_introduction" diff="Beginner" digest="A general introduction to FrameLib and some foundation DSP concepts.">Tutorial 1: An introduction to FrameLib and frame based processing.</link>
                 </li>
                 <li>
                     <link type="tutorial" module="FrameLib" name="02_fl_whatis" diff="Beginner" digest="Getting familiar with the FrameLib library.">Tutorial 2: Getting to grips with frame based processing.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="03_fl_concepts" diff="Beginner" digest="An overview and explanation of the key concepts of FrameLib, such as its timing and patching architecture.">Tutorial 3: Key Concepts.</link>
+                    <link type="tutorial" module="FrameLib" name="03_fl_concepts" diff="Beginner" digest="The key concepts of FrameLib, such as its timing and patching architecture.">Tutorial 3: Key Concepts.</link>
                 </li>
                 <li>
                     <link type="tutorial" module="FrameLib" name="04_fl_conversion" diff="Beginner" digest="Methods for converting data between the Max and FrameLib domains.">Tutorial 4: Converting data between FrameLib and Max.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="05_fl_generators" diff="Beginner" digest="An overview of the various 'generator' objects belonging to the FrameLib eco-system.">Tutorial 5: Generator objects.</link>
+                    <link type="tutorial" module="FrameLib" name="05_fl_generators" diff="Beginner" digest="An overview of 'generator' objects belonging to the FrameLib eco-system.">Tutorial 5: Generator objects.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="06_fl_firstproject" diff="Beginner" digest="A longer tutorial than the previous four that builds on previously covered information. Construct a granular synthesis engine from scratch and add increasingly complex features.">Tutorial 6: Your first FrameLib project - Building a granulator from scratch.</link>
+                    <link type="tutorial" module="FrameLib" name="06_fl_firstproject" diff="Beginner" digest="A step-by-step guide on building a granular synth from scratch.">Tutorial 6: Your first FrameLib project - Building a granulator from scratch.</link>
                 </li>
             </ul>
         <!-- Intermediate Tutorials-->
@@ -44,7 +44,7 @@ FrameLib Tutorials - Table of Contents
                     <link type="tutorial" module="FrameLib" name="07_fl_fft" diff="Intermediate" digest="The Basics of FFT/STFT processing in FrameLib">Tutorial 7: FFT with FrameLib.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="08_fl_multistream" diff="Intermediate" digest="A feature unique to FrameLib and somewhat similar to the Max 'mc' system, multi-streaming allows you to manipulate multiple streams of data at varying rates and sizes with only one set of processing objects.">Tutorial 8: Multi-stream processing.</link>
+                    <link type="tutorial" module="FrameLib" name="08_fl_multistream" diff="Intermediate" digest="Similar to 'mc' objects, multi-streaming allows you to manipulate multiple streams with a single set of processors.">Tutorial 8: Multi-stream processing.</link>
                 </li>
             </ul>
         
@@ -54,7 +54,7 @@ FrameLib Tutorials - Table of Contents
 
             <ul>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="09_fl_multiresfft" diff="Advanced" digest="In this tutorial you introduces you to multi-resolution FFT's in FrameLib. ">Tutorial 9: Multi-resolution FFT.</link>
+                    <link type="tutorial" module="FrameLib" name="09_fl_multiresfft" diff="Advanced" digest="Constructing multi-resolution FFT processes in FrameLib.">Tutorial 9: Multi-resolution FFT.</link>
                 </li>
                 <li>
                     <link type="tutorial" module="FrameLib" name="10_fl_ir" diff="Advanced" digest="A small overview of working with impulse responses and convolution.">Tutorial 10: Working with impulse responses (IR) in FrameLib.</link>
