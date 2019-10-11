@@ -3,7 +3,7 @@ import re
 from FrameLibDocs.utils import get_path, cd_up
 from FrameLibDocs.strippers import strip_space, strip_extension
 
-root = cd_up(get_path(), 1)
+root = cd_up(get_path(), 2)
 print(root)
 
 # Create the Max_Object_list.h and add skeleton

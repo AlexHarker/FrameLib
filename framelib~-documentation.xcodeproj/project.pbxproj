@@ -139,8 +139,7 @@
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		26107EEB2310610900BAC824 /* Build_Max_Docs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Build_Max_Docs.cpp; path = "Documentation/Max Documentation/Build_Max_Docs.cpp"; sourceTree = SOURCE_ROOT; };
-		26107EED231064C400BAC824 /* Max_Object_List.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Max_Object_List.h; path = "Documentation/Max Documentation/Max_Object_List.h"; sourceTree = SOURCE_ROOT; };
-		262AEAD423101CE10016ECF3 /* DocumentationTarget */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DocumentationTarget; sourceTree = BUILT_PRODUCTS_DIR; };
+		262AEAD423101CE10016ECF3 /* Documentation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Documentation; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A3CAB132052E67E001082E3 /* FrameLib_Ternary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Objects.h; sourceTree = "<group>"; };
 		5A3CAB142052E67E001082E3 /* FrameLib_Ternary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Template.h; sourceTree = "<group>"; };
 		5AB54BBE2052E96E00325C14 /* fl.wrap~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.wrap~.cpp"; sourceTree = "<group>"; };
@@ -623,7 +622,6 @@
 			isa = PBXGroup;
 			children = (
 				26107EEB2310610900BAC824 /* Build_Max_Docs.cpp */,
-				26107EED231064C400BAC824 /* Max_Object_List.h */,
 			);
 			name = Documentation;
 			sourceTree = "<group>";
@@ -631,7 +629,7 @@
 		262AEAD523101CE10016ECF3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				262AEAD423101CE10016ECF3 /* DocumentationTarget */,
+				262AEAD423101CE10016ECF3 /* Documentation */,
 				B846DEDA231041E100E660FA /* libframelib.a */,
 				B846DEDB231041E100E660FA /* libframelib_objects.a */,
 			);
@@ -1526,10 +1524,11 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		262AEAD323101CE10016ECF3 /* DocumentationTarget */ = {
+		262AEAD323101CE10016ECF3 /* Documentation */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 262AEAD923101CE10016ECF3 /* Build configuration list for PBXNativeTarget "DocumentationTarget" */;
+			buildConfigurationList = 262AEAD923101CE10016ECF3 /* Build configuration list for PBXNativeTarget "Documentation" */;
 			buildPhases = (
+				B87C048B23512603004FB79B /* ShellScript */,
 				262AEAD023101CE10016ECF3 /* Sources */,
 				262AEAD123101CE10016ECF3 /* Frameworks */,
 				262AEAD223101CE10016ECF3 /* CopyFiles */,
@@ -1539,9 +1538,9 @@
 			dependencies = (
 				B846DEDE2310423100E660FA /* PBXTargetDependency */,
 			);
-			name = DocumentationTarget;
+			name = Documentation;
 			productName = Documentation;
-			productReference = 262AEAD423101CE10016ECF3 /* DocumentationTarget */;
+			productReference = 262AEAD423101CE10016ECF3 /* Documentation */;
 			productType = "com.apple.product-type.tool";
 		};
 		B89ABA8F1FA73483006DAD53 /* framelib */ = {
@@ -1616,10 +1615,26 @@
 			targets = (
 				B89ABA8F1FA73483006DAD53 /* framelib */,
 				B8BA6FD12078D49200D3DB3D /* framelib_objects */,
-				262AEAD323101CE10016ECF3 /* DocumentationTarget */,
+				262AEAD323101CE10016ECF3 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B87C048B23512603004FB79B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#python3 \"${SRCROOT}/Documentation/Max Documentation/_create_tmp.py\"\n\n#python3 \"${SRCROOT}/Documentation/Max Documentation/0_generate_Max_Object_List.h.py\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		262AEAD023101CE10016ECF3 /* Sources */ = {
@@ -1882,7 +1897,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1937,7 +1952,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1991,7 +2006,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2322,7 +2337,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		262AEAD923101CE10016ECF3 /* Build configuration list for PBXNativeTarget "DocumentationTarget" */ = {
+		262AEAD923101CE10016ECF3 /* Build configuration list for PBXNativeTarget "Documentation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				262AEADA23101CE10016ECF3 /* Development */,
