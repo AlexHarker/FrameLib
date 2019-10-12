@@ -7,4 +7,7 @@ setuptools.setup(
     author_email='jamesbradbury93@gmail.com',
     description='A package containing recipes used for auto-generation of FrameLib Documentation',
     packages=['FrameLibDocs'],
+    install_requires=[
+        'PyYAML'
+    ]
 )
