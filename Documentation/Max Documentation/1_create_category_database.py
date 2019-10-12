@@ -1,17 +1,15 @@
 import os
 import json
-from FrameLibDocs.strippers import strip_extension
-from FrameLibDocs.utils import write_json, cd_up
+from FrameLibDocs.utils import write_json, cd_up, strip_extension
+from FrameLibDocs.variables import package_root, category_database_path
 
 
-def main(root):
+def main():
     """
     This creates a category database in .json format.
     This is used by edit_raw_XML.py to assign object categories to the xml files.
     """
-    object_path = os.path.join(cd_up(root, 2), "FrameLib_Max_Objects")
-    output_path = os.path.join(root, "__tmp__", "db", "category_database.json")
-
+    object_path = os.path.join(package_root, "FrameLib_Max_Objects")
     file_categories = os.listdir(object_path)
 
     try:
@@ -36,9 +34,7 @@ def main(root):
     category_dict = {}
 
     for item in file_categories:
-        files = os.listdir(
-            os.path.join(object_path, item)
-            )
+        files = os.listdir(os.path.join(object_path, item))
         if "ibuffer" in files:
             files.remove("ibuffer")
         # some max categories already overlap with framelib categories (timing for example). This just maps Timing -> fl_timing to avoid any duplication issues
@@ -48,4 +44,4 @@ def main(root):
         category_dict[item] = files
 
     ## Write dict into JSON file
-    write_json(output_path, category_dict)
+    write_json(category_database_path, category_dict)

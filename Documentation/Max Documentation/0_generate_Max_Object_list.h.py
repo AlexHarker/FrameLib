@@ -1,11 +1,10 @@
 import os
 import re
 import sys
-from FrameLibDocs.utils import get_path, cd_up
-from FrameLibDocs.strippers import strip_space, strip_extension
+from FrameLibDocs.utils import get_path, cd_up, strip_space, strip_extension
 
 ignored_objects = []
-for arg in sys.argv: 
+for arg in sys.argv:
     ignored_objects.append(arg)
 ignored_objects = ignored_objects[1:]
 
@@ -19,14 +18,9 @@ op.write("using FrameLib_DSPList = detail::FrameLib_Typelist<")
 op.write("\n \n")
 
 # Directory formation
-max_source_folder = os.path.join(
-    cd_up(root, 2), 
-    'FrameLib_Max_Objects',
-)
+max_source_folder = os.path.join(cd_up(root, 2), "FrameLib_Max_Objects")
 # A list of the categories. Is used to find all the source files.
-max_source_categories = os.listdir(
-    max_source_folder
-)  
+max_source_categories = os.listdir(max_source_folder)
 
 # Try removing unnecessary stuff, otherwise throw some info that it was not there
 try:
@@ -60,20 +54,19 @@ for folder in max_source_categories:
     ## Get rid of ibuffer file when traversing to buffer ateogry
     if "ibuffer" in file_list:
         file_list.remove("ibuffer")
-    
+
     if ".DS_Store" in file_list:
         file_list.remove(".DS_Store")
 
     for k in ignored_objects:
         try:
-            file_list.remove(f'{k}.cpp')
+            file_list.remove(f"{k}.cpp")
         except:
             pass
 
     for j in file_list:
-        source_file_list.append(
-            [os.path.join(category_folder), j]
-        )
+        source_file_list.append([os.path.join(category_folder), j])
+
 
 def write_comma(counter, ceiling):
     if counter < ceiling - 1:
@@ -82,14 +75,13 @@ def write_comma(counter, ceiling):
     else:
         op.write("\n")
 
+
 # Recreate full paths to open and parse for type cases
 counter = 0
 for category_folder, name in source_file_list:
     with open(os.path.join(category_folder, name), "r") as cpp:
         # flatten it with no spaces whatsoever
-        source_file = (
-            cpp.read().replace("\n", "").replace(" ", "")
-        ) 
+        source_file = cpp.read().replace("\n", "").replace(" ", "")
         search_area = source_file.split('extern"C"intC74_EXPORTmain(void){')[1]
         # Do this just before info gets cleaved
         fl_object_name = search_area.split("<")[1]
