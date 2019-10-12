@@ -106,7 +106,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 810.0, 510.0 ],
+						"rect" : [ 34.0, 105.0, 810.0, 510.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -142,8 +142,8 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 471.75, 480.0, 229.0, 22.0 ],
-									"text" : "next_tut _6_Your_First_FrameLib.maxpat"
+									"patching_rect" : [ 445.75, 474.0, 250.0, 22.0 ],
+									"text" : "FL_next_tut _6_Your_First_FrameLib.maxpat"
 								}
 
 							}
@@ -156,7 +156,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 702.75, 482.0, 100.0, 20.0 ],
+									"patching_rect" : [ 697.75, 474.0, 100.0, 20.0 ],
 									"text" : "Next Tutorial",
 									"textoncolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
 								}
@@ -1170,7 +1170,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 810.0, 510.0 ],
+						"rect" : [ 0.0, 26.0, 810.0, 510.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1867,7 +1867,7 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "next_tut.maxpat",
+				"name" : "FL_next_tut.maxpat",
 				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",

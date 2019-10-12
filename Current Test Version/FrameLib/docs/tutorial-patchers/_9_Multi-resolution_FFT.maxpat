@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 0,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 0.0, 45.0, 1440.0, 856.0 ],
+		"rect" : [ 34.0, 79.0, 1440.0, 856.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -50,13 +50,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 71.0, 1440.0, 830.0 ],
+						"rect" : [ 34.0, 105.0, 1440.0, 830.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -92,7 +92,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "float" ],
-									"patching_rect" : [ 1101.5, 371.5, 42.0, 22.0 ],
+									"patching_rect" : [ 212.5, 554.5, 42.0, 22.0 ],
 									"text" : "* 0.01"
 								}
 
@@ -104,7 +104,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 1040.75, 486.0, 275.0, 33.0 ],
+									"patching_rect" : [ 151.75, 669.0, 275.0, 33.0 ],
 									"text" : "Multiply each value in the real/imaginary frames by the corresponding calculation performed above"
 								}
 
@@ -118,7 +118,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 980.75, 491.5, 56.0, 22.0 ],
+									"patching_rect" : [ 91.75, 674.5, 56.0, 22.0 ],
 									"text" : "fl.times~"
 								}
 
@@ -130,7 +130,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 1265.75, 350.5, 200.0, 100.0 ],
+									"patching_rect" : [ 376.75, 533.5, 200.0, 100.0 ],
 									"text" : "Calculating the hypotenuse returns the magnitude of bin as a frame equal to the fft window size. The fl.greaterthen~ performs its logical operation on each value in the frame determining if the magnitude is greater than the threshold value."
 								}
 
@@ -141,7 +141,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 1007.75, 285.5, 87.0, 20.0 ],
+									"patching_rect" : [ 118.75, 468.5, 87.0, 20.0 ],
 									"text" : "Calculate FFT"
 								}
 
@@ -162,7 +162,7 @@
 									"numoutlets" : 1,
 									"offset" : [ 0.0, 0.0 ],
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 892.75, 96.0, 225.0, 95.0 ],
+									"patching_rect" : [ 3.75, 284.0, 225.0, 95.0 ],
 									"viewvisibility" : 1
 								}
 
@@ -173,7 +173,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 1096.75, 242.5, 140.0, 20.0 ],
+									"patching_rect" : [ 207.75, 425.5, 140.0, 20.0 ],
 									"text" : "Window all four streams"
 								}
 
@@ -184,7 +184,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 1001.75, 542.5, 305.0, 20.0 ],
+									"patching_rect" : [ 112.75, 725.5, 305.0, 20.0 ],
 									"text" : "Inverse FFT calculated and each stream is normalised."
 								}
 
@@ -195,7 +195,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 955.75, 577.5, 150.0, 20.0 ],
+									"patching_rect" : [ 66.75, 760.5, 150.0, 20.0 ],
 									"text" : "Window and scale frames"
 								}
 
@@ -212,7 +212,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 0,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -319,7 +319,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 892.75, 577.5, 61.0, 22.0 ],
+									"patching_rect" : [ 3.75, 760.5, 61.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -337,7 +337,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 982.75, 615.5, 129.0, 20.0 ],
+									"patching_rect" : [ 93.75, 798.5, 129.0, 20.0 ],
 									"text" : "Split streams and filter"
 								}
 
@@ -348,7 +348,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 967.75, 199.5, 298.0, 20.0 ],
+									"patching_rect" : [ 78.75, 382.5, 298.0, 20.0 ],
 									"text" : "Concatenate different streams (multi-stream packing)"
 								}
 
@@ -359,7 +359,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 1192.5, 342.5, 64.0, 20.0 ],
+									"patching_rect" : [ 303.5, 525.5, 64.0, 20.0 ],
 									"text" : "Threshold"
 								}
 
@@ -376,7 +376,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 0,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -685,7 +685,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 892.75, 199.5, 77.0, 22.0 ],
+									"patching_rect" : [ 3.75, 382.5, 77.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -709,7 +709,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 0,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -997,7 +997,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 892.75, 614.5, 87.0, 22.0 ],
+									"patching_rect" : [ 3.75, 797.5, 87.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1017,7 +1017,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 1192.5, 309.5, 72.0, 22.0 ],
+									"patching_rect" : [ 303.5, 492.5, 72.0, 22.0 ],
 									"text" : "loadmess 1"
 								}
 
@@ -1031,7 +1031,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 1101.5, 342.5, 85.0, 22.0 ]
+									"patching_rect" : [ 212.5, 525.5, 85.0, 22.0 ]
 								}
 
 							}
@@ -1042,7 +1042,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 1101.5, 399.5, 74.0, 22.0 ],
+									"patching_rect" : [ 212.5, 582.5, 74.0, 22.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -1054,7 +1054,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 892.75, 242.5, 202.0, 22.0 ],
+									"patching_rect" : [ 3.75, 425.5, 202.0, 22.0 ],
 									"text" : "fl.window~ hann /compensate linear"
 								}
 
@@ -1069,7 +1069,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 1017.5, 435.5, 103.0, 22.0 ],
+									"patching_rect" : [ 128.5, 618.5, 103.0, 22.0 ],
 									"text" : "fl.greaterthan~ 0."
 								}
 
@@ -1083,7 +1083,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 1017.5, 342.5, 56.0, 22.0 ],
+									"patching_rect" : [ 128.5, 525.5, 56.0, 22.0 ],
 									"text" : "fl.hypot~"
 								}
 
@@ -1097,7 +1097,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 892.75, 491.5, 56.0, 22.0 ],
+									"patching_rect" : [ 3.75, 674.5, 56.0, 22.0 ],
 									"text" : "fl.times~"
 								}
 
@@ -1111,7 +1111,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 892.75, 542.5, 107.0, 22.0 ],
+									"patching_rect" : [ 3.75, 725.5, 107.0, 22.0 ],
 									"text" : "fl.ifft~ /normalise 1"
 								}
 
@@ -1125,7 +1125,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 892.75, 285.5, 107.0, 22.0 ],
+									"patching_rect" : [ 3.75, 468.5, 107.0, 22.0 ],
 									"text" : "fl.fft~ /normalise 1"
 								}
 
@@ -1136,7 +1136,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 892.75, 653.0, 45.0, 45.0 ]
+									"patching_rect" : [ 3.75, 836.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -1148,8 +1148,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 96.0, 879.0, 179.0 ],
-									"text" : "This example demonstrates Multi-resolution FFT processing with FrameLib. Multi-resolution FFT's deploy processes across multiple frame/window sizes and at different rates. This is particularly useful when you want to perform the same process across a wide spectrum, or in a scenario where window size configuration may effect the accuracy of your analysis.\n\nWith pfft~ and fft~ you are restricted to setting the frame and window size set before the DSP chain is compiled. In many circumstances it would be useful to run the same processing on frames of different sizes and this is currently not possible without stopping the patch and modifying the parameters of the pfft~ patcher or duplicating the process numerous times. This either impinges the usefulness of the system or its efficiency. \n\nBelow is a basic example of an amplitude gate that operates across 4 different window sizes with an overlap of 4.\n"
+									"patching_rect" : [ 3.75, 103.0, 879.0, 179.0 ],
+									"text" : "This example demonstrates Multi-resolution FFT processing with FrameLib. Multi-resolution FFT's deploy processes across multiple frame/window sizes and at different rates. This is particularly useful when you want to perform the same process across a wide spectrum, or in a scenario where window size configuration may effect the accuracy of your analysis.\n\nWith pfft~ and fft~ you are restricted to setting the frame and window size set before the DSP chain is compiled. In many circumstances it would be useful to run the same processing on frames of different sizes and this is currently not possible without stopping the patch and modifying the parameters of the pfft~ patcher or duplicating the process numerous times. This can impinge the usefulness of the system by reducing its efficiency in practice and the ability for rapid changes to facilitate creative workflow.\n\nBelow is a basic example of an amplitude gate that operates across 4 different window sizes with an overlap of 4.\n"
 								}
 
 							}
@@ -1206,7 +1206,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 1115.75, 615.5, 20.0, 20.0 ],
+									"patching_rect" : [ 226.75, 798.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "8",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1227,7 +1227,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 1106.75, 577.5, 20.0, 20.0 ],
+									"patching_rect" : [ 217.75, 760.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "7",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1248,7 +1248,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 1308.75, 542.5, 20.0, 20.0 ],
+									"patching_rect" : [ 419.75, 725.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "6",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1269,7 +1269,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 1318.75, 492.5, 20.0, 20.0 ],
+									"patching_rect" : [ 429.75, 675.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "5",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1311,7 +1311,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 1235.75, 243.5, 20.0, 20.0 ],
+									"patching_rect" : [ 346.75, 426.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "2",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1332,7 +1332,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 1096.75, 286.5, 20.0, 20.0 ],
+									"patching_rect" : [ 207.75, 469.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "3",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1353,7 +1353,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 1264.75, 199.5, 20.0, 20.0 ],
+									"patching_rect" : [ 375.75, 382.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1372,7 +1372,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 1011.75, 335.5, 252.0, 130.0 ],
+									"patching_rect" : [ 122.75, 518.5, 252.0, 130.0 ],
 									"proportion" : 0.39
 								}
 
@@ -1410,7 +1410,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-12", 0 ],
-									"midpoints" : [ 990.25, 309.5, 990.25, 309.5 ],
+									"midpoints" : [ 101.25, 492.5, 101.25, 492.5 ],
 									"order" : 1,
 									"source" : [ "obj-20", 1 ]
 								}
@@ -1419,7 +1419,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-26", 0 ],
-									"midpoints" : [ 902.25, 309.5, 902.25, 309.5 ],
+									"midpoints" : [ 13.25, 492.5, 13.25, 492.5 ],
 									"order" : 1,
 									"source" : [ "obj-20", 0 ]
 								}
@@ -1428,7 +1428,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-27", 1 ],
-									"midpoints" : [ 990.25, 327.5, 1064.0, 327.5 ],
+									"midpoints" : [ 101.25, 510.5, 175.0, 510.5 ],
 									"order" : 0,
 									"source" : [ "obj-20", 1 ]
 								}
@@ -1437,7 +1437,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-27", 0 ],
-									"midpoints" : [ 902.25, 327.5, 1027.0, 327.5 ],
+									"midpoints" : [ 13.25, 510.5, 138.0, 510.5 ],
 									"order" : 0,
 									"source" : [ "obj-20", 0 ]
 								}
@@ -1475,7 +1475,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-9", 0 ],
-									"midpoints" : [ 1027.0, 393.5, 1111.0, 393.5 ],
+									"midpoints" : [ 138.0, 576.5, 222.0, 576.5 ],
 									"order" : 0,
 									"source" : [ "obj-27", 0 ]
 								}
@@ -1484,7 +1484,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-12", 1 ],
-									"midpoints" : [ 1027.0, 459.5, 1027.25, 459.5 ],
+									"midpoints" : [ 138.0, 642.5, 138.25, 642.5 ],
 									"order" : 0,
 									"source" : [ "obj-28", 0 ]
 								}
@@ -1493,7 +1493,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-26", 1 ],
-									"midpoints" : [ 1027.0, 477.5, 939.25, 477.5 ],
+									"midpoints" : [ 138.0, 660.5, 50.25, 660.5 ],
 									"order" : 1,
 									"source" : [ "obj-28", 0 ]
 								}
@@ -1509,7 +1509,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-20", 0 ],
-									"midpoints" : [ 902.25, 284.5 ],
+									"midpoints" : [ 13.25, 467.5 ],
 									"source" : [ "obj-4", 0 ]
 								}
 
@@ -1596,19 +1596,30 @@
 			"parameterbanks" : 			{
 
 			}
+,
+			"parameter_overrides" : 			{
+				"obj-2::obj-23::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[4]"
+				}
+,
+				"obj-2::obj-23::obj-35" : 				{
+					"parameter_longname" : "[3]"
+				}
+
+			}
 
 		}
 ,
 		"dependency_cache" : [ 			{
 				"name" : "BandFilter.maxpat",
-				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "LinFilter.maxpat",
-				"bootpath" : "~/FrameLib-fork/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

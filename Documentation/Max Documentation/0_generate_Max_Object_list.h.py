@@ -1,10 +1,15 @@
 import os
 import re
+import sys
 from FrameLibDocs.utils import get_path, cd_up
 from FrameLibDocs.strippers import strip_space, strip_extension
 
-root = cd_up(get_path(), 1)
-print(root)
+ignored_objects = []
+for arg in sys.argv: 
+    ignored_objects.append(arg)
+ignored_objects = ignored_objects[1:]
+
+root = cd_up(get_path(), 2)
 
 # Create the Max_Object_list.h and add skeleton
 op = open(os.path.join(root, "Max_Object_List.h"), "w+")
@@ -15,7 +20,7 @@ op.write("\n \n")
 
 # Directory formation
 max_source_folder = os.path.join(
-    cd_up(root, 2),
+    cd_up(root, 2), 
     'FrameLib_Max_Objects',
 )
 # A list of the categories. Is used to find all the source files.
@@ -55,12 +60,20 @@ for folder in max_source_categories:
     ## Get rid of ibuffer file when traversing to buffer ateogry
     if "ibuffer" in file_list:
         file_list.remove("ibuffer")
-    for j in file_list:
-        if j != ".DS_Store":
-            source_file_list.append(
-                [os.path.join(category_folder), j]
-            )  ##now I know how many files I have in total
+    
+    if ".DS_Store" in file_list:
+        file_list.remove(".DS_Store")
 
+    for k in ignored_objects:
+        try:
+            file_list.remove(f'{k}.cpp')
+        except:
+            pass
+
+    for j in file_list:
+        source_file_list.append(
+            [os.path.join(category_folder), j]
+        )
 
 def write_comma(counter, ceiling):
     if counter < ceiling - 1:
@@ -69,12 +82,10 @@ def write_comma(counter, ceiling):
     else:
         op.write("\n")
 
-
 # Recreate full paths to open and parse for type cases
 counter = 0
 for category_folder, name in source_file_list:
     with open(os.path.join(category_folder, name), "r") as cpp:
-        print(os.path.join(category_folder, name))
         # flatten it with no spaces whatsoever
         source_file = (
             cpp.read().replace("\n", "").replace(" ", "")

@@ -80,7 +80,7 @@ void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
         myfile << tab_1 + "<misc name = 'Parameters'> \n \n"; // Write parameters tag to start misc section named Parameters
         for (int i = 0; params && i < params->size(); i++)
         {
-            std::string param_num = std::to_string(i);
+            std::string param_num = std::to_string(i+1);
             FrameLib_Parameters::Type type = params->getType(i);
 //            FrameLib_Parameters::NumericType numericType = params->getNumericType(i); // remove possibly. its not being used
             std::string defaultStr = params->getDefaultString(i);
@@ -88,15 +88,15 @@ void write_info(FrameLib_Multistream* frameLibObject, std::string inputName)
             // Name, type and default value
             if (defaultStr.size()) {
                 
-                myfile << tab_2 + "<" + "entry name = " + "'" + param_num + ". " + "/" + params->getName(i) + sp + "[" + params->getTypeString(i) + "]' " + ">" + "\n";
+                myfile << tab_2 + "<entry name = '" + param_num + ". /" + params->getName(i) + " [" + params->getTypeString(i) + "]' > \n";
             }
             else {
                 
-                myfile << tab_2 + "<" + "entry name = " + "'" + param_num + ". " + "/" + params->getName(i) + sp + "[" + params->getTypeString(i) + "]' " + ">" + "\n";
+                myfile << tab_2 + "<entry name = '" + param_num + ". /" + params->getName(i) + " [" + params->getTypeString(i) + "]' > \n";
             }
             // Construct the description
             myfile << tab_3 + "<description> \n";
-            myfile << tab_4 + params->getInfo(i);
+            myfile << tab_4 + params->getInfo(i); // The description
             
             // Verbose - arguments, range (for numeric types), enum items (for enums), array sizes (for arrays), description
             if (verbose)
