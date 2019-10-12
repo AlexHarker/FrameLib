@@ -4,12 +4,24 @@ import json
 import yaml
 
 
+def strip_space(tostrip):
+    tostrip = tostrip.lstrip()
+    tostrip = tostrip.rstrip()
+    return tostrip
+
+
+def strip_extension(input_string, maxsplits):
+    output = input_string.rsplit(".", maxsplits)[0]
+    return output
+
+
 def check_make(folder_check):
     """
     Takes a directory name, checks if it exists and makes.
     """
     if not os.path.isdir(folder_check):
         os.mkdir(folder_check)
+
 
 def remove_ds(list_in):
     if ".DS_Store" in list_in:
@@ -37,6 +49,8 @@ def write_json(json_file, in_dict):
     Returns:
         None
     """
+    path = os.path.dirname(json_file)
+    check_make(path)
     with open(json_file, "w+") as fp:
         json.dump(in_dict, fp, indent=4)
 
@@ -54,8 +68,9 @@ def read_json(json_file):
         data = json.load(fp)
         return data
 
+
 def read_yaml(yaml_file):
-    with open(yaml_file, 'r') as stream:
+    with open(yaml_file, "r") as stream:
         try:
             return yaml.safe_load(stream)
         except yaml.YAMLError as exc:

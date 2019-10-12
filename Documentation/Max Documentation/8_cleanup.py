@@ -1,7 +1,7 @@
 import os
 import shutil
-from FrameLibDocs.utils import cd_up, get_path
+from FrameLibDocs.variables import temporary_dir
 
-def main(root):
-    tmp = os.path.join(root, "__tmp__")
-    shutil.rmtree(tmp)
+
+def main():
+    shutil.rmtree(temporary_dir)

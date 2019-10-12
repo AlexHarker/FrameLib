@@ -1,14 +1,13 @@
 import os
-from FrameLibDocs.utils import get_path, check_make, cd_up
-
-root = cd_up(get_path(), 2)
-
-# Directories
-temporary = os.path.join(root, "__tmp__")
-databases = os.path.join(temporary, "db")
-raw_xml   = os.path.join(temporary, "raw_xml")
+from FrameLibDocs.utils import check_make
+from FrameLibDocs.variables import (
+    max_docs_dir,
+    temporary_dir,
+    databases_dir,
+    raw_xml_dir,
+)
 
 # Check and make
-check_make(temporary)
-check_make(databases)
-check_make(raw_xml)
+check_make(temporary_dir)
+check_make(databases_dir)
+check_make(raw_xml_dir)
