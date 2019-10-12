@@ -495,11 +495,11 @@ void FrameLib_DSP::dependenciesReady(FrameLib_LocalAllocator *allocator)
         if (mValidTime != prevValidTime)
         {
             timeUpdated = true;
-            mOutputDone = true;
+            mOutputDone = false;
 
             for (auto ins = mInputs.begin(); ins != mInputs.end(); ins++)
             {
-                if (ins->mObject && ((ins->mTrigger && !ins->mSwitchable) || (!ins->mObject->mOutputDone && ins->mSwitchable)) && (mValidTime == ins->mObject->mValidTime))
+                if (ins->mObject && (ins->mTrigger && !ins->mSwitchable) && (mValidTime == ins->mObject->mValidTime))
                 {
                     if ((mOutputDone = ins->mObject->mOutputDone))
                         break;
