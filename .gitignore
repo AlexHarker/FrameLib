@@ -48,6 +48,8 @@ __pycache__/
 __tmp__/
 *.maxref.xml
 Documentation/Max Documentation/help_files/templates/
+Current Test Version/FrameLib/interfaces
+Documentation/Max Documentation/FrameLibDocs/FrameLibDocs.egg-info
 Max_Object_List.h
 
 ## Other
@@ -57,6 +59,3 @@ Max_Object_List.h
 
 Icon?
 .DS_Stor*
-Documentation/Max Documentation/help_files/templates
-Current Test Version/FrameLib/interfaces
-Documentation/Max Documentation/FrameLibDocs/FrameLibDocs.egg-info
