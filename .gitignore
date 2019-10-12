@@ -44,12 +44,13 @@ maxframelib.mxo/
 ## Package Testing
 test-builds/
 
-## James Documentation
+## Documentation
 __pycache__/
 __tmp__/
-refpages/
-help_files/templates/
-object_relationships.py
+*.maxref.xml
+Documentation/Max Documentation/help_files/templates/
+Current Test Version/FrameLib/interfaces
+Documentation/Max Documentation/FrameLibDocs/FrameLibDocs.egg-info
 Max_Object_List.h
 
 ## Other
