@@ -22,6 +22,5 @@ interfaces_dir = os.path.join(
     package_root, "Current Test version", "FrameLib", "interfaces"
 )
 
-# Framelib specific paths
-# object_path =
+# Common objectives/variables
 bad_entries = [".DS_Store", "_c74_ref_modules.xml"]
