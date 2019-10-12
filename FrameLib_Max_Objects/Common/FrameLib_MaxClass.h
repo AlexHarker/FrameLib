@@ -1514,7 +1514,6 @@ private:
         {
             traversePatch(gensym("__fl.clear_auto_ordering_connections"));
             traversePatch(gensym("__fl.auto_ordering_connections"));
-            post("Graph Updated - realtime %d", isRealtime());
         }
         
         if (markUnresolved)
