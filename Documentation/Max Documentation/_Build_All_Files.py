@@ -19,6 +19,7 @@ def main():
     # Stage 0
     # There is a prior stage here where make_object_list.py is called by Xcode.
     # This produces the header file which Build_Max_Docs.cpp uses to know about FrameLib objects and types.
+    # Also, this where a number of temporary directories are created
 
     # Creates a category database in .json format.
     # The JSON file is used by edit_raw_XML.py to assign object categories to the xml files.
@@ -63,7 +64,7 @@ def main():
 
     # Deletes all temporay files and cleans up process
     print("8. Cleaning up")
-    cleanup.main(max_docs_dir)
+    cleanup.main()
     hyp()
     print(" ")
     print("Completed all python scripts.")

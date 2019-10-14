@@ -1,6 +1,5 @@
 import os
 import json
-import xml.etree.ElementTree as et
 from FrameLibDocs.utils import cd_up, write_json, thin_list, check_make, strip_space
 from FrameLibDocs.variables import (
     package_root,
