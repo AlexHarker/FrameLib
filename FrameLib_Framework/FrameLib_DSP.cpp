@@ -106,8 +106,9 @@ void FrameLib_DSP::reset(LocalQueue *queue)
     
     mUpdatingInputs = false;
     mInputCount = 0;
-    mOutputMemoryCount = 0;
     mDependencyCount = ((needsAudioNotification()) ? 1 : 0);
+    
+    resetOutputDependencyCount();
     
     for (auto it = mInputDependencies.begin(); it != mInputDependencies.end(); it++)
         if (!(*it)->mNoLiveInputs)
