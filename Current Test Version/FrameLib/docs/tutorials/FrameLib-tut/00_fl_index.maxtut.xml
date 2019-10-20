@@ -19,7 +19,7 @@ FrameLib Tutorials - Table of Contents
                     <link type="tutorial" module="FrameLib" name="01_fl_introduction" diff="Beginner" digest="A general introduction to FrameLib and some foundation DSP concepts.">Tutorial 1: An introduction to FrameLib and frame based processing.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="02_fl_whatis" diff="Beginner" digest="Getting familiar with the FrameLib library.">Tutorial 2: Getting to grips with frame based processing.</link>
+                    <link type="tutorial" module="FrameLib" name="02_fl_whatis" diff="Beginner" digest="Familiarising yourself with the FrameLib library.">Tutorial 2: Getting to grips with frame based processing.</link>
                 </li>
                 <li>
                     <link type="tutorial" module="FrameLib" name="03_fl_concepts" diff="Beginner" digest="The key concepts of FrameLib, such as its timing and patching architecture.">Tutorial 3: Key Concepts.</link>

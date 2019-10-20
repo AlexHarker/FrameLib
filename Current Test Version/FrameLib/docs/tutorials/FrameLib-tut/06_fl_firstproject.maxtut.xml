@@ -2,7 +2,7 @@
 
 <?xml-stylesheet href="./_c74_tut.xsl" type="text/xsl"?>
 
-<chapter name="FrameLib Tutorial 6: Your first FrameLib project - Building a granulator from scratch.">
+<chapter name="FrameLib Tutorial 6: Building a granular synthesiser in Framelib from scratch.">
 	<next name="06_fl_fft">FFT in FrameLib</next>
 	<parent name="00_fl_index">FrameLib tutorials</parent>
 

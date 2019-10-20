@@ -3,7 +3,7 @@
 <?xml-stylesheet href="./_c74_tut.xsl" type="text/xsl"?>
 
 <chapter name="FrameLib Tutorial 11: Non-realtime networks in FrameLib">
-	<next name="12_fl_threading">Threading and Contexts</next>
+	<next name="12_fl_threading">Threading and 'contexts'</next>
 	<parent name="00_fl_index">FrameLib tutorials</parent>
 
 <h1>
