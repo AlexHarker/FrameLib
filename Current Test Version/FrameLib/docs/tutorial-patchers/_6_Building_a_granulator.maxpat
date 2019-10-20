@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 1126.0, 787.0 ],
+		"rect" : [ 34.0, 79.0, 1099.0, 781.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -39,7 +39,7 @@
 		"subpatcher_template" : "default",
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
-		"title" : "Tutorial 6: Your first FrameLib project",
+		"title" : "Tutorial 6: Building a granular synthesiser from scratch",
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-16",
@@ -47,8 +47,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 111.84375, 640.0, 216.0, 21.0 ],
-					"text" : "title \"Tutorial 6: Your first FrameLib project\""
+					"patching_rect" : [ 111.84375, 640.0, 302.0, 21.0 ],
+					"text" : "title \"Tutorial 6: Building a granular synthesiser from scratch\""
 				}
 
 			}
@@ -106,7 +106,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 1126.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 1099.0, 755.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -466,33 +466,6 @@
 									"patching_rect" : [ 106.375, 109.75, 187.0, 22.0 ],
 									"text" : "Granulator Network",
 									"textjustification" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"hidden" : 1,
-									"id" : "obj-14",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 754.75, 731.0, 233.0, 22.0 ],
-									"text" : "FL_next_tut _7_FFT_in_FrameLib.maxpat"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 14.0,
-									"id" : "obj-16",
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 995.25, 731.0, 100.0, 20.0 ],
-									"text" : "Next Tutorial",
-									"textoncolor" : [ 0.996078431372549, 0.996078431372549, 0.996078431372549, 1.0 ]
 								}
 
 							}
@@ -3056,14 +3029,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-14", 0 ],
-									"hidden" : 1,
-									"source" : [ "obj-16", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-9", 1 ],
 									"source" : [ "obj-17", 0 ]
 								}
@@ -3399,7 +3364,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1126.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1099.0, 755.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -5060,7 +5025,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1126.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1099.0, 755.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -6381,7 +6346,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1126.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1099.0, 755.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -7589,7 +7554,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1126.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1099.0, 755.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -8529,7 +8494,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1126.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1099.0, 755.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -8967,7 +8932,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1126.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1099.0, 755.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -9059,7 +9024,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 548.0, 692.0, 158.0, 23.0 ],
+									"patching_rect" : [ 572.75, 677.0, 158.0, 23.0 ],
 									"text" : "fl.read~ myGran /units ms"
 								}
 
@@ -9073,7 +9038,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 548.0, 640.0, 238.0, 23.0 ],
+									"patching_rect" : [ 572.75, 625.0, 238.0, 23.0 ],
 									"text" : "fl.ramp~ /length 200 /units ms /scale ms"
 								}
 
@@ -9089,7 +9054,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 542.75, 626.0, 249.0, 99.0 ],
+									"patching_rect" : [ 567.5, 611.0, 249.0, 99.0 ],
 									"proportion" : 0.5
 								}
 
@@ -9273,7 +9238,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 50.0, 539.0, 660.0 ],
+									"patching_rect" : [ 8.75, 50.0, 545.0, 660.0 ],
 									"text" : "Granular synthesis uses the \"grain\" as a unit of sound. These grains are often short and derived from a sample or selection of samples. We're going to use fl.ramp~ and fl.read~ to generate grains in this step.\n\nFirst, we have to consider two things for creating a grain.\n\n1. How often are we going to generate a new grain\n2. How long will the grain be\n\nRemember, nothing in FrameLib happens without a scheduler so the rate at which we schedule trigger frames will control how often a new grain is created.\n\nSecondly, we need to ask fl.read~ for some samples at specific positions. We will use fl.ramp~ for this purpose, an object which generates frames containing consecutive incremental values (0, 1, 2, 3, 4). The frame created by fl.ramp~ is going to be sent to the to the fl.read~ object which interprets these numbers as specific audio samples to retrieve from the buffer it is pointed to. You can think of the relationship between fl.ramp~ and fl.read~ as something very similar to the one bewteen uzi and peek~ for extracting buffer values. \n\n\nThe confusing aspect of this is that although FrameLib would like you to specify everything in samples, it is both musically and logically difficult to conceive of a buffer and time in terms of how many samples will pass. As a result, we are going to specify everything in milliseconds and let FrameLib convert these values to samples auto-magically. This lets us think about everything in durations that make intuitive sense, however, a caveat of working in this way is that we have to tell all of the corresponding objects what kind of units they should expect. Let's break down the example on the right to explain this further.\n\n1. Our scheduler is set to output a trigger frame every 500 milliseconds. That one is easy to understand.\n\n2. fl.ramp~ is going to create a frame which has a length of 200 set by the /length parameter. The /units parameter tells fl.ramp~ how to interpret the length parameter, in this case the object will know we are specifiying 200 milliseconds and not samples. Finally, the /scale parameter dictates how fl.ramp~ should scale its output. The /scale function will remap the output to whatever units of time you would like. The combination of these parameters is effectively asking these three commands: I would like a frame of numbers that relate to samples (/scale), that directly reflect 200 (/length) milliseconds (units) of time. The final result is actually a list which is 8820 samples long at 44.1khz.\n\n3. In this case, fl.ramp~ is providing us with a frame containing sample positions so we tell fl.read~ to interpret the incoming frame as /units samples. In the small snippet to the right, the /scale is set to milliseconds and the /units for fl.read~ are set to milliseconds. This is an equivalent method of patching the fl.ramp~ / fl.read~ combination for creating grains where everything would be specified in millisecond values, rather than samples."
 								}
 
@@ -9496,7 +9461,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1126.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1099.0, 755.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -9950,7 +9915,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1126.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 1099.0, 755.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -9994,19 +9959,6 @@
 							}
 , 							{
 								"box" : 								{
-									"fontface" : 1,
-									"fontsize" : 20.0,
-									"id" : "obj-1",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 65.0, 456.0, 29.0 ],
-									"text" : "Let's make something!"
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"border" : 2.0,
 									"id" : "obj-49",
 									"linecolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
@@ -10026,8 +9978,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 4.0, 666.0, 59.0 ],
-									"text" : "Your first FrameLib project"
+									"patching_rect" : [ 3.75, 4.0, 872.0, 59.0 ],
+									"text" : "Building a granular synthesiser from scratch"
 								}
 
 							}
@@ -10163,41 +10115,41 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-6::obj-15::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
-			"obj-8::obj-15::obj-50" : [ "live.gain~[8]", "Volume", 0 ],
-			"obj-3::obj-15::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
-			"obj-5::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
-			"obj-7::obj-15::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
 			"obj-1::obj-15::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
+			"obj-7::obj-15::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
+			"obj-5::obj-15::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
+			"obj-3::obj-15::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
+			"obj-8::obj-15::obj-50" : [ "live.gain~[8]", "Volume", 0 ],
 			"obj-10::obj-6::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-6::obj-15::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
 			"obj-4::obj-15::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-6::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[6]"
-				}
-,
-				"obj-8::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[8]"
-				}
-,
-				"obj-3::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[3]"
-				}
-,
-				"obj-5::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[5]"
+				"obj-1::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[2]"
 				}
 ,
 				"obj-7::obj-15::obj-50" : 				{
 					"parameter_longname" : "live.gain~[7]"
 				}
 ,
-				"obj-1::obj-15::obj-50" : 				{
-					"parameter_longname" : "live.gain~[2]"
+				"obj-5::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[5]"
+				}
+,
+				"obj-3::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[3]"
+				}
+,
+				"obj-8::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[8]"
+				}
+,
+				"obj-6::obj-15::obj-50" : 				{
+					"parameter_longname" : "live.gain~[6]"
 				}
 ,
 				"obj-4::obj-15::obj-50" : 				{
@@ -10217,13 +10169,6 @@
 			}
 , 			{
 				"name" : "FL_grain_control.maxpat",
-				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "FL_next_tut.maxpat",
 				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",

@@ -1775,7 +1775,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 60.0, 915.0, 108.0 ],
+									"patching_rect" : [ 15.0, 60.0, 916.0, 108.0 ],
 									"text" : "Below is an example of granulation in FrameLib.\n\nEvery 150 milliseconds the first 150 milliseconds of a buffer are played back creating a stutter/repeat effect. Look inside the basicGranulator patch to see how this works in detail.\n\nA side-by-side comparison is implemented in a poly~ allowing you to compare the sound result, and see the simplicity of FrameLib compared to traditional Max objects."
 								}
 
@@ -2055,7 +2055,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 14.75, 315.0, 915.25, 152.0 ],
+									"patching_rect" : [ 14.75, 315.0, 919.0, 152.0 ],
 									"text" : "In most realtime audio environments, audio processing is built on the model of grouping continuous streams of samples into small consecutive blocks of equal size for the purpose of calculation. Whilst this offers an appropriate model to represent continuous analog signals, it is less suited to processing that functions on chunks, or frames, of audio in which the position of a sample in the frame is meaningful (e.g spectral representations), or in which the frame might be considered as a whole (e.g granular synthesis). \n\nFrameLib brings a wealth of processing techniques into the Max environment where rapid prototyping and experimentation is readily available to the user. Advanced multi-rate processing, based on DSP graphs that operate on frames of different sizes is not currently supported natively within Max which is where a frame based tool kit like FrameLib excels. If this doesn't make sense to you now, these tutorials will introduce you to these concepts.\n\nIf you don't know where to start, navigating through the tabs above demonstrate what you might want to do with FrameLib."
 								}
 
@@ -2118,7 +2118,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 14.75, 90.0, 205.0, 29.0 ],
+									"patching_rect" : [ 14.75, 77.0, 205.0, 29.0 ],
 									"text" : "What is FrameLib?"
 								}
 
@@ -2285,7 +2285,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 758.0, 146.600036999999986, 93.0, 22.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Next tutorial",
 									"textcolor" : [ 0.235294117647059, 0.180392156862745, 0.180392156862745, 1.0 ],
 									"textjustification" : 2
@@ -4490,62 +4489,62 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-5::obj-5::obj-21::obj-6" : [ "live.tab[5]", "live.tab[1]", 0 ],
-			"obj-9::obj-21::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
-			"obj-4::obj-9::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
-			"obj-2::obj-12::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
 			"obj-1::obj-9::obj-50" : [ "live.gain~[2]", "Volume", 0 ],
-			"obj-116::obj-12::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
-			"obj-5::obj-5::obj-35" : [ "[2]", "Level", 0 ],
-			"obj-5::obj-93::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
-			"obj-2::obj-12::obj-35" : [ "[1]", "Level", 0 ],
-			"obj-116::obj-93::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
-			"obj-3::obj-26::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
 			"obj-2::obj-93::obj-50" : [ "live.gain~[7]", "Volume", 0 ],
+			"obj-5::obj-5::obj-35" : [ "[2]", "Level", 0 ],
+			"obj-116::obj-12::obj-21::obj-6" : [ "live.tab[3]", "live.tab[1]", 0 ],
+			"obj-4::obj-9::obj-50" : [ "live.gain~[5]", "Volume", 0 ],
+			"obj-9::obj-21::obj-50" : [ "live.gain~[3]", "Volume", 0 ],
 			"obj-116::obj-12::obj-35" : [ "[5]", "Level", 0 ],
+			"obj-2::obj-12::obj-21::obj-6" : [ "live.tab[4]", "live.tab[1]", 0 ],
+			"obj-116::obj-93::obj-50" : [ "live.gain~[1]", "Volume", 0 ],
+			"obj-5::obj-93::obj-50" : [ "live.gain~[6]", "Volume", 0 ],
+			"obj-5::obj-5::obj-21::obj-6" : [ "live.tab[5]", "live.tab[1]", 0 ],
+			"obj-3::obj-26::obj-50" : [ "live.gain~[4]", "Volume", 0 ],
+			"obj-2::obj-12::obj-35" : [ "[1]", "Level", 0 ],
 			"parameterbanks" : 			{
 
 			}
 ,
 			"parameter_overrides" : 			{
-				"obj-5::obj-5::obj-21::obj-6" : 				{
-					"parameter_longname" : "live.tab[5]"
-				}
-,
-				"obj-9::obj-21::obj-50" : 				{
-					"parameter_longname" : "live.gain~[3]"
-				}
-,
-				"obj-4::obj-9::obj-50" : 				{
-					"parameter_longname" : "live.gain~[5]"
-				}
-,
-				"obj-2::obj-12::obj-21::obj-6" : 				{
-					"parameter_longname" : "live.tab[4]"
-				}
-,
 				"obj-1::obj-9::obj-50" : 				{
 					"parameter_longname" : "live.gain~[2]"
+				}
+,
+				"obj-2::obj-93::obj-50" : 				{
+					"parameter_longname" : "live.gain~[7]"
 				}
 ,
 				"obj-5::obj-5::obj-35" : 				{
 					"parameter_longname" : "[2]"
 				}
 ,
+				"obj-4::obj-9::obj-50" : 				{
+					"parameter_longname" : "live.gain~[5]"
+				}
+,
+				"obj-9::obj-21::obj-50" : 				{
+					"parameter_longname" : "live.gain~[3]"
+				}
+,
+				"obj-2::obj-12::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[4]"
+				}
+,
 				"obj-5::obj-93::obj-50" : 				{
 					"parameter_longname" : "live.gain~[6]"
 				}
 ,
-				"obj-2::obj-12::obj-35" : 				{
-					"parameter_longname" : "[1]"
+				"obj-5::obj-5::obj-21::obj-6" : 				{
+					"parameter_longname" : "live.tab[5]"
 				}
 ,
 				"obj-3::obj-26::obj-50" : 				{
 					"parameter_longname" : "live.gain~[4]"
 				}
 ,
-				"obj-2::obj-93::obj-50" : 				{
-					"parameter_longname" : "live.gain~[7]"
+				"obj-2::obj-12::obj-35" : 				{
+					"parameter_longname" : "[1]"
 				}
 
 			}
