@@ -10,15 +10,15 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
+		"rect" : [ 34.0, 79.0, 662.0, 787.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 11.0,
 		"default_fontface" : 0,
 		"default_fontname" : "Arial",
-		"gridonopen" : 1,
+		"gridonopen" : 2,
 		"gridsize" : [ 15.0, 15.0 ],
-		"gridsnaponopen" : 1,
+		"gridsnaponopen" : 2,
 		"objectsnaponopen" : 1,
 		"statusbarvisible" : 2,
 		"toolbarvisible" : 1,
@@ -82,15 +82,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 662.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -123,7 +123,7 @@
 									"patching_rect" : [ 292.0, 511.0, 152.0, 179.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 3,
-									"presentation_rect" : [ 8.0, 708.0, 639.0, 50.0 ],
+									"presentation_rect" : [ 15.0, 690.0, 630.0, 50.0 ],
 									"text" : "Part of the tutorial design was made possible thanks to the FluCoMa project ( http://www.flucoma.org/ ) funded by the European Research Council ( https://erc.europa.eu/ ) under the European Union’s Horizon 2020 research and innovation programme (grant agreement No 725899).",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.509999990463257 ]
 								}
@@ -142,7 +142,7 @@
 									"patching_rect" : [ 292.0, 387.0, 180.0, 116.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 3,
-									"presentation_rect" : [ 288.0, 650.0, 359.0, 53.0 ],
+									"presentation_rect" : [ 286.0, 630.0, 359.0, 53.0 ],
 									"text" : "Max Documentation and Tutorials written by James Bradbury (james.bradbury@hud.ac.uk) with support from the Huddersfield Creative Coding Lab.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 									"textjustification" : 2
@@ -197,17 +197,18 @@
 							}
 , 							{
 								"box" : 								{
-									"fontsize" : 15.0,
+									"fontname" : "Lato Regular",
+									"fontsize" : 14.0,
 									"id" : "obj-5",
-									"linecount" : 21,
+									"linecount" : 15,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.0, 123.0, 476.0, 358.0 ],
+									"patching_rect" : [ 8.0, 123.0, 471.0, 258.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 17,
-									"presentation_rect" : [ 8.0, 79.0, 641.0, 291.0 ],
-									"text" : "FrameLib is a DSP library for frame based processing. The underlying code is written in C++ and theoretically can be hosted in any block-based environment, but is easily compiled for Max from source. If this level of technical geekiness interests you there are links to the source/github throughout the documentation and just below.\n\nYou might be familiar working with other frame based tools such as pipo, mubu or gabor/FTM but you are encouraged to explore the FrameLib tutorials which will guide you through the fundamentals and how it works within Max. The tutorials should be perused in their numbered order, and increase with difficulty as you move through them. A number of techniques will be covered such as simple and complex FFT, and granular synthesis. \n\nThere is also a complete object reference as of 15/10/18. Gaining information about the FrameLib objects is still possible without help files and how to do this is explained in Tutorial 2: Key Concepts, \"How to get help\".\n\nYou are encouraged to move to the tutorial section next and to start learning how FrameLib works.",
+									"presentation_linecount" : 12,
+									"presentation_rect" : [ 15.0, 135.0, 630.0, 208.0 ],
+									"text" : "FrameLib is a DSP library for frame based processing. The underlying code is written in C++ and theoretically can be hosted in any block-based environment, but is easily compiled for Max from source. If this level of technical geekiness interests you there are links to the source/github throughout the documentation and just below.\n\nYou might be familiar working with other frame based tools such as pipo, mubu or gabor/FTM but you are encouraged to explore the FrameLib tutorials which will guide you through the fundamentals and how it works within Max. The tutorials should be perused in their numbered order, and increase with difficulty as you move through them. A number of techniques will be covered such as simple and complex FFT, and granular synthesis. \n\nYou are encouraged to move to the tutorial section next and to start learning how FrameLib works.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.910000026226044 ]
 								}
 
@@ -235,9 +236,9 @@
 										"default_fontsize" : 12.0,
 										"default_fontface" : 0,
 										"default_fontname" : "Arial",
-										"gridonopen" : 1,
+										"gridonopen" : 2,
 										"gridsize" : [ 15.0, 15.0 ],
-										"gridsnaponopen" : 1,
+										"gridsnaponopen" : 2,
 										"objectsnaponopen" : 1,
 										"statusbarvisible" : 2,
 										"toolbarvisible" : 1,
@@ -349,6 +350,7 @@
 , 							{
 								"box" : 								{
 									"button" : 1,
+									"fontsize" : 12.0,
 									"id" : "obj-19",
 									"maxclass" : "tab",
 									"numinlets" : 1,
@@ -357,7 +359,8 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 23.0, 681.0, 97.0, 64.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 542.0, 36.0, 105.0, 32.0 ],
+									"presentation_rect" : [ 540.5, 37.0, 104.0, 42.0 ],
+									"rounded" : 4.0,
 									"tabs" : [ "ICMC Paper", "GitHub Source" ]
 								}
 
@@ -366,30 +369,32 @@
 								"box" : 								{
 									"fontface" : 0,
 									"fontname" : "Lato",
+									"fontsize" : 13.0,
 									"id" : "obj-18",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 253.0, 63.0, 152.0, 35.0 ],
+									"patching_rect" : [ 253.0, 63.0, 149.0, 38.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 217.0, 36.0, 281.0, 21.0 ],
+									"presentation_rect" : [ 15.0, 109.0, 240.0, 22.0 ],
 									"text" : "Alex Harker - University of Huddersfield"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"fontface" : 1,
+									"fontface" : 0,
 									"fontname" : "Lato",
+									"fontsize" : 16.0,
 									"id" : "obj-14",
 									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 253.0, 15.0, 154.0, 50.0 ],
+									"patching_rect" : [ 253.0, 15.0, 199.0, 64.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 217.0, 16.0, 307.0, 21.0 ],
+									"presentation_rect" : [ 15.0, 81.0, 401.0, 26.0 ],
 									"text" : "Library for arbitrary-rate arbitrary-size frame processing",
 									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 								}
@@ -403,7 +408,7 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 29.0, 639.5, 150.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 542.0, 16.0, 105.0, 20.0 ],
+									"presentation_rect" : [ 555.0, 15.0, 75.0, 20.0 ],
 									"text" : "References",
 									"textjustification" : 1
 								}
@@ -411,15 +416,15 @@
 							}
 , 							{
 								"box" : 								{
-									"fontname" : "Lato",
+									"fontname" : "Lato Regular",
 									"fontsize" : 48.0,
 									"id" : "obj-3",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.0, 8.0, 210.0, 64.0 ],
+									"patching_rect" : [ 8.0, 8.0, 211.0, 64.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 5.0, 4.0, 210.0, 64.0 ],
+									"presentation_rect" : [ 15.0, 15.0, 211.0, 64.0 ],
 									"text" : "FrameLib",
 									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 								}
@@ -584,15 +589,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 652.0, 761.0 ],
+						"rect" : [ 34.0, 105.0, 662.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -615,67 +620,31 @@
 						"title" : "Tutorials",
 						"boxes" : [ 							{
 								"box" : 								{
-									"fontface" : 0,
-									"fontname" : "Lato",
-									"id" : "obj-4",
-									"linecount" : 12,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 292.0, 511.0, 152.0, 179.0 ],
-									"presentation" : 1,
-									"presentation_linecount" : 3,
-									"presentation_rect" : [ 8.0, 708.0, 639.0, 50.0 ],
-									"text" : "Part of the tutorial design was made possible thanks to the FluCoMa project ( http://www.flucoma.org/ ) funded by the European Research Council ( https://erc.europa.eu/ ) under the European Union’s Horizon 2020 research and innovation programme (grant agreement No 725899).",
-									"textcolor" : [ 0.0, 0.0, 0.0, 0.509999990463257 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontface" : 0,
-									"fontname" : "Lato",
-									"fontsize" : 13.0,
-									"id" : "obj-15",
-									"linecount" : 7,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 292.0, 387.0, 180.0, 116.0 ],
-									"presentation" : 1,
-									"presentation_linecount" : 3,
-									"presentation_rect" : [ 288.0, 650.0, 359.0, 53.0 ],
-									"text" : "Max Documentation and Tutorials written by James Bradbury (james.bradbury@hud.ac.uk) with support from the Huddersfield Creative Coding Lab.",
-									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
-									"textjustification" : 2
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"button" : 1,
+									"fontsize" : 12.0,
 									"id" : "obj-19",
 									"maxclass" : "tab",
 									"numinlets" : 1,
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 23.0, 681.0, 97.0, 64.0 ],
+									"patching_rect" : [ 38.0, 696.0, 97.0, 64.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 542.0, 36.0, 105.0, 32.0 ],
+									"presentation_rect" : [ 540.5, 38.0, 104.0, 42.0 ],
+									"rounded" : 4.0,
 									"tabs" : [ "ICMC Paper", "GitHub Source" ]
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-20",
+									"id" : "obj-14",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 29.0, 639.5, 150.0, 20.0 ],
+									"patching_rect" : [ 44.0, 654.5, 150.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 542.0, 16.0, 105.0, 20.0 ],
+									"presentation_rect" : [ 555.0, 16.0, 75.0, 20.0 ],
 									"text" : "References",
 									"textjustification" : 1
 								}
@@ -704,8 +673,9 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 23.0, 210.0, 384.0, 40.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 251.0, 153.0, 396.0, 23.0 ],
-									"text" : "A step-by-step guide on building a granular synth from scratch.",
+									"presentation_linecount" : 2,
+									"presentation_rect" : [ 240.0, 180.0, 405.0, 40.0 ],
+									"text" : "The key concepts of FrameLib , such as its timing and patching architecture.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -733,9 +703,9 @@
 										"default_fontsize" : 12.0,
 										"default_fontface" : 0,
 										"default_fontname" : "Arial",
-										"gridonopen" : 1,
+										"gridonopen" : 2,
 										"gridsize" : [ 15.0, 15.0 ],
-										"gridsnaponopen" : 1,
+										"gridsnaponopen" : 2,
 										"objectsnaponopen" : 1,
 										"statusbarvisible" : 2,
 										"toolbarvisible" : 1,
@@ -879,9 +849,9 @@
 										"default_fontsize" : 12.0,
 										"default_fontface" : 0,
 										"default_fontname" : "Arial",
-										"gridonopen" : 1,
+										"gridonopen" : 2,
 										"gridsize" : [ 15.0, 15.0 ],
-										"gridsnaponopen" : 1,
+										"gridsnaponopen" : 2,
 										"objectsnaponopen" : 1,
 										"statusbarvisible" : 2,
 										"toolbarvisible" : 1,
@@ -1189,7 +1159,8 @@
 								"box" : 								{
 									"align" : 1,
 									"fontface" : 0,
-									"fontsize" : 13.0,
+									"fontname" : "Lato Regular",
+									"fontsize" : 14.0,
 									"id" : "obj-31",
 									"items" : [ "Beginner", ",", "Intermediate", ",", "Advanced" ],
 									"maxclass" : "umenu",
@@ -1197,43 +1168,10 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 430.5, 413.0, 100.0, 23.0 ],
+									"patching_rect" : [ 430.5, 413.0, 100.0, 25.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 4.0, 90.0, 209.0, 23.0 ],
+									"presentation_rect" : [ 15.0, 90.0, 209.0, 25.0 ],
 									"textjustification" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontface" : 0,
-									"fontname" : "Lato",
-									"id" : "obj-18",
-									"linecount" : 2,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 253.0, 63.0, 152.0, 35.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 217.0, 36.0, 281.0, 21.0 ],
-									"text" : "Alex Harker - University of Huddersfield"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontface" : 1,
-									"fontname" : "Lato",
-									"id" : "obj-14",
-									"linecount" : 3,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 253.0, 15.0, 154.0, 50.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 217.0, 16.0, 307.0, 21.0 ],
-									"text" : "Library for arbitrary-rate arbitrary-size frame processing",
-									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 								}
 
 							}
@@ -1279,15 +1217,13 @@
 									"fontsize" : 20.0,
 									"frozen_box_attributes" : [ "presentation_rect" ],
 									"id" : "obj-7",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 131.0, 382.0, 54.0 ],
+									"patching_rect" : [ 23.0, 131.0, 382.0, 30.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 97.0, 422.0, 30.0 ],
-									"text" : "Tutorial 6: Your first FrameLib project - Building a granulator from scratch.",
+									"text" : "Tutorial 3: Key Concepts.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -1318,7 +1254,7 @@
 										"default_fontname" : "Arial",
 										"gridonopen" : 2,
 										"gridsize" : [ 15.0, 15.0 ],
-										"gridsnaponopen" : 1,
+										"gridsnaponopen" : 2,
 										"objectsnaponopen" : 1,
 										"statusbarvisible" : 2,
 										"toolbarvisible" : 1,
@@ -1471,9 +1407,9 @@
 														"default_fontsize" : 12.0,
 														"default_fontface" : 0,
 														"default_fontname" : "Arial",
-														"gridonopen" : 1,
+														"gridonopen" : 2,
 														"gridsize" : [ 15.0, 15.0 ],
-														"gridsnaponopen" : 1,
+														"gridsnaponopen" : 2,
 														"objectsnaponopen" : 1,
 														"statusbarvisible" : 2,
 														"toolbarvisible" : 1,
@@ -2335,7 +2271,8 @@
 									"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
 									"button" : 1,
 									"contrastactivetab" : 0,
-									"fontsize" : 12.0,
+									"fontname" : "Lato Regular",
+									"fontsize" : 14.0,
 									"htabcolor" : [ 0.133333333333333, 0.513725490196078, 0.533333333333333, 1.0 ],
 									"id" : "obj-5",
 									"maxclass" : "tab",
@@ -2345,7 +2282,7 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 471.0, 477.0, 53.0, 24.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 4.0, 114.0, 210.0, 589.0 ],
+									"presentation_rect" : [ 15.0, 120.0, 209.0, 630.0 ],
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
@@ -2367,7 +2304,7 @@
 									"patching_rect" : [ 23.0, 506.0, 384.0, 26.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 281.0, 328.0, 392.0, 26.0 ],
-									"text" : "<<-- hover for info, click to start the tutorial",
+									"text" : "<- hover for info, click to start the tutorial",
 									"varname" : "helpText"
 								}
 
@@ -2385,7 +2322,7 @@
 									"patching_rect" : [ 23.0, 534.0, 384.0, 26.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 281.0, 99.0, 392.0, 26.0 ],
-									"text" : "<<-- select a difficulty level for the FrameLib tutorials",
+									"text" : "<- select a difficulty level for the FrameLib tutorials",
 									"varname" : "selectText"
 								}
 
@@ -2400,7 +2337,7 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 8.0, 8.0, 210.0, 64.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 5.0, 4.0, 210.0, 64.0 ],
+									"presentation_rect" : [ 15.0, 16.0, 210.0, 64.0 ],
 									"text" : "FrameLib",
 									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 								}
@@ -2623,7 +2560,7 @@
 						"textcolor" : [ 0.0, 0.0, 0.0, 0.5 ]
 					}
 ,
-					"patching_rect" : [ 170.79998779296875, 43.999984741210938, 61.0, 21.0 ],
+					"patching_rect" : [ 75.0, 45.0, 61.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -2653,15 +2590,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 652.0, 761.0 ],
+						"rect" : [ 0.0, 26.0, 662.0, 761.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 1,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -2681,72 +2618,52 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"title" : "Help",
+						"title" : "Object Reference",
 						"boxes" : [ 							{
 								"box" : 								{
-									"fontface" : 0,
-									"fontname" : "Lato",
-									"id" : "obj-6",
-									"linecount" : 12,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 292.0, 511.0, 152.0, 179.0 ],
-									"presentation" : 1,
-									"presentation_linecount" : 3,
-									"presentation_rect" : [ 8.0, 708.0, 639.0, 50.0 ],
-									"text" : "Part of the tutorial design was made possible thanks to the FluCoMa project ( http://www.flucoma.org/ ) funded by the European Research Council ( https://erc.europa.eu/ ) under the European Union’s Horizon 2020 research and innovation programme (grant agreement No 725899).",
-									"textcolor" : [ 0.0, 0.0, 0.0, 0.509999990463257 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontface" : 0,
-									"fontname" : "Lato",
-									"fontsize" : 13.0,
-									"id" : "obj-2",
-									"linecount" : 7,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 292.0, 387.0, 180.0, 116.0 ],
-									"presentation" : 1,
-									"presentation_linecount" : 3,
-									"presentation_rect" : [ 288.0, 650.0, 359.0, 53.0 ],
-									"text" : "Max Documentation and Tutorials written by James Bradbury (james.bradbury@hud.ac.uk) with support from the Huddersfield Creative Coding Lab.",
-									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
-									"textjustification" : 2
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"button" : 1,
+									"fontsize" : 12.0,
 									"id" : "obj-19",
 									"maxclass" : "tab",
 									"numinlets" : 1,
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 23.0, 681.0, 97.0, 64.0 ],
+									"patching_rect" : [ 38.0, 696.0, 97.0, 64.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 542.0, 36.0, 105.0, 32.0 ],
+									"presentation_rect" : [ 541.0, 37.0, 104.0, 42.0 ],
+									"rounded" : 4.0,
 									"tabs" : [ "ICMC Paper", "GitHub Source" ]
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"id" : "obj-16",
+									"id" : "obj-2",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 29.0, 639.5, 150.0, 20.0 ],
+									"patching_rect" : [ 44.0, 654.5, 150.0, 20.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 542.0, 16.0, 105.0, 20.0 ],
+									"presentation_rect" : [ 555.5, 15.0, 75.0, 20.0 ],
 									"text" : "References",
 									"textjustification" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "Lato Regular",
+									"fontsize" : 48.0,
+									"id" : "obj-3",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 8.0, 8.0, 211.0, 64.0 ],
+									"presentation" : 1,
+									"presentation_rect" : [ 15.0, 15.0, 211.0, 64.0 ],
+									"text" : "FrameLib",
+									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 								}
 
 							}
@@ -2759,22 +2676,6 @@
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 546.5, 437.0, 97.0, 22.0 ],
 									"text" : "loadmess tabs --"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-15",
-									"linecount" : 9,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 284.0, 248.0, 151.0, 127.0 ],
-									"presentation" : 1,
-									"presentation_linecount" : 4,
-									"presentation_rect" : [ 251.0, 195.0, 396.0, 60.0 ],
-									"text" : "Warning: many categories have no help files and clicking the object name will do nothing. If you are looking for help with a particular object refer to the Reference or send an instance of the object the \"info\" message.",
-									"textcolor" : [ 0.866666674613953, 0.117647059261799, 0.117647059261799, 1.0 ]
 								}
 
 							}
@@ -2801,9 +2702,9 @@
 										"default_fontsize" : 12.0,
 										"default_fontface" : 0,
 										"default_fontname" : "Arial",
-										"gridonopen" : 1,
+										"gridonopen" : 2,
 										"gridsize" : [ 15.0, 15.0 ],
-										"gridsnaponopen" : 1,
+										"gridsnaponopen" : 2,
 										"objectsnaponopen" : 1,
 										"statusbarvisible" : 2,
 										"toolbarvisible" : 1,
@@ -2914,39 +2815,6 @@
 							}
 , 							{
 								"box" : 								{
-									"fontface" : 0,
-									"fontname" : "Lato",
-									"id" : "obj-18",
-									"linecount" : 2,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 253.0, 63.0, 152.0, 35.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 217.0, 36.0, 281.0, 21.0 ],
-									"text" : "Alex Harker - University of Huddersfield"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontface" : 1,
-									"fontname" : "Lato",
-									"id" : "obj-14",
-									"linecount" : 3,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 253.0, 15.0, 154.0, 50.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 217.0, 16.0, 307.0, 21.0 ],
-									"text" : "Library for arbitrary-rate arbitrary-size frame processing",
-									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-12",
 									"maxclass" : "comment",
 									"numinlets" : 1,
@@ -2994,7 +2862,7 @@
 									"patching_rect" : [ 23.0, 129.0, 382.0, 30.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 251.0, 97.0, 422.0, 30.0 ],
-									"text" : "fl.interval~",
+									"text" : "fl.now~",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -3005,15 +2873,13 @@
 									"fontsize" : 14.0,
 									"frozen_box_attributes" : [ "presentation_rect" ],
 									"id" : "obj-21",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 220.0, 386.0, 40.0 ],
+									"patching_rect" : [ 23.0, 220.0, 386.0, 23.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 141.0, 422.0, 30.0 ],
-									"text" : "Schedules frames at regular intervals , which can be adjusted using the interval parameter.",
+									"text" : "Outputs the current time.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -3044,7 +2910,7 @@
 										"default_fontname" : "Arial",
 										"gridonopen" : 2,
 										"gridsize" : [ 15.0, 15.0 ],
-										"gridsnaponopen" : 1,
+										"gridsnaponopen" : 2,
 										"objectsnaponopen" : 1,
 										"statusbarvisible" : 2,
 										"toolbarvisible" : 1,
@@ -4000,7 +3866,7 @@
 										"default_fontname" : "Arial",
 										"gridonopen" : 2,
 										"gridsize" : [ 15.0, 15.0 ],
-										"gridsnaponopen" : 1,
+										"gridsnaponopen" : 2,
 										"objectsnaponopen" : 1,
 										"statusbarvisible" : 2,
 										"toolbarvisible" : 1,
@@ -4023,11 +3889,11 @@
 												"box" : 												{
 													"id" : "obj-4",
 													"maxclass" : "newobj",
-													"numinlets" : 2,
+													"numinlets" : 3,
 													"numoutlets" : 2,
 													"outlettype" : [ "", "" ],
-													"patching_rect" : [ 211.0, 153.0, 145.0, 22.0 ],
-													"text" : "combine fl_ s @triggers 1"
+													"patching_rect" : [ 211.0, 153.0, 198.0, 22.0 ],
+													"text" : "combine FrameLib \" \" s @triggers 2"
 												}
 
 											}
@@ -4239,8 +4105,8 @@
  ],
 										"lines" : [ 											{
 												"patchline" : 												{
-													"destination" : [ "obj-4", 1 ],
-													"midpoints" : [ 220.5, 129.0, 346.5, 129.0 ],
+													"destination" : [ "obj-4", 2 ],
+													"midpoints" : [ 220.5, 129.0, 399.5, 129.0 ],
 													"source" : [ "obj-1", 0 ]
 												}
 
@@ -4491,7 +4357,7 @@
 										"default_fontname" : "Arial",
 										"gridonopen" : 2,
 										"gridsize" : [ 15.0, 15.0 ],
-										"gridsnaponopen" : 1,
+										"gridsnaponopen" : 2,
 										"objectsnaponopen" : 1,
 										"statusbarvisible" : 2,
 										"toolbarvisible" : 1,
@@ -4942,6 +4808,8 @@
 									"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
 									"button" : 1,
 									"contrastactivetab" : 0,
+									"fontname" : "Lato Regular",
+									"fontsize" : 16.0,
 									"htabcolor" : [ 0.133333333333333, 0.513725490196078, 0.533333333333333, 1.0 ],
 									"id" : "obj-5",
 									"maxclass" : "tab",
@@ -4951,11 +4819,11 @@
 									"parameter_enable" : 0,
 									"patching_rect" : [ 471.0, 477.0, 53.0, 24.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 4.0, 114.0, 210.0, 589.0 ],
+									"presentation_rect" : [ 15.0, 120.0, 210.0, 630.0 ],
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
-									"tabs" : [ "--" ],
+									"tabs" : [ "fl.now~", "fl.ticks~", "fl.timedelta~", "fl.timer~" ],
 									"truncate" : 0
 								}
 
@@ -4964,7 +4832,8 @@
 								"box" : 								{
 									"align" : 1,
 									"allowdrag" : 0,
-									"fontsize" : 13.0,
+									"fontname" : "Lato Regular",
+									"fontsize" : 14.0,
 									"id" : "obj-4",
 									"items" : [ "(Select", "a", "Category)", ",", "Binary", ",", "Buffer", ",", "Complex_Binary", ",", "Complex_Unary", ",", "Expressions", ",", "Filters", ",", "Generators", ",", "Host_Communication", ",", "IO", ",", "Mapping", ",", "Parameters", ",", "Routing", ",", "Schedulers", ",", "Spatial", ",", "Spectral", ",", "Storage", ",", "Streaming", ",", "Ternary", ",", "Time_Smoothing", ",", "Timing", ",", "Unary", ",", "Vector" ],
 									"maxclass" : "umenu",
@@ -4972,18 +4841,18 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 454.5, 357.0, 153.0, 23.0 ],
+									"patching_rect" : [ 454.5, 357.0, 153.0, 25.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 5.0, 89.0, 209.0, 23.0 ],
+									"presentation_rect" : [ 15.0, 90.0, 209.0, 25.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_longname" : "umenu",
-											"parameter_initial_enable" : 1,
 											"parameter_invisible" : 1,
 											"parameter_mmax" : 22.0,
 											"parameter_initial" : [ 0 ],
 											"parameter_shortname" : "umenu",
-											"parameter_type" : 3
+											"parameter_type" : 3,
+											"parameter_longname" : "umenu",
+											"parameter_initial_enable" : 1
 										}
 
 									}
@@ -5006,7 +4875,7 @@
 									"patching_rect" : [ 23.0, 506.0, 384.0, 26.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 281.0, 328.0, 392.0, 26.0 ],
-									"text" : "<<-- hover for info, click for helpfile",
+									"text" : "<- hover for info, click for helpfile",
 									"varname" : "helpText"
 								}
 
@@ -5024,24 +4893,8 @@
 									"patching_rect" : [ 23.0, 534.0, 384.0, 26.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 281.0, 99.0, 392.0, 26.0 ],
-									"text" : "<<-- select here",
+									"text" : "<- select an object category",
 									"varname" : "selectText"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Lato",
-									"fontsize" : 48.0,
-									"id" : "obj-3",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 8.0, 8.0, 210.0, 64.0 ],
-									"presentation" : 1,
-									"presentation_rect" : [ 5.0, 4.0, 210.0, 64.0 ],
-									"text" : "FrameLib",
-									"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 								}
 
 							}
@@ -5295,7 +5148,7 @@
 						"textcolor" : [ 0.0, 0.0, 0.0, 0.5 ]
 					}
 ,
-					"patching_rect" : [ 92.799995422363281, 43.999984741210938, 70.0, 21.0 ],
+					"patching_rect" : [ 144.000007629394531, 46.0, 70.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
