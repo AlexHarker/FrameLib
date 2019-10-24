@@ -51,12 +51,4 @@ FrameLib_CombineTime::ParameterInfo::ParameterInfo()
 
 void FrameLib_CombineTime::process()
 {
-//    requestOutputSize(0, 0);
-//    if (allocateOutputs())
-//    {
-//        unsigned long size;
-//        double *output = getOutput(0, &size);
-//        output[0] = 0;
-//    }
-    
 }
