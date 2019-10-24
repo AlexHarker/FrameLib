@@ -93,7 +93,6 @@ inline const char* FrameLib_Ternary<FrameLib_Ternary_Ops::fold<double>>::getDesc
     return "Folds the incoming frame into the range delimited by the low and high parameters";
 }
 
-
 typedef FrameLib_Ternary<FrameLib_Ternary_Ops::clip<double>> FrameLib_Clip;
 typedef FrameLib_Ternary<FrameLib_Ternary_Ops::wrap<double>> FrameLib_Wrap;
 typedef FrameLib_Ternary<FrameLib_Ternary_Ops::fold<double>> FrameLib_Fold;
