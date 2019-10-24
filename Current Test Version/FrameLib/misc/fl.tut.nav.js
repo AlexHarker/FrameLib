@@ -59,7 +59,8 @@ for (i = 0; i < difficulties.length; i++) {
     for (j=0; j < entries.length; j++) {
         digest = temp_dict.get(entries[j])
         title = entries[j]
-        tutorial_title.push(title)
+        filtered_title = title.split(":")[0]
+        tutorial_title.push(filtered_title)
         tutorial_digest.push(digest)
     }
 }
@@ -78,7 +79,7 @@ function paint() {
 
     // vSlider(windWid - 20, 20, 20, windHei - 40, "currentScroll", 0, maxScroll, "scrollSlid", "test_slider_func();", "Scroll the menu here", 0);
 
-    txtBoxFill(0, 0, windWid, 40, "FrameLib Tutorials", "FrameLib Tutorials", 0, "cen");
+    txtBoxFill(0, 0, windWid, 40, "Tutorial Navigator", "Navigator", 0, "left");
 
     infoBar(0, windHei-50, windWid, 60, 0);
 }
@@ -94,39 +95,6 @@ function open_a_patcher()
     aPossiblePatcher = homeDirec.replace(patcherName + ".maxpat") + "lalala.maxpat";
 
     outlet(0, "load " + aPossiblePatcher);
-}
-
-function update_scroll_size()
-{
-    if(numBoxes * 20 > windHei - 40)
-    {
-        mustScroll = true;
-    }
-    else
-    {
-        mustScroll = false;
-    }
-
-    if(mustScroll)
-    {
-        maxScroll = 1;
-        scrollCLickable = true;
-        slideWid = ((this.box.rect[3] - this.box.rect[1]) - 40) * 0.2;
-    }
-    else
-    {
-        scrollCLickable = false;
-        currentScroll = 0.5;
-        slideWid = windHei - 40;
-        maxScroll = 1;
-        yOffset = 0;
-    }
-}
-
-function test_slider_func()
-{
-    gap = ((this.box.rect[3] - this.box.rect[1]) - 40) - (numBoxes * 20);
-    yOffset = currentScroll * gap;
 }
 
 function background(x, y, w, h)
