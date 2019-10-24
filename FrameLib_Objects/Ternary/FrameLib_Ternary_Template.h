@@ -77,6 +77,9 @@ public:
         mParameters.addEnumItem(kExtend, "extend");
         mParameters.setInstantiation();
 
+        setInputMode(1, false, false, false);
+        setInputMode(2, false, false, false);
+        
         mParameters.set(serialisedParameters);
         
         mMismatchMode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
@@ -96,7 +99,7 @@ public:
             case 0: return "Input";
             case 1: return "Parameter 1";
             case 2: return "Parameter 2";
-            default: return "Unknown input";
+            default: return "Unknown Input";
         }
     }
 
