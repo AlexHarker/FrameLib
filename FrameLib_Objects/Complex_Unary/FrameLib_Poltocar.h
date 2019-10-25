@@ -27,7 +27,7 @@ inline std::string FrameLib_Complex_UnaryOp<FrameLib_Complex_Ops::PolToCar>::inp
     if (idx == 0)
         return formatInfo("Amplitudes (or abs values)", "Amplitudes", verbose);
     else
-        return formatInfo("Phases (or args)", "Phases", verbose);
+        return formatInfo("Phases (or arg values)", "Phases", verbose);
 }
 
 template<>

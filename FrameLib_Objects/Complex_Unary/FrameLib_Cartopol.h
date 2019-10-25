@@ -36,7 +36,7 @@ inline std::string FrameLib_Complex_UnaryOp<FrameLib_Complex_Ops::CarToPol>::out
     if (idx == 0)
         return formatInfo("Amplitudes (or abs values)", "Amplitudes", verbose);
     else
-        return formatInfo("Phases (or args)", "Phases", verbose);
+        return formatInfo("Phases (or arg values)", "Phases", verbose);
 }
 
 using FrameLib_Cartopol = FrameLib_Complex_UnaryOp<FrameLib_Complex_Ops::CarToPol>;
