@@ -2358,7 +2358,7 @@
 		B8B4022E1FB9A960006EE056 /* fl.complex.tan~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.tan~.cpp"; sourceTree = "<group>"; };
 		B8B4024D1FB9AE69006EE056 /* fl.complexlog10~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexlog10~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B402601FB9AE6C006EE056 /* fl.complexconj~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexconj~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B402731FB9AE6F006EE056 /* fl.complexlog~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexlog~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B402731FB9AE6F006EE056 /* fl.complex.log~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.log~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B402861FB9AE72006EE056 /* fl.complexexp~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexexp~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B402991FB9AE76006EE056 /* fl.complexsqrt~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexsqrt~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B402A01FB9AF80006EE056 /* FrameLib_Cartopol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Cartopol.h; sourceTree = "<group>"; };
@@ -4279,7 +4279,7 @@
 				B8B402121FB9A8E1006EE056 /* fl.complextanh~.mxo */,
 				B8B4024D1FB9AE69006EE056 /* fl.complexlog10~.mxo */,
 				B8B402601FB9AE6C006EE056 /* fl.complexconj~.mxo */,
-				B8B402731FB9AE6F006EE056 /* fl.complexlog~.mxo */,
+				B8B402731FB9AE6F006EE056 /* fl.complex.log~.mxo */,
 				B8B402861FB9AE72006EE056 /* fl.complexexp~.mxo */,
 				B8B402991FB9AE76006EE056 /* fl.complexsqrt~.mxo */,
 				B8B402B21FB9B186006EE056 /* fl.cartopol~.mxo */,
@@ -8603,9 +8603,9 @@
 			productReference = B8B2341F1FB5CC7F00C18783 /* fl.lag~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8B401A21FB9A8B1006EE056 /* fl.complexcos~ */ = {
+		B8B401A21FB9A8B1006EE056 /* fl.complex.cos~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B401AE1FB9A8B1006EE056 /* Build configuration list for PBXNativeTarget "fl.complexcos~" */;
+			buildConfigurationList = B8B401AE1FB9A8B1006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.cos~" */;
 			buildPhases = (
 				B8B401A51FB9A8B1006EE056 /* Headers */,
 				B8B401A61FB9A8B1006EE056 /* Resources */,
@@ -8617,15 +8617,15 @@
 			dependencies = (
 				B8B401A31FB9A8B1006EE056 /* PBXTargetDependency */,
 			);
-			name = "fl.complexcos~";
+			name = "fl.complex.cos~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B8B401B31FB9A8B1006EE056 /* fl.complexcos~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8B401B51FB9A8BB006EE056 /* fl.complexcosh~ */ = {
+		B8B401B51FB9A8BB006EE056 /* fl.complex.cosh~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B401C11FB9A8BB006EE056 /* Build configuration list for PBXNativeTarget "fl.complexcosh~" */;
+			buildConfigurationList = B8B401C11FB9A8BB006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.cosh~" */;
 			buildPhases = (
 				B8B401B81FB9A8BB006EE056 /* Headers */,
 				B8B401B91FB9A8BB006EE056 /* Resources */,
@@ -8637,15 +8637,15 @@
 			dependencies = (
 				B8B401B61FB9A8BB006EE056 /* PBXTargetDependency */,
 			);
-			name = "fl.complexcosh~";
+			name = "fl.complex.cosh~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B8B401C61FB9A8BB006EE056 /* fl.complexcosh~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8B401C81FB9A8BE006EE056 /* fl.complexsin~ */ = {
+		B8B401C81FB9A8BE006EE056 /* fl.complex.sin~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B401D41FB9A8BE006EE056 /* Build configuration list for PBXNativeTarget "fl.complexsin~" */;
+			buildConfigurationList = B8B401D41FB9A8BE006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.sin~" */;
 			buildPhases = (
 				B8B401CB1FB9A8BE006EE056 /* Headers */,
 				B8B401CC1FB9A8BE006EE056 /* Resources */,
@@ -8657,15 +8657,15 @@
 			dependencies = (
 				B8B401C91FB9A8BE006EE056 /* PBXTargetDependency */,
 			);
-			name = "fl.complexsin~";
+			name = "fl.complex.sin~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B8B401D91FB9A8BE006EE056 /* fl.complexsin~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8B401DB1FB9A8CC006EE056 /* fl.complexsinh~ */ = {
+		B8B401DB1FB9A8CC006EE056 /* fl.complex.sinh~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B401E71FB9A8CC006EE056 /* Build configuration list for PBXNativeTarget "fl.complexsinh~" */;
+			buildConfigurationList = B8B401E71FB9A8CC006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.sinh~" */;
 			buildPhases = (
 				B8B401DE1FB9A8CC006EE056 /* Headers */,
 				B8B401DF1FB9A8CC006EE056 /* Resources */,
@@ -8677,15 +8677,15 @@
 			dependencies = (
 				B8B401DC1FB9A8CC006EE056 /* PBXTargetDependency */,
 			);
-			name = "fl.complexsinh~";
+			name = "fl.complex.sinh~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B8B401EC1FB9A8CC006EE056 /* fl.complexsinh~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8B401EE1FB9A8D7006EE056 /* fl.complextan~ */ = {
+		B8B401EE1FB9A8D7006EE056 /* fl.complex.tan~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B401FA1FB9A8D7006EE056 /* Build configuration list for PBXNativeTarget "fl.complextan~" */;
+			buildConfigurationList = B8B401FA1FB9A8D7006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.tan~" */;
 			buildPhases = (
 				B8B401F11FB9A8D7006EE056 /* Headers */,
 				B8B401F21FB9A8D7006EE056 /* Resources */,
@@ -8697,15 +8697,15 @@
 			dependencies = (
 				B8B401EF1FB9A8D7006EE056 /* PBXTargetDependency */,
 			);
-			name = "fl.complextan~";
+			name = "fl.complex.tan~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B8B401FF1FB9A8D7006EE056 /* fl.complextan~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8B402011FB9A8E1006EE056 /* fl.complextanh~ */ = {
+		B8B402011FB9A8E1006EE056 /* fl.complex.tanh~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B4020D1FB9A8E1006EE056 /* Build configuration list for PBXNativeTarget "fl.complextanh~" */;
+			buildConfigurationList = B8B4020D1FB9A8E1006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.tanh~" */;
 			buildPhases = (
 				B8B402041FB9A8E1006EE056 /* Headers */,
 				B8B402051FB9A8E1006EE056 /* Resources */,
@@ -8717,15 +8717,15 @@
 			dependencies = (
 				B8B402021FB9A8E1006EE056 /* PBXTargetDependency */,
 			);
-			name = "fl.complextanh~";
+			name = "fl.complex.tanh~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B8B402121FB9A8E1006EE056 /* fl.complextanh~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8B4023C1FB9AE69006EE056 /* fl.complexlog10~ */ = {
+		B8B4023C1FB9AE69006EE056 /* fl.complex.log10~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B402481FB9AE69006EE056 /* Build configuration list for PBXNativeTarget "fl.complexlog10~" */;
+			buildConfigurationList = B8B402481FB9AE69006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.log10~" */;
 			buildPhases = (
 				B8B4023F1FB9AE69006EE056 /* Headers */,
 				B8B402401FB9AE69006EE056 /* Resources */,
@@ -8737,15 +8737,15 @@
 			dependencies = (
 				B8B4023D1FB9AE69006EE056 /* PBXTargetDependency */,
 			);
-			name = "fl.complexlog10~";
+			name = "fl.complex.log10~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B8B4024D1FB9AE69006EE056 /* fl.complexlog10~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8B4024F1FB9AE6C006EE056 /* fl.complexconj~ */ = {
+		B8B4024F1FB9AE6C006EE056 /* fl.complex.conj~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B4025B1FB9AE6C006EE056 /* Build configuration list for PBXNativeTarget "fl.complexconj~" */;
+			buildConfigurationList = B8B4025B1FB9AE6C006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.conj~" */;
 			buildPhases = (
 				B8B402521FB9AE6C006EE056 /* Headers */,
 				B8B402531FB9AE6C006EE056 /* Resources */,
@@ -8757,15 +8757,15 @@
 			dependencies = (
 				B8B402501FB9AE6C006EE056 /* PBXTargetDependency */,
 			);
-			name = "fl.complexconj~";
+			name = "fl.complex.conj~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B8B402601FB9AE6C006EE056 /* fl.complexconj~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8B402621FB9AE6F006EE056 /* fl.complexlog~ */ = {
+		B8B402621FB9AE6F006EE056 /* fl.complex.log~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B4026E1FB9AE6F006EE056 /* Build configuration list for PBXNativeTarget "fl.complexlog~" */;
+			buildConfigurationList = B8B4026E1FB9AE6F006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.log~" */;
 			buildPhases = (
 				B8B402651FB9AE6F006EE056 /* Headers */,
 				B8B402661FB9AE6F006EE056 /* Resources */,
@@ -8777,15 +8777,15 @@
 			dependencies = (
 				B8B402631FB9AE6F006EE056 /* PBXTargetDependency */,
 			);
-			name = "fl.complexlog~";
+			name = "fl.complex.log~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8B402731FB9AE6F006EE056 /* fl.complexlog~.mxo */;
+			productReference = B8B402731FB9AE6F006EE056 /* fl.complex.log~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8B402751FB9AE72006EE056 /* fl.complexexp~ */ = {
+		B8B402751FB9AE72006EE056 /* fl.complex.exp~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B402811FB9AE72006EE056 /* Build configuration list for PBXNativeTarget "fl.complexexp~" */;
+			buildConfigurationList = B8B402811FB9AE72006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.exp~" */;
 			buildPhases = (
 				B8B402781FB9AE72006EE056 /* Headers */,
 				B8B402791FB9AE72006EE056 /* Resources */,
@@ -8797,15 +8797,15 @@
 			dependencies = (
 				B8B402761FB9AE72006EE056 /* PBXTargetDependency */,
 			);
-			name = "fl.complexexp~";
+			name = "fl.complex.exp~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B8B402861FB9AE72006EE056 /* fl.complexexp~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8B402881FB9AE76006EE056 /* fl.complexsqrt~ */ = {
+		B8B402881FB9AE76006EE056 /* fl.complex.sqrt~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B402941FB9AE76006EE056 /* Build configuration list for PBXNativeTarget "fl.complexsqrt~" */;
+			buildConfigurationList = B8B402941FB9AE76006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.sqrt~" */;
 			buildPhases = (
 				B8B4028B1FB9AE76006EE056 /* Headers */,
 				B8B4028C1FB9AE76006EE056 /* Resources */,
@@ -8817,7 +8817,7 @@
 			dependencies = (
 				B8B402891FB9AE76006EE056 /* PBXTargetDependency */,
 			);
-			name = "fl.complexsqrt~";
+			name = "fl.complex.sqrt~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B8B402991FB9AE76006EE056 /* fl.complexsqrt~.mxo */;
@@ -8863,9 +8863,9 @@
 			productReference = B8B402C51FB9B18B006EE056 /* fl.poltocar~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8B402D81FB9DF8B006EE056 /* fl.complexpow~ */ = {
+		B8B402D81FB9DF8B006EE056 /* fl.complex.pow~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B402E41FB9DF8B006EE056 /* Build configuration list for PBXNativeTarget "fl.complexpow~" */;
+			buildConfigurationList = B8B402E41FB9DF8B006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.pow~" */;
 			buildPhases = (
 				B8B402DB1FB9DF8B006EE056 /* Headers */,
 				B8B402DC1FB9DF8B006EE056 /* Resources */,
@@ -8877,15 +8877,15 @@
 			dependencies = (
 				B8B402D91FB9DF8B006EE056 /* PBXTargetDependency */,
 			);
-			name = "fl.complexpow~";
+			name = "fl.complex.pow~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B8B402E91FB9DF8B006EE056 /* fl.complexpow~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8B402EC1FB9E743006EE056 /* fl.complexmultiply~ */ = {
+		B8B402EC1FB9E743006EE056 /* fl.complex.times~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B402F81FB9E743006EE056 /* Build configuration list for PBXNativeTarget "fl.complexmultiply~" */;
+			buildConfigurationList = B8B402F81FB9E743006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.times~" */;
 			buildPhases = (
 				B8B402EF1FB9E743006EE056 /* Headers */,
 				B8B402F01FB9E743006EE056 /* Resources */,
@@ -8897,15 +8897,15 @@
 			dependencies = (
 				B8B402ED1FB9E743006EE056 /* PBXTargetDependency */,
 			);
-			name = "fl.complexmultiply~";
+			name = "fl.complex.times~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B8B402FD1FB9E743006EE056 /* fl.complexmultiply~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8B402FF1FB9E747006EE056 /* fl.complexdivide~ */ = {
+		B8B402FF1FB9E747006EE056 /* fl.complex.divide~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B4030B1FB9E747006EE056 /* Build configuration list for PBXNativeTarget "fl.complexdivide~" */;
+			buildConfigurationList = B8B4030B1FB9E747006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.divide~" */;
 			buildPhases = (
 				B8B403021FB9E747006EE056 /* Headers */,
 				B8B403031FB9E747006EE056 /* Resources */,
@@ -8917,15 +8917,15 @@
 			dependencies = (
 				B8B403001FB9E747006EE056 /* PBXTargetDependency */,
 			);
-			name = "fl.complexdivide~";
+			name = "fl.complex.divide~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B8B403101FB9E747006EE056 /* fl.complexdivide~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8B403121FB9E74E006EE056 /* fl.complexplus~ */ = {
+		B8B403121FB9E74E006EE056 /* fl.complex.plus~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B4031E1FB9E74E006EE056 /* Build configuration list for PBXNativeTarget "fl.complexplus~" */;
+			buildConfigurationList = B8B4031E1FB9E74E006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.plus~" */;
 			buildPhases = (
 				B8B403151FB9E74E006EE056 /* Headers */,
 				B8B403161FB9E74E006EE056 /* Resources */,
@@ -8937,15 +8937,15 @@
 			dependencies = (
 				B8B403131FB9E74E006EE056 /* PBXTargetDependency */,
 			);
-			name = "fl.complexplus~";
+			name = "fl.complex.plus~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B8B403231FB9E74E006EE056 /* fl.complexplus~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8B403251FB9E752006EE056 /* fl.complexminus~ */ = {
+		B8B403251FB9E752006EE056 /* fl.complex.minus~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B403311FB9E752006EE056 /* Build configuration list for PBXNativeTarget "fl.complexminus~" */;
+			buildConfigurationList = B8B403311FB9E752006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.minus~" */;
 			buildPhases = (
 				B8B403281FB9E752006EE056 /* Headers */,
 				B8B403291FB9E752006EE056 /* Resources */,
@@ -8957,7 +8957,7 @@
 			dependencies = (
 				B8B403261FB9E752006EE056 /* PBXTargetDependency */,
 			);
-			name = "fl.complexminus~";
+			name = "fl.complex.minus~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
 			productReference = B8B403361FB9E752006EE056 /* fl.complexminus~.mxo */;
@@ -10016,24 +10016,24 @@
 				B87E5C0B1FB8C44500C63385 /* fl.gaussian~ */,
 				B87E5C271FB8EC2A00C63385 /* fl.ewma~ */,
 				B87E5C3C1FB8EC2D00C63385 /* fl.ewmsd~ */,
-				B8B401A21FB9A8B1006EE056 /* fl.complexcos~ */,
-				B8B401B51FB9A8BB006EE056 /* fl.complexcosh~ */,
-				B8B401C81FB9A8BE006EE056 /* fl.complexsin~ */,
-				B8B401DB1FB9A8CC006EE056 /* fl.complexsinh~ */,
-				B8B401EE1FB9A8D7006EE056 /* fl.complextan~ */,
-				B8B402011FB9A8E1006EE056 /* fl.complextanh~ */,
-				B8B4024F1FB9AE6C006EE056 /* fl.complexconj~ */,
-				B8B402751FB9AE72006EE056 /* fl.complexexp~ */,
-				B8B402621FB9AE6F006EE056 /* fl.complexlog~ */,
-				B8B4023C1FB9AE69006EE056 /* fl.complexlog10~ */,
-				B8B402881FB9AE76006EE056 /* fl.complexsqrt~ */,
+				B8B401A21FB9A8B1006EE056 /* fl.complex.cos~ */,
+				B8B401B51FB9A8BB006EE056 /* fl.complex.cosh~ */,
+				B8B401C81FB9A8BE006EE056 /* fl.complex.sin~ */,
+				B8B401DB1FB9A8CC006EE056 /* fl.complex.sinh~ */,
+				B8B401EE1FB9A8D7006EE056 /* fl.complex.tan~ */,
+				B8B402011FB9A8E1006EE056 /* fl.complex.tanh~ */,
+				B8B4024F1FB9AE6C006EE056 /* fl.complex.conj~ */,
+				B8B402751FB9AE72006EE056 /* fl.complex.exp~ */,
+				B8B402621FB9AE6F006EE056 /* fl.complex.log~ */,
+				B8B4023C1FB9AE69006EE056 /* fl.complex.log10~ */,
+				B8B402881FB9AE76006EE056 /* fl.complex.sqrt~ */,
 				B8B402A11FB9B186006EE056 /* fl.cartopol~ */,
 				B8B402B41FB9B18A006EE056 /* fl.poltocar~ */,
-				B8B402D81FB9DF8B006EE056 /* fl.complexpow~ */,
-				B8B402EC1FB9E743006EE056 /* fl.complexmultiply~ */,
-				B8B402FF1FB9E747006EE056 /* fl.complexdivide~ */,
-				B8B403121FB9E74E006EE056 /* fl.complexplus~ */,
-				B8B403251FB9E752006EE056 /* fl.complexminus~ */,
+				B8B402D81FB9DF8B006EE056 /* fl.complex.pow~ */,
+				B8B402EC1FB9E743006EE056 /* fl.complex.times~ */,
+				B8B402FF1FB9E747006EE056 /* fl.complex.divide~ */,
+				B8B403121FB9E74E006EE056 /* fl.complex.plus~ */,
+				B8B403251FB9E752006EE056 /* fl.complex.minus~ */,
 				B84A405B1FD73E5C00A30455 /* fl.accumpoint~ */,
 				B8CEFC0B2019EA2100F5F5A0 /* fl.argmin~ */,
 				B8CEFC1F2019EA2900F5F5A0 /* fl.argmax~ */,
@@ -30268,7 +30268,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8B401AE1FB9A8B1006EE056 /* Build configuration list for PBXNativeTarget "fl.complexcos~" */ = {
+		B8B401AE1FB9A8B1006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.cos~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B401AF1FB9A8B1006EE056 /* Development */,
@@ -30278,7 +30278,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8B401C11FB9A8BB006EE056 /* Build configuration list for PBXNativeTarget "fl.complexcosh~" */ = {
+		B8B401C11FB9A8BB006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.cosh~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B401C21FB9A8BB006EE056 /* Development */,
@@ -30288,7 +30288,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8B401D41FB9A8BE006EE056 /* Build configuration list for PBXNativeTarget "fl.complexsin~" */ = {
+		B8B401D41FB9A8BE006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.sin~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B401D51FB9A8BE006EE056 /* Development */,
@@ -30298,7 +30298,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8B401E71FB9A8CC006EE056 /* Build configuration list for PBXNativeTarget "fl.complexsinh~" */ = {
+		B8B401E71FB9A8CC006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.sinh~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B401E81FB9A8CC006EE056 /* Development */,
@@ -30308,7 +30308,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8B401FA1FB9A8D7006EE056 /* Build configuration list for PBXNativeTarget "fl.complextan~" */ = {
+		B8B401FA1FB9A8D7006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.tan~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B401FB1FB9A8D7006EE056 /* Development */,
@@ -30318,7 +30318,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8B4020D1FB9A8E1006EE056 /* Build configuration list for PBXNativeTarget "fl.complextanh~" */ = {
+		B8B4020D1FB9A8E1006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.tanh~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B4020E1FB9A8E1006EE056 /* Development */,
@@ -30328,7 +30328,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8B402481FB9AE69006EE056 /* Build configuration list for PBXNativeTarget "fl.complexlog10~" */ = {
+		B8B402481FB9AE69006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.log10~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B402491FB9AE69006EE056 /* Development */,
@@ -30338,7 +30338,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8B4025B1FB9AE6C006EE056 /* Build configuration list for PBXNativeTarget "fl.complexconj~" */ = {
+		B8B4025B1FB9AE6C006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.conj~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B4025C1FB9AE6C006EE056 /* Development */,
@@ -30348,7 +30348,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8B4026E1FB9AE6F006EE056 /* Build configuration list for PBXNativeTarget "fl.complexlog~" */ = {
+		B8B4026E1FB9AE6F006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.log~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B4026F1FB9AE6F006EE056 /* Development */,
@@ -30358,7 +30358,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8B402811FB9AE72006EE056 /* Build configuration list for PBXNativeTarget "fl.complexexp~" */ = {
+		B8B402811FB9AE72006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.exp~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B402821FB9AE72006EE056 /* Development */,
@@ -30368,7 +30368,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8B402941FB9AE76006EE056 /* Build configuration list for PBXNativeTarget "fl.complexsqrt~" */ = {
+		B8B402941FB9AE76006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.sqrt~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B402951FB9AE76006EE056 /* Development */,
@@ -30398,7 +30398,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8B402E41FB9DF8B006EE056 /* Build configuration list for PBXNativeTarget "fl.complexpow~" */ = {
+		B8B402E41FB9DF8B006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.pow~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B402E51FB9DF8B006EE056 /* Development */,
@@ -30408,7 +30408,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8B402F81FB9E743006EE056 /* Build configuration list for PBXNativeTarget "fl.complexmultiply~" */ = {
+		B8B402F81FB9E743006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.times~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B402F91FB9E743006EE056 /* Development */,
@@ -30418,7 +30418,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8B4030B1FB9E747006EE056 /* Build configuration list for PBXNativeTarget "fl.complexdivide~" */ = {
+		B8B4030B1FB9E747006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.divide~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B4030C1FB9E747006EE056 /* Development */,
@@ -30428,7 +30428,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8B4031E1FB9E74E006EE056 /* Build configuration list for PBXNativeTarget "fl.complexplus~" */ = {
+		B8B4031E1FB9E74E006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.plus~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B4031F1FB9E74E006EE056 /* Development */,
@@ -30438,7 +30438,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8B403311FB9E752006EE056 /* Build configuration list for PBXNativeTarget "fl.complexminus~" */ = {
+		B8B403311FB9E752006EE056 /* Build configuration list for PBXNativeTarget "fl.complex.minus~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8B403321FB9E752006EE056 /* Development */,

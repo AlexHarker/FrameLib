@@ -1835,8 +1835,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B401B51FB9A8BB006EE056"
-               BuildableName = "fl.complexcosh~.mxo"
-               BlueprintName = "fl.complexcosh~"
+               BuildableName = "fl.complex.cosh~.mxo"
+               BlueprintName = "fl.complex.cosh~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -1849,8 +1849,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B401A21FB9A8B1006EE056"
-               BuildableName = "fl.complexcos~.mxo"
-               BlueprintName = "fl.complexcos~"
+               BuildableName = "fl.complex.cos~.mxo"
+               BlueprintName = "fl.complex.cos~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -1863,8 +1863,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B401DB1FB9A8CC006EE056"
-               BuildableName = "fl.complexsinh~.mxo"
-               BlueprintName = "fl.complexsinh~"
+               BuildableName = "fl.complex.sinh~.mxo"
+               BlueprintName = "fl.complex.sinh~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -1877,8 +1877,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B401C81FB9A8BE006EE056"
-               BuildableName = "fl.complexsin~.mxo"
-               BlueprintName = "fl.complexsin~"
+               BuildableName = "fl.complex.sin~.mxo"
+               BlueprintName = "fl.complex.sin~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -1891,8 +1891,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B402011FB9A8E1006EE056"
-               BuildableName = "fl.complextanh~.mxo"
-               BlueprintName = "fl.complextanh~"
+               BuildableName = "fl.complex.tanh~.mxo"
+               BlueprintName = "fl.complex.tanh~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -1905,8 +1905,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B401EE1FB9A8D7006EE056"
-               BuildableName = "fl.complextan~.mxo"
-               BlueprintName = "fl.complextan~"
+               BuildableName = "fl.complex.tan~.mxo"
+               BlueprintName = "fl.complex.tan~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -1919,8 +1919,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B4024F1FB9AE6C006EE056"
-               BuildableName = "fl.complexconj~.mxo"
-               BlueprintName = "fl.complexconj~"
+               BuildableName = "fl.complex.conj~.mxo"
+               BlueprintName = "fl.complex.conj~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -1933,8 +1933,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B402751FB9AE72006EE056"
-               BuildableName = "fl.complexexp~.mxo"
-               BlueprintName = "fl.complexexp~"
+               BuildableName = "fl.complex.exp~.mxo"
+               BlueprintName = "fl.complex.exp~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -1947,8 +1947,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B4023C1FB9AE69006EE056"
-               BuildableName = "fl.complexlog10~.mxo"
-               BlueprintName = "fl.complexlog10~"
+               BuildableName = "fl.complex.log10~.mxo"
+               BlueprintName = "fl.complex.log10~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -1961,8 +1961,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B402621FB9AE6F006EE056"
-               BuildableName = "fl.complexlog~.mxo"
-               BlueprintName = "fl.complexlog~"
+               BuildableName = "fl.complex.log~.mxo"
+               BlueprintName = "fl.complex.log~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -1975,8 +1975,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B402881FB9AE76006EE056"
-               BuildableName = "fl.complexsqrt~.mxo"
-               BlueprintName = "fl.complexsqrt~"
+               BuildableName = "fl.complex.sqrt~.mxo"
+               BlueprintName = "fl.complex.sqrt~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -2017,8 +2017,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B402D81FB9DF8B006EE056"
-               BuildableName = "fl.complexpow~.mxo"
-               BlueprintName = "fl.complexpow~"
+               BuildableName = "fl.complex.pow~.mxo"
+               BlueprintName = "fl.complex.pow~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -2031,8 +2031,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B402FF1FB9E747006EE056"
-               BuildableName = "fl.complexdivide~.mxo"
-               BlueprintName = "fl.complexdivide~"
+               BuildableName = "fl.complex.divide~.mxo"
+               BlueprintName = "fl.complex.divide~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -2045,8 +2045,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B403251FB9E752006EE056"
-               BuildableName = "fl.complexminus~.mxo"
-               BlueprintName = "fl.complexminus~"
+               BuildableName = "fl.complex.minus~.mxo"
+               BlueprintName = "fl.complex.minus~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -2059,8 +2059,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B402EC1FB9E743006EE056"
-               BuildableName = "fl.complexmultiply~.mxo"
-               BlueprintName = "fl.complexmultiply~"
+               BuildableName = "fl.complex.times~.mxo"
+               BlueprintName = "fl.complex.times~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -2073,8 +2073,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B403121FB9E74E006EE056"
-               BuildableName = "fl.complexplus~.mxo"
-               BlueprintName = "fl.complexplus~"
+               BuildableName = "fl.complex.plus~.mxo"
+               BlueprintName = "fl.complex.plus~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
