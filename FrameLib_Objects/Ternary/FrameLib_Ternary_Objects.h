@@ -78,13 +78,13 @@ namespace FrameLib_Ternary_Ops
 template<>
 inline const char* FrameLib_Ternary<FrameLib_Ternary_Ops::clip<double>>::getDescriptionString()
 {
-    return "Clips the incoming frame to the range delimited by the two parameters.";
+    return "Clips the incoming frame to the range delimited by the two parameters";
 }
 
 template<>
 inline const char* FrameLib_Ternary<FrameLib_Ternary_Ops::wrap<double>>::getDescriptionString()
 {
-    return "Wraps the incoming frame into the range delimited by the two parameters.";
+    return "Wraps the incoming frame into the range delimited by the two parameters";
 }
 
 template<>
