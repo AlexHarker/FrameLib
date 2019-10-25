@@ -2213,8 +2213,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B85E1D3C20C8408E00DEEE6E"
-               BuildableName = "fl.complexexpr~.mxo"
-               BlueprintName = "fl.complexexpr~"
+               BuildableName = "fl.complex.expr~.mxo"
+               BlueprintName = "fl.complex.expr~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
