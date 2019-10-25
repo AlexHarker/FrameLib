@@ -881,7 +881,7 @@ public:
                 if (isContextNameTag(atom_getsym(argv + i++)))
                     context.mName = atom_getsym(argv + i);
                 else
-                    context.mRealtime = !atom_getlong(argv + i);
+                    context.mRealtime = atom_getlong(argv + i);
             }
         }
         
@@ -1819,12 +1819,12 @@ private:
     
     static bool isContextNameTag(t_symbol *sym)
     {
-        return !strcmp(sym->s_name, "#id");
+        return !strcmp(sym->s_name, "{id}");
     }
     
     static bool isContextTag(t_symbol *sym)
     {
-        return isContextNameTag(sym) || !strcmp(sym->s_name, "#nrt");
+        return isContextNameTag(sym) || !strcmp(sym->s_name, "{rt}");
     }
     
     static bool isParameterTag(t_symbol *sym)
