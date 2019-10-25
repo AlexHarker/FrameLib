@@ -9,7 +9,8 @@
 
 // Complex Binary Operator
 
-template <typename Op> class FrameLib_Complex_BinaryOp final : public FrameLib_Processor
+template <typename Op>
+class FrameLib_Complex_BinaryOp final : public FrameLib_Processor
 {
     class PaddedInput
     {
