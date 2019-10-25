@@ -136,7 +136,7 @@
 // Expression
 
 #include "../Expressions/fl.expr~.cpp"
-#include "../Expressions/fl.complexexpr~.cpp"
+#include "../Expressions/fl.complex.expr~.cpp"
 
 // Host Communication
 
@@ -359,30 +359,30 @@ extern "C" int C74_EXPORT main(void)
     
     // Complex Unary Operators
     
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Cos>::makeClass("fl.complexcos~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Sin>::makeClass("fl.complexsin~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Tan>::makeClass("fl.complextan~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Cosh>::makeClass("fl.complexcosh~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Sinh>::makeClass("fl.complexsinh~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Tanh>::makeClass("fl.complextanh~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Cos>::makeClass("fl.complex.cos~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Sin>::makeClass("fl.complex.sin~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Tan>::makeClass("fl.complex.tan~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Cosh>::makeClass("fl.complex.cosh~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Sinh>::makeClass("fl.complex.sinh~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Tanh>::makeClass("fl.complex.tanh~");
 
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Log>::makeClass("fl.complexlog~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Log10>::makeClass("fl.complexlog10~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Exp>::makeClass("fl.complexexp~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Log>::makeClass("fl.complex.log~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Log10>::makeClass("fl.complex.log10~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Exp>::makeClass("fl.complex.exp~");
 
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Sqrt>::makeClass("fl.complexsqrt~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Conj>::makeClass("fl.complexconj~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Sqrt>::makeClass("fl.complex.sqrt~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Conj>::makeClass("fl.complex.conj~");
     
     FrameLib_MaxClass_Expand<FrameLib_Cartopol>::makeClass("fl.cartopol~");
     FrameLib_MaxClass_Expand<FrameLib_Poltocar>::makeClass("fl.poltocar~");
     
     // Complex Binary Operators
     
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Plus, kAllInputs>::makeClass("fl.complexplus~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Minus, kAllInputs>::makeClass("fl.complexminus~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Multiply, kAllInputs>::makeClass("fl.complexmultiply~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Divide, kAllInputs>::makeClass("fl.complexdivide~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Pow, kAllInputs>::makeClass("fl.complexpow~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Plus, kAllInputs>::makeClass("fl.complex.plus~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Minus, kAllInputs>::makeClass("fl.complex.minus~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Multiply, kAllInputs>::makeClass("fl.complex.times~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Divide, kAllInputs>::makeClass("fl.complex.divide~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Pow, kAllInputs>::makeClass("fl.complex.pow~");
 
     // Buffer
     
@@ -392,7 +392,7 @@ extern "C" int C74_EXPORT main(void)
     // Expressions
     
     FrameLib_MaxClass_Expression::makeClass<FrameLib_MaxClass_Expression>("fl.expr~");
-    FrameLib_MaxClass_ComplexExpression::makeClass<FrameLib_MaxClass_ComplexExpression>("fl.complexexpr~");
+    FrameLib_MaxClass_ComplexExpression::makeClass<FrameLib_MaxClass_ComplexExpression>("fl.complex.expr~");
     
     // Host Communication
     

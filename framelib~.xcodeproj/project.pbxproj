@@ -161,7 +161,7 @@
 		B85E1D4620C8408E00DEEE6E /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B85E1D4720C8408E00DEEE6E /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B85E1D4E20C8409F00DEEE6E /* FrameLib_ComplexExpression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85E1D3B20C82DDF00DEEE6E /* FrameLib_ComplexExpression.cpp */; };
-		B85E1D5020C8497200DEEE6E /* fl.complexexpr~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85E1D4F20C8494300DEEE6E /* fl.complexexpr~.cpp */; };
+		B85E1D5020C8497200DEEE6E /* fl.complex.expr~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85E1D4F20C8494300DEEE6E /* fl.complex.expr~.cpp */; };
 		B861EBBC19CA3E9500B89477 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B861EBC719CA3F2400B89477 /* fl.percentile~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B861EBC519CA3EF100B89477 /* fl.percentile~.cpp */; };
 		B861EBC819CA3F2900B89477 /* fl.sort~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B861EBC619CA3EF100B89477 /* fl.sort~.cpp */; };
@@ -386,12 +386,12 @@
 		B8B401F81FB9A8D7006EE056 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8B4020A1FB9A8E1006EE056 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8B4020B1FB9A8E1006EE056 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8B402361FB9ADBC006EE056 /* fl.complextanh~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4022D1FB9A960006EE056 /* fl.complextanh~.cpp */; };
-		B8B402371FB9ADBF006EE056 /* fl.complextan~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4022E1FB9A960006EE056 /* fl.complextan~.cpp */; };
-		B8B402381FB9ADC2006EE056 /* fl.complexsinh~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4022A1FB9A960006EE056 /* fl.complexsinh~.cpp */; };
-		B8B402391FB9ADC5006EE056 /* fl.complexsin~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4022B1FB9A960006EE056 /* fl.complexsin~.cpp */; };
-		B8B4023A1FB9ADC9006EE056 /* fl.complexcosh~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4021E1FB9A960006EE056 /* fl.complexcosh~.cpp */; };
-		B8B4023B1FB9ADCB006EE056 /* fl.complexcos~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4021F1FB9A960006EE056 /* fl.complexcos~.cpp */; };
+		B8B402361FB9ADBC006EE056 /* fl.complex.tanh~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4022D1FB9A960006EE056 /* fl.complex.tanh~.cpp */; };
+		B8B402371FB9ADBF006EE056 /* fl.complex.tan~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4022E1FB9A960006EE056 /* fl.complex.tan~.cpp */; };
+		B8B402381FB9ADC2006EE056 /* fl.complex.sinh~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4022A1FB9A960006EE056 /* fl.complex.sinh~.cpp */; };
+		B8B402391FB9ADC5006EE056 /* fl.complex.sin~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4022B1FB9A960006EE056 /* fl.complex.sin~.cpp */; };
+		B8B4023A1FB9ADC9006EE056 /* fl.complex.cosh~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4021E1FB9A960006EE056 /* fl.complex.cosh~.cpp */; };
+		B8B4023B1FB9ADCB006EE056 /* fl.complex.cos~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4021F1FB9A960006EE056 /* fl.complex.cos~.cpp */; };
 		B8B402451FB9AE69006EE056 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8B402461FB9AE69006EE056 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8B402581FB9AE6C006EE056 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
@@ -402,11 +402,11 @@
 		B8B4027F1FB9AE72006EE056 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8B402911FB9AE76006EE056 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8B402921FB9AE76006EE056 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8B4029B1FB9AEC0006EE056 /* fl.complexconj~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402241FB9A960006EE056 /* fl.complexconj~.cpp */; };
-		B8B4029C1FB9AEC3006EE056 /* fl.complexexp~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402231FB9A960006EE056 /* fl.complexexp~.cpp */; };
-		B8B4029D1FB9AEC7006EE056 /* fl.complexlog~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402271FB9A960006EE056 /* fl.complexlog~.cpp */; };
-		B8B4029E1FB9AEC9006EE056 /* fl.complexlog10~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402251FB9A960006EE056 /* fl.complexlog10~.cpp */; };
-		B8B4029F1FB9AECE006EE056 /* fl.complexsqrt~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4022C1FB9A960006EE056 /* fl.complexsqrt~.cpp */; };
+		B8B4029B1FB9AEC0006EE056 /* fl.complex.conj~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402241FB9A960006EE056 /* fl.complex.conj~.cpp */; };
+		B8B4029C1FB9AEC3006EE056 /* fl.complex.exp~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402231FB9A960006EE056 /* fl.complex.exp~.cpp */; };
+		B8B4029D1FB9AEC7006EE056 /* fl.complex.log~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402271FB9A960006EE056 /* fl.complex.log~.cpp */; };
+		B8B4029E1FB9AEC9006EE056 /* fl.complex.log10~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402251FB9A960006EE056 /* fl.complex.log10~.cpp */; };
+		B8B4029F1FB9AECE006EE056 /* fl.complex.sqrt~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4022C1FB9A960006EE056 /* fl.complex.sqrt~.cpp */; };
 		B8B402AA1FB9B186006EE056 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8B402AB1FB9B186006EE056 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8B402BD1FB9B18A006EE056 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
@@ -415,7 +415,7 @@
 		B8B402CB1FB9B23F006EE056 /* fl.cartopol~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402C71FB9B1F2006EE056 /* fl.cartopol~.cpp */; };
 		B8B402E11FB9DF8B006EE056 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8B402E21FB9DF8B006EE056 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8B402EB1FB9DFA7006EE056 /* fl.complexpow~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402D61FB9DF4A006EE056 /* fl.complexpow~.cpp */; };
+		B8B402EB1FB9DFA7006EE056 /* fl.complex.pow~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402D61FB9DF4A006EE056 /* fl.complex.pow~.cpp */; };
 		B8B402F51FB9E743006EE056 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8B402F61FB9E743006EE056 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8B403081FB9E747006EE056 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
@@ -424,10 +424,10 @@
 		B8B4031C1FB9E74E006EE056 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8B4032E1FB9E752006EE056 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8B4032F1FB9E752006EE056 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8B403381FB9E7B4006EE056 /* fl.complexmultiply~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402D71FB9DF4A006EE056 /* fl.complexmultiply~.cpp */; };
-		B8B403391FB9E7B6006EE056 /* fl.complexdivide~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402D11FB9DF4A006EE056 /* fl.complexdivide~.cpp */; };
-		B8B4033A1FB9E7B9006EE056 /* fl.complexplus~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402D51FB9DF4A006EE056 /* fl.complexplus~.cpp */; };
-		B8B4033B1FB9E7BC006EE056 /* fl.complexminus~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402D31FB9DF4A006EE056 /* fl.complexminus~.cpp */; };
+		B8B403381FB9E7B4006EE056 /* fl.complex.times~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402D71FB9DF4A006EE056 /* fl.complex.times~.cpp */; };
+		B8B403391FB9E7B6006EE056 /* fl.complex.divide~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402D11FB9DF4A006EE056 /* fl.complex.divide~.cpp */; };
+		B8B4033A1FB9E7B9006EE056 /* fl.complex.plus~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402D51FB9DF4A006EE056 /* fl.complex.plus~.cpp */; };
+		B8B4033B1FB9E7BC006EE056 /* fl.complex.minus~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B402D31FB9DF4A006EE056 /* fl.complex.minus~.cpp */; };
 		B8B4C8911F33456A008E5D31 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8B4C89A1F3345A7008E5D31 /* fl.now~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4C8991F3345A7008E5D31 /* fl.now~.cpp */; };
 		B8B4C89D1F334614008E5D31 /* FrameLib_Now.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4C89B1F334614008E5D31 /* FrameLib_Now.cpp */; };
@@ -2172,7 +2172,7 @@
 		B85E1D3A20C82D9700DEEE6E /* FrameLib_ComplexExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_ComplexExpression.h; sourceTree = "<group>"; };
 		B85E1D3B20C82DDF00DEEE6E /* FrameLib_ComplexExpression.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_ComplexExpression.cpp; sourceTree = "<group>"; };
 		B85E1D4C20C8408E00DEEE6E /* fl.complexexpr~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexexpr~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B85E1D4F20C8494300DEEE6E /* fl.complexexpr~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexexpr~.cpp"; sourceTree = "<group>"; };
+		B85E1D4F20C8494300DEEE6E /* fl.complex.expr~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.expr~.cpp"; sourceTree = "<group>"; };
 		B85ED7EA20795F6D00B78657 /* FrameLib_HostProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_HostProxy.h; sourceTree = "<group>"; };
 		B861EB9F19CA2DCE00B89477 /* FrameLib_Sort_Functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Sort_Functions.h; sourceTree = "<group>"; };
 		B861EBA019CA389E00B89477 /* FrameLib_Sort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Sort.h; sourceTree = "<group>"; };
@@ -2345,17 +2345,17 @@
 		B8B401EC1FB9A8CC006EE056 /* fl.complexsinh~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexsinh~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B401FF1FB9A8D7006EE056 /* fl.complextan~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complextan~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B402121FB9A8E1006EE056 /* fl.complextanh~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complextanh~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B4021E1FB9A960006EE056 /* fl.complexcosh~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexcosh~.cpp"; sourceTree = "<group>"; };
-		B8B4021F1FB9A960006EE056 /* fl.complexcos~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexcos~.cpp"; sourceTree = "<group>"; };
-		B8B402231FB9A960006EE056 /* fl.complexexp~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexexp~.cpp"; sourceTree = "<group>"; };
-		B8B402241FB9A960006EE056 /* fl.complexconj~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexconj~.cpp"; sourceTree = "<group>"; };
-		B8B402251FB9A960006EE056 /* fl.complexlog10~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexlog10~.cpp"; sourceTree = "<group>"; };
-		B8B402271FB9A960006EE056 /* fl.complexlog~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexlog~.cpp"; sourceTree = "<group>"; };
-		B8B4022A1FB9A960006EE056 /* fl.complexsinh~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexsinh~.cpp"; sourceTree = "<group>"; };
-		B8B4022B1FB9A960006EE056 /* fl.complexsin~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexsin~.cpp"; sourceTree = "<group>"; };
-		B8B4022C1FB9A960006EE056 /* fl.complexsqrt~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexsqrt~.cpp"; sourceTree = "<group>"; };
-		B8B4022D1FB9A960006EE056 /* fl.complextanh~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complextanh~.cpp"; sourceTree = "<group>"; };
-		B8B4022E1FB9A960006EE056 /* fl.complextan~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complextan~.cpp"; sourceTree = "<group>"; };
+		B8B4021E1FB9A960006EE056 /* fl.complex.cosh~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.cosh~.cpp"; sourceTree = "<group>"; };
+		B8B4021F1FB9A960006EE056 /* fl.complex.cos~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.cos~.cpp"; sourceTree = "<group>"; };
+		B8B402231FB9A960006EE056 /* fl.complex.exp~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.exp~.cpp"; sourceTree = "<group>"; };
+		B8B402241FB9A960006EE056 /* fl.complex.conj~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.conj~.cpp"; sourceTree = "<group>"; };
+		B8B402251FB9A960006EE056 /* fl.complex.log10~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.log10~.cpp"; sourceTree = "<group>"; };
+		B8B402271FB9A960006EE056 /* fl.complex.log~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.log~.cpp"; sourceTree = "<group>"; };
+		B8B4022A1FB9A960006EE056 /* fl.complex.sinh~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.sinh~.cpp"; sourceTree = "<group>"; };
+		B8B4022B1FB9A960006EE056 /* fl.complex.sin~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.sin~.cpp"; sourceTree = "<group>"; };
+		B8B4022C1FB9A960006EE056 /* fl.complex.sqrt~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.sqrt~.cpp"; sourceTree = "<group>"; };
+		B8B4022D1FB9A960006EE056 /* fl.complex.tanh~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.tanh~.cpp"; sourceTree = "<group>"; };
+		B8B4022E1FB9A960006EE056 /* fl.complex.tan~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.tan~.cpp"; sourceTree = "<group>"; };
 		B8B4024D1FB9AE69006EE056 /* fl.complexlog10~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexlog10~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B402601FB9AE6C006EE056 /* fl.complexconj~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexconj~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B402731FB9AE6F006EE056 /* fl.complexlog~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexlog~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2369,11 +2369,11 @@
 		B8B402C91FB9B231006EE056 /* FrameLib_Poltocar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Poltocar.h; sourceTree = "<group>"; };
 		B8B402CD1FB9C053006EE056 /* FrameLib_Complex_Binary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Complex_Binary_Template.h; sourceTree = "<group>"; };
 		B8B402CE1FB9C053006EE056 /* FrameLib_Complex_Binary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Complex_Binary_Objects.h; sourceTree = "<group>"; };
-		B8B402D11FB9DF4A006EE056 /* fl.complexdivide~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexdivide~.cpp"; sourceTree = "<group>"; };
-		B8B402D31FB9DF4A006EE056 /* fl.complexminus~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexminus~.cpp"; sourceTree = "<group>"; };
-		B8B402D51FB9DF4A006EE056 /* fl.complexplus~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexplus~.cpp"; sourceTree = "<group>"; };
-		B8B402D61FB9DF4A006EE056 /* fl.complexpow~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexpow~.cpp"; sourceTree = "<group>"; };
-		B8B402D71FB9DF4A006EE056 /* fl.complexmultiply~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexmultiply~.cpp"; sourceTree = "<group>"; };
+		B8B402D11FB9DF4A006EE056 /* fl.complex.divide~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.divide~.cpp"; sourceTree = "<group>"; };
+		B8B402D31FB9DF4A006EE056 /* fl.complex.minus~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.minus~.cpp"; sourceTree = "<group>"; };
+		B8B402D51FB9DF4A006EE056 /* fl.complex.plus~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.plus~.cpp"; sourceTree = "<group>"; };
+		B8B402D61FB9DF4A006EE056 /* fl.complex.pow~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.pow~.cpp"; sourceTree = "<group>"; };
+		B8B402D71FB9DF4A006EE056 /* fl.complex.times~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.times~.cpp"; sourceTree = "<group>"; };
 		B8B402E91FB9DF8B006EE056 /* fl.complexpow~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexpow~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B402FD1FB9E743006EE056 /* fl.complexmultiply~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexmultiply~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B403101FB9E747006EE056 /* fl.complexdivide~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexdivide~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4897,17 +4897,17 @@
 		B8B402141FB9A960006EE056 /* Complex_Unary */ = {
 			isa = PBXGroup;
 			children = (
-				B8B4021F1FB9A960006EE056 /* fl.complexcos~.cpp */,
-				B8B4021E1FB9A960006EE056 /* fl.complexcosh~.cpp */,
-				B8B402241FB9A960006EE056 /* fl.complexconj~.cpp */,
-				B8B402231FB9A960006EE056 /* fl.complexexp~.cpp */,
-				B8B402271FB9A960006EE056 /* fl.complexlog~.cpp */,
-				B8B402251FB9A960006EE056 /* fl.complexlog10~.cpp */,
-				B8B4022B1FB9A960006EE056 /* fl.complexsin~.cpp */,
-				B8B4022A1FB9A960006EE056 /* fl.complexsinh~.cpp */,
-				B8B4022C1FB9A960006EE056 /* fl.complexsqrt~.cpp */,
-				B8B4022E1FB9A960006EE056 /* fl.complextan~.cpp */,
-				B8B4022D1FB9A960006EE056 /* fl.complextanh~.cpp */,
+				B8B4021F1FB9A960006EE056 /* fl.complex.cos~.cpp */,
+				B8B4021E1FB9A960006EE056 /* fl.complex.cosh~.cpp */,
+				B8B402241FB9A960006EE056 /* fl.complex.conj~.cpp */,
+				B8B402231FB9A960006EE056 /* fl.complex.exp~.cpp */,
+				B8B402271FB9A960006EE056 /* fl.complex.log~.cpp */,
+				B8B402251FB9A960006EE056 /* fl.complex.log10~.cpp */,
+				B8B4022B1FB9A960006EE056 /* fl.complex.sin~.cpp */,
+				B8B4022A1FB9A960006EE056 /* fl.complex.sinh~.cpp */,
+				B8B4022C1FB9A960006EE056 /* fl.complex.sqrt~.cpp */,
+				B8B4022E1FB9A960006EE056 /* fl.complex.tan~.cpp */,
+				B8B4022D1FB9A960006EE056 /* fl.complex.tanh~.cpp */,
 				B8B402C71FB9B1F2006EE056 /* fl.cartopol~.cpp */,
 				B8B402C81FB9B1FD006EE056 /* fl.poltocar~.cpp */,
 			);
@@ -4926,11 +4926,11 @@
 		B8B402CF1FB9DF4A006EE056 /* Complex_Binary */ = {
 			isa = PBXGroup;
 			children = (
-				B8B402D11FB9DF4A006EE056 /* fl.complexdivide~.cpp */,
-				B8B402D31FB9DF4A006EE056 /* fl.complexminus~.cpp */,
-				B8B402D51FB9DF4A006EE056 /* fl.complexplus~.cpp */,
-				B8B402D61FB9DF4A006EE056 /* fl.complexpow~.cpp */,
-				B8B402D71FB9DF4A006EE056 /* fl.complexmultiply~.cpp */,
+				B8B402D11FB9DF4A006EE056 /* fl.complex.divide~.cpp */,
+				B8B402D31FB9DF4A006EE056 /* fl.complex.minus~.cpp */,
+				B8B402D51FB9DF4A006EE056 /* fl.complex.plus~.cpp */,
+				B8B402D61FB9DF4A006EE056 /* fl.complex.pow~.cpp */,
+				B8B402D71FB9DF4A006EE056 /* fl.complex.times~.cpp */,
 			);
 			path = Complex_Binary;
 			sourceTree = "<group>";
@@ -5061,7 +5061,7 @@
 			isa = PBXGroup;
 			children = (
 				B8E41B2220C5EACD003BBD86 /* fl.expr~.cpp */,
-				B85E1D4F20C8494300DEEE6E /* fl.complexexpr~.cpp */,
+				B85E1D4F20C8494300DEEE6E /* fl.complex.expr~.cpp */,
 			);
 			name = Expressions;
 			path = FrameLib_Max_Objects/Expressions;
@@ -11861,7 +11861,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B85E1D4E20C8409F00DEEE6E /* FrameLib_ComplexExpression.cpp in Sources */,
-				B85E1D5020C8497200DEEE6E /* fl.complexexpr~.cpp in Sources */,
+				B85E1D5020C8497200DEEE6E /* fl.complex.expr~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12210,7 +12210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B4023B1FB9ADCB006EE056 /* fl.complexcos~.cpp in Sources */,
+				B8B4023B1FB9ADCB006EE056 /* fl.complex.cos~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12218,7 +12218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B4023A1FB9ADC9006EE056 /* fl.complexcosh~.cpp in Sources */,
+				B8B4023A1FB9ADC9006EE056 /* fl.complex.cosh~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12226,7 +12226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B402391FB9ADC5006EE056 /* fl.complexsin~.cpp in Sources */,
+				B8B402391FB9ADC5006EE056 /* fl.complex.sin~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12234,7 +12234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B402381FB9ADC2006EE056 /* fl.complexsinh~.cpp in Sources */,
+				B8B402381FB9ADC2006EE056 /* fl.complex.sinh~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12242,7 +12242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B402371FB9ADBF006EE056 /* fl.complextan~.cpp in Sources */,
+				B8B402371FB9ADBF006EE056 /* fl.complex.tan~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12250,7 +12250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B402361FB9ADBC006EE056 /* fl.complextanh~.cpp in Sources */,
+				B8B402361FB9ADBC006EE056 /* fl.complex.tanh~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12258,7 +12258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B4029E1FB9AEC9006EE056 /* fl.complexlog10~.cpp in Sources */,
+				B8B4029E1FB9AEC9006EE056 /* fl.complex.log10~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12266,7 +12266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B4029B1FB9AEC0006EE056 /* fl.complexconj~.cpp in Sources */,
+				B8B4029B1FB9AEC0006EE056 /* fl.complex.conj~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12274,7 +12274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B4029D1FB9AEC7006EE056 /* fl.complexlog~.cpp in Sources */,
+				B8B4029D1FB9AEC7006EE056 /* fl.complex.log~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12282,7 +12282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B4029C1FB9AEC3006EE056 /* fl.complexexp~.cpp in Sources */,
+				B8B4029C1FB9AEC3006EE056 /* fl.complex.exp~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12290,7 +12290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B4029F1FB9AECE006EE056 /* fl.complexsqrt~.cpp in Sources */,
+				B8B4029F1FB9AECE006EE056 /* fl.complex.sqrt~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12314,7 +12314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B402EB1FB9DFA7006EE056 /* fl.complexpow~.cpp in Sources */,
+				B8B402EB1FB9DFA7006EE056 /* fl.complex.pow~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12322,7 +12322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B403381FB9E7B4006EE056 /* fl.complexmultiply~.cpp in Sources */,
+				B8B403381FB9E7B4006EE056 /* fl.complex.times~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12330,7 +12330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B403391FB9E7B6006EE056 /* fl.complexdivide~.cpp in Sources */,
+				B8B403391FB9E7B6006EE056 /* fl.complex.divide~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12338,7 +12338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B4033A1FB9E7B9006EE056 /* fl.complexplus~.cpp in Sources */,
+				B8B4033A1FB9E7B9006EE056 /* fl.complex.plus~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12346,7 +12346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B4033B1FB9E7BC006EE056 /* fl.complexminus~.cpp in Sources */,
+				B8B4033B1FB9E7BC006EE056 /* fl.complex.minus~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

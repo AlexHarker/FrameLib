@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Divide, kAllInputs>::makeClass("fl.complexdivide~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Plus, kAllInputs>::makeClass("fl.complex.plus~");
 }

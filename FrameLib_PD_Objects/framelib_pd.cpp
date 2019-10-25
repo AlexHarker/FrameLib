@@ -504,34 +504,34 @@ extern "C" void framelib_pd_setup(void)
     // Expressions
     
     FrameLib_PDClass_Expression::makeClass("fl.expr~");
-    FrameLib_PDClass_ComplexExpression::makeClass("fl.complexexpr~");
+    FrameLib_PDClass_ComplexExpression::makeClass("fl.complex.expr~");
     
     // Complex Unary Operators
     
-    FrameLib_PDClass_Expand<FrameLib_Complex_Cos>::makeClass("fl.complexcos~");
-    FrameLib_PDClass_Expand<FrameLib_Complex_Sin>::makeClass("fl.complexsin~");
-    FrameLib_PDClass_Expand<FrameLib_Complex_Tan>::makeClass("fl.complextan~");
-    FrameLib_PDClass_Expand<FrameLib_Complex_Cosh>::makeClass("fl.complexcosh~");
-    FrameLib_PDClass_Expand<FrameLib_Complex_Sinh>::makeClass("fl.complexsinh~");
-    FrameLib_PDClass_Expand<FrameLib_Complex_Tanh>::makeClass("fl.complextanh~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Cos>::makeClass("fl.complex.cos~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Sin>::makeClass("fl.complex.sin~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Tan>::makeClass("fl.complex.tan~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Cosh>::makeClass("fl.complex.cosh~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Sinh>::makeClass("fl.complex.sinh~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Tanh>::makeClass("fl.complex.tanh~");
 
-    FrameLib_PDClass_Expand<FrameLib_Complex_Log>::makeClass("fl.complexlog~");
-    FrameLib_PDClass_Expand<FrameLib_Complex_Log10>::makeClass("fl.complexlog10~");
-    FrameLib_PDClass_Expand<FrameLib_Complex_Exp>::makeClass("fl.complexexp~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Log>::makeClass("fl.complex.log~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Log10>::makeClass("fl.complex.log10~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Exp>::makeClass("fl.complex.exp~");
 
-    FrameLib_PDClass_Expand<FrameLib_Complex_Sqrt>::makeClass("fl.complexsqrt~");
-    FrameLib_PDClass_Expand<FrameLib_Complex_Conj>::makeClass("fl.complexconj~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Sqrt>::makeClass("fl.complex.sqrt~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Conj>::makeClass("fl.complex.conj~");
     
     FrameLib_PDClass_Expand<FrameLib_Cartopol>::makeClass("fl.cartopol~");
     FrameLib_PDClass_Expand<FrameLib_Poltocar>::makeClass("fl.poltocar~");
     
     // Complex Binary Operators
     
-    FrameLib_PDClass_Expand<FrameLib_Complex_Plus, kAllInputs>::makeClass("fl.complexplus~");
-    FrameLib_PDClass_Expand<FrameLib_Complex_Minus, kAllInputs>::makeClass("fl.complexminus~");
-    FrameLib_PDClass_Expand<FrameLib_Complex_Multiply, kAllInputs>::makeClass("fl.complexmultiply~");
-    FrameLib_PDClass_Expand<FrameLib_Complex_Divide, kAllInputs>::makeClass("fl.complexdivide~");
-    FrameLib_PDClass_Expand<FrameLib_Complex_Pow, kAllInputs>::makeClass("fl.complexpow~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Plus, kAllInputs>::makeClass("fl.complex.plus~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Minus, kAllInputs>::makeClass("fl.complex.minus~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Multiply, kAllInputs>::makeClass("fl.complex.times~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Divide, kAllInputs>::makeClass("fl.complex.divide~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Pow, kAllInputs>::makeClass("fl.complex.pow~");
 
     // Buffer
     
