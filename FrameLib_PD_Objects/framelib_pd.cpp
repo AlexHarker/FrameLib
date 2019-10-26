@@ -535,6 +535,8 @@ extern "C" void framelib_pd_setup(void)
 
     // Buffer
     
-    FrameLib_PDClass_Expand<FrameLib_Complex_Plus, kAllInputs>::makeClass("fl.info~");
+    // TODO - info is not correct
+    
+    FrameLib_PDClass_Expand<FrameLib_Info, kAllInputs>::makeClass("fl.info~");
     FrameLib_PDClass_Read::makeClass<FrameLib_PDClass_Read>("fl.read~");
 }
