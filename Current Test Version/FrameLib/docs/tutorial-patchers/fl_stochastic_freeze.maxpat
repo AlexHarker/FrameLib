@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 972.0, 787.0 ],
+		"rect" : [ 34.0, 79.0, 1147.0, 864.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -38,6 +38,30 @@
 		"style" : "",
 		"subpatcher_template" : "default",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-35",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 28.0, 676.666687000000024, 80.0, 22.0 ],
+					"text" : "fl.times~ 0.25"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"comment" : "",
+					"id" : "obj-34",
+					"index" : 1,
+					"maxclass" : "outlet",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 28.0, 820.3333740234375, 30.0, 30.0 ]
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-25",
 					"linecount" : 4,
@@ -104,7 +128,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 258.0, 667.666687000000024, 242.0, 33.0 ],
+					"patching_rect" : [ 258.0, 676.666687000000024, 242.0, 33.0 ],
 					"text" : "Window frames from IFFT and compensate for summing either side of the frame"
 				}
 
@@ -377,7 +401,7 @@
 									"maxclass" : "inlet",
 									"numinlets" : 0,
 									"numoutlets" : 1,
-									"outlettype" : [ "" ],
+									"outlettype" : [ "bang" ],
 									"patching_rect" : [ 50.0, 40.0, 30.0, 30.0 ]
 								}
 
@@ -446,7 +470,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 89.666664123535156, 739.3333740234375, 30.0, 30.0 ]
+					"patching_rect" : [ 89.666664123535156, 820.3333740234375, 30.0, 30.0 ]
 				}
 
 			}
@@ -470,7 +494,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 89.666664123535156, 703.3333740234375, 60.0, 22.0 ],
+					"patching_rect" : [ 89.666664123535156, 787.3333740234375, 60.0, 22.0 ],
 					"text" : "fl.tomax~"
 				}
 
@@ -483,20 +507,8 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "bang" ],
 					"patching_rect" : [ 791.666625999999951, 245.999983999999984, 30.0, 30.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "",
-					"id" : "obj-1",
-					"index" : 1,
-					"maxclass" : "outlet",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 28.0, 739.3333740234375, 30.0, 30.0 ]
 				}
 
 			}
@@ -2002,7 +2014,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 28.0, 667.666687000000024, 230.0, 22.0 ],
+					"patching_rect" : [ 28.0, 719.666687000000024, 230.0, 22.0 ],
 					"text" : "fl.window~ hann /compensate powoverlin"
 				}
 
@@ -2071,7 +2083,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 28.0, 703.3333740234375, 48.0, 22.0 ],
+					"patching_rect" : [ 28.0, 787.3333740234375, 48.0, 22.0 ],
 					"text" : "fl.sink~"
 				}
 
@@ -2169,7 +2181,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-7", 0 ],
+					"destination" : [ "obj-35", 0 ],
 					"source" : [ "obj-22", 0 ]
 				}
 
@@ -2233,7 +2245,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
+					"destination" : [ "obj-34", 0 ],
 					"source" : [ "obj-3", 0 ]
 				}
 
@@ -2263,6 +2275,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-49", 1 ],
 					"source" : [ "obj-32", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-7", 0 ],
+					"source" : [ "obj-35", 0 ]
 				}
 
 			}
@@ -2545,8 +2564,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"fontsize" : [ 12.059008 ],
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+					"fontsize" : [ 12.059008 ]
 				}
 ,
 				"parentstyle" : "",
