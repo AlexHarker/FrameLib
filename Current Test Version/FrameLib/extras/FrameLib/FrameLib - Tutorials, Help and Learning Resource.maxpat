@@ -667,15 +667,13 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 14.0,
 									"id" : "obj-17",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 210.0, 385.0, 40.0 ],
+									"patching_rect" : [ 23.0, 210.0, 387.0, 23.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 2,
-									"presentation_rect" : [ 240.0, 180.0, 405.0, 40.0 ],
-									"text" : "Designing , converting and understanding FrameLib networks in the non-realtime mode.",
+									"presentation_rect" : [ 240.0, 180.0, 405.0, 23.0 ],
+									"text" : "Familiarising yourself with the FrameLib library.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -1225,7 +1223,7 @@
 									"presentation" : 1,
 									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 97.0, 422.0, 30.0 ],
-									"text" : "Tutorial 11: Non-realtime networks in FrameLib.",
+									"text" : "Tutorial 2: Getting to grips with frame based processing.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -2183,7 +2181,7 @@
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
-									"tabs" : [ "Tutorial 9: Multi-resolution FFT.", "Tutorial 10: Working with impulse responses in FrameLib.", "Tutorial 11: Non-realtime networks in FrameLib.", "Tutorial 12: Threading and 'contexts'.", "Tutorial 13: Exporting FrameLib from Max to C++." ],
+									"tabs" : [ "Tutorial 1: An introduction to FrameLib and frame based processing.", "Tutorial 2: Getting to grips with frame based processing.", "Tutorial 3: Key Concepts.", "Tutorial 4: Converting data between FrameLib and Max.", "Tutorial 5: Generator objects.", "Tutorial 6: Building a granular synthesiser in Framelib from scratch." ],
 									"truncate" : 0
 								}
 
@@ -4729,7 +4727,7 @@
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
-									"tabs" : [ "fl.dispatch~", "fl.route~", "fl.select~" ],
+									"tabs" : [ "--" ],
 									"truncate" : 0
 								}
 
@@ -4752,13 +4750,13 @@
 									"presentation_rect" : [ 15.0, 90.0, 209.0, 25.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_longname" : "umenu",
-											"parameter_initial_enable" : 1,
-											"parameter_invisible" : 1,
 											"parameter_mmax" : 22.0,
 											"parameter_initial" : [ 0 ],
 											"parameter_shortname" : "umenu",
-											"parameter_type" : 3
+											"parameter_type" : 3,
+											"parameter_longname" : "umenu",
+											"parameter_initial_enable" : 1,
+											"parameter_invisible" : 1
 										}
 
 									}
