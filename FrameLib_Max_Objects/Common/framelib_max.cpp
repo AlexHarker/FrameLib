@@ -328,8 +328,8 @@ extern "C" int C74_EXPORT main(void)
     
     // Binary  Operators
     
-    FrameLib_MaxClass_Expand<FrameLib_Plus, kAllInputs>::makeClass("fl.plus~");
-    FrameLib_MaxClass_Expand<FrameLib_Minus, kAllInputs>::makeClass("fl.minus~");
+    FrameLib_MaxClass_Expand<FrameLib_Add, kAllInputs>::makeClass("fl.plus~");
+    FrameLib_MaxClass_Expand<FrameLib_Subtract, kAllInputs>::makeClass("fl.minus~");
     FrameLib_MaxClass_Expand<FrameLib_Multiply, kAllInputs>::makeClass("fl.times~");
     FrameLib_MaxClass_Expand<FrameLib_Divide, kAllInputs>::makeClass("fl.divide~");
     
@@ -378,8 +378,8 @@ extern "C" int C74_EXPORT main(void)
     
     // Complex Binary Operators
     
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Plus, kAllInputs>::makeClass("fl.complex.plus~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Minus, kAllInputs>::makeClass("fl.complex.minus~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Add, kAllInputs>::makeClass("fl.complex.plus~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Subtract, kAllInputs>::makeClass("fl.complex.minus~");
     FrameLib_MaxClass_Expand<FrameLib_Complex_Multiply, kAllInputs>::makeClass("fl.complex.times~");
     FrameLib_MaxClass_Expand<FrameLib_Complex_Divide, kAllInputs>::makeClass("fl.complex.divide~");
     FrameLib_MaxClass_Expand<FrameLib_Complex_Pow, kAllInputs>::makeClass("fl.complex.pow~");

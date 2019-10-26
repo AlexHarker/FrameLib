@@ -59,8 +59,8 @@ template<> inline const char *FrameLib_BinaryOp<FrameLib_Binary_Ops::absDiff>::g
 
 // Type definitions
 
-typedef FrameLib_BinaryOp<std::plus<double>>            FrameLib_Plus;
-typedef FrameLib_BinaryOp<std::minus<double>>           FrameLib_Minus;
+typedef FrameLib_BinaryOp<std::plus<double>>            FrameLib_Add;
+typedef FrameLib_BinaryOp<std::minus<double>>           FrameLib_Subtract;
 typedef FrameLib_BinaryOp<std::multiplies<double>>      FrameLib_Multiply;
 typedef FrameLib_BinaryOp<std::divides<double>>         FrameLib_Divide;
 

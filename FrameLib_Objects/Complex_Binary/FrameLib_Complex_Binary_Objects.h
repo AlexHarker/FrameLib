@@ -24,8 +24,8 @@ template<> inline const char *FrameLib_Complex_BinaryOp<std::divides<std::comple
 
 // Type definitions
 
-typedef FrameLib_Complex_BinaryOp<std::plus<std::complex<double>>>              FrameLib_Complex_Plus;
-typedef FrameLib_Complex_BinaryOp<std::minus<std::complex<double>>>             FrameLib_Complex_Minus;
+typedef FrameLib_Complex_BinaryOp<std::plus<std::complex<double>>>              FrameLib_Complex_Add;
+typedef FrameLib_Complex_BinaryOp<std::minus<std::complex<double>>>             FrameLib_Complex_Subtract;
 typedef FrameLib_Complex_BinaryOp<std::multiplies<std::complex<double>>>        FrameLib_Complex_Multiply;
 typedef FrameLib_Complex_BinaryOp<std::divides<std::complex<double>>>           FrameLib_Complex_Divide;
 

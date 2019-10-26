@@ -472,8 +472,8 @@ extern "C" void framelib_pd_setup(void)
     
     // Binary  Operators
     
-    FrameLib_PDClass_Expand<FrameLib_Plus, kAllInputs>::makeClass("fl.+~");
-    FrameLib_PDClass_Expand<FrameLib_Minus, kAllInputs>::makeClass("fl.-~");
+    FrameLib_PDClass_Expand<FrameLib_Add, kAllInputs>::makeClass("fl.+~");
+    FrameLib_PDClass_Expand<FrameLib_Subtract, kAllInputs>::makeClass("fl.-~");
     FrameLib_PDClass_Expand<FrameLib_Multiply, kAllInputs>::makeClass("fl.*~");
     FrameLib_PDClass_Expand<FrameLib_Divide, kAllInputs>::makeClass("fl./~");
     
@@ -527,8 +527,8 @@ extern "C" void framelib_pd_setup(void)
     
     // Complex Binary Operators
     
-    FrameLib_PDClass_Expand<FrameLib_Complex_Plus, kAllInputs>::makeClass("fl.complex.plus~");
-    FrameLib_PDClass_Expand<FrameLib_Complex_Minus, kAllInputs>::makeClass("fl.complex.minus~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Add, kAllInputs>::makeClass("fl.complex.plus~");
+    FrameLib_PDClass_Expand<FrameLib_Complex_Subtract, kAllInputs>::makeClass("fl.complex.minus~");
     FrameLib_PDClass_Expand<FrameLib_Complex_Multiply, kAllInputs>::makeClass("fl.complex.times~");
     FrameLib_PDClass_Expand<FrameLib_Complex_Divide, kAllInputs>::makeClass("fl.complex.divide~");
     FrameLib_PDClass_Expand<FrameLib_Complex_Pow, kAllInputs>::makeClass("fl.complex.pow~");

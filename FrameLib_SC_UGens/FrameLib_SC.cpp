@@ -484,9 +484,9 @@ PluginLoad(FrameLib)
     
     // Binary Operators
     
+    DefineFrameLibExpUnit<FrameLib_Add>("FLAdd");
+    DefineFrameLibExpUnit<FrameLib_Subtract>("FLSub");
     DefineFrameLibExpUnit<FrameLib_Multiply>("FLMul");
-    DefineFrameLibExpUnit<FrameLib_Plus>("FLAdd");
-    DefineFrameLibExpUnit<FrameLib_Minus>("FLSub");
     DefineFrameLibExpUnit<FrameLib_Divide>("FLDiv");
     
     DefineFrameLibExpUnit<FrameLib_Pow>("FLPow");
