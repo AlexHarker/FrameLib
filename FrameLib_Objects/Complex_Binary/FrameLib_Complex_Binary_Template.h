@@ -66,7 +66,7 @@ class FrameLib_Complex_BinaryOp final : public FrameLib_Processor
                 "shrink - the output length is set to the size of the smaller input. "
                 "pad_in - the smaller input is padded prior to calculation to match the size of the larger input. "
                 "pad_out - the output is padded to match the size of the larger input.");
-            add("Sets which inputs trigger output.");
+            add("Sets which pairs of inputs trigger output.");
             add("Sets the complex value used for padding (for either pad_in or pad_out modes).");
         }
     };
