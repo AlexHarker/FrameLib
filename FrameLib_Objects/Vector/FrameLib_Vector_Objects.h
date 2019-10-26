@@ -45,5 +45,4 @@ typedef FrameLib_Vector<statCrest>              FrameLib_Crest;
 typedef FrameLib_Vector<statMinPosition>        FrameLib_FrameMinPosition;
 typedef FrameLib_Vector<statMaxPosition>        FrameLib_FrameMaxPosition;
 
-
 #endif
