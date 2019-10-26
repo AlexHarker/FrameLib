@@ -8,7 +8,8 @@
 
 // Unary (Operator Version)
 
-template <typename Op> class FrameLib_UnaryOp final : public FrameLib_Processor
+template <typename Op>
+class FrameLib_UnaryOp final : public FrameLib_Processor
 {
     
 public:
@@ -54,7 +55,7 @@ private:
 
 // Unary Functor
 
-template<double func(double)>
+template <double func(double)>
 struct Unary_Functor
 {
     double operator()(double x) { return func(x); }
@@ -62,7 +63,7 @@ struct Unary_Functor
 
 // Unary (Function Version)
 
-template<double func(double)>
+template <double func(double)>
 using FrameLib_Unary = FrameLib_UnaryOp<Unary_Functor<func>>;
 
 #endif

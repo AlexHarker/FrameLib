@@ -9,7 +9,8 @@
 
 // Complex Unary (Operator Version)
 
-template <typename Op> class FrameLib_Complex_UnaryOp final : public FrameLib_Processor
+template <typename Op>
+class FrameLib_Complex_UnaryOp final : public FrameLib_Processor
 {
     
 public:
@@ -96,7 +97,7 @@ private:
 
 // Complex Unary Functor
 
-template<std::complex<double> func(const std::complex<double> &)>
+template <std::complex<double> func(const std::complex<double> &)>
 struct Complex_Unary_Functor
 {
     std::complex<double> operator()(std::complex<double> x) { return func(x); }
@@ -104,7 +105,7 @@ struct Complex_Unary_Functor
 
 // Complex Unary (Function Version)
 
-template<std::complex<double> func(const std::complex<double> &)>
+template <std::complex<double> func(const std::complex<double> &)>
 using  FrameLib_Complex_Unary = FrameLib_Complex_UnaryOp<Complex_Unary_Functor<func>>;
 
 #endif

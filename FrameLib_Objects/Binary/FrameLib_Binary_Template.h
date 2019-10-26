@@ -8,7 +8,8 @@
 
 // Binary Operator
 
-template <typename Op> class FrameLib_BinaryOp final : public FrameLib_Processor
+template <typename Op>
+class FrameLib_BinaryOp final : public FrameLib_Processor
 {
     // Parameter Enums and Info
     
@@ -211,7 +212,7 @@ private:
 
 // Binary Functor
 
-template<double func(double, double)>
+template <double func(double, double)>
 struct Binary_Functor
 {
     double operator()(double x, double y) { return func(x, y); }
@@ -219,7 +220,7 @@ struct Binary_Functor
 
 // Binary (Function Version)
 
-template<double func(double, double)>
+template <double func(double, double)>
 using FrameLib_Binary = FrameLib_BinaryOp<Binary_Functor<func>>;
 
 #endif

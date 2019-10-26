@@ -4,7 +4,8 @@
 
 #include "FrameLib_DSP.h"
 
-template <typename Op> class FrameLib_TernaryOp final : public FrameLib_Processor
+template <typename Op>
+class FrameLib_TernaryOp final : public FrameLib_Processor
 {
     enum ParameterList { kMismatchMode };
     enum MismatchModes { kWrap, kShrink, kExtend};
@@ -180,7 +181,7 @@ private:
 
 // Ternary Functor
 
-template<double func(double, double, double)>
+template <double func(double, double, double)>
 struct Ternary_Functor
 {
     double operator()(double x, double y, double z) { return func(x, y, z); }
@@ -188,7 +189,7 @@ struct Ternary_Functor
 
 // Ternary (Function Version)
 
-template<double func(double, double, double)>
+template <double func(double, double, double)>
 using  FrameLib_Ternary = FrameLib_TernaryOp<Ternary_Functor<func>>;
 
 #endif
