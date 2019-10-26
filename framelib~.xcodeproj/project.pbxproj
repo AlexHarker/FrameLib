@@ -663,7 +663,7 @@
 		B8C89C911F571FC700B4E700 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8C89CAE1F571FD400B4E700 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8C89CCB1F571FDD00B4E700 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8C89CD41F5720E300B4E700 /* fl.standarddeviation~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C89CD31F5720E300B4E700 /* fl.standarddeviation~.cpp */; };
+		B8C89CD41F5720E300B4E700 /* fl.stddev~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C89CD31F5720E300B4E700 /* fl.stddev~.cpp */; };
 		B8C89CD61F57210600B4E700 /* fl.centroid~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C89CD51F57210600B4E700 /* fl.centroid~.cpp */; };
 		B8C89CD81F57212000B4E700 /* fl.spread~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C89CD71F57211F00B4E700 /* fl.spread~.cpp */; };
 		B8C89CDA1F57213500B4E700 /* fl.skewness~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8C89CD91F57213500B4E700 /* fl.skewness~.cpp */; };
@@ -681,8 +681,8 @@
 		B8CEFC162019EA2100F5F5A0 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8CEFC292019EA2900F5F5A0 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8CEFC2A2019EA2900F5F5A0 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8CEFC332019EAA100F5F5A0 /* fl.argmin~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8CEFC0A2019EA1800F5F5A0 /* fl.argmin~.cpp */; };
-		B8CEFC342019EAA600F5F5A0 /* fl.argmax~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8CEFC092019EA1700F5F5A0 /* fl.argmax~.cpp */; };
+		B8CEFC332019EAA100F5F5A0 /* fl.minpos~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8CEFC0A2019EA1800F5F5A0 /* fl.minpos~.cpp */; };
+		B8CEFC342019EAA600F5F5A0 /* fl.maxpos~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8CEFC092019EA1700F5F5A0 /* fl.maxpos~.cpp */; };
 		B8D679D51B83E51A00519310 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B8D679DF1B83E5A600519310 /* fl.trace~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D679DD1B83E55900519310 /* fl.trace~.cpp */; };
 		B8D679E71B847A3300519310 /* fl.map~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D679E11B847A1E00519310 /* fl.map~.cpp */; };
@@ -721,12 +721,12 @@
 		B8F3798B19F1C8E600EC7FDA /* fl.onepole~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F3798A19F1C8E600EC7FDA /* fl.onepole~.cpp */; };
 		B8F83E2919C78DBC00230CD4 /* fl.trunc~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83E2819C78DBC00230CD4 /* fl.trunc~.cpp */; };
 		B8F83EA219C78F7700230CD4 /* fl.length~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83E3019C78E0000230CD4 /* fl.length~.cpp */; };
-		B8F83EA319C78F7B00230CD4 /* fl.geometricmean~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83E2D19C78E0000230CD4 /* fl.geometricmean~.cpp */; };
+		B8F83EA319C78F7B00230CD4 /* fl.geomean~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83E2D19C78E0000230CD4 /* fl.geomean~.cpp */; };
 		B8F83EA419C78F8000230CD4 /* fl.mean~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83E2C19C78E0000230CD4 /* fl.mean~.cpp */; };
 		B8F83EA519C78F8800230CD4 /* fl.product~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83E2F19C78E0000230CD4 /* fl.product~.cpp */; };
 		B8F83EA619C78F9100230CD4 /* fl.sum~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83E2E19C78E0000230CD4 /* fl.sum~.cpp */; };
-		B8F83EA719C78F9400230CD4 /* fl.vmax~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83E2B19C78E0000230CD4 /* fl.vmax~.cpp */; };
-		B8F83EA819C78F9800230CD4 /* fl.vmin~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83E2A19C78DF600230CD4 /* fl.vmin~.cpp */; };
+		B8F83EA719C78F9400230CD4 /* fl.framemax~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83E2B19C78E0000230CD4 /* fl.framemax~.cpp */; };
+		B8F83EA819C78F9800230CD4 /* fl.framemin~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83E2A19C78DF600230CD4 /* fl.framemin~.cpp */; };
 		B8F83EBD19C79D0200230CD4 /* fl.ramp~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8F83EBC19C79D0200230CD4 /* fl.ramp~.cpp */; };
 /* End PBXBuildFile section */
 
@@ -2437,13 +2437,13 @@
 		B8C89C061F55C67C00B4E700 /* WindowFunctions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WindowFunctions.hpp; sourceTree = "<group>"; };
 		B8C89C071F56D24500B4E700 /* Statistics.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Statistics.hpp; sourceTree = "<group>"; };
 		B8C89C231F571F7100B4E700 /* fl.centroid~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.centroid~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8C89C401F571F8400B4E700 /* fl.standarddeviation~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.standarddeviation~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8C89C401F571F8400B4E700 /* fl.stddev~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.stddev~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C89C5D1F571F8700B4E700 /* fl.spread~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.spread~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C89C7A1F571F8B00B4E700 /* fl.skewness~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.skewness~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C89C971F571FC700B4E700 /* fl.kurtosis~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.kurtosis~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C89CB41F571FD400B4E700 /* fl.rms~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.rms~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C89CD11F571FDD00B4E700 /* fl.crest~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.crest~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8C89CD31F5720E300B4E700 /* fl.standarddeviation~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.standarddeviation~.cpp"; sourceTree = "<group>"; };
+		B8C89CD31F5720E300B4E700 /* fl.stddev~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.stddev~.cpp"; sourceTree = "<group>"; };
 		B8C89CD51F57210600B4E700 /* fl.centroid~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.centroid~.cpp"; sourceTree = "<group>"; };
 		B8C89CD71F57211F00B4E700 /* fl.spread~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.spread~.cpp"; sourceTree = "<group>"; };
 		B8C89CD91F57213500B4E700 /* fl.skewness~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.skewness~.cpp"; sourceTree = "<group>"; };
@@ -2460,10 +2460,10 @@
 		B8CACC8819C0F4A9007434C9 /* fl.source~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.source~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8CACC8A19C0F5D1007434C9 /* fl.source~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.source~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8CACC8C19C0F62C007434C9 /* FrameLib_Source.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Source.h; sourceTree = "<group>"; };
-		B8CEFC092019EA1700F5F5A0 /* fl.argmax~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.argmax~.cpp"; sourceTree = "<group>"; };
-		B8CEFC0A2019EA1800F5F5A0 /* fl.argmin~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.argmin~.cpp"; sourceTree = "<group>"; };
-		B8CEFC1D2019EA2100F5F5A0 /* fl.argmin~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.argmin~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8CEFC312019EA2900F5F5A0 /* fl.argmax~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.argmax~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8CEFC092019EA1700F5F5A0 /* fl.maxpos~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.maxpos~.cpp"; sourceTree = "<group>"; };
+		B8CEFC0A2019EA1800F5F5A0 /* fl.minpos~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.minpos~.cpp"; sourceTree = "<group>"; };
+		B8CEFC1D2019EA2100F5F5A0 /* fl.minpos~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.minpos~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8CEFC312019EA2900F5F5A0 /* fl.maxpos~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.maxpos~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D272F11DA6629A00E0E566 /* FrameLib_Memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Memory.cpp; sourceTree = "<group>"; };
 		B8D679CC1B83E39E00519310 /* FrameLib_Trace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Trace.h; sourceTree = "<group>"; };
 		B8D679DB1B83E51A00519310 /* fl.trace~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.trace~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2515,19 +2515,19 @@
 		B8F6E4C8199D247C0073E06D /* tlsf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tlsf.c; sourceTree = "<group>"; };
 		B8F6E4C9199D247C0073E06D /* tlsf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tlsf.h; sourceTree = "<group>"; };
 		B8F83E2819C78DBC00230CD4 /* fl.trunc~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.trunc~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		B8F83E2A19C78DF600230CD4 /* fl.vmin~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.vmin~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		B8F83E2B19C78E0000230CD4 /* fl.vmax~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.vmax~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B8F83E2A19C78DF600230CD4 /* fl.framemin~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.framemin~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B8F83E2B19C78E0000230CD4 /* fl.framemax~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.framemax~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8F83E2C19C78E0000230CD4 /* fl.mean~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.mean~.cpp"; sourceTree = "<group>"; };
-		B8F83E2D19C78E0000230CD4 /* fl.geometricmean~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.geometricmean~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B8F83E2D19C78E0000230CD4 /* fl.geomean~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.geomean~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8F83E2E19C78E0000230CD4 /* fl.sum~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.sum~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8F83E2F19C78E0000230CD4 /* fl.product~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.product~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8F83E3019C78E0000230CD4 /* fl.length~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.length~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		B8F83E4019C78E9A00230CD4 /* fl.vmin~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.vmin~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8F83E5119C78EA700230CD4 /* fl.vmax~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.vmax~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8F83E4019C78E9A00230CD4 /* fl.framemin~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.framemin~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8F83E5119C78EA700230CD4 /* fl.framemax~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.framemax~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F83E6119C78EA900230CD4 /* fl.sum~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.sum~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F83E7119C78EAB00230CD4 /* fl.product~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.product~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F83E8119C78EAE00230CD4 /* fl.mean~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.mean~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8F83E9119C78EAF00230CD4 /* fl.geometricmean~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.geometricmean~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8F83E9119C78EAF00230CD4 /* fl.geomean~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.geomean~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F83EA119C78EB100230CD4 /* fl.length~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.length~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F83EAA19C79C8900230CD4 /* FrameLib_Ramp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ramp.h; sourceTree = "<group>"; };
 		B8F83EBA19C79CC900230CD4 /* fl.ramp~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.ramp~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4186,12 +4186,12 @@
 				B809C06C19C42D7400BA41F4 /* fl.tan~.mxo */,
 				B809C07B19C42D7400BA41F4 /* fl.tanh~.mxo */,
 				B809C08A19C42D7500BA41F4 /* fl.trunc~.mxo */,
-				B8F83E4019C78E9A00230CD4 /* fl.vmin~.mxo */,
-				B8F83E5119C78EA700230CD4 /* fl.vmax~.mxo */,
+				B8F83E4019C78E9A00230CD4 /* fl.framemin~.mxo */,
+				B8F83E5119C78EA700230CD4 /* fl.framemax~.mxo */,
 				B8F83E6119C78EA900230CD4 /* fl.sum~.mxo */,
 				B8F83E7119C78EAB00230CD4 /* fl.product~.mxo */,
 				B8F83E8119C78EAE00230CD4 /* fl.mean~.mxo */,
-				B8F83E9119C78EAF00230CD4 /* fl.geometricmean~.mxo */,
+				B8F83E9119C78EAF00230CD4 /* fl.geomean~.mxo */,
 				B8F83EA119C78EB100230CD4 /* fl.length~.mxo */,
 				B8F83EBA19C79CC900230CD4 /* fl.ramp~.mxo */,
 				B8AD886E19C7C46B00FFA238 /* fl.read~.mxo */,
@@ -4237,7 +4237,7 @@
 				B87F75761F35EAED002B91E9 /* fl.perblock~.mxo */,
 				B87F759C1F3678D0002B91E9 /* fl.constant~.mxo */,
 				B8C89C231F571F7100B4E700 /* fl.centroid~.mxo */,
-				B8C89C401F571F8400B4E700 /* fl.standarddeviation~.mxo */,
+				B8C89C401F571F8400B4E700 /* fl.stddev~.mxo */,
 				B8C89C5D1F571F8700B4E700 /* fl.spread~.mxo */,
 				B8C89C7A1F571F8B00B4E700 /* fl.skewness~.mxo */,
 				B8C89C971F571FC700B4E700 /* fl.kurtosis~.mxo */,
@@ -4291,8 +4291,8 @@
 				B8B403361FB9E752006EE056 /* fl.complexminus~.mxo */,
 				B8DF11571FBF97B600C6229D /* fl.correlate~.mxo */,
 				B84A406C1FD73E5C00A30455 /* fl.accumpoint~.mxo */,
-				B8CEFC1D2019EA2100F5F5A0 /* fl.argmin~.mxo */,
-				B8CEFC312019EA2900F5F5A0 /* fl.argmax~.mxo */,
+				B8CEFC1D2019EA2100F5F5A0 /* fl.minpos~.mxo */,
+				B8CEFC312019EA2900F5F5A0 /* fl.maxpos~.mxo */,
 				5A3CAB262052E7E8001082E3 /* fl.wrap~.mxo */,
 				5AB54BD12052EAD700325C14 /* fl.clip~.mxo */,
 				5AB54BE42052EAE900325C14 /* fl.fold~.mxo */,
@@ -5166,15 +5166,15 @@
 		B8F83E2719C78D7A00230CD4 /* Vector */ = {
 			isa = PBXGroup;
 			children = (
-				B8CEFC0A2019EA1800F5F5A0 /* fl.argmin~.cpp */,
-				B8CEFC092019EA1700F5F5A0 /* fl.argmax~.cpp */,
-				B8F83E2A19C78DF600230CD4 /* fl.vmin~.cpp */,
-				B8F83E2B19C78E0000230CD4 /* fl.vmax~.cpp */,
+				B8CEFC0A2019EA1800F5F5A0 /* fl.minpos~.cpp */,
+				B8CEFC092019EA1700F5F5A0 /* fl.maxpos~.cpp */,
+				B8F83E2A19C78DF600230CD4 /* fl.framemin~.cpp */,
+				B8F83E2B19C78E0000230CD4 /* fl.framemax~.cpp */,
 				B8F83E2E19C78E0000230CD4 /* fl.sum~.cpp */,
 				B8F83E2F19C78E0000230CD4 /* fl.product~.cpp */,
 				B8F83E2C19C78E0000230CD4 /* fl.mean~.cpp */,
-				B8F83E2D19C78E0000230CD4 /* fl.geometricmean~.cpp */,
-				B8C89CD31F5720E300B4E700 /* fl.standarddeviation~.cpp */,
+				B8F83E2D19C78E0000230CD4 /* fl.geomean~.cpp */,
+				B8C89CD31F5720E300B4E700 /* fl.stddev~.cpp */,
 				B8C89CD51F57210600B4E700 /* fl.centroid~.cpp */,
 				B8C89CD71F57211F00B4E700 /* fl.spread~.cpp */,
 				B8C89CD91F57213500B4E700 /* fl.skewness~.cpp */,
@@ -9221,9 +9221,9 @@
 			productReference = B8C89C231F571F7100B4E700 /* fl.centroid~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8C89C251F571F8400B4E700 /* fl.standarddeviation~ */ = {
+		B8C89C251F571F8400B4E700 /* fl.stddev~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8C89C3C1F571F8400B4E700 /* Build configuration list for PBXNativeTarget "fl.standarddeviation~" */;
+			buildConfigurationList = B8C89C3C1F571F8400B4E700 /* Build configuration list for PBXNativeTarget "fl.stddev~" */;
 			buildPhases = (
 				B8C89C261F571F8400B4E700 /* Headers */,
 				B8C89C2B1F571F8400B4E700 /* Resources */,
@@ -9235,10 +9235,10 @@
 			dependencies = (
 				B8BEEC141FA7411000ED26F4 /* PBXTargetDependency */,
 			);
-			name = "fl.standarddeviation~";
+			name = "fl.stddev~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8C89C401F571F8400B4E700 /* fl.standarddeviation~.mxo */;
+			productReference = B8C89C401F571F8400B4E700 /* fl.stddev~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8C89C421F571F8700B4E700 /* fl.spread~ */ = {
@@ -9421,9 +9421,9 @@
 			productReference = B8CACC8819C0F4A9007434C9 /* fl.source~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8CEFC0B2019EA2100F5F5A0 /* fl.argmin~ */ = {
+		B8CEFC0B2019EA2100F5F5A0 /* fl.minpos~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8CEFC182019EA2100F5F5A0 /* Build configuration list for PBXNativeTarget "fl.argmin~" */;
+			buildConfigurationList = B8CEFC182019EA2100F5F5A0 /* Build configuration list for PBXNativeTarget "fl.minpos~" */;
 			buildPhases = (
 				B8CEFC0E2019EA2100F5F5A0 /* Headers */,
 				B8CEFC0F2019EA2100F5F5A0 /* Resources */,
@@ -9435,15 +9435,15 @@
 			dependencies = (
 				B8CEFC0C2019EA2100F5F5A0 /* PBXTargetDependency */,
 			);
-			name = "fl.argmin~";
+			name = "fl.minpos~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8CEFC1D2019EA2100F5F5A0 /* fl.argmin~.mxo */;
+			productReference = B8CEFC1D2019EA2100F5F5A0 /* fl.minpos~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8CEFC1F2019EA2900F5F5A0 /* fl.argmax~ */ = {
+		B8CEFC1F2019EA2900F5F5A0 /* fl.maxpos~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8CEFC2C2019EA2900F5F5A0 /* Build configuration list for PBXNativeTarget "fl.argmax~" */;
+			buildConfigurationList = B8CEFC2C2019EA2900F5F5A0 /* Build configuration list for PBXNativeTarget "fl.maxpos~" */;
 			buildPhases = (
 				B8CEFC222019EA2900F5F5A0 /* Headers */,
 				B8CEFC232019EA2900F5F5A0 /* Resources */,
@@ -9455,10 +9455,10 @@
 			dependencies = (
 				B8CEFC202019EA2900F5F5A0 /* PBXTargetDependency */,
 			);
-			name = "fl.argmax~";
+			name = "fl.maxpos~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8CEFC312019EA2900F5F5A0 /* fl.argmax~.mxo */;
+			productReference = B8CEFC312019EA2900F5F5A0 /* fl.maxpos~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8D679CD1B83E51A00519310 /* fl.trace~ */ = {
@@ -9681,9 +9681,9 @@
 			productReference = B8F3798819F1C8B400EC7FDA /* fl.onepole~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8F83E3119C78E9A00230CD4 /* fl.vmin~ */ = {
+		B8F83E3119C78E9A00230CD4 /* fl.framemin~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8F83E3C19C78E9A00230CD4 /* Build configuration list for PBXNativeTarget "fl.vmin~" */;
+			buildConfigurationList = B8F83E3C19C78E9A00230CD4 /* Build configuration list for PBXNativeTarget "fl.framemin~" */;
 			buildPhases = (
 				B8F83E3219C78E9A00230CD4 /* Headers */,
 				B8F83E3319C78E9A00230CD4 /* Resources */,
@@ -9695,15 +9695,15 @@
 			dependencies = (
 				B8BEEC381FA7417300ED26F4 /* PBXTargetDependency */,
 			);
-			name = "fl.vmin~";
+			name = "fl.framemin~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8F83E4019C78E9A00230CD4 /* fl.vmin~.mxo */;
+			productReference = B8F83E4019C78E9A00230CD4 /* fl.framemin~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8F83E4219C78EA700230CD4 /* fl.vmax~ */ = {
+		B8F83E4219C78EA700230CD4 /* fl.framemax~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8F83E4D19C78EA700230CD4 /* Build configuration list for PBXNativeTarget "fl.vmax~" */;
+			buildConfigurationList = B8F83E4D19C78EA700230CD4 /* Build configuration list for PBXNativeTarget "fl.framemax~" */;
 			buildPhases = (
 				B8F83E4319C78EA700230CD4 /* Headers */,
 				B8F83E4419C78EA700230CD4 /* Resources */,
@@ -9715,10 +9715,10 @@
 			dependencies = (
 				B8BEEC3A1FA7417700ED26F4 /* PBXTargetDependency */,
 			);
-			name = "fl.vmax~";
+			name = "fl.framemax~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8F83E5119C78EA700230CD4 /* fl.vmax~.mxo */;
+			productReference = B8F83E5119C78EA700230CD4 /* fl.framemax~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8F83E5219C78EA900230CD4 /* fl.sum~ */ = {
@@ -9781,9 +9781,9 @@
 			productReference = B8F83E8119C78EAE00230CD4 /* fl.mean~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8F83E8219C78EAF00230CD4 /* fl.geometricmean~ */ = {
+		B8F83E8219C78EAF00230CD4 /* fl.geomean~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8F83E8D19C78EAF00230CD4 /* Build configuration list for PBXNativeTarget "fl.geometricmean~" */;
+			buildConfigurationList = B8F83E8D19C78EAF00230CD4 /* Build configuration list for PBXNativeTarget "fl.geomean~" */;
 			buildPhases = (
 				B8F83E8319C78EAF00230CD4 /* Headers */,
 				B8F83E8419C78EAF00230CD4 /* Resources */,
@@ -9795,10 +9795,10 @@
 			dependencies = (
 				B8BEEC421FA7418900ED26F4 /* PBXTargetDependency */,
 			);
-			name = "fl.geometricmean~";
+			name = "fl.geomean~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8F83E9119C78EAF00230CD4 /* fl.geometricmean~.mxo */;
+			productReference = B8F83E9119C78EAF00230CD4 /* fl.geomean~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8F83E9219C78EB100230CD4 /* fl.length~ */ = {
@@ -9939,12 +9939,12 @@
 				B809C05E19C42D7400BA41F4 /* fl.tan~ */,
 				B809C06D19C42D7400BA41F4 /* fl.tanh~ */,
 				B809C07C19C42D7500BA41F4 /* fl.trunc~ */,
-				B8F83E3119C78E9A00230CD4 /* fl.vmin~ */,
-				B8F83E4219C78EA700230CD4 /* fl.vmax~ */,
+				B8F83E3119C78E9A00230CD4 /* fl.framemin~ */,
+				B8F83E4219C78EA700230CD4 /* fl.framemax~ */,
 				B8F83E5219C78EA900230CD4 /* fl.sum~ */,
 				B8F83E6219C78EAB00230CD4 /* fl.product~ */,
 				B8F83E7219C78EAE00230CD4 /* fl.mean~ */,
-				B8F83E8219C78EAF00230CD4 /* fl.geometricmean~ */,
+				B8F83E8219C78EAF00230CD4 /* fl.geomean~ */,
 				B8F83E9219C78EB100230CD4 /* fl.length~ */,
 				B85B68D219F2628C002D6F1D /* fl.register~ */,
 				B8F83EAB19C79CC900230CD4 /* fl.ramp~ */,
@@ -9989,7 +9989,7 @@
 				B8C5EBDB1E5FA6340086E8B6 /* fl.peaks~ */,
 				B85C8FCE1E605B2E004D7D40 /* fl.multitaper~ */,
 				B87F757E1F3678D0002B91E9 /* fl.constant~ */,
-				B8C89C251F571F8400B4E700 /* fl.standarddeviation~ */,
+				B8C89C251F571F8400B4E700 /* fl.stddev~ */,
 				B8C89C081F571F7100B4E700 /* fl.centroid~ */,
 				B8C89C421F571F8700B4E700 /* fl.spread~ */,
 				B8C89C5F1F571F8B00B4E700 /* fl.skewness~ */,
@@ -10035,8 +10035,8 @@
 				B8B403121FB9E74E006EE056 /* fl.complex.plus~ */,
 				B8B403251FB9E752006EE056 /* fl.complex.minus~ */,
 				B84A405B1FD73E5C00A30455 /* fl.accumpoint~ */,
-				B8CEFC0B2019EA2100F5F5A0 /* fl.argmin~ */,
-				B8CEFC1F2019EA2900F5F5A0 /* fl.argmax~ */,
+				B8CEFC0B2019EA2100F5F5A0 /* fl.minpos~ */,
+				B8CEFC1F2019EA2900F5F5A0 /* fl.maxpos~ */,
 				5A3CAB152052E7E8001082E3 /* fl.wrap~ */,
 				5AB54BC02052EAD700325C14 /* fl.clip~ */,
 				5AB54BD32052EAE900325C14 /* fl.fold~ */,
@@ -12550,7 +12550,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C89CD41F5720E300B4E700 /* fl.standarddeviation~.cpp in Sources */,
+				B8C89CD41F5720E300B4E700 /* fl.stddev~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12633,7 +12633,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8CEFC332019EAA100F5F5A0 /* fl.argmin~.cpp in Sources */,
+				B8CEFC332019EAA100F5F5A0 /* fl.minpos~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12642,7 +12642,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B81C72DF205A92F10073CBF4 /* FrameLib_ParamAlias.cpp in Sources */,
-				B8CEFC342019EAA600F5F5A0 /* fl.argmax~.cpp in Sources */,
+				B8CEFC342019EAA600F5F5A0 /* fl.maxpos~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12750,7 +12750,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8F83EA819C78F9800230CD4 /* fl.vmin~.cpp in Sources */,
+				B8F83EA819C78F9800230CD4 /* fl.framemin~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12758,7 +12758,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8F83EA719C78F9400230CD4 /* fl.vmax~.cpp in Sources */,
+				B8F83EA719C78F9400230CD4 /* fl.framemax~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12790,7 +12790,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8F83EA319C78F7B00230CD4 /* fl.geometricmean~.cpp in Sources */,
+				B8F83EA319C78F7B00230CD4 /* fl.geomean~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -30578,7 +30578,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8C89C3C1F571F8400B4E700 /* Build configuration list for PBXNativeTarget "fl.standarddeviation~" */ = {
+		B8C89C3C1F571F8400B4E700 /* Build configuration list for PBXNativeTarget "fl.stddev~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8C89C3D1F571F8400B4E700 /* Development */,
@@ -30678,7 +30678,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8CEFC182019EA2100F5F5A0 /* Build configuration list for PBXNativeTarget "fl.argmin~" */ = {
+		B8CEFC182019EA2100F5F5A0 /* Build configuration list for PBXNativeTarget "fl.minpos~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8CEFC192019EA2100F5F5A0 /* Development */,
@@ -30688,7 +30688,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8CEFC2C2019EA2900F5F5A0 /* Build configuration list for PBXNativeTarget "fl.argmax~" */ = {
+		B8CEFC2C2019EA2900F5F5A0 /* Build configuration list for PBXNativeTarget "fl.maxpos~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8CEFC2D2019EA2900F5F5A0 /* Development */,
@@ -30808,7 +30808,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8F83E3C19C78E9A00230CD4 /* Build configuration list for PBXNativeTarget "fl.vmin~" */ = {
+		B8F83E3C19C78E9A00230CD4 /* Build configuration list for PBXNativeTarget "fl.framemin~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8F83E3D19C78E9A00230CD4 /* Development */,
@@ -30818,7 +30818,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8F83E4D19C78EA700230CD4 /* Build configuration list for PBXNativeTarget "fl.vmax~" */ = {
+		B8F83E4D19C78EA700230CD4 /* Build configuration list for PBXNativeTarget "fl.framemax~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8F83E4E19C78EA700230CD4 /* Development */,
@@ -30858,7 +30858,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8F83E8D19C78EAF00230CD4 /* Build configuration list for PBXNativeTarget "fl.geometricmean~" */ = {
+		B8F83E8D19C78EAF00230CD4 /* Build configuration list for PBXNativeTarget "fl.geomean~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8F83E8E19C78EAF00230CD4 /* Development */,

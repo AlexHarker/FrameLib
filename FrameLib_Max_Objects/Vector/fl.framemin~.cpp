@@ -4,5 +4,5 @@
 
 extern "C" int C74_EXPORT main(void)
 {
-    FrameLib_MaxClass_Expand<FrameLib_StandardDeviation>::makeClass("fl.standarddeviation~");
+    FrameLib_MaxClass_Expand<FrameLib_FrameMin>::makeClass("fl.framemin~");
 }

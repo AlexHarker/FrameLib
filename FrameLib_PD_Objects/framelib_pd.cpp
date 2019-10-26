@@ -417,13 +417,13 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_Subframe>::makeClass("fl.subframe~");
 
     FrameLib_PDClass_Expand<FrameLib_Length>::makeClass("fl.length~");
-    FrameLib_PDClass_Expand<FrameLib_VectorMin>::makeClass("fl.vmin~");
-    FrameLib_PDClass_Expand<FrameLib_VectorMax>::makeClass("fl.vmax~");
+    FrameLib_PDClass_Expand<FrameLib_FrameMin>::makeClass("fl.framemin~");
+    FrameLib_PDClass_Expand<FrameLib_FrameMax>::makeClass("fl.framemax~");
     FrameLib_PDClass_Expand<FrameLib_Sum>::makeClass("fl.sum~");
     FrameLib_PDClass_Expand<FrameLib_Product>::makeClass("fl.product~");
     FrameLib_PDClass_Expand<FrameLib_Mean>::makeClass("fl.mean~");
-    FrameLib_PDClass_Expand<FrameLib_GeometricMean>::makeClass("fl.geometricmean~");
-    FrameLib_PDClass_Expand<FrameLib_StandardDeviation>::makeClass("fl.standarddeviation~");
+    FrameLib_PDClass_Expand<FrameLib_GeometricMean>::makeClass("fl.geomean~");
+    FrameLib_PDClass_Expand<FrameLib_StandardDeviation>::makeClass("fl.stddev~");
 
     FrameLib_PDClass_Expand<FrameLib_Centroid>::makeClass("fl.centroid~");
     FrameLib_PDClass_Expand<FrameLib_Spread>::makeClass("fl.spread~");
@@ -432,8 +432,8 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_Flatness>::makeClass("fl.flatness~");
     FrameLib_PDClass_Expand<FrameLib_RMS>::makeClass("fl.rms~");
     FrameLib_PDClass_Expand<FrameLib_Crest>::makeClass("fl.crest~");
-    FrameLib_PDClass_Expand<FrameLib_VectorArgMin>::makeClass("fl.argmin~");
-    FrameLib_PDClass_Expand<FrameLib_VectorArgMax>::makeClass("fl.argmax~");
+    FrameLib_PDClass_Expand<FrameLib_FrameMinPosition>::makeClass("fl.minpos~");
+    FrameLib_PDClass_Expand<FrameLib_FrameMaxPosition>::makeClass("fl.maxpos~");
     FrameLib_PDClass_Expand<FrameLib_NanFilter>::makeClass("fl.nanfilter~");
 
     // Unary Operators

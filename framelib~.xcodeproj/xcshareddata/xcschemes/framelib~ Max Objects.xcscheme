@@ -687,8 +687,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8F83E8219C78EAF00230CD4"
-               BuildableName = "fl.geometricmean~.mxo"
-               BlueprintName = "fl.geometricmean~"
+               BuildableName = "fl.geomean~.mxo"
+               BlueprintName = "fl.geomean~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -757,8 +757,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8F83E4219C78EA700230CD4"
-               BuildableName = "fl.vmax~.mxo"
-               BlueprintName = "fl.vmax~"
+               BuildableName = "fl.framemax~.mxo"
+               BlueprintName = "fl.framemax~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -771,8 +771,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8F83E3119C78E9A00230CD4"
-               BuildableName = "fl.vmin~.mxo"
-               BlueprintName = "fl.vmin~"
+               BuildableName = "fl.framemin~.mxo"
+               BlueprintName = "fl.framemin~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -1373,8 +1373,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8C89C251F571F8400B4E700"
-               BuildableName = "fl.standarddeviation~.mxo"
-               BlueprintName = "fl.standarddeviation~"
+               BuildableName = "fl.stddev~.mxo"
+               BlueprintName = "fl.stddev~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -2115,8 +2115,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8CEFC1F2019EA2900F5F5A0"
-               BuildableName = "fl.argmax~.mxo"
-               BlueprintName = "fl.argmax~"
+               BuildableName = "fl.maxpos~.mxo"
+               BlueprintName = "fl.maxpos~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -2129,8 +2129,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8CEFC0B2019EA2100F5F5A0"
-               BuildableName = "fl.argmin~.mxo"
-               BlueprintName = "fl.argmin~"
+               BuildableName = "fl.minpos~.mxo"
+               BlueprintName = "fl.minpos~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

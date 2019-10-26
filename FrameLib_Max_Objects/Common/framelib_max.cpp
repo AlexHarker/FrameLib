@@ -273,13 +273,13 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_Subframe>::makeClass("fl.subframe~");
 
     FrameLib_MaxClass_Expand<FrameLib_Length>::makeClass("fl.length~");
-    FrameLib_MaxClass_Expand<FrameLib_VectorMin>::makeClass("fl.vmin~");
-    FrameLib_MaxClass_Expand<FrameLib_VectorMax>::makeClass("fl.vmax~");
+    FrameLib_MaxClass_Expand<FrameLib_FrameMin>::makeClass("fl.framemin~");
+    FrameLib_MaxClass_Expand<FrameLib_FrameMax>::makeClass("fl.framemax~");
     FrameLib_MaxClass_Expand<FrameLib_Sum>::makeClass("fl.sum~");
     FrameLib_MaxClass_Expand<FrameLib_Product>::makeClass("fl.product~");
     FrameLib_MaxClass_Expand<FrameLib_Mean>::makeClass("fl.mean~");
-    FrameLib_MaxClass_Expand<FrameLib_GeometricMean>::makeClass("fl.geometricmean~");
-    FrameLib_MaxClass_Expand<FrameLib_StandardDeviation>::makeClass("fl.standarddeviation~");
+    FrameLib_MaxClass_Expand<FrameLib_GeometricMean>::makeClass("fl.geomean~");
+    FrameLib_MaxClass_Expand<FrameLib_StandardDeviation>::makeClass("fl.stddev~");
 
     FrameLib_MaxClass_Expand<FrameLib_Centroid>::makeClass("fl.centroid~");
     FrameLib_MaxClass_Expand<FrameLib_Spread>::makeClass("fl.spread~");
@@ -288,8 +288,8 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_Flatness>::makeClass("fl.flatness~");
     FrameLib_MaxClass_Expand<FrameLib_RMS>::makeClass("fl.rms~");
     FrameLib_MaxClass_Expand<FrameLib_Crest>::makeClass("fl.crest~");
-    FrameLib_MaxClass_Expand<FrameLib_VectorArgMin>::makeClass("fl.argmin~");
-    FrameLib_MaxClass_Expand<FrameLib_VectorArgMax>::makeClass("fl.argmax~");
+    FrameLib_MaxClass_Expand<FrameLib_FrameMinPosition>::makeClass("fl.minpos~");
+    FrameLib_MaxClass_Expand<FrameLib_FrameMaxPosition>::makeClass("fl.maxpos~");
     FrameLib_MaxClass_Expand<FrameLib_NanFilter>::makeClass("fl.nanfilter~");
 
     // Unary Operators
