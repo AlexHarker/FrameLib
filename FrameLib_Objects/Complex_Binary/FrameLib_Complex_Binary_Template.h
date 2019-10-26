@@ -97,7 +97,8 @@ public:
         mParameters.set(serialisedParameters);
                                     
         mMismatchMode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
-        mPadValue = mParameters.getValue(kPadding);
+        mRealPad = mParameters.getArray(kPadding)[0];
+        mImagPad = mParameters.getArray(kPadding)[1];
         
         TriggerModes triggers = (TriggerModes) mParameters.getInt(kTriggers);
         
@@ -167,8 +168,8 @@ private:
         const double *input2R = getInput(2, &sizeIn2R);
         const double *input2I = getInput(3, &sizeIn2I);
         
-        double defaultValueR = mPadValue;
-        double defaultValueI = mPadValue;
+        double defaultValueR = mRealPad;
+        double defaultValueI = mImagPad;
         
         unsigned long sizeIn1 = std::max(sizeIn1R, sizeIn1I);
         unsigned long sizeIn2 = std::max(sizeIn2R, sizeIn2I);
@@ -299,7 +300,8 @@ private:
     
     // Data
     
-    double mPadValue;
+    double mRealPad;
+    double mImagPad;
     MismatchModes mMismatchMode;
 };
 
@@ -315,7 +317,5 @@ struct Complex_Binary_Functor
 
 template<std::complex<double> func(const std::complex<double>&, const std::complex<double>&)>
 using  FrameLib_Complex_Binary = FrameLib_Complex_BinaryOp<Complex_Binary_Functor<func>>;
-
-
 
 #endif
