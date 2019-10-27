@@ -214,13 +214,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.and~", "Projects\Visual_
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.argmax~", "Projects\Visual_Studio\03_Max_Objects\fl.argmax~.vcxproj", "{4D54C280-963D-4428-ABA8-0F0A70982319}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.maxpos~", "Projects\Visual_Studio\03_Max_Objects\fl.maxpos~.vcxproj", "{4D54C280-963D-4428-ABA8-0F0A70982319}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.argmin~", "Projects\Visual_Studio\03_Max_Objects\fl.argmin~.vcxproj", "{93AA91B2-5A8F-414D-856D-1AB4C557DC1F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.minpos~", "Projects\Visual_Studio\03_Max_Objects\fl.minpos~.vcxproj", "{93AA91B2-5A8F-414D-856D-1AB4C557DC1F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
@@ -310,103 +310,103 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.combinetags~", "Projects
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complexconj~", "Projects\Visual_Studio\03_Max_Objects\fl.complexconj~.vcxproj", "{F991E402-7708-4F41-83AA-ED5AE1587583}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complex.conj~", "Projects\Visual_Studio\03_Max_Objects\fl.complex.conj~.vcxproj", "{F991E402-7708-4F41-83AA-ED5AE1587583}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complexcos~", "Projects\Visual_Studio\03_Max_Objects\fl.complexcos~.vcxproj", "{98EAEC47-C7E9-44AA-8953-473CB9400CD0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complex.cos~", "Projects\Visual_Studio\03_Max_Objects\fl.complex.cos~.vcxproj", "{98EAEC47-C7E9-44AA-8953-473CB9400CD0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complexcosh~", "Projects\Visual_Studio\03_Max_Objects\fl.complexcosh~.vcxproj", "{26614B4A-F867-497C-BC50-DC7F4DA20ECF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complex.cosh~", "Projects\Visual_Studio\03_Max_Objects\fl.complex.cosh~.vcxproj", "{26614B4A-F867-497C-BC50-DC7F4DA20ECF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complexdivide~", "Projects\Visual_Studio\03_Max_Objects\fl.complexdivide~.vcxproj", "{568CA6FB-E548-49B4-88AF-11B6D1825EFE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complex.divide~", "Projects\Visual_Studio\03_Max_Objects\fl.complex.divide~.vcxproj", "{568CA6FB-E548-49B4-88AF-11B6D1825EFE}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complexexp~", "Projects\Visual_Studio\03_Max_Objects\fl.complexexp~.vcxproj", "{CEF8067C-7D48-44D8-9796-D594F7915915}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complex.exp~", "Projects\Visual_Studio\03_Max_Objects\fl.complex.exp~.vcxproj", "{CEF8067C-7D48-44D8-9796-D594F7915915}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complexexpr~", "Projects\Visual_Studio\03_Max_Objects\fl.complexexpr~.vcxproj", "{8D8CB5B4-2F4E-4F33-8896-6D35232EA756}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complex.expr~", "Projects\Visual_Studio\03_Max_Objects\fl.complex.expr~.vcxproj", "{8D8CB5B4-2F4E-4F33-8896-6D35232EA756}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complexlog~", "Projects\Visual_Studio\03_Max_Objects\fl.complexlog~.vcxproj", "{6478C07C-FA53-494A-922F-170687D9933E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complex.log~", "Projects\Visual_Studio\03_Max_Objects\fl.complex.log~.vcxproj", "{6478C07C-FA53-494A-922F-170687D9933E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complexlog10~", "Projects\Visual_Studio\03_Max_Objects\fl.complexlog10~.vcxproj", "{6A876A76-95AF-4DF1-983F-A8FE2B9E68C2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complex.log10~", "Projects\Visual_Studio\03_Max_Objects\fl.complex.log10~.vcxproj", "{6A876A76-95AF-4DF1-983F-A8FE2B9E68C2}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complexminus~", "Projects\Visual_Studio\03_Max_Objects\fl.complexminus~.vcxproj", "{73F91272-A472-486A-8B18-3377B4C1EF1F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complex.minus~", "Projects\Visual_Studio\03_Max_Objects\fl.complex.minus~.vcxproj", "{73F91272-A472-486A-8B18-3377B4C1EF1F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complexmultiply~", "Projects\Visual_Studio\03_Max_Objects\fl.complexmultiply~.vcxproj", "{8523B581-22D3-4757-A21A-0EFF7BF736EF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complex.times~", "Projects\Visual_Studio\03_Max_Objects\fl.complex.times~.vcxproj", "{8523B581-22D3-4757-A21A-0EFF7BF736EF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complexplus~", "Projects\Visual_Studio\03_Max_Objects\fl.complexplus~.vcxproj", "{75350E15-0F40-4286-907E-9F8D62BAE402}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complex.plus~", "Projects\Visual_Studio\03_Max_Objects\fl.complex.plus~.vcxproj", "{75350E15-0F40-4286-907E-9F8D62BAE402}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complexpow~", "Projects\Visual_Studio\03_Max_Objects\fl.complexpow~.vcxproj", "{4B5B0C58-494D-4CA5-80AC-E3EBD404E4DC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complex.pow~", "Projects\Visual_Studio\03_Max_Objects\fl.complex.pow~.vcxproj", "{4B5B0C58-494D-4CA5-80AC-E3EBD404E4DC}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complexsin~", "Projects\Visual_Studio\03_Max_Objects\fl.complexsin~.vcxproj", "{8598F63A-62E3-49D1-AD9A-4363E5EAB3A7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complex.sin~", "Projects\Visual_Studio\03_Max_Objects\fl.complex.sin~.vcxproj", "{8598F63A-62E3-49D1-AD9A-4363E5EAB3A7}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complexsinh~", "Projects\Visual_Studio\03_Max_Objects\fl.complexsinh~.vcxproj", "{F7855F1D-23F7-4D6D-9525-C583F38FEE33}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complex.sinh~", "Projects\Visual_Studio\03_Max_Objects\fl.complex.sinh~.vcxproj", "{F7855F1D-23F7-4D6D-9525-C583F38FEE33}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complexsqrt~", "Projects\Visual_Studio\03_Max_Objects\fl.complexsqrt~.vcxproj", "{BA078FD6-A5E4-4291-97DF-D104E3BABE8F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complex.sqrt~", "Projects\Visual_Studio\03_Max_Objects\fl.complex.sqrt~.vcxproj", "{BA078FD6-A5E4-4291-97DF-D104E3BABE8F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complextan~", "Projects\Visual_Studio\03_Max_Objects\fl.complextan~.vcxproj", "{9092BB58-DD66-41D8-B7AD-5E971A615A75}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complex.tan~", "Projects\Visual_Studio\03_Max_Objects\fl.complex.tan~.vcxproj", "{9092BB58-DD66-41D8-B7AD-5E971A615A75}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complextanh~", "Projects\Visual_Studio\03_Max_Objects\fl.complextanh~.vcxproj", "{056877DD-DEA5-4001-B64C-26CC13D347D2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.complex.tanh~", "Projects\Visual_Studio\03_Max_Objects\fl.complex.tanh~.vcxproj", "{056877DD-DEA5-4001-B64C-26CC13D347D2}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
@@ -586,7 +586,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.gaussian~", "Projects\Vi
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.geometricmean~", "Projects\Visual_Studio\03_Max_Objects\fl.geometricmean~.vcxproj", "{497CA7CB-F577-4A4B-8041-3BA64E6F7643}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.geomean~", "Projects\Visual_Studio\03_Max_Objects\fl.geomean~.vcxproj", "{497CA7CB-F577-4A4B-8041-3BA64E6F7643}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
@@ -1000,7 +1000,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.sqrt~", "Projects\Visual
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.standarddeviation~", "Projects\Visual_Studio\03_Max_Objects\fl.standarddeviation~.vcxproj", "{DDC8B41F-2859-4736-B37B-D5A6A8A086AF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.stddev~", "Projects\Visual_Studio\03_Max_Objects\fl.stddev~.vcxproj", "{DDC8B41F-2859-4736-B37B-D5A6A8A086AF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
@@ -1126,13 +1126,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.untag~", "Projects\Visua
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.vmax~", "Projects\Visual_Studio\03_Max_Objects\fl.vmax~.vcxproj", "{015E247D-C084-4879-AADE-5CDDC8A6F693}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.framemax~", "Projects\Visual_Studio\03_Max_Objects\fl.framemax~.vcxproj", "{015E247D-C084-4879-AADE-5CDDC8A6F693}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.vmin~", "Projects\Visual_Studio\03_Max_Objects\fl.vmin~.vcxproj", "{174E3B2A-FEDE-42C3-A8B9-EEC8D783AEB9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fl.framemin~", "Projects\Visual_Studio\03_Max_Objects\fl.framemin~.vcxproj", "{174E3B2A-FEDE-42C3-A8B9-EEC8D783AEB9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{15B7B576-7125-46F8-AFF1-976F8E4685A7} = {15B7B576-7125-46F8-AFF1-976F8E4685A7}
 		{A4E2A0AE-C945-4C8A-BAD6-B40660578BC3} = {A4E2A0AE-C945-4C8A-BAD6-B40660578BC3}
