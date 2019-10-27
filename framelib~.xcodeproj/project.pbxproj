@@ -2339,12 +2339,12 @@
 		B8B32FE520CDA9F700C5FA53 /* FrameLib_Errors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Errors.h; sourceTree = "<group>"; };
 		B8B401A01FB9A305006EE056 /* FrameLib_Complex_Unary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Complex_Unary_Objects.h; sourceTree = "<group>"; };
 		B8B401A11FB9A305006EE056 /* FrameLib_Complex_Unary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Complex_Unary_Template.h; sourceTree = "<group>"; };
-		B8B401B31FB9A8B1006EE056 /* fl.complexcos~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexcos~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B401C61FB9A8BB006EE056 /* fl.complexcosh~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexcosh~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B401D91FB9A8BE006EE056 /* fl.complexsin~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexsin~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B401EC1FB9A8CC006EE056 /* fl.complexsinh~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexsinh~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B401FF1FB9A8D7006EE056 /* fl.complextan~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complextan~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B402121FB9A8E1006EE056 /* fl.complextanh~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complextanh~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B401B31FB9A8B1006EE056 /* fl.complexcos~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexcos~.mxo"; path = "fl.complex.cos~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B401C61FB9A8BB006EE056 /* fl.complexcosh~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexcosh~.mxo"; path = "fl.complex.cosh~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B401D91FB9A8BE006EE056 /* fl.complexsin~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexsin~.mxo"; path = "fl.complex.sin~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B401EC1FB9A8CC006EE056 /* fl.complexsinh~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexsinh~.mxo"; path = "fl.complex.sinh~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B401FF1FB9A8D7006EE056 /* fl.complextan~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complextan~.mxo"; path = "fl.complex.tan~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B402121FB9A8E1006EE056 /* fl.complextanh~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complextanh~.mxo"; path = "fl.complex.tanh~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B4021E1FB9A960006EE056 /* fl.complex.cosh~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.cosh~.cpp"; sourceTree = "<group>"; };
 		B8B4021F1FB9A960006EE056 /* fl.complex.cos~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.cos~.cpp"; sourceTree = "<group>"; };
 		B8B402231FB9A960006EE056 /* fl.complex.exp~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.exp~.cpp"; sourceTree = "<group>"; };
@@ -2356,11 +2356,11 @@
 		B8B4022C1FB9A960006EE056 /* fl.complex.sqrt~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.sqrt~.cpp"; sourceTree = "<group>"; };
 		B8B4022D1FB9A960006EE056 /* fl.complex.tanh~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.tanh~.cpp"; sourceTree = "<group>"; };
 		B8B4022E1FB9A960006EE056 /* fl.complex.tan~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.tan~.cpp"; sourceTree = "<group>"; };
-		B8B4024D1FB9AE69006EE056 /* fl.complexlog10~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexlog10~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B402601FB9AE6C006EE056 /* fl.complexconj~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexconj~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B4024D1FB9AE69006EE056 /* fl.complexlog10~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexlog10~.mxo"; path = "fl.complex.log10~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B402601FB9AE6C006EE056 /* fl.complexconj~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexconj~.mxo"; path = "fl.complex.conj~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B402731FB9AE6F006EE056 /* fl.complex.log~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.log~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B402861FB9AE72006EE056 /* fl.complexexp~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexexp~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B402991FB9AE76006EE056 /* fl.complexsqrt~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexsqrt~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B402861FB9AE72006EE056 /* fl.complexexp~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexexp~.mxo"; path = "fl.complex.exp~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B402991FB9AE76006EE056 /* fl.complexsqrt~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexsqrt~.mxo"; path = "fl.complex.sqrt~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B402A01FB9AF80006EE056 /* FrameLib_Cartopol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Cartopol.h; sourceTree = "<group>"; };
 		B8B402B21FB9B186006EE056 /* fl.cartopol~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.cartopol~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B402C51FB9B18B006EE056 /* fl.poltocar~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.poltocar~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2374,11 +2374,11 @@
 		B8B402D51FB9DF4A006EE056 /* fl.complex.plus~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.plus~.cpp"; sourceTree = "<group>"; };
 		B8B402D61FB9DF4A006EE056 /* fl.complex.pow~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.pow~.cpp"; sourceTree = "<group>"; };
 		B8B402D71FB9DF4A006EE056 /* fl.complex.times~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.times~.cpp"; sourceTree = "<group>"; };
-		B8B402E91FB9DF8B006EE056 /* fl.complexpow~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexpow~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B402FD1FB9E743006EE056 /* fl.complexmultiply~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexmultiply~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B403101FB9E747006EE056 /* fl.complexdivide~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexdivide~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B403231FB9E74E006EE056 /* fl.complexplus~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexplus~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B403361FB9E752006EE056 /* fl.complexminus~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complexminus~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B402E91FB9DF8B006EE056 /* fl.complexpow~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexpow~.mxo"; path = "fl.complex.pow~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B402FD1FB9E743006EE056 /* fl.complexmultiply~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexmultiply~.mxo"; path = "fl.complex.times~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B403101FB9E747006EE056 /* fl.complexdivide~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexdivide~.mxo"; path = "fl.complex.divide~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B403231FB9E74E006EE056 /* fl.complexplus~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexplus~.mxo"; path = "fl.complex.plus~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B403361FB9E752006EE056 /* fl.complexminus~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexminus~.mxo"; path = "fl.complex.minus~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B4C8971F33456A008E5D31 /* fl.now~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.now~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B4C8991F3345A7008E5D31 /* fl.now~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.now~.cpp"; sourceTree = "<group>"; };
 		B8B4C89B1F334614008E5D31 /* FrameLib_Now.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Now.cpp; sourceTree = "<group>"; };
@@ -4727,27 +4727,27 @@
 				B8A70CE119C11303005BA4E3 /* Common */,
 				B8454402230DC0D6000E42DE /* Context */,
 				B857535C1F2E933300478E9F /* Schedulers */,
-				B8B4C8781F334547008E5D31 /* Timing */,
-				B8B233F01FB4933800C18783 /* Time_Smoothing */,
-				B857535B1F2E932700478E9F /* Parameters */,
-				B857535A1F2E931F00478E9F /* Routing */,
-				B88189391FB1D88400FD2E7B /* Streaming */,
-				B8F5A4E11F2A62F100D4777C /* IO */,
-				B8F5A4E51F2AA42200D4777C /* Generators */,
-				B8F5A4E41F2AA3F600D4777C /* Mapping */,
-				B85753591F2E92E300478E9F /* Buffer */,
 				B809BDC519C42CAF00BA41F4 /* Unary */,
 				B805E22419C3ABB6007D8D8B /* Binary */,
 				5AB54BBD2052E95000325C14 /* Ternary */,
-				B8E41AE520C307EB003BBD86 /* Expressions */,
-				B8F83E2719C78D7A00230CD4 /* Vector */,
-				B8A4757119C9DD7F0043DC65 /* Spectral */,
-				B812462119F475B8009833F1 /* Storage */,
-				B85BDDBC19F1C1E300A349C5 /* Filters */,
-				B8F5A4DF1F2A619200D4777C /* Spatial */,
 				B8B402141FB9A960006EE056 /* Complex_Unary */,
 				B8B402CF1FB9DF4A006EE056 /* Complex_Binary */,
+				B85753591F2E92E300478E9F /* Buffer */,
+				B85BDDBC19F1C1E300A349C5 /* Filters */,
+				B8F5A4E51F2AA42200D4777C /* Generators */,
 				B8A1128C2076BD2C000C74FC /* Host_Communication */,
+				B8F5A4E11F2A62F100D4777C /* IO */,
+				B8F5A4E41F2AA3F600D4777C /* Mapping */,
+				B857535B1F2E932700478E9F /* Parameters */,
+				B857535A1F2E931F00478E9F /* Routing */,
+				B8E41AE520C307EB003BBD86 /* Expressions */,
+				B8A4757119C9DD7F0043DC65 /* Spectral */,
+				B8F5A4DF1F2A619200D4777C /* Spatial */,
+				B812462119F475B8009833F1 /* Storage */,
+				B88189391FB1D88400FD2E7B /* Streaming */,
+				B8B4C8781F334547008E5D31 /* Timing */,
+				B8B233F01FB4933800C18783 /* Time_Smoothing */,
+				B8F83E2719C78D7A00230CD4 /* Vector */,
 			);
 			name = "Objects Max";
 			path = FrameLib_Max_Objects;
@@ -4809,27 +4809,27 @@
 			children = (
 				B85753501F2E1ED200478E9F /* Common_Utilities */,
 				B8BDF0591F2D406300264316 /* Schedulers */,
-				B8B4C8771F334536008E5D31 /* Timing */,
-				B847EB401FB4745B00CFA52D /* Time_Smoothing */,
-				B8BDF05C1F2D412900264316 /* Parameters */,
-				B8BDF05D1F2D416000264316 /* Routing */,
-				B89C9B181FB1D8E800ED327E /* Streaming */,
-				B8F5A4E01F2A624900D4777C /* IO */,
-				B8F5A4E21F2AA32700D4777C /* Generators */,
-				B8F5A4E31F2AA3E800D4777C /* Mapping */,
-				B89C46B420777E9100579BE7 /* Buffer */,
 				B85753561F2E209500478E9F /* Unary */,
 				B85753531F2E206F00478E9F /* Binary */,
 				5A3CAB102052E625001082E3 /* Ternary */,
-				B8E41ACE20C3003C003BBD86 /* Expressions */,
-				B85B68D019F26185002D6F1D /* Vector */,
-				B850749619F1BB7C002315F4 /* Spectral */,
-				B8AE692819F459FF0040B4EE /* Storage */,
-				B850749519F1BB61002315F4 /* Filters */,
-				B8BDF05E1F2D426800264316 /* Spatial */,
 				B8B4019F1FB9A305006EE056 /* Complex_Unary */,
 				B8B402CC1FB9C053006EE056 /* Complex_Binary */,
+				B8E41ACE20C3003C003BBD86 /* Expressions */,
+				B89C46B420777E9100579BE7 /* Buffer */,
+				B850749519F1BB61002315F4 /* Filters */,
+				B8F5A4E21F2AA32700D4777C /* Generators */,
 				B8DCDB36207539F5008361FA /* Host_Communication */,
+				B8F5A4E01F2A624900D4777C /* IO */,
+				B8F5A4E31F2AA3E800D4777C /* Mapping */,
+				B8BDF05C1F2D412900264316 /* Parameters */,
+				B8BDF05D1F2D416000264316 /* Routing */,
+				B8BDF05E1F2D426800264316 /* Spatial */,
+				B850749619F1BB7C002315F4 /* Spectral */,
+				B8AE692819F459FF0040B4EE /* Storage */,
+				B89C9B181FB1D8E800ED327E /* Streaming */,
+				B8B4C8771F334536008E5D31 /* Timing */,
+				B847EB401FB4745B00CFA52D /* Time_Smoothing */,
+				B85B68D019F26185002D6F1D /* Vector */,
 			);
 			name = "Objects FrameLib";
 			path = FrameLib_Objects;
