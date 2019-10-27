@@ -205,11 +205,11 @@ namespace impl
     
     struct phase_interpolate
     {
-        phase_interpolate(double phase, double fft_size, bool zero_center)
+        phase_interpolate(double phase, uintptr_t fft_size, bool zero_center)
         {
             // N.B. - induce a delay of -1 sample for anything over linear to avoid wraparound
             
-            const double delay_factor = (phase <= 0.5) ? 0.0 : 1.0 / fft_size;
+            const double delay_factor = (phase <= 0.5) ? 0.0 : 1.0 / static_cast<double>(fft_size);
             
             phase = std::max(0.0, std::min(1.0, phase));
             min_factor = 1.0 - (2.0 * phase);
@@ -230,9 +230,9 @@ namespace impl
     
     struct spike
     {
-        spike(double position, double fft_size)
+        spike(double position, uintptr_t fft_size)
         {
-            spike_constant = ((long double) (2.0 * M_PI)) *  -position / fft_size;
+            spike_constant = ((long double) (2.0 * M_PI)) *  -position / static_cast<double>(fft_size);
         }
         
         template <typename T>
@@ -324,7 +324,7 @@ namespace impl
         r_out[fft_size >> 2] *= 0.5 * scale;
         i_out[fft_size >> 2] = 0.0;
         
-        for (unsigned long i = (fft_size >> 2) + 1; i < (fft_size >> 1); i++)
+        for (uintptr_t i = (fft_size >> 2) + 1; i < (fft_size >> 1); i++)
         {
             r_out[i] = 0.0;
             i_out[i] = 0.0;
