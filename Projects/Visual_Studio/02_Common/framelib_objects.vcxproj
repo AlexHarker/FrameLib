@@ -82,6 +82,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Convolve.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Correlate.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_FFT.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_FIRPhase.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_iFFT.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Multitaper.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Window.h" />
@@ -110,6 +111,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_AccumPoint.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Chop.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Join.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_KernelSmooth.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_MedianFilter.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_NanFilter.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_NonZero.h" />
@@ -171,6 +173,7 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Convolve.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Correlate.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_FFT.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_FIRPhase.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_iFFT.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Multitaper.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Spectral\FrameLib_Window.cpp" />
@@ -194,6 +197,7 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_AccumPoint.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Chop.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Join.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_KernelSmooth.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_MedianFilter.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_NanFilter.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_NonZero.cpp" />
