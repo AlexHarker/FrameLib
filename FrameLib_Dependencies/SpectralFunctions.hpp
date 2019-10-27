@@ -248,7 +248,7 @@ namespace impl
     
     struct delay_calc : private spike
     {
-        delay_calc(double delay, double fft_size) : spike(delay, fft_size) {}
+        delay_calc(double delay, uintptr_t fft_size) : spike(delay, fft_size) {}
         
         template <typename T>
         void operator()(T& r_out, T& i_out, const T& r_in, const T& i_in, uintptr_t i)
