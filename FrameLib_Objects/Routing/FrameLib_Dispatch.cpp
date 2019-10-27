@@ -61,7 +61,9 @@ FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, const FrameLib_Pa
     mParameters.setClip(2, 32);
     mParameters.setInstantiation();
     
+    mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
+    mParameters.setErrorReportingEnabled(true);
     
     mNumIns = mParameters.getInt(kNumIns);
     mNumOuts = mParameters.getInt(kNumOuts);
