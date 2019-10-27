@@ -58,7 +58,7 @@ void FrameLib_FIRPhase::process()
     
     // Get FFT size log 2
     
-    unsigned long FFTSizeLog2 = mProcessor.calc_fft_size_log2(sizeIn);
+    unsigned long FFTSizeLog2 = static_cast<unsigned long>(mProcessor.calc_fft_size_log2(sizeIn));
     unsigned long FFTSize = 1 << FFTSizeLog2;
     sizeOut = FFTSize;
     
