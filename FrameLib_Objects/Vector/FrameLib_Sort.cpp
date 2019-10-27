@@ -10,7 +10,7 @@ FrameLib_Sort::FrameLib_Sort(FrameLib_Context context, const FrameLib_Parameters
     mParameters.addEnumItem(kUp, "up");
     mParameters.addEnumItem(kDown, "down");
     
-    mParameters.addBool(kOutputIndices, "indices_mode");
+    mParameters.addBool(kOutputIndices, "indices", false, 1);
     
     mParameters.set(serialisedParameters);
     
@@ -21,8 +21,9 @@ FrameLib_Sort::FrameLib_Sort(FrameLib_Context context, const FrameLib_Parameters
 
 std::string FrameLib_Sort::objectInfo(bool verbose)
 {
-    return formatInfo("Sorts an input frame in ascending or descending order.",
-                   "Sorts an input frame in ascending or descending order.", verbose);
+    return formatInfo("Sorts an input frame into ascending or descending order. "
+                      "The output can either be the sorted values or the sorted indices, as set by the indices parameter.",
+                      "Sorts an input frame into ascending or descending order.", verbose);
 }
 
 std::string FrameLib_Sort::inputInfo(unsigned long idx, bool verbose)
@@ -30,12 +31,12 @@ std::string FrameLib_Sort::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return "Frames to Sort";
+        return "Input";
 }
 
 std::string FrameLib_Sort::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Sorted Frames";
+    return "Result";
 }
 
 // Parameter Info
@@ -45,6 +46,7 @@ FrameLib_Sort::ParameterInfo FrameLib_Sort::sParamInfo;
 FrameLib_Sort::ParameterInfo::ParameterInfo()
 {
     add("Sets the ordering of the sorted output.");
+    add("Performs the sort on the indices of the original frame, rather than the values.");
 }
 
 // Process

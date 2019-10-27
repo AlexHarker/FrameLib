@@ -13,7 +13,7 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
     mParameters.addInt(kNumIns, "num_ins", 1);
     mParameters.setClip(1, maxNumIns);
     mParameters.setInstantiation();
-    mParameters.addEnum(kEmptyMode, "empty_mode");
+    mParameters.addEnum(kEmptyMode, "empty");
     mParameters.addEnumItem(0, "ignore");
     mParameters.addEnumItem(1, "reset");
     mParameters.setInstantiation();

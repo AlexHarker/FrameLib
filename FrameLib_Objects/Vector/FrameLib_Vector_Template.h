@@ -64,7 +64,7 @@ public:
                        "Calculates the # of the input frame.", getOpString(), verbose);
         else
             return formatInfo("Calculates the # of the input frame: The output is a single value. "
-                              "When the input frame is empty then the output is determined by the empty parameter.",
+                              "When the input frame is empty then the output is determined by the empty_mode parameter.",
                               "Calculates the # of the input frame.", getOpString(), verbose);
     }
     

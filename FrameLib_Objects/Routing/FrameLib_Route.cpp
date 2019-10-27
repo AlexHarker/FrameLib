@@ -73,10 +73,10 @@ std::string FrameLib_Route::objectInfo(bool verbose)
 
 std::string FrameLib_Route::inputInfo(unsigned long idx, bool verbose)
 {
-    if (idx == mNumOuts)
+    if (idx)
         return parameterInputInfo(verbose);
     else
-        return "Input Frames";
+        return "Input";
 }
 
 std::string FrameLib_Route::outputInfo(unsigned long idx, bool verbose)
