@@ -191,9 +191,7 @@ private:
             }
         }
     }
-    
-private:
-    
+        
     // Description (specialise to change description)
     
     const char *getDescriptionString() { return "Binary Operator - No operator info available"; }
