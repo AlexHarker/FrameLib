@@ -10,15 +10,15 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 979.0, 699.0 ],
+		"rect" : [ 89.0, 220.0, 1277.0, 703.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
 		"default_fontface" : 0,
 		"default_fontname" : "Arial",
-		"gridonopen" : 1,
+		"gridonopen" : 2,
 		"gridsize" : [ 15.0, 15.0 ],
-		"gridsnaponopen" : 1,
+		"gridsnaponopen" : 2,
 		"objectsnaponopen" : 1,
 		"statusbarvisible" : 2,
 		"toolbarvisible" : 1,
@@ -37,8 +37,7 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "default",
-		"showrootpatcherontab" : 0,
-		"showontab" : 0,
+		"showontab" : 1,
 		"title" : "Tutorial 4: Converting between FrameLib and Max",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -57,15 +56,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 979.0, 673.0 ],
+						"rect" : [ 0.0, 26.0, 1277.0, 677.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -94,7 +93,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 50.0, 534.0, 65.0 ],
+									"patching_rect" : [ 8.75, 50.0, 534.0, 66.0 ],
 									"text" : "There is an inherent delay incurred with fl.source~ because it has to wait to collect samples. This example demonstrates how you can compensate for this delay, which is useful if you need to synchronise the output of a FrameLib process with some additional outside MSP work."
 								}
 
@@ -107,7 +106,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 463.75, 271.5, 191.0, 50.0 ],
+									"patching_rect" : [ 463.75, 271.5, 191.0, 51.0 ],
 									"text" : "Shift the delay amount to see how incorrect synchronisation affects the output"
 								}
 
@@ -155,7 +154,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 438.5, 364.0, 212.0, 210.0 ],
+									"patching_rect" : [ 438.5, 364.0, 212.0, 216.0 ],
 									"text" : "The fl.source~ object above is always 256 samples 'behind' the original audio stream because it has to collect the amount of samples specified by the /length parameter. This takes time! By delaying the original signal by an amount equal to the /length parameter of the source the two signals are synchronised in time.\n\nWe can verify this by subtracting the two audio streams from each other. They should zero out."
 								}
 
@@ -168,7 +167,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 143.75, 242.0, 152.0, 65.0 ],
+									"patching_rect" : [ 143.75, 242.0, 152.0, 66.0 ],
 									"text" : "Output last 256 samples of audio every time a trigger frame is received (every 256 samples). "
 								}
 
@@ -594,7 +593,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 471.0, 160.0, 104.0, 21.0 ],
+					"patching_rect" : [ 326.0, 160.0, 104.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -623,15 +622,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 979.0, 673.0 ],
+						"rect" : [ 0.0, 26.0, 1277.0, 677.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 13.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -827,7 +826,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 577.0, 160.0, 104.0, 21.0 ],
+					"patching_rect" : [ 432.0, 160.0, 104.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -859,8 +858,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 109.0, 236.0, 281.0, 21.0 ],
-					"text" : "title \"Tutorial 4: Converting between FrameLib and Max\""
+					"patching_rect" : [ 109.0, 236.0, 240.0, 21.0 ],
+					"text" : "title \"Tutorial 4: Getting in and out of FrameLib.\""
 				}
 
 			}
@@ -871,7 +870,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 24.0, 264.0, 62.0, 21.0 ],
+					"patching_rect" : [ 24.0, 270.0, 62.0, 21.0 ],
 					"save" : [ "#N", "thispatcher", ";", "#Q", "end", ";" ],
 					"text" : "thispatcher"
 				}
@@ -906,15 +905,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 979.0, 673.0 ],
+						"rect" : [ 0.0, 26.0, 1277.0, 677.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -1152,7 +1151,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 50.0, 542.0, 65.0 ],
+									"patching_rect" : [ 8.75, 50.0, 542.0, 66.0 ],
 									"text" : "Converting frames to Audio in Max is simple. All that is required is to connect the final node of your FrameLib network to an fl.sink~ object. In the below example, white noise is generated as frames and converted to Max audio. No delay is incurred by converting frames to MSP."
 								}
 
@@ -1453,7 +1452,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 280.0, 160.0, 80.0, 21.0 ],
+					"patching_rect" : [ 135.0, 160.0, 80.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1482,15 +1481,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 979.0, 673.0 ],
+						"rect" : [ 0.0, 26.0, 1277.0, 677.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -1519,7 +1518,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 496.25, 380.0, 109.0, 65.0 ],
+									"patching_rect" : [ 496.25, 380.0, 109.0, 66.0 ],
 									"text" : "Create a frame containing 100 repetitions of the value 1"
 								}
 
@@ -1557,7 +1556,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 156.75, 380.0, 118.5, 65.0 ],
+									"patching_rect" : [ 156.75, 380.0, 118.5, 66.0 ],
 									"text" : "Turn Max control messages into frames every 200 milliseconds"
 								}
 
@@ -1582,7 +1581,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 151.25, 530.0, 147.0, 50.0 ],
+									"patching_rect" : [ 151.25, 530.0, 147.0, 51.0 ],
 									"text" : "This bang matches the top most fl.interval (200 milliseconds)"
 								}
 
@@ -1649,9 +1648,9 @@
 										"default_fontsize" : 12.0,
 										"default_fontface" : 0,
 										"default_fontname" : "Arial",
-										"gridonopen" : 1,
+										"gridonopen" : 2,
 										"gridsize" : [ 15.0, 15.0 ],
-										"gridsnaponopen" : 1,
+										"gridsnaponopen" : 2,
 										"objectsnaponopen" : 1,
 										"statusbarvisible" : 2,
 										"toolbarvisible" : 1,
@@ -1746,7 +1745,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 663.75, 511.0, 191.0, 152.0 ],
+									"patching_rect" : [ 663.75, 511.0, 191.0, 156.0 ],
 									"text" : "These parameters adjust the window type and the internal calculation size for the window. If the size parameter is set to 0 it matches the length of the incoming frame. Observe the quality of the windowed output with different size parameters. A small size demonstrates the difference best."
 								}
 
@@ -2018,7 +2017,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 48.5, 877.0, 195.0 ],
+									"patching_rect" : [ 8.75, 48.5, 877.0, 201.0 ],
 									"text" : "Passing control data from Max/MSP into FrameLib is a two step process. \n1. Connect a Max object to fl.frommax~. \n2. Connect a scheduler to initiate the conversion of the Max control data into a frame in FrameLib.\n \nIn the bottom left example, fl.interval~ is creating trigger frames every 200 milliseconds to fl.frommax~ causing the multislider output to be turned into a frame. This frame is then reversed. Observe the output as the frame is converted to a list through fl.tomax~\n\nAdditionally, fl.frommax~ can form tagged frames to control parameters and allows you to connect Max interfaces to FrameLib networks. In the bottom right example, the fl.frommax~ object has been instantiated in \"params\" mode. This means you can send it messages formatted as \"parameter $1\" to adjust parameters. These messages are still sent to the \"parameter update\" inlet as if the message had been passed through fl.tag~. To modify multiple parameters, simply create more message boxes outside the network.\n\n"
 								}
 
@@ -2520,7 +2519,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 190.0, 160.0, 84.0, 21.0 ],
+					"patching_rect" : [ 620.0, 161.0, 84.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -2549,15 +2548,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 979.0, 673.0 ],
+						"rect" : [ 0.0, 26.0, 1277.0, 677.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -2599,7 +2598,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 100.875, 361.5, 249.0, 137.0 ],
+									"patching_rect" : [ 100.875, 361.5, 249.0, 141.0 ],
 									"text" : "fl.sink~ is an overlap-add buffer. Everytime fl.source~ outputs a frame, they are essentially pasted into this object. If a new frame arrives before the old one has finished happening in time it is simply added to the buffer creating an OVERLAP by ADDING the two frames together. See the Audio From Max (3) for a deeper explanation of how this works."
 								}
 
@@ -2746,7 +2745,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 50.0, 530.25, 79.0 ],
+									"patching_rect" : [ 8.75, 50.0, 530.25, 81.0 ],
 									"text" : "The fl.source~ object is responsible for converting an MSP audio signal into frames in the FrameLib domain. There are two fundamental components to this process. First, an audio signal is connected to the first inlet. Second, a trigger frame is connected to the second inlet. The fl.source~ object has a /length parameter, that dictates how many samples it will convert each time it receives a trigger frame."
 								}
 
@@ -3006,7 +3005,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 365.0, 160.0, 104.0, 21.0 ],
+					"patching_rect" : [ 220.0, 160.0, 104.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -3035,15 +3034,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 979.0, 673.0 ],
+						"rect" : [ 0.0, 26.0, 1277.0, 677.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -3216,7 +3215,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 52.0, 794.0, 65.0 ],
+									"patching_rect" : [ 8.75, 52.0, 794.0, 66.0 ],
 									"text" : "Passing data out of FrameLib as control data is especially easy. All that is required is a fl.tomax~ object. In this example, an fl.interval~ generates five random numbers between 0 and 1 and passes the output frame as a list. FrameLib networks can run at sub-sample rates so it is possible to overload the Max scheduler by converting frames at an unsuitable speed for control-rate messages. Experiment at your own risk by changing the '500 ms' value to something like 0.1 ms."
 								}
 
@@ -3426,7 +3425,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 113.0, 160.0, 72.0, 21.0 ],
+					"patching_rect" : [ 543.0, 161.0, 72.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -3455,15 +3454,15 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 979.0, 673.0 ],
+						"rect" : [ 0.0, 26.0, 1277.0, 677.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -3504,7 +3503,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 3.75, 105.0, 658.0, 79.0 ],
+									"patching_rect" : [ 3.75, 105.0, 658.0, 81.0 ],
 									"text" : "Directly connecting FrameLib objects from Max to FrameLib is not possible. There is a selection of objects that allow control and audio data to pass into FrameLib and to pass back out into the Max domain.\n\nMove through the tabs of this tutorial to understand how control and audio data is allowed in and out of FrameLib."
 								}
 
@@ -3532,7 +3531,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 3.75, 4.0, 797.33332884311676, 59.0 ],
-									"text" : "Converting between FrameLib and Max"
+									"text" : "Getting in and out of FrameLib"
 								}
 
 							}
@@ -3714,69 +3713,69 @@
 			}
 , 			{
 				"name" : "FL_next_tut.maxpat",
-				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/Documents/Max 8/Packages/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fl.explain.ola.maxpat",
-				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/Documents/Max 8/Packages/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.interval~.mxe64",
+				"type" : "mx64"
 			}
 , 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.interval~.mxe64",
+				"type" : "mx64"
 			}
 , 			{
-				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.random~.mxe64",
+				"type" : "mx64"
 			}
 , 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.tomax~.mxe64",
+				"type" : "mx64"
 			}
 , 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.sink~.mxe64",
+				"type" : "mx64"
 			}
 , 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.sink~.mxe64",
+				"type" : "mx64"
 			}
 , 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.source~.mxe64",
+				"type" : "mx64"
 			}
 , 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.source~.mxe64",
+				"type" : "mx64"
 			}
 , 			{
-				"name" : "fl.frommax~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.frommax~.mxe64",
+				"type" : "mx64"
 			}
 , 			{
-				"name" : "fl.reverse~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.reverse~.mxe64",
+				"type" : "mx64"
 			}
 , 			{
-				"name" : "fl.window~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.window~.mxe64",
+				"type" : "mx64"
 			}
 , 			{
-				"name" : "fl.uniform~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.uniform~.mxe64",
+				"type" : "mx64"
 			}
 , 			{
-				"name" : "fl.map~.mxo",
-				"type" : "iLaX"
+				"name" : "fl.map~.mxe64",
+				"type" : "mx64"
 			}
  ],
 		"autosave" : 0,
