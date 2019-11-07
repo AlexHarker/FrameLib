@@ -31,12 +31,12 @@ std::string FrameLib_Split::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return "Frame to Split";
+        return "Input";
 }
 
 std::string FrameLib_Split::outputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Output Frame #", "Output Frame #", idx, verbose);
+    return formatInfo("Output #", "Output #", idx, verbose);
 }
 
 // Parameter Info
