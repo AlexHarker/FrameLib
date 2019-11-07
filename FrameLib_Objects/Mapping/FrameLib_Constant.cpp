@@ -6,10 +6,10 @@ FrameLib_Constant::FrameLib_Constant(FrameLib_Context context, const FrameLib_Pa
 {
     mParameters.addEnum(kConstant, "constant", 0);
     mParameters.addEnumItem(kPI, "pi");
-    mParameters.addEnumItem(kE, "e");
-    mParameters.addEnumItem(kSqrt2, "sqrt2");
     mParameters.addEnumItem(kInvPI, "1/pi");
+    mParameters.addEnumItem(kE, "e");
     mParameters.addEnumItem(kInvE, "1/e");
+    mParameters.addEnumItem(kSqrt2, "sqrt2");
     mParameters.addEnumItem(kInvSqrt2, "1/sqrt2");
     mParameters.addEnumItem(kEpsilon, "epsilon");
     
