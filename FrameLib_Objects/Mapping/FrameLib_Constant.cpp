@@ -67,10 +67,10 @@ void FrameLib_Constant::process()
         switch (static_cast<Constants>(mParameters.getInt(kConstant)))
         {
             case kPI:           value = M_PI;           break;
-            case kE:            value = M_E;            break;
-            case kSqrt2:        value = M_SQRT2;        break;
             case kInvPI:        value = M_1_PI;         break;
+            case kE:            value = M_E;            break;
             case kInvE:         value = 1.0/M_E;        break;
+            case kSqrt2:        value = M_SQRT2;        break;
             case kInvSqrt2:     value = M_SQRT1_2;      break;
             case kEpsilon:      value = std::numeric_limits<double>::epsilon();     break;
         }
