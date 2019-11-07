@@ -12,7 +12,7 @@ FrameLib_Chop::FrameLib_Chop(FrameLib_Context context, const FrameLib_Parameters
     mParameters.addDouble(kSize, "size", 1.0, 1);
     mParameters.setMin(0.0);
     
-    mParameters.addEnum(kUnits, "units", 1);
+    mParameters.addEnum(kUnits, "units", 2);
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kRatio, "ratios");
     
