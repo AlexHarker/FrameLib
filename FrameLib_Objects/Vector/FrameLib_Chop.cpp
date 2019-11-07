@@ -39,7 +39,7 @@ std::string FrameLib_Chop::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return "Input to Chop";
+        return "Input";
 }
 
 std::string FrameLib_Chop::outputInfo(unsigned long idx, bool verbose)
