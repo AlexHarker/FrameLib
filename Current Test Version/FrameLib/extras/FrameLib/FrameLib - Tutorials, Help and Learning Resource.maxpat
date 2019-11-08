@@ -521,8 +521,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -667,13 +667,15 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 14.0,
 									"id" : "obj-17",
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 210.0, 387.0, 23.0 ],
+									"patching_rect" : [ 23.0, 210.0, 387.0, 40.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 240.0, 180.0, 405.0, 23.0 ],
-									"text" : "Familiarising yourself with the FrameLib library.",
+									"presentation_linecount" : 2,
+									"presentation_rect" : [ 240.0, 180.0, 405.0, 40.0 ],
+									"text" : "The basics of FrameLib , such as its timing and patching architecture.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -1215,15 +1217,13 @@
 									"fontsize" : 20.0,
 									"frozen_box_attributes" : [ "presentation_rect" ],
 									"id" : "obj-7",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 23.0, 131.0, 382.0, 54.0 ],
+									"patching_rect" : [ 23.0, 131.0, 382.0, 30.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 2,
 									"presentation_rect" : [ 251.0, 97.0, 422.0, 30.0 ],
-									"text" : "Tutorial 2: Getting to grips with frame based processing.",
+									"text" : "Tutorial 3: FrameLib basics.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -2181,7 +2181,7 @@
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
-									"tabs" : [ "Tutorial 1: An introduction to FrameLib and frame based processing.", "Tutorial 2: Getting to grips with frame based processing.", "Tutorial 3: Key Concepts.", "Tutorial 4: Converting data between FrameLib and Max.", "Tutorial 5: Generator objects.", "Tutorial 6: Building a granular synthesiser in Framelib from scratch." ],
+									"tabs" : [ "Tutorial 1: An introduction to FrameLib and frame based processing.", "Tutorial 2: Getting to grips with frame based processing.", "Tutorial 3: FrameLib basics.", "Tutorial 4: Getting in and out of FrameLib and Max.", "Tutorial 5: Generator objects.", "Tutorial 6: Building a granular synthesiser in Framelib from scratch." ],
 									"truncate" : 0
 								}
 
@@ -2424,8 +2424,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -4186,8 +4186,8 @@
 , 											{
 												"name" : "newobjYellow-1",
 												"default" : 												{
-													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-													"fontsize" : [ 12.059008 ]
+													"fontsize" : [ 12.059008 ],
+													"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 												}
 ,
 												"parentstyle" : "",
@@ -4750,13 +4750,13 @@
 									"presentation_rect" : [ 15.0, 90.0, 209.0, 25.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmax" : 22.0,
 											"parameter_initial" : [ 0 ],
 											"parameter_shortname" : "umenu",
 											"parameter_type" : 3,
 											"parameter_longname" : "umenu",
 											"parameter_initial_enable" : 1,
-											"parameter_invisible" : 1
+											"parameter_invisible" : 1,
+											"parameter_mmax" : 22.0
 										}
 
 									}
@@ -5021,8 +5021,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
