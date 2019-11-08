@@ -126,13 +126,13 @@ class tParseAndBuild:
         self.root = self.tree.getroot()
 
         # create empty master dict and three dicts for different levels of difficulty
-        self.d_skeleton = dict({})
-        self.d_skeleton["Beginner"] = dict({})
-        self.d_skeleton["Intermediate"] = dict({})
-        self.d_skeleton["Advanced"] = dict({})
+        self.d_skeleton = {}
+        self.d_skeleton["Beginner"] = {}
+        self.d_skeleton["Intermediate"] = {}
+        self.d_skeleton["Advanced"] = {}
 
         # create empty inner dict #
-        self.inner_dict = dict({})
+        self.inner_dict = {}
 
         # Tags are the attributes stored inline, the text is the white #
         for child in self.root:
