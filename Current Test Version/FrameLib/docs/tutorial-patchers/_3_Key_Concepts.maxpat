@@ -1101,7 +1101,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 54.0, 735.0, 69.0 ],
+									"patching_rect" : [ 15.0, 54.0, 738.0, 69.0 ],
 									"text" : "Modifiying parameters for a FrameLib object after instantiation is made possible via the 'parameter update' inlet. This inlet receives 'tagged frames' at frame rate to modify the configuration of an object on a per frame basis. Some parameters cannot be changed via the parameter update inlet and these are made more explicit in the help files and through familiarisation. Often, these parameters allocate memory or deal with the creation of inlets for objects where this feature is variable."
 								}
 
@@ -2363,7 +2363,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 768.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4227,7 +4227,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
+						"rect" : [ 34.0, 105.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -4324,7 +4324,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 330.0, 574.0, 100.0 ],
+									"patching_rect" : [ 180.0, 330.0, 577.0, 100.0 ],
 									"text" : "FrameLib objects have variables with state known as parameters. Parameters are referred to by name and are used for values that may not vary over a single frame. However, they make take more than one value, or non-numeric values such as a string referring to a buffer name. The parameter system is used to change object behaviour without requiring an unmanageable number of inlets and to separate configuration of 'mode' type control from normal inputs. The parameter system is a lot like the attribute system, but it operates in the strongly-timed way that FrameLib frames do."
 								}
 
