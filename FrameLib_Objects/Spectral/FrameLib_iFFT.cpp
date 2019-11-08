@@ -94,7 +94,10 @@ void FrameLib_iFFT::process()
     // Sanity Check
     
     if (sizeOut > mProcessor.max_fft_size())
+    {
+        getContext().getGlobal()->reportError(kErrorObject, getProxy(), "requested FFT size (#) larger than maximum FFT size (#)", sizeOut, mProcessor.max_fft_size());
         sizeOut = 0;
+    }
     
     // Calculate output size
     
