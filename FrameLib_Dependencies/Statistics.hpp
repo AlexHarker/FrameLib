@@ -252,8 +252,8 @@ template <class T> double statPDFPercentile(const T input, double centile, size_
     for (size_t i = 0; i < size; i++)
     {
         sum += input[i];
-        if (sum > target)
-            return static_cast<double>(i - ((sum - target) / input[i]));
+        if (sum >= target)
+            return static_cast<double>(1 + i - ((sum - target) / input[i]));
     }
     
     return static_cast<double>(size - 1);
