@@ -8,8 +8,10 @@ FrameLib_FFT::FrameLib_FFT(FrameLib_Context context, const FrameLib_Parameters::
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
-    mParameters.addBool(kNormalise, "normalise", false, 1);
+    
+    mParameters.addBool(kNormalise, "normalise", true, 1);
     mParameters.setInstantiation();
+    
     mParameters.addEnum(kMode, "mode", 2);
     mParameters.addEnumItem(kReal, "real");
     mParameters.addEnumItem(kComplex, "complex");
