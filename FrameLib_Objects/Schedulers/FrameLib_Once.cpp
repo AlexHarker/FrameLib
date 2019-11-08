@@ -11,7 +11,7 @@ std::string FrameLib_Once::objectInfo(bool verbose)
 
 std::string FrameLib_Once::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Synchronisation Input - input is ignored, but can be used for synchronisation purposes", "Synchronisation Input", verbose);
+    return formatInfo("Synchronisation Input - input ignored but provided to aid synchronisation", "Sync Input", verbose);
 }
 
 std::string FrameLib_Once::outputInfo(unsigned long idx, bool verbose)
