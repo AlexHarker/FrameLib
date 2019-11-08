@@ -30,7 +30,7 @@ public:
     }
 
     std::string inputInfo(unsigned long idx, bool verbose) override     { return "Input"; }
-    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Result"; }
+    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Output"; }
 
 private:
     

@@ -106,7 +106,7 @@ public:
 
     std::string outputInfo(unsigned long idx, bool verbose) override
     {
-        return "Result";
+        return "Output";
     }
     
 private:

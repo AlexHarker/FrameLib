@@ -36,7 +36,7 @@ std::string FrameLib_Sort::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Sort::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Result";
+    return "Output";
 }
 
 // Parameter Info

@@ -76,7 +76,7 @@ public:
     }
     
     std::string inputInfo(unsigned long idx, bool verbose) override     { return idx ? "Right Operand" : "Left Operand"; }
-    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Result"; }
+    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Output"; }
     
 private:
     

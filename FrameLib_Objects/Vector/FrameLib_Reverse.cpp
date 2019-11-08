@@ -23,7 +23,7 @@ std::string FrameLib_Reverse::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Reverse::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Result";
+    return "Output";
 }
 
 // Process
