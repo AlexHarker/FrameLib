@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 724.0, 735.0 ],
+		"rect" : [ 34.0, 79.0, 768.0, 720.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -42,287 +42,1478 @@
 		"title" : "Tutorial 3: Key Concepts",
 		"boxes" : [ 			{
 				"box" : 				{
-					"fontface" : 0,
-					"fontsize" : 13.0,
-					"id" : "obj-22",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 1213.200012000000015, 566.40002400000003, 28.0, 21.0 ],
-					"text" : "==",
-					"textjustification" : 1
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontface" : 0,
-					"fontsize" : 13.0,
-					"id" : "obj-6",
+					"id" : "obj-40",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 1243.200012000000015, 566.40002400000003, 171.0, 23.0 ],
-					"text" : "fl.random~ /mode requested"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontface" : 0,
-					"fontsize" : 13.0,
-					"id" : "obj-46",
-					"linecount" : 3,
-					"maxclass" : "comment",
-					"numinlets" : 1,
+					"numinlets" : 0,
 					"numoutlets" : 0,
-					"patching_rect" : [ 833.125, 497.9000244140625, 264.79998779296875, 50.0 ],
-					"text" : "In the \"input\" mode, fl.random~ can OBSERVE the length of the incoming frame and outputs a frame of the same length."
+					"patcher" : 					{
+						"fileversion" : 1,
+						"appversion" : 						{
+							"major" : 8,
+							"minor" : 0,
+							"revision" : 6,
+							"architecture" : "x64",
+							"modernui" : 1
+						}
+,
+						"classnamespace" : "box",
+						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
+						"bglocked" : 0,
+						"openinpresentation" : 0,
+						"default_fontsize" : 12.0,
+						"default_fontface" : 0,
+						"default_fontname" : "Arial",
+						"gridonopen" : 2,
+						"gridsize" : [ 15.0, 15.0 ],
+						"gridsnaponopen" : 2,
+						"objectsnaponopen" : 1,
+						"statusbarvisible" : 2,
+						"toolbarvisible" : 1,
+						"lefttoolbarpinned" : 0,
+						"toptoolbarpinned" : 0,
+						"righttoolbarpinned" : 0,
+						"bottomtoolbarpinned" : 0,
+						"toolbars_unpinned_last_save" : 0,
+						"tallnewobj" : 0,
+						"boxanimatetime" : 200,
+						"enablehscroll" : 1,
+						"enablevscroll" : 1,
+						"devicewidth" : 0.0,
+						"description" : "",
+						"digest" : "",
+						"tags" : "",
+						"style" : "",
+						"subpatcher_template" : "default",
+						"showontab" : 1,
+						"title" : "Types of Frames",
+						"boxes" : [ 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-25",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 166.0, 454.0, 36.0, 14.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-24",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 225.0, 379.0, 36.0, 14.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-23",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 145.0, 319.0, 36.0, 14.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-22",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 85.0, 274.0, 36.0, 14.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-32",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 123.0, 229.0, 36.0, 14.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-21",
+									"linecount" : 4,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 204.0, 431.0, 323.0, 60.0 ],
+									"text" : "fl.ramp~ takes the scalar frame from fl.map~, but it doesn't care what the contents of the frame are and interprets it as a trigger frame. Another option would be to use the output of fl.tag~ as a trigger frame too."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-20",
+									"linecount" : 4,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 263.0, 356.0, 270.0, 60.0 ],
+									"text" : "Take the value from fl.map~ (some number between 1 and 15) and create a 'tagged' frame which will modify the length parameter of fl.ramp~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-19",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 180.0, 315.0, 150.0, 20.0 ],
+									"text" : "Mapped 0 -> 1 to 1 -> 15"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-18",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 123.0, 270.0, 218.0, 20.0 ],
+									"text" : "A single value (scalar) from fl.random~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"candicane2" : [ 0.345098039215686, 0.772549019607843, 0.764705882352941, 1.0 ],
+									"candycane" : 3,
+									"ghostbar" : 100,
+									"id" : "obj-12",
+									"maxclass" : "multislider",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 15.0, 540.0, 165.0, 90.0 ],
+									"setminmax" : [ 0.0, 1.0 ],
+									"size" : 5,
+									"slidercolor" : [ 0.996078431372549, 0.313725490196078, 0.313725490196078, 1.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 495.0, 58.0, 22.0 ],
+									"text" : "fl.tomax~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-10",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 450.0, 149.0, 22.0 ],
+									"text" : "fl.ramp~ /scale normalised"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-9",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 145.0, 375.0, 78.0, 22.0 ],
+									"text" : "fl.tag~ length"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-8",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 315.0, 128.0, 22.0 ],
+									"text" : "fl.map~ linear 0 1 1 15"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-7",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 161.0, 225.0, 345.0, 20.0 ],
+									"text" : "Zero length frame (trigger frame) from fl.interval~ (a scheduler)"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-5",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 225.0, 106.0, 22.0 ],
+									"text" : "fl.interval~ 500 ms"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 270.0, 66.0, 22.0 ],
+									"text" : "fl.random~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-77",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 705.0, 630.0, 45.0, 45.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-26",
+									"linecount" : 10,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 60.0, 735.0, 141.0 ],
+									"text" : "The inputs and ouputs to FrameLib objects are 'frames'. There are two basic types of frames in FrameLib. \n\nThe first is the most common and consists of a vector of numeric values. The length of this vector can andy length from zero upwards, so a scalar is simply a single valued frame of length 1. A frame with no values (zero length) is used as a trigger message, and is analogous to the bang message in Max.\n\nThe second type of frame is a 'tagged' frame. This is used primarily to transfer or set parameter values in FrameLib. A single frame can contain any number of tags (or parameter names) followed by their values. This allows you set multiple parameters with a single frame. There are methods for concatenating multiple tagged frames into a single frame containing many parameters and assocated values so it is never necessary for an object to have more than one parameter update input."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 1,
+									"fontname" : "Lato Regular",
+									"fontsize" : 20.0,
+									"id" : "obj-1",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 15.0, 416.0, 30.0 ],
+									"text" : "Types of Frames"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"border" : 2.0,
+									"id" : "obj-49",
+									"linecolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 46.0, 524.700012000000015, 5.0 ]
+								}
+
+							}
+ ],
+						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-11", 0 ],
+									"source" : [ "obj-10", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-12", 0 ],
+									"source" : [ "obj-11", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-8", 0 ],
+									"source" : [ "obj-4", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"source" : [ "obj-5", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-10", 0 ],
+									"order" : 1,
+									"source" : [ "obj-8", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-9", 0 ],
+									"order" : 0,
+									"source" : [ "obj-8", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-10", 1 ],
+									"source" : [ "obj-9", 0 ]
+								}
+
+							}
+ ],
+						"styles" : [ 							{
+								"name" : "AudioStatus_Menu",
+								"default" : 								{
+									"bgfillcolor" : 									{
+										"type" : "color",
+										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
+										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
+										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+										"angle" : 270.0,
+										"proportion" : 0.39,
+										"autogradient" : 0
+									}
+
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjBlue-1",
+								"default" : 								{
+									"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjBrown-1",
+								"default" : 								{
+									"accentcolor" : [ 0.654902, 0.572549, 0.376471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjGreen-1",
+								"default" : 								{
+									"accentcolor" : [ 0.0, 0.533333, 0.168627, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjRed-1",
+								"default" : 								{
+									"accentcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjYellow-1",
+								"default" : 								{
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "numberGold-1",
+								"default" : 								{
+									"accentcolor" : [ 0.764706, 0.592157, 0.101961, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "panelViolet",
+								"default" : 								{
+									"bgfillcolor" : 									{
+										"type" : "color",
+										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
+										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
+										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+										"angle" : 270.0,
+										"proportion" : 0.39,
+										"autogradient" : 0
+									}
+
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+ ]
+					}
+,
+					"patching_rect" : [ 120.0, 15.0, 82.0, 21.0 ],
+					"saved_object_attributes" : 					{
+						"description" : "",
+						"digest" : "",
+						"globalpatchername" : "",
+						"tags" : ""
+					}
+,
+					"text" : "p Frame Types"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"fontface" : 0,
-					"fontsize" : 13.0,
-					"id" : "obj-44",
-					"linecount" : 5,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 1164.700012000000015, 483.4000244140625, 283.0, 79.0 ],
-					"text" : "By default fl.random~ is created in \"requested\" mode. When it receives the frame from the top most fl.random~, it generates a frame set by its own /length parameter . See point 4 and how the \"input\" mode differs."
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"candycane" : 5,
-					"ghostbar" : 50,
-					"id" : "obj-25",
-					"maxclass" : "multislider",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 833.125, 622.40002400000003, 157.75, 51.0 ],
-					"setminmax" : [ 0.0, 1.0 ],
-					"size" : 5
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontsize" : 13.0,
-					"id" : "obj-29",
+					"id" : "obj-32",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 833.125, 595.0, 64.0, 23.0 ],
-					"text" : "fl.tomax~"
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patcher" : 					{
+						"fileversion" : 1,
+						"appversion" : 						{
+							"major" : 8,
+							"minor" : 0,
+							"revision" : 6,
+							"architecture" : "x64",
+							"modernui" : 1
+						}
+,
+						"classnamespace" : "box",
+						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
+						"bglocked" : 0,
+						"openinpresentation" : 0,
+						"default_fontsize" : 12.0,
+						"default_fontface" : 0,
+						"default_fontname" : "Arial",
+						"gridonopen" : 2,
+						"gridsize" : [ 15.0, 15.0 ],
+						"gridsnaponopen" : 2,
+						"objectsnaponopen" : 1,
+						"statusbarvisible" : 2,
+						"toolbarvisible" : 1,
+						"lefttoolbarpinned" : 0,
+						"toptoolbarpinned" : 0,
+						"righttoolbarpinned" : 0,
+						"bottomtoolbarpinned" : 0,
+						"toolbars_unpinned_last_save" : 0,
+						"tallnewobj" : 0,
+						"boxanimatetime" : 200,
+						"enablehscroll" : 1,
+						"enablevscroll" : 1,
+						"devicewidth" : 0.0,
+						"description" : "",
+						"digest" : "",
+						"tags" : "",
+						"style" : "",
+						"subpatcher_template" : "default",
+						"showontab" : 1,
+						"title" : "Fixed Inputs",
+						"boxes" : [ 							{
+								"box" : 								{
+									"format" : 6,
+									"id" : "obj-21",
+									"maxclass" : "flonum",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "bang" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 150.0, 420.0, 50.0, 22.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-18",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 375.0, 58.0, 22.0 ],
+									"text" : "fl.tomax~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"format" : 6,
+									"id" : "obj-16",
+									"maxclass" : "flonum",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "bang" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 15.0, 420.0, 58.0, 22.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-14",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 285.0, 75.0, 22.0 ],
+									"text" : "fl.register~ 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-12",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 225.0, 113.0, 22.0 ],
+									"text" : "fl.interval~ 1000 ms"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 330.0, 96.0, 22.0 ],
+									"text" : "fl.divide~ [2] 100"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-10",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 255.0, 285.0, 75.0, 22.0 ],
+									"text" : "fl.register~ 2"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-7",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 150.0, 375.0, 58.0, 22.0 ],
+									"text" : "fl.tomax~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-6",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 150.0, 330.0, 124.0, 22.0 ],
+									"text" : "fl.times~ [1] 2.3"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 305.5, 420.0, 88.5, 22.0 ],
+									"text" : "103. 104. 105."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-2",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 375.0, 375.0, 58.0, 22.0 ],
+									"text" : "fl.tomax~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 375.0, 330.0, 87.0, 22.0 ],
+									"text" : "fl.plus~ [2] 100"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"border" : 2.0,
+									"id" : "obj-24",
+									"linecolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 47.0, 530.25, 5.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 1,
+									"fontname" : "Lato Regular",
+									"fontsize" : 20.0,
+									"id" : "obj-23",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 15.0, 422.0, 30.0 ],
+									"text" : "Fixed Inputs"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-17",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 375.0, 285.0, 112.0, 22.0 ],
+									"text" : "fl.register~ [2] 3 4 5"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "Arial",
+									"fontsize" : 13.0,
+									"id" : "obj-13",
+									"linecount" : 9,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 60.0, 735.0, 137.0 ],
+									"text" : "FrameLib objects in Max support configuration of fixed numeric values at object instantation that are used for any subsequent calculations, rather than values updated at frame rate. The simplest example is with the binary operators which allow you to type the value of either input in as one or more arguments to the object. This directly mimics the behaviour of Max objects.\n\nIf you need to set a specific input, there is a notation designed for this:\n\n[input number] <value(s)>\n\nExamples follow below."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-77",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 705.0, 630.0, 45.0, 45.0 ]
+								}
+
+							}
+ ],
+						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-2", 0 ],
+									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-6", 1 ],
+									"source" : [ "obj-10", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-18", 0 ],
+									"source" : [ "obj-11", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-10", 0 ],
+									"midpoints" : [ 24.5, 270.0, 264.5, 270.0 ],
+									"order" : 1,
+									"source" : [ "obj-12", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-14", 0 ],
+									"midpoints" : [ 24.5, 249.0, 24.5, 249.0 ],
+									"order" : 2,
+									"source" : [ "obj-12", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-17", 0 ],
+									"midpoints" : [ 24.5, 270.0, 384.5, 270.0 ],
+									"order" : 0,
+									"source" : [ "obj-12", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-11", 0 ],
+									"source" : [ "obj-14", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-17", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-16", 0 ],
+									"source" : [ "obj-18", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 1 ],
+									"source" : [ "obj-2", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-7", 0 ],
+									"source" : [ "obj-6", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-21", 0 ],
+									"source" : [ "obj-7", 0 ]
+								}
+
+							}
+ ],
+						"styles" : [ 							{
+								"name" : "AudioStatus_Menu",
+								"default" : 								{
+									"bgfillcolor" : 									{
+										"type" : "color",
+										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
+										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
+										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+										"angle" : 270.0,
+										"proportion" : 0.39,
+										"autogradient" : 0
+									}
+
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjBlue-1",
+								"default" : 								{
+									"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjBrown-1",
+								"default" : 								{
+									"accentcolor" : [ 0.654902, 0.572549, 0.376471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjGreen-1",
+								"default" : 								{
+									"accentcolor" : [ 0.0, 0.533333, 0.168627, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjRed-1",
+								"default" : 								{
+									"accentcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjYellow-1",
+								"default" : 								{
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "numberGold-1",
+								"default" : 								{
+									"accentcolor" : [ 0.764706, 0.592157, 0.101961, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "panelViolet",
+								"default" : 								{
+									"bgfillcolor" : 									{
+										"type" : "color",
+										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
+										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
+										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+										"angle" : 270.0,
+										"proportion" : 0.39,
+										"autogradient" : 0
+									}
+
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+ ]
+					}
+,
+					"patching_rect" : [ 467.5, 15.0, 78.0, 21.0 ],
+					"saved_object_attributes" : 					{
+						"description" : "",
+						"digest" : "",
+						"globalpatchername" : "",
+						"tags" : ""
+					}
+,
+					"text" : "p Fixed Inputs"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"fontsize" : 13.0,
-					"id" : "obj-31",
+					"id" : "obj-28",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 833.125, 566.40002400000003, 145.0, 23.0 ],
-					"text" : "fl.random~ /mode input"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontface" : 1,
-					"fontsize" : 20.0,
-					"id" : "obj-41",
-					"maxclass" : "comment",
-					"numinlets" : 1,
+					"numinlets" : 0,
 					"numoutlets" : 0,
-					"patching_rect" : [ 660.0, 240.0, 456.0, 29.0 ],
-					"text" : "A basic example:"
-				}
+					"patcher" : 					{
+						"fileversion" : 1,
+						"appversion" : 						{
+							"major" : 8,
+							"minor" : 0,
+							"revision" : 6,
+							"architecture" : "x64",
+							"modernui" : 1
+						}
+,
+						"classnamespace" : "box",
+						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
+						"bglocked" : 0,
+						"openinpresentation" : 0,
+						"default_fontsize" : 12.0,
+						"default_fontface" : 0,
+						"default_fontname" : "Arial",
+						"gridonopen" : 2,
+						"gridsize" : [ 15.0, 15.0 ],
+						"gridsnaponopen" : 2,
+						"objectsnaponopen" : 1,
+						"statusbarvisible" : 2,
+						"toolbarvisible" : 1,
+						"lefttoolbarpinned" : 0,
+						"toptoolbarpinned" : 0,
+						"righttoolbarpinned" : 0,
+						"bottomtoolbarpinned" : 0,
+						"toolbars_unpinned_last_save" : 0,
+						"tallnewobj" : 0,
+						"boxanimatetime" : 200,
+						"enablehscroll" : 1,
+						"enablevscroll" : 1,
+						"devicewidth" : 0.0,
+						"description" : "",
+						"digest" : "",
+						"tags" : "",
+						"style" : "",
+						"subpatcher_template" : "default",
+						"showontab" : 1,
+						"title" : "Parameters and Tagging",
+						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-77",
+									"local" : 1,
+									"maxclass" : "ezdac~",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 705.0, 630.0, 45.0, 45.0 ]
+								}
 
-			}
-, 			{
-				"box" : 				{
-					"border" : 2.0,
-					"id" : "obj-42",
-					"linecolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
-					"maxclass" : "live.line",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 660.0, 271.0, 530.25, 5.0 ]
-				}
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 13.0,
+									"id" : "obj-52",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 495.0, 64.0, 23.0 ],
+									"text" : "fl.tomax~"
+								}
 
-			}
-, 			{
-				"box" : 				{
-					"fontsize" : 13.0,
-					"id" : "obj-18",
-					"linecount" : 5,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 692.75, 383.0, 411.0, 79.0 ],
-					"text" : "The frame travelling along the black patch cable containing 5 floating pointing numbers acts as a trigger frame for the fl.random~ object below. We can see that the object has \"/mode input\" as a parameter. This means that it will output a frame as long as the trigger frame that it receives. Many objects work like this as you will see."
-				}
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 13.0,
+									"id" : "obj-39",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 450.0, 72.0, 23.0 ],
+									"text" : "fl.random~"
+								}
 
-			}
-, 			{
-				"box" : 				{
-					"candycane" : 5,
-					"ghostbar" : 50,
-					"id" : "obj-17",
-					"maxclass" : "multislider",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 1138.200012000000015, 622.40002400000003, 157.75, 51.0 ],
-					"setminmax" : [ 0.0, 1.0 ]
-				}
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-32",
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 138.0, 169.5, 36.0, 14.0 ]
+								}
 
-			}
-, 			{
-				"box" : 				{
-					"fontface" : 0,
-					"fontsize" : 13.0,
-					"id" : "obj-16",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 1138.200012000000015, 595.0, 64.0, 23.0 ],
-					"text" : "fl.tomax~"
-				}
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 13.0,
+									"id" : "obj-33",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 172.0, 165.0, 444.75, 21.0 ],
+									"text" : "fl.interval~ is a scheduler. Here it is outputting a trigger frame every 200 ms."
+								}
 
-			}
-, 			{
-				"box" : 				{
-					"fontface" : 0,
-					"fontsize" : 13.0,
-					"id" : "obj-15",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 1138.200012000000015, 566.40002400000003, 73.0, 23.0 ],
-					"text" : "fl.random~"
-				}
+							}
+, 							{
+								"box" : 								{
+									"candycane" : 5,
+									"ghostbar" : 50,
+									"id" : "obj-34",
+									"maxclass" : "multislider",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 15.0, 540.0, 157.75, 51.0 ],
+									"setminmax" : [ 0.0, 1.0 ],
+									"size" : 6
+								}
 
-			}
-, 			{
-				"box" : 				{
-					"arrows" : 1,
-					"border" : 4.0,
-					"id" : "obj-14",
-					"justification" : 1,
-					"maxclass" : "live.line",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 788.0, 335.5, 53.125, 16.0 ]
-				}
+							}
+, 							{
+								"box" : 								{
+									"color" : [ 0.0, 0.0, 0.0, 1.0 ],
+									"fontsize" : 13.0,
+									"id" : "obj-37",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 165.0, 114.0, 23.0 ],
+									"text" : "fl.interval~ 200 ms"
+								}
 
-			}
-, 			{
-				"box" : 				{
-					"fontsize" : 13.0,
-					"id" : "obj-13",
-					"linecount" : 2,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 843.125, 326.5, 319.0, 36.0 ],
-					"text" : "fl.random~ generates a frame of random numbers between 0 and 1 at a specified length (set by /length)."
-				}
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "Arial",
+									"fontsize" : 13.0,
+									"id" : "obj-18",
+									"linecount" : 5,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 54.0, 585.0, 79.0 ],
+									"text" : "Modifiying parameters for a FrameLib object after instantiation is made possible via the 'parameter update' inlet. This inlet receives 'tagged frames' at frame rate to modify the configuration of an object on a per frame basis. Some parameters cannot be changed via the parameter update inlet and these are made more explicit in the help files and through familiarisation. Often, these parameters allocate memory or deal with the creation of inlets for objects where this feature is variable."
+								}
 
-			}
-, 			{
-				"box" : 				{
-					"arrows" : 1,
-					"border" : 4.0,
-					"id" : "obj-12",
-					"maxclass" : "live.line",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 764.625, 286.5, 53.125, 16.0 ]
-				}
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 1,
+									"fontname" : "Lato Regular",
+									"fontsize" : 20.0,
+									"id" : "obj-1",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 15.0, 422.0, 30.0 ],
+									"text" : "Parameters in FrameLib"
+								}
 
-			}
-, 			{
-				"box" : 				{
-					"fontsize" : 13.0,
-					"id" : "obj-7",
-					"linecount" : 2,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 819.75, 275.5, 274.875, 36.0 ],
-					"text" : "fl.interval~ is a scheduler. Here it is outputting an empty trigger frame every 2048 samples."
-				}
+							}
+, 							{
+								"box" : 								{
+									"border" : 2.0,
+									"id" : "obj-49",
+									"linecolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 46.0, 530.25, 5.0 ]
+								}
 
-			}
-, 			{
-				"box" : 				{
-					"candycane" : 5,
-					"ghostbar" : 50,
-					"id" : "obj-8",
-					"maxclass" : "multislider",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 660.0, 622.40002400000003, 157.75, 51.0 ],
-					"setminmax" : [ 0.0, 1.0 ],
-					"size" : 5
-				}
+							}
+, 							{
+								"box" : 								{
+									"background" : 1,
+									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
+									"fontface" : 1,
+									"hint" : "",
+									"id" : "obj-3",
+									"ignoreclick" : 1,
+									"legacytextcolor" : 1,
+									"maxclass" : "textbutton",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "int" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 618.75, 165.0, 20.0, 20.0 ],
+									"rounded" : 60.0,
+									"text" : "1",
+									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
+								}
 
-			}
-, 			{
-				"box" : 				{
-					"fontsize" : 13.0,
-					"id" : "obj-19",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 660.0, 595.0, 64.0, 23.0 ],
-					"text" : "fl.tomax~"
-				}
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-7",
+									"justification" : 1,
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 153.0, 404.999999999999943, 44.0, 14.0 ]
+								}
 
-			}
-, 			{
-				"box" : 				{
-					"fontsize" : 13.0,
-					"id" : "obj-21",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 660.0, 332.0, 126.0, 23.0 ],
-					"text" : "fl.random~ /length 5"
-				}
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 2,
+									"fontsize" : 13.0,
+									"id" : "obj-8",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 199.0, 400.5, 261.0, 21.0 ],
+									"text" : "Tag with length parameter (remember this!)",
+									"textcolor" : [ 0.784313976764679, 0.145098000764847, 0.023529000580311, 1.0 ]
+								}
 
-			}
-, 			{
-				"box" : 				{
-					"color" : [ 0.0, 0.0, 0.0, 1.0 ],
-					"fontsize" : 13.0,
-					"id" : "obj-23",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 660.0, 283.0, 101.0, 23.0 ],
-					"text" : "fl.interval~ 2048"
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-5",
+									"justification" : 1,
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 128.75, 359.999999999999943, 44.0, 14.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 13.0,
+									"id" : "obj-6",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 173.75, 356.499999999999943, 158.0, 21.0 ],
+									"text" : "Round to nearest integer"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-9",
+									"justification" : 1,
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 134.0, 314.999999999999943, 44.0, 14.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 13.0,
+									"id" : "obj-4",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 179.0, 310.499999999999943, 214.0, 21.0 ],
+									"text" : "Make sure no zero length frames"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-10",
+									"justification" : 1,
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 145.0, 269.999999999999943, 44.0, 14.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 13.0,
+									"id" : "obj-2",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 190.0, 265.499999999999943, 214.0, 21.0 ],
+									"text" : "Scale between 0 and 20"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"arrows" : 1,
+									"border" : 4.0,
+									"id" : "obj-11",
+									"justification" : 1,
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 145.0, 225.0, 44.0, 14.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 13.0,
+									"id" : "obj-12",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 190.0, 220.5, 214.0, 21.0 ],
+									"text" : "Random numbers between 0 and 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 13.0,
+									"id" : "obj-51",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 68.0, 310.5, 61.0, 23.0 ],
+									"text" : "fl.plus~ 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 13.0,
+									"id" : "obj-46",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 68.0, 355.5, 59.0, 23.0 ],
+									"text" : "fl.round~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 13.0,
+									"id" : "obj-45",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 68.0, 265.5, 75.0, 23.0 ],
+									"text" : "fl.times~ 20"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 13.0,
+									"id" : "obj-44",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 68.0, 220.5, 70.0, 23.0 ],
+									"text" : "fl.random~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 13.0,
+									"id" : "obj-40",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 68.0, 400.5, 83.0, 23.0 ],
+									"text" : "fl.tag~ length"
+								}
+
+							}
+ ],
+						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-39", 0 ],
+									"order" : 1,
+									"source" : [ "obj-37", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-44", 0 ],
+									"order" : 0,
+									"source" : [ "obj-37", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-52", 0 ],
+									"source" : [ "obj-39", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-39", 1 ],
+									"source" : [ "obj-40", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-45", 0 ],
+									"source" : [ "obj-44", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-51", 0 ],
+									"source" : [ "obj-45", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-40", 0 ],
+									"source" : [ "obj-46", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-46", 0 ],
+									"source" : [ "obj-51", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-34", 0 ],
+									"source" : [ "obj-52", 0 ]
+								}
+
+							}
+ ],
+						"styles" : [ 							{
+								"name" : "AudioStatus_Menu",
+								"default" : 								{
+									"bgfillcolor" : 									{
+										"type" : "color",
+										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
+										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
+										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+										"angle" : 270.0,
+										"proportion" : 0.39,
+										"autogradient" : 0
+									}
+
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjBlue-1",
+								"default" : 								{
+									"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjBrown-1",
+								"default" : 								{
+									"accentcolor" : [ 0.654902, 0.572549, 0.376471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjGreen-1",
+								"default" : 								{
+									"accentcolor" : [ 0.0, 0.533333, 0.168627, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjRed-1",
+								"default" : 								{
+									"accentcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjYellow-1",
+								"default" : 								{
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "numberGold-1",
+								"default" : 								{
+									"accentcolor" : [ 0.764706, 0.592157, 0.101961, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "panelViolet",
+								"default" : 								{
+									"bgfillcolor" : 									{
+										"type" : "color",
+										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
+										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
+										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+										"angle" : 270.0,
+										"proportion" : 0.39,
+										"autogradient" : 0
+									}
+
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+ ]
+					}
+,
+					"patching_rect" : [ 552.666666666666629, 15.0, 139.0, 21.0 ],
+					"saved_object_attributes" : 					{
+						"description" : "",
+						"digest" : "",
+						"globalpatchername" : "",
+						"tags" : ""
+					}
+,
+					"text" : "p Parameters and Tagging"
 				}
 
 			}
@@ -343,7 +1534,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 724.0, 709.0 ],
+						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -374,12 +1565,23 @@
 						"title" : "Multiple Tags",
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-77",
+									"id" : "obj-16",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 555.0, 35.0, 22.0 ],
+									"text" : "dac~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-5",
 									"local" : 1,
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 585.0, 45.0, 45.0 ]
+									"patching_rect" : [ 705.0, 630.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -390,7 +1592,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 550.0, 47.0, 22.0 ],
+									"patching_rect" : [ 15.0, 520.0, 47.0, 22.0 ],
 									"text" : "*~ 0.35"
 								}
 
@@ -403,7 +1605,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 380.0, 392.5, 217.0, 50.0 ],
+									"patching_rect" : [ 380.0, 362.5, 217.0, 50.0 ],
 									"text" : "Two values are tagged separataely with fl.tag~ and combined with fl.combinetags~."
 								}
 
@@ -415,7 +1617,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 256.0, 332.0, 334.0, 21.0 ],
+									"patching_rect" : [ 256.0, 302.0, 334.0, 21.0 ],
 									"text" : "Generate some random values to be set as parameters"
 								}
 
@@ -427,7 +1629,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 174.625, 214.0, 211.0, 21.0 ],
+									"patching_rect" : [ 174.625, 184.0, 211.0, 21.0 ],
 									"text" : "Make some pink noise into frames"
 								}
 
@@ -598,7 +1800,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 118.0, 330.0, 136.0, 23.0 ],
+									"patching_rect" : [ 118.0, 300.0, 136.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -618,7 +1820,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 514.0, 49.0, 23.0 ],
+									"patching_rect" : [ 15.0, 484.0, 49.0, 23.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -631,7 +1833,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 235.0, 390.0, 80.0, 23.0 ],
+									"patching_rect" : [ 235.0, 360.0, 80.0, 23.0 ],
 									"text" : "fl.tag~ reson"
 								}
 
@@ -644,7 +1846,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 118.0, 421.0, 136.0, 23.0 ],
+									"patching_rect" : [ 118.0, 391.0, 136.0, 23.0 ],
 									"text" : "fl.combinetags~ 2"
 								}
 
@@ -657,7 +1859,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 118.0, 390.0, 70.0, 23.0 ],
+									"patching_rect" : [ 118.0, 360.0, 70.0, 23.0 ],
 									"text" : "fl.tag~ freq"
 								}
 
@@ -670,7 +1872,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 480.0, 122.0, 23.0 ],
+									"patching_rect" : [ 15.0, 450.0, 122.0, 23.0 ],
 									"text" : "fl.0dfsvf~ /mode bpf"
 								}
 
@@ -680,12 +1882,12 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 13.0,
 									"id" : "obj-18",
-									"linecount" : 5,
+									"linecount" : 3,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 53.0, 597.0, 84.0 ],
-									"text" : "FrameLib objects only accept one connection to every inlet (with the exception of fl.frommax~). There is only one 'parameter update' inlet on each FrameLib object which might seem problematic if you want to control multiple parameters using a number of fl.tag objects.\n\nBelow shows some methods of solving this problem."
+									"patching_rect" : [ 15.0, 53.0, 597.0, 53.0 ],
+									"text" : "FrameLib objects only accept one connection to every inlet (with the exception of fl.frommax~). There is a maximum of one 'paramaeter update' inlet per FrameLib object, and so tagged frames must be concatenated prior to updating the object's configuration."
 								}
 
 							}
@@ -771,7 +1973,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 385.625, 215.0, 20.0, 20.0 ],
+									"patching_rect" : [ 385.625, 185.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "1",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -790,7 +1992,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 110.0, 383.5, 268.0, 68.0 ],
+									"patching_rect" : [ 110.0, 353.5, 268.0, 68.0 ],
 									"proportion" : 0.5
 								}
 
@@ -803,7 +2005,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 231.0, 102.0, 23.0 ],
+									"patching_rect" : [ 15.0, 201.0, 102.0, 23.0 ],
 									"text" : "fl.window~ hann"
 								}
 
@@ -820,7 +2022,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 10.0, 142.0, 165.0, 165.0 ],
+									"patching_rect" : [ 10.0, 112.0, 165.0, 165.0 ],
 									"proportion" : 0.5
 								}
 
@@ -833,7 +2035,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 276.0, 79.0, 23.0 ],
+									"patching_rect" : [ 15.0, 246.0, 79.0, 23.0 ],
 									"text" : "fl.times~ 0.5"
 								}
 
@@ -846,7 +2048,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 15.0, 150.0, 40.0, 23.0 ],
+									"patching_rect" : [ 15.0, 120.0, 40.0, 23.0 ],
 									"text" : "pink~"
 								}
 
@@ -859,7 +2061,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 75.5, 150.0, 93.0, 23.0 ],
+									"patching_rect" : [ 75.5, 120.0, 93.0, 23.0 ],
 									"text" : "fl.interval~ 512"
 								}
 
@@ -872,7 +2074,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 192.0, 140.0, 23.0 ],
+									"patching_rect" : [ 15.0, 162.0, 140.0, 23.0 ],
 									"text" : "fl.source~ /length 1024"
 								}
 
@@ -945,7 +2147,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-77", 1 ],
+									"destination" : [ "obj-16", 1 ],
 									"order" : 0,
 									"source" : [ "obj-4", 0 ]
 								}
@@ -953,7 +2155,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-77", 0 ],
+									"destination" : [ "obj-16", 0 ],
 									"order" : 1,
 									"source" : [ "obj-4", 0 ]
 								}
@@ -1045,8 +2247,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1082,7 +2284,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 391.0, 582.0, 94.0, 21.0 ],
+					"patching_rect" : [ 698.833333333333258, 15.0, 94.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1101,7 +2303,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 106.0, 607.0, 54.0, 21.0 ],
+					"patching_rect" : [ 105.0, 60.0, 54.0, 21.0 ],
 					"text" : "loadbang"
 				}
 
@@ -1113,7 +2315,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 106.0, 639.0, 157.0, 21.0 ],
+					"patching_rect" : [ 105.0, 92.0, 157.0, 21.0 ],
 					"text" : "title \"Tutorial 3: Key Concepts\""
 				}
 
@@ -1125,7 +2327,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 21.0, 681.0, 62.0, 21.0 ],
+					"patching_rect" : [ 15.0, 134.0, 62.0, 21.0 ],
 					"save" : [ "#N", "thispatcher", ";", "#Q", "end", ";" ],
 					"text" : "thispatcher"
 				}
@@ -1138,7 +2340,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 21.0, 607.0, 76.0, 21.0 ],
+					"patching_rect" : [ 15.0, 60.0, 76.0, 21.0 ],
 					"text" : "r wclose_msg"
 				}
 
@@ -1160,7 +2362,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 724.0, 709.0 ],
+						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1560,7 +2762,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 350.058837890625, 81.0, 25.0 ],
+									"patching_rect" : [ 15.0, 345.0, 81.0, 25.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -1706,8 +2908,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1743,7 +2945,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 491.0, 582.0, 100.0, 21.0 ],
+					"patching_rect" : [ 799.999999999999886, 15.0, 100.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1772,7 +2974,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 724.0, 709.0 ],
+						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1800,454 +3002,57 @@
 						"style" : "",
 						"subpatcher_template" : "default",
 						"showontab" : 1,
-						"title" : "Parameters and Tagging",
+						"title" : "Setting Parameters",
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-77",
-									"local" : 1,
-									"maxclass" : "ezdac~",
-									"numinlets" : 2,
+									"fontsize" : 13.0,
+									"id" : "obj-3",
+									"maxclass" : "comment",
+									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 661.0, 646.0, 45.0, 45.0 ]
+									"patching_rect" : [ 181.0, 480.0, 30.0, 21.0 ],
+									"text" : "==",
+									"textjustification" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"fontsize" : 13.0,
-									"id" : "obj-55",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patcher" : 									{
-										"fileversion" : 1,
-										"appversion" : 										{
-											"major" : 8,
-											"minor" : 0,
-											"revision" : 6,
-											"architecture" : "x64",
-											"modernui" : 1
-										}
-,
-										"classnamespace" : "box",
-										"rect" : [ 59.0, 103.0, 460.0, 349.0 ],
-										"bglocked" : 0,
-										"openinpresentation" : 0,
-										"default_fontsize" : 12.0,
-										"default_fontface" : 0,
-										"default_fontname" : "Arial",
-										"gridonopen" : 2,
-										"gridsize" : [ 15.0, 15.0 ],
-										"gridsnaponopen" : 2,
-										"objectsnaponopen" : 1,
-										"statusbarvisible" : 2,
-										"toolbarvisible" : 1,
-										"lefttoolbarpinned" : 0,
-										"toptoolbarpinned" : 0,
-										"righttoolbarpinned" : 0,
-										"bottomtoolbarpinned" : 0,
-										"toolbars_unpinned_last_save" : 0,
-										"tallnewobj" : 0,
-										"boxanimatetime" : 200,
-										"enablehscroll" : 1,
-										"enablevscroll" : 1,
-										"devicewidth" : 0.0,
-										"description" : "",
-										"digest" : "",
-										"tags" : "",
-										"style" : "",
-										"subpatcher_template" : "default",
-										"boxes" : [ 											{
-												"box" : 												{
-													"arrows" : 1,
-													"border" : 4.0,
-													"id" : "obj-7",
-													"justification" : 1,
-													"maxclass" : "live.line",
-													"numinlets" : 1,
-													"numoutlets" : 0,
-													"patching_rect" : [ 99.0, 241.900023999999974, 44.0, 14.0 ]
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"fontface" : 2,
-													"fontsize" : 13.0,
-													"id" : "obj-8",
-													"maxclass" : "comment",
-													"numinlets" : 1,
-													"numoutlets" : 0,
-													"patching_rect" : [ 144.0, 237.400023999999974, 261.0, 21.0 ],
-													"text" : "Tag with length parameter (remember this!)",
-													"textcolor" : [ 0.784313976764679, 0.145098000764847, 0.023529000580311, 1.0 ]
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"arrows" : 1,
-													"border" : 4.0,
-													"id" : "obj-5",
-													"justification" : 1,
-													"maxclass" : "live.line",
-													"numinlets" : 1,
-													"numoutlets" : 0,
-													"patching_rect" : [ 99.0, 197.5, 44.0, 14.0 ]
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"fontsize" : 13.0,
-													"id" : "obj-6",
-													"maxclass" : "comment",
-													"numinlets" : 1,
-													"numoutlets" : 0,
-													"patching_rect" : [ 144.0, 194.0, 214.0, 21.0 ],
-													"text" : "Round to nearest integer"
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"arrows" : 1,
-													"border" : 4.0,
-													"id" : "obj-3",
-													"justification" : 1,
-													"maxclass" : "live.line",
-													"numinlets" : 1,
-													"numoutlets" : 0,
-													"patching_rect" : [ 99.0, 157.5, 44.0, 14.0 ]
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"fontsize" : 13.0,
-													"id" : "obj-4",
-													"maxclass" : "comment",
-													"numinlets" : 1,
-													"numoutlets" : 0,
-													"patching_rect" : [ 144.0, 153.0, 214.0, 21.0 ],
-													"text" : "Make sure no zero length frames"
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"arrows" : 1,
-													"border" : 4.0,
-													"id" : "obj-1",
-													"justification" : 1,
-													"maxclass" : "live.line",
-													"numinlets" : 1,
-													"numoutlets" : 0,
-													"patching_rect" : [ 99.0, 113.5, 44.0, 14.0 ]
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"fontsize" : 13.0,
-													"id" : "obj-2",
-													"maxclass" : "comment",
-													"numinlets" : 1,
-													"numoutlets" : 0,
-													"patching_rect" : [ 144.0, 109.0, 214.0, 21.0 ],
-													"text" : "Scale between 0 and 20"
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"arrows" : 1,
-													"border" : 4.0,
-													"id" : "obj-30",
-													"justification" : 1,
-													"maxclass" : "live.line",
-													"numinlets" : 1,
-													"numoutlets" : 0,
-													"patching_rect" : [ 99.0, 75.5, 44.0, 14.0 ]
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"fontsize" : 13.0,
-													"id" : "obj-31",
-													"maxclass" : "comment",
-													"numinlets" : 1,
-													"numoutlets" : 0,
-													"patching_rect" : [ 144.0, 71.0, 214.0, 21.0 ],
-													"text" : "Random numbers between 0 and 1"
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"fontsize" : 13.0,
-													"id" : "obj-51",
-													"maxclass" : "newobj",
-													"numinlets" : 2,
-													"numoutlets" : 1,
-													"outlettype" : [ "" ],
-													"patching_rect" : [ 11.0, 153.0, 61.0, 23.0 ],
-													"text" : "fl.plus~ 1"
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"fontsize" : 13.0,
-													"id" : "obj-46",
-													"maxclass" : "newobj",
-													"numinlets" : 1,
-													"numoutlets" : 1,
-													"outlettype" : [ "" ],
-													"patching_rect" : [ 11.0, 194.0, 59.0, 23.0 ],
-													"text" : "fl.round~"
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"fontsize" : 13.0,
-													"id" : "obj-45",
-													"maxclass" : "newobj",
-													"numinlets" : 2,
-													"numoutlets" : 1,
-													"outlettype" : [ "" ],
-													"patching_rect" : [ 11.0, 109.0, 75.0, 23.0 ],
-													"text" : "fl.times~ 20"
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"fontsize" : 13.0,
-													"id" : "obj-44",
-													"maxclass" : "newobj",
-													"numinlets" : 2,
-													"numoutlets" : 1,
-													"outlettype" : [ "" ],
-													"patching_rect" : [ 11.0, 71.0, 70.0, 23.0 ],
-													"text" : "fl.random~"
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"fontsize" : 13.0,
-													"id" : "obj-40",
-													"maxclass" : "newobj",
-													"numinlets" : 2,
-													"numoutlets" : 1,
-													"outlettype" : [ "" ],
-													"patching_rect" : [ 11.0, 237.400023999999974, 83.0, 23.0 ],
-													"text" : "fl.tag~ length"
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"comment" : "",
-													"id" : "obj-53",
-													"index" : 1,
-													"maxclass" : "inlet",
-													"numinlets" : 0,
-													"numoutlets" : 1,
-													"outlettype" : [ "" ],
-													"patching_rect" : [ 11.0, 11.0, 30.0, 30.0 ]
-												}
-
-											}
-, 											{
-												"box" : 												{
-													"comment" : "",
-													"id" : "obj-54",
-													"index" : 1,
-													"maxclass" : "outlet",
-													"numinlets" : 1,
-													"numoutlets" : 0,
-													"patching_rect" : [ 11.0, 275.400023999999974, 30.0, 30.0 ]
-												}
-
-											}
- ],
-										"lines" : [ 											{
-												"patchline" : 												{
-													"destination" : [ "obj-54", 0 ],
-													"source" : [ "obj-40", 0 ]
-												}
-
-											}
-, 											{
-												"patchline" : 												{
-													"destination" : [ "obj-45", 0 ],
-													"source" : [ "obj-44", 0 ]
-												}
-
-											}
-, 											{
-												"patchline" : 												{
-													"destination" : [ "obj-51", 0 ],
-													"source" : [ "obj-45", 0 ]
-												}
-
-											}
-, 											{
-												"patchline" : 												{
-													"destination" : [ "obj-40", 0 ],
-													"source" : [ "obj-46", 0 ]
-												}
-
-											}
-, 											{
-												"patchline" : 												{
-													"destination" : [ "obj-46", 0 ],
-													"source" : [ "obj-51", 0 ]
-												}
-
-											}
-, 											{
-												"patchline" : 												{
-													"destination" : [ "obj-44", 0 ],
-													"source" : [ "obj-53", 0 ]
-												}
-
-											}
- ]
-									}
-,
-									"patching_rect" : [ 68.0, 550.0, 106.0, 23.0 ],
-									"saved_object_attributes" : 									{
-										"description" : "",
-										"digest" : "",
-										"globalpatchername" : "",
-										"tags" : ""
-									}
-,
-									"text" : "p random_length"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 13.0,
-									"id" : "obj-52",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 615.0, 64.0, 23.0 ],
-									"text" : "fl.tomax~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 13.0,
-									"id" : "obj-39",
+									"id" : "obj-5",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 585.0, 72.0, 23.0 ],
-									"text" : "fl.random~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-30",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 174.75, 554.5, 48.0, 14.0 ]
+									"patching_rect" : [ 213.0, 480.0, 164.0, 23.0 ],
+									"text" : "fl.random~ [3] 0 [2] 10 [1] 0"
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"fontsize" : 13.0,
-									"id" : "obj-31",
-									"linecount" : 2,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 222.0, 543.5, 466.25, 36.0 ],
-									"text" : "This abstraction generates a random number between 1-21 and is passed to \"fl.tag~ length\". This modifies the output length of the fl.random~ object below."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"arrows" : 1,
-									"border" : 4.0,
-									"id" : "obj-32",
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 131.0, 514.5, 36.0, 14.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontsize" : 13.0,
-									"id" : "obj-33",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 165.0, 510.0, 444.75, 21.0 ],
-									"text" : "fl.interval~ is a scheduler. Here it is outputting a trigger frame every 200 ms."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"candycane" : 5,
-									"ghostbar" : 50,
-									"id" : "obj-34",
-									"maxclass" : "multislider",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 640.0, 157.75, 51.0 ],
-									"setminmax" : [ 0.0, 1.0 ],
-									"size" : 3
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"color" : [ 0.0, 0.0, 0.0, 1.0 ],
-									"fontsize" : 13.0,
-									"id" : "obj-37",
+									"id" : "obj-6",
 									"maxclass" : "newobj",
-									"numinlets" : 1,
+									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 510.0, 114.0, 23.0 ],
-									"text" : "fl.interval~ 200 ms"
+									"patching_rect" : [ 15.0, 480.0, 164.0, 23.0 ],
+									"text" : "fl.random~ [2] 10 [1] 0 [3] 0"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"border" : 2.0,
-									"id" : "obj-10",
-									"justification" : 1,
-									"linecolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
-									"maxclass" : "live.line",
+									"fontname" : "Arial",
+									"fontsize" : 13.0,
+									"id" : "obj-8",
+									"linecount" : 6,
+									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 749.75, 53.0, 5.0, 467.0 ]
+									"patching_rect" : [ 15.0, 375.0, 735.0, 94.0 ],
+									"text" : "3. Addressing by parameter number\n\nParameters can also have a specific parameter set by using the parameter number inside square brackets. Again, below is an example of how this is put into practice with fl.random~. The caveat with this method, is that you cannot use strings to set parameters. Notice how there is no [3] samples, to set the units parameter. Instead you must use the index (0 counting) of the possible options for that parameter."
 								}
 
 							}
@@ -2258,7 +3063,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 338.0, 305.0, 30.0, 21.0 ],
+									"patching_rect" : [ 338.0, 331.0, 30.0, 21.0 ],
 									"text" : "==",
 									"textjustification" : 1
 								}
@@ -2272,22 +3077,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 369.0, 304.0, 322.0, 23.0 ],
+									"patching_rect" : [ 369.0, 330.0, 322.0, 23.0 ],
 									"text" : "fl.random~ /units samples /mode requested /length 10"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Arial",
-									"fontsize" : 13.0,
-									"id" : "obj-14",
-									"linecount" : 10,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 345.0, 695.0, 152.0 ],
-									"text" : "3. fl.tag~\n\nParameters can be modified through the 'parameter update' inlet which receives 'tagged' frames. To 'tag' a frame with a parameter it is first passed to the fl.tag~ object. This 'tagged' frame can then be sent to the update inlet to change the function of the object.\n\nIn the example to the right, every 200 milliseconds a frame of random length and values is created. This demonstrates the tightly-timed nature of FrameLib, as the control of the length parameter is synchronised with the generation of the frame and its values. The multislider gives you a visual representation of this behaviour. In the next tutorial you'll be introduced to how you might change parameters with a Max interface."
 								}
 
 							}
@@ -2299,7 +3090,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 304.0, 322.0, 23.0 ],
+									"patching_rect" : [ 15.0, 330.0, 322.0, 23.0 ],
 									"text" : "fl.random~ /mode requested /length 10 /units samples"
 								}
 
@@ -2313,7 +3104,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 225.0, 690.0, 65.0 ],
+									"patching_rect" : [ 15.0, 240.0, 735.0, 65.0 ],
 									"text" : "2. /parameter <value>\n\nParameters can also be addressed by prefixing a forward slash (/) to the name. Again, let's configure the same example from above in this style. Note, the /parameter syntax can be in any order."
 								}
 
@@ -2366,8 +3157,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 54.0, 690.0, 123.0 ],
-									"text" : "There are three ways of dealing with parameters in FrameLib, one of which is analogous to the Max style of configuring objects.\n\n1. \"Max style configuring\"\n\nAs you can read in the help file fl.random~ has three parameters: Mode, Length and Units. We can sequentially address each one. Parameters where there are limited options can also be addressed with numbers counting from 0. The example below demonstrates two ways of initialising the three parameters of fl.random~ in a Max style."
+									"patching_rect" : [ 15.0, 54.0, 735.0, 123.0 ],
+									"text" : "There are numerous ways to set parameters with FrameLib objects. Each has its benefit, so it is worth becoming familiar with how each method works.\n\n1. Positional arguments\n\nfl.random~ has three parameters: Mode, Length and Units. We can address each one by its precedence. Parameters with enumerated options can also have the options addressed with numbers counting from 0. The example below demonstrates two ways of initialising the three parameters of fl.random~ in a Max style."
 								}
 
 							}
@@ -2381,7 +3172,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 15.0, 422.0, 30.0 ],
-									"text" : "Parameters in FrameLib"
+									"text" : "Setting Parameters"
 								}
 
 							}
@@ -2397,87 +3188,8 @@
 								}
 
 							}
-, 							{
-								"box" : 								{
-									"background" : 1,
-									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
-									"fontface" : 1,
-									"hint" : "",
-									"id" : "obj-26",
-									"ignoreclick" : 1,
-									"legacytextcolor" : 1,
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 686.0, 554.5, 20.0, 20.0 ],
-									"rounded" : 60.0,
-									"text" : "2",
-									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"background" : 1,
-									"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
-									"fontface" : 1,
-									"hint" : "",
-									"id" : "obj-3",
-									"ignoreclick" : 1,
-									"legacytextcolor" : 1,
-									"maxclass" : "textbutton",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "int" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 611.75, 510.0, 20.0, 20.0 ],
-									"rounded" : 60.0,
-									"text" : "1",
-									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
-								}
-
-							}
  ],
-						"lines" : [ 							{
-								"patchline" : 								{
-									"destination" : [ "obj-39", 0 ],
-									"order" : 1,
-									"source" : [ "obj-37", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-55", 0 ],
-									"order" : 0,
-									"source" : [ "obj-37", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-52", 0 ],
-									"source" : [ "obj-39", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-34", 0 ],
-									"source" : [ "obj-52", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-39", 1 ],
-									"source" : [ "obj-55", 0 ]
-								}
-
-							}
- ],
+						"lines" : [  ],
 						"styles" : [ 							{
 								"name" : "AudioStatus_Menu",
 								"default" : 								{
@@ -2535,8 +3247,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2572,7 +3284,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 246.0, 582.0, 139.0, 21.0 ],
+					"patching_rect" : [ 348.333333333333314, 15.0, 112.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -2580,7 +3292,7 @@
 						"tags" : ""
 					}
 ,
-					"text" : "p Parameters and Tagging"
+					"text" : "p Setting Parameters"
 				}
 
 			}
@@ -2601,7 +3313,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 724.0, 709.0 ],
+						"rect" : [ 0.0, 26.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2632,13 +3344,73 @@
 						"title" : "Schedulers and Timing",
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-82",
-									"linecount" : 6,
+									"id" : "obj-63",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 603.0, 289.0, 87.0 ],
-									"text" : "You might not have seen fl.once~ trigger. Make sure that you stop and start the audio to observe how it works. Its the same for fl.future~, as it schedules a frame in the future from when audio is started. With its current settings it creates a trigger 1000 ms after audio starts."
+									"patching_rect" : [ 15.0, 300.0, 524.700012000000015, 20.0 ],
+									"text" : "Here are some examples of these schedulers in action!"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"border" : 2.0,
+									"id" : "obj-2",
+									"linecolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 285.0, 524.700012000000015, 5.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-12",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 15.0, 600.0, 169.0, 22.0 ],
+									"text" : "fl.combinetime~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"color" : [ 0.996078431372549, 0.313725490196078, 0.313725490196078, 1.0 ],
+									"id" : "obj-6",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 165.0, 540.0, 113.0, 22.0 ],
+									"text" : "fl.interval~ 1500 ms"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 467.0, 375.0, 240.0, 22.0 ],
+									"text" : "fl.register~ 1.2 2.2 3.4 5.1 6 6.1 6.2 6.3 6.4"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-82",
+									"linecount" : 7,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 362.0, 540.0, 292.0, 100.0 ],
+									"text" : "You might not have seen fl.once~ trigger. Make sure that you stop and start the audio to observe how it works. \n\nThe fl.chain~ object is receiving a series of timings from fl.register~ in seconds which is initially triggered by the fl.once~ object."
 								}
 
 							}
@@ -2650,7 +3422,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 330.0, 300.0, 24.0, 24.0 ]
+									"patching_rect" : [ 15.0, 480.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -2661,7 +3433,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 330.0, 330.0, 39.0, 22.0 ],
+									"patching_rect" : [ 15.0, 510.0, 39.0, 22.0 ],
 									"text" : "click~"
 								}
 
@@ -2673,7 +3445,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 660.0, 645.0, 45.0, 45.0 ]
+									"patching_rect" : [ 705.0, 630.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -2685,7 +3457,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 219.625, 570.0, 24.0, 24.0 ]
+									"patching_rect" : [ 521.625, 510.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -2698,7 +3470,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 165.0, 570.0, 50.0, 22.0 ]
+									"patching_rect" : [ 467.0, 510.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -2709,7 +3481,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 165.0, 525.0, 58.0, 22.0 ],
+									"patching_rect" : [ 467.0, 465.0, 58.0, 22.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -2719,11 +3491,11 @@
 									"color" : [ 0.772549019607843, 0.607843137254902, 0.745098039215686, 1.0 ],
 									"id" : "obj-70",
 									"maxclass" : "newobj",
-									"numinlets" : 1,
+									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 165.0, 465.0, 137.0, 22.0 ],
-									"text" : "fl.future~ 1000 /units ms"
+									"patching_rect" : [ 467.0, 405.0, 212.0, 22.0 ],
+									"text" : "fl.chain~ /mode relative /units seconds"
 								}
 
 							}
@@ -2734,7 +3506,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 165.0, 495.0, 66.0, 22.0 ],
+									"patching_rect" : [ 467.0, 435.0, 66.0, 22.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -2747,20 +3519,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 384.625, 465.0, 24.0, 24.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"format" : 6,
-									"id" : "obj-73",
-									"maxclass" : "flonum",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "bang" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 330.0, 465.0, 50.0, 22.0 ]
+									"patching_rect" : [ 15.0, 660.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -2771,7 +3530,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 330.0, 420.0, 58.0, 22.0 ],
+									"patching_rect" : [ 15.0, 630.0, 58.0, 22.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -2784,7 +3543,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 330.0, 360.0, 88.0, 22.0 ],
+									"patching_rect" : [ 15.0, 540.0, 88.0, 22.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -2796,7 +3555,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 330.0, 390.0, 66.0, 22.0 ],
+									"patching_rect" : [ 15.0, 570.0, 66.0, 22.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -2809,7 +3568,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 69.625, 571.0, 24.0, 24.0 ]
+									"patching_rect" : [ 416.625, 511.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -2822,7 +3581,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 571.0, 50.0, 22.0 ]
+									"patching_rect" : [ 362.0, 511.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -2833,7 +3592,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 525.0, 58.0, 22.0 ],
+									"patching_rect" : [ 362.0, 465.0, 58.0, 22.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -2846,7 +3605,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 465.0, 51.0, 22.0 ],
+									"patching_rect" : [ 362.0, 330.0, 51.0, 22.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -2858,7 +3617,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 495.0, 66.0, 22.0 ],
+									"patching_rect" : [ 362.0, 435.0, 66.0, 22.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -2871,7 +3630,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 219.625, 406.0, 24.0, 24.0 ]
+									"patching_rect" : [ 219.625, 436.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -2884,7 +3643,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 165.0, 406.0, 50.0, 22.0 ]
+									"patching_rect" : [ 165.0, 436.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -2895,7 +3654,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 165.0, 360.0, 58.0, 22.0 ],
+									"patching_rect" : [ 165.0, 390.0, 58.0, 22.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -2908,7 +3667,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 165.0, 300.0, 70.0, 22.0 ],
+									"patching_rect" : [ 165.0, 330.0, 70.0, 22.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -2920,7 +3679,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 165.0, 330.0, 66.0, 22.0 ],
+									"patching_rect" : [ 165.0, 360.0, 66.0, 22.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -2933,7 +3692,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 69.625, 405.0, 24.0, 24.0 ]
+									"patching_rect" : [ 69.625, 435.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -2946,7 +3705,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 405.0, 50.0, 22.0 ]
+									"patching_rect" : [ 15.0, 435.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -2957,7 +3716,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 360.0, 58.0, 22.0 ],
+									"patching_rect" : [ 15.0, 390.0, 58.0, 22.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -2970,7 +3729,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 300.0, 100.0, 22.0 ],
+									"patching_rect" : [ 15.0, 330.0, 100.0, 22.0 ],
 									"text" : "fl.interval~ 10000"
 								}
 
@@ -2982,7 +3741,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 330.0, 66.0, 22.0 ],
+									"patching_rect" : [ 15.0, 360.0, 66.0, 22.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -3006,7 +3765,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 91.625, 140.400000000000006, 358.0, 21.0 ],
+									"patching_rect" : [ 95.0, 142.5, 358.0, 21.0 ],
 									"text" : "Schedules one frame at the start of each Max audio vector."
 								}
 
@@ -3020,7 +3779,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 140.400000000000006, 78.0, 23.0 ],
+									"patching_rect" : [ 15.0, 142.5, 78.0, 23.0 ],
 									"text" : "fl.perblock~"
 								}
 
@@ -3032,7 +3791,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 78.625, 255.0, 318.0, 21.0 ],
+									"patching_rect" : [ 73.75, 255.0, 318.0, 21.0 ],
 									"text" : "Schedules trigger frames in the future at a given time."
 								}
 
@@ -3044,7 +3803,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 115.0, 211.200000000000017, 298.0, 21.0 ],
+									"patching_rect" : [ 115.0, 217.5, 298.0, 21.0 ],
 									"text" : "Turns non-zero MSP samples into trigger frames."
 								}
 
@@ -3056,7 +3815,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 73.75, 175.800000000000011, 465.950012000000015, 21.0 ],
+									"patching_rect" : [ 73.75, 180.0, 465.950012000000015, 21.0 ],
 									"text" : "Outputs a trigger frame when audio is started."
 								}
 
@@ -3079,11 +3838,11 @@
 									"fontsize" : 13.0,
 									"id" : "obj-35",
 									"maxclass" : "newobj",
-									"numinlets" : 1,
+									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 255.0, 62.0, 23.0 ],
-									"text" : "fl.future~"
+									"patching_rect" : [ 15.0, 255.0, 57.0, 23.0 ],
+									"text" : "fl.chain~"
 								}
 
 							}
@@ -3096,7 +3855,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 211.200000000000017, 98.0, 23.0 ],
+									"patching_rect" : [ 15.0, 217.5, 98.0, 23.0 ],
 									"text" : "fl.audiotrigger~"
 								}
 
@@ -3110,7 +3869,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 175.800000000000011, 57.0, 23.0 ],
+									"patching_rect" : [ 15.0, 180.0, 57.0, 23.0 ],
 									"text" : "fl.once~"
 								}
 
@@ -3158,6 +3917,13 @@
  ],
 						"lines" : [ 							{
 								"patchline" : 								{
+									"destination" : [ "obj-74", 0 ],
+									"source" : [ "obj-12", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-31", 0 ],
 									"source" : [ "obj-27", 0 ]
 								}
@@ -3183,6 +3949,13 @@
 									"destination" : [ "obj-45", 0 ],
 									"order" : 0,
 									"source" : [ "obj-31", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-70", 0 ],
+									"source" : [ "obj-4", 0 ]
 								}
 
 							}
@@ -3234,7 +4007,16 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"order" : 0,
+									"source" : [ "obj-55", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-56", 0 ],
+									"order" : 1,
 									"source" : [ "obj-55", 0 ]
 								}
 
@@ -3243,6 +4025,13 @@
 								"patchline" : 								{
 									"destination" : [ "obj-54", 0 ],
 									"source" : [ "obj-56", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-12", 1 ],
+									"source" : [ "obj-6", 0 ]
 								}
 
 							}
@@ -3279,15 +4068,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-72", 0 ],
-									"order" : 0,
-									"source" : [ "obj-74", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-73", 0 ],
-									"order" : 1,
 									"source" : [ "obj-74", 0 ]
 								}
 
@@ -3301,7 +4081,7 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-74", 0 ],
+									"destination" : [ "obj-12", 0 ],
 									"source" : [ "obj-76", 0 ]
 								}
 
@@ -3378,8 +4158,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3415,7 +4195,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 111.0, 582.0, 132.0, 21.0 ],
+					"patching_rect" : [ 209.166666666666657, 15.0, 132.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -3444,7 +4224,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 724.0, 709.0 ],
+						"rect" : [ 34.0, 105.0, 768.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3475,6 +4255,46 @@
 						"title" : "Key Concepts",
 						"boxes" : [ 							{
 								"box" : 								{
+									"fontname" : "Lato Regular",
+									"fontsize" : 13.0,
+									"id" : "obj-10",
+									"linecount" : 9,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 180.0, 134.0, 570.0, 147.0 ],
+									"text" : "The most important concepts to understand in FrameLib:\n\n1. EVERYTHING is strongly timed.\n2. NOTHING happens without a FrameLib timing source otherwise known as a 'scheduler'.\n\nSchedulers create trigger frames - think of them like the bang of FrameLib. Under the hood, a trigger frame is just an empty or zero length frame that contains no samples. Frames containing samples can also act as trigger frames, but these won't exist until you've used a scheduler somewhere in the network."
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 1,
+									"fontname" : "Lato Regular",
+									"fontsize" : 20.0,
+									"id" : "obj-11",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 180.0, 90.0, 416.0, 30.0 ],
+									"text" : "Schedulers and Timing"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"border" : 2.0,
+									"id" : "obj-12",
+									"linecolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 180.0, 122.0, 570.0, 5.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"bgmode" : 0,
 									"border" : 0,
 									"clickthrough" : 0,
@@ -3497,12 +4317,12 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 13.0,
 									"id" : "obj-2",
-									"linecount" : 22,
+									"linecount" : 6,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 331.0, 526.0, 350.0 ],
-									"text" : "FrameLib objects have a unique system for managing parameters at instantiation and with real-time control. It is is not dissimilar to max messages but there are some differences.\n\nThere are two ways to assign parameters to a FrameLib object at load time. Like many Max objects you can input values in the order of the arguments you want to address. Additionally you can directly address parameters through the \"/parameter <value>\" syntax. This is similar to the \"@attribute\" system in Max, however FrameLib objects cannot be addressed through the 'attrui' object. The /parameter syntax is a more direct way of addressing each parameter and is particularly useful in two scenarios.\n\n1. The default parameters are useful apart from one specific parameter you would like to change.\n2. Making parameter configurations explicit and easy to read.\n\nReal-time control is managed through a 'parameter update' inlet which receives special 'tagged frames'. This is universally the right most inlet, except in the case that there is only the parameter update inlet (in which case it will be the first). Because frames are used to change the parameters, the configuration of the object is tightly synchronised to the network. \n\nThere is a lot of information just in these two paragraphs. Start moving through each tab which will inform you more deeply on the schedulers and parameters."
+									"patching_rect" : [ 180.0, 330.0, 570.0, 100.0 ],
+									"text" : "FrameLib objects have variables with state known as parameters. Parameters are referred to by name and are used for values that may not vary over a single frame. However, they make take more than one value, or non-numeric values such as a string referring to a buffer name. The parameter system is used to change object behaviour without requiring an unmanageable number of inlets and to separate configuration of 'mode' type control from normal inputs. The parameter system is a lot like the attribute system, but it operates in the strongly-timed way that FrameLib frames do."
 								}
 
 							}
@@ -3516,7 +4336,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 180.0, 285.0, 418.0, 30.0 ],
-									"text" : "Parameters and Tagging"
+									"text" : "Parameters"
 								}
 
 							}
@@ -3528,47 +4348,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 317.0, 525.0, 5.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontname" : "Lato Regular",
-									"fontsize" : 13.0,
-									"id" : "obj-3",
-									"linecount" : 9,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 120.0, 529.0, 147.0 ],
-									"text" : "The most important concepts to understand in FrameLib:\n\n1. EVERYTHING is strongly timed.\n2. NOTHING happens without a FrameLib timing source otherwise known as a 'scheduler'.\n\nSchedulers create trigger frames - think of them like the bang of FrameLib. Under the hood, a trigger frame is just an empty or zero length frame that contains no samples. Frames containing samples can also act as trigger frames, but these won't exist until you've used a scheduler somewhere in the network."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontface" : 1,
-									"fontname" : "Lato Regular",
-									"fontsize" : 20.0,
-									"id" : "obj-1",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 76.0, 416.0, 30.0 ],
-									"text" : "Schedulers and Timing"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"border" : 2.0,
-									"id" : "obj-49",
-									"linecolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 108.0, 525.0, 5.0 ]
+									"patching_rect" : [ 180.0, 317.0, 570.0, 5.0 ]
 								}
 
 							}
@@ -3581,8 +4361,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 15.0, 666.0, 59.0 ],
-									"text" : "Key Concepts"
+									"patching_rect" : [ 180.0, 15.0, 570.0, 59.0 ],
+									"text" : "The basics"
 								}
 
 							}
@@ -3645,8 +4425,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3682,7 +4462,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 21.0, 582.0, 88.0, 21.0 ],
+					"patching_rect" : [ 15.0, 15.0, 88.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -3691,90 +4471,6 @@
 					}
 ,
 					"text" : "p Key Concepts"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 1,
-					"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
-					"fontface" : 1,
-					"hint" : "",
-					"id" : "obj-24",
-					"ignoreclick" : 1,
-					"legacytextcolor" : 1,
-					"maxclass" : "textbutton",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 1099.92498779296875, 512.4000244140625, 20.0, 20.0 ],
-					"rounded" : 60.0,
-					"text" : "4",
-					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 1,
-					"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
-					"fontface" : 1,
-					"hint" : "",
-					"id" : "obj-27",
-					"ignoreclick" : 1,
-					"legacytextcolor" : 1,
-					"maxclass" : "textbutton",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 1102.75, 412.5, 20.0, 20.0 ],
-					"rounded" : 60.0,
-					"text" : "3",
-					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 1,
-					"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
-					"fontface" : 1,
-					"hint" : "",
-					"id" : "obj-26",
-					"ignoreclick" : 1,
-					"legacytextcolor" : 1,
-					"maxclass" : "textbutton",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 1164.700012000000015, 335.5, 20.0, 20.0 ],
-					"rounded" : 60.0,
-					"text" : "2",
-					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"background" : 1,
-					"bgcolor" : [ 0.720698, 0.16723, 0.080014, 1.0 ],
-					"fontface" : 1,
-					"hint" : "",
-					"id" : "obj-30",
-					"ignoreclick" : 1,
-					"legacytextcolor" : 1,
-					"maxclass" : "textbutton",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 1096.0, 283.0, 20.0, 20.0 ],
-					"rounded" : 60.0,
-					"text" : "1",
-					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 				}
 
 			}
@@ -3790,76 +4486,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-9", 0 ],
 					"source" : [ "obj-11", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-16", 0 ],
-					"source" : [ "obj-15", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-17", 0 ],
-					"source" : [ "obj-16", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-8", 0 ],
-					"source" : [ "obj-19", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-15", 0 ],
-					"midpoints" : [ 669.5, 483.0, 1147.700012000000015, 483.0 ],
-					"order" : 0,
-					"source" : [ "obj-21", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-19", 0 ],
-					"midpoints" : [ 669.5, 357.0, 669.5, 357.0 ],
-					"order" : 2,
-					"source" : [ "obj-21", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.0, 0.0, 0.0, 1.0 ],
-					"destination" : [ "obj-31", 0 ],
-					"midpoints" : [ 669.5, 561.0, 842.625, 561.0 ],
-					"order" : 1,
-					"source" : [ "obj-21", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-21", 0 ],
-					"source" : [ "obj-23", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-25", 0 ],
-					"source" : [ "obj-29", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-29", 0 ],
-					"source" : [ "obj-31", 0 ]
 				}
 
 			}
@@ -3910,11 +4536,11 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.future~.mxo",
+				"name" : "fl.chain~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.future~.mxo",
+				"name" : "fl.chain~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -3934,27 +4560,19 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.tag~.mxo",
+				"name" : "fl.register~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.source~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.source~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
 				"name" : "fl.times~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.round~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.plus~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -3963,6 +4581,10 @@
 			}
 , 			{
 				"name" : "fl.0dfsvf~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.tag~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -3979,6 +4601,22 @@
 			}
 , 			{
 				"name" : "fl.map~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.round~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.plus~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.divide~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.ramp~.mxo",
 				"type" : "iLaX"
 			}
  ],
@@ -4040,8 +4678,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",
