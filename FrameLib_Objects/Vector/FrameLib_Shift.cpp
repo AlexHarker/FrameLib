@@ -26,10 +26,12 @@ FrameLib_Shift::FrameLib_Shift(FrameLib_Context context, const FrameLib_Paramete
 
 std::string FrameLib_Shift::objectInfo(bool verbose)
 {
-    return formatInfo("Shifts an input frame either with padding, or cyclically: "
-                   "The output is the same length as the input. Output can be shifted left or right in the frame. "
-                   "When in pad mode values are moved out on one side and padded on the other, otherwise the shift is cyclical.",
-                   "Shifts an input frame either with padding, or cyclically.", verbose);
+    return formatInfo("Shifts samples within a frame either with padding, or with wrapping: "
+                      "The output is the same length as the input. Output can be shifted left or right in comparison to the input. "
+                      "The mode parameter is used to set either padding or wrapping behaviour. "
+                      "When in pad mode, values are moved out on one side and padded on the other. "
+                      "When in wrap mode the shift is cyclical.",
+                      "Shifts samples within a frame either with padding, or or with wrapping.", verbose);
 }
 
 std::string FrameLib_Shift::inputInfo(unsigned long idx, bool verbose)
@@ -37,12 +39,12 @@ std::string FrameLib_Shift::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return "Frames to Shift";
+        return "Input";
 }
 
 std::string FrameLib_Shift::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Shifted Frames";
+    return "Output";
 }
 
 // Parameter Info
