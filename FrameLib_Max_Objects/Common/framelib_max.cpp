@@ -97,7 +97,7 @@
 
 // Vector
 
-#include "FrameLib_AccumPoint.h"
+#include "FrameLib_AccumPos.h"
 #include "FrameLib_Chop.h"
 #include "FrameLib_Join.h"
 #include "FrameLib_MedianFilter.h"
@@ -257,7 +257,7 @@ extern "C" int C74_EXPORT main(void)
     
     // Vector
     
-    FrameLib_MaxClass_Expand<FrameLib_AccumPoint>::makeClass("fl.accumpoint~");
+    FrameLib_MaxClass_Expand<FrameLib_AccumPos>::makeClass("fl.accumpos~");
     FrameLib_MaxClass_Expand<FrameLib_Chop>::makeClass("fl.chop~");
     FrameLib_MaxClass_Expand<FrameLib_Join>::makeClass("fl.join~");
     FrameLib_MaxClass_Expand<FrameLib_MedianFilter>::makeClass("fl.medianfilter~");

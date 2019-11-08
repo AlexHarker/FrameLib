@@ -119,7 +119,7 @@ FrameLib_Timer,
 
 // Vector
 
-FrameLib_AccumPoint,
+FrameLib_AccumPos,
 FrameLib_Chop,
 FrameLib_Join,
 FrameLib_MedianFilter,
