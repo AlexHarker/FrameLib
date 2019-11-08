@@ -22,7 +22,7 @@ FrameLib_Split::FrameLib_Split(FrameLib_Context context, const FrameLib_Paramete
 std::string FrameLib_Split::objectInfo(bool verbose)
 {
     return formatInfo("Splits input frames into two parts, given a specified split point: "
-                   "The split point may be specified in samples or as a ratio",
+                   "The split point may be specified in samples or as a ratio of the length of the input frame.",
                    "Splits input frames into two parts, given a specified split point.", verbose);
 }
 
