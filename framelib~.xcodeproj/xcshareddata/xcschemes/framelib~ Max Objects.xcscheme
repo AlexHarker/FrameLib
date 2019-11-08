@@ -2101,8 +2101,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B84A405B1FD73E5C00A30455"
-               BuildableName = "fl.accumpoint~.mxo"
-               BlueprintName = "fl.accumpoint~"
+               BuildableName = "fl.accumpos~.mxo"
+               BlueprintName = "fl.accumpos~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
