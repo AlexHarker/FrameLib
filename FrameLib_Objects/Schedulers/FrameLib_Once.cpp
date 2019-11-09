@@ -1,6 +1,15 @@
 
 #include "FrameLib_Once.h"
 
+// Constructor
+
+FrameLib_Once::FrameLib_Once(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Scheduler(context, proxy, nullptr, 1, 1)
+{
+    mParameters.set(serialisedParameters);
+}
+
+
 // Info
 
 std::string FrameLib_Once::objectInfo(bool verbose)

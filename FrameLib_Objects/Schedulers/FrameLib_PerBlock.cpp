@@ -3,7 +3,10 @@
 
 // Constructor
 
-FrameLib_PerBlock::FrameLib_PerBlock(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Scheduler(context, proxy, nullptr, 1, 1, 0) {}
+FrameLib_PerBlock::FrameLib_PerBlock(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Scheduler(context, proxy, nullptr, 1, 1, 0)
+{
+    mParameters.set(serialisedParameters);
+}
 
 // Info
 
