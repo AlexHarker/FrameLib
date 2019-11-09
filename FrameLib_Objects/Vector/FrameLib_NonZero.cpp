@@ -35,7 +35,8 @@ void FrameLib_NonZero::process()
     
     // Allocate temporary memory for working to avoid double looping (cheaper for large lists)
     
-    double *indices = alloc<double>(sizeIn * sizeof(double));
+    double *indices = alloc<double>(sizeIn);
+    sizeIn = indices ? sizeIn : 0;
     
     for (unsigned long i = 0; i < sizeIn; i++)
     {
