@@ -28,7 +28,10 @@ std::string FrameLib_NanFilter::objectInfo(bool verbose)
 
 std::string FrameLib_NanFilter::inputInfo(unsigned long idx, bool verbose)
 {
-    return "Input";
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Input";
 }
 
 std::string FrameLib_NanFilter::outputInfo(unsigned long idx, bool verbose)
