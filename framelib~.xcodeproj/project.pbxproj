@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		267EF00D23620B6D00FDA588 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		267EF00E23620B6D00FDA588 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		267EF01623620BD200FDA588 /* fl.combinetime~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 267EF01523620BD200FDA588 /* fl.combinetime~.cpp */; };
 		267EF01823620BD900FDA588 /* FrameLib_CombineTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 267EF01723620BD900FDA588 /* FrameLib_CombineTime.cpp */; };
 		5A3CAB1E2052E7E8001082E3 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		5A3CAB1F2052E7E8001082E3 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
@@ -1950,8 +1949,6 @@
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		267EF01323620B6D00FDA588 /* fl.combinetime~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.combinetime~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		267EF01423620B6E00FDA588 /* fl.info~ copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "fl.info~ copy-Info.plist"; path = "/Users/jamesbradbury/FrameLib/fl.info~ copy-Info.plist"; sourceTree = "<absolute>"; };
-		267EF01523620BD200FDA588 /* fl.combinetime~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "fl.combinetime~.cpp"; path = "FrameLib_Max_Objects/Timing/fl.combinetime~.cpp"; sourceTree = "<group>"; };
 		267EF01723620BD900FDA588 /* FrameLib_CombineTime.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FrameLib_CombineTime.cpp; path = FrameLib_Objects/Timing/FrameLib_CombineTime.cpp; sourceTree = "<group>"; };
 		267EF01923620C0500FDA588 /* fl.combinetime~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.combinetime~.cpp"; sourceTree = "<group>"; };
 		267EF01B23620C2A00FDA588 /* FrameLib_CombineTime.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_CombineTime.cpp; sourceTree = "<group>"; };
@@ -4096,7 +4093,6 @@
 			isa = PBXGroup;
 			children = (
 				267EF01723620BD900FDA588 /* FrameLib_CombineTime.cpp */,
-				267EF01523620BD200FDA588 /* fl.combinetime~.cpp */,
 				B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */,
 				08FB77ADFE841716C02AAC07 /* Source */,
 				089C167CFE841241C02AAC07 /* Resources */,
@@ -4104,7 +4100,6 @@
 				B8A1F5BC1D5370DE00FA5FFC /* Testing */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
 				B89C1A4F2069A969009CA55B /* Frameworks */,
-				267EF01423620B6E00FDA588 /* fl.info~ copy-Info.plist */,
 			);
 			name = "plus~";
 			sourceTree = "<group>";
@@ -11244,7 +11239,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				267EF01623620BD200FDA588 /* fl.combinetime~.cpp in Sources */,
 				267EF01823620BD900FDA588 /* FrameLib_CombineTime.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
