@@ -88,11 +88,14 @@ void FrameLib_Correlate::process()
         const double *input1 = getInput(0, &sizeIn1);
         const double *input2 = getInput(1, &sizeIn2);
         
-        // Get Output Size
-        
+        // Get Output Size / Check for Processing Size Errors
+
         unsigned long sizeOut = static_cast<unsigned long>(mProcessor.correlated_size(sizeIn1, sizeIn2, edgeMode));
         
-        // Get output
+        if (sizeOut == 0 && sizeIn1 && sizeIn2)
+            getReporter()(kErrorObject, getProxy(), "correlation processing size is larger than maximum processing size (#)", mProcessor.max_fft_size());
+        
+        // Get Output
         
         requestOutputSize(0, sizeOut);
         
@@ -110,11 +113,14 @@ void FrameLib_Correlate::process()
         const double *inR2 = getInput(2, &sizeR2);
         const double *inI2 = getInput(3, &sizeI2);
         
-        // Get Output Size
+        // Get Output Size / Check for Processing Size Errors
 
         unsigned long sizeOut = static_cast<unsigned long>(mProcessor.correlated_size(std::max(sizeR1, sizeI1), std::max(sizeR2, sizeI2), edgeMode));
 
-        // Get output
+        if (sizeOut == 0 && std::max(sizeR1, sizeI1) && std::max(sizeR2, sizeI2))
+            getReporter()(kErrorObject, getProxy(), "correlation processing size is larger than maximum processing size (#)", mProcessor.max_fft_size());
+        
+        // Get Output
         
         requestOutputSize(0, sizeOut);
         requestOutputSize(1, sizeOut);
