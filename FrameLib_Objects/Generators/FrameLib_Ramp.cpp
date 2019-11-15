@@ -49,7 +49,7 @@ std::string FrameLib_Ramp::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Ramp::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output Frame";
+    return "Output";
 }
 
 // Parameter Info

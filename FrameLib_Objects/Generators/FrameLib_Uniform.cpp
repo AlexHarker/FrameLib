@@ -45,7 +45,7 @@ std::string FrameLib_Uniform::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Uniform::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output Frame";
+    return "Output";
 }
 
 // Parameter Info
