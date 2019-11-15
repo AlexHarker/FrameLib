@@ -124,7 +124,8 @@ FrameLib_FromHost::FrameLib_FromHost(FrameLib_Context context, const FrameLib_Pa
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kValues, "values");
     mParameters.addEnumItem(kParams, "params");
-        
+    mParameters.setInstantiation();
+    
     mParameters.set(serialisedParameters);
     
     mMode = static_cast<Modes>(mParameters.getInt(kMode));
