@@ -26,7 +26,8 @@ FrameLib_Info::FrameLib_Info(FrameLib_Context context, const FrameLib_Parameters
 
 std::string FrameLib_Info::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs the sample rate, number of channels and size of a buffer (in milliseconds). The size units can be changed.",
+    return formatInfo("Outputs the sample rate, number of channels and length of a buffer. "
+                      "The units for reporting length can be set with the units parameter.",
                       "Outputs the sample rate, channels and size of a buffer.", verbose);
 }
 
@@ -35,16 +36,16 @@ std::string FrameLib_Info::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Trigger frame", "Trigger frame", verbose);
+        return formatInfo("Trigger Input", "Trigger Input", verbose);
 }
 
 std::string FrameLib_Info::outputInfo(unsigned long idx, bool verbose)
 {
     switch (idx)
     {
-        case 0: return "Buffer Size";
+        case 0: return "Buffer Length";
         case 1: return "Sample Rate";
-        case 2: return "Channels";
+        case 2: return "Number of Channels";
     }
     
     return "";
@@ -56,8 +57,8 @@ FrameLib_Info::ParameterInfo FrameLib_Info::sParamInfo;
 
 FrameLib_Info::ParameterInfo::ParameterInfo()
 {
-    add("Sets the buffer name to use.");
-    add("Sets the units of output for the size of the buffer.");
+    add("Sets the buffer to use.");
+    add("Sets the units for reporting the length of the buffer.");
 }
 
 // Update

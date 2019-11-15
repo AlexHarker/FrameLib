@@ -40,8 +40,9 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters
 
 std::string FrameLib_Read::objectInfo(bool verbose)
 {
-    return formatInfo("Reads from a buffer~ given an input frame of sample positions: There are different available interpolation types.",
-                   "Reads from a buffer~ given an input frame of sample positions.", verbose);
+    return formatInfo("Reads from a buffer~ given an input frame of sample positions: "
+                      "There are different available interpolation types.",
+                      "Reads from a buffer~ given an input frame of sample positions.", verbose);
 }
 
 std::string FrameLib_Read::inputInfo(unsigned long idx, bool verbose)
@@ -54,7 +55,7 @@ std::string FrameLib_Read::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Read::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output Frame";
+    return "Output";
 }
 
 // Parameter Info
