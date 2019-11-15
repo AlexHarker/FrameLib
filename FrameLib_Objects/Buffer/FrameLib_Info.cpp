@@ -7,7 +7,7 @@ FrameLib_Info::FrameLib_Info(FrameLib_Context context, const FrameLib_Parameters
 {
     mParameters.addString(kBuffer, "buffer", 0);
     
-    mParameters.addEnum(kUnits, "units");
+    mParameters.addEnum(kUnits, "units", 1);
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
     mParameters.addEnumItem(kSamples, "samples");

@@ -12,17 +12,17 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters
     mParameters.addInt(kChannel, "chan", 1, 1);
     mParameters.setMin(1);
     
-    mParameters.addEnum(kInterpolation, "interp");
+    mParameters.addEnum(kUnits, "units", 2);
+    mParameters.addEnumItem(kMS, "ms");
+    mParameters.addEnumItem(kSeconds, "seconds");
+    mParameters.addEnumItem(kSamples, "samples");
+    
+    mParameters.addEnum(kInterpolation, "interp", 3);
     mParameters.addEnumItem(kHermite, "hermite");
     mParameters.addEnumItem(kBSpline, "bspline");
     mParameters.addEnumItem(kLagrange, "lagrange");
     mParameters.addEnumItem(kLinear, "linear");
     mParameters.addEnumItem(kNone, "none");
-    
-    mParameters.addEnum(kUnits, "units");
-    mParameters.addEnumItem(kMS, "ms");
-    mParameters.addEnumItem(kSeconds, "seconds");
-    mParameters.addEnumItem(kSamples, "samples");
         
     mParameters.set(serialisedParameters);
     
