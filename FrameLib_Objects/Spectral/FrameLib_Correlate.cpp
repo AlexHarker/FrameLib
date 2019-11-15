@@ -31,9 +31,10 @@ FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, const FrameLib_
 
 std::string FrameLib_Correlate::objectInfo(bool verbose)
 {
-    return formatInfo("Calculate the correlation of two input frames, (using frequency domain processing internally): "
-                   "The output is a frame of length M + N - 1 where M and N are the lengths of the two inputs respectively",
-                   "Calculate the correlation of two input frames, (using frequency domain processing internally).", verbose);
+    return formatInfo("Correlate two inputs (either real or complex): "
+                      "The output length depends on the edges parameter, which sets the edge behaviour. "
+                      "It will be no longer than M + N - 1 where M and N are the lengths of the two inputs respectively.",
+                      "Correlate two inputs (either real or complex).", verbose);
 }
 
 std::string FrameLib_Correlate::inputInfo(unsigned long idx, bool verbose)
@@ -54,13 +55,13 @@ std::string FrameLib_Correlate::inputInfo(unsigned long idx, bool verbose)
 std::string FrameLib_Correlate::outputInfo(unsigned long idx, bool verbose)
 {
     if (mMode == kReal)
-        return "Correlated Output";
+        return "Output";
     
     if (idx)
-        return formatInfo("Correlated Imaginary Output", "Correlated Imag Output", idx, verbose);
+        return formatInfo("Imaginary Output", "Imag Output", idx, verbose);
     else
         
-        return formatInfo("Correlated Real Output", "Correlated Real Output", idx, verbose);
+        return formatInfo("Real Output", "Real Output", idx, verbose);
 }
 
 // Parameter Info
@@ -69,8 +70,14 @@ FrameLib_Correlate::ParameterInfo FrameLib_Correlate::sParamInfo;
 
 FrameLib_Correlate::ParameterInfo::ParameterInfo()
 {
-    add("Sets the maximum output length. The output length will be M + N - 1 where M and N are the sizes of the two inputs respectively");
-    add("Sets the type of input expected / output produced.");
+    add("Sets the maximum processing length. "
+        "The processing length is M + N - 1 where M and N are the sizes of the two inputs respectively.");
+    add("Sets the input and output mode.");
+    add("Sets the edge behaviour of the correlation process. "
+        "linear - the output is the full processing length without wrapping or folding. "
+        "circular - output length is the maximum of the input lengths with excess wrapped/added to the beginning. "
+        "wrap - similar to circular mode, but rotated such that wrapping occurs equally at both ends. "
+        "fold - as wrap but folding at the edges (if minimum input length is even output length increases by one).");
 }
 
 // Process
