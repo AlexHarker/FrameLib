@@ -6,11 +6,11 @@ FrameLib_Convolve::FrameLib_Convolve(FrameLib_Context context, const FrameLib_Pa
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
-    mParameters.addEnum(kMode, "mode", 2);
+    mParameters.addEnum(kMode, "mode", 1);
     mParameters.addEnumItem(kReal, "real");
     mParameters.addEnumItem(kComplex, "complex");
     mParameters.setInstantiation();
-    mParameters.addEnum(kEdgeMode, "edges");
+    mParameters.addEnum(kEdgeMode, "edges", 2);
     mParameters.addEnumItem(EdgeMode::kEdgeLinear, "linear");
     mParameters.addEnumItem(EdgeMode::kEdgeWrap, "circular");
     mParameters.addEnumItem(EdgeMode::kEdgeWrapCentre, "wrap");
