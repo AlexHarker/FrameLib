@@ -18,8 +18,9 @@ FrameLib_Now::FrameLib_Now(FrameLib_Context context, const FrameLib_Parameters::
 
 std::string FrameLib_Now::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs the current time: Time is reported in the specified units. Output is a single value.",
-                   "Outputs the current time.", verbose);
+    return formatInfo("Outputs the current time: "
+                      "Time is reported in the specified units. Output is a single value. "
+                      "Outputs the current time.", verbose);
 }
 
 std::string FrameLib_Now::inputInfo(unsigned long idx, bool verbose)

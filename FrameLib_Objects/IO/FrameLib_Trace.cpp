@@ -43,10 +43,10 @@ FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, const FrameLib_Paramete
 std::string FrameLib_Trace::objectInfo(bool verbose)
 {
     return formatInfo("Outputs audio frames (or values from the frame) to the host environment without overlapping, continuing the last value till a new frame arrives: "
-                   "The mode parameter determines the value(s) that are output. "
-                    "This is intended for tracking control type values. The length of the internal buffer determines the maximum frame length. "
-                   "Output suffers no latency.",
-                   "Outputs audio frames  (or values from the frame) to the host environment without overlapping, continuing the final value till a new frame arrives.", verbose);
+                      "The mode parameter determines the value(s) that are output. "
+                      "This is intended for tracking control type values. The length of the internal buffer determines the maximum frame length. "
+                      "Output suffers no latency.",
+                      "Outputs audio frames  (or values from the frame) to the host environment without overlapping, continuing the final value till a new frame arrives.", verbose);
 }
 
 std::string FrameLib_Trace::inputInfo(unsigned long idx, bool verbose)

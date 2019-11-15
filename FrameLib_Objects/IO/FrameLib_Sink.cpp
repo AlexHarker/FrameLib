@@ -32,8 +32,9 @@ FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, const FrameLib_Parameters
 std::string FrameLib_Sink::objectInfo(bool verbose)
 {
     return formatInfo("Outputs audio frames to the host environment by pasting them into an overlap-add buffer: "
-                   "The length of the internal buffer determines the maximum frame length. Output suffers no latency.",
-                   "Outputs audio frames to the host environment by pasting them into an overlap add buffer.", verbose);
+                      "The length of the internal buffer determines the maximum frame length. "
+                      "Output suffers no latency.",
+                      "Outputs audio frames to the host environment by pasting them into an overlap add buffer.", verbose);
 }
 
 std::string FrameLib_Sink::inputInfo(unsigned long idx, bool verbose)
