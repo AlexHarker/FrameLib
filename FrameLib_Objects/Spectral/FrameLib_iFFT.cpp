@@ -40,7 +40,7 @@ std::string FrameLib_iFFT::objectInfo(bool verbose)
     return formatInfo("Calculate the real or complex inverse Fast Fourier Transform of the two inputs (real and imaginary): "
                       "All FFTs use a power of two size, with zero-padding applied at the input(s) if necessary. "
                       "The expected input lengths depend on the mode parameter. "
-                      "The mode parameter is used to select either real or complex FFTs and also the input and output types. "
+                      "The mode parameter is used to select either real or complex iFFTs and also the input and output types. "
                       "For complex mode, real and imaginary values are output as separate frames.",
                       "Calculate the real or complex inverse Fast Fourier Transform of the inputs.", verbose);
 }
