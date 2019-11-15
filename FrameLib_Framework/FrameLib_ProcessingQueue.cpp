@@ -71,7 +71,7 @@ void FrameLib_ProcessingQueue::start(PrepQueue &queue)
     
     if (mTimedOut)
     {
-        mErrorReporter.reportError(kErrorDSP, mEntryObject->getProxy(), "FrameLib - DSP time out - FrameLib disabled in this context");
+        mErrorReporter(kErrorDSP, mEntryObject->getProxy(), "FrameLib - DSP time out - FrameLib disabled in this context");
         
         // Clear the queue
         

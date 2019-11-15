@@ -250,7 +250,7 @@ public:
     // Add and Retrieve Errors (list ownership is passed on retrieval)
     
     template<typename... Args>
-    void reportError(ErrorSource source, FrameLib_Proxy *reporter, const char *error, Args... args)
+    void operator()(ErrorSource source, FrameLib_Proxy *reporter, const char *error, Args... args)
     {
         FrameLib_SpinLockHolder lockHolder(&mLock);
 

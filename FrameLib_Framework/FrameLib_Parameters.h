@@ -791,22 +791,22 @@ private:
             switch (error)
             {
                 case kUnknownArgument:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "argument # out of range", idx + 1);
+                    mErrorReporter(kErrorParameter, mProxy, "argument # out of range", idx + 1);
                     break;
                 case kUnknownParameter:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "no parameter named '#'", arg);
+                    mErrorReporter(kErrorParameter, mProxy, "no parameter named '#'", arg);
                     break;
                 case kParameterNotSetByNumber:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "parameter '#' cannot be set by a number", mParameters[idx]->name());
+                    mErrorReporter(kErrorParameter, mProxy, "parameter '#' cannot be set by a number", mParameters[idx]->name());
                     break;
                 case kParameterNotSetByString:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "parameter '#' cannot be set by a string", mParameters[idx]->name());
+                    mErrorReporter(kErrorParameter, mProxy, "parameter '#' cannot be set by a string", mParameters[idx]->name());
                     break;
                 case kEnumUnknownIndex:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "enum parameter '#' does not contain an item numbered #", mParameters[idx]->name(), arg);
+                    mErrorReporter(kErrorParameter, mProxy, "enum parameter '#' does not contain an item numbered #", mParameters[idx]->name(), arg);
                     break;
                 case kEnumUnknownString:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "enum parameter '#' does not contain an item named '#'", mParameters[idx]->name(), arg);
+                    mErrorReporter(kErrorParameter, mProxy, "enum parameter '#' does not contain an item named '#'", mParameters[idx]->name(), arg);
                     break;
                 default:
                     break;
