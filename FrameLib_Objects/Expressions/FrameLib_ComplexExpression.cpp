@@ -315,6 +315,9 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
     Parser parser;
     ExprParseError error = parser.parse(graph, mParameters.getString(kExpression));
 
+    if (error != kNoError)
+        parser.reportError(getReporter(), proxy, error);
+    
     if (graph.mNumInputs > 32)
         graph = Graph();
     

@@ -264,6 +264,9 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, const FrameLi
     Parser parser;
     ExprParseError error = parser.parse(graph, mParameters.getString(kExpression));
 
+    if (error != kNoError)
+        parser.reportError(getReporter(), proxy, error);
+    
     if (graph.mNumInputs > kMaxIns)
         graph = Graph();
     

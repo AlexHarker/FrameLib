@@ -3,6 +3,7 @@
 #define FRAMELIB_EXPRPARSER_H
 
 #include "FrameLib_Types.h"
+#include "FrameLib_Errors.h"
 
 #include <algorithm>
 #include <cmath>
@@ -291,6 +292,55 @@ namespace FrameLib_ExprParser
                 graph.mConstant = nodes[0].getValue();
             
             return kNoError;
+        }
+        
+        void reportError(FrameLib_ErrorReporter& reporter, FrameLib_Proxy *proxy, ExprParseError error)
+        {
+            switch (error)
+            {
+                case kNoError:
+                    break;
+                    
+                case kLexError_UnknownChar:
+                    reporter(kErrorObject, proxy, "expression lexing failed - unknown character found");
+                    break;
+                    
+                case kLexError_ZeroLengthToken:
+                    reporter(kErrorObject, proxy, "expression lexing failed - zero length token");
+                    break;
+                    
+                case kParseError_EmptySubExpr:
+                    reporter(kErrorObject, proxy, "expression parsing failed - empty sub expression");
+                    break;
+                    
+                case kParseError_StrayParenthesis:
+                    reporter(kErrorObject, proxy, "expression parsing failed - stray paranthesis");
+                    break;
+
+                case kParseError_NotFunction:
+                    reporter(kErrorObject, proxy, "expression parsing failed - function token not known");
+                    break;
+                    
+                case kParseError_UnknownToken:
+                    reporter(kErrorObject, proxy, "expression parsing failed - unknown token");
+                    break;
+                    
+                case kParseError_TooFewCommas:
+                    reporter(kErrorObject, proxy, "expression parsing failed - too few arguments to function");
+                    break;
+                    
+                case kParseError_TooManyCommas:
+                    reporter(kErrorObject, proxy, "expression parsing failed - too many arguments to function");
+                    break;
+                    
+                case kParseError_OpPosition:
+                    reporter(kErrorObject, proxy, "expression parsing failed - operator found in unexpected position");
+                    break;
+                    
+                case kParseError_StrayItem:
+                    reporter(kErrorObject, proxy, "expression parsing failed - stray items found");
+                    break;
+            }
         }
         
     private:
