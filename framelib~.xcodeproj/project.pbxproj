@@ -2145,6 +2145,7 @@
 		B85753571F2E21A700478E9F /* FrameLib_Unary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FrameLib_Unary_Objects.h; path = Unary/FrameLib_Unary_Objects.h; sourceTree = "<group>"; };
 		B85753581F2E21A700478E9F /* FrameLib_Unary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FrameLib_Unary_Template.h; path = Unary/FrameLib_Unary_Template.h; sourceTree = "<group>"; };
 		B857535D1F2E957300478E9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B857BBBB2381A44900FC0619 /* expression_object_parsing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = expression_object_parsing.h; sourceTree = "<group>"; };
 		B85B20E619938415004FFF22 /* FrameLib_Multistream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Multistream.h; sourceTree = "<group>"; };
 		B85B689419F1CDA3002D6F1D /* FrameLib_SallenAndKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_SallenAndKey.h; sourceTree = "<group>"; };
 		B85B689519F1CEB7002D6F1D /* fl.sallenkey~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.sallenkey~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -4732,6 +4733,7 @@
 				5AB54BBD2052E95000325C14 /* Ternary */,
 				B8B402141FB9A960006EE056 /* Complex_Unary */,
 				B8B402CF1FB9DF4A006EE056 /* Complex_Binary */,
+				B8E41AE520C307EB003BBD86 /* Expressions */,
 				B85753591F2E92E300478E9F /* Buffer */,
 				B85BDDBC19F1C1E300A349C5 /* Filters */,
 				B8F5A4E51F2AA42200D4777C /* Generators */,
@@ -4740,7 +4742,6 @@
 				B8F5A4E41F2AA3F600D4777C /* Mapping */,
 				B857535B1F2E932700478E9F /* Parameters */,
 				B857535A1F2E931F00478E9F /* Routing */,
-				B8E41AE520C307EB003BBD86 /* Expressions */,
 				B8A4757119C9DD7F0043DC65 /* Spectral */,
 				B8F5A4DF1F2A619200D4777C /* Spatial */,
 				B812462119F475B8009833F1 /* Storage */,
@@ -4838,9 +4839,9 @@
 		B8A70CE119C11303005BA4E3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B8DE14DC0EB46B030050BDFE /* FrameLib_MaxClass.h */,
 				B878DB731D819C15001A5151 /* MaxClass_Base.h */,
 				B82347462321BBDC008755E0 /* MaxBuffer.h */,
-				B8DE14DC0EB46B030050BDFE /* FrameLib_MaxClass.h */,
 				B8020487231BDD0A0062447A /* framelib_max.cpp */,
 			);
 			path = Common;
@@ -5060,6 +5061,7 @@
 		B8E41AE520C307EB003BBD86 /* Expressions */ = {
 			isa = PBXGroup;
 			children = (
+				B857BBBB2381A44900FC0619 /* expression_object_parsing.h */,
 				B8E41B2220C5EACD003BBD86 /* fl.expr~.cpp */,
 				B85E1D4F20C8494300DEEE6E /* fl.complex.expr~.cpp */,
 			);
