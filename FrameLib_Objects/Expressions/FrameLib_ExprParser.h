@@ -616,7 +616,7 @@ namespace FrameLib_ExprParser
             
             result = nodes[0];
             
-            return (nodes.size() != 1 || nodes[0].isToken()) ? kParseError_StrayItem : kNoError;;
+            return (nodes.size() != 1 || nodes[0].isToken()) ? kParseError_StrayItem : kNoError;
         }
 
         ExprParseError recursiveParse(Graph<T>& graph, NodeList& nodes, size_t resultItems)
