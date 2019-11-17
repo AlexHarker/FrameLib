@@ -25,7 +25,7 @@ namespace FrameLib_ExprParser
         kLexError_ZeroLengthToken,
         
         kParseError_EmptySubExpr,
-        kParseError_StrayParenthesis,
+        kParseError_UnmatchedParenthesis,
         kParseError_NotFunction,
         kParseError_UnknownToken,
         kParseError_TooFewCommas,
@@ -251,8 +251,11 @@ namespace FrameLib_ExprParser
             mDefaultConstant = constant;
         }
         
-        ExprParseError parse(Graph<T>& graph, const char *expr)
+        ExprParseError parse(Graph<T>& graph, const char *expr, FrameLib_ErrorReporter& reporter, FrameLib_Proxy *proxy)
         {
+            mReporter = &reporter;
+            mProxy = proxy;
+            
             NodeList nodes;
             ExprParseError error;
             T value = 0.0;
@@ -294,56 +297,15 @@ namespace FrameLib_ExprParser
             return kNoError;
         }
         
-        void reportError(FrameLib_ErrorReporter& reporter, FrameLib_Proxy *proxy, ExprParseError error)
-        {
-            switch (error)
-            {
-                case kNoError:
-                    break;
-                    
-                case kLexError_UnknownChar:
-                    reporter(kErrorObject, proxy, "expression lexing failed - unknown character found");
-                    break;
-                    
-                case kLexError_ZeroLengthToken:
-                    reporter(kErrorObject, proxy, "expression lexing failed - zero length token");
-                    break;
-                    
-                case kParseError_EmptySubExpr:
-                    reporter(kErrorObject, proxy, "expression parsing failed - empty sub expression");
-                    break;
-                    
-                case kParseError_StrayParenthesis:
-                    reporter(kErrorObject, proxy, "expression parsing failed - stray paranthesis");
-                    break;
-
-                case kParseError_NotFunction:
-                    reporter(kErrorObject, proxy, "expression parsing failed - function token not known");
-                    break;
-                    
-                case kParseError_UnknownToken:
-                    reporter(kErrorObject, proxy, "expression parsing failed - unknown token");
-                    break;
-                    
-                case kParseError_TooFewCommas:
-                    reporter(kErrorObject, proxy, "expression parsing failed - too few arguments to function");
-                    break;
-                    
-                case kParseError_TooManyCommas:
-                    reporter(kErrorObject, proxy, "expression parsing failed - too many arguments to function");
-                    break;
-                    
-                case kParseError_OpPosition:
-                    reporter(kErrorObject, proxy, "expression parsing failed - operator found in unexpected position");
-                    break;
-                    
-                case kParseError_StrayItem:
-                    reporter(kErrorObject, proxy, "expression parsing failed - stray items found");
-                    break;
-            }
-        }
-        
     private:
+        
+        // Error reporting
+        
+        template <typename... Args>
+        void reportError(const char *error, Args... args)
+        {
+            (*mReporter)(kErrorObject, mProxy, error, args...);
+        }
         
         // Detect Character Classes
         
@@ -464,11 +426,19 @@ namespace FrameLib_ExprParser
                     case kOperator:             end = extentOperator(expr);     break;
                     case kNumber:               end = extentNumber(expr);       break;
                     case kSymbol:               end = extentSymbol(expr);       break;
-                    case kUnknown:              return kLexError_UnknownChar;
+                    case kUnknown:
+                    {
+                        std::string s(1, *expr);
+                        reportError("parsing failed - unknown character found: #", s.c_str());
+                        return kLexError_UnknownChar;
+                    }
                 }
                 
                 if (end <= expr)
+                {
+                    reportError("parsing failed - zero length token");
                     return kLexError_ZeroLengthToken;
+                }
                 
                 tokens.push_back(Token(type, expr, end - expr));
                 expr = end;
@@ -565,7 +535,10 @@ namespace FrameLib_ExprParser
             // Check the operator is not at the beginning or end and the nodes either side are not operators
             
             if (it == nodes.begin() || it == nodes.end() - 1 || (it - 1)->isOperator() || (it + 1)->isOperator())
+            {
+                reportError("parsing failed - operator found in unexpected position");
                 return kParseError_OpPosition;
+            }
             
             // Parse operation and erase consumed nodes (set the iterator back one, as it will be incremented)
             
@@ -592,8 +565,13 @@ namespace FrameLib_ExprParser
             // Check for any remaining tokens that are not operators
 
             for (auto it = nodes.begin(); it != nodes.end(); it++)
+            {
                 if (it->isToken() && !it->isOperator())
+                {
+                    reportError("parsing failed - unknown token: #", it->getTokenString());
                     return kParseError_UnknownToken;
+                }
+            }
             
             // Now resolve unary operators by searching right-to-left
             
@@ -616,7 +594,13 @@ namespace FrameLib_ExprParser
             
             result = nodes[0];
             
-            return (nodes.size() != 1 || nodes[0].isToken()) ? kParseError_StrayItem : kNoError;
+            if (nodes.size() != 1 || nodes[0].isToken())
+            {
+                reportError("parsing failed - stray items found");
+                return kParseError_StrayItem;
+            }
+            
+            return kNoError;
         }
 
         ExprParseError recursiveParse(Graph<T>& graph, NodeList& nodes, size_t resultItems)
@@ -627,7 +611,10 @@ namespace FrameLib_ExprParser
             // Check for empty node list
             
             if (nodes.empty())
+            {
+                reportError("parsing failed - empty sub expression");
                 return kParseError_EmptySubExpr;
+            }
             
             // Parentheses
             
@@ -653,7 +640,10 @@ namespace FrameLib_ExprParser
                     break;
                 
                 if ((n1 == nodes.begin()) != (n2 == nodes.end()))
-                    return kParseError_StrayParenthesis;
+                {
+                    reportError("parsing failed - unmatched parenthesis");
+                    return kParseError_UnmatchedParenthesis;
+                }
                 
                 // Copy child nodes, determine if this is a function call and how many items it requires
                 // N.B. - here n1 is decremented to indicate the actual LHS parenthesis
@@ -666,7 +656,10 @@ namespace FrameLib_ExprParser
                     // Check that a function is found
                     
                     if (!(function = mFunctions.getItem((n1 - 1)->getTokenString())))
+                    {
+                        reportError("parsing failed - unknown function: #", (n1 - 1)->getTokenString());
                         return kParseError_NotFunction;
+                    }
                     
                     numItems = function->numItems();
                     n1--;
@@ -698,8 +691,11 @@ namespace FrameLib_ExprParser
                 
                 // Check that there are some items to parse
                 
-                if (n1 == n2)
+                if (n1 == n2 || n2 == std::prev(nodes.end()))
+                {
+                    reportError("parsing failed - empty sub expression");
                     return kParseError_EmptySubExpr;
+                }
                 
                 // Copy the child nodes and erase from this level, then parse the remaining operators
                 
@@ -714,11 +710,21 @@ namespace FrameLib_ExprParser
             if (nodes.size() == resultItems)
                 return kNoError;
             
-            return (nodes.size() < resultItems) ? kParseError_TooFewCommas : kParseError_TooManyCommas;
+            if (nodes.size() < resultItems)
+            {
+                reportError("parsing failed - too few arguments for function");
+                return kParseError_TooFewCommas;
+            }
+            
+            reportError(" parsing failed - too many arguments for function/operator");
+            return kParseError_TooManyCommas;
         }
         
     private:
 
+        FrameLib_ErrorReporter* mReporter;
+        FrameLib_Proxy* mProxy;
+        
         std::vector<OperatorList> mOperators;
         OperatorList mFunctions;
         std::vector<Constant> mConstants;

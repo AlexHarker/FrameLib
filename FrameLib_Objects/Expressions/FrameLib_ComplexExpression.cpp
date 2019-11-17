@@ -313,10 +313,7 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
 
     Graph graph;
     Parser parser;
-    ExprParseError error = parser.parse(graph, mParameters.getString(kExpression));
-
-    if (error != kNoError)
-        parser.reportError(getReporter(), proxy, error);
+    ExprParseError error = parser.parse(graph, mParameters.getString(kExpression), getReporter(), proxy);
     
     if (graph.mNumInputs > 32)
         graph = Graph();

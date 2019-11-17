@@ -16,7 +16,7 @@ class FrameLib_Expression : public FrameLib_Block
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
-    // Interal Classes
+    // Internal Classes
     
     struct Parser : public FrameLib_ExprParser::Parser<double>
     {
