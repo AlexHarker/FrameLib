@@ -299,8 +299,11 @@ FrameLib_ComplexExpression::FrameLib_ComplexExpression(FrameLib_Context context,
     Parser parser;
     ExprParseError error = parser.parse(graph, mParameters.getString(kExpression), getReporter(), proxy);
     
-    if (graph.mNumInputs > 32)
+    if (graph.mNumInputs > kMaxIns)
+    {
+        getReporter()(kErrorObject, proxy, "expression has more than the maximum number of inputs (#)", kMaxIns);
         graph = Graph();
+    }
     
     setIO(graph.mNumInputs * 2, 2);
     

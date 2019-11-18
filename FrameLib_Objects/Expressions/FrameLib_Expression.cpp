@@ -255,7 +255,10 @@ FrameLib_Expression::FrameLib_Expression(FrameLib_Context context, const FrameLi
     ExprParseError error = parser.parse(graph, mParameters.getString(kExpression), getReporter(), proxy);
     
     if (graph.mNumInputs > kMaxIns)
+    {
+        getReporter()(kErrorObject, proxy, "expression has more than the maximum number of inputs (#)", kMaxIns);
         graph = Graph();
+    }
     
     setIO(graph.mNumInputs, 1);
         
