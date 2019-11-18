@@ -193,6 +193,11 @@ public:
             return addItem(charArray);
         }
         
+        bool addItem(int number)
+        {
+            return addItem(static_cast<long>(number));
+        }
+        
         bool addItem(double number)
         {
             const int strBufSize = 32;
