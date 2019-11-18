@@ -54,7 +54,7 @@ class FrameLib_ComplexExpression : public FrameLib_Block
         
         // Constructor
         
-        ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns, std::complex<double> value);
+        ConstantOut(FrameLib_Context context, const double *triggers, unsigned long triggersSize, unsigned long numIns, std::complex<double> value);
         
     private:
         
@@ -64,7 +64,6 @@ class FrameLib_ComplexExpression : public FrameLib_Block
         
         // Data
         
-        MismatchModes mMode;
         std::complex<double> mValue;
     };
     
