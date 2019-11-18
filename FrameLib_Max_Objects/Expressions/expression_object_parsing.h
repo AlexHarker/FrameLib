@@ -60,15 +60,20 @@ private:
         
         if (len > 1 && sym->s_name[0] == '@')
             return true;
+
+        // Input Tag
         
-        // Input tag
+        if (FrameLib_MaxClass<void>::isInputTag(sym))
+            return true;
         
-        if (len > 2 && sym->s_name[0] == '[' && sym->s_name[len - 1] == ']')
+        // Context Tag
+        
+        if (FrameLib_MaxClass<void>::isContextTag(sym))
             return true;
         
         // Basic parameter tag test
         
-        if (len <= 1 || sym->s_name[0] != '/')
+        if (!FrameLib_MaxClass<void>::isParameterTag(sym))
             return false;
         
         // Escape division by known constants
@@ -98,7 +103,7 @@ private:
             else
                 concatenated += std::to_string(atom_getfloat(argv));
             
-            // Add whitespace between symbols
+            // Add whitespace between atoms
             
             concatenated += " ";
         }
