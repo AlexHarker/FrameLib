@@ -92,8 +92,21 @@ namespace FrameLib_ExprParser
         enum TokenType { kParenthesisLHS, kParenthesisRHS, kComma, kOperator, kNumber, kSymbol, kUnknown };
         enum NodeType { kToken, kConstant, kVariable, kResult };
 
-        // A token with a type and string
+        // An indication of where a node starts and ends in the original string
         
+        struct CharSpan
+        {
+            CharSpan() : mPos(0), mEnd(0) {}
+            CharSpan(size_t pos, size_t end) : mPos(pos), mEnd(end) {}
+            CharSpan(size_t pos) : CharSpan(pos, pos) {}
+            CharSpan(const char* str, const char* pos) : CharSpan(pos - str, pos + 1 - str) {}
+            CharSpan(const char* str, const char* pos, const char* end) : mPos(pos - str), mEnd(end - str) {}
+            
+            size_t mPos, mEnd;
+        };
+        
+        // A token with a type and string
+
         struct Token
         {
             Token() : mType(kUnknown), mText ("") {}
@@ -111,9 +124,9 @@ namespace FrameLib_ExprParser
         public:
             
             Node() : mType(kToken), mValue(0.0), mIndex(-1) {}
-            Node(Token token) : mType(kToken), mToken(token), mValue(0.0), mIndex(-1) {}
-            Node(T constant) : mType(kConstant), mValue(constant), mIndex(-1) {}
-            Node(IndexType type, long index) : mType(type == kIsInput ? kVariable : kResult), mValue(0.0), mIndex(index) {}
+            Node(Token token, CharSpan span) : mType(kToken), mToken(token), mValue(0.0), mIndex(-1), mSpan(span) {}
+            Node(T constant, CharSpan span) : mType(kConstant), mValue(constant), mIndex(-1), mSpan(span) {}
+            Node(IndexType type, long index, CharSpan span) : mType(type == kIsInput ? kVariable : kResult), mValue(0.0), mIndex(index), mSpan(span) {}
             
             // Checks for types of node / tokens
             
@@ -132,7 +145,10 @@ namespace FrameLib_ExprParser
             inline long getIndex() const            { return mIndex; }
             inline T getValue() const               { return mValue; }
             const char *getTokenString() const      { return mToken.mText.c_str(); }
-            
+            CharSpan getCharSpan() const            { return mSpan; }
+            size_t getCharPos() const               { return mSpan.mPos; }
+            size_t getCharEnd() const               { return mSpan.mEnd; }
+
             // Input Token Conversion
             
             long convertInputTokens()
@@ -143,7 +159,7 @@ namespace FrameLib_ExprParser
                         if (!isDigit(mToken.mText[i]))
                             return -1;
                     
-                    *this = Node(kIsInput, std::stol(mToken.mText.substr(2)) - 1);
+                    *this = Node(kIsInput, std::stol(mToken.mText.substr(2)) - 1, mSpan);
                 }
                 
                 return mIndex + 1;
@@ -155,12 +171,14 @@ namespace FrameLib_ExprParser
             Token mToken;
             T mValue;
             long mIndex;
+            CharSpan mSpan;
         };
         
-        // Typedefs for brevity
+        // Aliases for brevity
         
-        typedef std::vector<Node> NodeList;
-        typedef typename std::vector<Node>::iterator NodeListIterator;
+        using NodeList = std::vector<Node>;
+        using NodeIt = typename std::vector<Node>::iterator;
+        using ConstOpPtr = const OpBase<T>*;
         
         // Constant Struct
         
@@ -188,7 +206,7 @@ namespace FrameLib_ExprParser
                 mItems.add(item);
             }
             
-            const OpBase<T> *getItem(const char *name) const
+            ConstOpPtr getItem(const char *name) const
             {
                 for (auto it = mItems.begin(); it != mItems.end(); it++)
                     if (!strcmp(name, (*it)->mName))
@@ -255,6 +273,7 @@ namespace FrameLib_ExprParser
         {
             mReporter = &reporter;
             mProxy = proxy;
+            mExpr = expr;
             
             NodeList nodes;
             ExprParseError error;
@@ -274,12 +293,12 @@ namespace FrameLib_ExprParser
                 // Convert number tokens to constants
                 
                 if (it->isNumber())
-                    *it = Node(convertTextToNumber(it->getTokenString()));
+                    *it = Node(convertTextToNumber(it->getTokenString()), it->getCharSpan());
                 
                 // Convert constant symbols to constants
                 
                 if (it->isSymbol() && getConstant(it->getTokenString(), value))
-                    *it = Node(value);
+                    *it = Node(value, it->getCharSpan());
                 
                 // Convert variable tokens to variables
                 
@@ -288,7 +307,7 @@ namespace FrameLib_ExprParser
             
             // Parse
             
-            if ((error = recursiveParse(graph, nodes, 1)))
+            if ((error = recursiveParse(graph, nodes, 1, 0)))
                 return error;
             
             if (nodes.size() && nodes[0].isConstant())
@@ -305,6 +324,23 @@ namespace FrameLib_ExprParser
         void reportError(const char *error, Args... args)
         {
             (*mReporter)(kErrorObject, mProxy, error, args...);
+        }
+        
+        template <typename... Args>
+        void reportError(const char *error, CharSpan span, Args... args)
+        {
+            std::string expr(mExpr);
+            expr.insert(span.mEnd, " << ");
+            expr.insert(span.mPos, " >> ");
+
+            reportError(error, args...);
+            reportError("expression error here: #", expr.c_str());
+        }
+        
+        template <typename... Args>
+        void reportError(const char *error, NodeIt n, Args... args)
+        {
+            reportError(error, n->getCharSpan(), args...);
         }
         
         // Detect Character Classes
@@ -404,6 +440,8 @@ namespace FrameLib_ExprParser
         
         ExprParseError lex(std::vector<Node>& tokens, const char *expr)
         {
+            const char *str = expr;
+            
             while (*expr)
             {
                 TokenType type;
@@ -429,7 +467,7 @@ namespace FrameLib_ExprParser
                     case kUnknown:
                     {
                         std::string s(1, *expr);
-                        reportError("parsing failed - unknown character found: #", s.c_str());
+                        reportError("parsing failed - unknown character found: #", CharSpan(str, expr), s.c_str());
                         return kLexError_UnknownChar;
                     }
                 }
@@ -440,7 +478,7 @@ namespace FrameLib_ExprParser
                     return kLexError_ZeroLengthToken;
                 }
                 
-                tokens.push_back(Token(type, expr, end - expr));
+                tokens.push_back(Node(Token(type, expr, end - expr), CharSpan(str, expr, end)));
                 expr = end;
             }
             
@@ -467,14 +505,14 @@ namespace FrameLib_ExprParser
         
         // Operators / Functions
         
-        const OpBase<T> *getOperator(const char *name, unsigned int precedence) const
+        ConstOpPtr getOperator(const char *name, unsigned int precedence) const
         {
             return mOperators[precedence].getItem(name);
         }
         
-        const OpBase<T> *getOperator(const char *name) const
+        ConstOpPtr getOperator(const char *name) const
         {
-            const OpBase<T> *op = nullptr;
+            ConstOpPtr op = nullptr;
             
             for (unsigned int i = 0; i < static_cast<unsigned int>(mOperators.size()); i++)
                 if ((op = getOperator(name, i)))
@@ -485,81 +523,83 @@ namespace FrameLib_ExprParser
         
         // Parsing Functions
         
-        typename Graph<T>::Input parseInput(const Node& arg)
+        typename Graph<T>::Input parseInput(NodeIt arg)
         {
-            if (arg.isConstant())
-                return typename Graph<T>::Input(arg.getValue());
-            if (arg.isVariable())
-                return typename Graph<T>::Input(kIsInput, arg.getIndex());
+            if (arg->isConstant())
+                return typename Graph<T>::Input(arg->getValue());
+            if (arg->isVariable())
+                return typename Graph<T>::Input(kIsInput, arg->getIndex());
             
-            return typename Graph<T>::Input(kIsOutput, arg.getIndex());
+            return typename Graph<T>::Input(kIsOutput, arg->getIndex());
         }
 
-        Node parseOperation(Graph<T>& graph, const OpBase<T> *op, const Node& arg1, const Node& arg2, const Node& arg3)
+        Node parseOperation(Graph<T>& graph, ConstOpPtr op, NodeIt a1, NodeIt a2, NodeIt a3, NodeIt n1, NodeIt n2)
         {
+            CharSpan span(n1->getCharPos(), n2->getCharEnd());
+            
             // Fold constants
             
-            if (arg1.isConstant() && arg2.isConstant() && arg3.isConstant())
-                return Node(op->call(arg1.getValue(), arg2.getValue(), arg3.getValue()));
+            if (a1->isConstant() && a2->isConstant() && a3->isConstant())
+                return Node(op->call(a1->getValue(), a2->getValue(), a3->getValue()), span);
             
             // Add to the graph
             
             graph.mOperations.push_back(op);
             
             size_t numItems = op->numItems();
-            if (numItems)       graph.mOperations.back().mIns[0] = parseInput(arg1);
-            if (numItems > 1)   graph.mOperations.back().mIns[1] = parseInput(arg2);
-            if (numItems > 2)   graph.mOperations.back().mIns[2] = parseInput(arg3);
+            if (numItems)       graph.mOperations.back().mIns[0] = parseInput(a1);
+            if (numItems > 1)   graph.mOperations.back().mIns[1] = parseInput(a2);
+            if (numItems > 2)   graph.mOperations.back().mIns[2] = parseInput(a3);
             
-            return Node(kIsOutput, static_cast<long>(graph.mOperations.size() - 1));
+            return Node(kIsOutput, static_cast<long>(graph.mOperations.size() - 1), span);
         }
         
-        ExprParseError parseUnaryOperator(Graph<T>& graph, const OpBase<T> *op, NodeList& nodes, const NodeListIterator& it)
+        ExprParseError parseUnaryOperator(Graph<T>& graph, ConstOpPtr op, NodeList& nodes, const NodeIt& it)
         {
-            // Check the operator isn't last, that its either first, or precededed by an operator and not followed by one
+            // Check the operator isn't last, that it's either first, or precededed by an operator and not followed by one
             // N.B. return no error in case this is also an operator later, otherwise it'll be picked up as a stray item
             
             if ((it == nodes.end() - 1) || (it != nodes.begin() && !(it - 1)->isOperator()) || (it + 1)->isOperator())
                 return kNoError;
 
-            // Parse operation amd erase consumed node (the iterator is still valid so don't alter)
+            // Parse operation and erase consumed node (the iterator is still valid so don't alter)
             
-            *it = parseOperation(graph, op, *(it + 1), *(it + 1), *(it + 1));
+            *it = parseOperation(graph, op, it + 1, it + 1, it + 1, it, it + 1);
             nodes.erase(it + 1);
             
             return kNoError;
         }
 
-        ExprParseError parseBinaryOperator(Graph<T>& graph, const OpBase<T> *op, NodeList& nodes, NodeListIterator& it)
+        ExprParseError parseBinaryOperator(Graph<T>& graph, ConstOpPtr op, NodeList& nodes, NodeIt& it)
         {
             // Check the operator is not at the beginning or end and the nodes either side are not operators
             
             if (it == nodes.begin() || it == nodes.end() - 1 || (it - 1)->isOperator() || (it + 1)->isOperator())
             {
-                reportError("parsing failed - operator found in unexpected position");
+                reportError("parsing failed - operator found in unexpected position", it);
                 return kParseError_OpPosition;
             }
             
             // Parse operation and erase consumed nodes (set the iterator back one, as it will be incremented)
             
-            *(it - 1) = parseOperation(graph, op, *(it - 1), *(it + 1), *(it + 1));
+            *(it - 1) = parseOperation(graph, op, it - 1, it + 1, it + 1, it - 1, it + 1);
             it = nodes.erase(it, it + 2) - 1;
             
             return kNoError;
         }
 
-        void parseFunction(Graph<T>& graph, const OpBase<T> *function, NodeList& nodes)
+        void parseFunction(Graph<T>& graph, ConstOpPtr function, NodeList& nodes, NodeIt n1, NodeIt n2)
         {
-            size_t numItems = function->numItems();
+            assert(function->numItems() && "function takes no arguments");
+
+            NodeIt n = nodes.begin();
             
-            if (!numItems) nodes.push_back(Node(0.0));
-            
-            nodes[0] = parseOperation(graph, function, nodes[0], nodes[numItems > 1 ? 1 : 0], nodes[numItems > 2 ? 2 : 0]);
+            nodes[0] = parseOperation(graph, function, n, n + 1, n + 2, n1, n2);
         }
 
         ExprParseError parseOperators(Graph<T>& graph, Node &result, NodeList& nodes)
         {
-            const OpBase<T> *op = nullptr;
+            ConstOpPtr op = nullptr;
             ExprParseError error = kNoError;
 
             // Check for any remaining tokens that are not operators
@@ -568,7 +608,7 @@ namespace FrameLib_ExprParser
             {
                 if (it->isToken() && !it->isOperator())
                 {
-                    reportError("parsing failed - unknown token: #", it->getTokenString());
+                    reportError("parsing failed - unknown token: #", it, it->getTokenString());
                     return kParseError_UnknownToken;
                 }
             }
@@ -596,6 +636,7 @@ namespace FrameLib_ExprParser
             
             if (nodes.size() != 1 || nodes[0].isToken())
             {
+                // FIX
                 reportError("parsing failed - stray items found");
                 return kParseError_StrayItem;
             }
@@ -603,16 +644,16 @@ namespace FrameLib_ExprParser
             return kNoError;
         }
 
-        ExprParseError recursiveParse(Graph<T>& graph, NodeList& nodes, size_t resultItems)
+        ExprParseError recursiveParse(Graph<T>& graph, NodeList& nodes, size_t resultItems, size_t pos)
         {
-            NodeListIterator n1, n2;
+            NodeIt n1, n2;
             ExprParseError error = kNoError;
             
             // Check for empty node list
             
             if (nodes.empty())
             {
-                reportError("parsing failed - empty sub expression");
+                reportError("parsing failed - empty sub expression", CharSpan(pos));
                 return kParseError_EmptySubExpr;
             }
             
@@ -620,7 +661,7 @@ namespace FrameLib_ExprParser
             
             for (n2 = nodes.begin(); ; )
             {
-                const OpBase<T> *function = nullptr;
+                ConstOpPtr function = nullptr;
 
                 // Find first RHS parenthesis and matching LHS parenthesis
                 
@@ -641,7 +682,7 @@ namespace FrameLib_ExprParser
                 
                 if ((n1 == nodes.begin()) != (n2 == nodes.end()))
                 {
-                    reportError("parsing failed - unmatched parenthesis");
+                    reportError("parsing failed - unmatched parenthesis", n1 == nodes.begin() ? n2 : n1 - 1);
                     return kParseError_UnmatchedParenthesis;
                 }
                 
@@ -650,6 +691,7 @@ namespace FrameLib_ExprParser
                 
                 NodeList childNodes(n1--, n2);
                 size_t numItems = 1;
+                size_t pos = n1->getCharEnd();
                 
                 if ((n1 != nodes.begin()) && (n1 - 1)->isSymbol())
                 {
@@ -657,7 +699,7 @@ namespace FrameLib_ExprParser
                     
                     if (!(function = mFunctions.getItem((n1 - 1)->getTokenString())))
                     {
-                        reportError("parsing failed - unknown function: #", (n1 - 1)->getTokenString());
+                        reportError("parsing failed - unknown function: #", n1 - 1, (n1 - 1)->getTokenString());
                         return kParseError_NotFunction;
                     }
                     
@@ -667,11 +709,11 @@ namespace FrameLib_ExprParser
                 
                 // Parse the child nodes and then the function (if it is a function)
                 
-                if ((error = recursiveParse(graph, childNodes, numItems)))
+                if ((error = recursiveParse(graph, childNodes, numItems, pos)))
                     return error;
                 
                  if (function)
-                     parseFunction(graph, function, childNodes);
+                     parseFunction(graph, function, childNodes, n1, n2);
                 
                 // Copy the result and then erase the unneeded nodes from this level
                 
@@ -681,22 +723,34 @@ namespace FrameLib_ExprParser
             
             // Commas
             
+            size_t numCommas = 0;
+            
             for (n1 = nodes.begin(); n1 != nodes.end(); n1++)
             {
                 // Find the next comma
                 
                 for (n2 = n1; n2 != nodes.end(); n2++)
-                    if (n2->isComma())
-                        break;
-                
-                // Check that there are some items to parse
-                
-                if (n1 == n2 || n2 == std::prev(nodes.end()))
                 {
-                    reportError("parsing failed - empty sub expression");
+                    if (n2->isComma())
+                    {
+                        if (++numCommas >= resultItems)
+                        {
+                            reportError("parsing failed - unexpected comma", n2->getCharSpan());
+                            return kParseError_TooManyCommas;
+                        }
+                        break;
+                    }
+                }
+             
+                // Check that the comma is not at the start or end of the nodes
+                
+                if (n2 == nodes.begin() || n2 == std::prev(nodes.end()))
+                {
+                    CharSpan span(n2 == nodes.begin() ? n1->getCharPos() : n2->getCharEnd());
+                    reportError("parsing failed - empty sub expression", span);
                     return kParseError_EmptySubExpr;
                 }
-                
+       
                 // Copy the child nodes and erase from this level, then parse the remaining operators
                 
                 NodeList childNodes(n1, n2);
@@ -707,23 +761,21 @@ namespace FrameLib_ExprParser
             
             // Check that we have the required number of nodes
             
-            if (nodes.size() == resultItems)
-                return kNoError;
-            
             if (nodes.size() < resultItems)
             {
-                reportError("parsing failed - too few arguments for function");
+                CharSpan span(nodes.front().getCharPos(), nodes.back().getCharEnd());
+                reportError("parsing failed - too few arguments for function", span);
                 return kParseError_TooFewCommas;
             }
             
-            reportError(" parsing failed - too many arguments for function/operator");
-            return kParseError_TooManyCommas;
+            return kNoError;
         }
         
     private:
 
         FrameLib_ErrorReporter* mReporter;
         FrameLib_Proxy* mProxy;
+        const char *mExpr;
         
         std::vector<OperatorList> mOperators;
         OperatorList mFunctions;
