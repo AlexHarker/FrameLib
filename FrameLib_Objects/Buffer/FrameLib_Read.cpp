@@ -16,6 +16,7 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
     mParameters.addEnumItem(kSamples, "samples");
+    mParameters.addEnumItem(kSamples, "normalised");
     
     mParameters.addEnum(kInterpolation, "interp", 3);
     mParameters.addEnumItem(kHermite, "hermite");
@@ -128,6 +129,7 @@ void FrameLib_Read::process()
             case kMS:           conversionFactor = samplingRate / 1000.0;       break;
             case kSeconds:      conversionFactor = samplingRate;                break;
             case kSamples:      conversionFactor = 1.0;                         break;
+            case kNormalised:   conversionFactor = lengthM1;                    break;
         }
         
         for (unsigned long i = 0; i < size; i++)

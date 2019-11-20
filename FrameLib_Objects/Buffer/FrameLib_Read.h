@@ -13,7 +13,7 @@ class FrameLib_Read final : public FrameLib_Processor
     
     enum ParameterList { kBuffer, kChannel, kInterpolation, kUnits };
     enum Interpolation { kHermite, kBSpline, kLagrange, kLinear, kNone };
-    enum Units { kMS, kSeconds, kSamples };
+    enum Units { kMS, kSeconds, kSamples, kNormalised };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
