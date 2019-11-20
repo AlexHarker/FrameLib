@@ -31,6 +31,10 @@ private:
     
     void calculateTime();
     
+    // Object Reset
+    
+    void objectReset() override;
+
     // Update and schedule
     
     void update() override;

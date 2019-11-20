@@ -72,6 +72,13 @@ void FrameLib_Future::update()
         calculateTime();
 }
 
+// Object Reset
+
+void FrameLib_Future::objectReset()
+{
+    mTime = FrameLib_TimeFormat();
+}
+
 // Schedule
 
 FrameLib_Future::SchedulerInfo FrameLib_Future::schedule(bool newFrame, bool noAdvance)
