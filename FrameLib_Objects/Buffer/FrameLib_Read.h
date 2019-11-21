@@ -11,7 +11,7 @@ class FrameLib_Read final : public FrameLib_Processor
 {
     // Parameter Info and Enums
     
-    enum ParameterList { kBuffer, kChannel, kInterpolation, kUnits };
+    enum ParameterList { kBuffer, kChannel, kUnits, kInterpolation };
     enum Interpolation { kHermite, kBSpline, kLagrange, kLinear, kNone };
     enum Units { kMS, kSeconds, kSamples, kNormalised };
 
