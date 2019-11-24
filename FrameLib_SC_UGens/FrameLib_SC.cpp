@@ -1,12 +1,11 @@
 
 #include "SC_PlugIn.h"
-#include "../../server/scsynth/SC_UnitDef.h"
 
 #include "FrameLib_Objects.h"
 
 static InterfaceTable *ft;
 
-// declare struct to hold unit generator state
+// Declare struct to hold unit generator state
 
 struct FrameLib_SC_UGen : public Unit
 {
@@ -15,8 +14,16 @@ struct FrameLib_SC_UGen : public Unit
     double **mAudioBuffers;
 };
 
+// Calculation functions declarations (also used to identify units)
 
-static int kFrameLibFlag = 0x100;
+void FLTest_CalcZero(FrameLib_SC_UGen *unit, int inNumSamples);
+void FLTest_CalcAudio(FrameLib_SC_UGen *unit, int inNumSamples);
+
+// Declare unit generator desstructor
+
+static void FLTest_Dtor(FrameLib_SC_UGen* unit);
+
+// Global pbject
 
 struct SC_FrameLib_Global
 {
@@ -59,10 +66,13 @@ struct SC_FrameLib_Global
     
     bool CheckFrameLib(Unit* unit)
     {
-        return unit && unit->mUnitDef->mFlags & kFrameLibFlag;
+        return unit && (unit->mCalcFunc == GetZeroCalc() || unit->mCalcFunc == GetAudioCalc());
     }
+
+    UnitCalcFunc GetZeroCalc() const { return (UnitCalcFunc) FLTest_CalcZero; }
+    UnitCalcFunc GetAudioCalc() const { return (UnitCalcFunc) FLTest_CalcAudio; }
     
-    void parseString(World *inWorld, FrameLib_Parameters::AutoSerial& serial, const char *str)
+    void ParseString(World *inWorld, FrameLib_Parameters::AutoSerial& serial, const char *str)
     {
         char *tempStr = (char *) RTAlloc(inWorld, strlen(str) + 1);
         strcpy(tempStr, str);
@@ -112,14 +122,14 @@ struct SC_FrameLib_Global
         else
             mInitParameters[id].mSerial = new FrameLib_Parameters::AutoSerial;
         
-        parseString(inWorld, *mInitParameters[id].mSerial, params);
+        ParseString(inWorld, *mInitParameters[id].mSerial, params);
         
         if (mInitParameters[id].mInputsSerial)
             mInitParameters[id].mInputsSerial->clear();
         else
             mInitParameters[id].mInputsSerial = new FrameLib_Parameters::AutoSerial;
 
-        parseString(inWorld, *mInitParameters[id].mInputsSerial, inputs);
+        ParseString(inWorld, *mInitParameters[id].mInputsSerial, inputs);
 }
     
     InitParameters *GetInitParameters(FrameLib_SC_UGen* unit)
@@ -229,11 +239,6 @@ FrameLib_Proxy *GetProxy(FrameLib_SC_UGen *unit, FrameLib_Expand<FrameLib_Read> 
     return new ReadProxy(unit);
 }
 
-// declare unit generator functions
-static void FLTest_next_a_zero(FrameLib_SC_UGen *unit, int inNumSamples);
-static void FLTest_next_a_calc(FrameLib_SC_UGen *unit, int inNumSamples);
-static void FLTest_Dtor(FrameLib_SC_UGen* unit);
-
 //////////////////////////////////////////////////////////////////
 
 // Ctor is called to initialize the unit generator.
@@ -246,11 +251,12 @@ static void FLTest_Dtor(FrameLib_SC_UGen* unit);
 template<class T>
 void FLTest_Ctor(FrameLib_SC_UGen* unit)
 {
-    FrameLib_Context context(sGlobal.getGlobal(), unit->mParent);
+    SC_FrameLib_Global* global = &sGlobal;
+    FrameLib_Context context(global->getGlobal(), unit->mParent);
     
     // FIX - number of streams / fixed inputs
     
-    SC_FrameLib_Global::InitParameters *params = sGlobal.GetInitParameters(unit);
+    SC_FrameLib_Global::InitParameters *params = global->GetInitParameters(unit);
     unit->mProxy = GetProxy<T>(unit, static_cast<T *>(nullptr));
     
     int nStreams = 1;
@@ -285,7 +291,7 @@ void FLTest_Ctor(FrameLib_SC_UGen* unit)
             }
         }
         
-        if (sGlobal.CheckFrameLib(connect))
+        if (global->CheckFrameLib(connect))
         {
             FrameLib_SC_UGen *connectable = reinterpret_cast<FrameLib_SC_UGen *>(connect);
             unsigned long cNumAudioOuts = connectable->mObject->getNumAudioOuts();
@@ -316,14 +322,14 @@ void FLTest_Ctor(FrameLib_SC_UGen* unit)
             for (unsigned long i = 1; i <numAudioChans; i++)
                 unit->mAudioBuffers[1] = unit->mAudioBuffers[0] + unit->mBufLength * i;
         }
-        unit->mCalcFunc = (UnitCalcFunc)&FLTest_next_a_calc;
+        unit->mCalcFunc = global->GetAudioCalc();
     }
     else
-        unit->mCalcFunc = (UnitCalcFunc)&FLTest_next_a_zero;
+        unit->mCalcFunc = global->GetZeroCalc();
 
     unit->mObject->autoOrderingConnections();
     unit->mObject->reset(unit->mRate->mSampleRate, unit->mRate->mBufLength);
-    FLTest_next_a_zero(unit, 1);
+    FLTest_CalcZero(unit, 1);
 }
 
 void FLTest_Dtor(FrameLib_SC_UGen* unit)
@@ -340,7 +346,7 @@ void FLTest_Dtor(FrameLib_SC_UGen* unit)
 
 //////////////////////////////////////////////////////////////////
 
-void FLTest_output_zero(FrameLib_SC_UGen *unit, unsigned long output, int numSamples)
+void FLTest_OutputZero(FrameLib_SC_UGen *unit, unsigned long output, int numSamples)
 {
     float *out = unit->mOutBuf[output];
     
@@ -351,13 +357,13 @@ void FLTest_output_zero(FrameLib_SC_UGen *unit, unsigned long output, int numSam
     }
 }
 
-void FLTest_next_a_zero(FrameLib_SC_UGen *unit, int inNumSamples)
+void FLTest_CalcZero(FrameLib_SC_UGen *unit, int inNumSamples)
 {
     for (int i = 0; i < unit->mNumOutputs; ++i)
-        FLTest_output_zero(unit, i, inNumSamples);
+        FLTest_OutputZero(unit, i, inNumSamples);
 }
 
-void FLTest_next_a_calc(FrameLib_SC_UGen *unit, int inNumSamples)
+void FLTest_CalcAudio(FrameLib_SC_UGen *unit, int inNumSamples)
 {
     bool outputObject = unit->mObject->getType() == kOutput;
     unsigned long numAudioChannels = unit->mObject->getNumAudioChans();
@@ -394,7 +400,7 @@ void FLTest_next_a_calc(FrameLib_SC_UGen *unit, int inNumSamples)
     }
 
     for (unsigned long i = unit->mObject->getNumAudioOuts(); i < unit->mNumOutputs; ++i)
-        FLTest_output_zero(unit, i, inNumSamples);
+        FLTest_OutputZero(unit, i, inNumSamples);
 }
 
 //////////////////////////////////////////////////////////////////
@@ -402,15 +408,13 @@ void FLTest_next_a_calc(FrameLib_SC_UGen *unit, int inNumSamples)
 template <class T>
 void DefineFrameLibUnit(const char *name)
 {
-    int flags = kFrameLibFlag;
-    (*ft->fDefineUnit)(name, sizeof(FrameLib_SC_UGen), (UnitCtorFunc)&FLTest_Ctor<T>,(UnitDtorFunc)&FLTest_Dtor, flags);
+    (*ft->fDefineUnit)(name, sizeof(FrameLib_SC_UGen), (UnitCtorFunc)&FLTest_Ctor<T>,(UnitDtorFunc)&FLTest_Dtor, 0);
 }
 
 template <class T>
 void DefineFrameLibExpUnit(const char *name)
 {
-    int flags = kFrameLibFlag;
-    (*ft->fDefineUnit)(name, sizeof(FrameLib_SC_UGen), (UnitCtorFunc)&FLTest_Ctor<FrameLib_Expand<T>>,(UnitDtorFunc)&FLTest_Dtor, flags);
+    (*ft->fDefineUnit)(name, sizeof(FrameLib_SC_UGen), (UnitCtorFunc)&FLTest_Ctor<FrameLib_Expand<T>>,(UnitDtorFunc)&FLTest_Dtor, 0);
 }
 
 void ParameterSetup(World *inWorld, void* inUserData, sc_msg_iter *args, void *replyAddr)
