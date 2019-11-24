@@ -27,6 +27,17 @@ static void FLTest_Dtor(FrameLib_SC_UGen* unit);
 
 struct SC_FrameLib_Global
 {
+    class Notifier : public FrameLib_ErrorReporter::HostNotifier
+    {
+        bool notify(const FrameLib_ErrorReporter::ErrorReport& report) override
+        {
+            char errorText[512];
+            report.getErrorText(errorText, 512);
+            ft->fPrint("error: %s\n", errorText);
+            return true;
+        }
+    };
+    
     struct InitParameters
     {
         InitParameters() : mSerial(nullptr), mInputsSerial(nullptr) {}
@@ -56,7 +67,7 @@ struct SC_FrameLib_Global
     
     SC_FrameLib_Global() : mGlobal(nullptr)
     {
-        FrameLib_Global::get(&mGlobal);
+        FrameLib_Global::get(&mGlobal, &mNotifier);
     }
     
     ~SC_FrameLib_Global()
@@ -149,6 +160,7 @@ struct SC_FrameLib_Global
     
     FrameLib_Global *mGlobal;
     
+    Notifier mNotifier;
     std::vector<InitParameters> mInitParameters;
 };
 

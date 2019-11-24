@@ -39,19 +39,6 @@ public:
     
     /**
      
-     @class HostNotifier
-     
-     @brief a virtual struct used to supply a method for notifying the host of errors.
-     
-     */
-    
-    struct HostNotifier : public FrameLib_Proxy
-    {
-        virtual void notify() = 0;
-    };
-    
-    /**
-     
      @class ErrorReport
      
      @brief a report for a single error.
@@ -158,6 +145,7 @@ public:
         size_t size() const { return mReportsSize; }
         
         ConstIterator begin() const { return mReports; }
+        ConstIterator last() const { return mReports + mReportsSize - 1; }
         ConstIterator end() const { return mReports + mReportsSize; }
         
         bool isFull() const { return mFull; }
@@ -259,6 +247,19 @@ public:
         bool mFull;
     };
     
+    /**
+     
+     @class HostNotifier
+     
+     @brief a virtual struct used to supply a method for notifying the host of errors.
+     
+     */
+    
+    struct HostNotifier : public FrameLib_Proxy
+    {
+        virtual bool notify(const ErrorReport& report) = 0;
+    };
+    
     // Constructor
     
     FrameLib_ErrorReporter(HostNotifier *notifier) : mNotifier(notifier), mNotified (false), mReports(new ErrorList()) {}
@@ -272,8 +273,10 @@ public:
         
         if (mNotifier && !mNotified)
         {
-            mNotifier->notify();
-            mNotified = true;
+            if (mNotifier->notify(*(mReports->last())))
+                mReports->remove();
+            else
+                mNotified = true;
         }
     }
     
