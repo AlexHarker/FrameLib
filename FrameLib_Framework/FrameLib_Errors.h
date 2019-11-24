@@ -62,12 +62,12 @@ public:
     {
         friend FrameLib_ErrorReporter;
         
-        ErrorReport(ErrorSource source, FrameLib_Proxy *reporter, const char *error, const char *items, unsigned long numItems)
-        : mSource(source), mReporter(reporter), mError(error), mItems(items), mNumItems(numItems) {}
+        ErrorReport(ErrorSource source, FrameLib_Proxy *reporter, const char *error, const char *items, size_t numChars, unsigned long numItems)
+        : mSource(source), mReporter(reporter), mError(error), mItems(items), mItemSize(numChars), mNumItems(numItems) {}
         
     public:
         
-        ErrorReport() : mSource(kErrorObject), mReporter(nullptr), mError(nullptr), mItems(nullptr), mNumItems(0) {}
+        ErrorReport() : mSource(kErrorObject), mReporter(nullptr), mError(nullptr), mItems(nullptr), mItemSize(0), mNumItems(0) {}
 
         void getErrorText(std::string& text) const;
         ErrorSource getSource() const                   { return mSource; }
@@ -81,6 +81,7 @@ public:
         FrameLib_Proxy* mReporter;
         const char* mError;
         const char* mItems;
+        size_t mItemSize;
         unsigned long mNumItems;
     };
     
@@ -160,6 +161,8 @@ public:
         
     private:
         
+        char *getItemsPointer() { return mItems + mItemsSize; }
+        
         bool addItem(const char *str)
         {
             char *ptr = mItems + mItemsSize;
@@ -221,15 +224,27 @@ public:
         template<typename... Args>
         void add(ErrorSource source, FrameLib_Proxy *reporter, const char *error, Args... args)
         {
-            char *ptr = mItems + mItemsSize;
+            char *ptr = getItemsPointer();
             
             if (!mFull && (mReportsSize < sReportArraySize) && addItems(args...))
             {
-                mReports[mReportsSize] = ErrorReport(source, reporter, error, ptr, sizeof...(args));
+                size_t itemSize = getItemsPointer() - ptr;
+                mReports[mReportsSize] = ErrorReport(source, reporter, error, ptr, itemSize, sizeof...(args));
                 mReportsSize++;
             }
             else
                 mFull = true;
+        }
+        
+        void remove()
+        {            
+            if (mReportsSize)
+            {
+                mFull = false;
+                mReportsSize--;
+                mItemsSize -= mReports[mReportsSize].mItemSize;
+                mReports[mReportsSize] = ErrorReport();
+            }
         }
         
         // Data
