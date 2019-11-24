@@ -9,8 +9,11 @@ static InterfaceTable *ft;
 
 struct FrameLib_SC_UGen : public Unit
 {
+    typedef void (*FLCalcFunc)(FrameLib_SC_UGen *, int);
+
     FrameLib_Multistream *mObject;
     FrameLib_Proxy *mProxy;
+    FLCalcFunc mFrameLibCalcFunc;
     double **mAudioBuffers;
 };
 
@@ -27,6 +30,11 @@ static void FLTest_Dtor(FrameLib_SC_UGen* unit);
 
 struct SC_FrameLib_Global
 {
+    static void CalcFunc(FrameLib_SC_UGen *unit, int inNumSamples)
+    {
+        unit->mFrameLibCalcFunc(unit, inNumSamples);
+    }
+
     class Notifier : public FrameLib_ErrorReporter::HostNotifier
     {
         bool notify(const FrameLib_ErrorReporter::ErrorReport& report) override
@@ -77,11 +85,10 @@ struct SC_FrameLib_Global
     
     bool CheckFrameLib(Unit* unit)
     {
-        return unit && (unit->mCalcFunc == GetZeroCalc() || unit->mCalcFunc == GetAudioCalc());
+        return unit && (unit->mCalcFunc == GetCalcFunc());
     }
 
-    UnitCalcFunc GetZeroCalc() const { return (UnitCalcFunc) FLTest_CalcZero; }
-    UnitCalcFunc GetAudioCalc() const { return (UnitCalcFunc) FLTest_CalcAudio; }
+    UnitCalcFunc GetCalcFunc() const { return (UnitCalcFunc) CalcFunc; }
     
     void ParseString(World *inWorld, FrameLib_Parameters::AutoSerial& serial, const char *str)
     {
@@ -325,6 +332,8 @@ void FLTest_Ctor(FrameLib_SC_UGen* unit)
         }
     }
 
+    unit->mCalcFunc = global->GetCalcFunc();
+
     if (handlesAudio)
     {
         if (numAudioChans)
@@ -334,10 +343,11 @@ void FLTest_Ctor(FrameLib_SC_UGen* unit)
             for (unsigned long i = 1; i <numAudioChans; i++)
                 unit->mAudioBuffers[1] = unit->mAudioBuffers[0] + unit->mBufLength * i;
         }
-        unit->mCalcFunc = global->GetAudioCalc();
+        unit->mFrameLibCalcFunc = &FLTest_CalcAudio;
     }
     else
-        unit->mCalcFunc = global->GetZeroCalc();
+        unit->mFrameLibCalcFunc = &FLTest_CalcZero;
+
 
     unit->mObject->autoOrderingConnections();
     unit->mObject->reset(unit->mRate->mSampleRate, unit->mRate->mBufLength);
