@@ -31,6 +31,7 @@ namespace FrameLib_ExprParser
         kParseError_TooFewCommas,
         kParseError_TooManyCommas,
         kParseError_OpPosition,
+        kParseError_FunctionPosition,
         kParseError_StrayItem
     };
 
@@ -608,6 +609,12 @@ namespace FrameLib_ExprParser
             {
                 if (it->isToken() && !it->isOperator())
                 {
+                    if (mFunctions.getItem(it->getTokenString()))
+                    {
+                        reportError("parsing failed - function without parantheses: #", it, it->getTokenString());
+                        return kParseError_FunctionPosition;
+                    }
+                    
                     reportError("parsing failed - unknown token: #", it, it->getTokenString());
                     return kParseError_UnknownToken;
                 }
@@ -636,8 +643,8 @@ namespace FrameLib_ExprParser
             
             if (nodes.size() != 1 || nodes[0].isToken())
             {
-                // FIX
-                reportError("parsing failed - stray items found");
+                 CharSpan span = nodes.size() != 1 ? CharSpan(nodes.begin()->getCharEnd()) : CharSpan(nodes.begin()->getCharSpan());
+                reportError("parsing failed - unexpected expression structure", span);
                 return kParseError_StrayItem;
             }
             
