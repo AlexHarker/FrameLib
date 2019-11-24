@@ -70,11 +70,14 @@ public:
         ErrorReport() : mSource(kErrorObject), mReporter(nullptr), mError(nullptr), mItems(nullptr), mItemSize(0), mNumItems(0) {}
 
         void getErrorText(std::string& text) const;
+        void getErrorText(char *text, size_t N) const;
         ErrorSource getSource() const                   { return mSource; }
         FrameLib_Proxy* getReporter() const             { return mReporter; }
     
     private:
         
+        void copy(char*& dest, const char *str, size_t length, size_t& left) const;
+
         // Data
         
         ErrorSource mSource;
