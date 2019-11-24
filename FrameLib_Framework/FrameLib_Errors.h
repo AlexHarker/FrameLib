@@ -98,7 +98,7 @@ public:
         
         const static int sCharArraySize = 8192;
         const static int sReportArraySize = 1024;
-                
+        
     public:
         
         /**
@@ -234,7 +234,7 @@ public:
         
         // Data
         
-        ErrorReport mReports[sCharArraySize];
+        ErrorReport mReports[sReportArraySize];
         char mItems[sCharArraySize];
         size_t mReportsSize;
         size_t mItemsSize;
