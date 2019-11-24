@@ -98,9 +98,7 @@ public:
         
         const static int sCharArraySize = 8192;
         const static int sReportArraySize = 1024;
-        
-    public:
-        
+                
     public:
         
         /**
