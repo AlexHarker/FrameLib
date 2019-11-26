@@ -12,19 +12,17 @@
 
 #include "FrameLib_FixedPoint.h"
 
-// Standard integer types
+// STL includes - including standard types
 
-#include <stdint.h>
-
-// STL includes
-
+#include <atomic>
+#include <cstdint>
 #include <memory>
 #include <vector>
 
 // Raw Bytes
 
-typedef unsigned char Byte;
-typedef unsigned char *BytePointer;
+using Byte = unsigned char;
+using BytePointer = Byte *;
 
 
 /**

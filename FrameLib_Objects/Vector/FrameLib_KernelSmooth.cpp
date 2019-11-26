@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_KernelSmooth::FrameLib_KernelSmooth(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mSmoother(*this)
+FrameLib_KernelSmooth::FrameLib_KernelSmooth(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mSmoother(*this)
 {
     mParameters.addVariableDoubleArray(kSmooth, "smooth", 0.0, 2, 0);
     mParameters.setMin(0.0);

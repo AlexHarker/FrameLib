@@ -5,6 +5,8 @@
 #include "FrameLib_Types.h"
 #include "FrameLib_Context.h"
 #include "FrameLib_Parameters.h"
+#include "FrameLib_ProcessingQueue.h"
+#include "FrameLib_Queues.h"
 
 #include <algorithm>
 #include <string>
@@ -17,99 +19,6 @@
   
  */
 
-/**
- 
- @class FrameLib_Queueable
- 
- @brief a template class for items that can be placed on a queue
- 
- */
-
-template <class T>
-class FrameLib_Queueable
-{
-    
-public:
-    
-    FrameLib_Queueable() : mNext(nullptr) {}
-    
-    /**
-     
-     @class Queue
-     
-     @brief a single-threaded queue for non-recursive queuing of items for processing
-     
-     An item can only be in one position in a single queue at a time.
-     
-     */
-    
-    class Queue
-    {
-        typedef void (T::*Method)(Queue *);
-
-    public:
-        
-        Queue() : mFirst(nullptr), mTop(nullptr), mTail(nullptr) {}
-
-        Queue(T *object, Method method) : mFirst(nullptr), mTop(nullptr), mTail(nullptr)
-        {
-            add(object);
-            start(method);
-        }
-        
-        // Non-copyable
-        
-        Queue(const Queue&) = delete;
-        Queue& operator=(const Queue&) = delete;
-
-        void add(T *object)
-        {
-            // Do not add if nullptr or re-add if already in queue
-            
-            if (!object || object->FrameLib_Queueable<T>::mNext != nullptr)
-                return;
-            
-            // Add to the top/tail of the queue depending on whether the queue is open
-            
-            if (mTop)
-            {
-                mTail->FrameLib_Queueable<T>::mNext = object;
-                mTail = object;
-            }
-            else
-                mTop = mTail = object;
-        }
-        
-        void start(Method method)
-        {
-            assert(!mFirst && "Can't restart queue");
-            
-            mFirst = mTop;
-            
-            while (mTop)
-            {
-                T *object = mTop;
-                (object->*method)(this);
-                mTop = object->FrameLib_Queueable<T>::mNext;
-                object->FrameLib_Queueable<T>::mNext = nullptr;
-            }
-            
-            mFirst = mTail = nullptr;
-        }
-        
-        T *getFirst() const { return mFirst; }
-        
-    private:
-        
-        T *mFirst;
-        T *mTop;
-        T *mTail;
-    };
-    
-private:
-
-    T *mNext;
-};
 
 /**
  
@@ -157,12 +66,12 @@ struct FrameLib_Connection
  */
 
 template <class T>
-class FrameLib_Object : public FrameLib_Queueable<T>
+class FrameLib_Object : public FrameLib_MethodQueue<T>::Node
 {
     
 public:
     
-    using Queue = typename FrameLib_Queueable<T>::Queue;
+    using Queue = FrameLib_MethodQueue<T>;
     using Connection = FrameLib_Connection<T, unsigned long>;
 
     // An allocator that you can pass to other objects/code whilst this object exists
@@ -226,29 +135,30 @@ public:
     // Constructor / Destructor
     
     FrameLib_Object(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy)
-    : mType(type), mContext(context), mAllocator(context), mProxy(proxy), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
+    : mType(type), mContext(context), mAllocator(context), mLocalAllocator(nullptr), mProxy(proxy), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
     
-    virtual ~FrameLib_Object()              { clearConnections(false); }
+    virtual ~FrameLib_Object()                  { clearConnections(false); }
    
     // Object Type
     
-    ObjectType getType() const              { return mType; }
+    ObjectType getType() const                  { return mType; }
     
-    // Context
+    // Context and Error Reporter
     
-    FrameLib_Context getContext() const     { return mContext; }
+    FrameLib_Context getContext() const         { return mContext; }
+    FrameLib_ErrorReporter& getReporter() const { return *(mContext.getGlobal()); }
 
     // Owner
     
-    FrameLib_Proxy *getProxy() const        { return mProxy; }
+    FrameLib_Proxy *getProxy() const            { return mProxy; }
     
     // IO Queries
     
-    unsigned long getNumIns() const         { return static_cast<unsigned long>(mInputConnections.size()); }
-    unsigned long getNumOuts() const        { return static_cast<unsigned long>(mOutputConnections.size()); }
-    unsigned long getNumAudioIns() const    { return getType() != kOutput ? mNumAudioChans : 0; }
-    unsigned long getNumAudioOuts() const   { return getType() == kOutput ? mNumAudioChans : 0; }
-    unsigned long getNumAudioChans() const  { return mNumAudioChans; }
+    unsigned long getNumIns() const             { return static_cast<unsigned long>(mInputConnections.size()); }
+    unsigned long getNumOuts() const            { return static_cast<unsigned long>(mOutputConnections.size()); }
+    unsigned long getNumAudioIns() const        { return getType() != kOutput ? mNumAudioChans : 0; }
+    unsigned long getNumAudioOuts() const       { return getType() == kOutput ? mNumAudioChans : 0; }
+    unsigned long getNumAudioChans() const      { return mNumAudioChans; }
     
     // Set / Get Fixed Inputs
     
@@ -259,6 +169,8 @@ public:
 
     // Override to handle audio at the block level (reset called with the audio engine resets)
     
+    virtual uint64_t getBlockTime() const = 0;
+    virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& queue) = 0;
     virtual void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) = 0;
     virtual void reset(double samplingRate, unsigned long maxBlockSize) = 0;
     
@@ -385,13 +297,15 @@ public:
         Queue queue(static_cast<T *>(this), &T::FrameLib_Object::connectionUpdate);
     }
     
-    template <class U> void addOutputDependencies(std::vector<U *> &dependencies)
+    template <class U>
+    void addOutputDependencies(std::vector<U *> &dependencies)
     {
         for (unsigned long i = 0; i < getNumOuts(); i++)
             addOutputDependencies(dependencies, i);
     }
     
-    template <class U> void addOutputDependencies(std::vector<U *> &dependencies, unsigned long outIdx)
+    template <class U>
+    void addOutputDependencies(std::vector<U *> &dependencies, unsigned long outIdx)
     {
         addOutputDependencies<std::vector<U *>>(dependencies, outIdx);
     }
@@ -433,21 +347,37 @@ protected:
     template <class U>
     U *alloc(size_t N)
     {
-        return reinterpret_cast<U *>(mAllocator->alloc(sizeof(U) * N));
+        FrameLib_LocalAllocator *allocator = mLocalAllocator;
+
+        if (allocator)
+            return reinterpret_cast<U *>(allocator->alloc(sizeof(U) * N));
+        else
+            return reinterpret_cast<U *>(mAllocator->alloc(sizeof(U) * N));
     }
 
     template <class U>
     void dealloc(U *& ptr)
     {
-        mAllocator->dealloc(ptr);
+        FrameLib_LocalAllocator *allocator = mLocalAllocator;
+
+        if (allocator)
+            allocator->dealloc(ptr);
+        else
+            mAllocator->dealloc(ptr);
+        
         ptr = nullptr;
     }
     
-    void clearAllocator() { mAllocator->clear(); }
+    void setLocalAllocator(FrameLib_LocalAllocator *allocator)      { mLocalAllocator = allocator; }
+    void removeLocalAllocator()                                     { mLocalAllocator = nullptr; }
+    void pruneAllocator()                                           { mAllocator->prune(); }
     
-    FrameLib_LocalAllocator::Storage *registerStorage(const char *name)     { return mAllocator->registerStorage(name); }
+    FrameLib_ContextAllocator::Storage *registerStorage(const char *name)
+    {
+        return mAllocator->registerStorage(name);
+    }
     
-    void releaseStorage(FrameLib_LocalAllocator::Storage *&storage)
+    void releaseStorage(FrameLib_ContextAllocator::Storage *&storage)
     {
         mAllocator->releaseStorage(storage->getName());
         storage = nullptr;
@@ -510,7 +440,8 @@ protected:
     
     // Unique List Helpers
     
-    template <class U> static bool addUniqueItem(std::vector<U>& list, U item)
+    template <class U>
+    static bool addUniqueItem(std::vector<U>& list, U item)
     {
         if (std::find(list.begin(), list.end(), item) != list.end())
             return false;
@@ -519,7 +450,8 @@ protected:
         return true;
     }
     
-    template <class U> static bool deleteUniqueItem(std::vector<U>& list, U item)
+    template <class U>
+    static bool deleteUniqueItem(std::vector<U>& list, U item)
     {
         auto it = std::find(list.begin(), list.end(), item);
         
@@ -819,7 +751,8 @@ private:
         queue->add(dynamic_cast<T *>(const_cast<FrameLib_Object *>(this)));
     }
     
-    template <class U> void addDependency(std::vector<U *>& dependencies) const
+    template <class U>
+    void addDependency(std::vector<U *>& dependencies) const
     {
         U *object = dynamic_cast<U *>(const_cast<FrameLib_Object *>(this));
 
@@ -834,7 +767,8 @@ private:
             (it->mObject->*method)(dependencies, it->mIndex);
     }
     
-    template <class U> void addOutputDependencies(U &dependencies, unsigned long outIdx) const
+    template <class U>
+    void addOutputDependencies(U &dependencies, unsigned long outIdx) const
     {
         if (mOutputConnections[outIdx].mInternal)
             traverseDependencies(dependencies, mOutputConnections[outIdx], &FrameLib_Object::addOutputDependencies<U>);
@@ -842,7 +776,8 @@ private:
             traverseDependencies(dependencies, mOutputConnections[outIdx], &FrameLib_Object::unwrapInputAliases<U>);
     }
     
-    template <class U> void unwrapInputAliases(U& dependencies, unsigned long inIdx) const
+    template <class U>
+    void unwrapInputAliases(U& dependencies, unsigned long inIdx) const
     {
         if (inIdx == kOrdering && mOrderingConnector.mOut.size())
             traverseDependencies(dependencies, mOrderingConnector, &FrameLib_Object::unwrapInputAliases<U>);
@@ -937,7 +872,8 @@ private:
     const ObjectType mType;
     FrameLib_Context mContext;
     FrameLib_Context::Allocator mAllocator;
-    
+    FrameLib_LocalAllocator* mLocalAllocator;
+
     FrameLib_Proxy *mProxy;
     
     // Audio IO Counts

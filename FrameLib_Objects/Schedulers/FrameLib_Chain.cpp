@@ -2,7 +2,7 @@
 #include "FrameLib_Chain.h"
 #include "FrameLib_Sort_Functions.h"
 
-FrameLib_Chain::FrameLib_Chain(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Scheduler(context, proxy, &sParamInfo, 2, 1), mTimes(nullptr), mPosition(0)
+FrameLib_Chain::FrameLib_Chain(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Scheduler(context, proxy, &sParamInfo, 2, 1), mTimes(nullptr), mPosition(0)
 {
     mParameters.addEnum(kUnits, "units", 1);
     mParameters.addEnumItem(kSamples, "samples");

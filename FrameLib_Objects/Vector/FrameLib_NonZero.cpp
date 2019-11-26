@@ -2,25 +2,26 @@
 
 // Constructor
 
-FrameLib_NonZero::FrameLib_NonZero(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 1, 1)
+FrameLib_NonZero::FrameLib_NonZero(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 1, 1)
 {}
 
 // Info
 
 std::string FrameLib_NonZero::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs indices that are non-zero",
-                   "Outputs indices that are non-zero", verbose);
+    return formatInfo("Outputs the indices of input samples that are non-zero. "
+                      "The length of the output frame depends on the number of non-zero items in the input.",
+                      "Outputs the indices of input samples that are non-zero.", verbose);
 }
 
 std::string FrameLib_NonZero::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Input Frames", "Input Frames", verbose);
+    return "Input";
 }
 
 std::string FrameLib_NonZero::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Indices that are non-zero";
+    return "Indices";
 }
 
 // Process
@@ -32,9 +33,10 @@ void FrameLib_NonZero::process()
     
     const double *input = getInput(0, &sizeIn);
     
-    // Having more memory allocated just not to loop two times to get and set the size.
+    // Allocate temporary memory for working to avoid double looping (cheaper for large lists)
     
-    double *indices = alloc<double>(sizeIn * sizeof(double));
+    double *indices = alloc<double>(sizeIn);
+    sizeIn = indices ? sizeIn : 0;
     
     for (unsigned long i = 0; i < sizeIn; i++)
     {

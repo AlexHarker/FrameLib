@@ -252,8 +252,8 @@ template <class T> double statPDFPercentile(const T input, double centile, size_
     for (size_t i = 0; i < size; i++)
     {
         sum += input[i];
-        if (sum > target)
-            return static_cast<double>(i - ((sum - target) / input[i]));
+        if (sum >= target)
+            return static_cast<double>(1 + i - ((sum - target) / input[i]));
     }
     
     return static_cast<double>(size - 1);
@@ -336,12 +336,12 @@ template <class T> double statCrest(const T input, size_t size)
 
 // Arg Min and Max
 
-template <class T> double statArgMax(const T input, size_t size)
+template <class T> double statMaxPosition(const T input, size_t size)
 {
     return size ? std::distance(input, std::max_element(input, input + size)) :  -std::numeric_limits<double>::infinity();
 }
 
-template <class T> double statArgMin(const T input, size_t size)
+template <class T> double statMinPosition(const T input, size_t size)
 {
     return size ? std::distance(input, std::min_element(input, input + size)) :  -std::numeric_limits<double>::infinity();
 }

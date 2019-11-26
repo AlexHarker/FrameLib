@@ -282,9 +282,9 @@ public:
         WindowFunctions<T, uint16_t>::add(kWindowBlackman92, window_blackman_92);
         WindowFunctions<T, uint16_t>::add(kWindowBlackmanHarris, window_blackman_harris);
 
-        WindowFunctions<T, uint16_t>::add(kWindowFlatTop, window_kaiser);
+        WindowFunctions<T, uint16_t>::add(kWindowFlatTop, window_flat_top);
         
-        WindowFunctions<T, uint16_t>::add(kWindowKaiser, window_flat_top);
+        WindowFunctions<T, uint16_t>::add(kWindowKaiser, window_kaiser);
     }
 };
 

@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo)
+FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo)
 {
     const int strBufSize = 10;
     
@@ -13,7 +13,7 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, FrameLib_Parameters::Serial
     mParameters.addInt(kNumIns, "num_ins", 1);
     mParameters.setClip(1, maxNumIns);
     mParameters.setInstantiation();
-    mParameters.addEnum(kEmptyMode, "empty_mode");
+    mParameters.addEnum(kEmptyMode, "empty");
     mParameters.addEnumItem(0, "ignore");
     mParameters.addEnumItem(1, "reset");
     mParameters.setInstantiation();
@@ -96,7 +96,7 @@ FrameLib_Tag::ParameterInfo::ParameterInfo()
     
     add("Sets the number of inputs (and hence the number of tags).");
 
-    add("Sets the behaviour when empty frames are received: ignore - empty frames are ignored / reset - empty frames create empty tags to reset parameters. ");
+    add("Sets the behaviour when empty frames are received: ignore - empty frames are ignored. reset - empty frames create empty tags to reset parameters.");
 
     for (int i = 0; i < maxNumIns; i++)
     {

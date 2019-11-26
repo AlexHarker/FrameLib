@@ -9,7 +9,8 @@
 
 // Complex Binary Operator
 
-template <typename Op> class FrameLib_Complex_BinaryOp final : public FrameLib_Processor
+template <typename Op>
+class FrameLib_Complex_BinaryOp final : public FrameLib_Processor
 {
     class PaddedInput
     {
@@ -65,7 +66,7 @@ template <typename Op> class FrameLib_Complex_BinaryOp final : public FrameLib_P
                 "shrink - the output length is set to the size of the smaller input. "
                 "pad_in - the smaller input is padded prior to calculation to match the size of the larger input. "
                 "pad_out - the output is padded to match the size of the larger input.");
-            add("Sets which inputs trigger output.");
+            add("Sets which pairs of inputs trigger output.");
             add("Sets the complex value used for padding (for either pad_in or pad_out modes).");
         }
     };
@@ -78,7 +79,7 @@ public:
     
     // Constructor
     
-    FrameLib_Complex_BinaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, getParameterInfo(), 4, 2)
+    FrameLib_Complex_BinaryOp(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, getParameterInfo(), 4, 2)
     {
         mParameters.addEnum(kMismatchMode, "mismatch");
         mParameters.addEnumItem(kWrap, "wrap");
@@ -96,7 +97,8 @@ public:
         mParameters.set(serialisedParameters);
                                     
         mMismatchMode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
-        mPadValue = mParameters.getValue(kPadding);
+        mRealPad = mParameters.getArray(kPadding)[0];
+        mImagPad = mParameters.getArray(kPadding)[1];
         
         TriggerModes triggers = (TriggerModes) mParameters.getInt(kTriggers);
         
@@ -166,8 +168,8 @@ private:
         const double *input2R = getInput(2, &sizeIn2R);
         const double *input2I = getInput(3, &sizeIn2I);
         
-        double defaultValueR = mPadValue;
-        double defaultValueI = mPadValue;
+        double defaultValueR = mRealPad;
+        double defaultValueI = mImagPad;
         
         unsigned long sizeIn1 = std::max(sizeIn1R, sizeIn1I);
         unsigned long sizeIn2 = std::max(sizeIn2R, sizeIn2I);
@@ -298,13 +300,14 @@ private:
     
     // Data
     
-    double mPadValue;
+    double mRealPad;
+    double mImagPad;
     MismatchModes mMismatchMode;
 };
 
 // Complex Binary Functor
 
-template<std::complex<double> func(const std::complex<double>&, const std::complex<double>&)>
+template <std::complex<double> func(const std::complex<double>&, const std::complex<double>&)>
 struct Complex_Binary_Functor
 {
     std::complex<double> operator()(const std::complex<double> &x, const std::complex<double> &y) { return func(x, y); }
@@ -312,9 +315,7 @@ struct Complex_Binary_Functor
 
 // Complex Binary (Function Version)
 
-template<std::complex<double> func(const std::complex<double>&, const std::complex<double>&)>
+template <std::complex<double> func(const std::complex<double>&, const std::complex<double>&)>
 using  FrameLib_Complex_Binary = FrameLib_Complex_BinaryOp<Complex_Binary_Functor<func>>;
-
-
 
 #endif

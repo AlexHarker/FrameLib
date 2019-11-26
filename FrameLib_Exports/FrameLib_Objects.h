@@ -109,7 +109,7 @@
 
 // Vector
 
-#include "FrameLib_AccumPoint.h"
+#include "FrameLib_AccumPos.h"
 #include "FrameLib_Chop.h"
 #include "FrameLib_Join.h"
 #include "FrameLib_MedianFilter.h"

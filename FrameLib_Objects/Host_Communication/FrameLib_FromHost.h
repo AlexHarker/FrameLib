@@ -13,96 +13,42 @@ class FrameLib_FromHost final : public FrameLib_Processor
     
     // A FIFO list for storing parameter frame additions
     
-    struct SerialList
+    // Forward declaration
+    
+    struct SerialQueue;
+    
+    struct SerialItem : public FrameLib_Queue<SerialItem, SerialItem, SerialQueue>::Node
     {
-        SerialList() : mTop(nullptr), mTail(nullptr) {}
-        ~SerialList() { clear(); }
+        SerialItem(const FrameLib_Parameters::Serial& serial) : mSerial(serial) {}
         
-        struct Item
+        SerialItem(const SerialQueue& list)
         {
-            Item() : mNext(nullptr) {}
-            Item(const FrameLib_Parameters::Serial& serial) : mSerial(serial), mNext(nullptr) {}
-            Item(const SerialList& list) : mNext(nullptr)
-            {
-                for (Item *item = list.mTop; item; item = item->mNext)
-                    mSerial.write(&item->mSerial);
-            }
-            
-            FrameLib_Parameters::AutoSerial mSerial;
-            Item *mNext;
-        };
-        
-        void push(Item *item)
-        {
-            assert (item->mNext == nullptr && "item already in a list");
-            
-            if (mTail)
-            {
-                mTail->mNext = item;
-                mTail = item;
-            }
-            else
-                mTop = mTail = item;
+            for (SerialItem *item = list.mHead; item; item = item->mNext)
+                mSerial.write(&item->mSerial);
         }
         
-        Item *pop()
-        {
-            Item *item = mTop;
-            
-            mTop = mTop ? mTop->mNext : nullptr;
-            mTail = (mTail == item) ? nullptr : mTail;
-            
-            if (item)
-                item->mNext = nullptr;
-            
-            return item;
-        }
+        FrameLib_Parameters::AutoSerial mSerial;
+    };
+    
+    struct SerialQueue : public FrameLib_Queue<SerialItem, SerialItem, SerialQueue>
+    {
+        friend SerialItem;
         
-        bool empty() const
+        ~SerialQueue()
         {
-            return mTop == nullptr;
+            while (SerialItem *item = pop())
+                delete item;
         }
-        
-        unsigned long size() const
+
+        unsigned long memorySize() const
         {
             unsigned long summedSize = 0;
             
-            for (Item *item = mTop; item; item = item->mNext)
+            for (SerialItem *item = mHead; item; item = item->mNext)
                 summedSize += item->mSerial.size();
                 
             return summedSize;
         }
-        
-        void clear()
-        {
-            for (Item *item = pop(); item; item = pop())
-                delete item;
-        }
-        
-        void reassign(SerialList& list)
-        {
-            if (!mTop)
-                mTop = list.mTop;
-            else
-                mTail->mNext = list.mTop;
-            if (list.mTail)
-                mTail = list.mTail;
-            
-            list.mTop = nullptr;
-            list.mTail = nullptr;
-        }
-        
-    private:
-        
-        // Deleted
-
-        SerialList(const SerialList&) = delete;
-        SerialList& operator=(const SerialList&) = delete;
-        
-        // Data
-        
-        Item *mTop;
-        Item *mTail;
     };
     
 public:
@@ -111,7 +57,8 @@ public:
 
     struct Proxy : public FrameLib_HostProxy<FrameLib_FromHost>
     {
-        Proxy(bool copyStreams) : mCopyStreams(copyStreams) {}
+        Proxy(bool copyStreams, bool copyFirstOwner)
+        : mCopyStreams(copyStreams), mCopyFirstOwner(copyFirstOwner) {}
         
         // Send a vector frame
         
@@ -138,6 +85,7 @@ public:
         void copyData(void *streamOwner, unsigned long stream);
         
         bool mCopyStreams;
+        bool mCopyFirstOwner;
     };
     
 private:
@@ -153,7 +101,7 @@ public:
     
     // Constructor / Destructor
     
-    FrameLib_FromHost(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_FromHost(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     ~FrameLib_FromHost();
     
     // Stream Awareness
@@ -173,14 +121,14 @@ private:
     // Swapping data with the proxy
     
     OwnedFrame swapVectorFrame(OwnedFrame& swapVector);
-    void updateSerialFrame(SerialList &freeList, SerialList::Item *addSerial);
+    void updateSerialFrame(SerialQueue &freeList, SerialItem *addSerial);
 
 // Data
     
     FrameLib_SpinLock mLock;
     OwnedFrame mVectorFrame;
-    SerialList mSerialFrame;
-    SerialList mSerialFreeFrame;
+    SerialQueue mSerialFrame;
+    SerialQueue mSerialFreeFrame;
     Modes mMode;
     
     Proxy *mProxy;

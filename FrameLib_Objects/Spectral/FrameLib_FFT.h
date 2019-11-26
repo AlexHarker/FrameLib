@@ -5,8 +5,6 @@
 #include "FrameLib_DSP.h"
 #include "../../FrameLib_Dependencies/SpectralProcessor.hpp"
 
-// FIX - add zero padding (why not do this prior to FFT with the pad object?)
-
 class FrameLib_FFT final : public FrameLib_Processor
 {
     // Parameter Enums and Info
@@ -20,7 +18,7 @@ public:
 
     // Constructor
 
-    FrameLib_FFT(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_FFT(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     

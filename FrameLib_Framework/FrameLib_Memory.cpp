@@ -29,13 +29,13 @@ inline size_t blockSize(void* ptr)
 
 // The Core Allocator (has no threadsafety)
 
-FrameLib_GlobalAllocator::CoreAllocator::CoreAllocator(FrameLib_ErrorReporter& errorReporter) : mPools(nullptr), mOSAllocated(0), mAllocated(0), mLastDisposedPoolSize(0),  mScheduledNewPool(nullptr), mScheduledDisposePool(nullptr), mAllocThread(*this), mFreeThread(*this), mErrorReporter(errorReporter)
+FrameLib_GlobalAllocator::CoreAllocator::CoreAllocator(FrameLib_Thread::Priorities priorities, FrameLib_ErrorReporter& errorReporter) : mPools(nullptr), mOSAllocated(0), mAllocated(0), mLastDisposedPoolSize(0),  mScheduledNewPool(nullptr), mScheduledDisposePool(nullptr), mAllocThread(*this), mFreeThread(*this), mErrorReporter(errorReporter)
 {
     mTLSF = tlsf_create(malloc(tlsf_size()));
     insertPool(createPool(initSize));
     
-    mAllocThread.start();
-    mFreeThread.start();
+    mAllocThread.start(priorities);
+    mFreeThread.start(priorities);
 }
 
 FrameLib_GlobalAllocator::CoreAllocator::~CoreAllocator()
@@ -101,7 +101,7 @@ void *FrameLib_GlobalAllocator::CoreAllocator::alloc(size_t size)
     if (ptr)
         mAllocated += blockSize(ptr);
     else
-        mErrorReporter.reportError(kErrorMemory, nullptr, "FrameLib - couldn't allocate memory");
+        mErrorReporter(kErrorMemory, nullptr, "FrameLib - couldn't allocate memory");
    
     // Check for near full
     
@@ -271,13 +271,13 @@ size_t FrameLib_GlobalAllocator::alignSize(size_t x)
 
 // ************************************************************************************** //
 
-// Local Storage
+// Context Local Storage
 
-FrameLib_LocalAllocator::Storage::Storage(const char *name, FrameLib_LocalAllocator& allocator)
+FrameLib_ContextAllocator::Storage::Storage(const char *name, FrameLib_ContextAllocator& allocator)
 :  mName(name), mType(kFrameNormal), mData(nullptr), mSize(0), mMaxSize(0), mCount(1), mAllocator(allocator)
 {}
 
-FrameLib_LocalAllocator::Storage::~Storage()
+FrameLib_ContextAllocator::Storage::~Storage()
 {
     if (mType == kFrameTagged)
         getTagged()->~Serial();
@@ -285,7 +285,7 @@ FrameLib_LocalAllocator::Storage::~Storage()
     mAllocator.dealloc(mData);
 }
 
-void FrameLib_LocalAllocator::Storage::resize(bool tagged, unsigned long size)
+void FrameLib_ContextAllocator::Storage::resize(bool tagged, unsigned long size)
 {
     size_t actualSize = tagged ? Serial::inPlaceSize(size) : size * sizeof(double);
     size_t maxSize = actualSize << 1;
@@ -305,7 +305,7 @@ void FrameLib_LocalAllocator::Storage::resize(bool tagged, unsigned long size)
         mSize = size;
     }
     else
-    {
+    {   
         void *newData = mAllocator.alloc(maxSize);
         
         if (newData)
@@ -333,11 +333,12 @@ void FrameLib_LocalAllocator::Storage::resize(bool tagged, unsigned long size)
 
 // ************************************************************************************** //
 
-// The Local Allocator
+// Thread Local Allocator
 
 // Constructor / Destructor
 
-FrameLib_LocalAllocator::FrameLib_LocalAllocator(FrameLib_GlobalAllocator& allocator) : mAllocator(allocator)
+FrameLib_LocalAllocator::FrameLib_LocalAllocator(FrameLib_GlobalAllocator& allocator)
+: mAllocator(allocator)
 {
     // Setup the free lists as a circularly linked list
     
@@ -373,10 +374,10 @@ void *FrameLib_LocalAllocator::alloc(size_t size)
     for (FreeBlock *block = mTail->mNext; block && block->mMemory; block = block == mTail ? nullptr : block->mNext)
         if (block->mSize >= size && block->mSize <= maxSize)
             return removeBlock(block);
-    
+     
     // If this fails call the global allocator
-    
-    return mAllocator.alloc(size);
+
+    return mAllocator.alloc(size);;
 }
 
 void FrameLib_LocalAllocator::dealloc(void *ptr)
@@ -397,63 +398,6 @@ void FrameLib_LocalAllocator::dealloc(void *ptr)
         
         mTail = mTail->mPrev;
     }
-}
-
-// Clear Local Free Blocks (and prune global allocator)
-
-void FrameLib_LocalAllocator::clear()
-{
-    // Acquire the main allocator and then free all blocks before releasing
-    
-    FrameLib_GlobalAllocator::Pruner pruner(mAllocator);
-    
-    for (unsigned int i = 0; i < numLocalFreeBlocks; i++)
-    {
-        if (mFreeLists[i].mMemory)
-        {
-            pruner.dealloc(mFreeLists[i].mMemory);
-            mFreeLists[i].mMemory = nullptr;
-            mFreeLists[i].mSize = 0;
-        }
-    }
-}
-
-// Register and Release Storage
-
-FrameLib_LocalAllocator::Storage *FrameLib_LocalAllocator::registerStorage(const char *name)
-{
-    auto it = findStorage(name);
-    
-    if (it != mStorage.end())
-    {
-        (*it)->increment();
-        return *it;
-    }
-    
-    mStorage.push_back(new Storage(name, *this));
-    return mStorage.back();
-}
-
-void FrameLib_LocalAllocator::releaseStorage(const char *name)
-{
-    auto it = findStorage(name);
-    
-    if (it != mStorage.end() && (*it)->decrement() <= 0)
-    {
-        delete *it;
-        mStorage.erase(it);
-    }
-}
-
-// Find Storage by Name
-
-std::vector<FrameLib_LocalAllocator::Storage *>::iterator FrameLib_LocalAllocator::findStorage(const char *name)
-{
-    for (auto it = mStorage.begin(); it != mStorage.end(); it++)
-        if (!strcmp((*it)->getName(), name))
-            return it;
-    
-    return mStorage.end();
 }
 
 // Remove a Free Block after Allocation and Return the Pointer
@@ -488,4 +432,122 @@ void *FrameLib_LocalAllocator::removeBlock(FreeBlock *block)
     mTail = block;
     
     return ptr;
+}
+
+void FrameLib_LocalAllocator::clear()
+{
+    // Acquire the main allocator and then free all blocks before releasing
+    
+    FrameLib_GlobalAllocator::Pruner pruner(mAllocator);
+    
+    for (unsigned int i = 0; i < numLocalFreeBlocks; i++)
+    {
+        if (mFreeLists[i].mMemory)
+        {
+            pruner.dealloc(mFreeLists[i].mMemory);
+            mFreeLists[i].mMemory = nullptr;
+            mFreeLists[i].mSize = 0;
+        }
+     }
+}
+
+// ************************************************************************************** //
+
+// Thread Local Allocator Set
+
+FrameLib_LocalAllocatorSet::FrameLib_LocalAllocatorSet(FrameLib_GlobalAllocator& allocator, unsigned int size)
+{
+    for (unsigned int i = 0; i < size; i++)
+        mAllocators.add(new FrameLib_LocalAllocator(allocator));
+}
+
+void FrameLib_LocalAllocatorSet::clear()
+{
+    // Acquire the main allocator and then free all blocks before releasing
+    
+    FrameLib_GlobalAllocator::Pruner pruner(mAllocators[0]->mAllocator);
+    
+    for (unsigned int i = 0; i < mAllocators.size(); i++)
+    {
+        FrameLib_LocalAllocator *allocator = get(i);
+        
+        for (unsigned int j = 0; j < FrameLib_LocalAllocator::numLocalFreeBlocks; j++)
+        {
+            if (allocator->mFreeLists[i].mMemory)
+            {
+                pruner.dealloc(allocator->mFreeLists[i].mMemory);
+                allocator->mFreeLists[i].mMemory = nullptr;
+                allocator->mFreeLists[i].mSize = 0;
+            }
+        }
+    }
+}
+
+// ************************************************************************************** //
+
+// The Context Allocator
+
+// Allocate / Deallocate Memory
+
+void *FrameLib_ContextAllocator::alloc(size_t size)
+{
+    if (!size)
+        return nullptr;
+    
+    return mAllocator.alloc(size);
+}
+
+void FrameLib_ContextAllocator::dealloc(void *ptr)
+{
+    // Deallocate using free blocks if present
+    
+    if (ptr)
+        mAllocator.dealloc(ptr);
+}
+
+// Prune the global allocator
+
+void FrameLib_ContextAllocator::prune()
+{
+    // Prune the global allocator
+    
+    FrameLib_GlobalAllocator::Pruner pruner(mAllocator);
+}
+
+// Register and Release Storage
+
+FrameLib_ContextAllocator::Storage *FrameLib_ContextAllocator::registerStorage(const char *name)
+{
+    auto it = findStorage(name);
+    
+    if (it != mStorage.end())
+    {
+        (*it)->increment();
+        return *it;
+    }
+    
+    mStorage.push_back(new Storage(name, *this));
+    return mStorage.back();
+}
+
+void FrameLib_ContextAllocator::releaseStorage(const char *name)
+{
+    auto it = findStorage(name);
+    
+    if (it != mStorage.end() && (*it)->decrement() <= 0)
+    {
+        delete *it;
+        mStorage.erase(it);
+    }
+}
+
+// Find Storage by Name
+
+std::vector<FrameLib_ContextAllocator::Storage *>::iterator FrameLib_ContextAllocator::findStorage(const char *name)
+{
+    for (auto it = mStorage.begin(); it != mStorage.end(); it++)
+        if (!strcmp((*it)->getName(), name))
+            return it;
+    
+    return mStorage.end();
 }

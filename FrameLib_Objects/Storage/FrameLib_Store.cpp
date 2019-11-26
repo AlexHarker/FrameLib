@@ -3,7 +3,7 @@
 
 // Constructor / Destructor
 
-FrameLib_Store::FrameLib_Store(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+FrameLib_Store::FrameLib_Store(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
 {
     mParameters.addString(kName, "name", 0);
     mParameters.setInstantiation();
@@ -28,14 +28,14 @@ FrameLib_Store::~FrameLib_Store()
 
 std::string FrameLib_Store::objectInfo(bool verbose)
 {
-    return formatInfo("Stores a vector frame in named memory for recall: The output can be used to control ordering/synchronisation.",
+    return formatInfo("Stores a vector frame in named memory for recall: The output can be used to control ordering or synchronisation.",
                    "Stores a vector frame in named memory for recall.", verbose);
 }
 
 std::string FrameLib_Store::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return formatInfo("Synchronisation Input - use to control ordering", "Synchronisation Input", verbose);
+        return formatInfo("Synchronisation Input - use to control ordering", "Synch Input", verbose);
     else
         return "Input to Store";
 }
@@ -66,7 +66,7 @@ FrameLib_Store::ParameterInfo::ParameterInfo()
 
 void FrameLib_Store::objectReset()
 {
-    FrameLib_LocalAllocator::Storage::Access access(mStorage);
+    FrameLib_ContextAllocator::Storage::Access access(mStorage);
 
     access.resize(false, 0);
 }
@@ -77,7 +77,7 @@ void FrameLib_Store::process()
 {
     // Threadsafety
     
-    FrameLib_LocalAllocator::Storage::Access access(mStorage);
+    FrameLib_ContextAllocator::Storage::Access access(mStorage);
 
     // Resize storage
     

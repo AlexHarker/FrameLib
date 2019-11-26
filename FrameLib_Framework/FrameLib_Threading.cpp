@@ -12,7 +12,7 @@ FrameLib_Thread::~FrameLib_Thread()
     assert(!mValid && "Thread not joined before deletion");
 }
 
-void FrameLib_Thread::start()
+void FrameLib_Thread::start(const Priorities& priorities)
 {
     // Valid
     
@@ -31,16 +31,15 @@ void FrameLib_Thread::start()
     // Set detach state and policy
     
     pthread_attr_setdetachstate(&threadAttributes, PTHREAD_CREATE_JOINABLE);
-    pthread_attr_setschedpolicy(&threadAttributes, (mPriority == kAudioPriority) ? SCHED_FIFO : SCHED_OTHER);
+    pthread_attr_setschedpolicy(&threadAttributes, (mPriority == kLowPriority) ? SCHED_OTHER : priorities.mRTPolicy);
     
     // Set the priority of the thread before we create it
     
     switch (mPriority)
     {
-        case kAudioPriority:        schedulingParameters.sched_priority = 75;       break;
-        case kHighPriority:         schedulingParameters.sched_priority = 52;       break;
-        case kMediumPriority:       schedulingParameters.sched_priority = 31;       break;
-        case kLowPriority:          schedulingParameters.sched_priority = 15;       break;
+        case kAudioPriority:    schedulingParameters.sched_priority = priorities.mAudio;      break;
+        case kHighPriority:     schedulingParameters.sched_priority = priorities.mHigh;       break;
+        case kLowPriority:      schedulingParameters.sched_priority = priorities.mLow;        break;
     }
     
     // Set the scheduling attributes and create the thread
@@ -124,7 +123,7 @@ FrameLib_Thread::~FrameLib_Thread()
     assert(!mValid && "Thread not joined before deletion");
 }
 
-void FrameLib_Thread::start()
+void FrameLib_Thread::start(const Priorities& priorities)
 {
     // Valid
     
@@ -143,16 +142,15 @@ void FrameLib_Thread::start()
     // Set detach state and policy
     
     pthread_attr_setdetachstate(&threadAttributes, PTHREAD_CREATE_JOINABLE);
-    pthread_attr_setschedpolicy(&threadAttributes, (mPriority == kAudioPriority) ? SCHED_FIFO : SCHED_OTHER);
+    pthread_attr_setschedpolicy(&threadAttributes, (mPriority == kLowPriority) ? SCHED_OTHER : priorities.mRTPolicy);
     
     // Set the priority of the thread before we create it
     
     switch (mPriority)
     {
-        case kAudioPriority:        schedulingParameters.sched_priority = 75;       break;
-        case kHighPriority:         schedulingParameters.sched_priority = 52;       break;
-        case kMediumPriority:       schedulingParameters.sched_priority = 31;       break;
-        case kLowPriority:          schedulingParameters.sched_priority = 15;       break;
+        case kAudioPriority:    schedulingParameters.sched_priority = priorities.mAudio;      break;
+        case kHighPriority:     schedulingParameters.sched_priority = priorities.mHigh;       break;
+        case kLowPriority:      schedulingParameters.sched_priority = priorities.mLow;        break;
     }
     
     // Set the scheduling attributes and create the thread
@@ -229,7 +227,7 @@ FrameLib_Thread::~FrameLib_Thread()
     CloseHandle(mInternal);
 }
 
-void FrameLib_Thread::start()
+void FrameLib_Thread::start(const Priorities& priorities)
 {
     // Valid
     
@@ -243,10 +241,9 @@ void FrameLib_Thread::start()
     
     switch (mPriority)
     {
-        case kAudioPriority:        SetThreadPriority(mInternal, THREAD_PRIORITY_TIME_CRITICAL);        break;
-        case kHighPriority:         SetThreadPriority(mInternal, THREAD_PRIORITY_HIGHEST);              break;
-        case kMediumPriority:       SetThreadPriority(mInternal, THREAD_PRIORITY_NORMAL);               break;
-        case kLowPriority:          SetThreadPriority(mInternal, THREAD_PRIORITY_LOWEST);               break;
+        case kAudioPriority:        SetThreadPriority(mInternal, priorities.mAudio);        break;
+        case kHighPriority:         SetThreadPriority(mInternal, priorities.mHigh);         break;
+        case kLowPriority:          SetThreadPriority(mInternal, priorities.mLow);          break;
     }
 }
 
@@ -389,3 +386,40 @@ void FrameLib_DelegateThread::threadClassEntry()
         compareAndSwap(mFlag, 1, 2);
     }
 }
+
+// Triggerable Thread Set
+
+FrameLib_TriggerableThreadSet::FrameLib_TriggerableThreadSet(FrameLib_Thread::PriorityLevel priority, unsigned int size)
+: mSemaphore(size)
+{
+    mThreads.reserve(size);
+    
+    for (unsigned int i = 0; i < size; i++)
+        mThreads.add(new IndexedThread(priority, this, i));
+}
+
+void FrameLib_TriggerableThreadSet::start(const Priorities& priorities)
+{
+    for (auto it = mThreads.begin(); it != mThreads.end(); it++)
+        (*it)->start(priorities);
+}
+
+void FrameLib_TriggerableThreadSet::join()
+{
+    mSemaphore.close();
+    for (auto it = mThreads.begin(); it != mThreads.end(); it++)
+        (*it)->join();
+}
+
+void FrameLib_TriggerableThreadSet::threadEntry(void *thread)
+{
+    IndexedThread *typedThread = static_cast<IndexedThread *>(thread);
+    typedThread->mOwner->threadClassEntry(typedThread->mIndex);
+}
+
+void FrameLib_TriggerableThreadSet::threadClassEntry(unsigned int index)
+{
+    while (mSemaphore.wait())
+        doTask(index);
+}
+

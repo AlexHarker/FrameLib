@@ -111,7 +111,7 @@ public:
             
             // Match Tag
             
-            bool matchTag(const char *tag) const    {return !strcmp(tag, getTag()); }
+            bool matchTag(const char *tag) const    { return !strcmp(tag, getTag()); }
             
             // Reads
             
@@ -179,7 +179,7 @@ public:
         
         // Find Item
         
-        Iterator find(const char *tag)  const;
+        Iterator find(const char *tag) const;
         
         // Utility
         
@@ -669,7 +669,7 @@ public:
     
     // Set Value
     
-    void set(Serial *serialised)                                { if (serialised) serialised->read(this); }
+    void set(const Serial *serialised)                          { if (serialised) serialised->read(this); }
     
     void set(unsigned long idx, bool value)                     { set(idx, (double) value); }
     void set(const char *name, bool value)                      { set(name, (double) value); }
@@ -791,22 +791,22 @@ private:
             switch (error)
             {
                 case kUnknownArgument:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "argument # out of range", idx + 1);
+                    mErrorReporter(kErrorParameter, mProxy, "argument # out of range", idx + 1);
                     break;
                 case kUnknownParameter:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "no parameter named '#'", arg);
+                    mErrorReporter(kErrorParameter, mProxy, "no parameter named '#'", arg);
                     break;
                 case kParameterNotSetByNumber:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "parameter '#' cannot be set by a number", mParameters[idx]->name());
+                    mErrorReporter(kErrorParameter, mProxy, "parameter '#' cannot be set by a number", mParameters[idx]->name());
                     break;
                 case kParameterNotSetByString:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "parameter '#' cannot be set by a string", mParameters[idx]->name());
+                    mErrorReporter(kErrorParameter, mProxy, "parameter '#' cannot be set by a string", mParameters[idx]->name());
                     break;
                 case kEnumUnknownIndex:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "enum parameter '#' does not contain an item numbered #", mParameters[idx]->name(), arg);
+                    mErrorReporter(kErrorParameter, mProxy, "enum parameter '#' does not contain an item numbered #", mParameters[idx]->name(), arg);
                     break;
                 case kEnumUnknownString:
-                    mErrorReporter.reportError(kErrorParameter, mProxy, "enum parameter '#' does not contain an item named '#'", mParameters[idx]->name(), arg);
+                    mErrorReporter(kErrorParameter, mProxy, "enum parameter '#' does not contain an item named '#'", mParameters[idx]->name(), arg);
                     break;
                 default:
                     break;

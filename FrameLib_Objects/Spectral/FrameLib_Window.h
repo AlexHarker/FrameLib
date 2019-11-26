@@ -23,7 +23,7 @@ public:
 
     // Constructor / Destructor
     
-    FrameLib_Window(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_Window(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     ~FrameLib_Window();
     
     // Info

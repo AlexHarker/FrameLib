@@ -128,7 +128,7 @@ public:
     
     const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
 
-    FrameLib_Expand(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
+    FrameLib_Expand(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
     : FrameLib_Multistream(T::getType(), context, proxy, nStreams), mSerialisedParameters(serialisedParameters ? serialisedParameters->size() : 0)
     {
         // Make first block
@@ -176,8 +176,10 @@ public:
     }
 
     // Audio Processing
-        
-    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override
+    
+    uint64_t getBlockTime() const override { return mBlocks[0]->getBlockTime(); }
+
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& queue) override
     {
         unsigned long internalNumIns = mBlocks[0]->getNumAudioIns();
         unsigned long internalNumOuts = mBlocks[0]->getNumAudioOuts();
@@ -201,7 +203,7 @@ public:
             unsigned long inStreamOffset = internalNumIns * (static_cast<unsigned long>(i) % getNumStreams());
             unsigned long outStreamOffset = internalNumOuts * (static_cast<unsigned long>(i) % getNumStreams());
             
-            mBlocks[i]->blockUpdate(ins + inStreamOffset, mAudioTemps.data(), blockSize);
+            mBlocks[i]->blockUpdate(ins + inStreamOffset, mAudioTemps.data(), blockSize, queue);
             
             for (unsigned long j = 0; j < internalNumOuts; j++)
                 for (unsigned long k = 0; k < blockSize; k++)
@@ -212,10 +214,14 @@ public:
         
         if (getNumAudioOuts())
            dealloc(mAudioTemps[0]);
-                
-        clearAllocator();
     }
-   
+    
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) override
+    {
+        FrameLib_AudioQueue queue;
+        blockUpdate(ins, outs, blockSize, queue);
+    }
+    
     // Reset
     
     void reset(double samplingRate, unsigned long maxBlockSize) override

@@ -1,7 +1,7 @@
 
 #include "FrameLib_Timer.h"
 
-FrameLib_Timer::FrameLib_Timer(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_Timer::FrameLib_Timer(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kUnits, "units", 0);
     mParameters.addEnumItem(kSamples, "samples");
@@ -19,8 +19,9 @@ FrameLib_Timer::FrameLib_Timer(FrameLib_Context context, FrameLib_Parameters::Se
 
 std::string FrameLib_Timer::objectInfo(bool verbose)
 {
-    return formatInfo("Calculates the time elapsed between trigger frame inputs and the subsequent reset frame: Time is reported in the specified units. Output is a single value.",
-                   "Calculates the time elapsed between the last reset and each trigger.", verbose);
+    return formatInfo("Calculates the time elapsed between trigger frame inputs and the subsequent reset frame: "
+                      "Time is reported in the specified units. Output is a single value.",
+                      "Calculates the time elapsed between the last reset and each trigger.", verbose);
 }
 
 std::string FrameLib_Timer::inputInfo(unsigned long idx, bool verbose)

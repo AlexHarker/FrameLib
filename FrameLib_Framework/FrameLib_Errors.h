@@ -2,8 +2,8 @@
 #ifndef FRAMELIB_ERRORS_H
 #define FRAMELIB_ERRORS_H
 
-#include "FrameLib_Threading.h"
 #include "FrameLib_Types.h"
+#include "FrameLib_Threading.h"
 
 #include <algorithm>
 #include <memory>
@@ -60,7 +60,7 @@ public:
 
     class ErrorReport
     {
-        friend FrameLib_ErrorReporter;
+        friend class FrameLib_ErrorReporter;
         
         ErrorReport(ErrorSource source, FrameLib_Proxy *reporter, const char *error, const char *items, unsigned long numItems)
         : mSource(source), mReporter(reporter), mError(error), mItems(items), mNumItems(numItems) {}
@@ -94,7 +94,7 @@ public:
     
     class ErrorList
     {
-        friend FrameLib_ErrorReporter;
+        friend class FrameLib_ErrorReporter;
         
         const static int sCharArraySize = 8192;
         const static int sReportArraySize = 1024;
@@ -113,7 +113,7 @@ public:
         
         class ConstIterator
         {
-            friend ErrorList;
+            friend class ErrorList;
             
             ConstIterator(const ErrorReport *ptr) : mPtr(ptr) {};
             
@@ -193,6 +193,11 @@ public:
             return addItem(charArray);
         }
         
+        bool addItem(int number)
+        {
+            return addItem(static_cast<long>(number));
+        }
+        
         bool addItem(double number)
         {
             const int strBufSize = 32;
@@ -250,8 +255,10 @@ public:
     // Add and Retrieve Errors (list ownership is passed on retrieval)
     
     template<typename... Args>
-    void reportError(ErrorSource source, FrameLib_Proxy *reporter, const char *error, Args... args)
+    void operator()(ErrorSource source, FrameLib_Proxy *reporter, const char *error, Args... args)
     {
+        FrameLib_SpinLockHolder lockHolder(&mLock);
+
         mReports->add(source, reporter, error, args...);
         
         if (mNotifier && !mNotified)

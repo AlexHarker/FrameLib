@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Split::FrameLib_Split(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 2)
+FrameLib_Split::FrameLib_Split(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 2)
 {
     mParameters.addDouble(kSplit, "split", 0.0, 0);
     mParameters.setMin(0.0);
@@ -22,7 +22,7 @@ FrameLib_Split::FrameLib_Split(FrameLib_Context context, FrameLib_Parameters::Se
 std::string FrameLib_Split::objectInfo(bool verbose)
 {
     return formatInfo("Splits input frames into two parts, given a specified split point: "
-                   "The split point may be specified in samples or as a ratio",
+                   "The split point may be specified in samples or as a ratio of the length of the input frame.",
                    "Splits input frames into two parts, given a specified split point.", verbose);
 }
 
@@ -31,12 +31,12 @@ std::string FrameLib_Split::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return "Frame to Split";
+        return "Input";
 }
 
 std::string FrameLib_Split::outputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Output Frame #", "Output Frame #", idx, verbose);
+    return formatInfo("Output #", "Output #", idx, verbose);
 }
 
 // Parameter Info

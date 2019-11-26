@@ -16,7 +16,7 @@ public:
 
     // Constructor / Destructor
 
-    FrameLib_Store(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_Store(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     ~FrameLib_Store();
     
     // Info
@@ -38,7 +38,7 @@ private:
     
     // Data
     
-    FrameLib_LocalAllocator::Storage *mStorage;
+    FrameLib_ContextAllocator::Storage *mStorage;
     
     static ParameterInfo sParamInfo;
     

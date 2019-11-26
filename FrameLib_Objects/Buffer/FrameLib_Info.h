@@ -26,11 +26,15 @@ public:
         
         virtual void acquire(unsigned long& length, double& samplingRate, unsigned long& chans) = 0;
         virtual void release() = 0;
+        
+        // Clone (we need unique instances per object for threading reasons)
+        
+        virtual Proxy *clone() const = 0;
     };
     
     // Constructor
     
-    FrameLib_Info(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_Info(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     // Info
     
@@ -47,7 +51,7 @@ private:
     
     // Data
     
-    Proxy *mProxy;
+    std::unique_ptr<Proxy> mProxy;
     Units mUnits;
     
     static ParameterInfo sParamInfo;

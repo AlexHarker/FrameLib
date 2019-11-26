@@ -22,13 +22,26 @@
  
  */
 
-class FrameLib_DSP : public FrameLib_Block, public FrameLib_Queueable<FrameLib_DSP>
+class FrameLib_DSP : public FrameLib_Block
+, public FrameLib_MethodQueue<FrameLib_DSP>::Node
+, public FrameLib_ProcessingQueue::Node
 {
-    using Queue = FrameLib_Queueable<FrameLib_Block>::Queue;
-    using LocalQueue = FrameLib_Queueable<FrameLib_DSP>::Queue;
+    using BlockQueue = FrameLib_MethodQueue<FrameLib_Block>;
+    using LocalAllocator = FrameLib_LocalAllocator;
+    using LocalQueue = FrameLib_MethodQueue<FrameLib_DSP>;
+    using NotificationQueue = FrameLib_ProcessingQueue::PrepQueue;
     using Serial = FrameLib_Parameters::Serial;
     
     friend class FrameLib_ProcessingQueue;
+    friend class FrameLib_AudioQueue;
+    
+    enum NotificationType
+    {
+        kSelfConnection,
+        kOutputConnection,
+        kInputConnection,
+        kAudioBlock,
+    };
     
 protected:
     
@@ -133,6 +146,8 @@ public:
     
     // Audio Processing
     
+    uint64_t getBlockTime() const final { return mBlockEndTime.intVal(); }
+    void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize, FrameLib_AudioQueue& queue) final;
     void blockUpdate(const double * const *ins, double **outs, unsigned long blockSize) final;
     void reset(double samplingRate, unsigned long maxBlockSize) final;
     
@@ -283,26 +298,28 @@ private:
     
     // Scheduling
     
-    // This returns true if the object requires notification from an audio thread (is a scheduler/has audio input)
+    // This returns true if the object needs notification from an audio thread (is a scheduler/has audio input)
     
-    bool requiresAudioNotification()    { return getType() == kScheduler || getNumAudioIns(); }
+    bool needsAudioNotification() { return getType() == kScheduler || getNumAudioIns(); }
     
     // Manage Output Memory
 
     inline void freeOutputMemory();
-    inline void releaseOutputMemory();
+    inline void releaseOutputMemory(LocalAllocator *allocator);
 
     // Dependency Notification
     
-    inline void dependencyNotify(bool releaseMemory, bool fromInput);
-    void dependenciesReady();
+    bool dependencyNotify(NotificationType type, bool releaseMemory, LocalAllocator *allocator);
+    void dependencyNotify(NotificationType type, bool releaseMemory, LocalAllocator *allocator, NotificationQueue &queue);
+    
+    void dependenciesReady(LocalAllocator *allocator);
     void incrementInputDependency();
     void resetOutputDependencyCount();
-    long getNumOuputDependencies()         { return static_cast<long>(mOutputDependencies.size()); }
+    int32_t getNumOuputDependencies()         { return static_cast<int32_t>(mOutputDependencies.size()); }
     
     // Connections
     
-    void connectionUpdate(Queue *queue) final;
+    void connectionUpdate(BlockQueue *queue) final;
     void autoOrderingConnections(LocalQueue *queue);
 
 protected:
@@ -323,7 +340,6 @@ private:
     // Processing Queue
     
     FrameLib_Context::ProcessingQueue mProcessingQueue;
-    FrameLib_DSP *mNext;
     
     // IO Info
     
@@ -335,9 +351,9 @@ private:
     
     // Dependency Counts
     
-    long mInputCount;
-    long mDependencyCount;
-    long mOutputMemoryCount;
+    std::atomic<int32_t> mInputCount;
+    std::atomic<int32_t> mDependencyCount;
+    std::atomic<int32_t> mOutputMemoryCount;
     
     // Frame and Block Timings
     

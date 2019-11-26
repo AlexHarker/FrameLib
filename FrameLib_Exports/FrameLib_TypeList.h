@@ -119,7 +119,7 @@ FrameLib_Timer,
 
 // Vector
 
-FrameLib_AccumPoint,
+FrameLib_AccumPos,
 FrameLib_Chop,
 FrameLib_Join,
 FrameLib_MedianFilter,
@@ -134,8 +134,8 @@ FrameLib_Split,
 FrameLib_Subframe,
 
 FrameLib_Length,
-FrameLib_VectorMin,
-FrameLib_VectorMax,
+FrameLib_FrameMin,
+FrameLib_FrameMax,
 FrameLib_Sum,
 FrameLib_Product,
 FrameLib_Mean,
@@ -149,8 +149,8 @@ FrameLib_Kurtosis,
 FrameLib_Flatness,
 FrameLib_RMS,
 FrameLib_Crest,
-FrameLib_VectorArgMin,
-FrameLib_VectorArgMax,
+FrameLib_FrameMinPosition,
+FrameLib_FrameMaxPosition,
 FrameLib_NanFilter,
 
 // Unary Operators
@@ -189,8 +189,8 @@ FrameLib_Erfc,
 
 // Binary  Operators
 
-FrameLib_Plus,
-FrameLib_Minus,
+FrameLib_Add,
+FrameLib_Subtract,
 FrameLib_Multiply,
 FrameLib_Divide,
 
@@ -244,8 +244,8 @@ FrameLib_Poltocar,
 
 // Complex Binary Operators
 
-FrameLib_Complex_Plus,
-FrameLib_Complex_Minus,
+FrameLib_Complex_Add,
+FrameLib_Complex_Subtract,
 FrameLib_Complex_Multiply,
 FrameLib_Complex_Divide,
 FrameLib_Complex_Pow,

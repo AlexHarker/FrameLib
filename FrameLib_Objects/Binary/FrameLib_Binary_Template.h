@@ -8,7 +8,8 @@
 
 // Binary Operator
 
-template <typename Op> class FrameLib_BinaryOp final : public FrameLib_Processor
+template <typename Op>
+class FrameLib_BinaryOp final : public FrameLib_Processor
 {
     // Parameter Enums and Info
     
@@ -34,7 +35,7 @@ public:
     
     // Constructor
     
-    FrameLib_BinaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, getParameterInfo(), 2, 1)
+    FrameLib_BinaryOp(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, getParameterInfo(), 2, 1)
     {
         mParameters.addEnum(kMismatchMode, "mismatch");
         mParameters.addEnumItem(kWrap, "wrap");
@@ -75,7 +76,7 @@ public:
     }
     
     std::string inputInfo(unsigned long idx, bool verbose) override     { return idx ? "Right Operand" : "Left Operand"; }
-    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Result"; }
+    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Output"; }
     
 private:
     
@@ -190,9 +191,7 @@ private:
             }
         }
     }
-    
-private:
-    
+        
     // Description (specialise to change description)
     
     const char *getDescriptionString() { return "Binary Operator - No operator info available"; }
@@ -211,7 +210,7 @@ private:
 
 // Binary Functor
 
-template<double func(double, double)>
+template <double func(double, double)>
 struct Binary_Functor
 {
     double operator()(double x, double y) { return func(x, y); }
@@ -219,7 +218,7 @@ struct Binary_Functor
 
 // Binary (Function Version)
 
-template<double func(double, double)>
+template <double func(double, double)>
 using FrameLib_Binary = FrameLib_BinaryOp<Binary_Functor<func>>;
 
 #endif

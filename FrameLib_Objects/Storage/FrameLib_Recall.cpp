@@ -3,7 +3,7 @@
 
 // Constructor / Destructor
 
-FrameLib_Recall::FrameLib_Recall(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+FrameLib_Recall::FrameLib_Recall(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
 {
     mParameters.addString(kName, "name", 0);
     mParameters.setInstantiation();
@@ -27,14 +27,14 @@ FrameLib_Recall::~FrameLib_Recall()
 
 std::string FrameLib_Recall::objectInfo(bool verbose)
 {
-    return formatInfo("Recall a vector frame from named memory for use: The second output can be used to control ordering/synchronisation.",
+    return formatInfo("Recall a vector frame from named memory for use: The second output can be used to control ordering or synchronisation.",
                    "Recall a vector frame from named memory for use.", verbose);
 }
 
 std::string FrameLib_Recall::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return formatInfo("Synchronisation Input - use to control ordering", "Synchronisation Input", verbose);
+        return formatInfo("Synchronisation Input - use to control ordering", "Sync Input", verbose);
     else
         return formatInfo("Trigger Input - triggers recall", "Trigger Input", verbose);
 }
@@ -69,7 +69,7 @@ void FrameLib_Recall::process()
 
     // Threadsafety
     
-    FrameLib_LocalAllocator::Storage::Access access(mStorage);
+    FrameLib_ContextAllocator::Storage::Access access(mStorage);
 
     // Get types and size
     

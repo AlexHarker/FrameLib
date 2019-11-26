@@ -2,7 +2,7 @@
 #include "FrameLib_EWMSD.h"
 #include "../../FrameLib_Dependencies/Interpolation.hpp"
 
-FrameLib_EWMSD::FrameLib_EWMSD(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mAverageFrame(nullptr), mVarianceFrame(nullptr), mPrevFrame(nullptr), mFrameSize(0)
+FrameLib_EWMSD::FrameLib_EWMSD(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mAverageFrame(nullptr), mVarianceFrame(nullptr), mPrevFrame(nullptr), mFrameSize(0)
 {
     mParameters.addDouble(kAlphaUp, "alpha_up", 0.5, 0);
     mParameters.setClip(0.0, 1.0);

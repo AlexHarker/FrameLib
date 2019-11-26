@@ -4,7 +4,8 @@
 
 #include <algorithm>
 
-template <typename Compare, class T> void sortVector(T *data, unsigned long size)
+template <typename Compare, class T>
+void sortVector(T *data, unsigned long size)
 {
     bool swaps = true;
     unsigned long gap = size;
@@ -27,7 +28,8 @@ template <typename Compare, class T> void sortVector(T *data, unsigned long size
     }
 }
 
-template <typename Compare, class T> void sortIndices(unsigned long *indices, T *data, unsigned long size)
+template <typename Compare, class T>
+void sortIndices(unsigned long *indices, T *data, unsigned long size)
 {
     bool swaps = true;
     unsigned long gap = size;

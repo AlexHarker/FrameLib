@@ -134,7 +134,7 @@ void FrameLib_MaxClass_ToMax::classInit(t_class *c, t_symbol *nameSpace, const c
 FrameLib_MaxClass_ToMax::FrameLib_MaxClass_ToMax(t_symbol *s, long argc, t_atom *argv)
     : FrameLib_MaxClass(s, argc, argv, new ToHostProxy(this))
 {
-    unsigned long nStreams = getNumStreams();
+    unsigned long nStreams = getSpecifiedStreams();
     
     mOutlets.resize(nStreams);
     

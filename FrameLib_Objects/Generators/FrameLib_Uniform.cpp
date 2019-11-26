@@ -4,7 +4,7 @@
 
 // Constructor
 
-FrameLib_Uniform::FrameLib_Uniform(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_Uniform::FrameLib_Uniform(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addDouble(kValue, "value", 0, 0);
     
@@ -40,12 +40,12 @@ std::string FrameLib_Uniform::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Trigger Frame - triggers generation of output", "Trigger Frame", verbose);
+        return formatInfo("Trigger Input - triggers generation of output", "Trigger Input", verbose);
 }
 
 std::string FrameLib_Uniform::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output Frame";
+    return "Output";
 }
 
 // Parameter Info

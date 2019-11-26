@@ -4,7 +4,8 @@
 
 #include "FrameLib_DSP.h"
 
-template <typename Op> class FrameLib_TernaryOp final : public FrameLib_Processor
+template <typename Op>
+class FrameLib_TernaryOp final : public FrameLib_Processor
 {
     enum ParameterList { kMismatchMode };
     enum MismatchModes { kWrap, kShrink, kExtend};
@@ -69,7 +70,7 @@ template <typename Op> class FrameLib_TernaryOp final : public FrameLib_Processo
     
 
 public:
-    FrameLib_TernaryOp(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, getParameterInfo(), 3, 1)
+    FrameLib_TernaryOp(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, getParameterInfo(), 3, 1)
     {
         mParameters.addEnum(kMismatchMode, "mismatch");
         mParameters.addEnumItem(kWrap, "wrap");
@@ -77,6 +78,9 @@ public:
         mParameters.addEnumItem(kExtend, "extend");
         mParameters.setInstantiation();
 
+        setInputMode(1, false, false, false);
+        setInputMode(2, false, false, false);
+        
         mParameters.set(serialisedParameters);
         
         mMismatchMode = static_cast<MismatchModes>(mParameters.getInt(kMismatchMode));
@@ -96,13 +100,13 @@ public:
             case 0: return "Input";
             case 1: return "Parameter 1";
             case 2: return "Parameter 2";
-            default: return "Unknown input";
+            default: return "Unknown Input";
         }
     }
 
     std::string outputInfo(unsigned long idx, bool verbose) override
     {
-        return "Result";
+        return "Output";
     }
     
 private:
@@ -177,7 +181,7 @@ private:
 
 // Ternary Functor
 
-template<double func(double, double, double)>
+template <double func(double, double, double)>
 struct Ternary_Functor
 {
     double operator()(double x, double y, double z) { return func(x, y, z); }
@@ -185,7 +189,7 @@ struct Ternary_Functor
 
 // Ternary (Function Version)
 
-template<double func(double, double, double)>
+template <double func(double, double, double)>
 using  FrameLib_Ternary = FrameLib_TernaryOp<Ternary_Functor<func>>;
 
 #endif

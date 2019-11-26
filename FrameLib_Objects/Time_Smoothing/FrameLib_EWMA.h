@@ -16,7 +16,7 @@ public:
     
     // Constructor
     
-    FrameLib_EWMA(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_EWMA(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
     ~FrameLib_EWMA()
     {

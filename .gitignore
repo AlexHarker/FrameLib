@@ -1,4 +1,4 @@
-##Max SDK
+﻿##Max SDK
 _MaxSDK_/
 
 ## Build generated
@@ -24,6 +24,7 @@ xcuserdata/
 
 ## VS
 .vs/
+*.tlog/
 *.user
 
 ## Latex

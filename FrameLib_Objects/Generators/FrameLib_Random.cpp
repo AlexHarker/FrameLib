@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Random::FrameLib_Random(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_Random::FrameLib_Random(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kRequestedLength, "requested");
@@ -26,9 +26,10 @@ FrameLib_Random::FrameLib_Random(FrameLib_Context context, FrameLib_Parameters::
 
 std::string FrameLib_Random::objectInfo(bool verbose)
 {
-    return formatInfo("Generates frames of linearly distributed random values in the range [0-1]: The size of the output is dependent on the mode. "
-                   "The output size may either be set as a parameter, or be set to match that of the triggering input.",
-                   "Generates frames of linearly distributed random values in the range [0-1].", verbose);
+    return formatInfo("Generates linearly distributed random values in the range [0-1]: "
+                      "The size of the output is dependent on the mode. "
+                      "The output size may either be set as a parameter, or be set to match that of the triggering input.",
+                      "Generates linearly distributed random values in the range [0-1].", verbose);
 }
 
 std::string FrameLib_Random::inputInfo(unsigned long idx, bool verbose)
@@ -36,12 +37,12 @@ std::string FrameLib_Random::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Trigger Frame - triggers generation of output", "Trigger Frame", verbose);
+        return formatInfo("Trigger Input - triggers generation of output", "Trigger Input", verbose);
 }
 
 std::string FrameLib_Random::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Frame of Random Values";
+    return "Output";
 }
 
 // Parameter Info

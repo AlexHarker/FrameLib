@@ -97,7 +97,7 @@
 
 // Vector
 
-#include "FrameLib_AccumPoint.h"
+#include "FrameLib_AccumPos.h"
 #include "FrameLib_Chop.h"
 #include "FrameLib_Join.h"
 #include "FrameLib_MedianFilter.h"
@@ -136,12 +136,16 @@
 // Expression
 
 #include "../Expressions/fl.expr~.cpp"
-#include "../Expressions/fl.complexexpr~.cpp"
+#include "../Expressions/fl.complex.expr~.cpp"
 
 // Host Communication
 
 #include "../Host_Communication/fl.tomax~.cpp"
 #include "../Host_Communication/fl.frommax~.cpp"
+
+// Context
+
+#include "../Context/fl.context~.cpp"
 
 struct FrameLib_Dummy : public MaxClass_Base
 {
@@ -253,7 +257,7 @@ extern "C" int C74_EXPORT main(void)
     
     // Vector
     
-    FrameLib_MaxClass_Expand<FrameLib_AccumPoint>::makeClass("fl.accumpoint~");
+    FrameLib_MaxClass_Expand<FrameLib_AccumPos>::makeClass("fl.accumpos~");
     FrameLib_MaxClass_Expand<FrameLib_Chop>::makeClass("fl.chop~");
     FrameLib_MaxClass_Expand<FrameLib_Join>::makeClass("fl.join~");
     FrameLib_MaxClass_Expand<FrameLib_MedianFilter>::makeClass("fl.medianfilter~");
@@ -269,13 +273,13 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_Subframe>::makeClass("fl.subframe~");
 
     FrameLib_MaxClass_Expand<FrameLib_Length>::makeClass("fl.length~");
-    FrameLib_MaxClass_Expand<FrameLib_VectorMin>::makeClass("fl.vmin~");
-    FrameLib_MaxClass_Expand<FrameLib_VectorMax>::makeClass("fl.vmax~");
+    FrameLib_MaxClass_Expand<FrameLib_FrameMin>::makeClass("fl.framemin~");
+    FrameLib_MaxClass_Expand<FrameLib_FrameMax>::makeClass("fl.framemax~");
     FrameLib_MaxClass_Expand<FrameLib_Sum>::makeClass("fl.sum~");
     FrameLib_MaxClass_Expand<FrameLib_Product>::makeClass("fl.product~");
     FrameLib_MaxClass_Expand<FrameLib_Mean>::makeClass("fl.mean~");
-    FrameLib_MaxClass_Expand<FrameLib_GeometricMean>::makeClass("fl.geometricmean~");
-    FrameLib_MaxClass_Expand<FrameLib_StandardDeviation>::makeClass("fl.standarddeviation~");
+    FrameLib_MaxClass_Expand<FrameLib_GeometricMean>::makeClass("fl.geomean~");
+    FrameLib_MaxClass_Expand<FrameLib_StandardDeviation>::makeClass("fl.stddev~");
 
     FrameLib_MaxClass_Expand<FrameLib_Centroid>::makeClass("fl.centroid~");
     FrameLib_MaxClass_Expand<FrameLib_Spread>::makeClass("fl.spread~");
@@ -284,8 +288,8 @@ extern "C" int C74_EXPORT main(void)
     FrameLib_MaxClass_Expand<FrameLib_Flatness>::makeClass("fl.flatness~");
     FrameLib_MaxClass_Expand<FrameLib_RMS>::makeClass("fl.rms~");
     FrameLib_MaxClass_Expand<FrameLib_Crest>::makeClass("fl.crest~");
-    FrameLib_MaxClass_Expand<FrameLib_VectorArgMin>::makeClass("fl.argmin~");
-    FrameLib_MaxClass_Expand<FrameLib_VectorArgMax>::makeClass("fl.argmax~");
+    FrameLib_MaxClass_Expand<FrameLib_FrameMinPosition>::makeClass("fl.minpos~");
+    FrameLib_MaxClass_Expand<FrameLib_FrameMaxPosition>::makeClass("fl.maxpos~");
     FrameLib_MaxClass_Expand<FrameLib_NanFilter>::makeClass("fl.nanfilter~");
 
     // Unary Operators
@@ -324,8 +328,8 @@ extern "C" int C74_EXPORT main(void)
     
     // Binary  Operators
     
-    FrameLib_MaxClass_Expand<FrameLib_Plus, kAllInputs>::makeClass("fl.plus~");
-    FrameLib_MaxClass_Expand<FrameLib_Minus, kAllInputs>::makeClass("fl.minus~");
+    FrameLib_MaxClass_Expand<FrameLib_Add, kAllInputs>::makeClass("fl.plus~");
+    FrameLib_MaxClass_Expand<FrameLib_Subtract, kAllInputs>::makeClass("fl.minus~");
     FrameLib_MaxClass_Expand<FrameLib_Multiply, kAllInputs>::makeClass("fl.times~");
     FrameLib_MaxClass_Expand<FrameLib_Divide, kAllInputs>::makeClass("fl.divide~");
     
@@ -355,30 +359,30 @@ extern "C" int C74_EXPORT main(void)
     
     // Complex Unary Operators
     
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Cos>::makeClass("fl.complexcos~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Sin>::makeClass("fl.complexsin~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Tan>::makeClass("fl.complextan~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Cosh>::makeClass("fl.complexcosh~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Sinh>::makeClass("fl.complexsinh~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Tanh>::makeClass("fl.complextanh~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Cos>::makeClass("fl.complex.cos~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Sin>::makeClass("fl.complex.sin~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Tan>::makeClass("fl.complex.tan~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Cosh>::makeClass("fl.complex.cosh~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Sinh>::makeClass("fl.complex.sinh~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Tanh>::makeClass("fl.complex.tanh~");
 
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Log>::makeClass("fl.complexlog~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Log10>::makeClass("fl.complexlog10~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Exp>::makeClass("fl.complexexp~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Log>::makeClass("fl.complex.log~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Log10>::makeClass("fl.complex.log10~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Exp>::makeClass("fl.complex.exp~");
 
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Sqrt>::makeClass("fl.complexsqrt~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Conj>::makeClass("fl.complexconj~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Sqrt>::makeClass("fl.complex.sqrt~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Conj>::makeClass("fl.complex.conj~");
     
     FrameLib_MaxClass_Expand<FrameLib_Cartopol>::makeClass("fl.cartopol~");
     FrameLib_MaxClass_Expand<FrameLib_Poltocar>::makeClass("fl.poltocar~");
     
     // Complex Binary Operators
     
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Plus, kAllInputs>::makeClass("fl.complexplus~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Minus, kAllInputs>::makeClass("fl.complexminus~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Multiply, kAllInputs>::makeClass("fl.complexmultiply~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Divide, kAllInputs>::makeClass("fl.complexdivide~");
-    FrameLib_MaxClass_Expand<FrameLib_Complex_Pow, kAllInputs>::makeClass("fl.complexpow~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Add, kAllInputs>::makeClass("fl.complex.plus~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Subtract, kAllInputs>::makeClass("fl.complex.minus~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Multiply, kAllInputs>::makeClass("fl.complex.times~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Divide, kAllInputs>::makeClass("fl.complex.divide~");
+    FrameLib_MaxClass_Expand<FrameLib_Complex_Pow, kAllInputs>::makeClass("fl.complex.pow~");
 
     // Buffer
     
@@ -388,10 +392,14 @@ extern "C" int C74_EXPORT main(void)
     // Expressions
     
     FrameLib_MaxClass_Expression::makeClass<FrameLib_MaxClass_Expression>("fl.expr~");
-    FrameLib_MaxClass_ComplexExpression::makeClass<FrameLib_MaxClass_ComplexExpression>("fl.complexexpr~");
+    FrameLib_MaxClass_ComplexExpression::makeClass<FrameLib_MaxClass_ComplexExpression>("fl.complex.expr~");
     
     // Host Communication
     
     FrameLib_MaxClass_ToMax::makeClass<FrameLib_MaxClass_ToMax>("fl.tomax~");
     FrameLib_MaxClass_FromMax::makeClass<FrameLib_MaxClass_FromMax>("fl.frommax~");
+    
+    // Context
+    
+    FrameLib_MaxClass_Context::makeClass<FrameLib_MaxClass_Context>(CLASS_BOX, "fl.context~");
 }

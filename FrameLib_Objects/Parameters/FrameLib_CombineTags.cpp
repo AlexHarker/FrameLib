@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_CombineTags::FrameLib_CombineTags(FrameLib_Context context, FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo)
+FrameLib_CombineTags::FrameLib_CombineTags(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo)
 {
     mParameters.addInt(kNumIns, "num_ins", 2, 0);
     mParameters.setClip(2, maxNumIns);

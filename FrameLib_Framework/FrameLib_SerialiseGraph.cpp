@@ -77,7 +77,7 @@ size_t findAndResolveFunctions(std::string& name, size_t beg, size_t end)
     size_t function1, function2;
     size_t removed = 0;
     
-    while (1)
+    while (true)
     {
         // Recurse across the string to find any ampersands followed by a bracket (which are the start of a function)
     
