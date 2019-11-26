@@ -26,6 +26,70 @@ void FLTest_CalcAudio(FrameLib_SC_UGen *unit, int inNumSamples);
 
 static void FLTest_Dtor(FrameLib_SC_UGen* unit);
 
+struct FrameLib_Param_UGen : public Unit
+{
+    char *mTag;
+    char *mSymbol;
+    float *mVector;
+    size_t mVecLength;
+};
+
+size_t FLParam_String(FrameLib_Param_UGen* unit, char*& str, size_t i)
+{
+    size_t length = 0;
+    Wire **it = unit->mInput + i;
+    Wire **end = unit->mInput + unit->mNumInputs;
+    
+    length = (*it++)->mScalarValue;
+    str = (char *) ft->fRTAlloc(unit->mWorld, sizeof(char) * (length + 1));
+    
+    for (size_t j = 0; it != end && j < length; it++, j++)
+        str[j] = (char) (*it)->mScalarValue;
+
+    str[length] = 0;
+                       
+    return unit->mNumInputs - (end - it);
+}
+
+void FLParam_Vector(FrameLib_Param_UGen* unit, float*& vec, size_t i)
+{
+    size_t length = 0;
+    Wire **it = unit->mInput + i;
+    Wire **end = unit->mInput + unit->mNumInputs;
+    
+    unit->mVecLength = length = (*it++)->mScalarValue;
+    vec = (float *) ft->fRTAlloc(unit->mWorld, sizeof(float) * (length + 1));
+    
+    for (size_t j = 0; it != end && j < length; it++, j++)
+        vec[j] = (*it)->mScalarValue;
+}
+
+void FLParam_Ctor(FrameLib_Param_UGen* unit)
+{
+    unit->mTag = nullptr;
+    unit->mSymbol = nullptr;
+    unit->mVector = nullptr;
+    unit->mVecLength = 0;
+    
+    size_t pos = FLParam_String(unit, unit->mTag, 0);
+    FLParam_Vector(unit, unit->mVector, pos);
+
+    unit->mCalcFunc = (UnitCalcFunc) &FLTest_CalcZero;
+}
+
+void FLParam_Dtor(FrameLib_Param_UGen* unit)
+{
+    using std::vector;
+    
+    if (unit->mTag)
+        ft->fRTFree(unit->mWorld, unit->mTag);
+    unit->mVector.~vector<float>();
+    if (unit->mSymbol)
+        ft->fRTFree(unit->mWorld, unit->mSymbol);
+}
+
+
+
 // Global pbject
 
 struct SC_FrameLib_Global
@@ -445,7 +509,8 @@ void ParameterSetup(World *inWorld, void* inUserData, sc_msg_iter *args, void *r
     const char *paramMessage = args->gets();
     const char *inputMessage = args->gets();
     
-    sGlobal.SetInitParameters(inWorld, count, paramMessage, inputMessage);
+    SC_FrameLib_Global *global = (SC_FrameLib_Global *) inUserData;
+    global->SetInitParameters(inWorld, count, paramMessage, inputMessage);
 }
 
 PluginLoad(FrameLib)

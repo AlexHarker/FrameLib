@@ -1,4 +1,40 @@
 
+FLParam : UGen {
+
+	*ir { arg name, a;
+
+		parseTag(name, a);
+	}
+
+	parseTag()
+	{
+		arg tag, val;
+
+		if (tag.isKindOf(String))
+		{
+			var args = tag.ascii;
+			var size = args.size;
+			var asize = a.size;
+			var newArgs = Array.newClear(args.size + 3 + asize);
+			newArgs[0] = 'init';
+
+			newArgs[1] = args.size;
+			size.do()
+			{ arg i;
+				newArgs[i + 2] = args[i];
+			};
+
+			newArgs[size + 2] = a.size;
+			asize.do()
+			{ arg i;
+				newArgs[i + 3 + size] = a[i];
+			};
+
+			^this.new1( *newArgs );
+		}
+	}
+}
+
 FLObject : UGen {
 	classvar paramCount;
 
