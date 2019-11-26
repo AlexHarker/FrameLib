@@ -6,12 +6,12 @@ DONE
 
 IN PROGRESS -> PROOF OF CONCEPT (requires finessing)
 
-4 - how do I pass parameters in?  / fixed inputs with more than one value?      SERVER COMMANDS WORK
+4 - how do I pass parameters in?  / fixed inputs with more than one value?      SERVER COMMANDS WORK BUT ARE TEMPORARY
 5 - auto synchronisation                                                        REVERSE DIRECTION (needs testing)
 6 - error reporting								USE PRINT (needs proxy details etc.)
 	
 OUTSTANDING
 
-7 - where do I store the global object so it is retrievable (from the world)?
+7 - where do I store the global object so it is retrievable (from the world)?	Possible use of ServerTree actions
 8 - memory management
 9 - how can I deal with variable numbers of outputs/inputs?
