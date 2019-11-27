@@ -177,7 +177,7 @@ static SC_FrameLib_Global sGlobal;
 
 struct FrameLib_Param_UGen : public Unit
 {
-    FrameLibSC_FrameLib_Global* mGlobal;
+    SC_FrameLib_Global* mGlobal;
     char *mTag;
     char *mSymbol;
     float *mVector;
