@@ -71,8 +71,14 @@ void FLParam_Ctor(FrameLib_Param_UGen* unit)
     unit->mVector = nullptr;
     unit->mVecLength = 0;
     
-    size_t pos = FLParam_String(unit, unit->mTag, 0);
-    FLParam_Vector(unit, unit->mVector, pos);
+    bool string = unit->mInput[0]->mScalarValue;
+    
+    size_t pos = FLParam_String(unit, unit->mTag, 1);
+    
+    if (string)
+        FLParam_String(unit, unit->mTag, 1);
+    else
+        FLParam_Vector(unit, unit->mVector, pos);
 
     unit->mCalcFunc = (UnitCalcFunc) &FLTest_CalcZero;
 }
@@ -518,6 +524,10 @@ PluginLoad(FrameLib)
     ft = inTable; // store pointer to InterfaceTable
     
     (*ft->fDefinePlugInCmd)("FLParameters", &ParameterSetup, nullptr);
+    
+    // Define parameter UGen
+    
+    (*ft->fDefineUnit)("FLParam", sizeof(FrameLib_Param_UGen), (UnitCtorFunc)&FLParam_Ctor,(UnitDtorFunc)&FLParam_Dtor, 0);
     
     DefineFrameLibExpUnit<FrameLib_Read>("FLRead");
     DefineFrameLibExpUnit<FrameLib_Window>("FLWindow");

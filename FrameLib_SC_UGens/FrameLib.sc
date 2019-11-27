@@ -1,34 +1,36 @@
 
 FLParam : UGen {
 
-	*ir { arg name, a;
+	*ir { arg tag, a;
 
-		parseTag(name, a);
+		^this.parseTag(tag, a);
 	}
 
-	parseTag()
-	{
-		arg tag, val;
+	*copyArray { arg args, source, offset;
+		var size = source.size;
+
+		args[offset] = size;
+
+		size.do()
+		{ arg i;
+			args[i + offset + 1] = source[i];
+		};
+
+		^(offset + size + 1);
+	}
+
+	*parseTag { arg tag, val;
 
 		if (tag.isKindOf(String))
 		{
-			var args = tag.ascii;
-			var size = args.size;
-			var asize = a.size;
-			var newArgs = Array.newClear(args.size + 3 + asize);
+			var args1 = tag.ascii;
+			var args2 = val;
+			var newArgs = Array.newClear(args1.size + args2.size + 4);
+
 			newArgs[0] = 'init';
+			newArgs[1] = 0;
 
-			newArgs[1] = args.size;
-			size.do()
-			{ arg i;
-				newArgs[i + 2] = args[i];
-			};
-
-			newArgs[size + 2] = a.size;
-			asize.do()
-			{ arg i;
-				newArgs[i + 3 + size] = a[i];
-			};
+			this.copyArray(newArgs, args2, this.copyArray(newArgs, args1, 2));
 
 			^this.new1( *newArgs );
 		}
