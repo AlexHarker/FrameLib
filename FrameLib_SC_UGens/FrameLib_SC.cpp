@@ -26,76 +26,6 @@ void FLTest_CalcAudio(FrameLib_SC_UGen *unit, int inNumSamples);
 
 static void FLTest_Dtor(FrameLib_SC_UGen* unit);
 
-struct FrameLib_Param_UGen : public Unit
-{
-    char *mTag;
-    char *mSymbol;
-    float *mVector;
-    size_t mVecLength;
-};
-
-size_t FLParam_String(FrameLib_Param_UGen* unit, char*& str, size_t i)
-{
-    size_t length = 0;
-    Wire **it = unit->mInput + i;
-    Wire **end = unit->mInput + unit->mNumInputs;
-    
-    length = (*it++)->mScalarValue;
-    str = (char *) ft->fRTAlloc(unit->mWorld, sizeof(char) * (length + 1));
-    
-    for (size_t j = 0; it != end && j < length; it++, j++)
-        str[j] = (char) (*it)->mScalarValue;
-
-    str[length] = 0;
-                       
-    return unit->mNumInputs - (end - it);
-}
-
-void FLParam_Vector(FrameLib_Param_UGen* unit, float*& vec, size_t i)
-{
-    size_t length = 0;
-    Wire **it = unit->mInput + i;
-    Wire **end = unit->mInput + unit->mNumInputs;
-    
-    unit->mVecLength = length = (*it++)->mScalarValue;
-    vec = (float *) ft->fRTAlloc(unit->mWorld, sizeof(float) * (length + 1));
-    
-    for (size_t j = 0; it != end && j < length; it++, j++)
-        vec[j] = (*it)->mScalarValue;
-}
-
-void FLParam_Ctor(FrameLib_Param_UGen* unit)
-{
-    unit->mTag = nullptr;
-    unit->mSymbol = nullptr;
-    unit->mVector = nullptr;
-    unit->mVecLength = 0;
-    
-    bool string = unit->mInput[0]->mScalarValue;
-    
-    size_t pos = FLParam_String(unit, unit->mTag, 1);
-    
-    if (string)
-        FLParam_String(unit, unit->mSymbol, pos);
-    else
-        FLParam_Vector(unit, unit->mVector, pos);
-
-    unit->mCalcFunc = (UnitCalcFunc) &FLTest_CalcZero;
-}
-
-void FLParam_Dtor(FrameLib_Param_UGen* unit)
-{
-    using std::vector;
-    
-    if (unit->mTag)
-        ft->fRTFree(unit->mWorld, unit->mTag);
-    unit->mVector.~vector<float>();
-    if (unit->mSymbol)
-        ft->fRTFree(unit->mWorld, unit->mSymbol);
-}
-
-
-
 // Global pbject
 
 struct SC_FrameLib_Global
@@ -242,6 +172,85 @@ struct SC_FrameLib_Global
 };
 
 static SC_FrameLib_Global sGlobal;
+
+// Parameter Object
+
+struct FrameLib_Param_UGen : public Unit
+{
+    FrameLibSC_FrameLib_Global* mGlobal;
+    char *mTag;
+    char *mSymbol;
+    float *mVector;
+    size_t mVecLength;
+};
+
+size_t FLParam_String(FrameLib_Param_UGen* unit, char*& str, size_t i)
+{
+    size_t length = 0;
+    Wire **it = unit->mInput + i;
+    Wire **end = unit->mInput + unit->mNumInputs;
+    
+    length = (*it++)->mScalarValue;
+    str = (char *) ft->fRTAlloc(unit->mWorld, sizeof(char) * (length * 3 + 1));
+    
+    for (size_t j = 0; it != end && j < length; it++, j++)
+    {
+        int32 chars = (int32) (*it)->mScalarValue;;
+        char c;
+        str[j * 3 + 0] = c = (char) (chars & 0xFF);
+        str[j * 3 + 1] = c = (char) ((chars >> 0x08) & 0xFF);
+        str[j * 3 + 2] = c = (char) ((chars >> 0x10) & 0xFF);
+    }
+    
+    str[length * 3] = 0;
+    
+    return unit->mNumInputs - (end - it);
+}
+
+void FLParam_Vector(FrameLib_Param_UGen* unit, float*& vec, size_t i)
+{
+    size_t length = 0;
+    Wire **it = unit->mInput + i;
+    Wire **end = unit->mInput + unit->mNumInputs;
+    
+    unit->mVecLength = length = (*it++)->mScalarValue;
+    vec = (float *) ft->fRTAlloc(unit->mWorld, sizeof(float) * (length + 1));
+    
+    for (size_t j = 0; it != end && j < length; it++, j++)
+        vec[j] = (*it)->mScalarValue;
+}
+
+void FLParam_Ctor(FrameLib_Param_UGen* unit)
+{
+    unit->mGlobal= &sGlobal;
+    unit->mTag = nullptr;
+    unit->mSymbol = nullptr;
+    unit->mVector = nullptr;
+    unit->mVecLength = 0;
+    
+    bool string = unit->mInput[0]->mScalarValue;
+    
+    size_t pos = FLParam_String(unit, unit->mTag, 1);
+    
+    if (string)
+        FLParam_String(unit, unit->mSymbol, pos);
+    else
+        FLParam_Vector(unit, unit->mVector, pos);
+    
+    unit->mCalcFunc = (UnitCalcFunc) &FLTest_CalcZero;
+}
+
+void FLParam_Dtor(FrameLib_Param_UGen* unit)
+{
+    using std::vector;
+    
+    if (unit->mTag)
+        ft->fRTFree(unit->mWorld, unit->mTag);
+    unit->mVector.~vector<float>();
+    if (unit->mSymbol)
+        ft->fRTFree(unit->mWorld, unit->mSymbol);
+}
+
 
 //////////////////////////////////////////////////////////////////
 

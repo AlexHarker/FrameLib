@@ -38,7 +38,32 @@ FLParam : UGen {
 
 	*parseSymbol { arg str;
 
-		^str.ascii;
+		var ascii = str.ascii;
+		var args = Array.newClear((ascii.size + 2) / 3);
+		var loop = (ascii.size / 3).asInteger;
+		var loopmod = ascii.size % 3;
+
+		loop.do()
+		{ arg i;
+			args[i] = ascii[i * 3] + (ascii[i * 3 + 1] * 256) + (ascii[i * 3 + 2].asInteger * 65536);
+			post("this,=" + ascii[i * 3] + ascii[i * 3 + 1] + ascii[i * 3 + 2] + args[i] + "\n")
+		};
+
+		post("loop is" + loop + loopmod + "\n");
+		if (loopmod == 1)
+		{
+			args[loop] = ascii[loop * 3];
+			^args;
+		}{
+			if (loopmod == 2)
+			{
+				args[loop] = ascii[loop * 3] + ascii[loop * 3 + 1] * 256;
+				^args;
+			}
+			{
+				^args;
+			}
+		}
 	}
 
 	*parseItem { arg a;
