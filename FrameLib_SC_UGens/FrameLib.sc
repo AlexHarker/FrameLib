@@ -46,10 +46,8 @@ FLParam : UGen {
 		loop.do()
 		{ arg i;
 			args[i] = ascii[i * 3] + (ascii[i * 3 + 1] * 256) + (ascii[i * 3 + 2].asInteger * 65536);
-			post("this,=" + ascii[i * 3] + ascii[i * 3 + 1] + ascii[i * 3 + 2] + args[i] + "\n")
 		};
 
-		post("loop is" + loop + loopmod + "\n");
 		if (loopmod == 1)
 		{
 			args[loop] = ascii[loop * 3];
