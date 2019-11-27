@@ -21,18 +21,44 @@ FLParam : UGen {
 
 	*parseTag { arg tag, val;
 
-		if (tag.isKindOf(String))
+		if (tag.isKindOf(Symbol))
 		{
-			var args1 = tag.ascii;
-			var args2 = val;
+			var args1 = this.parseSymbol(tag);
+			var args2 = this.parseValue(val);
 			var newArgs = Array.newClear(args1.size + args2.size + 4);
 
 			newArgs[0] = 'init';
-			newArgs[1] = 0;
+			newArgs[1] = val.isKindOf(Symbol).if(1, 0);
 
 			this.copyArray(newArgs, args2, this.copyArray(newArgs, args1, 2));
 
 			^this.new1( *newArgs );
+		}
+	}
+
+	*parseSymbol { arg str;
+
+		^str.ascii;
+	}
+
+	*parseItem { arg a;
+		var args = Array.newClear(1);
+		args[0] = a;
+		^args;
+	}
+
+	*parseValue { arg a;
+
+		if (a.isKindOf(Symbol))
+		{
+			^this.parseSymbol(a);
+		}{
+			if (a.isKindOf(Array))
+			{
+				^a;
+			}{
+				^this.parseItem(a);
+			}
 		}
 	}
 }

@@ -76,7 +76,7 @@ void FLParam_Ctor(FrameLib_Param_UGen* unit)
     size_t pos = FLParam_String(unit, unit->mTag, 1);
     
     if (string)
-        FLParam_String(unit, unit->mTag, 1);
+        FLParam_String(unit, unit->mSymbol, pos);
     else
         FLParam_Vector(unit, unit->mVector, pos);
 
