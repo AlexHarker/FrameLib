@@ -6,31 +6,14 @@ FLParam : UGen {
 		^this.parseTag(tag, a);
 	}
 
-	*copyArray { arg args, source, offset;
-		var size = source.size;
-
-		args[offset] = size;
-
-		size.do()
-		{ arg i;
-			args[i + offset + 1] = source[i];
-		};
-
-		^(offset + size + 1);
-	}
-
 	*parseTag { arg tag, val;
 
 		if (tag.isKindOf(Symbol))
 		{
 			var args1 = this.parseSymbol(tag);
 			var args2 = this.parseValue(val);
-			var newArgs = Array.newClear(args1.size + args2.size + 4);
 
-			newArgs[0] = 'init';
-			newArgs[1] = val.isKindOf(Symbol).if(1, 0);
-
-			this.copyArray(newArgs, args2, this.copyArray(newArgs, args1, 2));
+			var newArgs = ['init', val.isKindOf(Symbol).if(1, 0), args1.size].addAll(args1).add(args2.size).addAll(args2);
 
 			^this.new1( *newArgs );
 		}
@@ -39,50 +22,23 @@ FLParam : UGen {
 	*parseSymbol { arg str;
 
 		var ascii = str.ascii;
-		var args = Array.newClear((ascii.size + 2) / 3);
-		var loop = (ascii.size / 3).asInteger;
 		var loopmod = ascii.size % 3;
+		var args;
 
-		loop.do()
-		{ arg i;
-			args[i] = ascii[i * 3] + (ascii[i * 3 + 1] * 256) + (ascii[i * 3 + 2].asInteger * 65536);
-		};
+		args = Array.fill((ascii.size / 3).asInteger, { arg i; ascii[i * 3] + (ascii[i * 3 + 1] * 256) + (ascii[i * 3 + 2] * 65536) });
 
-		if (loopmod == 1)
-		{
-			args[loop] = ascii[loop * 3];
-			^args;
-		}{
-			if (loopmod == 2)
-			{
-				args[loop] = ascii[loop * 3] + ascii[loop * 3 + 1] * 256;
-				^args;
-			}
-			{
-				^args;
-			}
-		}
-	}
-
-	*parseItem { arg a;
-		var args = Array.newClear(1);
-		args[0] = a;
-		^args;
+		switch (loopmod,
+			0, { ^args; },
+			1, { ^args.add(ascii[args.size * 3]); },
+			2, { ^args.add(ascii[args.size * 3] + (ascii[args.size * 3 + 1] * 256)); });
 	}
 
 	*parseValue { arg a;
 
-		if (a.isKindOf(Symbol))
-		{
-			^this.parseSymbol(a);
-		}{
-			if (a.isKindOf(Array))
-			{
-				^a;
-			}{
-				^this.parseItem(a);
-			}
-		}
+		switch(a.isKindOf(Symbol).asInt + (a.isKindOf(Array).asInt * 2),
+			0, { ^[a]; },
+			1, { ^this.parseSymbol(a); },
+			2, { ^a; });
 	}
 }
 
