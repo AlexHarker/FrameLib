@@ -97,9 +97,10 @@ public:
             qelem_free(mQelem);
         }
         
-        void notify()
+        bool notify(const FrameLib_ErrorReporter::ErrorReport& report) override
         {
             qelem_set(mQelem);
+            return false;
         }
         
         static void errorReport(FrameLib_Global **globalHandle)

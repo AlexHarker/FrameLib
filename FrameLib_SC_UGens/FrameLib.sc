@@ -1,4 +1,47 @@
 
+FLParam : UGen {
+
+	*ir { arg tag, a;
+
+		^this.parseTag(tag, a);
+	}
+
+	*parseTag { arg tag, val;
+
+		if (tag.isKindOf(Symbol))
+		{
+			var args1 = this.parseSymbol(tag);
+			var args2 = this.parseValue(val);
+
+			var newArgs = ['init', val.isKindOf(Symbol).if(1, 0), args1.size].addAll(args1).add(args2.size).addAll(args2);
+
+			^this.new1( *newArgs );
+		}
+	}
+
+	*parseSymbol { arg str;
+
+		var ascii = str.ascii;
+		var loopmod = ascii.size % 3;
+		var args;
+
+		args = Array.fill((ascii.size / 3).asInteger, { arg i; ascii[i * 3] + (ascii[i * 3 + 1] * 256) + (ascii[i * 3 + 2] * 65536) });
+
+		switch (loopmod,
+			0, { ^args; },
+			1, { ^args.add(ascii[args.size * 3]); },
+			2, { ^args.add(ascii[args.size * 3] + (ascii[args.size * 3 + 1] * 256)); });
+	}
+
+	*parseValue { arg a;
+
+		switch(a.isKindOf(Symbol).asInt + (a.isKindOf(Array).asInt * 2),
+			0, { ^[a]; },
+			1, { ^this.parseSymbol(a); },
+			2, { ^a; });
+	}
+}
+
 FLObject : UGen {
 	classvar paramCount;
 

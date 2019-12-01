@@ -39,19 +39,6 @@ public:
     
     /**
      
-     @class HostNotifier
-     
-     @brief a virtual struct used to supply a method for notifying the host of errors.
-     
-     */
-    
-    struct HostNotifier : public FrameLib_Proxy
-    {
-        virtual void notify() = 0;
-    };
-    
-    /**
-     
      @class ErrorReport
      
      @brief a report for a single error.
@@ -62,25 +49,29 @@ public:
     {
         friend class FrameLib_ErrorReporter;
         
-        ErrorReport(ErrorSource source, FrameLib_Proxy *reporter, const char *error, const char *items, unsigned long numItems)
-        : mSource(source), mReporter(reporter), mError(error), mItems(items), mNumItems(numItems) {}
+        ErrorReport(ErrorSource source, FrameLib_Proxy *reporter, const char *error, const char *items, size_t numChars, unsigned long numItems)
+        : mSource(source), mReporter(reporter), mError(error), mItems(items), mItemSize(numChars), mNumItems(numItems) {}
         
     public:
         
-        ErrorReport() : mSource(kErrorObject), mReporter(nullptr), mError(nullptr), mItems(nullptr), mNumItems(0) {}
+        ErrorReport() : mSource(kErrorObject), mReporter(nullptr), mError(nullptr), mItems(nullptr), mItemSize(0), mNumItems(0) {}
 
         void getErrorText(std::string& text) const;
+        void getErrorText(char *text, size_t N) const;
         ErrorSource getSource() const                   { return mSource; }
         FrameLib_Proxy* getReporter() const             { return mReporter; }
     
     private:
         
+        void copy(char*& dest, const char *str, size_t length, size_t& left) const;
+
         // Data
         
         ErrorSource mSource;
         FrameLib_Proxy* mReporter;
         const char* mError;
         const char* mItems;
+        size_t mItemSize;
         unsigned long mNumItems;
     };
     
@@ -98,8 +89,6 @@ public:
         
         const static int sCharArraySize = 8192;
         const static int sReportArraySize = 1024;
-        
-    public:
         
     public:
         
@@ -156,11 +145,14 @@ public:
         size_t size() const { return mReportsSize; }
         
         ConstIterator begin() const { return mReports; }
+        ConstIterator last() const { return mReports + mReportsSize - 1; }
         ConstIterator end() const { return mReports + mReportsSize; }
         
         bool isFull() const { return mFull; }
         
     private:
+        
+        char *getItemsPointer() { return mItems + mItemsSize; }
         
         bool addItem(const char *str)
         {
@@ -228,24 +220,49 @@ public:
         template<typename... Args>
         void add(ErrorSource source, FrameLib_Proxy *reporter, const char *error, Args... args)
         {
-            char *ptr = mItems + mItemsSize;
+            char *ptr = getItemsPointer();
             
             if (!mFull && (mReportsSize < sReportArraySize) && addItems(args...))
             {
-                mReports[mReportsSize] = ErrorReport(source, reporter, error, ptr, sizeof...(args));
+                size_t itemSize = getItemsPointer() - ptr;
+                mReports[mReportsSize] = ErrorReport(source, reporter, error, ptr, itemSize, sizeof...(args));
                 mReportsSize++;
             }
             else
                 mFull = true;
         }
         
+        void remove()
+        {            
+            if (mReportsSize)
+            {
+                mFull = false;
+                mReportsSize--;
+                mItemsSize -= mReports[mReportsSize].mItemSize;
+                mReports[mReportsSize] = ErrorReport();
+            }
+        }
+        
         // Data
         
-        ErrorReport mReports[sCharArraySize];
+        ErrorReport mReports[sReportArraySize];
         char mItems[sCharArraySize];
         size_t mReportsSize;
         size_t mItemsSize;
         bool mFull;
+    };
+    
+    /**
+     
+     @class HostNotifier
+     
+     @brief a virtual struct used to supply a method for notifying the host of errors.
+     
+     */
+    
+    struct HostNotifier : public FrameLib_Proxy
+    {
+        virtual bool notify(const ErrorReport& report) = 0;
     };
     
     // Constructor
@@ -263,8 +280,10 @@ public:
         
         if (mNotifier && !mNotified)
         {
-            mNotifier->notify();
-            mNotified = true;
+            if (mNotifier->notify(*(mReports->last())))
+                mReports->remove();
+            else
+                mNotified = true;
         }
     }
     

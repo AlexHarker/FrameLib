@@ -1,25 +1,51 @@
 
 #include "SC_PlugIn.h"
-#include "../../server/scsynth/SC_UnitDef.h"
 
 #include "FrameLib_Objects.h"
 
 static InterfaceTable *ft;
 
-// declare struct to hold unit generator state
+// Declare struct to hold unit generator state
 
 struct FrameLib_SC_UGen : public Unit
 {
+    typedef void (*FLCalcFunc)(FrameLib_SC_UGen *, int);
+
     FrameLib_Multistream *mObject;
     FrameLib_Proxy *mProxy;
+    FLCalcFunc mFrameLibCalcFunc;
     double **mAudioBuffers;
 };
 
+// Calculation functions declarations (also used to identify units)
 
-static int kFrameLibFlag = 0x100;
+void FLTest_CalcZero(FrameLib_SC_UGen *unit, int inNumSamples);
+void FLTest_CalcAudio(FrameLib_SC_UGen *unit, int inNumSamples);
+
+// Declare unit generator desstructor
+
+static void FLTest_Dtor(FrameLib_SC_UGen* unit);
+
+// Global pbject
 
 struct SC_FrameLib_Global
 {
+    static void CalcFunc(FrameLib_SC_UGen *unit, int inNumSamples)
+    {
+        unit->mFrameLibCalcFunc(unit, inNumSamples);
+    }
+
+    class Notifier : public FrameLib_ErrorReporter::HostNotifier
+    {
+        bool notify(const FrameLib_ErrorReporter::ErrorReport& report) override
+        {
+            char errorText[512];
+            report.getErrorText(errorText, 512);
+            ft->fPrint("error: %s\n", errorText);
+            return true;
+        }
+    };
+    
     struct InitParameters
     {
         InitParameters() : mSerial(nullptr), mInputsSerial(nullptr) {}
@@ -49,7 +75,7 @@ struct SC_FrameLib_Global
     
     SC_FrameLib_Global() : mGlobal(nullptr)
     {
-        FrameLib_Global::get(&mGlobal);
+        FrameLib_Global::get(&mGlobal, &mNotifier);
     }
     
     ~SC_FrameLib_Global()
@@ -59,10 +85,12 @@ struct SC_FrameLib_Global
     
     bool CheckFrameLib(Unit* unit)
     {
-        return unit && unit->mUnitDef->mFlags & kFrameLibFlag;
+        return unit && (unit->mCalcFunc == GetCalcFunc());
     }
+
+    UnitCalcFunc GetCalcFunc() const { return (UnitCalcFunc) CalcFunc; }
     
-    void parseString(World *inWorld, FrameLib_Parameters::AutoSerial& serial, const char *str)
+    void ParseString(World *inWorld, FrameLib_Parameters::AutoSerial& serial, const char *str)
     {
         char *tempStr = (char *) RTAlloc(inWorld, strlen(str) + 1);
         strcpy(tempStr, str);
@@ -112,14 +140,14 @@ struct SC_FrameLib_Global
         else
             mInitParameters[id].mSerial = new FrameLib_Parameters::AutoSerial;
         
-        parseString(inWorld, *mInitParameters[id].mSerial, params);
+        ParseString(inWorld, *mInitParameters[id].mSerial, params);
         
         if (mInitParameters[id].mInputsSerial)
             mInitParameters[id].mInputsSerial->clear();
         else
             mInitParameters[id].mInputsSerial = new FrameLib_Parameters::AutoSerial;
 
-        parseString(inWorld, *mInitParameters[id].mInputsSerial, inputs);
+        ParseString(inWorld, *mInitParameters[id].mInputsSerial, inputs);
 }
     
     InitParameters *GetInitParameters(FrameLib_SC_UGen* unit)
@@ -139,10 +167,90 @@ struct SC_FrameLib_Global
     
     FrameLib_Global *mGlobal;
     
+    Notifier mNotifier;
     std::vector<InitParameters> mInitParameters;
 };
 
 static SC_FrameLib_Global sGlobal;
+
+// Parameter Object
+
+struct FrameLib_Param_UGen : public Unit
+{
+    SC_FrameLib_Global* mGlobal;
+    char *mTag;
+    char *mSymbol;
+    float *mVector;
+    size_t mVecLength;
+};
+
+size_t FLParam_String(FrameLib_Param_UGen* unit, char*& str, size_t i)
+{
+    size_t length = 0;
+    Wire **it = unit->mInput + i;
+    Wire **end = unit->mInput + unit->mNumInputs;
+    
+    length = (*it++)->mScalarValue;
+    str = (char *) ft->fRTAlloc(unit->mWorld, sizeof(char) * (length * 3 + 1));
+    
+    for (size_t j = 0; it != end && j < length; it++, j++)
+    {
+        int32 chars = (int32) (*it)->mScalarValue;;
+        char c;
+        str[j * 3 + 0] = c = (char) (chars & 0xFF);
+        str[j * 3 + 1] = c = (char) ((chars >> 0x08) & 0xFF);
+        str[j * 3 + 2] = c = (char) ((chars >> 0x10) & 0xFF);
+    }
+    
+    str[length * 3] = 0;
+    
+    return unit->mNumInputs - (end - it);
+}
+
+void FLParam_Vector(FrameLib_Param_UGen* unit, float*& vec, size_t i)
+{
+    size_t length = 0;
+    Wire **it = unit->mInput + i;
+    Wire **end = unit->mInput + unit->mNumInputs;
+    
+    unit->mVecLength = length = (*it++)->mScalarValue;
+    vec = (float *) ft->fRTAlloc(unit->mWorld, sizeof(float) * (length + 1));
+    
+    for (size_t j = 0; it != end && j < length; it++, j++)
+        vec[j] = (*it)->mScalarValue;
+}
+
+void FLParam_Ctor(FrameLib_Param_UGen* unit)
+{
+    unit->mGlobal= &sGlobal;
+    unit->mTag = nullptr;
+    unit->mSymbol = nullptr;
+    unit->mVector = nullptr;
+    unit->mVecLength = 0;
+    
+    bool string = unit->mInput[0]->mScalarValue;
+    
+    size_t pos = FLParam_String(unit, unit->mTag, 1);
+    
+    if (string)
+        FLParam_String(unit, unit->mSymbol, pos);
+    else
+        FLParam_Vector(unit, unit->mVector, pos);
+    
+    unit->mCalcFunc = (UnitCalcFunc) &FLTest_CalcZero;
+}
+
+void FLParam_Dtor(FrameLib_Param_UGen* unit)
+{
+    using std::vector;
+    
+    if (unit->mTag)
+        ft->fRTFree(unit->mWorld, unit->mTag);
+    unit->mVector.~vector<float>();
+    if (unit->mSymbol)
+        ft->fRTFree(unit->mWorld, unit->mSymbol);
+}
+
 
 //////////////////////////////////////////////////////////////////
 
@@ -229,11 +337,6 @@ FrameLib_Proxy *GetProxy(FrameLib_SC_UGen *unit, FrameLib_Expand<FrameLib_Read> 
     return new ReadProxy(unit);
 }
 
-// declare unit generator functions
-static void FLTest_next_a_zero(FrameLib_SC_UGen *unit, int inNumSamples);
-static void FLTest_next_a_calc(FrameLib_SC_UGen *unit, int inNumSamples);
-static void FLTest_Dtor(FrameLib_SC_UGen* unit);
-
 //////////////////////////////////////////////////////////////////
 
 // Ctor is called to initialize the unit generator.
@@ -246,11 +349,12 @@ static void FLTest_Dtor(FrameLib_SC_UGen* unit);
 template<class T>
 void FLTest_Ctor(FrameLib_SC_UGen* unit)
 {
-    FrameLib_Context context(sGlobal.getGlobal(), unit->mParent);
+    SC_FrameLib_Global* global = &sGlobal;
+    FrameLib_Context context(global->getGlobal(), unit->mParent);
     
     // FIX - number of streams / fixed inputs
     
-    SC_FrameLib_Global::InitParameters *params = sGlobal.GetInitParameters(unit);
+    SC_FrameLib_Global::InitParameters *params = global->GetInitParameters(unit);
     unit->mProxy = GetProxy<T>(unit, static_cast<T *>(nullptr));
     
     int nStreams = 1;
@@ -285,7 +389,7 @@ void FLTest_Ctor(FrameLib_SC_UGen* unit)
             }
         }
         
-        if (sGlobal.CheckFrameLib(connect))
+        if (global->CheckFrameLib(connect))
         {
             FrameLib_SC_UGen *connectable = reinterpret_cast<FrameLib_SC_UGen *>(connect);
             unsigned long cNumAudioOuts = connectable->mObject->getNumAudioOuts();
@@ -307,6 +411,8 @@ void FLTest_Ctor(FrameLib_SC_UGen* unit)
         }
     }
 
+    unit->mCalcFunc = global->GetCalcFunc();
+
     if (handlesAudio)
     {
         if (numAudioChans)
@@ -316,14 +422,15 @@ void FLTest_Ctor(FrameLib_SC_UGen* unit)
             for (unsigned long i = 1; i <numAudioChans; i++)
                 unit->mAudioBuffers[1] = unit->mAudioBuffers[0] + unit->mBufLength * i;
         }
-        unit->mCalcFunc = (UnitCalcFunc)&FLTest_next_a_calc;
+        unit->mFrameLibCalcFunc = &FLTest_CalcAudio;
     }
     else
-        unit->mCalcFunc = (UnitCalcFunc)&FLTest_next_a_zero;
+        unit->mFrameLibCalcFunc = &FLTest_CalcZero;
+
 
     unit->mObject->autoOrderingConnections();
     unit->mObject->reset(unit->mRate->mSampleRate, unit->mRate->mBufLength);
-    FLTest_next_a_zero(unit, 1);
+    FLTest_CalcZero(unit, 1);
 }
 
 void FLTest_Dtor(FrameLib_SC_UGen* unit)
@@ -340,7 +447,7 @@ void FLTest_Dtor(FrameLib_SC_UGen* unit)
 
 //////////////////////////////////////////////////////////////////
 
-void FLTest_output_zero(FrameLib_SC_UGen *unit, unsigned long output, int numSamples)
+void FLTest_OutputZero(FrameLib_SC_UGen *unit, unsigned long output, int numSamples)
 {
     float *out = unit->mOutBuf[output];
     
@@ -351,13 +458,13 @@ void FLTest_output_zero(FrameLib_SC_UGen *unit, unsigned long output, int numSam
     }
 }
 
-void FLTest_next_a_zero(FrameLib_SC_UGen *unit, int inNumSamples)
+void FLTest_CalcZero(FrameLib_SC_UGen *unit, int inNumSamples)
 {
     for (int i = 0; i < unit->mNumOutputs; ++i)
-        FLTest_output_zero(unit, i, inNumSamples);
+        FLTest_OutputZero(unit, i, inNumSamples);
 }
 
-void FLTest_next_a_calc(FrameLib_SC_UGen *unit, int inNumSamples)
+void FLTest_CalcAudio(FrameLib_SC_UGen *unit, int inNumSamples)
 {
     bool outputObject = unit->mObject->getType() == kOutput;
     unsigned long numAudioChannels = unit->mObject->getNumAudioChans();
@@ -394,7 +501,7 @@ void FLTest_next_a_calc(FrameLib_SC_UGen *unit, int inNumSamples)
     }
 
     for (unsigned long i = unit->mObject->getNumAudioOuts(); i < unit->mNumOutputs; ++i)
-        FLTest_output_zero(unit, i, inNumSamples);
+        FLTest_OutputZero(unit, i, inNumSamples);
 }
 
 //////////////////////////////////////////////////////////////////
@@ -402,15 +509,13 @@ void FLTest_next_a_calc(FrameLib_SC_UGen *unit, int inNumSamples)
 template <class T>
 void DefineFrameLibUnit(const char *name)
 {
-    int flags = kFrameLibFlag;
-    (*ft->fDefineUnit)(name, sizeof(FrameLib_SC_UGen), (UnitCtorFunc)&FLTest_Ctor<T>,(UnitDtorFunc)&FLTest_Dtor, flags);
+    (*ft->fDefineUnit)(name, sizeof(FrameLib_SC_UGen), (UnitCtorFunc)&FLTest_Ctor<T>,(UnitDtorFunc)&FLTest_Dtor, 0);
 }
 
 template <class T>
 void DefineFrameLibExpUnit(const char *name)
 {
-    int flags = kFrameLibFlag;
-    (*ft->fDefineUnit)(name, sizeof(FrameLib_SC_UGen), (UnitCtorFunc)&FLTest_Ctor<FrameLib_Expand<T>>,(UnitDtorFunc)&FLTest_Dtor, flags);
+    (*ft->fDefineUnit)(name, sizeof(FrameLib_SC_UGen), (UnitCtorFunc)&FLTest_Ctor<FrameLib_Expand<T>>,(UnitDtorFunc)&FLTest_Dtor, 0);
 }
 
 void ParameterSetup(World *inWorld, void* inUserData, sc_msg_iter *args, void *replyAddr)
@@ -419,7 +524,8 @@ void ParameterSetup(World *inWorld, void* inUserData, sc_msg_iter *args, void *r
     const char *paramMessage = args->gets();
     const char *inputMessage = args->gets();
     
-    sGlobal.SetInitParameters(inWorld, count, paramMessage, inputMessage);
+    SC_FrameLib_Global *global = (SC_FrameLib_Global *) inUserData;
+    global->SetInitParameters(inWorld, count, paramMessage, inputMessage);
 }
 
 PluginLoad(FrameLib)
@@ -427,6 +533,10 @@ PluginLoad(FrameLib)
     ft = inTable; // store pointer to InterfaceTable
     
     (*ft->fDefinePlugInCmd)("FLParameters", &ParameterSetup, nullptr);
+    
+    // Define parameter UGen
+    
+    (*ft->fDefineUnit)("FLParam", sizeof(FrameLib_Param_UGen), (UnitCtorFunc)&FLParam_Ctor,(UnitDtorFunc)&FLParam_Dtor, 0);
     
     DefineFrameLibExpUnit<FrameLib_Read>("FLRead");
     DefineFrameLibExpUnit<FrameLib_Window>("FLWindow");
