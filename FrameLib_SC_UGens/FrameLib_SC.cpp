@@ -48,7 +48,7 @@ struct SC_FrameLib_Global
     
     SC_FrameLib_Global() : mGlobal(nullptr)
     {
-        FrameLib_Global::get(&mGlobal, &mNotifier);
+        FrameLib_Global::get(&mGlobal, DEFAULT_THREAD_PRIORITIES, &mNotifier);
         mCalcFunc = (UnitCalcFunc) CalcFunc;
     }
     
@@ -283,6 +283,11 @@ struct ReadProxy : public FrameLib_Read::Proxy
             chan = std::max(0L, std::min(chan, static_cast<long>(mBuffer->channels - 1)));
             table_read(fetch(mBuffer->data, mBuffer->frames), output, positions, size, 1.0, interpType);
         }
+    }
+    
+    FrameLib_Read::Proxy *clone() const override
+    {
+        return new ReadProxy(*this);
     }
     
 private:
