@@ -593,9 +593,11 @@ namespace FrameLib_ExprParser
         {
             assert(function->numItems() && "function takes no arguments");
 
-            NodeIt n = nodes.begin();
+            NodeIt na = nodes.begin();
+            NodeIt nb = function->numItems() > 1 ? na + 1 : na;
+            NodeIt nc = function->numItems() > 2 ? nb + 1 : nb;
             
-            nodes[0] = parseOperation(graph, function, n, n + 1, n + 2, n1, n2);
+            nodes[0] = parseOperation(graph, function, na, nb, nc, n1, n2);
         }
 
         ExprParseError parseOperators(Graph<T>& graph, Node &result, NodeList& nodes)
