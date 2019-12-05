@@ -11,7 +11,7 @@ class ExprArgumentParser
     
 public:
     
-    ExprArgumentParser(t_symbol *s, long argc, t_atom *argv, bool complex) : mSymbol(s)
+    ExprArgumentParser(t_object *object, t_symbol *s, long argc, t_atom *argv, bool complex) : mSymbol(s)
     {
         if (argc && isStreamSpecifier(argv))
         {
@@ -125,8 +125,8 @@ private:
 template <class T>
 struct FrameLib_MaxClass_ExprParsed : public FrameLib_MaxClass_Expand<T>
 {
-    FrameLib_MaxClass_ExprParsed(const ExprArgumentParser &parsed) :
-    FrameLib_MaxClass_Expand<T>(parsed.symbol(), parsed.count(), parsed.args(), new FrameLib_MaxProxy()) {}
+    FrameLib_MaxClass_ExprParsed(t_object *x, const ExprArgumentParser &parsed) :
+    FrameLib_MaxClass_Expand<T>(x, parsed.symbol(), parsed.count(), parsed.args(), new FrameLib_MaxProxy()) {}
 };
 
 #endif /* EXPRESSION_OBJECT_PARSING_H */

@@ -211,7 +211,7 @@ public:
     
     // Constructor and Destructor (public for max API, but use ManagedPointer from outside this class)
     
-    FrameLib_MaxGlobals(t_symbol *sym, long ac, t_atom *av)
+    FrameLib_MaxGlobals(t_object *x, t_symbol *sym, long ac, t_atom *av)
     : mReportContextErrors(false), mRTNotifier(&mRTGlobal), mNRTNotifier(&mNRTGlobal), mRTGlobal(nullptr), mNRTGlobal(nullptr), mSyncCheck(nullptr)
     {}
 
@@ -382,7 +382,7 @@ class Mutator : public MaxClass_Base
     
 public:
     
-    Mutator(t_symbol *sym, long ac, t_atom *av)
+    Mutator(t_object *x, t_symbol *sym, long ac, t_atom *av)
     {
         mObject = reinterpret_cast<t_object *>(ac ? atom_getobj(av) : nullptr);
         FLObject *object = mObject ? objectMethod<FLObject *>(mObject, gensym("__fl.get_framelib_object")) : nullptr;
@@ -466,7 +466,7 @@ public:
 
     // Constructor and Destructor
     
-    Wrapper(t_symbol *s, long argc, t_atom *argv) : mParentPatch(gensym("#P")->s_thing)
+    Wrapper(t_object *x, t_symbol *s, long argc, t_atom *argv) : mParentPatch(gensym("#P")->s_thing)
     {
         // Create patcher (you must report this as a subpatcher to get audio working)
         
@@ -934,7 +934,7 @@ public:
     
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy())
+    FrameLib_MaxClass(t_object *x, t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy())
     : mFrameLibProxy(proxy)
     , mConfirmation(nullptr)
     , mContextPatch(contextPatcher(gensym("#P")->s_thing))

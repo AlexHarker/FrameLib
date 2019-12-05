@@ -14,7 +14,7 @@ public:
         addMethod<FrameLib_MaxClass_Context, &FrameLib_MaxClass_Context::assist>(c, "assist");
     }
     
-    FrameLib_MaxClass_Context(t_symbol *sym, long ac, t_atom *av)
+    FrameLib_MaxClass_Context(t_object *x, t_symbol *sym, long ac, t_atom *av)
     : mContext(mGlobal->makeContext(FrameLib_MaxClass<void>::parseContext(FrameLib_MaxClass<void>::contextPatcher(gensym("#P")->s_thing), ac, av)))
     , mProcessingQueue(mContext)
     {}

@@ -167,7 +167,7 @@ public:
     static void *create(t_symbol *sym, long ac, t_atom *av)
     {
         void *x = object_alloc(*getClassPointer<T>());
-        new(x) T(sym, ac, av);
+        new(x) T((t_object *)x, sym, ac, av);
         return x;
     }
     

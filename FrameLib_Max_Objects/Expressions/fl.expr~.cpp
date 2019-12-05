@@ -10,8 +10,8 @@ struct FrameLib_MaxClass_Expression : public FrameLib_MaxClass_ExprParsed<FrameL
 {
     // Constructor
     
-    FrameLib_MaxClass_Expression(t_symbol *s, long argc, t_atom *argv)
-    : FrameLib_MaxClass_ExprParsed<FrameLib_Expression>(ExprArgumentParser(s, argc, argv, false)) {}
+    FrameLib_MaxClass_Expression(t_object *x, t_symbol *s, long argc, t_atom *argv)
+    : FrameLib_MaxClass_ExprParsed<FrameLib_Expression>(x, ExprArgumentParser(x, s, argc, argv, false)) {}
 };
 
 #ifndef FRAMELIB_MAX_SINGLE_OBJECT
