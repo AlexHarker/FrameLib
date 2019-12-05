@@ -92,10 +92,10 @@ private:
         if ((complex && sym == gensym("/i")) || sym == gensym("/pi") || sym == gensym("/epsilon") || sym == gensym("/e") || sym == gensym("/inf"))
             return false;
         
-        // Require a parameter tag to have only letters after the slash
+        // Require a parameter tag to have only letters or underscores after the slash
         
         for (const char *c = sym->s_name + 1; *c; c++)
-            if (!((*c >= 'a') && (*c <= 'z')) || ((*c >= 'A') && (*c <= 'Z')))
+            if (!((*c >= 'a') && (*c <= 'z')) && !((*c >= 'A') && (*c <= 'Z')) && (*c != '_'))
                 return false;
         
         return true;
