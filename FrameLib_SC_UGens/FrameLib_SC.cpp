@@ -34,7 +34,7 @@ struct SC_FrameLib_Global
     {
         unit->mFrameLibCalcFunc(unit, inNumSamples);
     }
-
+    
     class Notifier : public FrameLib_ErrorReporter::HostNotifier
     {
         bool notify(const FrameLib_ErrorReporter::ErrorReport& report) override
@@ -49,6 +49,7 @@ struct SC_FrameLib_Global
     SC_FrameLib_Global() : mGlobal(nullptr)
     {
         FrameLib_Global::get(&mGlobal, &mNotifier);
+        mCalcFunc = (UnitCalcFunc) CalcFunc;
     }
     
     ~SC_FrameLib_Global()
@@ -60,13 +61,14 @@ struct SC_FrameLib_Global
     {
         return unit && (unit->mCalcFunc == GetCalcFunc());
     }
-
-    UnitCalcFunc GetCalcFunc() const { return (UnitCalcFunc) CalcFunc; }
-
+    
+    UnitCalcFunc GetCalcFunc() const { return mCalcFunc; }
+    
     FrameLib_Global *getGlobal() { return mGlobal; }
     
     FrameLib_Global *mGlobal;
     Notifier mNotifier;
+    UnitCalcFunc mCalcFunc;
 };
 
 static SC_FrameLib_Global sGlobal;
