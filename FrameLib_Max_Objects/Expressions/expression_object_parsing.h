@@ -13,18 +13,29 @@ public:
     
     ExprArgumentParser(t_object *object, t_symbol *s, long argc, t_atom *argv, bool complex) : mSymbol(s)
     {
+        t_object *textfield = nullptr;
+        const char *text = nullptr;
+        const char *space = " ";
+        const char *start = space;
+        
+        object_obex_lookup(object, gensym("#B"), &textfield);
+        
+        if ((textfield = jbox_get_textfield(textfield)))
+            text = (char *) object_method(textfield, gensym("getptr"));
+        
         if (argc && isStreamSpecifier(argv))
         {
             argc--;
+            start = atom_getsym(argv)->s_name;
             mArgs.push_back(*argv++);
         }
         
-        concatenate(argc, argv, complex);
+        concatenate(text, start, argc, argv, complex);
         
         while (argc--)
         {
             if (atom_getsym(argv) == gensym("/expr"))
-                concatenate(argc, ++argv, complex);
+                concatenate(text, "/expr ", argc, ++argv, complex);
             else
                 mArgs.push_back(*argv++);
         }
@@ -92,27 +103,25 @@ private:
     
     // Concatenator
     
-    void concatenate(long& argc, t_atom*& argv, bool complex)
+    void concatenate(std::string text, const char *start, long& argc, t_atom*& argv, bool complex)
     {
-        std::string concatenated;
+        // Find the end of the expression
         
-        for (; argc && !isValidTag(argv, complex); argc--, argv++)
-        {
-            if (atom_gettype(argv) == A_SYM)
-                concatenated += atom_getsym(argv)->s_name;
-            else
-                concatenated += std::to_string(atom_getfloat(argv));
-            
-            // Add whitespace between atoms
-            
-            concatenated += " ";
-        }
+        for (; argc && !isValidTag(argv, complex); argc--, argv++);
         
-        if (concatenated.length())
+        size_t pos = text.find(start);
+        size_t end = argc ? text.find(atom_getsym(argv)->s_name) : std::string::npos;
+        
+        if (pos != std::string::npos)
         {
-            t_symbol *arg = gensym(concatenated.c_str());
-            mArgs.push_back(t_atom());
-            atom_setsym(&mArgs.back(), arg);
+            pos += strlen(start);
+            std::string concatenated(text, pos, end - pos);
+            if (concatenated.size())
+            {
+                t_symbol *arg = gensym(concatenated.c_str());
+                mArgs.push_back(t_atom());
+                atom_setsym(&mArgs.back(), arg);
+            }
         }
     }
     
