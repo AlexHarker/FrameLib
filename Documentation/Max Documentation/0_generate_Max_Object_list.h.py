@@ -3,6 +3,13 @@ import re
 import sys
 from FrameLibDocs.utils import get_path, cd_up, strip_space, strip_extension
 
+def write_comma(counter, ceiling):
+    if counter < ceiling - 1:
+        op.write(",")
+        op.write("\n")
+    else:
+        op.write("\n")
+
 ignored_objects = []
 for arg in sys.argv:
     ignored_objects.append(arg)
@@ -41,8 +48,6 @@ except ValueError:
     print("No common folder")
     pass
 
-max_source_categories.sort()  ## Sort it so that its in an order
-
 ## Get folders in the parent Max Objects Folder
 ## get total amount of files
 source_file_list = []
@@ -58,22 +63,17 @@ for folder in max_source_categories:
     if ".DS_Store" in file_list:
         file_list.remove(".DS_Store")
 
-    for k in ignored_objects:
+    for ignore in ignored_objects:
         try:
-            file_list.remove(f"{k}.cpp")
+            file_list.remove(f"{ignore}.cpp")
         except:
             pass
+    for file_name in file_list:
+        extension = os.path.splitext(file_name)[1]
+        if extension != '.cpp': file_list.remove(file_name)
 
     for j in file_list:
         source_file_list.append([os.path.join(category_folder), j])
-
-
-def write_comma(counter, ceiling):
-    if counter < ceiling - 1:
-        op.write(",")
-        op.write("\n")
-    else:
-        op.write("\n")
 
 
 # Recreate full paths to open and parse for type cases
