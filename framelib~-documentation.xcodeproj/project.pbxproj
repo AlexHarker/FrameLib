@@ -76,7 +76,7 @@
 		B8BA70012078F1F000D3DB3D /* FrameLib_Pad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CD91F2C8D6900C5C4F0 /* FrameLib_Pad.cpp */; };
 		B8BA70022078F1F500D3DB3D /* FrameLib_Sort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CDB1F2C8D8C00C5C4F0 /* FrameLib_Sort.cpp */; };
 		B8BA70032078F27300D3DB3D /* FrameLib_Split.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CDD1F2C8DAA00C5C4F0 /* FrameLib_Split.cpp */; };
-		B8BA70042078F27800D3DB3D /* FrameLib_AccumPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84A40591FD73D2100A30455 /* FrameLib_AccumPoint.cpp */; };
+		B8BA70042078F27800D3DB3D /* FrameLib_AccumPos.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B84A40591FD73D2100A30455 /* FrameLib_AccumPos.cpp */; };
 		B8BA70052078F27B00D3DB3D /* FrameLib_Percentile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CDF1F2C8DCF00C5C4F0 /* FrameLib_Percentile.cpp */; };
 		B8BA70062078F27F00D3DB3D /* FrameLib_Chop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CE11F2C8DEA00C5C4F0 /* FrameLib_Chop.cpp */; };
 		B8BA70072078F28200D3DB3D /* FrameLib_Subframe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8891CE31F2C90B200C5C4F0 /* FrameLib_Subframe.cpp */; };
@@ -243,9 +243,9 @@
 		B84943CA1B837B610037DFF1 /* FrameLib_Chop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Chop.h; sourceTree = "<group>"; };
 		B84943DC1B8385320037DFF1 /* FrameLib_Spatial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Spatial.h; sourceTree = "<group>"; };
 		B84943ED1B8386100037DFF1 /* fl.spatial~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.spatial~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		B84A40591FD73D2100A30455 /* FrameLib_AccumPoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_AccumPoint.cpp; sourceTree = "<group>"; };
-		B84A405A1FD73D2200A30455 /* FrameLib_AccumPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_AccumPoint.h; sourceTree = "<group>"; };
-		B84A406F1FD73EA700A30455 /* fl.accumpoint~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.accumpoint~.cpp"; sourceTree = "<group>"; };
+		B84A40591FD73D2100A30455 /* FrameLib_AccumPos.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_AccumPos.cpp; sourceTree = "<group>"; };
+		B84A405A1FD73D2200A30455 /* FrameLib_AccumPos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_AccumPos.h; sourceTree = "<group>"; };
+		B84A406F1FD73EA700A30455 /* fl.accumpos~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.accumpos~.cpp"; sourceTree = "<group>"; };
 		B84BE8781C1F592400A55F8C /* FrameLib_MedianFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_MedianFilter.h; sourceTree = "<group>"; };
 		B84BE8891C1F641500A55F8C /* fl.medianfilter~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.medianfilter~.cpp"; sourceTree = "<group>"; };
 		B85426AB2175CA05007FA185 /* FrameLib.sc */ = {isa = PBXFileReference; lastKnownFileType = text; path = FrameLib.sc; sourceTree = "<group>"; };
@@ -277,9 +277,12 @@
 		B85BDDBD19F1C1FF00A349C5 /* fl.0dfsvf~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.0dfsvf~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B85C8FCC1E604F19004D7D40 /* FrameLib_Multitaper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Multitaper.h; sourceTree = "<group>"; };
 		B85C8FCD1E605B28004D7D40 /* fl.multitaper~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.multitaper~.cpp"; sourceTree = "<group>"; };
+		B85DABEB23997C0B00D194BC /* SpectralFunctions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SpectralFunctions.hpp; sourceTree = "<group>"; };
+		B85DABEC23997C0B00D194BC /* SpectralProcessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SpectralProcessor.hpp; sourceTree = "<group>"; };
+		B85DABED23997C0B00D194BC /* KernelSmoother.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = KernelSmoother.hpp; sourceTree = "<group>"; };
 		B85E1D3A20C82D9700DEEE6E /* FrameLib_ComplexExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_ComplexExpression.h; sourceTree = "<group>"; };
 		B85E1D3B20C82DDF00DEEE6E /* FrameLib_ComplexExpression.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_ComplexExpression.cpp; sourceTree = "<group>"; };
-		B85E1D4F20C8494300DEEE6E /* fl.complexexpr~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexexpr~.cpp"; sourceTree = "<group>"; };
+		B85E1D4F20C8494300DEEE6E /* fl.complex.expr~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.expr~.cpp"; sourceTree = "<group>"; };
 		B85ED7EA20795F6D00B78657 /* FrameLib_HostProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_HostProxy.h; sourceTree = "<group>"; };
 		B861EB9F19CA2DCE00B89477 /* FrameLib_Sort_Functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Sort_Functions.h; sourceTree = "<group>"; };
 		B861EBA019CA389E00B89477 /* FrameLib_Sort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Sort.h; sourceTree = "<group>"; };
@@ -355,7 +358,6 @@
 		B8891CF31F2C9A1400C5C4F0 /* FrameLib_iFFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_iFFT.cpp; sourceTree = "<group>"; };
 		B8891CF51F2C9A3100C5C4F0 /* FrameLib_Multitaper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = FrameLib_Multitaper.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8891CF71F2C9A4600C5C4F0 /* FrameLib_Convolve.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Convolve.cpp; sourceTree = "<group>"; };
-		B8891CF91F2C9D4500C5C4F0 /* FrameLib_Spectral_Functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Spectral_Functions.h; sourceTree = "<group>"; };
 		B88A48292067DCC400CEB3AC /* FrameLib_SerialiseGraph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_SerialiseGraph.cpp; sourceTree = "<group>"; };
 		B88A482A2067DCC400CEB3AC /* FrameLib_SerialiseGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_SerialiseGraph.h; sourceTree = "<group>"; };
 		B88BD2171F03E40D0045E737 /* FrameLib_DSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = FrameLib_DSP.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -406,28 +408,28 @@
 		B8B32FE520CDA9F700C5FA53 /* FrameLib_Errors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Errors.h; sourceTree = "<group>"; };
 		B8B401A01FB9A305006EE056 /* FrameLib_Complex_Unary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Complex_Unary_Objects.h; sourceTree = "<group>"; };
 		B8B401A11FB9A305006EE056 /* FrameLib_Complex_Unary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Complex_Unary_Template.h; sourceTree = "<group>"; };
-		B8B4021E1FB9A960006EE056 /* fl.complexcosh~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexcosh~.cpp"; sourceTree = "<group>"; };
-		B8B4021F1FB9A960006EE056 /* fl.complexcos~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexcos~.cpp"; sourceTree = "<group>"; };
-		B8B402231FB9A960006EE056 /* fl.complexexp~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexexp~.cpp"; sourceTree = "<group>"; };
-		B8B402241FB9A960006EE056 /* fl.complexconj~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexconj~.cpp"; sourceTree = "<group>"; };
-		B8B402251FB9A960006EE056 /* fl.complexlog10~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexlog10~.cpp"; sourceTree = "<group>"; };
-		B8B402271FB9A960006EE056 /* fl.complexlog~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexlog~.cpp"; sourceTree = "<group>"; };
-		B8B4022A1FB9A960006EE056 /* fl.complexsinh~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexsinh~.cpp"; sourceTree = "<group>"; };
-		B8B4022B1FB9A960006EE056 /* fl.complexsin~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexsin~.cpp"; sourceTree = "<group>"; };
-		B8B4022C1FB9A960006EE056 /* fl.complexsqrt~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexsqrt~.cpp"; sourceTree = "<group>"; };
-		B8B4022D1FB9A960006EE056 /* fl.complextanh~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complextanh~.cpp"; sourceTree = "<group>"; };
-		B8B4022E1FB9A960006EE056 /* fl.complextan~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complextan~.cpp"; sourceTree = "<group>"; };
+		B8B4021E1FB9A960006EE056 /* fl.complex.cosh~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.cosh~.cpp"; sourceTree = "<group>"; };
+		B8B4021F1FB9A960006EE056 /* fl.complex.cos~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.cos~.cpp"; sourceTree = "<group>"; };
+		B8B402231FB9A960006EE056 /* fl.complex.exp~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.exp~.cpp"; sourceTree = "<group>"; };
+		B8B402241FB9A960006EE056 /* fl.complex.conj~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.conj~.cpp"; sourceTree = "<group>"; };
+		B8B402251FB9A960006EE056 /* fl.complex.log10~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.log10~.cpp"; sourceTree = "<group>"; };
+		B8B402271FB9A960006EE056 /* fl.complex.log~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.log~.cpp"; sourceTree = "<group>"; };
+		B8B4022A1FB9A960006EE056 /* fl.complex.sinh~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.sinh~.cpp"; sourceTree = "<group>"; };
+		B8B4022B1FB9A960006EE056 /* fl.complex.sin~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.sin~.cpp"; sourceTree = "<group>"; };
+		B8B4022C1FB9A960006EE056 /* fl.complex.sqrt~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.sqrt~.cpp"; sourceTree = "<group>"; };
+		B8B4022D1FB9A960006EE056 /* fl.complex.tanh~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.tanh~.cpp"; sourceTree = "<group>"; };
+		B8B4022E1FB9A960006EE056 /* fl.complex.tan~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.tan~.cpp"; sourceTree = "<group>"; };
 		B8B402A01FB9AF80006EE056 /* FrameLib_Cartopol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Cartopol.h; sourceTree = "<group>"; };
 		B8B402C71FB9B1F2006EE056 /* fl.cartopol~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.cartopol~.cpp"; sourceTree = "<group>"; };
 		B8B402C81FB9B1FD006EE056 /* fl.poltocar~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.poltocar~.cpp"; sourceTree = "<group>"; };
 		B8B402C91FB9B231006EE056 /* FrameLib_Poltocar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Poltocar.h; sourceTree = "<group>"; };
 		B8B402CD1FB9C053006EE056 /* FrameLib_Complex_Binary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Complex_Binary_Template.h; sourceTree = "<group>"; };
 		B8B402CE1FB9C053006EE056 /* FrameLib_Complex_Binary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Complex_Binary_Objects.h; sourceTree = "<group>"; };
-		B8B402D11FB9DF4A006EE056 /* fl.complexdivide~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexdivide~.cpp"; sourceTree = "<group>"; };
-		B8B402D31FB9DF4A006EE056 /* fl.complexminus~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexminus~.cpp"; sourceTree = "<group>"; };
-		B8B402D51FB9DF4A006EE056 /* fl.complexplus~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexplus~.cpp"; sourceTree = "<group>"; };
-		B8B402D61FB9DF4A006EE056 /* fl.complexpow~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexpow~.cpp"; sourceTree = "<group>"; };
-		B8B402D71FB9DF4A006EE056 /* fl.complexmultiply~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complexmultiply~.cpp"; sourceTree = "<group>"; };
+		B8B402D11FB9DF4A006EE056 /* fl.complex.divide~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.divide~.cpp"; sourceTree = "<group>"; };
+		B8B402D31FB9DF4A006EE056 /* fl.complex.minus~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.minus~.cpp"; sourceTree = "<group>"; };
+		B8B402D51FB9DF4A006EE056 /* fl.complex.plus~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.plus~.cpp"; sourceTree = "<group>"; };
+		B8B402D61FB9DF4A006EE056 /* fl.complex.pow~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.pow~.cpp"; sourceTree = "<group>"; };
+		B8B402D71FB9DF4A006EE056 /* fl.complex.times~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.times~.cpp"; sourceTree = "<group>"; };
 		B8B4C8991F3345A7008E5D31 /* fl.now~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.now~.cpp"; sourceTree = "<group>"; };
 		B8B4C89B1F334614008E5D31 /* FrameLib_Now.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Now.cpp; sourceTree = "<group>"; };
 		B8B4C89C1F334614008E5D31 /* FrameLib_Now.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Now.h; sourceTree = "<group>"; };
@@ -473,7 +475,7 @@
 		B8C8563B19F2957F006358DA /* fl.subframe~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.subframe~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8C89C061F55C67C00B4E700 /* WindowFunctions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WindowFunctions.hpp; sourceTree = "<group>"; };
 		B8C89C071F56D24500B4E700 /* Statistics.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Statistics.hpp; sourceTree = "<group>"; };
-		B8C89CD31F5720E300B4E700 /* fl.standarddeviation~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.standarddeviation~.cpp"; sourceTree = "<group>"; };
+		B8C89CD31F5720E300B4E700 /* fl.stddev~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.stddev~.cpp"; sourceTree = "<group>"; };
 		B8C89CD51F57210600B4E700 /* fl.centroid~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.centroid~.cpp"; sourceTree = "<group>"; };
 		B8C89CD71F57211F00B4E700 /* fl.spread~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.spread~.cpp"; sourceTree = "<group>"; };
 		B8C89CD91F57213500B4E700 /* fl.skewness~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.skewness~.cpp"; sourceTree = "<group>"; };
@@ -486,8 +488,8 @@
 		B8CA3214199A29C3005F30A1 /* fl.interval~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.interval~.cpp"; sourceTree = "<group>"; };
 		B8CACC8A19C0F5D1007434C9 /* fl.source~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.source~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8CACC8C19C0F62C007434C9 /* FrameLib_Source.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Source.h; sourceTree = "<group>"; };
-		B8CEFC092019EA1700F5F5A0 /* fl.argmax~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.argmax~.cpp"; sourceTree = "<group>"; };
-		B8CEFC0A2019EA1800F5F5A0 /* fl.argmin~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.argmin~.cpp"; sourceTree = "<group>"; };
+		B8CEFC092019EA1700F5F5A0 /* fl.maxpos~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.maxpos~.cpp"; sourceTree = "<group>"; };
+		B8CEFC0A2019EA1800F5F5A0 /* fl.minpos~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.minpos~.cpp"; sourceTree = "<group>"; };
 		B8D272F11DA6629A00E0E566 /* FrameLib_Memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Memory.cpp; sourceTree = "<group>"; };
 		B8D679CC1B83E39E00519310 /* FrameLib_Trace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Trace.h; sourceTree = "<group>"; };
 		B8D679DD1B83E55900519310 /* fl.trace~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.trace~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -529,10 +531,10 @@
 		B8F6E4C8199D247C0073E06D /* tlsf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tlsf.c; sourceTree = "<group>"; };
 		B8F6E4C9199D247C0073E06D /* tlsf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tlsf.h; sourceTree = "<group>"; };
 		B8F83E2819C78DBC00230CD4 /* fl.trunc~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.trunc~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		B8F83E2A19C78DF600230CD4 /* fl.vmin~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.vmin~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		B8F83E2B19C78E0000230CD4 /* fl.vmax~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.vmax~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B8F83E2A19C78DF600230CD4 /* fl.framemin~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.framemin~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B8F83E2B19C78E0000230CD4 /* fl.framemax~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.framemax~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8F83E2C19C78E0000230CD4 /* fl.mean~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.mean~.cpp"; sourceTree = "<group>"; };
-		B8F83E2D19C78E0000230CD4 /* fl.geometricmean~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.geometricmean~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B8F83E2D19C78E0000230CD4 /* fl.geomean~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.geomean~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8F83E2E19C78E0000230CD4 /* fl.sum~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.sum~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8F83E2F19C78E0000230CD4 /* fl.product~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.product~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B8F83E3019C78E0000230CD4 /* fl.length~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.length~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -811,7 +813,6 @@
 			children = (
 				B8886F7E1FB7D715001C843E /* FrameLib_RingBuffer.h */,
 				B8886F7F1FB7D715001C843E /* FrameLib_VectorSet.h */,
-				B8891CF91F2C9D4500C5C4F0 /* FrameLib_Spectral_Functions.h */,
 				B8F3EE171F34DB6C00D0E98E /* FrameLib_Scaling_Functions.h */,
 				B861EB9F19CA2DCE00B89477 /* FrameLib_Sort_Functions.h */,
 				B8C680371B80F2B800B74B90 /* FrameLib_RandGen.h */,
@@ -894,8 +895,8 @@
 				B8891CDB1F2C8D8C00C5C4F0 /* FrameLib_Sort.cpp */,
 				B85B68E719F29470002D6F1D /* FrameLib_Split.h */,
 				B8891CDD1F2C8DAA00C5C4F0 /* FrameLib_Split.cpp */,
-				B84A405A1FD73D2200A30455 /* FrameLib_AccumPoint.h */,
-				B84A40591FD73D2100A30455 /* FrameLib_AccumPoint.cpp */,
+				B84A405A1FD73D2200A30455 /* FrameLib_AccumPos.h */,
+				B84A40591FD73D2100A30455 /* FrameLib_AccumPos.cpp */,
 				B861EBA119CA3AA500B89477 /* FrameLib_Percentile.h */,
 				B8891CDF1F2C8DCF00C5C4F0 /* FrameLib_Percentile.cpp */,
 				B84943CA1B837B610037DFF1 /* FrameLib_Chop.h */,
@@ -1060,6 +1061,9 @@
 				B8C2D6061F6BF933009A7C96 /* Interpolation.hpp */,
 				B8C89C071F56D24500B4E700 /* Statistics.hpp */,
 				B8C2D6071F6BFF60009A7C96 /* TableReader.hpp */,
+				B85DABED23997C0B00D194BC /* KernelSmoother.hpp */,
+				B85DABEB23997C0B00D194BC /* SpectralFunctions.hpp */,
+				B85DABEC23997C0B00D194BC /* SpectralProcessor.hpp */,
 				B87E876619C8EEB900B1D0CD /* HISSTools_FFT */,
 				B8F6E4DA199D24820073E06D /* tlsf */,
 			);
@@ -1190,17 +1194,17 @@
 		B8B402141FB9A960006EE056 /* Complex_Unary */ = {
 			isa = PBXGroup;
 			children = (
-				B8B4021F1FB9A960006EE056 /* fl.complexcos~.cpp */,
-				B8B4021E1FB9A960006EE056 /* fl.complexcosh~.cpp */,
-				B8B402241FB9A960006EE056 /* fl.complexconj~.cpp */,
-				B8B402231FB9A960006EE056 /* fl.complexexp~.cpp */,
-				B8B402271FB9A960006EE056 /* fl.complexlog~.cpp */,
-				B8B402251FB9A960006EE056 /* fl.complexlog10~.cpp */,
-				B8B4022B1FB9A960006EE056 /* fl.complexsin~.cpp */,
-				B8B4022A1FB9A960006EE056 /* fl.complexsinh~.cpp */,
-				B8B4022C1FB9A960006EE056 /* fl.complexsqrt~.cpp */,
-				B8B4022E1FB9A960006EE056 /* fl.complextan~.cpp */,
-				B8B4022D1FB9A960006EE056 /* fl.complextanh~.cpp */,
+				B8B4021F1FB9A960006EE056 /* fl.complex.cos~.cpp */,
+				B8B4021E1FB9A960006EE056 /* fl.complex.cosh~.cpp */,
+				B8B402241FB9A960006EE056 /* fl.complex.conj~.cpp */,
+				B8B402231FB9A960006EE056 /* fl.complex.exp~.cpp */,
+				B8B402271FB9A960006EE056 /* fl.complex.log~.cpp */,
+				B8B402251FB9A960006EE056 /* fl.complex.log10~.cpp */,
+				B8B4022B1FB9A960006EE056 /* fl.complex.sin~.cpp */,
+				B8B4022A1FB9A960006EE056 /* fl.complex.sinh~.cpp */,
+				B8B4022C1FB9A960006EE056 /* fl.complex.sqrt~.cpp */,
+				B8B4022E1FB9A960006EE056 /* fl.complex.tan~.cpp */,
+				B8B4022D1FB9A960006EE056 /* fl.complex.tanh~.cpp */,
 				B8B402C71FB9B1F2006EE056 /* fl.cartopol~.cpp */,
 				B8B402C81FB9B1FD006EE056 /* fl.poltocar~.cpp */,
 			);
@@ -1219,11 +1223,11 @@
 		B8B402CF1FB9DF4A006EE056 /* Complex_Binary */ = {
 			isa = PBXGroup;
 			children = (
-				B8B402D11FB9DF4A006EE056 /* fl.complexdivide~.cpp */,
-				B8B402D31FB9DF4A006EE056 /* fl.complexminus~.cpp */,
-				B8B402D51FB9DF4A006EE056 /* fl.complexplus~.cpp */,
-				B8B402D61FB9DF4A006EE056 /* fl.complexpow~.cpp */,
-				B8B402D71FB9DF4A006EE056 /* fl.complexmultiply~.cpp */,
+				B8B402D11FB9DF4A006EE056 /* fl.complex.divide~.cpp */,
+				B8B402D31FB9DF4A006EE056 /* fl.complex.minus~.cpp */,
+				B8B402D51FB9DF4A006EE056 /* fl.complex.plus~.cpp */,
+				B8B402D61FB9DF4A006EE056 /* fl.complex.pow~.cpp */,
+				B8B402D71FB9DF4A006EE056 /* fl.complex.times~.cpp */,
 			);
 			path = Complex_Binary;
 			sourceTree = "<group>";
@@ -1354,7 +1358,7 @@
 			isa = PBXGroup;
 			children = (
 				B8E41B2220C5EACD003BBD86 /* fl.expr~.cpp */,
-				B85E1D4F20C8494300DEEE6E /* fl.complexexpr~.cpp */,
+				B85E1D4F20C8494300DEEE6E /* fl.complex.expr~.cpp */,
 			);
 			name = Expressions;
 			path = FrameLib_Max_Objects/Expressions;
@@ -1459,15 +1463,15 @@
 		B8F83E2719C78D7A00230CD4 /* Vector */ = {
 			isa = PBXGroup;
 			children = (
-				B8CEFC0A2019EA1800F5F5A0 /* fl.argmin~.cpp */,
-				B8CEFC092019EA1700F5F5A0 /* fl.argmax~.cpp */,
-				B8F83E2A19C78DF600230CD4 /* fl.vmin~.cpp */,
-				B8F83E2B19C78E0000230CD4 /* fl.vmax~.cpp */,
+				B8CEFC0A2019EA1800F5F5A0 /* fl.minpos~.cpp */,
+				B8CEFC092019EA1700F5F5A0 /* fl.maxpos~.cpp */,
+				B8F83E2A19C78DF600230CD4 /* fl.framemin~.cpp */,
+				B8F83E2B19C78E0000230CD4 /* fl.framemax~.cpp */,
 				B8F83E2E19C78E0000230CD4 /* fl.sum~.cpp */,
 				B8F83E2F19C78E0000230CD4 /* fl.product~.cpp */,
 				B8F83E2C19C78E0000230CD4 /* fl.mean~.cpp */,
-				B8F83E2D19C78E0000230CD4 /* fl.geometricmean~.cpp */,
-				B8C89CD31F5720E300B4E700 /* fl.standarddeviation~.cpp */,
+				B8F83E2D19C78E0000230CD4 /* fl.geomean~.cpp */,
+				B8C89CD31F5720E300B4E700 /* fl.stddev~.cpp */,
 				B8C89CD51F57210600B4E700 /* fl.centroid~.cpp */,
 				B8C89CD71F57211F00B4E700 /* fl.spread~.cpp */,
 				B8C89CD91F57213500B4E700 /* fl.skewness~.cpp */,
@@ -1490,7 +1494,7 @@
 				B8C5EBDA1E5FA6180086E8B6 /* fl.peaks~.cpp */,
 				B8EA6BA62203AF5800D23A86 /* fl.pattern~.cpp */,
 				B88F556F207A59E9007774AD /* fl.reverse~.cpp */,
-				B84A406F1FD73EA700A30455 /* fl.accumpoint~.cpp */,
+				B84A406F1FD73EA700A30455 /* fl.accumpos~.cpp */,
 			);
 			path = Vector;
 			sourceTree = "<group>";
@@ -1719,7 +1723,7 @@
 				B8BA70012078F1F000D3DB3D /* FrameLib_Pad.cpp in Sources */,
 				B8BA70022078F1F500D3DB3D /* FrameLib_Sort.cpp in Sources */,
 				B8BA70032078F27300D3DB3D /* FrameLib_Split.cpp in Sources */,
-				B8BA70042078F27800D3DB3D /* FrameLib_AccumPoint.cpp in Sources */,
+				B8BA70042078F27800D3DB3D /* FrameLib_AccumPos.cpp in Sources */,
 				B8BA70052078F27B00D3DB3D /* FrameLib_Percentile.cpp in Sources */,
 				B8BA70062078F27F00D3DB3D /* FrameLib_Chop.cpp in Sources */,
 				B8BA70072078F28200D3DB3D /* FrameLib_Subframe.cpp in Sources */,
