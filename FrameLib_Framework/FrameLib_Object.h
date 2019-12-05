@@ -152,6 +152,19 @@ public:
     
     FrameLib_Proxy *getProxy() const            { return mProxy; }
     
+    template <class U>
+    U *castProxy(FrameLib_Proxy *proxy)
+    {
+        return proxy ? dynamic_cast<U *>(proxy) : nullptr;
+    }
+    
+    template <class U>
+    U *cloneProxy(FrameLib_Proxy *proxy)
+    {
+        U *typedProxy = castProxy<U>(proxy);
+        return typedProxy ? dynamic_cast<U *>(typedProxy)->clone() : nullptr;
+    }
+    
     // IO Queries
     
     unsigned long getNumIns() const             { return static_cast<unsigned long>(mInputConnections.size()); }

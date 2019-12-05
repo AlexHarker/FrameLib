@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Info::FrameLib_Info(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 3), mProxy(dynamic_cast<Proxy *>(proxy)->clone())
+FrameLib_Info::FrameLib_Info(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 3), mProxy(cloneProxy<Proxy>(proxy))
 {
     mParameters.addString(kBuffer, "buffer", 0);
     
