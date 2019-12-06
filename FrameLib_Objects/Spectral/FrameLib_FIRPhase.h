@@ -11,7 +11,7 @@ class FrameLib_FIRPhase final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kMaxLength, kPhase };
+    enum ParameterList { kMaxLength, kPhase, kTimeFactor };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
