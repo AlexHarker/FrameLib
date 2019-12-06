@@ -98,12 +98,6 @@ double insertMedian(double *data, unsigned long *indices, double value, long ind
     return data[indices[width >> 1]];
 }
 
-double median(double *temp, unsigned long *indices, long width)
-{
-    sortIndicesAscending(indices, temp, width);
-    return temp[indices[width >> 1]];
-}
-
 double getPad(const double *input, long index, long size, double padValue)
 {
     return (index >= 0 && index < size) ? input[index] : padValue;
@@ -136,7 +130,8 @@ void filter(const double *in, double *out, double *data, unsigned long* indices,
     for (long i = 0; i < width; i++)
         data[i] = Get(in, i - o1, size, pad);
     
-    out[0] = median(data, indices, width);
+    sortIndicesAscending(indices, data, width);
+    out[0] = data[indices[width >> 1]];
     
     // Do other values using insertion
 
