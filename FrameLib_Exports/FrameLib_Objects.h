@@ -59,7 +59,6 @@
 
 #include "FrameLib_AudioTrigger.h"
 #include "FrameLib_Chain.h"
-#include "FrameLib_Future.h"
 #include "FrameLib_Interval.h"
 #include "FrameLib_Once.h"
 #include "FrameLib_PerBlock.h"
@@ -75,6 +74,7 @@
 #include "FrameLib_iFFT.h"
 #include "FrameLib_Correlate.h"
 #include "FrameLib_Convolve.h"
+#include "FrameLib_FIRPhase.h"
 #include "FrameLib_Multitaper.h"
 #include "FrameLib_Window.h"
 
