@@ -26,10 +26,11 @@ FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, const Fra
 
 std::string FrameLib_MedianFilter::objectInfo(bool verbose)
 {
-    return formatInfo("Median filter an input frame: The output is the same size as the input. "
-                   "Each output value is the median of the area surrounding the input value. "
-                   "The width of the area, and the edge behaviours are controllable.",
-                   "Median filter an input frame.", verbose);
+    return formatInfo("Apply a median filter to the input: "
+                      "The output is the same size as the input. "
+                      "Each output value is the median of the area surrounding the input value. "
+                      "The width of the area, and the edge behaviours are controllable.",
+                      "Apply a median filter to the input.", verbose);
 }
 
 std::string FrameLib_MedianFilter::inputInfo(unsigned long idx, bool verbose)
@@ -37,12 +38,12 @@ std::string FrameLib_MedianFilter::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return "Input Frames";
+        return "Input";
 }
 
 std::string FrameLib_MedianFilter::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Median Filtered Frames";
+    return "Output";
 }
 
 // Parameter Info
@@ -54,9 +55,9 @@ FrameLib_MedianFilter::ParameterInfo::ParameterInfo()
     add("Sets the width of the median filtering in samples.");
     add("Sets the padding value.");
     add("Sets the mode that controls the edge behaviour: "
-        "pad - the edges are treated as though infinitely padded with the padding value. "
-        "wrap - the edges are treated as though the frame is wrapped cyclically. "
-        "fold - the edges are treated as though they fold over (suitable for spectral purposes).");
+        "pad - edges are treated as though infinitely padded with the padding value. "
+        "wrap - edges are treated as though the frame is wrapped cyclically. "
+        "fold - edges are treated as though they fold over (suitable for spectral purposes).");
 }
 
 // Helpers
@@ -177,7 +178,10 @@ void FrameLib_MedianFilter::process()
     else
     {
         if (sizeOut && (!data || !indices))
+        {
+            zeroVector(output, sizeOut);
             getReporter()(kErrorObject, getProxy(), "couldn't allocate temporary memory");
+        }
     }
     
     dealloc(data);
