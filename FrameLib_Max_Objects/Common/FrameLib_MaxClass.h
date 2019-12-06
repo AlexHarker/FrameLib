@@ -800,6 +800,8 @@ public:
         addMethod(c, (method) &extConnectionUpdate, "__fl.connection_update");
         addMethod(c, (method) &extGetFLObject, "__fl.get_framelib_object");
         addMethod(c, (method) &extGetUserObject, "__fl.get_user_object");
+        addMethod(c, (method) &extGetNumAudioIns, "__fl.get_num_audio_ins");
+        addMethod(c, (method) &extGetNumAudioOuts, "__fl.get_num_audio_outs");
     }
 
     // Check if a patch in memory matches a symbol representing a path
@@ -1442,6 +1444,16 @@ public:
     {
         return (t_ptr_int) x->confirmConnection(index, ConnectionMode::kConfirm);
     }
+    
+    static t_ptr_int extGetNumAudioIns(FrameLib_MaxClass *x)
+    {
+        return x->getNumAudioIns();
+    }
+    
+    static t_ptr_int extGetNumAudioOuts(FrameLib_MaxClass *x)
+    {
+        return x->getNumAudioOuts();
+    }
 
 private:
     
@@ -1591,14 +1603,14 @@ private:
     
     static long getNumAudioIns(t_object *x)
     {
-        FLObject *object = toFLObject(x);
-        return static_cast<long>(object ? object->getNumAudioIns() : 0);
+        t_ptr_int numAudioIns = objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_ins"));
+        return static_cast<long>(numAudioIns);
     }
     
     static long getNumAudioOuts(t_object *x)
     {
-        FLObject *object = toFLObject(x);
-        return static_cast<long>(object ? object->getNumAudioOuts() : 0);
+        t_ptr_int numAudioOuts = objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_outs"));
+        return static_cast<long>(numAudioOuts);
     }
     
     // Helpers for connection methods
