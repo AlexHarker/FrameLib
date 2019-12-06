@@ -87,6 +87,7 @@ void FrameLib_Sort::process()
         else
         {
             zeroVector(output, size);
+            getReporter()(kErrorObject, getProxy(), "couldn't allocate temporary memory");
         }
         
         dealloc(indices);
