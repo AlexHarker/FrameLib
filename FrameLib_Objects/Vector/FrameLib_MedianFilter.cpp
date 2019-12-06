@@ -10,9 +10,9 @@ FrameLib_MedianFilter::FrameLib_MedianFilter(FrameLib_Context context, const Fra
     mParameters.addInt(kWidth, "width", 1, 0);
     mParameters.setMin(1);
     
-    mParameters.addDouble(kPadding, "pad", 0.0, 2);
+    mParameters.addDouble(kPadding, "pad", 0.0, 1);
     
-    mParameters.addEnum(kMode, "mode", 3);
+    mParameters.addEnum(kMode, "mode", 2);
     mParameters.addEnumItem(kPad, "pad");
     mParameters.addEnumItem(kWrap, "wrap");
     mParameters.addEnumItem(kFold, "fold");
