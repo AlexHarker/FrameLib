@@ -36,7 +36,6 @@
 		B8BA6FD92078D50900D3DB3D /* FrameLib_RandGen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B80059BD1DAF96340073A866 /* FrameLib_RandGen.cpp */; };
 		B8BA6FDA2078D53400D3DB3D /* FrameLib_Interval.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8BDF05A1F2D40C800264316 /* FrameLib_Interval.cpp */; };
 		B8BA6FDB2078D53600D3DB3D /* FrameLib_Once.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B826E4AE1F31490100B920C8 /* FrameLib_Once.cpp */; };
-		B8BA6FDC2078D53900D3DB3D /* FrameLib_Future.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4C8BF1F335A67008E5D31 /* FrameLib_Future.cpp */; };
 		B8BA6FDD2078D53D00D3DB3D /* FrameLib_AudioTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4C8E31F33D88D008E5D31 /* FrameLib_AudioTrigger.cpp */; };
 		B8BA6FDE2078D54000D3DB3D /* FrameLib_PerBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87F757A1F35EBB5002B91E9 /* FrameLib_PerBlock.cpp */; };
 		B8BA6FDF2078D54500D3DB3D /* FrameLib_Now.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B4C89B1F334614008E5D31 /* FrameLib_Now.cpp */; };
@@ -433,8 +432,6 @@
 		B8B4C8991F3345A7008E5D31 /* fl.now~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.now~.cpp"; sourceTree = "<group>"; };
 		B8B4C89B1F334614008E5D31 /* FrameLib_Now.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Now.cpp; sourceTree = "<group>"; };
 		B8B4C89C1F334614008E5D31 /* FrameLib_Now.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Now.h; sourceTree = "<group>"; };
-		B8B4C8BF1F335A67008E5D31 /* FrameLib_Future.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Future.cpp; sourceTree = "<group>"; };
-		B8B4C8C01F335A67008E5D31 /* FrameLib_Future.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Future.h; sourceTree = "<group>"; };
 		B8B4C8C31F335D22008E5D31 /* fl.future~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.future~.cpp"; sourceTree = "<group>"; };
 		B8B4C8E31F33D88D008E5D31 /* FrameLib_AudioTrigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_AudioTrigger.cpp; sourceTree = "<group>"; };
 		B8B4C8E41F33D88D008E5D31 /* FrameLib_AudioTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_AudioTrigger.h; sourceTree = "<group>"; };
@@ -1275,8 +1272,6 @@
 				B8BDF05A1F2D40C800264316 /* FrameLib_Interval.cpp */,
 				B826E4AF1F31490100B920C8 /* FrameLib_Once.h */,
 				B826E4AE1F31490100B920C8 /* FrameLib_Once.cpp */,
-				B8B4C8C01F335A67008E5D31 /* FrameLib_Future.h */,
-				B8B4C8BF1F335A67008E5D31 /* FrameLib_Future.cpp */,
 				B8B4C8E41F33D88D008E5D31 /* FrameLib_AudioTrigger.h */,
 				B8B4C8E31F33D88D008E5D31 /* FrameLib_AudioTrigger.cpp */,
 				B87F757B1F35EBB5002B91E9 /* FrameLib_PerBlock.h */,
@@ -1680,7 +1675,6 @@
 				B812606920D697A9000B81D9 /* FrameLib_Pack.cpp in Sources */,
 				B88F558D207AAFBB007774AD /* HISSTools_FFT.cpp in Sources */,
 				B8BA6FEA2078D57C00D3DB3D /* FrameLib_ParamAlias.cpp in Sources */,
-				B8BA6FDC2078D53900D3DB3D /* FrameLib_Future.cpp in Sources */,
 				B8BA6FD92078D50900D3DB3D /* FrameLib_RandGen.cpp in Sources */,
 				B8BA6FDA2078D53400D3DB3D /* FrameLib_Interval.cpp in Sources */,
 				B8BA70392078F38100D3DB3D /* FrameLib_Objects.cpp in Sources */,
