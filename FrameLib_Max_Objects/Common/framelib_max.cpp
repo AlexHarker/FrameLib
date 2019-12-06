@@ -207,7 +207,6 @@ extern "C" int C74_EXPORT main(void)
     // Schedulers
     
     FrameLib_MaxClass_Expand<FrameLib_AudioTrigger>::makeClass("fl.audiotrigger~");
-    FrameLib_MaxClass_Expand<FrameLib_Future>::makeClass("fl.future~");
     FrameLib_MaxClass_Expand<FrameLib_Interval>::makeClass("fl.interval~");
     FrameLib_MaxClass_Expand<FrameLib_Once>::makeClass("fl.once~");
     FrameLib_MaxClass_Expand<FrameLib_PerBlock>::makeClass("fl.perblock~");
