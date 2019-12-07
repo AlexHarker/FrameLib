@@ -67,8 +67,10 @@ FrameLib_Route::FrameLib_Route(FrameLib_Context context, const FrameLib_Paramete
 
 std::string FrameLib_Route::objectInfo(bool verbose)
 {
-    return formatInfo("Routes input frames to one of a number of outputs: The number of outputs is variable. The selected output can be changed with a parameter.",
-                      "Routes input frames to one of a number of outputs.", verbose);
+    return formatInfo("Routes the input to one of a number of outputs: "
+                      "The number of outputs is variable. "
+                      "The selected output can be changed with a parameter.",
+                      "Routes the input to one of a number of outputs.", verbose);
 }
 
 std::string FrameLib_Route::inputInfo(unsigned long idx, bool verbose)
