@@ -75,7 +75,7 @@ void FrameLib_Info::update()
 
 void FrameLib_Info::process()
 {
-    double bufferSamplingRate = 0.0;
+    double samplingRate = 0.0;
     double conversionFactor = 1.0;
     unsigned long length = 0;
     unsigned long chans = 0;
@@ -95,24 +95,24 @@ void FrameLib_Info::process()
     // Get buffer
     
     if (mProxy)
-        mProxy->acquire(length, bufferSamplingRate, chans);
+        mProxy->acquire(length, samplingRate, chans);
     
     switch (mUnits)
     {
-        case kMS:           conversionFactor = mSamplingRate / 1000;        break;
-        case kSeconds:      conversionFactor = mSamplingRate;               break;
+        case kMS:           conversionFactor = samplingRate / 1000;         break;
+        case kSeconds:      conversionFactor = samplingRate;                break;
         case kSamples:      conversionFactor = 1.0;                         break;
     }
     
     if (length != 0 && size != 0)
     {
         lengthOutput[0] = length / conversionFactor;
-        smplRtOutput[0] = bufferSamplingRate;
+        smplRtOutput[0] = samplingRate;
         nChansOutput[0] = chans;
     }
     else
     {
-        // Zero output if no buffer or memory
+        // Zero output if no buffer
         
         zeroVector(lengthOutput, size);
         zeroVector(smplRtOutput, size);
