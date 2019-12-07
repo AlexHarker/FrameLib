@@ -5,8 +5,6 @@
 #include <complex>
 #include "FrameLib_DSP.h"
 
-// OPT - vectorise where appropriate
-
 // Complex Binary Operator
 
 template <typename Op>

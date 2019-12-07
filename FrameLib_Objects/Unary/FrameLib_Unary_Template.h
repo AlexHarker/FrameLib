@@ -4,8 +4,6 @@
 
 #include "FrameLib_DSP.h"
 
-// OPT - vectorise where appropriate
-
 // Unary (Operator Version)
 
 template <typename Op>

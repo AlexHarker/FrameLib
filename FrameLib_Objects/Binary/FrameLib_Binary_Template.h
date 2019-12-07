@@ -4,8 +4,6 @@
 
 #include "FrameLib_DSP.h"
 
-// OPT - vectorise where appropriate
-
 // Binary Operator
 
 template <typename Op>
