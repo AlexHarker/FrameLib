@@ -1,8 +1,6 @@
 
 #include "FrameLib_Read.h"
 
-// FIX - consider adding anti-alising later....
-
 // Constructor
 
 FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mProxy(cloneProxy<Proxy>(proxy))
@@ -135,8 +133,6 @@ void FrameLib_Read::process()
         for (unsigned long i = 0; i < size; i++)
         {
             double position = input[i] * conversionFactor;
-            
-            // FIX - use SSE explictly here?
             
             position = position > lengthM1 ? lengthM1 : position;
             position = position < 0.0 ? 0.0 : position;

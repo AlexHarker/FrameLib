@@ -5,8 +5,7 @@
 #include "FrameLib_DSP.h"
 #include "FrameLib_Filter_Constants.h"
 
-// FIX - All filters to templates
-// FIX - time varying params
+// FIX - All filters to templates / time varying params
 
 class FrameLib_OnePoleZero final : public FrameLib_Processor
 {
