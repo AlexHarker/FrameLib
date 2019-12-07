@@ -36,8 +36,8 @@ template<> inline const char *FrameLib_Unary<tanh>::getOpString()  { return "hyp
 template<> inline const char *FrameLib_Unary<log>::getOpString()   { return "logarithm base e"; }
 template<> inline const char *FrameLib_Unary<log2>::getOpString()  { return "logarithm base 2"; }
 template<> inline const char *FrameLib_Unary<log10>::getOpString() { return "logarithm base 10"; }
-template<> inline const char *FrameLib_Unary<exp>::getOpString()   { return "exponent base e (e to the power of)"; }
-template<> inline const char *FrameLib_Unary<exp2>::getOpString()  { return "exponent base 2 (2 to the power of)"; }
+template<> inline const char *FrameLib_Unary<exp>::getOpString()   { return "exponent base e (e^x)"; }
+template<> inline const char *FrameLib_Unary<exp2>::getOpString()  { return "exponent base 2 (2^x)"; }
 
 template<> inline const char *FrameLib_Unary<fabs>::getOpString()  { return "absolute value"; }
 template<> inline const char *FrameLib_Unary<ceil>::getOpString()  { return "ceiling value"; }
