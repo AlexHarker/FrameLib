@@ -87,12 +87,25 @@
 						"title" : "Non-realtime configuration",
 						"boxes" : [ 							{
 								"box" : 								{
+									"fontname" : "Lato Regular",
+									"fontsize" : 13.0,
+									"id" : "obj-1",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 60.0, 690.0, 22.0 ],
+									"text" : "This patch demonstrates the two mechanisms for "
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-42",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 345.0, 390.0, 80.0, 22.0 ],
+									"patching_rect" : [ 345.0, 420.0, 80.0, 22.0 ],
 									"text" : "fl.times~ 0.25"
 								}
 
@@ -104,7 +117,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 525.0, 195.0, 65.0, 22.0 ],
+									"patching_rect" : [ 525.0, 225.0, 65.0, 22.0 ],
 									"text" : "fl.window~"
 								}
 
@@ -116,7 +129,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 585.0, 480.0, 40.0, 22.0 ],
+									"patching_rect" : [ 585.0, 510.0, 40.0, 22.0 ],
 									"text" : "*~ 0.1"
 								}
 
@@ -127,7 +140,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 585.0, 555.0, 55.0, 22.0 ],
+									"patching_rect" : [ 585.0, 585.0, 55.0, 22.0 ],
 									"text" : "dac~ 1 2"
 								}
 
@@ -140,7 +153,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 585.0, 390.0, 24.0, 24.0 ]
+									"patching_rect" : [ 585.0, 420.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -151,7 +164,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "signal", "bang" ],
-									"patching_rect" : [ 585.0, 435.0, 93.0, 22.0 ],
+									"patching_rect" : [ 585.0, 465.0, 93.0, 22.0 ],
 									"text" : "play~ with_read"
 								}
 
@@ -163,7 +176,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 510.0, 345.0, 71.0, 22.0 ],
+									"patching_rect" : [ 510.0, 375.0, 71.0, 22.0 ],
 									"text" : "fl.tag~ outhi"
 								}
 
@@ -175,7 +188,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 510.0, 300.0, 80.0, 22.0 ],
+									"patching_rect" : [ 510.0, 330.0, 80.0, 22.0 ],
 									"text" : "fl.minus~ 100"
 								}
 
@@ -187,7 +200,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 300.0, 315.0, 47.0, 22.0 ],
+									"patching_rect" : [ 300.0, 345.0, 47.0, 22.0 ],
 									"text" : "fl.plus~"
 								}
 
@@ -199,7 +212,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 510.0, 255.0, 64.0, 22.0 ],
+									"patching_rect" : [ 510.0, 285.0, 64.0, 22.0 ],
 									"text" : "fl.info~ src"
 								}
 
@@ -211,7 +224,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 395.0, 315.0, 48.0, 22.0 ],
+									"patching_rect" : [ 395.0, 345.0, 48.0, 22.0 ],
 									"text" : "fl.map~"
 								}
 
@@ -223,7 +236,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 395.0, 240.0, 66.0, 22.0 ],
+									"patching_rect" : [ 395.0, 270.0, 66.0, 22.0 ],
 									"text" : "fl.random~"
 								}
 
@@ -234,7 +247,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 300.0, 435.0, 183.0, 22.0 ],
+									"patching_rect" : [ 300.0, 465.0, 183.0, 22.0 ],
 									"text" : "fl.sink~ {rt} 0 @buffer with_read2"
 								}
 
@@ -246,7 +259,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 300.0, 195.0, 166.0, 22.0 ],
+									"patching_rect" : [ 300.0, 225.0, 166.0, 22.0 ],
 									"text" : "fl.ramp~ /length 100 /units ms"
 								}
 
@@ -258,7 +271,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 300.0, 105.0, 121.0, 22.0 ],
+									"patching_rect" : [ 300.0, 135.0, 121.0, 22.0 ],
 									"text" : "reset, process 88200"
 								}
 
@@ -271,7 +284,7 @@
 									"numinlets" : 5,
 									"numoutlets" : 6,
 									"outlettype" : [ "float", "float", "float", "float", "list", "" ],
-									"patching_rect" : [ 300.0, 465.0, 256.0, 64.0 ]
+									"patching_rect" : [ 300.0, 495.0, 256.0, 64.0 ]
 								}
 
 							}
@@ -283,7 +296,7 @@
 									"numinlets" : 5,
 									"numoutlets" : 6,
 									"outlettype" : [ "float", "float", "float", "float", "list", "" ],
-									"patching_rect" : [ 15.0, 465.0, 256.0, 64.0 ]
+									"patching_rect" : [ 15.0, 495.0, 256.0, 64.0 ]
 								}
 
 							}
@@ -294,7 +307,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 345.0, 645.0, 138.0, 22.0 ],
+									"patching_rect" : [ 345.0, 675.0, 138.0, 22.0 ],
 									"text" : "buffer~ with_read2 2000"
 								}
 
@@ -306,7 +319,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 300.0, 360.0, 120.0, 22.0 ],
+									"patching_rect" : [ 300.0, 390.0, 120.0, 22.0 ],
 									"text" : "fl.read~ src /units ms"
 								}
 
@@ -318,7 +331,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 300.0, 150.0, 128.0, 22.0 ],
+									"patching_rect" : [ 300.0, 180.0, 128.0, 22.0 ],
 									"text" : "fl.interval~ 25 ms {rt} 0"
 								}
 
@@ -330,7 +343,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 300.0, 585.0, 35.0, 22.0 ],
+									"patching_rect" : [ 300.0, 615.0, 35.0, 22.0 ],
 									"text" : "clear"
 								}
 
@@ -341,7 +354,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 330.0, 195.0, 22.0 ],
+									"patching_rect" : [ 15.0, 360.0, 195.0, 22.0 ],
 									"text" : "fl.sink~ {rt} 0 @buffer with_source2"
 								}
 
@@ -353,7 +366,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 240.0, 80.0, 22.0 ],
+									"patching_rect" : [ 15.0, 270.0, 80.0, 22.0 ],
 									"text" : "fl.times~ 0.25"
 								}
 
@@ -365,7 +378,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 285.0, 65.0, 22.0 ],
+									"patching_rect" : [ 15.0, 315.0, 65.0, 22.0 ],
 									"text" : "fl.window~"
 								}
 
@@ -377,7 +390,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 105.0, 121.0, 22.0 ],
+									"patching_rect" : [ 15.0, 135.0, 121.0, 22.0 ],
 									"text" : "reset, process 88200"
 								}
 
@@ -389,7 +402,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 150.0, 122.0, 22.0 ],
+									"patching_rect" : [ 15.0, 180.0, 122.0, 22.0 ],
 									"text" : "fl.interval~ 1024 {rt} 0"
 								}
 
@@ -401,7 +414,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 345.0, 615.0, 150.0, 22.0 ],
+									"patching_rect" : [ 345.0, 645.0, 150.0, 22.0 ],
 									"text" : "buffer~ with_source2 2000"
 								}
 
@@ -413,7 +426,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 345.0, 585.0, 115.0, 22.0 ],
+									"patching_rect" : [ 345.0, 615.0, 115.0, 22.0 ],
 									"text" : "buffer~ src jongly.aif"
 								}
 
@@ -425,7 +438,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 195.0, 224.0, 22.0 ],
+									"patching_rect" : [ 15.0, 225.0, 224.0, 22.0 ],
 									"text" : "fl.source~ /length 4096 {rt} 0 @buffer src"
 								}
 
@@ -776,7 +789,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 721.0, 707.0 ],
+						"rect" : [ 0.0, 26.0, 721.0, 707.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -863,7 +876,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 477.0, 337.0, 176.0, 38.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Anything inside here will belong to the default context"
 								}
 
@@ -1117,7 +1129,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 495.0, 690.0, 100.0 ],
-									"presentation_linecount" : 6,
 									"text" : "Here, the left most network belongs to the default context whereas the right most network belongs to its own context with the @id \"custom\". \n\nIt is important to know which context your network belongs to, as processing in non-realtime is controlled on a per-context basis. If multiple independent networks all belong to the same context you cannot control each one seperately and manually progressing time is a mechanism which operates on a context."
 								}
 
@@ -1169,7 +1180,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 195.0, 285.0, 195.0, 22.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Custom named context 'custom'"
 								}
 
@@ -1454,7 +1464,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 721.0, 707.0 ],
+						"rect" : [ 34.0, 105.0, 721.0, 707.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
