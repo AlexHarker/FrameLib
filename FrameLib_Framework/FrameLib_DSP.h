@@ -395,9 +395,9 @@ public:
 
 protected:
     
-    // This prevents the user from needing to implement this method - doing so will do nothing
+    // This prevents the user from needing to implement this method
     
-    virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) { return SchedulerInfo(); }
+    SchedulerInfo schedule(bool newFrame, bool noAdvance) final { return SchedulerInfo(); }
     
     void setIO(unsigned long nIns, unsigned long nOuts) { FrameLib_DSP::setIO(nIns, nOuts); }
 };
@@ -428,9 +428,9 @@ public:
     
 protected:
     
-    // This prevents the user from needing to implement this method - doing so will do nothing
+    // This prevents the user from needing to implement this method
     
-    virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) { return SchedulerInfo(); }
+    SchedulerInfo schedule(bool newFrame, bool noAdvance) final { return SchedulerInfo(); }
 };
 
 
@@ -459,9 +459,9 @@ public:
     
 protected:
     
-    // This prevents the user from needing to implement this method - doing so will do nothing
+    // This prevents the user from needing to implement this method
     
-    virtual SchedulerInfo schedule(bool newFrame, bool noAdvance) { return SchedulerInfo(); }
+    SchedulerInfo schedule(bool newFrame, bool noAdvance) final { return SchedulerInfo(); }
 };
 
 
@@ -490,9 +490,9 @@ public:
     
 protected:
 
-    // This prevents the user from needing to implement this method - doing so will do nothing
+    // This prevents the user from needing to implement this method
     
-    virtual void process() {}
+    void process() final {}
 };
 
 #endif
