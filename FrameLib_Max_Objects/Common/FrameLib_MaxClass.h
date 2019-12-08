@@ -233,9 +233,10 @@ public:
 
     void addContextToResolve(FrameLib_Context context, t_object *object)
     {
+        bool requiresService = mUnresolvedContexts.size() == 0;
         mUnresolvedContexts[context] = object;
         
-        if (mUnresolvedContexts.size() == 1)
+        if (requiresService)
             defer_low(*this, (method) serviceContexts, nullptr, 0, nullptr);
     }
     
