@@ -31,7 +31,7 @@ struct FrameLib_MaxNRTAudio
 
 struct FrameLib_MaxContext
 {
-    bool mRealtime;
+    long mRealtime;
     t_object *mPatch;
     t_symbol *mName;
 };
@@ -467,7 +467,7 @@ public:
         CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
         CLASS_ATTR_ACCESSORS(c, "id", &Wrapper<T>::idGet, &Wrapper<T>::idSet);
 
-        CLASS_ATTR_ATOM_LONG(c, "rt", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
+        CLASS_ATTR_LONG(c, "rt", ATTR_FLAGS_NONE, Wrapper<T>, mObject);
         CLASS_ATTR_ACCESSORS(c, "rt", &Wrapper<T>::rtGet, &Wrapper<T>::rtSet);
     }
 
@@ -823,7 +823,7 @@ public:
         CLASS_ATTR_SYM(c, "id", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mContext.mName);
         CLASS_ATTR_ACCESSORS(c, "id", 0, &FrameLib_MaxClass<T>::idSet);
 
-        CLASS_ATTR_ATOM_LONG(c, "rt", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mContext.mRealtime);
+        CLASS_ATTR_LONG(c, "rt", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mContext.mRealtime);
         CLASS_ATTR_ACCESSORS(c, "rt", 0, &FrameLib_MaxClass<T>::rtSet);
 
         addMethod(c, (method) &extPatchLineUpdate, "patchlineupdate");
@@ -958,13 +958,12 @@ public:
     FrameLib_MaxClass(t_object *x, t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy())
     : mFrameLibProxy(proxy)
     , mConfirmation(nullptr)
-    , mContextPatch(contextPatcher(gensym("#P")->s_thing))
     , mUserObject(detectUserObjectAtLoad())
     , mSpecifiedStreams(1)
     , mConnectionsUpdated(false)
     , mResolved(false)
     , mBuffer(gensym(""))
-    , mContext{ handlesAudio(), mContextPatch, gensym("") }
+    , mContext{ handlesAudio(), contextPatcher(gensym("#P")->s_thing), gensym("") }
     {
         // Deal with attributes
         
@@ -1491,7 +1490,7 @@ public:
     
     static t_max_err rtSet(FrameLib_MaxClass *x, t_object *attr, long argc, t_atom *argv)
     {
-        x->mContext.mRealtime = argv ? atom_getlong(argv) : 0;
+        x->mContext.mRealtime = argv ? (atom_getlong(argv) ? 1 : 0) : 0;
         x->updateContext();
         
         return MAX_ERR_NONE;
@@ -1592,7 +1591,7 @@ private:
         
         mGlobal->clearQueue();
         
-        traversePatch(mContextPatch, getAssociation(mContextPatch), theMethod, args...);
+        traversePatch(mContext.mPatch, getAssociation(mContext.mPatch), theMethod, args...);
         
         while (t_object *object = mGlobal->popFromQueue())
             objectMethod(object, theMethod, args...);
@@ -2084,7 +2083,6 @@ private:
 
     unique_object_ptr mSyncIn;
     
-    t_object *mContextPatch;
     t_object *mUserObject;
     
     unsigned long mSpecifiedStreams;
