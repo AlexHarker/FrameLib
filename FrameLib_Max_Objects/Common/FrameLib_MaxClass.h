@@ -1503,10 +1503,16 @@ private:
     {
         if (mObject)
         {
-            // N.B. release because otherwise it is retained twice
-            
             FrameLib_Context context = mGlobal->makeContext(mContext);
-            matchContext(context);
+         
+            if (context != mObject->getContext())
+            {
+                mGlobal->addContextToResolve(context, *this);
+                matchContext(context);
+            }
+            
+            // N.B. release because otherwise it is retained twice
+
             mGlobal->releaseContext(context);
         }
     }
