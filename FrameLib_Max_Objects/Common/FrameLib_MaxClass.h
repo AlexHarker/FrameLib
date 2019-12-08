@@ -873,9 +873,9 @@ public:
     
     // Context Parsing
     
-    static FrameLib_MaxContext parseContext(t_object *contextPatch, long argc, t_atom *argv)
+    static FrameLib_MaxContext parseContext(bool realtime, t_object *patch, long argc, t_atom *argv)
     {
-        FrameLib_MaxContext context{true, contextPatch, gensym("")};
+        FrameLib_MaxContext context{realtime, patch, gensym("")};
         
         for (long i = 0; i < argc; i++)
         {
@@ -964,7 +964,7 @@ public:
 
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        FrameLib_Context context = mGlobal->makeContext(parseContext(mContextPatch, argc, argv));
+        FrameLib_Context context = mGlobal->makeContext(parseContext(T::handlesAudio(), mContextPatch, argc, argv));
         mFrameLibProxy->mMaxObject = *this;
         mObject.reset(new T(context, &serialisedParameters, mFrameLibProxy.get(), mSpecifiedStreams));
         parseInputs(argc, argv);
