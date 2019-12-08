@@ -1192,7 +1192,7 @@ public:
     
     ObjectType getType() const                  { return mObject->getType(); }
     
-    bool isRealtime() const                     { return mGlobal->isRealtimeContext(mObject->getContext()); }
+    bool isRealtime() const                     { return mContext.mRealtime; }
     bool handlesAudio() const                   { return T::handlesAudio(); }
     bool supportsOrderingConnections() const    { return mObject->supportsOrderingConnections(); }
 
@@ -1324,6 +1324,9 @@ public:
     
     void sync()
     {
+        if (!isRealtime())
+            return;
+        
         FrameLib_MaxGlobals::SyncCheck::Action action = mSyncChecker(this, handlesAudio(), getType() == kOutput);
        
         if (action != FrameLib_MaxGlobals::SyncCheck::kSyncComplete && handlesAudio() && !mResolved)
@@ -1534,7 +1537,6 @@ private:
         for (unsigned long i = 0; i < mObject->getNumIns(); i++)
             if (const double *values = mObject->getFixedInput(i, &size))
                 newObject->setFixedInput(i, values, size);
-        
         
         if (realtime || mGlobal->isRealtimeContext(current))
             dspSetBroken();
