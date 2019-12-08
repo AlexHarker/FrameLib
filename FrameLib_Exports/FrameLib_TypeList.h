@@ -1,6 +1,6 @@
 
-#ifndef FrameLib_TypeList_h
-#define FrameLib_TypeList_h
+#ifndef FRAMELIB_TYPELIST_H
+#define FRAMELIB_TYPELIST_H
 
 #include "FrameLib_Objects.h"
 #include <utility>
@@ -71,7 +71,7 @@ FrameLib_Select,
 // Schedulers
 
 FrameLib_AudioTrigger,
-FrameLib_Future,
+FrameLib_Chain,
 FrameLib_Interval,
 FrameLib_Once,
 FrameLib_PerBlock,
@@ -119,7 +119,7 @@ FrameLib_Timer,
 
 // Vector
 
-FrameLib_AccumPoint,
+FrameLib_AccumPos,
 FrameLib_Chop,
 FrameLib_Join,
 FrameLib_MedianFilter,
@@ -256,4 +256,4 @@ FrameLib_Info,
 FrameLib_Read
 >;
 
-#endif /* FrameLib_TypeList_h */
+#endif /* FRAMELIB_TYPELIST_H */

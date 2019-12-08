@@ -27,15 +27,6 @@ public:
 
 private:
     
-    // Helpers
-    
-    double insertMedian(double *temp, unsigned long *indices, double value, long index, long width);
-    double median(double *temp, unsigned long *indices, long width);
-    
-    double getPad(const double *input, long index, long sizeIn, double padValue);
-    double getWrap(const double *input, long index, long sizeIn);
-    double getFold(const double *input, long index, long sizeIn);
-    
     // Process
     
     void process() override;

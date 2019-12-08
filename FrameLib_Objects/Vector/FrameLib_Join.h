@@ -4,8 +4,6 @@
 
 #include "FrameLib_DSP.h"
 
-// FIX - time variable triggers?
-
 class FrameLib_Join final : public FrameLib_Processor
 {
     // Parameter Enums and Info

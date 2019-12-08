@@ -101,7 +101,7 @@ void *FrameLib_GlobalAllocator::CoreAllocator::alloc(size_t size)
     if (ptr)
         mAllocated += blockSize(ptr);
     else
-        mErrorReporter.reportError(kErrorMemory, nullptr, "FrameLib - couldn't allocate memory");
+        mErrorReporter(kErrorMemory, nullptr, "FrameLib - couldn't allocate memory");
    
     // Check for near full
     

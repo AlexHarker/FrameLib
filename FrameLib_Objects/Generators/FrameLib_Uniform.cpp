@@ -40,12 +40,12 @@ std::string FrameLib_Uniform::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Trigger Frame - triggers generation of output", "Trigger Frame", verbose);
+        return formatInfo("Trigger Input - triggers generation of output", "Trigger Input", verbose);
 }
 
 std::string FrameLib_Uniform::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output Frame";
+    return "Output";
 }
 
 // Parameter Info

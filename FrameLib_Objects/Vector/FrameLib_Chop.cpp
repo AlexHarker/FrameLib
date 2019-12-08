@@ -12,7 +12,7 @@ FrameLib_Chop::FrameLib_Chop(FrameLib_Context context, const FrameLib_Parameters
     mParameters.addDouble(kSize, "size", 1.0, 1);
     mParameters.setMin(0.0);
     
-    mParameters.addEnum(kUnits, "units", 1);
+    mParameters.addEnum(kUnits, "units", 2);
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kRatio, "ratios");
     
@@ -39,7 +39,7 @@ std::string FrameLib_Chop::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return "Input to Chop";
+        return "Input";
 }
 
 std::string FrameLib_Chop::outputInfo(unsigned long idx, bool verbose)

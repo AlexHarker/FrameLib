@@ -1,28 +1,27 @@
 
 #include "FrameLib_Read.h"
 
-// FIX - consider adding anti-alising later....
-
 // Constructor
 
-FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mProxy(dynamic_cast<Proxy *>(proxy)->clone())
+FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mProxy(cloneProxy<Proxy>(proxy))
 {
     mParameters.addString(kBuffer, "buffer", 0);
     
     mParameters.addInt(kChannel, "chan", 1, 1);
     mParameters.setMin(1);
     
-    mParameters.addEnum(kInterpolation, "interp");
+    mParameters.addEnum(kUnits, "units", 2);
+    mParameters.addEnumItem(kMS, "ms");
+    mParameters.addEnumItem(kSeconds, "seconds");
+    mParameters.addEnumItem(kSamples, "samples");
+    mParameters.addEnumItem(kSamples, "normalised");
+    
+    mParameters.addEnum(kInterpolation, "interp", 3);
     mParameters.addEnumItem(kHermite, "hermite");
     mParameters.addEnumItem(kBSpline, "bspline");
     mParameters.addEnumItem(kLagrange, "lagrange");
     mParameters.addEnumItem(kLinear, "linear");
     mParameters.addEnumItem(kNone, "none");
-    
-    mParameters.addEnum(kUnits, "units");
-    mParameters.addEnumItem(kMS, "ms");
-    mParameters.addEnumItem(kSeconds, "seconds");
-    mParameters.addEnumItem(kSamples, "samples");
         
     mParameters.set(serialisedParameters);
     
@@ -40,8 +39,9 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters
 
 std::string FrameLib_Read::objectInfo(bool verbose)
 {
-    return formatInfo("Reads from a buffer~ given an input frame of sample positions: There are different available interpolation types.",
-                   "Reads from a buffer~ given an input frame of sample positions.", verbose);
+    return formatInfo("Reads from a buffer~ given an input frame of sample positions: "
+                      "There are different available interpolation types.",
+                      "Reads from a buffer~ given an input frame of sample positions.", verbose);
 }
 
 std::string FrameLib_Read::inputInfo(unsigned long idx, bool verbose)
@@ -54,7 +54,7 @@ std::string FrameLib_Read::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Read::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output Frame";
+    return "Output";
 }
 
 // Parameter Info
@@ -127,13 +127,12 @@ void FrameLib_Read::process()
             case kMS:           conversionFactor = samplingRate / 1000.0;       break;
             case kSeconds:      conversionFactor = samplingRate;                break;
             case kSamples:      conversionFactor = 1.0;                         break;
+            case kNormalised:   conversionFactor = lengthM1;                    break;
         }
         
         for (unsigned long i = 0; i < size; i++)
         {
             double position = input[i] * conversionFactor;
-            
-            // FIX - use SSE explictly here?
             
             position = position > lengthM1 ? lengthM1 : position;
             position = position < 0.0 ? 0.0 : position;

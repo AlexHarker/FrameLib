@@ -1,15 +1,18 @@
+
 #include "FrameLib_NanFilter.h"
+
 // Constructor
 
 FrameLib_NanFilter::FrameLib_NanFilter(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
-    mParameters.addEnum(kMode, "mode");
+    mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kReplace, "replace");
     mParameters.addEnumItem(kRemove, "remove");
 
-    mParameters.addDouble(kValue, "value",0);
+    mParameters.addDouble(kValue, "value", 0.0, 1);
     
     mParameters.set(serialisedParameters);
+    
     setParameterInput(1);
 }
 
@@ -17,18 +20,23 @@ FrameLib_NanFilter::FrameLib_NanFilter(FrameLib_Context context, const FrameLib_
 
 std::string FrameLib_NanFilter::objectInfo(bool verbose)
 {
-    return formatInfo("Replaces or removes NaNs in a vector",
-                      "Replaces or removes NaNs in a vector", verbose);
+    return formatInfo("Filter NaNs from the input either by replacing, or removing them. "
+                      "The length of the output depend on the mode parameter and will be no longer than the input. "
+                      "The value for replacement is settable using the value parameter.",
+                      "Filter NaNs from the input either by replacing them, or removing them.", verbose);
 }
 
 std::string FrameLib_NanFilter::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Input Frames", "Input Frames", verbose);
+    if (idx)
+        return parameterInputInfo(verbose);
+    else
+        return "Input";
 }
 
 std::string FrameLib_NanFilter::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Vector with NaNs replaced";
+    return "Output";
 }
 
 // Parameter Info
@@ -37,8 +45,8 @@ FrameLib_NanFilter::ParameterInfo FrameLib_NanFilter::sParamInfo;
 
 FrameLib_NanFilter::ParameterInfo::ParameterInfo()
 {
-    add("Set whether to replace or remove NaN values" );
-    add("Set the value with which to replace NaN values");
+    add("Sets whether NaNs are replaced or removed." );
+    add("Sets the value with which to replace NaNs when in replace mode.");
 }
 
 // Process
@@ -47,42 +55,46 @@ void FrameLib_NanFilter::process()
 {
     unsigned long sizeIn;
     unsigned long sizeOut = 0;
+    
     Modes mode = (Modes) mParameters.getInt(kMode);
-    double replacement = mParameters.getValue(kValue);
+    double value = mParameters.getValue(kValue);
+    
     const double *input = getInput(0, &sizeIn);
     
-    switch(mode)
+    switch (mode)
     {
-        case Modes::kReplace:
+        case kReplace:
         {
             requestOutputSize(0, sizeIn);
-            if (allocateOutputs())
-            {
-                double* output = getOutput(0, &sizeOut);
+            allocateOutputs();
+            
+            double* output = getOutput(0, &sizeOut);
                 
-                std::transform(input, input+sizeOut, output, [&replacement](double val)
-                {
-                    return std::isnan(val) ? replacement : val;
-                });
-            }
+            for (unsigned long i = 0; i < sizeOut; i++)
+                output[i] = std::isnan(input[i]) ? value : input[i];
+            
             break;
         }
         
-        default: //remove
+        case kRemove:
         {
-            double* tmp = alloc<double>(sizeIn);
+            double* temp = alloc<double>(sizeIn);
+            sizeIn = temp ? sizeIn : 0;
             
-            double* tmp_end = std::copy_if(input, input + sizeIn, tmp,[](double val){
-                return !std::isnan(val);
-            });
-            
-            requestOutputSize(0, static_cast<unsigned long>(tmp_end - tmp));
-            if(allocateOutputs())
+            for (unsigned long i = 0; i < sizeIn; i++)
             {
-                double* output = getOutput(0, &sizeOut);
-                copyVector(output, tmp, sizeOut); 
+                if (!std::isnan(input[i]))
+                    temp[sizeOut++] = input[i];
             }
-            dealloc(tmp);
+            
+            requestOutputSize(0, sizeOut);
+            allocateOutputs();
+            
+            double *output = getOutput(0, &sizeOut);
+            copyVector(output, temp, sizeOut);
+            dealloc(temp);
+            
+            break;
         }
     }
 }

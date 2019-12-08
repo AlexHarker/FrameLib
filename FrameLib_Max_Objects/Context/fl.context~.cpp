@@ -20,7 +20,7 @@ public:
         CLASS_ATTR_ACCESSORS(c, "rt", 0, &FrameLib_MaxClass_Context::rtSet);
  }
     
-    FrameLib_MaxClass_Context(t_symbol *sym, long argc, t_atom *argv)
+    FrameLib_MaxClass_Context(t_object *x, t_symbol *sym, long argc, t_atom *argv)
     : mMaxContext{ false, FrameLib_MaxClass<void>::contextPatcher(gensym("#P")->s_thing), gensym("")}
     , mContext(mGlobal->makeContext(mMaxContext))
     {

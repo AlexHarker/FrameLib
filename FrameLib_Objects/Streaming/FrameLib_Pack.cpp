@@ -17,7 +17,9 @@ FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, const FrameLib_Parameters
 
 std::string FrameLib_Pack::objectInfo(bool verbose)
 {
-    return formatInfo("Packs multiple frame streams into a multi-stream output: Inputs may be single-stream or multi-stream. All inputs are concatenated in order, with blank inputs ignored.",
+    return formatInfo("Packs multiple frame streams into a multi-stream output: "
+                      "Inputs may be single-stream or multi-stream. "
+                      "All inputs are concatenated in order, with blank inputs ignored.",
                       "Packs multiple frame streams into a multi-stream output.", verbose);
 }
 

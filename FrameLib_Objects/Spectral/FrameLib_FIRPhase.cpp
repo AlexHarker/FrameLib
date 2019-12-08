@@ -8,10 +8,16 @@ FrameLib_FIRPhase::FrameLib_FIRPhase(FrameLib_Context context, const FrameLib_Pa
     mParameters.addInt(kMaxLength, "maxlength", 16384, 0);
     mParameters.setMin(0);
     mParameters.setInstantiation();
+    
     mParameters.addDouble(kPhase, "phase", 0.0, 1);
     mParameters.setClip(0.0, 1.0);
     
+    mParameters.addDouble(kTimeFactor, "timefactor", 1.0, 2);
+    mParameters.setMin(1.0);
+    
     mParameters.set(serialisedParameters);
+    
+    addParameterInput();
     
     mProcessor.set_max_fft_size(mParameters.getInt(kMaxLength));
 }
@@ -20,20 +26,26 @@ FrameLib_FIRPhase::FrameLib_FIRPhase(FrameLib_Context context, const FrameLib_Pa
 
 std::string FrameLib_FIRPhase::objectInfo(bool verbose)
 {
-    return formatInfo("Calculate the real Fast Fourier Transform of an input frame: All FFTs performed will use a power of two size. "
-                   "Output frames will be (N / 2) + 1 in length where N is the FFT size. Inputs which are not a power of two are zero-padded to the next power of two. "
-                   "Real and imaginary values are output as separate frames.",
-                   "Calculate the real Fast Fourier Transform of an input frame.", verbose);
+    return formatInfo("Transform FIR coefficients to preserve the amplitude spectrum, but alter the phase. "
+                      "The required phase is set using the phase parameter. "
+                      "Output frames will be the length of the FFT size used for processing. "
+                      "The output length can be increased to avoid time aliasing using the timefactor parameter."
+                      "Inputs which are not a power of two are zero-padded before processing.",
+                      "Transform FIR coefficients to preserve the amplitude spectrum, but alter the phase.",
+                      verbose);
 }
 
 std::string FrameLib_FIRPhase::inputInfo(unsigned long idx, bool verbose)
 {
-    return "IR Time Domain Input";
+    if (idx)
+        return parameterInputInfo(verbose);
+    
+    return formatInfo("Input - zero-padded if the length is not a power of two.", "Input", verbose);
 }
 
 std::string FrameLib_FIRPhase::outputInfo(unsigned long idx, bool verbose)
 {
-    return "IR Time Domain Output";
+    return "Output";
 }
 
 // Parameter Info
@@ -43,8 +55,11 @@ FrameLib_FIRPhase::ParameterInfo FrameLib_FIRPhase::sParamInfo;
 FrameLib_FIRPhase::ParameterInfo::ParameterInfo()
 {
     add("Sets the maximum input length / FFT size.");
-    add("When on the output is normalised so that sine waves produce the same level output regardless of the FFT size.");
-    add("Sets the type of input expected / output produced.");
+    add("Sets the phase for the transformed FIR. "
+        "minimum phase can be requested with a value of zero. "
+        "linear phase can be requested with value of a half. "
+        "maximum phase can be requested with a value of one.");
+    add("Sets the time factor used to multiply the length of the FIR before processing.");
 }
 
 // Process
@@ -55,17 +70,23 @@ void FrameLib_FIRPhase::process()
     
     unsigned long sizeIn, sizeOut;
     const double *input = getInput(0, &sizeIn);
+    double timeFactor = mParameters.getValue(kTimeFactor);
+    unsigned long processingLength = static_cast<unsigned long>(round(sizeIn * timeFactor));
     
     // Get FFT size log 2
     
-    unsigned long FFTSizeLog2 = static_cast<unsigned long>(mProcessor.calc_fft_size_log2(sizeIn));
+    unsigned long FFTSizeLog2 = static_cast<unsigned long>(mProcessor.calc_fft_size_log2(processingLength));
     unsigned long FFTSize = 1 << FFTSizeLog2;
     sizeOut = FFTSize;
     
     // Check size
     
     if (FFTSize > mProcessor.max_fft_size() || !sizeIn)
+    {
+        if (FFTSize > mProcessor.max_fft_size())
+            getReporter()(kErrorObject, getProxy(), "processing size (#) larger than maximum FFT size (#)", processingLength, mProcessor.max_fft_size());
         sizeOut = 0;
+    }
     
     // Calculate output size
     
@@ -76,5 +97,5 @@ void FrameLib_FIRPhase::process()
     // Transform
     
     if (sizeOut)
-        mProcessor.change_phase(output, input, sizeIn, mParameters.getValue(kPhase));
+        mProcessor.change_phase(output, input, sizeIn, mParameters.getValue(kPhase), timeFactor);
 }

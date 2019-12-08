@@ -16,7 +16,7 @@ class FrameLib_Expression : public FrameLib_Block
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
-    // Interal Classes
+    // Internal Classes
     
     struct Parser : public FrameLib_ExprParser::Parser<double>
     {
@@ -50,7 +50,7 @@ class FrameLib_Expression : public FrameLib_Block
         
         // Constructor
         
-        ConstantOut(FrameLib_Context context, MismatchModes mode, const double *triggers, unsigned long triggersSize, unsigned long numIns, double value);
+        ConstantOut(FrameLib_Context context, const double *triggers, unsigned long triggersSize, unsigned long numIns, double value);
         
     private:
         
@@ -60,7 +60,6 @@ class FrameLib_Expression : public FrameLib_Block
         
         // Data
         
-        MismatchModes mMode;
         double mValue;
     };
     

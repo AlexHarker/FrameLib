@@ -19,7 +19,7 @@ template<> inline const char *FrameLib_Complex_Unary<std::tanh<double>>::getOpSt
 
 template<> inline const char *FrameLib_Complex_Unary<std::log<double>>::getOpString()      { return "logarithm base e"; }
 template<> inline const char *FrameLib_Complex_Unary<std::log10<double>>::getOpString()    { return "logarithm base 10"; }
-template<> inline const char *FrameLib_Complex_Unary<std::exp<double>>::getOpString()      { return "exponent base e (e to the power of)"; }
+template<> inline const char *FrameLib_Complex_Unary<std::exp<double>>::getOpString()      { return "exponent base e (e^x)"; }
 
 template<> inline const char *FrameLib_Complex_Unary<std::sqrt<double>>::getOpString()     { return "square root"; }
 

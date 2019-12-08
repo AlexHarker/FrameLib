@@ -13,8 +13,9 @@ FrameLib_StreamID::FrameLib_StreamID(FrameLib_Context context, const FrameLib_Pa
 
 std::string FrameLib_StreamID::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs consecutively numbered stream ids for each stream of a multi-stream connection when triggered: Any input frame outputs the stream number (counting from one) on the relevant frame stream.",
-                   "Outputs consecutively numbered stream ids for each stream of a multi-stream connection when triggered.", verbose);
+    return formatInfo("Outputs the stream id for the current stream in a multi-stream connection: "
+                      "Any input triggers a single value output - the stream id (counting from one).",
+                      "Outputs the stream id for the current stream in a multi-stream connection.", verbose);
 }
 
 std::string FrameLib_StreamID::inputInfo(unsigned long idx, bool verbose)
@@ -24,7 +25,7 @@ std::string FrameLib_StreamID::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_StreamID::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Stream Number Output";
+    return "Stream ID";
 }
 
 // Stream Awareness

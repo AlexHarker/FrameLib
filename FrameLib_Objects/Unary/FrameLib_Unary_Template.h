@@ -4,8 +4,6 @@
 
 #include "FrameLib_DSP.h"
 
-// OPT - vectorise where appropriate
-
 // Unary (Operator Version)
 
 template <typename Op>
@@ -25,12 +23,13 @@ public:
     
     std::string objectInfo(bool verbose) override
     {
-        return formatInfo("Calculates the # of each value in the input frame: The output is a frame of the same size as the input.",
-                       "Calculates the # of each value in the input frame.", getOpString(), verbose);
+        return formatInfo("Calculates the # of each value in the input frame: "
+                          "The output is a frame of the same size as the input.",
+                          "Calculates the # of each value in the input frame.", getOpString(), verbose);
     }
 
     std::string inputInfo(unsigned long idx, bool verbose) override     { return "Input"; }
-    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Result"; }
+    std::string outputInfo(unsigned long idx, bool verbose) override    { return "Output"; }
 
 private:
     

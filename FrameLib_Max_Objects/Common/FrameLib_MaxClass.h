@@ -97,9 +97,10 @@ public:
             qelem_free(mQelem);
         }
         
-        void notify()
+        bool notify(const FrameLib_ErrorReporter::ErrorReport& report) override
         {
             qelem_set(mQelem);
+            return false;
         }
         
         static void errorReport(FrameLib_Global **globalHandle)
@@ -210,7 +211,7 @@ public:
     
     // Constructor and Destructor (public for max API, but use ManagedPointer from outside this class)
     
-    FrameLib_MaxGlobals(t_symbol *sym, long ac, t_atom *av)
+    FrameLib_MaxGlobals(t_object *x, t_symbol *sym, long ac, t_atom *av)
     : mReportContextErrors(false), mRTNotifier(&mRTGlobal), mNRTNotifier(&mNRTGlobal), mRTGlobal(nullptr), mNRTGlobal(nullptr), mSyncCheck(nullptr)
     {}
 
@@ -382,7 +383,7 @@ class Mutator : public MaxClass_Base
     
 public:
     
-    Mutator(t_symbol *sym, long ac, t_atom *av)
+    Mutator(t_object *x, t_symbol *sym, long ac, t_atom *av)
     {
         mObject = reinterpret_cast<t_object *>(ac ? atom_getobj(av) : nullptr);
         FLObject *object = mObject ? objectMethod<FLObject *>(mObject, gensym("__fl.get_framelib_object")) : nullptr;
@@ -472,7 +473,7 @@ public:
 
     // Constructor and Destructor
     
-    Wrapper(t_symbol *s, long argc, t_atom *argv) : mParentPatch(gensym("#P")->s_thing)
+    Wrapper(t_object *x, t_symbol *s, long argc, t_atom *argv) : mParentPatch(gensym("#P")->s_thing)
     {
         // Create patcher (you must report this as a subpatcher to get audio working)
         
@@ -845,6 +846,8 @@ public:
         addMethod(c, (method) &extConnectionUpdate, "__fl.connection_update");
         addMethod(c, (method) &extGetFLObject, "__fl.get_framelib_object");
         addMethod(c, (method) &extGetUserObject, "__fl.get_user_object");
+        addMethod(c, (method) &extGetNumAudioIns, "__fl.get_num_audio_ins");
+        addMethod(c, (method) &extGetNumAudioOuts, "__fl.get_num_audio_outs");
     }
 
     // Check if a patch in memory matches a symbol representing a path
@@ -924,9 +927,42 @@ public:
         return (assoc && objectMethod(assoc, gensym("__fl.wrapper_is_wrapper"))) ? assoc : *this;
     }
     
+    // Tag checks
+    
+    static bool isContextNameTag(t_symbol *sym)
+    {
+        return !strcmp(sym->s_name, "{id}");
+    }
+    
+    static bool isContextTag(t_symbol *sym)
+    {
+        return isContextNameTag(sym) || !strcmp(sym->s_name, "{rt}");
+    }
+    
+    static bool isParameterTag(t_symbol *sym)
+    {
+        return strlen(sym->s_name) > 1 && sym->s_name[0] == '/';
+    }
+    
+    static bool isInputTag(t_symbol *sym)
+    {
+        size_t len = strlen(sym->s_name);
+        
+        if (len > 2)
+            return (sym->s_name[0] == '[' && sym->s_name[len - 1] == ']');
+        
+        return false;
+    }
+    
+    static bool isTag(t_atom *a)
+    {
+        t_symbol *sym = atom_getsym(a);
+        return isParameterTag(sym) || isInputTag(sym) || isContextTag(sym);
+    }
+    
     // Constructor and Destructor
     
-    FrameLib_MaxClass(t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy())
+    FrameLib_MaxClass(t_object *x, t_symbol *s, long argc, t_atom *argv, FrameLib_MaxProxy *proxy = new FrameLib_MaxProxy())
     : mFrameLibProxy(proxy)
     , mConfirmation(nullptr)
     , mContextPatch(contextPatcher(gensym("#P")->s_thing))
@@ -1435,6 +1471,16 @@ public:
         return (t_ptr_int) x->confirmConnection(index, ConnectionMode::kConfirm);
     }
     
+    static t_ptr_int extGetNumAudioIns(FrameLib_MaxClass *x)
+    {
+        return x->getNumAudioIns();
+    }
+    
+    static t_ptr_int extGetNumAudioOuts(FrameLib_MaxClass *x)
+    {
+        return x->getNumAudioOuts();
+    }
+
     // id attribute
     
     static t_max_err idSet(FrameLib_MaxClass *x, t_object *attr, long argc, t_atom *argv)
@@ -1468,6 +1514,7 @@ private:
             mGlobal->releaseContext(context);
         }
     }
+    
     // Attempt to match the context to that of a given framelib object
     
     void matchContext(FrameLib_Context context)
@@ -1618,14 +1665,14 @@ private:
     
     static long getNumAudioIns(t_object *x)
     {
-        FLObject *object = toFLObject(x);
-        return static_cast<long>(object ? object->getNumAudioIns() : 0);
+        t_ptr_int numAudioIns = objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_ins"));
+        return static_cast<long>(numAudioIns);
     }
     
     static long getNumAudioOuts(t_object *x)
     {
-        FLObject *object = toFLObject(x);
-        return static_cast<long>(object ? object->getNumAudioOuts() : 0);
+        t_ptr_int numAudioOuts = objectMethod<t_ptr_int>(x, gensym("__fl.get_num_audio_outs"));
+        return static_cast<long>(numAudioOuts);
     }
     
     // Helpers for connection methods
@@ -1876,37 +1923,6 @@ private:
         }
         
         return 0;
-    }
-    
-    static bool isContextNameTag(t_symbol *sym)
-    {
-        return !strcmp(sym->s_name, "{id}");
-    }
-    
-    static bool isContextTag(t_symbol *sym)
-    {
-        return isContextNameTag(sym) || !strcmp(sym->s_name, "{rt}");
-    }
-    
-    static bool isParameterTag(t_symbol *sym)
-    {        
-        return strlen(sym->s_name) > 1 && sym->s_name[0] == '/';
-    }
-    
-    static bool isInputTag(t_symbol *sym)
-    {
-        size_t len = strlen(sym->s_name);
-        
-        if (len > 2)
-            return (sym->s_name[0] == '[' && sym->s_name[len - 1] == ']');
-        
-        return false;
-    }
-    
-    static bool isTag(t_atom *a)
-    {
-        t_symbol *sym = atom_getsym(a);
-        return isParameterTag(sym) || isInputTag(sym) || isContextTag(sym);
     }
     
     long parseNumericalList(std::vector<double> &values, t_atom *argv, long argc, long idx)

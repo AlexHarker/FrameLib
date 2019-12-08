@@ -130,9 +130,9 @@ public:
     
     // Phase
     
-    void change_phase(T *output, const T *input, uintptr_t size, double phase)
+    void change_phase(T *output, const T *input, uintptr_t size, double phase, double time_multiplier = 1.0)
     {
-        uintptr_t fft_size_log2 = calc_fft_size_log2(size);
+        uintptr_t fft_size_log2 = calc_fft_size_log2((uintptr_t) std::round(size * time_multiplier));
         uintptr_t fft_size = uintptr_t(1) << fft_size_log2;
         
         temporary_buffers<1> buffer(m_allocator, fft_size >> 1);

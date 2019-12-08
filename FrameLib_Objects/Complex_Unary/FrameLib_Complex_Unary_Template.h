@@ -5,8 +5,6 @@
 #include <complex>
 #include "FrameLib_DSP.h"
 
-// OPT - vectorise where appropriate
-
 // Complex Unary (Operator Version)
 
 template <typename Op>
@@ -26,8 +24,11 @@ public:
     
     std::string objectInfo(bool verbose) override
     {
-        return formatInfo("Calculates the # of each complex value at the inputs: Both inputs and outputs are split into real and imaginary parts. The outputs are frames of the same size as the longer of the two inputs. If one input is shorter then the other then it is padded with zeros to the length of the other before calculation.",
-                       "Calculates the # of each complex value at the inputs.", getOpString(), verbose);
+        return formatInfo("Calculates the # of each complex value at the inputs: "
+                          "Both input and output are split into real and imaginary parts. "
+                          "The outputs are frames of the same size as the longer of the two inputs. "
+                          "If inputs are mismatched then the shorter input is padded with zeros.",
+                          "Calculates the # of each complex value at the inputs.", getOpString(), verbose);
     }
 
     std::string inputInfo(unsigned long idx, bool verbose) override

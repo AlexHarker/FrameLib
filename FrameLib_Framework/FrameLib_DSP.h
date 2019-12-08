@@ -27,6 +27,7 @@ class FrameLib_DSP : public FrameLib_Block
 , public FrameLib_ProcessingQueue::Node
 {
     using BlockQueue = FrameLib_MethodQueue<FrameLib_Block>;
+    using LocalAllocator = FrameLib_LocalAllocator;
     using LocalQueue = FrameLib_MethodQueue<FrameLib_DSP>;
     using NotificationQueue = FrameLib_ProcessingQueue::PrepQueue;
     using Serial = FrameLib_Parameters::Serial;
@@ -304,14 +305,14 @@ private:
     // Manage Output Memory
 
     inline void freeOutputMemory();
-    inline void releaseOutputMemory();
+    inline void releaseOutputMemory(LocalAllocator *allocator);
 
     // Dependency Notification
     
-    bool dependencyNotify(bool releaseMemory, NotificationType type);
-    void dependencyNotify(NotificationQueue &queue, bool releaseMemory, NotificationType type);
+    bool dependencyNotify(NotificationType type, bool releaseMemory, LocalAllocator *allocator);
+    void dependencyNotify(NotificationType type, bool releaseMemory, LocalAllocator *allocator, NotificationQueue &queue);
     
-    void dependenciesReady(FrameLib_LocalAllocator *allocator);
+    void dependenciesReady(LocalAllocator *allocator);
     void incrementInputDependency();
     void resetOutputDependencyCount();
     int32_t getNumOuputDependencies()         { return static_cast<int32_t>(mOutputDependencies.size()); }

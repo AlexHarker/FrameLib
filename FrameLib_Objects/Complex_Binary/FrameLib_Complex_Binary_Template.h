@@ -5,8 +5,6 @@
 #include <complex>
 #include "FrameLib_DSP.h"
 
-// OPT - vectorise where appropriate
-
 // Complex Binary Operator
 
 template <typename Op>
@@ -64,7 +62,7 @@ class FrameLib_Complex_BinaryOp final : public FrameLib_Processor
             add("Sets the mode used when dealing with mismatched input lengths: "
                 "wrap - the smaller input is read modulo against the larger input. "
                 "shrink - the output length is set to the size of the smaller input. "
-                "pad_in - the smaller input is padded prior to calculation to match the size of the larger input. "
+                "pad_in - the smaller input is padded prior to calculation to match the larger input. "
                 "pad_out - the output is padded to match the size of the larger input.");
             add("Sets which pairs of inputs trigger output.");
             add("Sets the complex value used for padding (for either pad_in or pad_out modes).");
@@ -118,9 +116,13 @@ public:
     
     std::string objectInfo(bool verbose) override
     {
-        return formatInfo("#: Calculation is performed on pairs of complex values in turn (with each complex value split across two inputs). If there is a mismatch between frame lengths within each complex pair (within a single operand) the shorter input is padded with zeros before calculation and the longer size used). The outputs are frames at least as long as the smaller of the two input pairs. "
-                       "When complex pairs of frames (left and right operands) mismatch in size the result depends on the setting of the mismatch parameter. Either or both pairs of inputs may be set to trigger output.",
-                       "#.", getDescriptionString(), verbose);
+        return formatInfo("#: Calculation is performed on pairs of complex values. "
+                          "Both inputs and output are split into real and imaginary parts . "
+                          "The outputs are frames at least as long as the shorter of the two operands. "
+                          "If input pairs are mismatched then the shorter input is padded with zeros. "
+                          "When operands mismatch in size the result depends on the mismatch parameter. "
+                          "Either or both pairs of inputs may be set to trigger output.",
+                          "#.", getDescriptionString(), verbose);
     }
         
     std::string inputInfo(unsigned long idx, bool verbose) override

@@ -45,7 +45,7 @@ public:
      
     // Constructor
     
-    FrameLib_MaxClass_Info(t_symbol *s, long argc, t_atom *argv) : FrameLib_MaxClass(s, argc, argv, new ReadProxy()) {}
+    FrameLib_MaxClass_Info(t_object *x, t_symbol *s, long argc, t_atom *argv) : FrameLib_MaxClass(x, s, argc, argv, new ReadProxy()) {}
 };
 
 // Proxy Init
