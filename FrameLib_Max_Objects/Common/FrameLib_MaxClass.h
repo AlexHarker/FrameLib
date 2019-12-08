@@ -797,11 +797,6 @@ public:
         MaxClass_Base::makeClass<U>(CLASS_BOX, internalClassName.c_str());
     }
     
-    void reallyTime()
-    {
-        object_post(*this, "Realtime %d", isRealtime());
-    }
-    
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)
     {
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::assist>(c, "assist");
@@ -810,8 +805,6 @@ public:
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
         
-        addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::reallyTime>(c, "real");
-
         if (T::handlesAudio())
         {
             addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::reset>(c, "reset");
