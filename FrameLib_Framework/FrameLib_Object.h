@@ -189,7 +189,7 @@ public:
     
     // Return to host to request to be passed audio
     
-    static bool handlesAudio()  { return false; }
+    bool handlesAudio() const  { return mType == kScheduler || getNumAudioChans(); }
     
     // Info
 

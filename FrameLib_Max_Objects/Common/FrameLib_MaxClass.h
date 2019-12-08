@@ -789,7 +789,7 @@ public:
         
         std::string internalClassName = className;
         
-        if (T::handlesAudio())
+        if (T::sHandlesAudio)
         {
             Wrapper<U>:: template makeClass<Wrapper<U>>(CLASS_BOX, className);
             internalClassName.insert(0, "unsynced.");
@@ -806,7 +806,7 @@ public:
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
         
-        if (T::handlesAudio())
+        if (T::sHandlesAudio)
         {
             addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::reset>(c, "reset");
             addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::process>(c, "process");
@@ -964,7 +964,7 @@ public:
     , mConnectionsUpdated(false)
     , mResolved(false)
     , mBuffer(gensym(""))
-    , mContext{ handlesAudio(), contextPatcher(gensym("#P")->s_thing), gensym("") }
+    , mContext{ T::sType == kScheduler, contextPatcher(gensym("#P")->s_thing), gensym("") }
     {
         // Deal with attributes
         
@@ -1193,7 +1193,7 @@ public:
     ObjectType getType() const                  { return mObject->getType(); }
     
     bool isRealtime() const                     { return mContext.mRealtime; }
-    bool handlesAudio() const                   { return T::handlesAudio(); }
+    bool handlesAudio() const                   { return T::sHandlesAudio; }
     bool supportsOrderingConnections() const    { return mObject->supportsOrderingConnections(); }
 
     long audioIOSize(long chans) const          { return chans + (handlesAudio() ? 1 : 0); }

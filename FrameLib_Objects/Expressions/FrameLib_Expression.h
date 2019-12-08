@@ -65,14 +65,13 @@ class FrameLib_Expression : public FrameLib_Block
     
 public:
     
+    static constexpr ObjectType sType = kProcessor;
+    static constexpr bool sHandlesAudio = false;
+    
     // Constructor 
     
     FrameLib_Expression(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
 
-    // Object Type
-    
-    static ObjectType getType() { return kProcessor; }
-    
     // Info
     
     std::string objectInfo(bool verbose) override;
