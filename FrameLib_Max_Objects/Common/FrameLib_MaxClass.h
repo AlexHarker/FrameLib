@@ -756,7 +756,7 @@ public:
         
         std::string internalClassName = className;
         
-        if (T::handlesAudio())
+        if (T::sHandlesAudio)
         {
             Wrapper<U>:: template makeClass<Wrapper<U>>(CLASS_BOX, className);
             internalClassName.insert(0, "unsynced.");
@@ -773,7 +773,7 @@ public:
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::sync>(c, "sync");
         addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::dsp>(c);
         
-        if (T::handlesAudio())
+        if (T::sHandlesAudio)
         {
             addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::reset>(c, "reset");
             addMethod<FrameLib_MaxClass<T>, &FrameLib_MaxClass<T>::process>(c, "process");
@@ -965,7 +965,7 @@ public:
 
         FrameLib_Parameters::AutoSerial serialisedParameters;
         parseParameters(serialisedParameters, argc, argv);
-        FrameLib_Context context = mGlobal->makeContext(parseContext(T::handlesAudio(), mContextPatch, argc, argv));
+        FrameLib_Context context = mGlobal->makeContext(parseContext(T::sHandlesAudio, mContextPatch, argc, argv));
         mFrameLibProxy->mMaxObject = *this;
         mObject.reset(new T(context, &serialisedParameters, mFrameLibProxy.get(), mSpecifiedStreams));
         parseInputs(argc, argv);
@@ -1174,7 +1174,7 @@ public:
     ObjectType getType() const                  { return mObject->getType(); }
     
     bool isRealtime() const                     { return mGlobal->isRealtimeContext(mObject->getContext()); }
-    bool handlesAudio() const                   { return T::handlesAudio(); }
+    bool handlesAudio() const                   { return T::sHandlesAudio; }
     bool handlesRealtimeAudio() const           { return handlesAudio() && isRealtime(); }
     bool supportsOrderingConnections() const    { return mObject->supportsOrderingConnections(); }
 

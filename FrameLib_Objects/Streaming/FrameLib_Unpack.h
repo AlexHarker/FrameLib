@@ -14,6 +14,9 @@ class FrameLib_Unpack final : public FrameLib_Multistream
     
 public:
     
+    static constexpr ObjectType sType = kProcessor;
+    static constexpr bool sHandlesAudio = false;
+    
     // Constructor
 
     const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }

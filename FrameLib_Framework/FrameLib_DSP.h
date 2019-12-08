@@ -387,11 +387,11 @@ class FrameLib_Processor : public FrameLib_DSP
     
 public:
     
+    static constexpr ObjectType sType = kProcessor;
+    static constexpr bool sHandlesAudio = false;
+    
     FrameLib_Processor(FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0)
     : FrameLib_DSP(kProcessor, context, proxy, info, nIns, nOuts) {}
-    
-    static ObjectType getType() { return kProcessor; }
-    static bool handlesAudio()  { return false; }
 
 protected:
     
@@ -420,11 +420,11 @@ class FrameLib_AudioInput : public FrameLib_DSP
     
 public:
     
+    static constexpr ObjectType sType = kProcessor;
+    static constexpr bool sHandlesAudio = true;
+    
     FrameLib_AudioInput(FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
     : FrameLib_DSP(kProcessor, context, proxy, info, nIns, nOuts, nAudioIns) {}
-
-    static ObjectType getType() { return kProcessor; }
-    static bool handlesAudio()  { return true; }
     
 protected:
     
@@ -451,12 +451,12 @@ class FrameLib_AudioOutput : public FrameLib_DSP
     
 public:
     
+    static constexpr ObjectType sType = kOutput;
+    static constexpr bool sHandlesAudio = true;
+    
     FrameLib_AudioOutput(FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioOuts = 0)
     : FrameLib_DSP(kOutput, context, proxy, info, nIns, nOuts, nAudioOuts) {}
-    
-    static ObjectType getType() { return kOutput; }
-    static bool handlesAudio()  { return true; }
-    
+
 protected:
     
     // This prevents the user from needing to implement this method
@@ -482,11 +482,11 @@ class FrameLib_Scheduler : public FrameLib_DSP
 
 public:
     
+    static constexpr ObjectType sType = kScheduler;
+    static constexpr bool sHandlesAudio = true;
+    
     FrameLib_Scheduler(FrameLib_Context context, FrameLib_Proxy *proxy, FrameLib_Parameters::Info *info, unsigned long nIns = 0, unsigned long nOuts = 0, unsigned long nAudioIns = 0)
     : FrameLib_DSP(kScheduler, context, proxy, info, nIns, nOuts, nAudioIns) {}
-    
-    static ObjectType getType() { return kScheduler; }
-    static bool handlesAudio()  { return true; }
     
 protected:
 

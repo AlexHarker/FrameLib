@@ -326,7 +326,7 @@ void FLTest_Ctor(FrameLib_SC_UGen* unit)
     int nStreams = 1;
     unit->mObject = new T(context, paramUGen->mSerial, unit->mProxy, nStreams);
     unit->mAudioBuffers = nullptr;
-    bool handlesAudio = T::handlesAudio();
+    bool handlesAudio = T::sHandlesAudio;
     
     unsigned long numUnitIns = unit->mNumInputs;
     unsigned long numAudioIns = unit->mObject->getNumAudioIns();

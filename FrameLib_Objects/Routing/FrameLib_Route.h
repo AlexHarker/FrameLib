@@ -41,13 +41,12 @@ class FrameLib_Route : public FrameLib_Block
 
 public:
     
+    static constexpr ObjectType sType = kProcessor;
+    static constexpr bool sHandlesAudio = false;
+    
     // Constructor
     
     FrameLib_Route(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
-    
-    // Object Type
-    
-    static ObjectType getType() { return kProcessor; }
     
     // Info
     

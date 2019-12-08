@@ -57,10 +57,6 @@ public:
     FrameLib_Multistream(const FrameLib_Multistream&) = delete;
     FrameLib_Multistream& operator=(const FrameLib_Multistream&) = delete;
 
-    // Default is not to handle audio
-    
-    static bool handlesAudio() { return false; }
-
     // Number of Streams
     
     unsigned long getNumStreams() { return mNumStreams; }
@@ -126,10 +122,13 @@ class FrameLib_Expand final : public FrameLib_Multistream
 
 public:
     
+    static constexpr ObjectType sType = T::sType;
+    static constexpr bool sHandlesAudio = T::sHandlesAudio;
+    
     const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
 
     FrameLib_Expand(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
-    : FrameLib_Multistream(T::getType(), context, proxy, nStreams), mSerialisedParameters(serialisedParameters ? serialisedParameters->size() : 0)
+    : FrameLib_Multistream(T::sType, context, proxy, nStreams), mSerialisedParameters(serialisedParameters ? serialisedParameters->size() : 0)
     {
         // Make first block
         
@@ -232,10 +231,6 @@ public:
         for (auto it = mBlocks.begin(); it != mBlocks.end(); it++)
             (*it)->reset(samplingRate, maxBlockSize);
     }
-    
-    // Handles Audio
-    
-    static bool handlesAudio() { return T::handlesAudio(); }
     
     // Info
     
