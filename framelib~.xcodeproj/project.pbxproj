@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		267EF00D23620B6D00FDA588 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
-		267EF00E23620B6D00FDA588 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		267EF01823620BD900FDA588 /* FrameLib_CombineTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 267EF01723620BD900FDA588 /* FrameLib_CombineTime.cpp */; };
 		5A3CAB1E2052E7E8001082E3 /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		5A3CAB1F2052E7E8001082E3 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		5AB54BBF2052E96E00325C14 /* fl.wrap~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AB54BBE2052E96E00325C14 /* fl.wrap~.cpp */; };
@@ -730,13 +727,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		267EF00423620B6D00FDA588 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B89ABA8F1FA73483006DAD53;
-			remoteInfo = framelib;
-		};
 		5A3CAB172052E7E8001082E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
@@ -1948,11 +1938,6 @@
 
 /* Begin PBXFileReference section */
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
-		267EF01323620B6D00FDA588 /* fl.combinetime~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.combinetime~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		267EF01723620BD900FDA588 /* FrameLib_CombineTime.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FrameLib_CombineTime.cpp; path = FrameLib_Objects/Timing/FrameLib_CombineTime.cpp; sourceTree = "<group>"; };
-		267EF01923620C0500FDA588 /* fl.combinetime~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.combinetime~.cpp"; sourceTree = "<group>"; };
-		267EF01B23620C2A00FDA588 /* FrameLib_CombineTime.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_CombineTime.cpp; sourceTree = "<group>"; };
-		267EF01C23620C2B00FDA588 /* FrameLib_CombineTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_CombineTime.h; sourceTree = "<group>"; };
 		5A3CAB132052E67E001082E3 /* FrameLib_Ternary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Objects.h; sourceTree = "<group>"; };
 		5A3CAB142052E67E001082E3 /* FrameLib_Ternary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Ternary_Template.h; sourceTree = "<group>"; };
 		5A3CAB262052E7E8001082E3 /* fl.wrap~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.wrap~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2538,15 +2523,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		267EF00C23620B6D00FDA588 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				267EF00D23620B6D00FDA588 /* libframelib.a in Frameworks */,
-				267EF00E23620B6D00FDA588 /* MaxAudioAPI.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5A3CAB1C2052E7E8001082E3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -4092,7 +4068,6 @@
 		089C166AFE841209C02AAC07 /* plus~ */ = {
 			isa = PBXGroup;
 			children = (
-				267EF01723620BD900FDA588 /* FrameLib_CombineTime.cpp */,
 				B80F698A19A77384008F748B /* Config_FrameLib.xcconfig */,
 				08FB77ADFE841716C02AAC07 /* Source */,
 				089C167CFE841241C02AAC07 /* Resources */,
@@ -4310,7 +4285,6 @@
 				B8A20FFC22FCD7E300DF86D8 /* fl.firphase~.mxo */,
 				B85536EE22FEB88100D10495 /* fl.kernelsmooth~.mxo */,
 				B8020485231BDCB80062447A /* maxframelib.mxo */,
-				267EF01323620B6D00FDA588 /* fl.combinetime~.mxo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4928,8 +4902,6 @@
 		B8B4C8771F334536008E5D31 /* Timing */ = {
 			isa = PBXGroup;
 			children = (
-				267EF01B23620C2A00FDA588 /* FrameLib_CombineTime.cpp */,
-				267EF01C23620C2B00FDA588 /* FrameLib_CombineTime.h */,
 				B8B4C89C1F334614008E5D31 /* FrameLib_Now.h */,
 				B8B4C89B1F334614008E5D31 /* FrameLib_Now.cpp */,
 				B87E9DF31F8DB1020000886E /* FrameLib_TimeDelta.h */,
@@ -4945,7 +4917,6 @@
 		B8B4C8781F334547008E5D31 /* Timing */ = {
 			isa = PBXGroup;
 			children = (
-				267EF01923620C0500FDA588 /* fl.combinetime~.cpp */,
 				B8B4C8991F3345A7008E5D31 /* fl.now~.cpp */,
 				B87E9DF41F8DB1B90000886E /* fl.timedelta~.cpp */,
 				B86387B61F8DB45D00D31E15 /* fl.timer~.cpp */,
@@ -5207,13 +5178,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		267EF00523620B6D00FDA588 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5A3CAB182052E7E8001082E3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -6404,26 +6368,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		267EF00223620B6D00FDA588 /* fl.combinetime~ */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 267EF00F23620B6D00FDA588 /* Build configuration list for PBXNativeTarget "fl.combinetime~" */;
-			buildPhases = (
-				267EF00523620B6D00FDA588 /* Headers */,
-				267EF00723620B6D00FDA588 /* Resources */,
-				267EF00823620B6D00FDA588 /* Sources */,
-				267EF00C23620B6D00FDA588 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				267EF00323620B6D00FDA588 /* PBXTargetDependency */,
-			);
-			name = "fl.combinetime~";
-			productInstallPath = "$(HOME)/Library/Bundles";
-			productName = MSPExternal;
-			productReference = 267EF01323620B6D00FDA588 /* fl.combinetime~.mxo */;
-			productType = "com.apple.product-type.bundle";
-		};
 		5A3CAB152052E7E8001082E3 /* fl.wrap~ */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A3CAB212052E7E8001082E3 /* Build configuration list for PBXNativeTarget "fl.wrap~" */;
@@ -10040,19 +9984,11 @@
 				B83F044D223A762800AF1F8E /* fl.info~ */,
 				B8A20FEB22FCD7E300DF86D8 /* fl.firphase~ */,
 				B85536D922FEB88100D10495 /* fl.kernelsmooth~ */,
-				267EF00223620B6D00FDA588 /* fl.combinetime~ */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		267EF00723620B6D00FDA588 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5A3CAB192052E7E8001082E3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -11235,14 +11171,6 @@
 /* End PBXRezBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		267EF00823620B6D00FDA588 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				267EF01823620BD900FDA588 /* FrameLib_CombineTime.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5A3CAB1A2052E7E8001082E3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -12806,11 +12734,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		267EF00323620B6D00FDA588 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B89ABA8F1FA73483006DAD53 /* framelib */;
-			targetProxy = 267EF00423620B6D00FDA588 /* PBXContainerItemProxy */;
-		};
 		5A3CAB162052E7E8001082E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B89ABA8F1FA73483006DAD53 /* framelib */;
@@ -13787,100 +13710,6 @@
 				LLVM_LTO = NO;
 			};
 			name = Deployment;
-		};
-		267EF01023620B6D00FDA588 /* Development */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_ENABLE_SSE3_EXTENSIONS = YES;
-				GCC_ENABLE_TRIGRAPHS = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_PPC64 = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_UNROLL_LOOPS = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				ZERO_LINK = YES;
-			};
-			name = Development;
-		};
-		267EF01123620B6D00FDA588 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DEBUGGING_SYMBOLS = default;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_SSE3_EXTENSIONS = YES;
-				GCC_ENABLE_TRIGRAPHS = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_PPC64 = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_UNROLL_LOOPS = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-		267EF01223620B6D00FDA588 /* Public Testing */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B81CE02C207FC02000EAC64C /* Config_FrameLib_Max.xcconfig */;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DEBUGGING_SYMBOLS = default;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_SSE3_EXTENSIONS = YES;
-				GCC_ENABLE_TRIGRAPHS = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_PPC64 = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_UNROLL_LOOPS = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				ZERO_LINK = NO;
-			};
-			name = "Public Testing";
 		};
 		5A3CAB222052E7E8001082E3 /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -29174,16 +29003,6 @@
 				0FFBC545097463A900D78707 /* Development */,
 				0FFBC546097463A900D78707 /* Deployment */,
 				B85A959F1F60A56C00D6C72B /* Public Testing */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Development;
-		};
-		267EF00F23620B6D00FDA588 /* Build configuration list for PBXNativeTarget "fl.combinetime~" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				267EF01023620B6D00FDA588 /* Development */,
-				267EF01123620B6D00FDA588 /* Deployment */,
-				267EF01223620B6D00FDA588 /* Public Testing */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
