@@ -246,7 +246,8 @@
 									"id" : "obj-22",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
-									"numoutlets" : 0,
+									"numoutlets" : 1,
+									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 300.0, 465.0, 183.0, 22.0 ],
 									"text" : "fl.sink~ {rt} 0 @buffer with_read2"
 								}
@@ -353,7 +354,8 @@
 									"id" : "obj-12",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
-									"numoutlets" : 0,
+									"numoutlets" : 1,
+									"outlettype" : [ "signal" ],
 									"patching_rect" : [ 15.0, 360.0, 195.0, 22.0 ],
 									"text" : "fl.sink~ {rt} 0 @buffer with_source2"
 								}
@@ -435,7 +437,7 @@
 								"box" : 								{
 									"id" : "obj-3",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 15.0, 225.0, 224.0, 22.0 ],
@@ -789,7 +791,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 721.0, 707.0 ],
+						"rect" : [ 34.0, 105.0, 721.0, 707.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -830,38 +832,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 465.0, 300.0, 210.0, 90.0 ],
-									"proportion" : 0.5
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"angle" : 270.0,
-									"bgcolor" : [ 0.2, 0.2, 0.2, 0.0 ],
-									"border" : 2,
-									"bordercolor" : [ 0.431372549019608, 0.643137254901961, 0.450980392156863, 1.0 ],
-									"id" : "obj-82",
-									"maxclass" : "panel",
-									"mode" : 0,
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 270.0, 210.0, 210.0 ],
-									"proportion" : 0.5
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"angle" : 270.0,
-									"bgcolor" : [ 0.2, 0.2, 0.2, 0.0 ],
-									"border" : 2,
-									"bordercolor" : [ 0.756862745098039, 0.517647058823529, 0.517647058823529, 1.0 ],
-									"id" : "obj-81",
-									"maxclass" : "panel",
-									"mode" : 0,
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 270.0, 150.0, 210.0 ],
 									"proportion" : 0.5
 								}
 
@@ -1129,7 +1099,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 495.0, 690.0, 100.0 ],
-									"text" : "Here, the left most network belongs to the default context whereas the right most network belongs to its own context with the @id \"custom\". \n\nIt is important to know which context your network belongs to, as processing in non-realtime is controlled on a per-context basis. If multiple independent networks all belong to the same context you cannot control each one seperately and manually progressing time is a mechanism which operates on a context."
+									"text" : "Here, the left most network belongs to the default context whereas the right most network belongs to its own context with the @id \"cycling\". \n\nIt is important to know which context your network belongs to, as processing in non-realtime is controlled on a per-context basis. If multiple independent networks all belong to the same context you cannot control each one seperately and manually progressing time is a mechanism which operates on a context."
 								}
 
 							}
@@ -1180,7 +1150,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 195.0, 285.0, 195.0, 22.0 ],
-									"text" : "Custom named context 'custom'"
+									"text" : "Custom named context 'cycling'"
 								}
 
 							}
@@ -1216,8 +1186,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 195.0, 309.0, 163.0, 22.0 ],
-									"text" : "fl.interval~ 44100 {id} custom"
+									"patching_rect" : [ 195.0, 309.0, 165.0, 22.0 ],
+									"text" : "fl.interval~ 44100 @id cycling"
 								}
 
 							}
@@ -1294,6 +1264,40 @@
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 15.0, 399.0, 30.0 ],
 									"text" : "Contexts"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"angle" : 270.0,
+									"background" : 1,
+									"bgcolor" : [ 0.2, 0.2, 0.2, 0.0 ],
+									"border" : 2,
+									"bordercolor" : [ 0.431372549019608, 0.643137254901961, 0.450980392156863, 1.0 ],
+									"id" : "obj-82",
+									"maxclass" : "panel",
+									"mode" : 0,
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 180.0, 270.0, 210.0, 210.0 ],
+									"proportion" : 0.5
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"angle" : 270.0,
+									"background" : 1,
+									"bgcolor" : [ 0.2, 0.2, 0.2, 0.0 ],
+									"border" : 2,
+									"bordercolor" : [ 0.756862745098039, 0.517647058823529, 0.517647058823529, 1.0 ],
+									"id" : "obj-81",
+									"maxclass" : "panel",
+									"mode" : 0,
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 270.0, 150.0, 210.0 ],
+									"proportion" : 0.5
 								}
 
 							}
@@ -1464,7 +1468,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 721.0, 707.0 ],
+						"rect" : [ 0.0, 26.0, 721.0, 707.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
