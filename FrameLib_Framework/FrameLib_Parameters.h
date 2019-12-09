@@ -153,10 +153,12 @@ public:
         
         // Size Calculations
         
-        static unsigned long calcSize(const Serial *serialised)            { return serialised != nullptr ? serialised->mSize : 0; }
+        static unsigned long calcSize(const Serial *serialised)             { return serialised != nullptr ? serialised->mSize : 0; }
         static unsigned long calcSize(const FrameLib_Parameters *params);
-        static unsigned long calcSize(const char *tag, const char *str)    { return sizeType() + sizeString(tag) + sizeString(str); }
-        static unsigned long calcSize(const char *tag, unsigned long N)    { return sizeType() + sizeString(tag) + sizeArray(N); }
+        static unsigned long calcSize(const char *tag, const char *str)     { return sizeType() + sizeString(tag) + sizeString(str); }
+        static unsigned long calcSize(const char *tag, unsigned long N)     { return sizeType() + sizeString(tag) + sizeArray(N); }
+        static unsigned long calcString(size_t tagLength, size_t strLength) { return sizeType() + sizeString(tagLength) + sizeString(strLength); }
+        static unsigned long calcVector(size_t tagLength, unsigned long N)  { return sizeType() + sizeString(tagLength) + sizeArray(N); }
         
         // Get Sizes
         
@@ -219,6 +221,7 @@ public:
         static unsigned long sizeType()                    { return alignSize(sizeof(DataType)); }
         static unsigned long sizeSize()                    { return alignSize(sizeof(unsigned long)); }
         static unsigned long sizeString(const char *str)   { return sizeSize() + alignSize(strlen(str) + 1); }
+        static unsigned long sizeString(size_t length)     { return sizeSize() + alignSize(length + 1); }
         static unsigned long sizeArray(unsigned long N)    { return sizeSize() + alignSize((N * sizeof(double))); }
         
         // Write Item

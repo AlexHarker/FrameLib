@@ -20,6 +20,39 @@ void FrameLib_ErrorReporter::ErrorReport::getErrorText(std::string& text) const
     }
 }
 
+void FrameLib_ErrorReporter::ErrorReport::getErrorText(char *text, size_t N) const
+{
+    const char *errorPtr = mError;
+    const char *itemsPtr = mItems;
+    
+    size_t j = 0, k = 0;
+    
+    for (unsigned long i = 0; i < mNumItems; i++, errorPtr += j + 1, itemsPtr += k + 1)
+    {
+        for (j = 0; errorPtr[j]; j++)
+            if (errorPtr[j] == '#')
+                break;
+        
+        if (!errorPtr[j])
+            break;
+        
+        k = strlen(itemsPtr);
+        copy(text, errorPtr, j, N);
+        copy(text, itemsPtr, k, N);
+    }
+    
+    copy(text, errorPtr, strlen(errorPtr), N);
+}
+
+void FrameLib_ErrorReporter::ErrorReport::copy(char*& dest, const char *str, size_t length, size_t& left) const
+{
+    size_t size = std::min(length, left - 1);
+    std::copy(str, str + size, dest);
+    dest += size;
+    left -= size;
+    dest[0] = 0;
+}
+
 // Retrieve errors (passes ownership to the host)
 
 std::unique_ptr<FrameLib_ErrorReporter::ErrorList> FrameLib_ErrorReporter::getErrors()
