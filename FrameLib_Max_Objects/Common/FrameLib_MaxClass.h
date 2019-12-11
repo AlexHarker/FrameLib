@@ -11,6 +11,8 @@
 #include "FrameLib_Multistream.h"
 #include "FrameLib_SerialiseGraph.h"
 
+#include <algorithm>
+#include <cctype>
 #include <string>
 #include <vector>
 
@@ -600,7 +602,12 @@ public:
         strncpy_zero(fileName, name->s_name, MAX_FILENAME_CHARS);
         locatefile_extended(fileName, &outvol, &outtype, validTypes, numTypes);
         
-        return !strcmp(jpatcher_get_filename(patch)->s_name, fileName);
+        const char *name1 = fileName;
+        const char *name2 = jpatcher_get_filename(patch)->s_name;
+        auto endString = [](const char *str) { return str + strlen(str); };
+        auto ciComp = [](char c1, char c2) { return std::tolower(c1) < std::tolower(c2); };
+        
+        return !std::lexicographical_compare(name2, endString(name2), name1, endString(name1), ciComp);
     }
     
     // Find the patcher for the context
