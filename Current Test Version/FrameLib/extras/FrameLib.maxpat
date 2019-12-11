@@ -87,6 +87,17 @@
 						"showontab" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-1",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 270.0, 405.0, 54.0, 22.0 ],
+									"text" : "onecopy"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-2",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -2286,7 +2297,7 @@
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
-									"tabs" : [ "fl.info~", "fl.read~" ],
+									"tabs" : [ "--" ],
 									"truncate" : 0
 								}
 
@@ -2667,6 +2678,17 @@
 						"subpatcher_template" : "default",
 						"showontab" : 1,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 270.0, 525.0, 54.0, 22.0 ],
+									"text" : "onecopy"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"button" : 1,
 									"fontsize" : 12.0,
@@ -3223,7 +3245,7 @@
 									"patching_rect" : [ 30.0, 138.0, 230.0, 71.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 2,
-									"presentation_rect" : [ 240.0, 120.0, 405.0, 50.0 ],
+									"presentation_rect" : [ 240.0, 120.0, 408.0, 50.0 ],
 									"text" : "Tutorial 1: An introduction to FrameLib and frame based processing.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
@@ -4197,7 +4219,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 513.0, 170.0, 45.0 ],
+									"patching_rect" : [ 30.0, 513.0, 173.0, 45.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 240.0, 425.0, 282.0, 26.0 ],
 									"text" : "<- hover for info, click to start the tutorial"
@@ -4512,6 +4534,17 @@
 						"subpatcher_template" : "default",
 						"showontab" : 1,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 180.0, 525.0, 54.0, 22.0 ],
+									"text" : "onecopy"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"fontface" : 0,
 									"fontname" : "Lato",
