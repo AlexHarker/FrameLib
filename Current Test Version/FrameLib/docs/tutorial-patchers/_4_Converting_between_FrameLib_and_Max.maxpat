@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 1,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 887.0, 720.0 ],
+		"rect" : [ 34.0, 79.0, 871.0, 720.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -50,14 +50,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 887.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 871.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -120,7 +120,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 818.75, 630.0, 45.0, 45.0 ]
+									"patching_rect" : [ 810.0, 630.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -140,6 +140,7 @@
 								"box" : 								{
 									"id" : "obj-24",
 									"maxclass" : "number",
+									"maximum" : 512,
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
@@ -156,7 +157,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 444.75, 342.5, 397.0, 181.0 ],
+									"patching_rect" : [ 450.0, 345.0, 375.0, 181.0 ],
 									"text" : "The fl.source~ object above is always 256 samples 'behind' the original audio stream because it has to collect the amount of samples specified by the /length parameter. This takes time! The delay parameter of fl.sink~ is also set to 256 samples so the total delay of the FrameLib network is 512 samples.\n\nBy delaying the original signal by this amount the FrameLib process and the original signal are aligned in a sample accurate manner.\n\nWe can verify this by subtracting the two audio streams from each other which should sum to 0."
 								}
 
@@ -559,8 +560,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -605,206 +606,6 @@
 					}
 ,
 					"text" : "p audio-frommax(2)"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-7",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 0,
-					"patcher" : 					{
-						"fileversion" : 1,
-						"appversion" : 						{
-							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
-							"architecture" : "x64",
-							"modernui" : 1
-						}
-,
-						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 887.0, 694.0 ],
-						"bglocked" : 0,
-						"openinpresentation" : 0,
-						"default_fontsize" : 13.0,
-						"default_fontface" : 0,
-						"default_fontname" : "Arial",
-						"gridonopen" : 2,
-						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 2,
-						"objectsnaponopen" : 1,
-						"statusbarvisible" : 2,
-						"toolbarvisible" : 1,
-						"lefttoolbarpinned" : 0,
-						"toptoolbarpinned" : 0,
-						"righttoolbarpinned" : 0,
-						"bottomtoolbarpinned" : 0,
-						"toolbars_unpinned_last_save" : 0,
-						"tallnewobj" : 0,
-						"boxanimatetime" : 200,
-						"enablehscroll" : 1,
-						"enablevscroll" : 1,
-						"devicewidth" : 0.0,
-						"description" : "",
-						"digest" : "",
-						"tags" : "",
-						"style" : "",
-						"subpatcher_template" : "default",
-						"showontab" : 1,
-						"title" : "Audio From Max (3)",
-						"boxes" : [ 							{
-								"box" : 								{
-									"bgmode" : 0,
-									"border" : 0,
-									"clickthrough" : 0,
-									"enablehscroll" : 0,
-									"enablevscroll" : 0,
-									"id" : "obj-3",
-									"lockeddragscroll" : 0,
-									"maxclass" : "bpatcher",
-									"name" : "fl.explain.ola.maxpat",
-									"numinlets" : 0,
-									"numoutlets" : 0,
-									"offset" : [ 0.0, 0.0 ],
-									"patching_rect" : [ 15.0, 46.0, 855.0, 638.000004172325134 ],
-									"viewvisibility" : 1
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"fontface" : 1,
-									"fontname" : "Lato Regular",
-									"fontsize" : 20.0,
-									"id" : "obj-1",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 15.0, 427.0, 30.0 ],
-									"text" : "Convert MSP Audio to Frames"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"border" : 2.0,
-									"id" : "obj-49",
-									"linecolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
-									"maxclass" : "live.line",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 46.0, 530.25, 5.0 ]
-								}
-
-							}
- ],
-						"lines" : [  ],
-						"styles" : [ 							{
-								"name" : "AudioStatus_Menu",
-								"default" : 								{
-									"bgfillcolor" : 									{
-										"type" : "color",
-										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
-										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
-										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
-										"proportion" : 0.39,
-										"autogradient" : 0
-									}
-
-								}
-,
-								"parentstyle" : "",
-								"multi" : 0
-							}
-, 							{
-								"name" : "newobjBlue-1",
-								"default" : 								{
-									"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
-								}
-,
-								"parentstyle" : "",
-								"multi" : 0
-							}
-, 							{
-								"name" : "newobjBrown-1",
-								"default" : 								{
-									"accentcolor" : [ 0.654902, 0.572549, 0.376471, 1.0 ]
-								}
-,
-								"parentstyle" : "",
-								"multi" : 0
-							}
-, 							{
-								"name" : "newobjGreen-1",
-								"default" : 								{
-									"accentcolor" : [ 0.0, 0.533333, 0.168627, 1.0 ]
-								}
-,
-								"parentstyle" : "",
-								"multi" : 0
-							}
-, 							{
-								"name" : "newobjRed-1",
-								"default" : 								{
-									"accentcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ]
-								}
-,
-								"parentstyle" : "",
-								"multi" : 0
-							}
-, 							{
-								"name" : "newobjYellow-1",
-								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
-								}
-,
-								"parentstyle" : "",
-								"multi" : 0
-							}
-, 							{
-								"name" : "numberGold-1",
-								"default" : 								{
-									"accentcolor" : [ 0.764706, 0.592157, 0.101961, 1.0 ]
-								}
-,
-								"parentstyle" : "",
-								"multi" : 0
-							}
-, 							{
-								"name" : "panelViolet",
-								"default" : 								{
-									"bgfillcolor" : 									{
-										"type" : "color",
-										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
-										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
-										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-										"angle" : 270.0,
-										"proportion" : 0.39,
-										"autogradient" : 0
-									}
-
-								}
-,
-								"parentstyle" : "",
-								"multi" : 0
-							}
- ]
-					}
-,
-					"patching_rect" : [ 393.0, 160.0, 104.0, 21.0 ],
-					"saved_object_attributes" : 					{
-						"description" : "",
-						"digest" : "",
-						"fontsize" : 13.0,
-						"globalpatchername" : "",
-						"tags" : ""
-					}
-,
-					"text" : "p audio-frommax(3)"
 				}
 
 			}
@@ -867,14 +668,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 887.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 871.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -921,7 +722,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 825.0, 630.0, 45.0, 45.0 ]
+									"patching_rect" : [ 810.0, 630.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -1456,14 +1257,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 887.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 871.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1617,8 +1418,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 0,
-											"revision" : 6,
+											"minor" : 1,
+											"revision" : 0,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1707,7 +1508,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 670.25, 476.0625, 88.0, 23.0 ],
+									"patching_rect" : [ 651.5, 490.0625, 88.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"description" : "",
 										"digest" : "",
@@ -1727,7 +1528,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 663.75, 511.0, 191.0, 152.0 ],
+									"patching_rect" : [ 645.0, 525.0, 191.0, 152.0 ],
 									"text" : "These parameters adjust the window type and the internal calculation size for the window. If the size parameter is set to 0 it matches the length of the incoming frame. Observe the quality of the windowed output with different size parameters. A small size demonstrates the difference best."
 								}
 
@@ -1742,7 +1543,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "int", "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 731.75, 271.5, 100.0, 23.0 ]
+									"patching_rect" : [ 713.0, 285.5, 100.0, 23.0 ]
 								}
 
 							}
@@ -1754,7 +1555,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 772.25, 306.5, 73.0, 23.0 ],
+									"patching_rect" : [ 753.5, 320.5, 73.0, 23.0 ],
 									"text" : "window $1"
 								}
 
@@ -1803,7 +1604,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 670.25, 245.5, 75.0, 23.0 ],
+									"patching_rect" : [ 651.5, 259.5, 75.0, 23.0 ],
 									"text" : "loadmess 2"
 								}
 
@@ -1847,7 +1648,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 670.25, 271.5, 52.0, 23.0 ]
+									"patching_rect" : [ 651.5, 285.5, 52.0, 23.0 ]
 								}
 
 							}
@@ -1872,7 +1673,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 670.25, 306.5, 53.0, 23.0 ],
+									"patching_rect" : [ 651.5, 320.5, 53.0, 23.0 ],
 									"text" : "size $1"
 								}
 
@@ -1885,7 +1686,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 670.25, 401.0, 166.0, 23.0 ],
+									"patching_rect" : [ 651.5, 415.0, 166.0, 23.0 ],
 									"text" : "fl.frommax~ /mode params"
 								}
 
@@ -2000,7 +1801,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 8.75, 48.5, 843.0, 194.0 ],
+									"patching_rect" : [ 8.75, 48.5, 845.0, 194.0 ],
 									"text" : "Convering control data from Max into FrameLib is a two step process. \n1. Connect control data to fl.frommax~. \n2. Connect a scheduler to the same fl.frommax~ to determine how often control data is converted into a frame.\n \nIn the bottom left example, fl.interval~ is creating trigger frames every 200 milliseconds to fl.frommax~ causing the multislider output to be turned into a frame. This frame is then reversed. Take note how the we only see the ouput change at best every 200 milliseconds.\n\nAdditionally, fl.frommax~ can form tagged frames from Max messages that arrive in the format of <parameter name> <value>. This only occurs when fl.frommax~ is in the \"params\" mode (/mode params). To modify multiple parameters, simply create more message boxes outside the network with Max objects. The right example demonstrates how this functionality can be used to modify the parameters of the fl.window~ object.\n\n"
 								}
 
@@ -2087,7 +1888,7 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 663.75, 264.5, 188.0, 243.0 ],
+									"patching_rect" : [ 645.0, 278.5, 188.0, 243.0 ],
 									"proportion" : 0.5
 								}
 
@@ -2148,7 +1949,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 853.75, 582.5, 20.0, 20.0 ],
+									"patching_rect" : [ 835.0, 596.5, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "!",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -2268,7 +2069,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-49", 0 ],
-									"midpoints" : [ 679.75, 426.0, 679.75, 426.0 ],
+									"midpoints" : [ 661.0, 440.0, 661.0, 440.0 ],
 									"order" : 0,
 									"source" : [ "obj-12", 0 ]
 								}
@@ -2277,7 +2078,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 1 ],
-									"midpoints" : [ 679.75, 462.0, 405.25, 462.0 ],
+									"midpoints" : [ 661.0, 462.0, 405.25, 462.0 ],
 									"order" : 1,
 									"source" : [ "obj-12", 0 ]
 								}
@@ -2286,7 +2087,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-12", 0 ],
-									"midpoints" : [ 679.75, 330.0, 679.75, 330.0 ],
+									"midpoints" : [ 661.0, 344.0, 661.0, 344.0 ],
 									"source" : [ "obj-17", 0 ]
 								}
 
@@ -2303,7 +2104,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-12", 0 ],
-									"midpoints" : [ 351.25, 366.0, 679.75, 366.0 ],
+									"midpoints" : [ 351.25, 366.0, 661.0, 366.0 ],
 									"order" : 0,
 									"source" : [ "obj-18", 0 ]
 								}
@@ -2389,7 +2190,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-12", 0 ],
-									"midpoints" : [ 781.75, 387.0, 679.75, 387.0 ],
+									"midpoints" : [ 763.0, 401.0, 661.0, 401.0 ],
 									"source" : [ "obj-38", 0 ]
 								}
 
@@ -2466,8 +2267,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2525,14 +2326,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 887.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 871.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2579,7 +2380,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 825.0, 630.0, 45.0, 45.0 ]
+									"patching_rect" : [ 810.0, 630.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -2965,8 +2766,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3024,14 +2825,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 887.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 871.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3145,7 +2946,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 225.75, 362.666672000000062, 45.0, 45.0 ]
+									"patching_rect" : [ 810.0, 630.0, 45.0, 45.0 ]
 								}
 
 							}
@@ -3387,8 +3188,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3446,14 +3247,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 887.0, 694.0 ],
+						"rect" : [ 34.0, 105.0, 871.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -3522,8 +3323,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 180.0, 116.0, 649.0, 178.0 ],
-									"text" : "As you become more familiar with FrameLib objects you might be wondering how something that exists in the FrameLib domain can communicate with native Max objects. If you have pulled apart any of the previous examples and patches you may have noticed that it is impossible to connect the inlets and oulets of FrameLib objects directly into Max objects (with exceptions for fl.tomax, fl.fromax~, fl.source~, fl.sink~, fl.trace~). There is a suite of objects that manage the conversion of control data and audio into frames as well as frames into control data or audio. Much of the functionality in these objects is quite simple and act like 'portals' between FrameLib and Max, while some of them require some additional understanding about the underlying concepts of frame-based processing such as timing, overlap-add and delay compensation.\n\nThe next tutorials will guide you through these concepts and introduce to the set of objects that make FrameLib communicate and function with Max rather than alongside it."
+									"patching_rect" : [ 180.0, 116.0, 652.0, 178.0 ],
+									"text" : "As you become more familiar you might be wondering how FrameLib objects can communicate with native Max objects. If you have pulled apart the patches from previous examples you may have noticed that it is impossible to connect the inlets and oulets of FrameLib objects directly into Max objects with exceptions for fl.tomax, fl.fromax~, fl.source~, fl.sink~, fl.trace~. There is a suite of objects that manage the conversion of control data and audio into frames as well as frames into control data or audio. Much of the functionality in these objects is quite simple and act like 'portals' between FrameLib and Max, while some of them require some additional understanding about the underlying concepts of frame-based processing such as timing, overlap-add and delay compensation.\n\nThe next tutorials will guide you through these concepts and introduce to the set of objects that make FrameLib communicate and function with Max rather than alongside it."
 								}
 
 							}
@@ -3614,8 +3415,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3697,14 +3498,14 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fl.tutnav.maxpat",
-				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../misc",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "FL_tutorial_names.txt",
-				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/docs/tutorial-patchers",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
@@ -3743,13 +3544,6 @@
 				"name" : "interfacecolor.js",
 				"bootpath" : "C74:/interfaces",
 				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "fl.explain.ola.maxpat",
-				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/misc",
-				"patcherrelativepath" : "../../misc",
-				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
