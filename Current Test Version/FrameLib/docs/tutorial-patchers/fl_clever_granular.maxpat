@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 1,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -129,14 +129,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 78.0, 652.0, 788.0 ],
+						"rect" : [ 34.0, 79.0, 443.0, 787.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -163,6 +163,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "default",
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"fontsize" : 11.0,
@@ -171,7 +172,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 95.25, 47.0, 107.0, 21.0 ],
+									"patching_rect" : [ 91.25, 38.0, 107.0, 21.0 ],
 									"text" : "pak f f"
 								}
 
@@ -185,7 +186,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 95.25, 16.0, 63.0, 21.0 ],
+									"patching_rect" : [ 91.25, 7.0, 63.0, 21.0 ],
 									"text" : "r rangeMin"
 								}
 
@@ -199,7 +200,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 183.25, 16.0, 66.0, 21.0 ],
+									"patching_rect" : [ 179.25, 7.0, 66.0, 21.0 ],
 									"text" : "r rangeMax"
 								}
 
@@ -211,7 +212,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 122.0, 715.0, 165.0, 33.0 ],
+									"patching_rect" : [ 118.0, 706.0, 165.0, 33.0 ],
 									"text" : "Offset the frame of ms positions to read as a grain"
 								}
 
@@ -223,7 +224,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 194.0, 639.0, 227.0, 33.0 ],
+									"patching_rect" : [ 190.0, 630.0, 227.0, 33.0 ],
 									"text" : "Generate a frame of sequential millisecond positions to read as a grain"
 								}
 
@@ -236,7 +237,7 @@
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 42.0, 756.0, 30.0, 30.0 ]
+									"patching_rect" : [ 38.0, 747.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -248,7 +249,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 721.0, 78.0, 21.0 ],
+									"patching_rect" : [ 38.0, 712.0, 78.0, 21.0 ],
 									"text" : "fl.plus~"
 								}
 
@@ -262,7 +263,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 645.0, 150.0, 21.0 ],
+									"patching_rect" : [ 38.0, 636.0, 150.0, 21.0 ],
 									"text" : "fl.ramp~ /units ms /scale ms"
 								}
 
@@ -274,7 +275,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 249.0, 573.5, 172.0, 33.0 ],
+									"patching_rect" : [ 245.0, 564.5, 172.0, 33.0 ],
 									"text" : "tag the range as a length parameter for fl.ramp~"
 								}
 
@@ -285,7 +286,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 174.25, 528.77777100000003, 168.5, 20.0 ],
+									"patching_rect" : [ 170.25, 519.77777100000003, 168.5, 20.0 ],
 									"text" : "Multiply by the absolute range"
 								}
 
@@ -296,7 +297,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 95.25, 400.777770999999973, 168.5, 20.0 ],
+									"patching_rect" : [ 91.25, 391.777770999999973, 168.5, 20.0 ],
 									"text" : "Multiply by the absolute range"
 								}
 
@@ -308,7 +309,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 152.0, 330.777770999999973, 156.0, 33.0 ],
+									"patching_rect" : [ 148.0, 321.777770999999973, 156.0, 33.0 ],
 									"text" : "Generate two random numbers between 0. and 1."
 								}
 
@@ -319,7 +320,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 81.0, 272.777770999999973, 156.0, 20.0 ],
+									"patching_rect" : [ 77.0, 263.777770999999973, 156.0, 20.0 ],
 									"text" : "If negative make positive"
 								}
 
@@ -331,7 +332,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 101.5, 202.777771000000001, 156.0, 33.0 ],
+									"patching_rect" : [ 97.5, 193.777771000000001, 156.0, 33.0 ],
 									"text" : "Find the range of the two values"
 								}
 
@@ -342,7 +343,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 101.5, 144.777771000000001, 150.0, 20.0 ],
+									"patching_rect" : [ 97.5, 135.777771000000001, 150.0, 20.0 ],
 									"text" : "Equivalent of 'unpack i i'"
 								}
 
@@ -354,7 +355,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 114.0, 74.777778999999995, 150.0, 33.0 ],
+									"patching_rect" : [ 110.0, 65.777778999999995, 150.0, 33.0 ],
 									"text" : "Take the values from the Max waveform interface."
 								}
 
@@ -367,7 +368,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 42.0, 144.777771000000001, 57.0, 21.0 ],
+									"patching_rect" : [ 38.0, 135.777771000000001, 57.0, 21.0 ],
 									"text" : "fl.split~ 1"
 								}
 
@@ -380,7 +381,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 80.777778999999995, 70.0, 21.0 ],
+									"patching_rect" : [ 38.0, 71.777778999999995, 70.0, 21.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -393,7 +394,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 272.777770999999973, 41.0, 21.0 ],
+									"patching_rect" : [ 38.0, 263.777770999999973, 41.0, 21.0 ],
 									"text" : "fl.abs~"
 								}
 
@@ -406,7 +407,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 208.777771000000001, 57.0, 21.0 ],
+									"patching_rect" : [ 38.0, 199.777771000000001, 57.0, 21.0 ],
 									"text" : "fl.minus~"
 								}
 
@@ -419,7 +420,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 173.0, 579.5, 74.0, 21.0 ],
+									"patching_rect" : [ 169.0, 570.5, 74.0, 21.0 ],
 									"text" : "fl.tag~ length"
 								}
 
@@ -432,8 +433,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 152.0, 463.5, 49.0, 21.0 ],
-									"text" : "fl.vmin~"
+									"patching_rect" : [ 148.0, 454.5, 59.0, 21.0 ],
+									"text" : "fl.minpos~"
 								}
 
 							}
@@ -445,8 +446,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 464.777770999999973, 52.0, 21.0 ],
-									"text" : "fl.vmax~"
+									"patching_rect" : [ 38.0, 455.777770999999973, 62.0, 21.0 ],
+									"text" : "fl.maxpos~"
 								}
 
 							}
@@ -458,7 +459,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 528.77777100000003, 129.0, 21.0 ],
+									"patching_rect" : [ 38.0, 519.77777100000003, 129.0, 21.0 ],
 									"text" : "fl.minus~ /trigger_ins left"
 								}
 
@@ -471,7 +472,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 400.777770999999973, 52.0, 21.0 ],
+									"patching_rect" : [ 38.0, 391.777770999999973, 52.0, 21.0 ],
 									"text" : "fl.times~"
 								}
 
@@ -484,7 +485,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 336.777770999999973, 108.0, 21.0 ],
+									"patching_rect" : [ 38.0, 327.777770999999973, 108.0, 21.0 ],
 									"text" : "fl.random~ /length 2"
 								}
 
@@ -498,7 +499,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 16.0, 30.0, 30.0 ]
+									"patching_rect" : [ 38.0, 7.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -520,7 +521,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-71", 0 ],
-									"midpoints" : [ 51.5, 294.0, 51.5, 294.0 ],
+									"midpoints" : [ 47.5, 285.0, 47.5, 285.0 ],
 									"order" : 1,
 									"source" : [ "obj-14", 0 ]
 								}
@@ -529,7 +530,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-72", 1 ],
-									"midpoints" : [ 51.5, 321.0, 33.0, 321.0, 33.0, 387.0, 84.5, 387.0 ],
+									"midpoints" : [ 47.5, 312.0, 29.0, 312.0, 29.0, 378.0, 80.5, 378.0 ],
 									"order" : 0,
 									"source" : [ "obj-14", 0 ]
 								}
@@ -605,7 +606,7 @@
 								"patchline" : 								{
 									"color" : [ 0.640881, 0.0, 0.022599, 1.0 ],
 									"destination" : [ "obj-73", 1 ],
-									"midpoints" : [ 51.5, 195.0, 15.0, 195.0, 15.0, 708.0, 110.5, 708.0 ],
+									"midpoints" : [ 47.5, 186.0, 11.0, 186.0, 11.0, 699.0, 106.5, 699.0 ],
 									"order" : 0,
 									"source" : [ "obj-5", 0 ]
 								}
@@ -689,8 +690,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -891,8 +892,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
