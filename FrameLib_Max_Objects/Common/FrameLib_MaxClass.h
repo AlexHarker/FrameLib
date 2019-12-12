@@ -12,8 +12,10 @@
 #include "FrameLib_Multistream.h"
 #include "FrameLib_SerialiseGraph.h"
 
-#include <string>
+#include <algorithm>
+#include <cctype>
 #include <deque>
+#include <string>
 #include <tuple>
 #include <vector>
 #include <unordered_map>
@@ -857,7 +859,12 @@ public:
         strncpy_zero(fileName, name->s_name, MAX_FILENAME_CHARS);
         locatefile_extended(fileName, &outvol, &outtype, validTypes, numTypes);
         
-        return !strcmp(jpatcher_get_filename(patch)->s_name, fileName);
+        const char *name1 = fileName;
+        const char *name2 = jpatcher_get_filename(patch)->s_name;
+        auto endString = [](const char *str) { return str + strlen(str); };
+        auto ciComp = [](char c1, char c2) { return std::tolower(c1) < std::tolower(c2); };
+        
+        return !std::lexicographical_compare(name2, endString(name2), name1, endString(name1), ciComp);
     }
     
     // Find the patcher for the context
@@ -1766,7 +1773,7 @@ private:
         ConnectionResult result;
         FLConnection internalConnection = toFLConnection(connection);
         
-        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !validOutput(connection.mIndex, internalConnection.mObject) || getConnection(inIdx) == connection || confirmConnection(inIdx, ConnectionMode::kDoubleCheck)))
+        if ((!isOrderingInput(inIdx) && !validInput(inIdx)) || !validOutput(connection.mIndex, internalConnection.mObject) || getConnection(inIdx) == connection || confirmConnection(inIdx, ConnectionMode::kDoubleCheck))
             return;
         
         matchContext(internalConnection.mObject->getContext());
@@ -1804,7 +1811,7 @@ private:
     
     void disconnect(MaxConnection connection, long inIdx)
     {
-        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || getConnection(inIdx) != connection))
+        if ((!isOrderingInput(inIdx) && !validInput(inIdx)) || getConnection(inIdx) != connection)
             return;
         
         if (isOrderingInput(inIdx))
