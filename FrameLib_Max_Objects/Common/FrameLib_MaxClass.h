@@ -1269,7 +1269,7 @@ private:
     {
         FrameLib_Multistream *object = getInternalObject(src);
         
-        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !validOutput(outIdx, object) || matchConnection(src, outIdx, inIdx) || confirmConnection(inIdx, ConnectionInfo::kDoubleCheck)))
+        if ((!isOrderingInput(inIdx) && !validInput(inIdx)) || !validOutput(outIdx, object) || matchConnection(src, outIdx, inIdx) || confirmConnection(inIdx, ConnectionInfo::kDoubleCheck))
             return;
 
         ConnectionResult result;
@@ -1304,7 +1304,7 @@ private:
     {
         FrameLib_Multistream *object = getInternalObject(src);
 
-        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !matchConnection(src, outIdx, inIdx)))
+        if ((!isOrderingInput(inIdx) && !validInput(inIdx)) || !matchConnection(src, outIdx, inIdx))
             return;
         
         if (isOrderingInput(inIdx))
