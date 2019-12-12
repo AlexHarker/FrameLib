@@ -1711,7 +1711,7 @@ private:
         ConnectionResult result;
         FLConnection internalConnection = toFLConnection(connection);
         
-        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || !validOutput(connection.mIndex, internalConnection.mObject) || getConnection(inIdx) == connection || confirmConnection(inIdx, ConnectionMode::kDoubleCheck)))
+        if ((!isOrderingInput(inIdx) && !validInput(inIdx)) || !validOutput(connection.mIndex, internalConnection.mObject) || getConnection(inIdx) == connection || confirmConnection(inIdx, ConnectionMode::kDoubleCheck)))
             return;
         
         matchContext(connection.mObject);
@@ -1749,7 +1749,7 @@ private:
     
     void disconnect(MaxConnection connection, long inIdx)
     {
-        if (!isOrderingInput(inIdx) && (!validInput(inIdx) || getConnection(inIdx) != connection))
+        if ((!isOrderingInput(inIdx) && !validInput(inIdx)) || getConnection(inIdx) != connection)
             return;
         
         if (isOrderingInput(inIdx))
