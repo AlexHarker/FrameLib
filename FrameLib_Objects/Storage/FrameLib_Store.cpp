@@ -41,7 +41,7 @@ std::string FrameLib_Store::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Store::outputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Synchronisation Output - used to control ordering", "Sync Output", verbose);;
+    return formatInfo("Ordering Output - used to control ordering", "Ordering Output", verbose);;
 }
 
 // Stream Awareness
