@@ -7,7 +7,7 @@
 6, _7_FFT_in_FrameLib.maxpat;
 7, _8_Multi-stream.maxpat;
 8, _9_Multi-resolution_FFT.maxpat;
-9, _10_IRSpectral.maxpat;
+9, _10_contexts.maxpat;
 10, _11_NRT_Mode.maxpat;
 11, _12_Threading.maxpat;
-12, _13_export.maxpat;
+12, _13_Export.maxpat;
