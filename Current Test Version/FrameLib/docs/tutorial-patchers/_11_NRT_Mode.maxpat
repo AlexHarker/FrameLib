@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 36.0, 80.0, 723.0, 720.0 ],
+		"rect" : [ 367.0, 92.0, 723.0, 720.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
@@ -55,7 +55,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 36.0, 106.0, 723.0, 694.0 ],
+						"rect" : [ 0.0, 26.0, 723.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -795,8 +795,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -913,16 +913,16 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 1,
-									"patching_rect" : [ 150.0, 359.0, 162.0, 30.0 ],
+									"patching_rect" : [ 30.0, 284.5, 162.0, 30.0 ],
 									"presentation" : 1,
 									"presentation_rect" : [ 250.630142000000006, 57.0, 18.0, 18.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_mmax" : 1,
 											"parameter_shortname" : "live.text[2]",
 											"parameter_enum" : [ "Multithreading Off", "val2" ],
 											"parameter_type" : 2,
-											"parameter_longname" : "live.text[2]",
-											"parameter_mmax" : 1
+											"parameter_longname" : "live.text[2]"
 										}
 
 									}
@@ -940,7 +940,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 150.0, 404.0, 33.0, 22.0 ],
+									"patching_rect" : [ 30.0, 329.5, 33.0, 22.0 ],
 									"text" : "rt $1"
 								}
 
@@ -951,8 +951,8 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 150.0, 434.0, 64.0, 22.0 ],
-									"text" : "fl.context~"
+									"patching_rect" : [ 150.0, 434.0, 132.0, 22.0 ],
+									"text" : "fl.context~ @id random"
 								}
 
 							}
@@ -971,11 +971,11 @@
 									"presentation_rect" : [ 235.630142000000006, 42.0, 18.0, 18.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_mmax" : 1,
 											"parameter_shortname" : "live.text[2]",
 											"parameter_enum" : [ "Multithreading Off", "val2" ],
 											"parameter_type" : 2,
-											"parameter_longname" : "live.text[1]",
-											"parameter_mmax" : 1
+											"parameter_longname" : "live.text[1]"
 										}
 
 									}
@@ -1043,8 +1043,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 361.0, 134.0, 162.0, 22.0 ],
-									"text" : "fl.interval~ 1024 @id random"
+									"patching_rect" : [ 361.0, 134.0, 195.0, 22.0 ],
+									"text" : "fl.interval~ 1024 @rt 1 @id random"
 								}
 
 							}
@@ -1104,8 +1104,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 150.0, 134.0, 94.0, 22.0 ],
-									"text" : "fl.interval~ 1024"
+									"patching_rect" : [ 150.0, 134.0, 195.0, 22.0 ],
+									"text" : "fl.interval~ 1024 @rt 1 @id random"
 								}
 
 							}
@@ -1256,7 +1256,8 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-39", 0 ],
+									"destination" : [ "obj-1", 0 ],
+									"midpoints" : [ 39.5, 354.0, 15.0, 354.0, 15.0, 123.0, 132.0, 123.0, 132.0, 117.0, 159.5, 117.0 ],
 									"source" : [ "obj-38", 0 ]
 								}
 
@@ -1282,7 +1283,7 @@
 								"patchline" : 								{
 									"destination" : [ "obj-37", 0 ],
 									"hidden" : 1,
-									"midpoints" : [ 552.5, 351.0, 159.5, 351.0 ],
+									"midpoints" : [ 552.5, 351.0, 39.5, 351.0 ],
 									"order" : 1,
 									"source" : [ "obj-40", 0 ]
 								}
@@ -1346,8 +1347,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2081,8 +2082,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2630,8 +2631,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -2696,7 +2697,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 723.0, 694.0 ],
+						"rect" : [ 367.0, 118.0, 723.0, 694.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2726,6 +2727,19 @@
 						"showontab" : 1,
 						"title" : "Contexts",
 						"boxes" : [ 							{
+								"box" : 								{
+									"fontsize" : 48.897355238475079,
+									"id" : "obj-3",
+									"linecount" : 2,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 90.5, 195.0, 525.0, 116.0 ],
+									"text" : "name, realtime-ness, patcher thats it in"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"fontname" : "Arial",
 									"fontsize" : 13.0,
@@ -3040,8 +3054,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
@@ -3266,8 +3280,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-									"fontsize" : [ 12.059008 ]
+									"fontsize" : [ 12.059008 ],
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 								}
 ,
 								"parentstyle" : "",
