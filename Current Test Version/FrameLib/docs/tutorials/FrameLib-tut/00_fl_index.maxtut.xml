@@ -57,13 +57,13 @@ FrameLib Tutorials - Table of Contents
                     <link type="tutorial" module="FrameLib" name="09_fl_multiresfft" diff="Advanced" digest="Constructing multi-resolution FFT processes in FrameLib.">Tutorial 9: Multi-resolution FFT.</link>
                 </li>
                 <li>
-                    <link type="tutorial" module="FrameLib" name="10_fl_ir" diff="Advanced" digest="A small overview of working with impulse responses and convolution.">Tutorial 10: Working with impulse responses in FrameLib.</link>
+                    <link type="tutorial" module="FrameLib" name="10_fl_contexts" diff="Advanced" digest="Managing FrameLib 'contexts', a concept that is crucical to multithreading and non-realtime processing.">Tutorial 10: Contexts.</link>
                 </li>
                 <li>    
                     <link type="tutorial" module="FrameLib" name="11_fl_nrt" diff="Advanced" digest="Designing, converting and understanding FrameLib networks in the non-realtime mode.">Tutorial 11: Non-realtime networks in FrameLib.</link>
                 </li>
                 <li>    
-                    <link type="tutorial" module="FrameLib" name="12_fl_threading" diff="Advanced" digest="Managing threads, multi-threading and FrameLib 'contexts'.">Tutorial 12: Threading and 'contexts'.</link>
+                    <link type="tutorial" module="FrameLib" name="12_fl_threading" diff="Advanced" digest="Managing threads and multithreading.">Tutorial 12: Multithreading.</link>
                 </li>
                 <li>
                     <link type="tutorial" module="FrameLib" name="13_fl_export" diff="Advanced" digest="Exporting your FrameLib networks from Max to C++ to be used in other environments and applications.">Tutorial 13: Exporting FrameLib from Max to C++.</link>
