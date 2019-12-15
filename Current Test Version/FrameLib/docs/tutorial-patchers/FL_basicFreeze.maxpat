@@ -3,25 +3,25 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 5,
+			"minor" : 1,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 623.0, 79.0, 720.0, 787.0 ],
+		"rect" : [ 252.0, 168.0, 653.0, 487.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 11.0,
 		"default_fontface" : 0,
 		"default_fontname" : "Arial",
-		"gridonopen" : 1,
+		"gridonopen" : 2,
 		"gridsize" : [ 15.0, 15.0 ],
-		"gridsnaponopen" : 1,
+		"gridsnaponopen" : 2,
 		"objectsnaponopen" : 1,
 		"statusbarvisible" : 2,
-		"toolbarvisible" : 0,
+		"toolbarvisible" : 1,
 		"lefttoolbarpinned" : 0,
 		"toptoolbarpinned" : 0,
 		"righttoolbarpinned" : 0,
@@ -39,14 +39,39 @@
 		"subpatcher_template" : "default",
 		"boxes" : [ 			{
 				"box" : 				{
-					"fontface" : 1,
-					"fontsize" : 12.0,
+					"arrows" : 1,
+					"border" : 2.0,
+					"id" : "obj-2",
+					"maxclass" : "live.line",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 150.0, 312.5, 73.0, 17.5 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"arrows" : 1,
+					"border" : 2.0,
+					"id" : "obj-1",
+					"maxclass" : "live.line",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 195.0, 243.5, 28.0, 14.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontface" : 0,
+					"fontname" : "Lato",
+					"fontsize" : 13.0,
 					"id" : "obj-53",
-					"linecount" : 11,
+					"linecount" : 10,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 239.0, 14.0, 363.0, 154.0 ],
+					"patching_rect" : [ 225.0, 15.0, 406.0, 162.0 ],
 					"text" : "The holding mechanism (section B) is a collection of four FrameLib objects once you exempt the equivalents of fftin~ and fftout~.  \n\nThe first register holds the most recent frame when triggered by bang->trigger. This first pair of registers thus acts as a gate allowing the user to pass a single frame on request to the next pair of registers (6), that are being triggered every 1024 samples. The initial fl.interval~ that is converting MSP into frames is responsible for this repetitive triggering, giving the freeze effect (follow the black patch cable from fftin~)."
 				}
 
@@ -62,8 +87,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 5,
+							"minor" : 1,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -75,9 +100,9 @@
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -161,8 +186,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 196.0, 95.0, 22.0 ],
-									"text" : "fl.window~ hann"
+									"patching_rect" : [ 50.0, 196.0, 120.0, 22.0 ],
+									"text" : "fl.window~ blackman"
 								}
 
 							}
@@ -391,7 +416,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 9.0, 97.0, 44.0, 21.0 ],
+					"patching_rect" : [ 15.0, 98.0, 73.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -414,22 +439,22 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 5,
+							"minor" : 1,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 445.0, 250.0, 575.0, 285.0 ],
+						"rect" : [ 445.0, 250.0, 247.0, 278.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
-						"gridonopen" : 1,
+						"gridonopen" : 2,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
+						"gridsnaponopen" : 2,
 						"objectsnaponopen" : 1,
 						"statusbarvisible" : 2,
 						"toolbarvisible" : 1,
@@ -450,25 +475,11 @@
 						"subpatcher_template" : "default",
 						"boxes" : [ 							{
 								"box" : 								{
-									"fontface" : 1,
-									"fontsize" : 12.0,
-									"id" : "obj-6",
-									"linecount" : 2,
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 120.5, 16.0, 449.0, 33.0 ],
-									"text" : "This sub patch serves a similar purpose to fftout~, although in a FrameLib context and with control over the window type."
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-31",
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 69.0, 184.0, 134.0, 20.0 ],
+									"patching_rect" : [ 65.0, 183.0, 134.0, 20.0 ],
 									"text" : "Convert frames to MSP"
 								}
 
@@ -479,7 +490,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 141.0, 130.0, 51.0, 20.0 ],
+									"patching_rect" : [ 137.0, 129.0, 51.0, 20.0 ],
 									"text" : "Window"
 								}
 
@@ -490,7 +501,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 75.0, 76.0, 73.0, 20.0 ],
+									"patching_rect" : [ 71.0, 75.0, 73.0, 20.0 ],
 									"text" : "Inverse FFT"
 								}
 
@@ -502,7 +513,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 19.0, 129.0, 120.0, 22.0 ],
+									"patching_rect" : [ 15.0, 128.0, 120.0, 22.0 ],
 									"text" : "fl.window~ blackman"
 								}
 
@@ -514,7 +525,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 19.0, 183.0, 47.0, 22.0 ],
+									"patching_rect" : [ 15.0, 182.0, 47.0, 22.0 ],
 									"text" : "fl.sink~"
 								}
 
@@ -526,7 +537,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 19.0, 76.0, 54.0, 22.0 ],
+									"patching_rect" : [ 15.0, 75.0, 54.0, 22.0 ],
 									"text" : "fl.ifft~"
 								}
 
@@ -545,7 +556,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 205.0, 184.0, 22.0, 20.0 ],
+									"patching_rect" : [ 201.0, 183.0, 22.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "9",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -566,7 +577,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 194.0, 130.0, 20.0, 20.0 ],
+									"patching_rect" : [ 190.0, 129.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "8",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -587,7 +598,7 @@
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 147.0, 76.0, 20.0, 20.0 ],
+									"patching_rect" : [ 143.0, 75.0, 20.0, 20.0 ],
 									"rounded" : 60.0,
 									"text" : "7",
 									"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -603,7 +614,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 19.0, 16.0, 30.0, 30.0 ]
+									"patching_rect" : [ 15.0, 15.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -616,7 +627,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 54.0, 16.0, 30.0, 30.0 ]
+									"patching_rect" : [ 50.0, 15.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -628,7 +639,7 @@
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 19.0, 244.0, 30.0, 30.0 ]
+									"patching_rect" : [ 15.0, 243.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -671,7 +682,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 9.0, 429.0, 92.0, 21.0 ],
+					"patching_rect" : [ 15.0, 390.0, 92.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -686,12 +697,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-26",
-					"linecount" : 5,
+					"linecount" : 11,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 206.0, 308.0, 185.0, 68.0 ],
-					"text" : "Attached to the initial fl.interval~, so outputs the frames stored in the above fl.register~ at this rate (equal to the rate they are being converted in)."
+					"patching_rect" : [ 225.0, 285.5, 185.0, 142.0 ],
+					"text" : "These fl.register~ objects are attached to the fl.interval~ which is driving the whole network. As a result it is outputting the frames stored in the above fl.register~ at this rate which isequal to the rate they are being converted in. You might like to this of it as a 'sample and hold' mechanism that latches whenever it receives a trigger frame."
 				}
 
 			}
@@ -701,7 +712,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 206.0, 263.0, 169.5, 19.0 ],
+					"patching_rect" : [ 225.0, 240.0, 169.5, 19.0 ],
 					"text" : "On bang store frame in fl.register"
 				}
 
@@ -717,8 +728,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 5,
+							"minor" : 1,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -846,7 +857,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 125.0, 97.0, 85.0, 21.0 ],
+					"patching_rect" : [ 131.0, 98.0, 85.0, 21.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -867,7 +878,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 9.0, 14.0, 30.0, 30.0 ]
+					"patching_rect" : [ 15.0, 15.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -880,7 +891,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 125.0, 14.0, 30.0, 30.0 ]
+					"patching_rect" : [ 131.0, 15.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -892,7 +903,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 9.0, 509.0, 30.0, 30.0 ]
+					"patching_rect" : [ 15.0, 435.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -903,7 +914,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 82.0, 308.0, 62.0, 21.0 ],
+					"patching_rect" : [ 88.0, 309.0, 62.0, 21.0 ],
 					"text" : "fl.register~"
 				}
 
@@ -915,7 +926,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 9.0, 308.0, 62.0, 21.0 ],
+					"patching_rect" : [ 15.0, 309.0, 62.0, 21.0 ],
 					"text" : "fl.register~"
 				}
 
@@ -927,7 +938,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 125.0, 263.0, 62.0, 21.0 ],
+					"patching_rect" : [ 131.0, 240.0, 62.0, 21.0 ],
 					"text" : "fl.register~"
 				}
 
@@ -939,7 +950,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 52.0, 263.0, 62.0, 21.0 ],
+					"patching_rect" : [ 58.0, 240.0, 62.0, 21.0 ],
 					"text" : "fl.register~"
 				}
 
@@ -958,7 +969,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 103.0, 429.0, 20.0, 20.0 ],
+					"patching_rect" : [ 109.0, 390.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "C",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -979,7 +990,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 171.0, 325.0, 20.0, 20.0 ],
+					"patching_rect" : [ 109.0, 340.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "B",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1000,7 +1011,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 57.0, 97.0, 20.0, 20.0 ],
+					"patching_rect" : [ 90.0, 98.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "A",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1021,7 +1032,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 393.0, 332.0, 20.0, 20.0 ],
+					"patching_rect" : [ 412.0, 309.5, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "6",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1042,7 +1053,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 377.5, 263.0, 20.0, 20.0 ],
+					"patching_rect" : [ 396.5, 240.0, 20.0, 20.0 ],
 					"rounded" : 60.0,
 					"text" : "5",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
@@ -1054,14 +1065,14 @@
 					"angle" : 270.0,
 					"background" : 1,
 					"bgcolor" : [ 0.290196, 0.309804, 0.301961, 0.0 ],
-					"border" : 3,
+					"border" : 2,
 					"bordercolor" : [ 0.011765, 0.396078, 0.752941, 1.0 ],
 					"id" : "obj-51",
 					"maxclass" : "panel",
 					"mode" : 0,
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 4.0, 232.0, 195.0, 120.0 ],
+					"patching_rect" : [ 10.0, 233.0, 206.0, 142.0 ],
 					"proportion" : 0.39
 				}
 
@@ -1085,7 +1096,7 @@
 				"patchline" : 				{
 					"color" : [ 0.649908, 0.628744, 0.130501, 0.9 ],
 					"destination" : [ "obj-6", 0 ],
-					"midpoints" : [ 134.5, 249.0, 61.5, 249.0 ],
+					"midpoints" : [ 140.5, 225.0, 67.5, 225.0 ],
 					"order" : 1,
 					"source" : [ "obj-16", 0 ]
 				}
@@ -1095,7 +1106,7 @@
 				"patchline" : 				{
 					"color" : [ 0.649908, 0.628744, 0.130501, 0.9 ],
 					"destination" : [ "obj-7", 0 ],
-					"midpoints" : [ 134.5, 120.0, 134.5, 120.0 ],
+					"midpoints" : [ 140.5, 120.0, 140.5, 120.0 ],
 					"order" : 0,
 					"source" : [ "obj-16", 0 ]
 				}
@@ -1126,7 +1137,7 @@
 				"patchline" : 				{
 					"color" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"destination" : [ "obj-19", 0 ],
-					"midpoints" : [ 18.5, 120.0, 18.5, 120.0 ],
+					"midpoints" : [ 24.5, 120.0, 24.5, 120.0 ],
 					"order" : 1,
 					"source" : [ "obj-48", 0 ]
 				}
@@ -1136,7 +1147,7 @@
 				"patchline" : 				{
 					"color" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"destination" : [ "obj-20", 0 ],
-					"midpoints" : [ 18.5, 294.0, 91.5, 294.0 ],
+					"midpoints" : [ 24.5, 294.0, 97.5, 294.0 ],
 					"order" : 0,
 					"source" : [ "obj-48", 0 ]
 				}
@@ -1146,7 +1157,7 @@
 				"patchline" : 				{
 					"color" : [ 0.641597, 0.135508, 0.161408, 0.9 ],
 					"destination" : [ "obj-6", 1 ],
-					"midpoints" : [ 31.0, 249.0, 104.5, 249.0 ],
+					"midpoints" : [ 51.5, 225.0, 110.5, 225.0 ],
 					"source" : [ "obj-48", 1 ]
 				}
 
@@ -1155,7 +1166,7 @@
 				"patchline" : 				{
 					"color" : [ 0.424805, 0.0, 0.649136, 0.9 ],
 					"destination" : [ "obj-7", 1 ],
-					"midpoints" : [ 43.5, 249.0, 177.5, 249.0 ],
+					"midpoints" : [ 78.5, 225.0, 183.5, 225.0 ],
 					"source" : [ "obj-48", 2 ]
 				}
 
