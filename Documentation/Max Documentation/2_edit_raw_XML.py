@@ -109,7 +109,7 @@ def main():
                 if elem.tag == "seealsolist":
                     for seealso in details["seealso"]:
                         new_element = et.Element("seealso")
-                        new_element.set("Name", seealso)
+                        new_element.set("name", seealso)
                         elem.append(new_element)
                 if elem.tag == "misc" and elem.attrib["name"] == "Discussion":
                     for sub_elem in elem:
