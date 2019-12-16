@@ -87,14 +87,25 @@
 						"showontab" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-14",
-									"linecount" : 2,
+									"id" : "obj-5",
+									"linecount" : 4,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 482.0, 235.0, 198.0, 36.0 ],
-									"presentation_linecount" : 2,
-									"text" : "Save the \"workhorse\" network to your disk as C++."
+									"patching_rect" : [ 506.0, 324.0, 125.0, 65.0 ],
+									"presentation_linecount" : 3,
+									"text" : "Format a message to export the network with the symbol 'granulator'"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-14",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 482.0, 242.0, 200.0, 21.0 ],
+									"text" : "Save the network to the left!"
 								}
 
 							}
@@ -104,7 +115,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 356.5, 135.0, 5.0, 555.0 ]
+									"patching_rect" : [ 345.0, 135.0, 5.0, 555.0 ]
 								}
 
 							}
@@ -150,8 +161,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "bang" ],
-									"patching_rect" : [ 375.0, 300.0, 75.0, 23.0 ],
-									"text" : "savedialog"
+									"patching_rect" : [ 375.0, 300.0, 95.0, 23.0 ],
+									"text" : "savedialog fold"
 								}
 
 							}
@@ -203,7 +214,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 375.0, 135.0, 285.0, 36.0 ],
+									"patching_rect" : [ 375.0, 135.0, 286.0, 36.0 ],
 									"text" : "The message format to export this granulator to some C++ code is:"
 								}
 
@@ -215,19 +226,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 375.0, 345.0, 180.0, 23.0 ],
-									"text" : "export granulatorNetwork $1"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-4",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 375.0, 390.0, 160.0, 23.0 ],
-									"text" : "fl.context~ @id workhorse"
+									"patching_rect" : [ 375.0, 345.0, 125.0, 23.0 ],
+									"text" : "export granulator $1"
 								}
 
 							}
@@ -517,8 +517,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 315.0, 186.0, 23.0 ],
-									"text" : "fl.read~ 12.config.buf /units ms"
+									"patching_rect" : [ 15.0, 315.0, 178.0, 23.0 ],
+									"text" : "fl.read~ 13.contexts /units ms"
 								}
 
 							}
@@ -541,8 +541,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "bang" ],
-									"patching_rect" : [ 15.0, 615.0, 181.0, 23.0 ],
-									"text" : "buffer~ 12.config.buf jongly.aif"
+									"patching_rect" : [ 15.0, 615.0, 173.0, 23.0 ],
+									"text" : "buffer~ 13.contexts jongly.aif"
 								}
 
 							}
@@ -554,7 +554,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 190.0, 75.0, 67.0 ],
+									"patching_rect" : [ 15.0, 190.0, 76.0, 67.0 ],
 									"text" : "fl.ramp~ /length 100 /units ms /scale ms"
 								}
 
@@ -581,7 +581,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 15.0, 60.0, 688.0, 53.0 ],
-									"text" : "I'm going to steal the previous tutorial's granulator network and use it here for simplicity. Exporting code is extremely simple all it requires is that you send a specific message to an fl.context~ object that is pointed toward the context you wish to export. Let's see it in practice."
+									"text" : "I'm going to steal the previous tutorial's granulator network and use it here for simplicity. Exporting code is extremely simple all it requires is that you send a reserved message to a network of connected FrameLib objects. Let's see it in practice."
 								}
 
 							}
@@ -730,7 +730,8 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-4", 0 ],
+									"destination" : [ "obj-6", 0 ],
+									"midpoints" : [ 384.5, 369.0, 368.0, 369.0, 368.0, 118.0, 249.0, 118.0, 249.0, 118.0, 24.0, 118.0, 24.0, 132.0, 24.5, 132.0 ],
 									"source" : [ "obj-7", 0 ]
 								}
 
@@ -800,8 +801,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1026,8 +1027,8 @@
 , 							{
 								"name" : "newobjYellow-1",
 								"default" : 								{
-									"fontsize" : [ 12.059008 ],
-									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
 								}
 ,
 								"parentstyle" : "",
@@ -1164,10 +1165,6 @@
 			}
 , 			{
 				"name" : "fl.convert~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.context~.mxo",
 				"type" : "iLaX"
 			}
  ],
