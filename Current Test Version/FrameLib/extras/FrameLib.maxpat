@@ -2320,13 +2320,13 @@
 									"presentation_rect" : [ 15.0, 90.0, 209.0, 25.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
+											"parameter_type" : 3,
 											"parameter_longname" : "umenu",
 											"parameter_initial_enable" : 1,
 											"parameter_invisible" : 1,
 											"parameter_mmax" : 22.0,
 											"parameter_initial" : [ 0 ],
-											"parameter_shortname" : "umenu",
-											"parameter_type" : 3
+											"parameter_shortname" : "umenu"
 										}
 
 									}
@@ -2723,14 +2723,15 @@
 									"fontname" : "Lato",
 									"fontsize" : 14.0,
 									"id" : "obj-17",
-									"linecount" : 2,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 217.0, 159.0, 40.0 ],
+									"patching_rect" : [ 30.0, 217.0, 159.0, 90.0 ],
 									"presentation" : 1,
-									"presentation_rect" : [ 240.0, 180.0, 405.0, 23.0 ],
-									"text" : "A general introduction to FrameLib.",
+									"presentation_linecount" : 2,
+									"presentation_rect" : [ 240.0, 180.0, 405.0, 40.0 ],
+									"text" : "Exporting your FrameLib networks from Max to C++ to be used in other environments and applications.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -3238,15 +3239,14 @@
 									"fontname" : "Lato",
 									"fontsize" : 18.0,
 									"id" : "obj-7",
-									"linecount" : 3,
+									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 138.0, 230.0, 71.0 ],
+									"patching_rect" : [ 30.0, 138.0, 230.0, 50.0 ],
 									"presentation" : 1,
-									"presentation_linecount" : 2,
-									"presentation_rect" : [ 240.0, 120.0, 408.0, 50.0 ],
-									"text" : "Tutorial 1: An introduction to FrameLib and frame based processing.",
+									"presentation_rect" : [ 240.0, 120.0, 408.0, 28.0 ],
+									"text" : "Tutorial 13: Exporting FrameLib from Max to C++.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.0 ]
 								}
 
@@ -4204,7 +4204,7 @@
 									"rounded" : 0.0,
 									"spacing_x" : 1.0,
 									"spacing_y" : 1.0,
-									"tabs" : [ "Tutorial 1: An introduction to FrameLib and frame based processing.", "Tutorial 2: Getting to grips with frame based processing.", "Tutorial 3: FrameLib basics.", "Tutorial 4: Getting in and out of FrameLib and Max.", "Tutorial 5: Generator objects.", "Tutorial 6: Building a granular synthesiser in Framelib from scratch." ],
+									"tabs" : [ "Tutorial 9: Multi-resolution FFT.", "Tutorial 10: Contexts.", "Tutorial 11: Non-realtime networks in FrameLib.", "Tutorial 12: Multithreading.", "Tutorial 13: Exporting FrameLib from Max to C++." ],
 									"truncate" : 0
 								}
 
@@ -4633,15 +4633,15 @@
 									"fontname" : "Lato Regular",
 									"fontsize" : 14.0,
 									"id" : "obj-5",
-									"linecount" : 15,
+									"linecount" : 16,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 130.0, 471.0, 258.0 ],
+									"patching_rect" : [ 15.0, 130.0, 471.0, 275.0 ],
 									"presentation" : 1,
 									"presentation_linecount" : 12,
 									"presentation_rect" : [ 15.0, 150.0, 630.0, 208.0 ],
-									"text" : "FrameLib is a DSP library for frame based processing. The underlying code is written in C++ and theoretically can be hosted in any block-based environment, but is easily compiled for Max from source. If this level of technical geekiness interests you there are links to the source/github throughout the documentation and just below.\n\nYou might be familiar working with other frame based tools such as pipo, mubu or gabor/FTM but you are encouraged to explore the FrameLib tutorials which will guide you through the fundamentals and how it works within Max. The tutorials should be perused in their numbered order, and increase with difficulty as you move through them. A number of techniques will be covered such as simple and complex FFT, and granular synthesis. \n\nYou are encouraged to move to the tutorial section next and to start learning how FrameLib works.",
+									"text" : "FrameLib is a DSP library for frame based processing. The underlying code is written in C++ and theoretically can be hosted in any block-based environment, but is easily compiled for Max from source. If this level of technical geekiness interests you there are links to the source/github throughout the documentation and just below.\n\nYou might be familiar working with other frame based tools such as pipo, mubu or gabor/FTM but you are encouraged to explore the FrameLib tutorials which will guide you through the fundamentals and how it works within Max. The tutorials should be navigated in their numbered order as they scaffold important concepts to begin with and increase with difficulty. A number of techniques will be covered such as simple and complex FFT, and granular synthesis. \n\nYou are encouraged to move to the tutorial section next and to start learning how FrameLib works.",
 									"textcolor" : [ 0.0, 0.0, 0.0, 0.910000026226044 ]
 								}
 
