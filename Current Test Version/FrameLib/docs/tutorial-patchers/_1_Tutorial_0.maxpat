@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 1,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 1372.0, 787.0 ],
+		"rect" : [ 34.0, 79.0, 652.0, 787.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,73 +40,13 @@
 		"showontab" : 1,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-15",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 572.75, 284.0, 46.0, 22.0 ],
-					"text" : "fl.sink~"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-13",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 620.75, 284.0, 58.0, 22.0 ],
-					"text" : "fl.tomax~"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-10",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 572.75, 182.0, 38.0, 22.0 ],
-					"text" : "pink~"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-9",
-					"maxclass" : "newobj",
-					"numinlets" : 3,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 572.75, 234.0, 115.0, 22.0 ],
-					"text" : "fl.source~"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-8",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 620.75, 182.0, 64.0, 22.0 ],
-					"text" : "fl.interval~"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-28",
-					"linecount" : 34,
+					"id" : "obj-17",
+					"linecount" : 21,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 948.0, 118.0, 155.0, 462.0 ],
-					"text" : "FrameLib is a DSP system designed to allow quick modular constructions of frame-based networks. A frame is a self contained group of samples similar to a grain in granulation or an FFT frame. These networks can resolve time at a highly accurate subsample level and can run at different rates and with different frame sizes.\n\nWithin a single FrameLib network you are able to mix different representations (such as time and frequency-based), efficiently process them and maintaining tightly-timed DSP constructs. A group of FrameLib objects resulting in a processing chain can be referred to as a 'network'.\n\nIf you don't know what these terms mean or are not sure if FrameLib could be useful for you rest assured it will make sense as the tutorials progress."
+					"patching_rect" : [ 551.75, 213.0, 539.25, 288.0 ],
+					"text" : "This tutorial is going to begin at an extremely basic and simple point of entry ino the world of frame-based processing and more general digital signal processing. If you feel at any point that the information here isn't useful or that you know these principles already then you are encouraged to move directly to the next tutorial.\n\nAudio in the real world is a continuous rarefaction and compression of a physical medium. Speakers\n\nA buffer of audio, some numbers (samples). \n\nThese samples represent the movements of the speakers that will shift the air back and forth. Depending on how these numbers are processed the resulting audio will change.\n\nNow, these samples are held in memory on your computer as a buffer~ in Max. We can read the samples back this buffer\n\nThe samples have to be converted into electric signals at exactly the right time, in order for the sound to be accurately reproduced. The computer deals with the complexity of this by creating a continuous strema of samples, by operating on small chunks, blocks, or vectors of audio at a consistent rate. There are reasons beyond the application of music why a computer would deal with groups of samples rather than each one at a time but that is outside the scope of what FrameLib is or the problems that it is attempting to solve."
 				}
 
 			}
@@ -143,7 +83,7 @@
 					"maxclass" : "live.line",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 5.75, 427.5, 530.25, 5.0 ]
+					"patching_rect" : [ 5.75, 404.5, 530.25, 5.0 ]
 				}
 
 			}
@@ -205,7 +145,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 5.75, 434.5, 495.0, 224.0 ],
+					"patching_rect" : [ 5.75, 411.5, 495.0, 224.0 ],
 					"text" : "We traditionally conceive of digital sound as a continuous stream. This constantly 'flowing' signal can be directed to different objects that process the stream to achieve different sonic affects or control routines. This representation is somewhat deceptive and under the hood. The computer doesn't conceive of audio as a continuous signal, rather as contiguous blocks, or vectors that represent the audio stream. The size of these blocks is determined by your 'signal vector size' in your audio settings.\n\nFrameLib operates on a very similar premise and allows you to break down a 'continuous stream' into chunks that can be independently operated on. This is useful for processes where a discrete segment of audio is of significance - such as in granular synthesis (the grain) or in spectral processing via FFT (a spectral slice or window). While FrameLib requires you as the user to switch your thinking a little bit and to learn some new ways of working, it is incredibly powerful once you get to know the objects and how they interact with the normal Max world you are used to."
 				}
 
@@ -218,7 +158,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 5.75, 394.5, 260.0, 29.0 ],
+					"patching_rect" : [ 5.75, 371.5, 260.0, 29.0 ],
 					"text" : "Why is this important?"
 				}
 
@@ -263,68 +203,8 @@
 
 			}
  ],
-		"lines" : [ 			{
-				"patchline" : 				{
-					"destination" : [ "obj-9", 0 ],
-					"source" : [ "obj-10", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-9", 1 ],
-					"source" : [ "obj-8", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-13", 0 ],
-					"midpoints" : [ 582.25, 270.0, 630.25, 270.0 ],
-					"order" : 0,
-					"source" : [ "obj-9", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-15", 0 ],
-					"midpoints" : [ 582.25, 258.0, 582.25, 258.0 ],
-					"order" : 1,
-					"source" : [ "obj-9", 0 ]
-				}
-
-			}
- ],
-		"dependency_cache" : [ 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.interval~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.source~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.tomax~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.sink~.mxo",
-				"type" : "iLaX"
-			}
- ],
+		"lines" : [  ],
+		"dependency_cache" : [  ],
 		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "AudioStatus_Menu",
@@ -383,8 +263,8 @@
 , 			{
 				"name" : "newobjYellow-1",
 				"default" : 				{
-					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
-					"fontsize" : [ 12.059008 ]
+					"fontsize" : [ 12.059008 ],
+					"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ]
 				}
 ,
 				"parentstyle" : "",

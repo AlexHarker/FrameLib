@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 5,
+			"minor" : 1,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 78.0, 652.0, 788.0 ],
+		"rect" : [ 34.0, 79.0, 480.0, 389.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -43,7 +43,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 124.0, 237.199996999999996, 233.0, 20.0 ],
+					"patching_rect" : [ 114.0, 217.199996999999996, 233.0, 20.0 ],
 					"text" : "Window each frame with a cosine function"
 				}
 
@@ -55,7 +55,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 17.0, 237.199996999999996, 105.0, 22.0 ],
+					"patching_rect" : [ 7.0, 217.199996999999996, 105.0, 22.0 ],
 					"text" : "fl.window~ cosine"
 				}
 
@@ -66,7 +66,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 65.0, 304.200012000000015, 146.0, 20.0 ],
+					"patching_rect" : [ 55.0, 284.200012000000015, 146.0, 20.0 ],
 					"text" : "Convert frames into MSP"
 				}
 
@@ -77,7 +77,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 145.0, 171.199996999999996, 144.0, 20.0 ],
+					"patching_rect" : [ 135.0, 151.199996999999996, 144.0, 20.0 ],
 					"text" : "Read from the rain buffer"
 				}
 
@@ -89,7 +89,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 241.0, 97.699996999999996, 240.0, 33.0 ],
+					"patching_rect" : [ 231.0, 77.699996999999996, 240.0, 33.0 ],
 					"text" : "Generate a frame of sequential millisecond positions to read from the buffer 'rain'."
 				}
 
@@ -101,7 +101,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 127.0, 30.5, 150.0, 33.0 ],
+					"patching_rect" : [ 117.0, 10.5, 150.0, 33.0 ],
 					"text" : "Generate a trigger frame 75 milliseconds"
 				}
 
@@ -113,7 +113,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 17.0, 304.200012000000015, 48.0, 22.0 ],
+					"patching_rect" : [ 7.0, 284.200012000000015, 48.0, 22.0 ],
 					"text" : "fl.sink~"
 				}
 
@@ -125,7 +125,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 17.0, 36.0, 102.0, 22.0 ],
+					"patching_rect" : [ 7.0, 16.0, 102.0, 22.0 ],
 					"text" : "fl.interval~ 75 ms"
 				}
 
@@ -137,7 +137,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 17.0, 103.199996999999996, 222.0, 22.0 ],
+					"patching_rect" : [ 7.0, 83.199996999999996, 222.0, 22.0 ],
 					"text" : "fl.ramp~ /length 150 /units ms /scale ms"
 				}
 
@@ -149,7 +149,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 17.0, 170.199996999999996, 126.0, 22.0 ],
+					"patching_rect" : [ 7.0, 150.199996999999996, 126.0, 22.0 ],
 					"text" : "fl.read~ rain /units ms"
 				}
 
@@ -162,7 +162,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 17.0, 371.200012000000015, 30.0, 30.0 ]
+					"patching_rect" : [ 7.0, 351.200012000000015, 30.0, 30.0 ]
 				}
 
 			}
