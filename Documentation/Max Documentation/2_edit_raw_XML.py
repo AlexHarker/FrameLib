@@ -1,8 +1,5 @@
-import os
-import json
+import os, json, errno, yaml
 import xml.etree.ElementTree as et
-import errno
-import yaml
 from FrameLibDocs.utils import (
     cd_up,
     read_json,
