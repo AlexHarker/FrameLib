@@ -6,6 +6,8 @@ parse_to_tlookup = __import__("5_parse_to_tlookup")
 parse_to_jlookup = __import__("6_parse_to_jlookup")
 create_tutorial_coll = __import__("7_create_tutorial_coll")
 cleanup = __import__("8_cleanup")
+template_help = __import__("9_template_help")
+merge_help = __import__("10_merge_help")
 
 import os
 from FrameLibDocs.utils import cd_up, get_path, sign_off, space, hyp
@@ -66,9 +68,20 @@ def main():
     print("8. Cleaning up")
     cleanup.main()
     hyp()
-    print(" ")
-    print("Completed all python scripts.")
 
+    # Creates the templates for each help file.
+    # This is an outer shell containing generic information and framework to be filled in
+    print("9. Creating help file templates")
+    template_help.main()
+    hyp()
+
+    # Merges the hard coded tabs with the templates
+    # This creates the finished help file
+    print("10. Merging master templates with internal patchers")
+    merge_help.main()
+    hyp()
+
+    print("Completed all python scripts.")
 
 if __name__ == "__main__":
     main()
