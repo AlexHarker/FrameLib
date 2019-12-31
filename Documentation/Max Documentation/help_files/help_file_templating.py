@@ -1,9 +1,6 @@
-import os
-import sys
-sys.path.append('../')
+import os, sys
 from shutil import copyfile
-from FrameLibDocs.strippers import strip_extension
-from FrameLibDocs.utils import remove_ds, cd_up, check_make, read_json, write_json
+from FrameLibDocs.utils import remove_ds, cd_up, check_make, read_json, write_json, strip_extension
 
 
 this_script = os.path.dirname(os.path.realpath(__file__))

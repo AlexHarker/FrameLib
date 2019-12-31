@@ -1,8 +1,5 @@
-import os
-import sys
-import json
-from FrameLibDocs.utils import read_json, write_json
-from FrameLibDocs.strippers import strip_extension
+import os, sys, json
+from FrameLibDocs.utils import read_json, write_json, strip_extension
 
 # the path of this script
 this_script = os.path.dirname(os.path.realpath(__file__))
