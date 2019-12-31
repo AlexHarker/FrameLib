@@ -4,14 +4,14 @@ from FrameLibDocs.utils import remove_ds, cd_up, check_make, read_json, write_js
 
 
 this_script = os.path.dirname(os.path.realpath(__file__))
-help_file_folder = os.path.join(this_script, "templates")
+help_file_folder = os.path.join(this_script, "help_files", "templates")
 
 check_make(help_file_folder)
 
-root = cd_up(this_script, 3)
+root = cd_up(this_script, 2)
 externals = os.path.join(root, "Current Test Version", "FrameLib", "externals")
 
-master_template = os.path.join(this_script, "help_template.maxhelp")
+master_template = os.path.join(this_script, "help_files", "help_template.maxhelp")
 
 def make_help_file(template, output_name):
     copyfile(
@@ -31,12 +31,10 @@ def edit_help_file(file_edit, obj_name):
     write_json(file_edit, t_json)
     
 
-if __name__ == '__main__':
-    # Create Help Files
-    print("Creating templated help files.\n")
+def main():
     for framelib_obj in remove_ds(os.listdir(externals)):
-        ext = os.path.splitext(framelib_obj)[1]
         name = os.path.splitext(framelib_obj)[0]
+        ext = os.path.splitext(framelib_obj)[1]
         if  ext == '.mxe64' or ext == '.mxo':
             framelib_obj = strip_extension(framelib_obj, 1)
             make_help_file(master_template, framelib_obj)
