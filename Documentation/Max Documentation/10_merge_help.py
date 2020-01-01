@@ -1,6 +1,10 @@
 import os, sys, json
 from FrameLibDocs.utils import read_json, write_json, strip_extension
 
+# TODO
+# Devise a method for merging additional patchers to specific names
+# This can be useful for merging a mismatch/trigger_ins patcher
+
 # the path of this script
 this_script = os.path.dirname(os.path.realpath(__file__))
 templated_files = os.listdir(
