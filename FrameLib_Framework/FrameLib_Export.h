@@ -23,10 +23,10 @@ private:\n\n\
 static char exportCPPOpen[] = "\n\
 #include \"$.h\"\n\
 #include \"FrameLib_Objects.h\"\n\n\
-$::$(FrameLib_Proxy *proxy) : mNumAudioIns(0), mNumAudioOuts(0), mProxy(proxy)\n\
+$::$(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumAudioOuts(0), mProxy(proxy)\n\
 {\n\
     using Connection = FrameLib_Object<FrameLib_Multistream>::Connection;\n\n\
-    FrameLib_Global::get(&mGlobal);\n\
+    FrameLib_Global::get(&mGlobal, FrameLib_Thread::defaultPriorities());\n\
     FrameLib_Context context(mGlobal, this);\n\
     FrameLib_Parameters::AutoSerial parameters;\n\n";
 
