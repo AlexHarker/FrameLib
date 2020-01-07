@@ -34,8 +34,12 @@ public:
     
     double randGaussian(double mean, double dev);
     
-private:
+    // Generate two independent gaussians (Mean 0 and Deviation 1)
     
+    void randGaussians(double& x, double& y);
+
+private:
+
     // Methods Specific to the RNG Algorithm
     
     // Basic Generator
@@ -47,6 +51,10 @@ private:
     void initSeedCMWC(uint32_t *init);    
     void randSeedCMWC();
     
+    // Gaussian Helper
+    
+    void randGaussians(double& x, double& y, double& R);
+
     // State
     
     uint32_t mIncrement;
