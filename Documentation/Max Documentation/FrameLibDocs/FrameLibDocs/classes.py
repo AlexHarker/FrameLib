@@ -12,12 +12,12 @@ class dParseAndBuild:
         self.tree = 0
         self.root = 0
         self.digest = ""
-        self.d_master_dict = dict({})
+        self.d_master_dict = {}
 
     # Assign values to construct the json #
     def build_json_file(self):
-        self.d_inner_data = dict({"digest": self.digest})
-        self.d_outer_data = dict({self.object_name: self.d_inner_data})
+        self.d_inner_data = {"digest": self.digest}
+        self.d_outer_data = {self.object_name: self.d_inner_data}
         self.d_master_dict.update(self.d_outer_data)
 
     # Extract the info from the refpages #
@@ -26,9 +26,7 @@ class dParseAndBuild:
         self.root = self.tree.getroot()  # c74object
 
         # Find Information #
-        self.object_name = self.root.get(
-            "name"
-        )  # finds the name so you don't have to do regex
+        self.object_name = self.root.get("name")  #finds the name so you don't have to do regex
 
         for child in self.root:
             if child.tag == "digest":
