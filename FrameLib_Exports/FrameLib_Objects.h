@@ -119,6 +119,7 @@
 #include "FrameLib_Pattern.h"
 #include "FrameLib_Peaks.h"
 #include "FrameLib_Percentile.h"
+#include "FrameLib_Prioritise.h"
 #include "FrameLib_Reverse.h"
 #include "FrameLib_Shift.h"
 #include "FrameLib_Sort.h"
