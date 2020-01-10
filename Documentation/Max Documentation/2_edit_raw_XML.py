@@ -7,6 +7,7 @@ from FrameLibDocs.utils import (
     get_path,
     read_yaml,
     strip_extension,
+    check_make
 )
 from FrameLibDocs.variables import (
     raw_xml_dir,
@@ -18,6 +19,10 @@ from FrameLibDocs.variables import (
 
 
 def indent(elem, level=0):
+    """
+    Although the XML will still be valid after processing it won't have ANY indentation.
+    This function adds indentation to make it more humanly readable.
+    """
     i = "\n" + level * "  "
     if len(elem):
         if not elem.text or not elem.text.strip():
@@ -59,46 +64,28 @@ def main():
                     return key
 
     try:
-        raw_xml_list = remove_ds(
-            os.listdir(raw_xml_dir)
-        )  # make a list with all the raw xml files in them
+        raw_xml_list = remove_ds(os.listdir(raw_xml_dir))  # make a list with all the raw xml files in them
     except FileNotFoundError:
-        print(
-            "Unable to find any xml files to parse. Moving on without parsing object references."
-        )
+        print("Unable to find any xml files to parse. Moving on without parsing object references.")
     else:
+        # Else here pushes on and assumes there are some XML files for processing.
         for raw_xml in raw_xml_list:
             obj_name = strip_extension(raw_xml, 2)  # just get the file name
-            category = find_object_category(
-                obj_name
-            )  # get the category of the object name
+            category = find_object_category(obj_name)  # get the category of the object name
             tree = et.parse(os.path.join(raw_xml_dir, raw_xml))  # parse the xml file
             root = tree.getroot()  # get root and assign to root var
-            root.set(
-                "category", category
-            )  # set category attribute of root to the category found in json
+            root.set("category", category) # set category attribute of root to the category found in json
 
             # This replaces the meta data tag. It produces a lot of errors which are filtered by the try/except structure but it should be changed to something else #
             if category != None:
-                for (
-                    elem
-                ) in (
-                    root.getiterator()
-                ):  # for all the elements in the root of the xml tree
+                for elem in root.getiterator():
                     try:
-                        elem.text = elem.text.replace(
-                            "!@#@#$", category
-                        )  # try to replace specific text with category found in json
+                        elem.text = elem.text.replace("!@#@#$", category)
                     except AttributeError:
-                        pass  # else pass because it will throw some errors
-                        # print('Error trying to replace category string.')
+                        print("There was an error replacing the wildcard category string.")
 
             if not os.path.exists(os.path.join(refpages_dir, category)):
-                try:
-                    os.makedirs(os.path.join(refpages_dir))
-                except OSError as e:
-                    if e.errno != errno.EEXIST:
-                        raise  # if directory is made between os.path.exists and os.makedirs calls this will fail with an OSError. This raises an error to warn the user rather than pushing on
+                check_make(os.path.join(refpages_dir))
 
             # Create seealso and keywords
             details = object_info[obj_name]
@@ -120,10 +107,7 @@ def main():
             # Pretty Print
             indent(root)
             out_path = os.path.join(refpages_dir, category, raw_xml)
-            # TODO Review how os.makedirs is working here - it might be better to use FrameLibDocs.utils checkmake()
-            try:
-                os.makedirs(os.path.join(refpages_dir, category))
-            except OSError as e:
-                if e.errno != errno.EEXIST:
-                    raise
-            tree.write(out_path)  # write out to new XML
+
+            # Write out
+            check_make(os.path.join(refpages_dir, category))
+            tree.write(out_path)
