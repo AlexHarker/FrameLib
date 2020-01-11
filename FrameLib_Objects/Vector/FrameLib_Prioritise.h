@@ -8,7 +8,8 @@ class FrameLib_Prioritise final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kNumIns };
+    enum ParameterList { kNumIns, kMode };
+    enum Modes { kLow, kHigh };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
