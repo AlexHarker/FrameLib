@@ -5,7 +5,7 @@
 #include "FrameLib_RingBuffer.h"
 #include "FrameLib_DSP.h"
 
-template <class T>
+template <class T, bool RequiresValuesForReset>
 class FrameLib_TimeBuffer : public FrameLib_Processor, private FrameLib_RingBuffer
 {
     const int sMaxFrames = 0;
@@ -88,7 +88,7 @@ private:
         {
             resize(maxFrames, sizeIn);
             resetSize(maxFrames, sizeIn);
-            mLastNumFrames = 0;
+            mLastNumFrames = RequiresValuesForReset ? 0 : numFrames;
         }
 
         requestOutputSize(0, getFrameLength());
@@ -124,6 +124,6 @@ private:
     unsigned long mLastNumFrames;
 };
 
-template<class T> typename FrameLib_TimeBuffer<T>::ParameterInfo FrameLib_TimeBuffer<T>::sParamInfo;
+template<class T, bool R> typename FrameLib_TimeBuffer<T, R>::ParameterInfo FrameLib_TimeBuffer<T, R>::sParamInfo;
 
 #endif
