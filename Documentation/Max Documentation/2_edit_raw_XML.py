@@ -1,4 +1,4 @@
-import os, json, errno, yaml
+import os, json, errno, yaml, re
 import xml.etree.ElementTree as et
 from FrameLibDocs.utils import (
     cd_up,
@@ -15,6 +15,7 @@ from FrameLibDocs.variables import (
     category_database_path,
     max_docs_dir,
     object_relationships_path,
+    temporary_dir
 )
 
 
@@ -34,7 +35,7 @@ def indent(elem, level=0):
         if not elem.tail or not elem.tail.strip():
             elem.tail = i
     else:
-        if level and (not elem.tail or not elem.tail.strip()):
+        if level and not elem.tail or not elem.tail.strip():
             elem.tail = i
 
 
@@ -69,6 +70,7 @@ def main():
         print("Unable to find any xml files to parse. Moving on without parsing object references.")
     else:
         # Else here pushes on and assumes there are some XML files for processing.
+        check_make(refpages_dir)
         for raw_xml in raw_xml_list:
             obj_name = strip_extension(raw_xml, 2)  # just get the file name
             category = find_object_category(obj_name)  # get the category of the object name
@@ -76,16 +78,21 @@ def main():
             root = tree.getroot()  # get root and assign to root var
             root.set("category", category) # set category attribute of root to the category found in json
 
-            # This replaces the meta data tag. It produces a lot of errors which are filtered by the try/except structure but it should be changed to something else #
+            
             if category != None:
-                for elem in root.getiterator():
+                for i in root.getiterator():
+                    #Replace line breaks
+                    if 'name' in i.attrib.keys():
+                        if i.attrib['name'] == 'Parameters':
+                            for j in i.getiterator():
+                                if j.tag == 'description':
+                                    j.text = j.text.replace(". ", ".<br>")
+                                    j.text = j.text.replace(": ", ":<br><br>")
+                    # Dirty pass
                     try:
-                        elem.text = elem.text.replace("!@#@#$", category)
+                        i.text = i.text.replace("!@#@#$", category)
                     except AttributeError:
-                        print("There was an error replacing the wildcard category string.")
-
-            if not os.path.exists(os.path.join(refpages_dir, category)):
-                check_make(os.path.join(refpages_dir))
+                        pass
 
             # Create seealso and keywords
             details = object_info[obj_name]
@@ -106,8 +113,25 @@ def main():
                                 desc.text = temp_string
             # Pretty Print
             indent(root)
-            out_path = os.path.join(refpages_dir, category, raw_xml)
 
             # Write out
-            check_make(os.path.join(refpages_dir, category))
-            tree.write(out_path)
+            check_make(os.path.join(temporary_dir, 'raw_xml_2'))
+            unescaped_file = os.path.join(temporary_dir, 'raw_xml_2', raw_xml)
+            tree.write(unescaped_file)
+
+            # Now dirtily replace escaped characters
+            # TODO make a much less rude method for creating <br> tags
+            check_make(
+                os.path.join(refpages_dir, category)
+            )
+            final_path = os.path.join(refpages_dir, category, raw_xml)
+            final_file = open(final_path, "w")
+            with open(unescaped_file, "r") as f:
+                xml = f.read()
+                xml = xml.replace("&lt;", "<")
+                xml = xml.replace("&gt;", "/>")
+                for line in xml:
+                    final_file.write(line)
+                final_file.close()
+                
+main()
