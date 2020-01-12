@@ -147,13 +147,50 @@
 						"showontab" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-50",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 255.0, 645.0, 51.0, 23.0 ],
+									"text" : "fl.map~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-49",
+									"linecount" : 2,
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 420.0, 570.0, 84.0, 38.0 ],
+									"text" : ";\rmax db.reset"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-47",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 270.0, 540.0, 50.0, 23.0 ],
+									"text" : "fl.plus~"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-33",
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 585.0, 120.0, 23.0 ],
-									"text" : "4000. 2.3 10000."
+									"patching_rect" : [ 15.0, 540.0, 120.0, 23.0 ],
+									"text" : "4000. 0."
 								}
 
 							}
@@ -176,7 +213,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 180.0, 315.0, 117.0, 23.0 ],
+									"patching_rect" : [ 180.0, 345.0, 117.0, 23.0 ],
 									"text" : "fl.register~ 100 0.1"
 								}
 
@@ -188,8 +225,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 315.0, 131.0, 23.0 ],
-									"text" : "fl.register~ 40 23 100"
+									"patching_rect" : [ 15.0, 345.0, 88.0, 23.0 ],
+									"text" : "fl.register~ 40"
 								}
 
 							}
@@ -726,6 +763,14 @@
 			}
 , 			{
 				"name" : "fl.tomax~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.plus~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.map~.mxo",
 				"type" : "iLaX"
 			}
  ],
