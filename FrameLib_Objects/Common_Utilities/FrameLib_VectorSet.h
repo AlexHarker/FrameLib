@@ -30,10 +30,14 @@ public:
     
     void resize(unsigned long numFrames, unsigned long frameLength, double initial = 0.0)
     {
+        unsigned long oldSize = mFrameLength * mNumFrames;
         unsigned long totalSize = frameLength * numFrames;
         
-        deallocVector(mFrames);
-        mFrames = allocVector(totalSize);
+        if (oldSize != totalSize)
+        {
+            deallocVector(mFrames);
+            mFrames = allocVector(totalSize);
+        }
         
         mNumFrames = mFrames ? numFrames : 0;
         mFrameLength = mFrames ? frameLength : 0;
