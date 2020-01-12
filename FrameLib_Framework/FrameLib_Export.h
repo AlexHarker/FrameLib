@@ -33,7 +33,8 @@ $::$(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumAudioOuts(0
 static char exportCPPClose[] = "\
     for (auto it = mObjects.begin(); it != mObjects.end(); it++)\n\
     {\n\
-        if ((*it)->getType() == kScheduler || (*it)->getNumAudioChans())//if ((*it)->handlesAudio())\n\
+        (*it)->autoOrderingConnections();\n\n\
+        if ((*it)->handlesAudio())\n\
             mAudioObjects.push_back(*it);\n\n\
         mNumAudioIns += (*it)->getNumAudioIns();\n\
         mNumAudioOuts += (*it)->getNumAudioOuts();\n\
