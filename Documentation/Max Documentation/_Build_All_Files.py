@@ -1,13 +1,14 @@
 create_category_database = __import__("1_create_category_database")
 edit_raw_XML = __import__("2_edit_raw_XML")
-parse_to_dlookup = __import__("3_parse_to_dlookup")
-parse_to_qlookup = __import__("4_parse_to_qlookup")
-parse_to_tlookup = __import__("5_parse_to_tlookup")
-parse_to_jlookup = __import__("6_parse_to_jlookup")
-create_tutorial_coll = __import__("7_create_tutorial_coll")
-cleanup = __import__("8_cleanup")
-template_help = __import__("9_template_help")
-merge_help = __import__("10_merge_help")
+line_breaks = __import__("3_reference_line_breaks")
+parse_to_dlookup = __import__("4_parse_to_dlookup")
+parse_to_qlookup = __import__("5_parse_to_qlookup")
+parse_to_tlookup = __import__("6_parse_to_tlookup")
+parse_to_jlookup = __import__("7_parse_to_jlookup")
+create_tutorial_coll = __import__("8_create_tutorial_coll")
+cleanup = __import__("9_cleanup")
+template_help = __import__("10_template_help")
+merge_help = __import__("12_merge_help")
 
 import os
 from FrameLibDocs.utils import cd_up, get_path, sign_off, space, hyp
@@ -36,48 +37,53 @@ def main():
     edit_raw_XML.main()
     hyp()
 
+    # This script replaces descriptive text with appropriate line breaks.
+    print("3. Formatting Line Breaks")
+    edit_raw_XML.main()
+    hyp()
+
     # This script creates a dictionary used to display specific object info in the extras Max Patch.
     # Similar to the qlookup, but is specifically used to display the digest with mouse hovering
-    print("3. Building dlookup")
+    print("4. Building dlookup")
     parse_to_dlookup.main()
     hyp()
 
     ## This script creates a dictionary that contains specific object information.
     # This provides the dynamic hover behaviour
-    print("4. Building qlookup")
+    print("5. Building qlookup")
     parse_to_qlookup.main()
     hyp()
 
     # Creates a dictionary used to display names and descriptions of tutorials in the extras Max Patch.
     # The tutorials are categorised by difficulty. {Beginner, Intermediate, Advanced}
-    print("5. Building tlookup")
+    print("6. Building tlookup")
     parse_to_tlookup.main()
     hyp()
 
     # Creates a dict containing information about object parameters. This is used by the help file template.
-    print("6. Building jlookup")
+    print("7. Building jlookup")
     parse_to_jlookup.main()
     hyp()
 
     # Creates a coll containing the file names of the tutorials. Makes it a bit easier to load them.
-    print("7. Building tutorial name coll")
+    print("8. Building tutorial name coll")
     create_tutorial_coll.main()
     hyp()
 
-    # Deletes all temporay files and cleans up process
-    print("8. Cleaning up")
-    cleanup.main()
-    hyp()
+    # # Deletes all temporay files and cleans up process
+    # print("9. Cleaning up")
+    # cleanup.main()
+    # hyp()
 
     # Creates the templates for each help file.
     # This is an outer shell containing generic information and framework to be filled in
-    print("9. Creating help file templates")
+    print("10. Creating help file templates")
     template_help.main()
     hyp()
 
     # Merges the hard coded tabs with the templates
     # This creates the finished help file
-    print("10. Merging master templates with internal patchers")
+    print("12. Merging master templates with internal patchers")
     merge_help.main()
     hyp()
 
