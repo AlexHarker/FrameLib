@@ -1,6 +1,6 @@
 
 static char exportHeader[] = "\n\
-#include \"FrameLib_Multistream.h\"\n\
+#include <FrameLib_Multistream.h>\n\
 #include <vector>\n\n\
 class $\n\
 {\n\n\
