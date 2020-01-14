@@ -39,6 +39,30 @@ FrameLib_Multistream::BlockConnection FrameLib_Multistream::getOrderingConnectio
     return connection.mObject->mOutputs[connection.mIndex][chan];
 }
 
+// Update connections
+
+void FrameLib_Multistream::connectionUpdate(Queue *queue)
+{
+    for (unsigned long i = 0; i < getNumIns(); i++)
+    {
+        MultistreamConnection connection = getConnection(i);
+        
+        if (connection.mObject && !connection.mObject->mOwnsStreams)
+            connection.mObject->inputUpdate();
+    }
+    
+    for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
+    {
+        MultistreamConnection connection = getOrderingConnection(i);
+        
+        if (connection.mObject && !connection.mObject->mOwnsStreams)
+            connection.mObject->inputUpdate();
+    }
+    
+    if (inputUpdate() || !mOwnsStreams)
+        outputUpdate(queue);
+}
+
 // Update the inputs of all output dependencies
 
 void FrameLib_Multistream::outputUpdate(Queue *queue)

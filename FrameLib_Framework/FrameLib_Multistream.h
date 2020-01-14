@@ -41,12 +41,12 @@ public:
     
     // Constructors
 
-    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
-    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams)
+    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, bool ownsStreams, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
+    : FrameLib_Object(type, context, proxy), mOwnsStreams(ownsStreams), mNumStreams(nStreams)
     { setIO(nIns, nOuts); }
     
-    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, unsigned long nStreams)
-    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams) {}
+    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, bool ownsStreams, unsigned long nStreams)
+    : FrameLib_Object(type, context, proxy), mOwnsStreams(ownsStreams), mNumStreams(nStreams) {}
     
     // Destructor
     
@@ -85,11 +85,7 @@ private:
 
     // Connection Methods (private)
     
-    void connectionUpdate(Queue *queue) final
-    {
-        if (inputUpdate())
-            outputUpdate(queue);
-    }
+    void connectionUpdate(Queue *queue) final;
 
     virtual bool inputUpdate() = 0;
     void outputUpdate(Queue *queue);
@@ -103,6 +99,7 @@ protected:
 private:
     
     unsigned long mNumStreams;
+    bool mOwnsStreams;
 };
 
 
@@ -128,7 +125,7 @@ public:
     const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
 
     FrameLib_Expand(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
-    : FrameLib_Multistream(T::sType, context, proxy, nStreams), mSerialisedParameters(serialisedParameters ? serialisedParameters->size() : 0)
+    : FrameLib_Multistream(T::sType, context, proxy, true, nStreams), mSerialisedParameters(serialisedParameters ? serialisedParameters->size() : 0)
     {
         // Make first block
         
