@@ -14,7 +14,12 @@ FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, const FrameLib_Pa
     
     mParameters.addBool(kOn, "on", true, 2);
 
+    mParameters.addBool(kSwitchable, "switchable", false);
+    mParameters.setInstantiation();
+    
     mParameters.set(serialisedParameters);
+    
+    mSwitchable = mParameters.getBool(kSwitchable);
     
     setParameterInput(0);
     
@@ -87,7 +92,7 @@ void FrameLib_Interval::update()
 
 FrameLib_Interval::SchedulerInfo FrameLib_Interval::schedule(bool newFrame, bool noAdvance)
 {
-    bool on = mParameters.getBool(kOn);
+    bool on = mParameters.getBool(kOn) || !mSwitchable;
     bool timeRemaining = mRemaining.greaterThanZero();
     
     FrameLib_TimeFormat inputTime = getInputTime();
@@ -96,7 +101,7 @@ FrameLib_Interval::SchedulerInfo FrameLib_Interval::schedule(bool newFrame, bool
     
     // Calculate if we can schedule up to the next new frame
     
-    bool complete = on && (now + interval) < inputTime;
+    bool complete = !mSwitchable || (on && (now + interval) < inputTime);
     
     // Adjust the interval if we need to track input / block updates or if not allowed to update
     
@@ -105,7 +110,7 @@ FrameLib_Interval::SchedulerInfo FrameLib_Interval::schedule(bool newFrame, bool
     
     // Update the remaining time
     
-    if (on && timeRemaining)
+    if ((on && timeRemaining) || noAdvance)
         mRemaining -= interval;
     else if (on)
         mRemaining = mInterval - interval;
