@@ -171,8 +171,8 @@ void FrameLib_ProcessingQueue::serviceQueue(FrameLib_LocalAllocator *allocator)
 
 bool FrameLib_ProcessingQueue::checkForTimeOut()
 {
-    if (!mTimedOut && mClock.elapsed() > sMaxTime)
-        mTimedOut = true;
+    //if (!mTimedOut && mClock.elapsed() > sMaxTime)
+    //    mTimedOut = true;
     
     return isTimedOut();
 }
