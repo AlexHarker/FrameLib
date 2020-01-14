@@ -118,6 +118,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Pattern.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Peaks.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Percentile.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Prioritise.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Reverse.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Shift.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Sort.h" />
@@ -203,6 +204,7 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Pattern.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Peaks.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Percentile.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Prioritise.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Reverse.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Shift.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Sort.cpp" />
@@ -310,6 +312,7 @@
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile />
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -323,6 +326,7 @@
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile />
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
