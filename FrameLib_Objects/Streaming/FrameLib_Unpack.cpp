@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_Unpack::FrameLib_Unpack(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams) : FrameLib_Multistream(kProcessor, context, false, proxy, 1), mParameters(context, proxy, &sParamInfo)
+FrameLib_Unpack::FrameLib_Unpack(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams) : FrameLib_Multistream(kProcessor, context, proxy, false, 1), mParameters(context, proxy, &sParamInfo)
 {
     mParameters.addInt(kOutputs, "outputs", 2, 0);
     mParameters.setInstantiation();
