@@ -84,7 +84,7 @@ void FrameLib_FIRPhase::process()
     if (FFTSize > mProcessor.max_fft_size() || !sizeIn)
     {
         if (FFTSize > mProcessor.max_fft_size())
-            getReporter()(kErrorObject, getProxy(), "processing size (#) larger than maximum FFT size (#)", processingLength, mProcessor.max_fft_size());
+            getReporter()(kErrorObject, getProxy(), "processing size (#) larger than maximum FFT size (#)", static_cast<size_t>(processingLength), mProcessor.max_fft_size());
         sizeOut = 0;
     }
     
