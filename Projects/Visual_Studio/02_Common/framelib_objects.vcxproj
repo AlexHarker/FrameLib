@@ -72,7 +72,6 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Select.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_AudioTrigger.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Chain.h" />
-    <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Future.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Interval.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Once.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_PerBlock.h" />
@@ -108,7 +107,7 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Timing\FrameLib_Timer.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Unary\FrameLib_Unary_Objects.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Unary\FrameLib_Unary_Template.h" />
-    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_AccumPoint.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_AccumPos.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Chop.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Join.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Vector\FrameLib_KernelSmooth.h" />
@@ -164,7 +163,6 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Routing\FrameLib_Select.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_AudioTrigger.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Chain.cpp" />
-    <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Future.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Interval.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_Once.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Schedulers\FrameLib_PerBlock.cpp" />
@@ -194,7 +192,7 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Timing\FrameLib_Ticks.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Timing\FrameLib_TimeDelta.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Timing\FrameLib_Timer.cpp" />
-    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_AccumPoint.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_AccumPos.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Chop.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_Join.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Vector\FrameLib_KernelSmooth.cpp" />
