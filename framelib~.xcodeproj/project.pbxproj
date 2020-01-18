@@ -26397,6 +26397,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/FrameLib_Objects/**";
 				INSTALL_PATH = /Users/alexharker/Documents/Plugin_Work/iPlug2/Projects/HISSTools_Freeze/dependencies/build/;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -26449,6 +26450,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/FrameLib_Objects/**";
 				INSTALL_PATH = /Users/alexharker/Documents/Plugin_Work/iPlug2/Projects/HISSTools_Freeze/dependencies/build/;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -26501,6 +26503,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/FrameLib_Objects/**";
 				INSTALL_PATH = /Users/alexharker/Documents/Plugin_Work/iPlug2/Projects/HISSTools_Freeze/dependencies/build/;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
