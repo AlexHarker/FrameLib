@@ -22,7 +22,8 @@
  
  */
 
-class FrameLib_DSP : public FrameLib_Block
+class FrameLib_DSP
+: public FrameLib_Block
 , public FrameLib_MethodQueue<FrameLib_DSP>::Node
 , public FrameLib_ProcessingQueue::Node
 {
