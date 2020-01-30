@@ -4,7 +4,7 @@
 
 #include "FrameLib_TimeBuffer_Template.h"
 
-class FrameLib_TimeMean final : public FrameLib_TimeBuffer<FrameLib_TimeMean>
+class FrameLib_TimeMean final : public FrameLib_TimeBuffer<FrameLib_TimeMean, false>
 {
     
 public:

@@ -4,144 +4,145 @@
 
 // Buffers
 
-#include "FrameLib_Info.h"
-#include "FrameLib_Read.h"
+#include "../FrameLib_Objects/Buffer/FrameLib_Info.h"
+#include "../FrameLib_Objects/Buffer/FrameLib_Read.h"
 
 // Host Communication
 
-#include "FrameLib_FromHost.h"
-#include "FrameLib_ToHost.h"
+#include "../FrameLib_Objects/Host_Communication/FrameLib_FromHost.h"
+#include "../FrameLib_Objects/Host_Communication/FrameLib_ToHost.h"
 
 // Filters
 
-#include "FrameLib_0dfSVF.h"
-#include "FrameLib_OnePole.h"
-#include "FrameLib_OnePoleZero.h"
-#include "FrameLib_Resonant.h"
-#include "FrameLib_SallenAndKey.h"
+#include "../FrameLib_Objects/Filters/FrameLib_0dfSVF.h"
+#include "../FrameLib_Objects/Filters/FrameLib_OnePole.h"
+#include "../FrameLib_Objects/Filters/FrameLib_OnePoleZero.h"
+#include "../FrameLib_Objects/Filters/FrameLib_Resonant.h"
+#include "../FrameLib_Objects/Filters/FrameLib_SallenAndKey.h"
 
 // Generators
 
-#include "FrameLib_Gaussian.h"
-#include "FrameLib_Ramp.h"
-#include "FrameLib_Random.h"
-#include "FrameLib_Uniform.h"
+#include "../FrameLib_Objects/Generators/FrameLib_Gaussian.h"
+#include "../FrameLib_Objects/Generators/FrameLib_Ramp.h"
+#include "../FrameLib_Objects/Generators/FrameLib_Random.h"
+#include "../FrameLib_Objects/Generators/FrameLib_Uniform.h"
 
 // IO
 
-#include "FrameLib_Source.h"
-#include "FrameLib_Sink.h"
-#include "FrameLib_Trace.h"
+#include "../FrameLib_Objects/IO/FrameLib_Source.h"
+#include "../FrameLib_Objects/IO/FrameLib_Sink.h"
+#include "../FrameLib_Objects/IO/FrameLib_Trace.h"
 
 // Mapping
 
-#include "FrameLib_Constant.h"
-#include "FrameLib_Convert.h"
-#include "FrameLib_Lookup.h"
-#include "FrameLib_Map.h"
-#include "FrameLib_SampleRate.h"
+#include "../FrameLib_Objects/Mapping/FrameLib_Constant.h"
+#include "../FrameLib_Objects/Mapping/FrameLib_Convert.h"
+#include "../FrameLib_Objects/Mapping/FrameLib_Lookup.h"
+#include "../FrameLib_Objects/Mapping/FrameLib_Map.h"
+#include "../FrameLib_Objects/Mapping/FrameLib_SampleRate.h"
 
 // Parameters
 
-#include "FrameLib_CombineTags.h"
-#include "FrameLib_FilterTags.h"
-#include "FrameLib_GetParam.h"
-#include "FrameLib_Tag.h"
-#include "FrameLib_Untag.h"
+#include "../FrameLib_Objects/Parameters/FrameLib_CombineTags.h"
+#include "../FrameLib_Objects/Parameters/FrameLib_FilterTags.h"
+#include "../FrameLib_Objects/Parameters/FrameLib_GetParam.h"
+#include "../FrameLib_Objects/Parameters/FrameLib_Tag.h"
+#include "../FrameLib_Objects/Parameters/FrameLib_Untag.h"
 
 // Routing
 
-#include "FrameLib_Dispatch.h"
-#include "FrameLib_Route.h"
-#include "FrameLib_Select.h"
+#include "../FrameLib_Objects/Routing/FrameLib_Dispatch.h"
+#include "../FrameLib_Objects/Routing/FrameLib_Route.h"
+#include "../FrameLib_Objects/Routing/FrameLib_Select.h"
 
 // Schedulers
 
-#include "FrameLib_AudioTrigger.h"
-#include "FrameLib_Chain.h"
-#include "FrameLib_Interval.h"
-#include "FrameLib_Once.h"
-#include "FrameLib_PerBlock.h"
+#include "../FrameLib_Objects/Schedulers/FrameLib_AudioTrigger.h"
+#include "../FrameLib_Objects/Schedulers/FrameLib_Chain.h"
+#include "../FrameLib_Objects/Schedulers/FrameLib_Interval.h"
+#include "../FrameLib_Objects/Schedulers/FrameLib_Once.h"
+#include "../FrameLib_Objects/Schedulers/FrameLib_PerBlock.h"
 
 // Spatial
 
-#include "FrameLib_CoordinateSystem.h"
-#include "FrameLib_Spatial.h"
+#include "../FrameLib_Objects/Spatial/FrameLib_CoordinateSystem.h"
+#include "../FrameLib_Objects/Spatial/FrameLib_Spatial.h"
 
 // Spectral
 
-#include "FrameLib_FFT.h"
-#include "FrameLib_iFFT.h"
-#include "FrameLib_Correlate.h"
-#include "FrameLib_Convolve.h"
-#include "FrameLib_FIRPhase.h"
-#include "FrameLib_Multitaper.h"
-#include "FrameLib_Window.h"
+#include "../FrameLib_Objects/Spectral/FrameLib_FFT.h"
+#include "../FrameLib_Objects/Spectral/FrameLib_iFFT.h"
+#include "../FrameLib_Objects/Spectral/FrameLib_Correlate.h"
+#include "../FrameLib_Objects/Spectral/FrameLib_Convolve.h"
+#include "../FrameLib_Objects/Spectral/FrameLib_FIRPhase.h"
+#include "../FrameLib_Objects/Spectral/FrameLib_Multitaper.h"
+#include "../FrameLib_Objects/Spectral/FrameLib_Window.h"
 
 // Storage
 
-#include "FrameLib_Recall.h"
-#include "FrameLib_Register.h"
-#include "FrameLib_Store.h"
+#include "../FrameLib_Objects/Storage/FrameLib_Recall.h"
+#include "../FrameLib_Objects/Storage/FrameLib_Register.h"
+#include "../FrameLib_Objects/Storage/FrameLib_Store.h"
 
 // Streaming
 
-#include "FrameLib_Pack.h"
-#include "FrameLib_Unpack.h"
-#include "FrameLib_StreamID.h"
+#include "../FrameLib_Objects/Streaming/FrameLib_Pack.h"
+#include "../FrameLib_Objects/Streaming/FrameLib_Unpack.h"
+#include "../FrameLib_Objects/Streaming/FrameLib_StreamID.h"
 
 // Time Smoothing
 
-#include "FrameLib_EWMA.h"
-#include "FrameLib_EWMSD.h"
-#include "FrameLib_FrameDelta.h"
-#include "FrameLib_Lag.h"
-#include "FrameLib_TimeMean.h"
-#include "FrameLib_TimeMedian.h"
-#include "FrameLib_TimeStdDev.h"
+#include "../FrameLib_Objects/Time_Smoothing/FrameLib_EWMA.h"
+#include "../FrameLib_Objects/Time_Smoothing/FrameLib_EWMSD.h"
+#include "../FrameLib_Objects/Time_Smoothing/FrameLib_FrameDelta.h"
+#include "../FrameLib_Objects/Time_Smoothing/FrameLib_Lag.h"
+#include "../FrameLib_Objects/Time_Smoothing/FrameLib_TimeMean.h"
+#include "../FrameLib_Objects/Time_Smoothing/FrameLib_TimeMedian.h"
+#include "../FrameLib_Objects/Time_Smoothing/FrameLib_TimeStdDev.h"
 
 // Timing
 
-#include "FrameLib_Now.h"
-#include "FrameLib_Ticks.h"
-#include "FrameLib_TimeDelta.h"
-#include "FrameLib_Timer.h"
+#include "../FrameLib_Objects/Timing/FrameLib_Now.h"
+#include "../FrameLib_Objects/Timing/FrameLib_Ticks.h"
+#include "../FrameLib_Objects/Timing/FrameLib_TimeDelta.h"
+#include "../FrameLib_Objects/Timing/FrameLib_Timer.h"
 
 // Vector
 
-#include "FrameLib_AccumPos.h"
-#include "FrameLib_Chop.h"
-#include "FrameLib_Join.h"
-#include "FrameLib_MedianFilter.h"
-#include "FrameLib_NanFilter.h"
-#include "FrameLib_NonZero.h"
-#include "FrameLib_Pad.h"
-#include "FrameLib_Pattern.h"
-#include "FrameLib_Peaks.h"
-#include "FrameLib_Percentile.h"
-#include "FrameLib_Reverse.h"
-#include "FrameLib_Shift.h"
-#include "FrameLib_Sort.h"
-#include "FrameLib_Split.h"
-#include "FrameLib_Subframe.h"
-#include "FrameLib_Vector_Objects.h"
+#include "../FrameLib_Objects/Vector/FrameLib_AccumPos.h"
+#include "../FrameLib_Objects/Vector/FrameLib_Chop.h"
+#include "../FrameLib_Objects/Vector/FrameLib_Join.h"
+#include "../FrameLib_Objects/Vector/FrameLib_MedianFilter.h"
+#include "../FrameLib_Objects/Vector/FrameLib_NanFilter.h"
+#include "../FrameLib_Objects/Vector/FrameLib_NonZero.h"
+#include "../FrameLib_Objects/Vector/FrameLib_Pad.h"
+#include "../FrameLib_Objects/Vector/FrameLib_Pattern.h"
+#include "../FrameLib_Objects/Vector/FrameLib_Peaks.h"
+#include "../FrameLib_Objects/Vector/FrameLib_Percentile.h"
+#include "../FrameLib_Objects/Vector/FrameLib_Prioritise.h"
+#include "../FrameLib_Objects/Vector/FrameLib_Reverse.h"
+#include "../FrameLib_Objects/Vector/FrameLib_Shift.h"
+#include "../FrameLib_Objects/Vector/FrameLib_Sort.h"
+#include "../FrameLib_Objects/Vector/FrameLib_Split.h"
+#include "../FrameLib_Objects/Vector/FrameLib_Subframe.h"
+#include "../FrameLib_Objects/Vector/FrameLib_Vector_Objects.h"
 
 // Operators
 
-#include "FrameLib_Unary_Objects.h"
-#include "FrameLib_Binary_Objects.h"
-#include "FrameLib_Ternary_Objects.h"
+#include "../FrameLib_Objects/Unary/FrameLib_Unary_Objects.h"
+#include "../FrameLib_Objects/Binary/FrameLib_Binary_Objects.h"
+#include "../FrameLib_Objects/Ternary/FrameLib_Ternary_Objects.h"
 
 // Expressions
 
-#include "FrameLib_Expression.h"
-#include "FrameLib_ComplexExpression.h"
+#include "../FrameLib_Objects/Expressions/FrameLib_Expression.h"
+#include "../FrameLib_Objects/Expressions/FrameLib_ComplexExpression.h"
 
 // Complex Operators
 
-#include "FrameLib_Complex_Unary_Objects.h"
-#include "FrameLib_Cartopol.h"
-#include "FrameLib_Poltocar.h"
-#include "FrameLib_Complex_Binary_Objects.h"
+#include "../FrameLib_Objects/Complex_Unary/FrameLib_Complex_Unary_Objects.h"
+#include "../FrameLib_Objects/Complex_Unary/FrameLib_Cartopol.h"
+#include "../FrameLib_Objects/Complex_Unary/FrameLib_Poltocar.h"
+#include "../FrameLib_Objects/Complex_Binary/FrameLib_Complex_Binary_Objects.h"
 
 #endif /* FRAMELIB_OBJECTS_H */

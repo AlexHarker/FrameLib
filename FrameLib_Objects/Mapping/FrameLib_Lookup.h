@@ -8,7 +8,7 @@
 
 class FrameLib_Lookup final : public FrameLib_Processor
 {
-    enum ParameterList { kMode, kInterpolation, kScaling };
+    enum ParameterList { kMode, kInterpolation, kScaling, kPadding };
     enum Mode { kZero, kClip, kWrap, kPad };
     enum Interpolation { kHermite, kBSpline, kLagrange, kLinear, kNone };
     enum Scaling { kSamples, kNormalised, kBipolar };
@@ -51,19 +51,25 @@ class FrameLib_Lookup final : public FrameLib_Processor
         const double mPadValue;
     };
     
-    /*
     struct FetchWrap : public FetchBase
     {
         FetchWrap(const double *data, intptr_t size) : FetchBase(data, size) {}
         
-        double operator()(intptr_t offset) { return mData[std::min(std::max(offset, 0), mSize - 1)]; }
-    };*/
+        double operator()(intptr_t offset)
+        {
+            offset %= mSize;
+            return mData[offset < 0 ? mSize + offset : offset];
+        }
+    };
     
     struct FetchClip : public FetchBase
     {
         FetchClip(const double *data, intptr_t size) : FetchBase(data, size) {}
         
-        double operator()(intptr_t offset) { return mData[std::min(std::max(offset, static_cast<intptr_t>(0)), mSize - 1)]; }
+        double operator()(intptr_t offset)
+        {
+            return mData[std::min(std::max(offset, static_cast<intptr_t>(0)), mSize - 1)];
+        }
     };
     
 public:

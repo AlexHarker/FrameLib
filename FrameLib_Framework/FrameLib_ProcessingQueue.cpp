@@ -141,6 +141,8 @@ void FrameLib_ProcessingQueue::wakeWorkers()
 
 void FrameLib_ProcessingQueue::serviceQueue(FrameLib_LocalAllocator *allocator)
 {
+    DenormalHandling denormHandler;
+    
     unsigned long timedOutCount = 0;
     
     while (FrameLib_DSP *object = mQueue.pop())

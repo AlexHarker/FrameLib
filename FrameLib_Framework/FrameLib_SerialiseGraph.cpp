@@ -17,6 +17,9 @@ void unmangleName(std::string& name, FrameLib_Object<FrameLib_Multistream> *obj)
     char *real_name = abi::__cxa_demangle(type_mangled_name, 0, 0, &status);
     
     name = real_name;
+    size_t start_pos = name.find("std::__1");
+    if (start_pos != std::string::npos)
+        name.replace(start_pos, 8, "std");
     free(real_name);
 }
 #else

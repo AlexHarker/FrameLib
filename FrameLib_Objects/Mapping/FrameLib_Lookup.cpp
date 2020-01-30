@@ -8,7 +8,9 @@ FrameLib_Lookup::FrameLib_Lookup(FrameLib_Context context, const FrameLib_Parame
     mParameters.addEnum(kMode, "mode");
     mParameters.addEnumItem(kZero, "zero");
     mParameters.addEnumItem(kClip, "clip");
-    
+    mParameters.addEnumItem(kWrap, "wrap");
+    mParameters.addEnumItem(kPad, "pad");
+
     mParameters.addEnum(kInterpolation, "interp");
     mParameters.addEnumItem(kHermite, "hermite");
     mParameters.addEnumItem(kBSpline, "bspline");
@@ -20,6 +22,8 @@ FrameLib_Lookup::FrameLib_Lookup(FrameLib_Context context, const FrameLib_Parame
     mParameters.addEnumItem(kSamples, "samples");
     mParameters.addEnumItem(kNormalised, "normalised");
     mParameters.addEnumItem(kBipolar, "bipolar");
+    
+    mParameters.addDouble(kPadding, "pad", 0.0);
     
     mParameters.set(serialisedParameters);
     
@@ -74,11 +78,19 @@ FrameLib_Lookup::ParameterInfo::ParameterInfo()
 
 void FrameLib_Lookup::process()
 {
+    double padValue = mParameters.getValue(kPadding);
+    double scaleFactor;
+    
+    Scaling scaling = (Scaling) mParameters.getInt(kScaling);
+    InterpType interpType = kInterpNone;
+    
     unsigned long sizeIn1, sizeIn2, sizeOut;
     
     const double *input1 = getInput(0, &sizeIn1);
     const double *input2 = getInput(1, &sizeIn2);
-    
+    const double *positions = input1;
+    double *temp = nullptr;
+
     // Before allocating check that we have a table and if not produce an empty frame
     
     sizeIn1 = sizeIn2 ? sizeIn1 : 0;
@@ -86,12 +98,8 @@ void FrameLib_Lookup::process()
     allocateOutputs();
     
     double *output = getOutput(0, &sizeOut);
-    const double *positions = input1;
-    double *temp = nullptr;
-    double scaleFactor;
     
-    Scaling scaling = (Scaling) mParameters.getInt(kScaling);
-    InterpType interpType = kInterpNone;
+    // Set interp[olation
     
     switch ((Interpolation) mParameters.getInt(kInterpolation))
     {
@@ -101,6 +109,8 @@ void FrameLib_Lookup::process()
         case kHermite:      interpType = kInterpCubicHermite;       break;
         case kBSpline:      interpType = kInterpCubicBSpline;       break;
     }
+    
+    // Deal with scaling
     
     if (scaling != kSamples)
     {
@@ -134,12 +144,14 @@ void FrameLib_Lookup::process()
             break;
     }
     
+    // Calculate output
+    
     switch (static_cast<Mode>(mParameters.getInt(kMode)))
     {
-        case kZero:     table_read(FetchZero(input2, sizeIn2), output, positions, sizeIn1, 1.0, interpType);   break;
-        case kClip:     table_read(FetchClip(input2, sizeIn2), output, positions, sizeIn1, 1.0, interpType);   break;
-        //case kWrap:   table_read(FetchWrap(input2, sizeIn2), output, input1, sizeIn1, 1.0, interpType);   break;
-        //case kPad:   table_read(FetchPad(input2, sizeIn2, padValue), output, input1, sizeIn1, 1.0, interpType);   break;
+        case kZero: table_read(FetchZero(input2, sizeIn2), output, positions, sizeIn1, 1.0, interpType);        break;
+        case kClip: table_read(FetchClip(input2, sizeIn2), output, positions, sizeIn1, 1.0, interpType);        break;
+        case kWrap: table_read(FetchWrap(input2, sizeIn2), output, input1, sizeIn1, 1.0, interpType);           break;
+        case kPad:  table_read(FetchPad(input2, sizeIn2, padValue), output, input1, sizeIn1, 1.0, interpType);  break;
     }
     
      if (scaling != kSamples)

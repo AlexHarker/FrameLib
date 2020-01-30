@@ -1,6 +1,6 @@
 
 static char exportHeader[] = "\n\
-#include \"FrameLib_Multistream.h\"\n\
+#include <FrameLib_Multistream.h>\n\
 #include <vector>\n\n\
 class $\n\
 {\n\n\
@@ -23,17 +23,18 @@ private:\n\n\
 static char exportCPPOpen[] = "\n\
 #include \"$.h\"\n\
 #include \"FrameLib_Objects.h\"\n\n\
-$::$(FrameLib_Proxy *proxy) : mNumAudioIns(0), mNumAudioOuts(0), mProxy(proxy)\n\
+$::$(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumAudioOuts(0), mProxy(proxy)\n\
 {\n\
     using Connection = FrameLib_Object<FrameLib_Multistream>::Connection;\n\n\
-    FrameLib_Global::get(&mGlobal);\n\
+    FrameLib_Global::get(&mGlobal, FrameLib_Thread::defaultPriorities());\n\
     FrameLib_Context context(mGlobal, this);\n\
     FrameLib_Parameters::AutoSerial parameters;\n\n";
 
 static char exportCPPClose[] = "\
     for (auto it = mObjects.begin(); it != mObjects.end(); it++)\n\
     {\n\
-        if ((*it)->getType() == kScheduler || (*it)->getNumAudioChans())//if ((*it)->handlesAudio())\n\
+        (*it)->autoOrderingConnections();\n\n\
+        if ((*it)->handlesAudio())\n\
             mAudioObjects.push_back(*it);\n\n\
         mNumAudioIns += (*it)->getNumAudioIns();\n\
         mNumAudioOuts += (*it)->getNumAudioOuts();\n\

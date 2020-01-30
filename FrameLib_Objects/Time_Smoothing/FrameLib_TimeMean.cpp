@@ -1,7 +1,7 @@
 
 #include "FrameLib_TimeMean.h"
 
-FrameLib_TimeMean::FrameLib_TimeMean(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_TimeBuffer<FrameLib_TimeMean>(context, serialisedParameters, proxy), mSum(nullptr), mCompensate(nullptr)
+FrameLib_TimeMean::FrameLib_TimeMean(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_TimeBuffer<FrameLib_TimeMean, false>(context, serialisedParameters, proxy), mSum(nullptr), mCompensate(nullptr)
 {}
 
 // Info
@@ -65,7 +65,6 @@ void FrameLib_TimeMean::remove(const double *oldFrame, unsigned long size)
         neumaierSum(-oldFrame[i], mSum[i], mCompensate[i]);
 }
 
-
 void FrameLib_TimeMean::result(double *output, unsigned long size)
 {
     double recip = 1.0 / getNumFrames();
@@ -73,4 +72,3 @@ void FrameLib_TimeMean::result(double *output, unsigned long size)
     for (unsigned long i = 0; i < size; i++)
         output[i] = (mSum[i] + mCompensate[i]) * recip;
 }
-

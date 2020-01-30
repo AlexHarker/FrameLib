@@ -28,21 +28,20 @@ FrameLib_Store::~FrameLib_Store()
 
 std::string FrameLib_Store::objectInfo(bool verbose)
 {
-    return formatInfo("Stores a vector frame in named memory for recall: The output can be used to control ordering or synchronisation.",
-                   "Stores a vector frame in named memory for recall.", verbose);
+    return formatInfo("Stores frames remotely for later recall: "
+                      "The storage location is determined by the name parameter. "
+                      "The output / ordering input can be used to explicitly control ordering between related objects.",
+                      "Stores frames remotely for later recall.", verbose);
 }
 
 std::string FrameLib_Store::inputInfo(unsigned long idx, bool verbose)
 {
-    if (idx)
-        return formatInfo("Synchronisation Input - use to control ordering", "Synch Input", verbose);
-    else
-        return "Input to Store";
+    return "Input to Store";
 }
 
 std::string FrameLib_Store::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Synchronisation Output";
+    return formatInfo("Ordering Output - used to control ordering", "Ordering Output", verbose);;
 }
 
 // Stream Awareness
@@ -59,7 +58,7 @@ FrameLib_Store::ParameterInfo FrameLib_Store::sParamInfo;
 
 FrameLib_Store::ParameterInfo::ParameterInfo()
 {
-    add("Sets the name of the memory location to use.");
+    add("Sets the name of the storage to use.");
 }
 
 // Object Rest

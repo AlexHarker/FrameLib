@@ -11,6 +11,8 @@
 #include <chrono>
 #include <vector>
 
+#include <xmmintrin.h>
+
 // Forward Declarations
 
 class FrameLib_Global;
@@ -35,6 +37,26 @@ class FrameLib_DSP;
 
 class FrameLib_ProcessingQueue
 {
+    class DenormalHandling
+    {
+#if defined(__i386__) || defined(__x86_64__)
+    public:
+
+        DenormalHandling() : mMXCSR(_mm_getcsr())
+        {
+            _mm_setcsr(mMXCSR | _MM_FLUSH_ZERO_ON);
+        }
+        
+        ~DenormalHandling()
+        {
+            _mm_setcsr(mMXCSR);
+        }
+        
+    private:
+
+        unsigned int mMXCSR;
+#endif
+    };
     
 public:
     
