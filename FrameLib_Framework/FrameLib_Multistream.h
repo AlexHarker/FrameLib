@@ -26,11 +26,13 @@
  
  */
 
-class FrameLib_Multistream : public FrameLib_Object<FrameLib_Multistream>
+class FrameLib_Multistream
+: public FrameLib_Object<FrameLib_Multistream>
+, public FrameLib_Stack<FrameLib_Multistream, FrameLib_Multistream>::Node
 {
-    
 protected:
 
+    using InputStack = FrameLib_Stack<FrameLib_Multistream, FrameLib_Multistream>;
     using BlockConnection = FrameLib_Object<FrameLib_Block>::Connection;
     using MultistreamOutput = std::vector<BlockConnection>;
     using MultistreamConnection = FrameLib_Object::Connection;
@@ -41,12 +43,12 @@ public:
     
     // Constructors
 
-    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
-    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams)
+    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, bool ownsStreams, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
+    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams), mInIdx(0), mOrderIdx(0), mOwnsStreams(ownsStreams)
     { setIO(nIns, nOuts); }
     
-    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, unsigned long nStreams)
-    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams) {}
+    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, bool ownsStreams, unsigned long nStreams)
+    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams), mInIdx(0), mOrderIdx(0), mOwnsStreams(ownsStreams) {}
     
     // Destructor
     
@@ -85,15 +87,13 @@ private:
 
     // Connection Methods (private)
     
-    void connectionUpdate(Queue *queue) final
-    {
-        if (inputUpdate())
-            outputUpdate(queue);
-    }
+    void connectionUpdate(Queue *queue) final;
 
     virtual bool inputUpdate() = 0;
     void outputUpdate(Queue *queue);
-    
+
+    bool inputCheck(InputStack& stack);
+
 protected:
 
     // Outputs
@@ -103,6 +103,9 @@ protected:
 private:
     
     unsigned long mNumStreams;
+    unsigned long mInIdx;
+    unsigned long mOrderIdx;
+    bool mOwnsStreams;
 };
 
 
@@ -128,7 +131,7 @@ public:
     const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
 
     FrameLib_Expand(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
-    : FrameLib_Multistream(T::sType, context, proxy, nStreams), mSerialisedParameters(serialisedParameters ? serialisedParameters->size() : 0)
+    : FrameLib_Multistream(T::sType, context, proxy, true, nStreams), mSerialisedParameters(serialisedParameters ? serialisedParameters->size() : 0)
     {
         // Make first block
         
