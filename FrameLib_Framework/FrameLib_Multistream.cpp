@@ -67,14 +67,12 @@ void FrameLib_Multistream::inputCheck(InputStack& stack)
 {
     auto checkInputs = [&](const MultistreamConnection& connection)
     {
-        if (connection.mObject && !connection.mObject->mOwnsStreams)
-        {
-            stack.push(this);
-            stack.push(connection.mObject);
-            return true;
-        }
+        if (!connection.mObject || connection.mObject->mOwnsStreams)
+            return false;
         
-        return false;
+        stack.push(this);
+        stack.push(connection.mObject);
+        return true;
     };
     
     // Ensure that all inputs are valid for normal and ordering connections
@@ -88,6 +86,5 @@ void FrameLib_Multistream::inputCheck(InputStack& stack)
             return;
     
     mInCount = 0;
-    
     mOutputChange = inputUpdate();
 }
