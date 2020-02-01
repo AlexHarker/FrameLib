@@ -77,10 +77,10 @@ protected:
     
     // Query Connections for Individual Channels
     
-    unsigned long getInputNumChans(unsigned long inIdx);
+    unsigned long getInputNumStreams(unsigned long inIdx);
     BlockConnection getInputChan(unsigned long inIdx, unsigned long chan);
     
-    unsigned long getOrderingConnectionNumChans(unsigned long idx);
+    unsigned long getOrderingConnectionNumStreams(unsigned long idx);
     BlockConnection getOrderingConnectionChan(unsigned long idx, unsigned long chan);
 
 private:
@@ -288,8 +288,8 @@ private:
         unsigned long cChannels = static_cast<unsigned long>(mBlocks.size());
         
         for (unsigned long i = 0; i < getNumIns(); i++)
-            if (getInputNumChans(i) > nChannels)
-                nChannels = getInputNumChans(i);
+            if (getInputNumStreams(i) > nChannels)
+                nChannels = getInputNumStreams(i);
         
         nChannels = std::max(nChannels, getNumStreams());
         
@@ -332,10 +332,10 @@ private:
 
         for (unsigned long i = 0; i < getNumIns(); i++)
         {
-            if (getInputNumChans(i))
+            if (getInputNumStreams(i))
             {
                 for (unsigned long j = 0; j < nChannels; j++)
-                    mBlocks[j]->addConnection(getInputChan(i, j % getInputNumChans(i)), i);
+                    mBlocks[j]->addConnection(getInputChan(i, j % getInputNumStreams(i)), i);
             }
             else
             {
@@ -353,9 +353,9 @@ private:
         
         for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
         {
-            if (getOrderingConnectionNumChans(i))
+            if (getOrderingConnectionNumStreams(i))
                 for (unsigned long j = 0; j < nChannels; j++)
-                    mBlocks[j]->addOrderingConnection(getOrderingConnectionChan(i, j % getOrderingConnectionNumChans(i)));
+                    mBlocks[j]->addOrderingConnection(getOrderingConnectionChan(i, j % getOrderingConnectionNumStreams(i)));
         }
         
         return numChansChanged;

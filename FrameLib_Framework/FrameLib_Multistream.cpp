@@ -5,7 +5,7 @@
 
 // Query Connections for Individual Channels
 
-unsigned long FrameLib_Multistream::getInputNumChans(unsigned long inIdx)
+unsigned long FrameLib_Multistream::getInputNumStreams(unsigned long inIdx)
 {
     MultistreamConnection connection = getConnection(inIdx);
     
@@ -22,7 +22,7 @@ FrameLib_Multistream::BlockConnection FrameLib_Multistream::getInputChan(unsigne
     return connection.mObject->mOutputs[connection.mIndex][chan];
 }
 
-unsigned long FrameLib_Multistream::getOrderingConnectionNumChans(unsigned long idx)
+unsigned long FrameLib_Multistream::getOrderingConnectionNumStreams(unsigned long idx)
 {
     MultistreamConnection connection = getOrderingConnection(idx);
 

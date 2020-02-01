@@ -34,13 +34,27 @@ std::string FrameLib_Unpack::outputInfo(unsigned long idx, bool verbose)
 
 bool FrameLib_Unpack::inputUpdate()
 {
+    bool change = false;
+    
     for (unsigned long i = 0; i < getNumOuts(); i++)
-        mOutputs[i].clear();
+    {
+        bool exists = i < getInputNumStreams(0);
+        bool slotExists = mOutputs[i].size();
+        
+        // Check for changes
+        
+        change |= exists != slotExists;
+        change |= exists && slotExists && getInputChan(0, i) != mOutputs[i][0];
+        
+        // Store current value
+        
+        mOutputs.clear();
+            
+        if (exists)
+            mOutputs[i].push_back(getInputChan(0, i));
+    }
     
-    for (unsigned long i = 0; i < getInputNumChans(0) && i < getNumOuts(); i++)
-        mOutputs[i].push_back(getInputChan(0, i));
-    
-    return true;
+    return change;
 }
 
 // Parameter Info
