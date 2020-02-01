@@ -86,5 +86,5 @@ void FrameLib_Multistream::inputCheck(InputStack& stack)
             return;
     
     mInCount = 0;
-    mOutputChange = inputUpdate();
+    mOutputChange |= inputUpdate();
 }
