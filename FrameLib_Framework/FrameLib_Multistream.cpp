@@ -44,13 +44,14 @@ FrameLib_Multistream::BlockConnection FrameLib_Multistream::getOrderingConnectio
 void FrameLib_Multistream::connectionUpdate(Queue *queue)
 {
     InputStack stack;
-    bool change = false;
     
     for (FrameLib_Multistream *object = this; object; object = stack.pop())
-        change = object->inputCheck(stack);
+        object->inputCheck(stack);
     
-    if (change || !mOwnsStreams)
+    if (mOutputChange)
         outputUpdate(queue);
+    
+    mOutputChange = false;
 }
 
 // Update the inputs of all output dependencies
@@ -62,7 +63,7 @@ void FrameLib_Multistream::outputUpdate(Queue *queue)
 
 // Check all the inputs are valid
 
-bool FrameLib_Multistream::inputCheck(InputStack& stack)
+void FrameLib_Multistream::inputCheck(InputStack& stack)
 {
     auto checkInputs = [&](const MultistreamConnection& connection)
     {
@@ -78,16 +79,15 @@ bool FrameLib_Multistream::inputCheck(InputStack& stack)
     
     // Ensure that all inputs are valid for normal and ordering connections
     
-    while (mInIdx < getNumIns())
-        if (checkInputs(getConnection(mInIdx++)))
-            return false;
+    while (mInCount < getNumIns())
+        if (checkInputs(getConnection(mInCount++)))
+            return;
     
-    while (mOrderIdx < getNumOrderingConnections())
-        if (checkInputs(getOrderingConnection(mOrderIdx++)))
-            return false;
+    while (mInCount < getNumIns() + getNumOrderingConnections())
+        if (checkInputs(getOrderingConnection(mInCount++ - getNumIns())))
+            return;
     
-    mInIdx = 0;
-    mOrderIdx = 0;
+    mInCount = 0;
     
-    return inputUpdate();
+    mOutputChange = inputUpdate();
 }

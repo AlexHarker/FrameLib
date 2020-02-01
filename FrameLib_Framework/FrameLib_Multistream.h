@@ -44,11 +44,11 @@ public:
     // Constructors
 
     FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, bool ownsStreams, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
-    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams), mInIdx(0), mOrderIdx(0), mOwnsStreams(ownsStreams)
+    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams), mInCount(0), mOwnsStreams(ownsStreams), mOutputChange(false)
     { setIO(nIns, nOuts); }
     
     FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, bool ownsStreams, unsigned long nStreams)
-    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams), mInIdx(0), mOrderIdx(0), mOwnsStreams(ownsStreams) {}
+    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams), mInCount(0), mOwnsStreams(ownsStreams), mOutputChange(false) {}
     
     // Destructor
     
@@ -92,7 +92,7 @@ private:
     virtual bool inputUpdate() = 0;
     void outputUpdate(Queue *queue);
 
-    bool inputCheck(InputStack& stack);
+    void inputCheck(InputStack& stack);
 
 protected:
 
@@ -103,9 +103,9 @@ protected:
 private:
     
     unsigned long mNumStreams;
-    unsigned long mInIdx;
-    unsigned long mOrderIdx;
+    unsigned long mInCount;
     bool mOwnsStreams;
+    bool mOutputChange;
 };
 
 
