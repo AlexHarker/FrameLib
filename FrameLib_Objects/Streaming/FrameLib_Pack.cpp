@@ -3,8 +3,8 @@
 
 // Constructor
 
-FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams): FrameLib_Multistream(kProcessor, context, proxy, 1), mParameters(context, proxy, &sParamInfo)
-{
+FrameLib_Pack::FrameLib_Pack(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams): FrameLib_Multistream(kProcessor, context, proxy, false, 1), mParameters(context, proxy, &sParamInfo)
+{    
     mParameters.addInt(0, "inputs", 2, 0 );
     mParameters.setInstantiation();
     mParameters.set(serialisedParameters);
@@ -35,13 +35,32 @@ std::string FrameLib_Pack::outputInfo(unsigned long idx, bool verbose)
 
 bool FrameLib_Pack::inputUpdate()
 {
-    mOutputs[0].clear();
+    unsigned long size = 0;
+    bool change = false;
+
+    // Calculate output size and check for a change of size
     
     for (unsigned long i = 0; i < getNumIns(); i++)
-        for (unsigned long j = 0; j < getInputNumChans(i); j++)
-            mOutputs[0].push_back(getInputChan(i, j));
+        size += getInputNumStreams(i);
     
-    return true;
+    if (size != mOutputs[0].size())
+    {
+        mOutputs[0].resize(size);
+        change = true;
+    }
+    
+    // As we assign compare every connection in turn to check for changes
+        
+    for (unsigned long i = 0, k = 0; i < getNumIns(); i++)
+    {
+        for (unsigned long j = 0; j < getInputNumStreams(i); j++, k++)
+        {
+            change |= getInputChan(i, j) != mOutputs[0][k];
+            mOutputs[0][k] = getInputChan(i, j);
+        }
+    }
+    
+    return change;
 }
 
 // Parameter Info

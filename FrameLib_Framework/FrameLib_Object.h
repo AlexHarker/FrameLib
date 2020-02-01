@@ -441,7 +441,7 @@ protected:
     
     // String With Number Helper
     
-    static  std::string numberedString(const char *str, unsigned long idx)
+    static std::string numberedString(const char *str, unsigned long idx)
     {
         std::ostringstream outStr;
         

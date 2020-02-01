@@ -26,11 +26,13 @@
  
  */
 
-class FrameLib_Multistream : public FrameLib_Object<FrameLib_Multistream>
+class FrameLib_Multistream
+: public FrameLib_Object<FrameLib_Multistream>
+, public FrameLib_Stack<FrameLib_Multistream, FrameLib_Multistream>::Node
 {
-    
 protected:
 
+    using InputStack = FrameLib_Stack<FrameLib_Multistream, FrameLib_Multistream>;
     using BlockConnection = FrameLib_Object<FrameLib_Block>::Connection;
     using MultistreamOutput = std::vector<BlockConnection>;
     using MultistreamConnection = FrameLib_Object::Connection;
@@ -41,12 +43,12 @@ public:
     
     // Constructors
 
-    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
-    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams)
+    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, bool ownsStreams, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
+    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams), mInCount(0), mOwnsStreams(ownsStreams), mOutputChange(false)
     { setIO(nIns, nOuts); }
     
-    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, unsigned long nStreams)
-    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams) {}
+    FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, bool ownsStreams, unsigned long nStreams)
+    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams), mInCount(0), mOwnsStreams(ownsStreams), mOutputChange(false) {}
     
     // Destructor
     
@@ -75,25 +77,23 @@ protected:
     
     // Query Connections for Individual Channels
     
-    unsigned long getInputNumChans(unsigned long inIdx);
+    unsigned long getInputNumStreams(unsigned long inIdx);
     BlockConnection getInputChan(unsigned long inIdx, unsigned long chan);
     
-    unsigned long getOrderingConnectionNumChans(unsigned long idx);
+    unsigned long getOrderingConnectionNumStreams(unsigned long idx);
     BlockConnection getOrderingConnectionChan(unsigned long idx, unsigned long chan);
 
 private:
 
     // Connection Methods (private)
     
-    void connectionUpdate(Queue *queue) final
-    {
-        if (inputUpdate())
-            outputUpdate(queue);
-    }
+    void connectionUpdate(Queue *queue) final;
 
     virtual bool inputUpdate() = 0;
     void outputUpdate(Queue *queue);
-    
+
+    void inputCheck(InputStack& stack);
+
 protected:
 
     // Outputs
@@ -103,6 +103,9 @@ protected:
 private:
     
     unsigned long mNumStreams;
+    unsigned long mInCount;
+    bool mOwnsStreams;
+    bool mOutputChange;
 };
 
 
@@ -128,7 +131,7 @@ public:
     const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
 
     FrameLib_Expand(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
-    : FrameLib_Multistream(T::sType, context, proxy, nStreams), mSerialisedParameters(serialisedParameters ? serialisedParameters->size() : 0)
+    : FrameLib_Multistream(T::sType, context, proxy, true, nStreams), mSerialisedParameters(serialisedParameters ? serialisedParameters->size() : 0)
     {
         // Make first block
         
@@ -285,8 +288,8 @@ private:
         unsigned long cChannels = static_cast<unsigned long>(mBlocks.size());
         
         for (unsigned long i = 0; i < getNumIns(); i++)
-            if (getInputNumChans(i) > nChannels)
-                nChannels = getInputNumChans(i);
+            if (getInputNumStreams(i) > nChannels)
+                nChannels = getInputNumStreams(i);
         
         nChannels = std::max(nChannels, getNumStreams());
         
@@ -329,10 +332,10 @@ private:
 
         for (unsigned long i = 0; i < getNumIns(); i++)
         {
-            if (getInputNumChans(i))
+            if (getInputNumStreams(i))
             {
                 for (unsigned long j = 0; j < nChannels; j++)
-                    mBlocks[j]->addConnection(getInputChan(i, j % getInputNumChans(i)), i);
+                    mBlocks[j]->addConnection(getInputChan(i, j % getInputNumStreams(i)), i);
             }
             else
             {
@@ -350,9 +353,9 @@ private:
         
         for (unsigned long i = 0; i < getNumOrderingConnections(); i++)
         {
-            if (getOrderingConnectionNumChans(i))
+            if (getOrderingConnectionNumStreams(i))
                 for (unsigned long j = 0; j < nChannels; j++)
-                    mBlocks[j]->addOrderingConnection(getOrderingConnectionChan(i, j % getOrderingConnectionNumChans(i)));
+                    mBlocks[j]->addOrderingConnection(getOrderingConnectionChan(i, j % getOrderingConnectionNumStreams(i)));
         }
         
         return numChansChanged;

@@ -58,7 +58,6 @@ template <class T, class TopUser, class User, class ... OtherUsers>
 struct FrameLib_Node<T, TopUser, User, OtherUsers...>
 : FrameLib_Node<T, TopUser, User>, FrameLib_Node<T, TopUser, OtherUsers...> {};
 
-
 /**
  
  @class FrameLib_Queue
@@ -71,7 +70,7 @@ struct FrameLib_Node<T, TopUser, User, OtherUsers...>
  
  */
 
-template <class T, class TopUser, class...OtherUsers>
+template <class T, class TopUser = void, class...OtherUsers>
 class FrameLib_Queue
 {
     
@@ -236,6 +235,87 @@ public:
 protected:
     
     T *mFirst;
+};
+
+/**
+ 
+ @class FrameLib_Stack
+ 
+ @ingroup Queues
+ 
+ @brief a general purpose stack for objects of a given type (which inherits from the inner Node type)
+ 
+ An item can only be in one position in a single stack at a time but can optionally be moved to the head if pushed onto the same stack twice
+ 
+ */
+
+template <class T, class TopUser = void, class...OtherUsers>
+class FrameLib_Stack
+{
+
+public:
+
+    using Node = FrameLib_Node<T, TopUser, FrameLib_Stack, OtherUsers...>;
+    
+    // Constructor
+    
+    FrameLib_Stack() : mHead(nullptr), mSize(0) {}
+    
+    // Non-copyable
+    
+    FrameLib_Stack(const FrameLib_Stack&) = delete;
+    FrameLib_Stack& operator=(const FrameLib_Stack&) = delete;
+    
+    // Push an item to the tail
+    
+    void push(T* item)
+    {
+        assert(item && "item is null");
+        assert(!queued(item) && "item is already in a queue");
+        
+        static_cast<Node *>(item)->mNext = mHead ? mHead : item;
+        mHead = item;
+        mSize++;
+    }
+    
+    // Pop an item from the head
+    
+    T *pop()
+    {
+        if (empty())
+            return nullptr;
+        
+        T *item = mHead;
+        mHead = --mSize ? static_cast<Node *>(item)->mNext : nullptr;
+        static_cast<Node *>(item)->mNext = nullptr;
+        
+        return item;
+    }
+    
+    T *peek() const
+    {
+        return mHead;
+    }
+    
+    // Get the size
+    
+    unsigned int size() const { return mSize; }
+    
+    // Query if the list is empty
+    
+    bool empty() const { return !size(); }
+    
+protected:
+    
+    // Determine if the item is already in the queue
+    
+    bool queued(T* item) const
+    {
+        return static_cast<Node *>(item)->mNext;
+    }
+    
+    T *mHead;
+    unsigned int mSize;
 };
 
 /**
