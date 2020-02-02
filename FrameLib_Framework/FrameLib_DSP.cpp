@@ -361,8 +361,6 @@ bool FrameLib_DSP::dependencyNotify(NotificationType type, bool releaseMemory, L
     if (releaseMemory)
         releaseOutputMemory(allocator);
     
-    // If ready then this item should be added to the processing queue
-    
     bool useInputCount = mUpdatingInputs && (type == kInputConnection || type == kAudioBlock);
     
     if ((useInputCount && --mInputCount == 0) || (!useInputCount && --mDependencyCount == 0))
@@ -379,6 +377,8 @@ bool FrameLib_DSP::dependencyNotify(NotificationType type, bool releaseMemory, L
 
 void FrameLib_DSP::dependencyNotify(NotificationType type, bool releaseMemory, LocalAllocator *allocator, NotificationQueue &queue)
 {
+    // If ready then this item should be added to the processing queue
+
     if (dependencyNotify(type, releaseMemory, allocator))
         queue.push(this);
 }
