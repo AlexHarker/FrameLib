@@ -8,9 +8,9 @@
 
 class FrameLib_Unpack final : public FrameLib_Multistream
 {
-    enum AtrributeList { kOutputs };
+    enum ParameterList { kOutputs };
     
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo() { add("Sets the number of outputs."); } };
+    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
     
 public:
     

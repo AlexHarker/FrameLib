@@ -5,9 +5,11 @@
 
 FrameLib_Unpack::FrameLib_Unpack(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams) : FrameLib_Multistream(kProcessor, context, proxy, false, 1), mParameters(context, proxy, &sParamInfo)
 {
-    mParameters.addInt(kOutputs, "outputs", 2, 0);
+    mParameters.addInt(kOutputs, "num_outs", 2, 0);
     mParameters.setInstantiation();
+    
     mParameters.set(serialisedParameters);
+    
     setIO(1, mParameters.getInt(kOutputs));
     
     mSerialisedParameters.write(serialisedParameters);
@@ -61,8 +63,7 @@ bool FrameLib_Unpack::inputUpdate()
 
 FrameLib_Unpack::ParameterInfo FrameLib_Unpack::sParamInfo;
 
-
-
-
-
-
+FrameLib_Unpack::ParameterInfo::ParameterInfo()
+{
+    add("Sets the number of outputs.");
+}
