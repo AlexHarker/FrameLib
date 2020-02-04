@@ -14,9 +14,6 @@ def main():
     """
     Creates tutorial information and stores it in a dictionary format. 
     This information is displayed to the user in a umenu.
-
-    Args:
-        arg1: passes the root of the python files from the master script. Creates relative directories.
     """
 
     # Directory stuff #

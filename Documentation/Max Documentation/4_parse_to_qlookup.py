@@ -23,9 +23,6 @@ def main():
     """
     Creates a dict for the Max Documentation system.
     This dict contains is essential for maxObjectLauncher/Refpages to pull the right info.
-
-    Args:
-        arg1: passes the root of the python files from the master script. Creates relative directories.
     """
 
     object_info = read_yaml(object_relationships_path)

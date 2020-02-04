@@ -75,7 +75,7 @@ for folder in max_source_categories:
     for j in file_list:
         source_file_list.append([os.path.join(category_folder), j])
 
-
+# TODO - lookwithin and reaise this is not okay
 # Recreate full paths to open and parse for type cases
 counter = 0
 for category_folder, name in source_file_list:

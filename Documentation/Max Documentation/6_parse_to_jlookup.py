@@ -15,9 +15,6 @@ def main():
     """
     Creates a dict for the Max Documentation system.
     This dict contains more detailed information displayed in real-time when hovering over a certain tutorial in the umenu.
-
-    Args:
-        arg1: passes the root of the python files from the master script. Creates relative directories.
     """
 
     obj_lookup = os.path.join(interfaces_dir, "FrameLib-obj-jlookup.json")
