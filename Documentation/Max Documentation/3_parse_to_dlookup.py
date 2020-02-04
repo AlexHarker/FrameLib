@@ -1,6 +1,12 @@
 import os
 import json
-from FrameLibDocs.utils import cd_up, write_json, thin_list, check_make, strip_space
+from FrameLibDocs.utils import (
+    cd_up, 
+    write_json, 
+    thin_list, 
+    check_make, 
+    strip_space
+) 
 from FrameLibDocs.variables import (
     package_root,
     refpages_dir,
