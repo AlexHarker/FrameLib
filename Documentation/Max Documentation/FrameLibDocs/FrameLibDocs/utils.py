@@ -4,32 +4,32 @@ import json
 import yaml
 
 
-def strip_space(tostrip):
+def strip_space(tostrip: str) -> str:
+    """Strips whitespace from the start and end of a string"""
     tostrip = tostrip.lstrip()
     tostrip = tostrip.rstrip()
     return tostrip
 
 
-def strip_extension(input_string, maxsplits):
-    output = input_string.rsplit(".", maxsplits)[0]
+def strip_extension(input_string: str, max_splits: int) -> str:
+    """Strip the extension from a string, returning the file name"""
+    output = input_string.rsplit(".", max_splits)[0]
     return output
 
 
-def check_make(folder_check):
-    """
-    Takes a directory name, checks if it exists and makes.
-    """
+def check_make(folder_check: str):
+    """Takes a directory name, checks if it exists and makes."""
     if not os.path.isdir(folder_check):
         os.mkdir(folder_check)
 
 
-def remove_ds(list_in):
+def remove_ds(list_in: list) -> list:
     if ".DS_Store" in list_in:
         list_in.remove(".DS_Store")
     return list_in
 
 
-def thin_list(list_to_thin, things_to_thin):
+def thin_list(list_to_thin: list, things_to_thin: list) -> list:
     """
     Takes a list_to_thin and removes each element of things_to_thin from it (if it exists)
     """
@@ -39,48 +39,31 @@ def thin_list(list_to_thin, things_to_thin):
     return list_to_thin
 
 
-def write_json(json_file, in_dict):
-    """
-    Takes a dictionary and writes it to JSON file.
-
-    Args:
-        json_file: A path to where the JSON file will be written.
-        in_dict: A dictionary that will be saved as JSON.
-    Returns:
-        None
-    """
-    path = os.path.dirname(json_file)
+def write_json(json_file_path: str, dict_to_write: dict):
+    """Takes a dictionary and writes it to JSON file."""
+    path = os.path.dirname(json_file_path)
     check_make(path)
-    with open(json_file, "w+") as fp:
-        json.dump(in_dict, fp, indent=4)
+    with open(json_file_path, "w+") as fp:
+        json.dump(dict_to_write), fp, indent=4)
 
 
-def read_json(json_file):
-    """
-    Takes a JSON file and returns a dictionary
-
-    Args:
-        json_file: A path to a JSON file that will be read.
-    Returns:
-        A python dictionary.
-    """
-    with open(json_file, "r") as fp:
+def read_json(json_file_path: str) -> dict:
+    """Takes a JSON file and returns a dictionary"""
+    with open(json_file_path, "r") as fp:
         data = json.load(fp)
         return data
 
 
-def read_yaml(yaml_file):
-    with open(yaml_file, "r") as stream:
+def read_yaml(yaml_file_path: str) -> dict:
+    with open(yaml_file_path, "r") as stream:
         try:
             return yaml.safe_load(stream)
         except yaml.YAMLError as exc:
             print(exc)
 
 
-def cd_up(path, num):
-    """
-    Given path, traverse num directories up from it
-    """
+def cd_up(path: str, num: int) -> str:
+    """Given path, traverse num directories up from it"""
     t_path = path
     for _ in range(num):
         t_path = os.path.dirname(t_path)
@@ -90,47 +73,36 @@ def cd_up(path, num):
 def get_path():
     return os.path.dirname(os.path.realpath(__file__))
 
+#-- Functions to make the console prints much more pleasant --#
 
 def ast():
-    """
-    Print some asterisks
-    """
+    """Print some asterisks"""
     print("*" * 20)
 
 
 def hyp():
-    """
-    Print some hyphens
-    """
+    """Print some hyphens"""
     print("-" * 20)
 
 
 def uds():
-    """
-    Print some underscores
-    """
+    """Print some underscores"""
     print("_" * 20)
 
 
 def space():
-    """
-    Makes some space!
-    """
+    """Makes some space!"""
     print(" " * 20)
     print(" " * 20)
 
 
 def orsym():
-    """
-    Prints a |
-    """
+    """Prints a |"""
     print("|" * 20)
 
 
 def sign_off():
-    """
-    Sign off the docs ;)
-    """
+    """Sign off the docs ;)"""
     print(rn.choice(printouts))
     print(" ")
     print(
