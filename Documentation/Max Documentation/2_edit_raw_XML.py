@@ -47,7 +47,7 @@ def main():
     category_database = read_json(category_database_path)
 
     # Get category of file
-    def find_object_category(obj_string):
+    def find_object_category(obj_string: str) -> str:
         """
         Finds the dictionary name for an object inside of that dictionary.
         Is used to work backwards and find which category each object belongs to.
