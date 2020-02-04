@@ -1,6 +1,5 @@
 create_category_database = __import__("1_create_category_database")
 edit_raw_XML = __import__("2_edit_raw_XML")
-line_breaks = __import__("3_reference_line_breaks")
 parse_to_dlookup = __import__("4_parse_to_dlookup")
 parse_to_qlookup = __import__("5_parse_to_qlookup")
 parse_to_tlookup = __import__("6_parse_to_tlookup")
@@ -34,11 +33,6 @@ def main():
     # C++ doesnt know about the categories at XML creation and its easier to iterate file structures in python.
     # Edited XML files are copied from /tmp/ to the refpages directory
     print("2. Editing XML Files")
-    edit_raw_XML.main()
-    hyp()
-
-    # This script replaces descriptive text with appropriate line breaks.
-    print("3. Formatting Line Breaks")
     edit_raw_XML.main()
     hyp()
 
