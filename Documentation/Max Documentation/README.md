@@ -21,7 +21,7 @@ Note you may need an account to get the older versions of xcode.
 
 ### Installing Dependencies
 
-A large part of the project uses Python to generate and parse XML files as well as form `.json` and `.txt` references. MacOS version 10.14 and lower come preinstalled with Python 2 but this project is written using Python 3. As such, you will need to install a new version of Python. 
+A large part of the project uses Python to generate and parse XML files as well as form `.json` and `.txt` references. MacOS version 10.14 and lower come preinstalled with Python 2 but this project is written using Python 3. As such, you will need to install a new version of Python **that is greater than or equal to Python 3.5**. 
 
 THe easiest way to do this is to use a package manager like `brew` or `macports` which not only manage the install and updates but will create all the useful symlinks and aliases for the python executables and pip.
 

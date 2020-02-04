@@ -13,13 +13,15 @@ externals = os.path.join(root, "Current Test Version", "FrameLib", "externals")
 
 master_template = os.path.join(this_script, "help_files", "help_template.maxhelp")
 
-def make_help_file(template, output_name):
+def make_help_file(template: str, output_name: str):
+    """Takes a path to a template Max patch and creates a copy of that template somewhere else"""
     copyfile(
         template,
         os.path.join(help_file_folder, f'{output_name}.maxhelp')
     )
 
-def edit_help_file(file_edit, obj_name):
+def edit_help_file(file_edit: str, obj_name: str):
+    """Takes a path to a Max patch and does a find and replace on object names"""
     t_json = read_json(file_edit)
     outer_boxes = t_json['patcher']['boxes'][0]
     internal_boxes = outer_boxes['box']['patcher']['boxes']

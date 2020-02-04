@@ -4,17 +4,16 @@ from FrameLibDocs.utils import cd_up
 from FrameLibDocs.variables import package_root
 
 
-def try_integer(s):
+# TODO cleanup this function and alphanum_key too
+def try_integer(s) -> int:
+    """Attempts to convert some input into an integer"""
     try:
         return int(s)
     except ValueError:
         return s
 
-
-def alphanum_key(s):
-    """ 
-    Turn a string into a list of string and number chunks.
-    """
+def alphanum_key(s: int):
+    """ Turn a string into a list of string and number chunks."""
     return [try_integer(c) for c in re.split("([0-9]+)", s)]
 
 

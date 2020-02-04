@@ -1,6 +1,12 @@
 import os
 import json
-from FrameLibDocs.utils import cd_up, write_json, thin_list, check_make, strip_space
+from FrameLibDocs.utils import (
+    cd_up, 
+    write_json, 
+    thin_list, 
+    check_make, 
+    strip_space
+) 
 from FrameLibDocs.variables import (
     package_root,
     refpages_dir,
@@ -13,10 +19,6 @@ from FrameLibDocs.classes import dParseAndBuild
 def main():
     """
     A simplified version of the qlookup used to display information about specific objects when hovered over in the umenu.
-    The qlookup might replace this entire script.
-
-    Args:
-        arg1: passes the root of the python files from the master script. Creates relative directories.
     """
     check_make(interfaces_dir)
     obj_lookup = os.path.join(interfaces_dir, "FrameLib-obj-dlookup.json")

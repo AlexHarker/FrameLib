@@ -9,6 +9,8 @@ def main():
     This creates a category database in .json format.
     This is used by edit_raw_XML.py to assign object categories to the xml files.
     """
+
+    
     object_path = os.path.join(package_root, "FrameLib_Max_Objects")
     file_categories = os.listdir(object_path)
 
