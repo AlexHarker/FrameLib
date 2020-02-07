@@ -44,7 +44,7 @@ def write_json(json_file_path: str, dict_to_write: dict):
     path = os.path.dirname(json_file_path)
     check_make(path)
     with open(json_file_path, "w+") as fp:
-        json.dump(dict_to_write), fp, indent=4)
+        json.dump(dict_to_write, fp, indent=4)
 
 
 def read_json(json_file_path: str) -> dict:
