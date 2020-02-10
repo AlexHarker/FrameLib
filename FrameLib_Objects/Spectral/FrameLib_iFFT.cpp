@@ -73,7 +73,7 @@ FrameLib_iFFT::ParameterInfo FrameLib_iFFT::sParamInfo;
 FrameLib_iFFT::ParameterInfo::ParameterInfo()
 {
     add("Sets the maximum output length and FFT size.");
-    add("Sets normalisation on such that a full-scale sine wave at the input should have an amplitude of 1.");
+    add("Sets normalisation on such that a full-scale real sine wave at the input should have an amplitude of 1.");
     add("Sets the type of output produced and the input expected. "
         "real - real output (power of two length) for input without reflection (length is N / 2 + 1). "
         "complex - complex output (two frames) with the same (power of two) input and output lengths. "
@@ -144,7 +144,7 @@ void FrameLib_iFFT::process()
     
     if (sizeOut && spectrum.realp)
     {
-        double scale = mNormalise ? 1.0 : 1.0 / static_cast<double>(1 << FFTSizeLog2);
+        double scale = mNormalise ? 0.5 : 1.0 / static_cast<double>(1 << FFTSizeLog2);
         
         // Copy Spectrum
         
