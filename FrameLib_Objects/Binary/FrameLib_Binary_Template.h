@@ -17,9 +17,9 @@ class FrameLib_BinaryOp final : public FrameLib_Processor
         {
             add("Sets the mode used when dealing with mismatched input lengths: "
                 "wrap - the smaller input is read modulo against the larger input. "
-                "shrink - the output length is set to the size of the smaller input. "
+                "shrink - the output length is set to that of the smaller input. "
                 "pad_in - the smaller input is padded prior to calculation to match the larger input. "
-                "pad_out - the output is padded to match the size of the larger input.");
+                "pad_out - the output is padded to match the length of the larger input.");
             add("Sets which inputs trigger output.");
             add("Sets the value used for padding (for either pad_in or pad_out modes).");
         }
@@ -70,7 +70,7 @@ public:
     {
         return formatInfo("#: Calculation is performed on pairs of values in turn. "
                           "The output is a frame at least as long as the smaller of the two inputs. "
-                          "When inputs mismatch in size the result depends on the mismatch parameter. "
+                          "When inputs mismatch in length the result depends on the mismatch parameter. "
                           "Either or both inputs may be set to trigger output.",
                           "#.", getDescriptionString(), verbose);
     }

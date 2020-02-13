@@ -28,7 +28,7 @@ std::string FrameLib_Info::objectInfo(bool verbose)
 {
     return formatInfo("Outputs the sample rate, number of channels and length of a buffer. "
                       "The units for reporting length can be set with the units parameter.",
-                      "Outputs the sample rate, channels and size of a buffer.", verbose);
+                      "Outputs the length, sample rate, and number of channels of a buffer.", verbose);
 }
 
 std::string FrameLib_Info::inputInfo(unsigned long idx, bool verbose)

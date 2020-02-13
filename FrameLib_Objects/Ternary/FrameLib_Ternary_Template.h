@@ -63,8 +63,8 @@ class FrameLib_TernaryOp final : public FrameLib_Processor
         {
             add("Sets the mode used when dealing with mismatched input lengths: "
                 "wrap - smaller right inputs are read modulo against larger left input. "
-                "shrink - the output length is set to the size of the smaller input. "
-                "extend - smaller right inputs are extended by repeating their final value");
+                "shrink - the output length is set to the length of the smaller input. "
+                "extend - smaller right inputs are extended by repeating their final value.");
         }
     };
     
@@ -90,7 +90,7 @@ public:
     {
         return formatInfo("#: Calculation is performed on triplets of values in turn. "
                           "The output is a frame at least as long as the leftmost frame. "
-                          "When frames mismatch in size the result depends on the mismatch parameter.",
+                          "When frames mismatch in length the result depends on the mismatch parameter.",
                           "#.", getDescriptionString(), verbose);
     }
 

@@ -27,7 +27,7 @@ std::string FrameLib_GetParam::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return formatInfo("Object Connection - connect to object to query", "Object Connection", verbose);
     else
-        return formatInfo("Trigger Input", "Trigger Input", verbose);
+        return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);
 
 }
 

@@ -26,7 +26,7 @@ public:
     {
         return formatInfo("Calculates the # of each complex value at the inputs: "
                           "Both input and output are split into real and imaginary parts. "
-                          "The outputs are frames of the same size as the longer of the two inputs. "
+                          "The outputs are frames of the same length as the longer of the two inputs. "
                           "If inputs are mismatched then the shorter input is padded with zeros.",
                           "Calculates the # of each complex value at the inputs.", getOpString(), verbose);
     }
