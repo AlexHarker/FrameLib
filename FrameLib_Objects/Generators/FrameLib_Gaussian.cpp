@@ -34,19 +34,21 @@ FrameLib_Gaussian::FrameLib_Gaussian(FrameLib_Context context, const FrameLib_Pa
 
 std::string FrameLib_Gaussian::objectInfo(bool verbose)
 {
-    return formatInfo("Generates frames of gaussian distributed random values: "
-                      "The size of the output is dependent on the mode. "
-                      "The mean and standard deviation of the values are determined by the input values or using defaults set by parameter. "
-                      "The output size may either be set by parameter, or be set to match that of the triggering input.",
+    return formatInfo("Generates frames of normally distributed random values: "
+                      "Mean and standard deviation can be set per sample or by parameter. "
+                      "Per sample mean and standard deviations are passed in by input. "
+                      "The length of the output is dependent on the mode. "
+                      "Output length may be set by parameter or based on that of the trigger input.",
+                      "When input and output lengths are mismatched the result depends on the mismatch parameter. ",
                       "Generates frames of gaussian distributed random values.", verbose);
 }
 
 std::string FrameLib_Gaussian::inputInfo(unsigned long idx, bool verbose)
 {
     if (idx == 0)
-            return formatInfo("Means Per Sample", "Means Per Sample", verbose);
+            return formatInfo("Means - the values used to generate the output", "Means", verbose);
     else if (idx == 1)
-            return formatInfo("Standard Deviations Per Sample", "Standard Deviations Per Sample", verbose);
+            return formatInfo("Standard Deviations - the values used to generate the output", "Standard Deviations", verbose);
     else
             return parameterInputInfo(verbose);
 }
@@ -63,15 +65,16 @@ FrameLib_Gaussian::ParameterInfo FrameLib_Gaussian::sParamInfo;
 FrameLib_Gaussian::ParameterInfo::ParameterInfo()
 {
     add("Controls how the output length is determined: "
-        "requested - the output frame size is set by the length parameter. "
-        "input - the output frame size will match the input size.");
-    add("Sets the length of the output when the mode is set to requested. Set in the units specified by the units parameter.");
+        "requested - the output length is set by the length parameter. "
+        "input - the output length follows the length of the trigger input.");
+    add("Sets the requested output length in the units specified by the units parameter.");
     add("Sets the units for specified output lengths.");
     add("Sets the default mean.");
     add("Sets the default standard deviation.");
     add("Sets the mode used when dealing with mismatches between input and output lengths: "
         "default - missing input values are substitued using the default values. "
-        "extend - inputs are extended by repeating their final value.");
+        "extend - inputs are extended by repeating their final value. "
+        "default values are always used if an input is empty.");
 }
 
 // Helpers

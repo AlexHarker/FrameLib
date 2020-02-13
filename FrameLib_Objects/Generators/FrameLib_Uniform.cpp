@@ -29,11 +29,11 @@ FrameLib_Uniform::FrameLib_Uniform(FrameLib_Context context, const FrameLib_Para
 
 std::string FrameLib_Uniform::objectInfo(bool verbose)
 {
-    return formatInfo("Generates frames consisting of a single (uniform) value: "
-                      "The size of the output is dependent on the mode. "
-                      "The output size may either be set as a parameter, or be set to match that of the triggering input. "
-                      "The value is set with a parameter",
-                      "Generates frames consisting of a single (uniform) value.", verbose);
+    return formatInfo("Generates frames in which all values are identical: "
+                      "The output value is set with a parameter. "
+                      "The length of the output is dependent on the mode. "
+                      "Output length may be set by parameter or based on that of the trigger input.",
+                      "Generates frames in which all values are identical.", verbose);
 }
 
 std::string FrameLib_Uniform::inputInfo(unsigned long idx, bool verbose)
@@ -55,11 +55,11 @@ FrameLib_Uniform::ParameterInfo FrameLib_Uniform::sParamInfo;
 
 FrameLib_Uniform::ParameterInfo::ParameterInfo()
 {
-    add("Sets the value to repeat for each output frame.");
+    add("Sets the value to output.");
     add("Controls how the output length is determined: "
-        "requested - the output frame size is set by the length parameter. "
-        "input - the output frame size will match the input size.");
-    add("Sets the length of the output when the mode is set to requested. Set in the units specified by the units parameter.");
+        "requested - the output length is set by the length parameter. "
+        "input - the output length follows the length of the trigger input.");
+    add("Sets the requested output length in the units specified by the units parameter.");
     add("Sets the units for specified output lengths.");
 }
 

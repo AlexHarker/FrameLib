@@ -38,11 +38,11 @@ FrameLib_Ramp::FrameLib_Ramp(FrameLib_Context context, const FrameLib_Parameters
 
 std::string FrameLib_Ramp::objectInfo(bool verbose)
 {
-    return formatInfo("Generates frames that consist of linear ramps from [0-x]: "
-                      "The value of x depends on the scaling parameter. "
-                      "The size of the output is dependent on the mode. "
-                      "The output size may either be set as a parameter, or be set to match that of the triggering input.",
-                      "Generates frames that consist of linear ramps from [0-x]", verbose);
+    return formatInfo("Generates a linear ramp across each output frame: "
+                      "The scaling parameter is used to set the range of the ramp. "
+                      "The length of the output is dependent on the mode. "
+                      "Output length may be set by parameter or based on that of the trigger input.",
+                      "Generates a linear ramp across each output frame.", verbose);
 }
 
 std::string FrameLib_Ramp::inputInfo(unsigned long idx, bool verbose)
@@ -65,11 +65,20 @@ FrameLib_Ramp::ParameterInfo FrameLib_Ramp::sParamInfo;
 FrameLib_Ramp::ParameterInfo::ParameterInfo()
 {
     add("Controls how the output length is determined: "
-        "requested - the output frame size is set by the length parameter. "
-        "input - the output frame size will match the input size.");
-    add("Sets the length of the output when the mode is set to requested. Set in the units specified by the units parameter.");
+        "requested - the output length is set by the length parameter. "
+        "input - the output length follows the length of the trigger input.");
+    add("Sets the requested output length in the units specified by the units parameter.");
     add("Sets the units for specified output lengths.");
-    add("Sets the scaling of the output ramp.");
+    add("Sets the scaling of the output ramp. "
+        "count - scaled in samples (an interger count from zero). "
+        "ms - scaled in milliseconds starting at zero. "
+        "seconds - scaled in seconds starting at zero. "
+        "normalised - output is normalised according to the edges parameter.");
+    add("Sets the included edges when the scaling is set to normalised: "
+        "both - the ramp is scaled [0-1]. "
+        "first - the ramp is scaled [0-1). "
+        "last - the ramp is scaled (0-1]. "
+        "none - the ramp is scaled (0-1).");
 }
 
 // Helpers
