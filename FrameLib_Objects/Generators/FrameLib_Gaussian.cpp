@@ -19,7 +19,7 @@ FrameLib_Gaussian::FrameLib_Gaussian(FrameLib_Context context, const FrameLib_Pa
     
     mParameters.addDouble(kMean, "mean", 0.0, 3);
 
-    mParameters.addDouble(kStdDev, "stddev", 1.0, 4);
+    mParameters.addDouble(kDeviation, "deviation", 1.0, 4);
 
     mParameters.addEnum(kMismatchMode, "mismatch", 5);
     mParameters.addEnumItem(kDefault, "default");
@@ -134,7 +134,7 @@ void FrameLib_Gaussian::process()
     unsigned long i = 0;
     
     double fmean = extend && sizeIn1 ? means[sizeIn1 - 1] : mParameters.getValue(kMean);
-    double fstddev = extend && sizeIn2 ? stddevs[sizeIn2 - 1] : mParameters.getValue(kStdDev);
+    double fstddev = extend && sizeIn2 ? stddevs[sizeIn2 - 1] : mParameters.getValue(kDeviation);
     
     // Use inputs / fixed standard deviation / fixed mean / both fixed
     
