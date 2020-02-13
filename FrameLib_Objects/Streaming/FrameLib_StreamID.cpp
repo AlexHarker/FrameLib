@@ -20,7 +20,7 @@ std::string FrameLib_StreamID::objectInfo(bool verbose)
 
 std::string FrameLib_StreamID::inputInfo(unsigned long idx, bool verbose)
 {
-    return formatInfo("Trigger Input - triggers output stream numbers", "Trigger Input", verbose);
+    return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);
 }
 
 std::string FrameLib_StreamID::outputInfo(unsigned long idx, bool verbose)

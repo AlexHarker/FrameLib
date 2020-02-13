@@ -32,7 +32,7 @@ std::string FrameLib_Lag::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Lag::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output Values";
+    return "Output";
 }
 
 // Parameter Info

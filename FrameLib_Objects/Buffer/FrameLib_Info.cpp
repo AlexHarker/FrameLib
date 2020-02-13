@@ -36,7 +36,7 @@ std::string FrameLib_Info::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Trigger Input", "Trigger Input", verbose);
+        return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);
 }
 
 std::string FrameLib_Info::outputInfo(unsigned long idx, bool verbose)

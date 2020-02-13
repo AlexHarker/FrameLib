@@ -29,7 +29,8 @@ FrameLib_Uniform::FrameLib_Uniform(FrameLib_Context context, const FrameLib_Para
 
 std::string FrameLib_Uniform::objectInfo(bool verbose)
 {
-    return formatInfo("Generates frames consisting of a single (uniform) value: The size of the output is dependent on the mode. "
+    return formatInfo("Generates frames consisting of a single (uniform) value: "
+                      "The size of the output is dependent on the mode. "
                       "The output size may either be set as a parameter, or be set to match that of the triggering input. "
                       "The value is set with a parameter",
                       "Generates frames consisting of a single (uniform) value.", verbose);
@@ -40,7 +41,7 @@ std::string FrameLib_Uniform::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Trigger Input - triggers generation of output", "Trigger Input", verbose);
+        return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);
 }
 
 std::string FrameLib_Uniform::outputInfo(unsigned long idx, bool verbose)

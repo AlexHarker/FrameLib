@@ -33,12 +33,12 @@ std::string FrameLib_Constant::inputInfo(unsigned long idx, bool verbose)
     if (idx)
         return parameterInputInfo(verbose);
     else
-        return formatInfo("Trigger Input - input frames generate output", "Trigger Input", verbose);
+        return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);
 }
 
 std::string FrameLib_Constant::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output Values";
+    return "Output";
 }
 
 // Parameter Info
