@@ -6,10 +6,9 @@
 
 class FrameLib_Ticks final : public FrameLib_Processor
 {
-    enum ParameterList {kLimit, kSetValue, kLimitMode, kRunMode};
-    enum ModesLimit {kProgress, kRestart};
-    enum ModesRun {kRun, kPause, kStop};
-    
+    enum ParameterList { kLimit, kDirection, kReset, kMode };
+    enum Mode { kRun, kLoop, kPause, kStop };
+    enum Direction { kUp, kDown };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
@@ -26,16 +25,18 @@ public:
     std::string outputInfo(unsigned long idx, bool verbose) override;
     
 private:
-    unsigned long counter;
-    unsigned long previousLimit;
-    unsigned long previousValue;
-    bool valueInPause;
-    bool limitInPause;
+    
+    // Object Reset
+
+    void objectReset() override;
     
     // Process
     
     void process() override;
-    
+
+    long mCounter;
+    FrameLib_TimeFormat mLastResetTime;
+
     static ParameterInfo sParamInfo;
 };
 

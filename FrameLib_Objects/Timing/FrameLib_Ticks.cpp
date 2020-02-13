@@ -1,50 +1,62 @@
 
 #include "FrameLib_Ticks.h"
 
-FrameLib_Ticks::FrameLib_Ticks(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+FrameLib_Ticks::FrameLib_Ticks(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 3, 1)
 {
     mParameters.addInt(kLimit, "limit", 10, 0);
     mParameters.setMin(0);
     
-    mParameters.addInt(kSetValue, "value", 0, 1);
+    mParameters.addEnum(kDirection, "direction", 1);
+    mParameters.addEnumItem(kUp, "up");
+    mParameters.addEnumItem(kDown, "down");
+    
+    mParameters.addInt(kReset, "reset", 0, 2);
     mParameters.setMin(0);
-    
-    mParameters.addEnum(kLimitMode, "limit_mode", 2);
-    mParameters.addEnumItem(kProgress, "progress");
-    mParameters.addEnumItem(kRestart, "restart");
-    
-    mParameters.addEnum(kRunMode, "run_mode", 3);
+
+    mParameters.addEnum(kMode, "mode", 3);
     mParameters.addEnumItem(kRun, "run");
+    mParameters.addEnumItem(kLoop, "loop");
     mParameters.addEnumItem(kPause, "pause");
     mParameters.addEnumItem(kStop, "stop");
     
     mParameters.set(serialisedParameters);
-    setParameterInput(1);
     
-    counter = 0;
-    previousLimit = 0;
-    previousValue = 0;
-    valueInPause = false;
-    limitInPause = false;
+    if (!mParameters.changed(kReset) && mParameters.getInt(kDirection) == kDown)
+        mParameters.set(kReset, mParameters.getInt(kLimit) - 1);
+    
+    setInputMode(1, false, false, false);
+    
+    setParameterInput(2);
+    
+    mCounter = 0;
 }
 
 std::string FrameLib_Ticks::objectInfo(bool verbose)
 {
-    return formatInfo("Counts how many frames have passed up to a specified value (0 based).",
-                   "Counts how many frames have passed up to a specified value (0 based).", verbose);
+    return formatInfo("Counts incoming frames: "
+                      "Counting is between zero and one less than the limit parameter. "
+                      "Counting can be either up or down. "
+                      "Couting can be run (once), looped, pauseed or stopped. "
+                      "Triggers at the reset input set the count to the value of the reset parameter. "
+                      "Counts incoming frames.", verbose);
 }
 
 std::string FrameLib_Ticks::inputInfo(unsigned long idx, bool verbose)
 {
-    if(idx)
-        return parameterInputInfo(verbose);
-    else
-        return formatInfo("Trigger Input", "Trigger Input", verbose);
+    switch (idx)
+    {
+        case 0:
+            return formatInfo("Trigger Input - triggers output", "Trigger Input", verbose);
+        case 1:
+            return formatInfo("Reset Input - resets count without triggering output", "Reset Input", verbose);
+        default:
+            return parameterInputInfo(verbose);
+    }
 }
 
 std::string FrameLib_Ticks::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Current Count";
+    return "Count";
 }
 
 // Parameter Info
@@ -53,85 +65,67 @@ FrameLib_Ticks::ParameterInfo FrameLib_Ticks::sParamInfo;
 
 FrameLib_Ticks::ParameterInfo::ParameterInfo()
 {
-    add("Sets the counter threshold.");
-    add("Sets a new starting value at next trigger");
-    add("Sets the mode for changes in threshold.");
-    add("Sets the run mode.");
+    add("Sets the count limit.");
+    add("Sets the direction of the counting.");
+    add("Sets the reset value.");
+    add("Sets the mode. "
+         "run - the count continues until it hits the limit or zero. "
+         "loop - the count loops between zeor and the limit minus one. "
+         "pause - the count is paused until the mode is changed. "
+         "stop - the count returns to the reset value until the mode is changed. "
+        );
+}
+
+// Object Reset
+
+void FrameLib_Ticks::objectReset()
+{
+    mCounter = -1;
+    mLastResetTime = FrameLib_TimeFormat(0);
 }
 
 void FrameLib_Ticks::process()
 {
+    Direction dir = static_cast<Direction>(mParameters.getInt(kDirection));
+    Mode mode = static_cast<Mode>(mParameters.getInt(kMode));
+    long limit = mParameters.getInt(kLimit);
+    bool reset = mCounter == -1;
+    
     requestOutputSize(0, 1);
-    ModesRun mode_run = static_cast<ModesRun>(mParameters.getInt(kRunMode));
-    ModesLimit mode_limit = static_cast<ModesLimit>(mParameters.getInt(kLimitMode));
+
+    // Necessary in case we start counting down without a reset
+    
+    switch (mode)
+    {
+        case kRun:
+            mCounter = (dir == kUp) ? mCounter + 1 : mCounter - 1;
+            break;
+            
+        case kLoop:
+            if (dir == kUp)
+                mCounter = ++mCounter < limit ? mCounter : 0;
+            else
+                mCounter = --mCounter < 0 ? limit - 1 : mCounter;
+            break;
+            
+        case kPause:
+            break;
+            
+        case kStop:
+            mCounter = mParameters.getInt(kReset);
+            break;
+    }
+        
+    if (reset || mLastResetTime != getInputFrameTime(1))
+    {
+        mLastResetTime = getInputFrameTime(1);
+        mCounter = mParameters.getInt(kReset);
+    }
     
     if (allocateOutputs())
     {
         unsigned long sizeOut;
         double *output = getOutput(0, &sizeOut);
-        unsigned long currentLimit = mParameters.getInt(kLimit);
-        unsigned long currentValue = mParameters.getInt(kSetValue);
-        
-        switch (mode_run)
-        {
-            case kRun:
-                if (currentValue != previousValue || valueInPause == true)
-                {
-                    if (currentValue < currentLimit)
-                        counter = currentValue;
-                }
-                switch (mode_limit)
-                {
-                    case kProgress:
-                        break;
-                    case kRestart:
-                        if (currentLimit != previousLimit || limitInPause == true)
-                        {
-                            counter = 0;
-                        }
-                        break;
-                }
-                if (counter >= currentLimit)
-                    counter = 0;
-                
-                output[0] = counter;
-                counter++;
-                limitInPause = false; //reset states
-                valueInPause = false;
-                break;
-                
-            case kPause:
-                if (currentValue != previousValue) //means that a new starting value has been set while in pause
-                    valueInPause = true;
-                
-                if (counter >= currentLimit) //it still resets at N-1, so you can't pause at N
-                    counter = 0;
-                
-                output[0] = counter;
-                switch (mode_limit)
-                {
-                    case kProgress:
-                        limitInPause = false;
-                        break;
-                    case kRestart:
-                        if(currentLimit != previousLimit) //means that limit has been changed while in pause
-                        {
-                            limitInPause = true;
-                        }
-                        break;
-                }
-                break;
-                
-            case kStop:
-                if(currentValue != previousValue)
-                    valueInPause = true;
-                
-                counter = 0;
-                output[0] = counter;
-                break;
-        }
-        
-        previousValue = currentValue;
-        previousLimit = currentLimit;
+        output[0] = mCounter = std::min(std::max(0L, mCounter), limit - 1);
     }
 }
