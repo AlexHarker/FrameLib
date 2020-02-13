@@ -17,11 +17,17 @@ FrameLib_Ramp::FrameLib_Ramp(FrameLib_Context context, const FrameLib_Parameters
     mParameters.addEnumItem(kMS, "ms");
     mParameters.addEnumItem(kSeconds, "seconds");
     
-    mParameters.addEnum(kScale, "scale");
+    mParameters.addEnum(kScale, "scale", 3);
     mParameters.addEnumItem(kScaleSamples, "count");
     mParameters.addEnumItem(kScaleMS, "ms");
     mParameters.addEnumItem(kScaleSeconds, "seconds");
     mParameters.addEnumItem(kScaleNormalised, "normalised");
+
+    mParameters.addEnum(kEdges, "edges", 4);
+    mParameters.addEnumItem(kBoth, "both");
+    mParameters.addEnumItem(kFirst, "first");
+    mParameters.addEnumItem(kLast, "last");
+    mParameters.addEnumItem(kNone, "none");
     
     mParameters.set(serialisedParameters);
     
@@ -96,15 +102,43 @@ void FrameLib_Ramp::process()
     
     double *output = getOutput(0, &sizeOut);
     double multiplier = 1.0;
+    double offset = 0.0;
+    double normalisedScale = 0.0;
     
     switch (static_cast<Scales>(mParameters.getInt(kScale)))
     {
-        case kScaleMS:              multiplier = 1000.0 / mSamplingRate;                        break;
-        case kScaleSeconds:         multiplier = 1.0 / mSamplingRate;                           break;
-        case kScaleSamples:         multiplier = 1.0;                                           break;
-        case kScaleNormalised:      multiplier = 1.0 / static_cast<double>(sizeOut - 1);        break;
+        case kScaleMS:              multiplier = 1000.0 / mSamplingRate;    break;
+        case kScaleSeconds:         multiplier = 1.0 / mSamplingRate;       break;
+        case kScaleSamples:         multiplier = 1.0;                       break;
+        case kScaleNormalised:
+        {
+            Edges edges = static_cast<Edges>(mParameters.getInt(kEdges));
+
+            switch (edges)
+            {
+                case kFirst:
+                case kLast:
+                    normalisedScale = static_cast<double>(sizeOut);
+                    break;
+                    
+                case kBoth:
+                    normalisedScale = static_cast<double>(sizeOut - 1);
+                    break;
+                    
+                case kNone:
+                    normalisedScale = static_cast<double>(sizeOut + 1);
+                    break;
+            }
+            
+            multiplier = 1.0 / normalisedScale;
+            
+            if (edges == kNone || edges == kLast)
+                offset = 1.0 / normalisedScale;
+        
+            break;
+        }
     }
 
     for (unsigned long i = 0; i < sizeOut; i++)
-        output[i] = static_cast<double>(i) * multiplier;
+        output[i] = static_cast<double>(i) * multiplier + offset;
 }
