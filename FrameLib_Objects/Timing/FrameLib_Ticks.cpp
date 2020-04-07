@@ -87,7 +87,7 @@ void FrameLib_Ticks::objectReset()
 void FrameLib_Ticks::process()
 {
     Direction dir = static_cast<Direction>(mParameters.getInt(kDirection));
-    Mode mode = static_cast<Mode>(mParameters.getInt(kMode));
+    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
     long limit = mParameters.getInt(kLimit);
     bool reset = mCounter == -1;
     

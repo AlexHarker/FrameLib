@@ -24,7 +24,7 @@ FrameLib_iFFT::FrameLib_iFFT(FrameLib_Context context, const FrameLib_Parameters
 
     // Store parameters
     
-    mMode = static_cast<Mode>(mParameters.getInt(kMode));
+    mMode = static_cast<Modes>(mParameters.getInt(kMode));
     mNormalise = mParameters.getBool(kNormalise);
     
     // If in complex mode create 2 inlets/outlets

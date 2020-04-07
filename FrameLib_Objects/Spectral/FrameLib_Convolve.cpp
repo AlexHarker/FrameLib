@@ -22,7 +22,7 @@ FrameLib_Convolve::FrameLib_Convolve(FrameLib_Context context, const FrameLib_Pa
         
     mProcessor.set_max_fft_size(mParameters.getInt(kMaxLength));
     
-    mMode = static_cast<Mode>(mParameters.getInt(kMode));
+    mMode = static_cast<Modes>(mParameters.getInt(kMode));
     
     if (mMode  == kComplex)
         setIO(4, 2);

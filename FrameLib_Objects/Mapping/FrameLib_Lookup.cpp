@@ -146,7 +146,7 @@ void FrameLib_Lookup::process()
     
     // Calculate output
     
-    switch (static_cast<Mode>(mParameters.getInt(kMode)))
+    switch (static_cast<Modes>(mParameters.getInt(kMode)))
     {
         case kZero: table_read(FetchZero(input2, sizeIn2), output, positions, sizeIn1, 1.0, interpType);        break;
         case kClip: table_read(FetchClip(input2, sizeIn2), output, positions, sizeIn1, 1.0, interpType);        break;
