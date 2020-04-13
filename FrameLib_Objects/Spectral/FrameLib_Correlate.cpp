@@ -15,13 +15,14 @@ FrameLib_Correlate::FrameLib_Correlate(FrameLib_Context context, const FrameLib_
     mParameters.addEnumItem(EdgeMode::kEdgeWrap, "circular");
     mParameters.addEnumItem(EdgeMode::kEdgeWrapCentre, "wrap");
     mParameters.addEnumItem(EdgeMode::kEdgeFold, "fold");
+    mParameters.addEnumItem(EdgeMode::kEdgeFoldRepeat, "mirror");
     mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
         
     mProcessor.set_max_fft_size(mParameters.getInt(kMaxLength));
     
-    mMode = static_cast<Mode>(mParameters.getInt(kMode));
+    mMode = static_cast<Modes>(mParameters.getInt(kMode));
     
     if (mMode  == kComplex)
         setIO(4, 2);
@@ -77,7 +78,8 @@ FrameLib_Correlate::ParameterInfo::ParameterInfo()
         "linear - the output is the full processing length without wrapping or folding. "
         "circular - output length is the maximum of the input lengths with excess wrapped/added to the beginning. "
         "wrap - similar to circular mode, but rotated such that wrapping occurs equally at both ends. "
-        "fold - as wrap but folding at the edges (if minimum input length is even output length increases by one).");
+        "fold - as wrap but folding at the edges. "
+        "mirror - as fold but with repeated edge values.");
 }
 
 // Process

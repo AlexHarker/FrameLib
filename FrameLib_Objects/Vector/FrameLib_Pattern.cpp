@@ -3,13 +3,27 @@
 
 // Constructor
 
-FrameLib_Pattern::FrameLib_Pattern(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), mPosition(0)
+FrameLib_Pattern::FrameLib_Pattern(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 3, 1), mPosition(0)
 {
-    mParameters.addEnum(kMode, "mode");
-    mParameters.addEnumItem(kOnce, "once");
+    mParameters.addEnum(kMode, "mode", 0);
+    mParameters.addEnumItem(kRun, "run");
     mParameters.addEnumItem(kLoop, "loop");
+    mParameters.addEnumItem(kPause, "pause");
+    mParameters.addEnumItem(kStop, "stop");
+    
+    mParameters.addEnum(kDirection, "direction", 1);
+    mParameters.addEnumItem(kForward, "forward");
+    mParameters.addEnumItem(kBackward, "backward");
+    
+    mParameters.addInt(kReset, "reset", -1, 2);
+    mParameters.setMin(-1);
+    
+    mParameters.addEnum(kIdleMode, "idle", 3);
+    mParameters.addEnumItem(kRepeat, "repeat");
+    mParameters.addEnumItem(kEmpty, "empty");
     
     setInputMode(1, false, false, false);
+    setInputMode(2, false, false, false);
     addParameterInput();
     
     mParameters.set(serialisedParameters);
@@ -51,36 +65,76 @@ FrameLib_Pattern::ParameterInfo::ParameterInfo()
 
 void FrameLib_Pattern::objectReset()
 {
-    mPosition = 0;
-    mLastPatternTime = FrameLib_TimeFormat(0);
+    mPosition = -1;
+    mLastResetTime = FrameLib_TimeFormat(0);
 }
 
 // Process
 
 void FrameLib_Pattern::process()
 {
+    Direction dir = static_cast<Direction>(mParameters.getInt(kDirection));
+    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
+    bool reset = mPosition == -1;
+    bool idle = false;
     unsigned long sizeIn, sizeOut;
-    const double *input = getInput(1, &sizeIn);
-
-    sizeOut = mPosition < sizeIn ? 1 : 0;
     
-    requestOutputSize(0, sizeOut);
-    allocateOutputs();
-
-    if (mLastPatternTime != getInputFrameTime(1))
+    const double *input = getInput(1, &sizeIn);
+    
+    const long limit = std::max(static_cast<long>(sizeIn), 1L);
+    
+    switch (mode)
     {
-        mPosition = 0;
-        mLastPatternTime = getInputFrameTime(1);
+        case kRun:
+            mPosition = (dir == kForward) ? mPosition + 1 : mPosition - 1;
+            break;
+            
+        case kLoop:
+            if (dir == kForward)
+                mPosition = ++mPosition < limit ? mPosition : 0;
+            else
+                mPosition = --mPosition < 0 ? limit - 1 : mPosition;
+            break;
+            
+        case kPause:
+            idle = true;
+            break;
+            
+        case kStop:
+            mPosition = mParameters.getInt(kReset);
+            idle = true;
+            break;
     }
     
-    double *output = getOutput(0, &sizeOut);
-
-    if (output)
+    if (reset || mLastResetTime != getInputFrameTime(2))
     {
-        output[0] = input ? input[mPosition] : 0.0;
-        mPosition++;
+        mLastResetTime = getInputFrameTime(2);
+        mPosition = mParameters.getInt(kReset);
         
-        if (mParameters.getInt(kMode))
-            mPosition %= sizeIn;
+        if (mPosition == -1)
+        {
+            if (dir == kForward)
+                mPosition = 0;
+            else
+                mPosition = limit - 1;
+        }
+    }
+
+    // Can't reliably check run idle state until here
+    
+    if (mode == kRun)
+        idle = mPosition < 0 || mPosition >= limit;
+    
+    // Now we safely clip the position
+    
+    mPosition = std::min(std::max(0L, mPosition), limit - 1);
+
+    sizeOut = idle && mParameters.getInt(kIdleMode) == kEmpty ? 0 : 1;
+    requestOutputSize(0, sizeOut);
+    
+    if (allocateOutputs())
+    {
+        double *output = getOutput(0, &sizeOut);
+        output[0] = input ? input[mPosition] : 0.0;
     }
 }

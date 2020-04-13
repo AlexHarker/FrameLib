@@ -6,9 +6,10 @@
 
 class FrameLib_Ticks final : public FrameLib_Processor
 {
-    enum ParameterList { kLimit, kDirection, kReset, kMode };
-    enum Mode { kRun, kLoop, kPause, kStop };
+    enum ParameterList { kLimit, kDirection, kReset, kMode, kIdleMode };
+    enum Modes { kRun, kLoop, kPause, kStop };
     enum Direction { kUp, kDown };
+    enum IdleModes { kRepeat, kEmpty };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 

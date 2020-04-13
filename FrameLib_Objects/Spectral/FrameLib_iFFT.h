@@ -11,7 +11,7 @@ class FrameLib_iFFT final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-    enum Mode { kReal, kComplex, kFullSpectrum };
+    enum Modes { kReal, kComplex, kFullSpectrum };
     enum ParameterList { kMaxLength, kNormalise, kMode };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
@@ -40,7 +40,7 @@ private:
     
     // Instantiation Params
     
-    Mode mMode;
+    Modes mMode;
     bool mNormalise;
     
     // Processor

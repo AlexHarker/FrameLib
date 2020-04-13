@@ -14,8 +14,8 @@ FrameLib_Tag::FrameLib_Tag(FrameLib_Context context, const FrameLib_Parameters::
     mParameters.setClip(1, maxNumIns);
     mParameters.setInstantiation();
     mParameters.addEnum(kEmptyMode, "empty");
-    mParameters.addEnumItem(0, "ignore");
-    mParameters.addEnumItem(1, "reset");
+    mParameters.addEnumItem(kIgnore, "ignore");
+    mParameters.addEnumItem(kReset, "reset");
     mParameters.setInstantiation();
 
     // Read in once to get number of strings needed
@@ -112,7 +112,7 @@ void FrameLib_Tag::process()
     const Serial *preTagged = getInput(mNumIns);
     unsigned long sizeIn;
     
-    EmptyMode mode = (EmptyMode) mParameters.getInt(kEmptyMode);
+    EmptyModes mode = (EmptyModes) mParameters.getInt(kEmptyMode);
     
     requestOutputSize(0, 0);
     

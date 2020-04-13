@@ -20,7 +20,7 @@ class spectral_processor
     
 public:
     
-    enum EdgeMode { kEdgeLinear, kEdgeWrap, kEdgeWrapCentre, kEdgeFold };
+    enum EdgeMode { kEdgeLinear, kEdgeWrap, kEdgeWrapCentre, kEdgeFold, kEdgeFoldRepeat };
     
     struct in_ptr
     {
@@ -255,12 +255,14 @@ protected:
         
         EdgeMode mode() const           { return m_mode; }
         
+        bool foldMode() const           { return m_mode == kEdgeFold || m_mode == kEdgeFoldRepeat; }
+
         uintptr_t size1() const         { return m_size1; }
         uintptr_t size2() const         { return m_size2; }
         uintptr_t min() const           { return std::min(m_size1, m_size2); }
         uintptr_t max() const           { return std::max(m_size1, m_size2); }
         uintptr_t linear() const        { return m_size1 + m_size2 - 1; }
-        uintptr_t fold_copy() const     { return  max() + (uintptr_t(1) << (min() >> 1)); }
+        uintptr_t fold_copy() const     { return max() + (uintptr_t(1) << (min() >> 1)); }
         uintptr_t fft() const           { return uintptr_t(1) << m_fft_size_log2; }
         uintptr_t fft_log2() const      { return m_fft_size_log2; }
         
@@ -268,7 +270,7 @@ protected:
 
         uintptr_t calc_size() const
         {
-            if (m_mode != kEdgeFold)
+            if (!foldMode())
                 return linear();
             else
                 return fold_copy() + (min() - 1);
@@ -280,19 +282,20 @@ protected:
     
     // Folding copy
     
-   static void fold(T* io, uintptr_t size, uintptr_t fold_size)
+   static void fold(T* io, uintptr_t size, uintptr_t fold_size, bool repeat)
     {
         const T* first = io + fold_size;
         const T* last = io + fold_size + size;
+        size_t offset = repeat ? 0 : 1;
         
-        std::reverse_copy(first + 1, first + fold_size + 1, io);
-        std::reverse_copy(last - (fold_size + 1), last - 1, io + size + fold_size);
+        std::reverse_copy(first + offset, first + fold_size + offset, io);
+        std::reverse_copy(last - (fold_size + offset), last - offset, io + size + fold_size);
     }
     
-    static void copy_fold(T* output, in_ptr in, uintptr_t fold_size)
+    static void copy_fold(T* output, in_ptr in, uintptr_t fold_size, bool repeat)
     {
         std::copy_n(in.m_ptr, in.m_size, output + fold_size);
-        fold(output, in.m_size, fold_size);
+        fold(output, in.m_size, fold_size, repeat);
     }
     
     static void copy_padded(T* output, in_ptr in, uintptr_t size, uintptr_t offset)
@@ -301,16 +304,16 @@ protected:
         std::fill_n(output + offset + in.m_size, size - in.m_size, 0);
     }
     
-    static void copy_fold_zero(Split& output, in_ptr in1, in_ptr in2, uintptr_t size, uintptr_t fold_size)
+    static void copy_fold_zero(Split& output, in_ptr in1, in_ptr in2, uintptr_t size, uintptr_t fold_size, bool repeat)
     {
         uintptr_t max_size = std::max(in1.m_size, in2.m_size);
         uintptr_t folded = max_size + (fold_size << 1);
         
         copy_padded(output.realp, in1, max_size, fold_size);
-        fold(output.realp, max_size, fold_size);
+        fold(output.realp, max_size, fold_size, repeat);
         std::fill_n(output.realp + folded, size - folded, 0);
         copy_padded(output.imagp, in2, max_size, fold_size);
-        fold(output.imagp, max_size, fold_size);
+        fold(output.imagp, max_size, fold_size, repeat);
         std::fill_n(output.imagp + folded, size - folded, 0);
     }
     
@@ -396,6 +399,7 @@ protected:
             }
                 
             case kEdgeFold:
+            case kEdgeFoldRepeat:
             {
                 copy(output, spectrum, 0, min_m1, sizes.max());
                 break;
@@ -442,8 +446,21 @@ protected:
             }
             
             case kEdgeFold:
-                copy(output, spectrum, 0, sizes.min() - 1, sizes.max());
+            case kEdgeFoldRepeat:
+            {
+                if (sizes.size1() >= sizes.size2())
+                {
+                    copy(output, spectrum, 0, 0, sizes.max());
+                }
+                else
+                {
+                    uintptr_t copy_size = sizes.max() - 1;
+
+                    copy(output, spectrum, 0, 0, 1);
+                    copy(output, spectrum, 1, sizes.fft() - copy_size, copy_size);
+                }
                 break;
+            }
         }
     }
    
@@ -466,12 +483,13 @@ protected:
     template<SpectralOp Op>
     void binary_op(Split& io, Split& temp, op_sizes& sizes, in_ptr r_in1, in_ptr i_in1, in_ptr r_in2, in_ptr i_in2)
     {
-        bool fold1 = sizes.mode() == kEdgeFold && sizes.size1() >= sizes.size2();
-        bool fold2 = sizes.mode() == kEdgeFold && !fold1;
+        bool fold1 = sizes.foldMode() && sizes.size1() >= sizes.size2();
+        bool fold2 = sizes.foldMode() && !fold1;
+        bool repeat = sizes.mode() == kEdgeFoldRepeat;
         uintptr_t fold_size = sizes.min() >> 1;
         
-        copy_fold_zero(io, r_in1, i_in1, sizes.fft(), fold1 ? fold_size : 0);
-        copy_fold_zero(temp, r_in2, i_in2, sizes.fft(), fold2 ? fold_size : 0);
+        copy_fold_zero(io, r_in1, i_in1, sizes.fft(), fold1 ? fold_size : 0, repeat);
+        copy_fold_zero(temp, r_in2, i_in2, sizes.fft(), fold2 ? fold_size : 0, repeat);
         
         fft(io, sizes.fft_log2());
         fft(temp, sizes.fft_log2());
@@ -517,7 +535,7 @@ protected:
     template<SpectralOp Op>
     void binary_op(Split& io, Split& temp, op_sizes& sizes, in_ptr in1, in_ptr in2)
     {
-        if (sizes.mode() != kEdgeFold)
+        if (!sizes.foldMode())
         {
             rfft(io, in1.m_ptr, in1.m_size, sizes.fft_log2());
             rfft(temp, in2.m_ptr, in2.m_size, sizes.fft_log2());
@@ -525,16 +543,17 @@ protected:
         else
         {
             uintptr_t fold_size = sizes.min() >> 1;
-            
+            bool repeat = sizes.mode() == kEdgeFoldRepeat;
+
             if (sizes.size1() >= sizes.size2())
             {
-                copy_fold(temp.realp, in1, fold_size);
+                copy_fold(temp.realp, in1, fold_size, repeat);
                 rfft(io, temp.realp, sizes.fold_copy(), sizes.fft_log2());
                 rfft(temp, in2.m_ptr, in2.m_size, sizes.fft_log2());
             }
             else
             {
-                copy_fold(io.realp, in2, fold_size);
+                copy_fold(io.realp, in2, fold_size, repeat);
                 rfft(temp, io.realp, sizes.fold_copy(), sizes.fft_log2());
                 rfft(io, in1.m_ptr, in1.m_size, sizes.fft_log2());
             }

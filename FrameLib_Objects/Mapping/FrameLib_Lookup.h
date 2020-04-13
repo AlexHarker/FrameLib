@@ -9,7 +9,7 @@
 class FrameLib_Lookup final : public FrameLib_Processor
 {
     enum ParameterList { kMode, kInterpolation, kScaling, kPadding };
-    enum Mode { kZero, kClip, kWrap, kPad };
+    enum Modes { kZero, kClip, kWrap, kPad };
     enum Interpolation { kHermite, kBSpline, kLagrange, kLinear, kNone };
     enum Scaling { kSamples, kNormalised, kBipolar };
 

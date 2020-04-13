@@ -12,7 +12,7 @@ class FrameLib_Correlate final : public FrameLib_Processor
     // Parameter Enums and Info
 
     enum ParameterList { kMaxLength, kMode, kEdgeMode };
-    enum Mode { kReal, kComplex };
+    enum Modes { kReal, kComplex };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
@@ -38,7 +38,7 @@ private:
     
     // Data
     
-    Mode mMode;
+    Modes mMode;
 
     static ParameterInfo sParamInfo;
     

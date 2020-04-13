@@ -4,11 +4,11 @@
 
 #include "FrameLib_DSP.h"
 
-enum FrameLib_Vector_EmptyMode { kDefaultZero, kDefaultOne, kDefaultPosInf, kDefaultNegInf, kAlwaysCalculate };
+enum FrameLib_Vector_EmptyModes { kDefaultZero, kDefaultOne, kDefaultPosInf, kDefaultNegInf, kAlwaysCalculate };
 
 // Vector Base
 
-template <unsigned long nParams = 0, FrameLib_Vector_EmptyMode emptyMode = kDefaultZero>
+template <unsigned long nParams = 0, FrameLib_Vector_EmptyModes emptyMode = kDefaultZero>
 class FrameLib_VectorBase : public FrameLib_Processor
 {
     enum ParameterList { kEmptyMode = nParams, kDefault };
@@ -103,7 +103,7 @@ private:
 
 // Vector (Function Version)
 
-template <double func(const double *, size_t), FrameLib_Vector_EmptyMode emptyMode = kDefaultZero>
+template <double func(const double *, size_t), FrameLib_Vector_EmptyModes emptyMode = kDefaultZero>
 class FrameLib_Vector final : public FrameLib_VectorBase<0, emptyMode>
 {
     using Base = FrameLib_VectorBase<0, emptyMode>;

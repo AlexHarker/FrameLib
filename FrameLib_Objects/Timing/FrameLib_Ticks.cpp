@@ -10,8 +10,8 @@ FrameLib_Ticks::FrameLib_Ticks(FrameLib_Context context, const FrameLib_Paramete
     mParameters.addEnumItem(kUp, "up");
     mParameters.addEnumItem(kDown, "down");
     
-    mParameters.addInt(kReset, "reset", 0, 2);
-    mParameters.setMin(0);
+    mParameters.addInt(kReset, "reset", -1, 2);
+    mParameters.setMin(-1);
 
     mParameters.addEnum(kMode, "mode", 3);
     mParameters.addEnumItem(kRun, "run");
@@ -19,10 +19,11 @@ FrameLib_Ticks::FrameLib_Ticks(FrameLib_Context context, const FrameLib_Paramete
     mParameters.addEnumItem(kPause, "pause");
     mParameters.addEnumItem(kStop, "stop");
     
-    mParameters.set(serialisedParameters);
+    mParameters.addEnum(kIdleMode, "idle", 4);
+    mParameters.addEnumItem(kRepeat, "repeat");
+    mParameters.addEnumItem(kEmpty, "empty");
     
-    if (!mParameters.changed(kReset) && mParameters.getInt(kDirection) == kDown)
-        mParameters.set(kReset, mParameters.getInt(kLimit) - 1);
+    mParameters.set(serialisedParameters);
     
     setInputMode(1, false, false, false);
     
@@ -67,12 +68,19 @@ FrameLib_Ticks::ParameterInfo::ParameterInfo()
 {
     add("Sets the count limit.");
     add("Sets the direction of the counting.");
-    add("Sets the reset value.");
+    add("Sets the reset value. "
+        "A value of -1 can be used for direction independent reset. "
+        "This results in reset to 0 when counting up and (limit - 1) when counting down."
+        );
     add("Sets the mode. "
          "run - the count continues until it hits the limit or zero. "
          "loop - the count loops between zeor and the limit minus one. "
          "pause - the count is paused until the mode is changed. "
-         "stop - the count returns to the reset value until the mode is changed. "
+         "stop - the count returns to the reset value until the mode is changed."
+        );
+    add("Sets the idle mode (the output when stopped, paused or out of bounds). "
+        "repeat - repeat the current count. "
+        "empty - output an empty frame."
         );
 }
 
@@ -87,13 +95,11 @@ void FrameLib_Ticks::objectReset()
 void FrameLib_Ticks::process()
 {
     Direction dir = static_cast<Direction>(mParameters.getInt(kDirection));
-    Mode mode = static_cast<Mode>(mParameters.getInt(kMode));
+    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
+    unsigned long sizeOut;
     long limit = mParameters.getInt(kLimit);
     bool reset = mCounter == -1;
-    
-    requestOutputSize(0, 1);
-
-    // Necessary in case we start counting down without a reset
+    bool idle = false;
     
     switch (mode)
     {
@@ -109,9 +115,11 @@ void FrameLib_Ticks::process()
             break;
             
         case kPause:
+            idle = true;
             break;
             
         case kStop:
+            idle = true;
             mCounter = mParameters.getInt(kReset);
             break;
     }
@@ -120,12 +128,31 @@ void FrameLib_Ticks::process()
     {
         mLastResetTime = getInputFrameTime(1);
         mCounter = mParameters.getInt(kReset);
+        
+        if (mCounter == -1)
+        {
+            if (dir == kUp)
+                mCounter = 0;
+            else
+                mCounter = limit - 1;
+        }
     }
+    
+    // Can't reliably check run idle state until here
+    
+    if (mode == kRun)
+        idle = mCounter < 0 || mCounter >= limit;
+    
+    // Now we clip the counter
+    
+    mCounter = std::min(std::max(0L, mCounter), limit - 1);
+    
+    sizeOut = idle && mParameters.getInt(kIdleMode) == kEmpty ? 0 : 1;
+    requestOutputSize(0, sizeOut);
     
     if (allocateOutputs())
     {
-        unsigned long sizeOut;
         double *output = getOutput(0, &sizeOut);
-        output[0] = mCounter = std::min(std::max(0L, mCounter), limit - 1);
+        output[0] = mCounter;
     }
 }
