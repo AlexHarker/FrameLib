@@ -141,6 +141,11 @@ public:
     bool isTimedOut() { return mTimedOut; }
     void setMultithreading(bool multihread) { mMultithread = multihread; }
     
+    // Timing info
+    
+    FrameLib_TimeFormat getBlockStartTime() const;
+    FrameLib_TimeFormat getBlockEndTime() const;
+    
 private:
     
     void enqueue(PrepQueue &queue);

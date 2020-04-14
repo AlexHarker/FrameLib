@@ -203,6 +203,9 @@ protected:
     FrameLib_TimeFormat getBlockStartTime() const   { return getType() == kOutput ? mBlockEndTime : mBlockStartTime; }
     FrameLib_TimeFormat getBlockEndTime() const     { return mBlockEndTime; }
     
+    FrameLib_TimeFormat getQueueBlockStartTime() const  { return mProcessingQueue->getBlockStartTime(); }
+    FrameLib_TimeFormat getQueueBlockEndTime() const    { return mProcessingQueue->getBlockEndTime(); }
+    
     FrameLib_TimeFormat getInputFrameTime(unsigned long idx) const  { return mInputs[idx].mObject ? mInputs[idx].mObject->mFrameTime : FrameLib_TimeFormat(0); }
     FrameLib_TimeFormat getInputValidTime(unsigned long idx) const  { return mInputs[idx].mObject ? mInputs[idx].mObject->mValidTime : FrameLib_TimeFormat(0); }
     

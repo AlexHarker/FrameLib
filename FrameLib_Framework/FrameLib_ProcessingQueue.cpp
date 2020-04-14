@@ -177,6 +177,16 @@ bool FrameLib_ProcessingQueue::checkForTimeOut()
     return isTimedOut();
 }
 
+FrameLib_TimeFormat FrameLib_ProcessingQueue::getBlockStartTime() const
+{
+    return mEntryObject ? mEntryObject->getBlockStartTime() : FrameLib_TimeFormat();
+}
+
+FrameLib_TimeFormat FrameLib_ProcessingQueue::getBlockEndTime() const
+{
+    return mEntryObject ? mEntryObject->getBlockEndTime() : FrameLib_TimeFormat();
+}
+
 // Audio Queue
 
 FrameLib_AudioQueue::~FrameLib_AudioQueue()
