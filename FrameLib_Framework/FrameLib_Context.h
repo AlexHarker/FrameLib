@@ -58,8 +58,10 @@ class FrameLib_Context
     
         // Pointer dereferencing
         
-        T *operator->()         { return mPointer; }
-        T& operator*()          { return *mPointer; }
+        T *operator->()                 { return mPointer; }
+        T& operator*()                  { return *mPointer; }
+        const T *operator->() const     { return mPointer; }
+        const T& operator*() const      { return *mPointer; }
         
     private:
         
