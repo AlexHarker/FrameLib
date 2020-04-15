@@ -146,11 +146,13 @@ public:
         Serial(BytePointer ptr, unsigned long size);
         Serial();
         
-        // Non-copyable
+        // Non-copyable but movable
         
         Serial(const Serial&) = delete;
         Serial& operator=(const Serial&) = delete;
-        
+        Serial(Serial&&) = default;
+        Serial& operator=(Serial&&) = default;
+    
         // Size Calculations
         
         static unsigned long calcSize(const Serial *serialised)             { return serialised != nullptr ? serialised->mSize : 0; }
@@ -272,6 +274,11 @@ public:
         AutoSerial(const char *tag, const char *string) { write(tag, string); }
         AutoSerial(const char *tag, const double *values, unsigned long N)  { write(tag, values, N); }
         ~AutoSerial() { if (mPtr) delete[] mPtr; }
+        
+        // Make movable
+        
+        AutoSerial(AutoSerial&&) = default;
+        AutoSerial& operator=(AutoSerial&&) = default;
         
         // Write Items
         
