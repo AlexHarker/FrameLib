@@ -1302,20 +1302,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8B4C89F1F3359F5008E5D31"
-               BuildableName = "fl.future~.mxo"
-               BlueprintName = "fl.future~"
-               ReferencedContainer = "container:framelib~.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8B4C8C51F33D83F008E5D31"
                BuildableName = "fl.audiotrigger~.mxo"
                BlueprintName = "fl.audiotrigger~"
