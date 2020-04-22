@@ -54,7 +54,7 @@ private:
     
     struct Hash
     {
-        size_t operator()(void *a, void*b) const
+        size_t operator()(void *a, void *b) const
         {
             size_t hash = 0;
             hash ^= std::hash<void *>()(a) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
