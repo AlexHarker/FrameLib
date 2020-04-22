@@ -1018,7 +1018,7 @@ public:
                 dspSetBroken();
         }
         
-        mGlobal->releaseContext(mObject->getContext());
+        mGlobal->releaseContext(getContext());
     }
     
     void assist(void *b, long m, long a, char *s)
@@ -1176,11 +1176,13 @@ public:
         }
     }
 
-    // IO and Mode Helpers
+    // Helpers (IO / context / mode / streams)
     
     ObjectType getType() const                  { return mObject->getType(); }
     
-    bool isRealtime() const                     { return mGlobal->isRealtimeContext(mObject->getContext()); }
+    FrameLib_Context getContext() const         { return mObject->getContext(); }
+
+    bool isRealtime() const                     { return mGlobal->isRealtimeContext(getContext()); }
     bool handlesAudio() const                   { return T::sHandlesAudio; }
     bool handlesRealtimeAudio() const           { return handlesAudio() && isRealtime(); }
     bool supportsOrderingConnections() const    { return mObject->supportsOrderingConnections(); }
@@ -1239,7 +1241,7 @@ public:
     {
         if (!isRealtime())
         {
-            LockHold lock(mGlobal->contextLock(mObject->getContext()));
+            LockHold lock(mGlobal->contextLock(getContext()));
             resolveNRTGraph(sampleRate > 0.0 ? sampleRate.mValue : sys_getsr(), true);
         }
     }
@@ -1252,7 +1254,7 @@ public:
         if (!updateLength || isRealtime())
             return;
         
-        LockHold lock(mGlobal->contextLock(mObject->getContext()));
+        LockHold lock(mGlobal->contextLock(getContext()));
 
         resolveNRTGraph(0.0, false);
         
@@ -1469,7 +1471,7 @@ private:
     
     void matchContext(t_object *object)
     {
-        FrameLib_Context current = mObject->getContext();
+        FrameLib_Context current = getContext();
         FrameLib_Context context = toFLObject(object)->getContext();
         
         bool mismatchedNRT = mGlobal->isRealtimeContext(context) != mGlobal->isRealtimeContext(current);
@@ -1531,7 +1533,7 @@ private:
             
             FLObject *object = toFLObject(jbox_get_object(b));
             
-            if (object && object->getContext() == mObject->getContext())
+            if (object && object->getContext() == getContext())
                 objectMethod(jbox_get_object(b), theMethod, args...);
         }
     }
@@ -1590,7 +1592,7 @@ private:
             resolveGraph(true);
         else
         {
-            LockHold lock(mGlobal->contextLock(mObject->getContext()));
+            LockHold lock(mGlobal->contextLock(getContext()));
             resolveNRTGraph(0.0, false);
         }
     }
@@ -1787,7 +1789,7 @@ private:
             FLObject *object = toFLObject(src);
             bool objectHandlesAudio = object && (object->getType() == kScheduler || object->getNumAudioChans());
             
-            if (!objectHandlesAudio || object->getContext() == mObject->getContext())
+            if (!objectHandlesAudio || object->getContext() == getContext())
             {
                 if (type == JPATCHLINE_CONNECT)
                     connect(MaxConnection(src, srcout), dstin);
