@@ -65,9 +65,9 @@ def main():
     hyp()
 
     # # Deletes all temporay files and cleans up process
-    # print("9. Cleaning up")
-    # cleanup.main()
-    # hyp()
+    print("9. Cleaning up")
+    cleanup.main()
+    hyp()
 
     # Creates the templates for each help file.
     # This is an outer shell containing generic information and framework to be filled in

@@ -133,5 +133,3 @@ def main():
                 for line in xml:
                     final_file.write(line)
                 final_file.close()
-                
-main()

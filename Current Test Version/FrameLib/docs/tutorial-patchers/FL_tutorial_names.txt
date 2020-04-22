@@ -10,4 +10,4 @@
 9, _10_contexts.maxpat;
 10, _11_NRT_Mode.maxpat;
 11, _12_Threading.maxpat;
-12, _13_Export.maxpat;
+12, _13_export.maxpat;
