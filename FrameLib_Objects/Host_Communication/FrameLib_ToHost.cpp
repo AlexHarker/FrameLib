@@ -59,20 +59,18 @@ void FrameLib_ToHost::process()
 {
     if (mProxy)
     {
-        Allocator allocator(*this);
-        
         if (getInputCurrentType(0) == kFrameNormal)
         {
             unsigned long sizeIn;
             const double *input = getInput(0, &sizeIn);
             
-            mProxy->sendToHost(allocator, mID, mStream, input, sizeIn);
+            mProxy->sendToHost(mID, mStream, input, sizeIn, getFrameTime());
         }
         else
         {
             const FrameLib_Parameters::Serial *input = getInput(0);
             
-            mProxy->sendToHost(allocator, mID, mStream, input);
+            mProxy->sendToHost(mID, mStream, input, getFrameTime());
         }
     }
 }
