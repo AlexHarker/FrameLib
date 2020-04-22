@@ -177,11 +177,3 @@ int main()
     FrameLib_Global::release(&global);
     return 0;
 }
-
-
-
-
-
-
-
-
