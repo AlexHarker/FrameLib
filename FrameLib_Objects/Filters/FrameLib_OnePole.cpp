@@ -1,104 +1,43 @@
 
 #include "FrameLib_OnePole.h"
 
-// Filter Class
+OnePole::ModeType OnePole::sModes
+{{
+    Mode("lpf", &OnePole::lpf),
+    Mode("hpf", &OnePole::hpf)
+}};
 
-// Filter Calculation
+OnePole::ParamType OnePole::sParameters
+{{
+    Param("freq", 500.0, Min(0.0))
+    
+}};
 
-double FrameLib_OnePole::OnePole::calculateFilter(double x)
+void OnePole::reset()
 {
-    double y = y1 + f0 * (x - y1);
+    y1 = 0.0;
+}
+
+OnePole::Coefficients OnePole::calculateCoefficients(double freq, double samplingRate)
+{
+    return Coefficients(sin((freq * twopi()) / samplingRate));
+}
+
+double OnePole::process(double x, const Coefficients& coeff)
+{
+    double y = y1 + coeff.f0 * (x - y1);
     
     y1 = y;
     
     return y;
 }
 
-// Main Class
-
-// Constructor
-
-FrameLib_OnePole::FrameLib_OnePole(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+double OnePole::hpf(double x)
 {
-    mParameters.addDouble(kFreq, "freq", 0.0, 0);
-    mParameters.setMin(0.0);
-    
-    mParameters.addEnum(kMode, "mode", 1);
-    mParameters.addEnumItem(kLPF, "lpf");
-    mParameters.addEnumItem(kHPF, "hpf");
-    
-    mParameters.set(serialisedParameters);
-    
-    setParameterInput(1);
+    return x - y1;
 }
 
-// Info
-
-std::string FrameLib_OnePole::objectInfo(bool verbose)
+double OnePole::lpf(double x)
 {
-    return formatInfo("Filters input frames using a one pole filter: The size of the output is equal to the input.",
-                   "Filters input frames using a one pole  filter.", verbose);
-}
-
-std::string FrameLib_OnePole::inputInfo(unsigned long idx, bool verbose)
-{
-    if (idx)
-        return parameterInputInfo(verbose);
-    else
-        return formatInfo("Input Frame - input to be triggered", "Input Frame", verbose);
-}
-
-std::string FrameLib_OnePole::outputInfo(unsigned long idx, bool verbose)
-{
-    return "Frame of Filtered Values";
-}
-
-// Parameter Info
-
-FrameLib_OnePole::ParameterInfo FrameLib_OnePole::sParamInfo;
-
-FrameLib_OnePole::ParameterInfo::ParameterInfo()
-{
-    add("Sets the filter cutoff frequency.");
-    add("Sets the filter mode.");
-}
-
-// Process
-
-void FrameLib_OnePole::process()
-{
-    OnePole filter;
-    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
-    
-    bool staticParams = true;
-    
-    double freq = mParameters.getValue(kFreq);
-    
-    // Get Input
-    
-    unsigned long sizeIn, sizeOut;
-    const double *input = getInput(0, &sizeIn);
-    
-    requestOutputSize(0, sizeIn);
-    allocateOutputs();
-    
-    double *output = getOutput(0, &sizeOut);
-    
-    filter.setParams(freq, mSamplingRate);
-    
-    if (staticParams)
-    {
-        switch (mode)
-        {
-            case kLPF:
-                for (unsigned long i = 0; i < sizeOut; i++)
-                    output[i] = filter.LPF(input[i]);
-                break;
-                
-            case kHPF:
-                for (unsigned long i = 0; i < sizeOut; i++)
-                    output[i] = filter.HPF(input[i]);
-                break;
-        }
-    }
+    return y1;
 }

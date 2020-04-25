@@ -1,26 +1,41 @@
 
 #include "FrameLib_Resonant.h"
-#include <cmath>
 
-// Filter Class
+Resonant::ModeType Resonant::sModes
+{{
+    Mode("lpf", &Resonant::lpf),
+    Mode("hpf", &Resonant::hpf)
+}};
 
-// Set Parameters
+Resonant::ParamType Resonant::sParameters
+{{
+    Param("freq", 500.0, Min(0.0)),
+    Param("reson", 500.0, Clip(0.0, 1.0))
+}};
 
-void FrameLib_Resonant::Resonant::setParams(double freq, double reson, double samplingRate)
+void Resonant::reset()
 {
-    double frad = cos(freq * M_PI * 2.0 / samplingRate);
-    double res = 0.882497 * exp(reson * 0.125);
-    
-    scl = (frad * res) * -2.0;
-    r2 = res * res;
+    y1 = 0.0;
+    y2 = 0.0;
 }
 
-// Filter Calculation
-
-double FrameLib_Resonant::Resonant::calculateFilter(double x)
+Resonant::Coefficients Resonant::calculateCoefficients(double freq, double reson, double samplingRate)
 {
-    x = x * ((scl + r2) + 1.0);
-    double y = x - ((scl * y1) + (r2 * y2));
+    Coefficients coeff;
+    
+    double frad = cos(freq * pi() * 2.0 / samplingRate);
+    double res = 0.882497 * exp(reson * 0.125);
+    
+    coeff.scl = (frad * res) * -2.0;
+    coeff.r2 = res * res;
+    
+    return coeff;
+}
+
+double Resonant::process(double x, const Coefficients& coeff)
+{
+    x = x * ((coeff.scl + coeff.r2) + 1.0);
+    double y = x - ((coeff.scl * y1) + (coeff.r2 * y2));
     
     y2 = y1;
     y1 = y;
@@ -28,96 +43,12 @@ double FrameLib_Resonant::Resonant::calculateFilter(double x)
     return y;
 }
 
-// Main Class
-
-// Constructor
-
-FrameLib_Resonant::FrameLib_Resonant(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
+double Resonant::hpf(double x)
 {
-    mParameters.addDouble(kFreq, "freq", 0.0, 0);
-    mParameters.setMin(0.0);
-    
-    mParameters.addDouble(kReson, "reson", 0.0, 1);
-    mParameters.setClip(0.0, 1.0);
-    
-    mParameters.addEnum(kMode, "mode", 2);
-    mParameters.addEnumItem(kLPF, "lpf");
-    mParameters.addEnumItem(kHPF, "hpf");
-    
-    mParameters.set(serialisedParameters);
-    
-    setParameterInput(1);
+    return x - y1;
 }
 
-// Info
-
-std::string FrameLib_Resonant::objectInfo(bool verbose)
+double Resonant::lpf(double x)
 {
-    return formatInfo("Filters input frames using a resonant filter: The size of the output is equal to the input.",
-                   "Filters input frames using a resonant filter.", verbose);
-}
-
-std::string FrameLib_Resonant::inputInfo(unsigned long idx, bool verbose)
-{
-    if (idx)
-        return parameterInputInfo(verbose);
-    else
-        return formatInfo("Input Frame - input to be triggered", "Input Frame", verbose);
-}
-
-std::string FrameLib_Resonant::outputInfo(unsigned long idx, bool verbose)
-{
-    return "Frame of Filtered Values";
-}
-
-// Parameter Info
-
-FrameLib_Resonant::ParameterInfo FrameLib_Resonant::sParamInfo;
-
-FrameLib_Resonant::ParameterInfo::ParameterInfo()
-{
-    add("Sets the filter cutoff frequency.");
-    add("Sets the filter resonance [0-1].");
-    add("Sets the filter mode.");
-}
-
-// Process
-
-void FrameLib_Resonant::process()
-{
-    Resonant filter;
-    Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
-    
-    bool staticParams = true;
-    
-    double freq = mParameters.getValue(kFreq);
-    double reson = mParameters.getValue(kReson);
-    
-    // Get Input
-    
-    unsigned long sizeIn, sizeOut;
-    const double *input = getInput(0, &sizeIn);
-    
-    requestOutputSize(0, sizeIn);
-    allocateOutputs();
-    
-    double *output = getOutput(0, &sizeOut);
-    
-    filter.setParams(freq, reson, mSamplingRate);
-    
-    if (staticParams)
-    {
-        switch (mode)
-        {
-            case kLPF:
-                for (unsigned long i = 0; i < sizeOut; i++)
-                    output[i] = filter.LPF(input[i]);
-                break;
-                
-            case kHPF:
-                for (unsigned long i = 0; i < sizeOut; i++)
-                    output[i] = filter.HPF(input[i]);
-                break;
-        }
-    }
+    return y1;
 }

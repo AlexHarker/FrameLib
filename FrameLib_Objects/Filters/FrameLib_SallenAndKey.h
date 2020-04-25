@@ -2,75 +2,46 @@
 #ifndef FRAMELIB_SALLENANDKEY_H
 #define FRAMELIB_SALLENANDKEY_H
 
-#include "FrameLib_DSP.h"
-#include "FrameLib_Filter_Constants.h"
+#include "FrameLib_Filter_Template.h"
 
-// FIX - All filters to templates / time varying params
-
-class FrameLib_SallenAndKey final : public FrameLib_Processor
+class SallenAndKey : public FrameLib_FilterBase<SallenAndKey, 3, 2>
 {
-    // Filter Class
-
-    class SallenAndKey
+    
+public:
+    
+    static ModeType sModes;
+    static ParamType sParameters;
+    
+    struct Coefficients
     {
+        Coefficients() : k(0.0), a0(0.0), a1(0.0), a2(0.0), a3(0.0), a4(0.0), a5(0.0) {}
+        Coefficients(double K, double A0, double A1, double A2, double A3, double A4, double A5)
+        : k(K), a0(A0), a1(A1), a2(A2), a3(A3), a4(A4), a5(A5) {}
         
-    public:
-        
-        SallenAndKey() : k(0.0), a0(0.0), a1(0.0), a2(0.0), a3(0.0), a4(0.0), a5(0.0), v1(0.0), v2(0.0), ic1eq(0.0), ic2eq(0.0) {}
-        
-        // Reset
-
-        void reset()            { ic1eq = ic2eq = 0.0; }
-
-        // Filter Types
-        
-        double HPF(double x);
-        double BPF(double x);
-        double LPF(double x);
-        
-        // Set Parameters
-        
-        void setParams(double freq, double resonance, double samplingRate);
-        
-    private:
-
-        // Filter Calculation
-
-        void calculateFilter(double x);
-        
-        // Coefficients and Memories
-
-        double k, a0, a1, a2, a3, a4, a5, v1, v2, ic1eq, ic2eq;
+        double k, a0, a1, a2, a3, a4, a5;
     };
     
-    // Parameter Enums and Info
-
-    enum ParameterList { kFreq, kReson, kMode };
-    enum Modes { kLPF, kBPF, kHPF };
-
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
-
-public:
-
-    // Constructor
+    SallenAndKey() : v1(0.0), v2(0.0), ic1eq(0.0), ic2eq(0.0) {}
     
-    FrameLib_SallenAndKey(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    // Reset
     
-    // Info
+    void reset();
     
-    std::string objectInfo(bool verbose) override;
-    std::string inputInfo(unsigned long idx, bool verbose) override;
-    std::string outputInfo(unsigned long idx, bool verbose) override;
+    // Coefficients
+    
+    Coefficients calculateCoefficients(double freq, double resonance, double samplingRate);
+    
+    double process(double x, const Coefficients& coeff);
+    double hpf(double x);
+    double bpf(double x);
+    double lpf(double x);
     
 private:
     
-    // Process
-    
-    void process() override;
-    
-    // Data
-    
-    static ParameterInfo sParamInfo;
+    double v1, v2, ic1eq, ic2eq;
 };
 
+using FrameLib_SallenAndKey = FrameLib_Filter<SallenAndKey>;
+
 #endif
+

@@ -2,74 +2,39 @@
 #ifndef FRAMELIB_RESONANT_H
 #define FRAMELIB_RESONANT_H
 
-#include "FrameLib_DSP.h"
-#include "FrameLib_Filter_Constants.h"
+#include "FrameLib_Filter_Template.h"
 
-// FIX - All filters to templates / time varying params
-
-class FrameLib_Resonant final : public FrameLib_Processor
+class Resonant : public FrameLib_FilterBase<Resonant, 2, 2>
 {
-    // Filter Class
-
-    class Resonant
+    
+public:
+    
+    static ModeType sModes;
+    static ParamType sParameters;
+    
+    struct Coefficients
     {
+        Coefficients() : scl(0.0), r2(0.0) {}
         
-    public:
-        
-        Resonant() : scl(0.0), r2(0.0), y1(0.0), y2(0.0) {}
-        
-        // Reset
-        
-        void reset()                { y1 = y2 = 0.0; }
-        
-        // Filter Types
-        
-        double HPF(double x)        { return x - calculateFilter(x); }
-        double LPF(double x)        { return calculateFilter(x); }
-        
-        // Set Parameters
-        
-        void setParams(double freq, double reson, double samplingRate);
-        
-    private:
-        
-        // Filter Calculation
-
-        double calculateFilter(double x);
-        
-        // Coefficients and Memories
-
-        double scl, r2, y1, y2;
+        double scl;
+        double r2;
     };
     
-    // Parameter Enums and Info
-
-    enum ParameterList { kFreq, kReson, kMode };
-    enum Modes { kLPF, kHPF };
-
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
-
-public:
-
-    // Constructor
+    Resonant() : y1(0.0), y2(0.0) {}
     
-    FrameLib_Resonant(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    void reset();
     
-    // Info
+    Coefficients calculateCoefficients(double freq, double reson, double samplingRate);
     
-    std::string objectInfo(bool verbose) override;
-    std::string inputInfo(unsigned long idx, bool verbose) override;
-    std::string outputInfo(unsigned long idx, bool verbose) override;
+    double process(double x, const Coefficients& coeff);
+    double hpf(double x);
+    double lpf(double x);
     
 private:
     
-    // Process
-    
-    void process() override;
-    
-    // Data
-    
-    static ParameterInfo sParamInfo;
+    double y1, y2;
 };
+
+using FrameLib_Resonant = FrameLib_Filter<Resonant>;
 
 #endif

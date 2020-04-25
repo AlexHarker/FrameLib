@@ -2,74 +2,40 @@
 #ifndef FRAMELIB_ONEPOLEZERO_H
 #define FRAMELIB_ONEPOLEZERO_H
 
-#include "FrameLib_DSP.h"
-#include "FrameLib_Filter_Constants.h"
+#include "FrameLib_Filter_Template.h"
 
-// FIX - All filters to templates / time varying params
-
-class FrameLib_OnePoleZero final : public FrameLib_Processor
+class OnePoleZero : public FrameLib_FilterBase<OnePoleZero, 2, 1>
 {
-    // Filter Class
-
-    class OnePoleZero
+    
+public:
+    
+    static ModeType sModes;
+    static ParamType sParameters;
+    
+    struct Coefficients
     {
+        Coefficients() : a0(0.0), a1(0.0) {}
+        Coefficients(double v1, double v2) : a0(v1), a1(v2) {}
         
-    public:
-        
-        OnePoleZero() : a0(0.0), a1(0.0), r1(0.0) {}
-        
-        // Reset
-
-        void reset()                { r1 = 0.0; }
-        
-        // Filter Types
-
-        double HPF(double x)        { return x - calculateFilter(x); }
-        double LPF(double x)        { return calculateFilter(x); }
-
-        // Set Parameters
-        
-        void setParams(double freq, double samplingRate);
-        
-    private:
-        
-        // Filter Calculation
-
-        double calculateFilter(double x);
-        
-        // Coefficients and Memories
-
-        double a0, a1, r1;
+        double a0, a1;
     };
     
-    // Parameter Enums and Info
-
-    enum ParameterList { kFreq, kMode };
-    enum Modes { kLPF, kHPF };
-
-    struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
-
-public:
-
-    // Constructor
+    OnePoleZero() : r1(0.0), y1(0.0) {}
     
-    FrameLib_OnePoleZero(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    void reset();
     
-    // Info
+    Coefficients calculateCoefficients(double freq, double samplingRate);
     
-    std::string objectInfo(bool verbose) override;
-    std::string inputInfo(unsigned long idx, bool verbose) override;
-    std::string outputInfo(unsigned long idx, bool verbose) override;
+    double process(double x, const Coefficients& coeff);
+    double hpf(double x);
+    double lpf(double x);
     
 private:
     
-    // Process
-
-    void process() override;
-    
-    // Data
-    
-    static ParameterInfo sParamInfo;
+    double r1;
+    double y1;
 };
+
+using FrameLib_OnePoleZero = FrameLib_Filter<OnePoleZero>;
 
 #endif
