@@ -769,7 +769,7 @@ public:
     long getInt(unsigned long idx) const                                    { return (long) getValue(idx); }
     long getInt(const char *name) const                                     { return getInt(getIdx(name)); }
     
-    long getBool(unsigned long idx) const                                   { return (bool) getValue(idx); }
+    bool getBool(unsigned long idx) const                                   { return (bool) getValue(idx); }
     bool getBool(const char *name) const                                    { return (bool) getValue(getIdx(name)); }
     
     const char *getString(unsigned long idx) const                          { return mParameters[idx]->getString(); }
