@@ -145,23 +145,14 @@ public:
         for (unsigned long i = 0; i < N; i++)
         {
             mParameters.addDouble(i, ParamDescription[i].mName.c_str(), ParamDescription[i].mDefaultValue, i);
+            const Constraint &c = ParamDescription[i].mConstraint;
             
-            switch (ParamDescription[i].mConstraint.getType())
+            switch (c.getType())
             {
-                case Constraint::kNone:
-                    break;
-                
-                case Constraint::kMin:
-                    mParameters.setMin(ParamDescription[i].mConstraint.mMin);
-                    break;
-                    
-                case Constraint::kMax:
-                    mParameters.setMax(ParamDescription[i].mConstraint.mMax);
-                    break;
-                    
-                case Constraint::kClip:
-                    mParameters.setClip(ParamDescription[i].mConstraint.mMin, ParamDescription[i].mConstraint.mMax);
-                    break;
+                case Constraint::kNone:                                         break;
+                case Constraint::kMin:  mParameters.setMin(c.mMin);             break;
+                case Constraint::kMax:  mParameters.setMax(c.mMax);             break;
+                case Constraint::kClip: mParameters.setClip(c.mMin, c.mMax);    break;
             }
         }
         
@@ -238,15 +229,15 @@ private:
     
     template <size_t I>
     void processLoops(double *output, const double *input, const FilterInputs& paramIns,
-                      unsigned long size, size_t mode, bool paramsStatic)
+                      unsigned long size, size_t mode, bool dynamic)
     {
         if (I != mode)
         {
-            StaticRecursion<FrameLib_Filter<T>, I>()(*this, output, input, paramIns, size, mode, paramsStatic);
+            StaticRecursion<FrameLib_Filter<T>, I>()(*this, output, input, paramIns, size, mode, dynamic);
             return;
         }
         
-        if (paramsStatic)
+        if (!dynamic)
         {
             updateCoefficients(paramIns, 0, ParameterIndices());
 
@@ -275,35 +266,35 @@ private:
         
         unsigned long sizeIn, sizeOut;
         const double *input = getInput(0, &sizeIn);
-        FilterInputs parameterInputs;
+        FilterInputs paramIns;
         
         requestOutputSize(0, sizeIn);
         allocateOutputs();
         
         double *output = getOutput(0, &sizeOut);
         
-        bool dynamicMode = mParameters.getBool(DynamicIndex);
-        bool parametersStatic = true;
+        size_t mode = static_cast<size_t>(mParameters.getInt(ModeIndex));
+        bool dynamic = false;
     
         // Read in the inputs and check if they change
         
-        if (dynamicMode)
+        if (mParameters.getBool(DynamicIndex))
         {
             for (unsigned long i = 0; i < N; i++)
             {
-                parameterInputs[i].mInput = getInput(i + 1, &parameterInputs[i].mSize);
+                paramIns[i].mInput = getInput(i + 1, &paramIns[i].mSize);
 
-                if (parameterInputs[i].mSize > 1)
-                    parametersStatic = false;
+                if (paramIns[i].mSize > 1)
+                    dynamic = true;
             }
         }
         
-        // Do reset
+        // Do (optional) reset and DSP
         
         if (mParameters.getBool(ResetIndex))
             mFilter.reset();
         
-        processLoops<M-1>(output, input, parameterInputs, sizeOut, mParameters.getInt(ModeIndex), parametersStatic);
+        processLoops<M-1>(output, input, paramIns, sizeOut, mode, dynamic);
     }
     
     // Data
