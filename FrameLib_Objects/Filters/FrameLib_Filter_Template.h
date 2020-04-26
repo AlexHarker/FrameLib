@@ -12,43 +12,39 @@
 template <class T, int NumModes, int NumParams>
 struct FrameLib_FilterBase
 {
-    static constexpr double infinity() { return std::numeric_limits<double>::infinity(); }
-    static constexpr double pi()       { return M_PI; }
-    static constexpr double twopi()    { return 6.28318530717958647692; }
+    static constexpr double inf()   { return std::numeric_limits<double>::infinity(); }
+    static constexpr double pi()    { return M_PI; }
+    static constexpr double twopi() { return pi() * 2.0; }
     
-    struct Constraint
+    struct Clip
     {
         enum Type { kNone, kMin, kMax, kClip };
         
-        Constraint(double min, double max) : mMin(min), mMax(max) {}
-        
-        bool hasMin() const { return mMin != -infinity(); }
-        bool hasMax() const { return mMax != infinity(); }
-        
+        Clip(double min, double max) : mMin(min), mMax(max) {}
+
         Type getType() const
         {
-            return hasMin() ? (hasMax() ? kClip : kMin) : (hasMax() ? kMax : kNone);
+            return mMin != -inf() ? (mMax != inf() ? kClip : kMin) : (mMax != inf() ? kMax : kNone);
         }
         
         double mMin;
         double mMax;
     };
     
-    struct Clip : Constraint{ Clip(double min, double max) : Constraint(min, max) {} };
-    struct Min : Constraint { Min(double min) : Constraint(min, infinity()) {} };
-    struct Max : Constraint { Max(double max) : Constraint(-infinity(), max) {} };
-    struct None : Constraint { None() : Constraint(-infinity(), infinity()) {} };
+    struct Min : Clip   { Min(double min) : Clip(min, inf()) {} };
+    struct Max : Clip   { Max(double max) : Clip(-inf(), max) {} };
+    struct None : Clip  { None() : Clip(-inf(), inf()) {} };
     
     struct Param
     {
-        Param() : mName(""), mDefaultValue(0.0), mConstraint(None()) {}
+        Param() : mName(""), mDefaultValue(0.0), mClip(None()) {}
         
-        Param(const char *name, double defaultValue, Constraint constraint)
-        : mName(name), mDefaultValue(defaultValue), mConstraint(constraint) {}
+        Param(const char *name, double defaultValue, Clip clip)
+        : mName(name), mDefaultValue(defaultValue), mClip(clip) {}
         
         const std::string mName;
         const double mDefaultValue;
-        const Constraint mConstraint;
+        const Clip mClip;
     };
     
     struct Mode
@@ -115,7 +111,7 @@ class FrameLib_Filter final : public FrameLib_Processor
         unsigned long mSize = 0;
     };
     
-    using Constraint = typename T::Constraint;
+    using Clip = typename T::Clip;
     using ParameterIndices = make_indices<N>;
     using ModeIndices = make_indices<M>;
     using FilterInputs = std::array<Input, N>;
@@ -148,14 +144,14 @@ public:
         for (unsigned long i = 0; i < N; i++)
         {
             mParameters.addDouble(i, ParamDescription[i].mName.c_str(), ParamDescription[i].mDefaultValue, i);
-            const Constraint &c = ParamDescription[i].mConstraint;
+            const Clip &c = ParamDescription[i].mClip;
             
             switch (c.getType())
             {
-                case Constraint::kNone:                                         break;
-                case Constraint::kMin:  mParameters.setMin(c.mMin);             break;
-                case Constraint::kMax:  mParameters.setMax(c.mMax);             break;
-                case Constraint::kClip: mParameters.setClip(c.mMin, c.mMax);    break;
+                case Clip::kNone:                                           break;
+                case Clip::kMin:    mParameters.setMin(c.mMin);             break;
+                case Clip::kMax:    mParameters.setMax(c.mMax);             break;
+                case Clip::kClip:   mParameters.setClip(c.mMin, c.mMax);    break;
             }
         }
         
@@ -247,8 +243,7 @@ private:
     }
     
     template <typename O, size_t... Is>
-    void processLoops(O outputs, const double *input, const FilterInputs& paramIns,
-                      unsigned long size, bool dynamic, indices<Is...>)
+    void processLoops(O outputs, const double *input, const FilterInputs& paramIns, unsigned long size, bool dynamic, indices<Is...>)
     {
         if (!dynamic)
         {
@@ -270,8 +265,7 @@ private:
     }
     
     template <size_t I>
-    void modeSelect(double *output, const double *input, const FilterInputs& paramIns,
-                      unsigned long size, size_t mode, bool dynamic)
+    void modeSelect(double *output, const double *input, const FilterInputs& paramIns, unsigned long size, size_t mode, bool dynamic)
     {
         if (I != mode)
             StaticRecursion<FrameLib_Filter<T>, I>()(*this, output, input, paramIns, size, mode, dynamic);
