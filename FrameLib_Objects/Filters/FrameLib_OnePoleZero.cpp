@@ -18,25 +18,21 @@ void OnePoleZero::reset()
     r1 = 0.0;
 }
 
-OnePoleZero::Coefficients OnePoleZero::calculateCoefficients(double freq, double samplingRate)
+void OnePoleZero::updateCoefficients(double freq, double samplingRate)
 {
-    Coefficients coeff;
-    
     const double fc = pi() * freq / samplingRate;
     
-    coeff.a0 = (2.0 * sin(fc)) / (cos(fc) + sin(fc));
-    coeff.a1 = 1.0 - (coeff.a0 * 2.0);
-    
-    return coeff;
+    a0 = (2.0 * sin(fc)) / (cos(fc) + sin(fc));
+    a1 = 1.0 - (a0 * 2.0);
 }
 
-double OnePoleZero::process(double x, const Coefficients& coeff)
+double OnePoleZero::process(double x)
 {
-    const double w = x * coeff.a0;
+    const double w = x * a0;
     const double y = r1 + w;
     
     y1 = y;
-    r1 = w + (y * coeff.a1);
+    r1 = w + (y * a1);
     
     return y;
 }
@@ -50,4 +46,3 @@ double OnePoleZero::lpf(double x)
 {
     return y1;
 }
-

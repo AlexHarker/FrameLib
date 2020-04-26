@@ -22,30 +22,26 @@ void SallenAndKey::reset()
     ic2eq = 0.0;
 }
 
-SallenAndKey::Coefficients SallenAndKey::calculateCoefficients(double freq, double reson, double samplingRate)
+void SallenAndKey::updateCoefficients(double freq, double reson, double samplingRate)
 {
-    Coefficients coeff;
-    
     const double g = tan(M_PI * (freq / samplingRate));
     const double gp1 = 1.0 + g;
     
-    coeff.k = 2.0 * reson;
-    coeff.a0 = 1.0 / ((gp1 * gp1) - (g * coeff.k));
-    coeff.a1 = coeff.k * coeff.a0;
-    coeff.a2 = gp1 * coeff.a0;
-    coeff.a3 = g * coeff.a2;
-    coeff.a4 = 1.0 / gp1;
-    coeff.a5 = g * coeff.a4;
-    
-    return coeff;
+    k = 2.0 * reson;
+    a0 = 1.0 / ((gp1 * gp1) - (g * k));
+    a1 = k * a0;
+    a2 = gp1 * a0;
+    a3 = g * a2;
+    a4 = 1.0 / gp1;
+    a5 = g * a4;
 }
 
-double SallenAndKey::process(double x, const Coefficients& coeff)
+double SallenAndKey::process(double x)
 {
-    v1 = (coeff.a1 * ic2eq) + (coeff.a2 * ic1eq) + (coeff.a3 * x);
-    v2 = (coeff.a4 * ic2eq) + (coeff.a5 * v1);
+    v1 = (a1 * ic2eq) + (a2 * ic1eq) + (a3 * x);
+    v2 = (a4 * ic2eq) + (a5 * v1);
     
-    ic1eq = (2 * (v1 - (coeff.k * v2))) - ic1eq;
+    ic1eq = (2 * (v1 - (k * v2))) - ic1eq;
     ic2eq = (2 * v2) - ic2eq;
     
     return 0.0;

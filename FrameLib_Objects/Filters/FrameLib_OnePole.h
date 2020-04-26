@@ -12,26 +12,19 @@ public:
     static ModeType sModes;
     static ParamType sParameters;
     
-    struct Coefficients
-    {
-        Coefficients() : f0(0.0) {}
-        Coefficients(double v) : f0(v) {}
-        
-        double f0;
-    };
-    
-    OnePole() : y1(0.0) {}
+    OnePole() : f0(0.0), y1(0.0) {}
         
     void reset();
 
-    Coefficients calculateCoefficients(double freq, double samplingRate);
+    void updateCoefficients(double freq, double samplingRate);
     
-    double process(double x, const Coefficients& coeff);
+    double process(double x);
     double hpf(double x);
     double lpf(double x);
     
 private:
     
+    double f0;
     double y1;
 };
 

@@ -223,7 +223,7 @@ private:
         if (parameters != mFilterParameters)
         {
             mFilterParameters = parameters;
-            mCoefficients = mFilter.calculateCoefficients(std::get<Is>(parameters)..., mSamplingRate);
+            mFilter.updateCoefficients(std::get<Is>(parameters)..., mSamplingRate);
         }
     }
     
@@ -243,7 +243,7 @@ private:
 
             for (unsigned long i = 0; i < size; i++)
             {
-                mFilter.process(input[i], mCoefficients);
+                mFilter.process(input[i]);
                 output[i] = (mFilter.*ModeDescription[I].mMethod)(input[i]);
             }
         }
@@ -252,7 +252,7 @@ private:
             for (unsigned long i = 0; i < size; i++)
             {
                 updateCoefficients(paramIns, i, ParameterIndices());
-                mFilter.process(input[i], mCoefficients);
+                mFilter.process(input[i]);
                 output[i] = (mFilter.*ModeDescription[I].mMethod)(input[i]);
             }
         }
@@ -300,8 +300,7 @@ private:
     // Data
     
     FilterParameters mFilterParameters;
-    typename T::Coefficients mCoefficients;
-    T mFilter;    
+    T mFilter;
 };
 
 #endif

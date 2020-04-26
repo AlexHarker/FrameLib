@@ -18,14 +18,14 @@ void OnePole::reset()
     y1 = 0.0;
 }
 
-OnePole::Coefficients OnePole::calculateCoefficients(double freq, double samplingRate)
+void OnePole::updateCoefficients(double freq, double samplingRate)
 {
-    return Coefficients(sin((freq * twopi()) / samplingRate));
+    f0 = sin((freq * twopi()) / samplingRate);
 }
 
-double OnePole::process(double x, const Coefficients& coeff)
+double OnePole::process(double x)
 {
-    double y = y1 + coeff.f0 * (x - y1);
+    double y = y1 + f0 * (x - y1);
     
     y1 = y;
     

@@ -19,23 +19,19 @@ void Resonant::reset()
     y2 = 0.0;
 }
 
-Resonant::Coefficients Resonant::calculateCoefficients(double freq, double reson, double samplingRate)
+void Resonant::updateCoefficients(double freq, double reson, double samplingRate)
 {
-    Coefficients coeff;
-    
     double frad = cos(freq * pi() * 2.0 / samplingRate);
     double res = 0.882497 * exp(reson * 0.125);
     
-    coeff.scl = (frad * res) * -2.0;
-    coeff.r2 = res * res;
-    
-    return coeff;
+    scl = (frad * res) * -2.0;
+    r2 = res * res;
 }
 
-double Resonant::process(double x, const Coefficients& coeff)
+double Resonant::process(double x)
 {
-    x = x * ((coeff.scl + coeff.r2) + 1.0);
-    double y = x - ((coeff.scl * y1) + (coeff.r2 * y2));
+    x = x * ((scl + r2) + 1.0);
+    double y = x - ((scl * y1) + (r2 * y2));
     
     y2 = y1;
     y1 = y;
