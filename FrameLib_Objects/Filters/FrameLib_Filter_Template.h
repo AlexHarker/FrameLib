@@ -76,7 +76,7 @@ struct StaticRecursion
     template <typename... Args>
     void operator()(T& object, Args... args)
     {
-        object.template processLoops<I-1>(args...);
+        object.template modeSelect<I-1>(args...);
     }
 };
 
@@ -115,15 +115,16 @@ class FrameLib_Filter final : public FrameLib_Processor
         unsigned long mSize = 0;
     };
     
-    using Param = typename T::Param;
-    using Mode = typename T::Mode;
     using Constraint = typename T::Constraint;
     using ParameterIndices = make_indices<N>;
+    using ModeIndices = make_indices<M>;
     using FilterInputs = std::array<Input, N>;
+    using FilterOutputs = std::array<double *, M>;
     using FilterParameters = std::array<double, N>;
-    
+
     static constexpr unsigned long ModeIndex = N;
-    static constexpr unsigned long ResetIndex = N + (M > 1 ? 1 : 0);
+    static constexpr unsigned long MultiIndex = N + 1;
+    static constexpr unsigned long ResetIndex = N + (M > 1 ? 2 : 0);
     static constexpr unsigned long DynamicIndex = ResetIndex + 1;
     static constexpr typename T::ParamType& ParamDescription = T::sParameters;
     static constexpr typename T::ModeType& ModeDescription = T::sModes;
@@ -142,7 +143,7 @@ public:
     // Constructor
     
     FrameLib_Filter(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-    : FrameLib_Processor(context, proxy, getParamInfo(), 1, 1)
+    : FrameLib_Processor(context, proxy, getParamInfo())
     {
         for (unsigned long i = 0; i < N; i++)
         {
@@ -163,6 +164,9 @@ public:
             mParameters.addEnum(ModeIndex, "mode");
             for (unsigned long i = 0; i < M; i++)
                 mParameters.addEnumItem(i, ModeDescription[i].mName.c_str());
+            
+            mParameters.addBool(MultiIndex, "multi", false);
+            mParameters.setInstantiation();
         }
         
         mParameters.addBool(ResetIndex, "reset", true);
@@ -172,8 +176,10 @@ public:
         
         mParameters.set(serialisedParameters);
 
-        if (mParameters.getBool(DynamicIndex))
-            setIO(N + 1, 1);
+        unsigned long numIns = mParameters.getBool(DynamicIndex) ? N + 1 : 1;
+        unsigned long numOuts = (M > 1 && mParameters.getBool(MultiIndex)) ? M : 1;
+
+        setIO(numIns, numOuts);
         
         addParameterInput();
     }
@@ -202,7 +208,6 @@ private:
     FrameLib_Parameters::Info *getParamInfo()
     {
         static ParameterInfo info;
-        
         return &info;
     }
     
@@ -230,23 +235,27 @@ private:
     }
     
     template <size_t I>
-    void processLoops(double *output, const double *input, const FilterInputs& paramIns,
-                      unsigned long size, size_t mode, bool dynamic)
+    void calculateOutput(double *output, const double *input, unsigned long i)
     {
-        if (I != mode)
-        {
-            StaticRecursion<FrameLib_Filter<T>, I>()(*this, output, input, paramIns, size, mode, dynamic);
-            return;
-        }
-        
+        output[i] = (mFilter.*ModeDescription[I].mMethod)(input[i]);
+    }
+    
+    template <size_t I>
+    void calculateOutput(double **outputs, const double *input, unsigned long i)
+    {
+        outputs[I][i] = (mFilter.*ModeDescription[I].mMethod)(input[i]);
+    }
+    
+    template <typename O, size_t... Is>
+    void processLoops(O outputs, const double *input, const FilterInputs& paramIns,
+                      unsigned long size, bool dynamic, indices<Is...>)
+    {
         if (!dynamic)
         {
-            updateCoefficients(paramIns, 0, ParameterIndices());
-
             for (unsigned long i = 0; i < size; i++)
             {
                 mFilter(input[i]);
-                output[i] = (mFilter.*ModeDescription[I].mMethod)(input[i]);
+                (void) std::initializer_list<int>{ (calculateOutput<Is>(outputs, input, i), 0)... };
             }
         }
         else
@@ -255,9 +264,19 @@ private:
             {
                 updateCoefficients(paramIns, i, ParameterIndices());
                 mFilter(input[i]);
-                output[i] = (mFilter.*ModeDescription[I].mMethod)(input[i]);
+                (void) std::initializer_list<int>{ (calculateOutput<Is>(outputs, input, i), 0)... };
             }
         }
+    }
+    
+    template <size_t I>
+    void modeSelect(double *output, const double *input, const FilterInputs& paramIns,
+                      unsigned long size, size_t mode, bool dynamic)
+    {
+        if (I != mode)
+            StaticRecursion<FrameLib_Filter<T>, I>()(*this, output, input, paramIns, size, mode, dynamic);
+        else
+            processLoops(output, input, paramIns, size, dynamic, indices<I>());
     }
     
     // Process
@@ -269,11 +288,26 @@ private:
         unsigned long sizeIn, sizeOut;
         const double *input = getInput(0, &sizeIn);
         FilterInputs paramIns;
+        FilterOutputs multiOuts;
+        bool multi = M > 1 ? mParameters.getBool(MultiIndex) : false;
         
-        requestOutputSize(0, sizeIn);
+        if (multi)
+        {
+            for (unsigned long i = 0; i < M; i++)
+                requestOutputSize(i, sizeIn);
+        }
+        else
+            requestOutputSize(0, sizeIn);
+        
         allocateOutputs();
         
         double *output = getOutput(0, &sizeOut);
+        
+        if (multi)
+        {
+            for (unsigned long i = 0; i < M; i++)
+                multiOuts[i] = getOutput(i, &sizeOut);
+        }
         
         size_t mode = M > 1 ? static_cast<size_t>(mParameters.getInt(ModeIndex)) : 0;
         bool dynamic = false;
@@ -291,12 +325,18 @@ private:
             }
         }
         
-        // Do (optional) reset and DSP
+        // Do (optional) reset, coefficients for static parameters and DSP
         
         if (mParameters.getBool(ResetIndex))
             mFilter.reset();
         
-        processLoops<M-1>(output, input, paramIns, sizeOut, mode, dynamic);
+        if (!dynamic)
+            updateCoefficients(paramIns, 0, ParameterIndices());
+
+        if (multi)
+            processLoops(multiOuts.data(), input, paramIns, sizeOut, dynamic, ModeIndices());
+        else
+            modeSelect<M-1>(output, input, paramIns, sizeOut, mode, dynamic);
     }
     
     // Data
