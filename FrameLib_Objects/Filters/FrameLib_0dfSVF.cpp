@@ -1,35 +1,8 @@
 
 #include "FrameLib_0dfSVF.h"
 
-SVF::ModeType SVF::sModes
-{{
-    Mode("lpf", &SVF::lpf),
-    Mode("bpf", &SVF::bpf),
-    Mode("hpf", &SVF::hpf)
-}};
-
-SVF::ParamType SVF::sParameters
-{{
-    Param("freq", 500.0, Min(0.0)),
-    Param("reson", 0.0, Clip(0.0, 1.0))
-}};
-
-void SVF::reset()
-{
-    s1 = 0.0;
-    s2 = 0.0;
-    lp = 0.0;
-    bp = 0.0;
-    hp = 0.0;
-}
-
-void SVF::updateCoefficients(double freq, double reson, double samplingRate)
-{
-    double srConst = 0.5 / samplingRate;
-
-    r = std::min(std::max(1.0 - reson, 0.005), 1.0);
-    g = ((2.0 * samplingRate) * tan((freq * twopi()) * srConst) * srConst);
-}
+constexpr SVF::ParamType SVF::sParameters;
+constexpr SVF::ModeType SVF::sModes;
 
 void SVF::operator()(double x)
 {
@@ -56,4 +29,21 @@ double SVF::bpf(double x)
 double SVF::lpf(double x)
 {
     return lp;
+}
+
+void SVF::reset()
+{
+    s1 = 0.0;
+    s2 = 0.0;
+    lp = 0.0;
+    bp = 0.0;
+    hp = 0.0;
+}
+
+void SVF::updateCoefficients(double freq, double reson, double samplingRate)
+{
+    double srConst = 0.5 / samplingRate;
+
+    r = std::min(std::max(1.0 - reson, 0.005), 1.0);
+    g = ((2.0 * samplingRate) * tan((freq * twopi()) * srConst) * srConst);
 }

@@ -4,23 +4,32 @@
 
 #include "FrameLib_Filter_Template.h"
 
-class OnePole : public FrameLib_FilterBase<OnePole, 2, 1>
+class OnePole : public FrameLib_FilterBase<OnePole, 1, 2>
 {
     
 public:
     
-    static ModeType sModes;
-    static ParamType sParameters;
-    
     OnePole() : f0(0.0), y1(0.0) {}
-        
+    
+    void operator()(double x);
+    
+    double hpf(double x);
+    double lpf(double x);
+    
     void reset();
 
     void updateCoefficients(double freq, double samplingRate);
     
-    void operator()(double x);
-    double hpf(double x);
-    double lpf(double x);
+    constexpr static ParamType sParameters
+    {{
+        Param("freq", 500.0, Min(0.0))
+    }};
+    
+    constexpr static ModeType sModes
+    {{
+        Mode("lpf", &OnePole::lpf),
+        Mode("hpf", &OnePole::hpf)
+    }};
     
 private:
     
@@ -28,6 +37,6 @@ private:
     double y1;
 };
 
-using FrameLib_OnePole = FrameLib_Filter<OnePole>; 
+using FrameLib_OnePole = FrameLib_Filter<OnePole>;
 
 #endif

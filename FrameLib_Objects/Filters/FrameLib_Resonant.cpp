@@ -1,16 +1,19 @@
 
 #include "FrameLib_Resonant.h"
 
-Resonant::ModeType Resonant::sModes
-{{
-    Mode("lpf", &Resonant::lpf)
-}};
+constexpr Resonant::ParamType Resonant::sParameters;
+constexpr Resonant::ModeType Resonant::sModes;
 
-Resonant::ParamType Resonant::sParameters
-{{
-    Param("freq", 500.0, Min(0.0)),
-    Param("reson", 0.0, Clip(0.0, 1.0))
-}};
+double Resonant::lpf(double x)
+{
+    x = x * ((scl + r2) + 1.0);
+    double y = x - ((scl * y1) + (r2 * y2));
+    
+    y2 = y1;
+    y1 = y;
+    
+    return y;
+}
 
 void Resonant::reset()
 {
@@ -25,15 +28,4 @@ void Resonant::updateCoefficients(double freq, double reson, double samplingRate
     
     scl = (frad * res) * -2.0;
     r2 = res * res;
-}
-
-double Resonant::lpf(double x)
-{
-    x = x * ((scl + r2) + 1.0);
-    double y = x - ((scl * y1) + (r2 * y2));
-    
-    y2 = y1;
-    y1 = y;
-    
-    return y;
 }

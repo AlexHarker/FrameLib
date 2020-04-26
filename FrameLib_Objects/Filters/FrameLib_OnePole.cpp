@@ -1,27 +1,8 @@
 
 #include "FrameLib_OnePole.h"
 
-OnePole::ModeType OnePole::sModes
-{{
-    Mode("lpf", &OnePole::lpf),
-    Mode("hpf", &OnePole::hpf)
-}};
-
-OnePole::ParamType OnePole::sParameters
-{{
-    Param("freq", 500.0, Min(0.0))
-    
-}};
-
-void OnePole::reset()
-{
-    y1 = 0.0;
-}
-
-void OnePole::updateCoefficients(double freq, double samplingRate)
-{
-    f0 = sin((freq * twopi()) / samplingRate);
-}
+constexpr OnePole::ParamType OnePole::sParameters;
+constexpr OnePole::ModeType OnePole::sModes;
 
 void OnePole::operator()(double x)
 {
@@ -38,4 +19,14 @@ double OnePole::hpf(double x)
 double OnePole::lpf(double x)
 {
     return y1;
+}
+
+void OnePole::reset()
+{
+    y1 = 0.0;
+}
+
+void OnePole::updateCoefficients(double freq, double samplingRate)
+{
+    f0 = sin((freq * twopi()) / samplingRate);
 }

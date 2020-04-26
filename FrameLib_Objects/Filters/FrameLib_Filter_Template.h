@@ -9,7 +9,7 @@
 
 #include "FrameLib_DSP.h"
 
-template <class T, int NumModes, int NumParams>
+template <class T, int NumParams, int NumModes>
 struct FrameLib_FilterBase
 {
     static constexpr double inf()   { return std::numeric_limits<double>::infinity(); }
@@ -20,7 +20,7 @@ struct FrameLib_FilterBase
     {
         enum Type { kNone, kMin, kMax, kClip };
         
-        Clip(double min, double max) : mMin(min), mMax(max) {}
+        constexpr Clip(double min, double max) : mMin(min), mMax(max) {}
 
         Type getType() const
         {
@@ -31,18 +31,16 @@ struct FrameLib_FilterBase
         double mMax;
     };
     
-    struct Min : Clip   { Min(double min) : Clip(min, inf()) {} };
-    struct Max : Clip   { Max(double max) : Clip(-inf(), max) {} };
-    struct None : Clip  { None() : Clip(-inf(), inf()) {} };
+    struct Min : Clip   { constexpr Min(double min) : Clip(min, inf()) {} };
+    struct Max : Clip   { constexpr Max(double max) : Clip(-inf(), max) {} };
+    struct None : Clip  { constexpr None() : Clip(-inf(), inf()) {} };
     
     struct Param
-    {
-        Param() : mName(""), mDefaultValue(0.0), mClip(None()) {}
-        
-        Param(const char *name, double defaultValue, Clip clip)
+    {        
+        constexpr Param(const char *name, double defaultValue, Clip clip)
         : mName(name), mDefaultValue(defaultValue), mClip(clip) {}
         
-        const std::string mName;
+        const char *mName;
         const double mDefaultValue;
         const Clip mClip;
     };
@@ -51,12 +49,10 @@ struct FrameLib_FilterBase
     {
         typedef double (T::*Method)(double);
         
-        Mode() : mName(""), mMethod(nullptr) {}
-        
-        Mode(const char *name, Method method)
+        constexpr Mode(const char *name, Method method)
         : mName(name), mMethod(method) {}
         
-        const std::string mName;
+        const char *mName;
         const Method mMethod;
     };
     
@@ -122,8 +118,8 @@ class FrameLib_Filter final : public FrameLib_Processor
     static constexpr unsigned long MultiIndex = N + 1;
     static constexpr unsigned long ResetIndex = N + (M > 1 ? 2 : 0);
     static constexpr unsigned long DynamicIndex = ResetIndex + 1;
-    static constexpr typename T::ParamType& ParamDescription = T::sParameters;
-    static constexpr typename T::ModeType& ModeDescription = T::sModes;
+    static constexpr const typename T::ParamType& ParamDescription = T::sParameters;
+    static constexpr const typename T::ModeType& ModeDescription = T::sModes;
     
     // Parameter info
     
@@ -143,7 +139,7 @@ public:
     {
         for (unsigned long i = 0; i < N; i++)
         {
-            mParameters.addDouble(i, ParamDescription[i].mName.c_str(), ParamDescription[i].mDefaultValue, i);
+            mParameters.addDouble(i, ParamDescription[i].mName, ParamDescription[i].mDefaultValue, i);
             const Clip &c = ParamDescription[i].mClip;
             
             switch (c.getType())
@@ -159,7 +155,7 @@ public:
         {
             mParameters.addEnum(ModeIndex, "mode");
             for (unsigned long i = 0; i < M; i++)
-                mParameters.addEnumItem(i, ModeDescription[i].mName.c_str());
+                mParameters.addEnumItem(i, ModeDescription[i].mName);
             
             mParameters.addBool(MultiIndex, "multi", false);
             mParameters.setInstantiation();

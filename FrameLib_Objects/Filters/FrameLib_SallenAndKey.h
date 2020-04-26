@@ -4,15 +4,18 @@
 
 #include "FrameLib_Filter_Template.h"
 
-class SallenAndKey : public FrameLib_FilterBase<SallenAndKey, 3, 2>
+class SallenAndKey : public FrameLib_FilterBase<SallenAndKey, 2, 3>
 {
     
 public:
     
-    static ModeType sModes;
-    static ParamType sParameters;
-    
     SallenAndKey() : k(0.0), a0(0.0), a1(0.0), a2(0.0), a3(0.0), a4(0.0), a5(0.0), v1(0.0), v2(0.0), ic1eq(0.0), ic2eq(0.0) {}
+    
+    double process(double x);
+    
+    double hpf(double x);
+    double bpf(double x);
+    double lpf(double x);
     
     // Reset
     
@@ -22,10 +25,18 @@ public:
     
     void updateCoefficients(double freq, double resonance, double samplingRate);
     
-    double process(double x);
-    double hpf(double x);
-    double bpf(double x);
-    double lpf(double x);
+    constexpr static ParamType sParameters
+    {{
+        Param("freq", 500.0, Min(0.0)),
+        Param("reson", 0.0, Clip(0.0, 1.0))
+    }};
+    
+    constexpr static ModeType sModes
+    {{
+        Mode("lpf", &SallenAndKey::lpf),
+        Mode("bpf", &SallenAndKey::bpf),
+        Mode("hpf", &SallenAndKey::hpf)
+    }};
     
 private:
     

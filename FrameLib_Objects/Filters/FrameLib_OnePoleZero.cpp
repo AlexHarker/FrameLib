@@ -1,30 +1,8 @@
 
 #include "FrameLib_OnePoleZero.h"
 
-OnePoleZero::ModeType OnePoleZero::sModes
-{{
-    Mode("lpf", &OnePoleZero::lpf),
-    Mode("hpf", &OnePoleZero::hpf)
-}};
-
-OnePoleZero::ParamType OnePoleZero::sParameters
-{{
-    Param("freq", 500.0, Min(0.0))
-}};
-
-void OnePoleZero::reset()
-{
-    y1 = 0.0;
-    r1 = 0.0;
-}
-
-void OnePoleZero::updateCoefficients(double freq, double samplingRate)
-{
-    const double fc = pi() * freq / samplingRate;
-    
-    a0 = (2.0 * sin(fc)) / (cos(fc) + sin(fc));
-    a1 = 1.0 - (a0 * 2.0);
-}
+constexpr OnePoleZero::ParamType OnePoleZero::sParameters;
+constexpr OnePoleZero::ModeType OnePoleZero::sModes;
 
 void OnePoleZero::operator()(double x)
 {
@@ -43,4 +21,18 @@ double OnePoleZero::hpf(double x)
 double OnePoleZero::lpf(double x)
 {
     return y1;
+}
+
+void OnePoleZero::reset()
+{
+    y1 = 0.0;
+    r1 = 0.0;
+}
+
+void OnePoleZero::updateCoefficients(double freq, double samplingRate)
+{
+    const double fc = pi() * freq / samplingRate;
+    
+    a0 = (2.0 * sin(fc)) / (cos(fc) + sin(fc));
+    a1 = 1.0 - (a0 * 2.0);
 }
