@@ -282,28 +282,18 @@ private:
         // Get Input
         
         unsigned long sizeIn, sizeOut;
+        unsigned long numOuts = getNumOuts();
         const double *input = getInput(0, &sizeIn);
         FilterInputs paramIns;
         FilterOutputs multiOuts;
-        bool multi = M > 1 ? mParameters.getBool(MultiIndex) : false;
         
-        if (multi)
-        {
-            for (unsigned long i = 0; i < M; i++)
-                requestOutputSize(i, sizeIn);
-        }
-        else
-            requestOutputSize(0, sizeIn);
+        for (unsigned long i = 0; i < numOuts; i++)
+            requestOutputSize(i, sizeIn);
         
         allocateOutputs();
         
-        double *output = getOutput(0, &sizeOut);
-        
-        if (multi)
-        {
-            for (unsigned long i = 0; i < M; i++)
-                multiOuts[i] = getOutput(i, &sizeOut);
-        }
+        for (unsigned long i = 0; i < numOuts; i++)
+            multiOuts[i] = getOutput(i, &sizeOut);
         
         size_t mode = M > 1 ? static_cast<size_t>(mParameters.getInt(ModeIndex)) : 0;
         bool dynamic = false;
@@ -324,10 +314,10 @@ private:
         if (mParameters.getBool(ResetIndex))
             mFilter.reset();
 
-        if (multi)
+        if (M > 1 ? mParameters.getBool(MultiIndex) : false)
             processLoops(multiOuts.data(), input, paramIns, sizeOut, dynamic, ModeIndices());
         else
-            modeSelect<M-1>(output, input, paramIns, sizeOut, mode, dynamic);
+            modeSelect<M-1>(multiOuts[0], input, paramIns, sizeOut, mode, dynamic);
     }
     
     // Data
