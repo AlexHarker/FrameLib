@@ -247,6 +247,8 @@ private:
     {
         if (!dynamic)
         {
+            updateCoefficients(paramIns, 0, ParameterIndices());
+            
             for (unsigned long i = 0; i < size; i++)
             {
                 mFilter(input[i]);
@@ -313,19 +315,14 @@ private:
             for (unsigned long i = 0; i < N; i++)
             {
                 paramIns[i].mInput = getInput(i + 1, &paramIns[i].mSize);
-
-                if (paramIns[i].mSize > 1)
-                    dynamic = true;
+                dynamic = dynamic || paramIns[i].mSize > 1;
             }
         }
         
-        // Do (optional) reset, coefficients for static parameters and DSP
+        // Do (optional) reset and DSP
         
         if (mParameters.getBool(ResetIndex))
             mFilter.reset();
-        
-        if (!dynamic)
-            updateCoefficients(paramIns, 0, ParameterIndices());
 
         if (multi)
             processLoops(multiOuts.data(), input, paramIns, sizeOut, dynamic, ModeIndices());
@@ -335,8 +332,8 @@ private:
     
     // Data
     
-    FilterParameters mFilterParameters;
     T mFilter;
+    FilterParameters mFilterParameters;
 };
 
 #endif
