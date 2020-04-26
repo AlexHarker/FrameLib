@@ -11,7 +11,7 @@ SVF::ModeType SVF::sModes
 SVF::ParamType SVF::sParameters
 {{
     Param("freq", 500.0, Min(0.0)),
-    Param("reson", 500.0, Clip(0.0, 1.0))
+    Param("reson", 0.0, Clip(0.0, 1.0))
 }};
 
 void SVF::reset()
@@ -31,7 +31,7 @@ void SVF::updateCoefficients(double freq, double reson, double samplingRate)
     g = ((2.0 * samplingRate) * tan((freq * twopi()) * srConst) * srConst);
 }
 
-double SVF::process(double x)
+void SVF::operator()(double x)
 {
     // Compute highpass then bandpass  by applying 1st integrator to highpass output and update state
     
@@ -41,8 +41,6 @@ double SVF::process(double x)
     
     s1 = g * hp + bp;
     s2 = g * bp + lp;
-    
-    return 0.0;
 }
 
 double SVF::hpf(double x)

@@ -4,7 +4,7 @@
 
 #include "FrameLib_Filter_Template.h"
 
-class Resonant : public FrameLib_FilterBase<Resonant, 2, 2>
+class Resonant : public FrameLib_FilterBase<Resonant, 1, 2>
 {
     
 public:
@@ -18,8 +18,6 @@ public:
     
     void updateCoefficients(double freq, double reson, double samplingRate);
     
-    double process(double x);
-    double hpf(double x);
     double lpf(double x);
     
 private:

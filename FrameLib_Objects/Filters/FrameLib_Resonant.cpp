@@ -3,14 +3,13 @@
 
 Resonant::ModeType Resonant::sModes
 {{
-    Mode("lpf", &Resonant::lpf),
-    Mode("hpf", &Resonant::hpf)
+    Mode("lpf", &Resonant::lpf)
 }};
 
 Resonant::ParamType Resonant::sParameters
 {{
     Param("freq", 500.0, Min(0.0)),
-    Param("reson", 500.0, Clip(0.0, 1.0))
+    Param("reson", 0.0, Clip(0.0, 1.0))
 }};
 
 void Resonant::reset()
@@ -28,7 +27,7 @@ void Resonant::updateCoefficients(double freq, double reson, double samplingRate
     r2 = res * res;
 }
 
-double Resonant::process(double x)
+double Resonant::lpf(double x)
 {
     x = x * ((scl + r2) + 1.0);
     double y = x - ((scl * y1) + (r2 * y2));
@@ -37,14 +36,4 @@ double Resonant::process(double x)
     y1 = y;
     
     return y;
-}
-
-double Resonant::hpf(double x)
-{
-    return x - y1;
-}
-
-double Resonant::lpf(double x)
-{
-    return y1;
 }

@@ -64,6 +64,8 @@ struct FrameLib_FilterBase
         const Method mMethod;
     };
     
+    void operator()(double) {};
+    
     using ModeType = std::array<Mode, NumModes>;
     using ParamType = std::array<Param, NumParams>;
 };
@@ -121,7 +123,7 @@ class FrameLib_Filter final : public FrameLib_Processor
     using FilterParameters = std::array<double, N>;
     
     static constexpr unsigned long ModeIndex = N;
-    static constexpr unsigned long ResetIndex = N + (M ? 1 : 0);
+    static constexpr unsigned long ResetIndex = N + (M > 1 ? 1 : 0);
     static constexpr unsigned long DynamicIndex = ResetIndex + 1;
     static constexpr typename T::ParamType& ParamDescription = T::sParameters;
     static constexpr typename T::ModeType& ModeDescription = T::sModes;
@@ -156,7 +158,7 @@ public:
             }
         }
         
-        if (M)
+        if (M > 1)
         {
             mParameters.addEnum(ModeIndex, "mode");
             for (unsigned long i = 0; i < M; i++)
@@ -243,7 +245,7 @@ private:
 
             for (unsigned long i = 0; i < size; i++)
             {
-                mFilter.process(input[i]);
+                mFilter(input[i]);
                 output[i] = (mFilter.*ModeDescription[I].mMethod)(input[i]);
             }
         }
@@ -252,7 +254,7 @@ private:
             for (unsigned long i = 0; i < size; i++)
             {
                 updateCoefficients(paramIns, i, ParameterIndices());
-                mFilter.process(input[i]);
+                mFilter(input[i]);
                 output[i] = (mFilter.*ModeDescription[I].mMethod)(input[i]);
             }
         }
@@ -273,7 +275,7 @@ private:
         
         double *output = getOutput(0, &sizeOut);
         
-        size_t mode = static_cast<size_t>(mParameters.getInt(ModeIndex));
+        size_t mode = M > 1 ? static_cast<size_t>(mParameters.getInt(ModeIndex)) : 0;
         bool dynamic = false;
     
         // Read in the inputs and check if they change

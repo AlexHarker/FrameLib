@@ -26,15 +26,13 @@ void OnePoleZero::updateCoefficients(double freq, double samplingRate)
     a1 = 1.0 - (a0 * 2.0);
 }
 
-double OnePoleZero::process(double x)
+void OnePoleZero::operator()(double x)
 {
     const double w = x * a0;
     const double y = r1 + w;
     
     y1 = y;
     r1 = w + (y * a1);
-    
-    return y;
 }
 
 double OnePoleZero::hpf(double x)

@@ -22,7 +22,8 @@ public:
     
     void updateCoefficients(double freq, double resonance, double samplingRate);
     
-    double process(double x);
+    void operator()(double x);
+    
     double hpf(double x);
     double bpf(double x);
     double lpf(double x);

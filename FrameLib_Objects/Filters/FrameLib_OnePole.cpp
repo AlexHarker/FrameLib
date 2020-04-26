@@ -23,13 +23,11 @@ void OnePole::updateCoefficients(double freq, double samplingRate)
     f0 = sin((freq * twopi()) / samplingRate);
 }
 
-double OnePole::process(double x)
+void OnePole::operator()(double x)
 {
     double y = y1 + f0 * (x - y1);
     
     y1 = y;
-    
-    return y;
 }
 
 double OnePole::hpf(double x)

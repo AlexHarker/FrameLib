@@ -18,7 +18,7 @@ public:
 
     void updateCoefficients(double freq, double samplingRate);
     
-    double process(double x);
+    void operator()(double x);
     double hpf(double x);
     double lpf(double x);
     
