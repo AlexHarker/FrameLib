@@ -9,10 +9,19 @@ boxSize    = get_box_size();
 //  xAxisCol, xAxisCol, xAxisXOffset, 
 //  sinYOffset, sineCol, sineWidth, 
 //  yCol, yWidth]:
-style      = [[0.200, 0.200, 0.200, 1.000], [0.502, 0.502, 0.502, 1.000], 4, 
-                [0.502, 0.502, 0.502, 1.000], 2, 5, 
-                5, [0.929, 0.929, 0.353, 1.000], 4, 
-                [0.969, 0.969, 0.969, 0.500], 2]
+style      = [
+				[0.200, 0.200, 0.200, 1.000], 
+				[0.502, 0.502, 0.502, 1.000], 
+				4, 
+                [0.502, 0.502, 0.502, 1.000], 
+				2, 
+				5, 
+                5, 
+				[0.929, 0.929, 0.353, 1.000], 
+				4, 
+                [0.969, 0.969, 0.969, 0.500], 
+				2
+			]
 res        = 512;
 maxSineX   = 6.285;
 sinePoints = get_sine_points();
@@ -31,8 +40,6 @@ function paint(){
     draw_x_axis();
 
     draw_border();
-
-	draw_mode(0);
 	
 	set_x_range(6.285);
 }
