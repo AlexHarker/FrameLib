@@ -28,17 +28,17 @@ namespace FrameLib_Filters
         // Parameters / Modes
         
         constexpr static ParamType sParameters
-        {{
+        {
             Param("freq", 500.0, Min(0.0)),
             Param("reson", 0.0, Clip(0.0, 1.0))
-        }};
+        };
         
         constexpr static ModeType sModes
-        {{
+        {
             Mode("lpf", &SVF::lpf),
             Mode("bpf", &SVF::bpf),
             Mode("hpf", &SVF::hpf)
-        }};
+        };
         
     private:
         
