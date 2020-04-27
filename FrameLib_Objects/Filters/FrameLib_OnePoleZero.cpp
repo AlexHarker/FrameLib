@@ -4,6 +4,8 @@
 constexpr OnePoleZero::ParamType OnePoleZero::sParameters;
 constexpr OnePoleZero::ModeType OnePoleZero::sModes;
 
+// Filter Implementation
+
 void OnePoleZero::operator()(double x)
 {
     const double w = x * a0;

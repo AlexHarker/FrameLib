@@ -62,13 +62,13 @@ struct FrameLib_FilterBase
     using ParamType = std::array<Param, NumParams>;
 };
 
-template <class T, size_t I>
+template <class T, size_t Idx>
 struct StaticRecursion
 {
     template <typename... Args>
     void operator()(T& object, Args... args)
     {
-        object.template modeSelect<I-1>(args...);
+        object.template modeSelect<Idx-1>(args...);
     }
 };
 
@@ -238,16 +238,16 @@ private:
         }
     }
     
-    template <size_t I>
+    template <size_t Idx>
     void calculateOutput(double *output, const double *input, unsigned long i)
     {
-        output[i] = (mFilter.*ModeDescription[I].mMethod)(input[i]);
+        output[i] = (mFilter.*ModeDescription[Idx].mMethod)(input[i]);
     }
     
-    template <size_t I>
+    template <size_t Idx>
     void calculateOutput(double **outputs, const double *input, unsigned long i)
     {
-        outputs[I][i] = (mFilter.*ModeDescription[I].mMethod)(input[i]);
+        outputs[Idx][i] = (mFilter.*ModeDescription[Idx].mMethod)(input[i]);
     }
     
     template <typename O, size_t... Is>
@@ -274,13 +274,13 @@ private:
         }
     }
     
-    template <size_t I>
+    template <size_t Idx>
     void modeSelect(double *output, const double *input, const FilterInputs& paramIns, unsigned long size, size_t mode, bool dynamic)
     {
-        if (I != mode)
-            StaticRecursion<FrameLib_Filter<T>, I>()(*this, output, input, paramIns, size, mode, dynamic);
+        if (Idx != mode)
+            StaticRecursion<FrameLib_Filter<T>, Idx>()(*this, output, input, paramIns, size, mode, dynamic);
         else
-            processLoops(output, input, paramIns, size, dynamic, indices<I>());
+            processLoops(output, input, paramIns, size, dynamic, indices<Idx>());
     }
     
     // Process

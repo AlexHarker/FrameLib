@@ -11,6 +11,8 @@ public:
     
     OnePoleZero() : a0(0.0), a1(0.0), r1(0.0), y1(0.0) {}
 
+    // Filter Implementation
+
     void operator()(double x);
     
     double hpf(double x);
@@ -20,6 +22,8 @@ public:
     
     void updateCoefficients(double freq, double samplingRate);
     
+    // Parameters / Modes
+
     constexpr static ParamType sParameters
     {{
         Param("freq", 500.0, Min(0.0))
@@ -33,10 +37,10 @@ public:
     
 private:
     
-    double a0;
-    double a1;
-    double r1;
-    double y1;
+    // Coefficients / Memories
+
+    double a0, a1;
+    double r1, y1;
 };
 
 using FrameLib_OnePoleZero = FrameLib_Filter<OnePoleZero>;

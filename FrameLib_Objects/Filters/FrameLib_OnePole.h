@@ -11,6 +11,8 @@ public:
     
     OnePole() : f0(0.0), y1(0.0) {}
     
+    // Filter Implementation
+
     void operator()(double x);
     
     double hpf(double x);
@@ -19,6 +21,8 @@ public:
     void reset();
 
     void updateCoefficients(double freq, double samplingRate);
+    
+    // Parameters / Modes
     
     constexpr static ParamType sParameters
     {{
@@ -33,6 +37,8 @@ public:
     
 private:
     
+    // Coefficients / Memories
+
     double f0;
     double y1;
 };

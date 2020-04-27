@@ -4,6 +4,8 @@
 constexpr Resonant::ParamType Resonant::sParameters;
 constexpr Resonant::ModeType Resonant::sModes;
 
+// Filter Implementation
+
 double Resonant::lpf(double x)
 {
     x = x * ((scl + r2) + 1.0);

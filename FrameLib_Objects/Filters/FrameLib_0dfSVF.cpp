@@ -4,13 +4,17 @@
 constexpr SVF::ParamType SVF::sParameters;
 constexpr SVF::ModeType SVF::sModes;
 
+// Filter Implementation
+
 void SVF::operator()(double x)
 {
-    // Compute highpass then bandpass  by applying 1st integrator to highpass output and update state
+    // Compute all modes
     
     hp = (x - (2.0 * r * s1) - (g * s1) - s2) / (1.0 + (2.0 * r * g) + (g * g));
     bp = g * hp + s1;
     lp = g * bp + s2;
+    
+    // Update state
     
     s1 = g * hp + bp;
     s2 = g * bp + lp;

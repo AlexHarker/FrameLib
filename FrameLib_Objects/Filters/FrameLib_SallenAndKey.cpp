@@ -4,10 +4,16 @@
 constexpr SallenAndKey::ParamType SallenAndKey::sParameters;
 constexpr SallenAndKey::ModeType SallenAndKey::sModes;
 
+// Filter Implementation
+
 double SallenAndKey::process(double x)
 {
+    // Compute outputs
+    
     v1 = (a1 * ic2eq) + (a2 * ic1eq) + (a3 * x);
     v2 = (a4 * ic2eq) + (a5 * v1);
+    
+    // Update state
     
     ic1eq = (2 * (v1 - (k * v2))) - ic1eq;
     ic2eq = (2 * v2) - ic2eq;
@@ -40,7 +46,7 @@ void SallenAndKey::reset()
 
 void SallenAndKey::updateCoefficients(double freq, double reson, double samplingRate)
 {
-    const double g = tan(M_PI * (freq / samplingRate));
+    const double g = tan(pi() * (freq / samplingRate));
     const double gp1 = 1.0 + g;
     
     k = 2.0 * reson;

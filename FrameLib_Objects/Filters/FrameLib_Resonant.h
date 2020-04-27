@@ -11,11 +11,15 @@ public:
     
     Resonant() : scl(0.0), r2(0.0), y1(0.0), y2(0.0) {}
     
+    // Filter Implementation
+
     double lpf(double x);
 
     void reset();
     
     void updateCoefficients(double freq, double reson, double samplingRate);
+    
+    // Parameters / Modes
     
     constexpr static ParamType sParameters
     {{
@@ -29,6 +33,8 @@ public:
     }};
     
 private:
+    
+    // Coefficients / Memories
     
     double scl, r2;
     double y1, y2;

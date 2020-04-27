@@ -4,6 +4,8 @@
 constexpr OnePole::ParamType OnePole::sParameters;
 constexpr OnePole::ModeType OnePole::sModes;
 
+// Filter Implementation
+
 void OnePole::operator()(double x)
 {
     double y = y1 + f0 * (x - y1);
