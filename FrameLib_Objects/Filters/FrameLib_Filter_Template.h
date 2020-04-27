@@ -209,7 +209,19 @@ private:
     double getFilterParameterValue(const FilterInputs& inputs, unsigned long i)
     {
         if (inputs[Idx].mInput && inputs[Idx].mSize)
-            return inputs[Idx].mInput[std::min(i, inputs[Idx].mSize - 1)];
+        {
+            const Clip &c = ParamDescription[Idx].mClip;
+
+            const double val = inputs[Idx].mInput[std::min(i, inputs[Idx].mSize - 1)];
+            
+            switch (c.getType())
+            {
+                case Clip::kNone:   return val;
+                case Clip::kMin:    return std::max(val, c.mMin);
+                case Clip::kMax:    return std::min(val, c.mMax);
+                case Clip::kClip:   return std::min(std::max(val, c.mMin), c.mMax);
+            }
+        }
         
         return mParameters.getValue(Idx);
     }
