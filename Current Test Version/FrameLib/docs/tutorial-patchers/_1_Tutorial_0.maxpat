@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 769.0, 722.0 ],
+		"rect" : [ 34.0, 79.0, 795.0, 722.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,213 @@
 		"subpatcher_template" : "nobars",
 		"showontab" : 1,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-18",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patcher" : 					{
+						"fileversion" : 1,
+						"appversion" : 						{
+							"major" : 8,
+							"minor" : 1,
+							"revision" : 3,
+							"architecture" : "x64",
+							"modernui" : 1
+						}
+,
+						"classnamespace" : "box",
+						"rect" : [ 34.0, 105.0, 795.0, 696.0 ],
+						"bglocked" : 0,
+						"openinpresentation" : 0,
+						"default_fontsize" : 12.0,
+						"default_fontface" : 0,
+						"default_fontname" : "Arial",
+						"gridonopen" : 2,
+						"gridsize" : [ 15.0, 15.0 ],
+						"gridsnaponopen" : 2,
+						"objectsnaponopen" : 1,
+						"statusbarvisible" : 2,
+						"toolbarvisible" : 1,
+						"lefttoolbarpinned" : 0,
+						"toptoolbarpinned" : 0,
+						"righttoolbarpinned" : 0,
+						"bottomtoolbarpinned" : 0,
+						"toolbars_unpinned_last_save" : 0,
+						"tallnewobj" : 0,
+						"boxanimatetime" : 200,
+						"enablehscroll" : 1,
+						"enablevscroll" : 1,
+						"devicewidth" : 0.0,
+						"description" : "",
+						"digest" : "",
+						"tags" : "",
+						"style" : "",
+						"subpatcher_template" : "default",
+						"showontab" : 1,
+						"boxes" : [ 							{
+								"box" : 								{
+									"fontname" : "Lato",
+									"fontsize" : 13.0,
+									"id" : "obj-8",
+									"linecount" : 16,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 135.0, 765.0, 256.0 ],
+									"text" : "Now that we've looked at some brief high level concepts on digital sampling you're probably still left wondering - what is a frame and how does it fit into this?\n\nA frame is actually quite generic and simply represents a group of numbers. This group of numbers could be, for example, a small selection of the values that were sampled in the digital sampling process. In fact, let's imagine that we divide those 512 samples up into two frames containing 256 samples each.\n\n\n\n\n\nWe can think of frames as having the ability to interact with and modify other frames. Imagine a scenario where take the \n\nsuch as the ones that we captured in digital sampling. It could also contain numbers that have been derived from \n\nIf we know the sampling rate we can reconstruct the audio that it was sampled from"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"border" : 2.0,
+									"id" : "obj-5",
+									"linecolor" : [ 0.65098, 0.666667, 0.662745, 1.0 ],
+									"maxclass" : "live.line",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 121.0, 530.25, 5.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontname" : "Lato",
+									"fontsize" : 44.0,
+									"id" : "obj-1",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 15.0, 197.0, 59.0 ],
+									"text" : "FrameLib"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontface" : 1,
+									"fontname" : "Lato Regular",
+									"fontsize" : 20.0,
+									"id" : "obj-2",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 15.0, 90.0, 416.0, 30.0 ],
+									"text" : "What is a frame?"
+								}
+
+							}
+ ],
+						"lines" : [  ],
+						"styles" : [ 							{
+								"name" : "AudioStatus_Menu",
+								"default" : 								{
+									"bgfillcolor" : 									{
+										"type" : "color",
+										"color" : [ 0.294118, 0.313726, 0.337255, 1 ],
+										"color1" : [ 0.454902, 0.462745, 0.482353, 0.0 ],
+										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+										"angle" : 270.0,
+										"proportion" : 0.39,
+										"autogradient" : 0
+									}
+
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjBlue-1",
+								"default" : 								{
+									"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjBrown-1",
+								"default" : 								{
+									"accentcolor" : [ 0.654902, 0.572549, 0.376471, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjGreen-1",
+								"default" : 								{
+									"accentcolor" : [ 0.0, 0.533333, 0.168627, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjRed-1",
+								"default" : 								{
+									"accentcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "newobjYellow-1",
+								"default" : 								{
+									"accentcolor" : [ 0.82517, 0.78181, 0.059545, 1.0 ],
+									"fontsize" : [ 12.059008 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "numberGold-1",
+								"default" : 								{
+									"accentcolor" : [ 0.764706, 0.592157, 0.101961, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "panelViolet",
+								"default" : 								{
+									"bgfillcolor" : 									{
+										"type" : "color",
+										"color" : [ 0.372549, 0.196078, 0.486275, 0.2 ],
+										"color1" : [ 0.454902, 0.462745, 0.482353, 1.0 ],
+										"color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+										"angle" : 270.0,
+										"proportion" : 0.39,
+										"autogradient" : 0
+									}
+
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+ ]
+					}
+,
+					"patching_rect" : [ 585.0, 165.0, 118.0, 22.0 ],
+					"presentation_linecount" : 2,
+					"saved_object_attributes" : 					{
+						"description" : "",
+						"digest" : "",
+						"globalpatchername" : "",
+						"tags" : ""
+					}
+,
+					"text" : "p \"What is a frame?\""
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"border" : 2.0,
 					"id" : "obj-6",
@@ -108,7 +315,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 105.0, 769.0, 696.0 ],
+						"rect" : [ 0.0, 26.0, 795.0, 696.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -139,7 +346,7 @@
 						"boxes" : [ 							{
 								"box" : 								{
 									"bgmode" : 0,
-									"border" : 0,
+									"border" : 1,
 									"clickthrough" : 0,
 									"embed" : 1,
 									"enablehscroll" : 0,
@@ -322,7 +529,7 @@
 													"presentation_rect" : [ 15.0, 241.75, 735.0, 26.5 ],
 													"setminmax" : [ 1.0, 8.0 ],
 													"settype" : 0,
-													"slidercolor" : [ 0.352941176470588, 0.658823529411765, 0.698039215686274, 1.0 ]
+													"slidercolor" : [ 0.929, 0.929, 0.353, 1.0 ]
 												}
 
 											}
@@ -333,8 +540,7 @@
 													"id" : "obj-10",
 													"maxclass" : "jsui",
 													"numinlets" : 1,
-													"numoutlets" : 1,
-													"outlettype" : [ "" ],
+													"numoutlets" : 0,
 													"parameter_enable" : 0,
 													"patching_rect" : [ 15.0, 330.0, 802.0, 170.0 ],
 													"presentation" : 1,
@@ -517,19 +723,23 @@
  ]
 									}
 ,
-									"patching_rect" : [ 0.0, 270.0, 750.0, 292.0 ],
+									"patching_rect" : [ 15.0, 405.0, 765.0, 277.0 ],
 									"viewvisibility" : 1
 								}
 
 							}
 , 							{
 								"box" : 								{
+									"fontname" : "Lato",
+									"fontsize" : 13.0,
 									"id" : "obj-8",
+									"linecount" : 16,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 135.0, 735.0, 20.0 ],
-									"text" : "Real world sounds are changes in energy that take the form of waves"
+									"patching_rect" : [ 15.0, 135.0, 765.0, 256.0 ],
+									"presentation_linecount" : 67,
+									"text" : "In the real world, sound is produced when air compresses and expands. These variations in pressure are interpreted by your ear drum and converted into electrochemical signals. To represent these smooth and continuous waves in the digital domain, aka your computer, these waves undergo a process called sampling.\n\nSampling is fairly simple process that allows us to look at these continuous waveforms, capture them and store them as a collection of discrete and invidual samples. Sampling is used in many places outside of the audio world. Imagine you want to test the quality of the water at your kitchen tap. To do this you would measure the quality at regular intervals and then put all of those numbers together, perhaps in a graph. When we sample audio the process is no different.\n\nThe waveform depicted below is a single second of a 1 hertz sine wave that has been sampled at 512 regularly spaced intervals. See how there are no observable gaps in the waveform? Try lowering the sampling resoution, or sampling rate to a much lower value and see how the gaps between samples becomes much greater.\n\nWhen we sample regularly enough we are able to approximate the original signal to a high enough accuracy. For most audio, you would want to sample at least 44100 times a second and I just want to point out that this example where the waveform is sampled 512 times in a second is purely demonstrative."
 								}
 
 							}
@@ -668,7 +878,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 568.0, 133.0, 118.0, 22.0 ],
+					"patching_rect" : [ 568.0, 133.0, 104.0, 22.0 ],
 					"presentation_linecount" : 2,
 					"saved_object_attributes" : 					{
 						"description" : "",
@@ -677,7 +887,7 @@
 						"tags" : ""
 					}
 ,
-					"text" : "p \"What is a frame?\""
+					"text" : "p \"Back to basics\""
 				}
 
 			}
@@ -698,7 +908,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 769.0, 696.0 ],
+						"rect" : [ 0.0, 26.0, 795.0, 696.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
