@@ -9,81 +9,106 @@
 
 #include "FrameLib_DSP.h"
 
-template <class T, int NumParams, int NumModes>
-struct FrameLib_FilterBase
+namespace FrameLib_Filters
 {
-    static constexpr double inf()   { return std::numeric_limits<double>::infinity(); }
-    static constexpr double pi()    { return M_PI; }
-    static constexpr double twopi() { return pi() * 2.0; }
+    // Base class template for filter implementation objects
     
-    struct Clip
+    template <class T, int NumParams, int NumModes>
+    struct FrameLib_FilterBase
     {
-        enum Type { kNone, kMin, kMax, kClip };
+        // Convenience constant getters
         
-        constexpr Clip(double min, double max) : mMin(min), mMax(max) {}
-
-        Type getType() const
+        static constexpr double inf()   { return std::numeric_limits<double>::infinity(); }
+        static constexpr double pi()    { return M_PI; }
+        static constexpr double twopi() { return pi() * 2.0; }
+        
+        // Clip description for parameter constraints
+        
+        struct Clip
         {
-            return mMin != -inf() ? (mMax != inf() ? kClip : kMin) : (mMax != inf() ? kMax : kNone);
+            enum Type { kNone, kMin, kMax, kClip };
+            
+            constexpr Clip(double min, double max) : mMin(min), mMax(max) {}
+            
+            Type getType() const
+            {
+                return mMin != -inf() ? (mMax != inf() ? kClip : kMin) : (mMax != inf() ? kMax : kNone);
+            }
+            
+            double mMin;
+            double mMax;
+        };
+        
+        struct Min : Clip   { constexpr Min(double min) : Clip(min, inf()) {} };
+        struct Max : Clip   { constexpr Max(double max) : Clip(-inf(), max) {} };
+        struct None : Clip  { constexpr None() : Clip(-inf(), inf()) {} };
+        
+        // Parameter description
+        
+        struct Param
+        {
+            constexpr Param(const char *name, double defaultValue, Clip clip)
+            : mName(name), mDefaultValue(defaultValue), mClip(clip) {}
+            
+            const char *mName;
+            const double mDefaultValue;
+            const Clip mClip;
+        };
+        
+        // Mode description
+        
+        struct Mode
+        {
+            typedef double (T::*Method)(double);
+            
+            constexpr Mode(const char *name, Method method)
+            : mName(name), mMethod(method) {}
+            
+            const char *mName;
+            const Method mMethod;
+        };
+        
+        // Default operator for filters with only one mode
+        
+        void operator()(double) {}
+        
+        // Types for ease
+        
+        using ModeType = std::array<Mode, NumModes>;
+        using ParamType = std::array<Param, NumParams>;
+    };
+    
+    
+    template <class T, size_t Idx>
+    struct StaticModeRecurse
+    {
+        template <typename... Args>
+        void operator()(T& object, Args... args)
+        {
+            object.template modeSelect<Idx-1>(args...);
         }
-        
-        double mMin;
-        double mMax;
     };
     
-    struct Min : Clip   { constexpr Min(double min) : Clip(min, inf()) {} };
-    struct Max : Clip   { constexpr Max(double max) : Clip(-inf(), max) {} };
-    struct None : Clip  { constexpr None() : Clip(-inf(), inf()) {} };
-    
-    struct Param
-    {        
-        constexpr Param(const char *name, double defaultValue, Clip clip)
-        : mName(name), mDefaultValue(defaultValue), mClip(clip) {}
-        
-        const char *mName;
-        const double mDefaultValue;
-        const Clip mClip;
-    };
-    
-    struct Mode
+    template <class T>
+    struct StaticModeRecurse<T, 0>
     {
-        typedef double (T::*Method)(double);
-        
-        constexpr Mode(const char *name, Method method)
-        : mName(name), mMethod(method) {}
-        
-        const char *mName;
-        const Method mMethod;
+        template <typename... Args>
+        void operator()(T& object, Args... args) {}
     };
-    
-    void operator()(double) {};
-    
-    using ModeType = std::array<Mode, NumModes>;
-    using ParamType = std::array<Param, NumParams>;
 };
 
-template <class T, size_t Idx>
-struct StaticRecursion
-{
-    template <typename... Args>
-    void operator()(T& object, Args... args)
-    {
-        object.template modeSelect<Idx-1>(args...);
-    }
-};
-
-template <class T>
-struct StaticRecursion<T, 0>
-{
-    template <typename... Args>
-    void operator()(T& object, Args... args) {}
-};
+// Main class template for FrameLib DSP objects
 
 template <class T>
 class FrameLib_Filter final : public FrameLib_Processor
 {
+    // Recursion helper
+    
     template <class, size_t>
-    friend struct StaticRecursion;
+    friend struct FrameLib_Filters::StaticModeRecurse;
+    
+    template <size_t Idx>
+    using ModeRecurse = FrameLib_Filters::StaticModeRecurse<FrameLib_Filter<T>, Idx>;
     
     // Index sequence type functionality without C++14
     
@@ -96,9 +121,6 @@ class FrameLib_Filter final : public FrameLib_Processor
     template<std::size_t... Is>
     struct make_indices<0, Is...> : indices<Is...> {};
     
-    static constexpr size_t N = std::tuple_size<typename T::ParamType>::value;
-    static constexpr size_t M = std::tuple_size<typename T::ModeType>::value;
-
     // Input structure
     
     struct Input
@@ -107,19 +129,25 @@ class FrameLib_Filter final : public FrameLib_Processor
         unsigned long mSize = 0;
     };
     
+    // Types and constexpr values
+    
+    static constexpr size_t NumParams = std::tuple_size<typename T::ParamType>::value;
+    static constexpr size_t NumModes = std::tuple_size<typename T::ModeType>::value;
+    static constexpr bool HasModes = NumModes > 1;
+    
     using Clip = typename T::Clip;
-    using ParameterIndices = make_indices<N>;
-    using ModeIndices = make_indices<M>;
-    using FilterInputs = std::array<Input, N>;
-    using FilterOutputs = std::array<double *, M>;
-    using FilterParameters = std::array<double, N>;
+    using ParameterIndices = make_indices<NumParams>;
+    using ModeIndices = make_indices<NumModes>;
+    using FilterInputs = std::array<Input, NumParams>;
+    using FilterOutputs = std::array<double *, NumModes>;
+    using FilterParameters = std::array<double, NumParams>;
 
-    static constexpr unsigned long ModeIndex = N;
-    static constexpr unsigned long MultiIndex = N + 1;
-    static constexpr unsigned long ResetIndex = N + (M > 1 ? 2 : 0);
+    static constexpr unsigned long ModeIndex = NumParams;
+    static constexpr unsigned long MultiIndex = NumParams + 1;
+    static constexpr unsigned long ResetIndex = NumParams + (HasModes ? 2 : 0);
     static constexpr unsigned long DynamicIndex = ResetIndex + 1;
-    static constexpr const typename T::ParamType& ParamDescription = T::sParameters;
-    static constexpr const typename T::ModeType& ModeDescription = T::sModes;
+    static constexpr const typename T::ParamType& ParameterList = T::sParameters;
+    static constexpr const typename T::ModeType& ModeList = T::sModes;
     
     // Parameter info
     
@@ -137,10 +165,10 @@ public:
     FrameLib_Filter(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
     : FrameLib_Processor(context, proxy, getParamInfo())
     {
-        for (unsigned long i = 0; i < N; i++)
+        for (unsigned long i = 0; i < NumParams; i++)
         {
-            mParameters.addDouble(i, ParamDescription[i].mName, ParamDescription[i].mDefaultValue, i);
-            const Clip &c = ParamDescription[i].mClip;
+            mParameters.addDouble(i, ParameterList[i].mName, ParameterList[i].mDefaultValue, i);
+            const Clip &c = ParameterList[i].mClip;
             
             switch (c.getType())
             {
@@ -151,11 +179,11 @@ public:
             }
         }
         
-        if (M > 1)
+        if (HasModes)
         {
             mParameters.addEnum(ModeIndex, "mode");
-            for (unsigned long i = 0; i < M; i++)
-                mParameters.addEnumItem(i, ModeDescription[i].mName);
+            for (unsigned long i = 0; i < NumModes; i++)
+                mParameters.addEnumItem(i, ModeList[i].mName);
             
             mParameters.addBool(MultiIndex, "multi", false);
             mParameters.setInstantiation();
@@ -168,8 +196,8 @@ public:
         
         mParameters.set(serialisedParameters);
 
-        unsigned long numIns = mParameters.getBool(DynamicIndex) ? N + 1 : 1;
-        unsigned long numOuts = (M > 1 && mParameters.getBool(MultiIndex)) ? M : 1;
+        unsigned long numIns = mParameters.getBool(DynamicIndex) ? NumParams + 1 : 1;
+        unsigned long numOuts = (HasModes && mParameters.getBool(MultiIndex)) ? NumModes : 1;
 
         setIO(numIns, numOuts);
         
@@ -210,7 +238,7 @@ private:
     {
         if (inputs[Idx].mInput && inputs[Idx].mSize)
         {
-            const Clip &c = ParamDescription[Idx].mClip;
+            const Clip &c = ParameterList[Idx].mClip;
 
             const double val = inputs[Idx].mInput[std::min(i, inputs[Idx].mSize - 1)];
             
@@ -238,17 +266,21 @@ private:
         }
     }
     
+    // Output calculations
+    
     template <size_t Idx>
     void calculateOutput(double *output, const double *input, unsigned long i)
     {
-        output[i] = (mFilter.*ModeDescription[Idx].mMethod)(input[i]);
+        output[i] = (mFilter.*ModeList[Idx].mMethod)(input[i]);
     }
     
     template <size_t Idx>
     void calculateOutput(double **outputs, const double *input, unsigned long i)
     {
-        outputs[Idx][i] = (mFilter.*ModeDescription[Idx].mMethod)(input[i]);
+        outputs[Idx][i] = (mFilter.*ModeList[Idx].mMethod)(input[i]);
     }
+    
+    // Main DSP loops
     
     template <typename O, size_t... Is>
     void processLoops(O outputs, const double *input, const FilterInputs& paramIns, unsigned long size, bool dynamic, indices<Is...>)
@@ -274,11 +306,13 @@ private:
         }
     }
     
+    // Mode selection
+    
     template <size_t Idx>
     void modeSelect(double *output, const double *input, const FilterInputs& paramIns, unsigned long size, size_t mode, bool dynamic)
     {
         if (Idx != mode)
-            StaticRecursion<FrameLib_Filter<T>, Idx>()(*this, output, input, paramIns, size, mode, dynamic);
+            ModeRecurse<Idx>()(*this, output, input, paramIns, size, mode, dynamic);
         else
             processLoops(output, input, paramIns, size, dynamic, indices<Idx>());
     }
@@ -287,13 +321,16 @@ private:
     
     void process() override
     {
+        FilterInputs paramIns;
+        FilterOutputs multiOuts;
+
         // Get Input
-        
+
         unsigned long sizeIn, sizeOut;
         unsigned long numOuts = getNumOuts();
         const double *input = getInput(0, &sizeIn);
-        FilterInputs paramIns;
-        FilterOutputs multiOuts;
+        
+        // Setup outputs
         
         for (unsigned long i = 0; i < numOuts; i++)
             requestOutputSize(i, sizeIn);
@@ -303,14 +340,14 @@ private:
         for (unsigned long i = 0; i < numOuts; i++)
             multiOuts[i] = getOutput(i, &sizeOut);
         
-        size_t mode = M > 1 ? static_cast<size_t>(mParameters.getInt(ModeIndex)) : 0;
+        size_t mode = HasModes ? static_cast<size_t>(mParameters.getInt(ModeIndex)) : 0;
         bool dynamic = false;
     
         // Read in the inputs and check if they change
         
         if (mParameters.getBool(DynamicIndex))
         {
-            for (unsigned long i = 0; i < N; i++)
+            for (unsigned long i = 0; i < NumParams; i++)
             {
                 paramIns[i].mInput = getInput(i + 1, &paramIns[i].mSize);
                 dynamic = dynamic || paramIns[i].mSize > 1;
@@ -322,10 +359,10 @@ private:
         if (mParameters.getBool(ResetIndex))
             mFilter.reset();
 
-        if (M > 1 ? mParameters.getBool(MultiIndex) : false)
+        if (HasModes ? mParameters.getBool(MultiIndex) : false)
             processLoops(multiOuts.data(), input, paramIns, sizeOut, dynamic, ModeIndices());
         else
-            modeSelect<M-1>(multiOuts[0], input, paramIns, sizeOut, mode, dynamic);
+            modeSelect<NumModes-1>(multiOuts[0], input, paramIns, sizeOut, mode, dynamic);
     }
     
     // Data

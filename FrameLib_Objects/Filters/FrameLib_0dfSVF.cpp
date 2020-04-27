@@ -1,6 +1,8 @@
 
 #include "FrameLib_0dfSVF.h"
 
+using namespace FrameLib_Filters;
+
 constexpr SVF::ParamType SVF::sParameters;
 constexpr SVF::ModeType SVF::sModes;
 

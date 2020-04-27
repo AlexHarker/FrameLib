@@ -4,45 +4,48 @@
 
 #include "FrameLib_Filter_Template.h"
 
-class OnePoleZero : public FrameLib_FilterBase<OnePoleZero, 1, 2>
+namespace FrameLib_Filters
 {
-    
-public:
-    
-    OnePoleZero() : a0(0.0), a1(0.0), r1(0.0), y1(0.0) {}
+    class OnePoleZero : public FrameLib_FilterBase<OnePoleZero, 1, 2>
+    {
+        
+    public:
+        
+        OnePoleZero() : a0(0.0), a1(0.0), r1(0.0), y1(0.0) {}
+        
+        // Filter Implementation
+        
+        void operator()(double x);
+        
+        double hpf(double x);
+        double lpf(double x);
+        
+        void reset();
+        
+        void updateCoefficients(double freq, double samplingRate);
+        
+        // Parameters / Modes
+        
+        constexpr static ParamType sParameters
+        {{
+            Param("freq", 500.0, Min(0.0))
+        }};
+        
+        constexpr static ModeType sModes
+        {{
+            Mode("lpf", &OnePoleZero::lpf),
+            Mode("hpf", &OnePoleZero::hpf)
+        }};
+        
+    private:
+        
+        // Coefficients / Memories
+        
+        double a0, a1;
+        double r1, y1;
+    };
+}
 
-    // Filter Implementation
-
-    void operator()(double x);
-    
-    double hpf(double x);
-    double lpf(double x);
-    
-    void reset();
-    
-    void updateCoefficients(double freq, double samplingRate);
-    
-    // Parameters / Modes
-
-    constexpr static ParamType sParameters
-    {{
-        Param("freq", 500.0, Min(0.0))
-    }};
-    
-    constexpr static ModeType sModes
-    {{
-        Mode("lpf", &OnePoleZero::lpf),
-        Mode("hpf", &OnePoleZero::hpf)
-    }};
-    
-private:
-    
-    // Coefficients / Memories
-
-    double a0, a1;
-    double r1, y1;
-};
-
-using FrameLib_OnePoleZero = FrameLib_Filter<OnePoleZero>;
+using FrameLib_OnePoleZero = FrameLib_Filter<FrameLib_Filters::OnePoleZero>;
 
 #endif

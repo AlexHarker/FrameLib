@@ -1,6 +1,8 @@
 
 #include "FrameLib_OnePoleZero.h"
 
+using namespace FrameLib_Filters;
+
 constexpr OnePoleZero::ParamType OnePoleZero::sParameters;
 constexpr OnePoleZero::ModeType OnePoleZero::sModes;
 

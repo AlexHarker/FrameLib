@@ -1,6 +1,8 @@
 
 #include "FrameLib_Resonant.h"
 
+using namespace FrameLib_Filters;
+
 constexpr Resonant::ParamType Resonant::sParameters;
 constexpr Resonant::ModeType Resonant::sModes;
 

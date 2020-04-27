@@ -1,6 +1,8 @@
 
 #include "FrameLib_SallenAndKey.h"
 
+using namespace FrameLib_Filters;
+
 constexpr SallenAndKey::ParamType SallenAndKey::sParameters;
 constexpr SallenAndKey::ModeType SallenAndKey::sModes;
 
