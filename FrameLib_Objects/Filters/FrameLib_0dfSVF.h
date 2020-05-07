@@ -11,7 +11,7 @@ namespace FrameLib_Filters
         
     public:
         
-        SVF() : r(0.0), g(0.0), s1(0.0), s2(0.0), lp(0.0), bp(0.0), hp(0.0) {}
+        SVF() : g(0.0), r(0.0), s1(0.0), s2(0.0), lp(0.0), bp(0.0), hp(0.0) {}
         
         // Filter Implementation
         
@@ -44,7 +44,7 @@ namespace FrameLib_Filters
         
         // Coefficients / Memories / Outputs
         
-        double r, g;
+        double g, r;
         double s1, s2;
         double lp, bp, hp;
     };

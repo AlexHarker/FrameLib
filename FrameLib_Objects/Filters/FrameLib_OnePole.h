@@ -39,12 +39,11 @@ namespace FrameLib_Filters
         
     private:
         
-        // Coefficients / Memories / Output
+        // Coefficients / Memories / Outputs
         
         double f0;
         double z1;
-        double lp;
-        double hp;
+        double lp, hp;
     };
 }
 

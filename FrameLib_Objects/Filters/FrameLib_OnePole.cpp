@@ -37,5 +37,5 @@ void OnePole::reset()
 
 void OnePole::updateCoefficients(double freq, double samplingRate)
 {
-    f0 = tan(freq * (pi() / samplingRate));
+    f0 = tan(freq * pi() / samplingRate);
 }

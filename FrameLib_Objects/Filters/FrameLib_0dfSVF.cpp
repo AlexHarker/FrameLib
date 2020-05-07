@@ -48,8 +48,6 @@ void SVF::reset()
 
 void SVF::updateCoefficients(double freq, double reson, double samplingRate)
 {
-    double srConst = 0.5 / samplingRate;
-
+    g = tan(freq * pi() / samplingRate);
     r = std::min(std::max(1.0 - reson, 0.005), 1.0);
-    g = ((2.0 * samplingRate) * tan((freq * twopi()) * srConst) * srConst);
 }
