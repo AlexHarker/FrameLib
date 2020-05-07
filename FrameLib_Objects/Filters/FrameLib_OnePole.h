@@ -11,7 +11,7 @@ namespace FrameLib_Filters
         
     public:
         
-        OnePole() : f0(0.0), y1(0.0) {}
+        OnePole() : f0(0.0), z1(0.0), lp(0.0), hp(0.0) {}
         
         // Filter Implementation
         
@@ -39,10 +39,12 @@ namespace FrameLib_Filters
         
     private:
         
-        // Coefficients / Memories
+        // Coefficients / Memories / Output
         
         double f0;
-        double y1;
+        double z1;
+        double lp;
+        double hp;
     };
 }
 

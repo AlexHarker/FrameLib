@@ -10,27 +10,32 @@ constexpr OnePole::ModeType OnePole::sModes;
 
 void OnePole::operator()(double x)
 {
-    double y = y1 + f0 * (x - y1);
+    const double z = (x - ((f0 - 1.0) * z1)) * (1.0 / (f0 + 1.0));
     
-    y1 = y;
+    lp = (z + z1) * f0;
+    hp = z - z1;
+    
+    z1 = z;
 }
 
 double OnePole::hpf(double x)
 {
-    return x - y1;
+    return hp;
 }
 
 double OnePole::lpf(double x)
 {
-    return y1;
+    return lp;
 }
 
 void OnePole::reset()
 {
-    y1 = 0.0;
+    lp = 0.0;
+    hp = 0.0;
+    z1 = 0.0;
 }
 
 void OnePole::updateCoefficients(double freq, double samplingRate)
 {
-    f0 = sin((freq * twopi()) / samplingRate);
+    f0 = tan(freq * (pi() / samplingRate));
 }
