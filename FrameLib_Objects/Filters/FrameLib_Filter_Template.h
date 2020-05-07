@@ -140,7 +140,7 @@ class FrameLib_Filter final : public FrameLib_Processor
     using ModeIndices = make_indices<NumModes>;
     using FilterInputs = std::array<Input, NumParams>;
     using FilterOutputs = std::array<double *, NumModes>;
-    using FilterParameters = std::array<double, NumParams>;
+    using FilterParameters = std::array<double, NumParams + 1>;
 
     static constexpr unsigned long ModeIndex = NumParams;
     static constexpr unsigned long MultiIndex = NumParams + 1;
@@ -257,7 +257,7 @@ private:
     template <size_t... Is>
     void updateCoefficients(const FilterInputs& inputs, unsigned long i, indices<Is...>)
     {
-        const FilterParameters parameters{ {getFilterParameterValue<Is>(inputs, i)...} };
+        const FilterParameters parameters{ {getFilterParameterValue<Is>(inputs, i)..., mSamplingRate} };
         
         if (parameters != mFilterParameters)
         {
