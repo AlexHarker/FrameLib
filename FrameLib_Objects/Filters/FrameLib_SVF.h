@@ -1,6 +1,6 @@
 
-#ifndef FRAMELIB_0DFSVF_H
-#define FRAMELIB_0DFSVF_H
+#ifndef FRAMELIB_SVF_H
+#define FRAMELIB_SVF_H
 
 #include "FrameLib_Filter_Template.h"
 
@@ -51,6 +51,6 @@ namespace FrameLib_Filters
 }
 
 
-using FrameLib_0dfSVF = FrameLib_Filter<FrameLib_Filters::SVF>;
+using FrameLib_SVF = FrameLib_Filter<FrameLib_Filters::SVF>;
 
 #endif
