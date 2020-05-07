@@ -35,7 +35,7 @@ void OnePoleZero::reset()
 
 void OnePoleZero::updateCoefficients(double freq, double samplingRate)
 {
-    const double fc = pi() * freq / samplingRate;
+    const double fc = freq * pi() / (samplingRate * 2.0);
     
     a0 = (2.0 * sin(fc)) / (cos(fc) + sin(fc));
     a1 = 1.0 - (a0 * 2.0);
