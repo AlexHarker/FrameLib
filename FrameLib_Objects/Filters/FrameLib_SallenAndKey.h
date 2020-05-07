@@ -15,7 +15,7 @@ namespace FrameLib_Filters
         
         // Filter Implementation
         
-        double process(double x);
+        void operator()(double x);
         
         double hpf(double x);
         double bpf(double x);
