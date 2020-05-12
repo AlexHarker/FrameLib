@@ -28,7 +28,7 @@ void Resonant::reset()
 void Resonant::updateCoefficients(double freq, double reson, double samplingRate)
 {
     double frad = cos(freq * twopi() / samplingRate);
-    double res = 0.882497 * exp(reson * 0.125);
+    double res = 0.882496902584595 * exp(reson * 0.125);
     
     scl = (frad * res) * -2.0;
     r2 = res * res;
