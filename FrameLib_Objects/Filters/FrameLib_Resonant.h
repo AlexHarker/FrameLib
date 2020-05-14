@@ -21,8 +21,13 @@ namespace FrameLib_Filters
         
         void updateCoefficients(double freq, double reson, double samplingRate);
         
-        // Parameters / Modes
-        
+        // Description / Parameters / Modes
+
+        constexpr static Description sDescription
+        {
+            "Resonant lowpass filter"
+        };
+                
         constexpr static ParamType sParameters
         {
             Param("freq", "Frequency", "Sets the filter cutoff frequency.", 500.0, Min(0.0)),

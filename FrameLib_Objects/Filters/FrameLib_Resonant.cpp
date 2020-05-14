@@ -3,6 +3,7 @@
 
 using namespace FrameLib_Filters;
 
+constexpr Resonant::Description Resonant::sDescription;
 constexpr Resonant::ParamType Resonant::sParameters;
 constexpr Resonant::ModeType Resonant::sModes;
 

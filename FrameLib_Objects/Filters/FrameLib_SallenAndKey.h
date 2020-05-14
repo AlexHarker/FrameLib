@@ -25,7 +25,12 @@ namespace FrameLib_Filters
         
         void updateCoefficients(double freq, double resonance, double samplingRate);
         
-        // Parameters / Modes
+        // Description / Parameters / Modes
+        
+        constexpr static Description sDescription
+        {
+            "Sallen and Key multimode filter"
+        };
         
         constexpr static ParamType sParameters
         {

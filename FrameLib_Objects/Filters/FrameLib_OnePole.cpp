@@ -3,6 +3,7 @@
 
 using namespace FrameLib_Filters;
 
+constexpr OnePole::Description OnePole::sDescription;
 constexpr OnePole::ParamType OnePole::sParameters;
 constexpr OnePole::ModeType OnePole::sModes;
 

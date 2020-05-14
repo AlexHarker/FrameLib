@@ -3,6 +3,7 @@
 
 using namespace FrameLib_Filters;
 
+constexpr SallenAndKey::Description SallenAndKey::sDescription;
 constexpr SallenAndKey::ParamType SallenAndKey::sParameters;
 constexpr SallenAndKey::ModeType SallenAndKey::sModes;
 

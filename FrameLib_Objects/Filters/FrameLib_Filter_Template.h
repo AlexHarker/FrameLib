@@ -43,6 +43,16 @@ namespace FrameLib_Filters
         struct Max : Clip   { constexpr Max(double max) : Clip(-inf(), max) {} };
         struct None : Clip  { constexpr None() : Clip(-inf(), inf()) {} };
         
+        // Object description
+        
+        struct Description
+        {
+            constexpr Description(const char *description)
+            : mDescription(description) {}
+            
+            const char *mDescription;
+        };
+        
         // Parameter description
         
         struct Param
@@ -152,6 +162,7 @@ class FrameLib_Filter final : public FrameLib_Processor
     static constexpr unsigned long ResetIndex = DynamicIndex + 1;
     static constexpr const typename T::ParamType& ParameterList = T::sParameters;
     static constexpr const typename T::ModeType& ModeList = T::sModes;
+    static constexpr const typename T::Description& ObjectDescription = T::sDescription;
     
     // Parameter info
     
@@ -181,7 +192,7 @@ class FrameLib_Filter final : public FrameLib_Processor
                 add("Sets multi mode (in which all filter modes are output separately).");
             }
             
-            add("Sets dynamic mode (which creates inputs for each parameter of the filter).");
+            add("Sets dynamic mode (which creates inputs for each settings of the filter).");
             add("Sets whether filter memories are reset before processing a new frame.");
         }
     };
@@ -242,8 +253,29 @@ public:
     
     std::string objectInfo(bool verbose) override
     {
-        // FIX ??
-        return std::string();
+        // FIX
+        
+        const char *description = ObjectDescription.mDescription;
+        
+        if (verbose)
+        {
+            std::string info(description);
+            
+            info.append(": The size of the output is equal to the input. ");
+            
+            if (HasModes)
+            {
+                info.append("The filter can be set to output a single mode at a time (set with the mode parameter) or all modes simulatanously (set with the multi parameter). ");
+            }
+            
+            info.append("Filter settings may be updated either as parameters, or, when the dynamic parameter is set on, on a per sample basis via dedicated inputs. "
+                        "When in dynamic mode the parameter values are used if an input is disconnected, or empty. "
+                        "Thus you can mix dynamic and static settings. "
+                        "If you wish to process streams (rather than individual frames) then you can set the reset parameter off (which will not clear the filter memories between frames.");
+            
+            return info;
+        }
+        return formatInfo("#.", description);
     }
     
     std::string inputInfo(unsigned long idx, bool verbose) override

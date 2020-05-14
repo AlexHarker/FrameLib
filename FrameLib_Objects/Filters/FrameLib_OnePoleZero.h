@@ -24,7 +24,12 @@ namespace FrameLib_Filters
         
         void updateCoefficients(double freq, double samplingRate);
         
-        // Parameters / Modes
+        // Description / Parameters / Modes
+        
+        constexpr static Description sDescription
+        {
+            "One-pole and one-zero filter"
+        };
         
         constexpr static ParamType sParameters
         {

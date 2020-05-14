@@ -3,6 +3,7 @@
 
 using namespace FrameLib_Filters;
 
+constexpr SVF::Description SVF::sDescription;
 constexpr SVF::ParamType SVF::sParameters;
 constexpr SVF::ModeType SVF::sModes;
 
