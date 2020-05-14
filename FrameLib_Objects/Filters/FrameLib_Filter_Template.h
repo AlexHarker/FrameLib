@@ -147,8 +147,8 @@ class FrameLib_Filter final : public FrameLib_Processor
 
     static constexpr unsigned long ModeIndex = NumParams;
     static constexpr unsigned long MultiIndex = NumParams + 1;
-    static constexpr unsigned long ResetIndex = NumParams + (HasModes ? 2 : 0);
-    static constexpr unsigned long DynamicIndex = ResetIndex + 1;
+    static constexpr unsigned long DynamicIndex = NumParams + (HasModes ? 2 : 0);
+    static constexpr unsigned long ResetIndex = DynamicIndex + 1;
     static constexpr const typename T::ParamType& ParameterList = T::sParameters;
     static constexpr const typename T::ModeType& ModeList = T::sModes;
     
@@ -165,12 +165,12 @@ class FrameLib_Filter final : public FrameLib_Processor
 
             if (HasModes)
             {
-                add("sets the filter mode.");
+                add("sets the filter mode when multi mode is off.");
+                add("sets multi mode (in which all filter modes are output separately).");
             }
             
-            add("sets multi mode (in which all filter modes are output separately).");
-            add("sets whether filter memories are reset before processing a new frame.");
             add("sets dynamic mode (which creates inputs for each parameter of the filter).");
+            add("sets whether filter memories are reset before processing a new frame.");
         }
     };
     
@@ -197,7 +197,7 @@ public:
         
         if (HasModes)
         {
-            mParameters.addEnum(ModeIndex, "mode");
+            mParameters.addEnum(ModeIndex, "mode", ModeIndex);
             for (unsigned long i = 0; i < NumModes; i++)
                 mParameters.addEnumItem(i, ModeList[i].mName);
             
@@ -205,9 +205,9 @@ public:
             mParameters.setInstantiation();
         }
         
+        mParameters.addBool(DynamicIndex, "dynamic", false);
         mParameters.addBool(ResetIndex, "reset", true);
         
-        mParameters.addBool(DynamicIndex, "dynamic", false);
         mParameters.setInstantiation();
         
         mParameters.set(serialisedParameters);
