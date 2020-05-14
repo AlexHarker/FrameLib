@@ -63,11 +63,12 @@ namespace FrameLib_Filters
         {
             typedef double (T::*Method)(double);
             
-            constexpr Mode(const char *name, const char *outputName, Method method)
-            : mName(name), mOutputName(outputName), mMethod(method) {}
+            constexpr Mode(const char *name, const char *outputName, const char *info, Method method)
+            : mName(name), mOutputName(outputName), mInfo(info), mMethod(method) {}
             
             const char *mName;
             const char *mOutputName;
+            const char *mInfo;
             const Method mMethod;
         };
         
@@ -165,12 +166,23 @@ class FrameLib_Filter final : public FrameLib_Processor
 
             if (HasModes)
             {
-                add("sets the filter mode when multi mode is off.");
-                add("sets multi mode (in which all filter modes are output separately).");
+                std::string mode("Sets the filter mode when multi mode is off:");
+                
+                for (unsigned long i = 0; i < NumModes; i++)
+                {
+                    mode.append(" ");
+                    mode.append(ModeList[i].mName);
+                    mode.append(" - ");
+                    mode.append(ModeList[i].mInfo);
+                    mode.append(".");
+                }
+                
+                add(mode);
+                add("Sets multi mode (in which all filter modes are output separately).");
             }
             
-            add("sets dynamic mode (which creates inputs for each parameter of the filter).");
-            add("sets whether filter memories are reset before processing a new frame.");
+            add("Sets dynamic mode (which creates inputs for each parameter of the filter).");
+            add("Sets whether filter memories are reset before processing a new frame.");
         }
     };
     

@@ -25,13 +25,13 @@ namespace FrameLib_Filters
         
         constexpr static ParamType sParameters
         {
-            Param("freq", "Frequency", "sets the filter cutoff frequency.", 500.0, Min(0.0)),
-            Param("reson", "Resonance", "sets the filter resonance.", 0.0, Clip(0.0, 1.0))
+            Param("freq", "Frequency", "Sets the filter cutoff frequency.", 500.0, Min(0.0)),
+            Param("reson", "Resonance", "Sets the filter resonance.", 0.0, Clip(0.0, 1.0))
         };
         
         constexpr static ModeType sModes
         {
-            Mode("lpf", "Low Pass Output", &Resonant::lpf)
+            Mode("lpf", "Low Pass Output", "low pass", &Resonant::lpf)
         };
         
     private:
