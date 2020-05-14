@@ -19,17 +19,20 @@ namespace FrameLib_Filters
     {
         // Construct a method suitable for the coefficient mode / number of coefficients
         
-        template<std::size_t M, std::size_t N, typename ...Args>
-        struct make_mode_method : make_mode_method<M-1, N, double&, Args...> {};
+        template<std::size_t M, std::size_t N, std::size_t O, typename ...Args>
+        struct make_mode_method : make_mode_method<M-1, N, O, Args..., double> {};
         
-        template<std::size_t N, typename ...Args>
-        struct make_mode_method<0, N, Args...> { using Method = void (T::*)(Args...); };
+        template<std::size_t N, std::size_t O, typename ...Args>
+        struct make_mode_method<0, N, O, Args...> : make_mode_method<0, N-1, O, Args..., double&> {};
+        
+        template<std::size_t O, typename ...Args>
+        struct make_mode_method<0, 0, O, Args...> { using Method = void (T::*)(Args...); };
         
         template<typename ...Args>
-        struct make_mode_method<0, 0, Args...> { using Method = double (T::*)(double); };
+        struct make_mode_method<0, 0, 0, Args...> { using Method = double (T::*)(double); };
         
         static constexpr size_t NumCoefficients = NumCoeffs;
-        using ModeMethod = typename make_mode_method<NumCoeffs, NumCoeffs>::Method;
+        using ModeMethod = typename make_mode_method<NumParams + 1, NumCoeffs, NumCoeffs>::Method;
         
         // Convenience constant getters
         
@@ -105,23 +108,6 @@ namespace FrameLib_Filters
         using ModeType = std::array<Mode, NumModes>;
         using ParamType = std::array<Param, NumParams>;
     };
-    
-    template <class T, size_t Idx>
-    struct StaticModeRecurse
-    {
-        template <typename... Args>
-        void operator()(T& object, Args... args)
-        {
-            object.template modeSelect<Idx-1>(args...);
-        }
-    };
-    
-    template <class T>
-    struct StaticModeRecurse<T, 0>
-    {
-        template <typename... Args>
-        void operator()(T& object, Args... args) {}
-    };
 };
 
 // Main class template for FrameLib DSP objects
@@ -131,11 +117,25 @@ class FrameLib_Filter final : public FrameLib_Processor
 {
     // Recursion helper
     
-    template <class, size_t>
-    friend struct FrameLib_Filters::StaticModeRecurse;
+    template <class U, size_t Idx>
+    struct StaticModeRecurse
+    {
+        template <class V, typename... Args>
+        void recurse(U& object, Args... args)
+        {
+            object.template modeSelect<V, Idx-1>(args...);
+        }
+    };
     
+    template <class U>
+    struct StaticModeRecurse<U, 0>
+    {
+        template <class V, typename... Args>
+        void recurse(U& object, Args... args) {}
+    };
+
     template <size_t Idx>
-    using ModeRecurse = FrameLib_Filters::StaticModeRecurse<FrameLib_Filter<T>, Idx>;
+    using ModeRecurse = StaticModeRecurse<FrameLib_Filter<T>, Idx>;
     
     // Index sequence type functionality without C++14
     
@@ -168,9 +168,9 @@ class FrameLib_Filter final : public FrameLib_Processor
     using ParameterIndices = make_indices<NumParams>;
     using CoefficientIndices = make_indices<NumCoefficients>;
     using ModeIndices = make_indices<NumModes>;
-    using FilterInputs = std::array<Input, NumParams>;
+    using ParamInputs = std::array<Input, NumParams>;
     using FilterOutputs = std::array<double *, DoesCoefficients ? NumCoefficients : NumModes>;
-    using FilterParameters = std::array<double, NumParams + 1>;
+    using FilterParameters = std::array<double, NumParams + 1 + (DoesCoefficients ? 1 : 0)>;
     
     template <class U>
     using ForCoefficients = typename std::enable_if<(U::NumCoefficients > 0), int>::type;
@@ -343,7 +343,7 @@ private:
     // Helpers for updating the filter coefficients
     
     template <size_t Idx>
-    double getFilterParameterValue(const FilterInputs& inputs, unsigned long i)
+    double getFilterParameterValue(const ParamInputs& inputs, unsigned long i)
     {
         if (inputs[Idx].mInput && inputs[Idx].mSize)
         {
@@ -364,7 +364,7 @@ private:
     }
     
     template <size_t... Is>
-    void updateCoefficients(const FilterInputs& inputs, unsigned long i, indices<Is...>)
+    void updateCoefficients(const ParamInputs& inputs, unsigned long i, indices<Is...>)
     {
         const FilterParameters parameters{ {getFilterParameterValue<Is>(inputs, i)..., mSamplingRate} };
         
@@ -372,6 +372,18 @@ private:
         {
             mFilterParameters = parameters;
             mFilter.updateCoefficients(std::get<Is>(parameters)..., mSamplingRate);
+        }
+    }
+    
+    template <size_t Idx, size_t... Is, size_t... Js>
+    void updateCoefficients(double **outputs, const ParamInputs& inputs, unsigned long i, indices<Is...>, indices<Js...>)
+    {
+        const FilterParameters parameters{ {getFilterParameterValue<Is>(inputs, i)..., Idx, mSamplingRate} };
+        
+        if (parameters != mFilterParameters)
+        {
+            mFilterParameters = parameters;
+            (mFilter.*ModeList[Idx].mMethod)(std::get<Is>(parameters)..., mSamplingRate, outputs[Js][i]...);
         }
     }
     
@@ -389,24 +401,21 @@ private:
         outputs[Idx][i] = (mFilter.*ModeList[Idx].mMethod)(input[i]);
     }
     
-    template <size_t Idx, size_t... Is>
-    void calculateOutput(double **outputs, unsigned long i, indices<Is...>)
-    {
-        (mFilter.*ModeList[Idx].mMethod)(outputs[Is][i]...);
-    }
-    
-    template <class U, size_t Idx, ForCoefficients<U> = 0>
-    void calculateOutput(double **outputs, const double *input, unsigned long i)
-    {
-        calculateOutput(outputs, i, CoefficientIndices());
-    }
-    
     // Main DSP loops
     
-    template <typename O, size_t... Is>
-    void processLoops(O outputs, const double *input, const FilterInputs& paramIns, unsigned long size, bool dynamic, indices<Is...>)
+    template <class U, typename O, size_t... Is, ForFilters<U> = 0>
+    void processLoops(O outputs, const double *input, const ParamInputs& paramIns, unsigned long size, bool dynamic, indices<Is...>)
     {
-        if (!dynamic)
+        if (dynamic)
+        {
+            for (unsigned long i = 0; i < size; i++)
+            {
+                updateCoefficients(paramIns, i, ParameterIndices());
+                mFilter(input[i]);
+                (void) std::initializer_list<int>{ (calculateOutput<T, Is>(outputs, input, i), 0)... };
+            }
+        }
+        else
         {
             updateCoefficients(paramIns, 0, ParameterIndices());
             
@@ -416,48 +425,53 @@ private:
                 (void) std::initializer_list<int>{ (calculateOutput<T, Is>(outputs, input, i), 0)... };
             }
         }
-        else
-        {
-            for (unsigned long i = 0; i < size; i++)
-            {
-                updateCoefficients(paramIns, i, ParameterIndices());
-                mFilter(input[i]);
-                (void) std::initializer_list<int>{ (calculateOutput<T, Is>(outputs, input, i), 0)... };
-            }
-        }
     }
     
     // Mode selection
     
-    template <size_t Idx, typename O>
-    void modeSelect(O outputs, const double *input, const FilterInputs& paramIns, unsigned long size, size_t mode, bool dynamic)
+    template <class U, size_t Idx, ForFilters<U> = 0>
+    void modeSelect(double *output, const double *input, const ParamInputs& paramIns, unsigned long size, size_t mode, bool dynamic)
     {
-        if (Idx != mode)
-            ModeRecurse<Idx>()(*this, outputs, input, paramIns, size, mode, dynamic);
+        if (Idx == mode)
+            processLoops<T>(output, input, paramIns, size, dynamic, indices<Idx>());
         else
-            processLoops(outputs, input, paramIns, size, dynamic, indices<Idx>());
+            ModeRecurse<Idx>().template recurse<T>(*this, output, input, paramIns, size, mode, dynamic);
     }
     
+    template <class U, size_t Idx, ForCoefficients<U> = 0>
+    void modeSelect(double **outputs, const ParamInputs& paramIns, unsigned long size, size_t mode)
+    {
+        if (Idx == mode)
+        {
+            for (unsigned long i = 0; i < size; i++)
+                updateCoefficients<Idx>(outputs, paramIns, size, ParameterIndices(), CoefficientIndices());
+        }
+        else
+            ModeRecurse<Idx>().template recurse<T>(*this, outputs, paramIns, size, mode);
+    }
+    
+    // Main calculation
+    
     template <class U, ForFilters<U> = 0>
-    void calculate(FilterOutputs& multiOuts, const double *input, FilterInputs& paramIns, unsigned long size, size_t mode, bool dynamic)
+    void calculate(FilterOutputs& multiOuts, const double *input, ParamInputs& paramIns, unsigned long size, size_t mode, bool dynamic)
     {
         if (HasModes ? mParameters.getBool(MultiIndex) : false)
-            processLoops(multiOuts.data(), input, paramIns, size, dynamic, ModeIndices());
+            processLoops<T>(multiOuts.data(), input, paramIns, size, dynamic, ModeIndices());
         else
-            modeSelect<NumModes-1>(multiOuts[0], input, paramIns, size, mode, dynamic);
+            modeSelect<T, NumModes-1>(multiOuts[0], input, paramIns, size, mode, dynamic);
     }
     
     template <class U, ForCoefficients<U> = 0>
-    void calculate(FilterOutputs& multiOuts, const double *input, FilterInputs& paramIns, unsigned long size, size_t mode, bool dynamic)
+    void calculate(FilterOutputs& multiOuts, const double *input, ParamInputs& paramIns, unsigned long size, size_t mode, bool dynamic)
     {
-        modeSelect<NumModes-1>(multiOuts.data(), input, paramIns, size, mode, dynamic);
+        modeSelect<T, NumModes-1>(multiOuts.data(), paramIns, size, mode);
     }
     
     // Process
     
     void process() override
     {
-        FilterInputs paramIns;
+        ParamInputs paramIns;
         FilterOutputs multiOuts;
         
         // Get Input
@@ -505,4 +519,3 @@ private:
 };
 
 #endif
-
