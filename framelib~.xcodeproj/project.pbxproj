@@ -150,7 +150,7 @@
 		B85B68CE19F1D6A9002D6F1D /* fl.resonant~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85B68BC19F1D5E5002D6F1D /* fl.resonant~.cpp */; };
 		B85B68E219F262A3002D6F1D /* fl.register~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85B68CF19F26146002D6F1D /* fl.register~.cpp */; };
 		B85BDDC519F1C21400A349C5 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B85BDDCE19F1C22400A349C5 /* fl.0dfsvf~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85BDDBD19F1C1FF00A349C5 /* fl.0dfsvf~.cpp */; };
+		B85BDDCE19F1C22400A349C5 /* fl.svf~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85BDDBD19F1C1FF00A349C5 /* fl.svf~.cpp */; };
 		B85C8FDC1E605B2E004D7D40 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B85C8FE41E605B44004D7D40 /* fl.multitaper~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B85C8FCD1E605B28004D7D40 /* fl.multitaper~.cpp */; };
 		B85C8FE61E605E5D004D7D40 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879419C8F58C00B1D0CD /* Accelerate.framework */; };
@@ -2157,8 +2157,8 @@
 		B85B68E719F29470002D6F1D /* FrameLib_Split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Split.h; sourceTree = "<group>"; };
 		B85B68E819F29470002D6F1D /* FrameLib_Subframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_Subframe.h; sourceTree = "<group>"; };
 		B85BDDBA19F1BC8700A349C5 /* FrameLib_SVF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_SVF.h; sourceTree = "<group>"; };
-		B85BDDBD19F1C1FF00A349C5 /* fl.0dfsvf~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.0dfsvf~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		B85BDDCC19F1C21400A349C5 /* fl.0dfsvf~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.0dfsvf~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B85BDDBD19F1C1FF00A349C5 /* fl.svf~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.svf~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B85BDDCC19F1C21400A349C5 /* fl.svf~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.svf~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B85C8FCC1E604F19004D7D40 /* FrameLib_Multitaper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Multitaper.h; sourceTree = "<group>"; };
 		B85C8FCD1E605B28004D7D40 /* fl.multitaper~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.multitaper~.cpp"; sourceTree = "<group>"; };
 		B85C8FE21E605B2E004D7D40 /* fl.multitaper~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.multitaper~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4196,7 +4196,7 @@
 				B861EBB219CA3E8700B89477 /* fl.sort~.mxo */,
 				B861EBC419CA3E9500B89477 /* fl.percentile~.mxo */,
 				B846E62019F15A25005E9718 /* fl.window~.mxo */,
-				B85BDDCC19F1C21400A349C5 /* fl.0dfsvf~.mxo */,
+				B85BDDCC19F1C21400A349C5 /* fl.svf~.mxo */,
 				B8F3798819F1C8B400EC7FDA /* fl.onepole~.mxo */,
 				B85B68A419F1CEDC002D6F1D /* fl.sallenkey~.mxo */,
 				B85B68B819F1D38F002D6F1D /* fl.onepolezero~.mxo */,
@@ -4610,7 +4610,7 @@
 		B85BDDBC19F1C1E300A349C5 /* Filters */ = {
 			isa = PBXGroup;
 			children = (
-				B85BDDBD19F1C1FF00A349C5 /* fl.0dfsvf~.cpp */,
+				B85BDDBD19F1C1FF00A349C5 /* fl.svf~.cpp */,
 				B8F3798A19F1C8E600EC7FDA /* fl.onepole~.cpp */,
 				B85B68A919F1D37A002D6F1D /* fl.onepolezero~.cpp */,
 				B85B68BC19F1D5E5002D6F1D /* fl.resonant~.cpp */,
@@ -7824,9 +7824,9 @@
 			productReference = B85B68E019F2628C002D6F1D /* fl.register~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B85BDDBE19F1C21400A349C5 /* fl.0dfsvf~ */ = {
+		B85BDDBE19F1C21400A349C5 /* fl.svf~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B85BDDC819F1C21400A349C5 /* Build configuration list for PBXNativeTarget "fl.0dfsvf~" */;
+			buildConfigurationList = B85BDDC819F1C21400A349C5 /* Build configuration list for PBXNativeTarget "fl.svf~" */;
 			buildPhases = (
 				B85BDDBF19F1C21400A349C5 /* Headers */,
 				B85BDDC019F1C21400A349C5 /* Resources */,
@@ -7838,10 +7838,10 @@
 			dependencies = (
 				B8BEEC581FA741BD00ED26F4 /* PBXTargetDependency */,
 			);
-			name = "fl.0dfsvf~";
+			name = "fl.svf~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B85BDDCC19F1C21400A349C5 /* fl.0dfsvf~.mxo */;
+			productReference = B85BDDCC19F1C21400A349C5 /* fl.svf~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B85C8FCE1E605B2E004D7D40 /* fl.multitaper~ */ = {
@@ -9945,7 +9945,7 @@
 				B846E61219F15A25005E9718 /* fl.window~ */,
 				B861EBA219CA3E8700B89477 /* fl.sort~ */,
 				B861EBB419CA3E9500B89477 /* fl.percentile~ */,
-				B85BDDBE19F1C21400A349C5 /* fl.0dfsvf~ */,
+				B85BDDBE19F1C21400A349C5 /* fl.svf~ */,
 				B8F3797A19F1C8B400EC7FDA /* fl.onepole~ */,
 				B85B68AA19F1D38F002D6F1D /* fl.onepolezero~ */,
 				B85B68BD19F1D5F0002D6F1D /* fl.resonant~ */,
@@ -11831,7 +11831,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B85BDDCE19F1C22400A349C5 /* fl.0dfsvf~.cpp in Sources */,
+				B85BDDCE19F1C22400A349C5 /* fl.svf~.cpp in Sources */,
 				B8BDF0501F2D29CD00264316 /* FrameLib_SVF.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -29866,7 +29866,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B85BDDC819F1C21400A349C5 /* Build configuration list for PBXNativeTarget "fl.0dfsvf~" */ = {
+		B85BDDC819F1C21400A349C5 /* Build configuration list for PBXNativeTarget "fl.svf~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B85BDDC919F1C21400A349C5 /* Development */,

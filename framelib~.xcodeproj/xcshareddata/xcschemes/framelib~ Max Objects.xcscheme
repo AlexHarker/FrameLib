@@ -911,8 +911,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B85BDDBE19F1C21400A349C5"
-               BuildableName = "fl.0dfsvf~.mxo"
-               BlueprintName = "fl.0dfsvf~"
+               BuildableName = "fl.svf~.mxo"
+               BlueprintName = "fl.svf~"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

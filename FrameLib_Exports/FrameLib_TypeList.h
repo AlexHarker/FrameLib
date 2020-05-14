@@ -27,7 +27,7 @@ using FrameLib_ObjectList = detail::FrameLib_Typelist<
 
 // Filters
 
-FrameLib_0dfSVF,
+FrameLib_SVF,
 FrameLib_OnePole,
 FrameLib_OnePoleZero,
 FrameLib_Resonant,

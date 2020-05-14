@@ -163,7 +163,7 @@ extern "C" int C74_EXPORT main(void)
     
     // Filters
     
-    FrameLib_MaxClass_Expand<FrameLib_0dfSVF>::makeClass("fl.0dfsvf~");
+    FrameLib_MaxClass_Expand<FrameLib_SVF>::makeClass("fl.svf~");
     FrameLib_MaxClass_Expand<FrameLib_OnePole>::makeClass("fl.onepole~");
     FrameLib_MaxClass_Expand<FrameLib_OnePoleZero>::makeClass("fl.onepolezero~");
     FrameLib_MaxClass_Expand<FrameLib_Resonant>::makeClass("fl.resonant~");

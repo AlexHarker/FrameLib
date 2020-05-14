@@ -309,7 +309,7 @@ extern "C" void framelib_pd_setup(void)
 {
     // Filters
     
-    FrameLib_PDClass_Expand<FrameLib_0dfSVF>::makeClass("fl.0dfsvf~");
+    FrameLib_PDClass_Expand<FrameLib_SVF>::makeClass("fl.svf~");
     FrameLib_PDClass_Expand<FrameLib_OnePole>::makeClass("fl.onepole~");
     FrameLib_PDClass_Expand<FrameLib_OnePoleZero>::makeClass("fl.onepolezero~");
     FrameLib_PDClass_Expand<FrameLib_Resonant>::makeClass("fl.resonant~");
