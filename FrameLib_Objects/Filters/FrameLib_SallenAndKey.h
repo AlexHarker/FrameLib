@@ -29,15 +29,15 @@ namespace FrameLib_Filters
         
         constexpr static ParamType sParameters
         {
-            Param("freq", 500.0, Min(0.0)),
-            Param("reson", 0.0, Clip(0.0, 1.0))
+            Param("freq", "Frequency", "sets the filter cutoff frequency.", 500.0, Min(0.0)),
+            Param("reson", "Resonance", "sets the filter resonance.", 0.0, Clip(0.0, 1.0))
         };
         
         constexpr static ModeType sModes
         {
-            Mode("lpf", &SallenAndKey::lpf),
-            Mode("bpf", &SallenAndKey::bpf),
-            Mode("hpf", &SallenAndKey::hpf)
+            Mode("lpf", "Low Pass Output", &SallenAndKey::lpf),
+            Mode("bpf", "Band Pass Output", &SallenAndKey::bpf),
+            Mode("hpf", "High Pass Output", &SallenAndKey::hpf)
         };
         
     private:

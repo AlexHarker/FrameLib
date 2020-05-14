@@ -47,10 +47,12 @@ namespace FrameLib_Filters
         
         struct Param
         {
-            constexpr Param(const char *name, double defaultValue, Clip clip)
-            : mName(name), mDefaultValue(defaultValue), mClip(clip) {}
+            constexpr Param(const char *name, const char *inputName, const char *info, double defaultValue, Clip clip)
+            : mName(name), mInputName(inputName), mInfo(info), mDefaultValue(defaultValue), mClip(clip) {}
             
             const char *mName;
+            const char *mInputName;
+            const char *mInfo;
             const double mDefaultValue;
             const Clip mClip;
         };
@@ -61,10 +63,11 @@ namespace FrameLib_Filters
         {
             typedef double (T::*Method)(double);
             
-            constexpr Mode(const char *name, Method method)
-            : mName(name), mMethod(method) {}
+            constexpr Mode(const char *name, const char *outputName, Method method)
+            : mName(name), mOutputName(outputName), mMethod(method) {}
             
             const char *mName;
+            const char *mOutputName;
             const Method mMethod;
         };
         
@@ -153,9 +156,22 @@ class FrameLib_Filter final : public FrameLib_Processor
     
     struct ParameterInfo : public FrameLib_Parameters::Info
     {
-        ParameterInfo() {}
-        
-        // FIX
+        ParameterInfo()
+        {
+            for (unsigned long i = 0; i < NumParams; i++)
+                add(ParameterList[i].mInfo);
+         
+            // FIX
+
+            if (HasModes)
+            {
+                add("sets the filter mode.");
+            }
+            
+            add("sets multi mode (in which all filter modes are output separately).");
+            add("sets whether filter memories are reset before processing a new frame.");
+            add("sets dynamic mode (which creates inputs for each parameter of the filter).");
+        }
     };
     
 public:
@@ -201,6 +217,12 @@ public:
 
         setIO(numIns, numOuts);
         
+        if (mParameters.getBool(DynamicIndex))
+        {
+            for (unsigned long i = 1; i <= NumParams; i++)
+                setInputMode(i, false, false, false);
+        }
+        
         addParameterInput();
     }
     
@@ -214,13 +236,21 @@ public:
     
     std::string inputInfo(unsigned long idx, bool verbose) override
     {
-        // FIX ??
-        return std::string();
+        if (!idx)
+            return "Input";
+        
+        if (idx >= getNumIns() - 1)
+            return parameterInputInfo(verbose);
+        
+        return formatInfo("# - values per sample", "#", ParameterList[idx - 1].mInputName, verbose);
     }
     
     std::string outputInfo(unsigned long idx, bool verbose) override
     {
-        return "Output";
+        if (!HasModes || !mParameters.getBool(MultiIndex))
+            return "Output";
+        
+        return ModeList[idx].mOutputName;
     }
     
 private:

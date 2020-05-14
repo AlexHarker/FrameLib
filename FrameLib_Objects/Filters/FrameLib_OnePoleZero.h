@@ -28,13 +28,13 @@ namespace FrameLib_Filters
         
         constexpr static ParamType sParameters
         {
-            Param("freq", 500.0, Min(0.0))
+            Param("freq", "Frequency", "sets the filter cutoff frequency.", 500.0, Min(0.0))
         };
         
         constexpr static ModeType sModes
         {
-            Mode("lpf", &OnePoleZero::lpf),
-            Mode("hpf", &OnePoleZero::hpf)
+            Mode("lpf", "Low Pass Output", &OnePoleZero::lpf),
+            Mode("hpf", "High Pass Output", &OnePoleZero::hpf)
         };
         
     private:
