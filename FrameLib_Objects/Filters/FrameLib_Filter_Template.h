@@ -119,18 +119,18 @@ class FrameLib_Filter final : public FrameLib_Processor
     template <class U, size_t Idx>
     struct StaticRecursion
     {
-        template <class V, typename... Args>
-        void recurse(U& object, Args... args)
+        template <typename... Args>
+        void operator()(U& object, Args... args)
         {
-            object.template modeSelect<V, Idx-1>(args...);
+            object.template modeSelect<Idx-1>(args...);
         }
     };
     
     template <class U>
     struct StaticRecursion<U, 0>
     {
-        template <class V, typename... Args>
-        void recurse(U& object, Args... args) {}
+        template <typename... Args>
+        void operator()(U& object, Args... args) {}
     };
 
     template <size_t Idx>
@@ -388,13 +388,13 @@ private:
     
     // Output calculations
     
-    template <class U, size_t Idx>
+    template <size_t Idx>
     void calculateOutput(double *output, const double *input, unsigned long i)
     {
         output[i] = (mFilter.*ModeList[Idx].mMethod)(input[i]);
     }
     
-    template <class U, size_t Idx, ForFilters<U> = 0>
+    template <size_t Idx>
     void calculateOutput(double **outputs, const double *input, unsigned long i)
     {
         outputs[Idx][i] = (mFilter.*ModeList[Idx].mMethod)(input[i]);
@@ -402,7 +402,7 @@ private:
     
     // Main DSP loops
     
-    template <class U, typename O, size_t... Is, ForFilters<U> = 0>
+    template <typename O, size_t... Is>
     void processLoops(O outputs, const double *input, const ParamInputs& paramIns, unsigned long size, bool dynamic, indices<Is...>)
     {
         if (dynamic)
@@ -411,7 +411,7 @@ private:
             {
                 updateCoefficients(paramIns, i, ParameterIndices());
                 mFilter(input[i]);
-                (void) std::initializer_list<int>{ (calculateOutput<T, Is>(outputs, input, i), 0)... };
+                (void) std::initializer_list<int>{ (calculateOutput<Is>(outputs, input, i), 0)... };
             }
         }
         else
@@ -421,23 +421,23 @@ private:
             for (unsigned long i = 0; i < size; i++)
             {
                 mFilter(input[i]);
-                (void) std::initializer_list<int>{ (calculateOutput<T, Is>(outputs, input, i), 0)... };
+                (void) std::initializer_list<int>{ (calculateOutput<Is>(outputs, input, i), 0)... };
             }
         }
     }
     
     // Mode selection
     
-    template <class U, size_t Idx, ForFilters<U> = 0>
+    template <size_t Idx>
     void modeSelect(double *output, const double *input, const ParamInputs& paramIns, unsigned long size, size_t mode, bool dynamic)
     {
         if (Idx == mode)
-            processLoops<T>(output, input, paramIns, size, dynamic, indices<Idx>());
+            processLoops(output, input, paramIns, size, dynamic, indices<Idx>());
         else
-            ModeRecurse<Idx>().template recurse<T>(*this, output, input, paramIns, size, mode, dynamic);
+            ModeRecurse<Idx>()(*this, output, input, paramIns, size, mode, dynamic);
     }
     
-    template <class U, size_t Idx, ForCoefficients<U> = 0>
+    template <size_t Idx>
     void modeSelect(double **outputs, const ParamInputs& paramIns, unsigned long size, size_t mode)
     {
         if (Idx == mode)
@@ -446,7 +446,7 @@ private:
                 updateCoefficients<Idx>(outputs, paramIns, size, ParameterIndices(), CoefficientIndices());
         }
         else
-            ModeRecurse<Idx>().template recurse<T>(*this, outputs, paramIns, size, mode);
+            ModeRecurse<Idx>()(*this, outputs, paramIns, size, mode);
     }
     
     // Main calculation
@@ -460,15 +460,15 @@ private:
             mFilter.reset();
         
         if (HasModes ? mParameters.getBool(MultiIndex) : false)
-            processLoops<T>(multiOuts.data(), input, paramIns, size, dynamic, ModeIndices());
+            processLoops(multiOuts.data(), input, paramIns, size, dynamic, ModeIndices());
         else
-            modeSelect<T, NumModes-1>(multiOuts[0], input, paramIns, size, mode, dynamic);
+            modeSelect<NumModes-1>(multiOuts[0], input, paramIns, size, mode, dynamic);
     }
     
     template <class U, ForCoefficients<U> = 0>
     void calculate(FilterOutputs& multiOuts, const double *input, ParamInputs& paramIns, unsigned long size, size_t mode, bool dynamic)
     {
-        modeSelect<T, NumModes-1>(multiOuts.data(), paramIns, size, mode);
+        modeSelect<NumModes-1>(multiOuts.data(), paramIns, size, mode);
     }
     
     // Process
