@@ -98,10 +98,9 @@ namespace FrameLib_Filters
             const ModeMethod mMethod;
         };
         
-        // Default operators for filters that don't wish to implement them
+        // Default operator for single mode filters
         
         void operator()(double) {}
-        void reset() {}
         
         // Types for ease
         
@@ -118,7 +117,7 @@ class FrameLib_Filter final : public FrameLib_Processor
     // Recursion helper
     
     template <class U, size_t Idx>
-    struct StaticModeRecurse
+    struct StaticRecursion
     {
         template <class V, typename... Args>
         void recurse(U& object, Args... args)
@@ -128,14 +127,14 @@ class FrameLib_Filter final : public FrameLib_Processor
     };
     
     template <class U>
-    struct StaticModeRecurse<U, 0>
+    struct StaticRecursion<U, 0>
     {
         template <class V, typename... Args>
         void recurse(U& object, Args... args) {}
     };
 
     template <size_t Idx>
-    using ModeRecurse = StaticModeRecurse<FrameLib_Filter<T>, Idx>;
+    using ModeRecurse = StaticRecursion<FrameLib_Filter<T>, Idx>;
     
     // Index sequence type functionality without C++14
     
@@ -455,6 +454,11 @@ private:
     template <class U, ForFilters<U> = 0>
     void calculate(FilterOutputs& multiOuts, const double *input, ParamInputs& paramIns, unsigned long size, size_t mode, bool dynamic)
     {
+        // Do (optional) reset and DSP
+        
+        if (mParameters.getBool(ResetIndex))
+            mFilter.reset();
+        
         if (HasModes ? mParameters.getBool(MultiIndex) : false)
             processLoops<T>(multiOuts.data(), input, paramIns, size, dynamic, ModeIndices());
         else
@@ -504,10 +508,7 @@ private:
             }
         }
         
-        // Do (optional) reset and DSP
-        
-        if (!DoesCoefficients && mParameters.getBool(ResetIndex))
-            mFilter.reset();
+        // DSP
         
         calculate<T>(multiOuts, input, paramIns, sizeOut, mode, dynamic);
     }
