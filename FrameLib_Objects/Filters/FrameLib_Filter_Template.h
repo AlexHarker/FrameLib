@@ -99,7 +99,7 @@ namespace FrameLib_Filters
         
         void operator()(double) {}
         void reset() {}
-
+        
         // Types for ease
         
         using ModeType = std::array<Mode, NumModes>;
@@ -163,7 +163,7 @@ class FrameLib_Filter final : public FrameLib_Processor
     static constexpr size_t NumCoefficients = T::NumCoefficients;
     static constexpr bool HasModes = NumModes > 1;
     static constexpr bool DoesCoefficients = T::NumCoefficients > 0;
-
+    
     using Clip = typename T::Clip;
     using ParameterIndices = make_indices<NumParams>;
     using CoefficientIndices = make_indices<NumCoefficients>;
@@ -194,7 +194,7 @@ class FrameLib_Filter final : public FrameLib_Processor
         {
             for (unsigned long i = 0; i < NumParams; i++)
                 add(ParameterList[i].mInfo);
-         
+            
             if (HasModes)
             {
                 std::string mode("Sets the filter mode when multi mode is off:");
@@ -215,8 +215,8 @@ class FrameLib_Filter final : public FrameLib_Processor
             }
             
             add("Sets dynamic mode (which creates inputs for each settings of the filter).");
-             if (!DoesCoefficients)
-                 add("Sets whether filter memories are reset before processing a new frame.");
+            if (!DoesCoefficients)
+                add("Sets whether filter memories are reset before processing a new frame.");
         }
     };
     
@@ -261,7 +261,7 @@ public:
             mParameters.addBool(ResetIndex, "reset", true);
         
         mParameters.set(serialisedParameters);
-
+        
         unsigned long numIns = mParameters.getBool(DynamicIndex) ? NumParams + 1 : 1;
         unsigned long numOuts = 0;
         
@@ -269,7 +269,7 @@ public:
             numOuts = NumCoefficients;
         else
             numOuts = (HasModes && mParameters.getBool(MultiIndex)) ? NumModes : 1;
-
+        
         setIO(numIns, numOuts);
         
         if (mParameters.getBool(DynamicIndex))
@@ -304,7 +304,7 @@ public:
             info.append("Filter settings may be updated either as parameters, or, when the dynamic parameter is set on, on a per sample basis via dedicated inputs. "
                         "When in dynamic mode the parameter values are used if an input is disconnected, or empty. "
                         "Thus you can mix dynamic and static settings.");
-                        
+            
             if (!DoesCoefficients)
                 info.append(" If you wish to process streams (rather than individual frames) then you can set the reset parameter off (which will not clear the filter memories between frames.");
             
@@ -333,7 +333,7 @@ public:
     }
     
 private:
-
+    
     FrameLib_Parameters::Info *getParamInfo()
     {
         static ParameterInfo info;
@@ -348,7 +348,7 @@ private:
         if (inputs[Idx].mInput && inputs[Idx].mSize)
         {
             const Clip &c = ParameterList[Idx].mClip;
-
+            
             const double val = inputs[Idx].mInput[std::min(i, inputs[Idx].mSize - 1)];
             
             switch (c.getType())
@@ -450,7 +450,7 @@ private:
     template <class U, ForCoefficients<U> = 0>
     void calculate(FilterOutputs& multiOuts, const double *input, FilterInputs& paramIns, unsigned long size, size_t mode, bool dynamic)
     {
-       modeSelect<NumModes-1>(multiOuts.data(), input, paramIns, size, mode, dynamic);
+        modeSelect<NumModes-1>(multiOuts.data(), input, paramIns, size, mode, dynamic);
     }
     
     // Process
@@ -459,9 +459,9 @@ private:
     {
         FilterInputs paramIns;
         FilterOutputs multiOuts;
-
+        
         // Get Input
-
+        
         unsigned long sizeIn, sizeOut;
         unsigned long numOuts = getNumOuts();
         const double *input = getInput(0, &sizeIn);
@@ -478,7 +478,7 @@ private:
         
         size_t mode = HasModes ? static_cast<size_t>(mParameters.getInt(ModeIndex)) : 0;
         bool dynamic = false;
-    
+        
         // Read in the inputs and check if they change
         
         if (mParameters.getBool(DynamicIndex))
@@ -494,7 +494,7 @@ private:
         
         if (!DoesCoefficients && mParameters.getBool(ResetIndex))
             mFilter.reset();
-
+        
         calculate<T>(multiOuts, input, paramIns, sizeOut, mode, dynamic);
     }
     
@@ -505,3 +505,4 @@ private:
 };
 
 #endif
+
