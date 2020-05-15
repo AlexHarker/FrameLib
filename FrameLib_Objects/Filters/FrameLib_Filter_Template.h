@@ -379,11 +379,13 @@ private:
     {
         const FilterParameters parameters{ {getFilterParameterValue<Is>(inputs, i)..., Idx, mSamplingRate} };
         
-        if (parameters != mFilterParameters)
+        if (!i || parameters != mFilterParameters)
         {
             mFilterParameters = parameters;
             (mFilter.*ModeList[Idx].mMethod)(std::get<Is>(parameters)..., mSamplingRate, outputs[Js][i]...);
         }
+        else
+            (void) std::initializer_list<double>{ outputs[Js][i] = outputs[Js][i - 1]... };
     }
     
     // Output calculations
