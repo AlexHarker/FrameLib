@@ -315,7 +315,7 @@ public:
     std::string inputInfo(unsigned long idx, bool verbose) override
     {
         if (!idx)
-            return "Input";
+            return DoesCoefficients ? "Trigger Input" : "Input";
         
         if (idx >= getNumIns() - 1)
             return parameterInputInfo(verbose);
@@ -479,12 +479,29 @@ private:
     {
         ParamInputs paramIns;
         FilterOutputs multiOuts;
-        
+        bool dynamic = false;
+
         // Get Input
         
         unsigned long sizeIn, sizeOut;
         unsigned long numOuts = getNumOuts();
         const double *input = getInput(0, &sizeIn);
+        
+        if (DoesCoefficients)
+            sizeIn = 1;
+        
+        // Read in the inputs and check if they change
+        
+        if (mParameters.getBool(DynamicIndex))
+        {
+            for (unsigned long i = 0; i < NumParams; i++)
+            {
+                paramIns[i].mInput = getInput(i + 1, &paramIns[i].mSize);
+                dynamic = dynamic || paramIns[i].mSize > 1;
+                if (DoesCoefficients)
+                    sizeIn = std::max(sizeIn, paramIns[i].mSize);
+            }
+        }
         
         // Setup outputs
         
@@ -497,18 +514,6 @@ private:
             multiOuts[i] = getOutput(i, &sizeOut);
         
         size_t mode = HasModes ? static_cast<size_t>(mParameters.getInt(ModeIndex)) : 0;
-        bool dynamic = false;
-        
-        // Read in the inputs and check if they change
-        
-        if (mParameters.getBool(DynamicIndex))
-        {
-            for (unsigned long i = 0; i < NumParams; i++)
-            {
-                paramIns[i].mInput = getInput(i + 1, &paramIns[i].mSize);
-                dynamic = dynamic || paramIns[i].mSize > 1;
-            }
-        }
         
         // DSP
         
