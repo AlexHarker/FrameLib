@@ -20,19 +20,19 @@ namespace FrameLib_Filters
         // Construct a method suitable for the coefficient mode / number of coefficients
         
         template<std::size_t M, std::size_t N, std::size_t O, typename ...Args>
-        struct make_mode_method : make_mode_method<M-1, N, O, Args..., double> {};
+        struct MakeModeMethod : MakeModeMethod<M-1, N, O, Args..., double> {};
         
         template<std::size_t N, std::size_t O, typename ...Args>
-        struct make_mode_method<0, N, O, Args...> : make_mode_method<0, N-1, O, Args..., double&> {};
+        struct MakeModeMethod<0, N, O, Args...> : MakeModeMethod<0, N-1, O, Args..., double&> {};
         
         template<std::size_t O, typename ...Args>
-        struct make_mode_method<0, 0, O, Args...> { using Method = void (T::*)(Args...); };
+        struct MakeModeMethod<0, 0, O, Args...> { using Method = void (T::*)(Args...); };
         
         template<typename ...Args>
-        struct make_mode_method<0, 0, 0, Args...> { using Method = double (T::*)(double); };
+        struct MakeModeMethod<0, 0, 0, Args...> { using Method = double (T::*)(double); };
         
         static constexpr size_t NumCoefficients = NumCoeffs;
-        using ModeMethod = typename make_mode_method<NumParams + 1, NumCoeffs, NumCoeffs>::Method;
+        using ModeMethod = typename MakeModeMethod<NumParams + 1, NumCoeffs, NumCoeffs>::Method;
         
         // Convenience constant getters
         
@@ -142,10 +142,10 @@ class FrameLib_Filter final : public FrameLib_Processor
     struct indices {};
     
     template<std::size_t M, std::size_t... Is>
-    struct make_indices : make_indices<M-1, M-1, Is...> {};
+    struct MakeIndices : MakeIndices<M-1, M-1, Is...> {};
     
     template<std::size_t... Is>
-    struct make_indices<0, Is...> : indices<Is...> {};
+    struct MakeIndices<0, Is...> : indices<Is...> {};
     
     // Input structure
     
@@ -164,9 +164,9 @@ class FrameLib_Filter final : public FrameLib_Processor
     static constexpr bool DoesCoefficients = T::NumCoefficients > 0;
     
     using Clip = typename T::Clip;
-    using ParameterIndices = make_indices<NumParams>;
-    using CoefficientIndices = make_indices<NumCoefficients>;
-    using ModeIndices = make_indices<NumModes>;
+    using ParameterIndices = MakeIndices<NumParams>;
+    using CoefficientIndices = MakeIndices<NumCoefficients>;
+    using ModeIndices = MakeIndices<NumModes>;
     using ParamInputs = std::array<Input, NumParams>;
     using FilterOutputs = std::array<double *, DoesCoefficients ? NumCoefficients : NumModes>;
     using FilterParameters = std::array<double, NumParams + 1 + (DoesCoefficients ? 1 : 0)>;
