@@ -17,6 +17,31 @@ namespace FrameLib_Filters
     template <class T, size_t NumParams, size_t NumModes, size_t NumCoeffs = 0>
     struct FrameLib_FilterBase
     {
+        // Mode description template and specialisation
+        
+        template <bool Coeff, typename ModeMethod>
+        struct ModeTemplate
+        {
+            constexpr ModeTemplate(const char *name, const char *info, ModeMethod method)
+            : mName(name), mInfo(info), mMethod(method) {}
+            
+            const char *mName;
+            const char *mInfo;
+            const ModeMethod mMethod;
+        };
+        
+        template <typename ModeMethod>
+        struct ModeTemplate <false, ModeMethod>
+        {
+            constexpr ModeTemplate(const char *name, const char *outputName, const char *info, ModeMethod method)
+            : mName(name), mOutputName(outputName), mInfo(info), mMethod(method) {}
+            
+            const char *mName;
+            const char *mOutputName;
+            const char *mInfo;
+            const ModeMethod mMethod;
+        };
+        
         // Construct a method suitable for the coefficient mode / number of coefficients
         
         template<std::size_t M, std::size_t N, std::size_t O, typename ...Args>
@@ -85,19 +110,6 @@ namespace FrameLib_Filters
             const Clip mClip;
         };
         
-        // Mode description
-        
-        struct Mode
-        {
-            constexpr Mode(const char *name, const char *outputName, const char *info, ModeMethod method)
-            : mName(name), mOutputName(outputName), mInfo(info), mMethod(method) {}
-            
-            const char *mName;
-            const char *mOutputName;
-            const char *mInfo;
-            const ModeMethod mMethod;
-        };
-        
         // Coefficient description
         
         struct Coeff
@@ -106,6 +118,10 @@ namespace FrameLib_Filters
  
             const char *mOutputName;
         };
+        
+        // Mode description
+        
+        using Mode = ModeTemplate<NumCoeffs != 0, ModeMethod>;
         
         // Default operator for single mode filters
         
