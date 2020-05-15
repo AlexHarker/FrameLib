@@ -98,6 +98,15 @@ namespace FrameLib_Filters
             const ModeMethod mMethod;
         };
         
+        // Coefficient description
+        
+        struct Coeff
+        {
+            constexpr Coeff(const char *outputName) : mOutputName(outputName) {}
+ 
+            const char *mOutputName;
+        };
+        
         // Default operator for single mode filters
         
         void operator()(double) {}
@@ -106,6 +115,7 @@ namespace FrameLib_Filters
         
         using ModeType = std::array<Mode, NumModes>;
         using ParamType = std::array<Param, NumParams>;
+        using CoeffType = std::array<Coeff, NumCoeffs>;
     };
 };
 
@@ -325,13 +335,27 @@ public:
     
     std::string outputInfo(unsigned long idx, bool verbose) override
     {
+        return outInfo<T>(idx, verbose);
+    }
+    
+private:
+    
+    // Info
+    
+    template <class U, ForFilters<U> = 0>
+    std::string outInfo(unsigned long idx, bool verbose)
+    {
         if (!HasModes || !mParameters.getBool(MultiIndex))
             return "Output";
         
         return ModeList[idx].mOutputName;
     }
     
-private:
+    template <class U, ForCoefficients<U> = 0>
+    std::string outInfo(unsigned long idx, bool verbose)
+    {
+        return T::sCoeffs[idx].mOutputName;
+    }
     
     FrameLib_Parameters::Info *getParamInfo()
     {
@@ -375,7 +399,7 @@ private:
     }
     
     template <size_t Idx, size_t... Is, size_t... Js>
-    void updateCoefficients(double **outputs, const ParamInputs& inputs, unsigned long i, indices<Is...>, indices<Js...>)
+    void calculateCoefficients(double **outputs, const ParamInputs& inputs, unsigned long i, indices<Is...>, indices<Js...>)
     {
         const FilterParameters parameters{ {getFilterParameterValue<Is>(inputs, i)..., Idx, mSamplingRate} };
         
@@ -445,7 +469,7 @@ private:
         if (Idx == mode)
         {
             for (unsigned long i = 0; i < size; i++)
-                updateCoefficients<Idx>(outputs, paramIns, size, ParameterIndices(), CoefficientIndices());
+                calculateCoefficients<Idx>(outputs, paramIns, i, ParameterIndices(), CoefficientIndices());
         }
         else
             ModeRecurse<Idx>()(*this, outputs, paramIns, size, mode);
