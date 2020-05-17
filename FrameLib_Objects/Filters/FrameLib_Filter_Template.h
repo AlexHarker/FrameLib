@@ -11,8 +11,7 @@
 
 namespace FrameLib_Filters
 {
-    // Base class template for filter implementation objects
-    // N.B. - set the number of coefficients only for filter coefficient calculators
+    // Base class template for filter implementations  (N.B. - set NumCoeffs for coefficient calculators)
     
     template <class T, size_t NumParams, size_t NumModes, size_t NumCoeffs = 0>
     struct FrameLib_FilterBase
@@ -132,24 +131,30 @@ namespace FrameLib_Filters
         using ParamType = std::array<Param, NumParams>;
         using CoeffType = std::array<Coeff, NumCoeffs>;
     };
+}
+
+// Main class template for FrameLib DSP objects
+
+template <class T>
+class FrameLib_Filter final : public FrameLib_Processor
+{
+    // Mode recursion helper
     
-    // Recursion helper
-    
-    template <size_t Idx>
-    struct ModeRecurse
+    template <class U, size_t Idx>
+    struct ModeSelector
     {
-        template <class U, typename... Args>
-        void operator()(U& object, Args... args)
+        template <typename... Args>
+        void operator()(U& object, FrameLib_Filter& obj, size_t mode, Args... args)
         {
-            object.template modeSelect<Idx-1>(args...);
+            object.template modeSelect<Idx-1, Args...>(obj, mode, args...);
         }
     };
     
-    template <>
-    struct ModeRecurse<0>
+    template <class U>
+    struct ModeSelector<U, 0>
     {
-        template <class U, typename... Args>
-        void operator()(U& object, Args... args) {}
+        template <typename... Args>
+        void operator()(U& object, FrameLib_Filter& obj, size_t mode, Args... args) {}
     };
     
     // Index sequence type functionality without C++14
@@ -163,264 +168,63 @@ namespace FrameLib_Filters
     template<std::size_t... Is>
     struct MakeIndices<0, Is...> : Indices<Is...> {};
     
-    // Main class template for FrameLib DSP objects
+    // Input structure
     
-    template <class T>
-    class BaseImpl : public FrameLib_Processor
+    struct Input
     {
-        
-    protected:
-        
-        // Input structure
-        
-        struct Input
-        {
-            const double* mInput = nullptr;
-            unsigned long mSize = 0;
-        };
-        
-        // Types and constexpr values
-        
-        static constexpr size_t NumParams = std::tuple_size<typename T::ParamType>::value;
-        static constexpr size_t NumModes = std::tuple_size<typename T::ModeType>::value;
-        static constexpr size_t NumCoeffs = std::tuple_size<typename T::CoeffType>::value;
-        
-        static constexpr bool HasModes = NumModes > 1;
-        static constexpr bool DoesCoefficients = NumCoeffs != 0;
-        
-        static constexpr unsigned long ModeIndex = NumParams;
-        static constexpr unsigned long MultiIndex = NumParams + 1;
-        static constexpr unsigned long DynamicIndex = NumParams + (HasModes ? DoesCoefficients ? 1 : 2 : 0);
-        static constexpr unsigned long ResetIndex = DynamicIndex + 1;
-        
-        static constexpr MakeIndices<NumParams> ParamIndices() { return MakeIndices<NumParams>(); }
-        static constexpr MakeIndices<NumCoeffs> CoeffIndices() { return MakeIndices<NumCoeffs>(); }
-        static constexpr MakeIndices<NumModes>  ModeIndices()  { return MakeIndices<NumModes>(); }
-        static constexpr const typename T::Param& GetFilterParam(size_t Idx)    { return T::sParameters[Idx]; }
-        static constexpr const typename T::Mode& GetMode(size_t Idx)            { return T::sModes[Idx]; }
-        
-        using Clip = typename T::Clip;
-        using ParamInputs = std::array<Input, NumParams>;
-        using FilterParams = std::array<double, NumParams + 1 + (DoesCoefficients ? 1 : 0)>;
-        
-        // Parameter info
-        
-        struct ParameterInfo : public FrameLib_Parameters::Info
-        {
-            ParameterInfo()
-            {
-                for (unsigned long i = 0; i < NumParams; i++)
-                    add(GetFilterParam(i).mInfo);
-                
-                if (HasModes)
-                {
-                    std::string mode("Sets the filter mode when multi mode is off:");
-                    
-                    for (unsigned long i = 0; i < NumModes; i++)
-                    {
-                        mode.append(" ");
-                        mode.append(GetMode(i).mName);
-                        mode.append(" - ");
-                        mode.append(GetMode(i).mInfo);
-                        mode.append(".");
-                    }
-                    
-                    add(mode);
-                    
-                    if (!DoesCoefficients)
-                        add("Sets multi mode (in which all filter modes are output separately).");
-                }
-                
-                add("Sets dynamic mode (which creates inputs for each settings of the filter).");
-                if (!DoesCoefficients)
-                    add("Sets whether filter memories are reset before processing a new frame.");
-            }
-        };
-        
-    public:
-        
-        // Constructor
-        
-        BaseImpl(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-        : FrameLib_Processor(context, proxy, getParamInfo())
-        {
-            for (unsigned long i = 0; i < NumParams; i++)
-            {
-                mParameters.addDouble(i, GetFilterParam(i).mName, GetFilterParam(i).mDefaultValue, i);
-                const Clip &c = GetFilterParam(i).mClip;
-                
-                switch (c.getType())
-                {
-                    case Clip::kNone:                                           break;
-                    case Clip::kMin:    mParameters.setMin(c.mMin);             break;
-                    case Clip::kMax:    mParameters.setMax(c.mMax);             break;
-                    case Clip::kClip:   mParameters.setClip(c.mMin, c.mMax);    break;
-                }
-            }
-            
-            if (HasModes)
-            {
-                mParameters.addEnum(ModeIndex, "mode", ModeIndex);
-                for (unsigned long i = 0; i < NumModes; i++)
-                    mParameters.addEnumItem(i, GetMode(i).mName);
-                
-                if (!DoesCoefficients)
-                {
-                    mParameters.addBool(MultiIndex, "multi", false);
-                    mParameters.setInstantiation();
-                }
-            }
-            
-            mParameters.addBool(DynamicIndex, "dynamic", false);
-            mParameters.setInstantiation();
-            
-            if (!DoesCoefficients)
-                mParameters.addBool(ResetIndex, "reset", true);
-            
-            mParameters.set(serialisedParameters);
-            
-            unsigned long numIns = getDynamicParam() ? NumParams + 1 : 1;
-            unsigned long numOuts = DoesCoefficients ? NumCoeffs : getMultiParam() ? NumModes : 1;
-            
-            setIO(numIns, numOuts);
-            
-            if (getDynamicParam())
-            {
-                for (unsigned long i = 1; i <= NumParams; i++)
-                    setInputMode(i, false, false, false);
-            }
-            
-            addParameterInput();
-        }
-        
-        // Info
-        
-        std::string objectInfo(bool verbose) override
-        {
-            const char *description = T::sDescription.mDescription;
-            
-            if (verbose)
-            {
-                std::string info(description);
-                
-                info.append(": The size of the output is equal to the input. ");
-                
-                if (HasModes)
-                {
-                    if (DoesCoefficients)
-                        info.append("The filter mode is set by the mode parameter. ");
-                    else
-                        info.append("The filter can be set to output a single mode at a time (set with the mode parameter) or all modes simulatanously (set with the multi parameter). ");
-                }
-                
-                info.append("Filter settings may be updated either as parameters, or, when the dynamic parameter is set on, on a per sample basis via dedicated inputs. "
-                            "When in dynamic mode the parameter values are used if an input is disconnected, or empty. "
-                            "Thus you can mix dynamic and static settings.");
-                
-                if (!DoesCoefficients)
-                    info.append(" If you wish to process streams (rather than individual frames) then you can set the reset parameter off (which will not clear the filter memories between frames.");
-                
-                return info;
-            }
-            return formatInfo("#.", description);
-        }
-        
-        std::string inputInfo(unsigned long idx, bool verbose) override
-        {
-            if (!idx)
-                return DoesCoefficients ? "Trigger Input" : "Input";
-            
-            if (idx >= getNumIns() - 1)
-                return parameterInputInfo(verbose);
-            
-            return formatInfo("# - values per sample", "#", GetFilterParam(idx - 1).mInputName, verbose);
-        }
-        
-    protected:
-        
-        // Params
-        
-        bool getMultiParam() const      { return HasModes && mParameters.getBool(MultiIndex); }
-        size_t getModeParam() const     { return HasModes ? static_cast<size_t>(mParameters.getInt(ModeIndex)) : 0; }
-        size_t getDynamicParam() const  { return mParameters.getBool(DynamicIndex); }
-        size_t getResetParam() const    { return mParameters.getBool(ResetIndex); }
-
-        // Info
-        
-        FrameLib_Parameters::Info *getParamInfo()
-        {
-            static ParameterInfo info;
-            return &info;
-        }
-        
-        // Helpers for updating the filter coefficients
-        
-        template <size_t Idx>
-        double getFilterParamVal(const ParamInputs& inputs, unsigned long i)
-        {
-            if (inputs[Idx].mInput && inputs[Idx].mSize)
-            {
-                const Clip &c = GetFilterParam(Idx).mClip;
-                
-                const double val = inputs[Idx].mInput[std::min(i, inputs[Idx].mSize - 1)];
-                
-                switch (c.getType())
-                {
-                    case Clip::kNone:   return val;
-                    case Clip::kMin:    return std::max(val, c.mMin);
-                    case Clip::kMax:    return std::min(val, c.mMax);
-                    case Clip::kClip:   return std::min(std::max(val, c.mMin), c.mMax);
-                }
-            }
-            
-            return mParameters.getValue(Idx);
-        }
-        
-        // Data
-        
-        T mFilter;
-        FilterParams mFilterParameters;
+        const double* mInput = nullptr;
+        unsigned long mSize = 0;
     };
     
-    // Main class template for FrameLib DSP objects
+    // Types and constexpr values
     
-    template <class T>
-    class FrameLib_Filter final : public BaseImpl<T>
+    static constexpr size_t NumParams = std::tuple_size<typename T::ParamType>::value;
+    static constexpr size_t NumModes = std::tuple_size<typename T::ModeType>::value;
+    static constexpr size_t NumCoeffs = std::tuple_size<typename T::CoeffType>::value;
+    
+    static constexpr bool HasModes = NumModes > 1;
+    static constexpr bool DoesCoefficients = NumCoeffs != 0;
+    
+    static constexpr unsigned long ModeIndex = NumParams;
+    static constexpr unsigned long MultiIndex = NumParams + 1;
+    static constexpr unsigned long DynamicIndex = NumParams + (HasModes ? DoesCoefficients ? 1 : 2 : 0);
+    static constexpr unsigned long ResetIndex = DynamicIndex + 1;
+    
+    static constexpr const typename T::ParamType& ParamList = T::sParameters;
+    static constexpr const typename T::ModeType& ModeList = T::sModes;
+    
+    using Clip = typename T::Clip;
+    using ParamInputs = std::array<Input, NumParams>;
+    using FilterParams = std::array<double, NumParams + 1 + (DoesCoefficients ? 1 : 0)>;
+    using ParamIndices = MakeIndices<NumParams>;
+    using CoeffIndices = MakeIndices<NumCoeffs>;
+    using ModeIndices = MakeIndices<NumModes>;
+    
+    // Implementation class for a filter (specialised when Coeff is true below)
+    
+    template <class U, bool Coeff>
+    struct Implementation
     {
-        using Base = BaseImpl<T>;
-        using FilterParams = typename Base::FilterParams;
-        using FilterOutputs = std::array<double *, Base::NumModes>;
-        using ParamInputs = typename Base::ParamInputs;
-        
         template <size_t Idx>
-        friend struct ModeRecurse;
-        
-    public:
-        
-        // Constructor
-        
-        FrameLib_Filter(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-        : Base(context, serialisedParameters, proxy) {}
-        
-        std::string outputInfo(unsigned long idx, bool verbose) override
+        using ModeRecurse = ModeSelector<Implementation, Idx>;
+
+        std::string outputInfo(FrameLib_Filter& obj, unsigned long idx, bool verbose)
         {
-            if (!Base::getMultiParam())
+            if (!obj.isMulti())
                 return "Output";
             
-            return Base::GetMode(idx).mOutputName;
+            return ModeList[idx].mOutputName;
         }
         
-    private:
-        
         template <size_t... Is>
-        void updateCoefficients(const ParamInputs& inputs, unsigned long i, Indices<Is...>)
+        void updateCoefficients(FrameLib_Filter& obj, ParamInputs& inputs, unsigned long i, Indices<Is...>)
         {
-            const FilterParams parameters { Base::template getFilterParamVal<Is>(inputs, i)..., Base::mSamplingRate };
+            const FilterParams parameters { obj.getFilterParamVal<Is>(inputs, i)..., obj.mSamplingRate };
             
-            if (parameters != Base::mFilterParameters)
+            if (parameters != mFilterParameters)
             {
-                Base::mFilterParameters = parameters;
-                Base::mFilter.updateCoefficients(std::get<Is>(parameters)..., Base::mSamplingRate);
+                mFilterParameters = parameters;
+                mFilter.updateCoefficients(std::get<Is>(parameters)..., obj.mSamplingRate);
             }
         }
         
@@ -429,36 +233,50 @@ namespace FrameLib_Filters
         template <size_t Idx>
         void calculateOutput(double *output, const double *input, unsigned long i)
         {
-            output[i] = (Base::mFilter.*Base::GetMode(Idx).mMethod)(input[i]);
+            output[i] = (mFilter.*ModeList[Idx].mMethod)(input[i]);
         }
         
         template <size_t Idx>
         void calculateOutput(double **outputs, const double *input, unsigned long i)
         {
-            outputs[Idx][i] = (Base::mFilter.*Base::GetMode(Idx).mMethod)(input[i]);
+            outputs[Idx][i] = (mFilter.*ModeList[Idx].mMethod)(input[i]);
         }
         
         // Main DSP loops
         
         template <typename O, size_t... Is>
-        void processLoops(O outputs, const double *input, const ParamInputs& paramIns, unsigned long size, bool dynamic, Indices<Is...>)
+        void process(FrameLib_Filter& obj, O outputs, const double *input, unsigned long size, Indices<Is...>)
         {
+            ParamInputs paramIns;
+            bool dynamic = false;
+
+            // Read in the parameter inputs and check if they change
+            
+            if (obj.isDynamic())
+            {
+                for (unsigned long i = 0; i < NumParams; i++)
+                {
+                    paramIns[i].mInput = obj.getInput(i + 1, &paramIns[i].mSize);
+                    dynamic = dynamic || paramIns[i].mSize > 1;
+                }
+            }
+            
             if (dynamic)
             {
                 for (unsigned long i = 0; i < size; i++)
                 {
-                    updateCoefficients(paramIns, i, Base::ParamIndices());
-                    Base::mFilter(input[i]);
+                    updateCoefficients(obj, paramIns, i, ParamIndices());
+                    mFilter(input[i]);
                     (void) std::initializer_list<int>{ (calculateOutput<Is>(outputs, input, i), 0)... };
                 }
             }
             else
             {
-                updateCoefficients(paramIns, 0, Base::ParamIndices());
+                updateCoefficients(obj, paramIns, 0, ParamIndices());
                 
                 for (unsigned long i = 0; i < size; i++)
                 {
-                    Base::mFilter(input[i]);
+                    mFilter(input[i]);
                     (void) std::initializer_list<int>{ (calculateOutput<Is>(outputs, input, i), 0)... };
                 }
             }
@@ -466,158 +284,321 @@ namespace FrameLib_Filters
         
         // Mode selection
         
-        template <size_t Idx>
-        void modeSelect(double *output, const double *input, const ParamInputs& paramIns, unsigned long size, size_t mode, bool dynamic)
+        template <size_t Idx, typename...Args>
+        void modeSelect(FrameLib_Filter& obj, size_t mode, Args...args)
         {
             if (Idx == mode)
-                processLoops(output, input, paramIns, size, dynamic, Indices<Idx>());
+                process(obj, args..., Indices<Idx>());
             else
-                ModeRecurse<Idx>()(*this, output, input, paramIns, size, mode, dynamic);
+                ModeRecurse<Idx>()(*this, obj, mode, args...);
         }
         
         // Process
         
-        void process() override
+        void process(FrameLib_Filter& obj)
         {
-            ParamInputs paramIns;
-            FilterOutputs multiOuts;
-            bool dynamic = false;
+            double *outputs[NumModes];
             
             // Get Input
             
             unsigned long sizeIn, sizeOut;
-            unsigned long numOuts = Base::getNumOuts();
-            const double *input = Base::getInput(0, &sizeIn);
-            
-            // Read in the inputs and check if they change
-            
-            if (Base::getDynamicParam())
-            {
-                for (unsigned long i = 0; i < Base::NumParams; i++)
-                {
-                    paramIns[i].mInput = Base::getInput(i + 1, &paramIns[i].mSize);
-                    dynamic = dynamic || paramIns[i].mSize > 1;
-                }
-            }
+            unsigned long numOuts = obj.getNumOuts();
+            const double *input = obj.getInput(0, &sizeIn);
             
             // Setup outputs
             
             for (unsigned long i = 0; i < numOuts; i++)
-                Base::requestOutputSize(i, sizeIn);
+                obj.requestOutputSize(i, sizeIn);
             
-            Base::allocateOutputs();
+            obj.allocateOutputs();
             
             for (unsigned long i = 0; i < numOuts; i++)
-                multiOuts[i] = Base::getOutput(i, &sizeOut);
+                outputs[i] = obj.getOutput(i, &sizeOut);
             
             // Do (optional) reset and DSP
             
-            if (Base::getResetParam())
-                Base::mFilter.reset();
+            if (obj.getReset())
+                mFilter.reset();
             
-            if (Base::getMultiParam())
-                processLoops(multiOuts.data(), input, paramIns, sizeOut, dynamic, Base::ModeIndices());
+            if (obj.isMulti())
+                process(obj, outputs, input, sizeOut, ModeIndices());
             else
-                modeSelect<Base::NumModes-1>(multiOuts[0], input, paramIns, sizeOut, Base::getModeParam(), dynamic);
+                modeSelect<NumModes-1>(obj, obj.getMode(), outputs[0], input, sizeOut);
         }
+        
+    private:
+    
+        T mFilter;
+        FilterParams mFilterParameters;
     };
     
-    // Main class template for FrameLib DSP objects
+    // Implementation class for a coefficient calculator (specialisation)
     
-    template <class T>
-    class FrameLib_Coefficients final : public BaseImpl<T>
+    template <class U>
+    struct Implementation<U, true>
     {
-        using Base = BaseImpl<T>;
-        using FilterParams = typename Base::FilterParams;
-        using FilterOutputs = std::array<double *, Base::NumModes>;
-        using ParamInputs = typename Base::ParamInputs;
-        
         template <size_t Idx>
-        friend struct ModeRecurse;
+        using ModeRecurse = ModeSelector<Implementation, Idx>;
         
-    public:
-        
-        // Constructor
-        
-        FrameLib_Coefficients(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-        : Base(context, serialisedParameters, proxy) {}
-        
-        std::string outputInfo(unsigned long idx, bool verbose) override
+        std::string outputInfo(FrameLib_Filter& obj, unsigned long idx, bool verbose)
         {
             return T::sCoeffs[idx].mOutputName;
         }
         
-    private:
-        
         template <size_t Idx, size_t... Is, size_t... Js>
-        void modeSelect(double **outputs, const ParamInputs& inputs, unsigned long size, size_t mode, Indices<Is...>, Indices<Js...>)
+        void modeSelect(FrameLib_Filter& obj, size_t mode, double **outputs, ParamInputs& inputs, unsigned long size, Indices<Is...>, Indices<Js...>)
         {
             if (Idx == mode)
             {
                 for (unsigned long i = 0; i < size; i++)
                 {
-                    const FilterParams parameters { Base::template getFilterParamVal<Is>(inputs, i)..., Idx, Base::mSamplingRate };
+                    const double& sr = obj.mSamplingRate;
+                    const FilterParams parameters { obj.getFilterParamVal<Is>(inputs, i)..., Idx, sr };
                     
-                    if (!i || parameters != Base::mFilterParameters)
+                    if (!i || parameters != mFilterParameters)
                     {
-                        Base::mFilterParameters = parameters;
-                        (Base::mFilter.*Base::GetMode(Idx).mMethod)(std::get<Is>(parameters)..., Base::mSamplingRate, outputs[Js][i]...);
+                        mFilterParameters = parameters;
+                        (mFilter.*ModeList[Idx].mMethod)(std::get<Is>(parameters)..., sr, outputs[Js][i]...);
                     }
                     else
                         (void) std::initializer_list<double>{ outputs[Js][i] = outputs[Js][i - 1]... };
                 }
             }
             else
-                ModeRecurse<Idx>()(*this, outputs, inputs, size, mode);
+                ModeRecurse<Idx>()(*this, obj, mode, outputs, inputs, size);
         }
         
         // Process
         
-        void process() override
+        void process(FrameLib_Filter& obj)
         {
-            ParamInputs paramIns;
-            FilterOutputs multiOuts;
-            bool dynamic = false;
+            ParamInputs inputs;
+            double *outputs[NumCoeffs];
             
             // Get Input
             
             unsigned long sizeIn = 1;
             unsigned long sizeOut;
-            unsigned long numOuts = Base::getNumOuts();
+            unsigned long numOuts = obj.getNumOuts();
             
-            // Read in the inputs and check if they change
+            // Read in the parameter inputs and check if they change
             
-            if (Base::getDynamicParam())
+            if (obj.isDynamic())
             {
-                for (unsigned long i = 0; i < Base::NumParams; i++)
+                for (unsigned long i = 0; i < NumParams; i++)
                 {
-                    paramIns[i].mInput = Base::getInput(i + 1, &paramIns[i].mSize);
-                    dynamic = dynamic || paramIns[i].mSize > 1;
-                    sizeIn = std::max(sizeIn, paramIns[i].mSize);
+                    inputs[i].mInput = obj.getInput(i + 1, &inputs[i].mSize);
+                    sizeIn = std::max(sizeIn, inputs[i].mSize);
                 }
             }
             
             // Setup outputs
             
             for (unsigned long i = 0; i < numOuts; i++)
-                Base::requestOutputSize(i, sizeIn);
+                obj.requestOutputSize(i, sizeIn);
             
-            Base::allocateOutputs();
+            obj.allocateOutputs();
             
             for (unsigned long i = 0; i < numOuts; i++)
-                multiOuts[i] = Base::getOutput(i, &sizeOut);
+                outputs[i] = obj.getOutput(i, &sizeOut);
             
             // DSP
             
-            modeSelect<Base::NumModes-1>(multiOuts.data(), paramIns, sizeOut, Base::getModeParam(), Base::ParamIndices(), Base::CoeffIndices());
+            modeSelect<NumModes-1>(obj, obj.getMode(), outputs, inputs, sizeOut, ParamIndices(), CoeffIndices());
+        }
+        
+    private:
+        
+        T mFilter;
+        FilterParams mFilterParameters;
+    };
+    
+    // Parameter info
+    
+    struct ParameterInfo : public FrameLib_Parameters::Info
+    {
+        ParameterInfo()
+        {
+            for (unsigned long i = 0; i < NumParams; i++)
+                add(ParamList[i].mInfo);
+            
+            if (HasModes)
+            {
+                std::string mode("Sets the filter mode when multi mode is off:");
+                
+                for (unsigned long i = 0; i < NumModes; i++)
+                {
+                    mode.append(" ");
+                    mode.append(ModeList[i].mName);
+                    mode.append(" - ");
+                    mode.append(ModeList[i].mInfo);
+                    mode.append(".");
+                }
+                
+                add(mode);
+                
+                if (!DoesCoefficients)
+                    add("Sets multi mode (in which all filter modes are output separately).");
+            }
+            
+            add("Sets dynamic mode (which creates inputs for each settings of the filter).");
+            if (!DoesCoefficients)
+                add("Sets whether filter memories are reset before processing a new frame.");
         }
     };
+    
+public:
+    
+    // Constructor
+    
+    FrameLib_Filter(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+    : FrameLib_Processor(context, proxy, getParamInfo())
+    {
+        for (unsigned long i = 0; i < NumParams; i++)
+        {
+            mParameters.addDouble(i, ParamList[i].mName, ParamList[i].mDefaultValue, i);
+            const Clip &c = ParamList[i].mClip;
+            
+            switch (c.getType())
+            {
+                case Clip::kNone:                                           break;
+                case Clip::kMin:    mParameters.setMin(c.mMin);             break;
+                case Clip::kMax:    mParameters.setMax(c.mMax);             break;
+                case Clip::kClip:   mParameters.setClip(c.mMin, c.mMax);    break;
+            }
+        }
+        
+        if (HasModes)
+        {
+            mParameters.addEnum(ModeIndex, "mode", ModeIndex);
+            for (unsigned long i = 0; i < NumModes; i++)
+                mParameters.addEnumItem(i, ModeList[i].mName);
+            
+            if (!DoesCoefficients)
+            {
+                mParameters.addBool(MultiIndex, "multi", false);
+                mParameters.setInstantiation();
+            }
+        }
+        
+        mParameters.addBool(DynamicIndex, "dynamic", false);
+        mParameters.setInstantiation();
+        
+        if (!DoesCoefficients)
+            mParameters.addBool(ResetIndex, "reset", true);
+        
+        mParameters.set(serialisedParameters);
+        
+        unsigned long numIns = isDynamic() ? NumParams + 1 : 1;
+        unsigned long numOuts = DoesCoefficients ? NumCoeffs : isMulti() ? NumModes : 1;
+        
+        setIO(numIns, numOuts);
+        
+        if (isDynamic())
+        {
+            for (unsigned long i = 1; i <= NumParams; i++)
+                setInputMode(i, false, false, false);
+        }
+        
+        addParameterInput();
+    }
+    
+    // Info
+    
+    std::string objectInfo(bool verbose) override
+    {
+        const char *description = T::sDescription.mDescription;
+        
+        if (verbose)
+        {
+            std::string info(description);
+            
+            info.append(": The size of the output is equal to the input. ");
+            
+            if (HasModes)
+            {
+                if (DoesCoefficients)
+                    info.append("The filter mode is set by the mode parameter. ");
+                else
+                    info.append("The filter can be set to output a single mode at a time (set with the mode parameter) or all modes simulatanously (set with the multi parameter). ");
+            }
+            
+            info.append("Filter settings may be updated either as parameters, or, when the dynamic parameter is set on, on a per sample basis via dedicated inputs. "
+                        "When in dynamic mode the parameter values are used if an input is disconnected, or empty. "
+                        "Thus you can mix dynamic and static settings.");
+            
+            if (!DoesCoefficients)
+                info.append(" If you wish to process streams (rather than individual frames) then you can set the reset parameter off (which will not clear the filter memories between frames.");
+            
+            return info;
+        }
+        return formatInfo("#.", description);
+    }
+    
+    std::string inputInfo(unsigned long idx, bool verbose) override
+    {
+        if (!idx)
+            return DoesCoefficients ? "Trigger Input" : "Input";
+        
+        if (idx >= getNumIns() - 1)
+            return parameterInputInfo(verbose);
+        
+        return formatInfo("# - values per sample", "#", ParamList[idx - 1].mInputName, verbose);
+    }
+    
+    std::string outputInfo(unsigned long idx, bool verbose) override
+    {
+        return mImplentation.outputInfo(*this, idx, verbose);
+    }
+    
+private:
+    
+    // Params
+    
+    bool isMulti() const        { return !DoesCoefficients && HasModes && mParameters.getBool(MultiIndex); }
+    bool isDynamic() const      { return mParameters.getBool(DynamicIndex); }
+    bool getReset() const       { return !DoesCoefficients && mParameters.getBool(ResetIndex); }
+    size_t getMode() const      { return HasModes ? static_cast<size_t>(mParameters.getInt(ModeIndex)) : 0; }
+    
+    // Info
+    
+    FrameLib_Parameters::Info *getParamInfo()
+    {
+        static ParameterInfo info;
+        return &info;
+    }
+    
+    // Helpers for updating the filter coefficients
+    
+    template <size_t Idx>
+    double getFilterParamVal(ParamInputs& inputs, unsigned long i)
+    {
+        if (inputs[Idx].mInput && inputs[Idx].mSize)
+        {
+            const Clip &c = ParamList[Idx].mClip;
+            
+            const double val = inputs[Idx].mInput[std::min(i, inputs[Idx].mSize - 1)];
+            
+            switch (c.getType())
+            {
+                case Clip::kNone:   return val;
+                case Clip::kMin:    return std::max(val, c.mMin);
+                case Clip::kMax:    return std::min(val, c.mMax);
+                case Clip::kClip:   return std::min(std::max(val, c.mMin), c.mMax);
+            }
+        }
+        
+        return mParameters.getValue(Idx);
+    }
+    
+    void process() override
+    {
+        mImplentation.process(*this);
+    }
+    
+    // Select the correct implementation
+    
+    Implementation<T, DoesCoefficients> mImplentation;
 };
-
-template <class T>
-using FrameLib_Filter = FrameLib_Filters::FrameLib_Filter<T>;
-
-template <class T>
-using FrameLib_Coefficients = FrameLib_Filters::FrameLib_Coefficients<T>;
 
 #endif
