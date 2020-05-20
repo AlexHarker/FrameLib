@@ -146,7 +146,7 @@ class FrameLib_Filter final : public FrameLib_Processor
         template <typename... Args>
         void operator()(U& object, FrameLib_Filter& obj, size_t mode, Args... args)
         {
-            object.template modeSelect<Idx-1, Args...>(obj, mode, args...);
+            object.template modeSelect<Idx-1>(obj, mode, args...);
         }
     };
     
@@ -342,7 +342,7 @@ class FrameLib_Filter final : public FrameLib_Processor
         
         std::string outputInfo(FrameLib_Filter& obj, unsigned long idx, bool verbose)
         {
-            return T::sCoeffs[idx].mOutputName;
+            return T::sCoefficients[idx].mOutputName;
         }
         
         template <size_t Idx, size_t... Is, size_t... Js>
@@ -365,7 +365,7 @@ class FrameLib_Filter final : public FrameLib_Processor
                 }
             }
             else
-                ModeRecurse<Idx>()(*this, obj, mode, outputs, inputs, size);
+                ModeRecurse<Idx>()(*this, obj, mode, outputs, inputs, size, ParamIndices(), CoeffIndices());
         }
         
         // Process
