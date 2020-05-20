@@ -3,11 +3,13 @@
 
 // Filters
 
-#include "FrameLib_SVF.h"
+#include "FrameLib_Biquad.h"
+#include "FrameLib_BiquadCoeff.h"
 #include "FrameLib_OnePole.h"
 #include "FrameLib_OnePoleZero.h"
 #include "FrameLib_Resonant.h"
 #include "FrameLib_SallenAndKey.h"
+#include "FrameLib_SVF.h"
 
 // Generators
 
@@ -163,12 +165,14 @@ extern "C" int C74_EXPORT main(void)
     
     // Filters
     
-    FrameLib_MaxClass_Expand<FrameLib_SVF>::makeClass("fl.svf~");
+    FrameLib_MaxClass_Expand<FrameLib_Biquad>::makeClass("fl.biquad~");
+    FrameLib_MaxClass_Expand<FrameLib_BiquadCoeffBiquadCoeff>::makeClass("fl.biquadcoeff~");
     FrameLib_MaxClass_Expand<FrameLib_OnePole>::makeClass("fl.onepole~");
     FrameLib_MaxClass_Expand<FrameLib_OnePoleZero>::makeClass("fl.onepolezero~");
     FrameLib_MaxClass_Expand<FrameLib_Resonant>::makeClass("fl.resonant~");
     FrameLib_MaxClass_Expand<FrameLib_SallenAndKey>::makeClass("fl.sallenkey~");
-  
+    FrameLib_MaxClass_Expand<FrameLib_SVF>::makeClass("fl.svf~");
+
     // Generators
     
     FrameLib_MaxClass_Expand<FrameLib_Gaussian>::makeClass("fl.gaussian~");
