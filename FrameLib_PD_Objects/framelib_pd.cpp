@@ -7,7 +7,6 @@
 #include "FrameLib_BiquadCoeff.h"
 #include "FrameLib_OnePole.h"
 #include "FrameLib_OnePoleZero.h"
-#include "FrameLib_Resonant.h"
 #include "FrameLib_SallenAndKey.h"
 #include "FrameLib_SVF.h"
 
@@ -315,7 +314,6 @@ extern "C" void framelib_pd_setup(void)
     FrameLib_PDClass_Expand<FrameLib_BiquadCoeff>::makeClass("fl.biquadcoeff~");
     FrameLib_PDClass_Expand<FrameLib_OnePole>::makeClass("fl.onepole~");
     FrameLib_PDClass_Expand<FrameLib_OnePoleZero>::makeClass("fl.onepolezero~");
-    FrameLib_PDClass_Expand<FrameLib_Resonant>::makeClass("fl.resonant~");
     FrameLib_PDClass_Expand<FrameLib_SallenAndKey>::makeClass("fl.sallenkey~");
     FrameLib_PDClass_Expand<FrameLib_SVF>::makeClass("fl.svf~");
 
