@@ -61,11 +61,11 @@ namespace FrameLib_Filters
         
         constexpr static CoeffType sCoefficients
         {
-            Coeff("A1 Coefficient"),
-            Coeff("A2 Coefficient"),
-            Coeff("B0 Coefficient"),
-            Coeff("B1 Coefficient"),
-            Coeff("B2 Coefficient")
+            Coeff("a1", "A1 Coefficient"),
+            Coeff("a2", "A2 Coefficient"),
+            Coeff("b0", "B0 Coefficient"),
+            Coeff("b1", "B1 Coefficient"),
+            Coeff("b2", "B2 Coefficient")
         };
         
         constexpr static ModeType sModes

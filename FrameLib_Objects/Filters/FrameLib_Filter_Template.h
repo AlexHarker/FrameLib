@@ -112,8 +112,10 @@ namespace FrameLib_Filters
         
         struct Coeff
         {
-            constexpr Coeff(const char *outputName) : mOutputName(outputName) {}
+            constexpr Coeff(const char *name, const char *outputName)
+            : mName(name), mOutputName(outputName) {}
             
+            const char *mName;
             const char *mOutputName;
         };
         
@@ -176,6 +178,10 @@ class FrameLib_Filter final : public FrameLib_Processor
         unsigned long mSize = 0;
     };
     
+    // Parameter Mode
+    
+    enum ParamMode { kStatic, kDynamic, kTagged };
+    
     // Types and constexpr values
     
     static constexpr size_t NumParams = std::tuple_size<typename T::ParamType>::value;
@@ -187,8 +193,8 @@ class FrameLib_Filter final : public FrameLib_Processor
     
     static constexpr unsigned long ModeIndex = NumParams;
     static constexpr unsigned long MultiIndex = NumParams + 1;
-    static constexpr unsigned long DynamicIndex = NumParams + (HasModes ? DoesCoefficients ? 1 : 2 : 0);
-    static constexpr unsigned long ResetIndex = DynamicIndex + 1;
+    static constexpr unsigned long ParamModeIndex = NumParams + (HasModes ? DoesCoefficients ? 1 : 2 : 0);
+    static constexpr unsigned long ResetIndex = ParamModeIndex + 1;
     
     static constexpr const typename T::ParamType& ParamList = T::sParameters;
     static constexpr const typename T::ModeType& ModeList = T::sModes;
@@ -208,6 +214,8 @@ class FrameLib_Filter final : public FrameLib_Processor
         template <size_t Idx>
         using ModeRecurse = ModeSelector<Implementation, Idx>;
 
+        void setup(FrameLib_Filter& obj) {}
+        
         std::string outputInfo(FrameLib_Filter& obj, unsigned long idx, bool verbose)
         {
             if (!obj.isMulti())
@@ -340,13 +348,22 @@ class FrameLib_Filter final : public FrameLib_Processor
         template <size_t Idx>
         using ModeRecurse = ModeSelector<Implementation, Idx>;
         
+        void setup(FrameLib_Filter& obj)
+        {
+            mValueOutput = !obj.isTagged();
+            
+            for (unsigned long i = 0; i < NumCoeffs; i++)
+                mTaggedSize += FrameLib_Parameters::Serial::calcSize(T::sCoefficients[i].mName, 1);
+            
+        }
+                               
         std::string outputInfo(FrameLib_Filter& obj, unsigned long idx, bool verbose)
         {
-            return T::sCoefficients[idx].mOutputName;
+            return obj.isTagged() ? "Tagged Coefficients" : T::sCoefficients[idx].mOutputName;
         }
         
-        template <size_t Idx, size_t... Is, size_t... Js>
-        void modeSelect(FrameLib_Filter& obj, size_t mode, double **outputs, ParamInputs& inputs, unsigned long size, Indices<Is...>, Indices<Js...>)
+        template <size_t Idx, typename V, size_t... Is, size_t... Js>
+        void modeSelect(FrameLib_Filter& obj, size_t mode, V outputs, ParamInputs& inputs, unsigned long size, Indices<Is...>, Indices<Js...>)
         {
             if (Idx == mode)
             {
@@ -373,7 +390,6 @@ class FrameLib_Filter final : public FrameLib_Processor
         void process(FrameLib_Filter& obj)
         {
             ParamInputs inputs;
-            double *outputs[NumCoeffs];
             
             // Get Input
             
@@ -392,23 +408,42 @@ class FrameLib_Filter final : public FrameLib_Processor
                 }
             }
             
-            // Setup outputs
+            // Setup outputs and do DSP
             
-            for (unsigned long i = 0; i < numOuts; i++)
-                obj.requestOutputSize(i, sizeIn);
+            if (mValueOutput)
+            {
+                double *outputs[NumCoeffs];
+
+                for (unsigned long i = 0; i < numOuts; i++)
+                    obj.requestOutputSize(i, sizeIn);
+                
+                obj.allocateOutputs();
+                
+                for (unsigned long i = 0; i < numOuts; i++)
+                    outputs[i] = obj.getOutput(i, &sizeOut);
+                
+                modeSelect<NumModes-1>(obj, obj.getMode(), outputs, inputs, sizeOut, ParamIndices(), CoeffIndices());
+            }
+            else
+            {
+                double outputs[NumCoeffs][1];
+
+                obj.requestOutputSize(0, mTaggedSize);
+                obj.allocateOutputs();
+                
+                modeSelect<NumModes-1>(obj, obj.getMode(), outputs, inputs, 1, ParamIndices(), CoeffIndices());
             
-            obj.allocateOutputs();
-            
-            for (unsigned long i = 0; i < numOuts; i++)
-                outputs[i] = obj.getOutput(i, &sizeOut);
-            
-            // DSP
-            
-            modeSelect<NumModes-1>(obj, obj.getMode(), outputs, inputs, sizeOut, ParamIndices(), CoeffIndices());
+                FrameLib_Parameters::Serial *tagged = obj.getOutput(0);
+                
+                for (unsigned long i = 0; i < NumCoeffs; i++)
+                    tagged->write(T::sCoefficients[i].mName, &outputs[i][0], 1);
+            }
         }
         
     private:
         
+        bool mValueOutput = true;
+        size_t mTaggedSize = 0;
         T mFilter;
         FilterParams mFilterParameters;
     };
@@ -441,9 +476,18 @@ class FrameLib_Filter final : public FrameLib_Processor
                     add("Sets multi mode (in which all filter modes are output separately).");
             }
             
-            add("Sets dynamic mode (which creates inputs for each settings of the filter).");
             if (!DoesCoefficients)
+            {
+                add("Sets the coefficients input/output mode. "
+                    "static - inputs are parameters and outputs are separate coefficient values. "
+                    "dynamic - inputs can be a mix of parameters and input frames and outputs are separate frames of coefficient values. "
+                    "tagged - inputs are parameters and the output is a single tagged frame.");
+            }
+            else
+            {
+                add("Sets dynamic mode (which creates inputs for each settings of the filter).");
                 add("Sets whether filter memories are reset before processing a new frame.");
+            }
         }
     };
     
@@ -481,16 +525,26 @@ public:
             }
         }
         
-        mParameters.addBool(DynamicIndex, "dynamic", false);
-        mParameters.setInstantiation();
-        
-        if (!DoesCoefficients)
+        if (DoesCoefficients)
+        {
+            mParameters.addEnum(ParamModeIndex, "coefficients");
+            mParameters.addEnumItem(kStatic, "static");
+            mParameters.addEnumItem(kDynamic, "dynamic");
+            mParameters.addEnumItem(kTagged, "tagged");
+
+            mParameters.setInstantiation();
+        }
+        else
+        {
+            mParameters.addBool(ParamModeIndex, "dynamic", false);
+            mParameters.setInstantiation();
             mParameters.addBool(ResetIndex, "reset", true);
+        }
         
         mParameters.set(serialisedParameters);
         
         unsigned long numIns = isDynamic() ? NumParams + 1 : 1;
-        unsigned long numOuts = DoesCoefficients ? NumCoeffs : isMulti() ? NumModes : 1;
+        unsigned long numOuts = DoesCoefficients ? (isTagged() ? 1 : NumCoeffs) : isMulti() ? NumModes : 1;
         
         setIO(numIns, numOuts);
         
@@ -500,7 +554,12 @@ public:
                 setInputMode(i, false, false, false);
         }
         
+        if (isTagged())
+            setOutputType(0, kFrameTagged);
+        
         addParameterInput();
+        
+        mImplementation.setup(*this);
     }
     
     // Info
@@ -548,7 +607,7 @@ public:
     
     std::string outputInfo(unsigned long idx, bool verbose) override
     {
-        return mImplentation.outputInfo(*this, idx, verbose);
+        return mImplementation.outputInfo(*this, idx, verbose);
     }
     
 private:
@@ -556,7 +615,8 @@ private:
     // Params
     
     bool isMulti() const        { return !DoesCoefficients && HasModes && mParameters.getBool(MultiIndex); }
-    bool isDynamic() const      { return mParameters.getBool(DynamicIndex); }
+    bool isDynamic() const      { return mParameters.getInt(ParamModeIndex) == kDynamic; }
+    bool isTagged() const       { return mParameters.getInt(ParamModeIndex) == kTagged; }
     bool getReset() const       { return !DoesCoefficients && mParameters.getBool(ResetIndex); }
     size_t getMode() const      { return HasModes ? static_cast<size_t>(mParameters.getInt(ModeIndex)) : 0; }
     
@@ -593,12 +653,12 @@ private:
     
     void process() override
     {
-        mImplentation.process(*this);
+        mImplementation.process(*this);
     }
     
     // Select the correct implementation
     
-    Implementation<T, DoesCoefficients> mImplentation;
+    Implementation<T, DoesCoefficients> mImplementation;
 };
 
 #endif
