@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8020472231BDCB80062447A"
-               BuildableName = "maxframelib.mxo"
-               BlueprintName = "maxframelib"
+               BuildableName = "framelib_max.mxo"
+               BlueprintName = "framelib_max"
                ReferencedContainer = "container:framelib~.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -53,8 +53,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B8020472231BDCB80062447A"
-            BuildableName = "maxframelib.mxo"
-            BlueprintName = "maxframelib"
+            BuildableName = "framelib_max.mxo"
+            BlueprintName = "framelib_max"
             ReferencedContainer = "container:framelib~.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -71,8 +71,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B8020472231BDCB80062447A"
-            BuildableName = "maxframelib.mxo"
-            BlueprintName = "maxframelib"
+            BuildableName = "framelib_max.mxo"
+            BlueprintName = "framelib_max"
             ReferencedContainer = "container:framelib~.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
