@@ -6,7 +6,7 @@
 
 namespace FrameLib_Filters
 {
-    class Biquad : public FrameLib_FilterBase<Biquad, 5, 1>
+    class Biquad : public Filter<Biquad, 5, 1, false>
     {
         
     public:

@@ -6,7 +6,7 @@
 
 namespace FrameLib_Filters
 {
-    class SallenAndKey : public FrameLib_FilterBase<SallenAndKey, 2, 3>
+    class SallenAndKey : public Filter<SallenAndKey, 2, 3, true>
     {
         
     public:

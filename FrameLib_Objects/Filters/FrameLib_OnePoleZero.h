@@ -6,7 +6,7 @@
 
 namespace FrameLib_Filters
 {
-    class OnePoleZero : public FrameLib_FilterBase<OnePoleZero, 1, 2>
+    class OnePoleZero : public Filter<OnePoleZero, 1, 2, true>
     {
         
     public:

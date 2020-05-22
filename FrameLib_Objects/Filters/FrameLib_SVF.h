@@ -6,7 +6,7 @@
 
 namespace FrameLib_Filters
 {
-    class SVF : public FrameLib_FilterBase<SVF, 2, 3>
+    class SVF : public Filter<SVF, 2, 3, true>
     {
         
     public:

@@ -6,6 +6,7 @@
 #include <cmath>
 #include <limits>
 #include <tuple>
+#include <type_traits>
 
 #include "FrameLib_DSP.h"
 
@@ -13,8 +14,8 @@ namespace FrameLib_Filters
 {
     // Base class template for filter implementations  (N.B. - set NumCoeffs for coefficient calculators)
     
-    template <class T, size_t NumParams, size_t NumModes, size_t NumCoeffs = 0>
-    struct FrameLib_FilterBase
+    template <class T, size_t NumParams, size_t NumModes, size_t NumCoeffs, bool DoesMulti>
+    struct Base
     {
         // Construct a method suitable for the coefficient mode / number of coefficients
         
@@ -132,7 +133,14 @@ namespace FrameLib_Filters
         using ModeType = std::array<Mode, NumModes>;
         using ParamType = std::array<Param, NumParams>;
         using CoeffType = std::array<Coeff, NumCoeffs>;
+        using MultiType = std::integral_constant<bool, DoesMulti>;
     };
+    
+    template <class T, size_t NumParams, size_t NumModes, bool DoesMulti>
+    using Filter = Base<T, NumParams, NumModes, 0, DoesMulti>;
+    
+    template <class T, size_t NumParams, size_t NumModes, size_t NumCoeff>
+    using Coefficients = Base<T, NumParams, NumModes, NumCoeff, false>;
 }
 
 // Main class template for FrameLib DSP objects
@@ -188,12 +196,13 @@ class FrameLib_Filter final : public FrameLib_Processor
     static constexpr size_t NumModes = std::tuple_size<typename T::ModeType>::value;
     static constexpr size_t NumCoeffs = std::tuple_size<typename T::CoeffType>::value;
     
-    static constexpr bool HasModes = NumModes > 1;
+    static constexpr bool DoesModes = NumModes > 1;
     static constexpr bool DoesCoefficients = NumCoeffs != 0;
+    static constexpr bool DoesMulti = T::MultiType::value && DoesModes && !DoesCoefficients;
     
     static constexpr unsigned long ModeIndex = NumParams;
     static constexpr unsigned long MultiIndex = NumParams + 1;
-    static constexpr unsigned long ParamModeIndex = NumParams + (HasModes ? DoesCoefficients ? 1 : 2 : 0);
+    static constexpr unsigned long ParamModeIndex = NumParams + (DoesModes ? DoesMulti ? 2 : 1 : 0);
     static constexpr unsigned long ResetIndex = ParamModeIndex + 1;
     
     static constexpr const typename T::ParamType& ParamList = T::sParameters;
@@ -457,9 +466,9 @@ class FrameLib_Filter final : public FrameLib_Processor
             for (unsigned long i = 0; i < NumParams; i++)
                 add(ParamList[i].mInfo);
             
-            if (HasModes)
+            if (DoesModes)
             {
-                std::string mode("Sets the filter mode when multi mode is off:");
+                std::string mode(DoesMulti ? "Sets the filter mode when multi mode is off:" : "Sets the filter mode:");
                 
                 for (unsigned long i = 0; i < NumModes; i++)
                 {
@@ -472,7 +481,7 @@ class FrameLib_Filter final : public FrameLib_Processor
                 
                 add(mode);
                 
-                if (!DoesCoefficients)
+                if (DoesMulti)
                     add("Sets multi mode (in which all filter modes are output separately).");
             }
             
@@ -512,17 +521,17 @@ public:
             }
         }
         
-        if (HasModes)
+        if (DoesModes)
         {
             mParameters.addEnum(ModeIndex, "mode", ModeIndex);
             for (unsigned long i = 0; i < NumModes; i++)
                 mParameters.addEnumItem(i, ModeList[i].mName);
-            
-            if (!DoesCoefficients)
-            {
-                mParameters.addBool(MultiIndex, "multi", false);
-                mParameters.setInstantiation();
-            }
+        }
+        
+        if (DoesMulti)
+        {
+            mParameters.addBool(MultiIndex, "multi", false);
+            mParameters.setInstantiation();
         }
         
         if (DoesCoefficients)
@@ -574,12 +583,12 @@ public:
             
             info.append(": The size of the output is equal to the input. ");
             
-            if (HasModes)
+            if (DoesModes)
             {
-                if (DoesCoefficients)
-                    info.append("The filter mode is set by the mode parameter. ");
-                else
+                if (DoesMulti)
                     info.append("The filter can be set to output a single mode at a time (set with the mode parameter) or all modes simulatanously (set with the multi parameter). ");
+                else
+                    info.append("The filter mode is set by the mode parameter. ");
             }
             
             info.append("Filter settings may be updated either as parameters, or, when the dynamic parameter is set on, on a per sample basis via dedicated inputs. "
@@ -614,11 +623,11 @@ private:
     
     // Params
     
-    bool isMulti() const        { return !DoesCoefficients && HasModes && mParameters.getBool(MultiIndex); }
+    bool isMulti() const        { return DoesMulti && mParameters.getBool(MultiIndex); }
     bool isDynamic() const      { return mParameters.getInt(ParamModeIndex) == kDynamic; }
     bool isTagged() const       { return mParameters.getInt(ParamModeIndex) == kTagged; }
     bool getReset() const       { return !DoesCoefficients && mParameters.getBool(ResetIndex); }
-    size_t getMode() const      { return HasModes ? static_cast<size_t>(mParameters.getInt(ModeIndex)) : 0; }
+    size_t getMode() const      { return DoesModes ? static_cast<size_t>(mParameters.getInt(ModeIndex)) : 0; }
     
     // Info
     

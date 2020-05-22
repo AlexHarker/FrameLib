@@ -6,7 +6,7 @@
 
 namespace FrameLib_Filters
 {
-    class BiquadCoeff : public FrameLib_FilterBase<BiquadCoeff, 3, 8, 5>
+    class BiquadCoeff : public Coefficients<BiquadCoeff, 3, 8, 5>
     {
         struct Common
         {
