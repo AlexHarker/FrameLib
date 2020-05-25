@@ -9,7 +9,7 @@ FrameLib_Dispatch::Select::Select(FrameLib_Context context, const FrameLib_Param
 {
     const int strBufSize = 32;
     char name[strBufSize];
-    snprintf(name, strBufSize, "input_%2ld", num + 1);
+    snprintf(name, strBufSize, "input_%02ld", num + 1);
     mParameters.addInt(kActiveIn, name, 0);
     
     mParameters.setErrorReportingEnabled(false);
@@ -44,7 +44,6 @@ void FrameLib_Dispatch::Select::process()
     prepareCopyInputToOutput(mActiveIn, 0);
     allocateOutputs();
     copyInputToOutput(mActiveIn, 0);
-
 }
 
 // Main Class
@@ -72,7 +71,7 @@ FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, const FrameLib_Pa
     {
         const int strBufSize = 32;
         char name[strBufSize];
-        snprintf(name, strBufSize, "input_%2ld", i + 1);
+        snprintf(name, strBufSize, "input_%02ld", i + 1);
         mParameters.addInt(kActiveIn1 + i, name, 0);
     }
               
