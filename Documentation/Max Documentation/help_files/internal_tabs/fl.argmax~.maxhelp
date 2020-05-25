@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 0,
-			"revision" : 6,
+			"minor" : 1,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -49,8 +49,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -110,8 +110,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 0,
-							"revision" : 6,
+							"minor" : 1,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -151,7 +151,7 @@
 									"maxclass" : "ezdac~",
 									"numinlets" : 2,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 293.0, 45.0, 45.0 ]
+									"patching_rect" : [ 15.0, 316.5, 45.0, 45.0 ]
 								}
 
 							}
@@ -162,7 +162,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 261.5, 50.0, 23.0 ],
+									"patching_rect" : [ 15.0, 285.0, 50.0, 23.0 ],
 									"text" : "1023."
 								}
 
@@ -174,7 +174,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 222.5, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 240.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -186,7 +186,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 144.5, 236.0, 23.0 ],
+									"patching_rect" : [ 15.0, 150.0, 236.0, 23.0 ],
 									"text" : "fl.ramp~ /length 1024 /scale normalised"
 								}
 
@@ -199,7 +199,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 253.0, 148.5, 60.25, 15.0 ]
+									"patching_rect" : [ 253.0, 154.0, 60.25, 15.0 ]
 								}
 
 							}
@@ -210,7 +210,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 183.5, 70.0, 23.0 ],
+									"patching_rect" : [ 15.0, 195.0, 70.0, 23.0 ],
 									"text" : "fl.argmax~"
 								}
 
@@ -235,7 +235,7 @@
 									"maxclass" : "live.line",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 67.0, 267.0, 60.25, 15.0 ]
+									"patching_rect" : [ 67.0, 290.5, 60.25, 15.0 ]
 								}
 
 							}
@@ -246,7 +246,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 129.25, 259.0, 311.0, 36.0 ],
+									"patching_rect" : [ 129.25, 282.5, 311.0, 36.0 ],
 									"text" : "The last value of fl.ramp~ will always be the maximum so we would expect (length - 1) for output."
 								}
 
@@ -258,7 +258,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.25, 140.5, 166.0, 36.0 ],
+									"patching_rect" : [ 315.25, 146.0, 168.0, 36.0 ],
 									"text" : "Frame counting from 0 to 1 with 1024 discrete points."
 								}
 
@@ -297,6 +297,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-17", 1 ],
+									"midpoints" : [ 24.5, 276.0, 55.5, 276.0 ],
 									"source" : [ "obj-14", 0 ]
 								}
 
@@ -357,7 +358,7 @@
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
 				"name" : "fl.helpname.js",
-				"bootpath" : "~/FrameLib/Current Test Version/FrameLib/misc",
+				"bootpath" : "~/dev/FrameLib/Current Test Version/FrameLib/misc",
 				"patcherrelativepath" : "../../../../Current Test Version/FrameLib/misc",
 				"type" : "TEXT",
 				"implicit" : 1
