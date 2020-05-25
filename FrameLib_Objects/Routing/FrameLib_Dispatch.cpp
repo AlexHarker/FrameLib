@@ -12,6 +12,8 @@ FrameLib_Dispatch::Select::Select(FrameLib_Context context, const FrameLib_Param
     snprintf(name, strBufSize, "input_%02ld", num + 1);
     mParameters.addInt(kActiveIn, name, 0);
     
+    // FIX - this means that we don't get errors at all... this needs review
+
     mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
     

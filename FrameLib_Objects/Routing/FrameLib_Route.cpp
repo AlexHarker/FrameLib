@@ -9,6 +9,8 @@ FrameLib_Route::Valve::Valve(FrameLib_Context context, const FrameLib_Parameters
 {
     mParameters.addInt(kActiveValve, "output", 0);
 
+    // FIX - this means that we don't get errors at all... this needs review
+    
     mParameters.setErrorReportingEnabled(false);
     mParameters.set(serialisedParameters);
     
