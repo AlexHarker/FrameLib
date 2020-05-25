@@ -22,7 +22,7 @@
  
  @ingroup Multistream
  
- @brief a abstract class proving multi-stream connnections and the means to the number of streams in a network.
+ @brief a abstract class proving multistream connnections and the means to the number of streams in a network.
  
  */
 
@@ -115,7 +115,7 @@ private:
  
  @ingroup Multistream
 
- @brief a template class for providing multi-stream support to any FrameLib_Block class.
+ @brief a template class for providing multistream support to any FrameLib_Block class.
  
  */
 

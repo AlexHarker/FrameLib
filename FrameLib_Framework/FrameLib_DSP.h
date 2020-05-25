@@ -18,7 +18,7 @@
  
  @ingroup DSP
 
- @brief an abstract class containing the core of the DSP processing system, which handles single-stream scheduling.
+ @brief an abstract class containing the core of the DSP processing system, which handles single stream scheduling.
  
  */
 

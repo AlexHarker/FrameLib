@@ -13,9 +13,9 @@ FrameLib_StreamID::FrameLib_StreamID(FrameLib_Context context, const FrameLib_Pa
 
 std::string FrameLib_StreamID::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs the stream id for the current stream in a multi-stream connection: "
+    return formatInfo("Outputs the stream id for the current stream in a multistream connection: "
                       "Any input triggers a single value output - the stream id (counting from one).",
-                      "Outputs the stream id for the current stream in a multi-stream connection.", verbose);
+                      "Outputs the stream id for the current stream in a multistream connection.", verbose);
 }
 
 std::string FrameLib_StreamID::inputInfo(unsigned long idx, bool verbose)
