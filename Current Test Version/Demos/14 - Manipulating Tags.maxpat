@@ -4,8 +4,8 @@
 		"appversion" : 		{
 			"major" : 7,
 			"minor" : 3,
-			"revision" : 5,
-			"architecture" : "x86",
+			"revision" : 6,
+			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
@@ -591,9 +591,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 79.0, 205.5, 287.0, 22.0 ],
+					"patching_rect" : [ 79.0, 205.5, 109.0, 22.0 ],
 					"style" : "",
-					"text" : "fl.0dfsvf~ 500. 0.7 bpf"
+					"text" : "fl.svf~ 500. 0.7 bpf"
 				}
 
 			}
@@ -748,7 +748,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-23", 1 ],
-					"midpoints" : [ 96.0, 178.25, 356.5, 178.25 ],
+					"midpoints" : [ 96.0, 178.25, 178.5, 178.25 ],
 					"order" : 1,
 					"source" : [ "obj-41", 0 ]
 				}
@@ -902,7 +902,11 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.0dfsvf~.mxo",
+				"name" : "fl.interval~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.svf~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -927,6 +931,10 @@
 			}
 , 			{
 				"name" : "fl.untag~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "fl.trace~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
