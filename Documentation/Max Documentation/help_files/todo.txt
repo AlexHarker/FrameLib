@@ -1,31 +1,27 @@
-fl.dispatch~
-fl.route~
-fl.select~
-fl.kurtosis~
-fl.vmin~
-fl.pattern~
-fl.vmax~
-fl.peaks~
-fl.spread~
-fl.complexplus~
-fl.gaussian~
-fl.multitaper~
-fl.correlate~
-fl.ifft~
-fl.window~
-fl.register~
-fl.ewmsd~
-fl.lag~
-fl.ewma~
-fl.framedelta~
 fl.timemedian~
 fl.timemean~
 fl.timestddev~
 fl.chain~
 fl.map~
+fl.correlate~
+fl.ifft~
+
+-- fl.ew --
+fl.ewma~
+fl.ewmsd~
+
+-- weird ones --
+fl.peaks~
+fl.pattern~
+fl.multitaper~
+fl.spread~
+fl.kurtosis~
+fl.dispatch~
+fl.gaussian~
 fl.samplerate~
 
 -- Complex --
+fl.complexplus~
 fl.complexdivide~
 fl.complexmultiply~
 fl.complexpow~
