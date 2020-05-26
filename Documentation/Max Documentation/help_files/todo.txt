@@ -1,9 +1,3 @@
-fl.timemedian~
-fl.timemean~
-fl.timestddev~
-fl.chain~
-fl.map~
-fl.correlate~
 fl.ifft~
 
 -- fl.ew --
@@ -16,31 +10,11 @@ fl.pattern~
 fl.multitaper~
 fl.spread~
 fl.kurtosis~
-fl.dispatch~
-fl.gaussian~
-fl.samplerate~
-
--- Complex --
-fl.complexplus~
-fl.complexdivide~
-fl.complexmultiply~
-fl.complexpow~
-fl.getparam~
-fl.complexpr~
-fl.complexsqrt~
-fl.complexsinh~
-fl.complextan~
-fl.complexcos~
-fl.complexsin~
-fl.complexcosh~
-fl.complexlog10~
-fl.complextanh~
-fl.complexconj~
-fl.complexexp~
-fl.complexlog~
-fl.combinetags~
-fl.complexminus~
 
 -- Might go --
 fl.spatial~
 fl.coordinatesystem~
+
+-- Broken or subject to change --
+fl.samplerate~
+fl.dispatch~

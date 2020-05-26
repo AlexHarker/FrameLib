@@ -147,13 +147,72 @@
 						"showontab" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
+									"id" : "obj-9",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 123.0, 420.0, 82.0, 23.0 ],
+									"text" : "loadmess 50"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-8",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 180.0, 450.0, 315.0, 21.0 ],
+									"presentation_linecount" : 2,
+									"text" : "amount of frames to calculate mean over"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-7",
+									"maxclass" : "number",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "bang" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 123.0, 450.0, 50.0, 23.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 123.0, 495.0, 99.0, 23.0 ],
+									"text" : "num_frames $1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 123.0, 540.0, 124.0, 23.0 ],
+									"text" : "fl.frommax~ params"
+								}
+
+							}
+, 							{
+								"box" : 								{
 									"id" : "obj-6",
 									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 437.0, 184.5, 175.0, 36.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Wiggle the multislider to create some changes"
 								}
 
@@ -165,7 +224,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 437.0, 627.5, 175.0, 50.0 ],
+									"patching_rect" : [ 315.0, 672.5, 175.0, 50.0 ],
 									"text" : "Watch a smoothed version of the changes you make in the top multislider appear"
 								}
 
@@ -176,7 +235,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 144.0, 466.0, 217.0, 21.0 ],
+									"patching_rect" : [ 144.0, 581.0, 217.0, 21.0 ],
 									"text" : "Take the mean of the last 50 frames"
 								}
 
@@ -188,7 +247,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 195.0, 378.5, 172.0, 36.0 ],
+									"patching_rect" : [ 195.0, 342.0, 175.0, 36.0 ],
 									"text" : "Every 4096 samples sample the multislider's output"
 								}
 
@@ -203,7 +262,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 15.0, 555.0, 420.0, 195.0 ],
+									"patching_rect" : [ 15.0, 645.0, 285.0, 105.0 ],
 									"size" : 500,
 									"slidercolor" : [ 0.501960784313725, 0.976470588235294, 0.470588235294118, 1.0 ]
 								}
@@ -216,7 +275,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 345.0, 101.0, 23.0 ],
+									"patching_rect" : [ 60.0, 330.0, 101.0, 23.0 ],
 									"text" : "fl.interval~ 4096"
 								}
 
@@ -244,7 +303,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 420.0, 77.0, 23.0 ],
+									"patching_rect" : [ 15.0, 375.0, 77.0, 23.0 ],
 									"text" : "fl.frommax~"
 								}
 
@@ -256,7 +315,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 510.0, 62.0, 23.0 ],
+									"patching_rect" : [ 15.0, 615.0, 62.0, 23.0 ],
 									"text" : "fl.tomax~"
 								}
 
@@ -268,7 +327,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 465.0, 127.0, 23.0 ],
+									"patching_rect" : [ 15.0, 580.0, 127.0, 23.0 ],
 									"text" : "fl.timemean~ 100 50"
 								}
 
@@ -301,13 +360,20 @@
 									"mode" : 0,
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 7.0, 328.0, 186.0, 122.0 ],
+									"patching_rect" : [ 7.0, 315.0, 186.0, 90.0 ],
 									"proportion" : 0.5
 								}
 
 							}
  ],
 						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-13", 1 ],
+									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+, 							{
 								"patchline" : 								{
 									"destination" : [ "obj-26", 0 ],
 									"source" : [ "obj-13", 0 ]
@@ -323,7 +389,17 @@
 							}
 , 							{
 								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"midpoints" : [ 24.5, 534.0, 132.5, 534.0 ],
+									"order" : 0,
+									"source" : [ "obj-28", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
 									"destination" : [ "obj-13", 0 ],
+									"order" : 1,
 									"source" : [ "obj-28", 0 ]
 								}
 
@@ -338,8 +414,29 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-28", 0 ],
-									"midpoints" : [ 69.5, 405.0, 24.5, 405.0 ],
+									"midpoints" : [ 69.5, 363.5, 24.5, 363.5 ],
 									"source" : [ "obj-31", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-4", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"source" : [ "obj-7", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-7", 0 ],
+									"source" : [ "obj-9", 0 ]
 								}
 
 							}

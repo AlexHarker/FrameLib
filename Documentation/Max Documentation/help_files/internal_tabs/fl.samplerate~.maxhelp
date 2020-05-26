@@ -214,12 +214,12 @@
 													"presentation_rect" : [ 12.0, 14.0, 154.0, 305.0 ],
 													"saved_attribute_attributes" : 													{
 														"valueof" : 														{
+															"parameter_shortname" : "live.tab",
 															"parameter_enum" : [ "value", "nyquist", "samples->ms", "samples->seconds", "ms->samples", "seconds->samples", "norm->freq", "halfnorm->freq", "freq->norm", "freq->halfnorm" ],
 															"parameter_type" : 2,
 															"parameter_unitstyle" : 0,
 															"parameter_longname" : "live.tab",
-															"parameter_mmax" : 9,
-															"parameter_shortname" : "live.tab"
+															"parameter_mmax" : 9
 														}
 
 													}
