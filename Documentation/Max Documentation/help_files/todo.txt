@@ -1,5 +1,3 @@
-fl.ifft~
-
 -- fl.ew --
 fl.ewma~
 fl.ewmsd~
