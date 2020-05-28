@@ -46,6 +46,11 @@ def main():
     # Now collect up and move all the templates to the dist
     # We could do this in the previous loop, but I think is clearer
     dest = Path("../../Current Test Version/FrameLib/help")
+    copy_tree(
+        str(templates),
+        str(dest),
+        update=1
+    )
     
 
 
