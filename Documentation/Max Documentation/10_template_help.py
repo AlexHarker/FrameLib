@@ -34,6 +34,14 @@ def edit_help_file(file_edit: str, obj_name: str):
     
 
 def main():
+    # First lets get rid of any existing template
+    for template in os.listdir(help_file_folder):
+        try:
+            os.remove(template)
+        except FileNotFoundError:
+            pass
+
+    # Now lets make a template for each internal tab that we have
     for framelib_obj in remove_ds(os.listdir(externals)):
         name = os.path.splitext(framelib_obj)[0]
         ext = os.path.splitext(framelib_obj)[1]
