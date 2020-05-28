@@ -33,7 +33,7 @@ def main():
             write_json(
                 os.path.join(this_script, 'help_files', 'templates', f'{object_name}.maxhelp'),
                 template, 
-                )
+            )
 
 
     
