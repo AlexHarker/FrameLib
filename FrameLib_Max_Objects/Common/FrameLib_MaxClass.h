@@ -260,15 +260,17 @@ private:
             return operator()(context.getGlobal(), context.getReference());
         }
         
-        size_t operator()(std::pair<t_object *, t_symbol*> key) const
+        size_t operator()(std::tuple<bool, t_object *, t_symbol*> key) const
         {
-            return operator()(key.first, key.second);
+            // N.B. Realtime state isn't used in the hash, but used during full lookup
+            
+            return operator()(std::get<1>(key), std::get<2>(key));
         }
     };
     
     typedef void ServiceMessages(FrameLib_Context);
     
-    using RefKey = std::pair<t_object *, t_symbol *>;
+    using RefKey = std::tuple<bool, t_object *, t_symbol *>;
     using RefData = std::tuple<RefKey, int, Lock, t_object *, unique_object_ptr>;
     using RefMap = std::unordered_map<RefKey, std::unique_ptr<RefData>, Hash>;
     using ResolveMap = std::unordered_map<FrameLib_Context, t_object *, Hash>;
@@ -438,12 +440,13 @@ public:
     
     FrameLib_Context makeContext(const FrameLib_MaxContext& specifier)
     {
-        std::unique_ptr<RefData>& item = mContextRefs[RefKey(specifier.mPatch, specifier.mName)];
+        RefKey key(specifier.mRealtime, specifier.mPatch, specifier.mName);
+        std::unique_ptr<RefData>& item = mContextRefs[key];
         
 		if (!item)
 		{
 			item.reset(new RefData());
-			std::get<0>(*item) = RefKey(specifier.mPatch, specifier.mName);
+			std::get<0>(*item) = key;
             std::get<1>(*item) = 1;
 			std::get<3>(*item) = nullptr;
             std::get<4>(*item) = unique_object_ptr((t_object *)object_new_typed(CLASS_NOBOX, gensym("__fl.message.handler"), 0, nullptr));
@@ -456,7 +459,7 @@ public:
     
     bool isRealtimeContext(FrameLib_Context c) const { return c.getGlobal() == mRTGlobal; }
 
-    t_object *getContextPatch(FrameLib_Context c) { return data<0>(c).first; }
+    t_object *getContextPatch(FrameLib_Context c) { return std::get<1>(data<0>(c)); }
     
     void setContextFinal(FrameLib_Context c, t_object *object) { data<3>(c) = object; }
     
