@@ -1,5 +1,5 @@
 
-#include <FrameLib_MaxClass.h>
+#include "FrameLib_MaxClass.h"
 
 // A max class to communicate with the current context
 
