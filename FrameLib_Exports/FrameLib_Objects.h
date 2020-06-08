@@ -18,7 +18,6 @@
 #include "../FrameLib_Objects/Filters/FrameLib_BiquadCoeff.h"
 #include "../FrameLib_Objects/Filters/FrameLib_OnePole.h"
 #include "../FrameLib_Objects/Filters/FrameLib_OnePoleZero.h"
-#include "../FrameLib_Objects/Filters/FrameLib_SallenAndKey.h"
 #include "../FrameLib_Objects/Filters/FrameLib_SVF.h"
 
 // Generators

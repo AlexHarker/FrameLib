@@ -31,7 +31,6 @@ FrameLib_Biquad,
 FrameLib_BiquadCoeff,
 FrameLib_OnePole,
 FrameLib_OnePoleZero,
-FrameLib_SallenAndKey,
 FrameLib_SVF,
 
 // Generators
