@@ -3,7 +3,7 @@
 
 // Constructor
 
-FrameLib_SampleRate::FrameLib_SampleRate(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 1, 1)
+FrameLib_SampleRate::FrameLib_SampleRate(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1)
 {
     mParameters.addEnum(kMode, "mode", 0);
     mParameters.addEnumItem(kValue, "value");
@@ -16,9 +16,10 @@ FrameLib_SampleRate::FrameLib_SampleRate(FrameLib_Context context, const FrameLi
     mParameters.addEnumItem(kHalfNormToFreq, "halfnorm->freq");
     mParameters.addEnumItem(kFreqToNorm, "freq->norm");
     mParameters.addEnumItem(kFreqToHalfNorm, "freq->halfnorm");
-    mParameters.setInstantiation();
     
     mParameters.set(serialisedParameters);
+    
+    setParameterInput(1);
 }
 
 // Info
