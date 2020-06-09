@@ -19,10 +19,10 @@ FrameLib_Map::FrameLib_Map(FrameLib_Context context, const FrameLib_Parameters::
     mParameters.addDouble(kInHi, "inhi", 1., 2);
     mParameters.addDouble(kOutLo, "outlo", 0., 3);
     mParameters.addDouble(kOutHi, "outhi", 1., 4);
-    mParameters.addDouble(kExponent, "exponent", 1.);
-    
     mParameters.addBool(kClip, "clip", true, 5);
-    
+
+    mParameters.addDouble(kExponent, "exponent", 1.);
+
     mParameters.set(serialisedParameters);
         
     setParameterInput(1);
