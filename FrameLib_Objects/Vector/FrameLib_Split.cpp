@@ -66,7 +66,7 @@ void FrameLib_Split::process()
     else
         split = roundToUInt(mParameters.getValue(kSplit) * sizeIn);
     
-    split = split > sizeIn ? sizeIn : split;
+    split = std::min(split, sizeIn);
     
     requestOutputSize(0, split);
     requestOutputSize(1, sizeIn - split);

@@ -95,7 +95,7 @@ private:
         
         // Get common size
         
-        sizeCommon = sizeIn1 < sizeIn2 ? sizeIn1 : sizeIn2;
+        sizeCommon = std::min(sizeIn1, sizeIn2);
         
         // Calculate output size by mode
         
@@ -105,7 +105,7 @@ private:
                 sizeOut = sizeCommon;
                 break;
             default:
-                sizeOut = sizeIn1 > sizeIn2 ? sizeIn1 : sizeIn2;
+                sizeOut = std::max(sizeIn1, sizeIn2);
                 if (mode == kWrap)
                     sizeOut = sizeIn1 && sizeIn2 ? sizeOut : 0;
                 break;
@@ -116,7 +116,7 @@ private:
         requestOutputSize(0, sizeOut);
         allocateOutputs();
         double *output = getOutput(0, &sizeOut);
-        sizeCommon = sizeCommon > sizeOut ? sizeOut : sizeCommon;
+        sizeCommon = std::min(sizeCommon, sizeOut);
         
         if (!sizeOut)
             return;

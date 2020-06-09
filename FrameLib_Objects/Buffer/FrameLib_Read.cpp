@@ -134,8 +134,7 @@ void FrameLib_Read::process()
         {
             double position = input[i] * conversionFactor;
             
-            position = position > lengthM1 ? lengthM1 : position;
-            position = position < 0.0 ? 0.0 : position;
+            position = std::max(0.0, std::min(position, lengthM1));
     
             positions[i] = position;
             

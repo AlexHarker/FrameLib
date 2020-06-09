@@ -76,9 +76,8 @@ void FrameLib_Subframe::process()
         end = roundToUInt(mParameters.getValue(kEnd) * sizeIn);
     }
     
-    start = start > sizeIn ? sizeIn : start;
-    end = end > sizeIn ? sizeIn : end;
-    end = end < start ? start : end;
+    start = std::min(start, sizeIn);
+    end = std::max(start, std::min(end, sizeIn));
     
     requestOutputSize(0, end - start);
     allocateOutputs();

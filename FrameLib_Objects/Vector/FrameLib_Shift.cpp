@@ -110,7 +110,7 @@ void FrameLib_Shift::process()
         {
             // Limit abs shift to maximum (all padding - doesn't matter which direction)
             
-            absShift = (absShift >= sizeIn) ? sizeIn : absShift;
+            absShift = std::min(absShift, sizeIn);
             
             if (shift >= 0)
             {

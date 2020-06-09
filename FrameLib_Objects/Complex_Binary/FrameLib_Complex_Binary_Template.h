@@ -178,7 +178,7 @@ private:
         
         // Get common size
         
-        unsigned long sizeCommon = sizeIn1 < sizeIn2 ? sizeIn1 : sizeIn2;
+        unsigned long sizeCommon = std::min(sizeIn1, sizeIn2);
         
         // Calculate output size by mode
         
@@ -188,7 +188,7 @@ private:
                 sizeOut = sizeCommon;
                 break;
             default:
-                sizeOut = sizeIn1 > sizeIn2 ? sizeIn1 : sizeIn2;
+                sizeOut = std::max(sizeIn1, sizeIn2);
                 if (mode == kWrap)
                     sizeOut = sizeIn1 && sizeIn2 ? sizeOut : 0;
                 break;
@@ -201,7 +201,7 @@ private:
         allocateOutputs();
         double *outputR = getOutput(0, &sizeOut);
         double *outputI = getOutput(1, &sizeOut);
-        sizeCommon = sizeCommon > sizeOut ? sizeOut : sizeCommon;
+        sizeCommon = std::min(sizeCommon, sizeOut);
         
         PaddedInput in1R(this, input1R, sizeIn1R, sizeIn1);
         PaddedInput in1I(this, input1I, sizeIn1I, sizeIn1);

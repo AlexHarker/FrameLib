@@ -15,7 +15,7 @@ namespace FrameLib_Ternary_Ops
         if (lo > hi)
             std::swap(lo, hi);
         
-        return v < lo ? lo : (v > hi ? hi : v);
+        return std::max(std::min(v, hi), lo);
     }
 
     // Wrap is modified from PD's cyclone pong external

@@ -77,7 +77,7 @@ void FrameLib_Chop::process()
     
     for (i = 0, sizeCalc = sizeIn; i < mNumOuts; i++)
     {
-        sizeOut = (chop <= sizeCalc) ? chop : sizeCalc;
+        sizeOut = std::min(chop, sizeCalc);
         sizeCalc -= sizeOut;
         requestOutputSize(i, sizeOut);
     }
