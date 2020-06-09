@@ -623,11 +623,11 @@ private:
     
     // Params
     
-    bool isMulti() const        { return DoesMulti && mParameters.getBool(MultiIndex); }
-    bool isDynamic() const      { return mParameters.getInt(ParamModeIndex) == kDynamic; }
-    bool isTagged() const       { return mParameters.getInt(ParamModeIndex) == kTagged; }
-    bool getReset() const       { return !DoesCoefficients && mParameters.getBool(ResetIndex); }
-    size_t getMode() const      { return DoesModes ? static_cast<size_t>(mParameters.getInt(ModeIndex)) : 0; }
+    bool isMulti() const    { return DoesMulti && mParameters.getBool(MultiIndex); }
+    bool isDynamic() const  { return mParameters.getInt(ParamModeIndex) == kDynamic; }
+    bool isTagged() const   { return mParameters.getInt(ParamModeIndex) == kTagged; }
+    bool getReset() const   { return !DoesCoefficients && mParameters.getBool(ResetIndex); }
+    size_t getMode() const  { return DoesModes ? static_cast<size_t>(mParameters.getInt(ModeIndex)) : 0; }
     
     // Info
     
