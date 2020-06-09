@@ -5,7 +5,7 @@
 #include "FrameLib_DSP.h"
 #include "FrameLib_Scaling_Functions.h"
 
-class FrameLib_Convert final : public FrameLib_Processor, private FrameLib_ScaleConverter
+class FrameLib_Convert final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
@@ -40,6 +40,8 @@ private:
     // Data
         
     static ParameterInfo sParamInfo;
+    
+    FrameLib_ScaleConverter mConvertor;
 };
 
 #endif
