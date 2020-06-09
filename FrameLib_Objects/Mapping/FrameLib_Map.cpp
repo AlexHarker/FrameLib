@@ -83,14 +83,14 @@ void FrameLib_Map::setScaling()
     
     switch (static_cast<Modes>(mParameters.getInt(kMode)))
     {
-        case kLinear:           setLin(inLo, inHi, outLo, outHi);                                           break;
-        case kLog:              setLog(inLo, inHi, outLo, outHi);                                           break;
-        case kExp:              setExp(inLo, inHi, outLo, outHi);                                           break;
-        case kPow:              setPow(inLo, inHi, outLo, outHi, exponent);                                 break;
-        case kDB:               setExp(inLo, inHi, dbtoa(outLo), dbtoa(outHi));                             break;
-        case kInvDB:            setLog(dbtoa(inLo), dbtoa(inHi), outLo, outHi);                             break;
-        case kTranspose:        setExp(inLo, inHi, semitonesToRatio(outLo), semitonesToRatio(outHi));       break;
-        case kInvTranspose:     setLog(semitonesToRatio(inLo), semitonesToRatio(inHi), outLo, outHi);       break;
+        case kLinear:           mScaler.setLin(inLo, inHi, outLo, outHi);                                       break;
+        case kLog:              mScaler.setLog(inLo, inHi, outLo, outHi);                                       break;
+        case kExp:              mScaler.setExp(inLo, inHi, outLo, outHi);                                       break;
+        case kPow:              mScaler.setPow(inLo, inHi, outLo, outHi, exponent);                             break;
+        case kDB:               mScaler.setExp(inLo, inHi, dbtoa(outLo), dbtoa(outHi));                         break;
+        case kInvDB:            mScaler.setLog(dbtoa(inLo), dbtoa(inHi), outLo, outHi);                         break;
+        case kTranspose:        mScaler.setExp(inLo, inHi, semitonesToRatio(outLo), semitonesToRatio(outHi));   break;
+        case kInvTranspose:     mScaler.setLog(semitonesToRatio(inLo), semitonesToRatio(inHi), outLo, outHi);   break;
     }
 }
 
@@ -112,7 +112,7 @@ void FrameLib_Map::process()
     double *output = getOutput(0, &size);
         
     if (mParameters.getBool(kClip))
-        scaleClip(output, input, size);
+        mScaler.scaleClip(output, input, size);
     else
-        scale(output, input, size);
+        mScaler.scale(output, input, size);
 }
