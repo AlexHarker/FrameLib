@@ -1,8 +1,15 @@
 
 #include "FrameLib_TimeMedian.h"
 
+// Constructor / Destructor
+
 FrameLib_TimeMedian::FrameLib_TimeMedian(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_TimeBuffer<FrameLib_TimeMedian, true>(context, serialisedParameters, proxy), mOrdered(nullptr), mNumFrames(0)
 {}
+
+FrameLib_TimeMedian::~FrameLib_TimeMedian()
+{
+    dealloc(mOrdered);
+}
 
 // Info
 

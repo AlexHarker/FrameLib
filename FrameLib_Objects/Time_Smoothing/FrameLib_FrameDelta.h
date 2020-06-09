@@ -9,14 +9,11 @@ class FrameLib_FrameDelta final : public FrameLib_Processor
     
 public:
     
-    // Constructor
-    
+    // Constructor / Destructor
+
     FrameLib_FrameDelta(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
-    ~FrameLib_FrameDelta()
-    {
-        dealloc(mLastFrame);
-    }
+    ~FrameLib_FrameDelta();
     
     // Info
     

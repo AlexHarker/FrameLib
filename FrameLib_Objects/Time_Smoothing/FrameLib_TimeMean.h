@@ -9,15 +9,11 @@ class FrameLib_TimeMean final : public FrameLib_TimeBuffer<FrameLib_TimeMean, fa
     
 public:
     
-    // Constructor
+    // Constructor / Destructor
     
     FrameLib_TimeMean(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
 
-    ~FrameLib_TimeMean()
-    {
-        dealloc(mSum);
-        dealloc(mCompensate);
-    }
+    ~FrameLib_TimeMean();
 
     // Info
     

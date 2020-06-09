@@ -9,17 +9,11 @@ class FrameLib_TimeStdDev final : public FrameLib_TimeBuffer<FrameLib_TimeStdDev
     
 public:
     
-    // Constructor
-    
+    // Constructor / Destructor
+
     FrameLib_TimeStdDev(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
 
-    ~FrameLib_TimeStdDev()
-    {
-        dealloc(mSum);
-        dealloc(mCompensate);
-        dealloc(mSqSum);
-        dealloc(mSqCompensate);
-    }
+    ~FrameLib_TimeStdDev();
 
     // Info
     
