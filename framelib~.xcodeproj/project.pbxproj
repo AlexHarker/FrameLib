@@ -2300,7 +2300,7 @@
 		B8ACCAA320AF14FD0054E1E0 /* FrameLib_NanFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameLib_NanFilter.h; sourceTree = "<group>"; };
 		B8ACCAA620AF15410054E1E0 /* fl.nanfilter~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.nanfilter~.cpp"; sourceTree = "<group>"; };
 		B8AD883419C7C2B500FFA238 /* SIMDSupport.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SIMDSupport.hpp; sourceTree = "<group>"; };
-		B8AD883519C7C2B500FFA238 /* ibuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ibuffer.h; sourceTree = "<group>"; };
+		B8AD883519C7C2B500FFA238 /* ibuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ibuffer.hpp; sourceTree = "<group>"; };
 		B8AD883619C7C2B500FFA238 /* ibuffer_access.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ibuffer_access.cpp; sourceTree = "<group>"; };
 		B8AD883719C7C2B500FFA238 /* ibuffer_access.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ibuffer_access.hpp; sourceTree = "<group>"; };
 		B8AD883819C7C2FA00FFA238 /* fl.read~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.read~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -4811,7 +4811,7 @@
 		B8AD883119C7C2B500FFA238 /* ibuffer */ = {
 			isa = PBXGroup;
 			children = (
-				B8AD883519C7C2B500FFA238 /* ibuffer.h */,
+				B8AD883519C7C2B500FFA238 /* ibuffer.hpp */,
 				B8AD883719C7C2B500FFA238 /* ibuffer_access.hpp */,
 				B8AD883619C7C2B500FFA238 /* ibuffer_access.cpp */,
 			);

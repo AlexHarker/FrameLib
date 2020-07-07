@@ -9,7 +9,7 @@ class FrameLib_MaxClass_Info : public FrameLib_MaxClass_Expand<FrameLib_Info>
 {
     struct ReadProxy : public FrameLib_Info::Proxy, public FrameLib_MaxProxy
     {
-        ReadProxy();
+        ReadProxy() : mBuffer(nullptr) {}
         
         void update(const char *name) override
         {
@@ -33,7 +33,6 @@ class FrameLib_MaxClass_Info : public FrameLib_MaxClass_Expand<FrameLib_Info>
         
         ibuffer_data mBuffer;
         t_symbol *mBufferName;
-        static bool sInit;
     };
     
 public:
@@ -42,21 +41,6 @@ public:
     
     FrameLib_MaxClass_Info(t_symbol *s, long argc, t_atom *argv) : FrameLib_MaxClass(s, argc, argv, new ReadProxy()) {}
 };
-
-// Proxy Init
-
-bool FrameLib_MaxClass_Info::ReadProxy::sInit = false;
-
-// Proxy Constructor
-
-FrameLib_MaxClass_Info::ReadProxy::ReadProxy() : mBuffer(nullptr)
-{
-    if (!sInit)
-    {
-        ibuffer_init();
-        sInit = true;
-    }
-}
 
 // Max Object
 
