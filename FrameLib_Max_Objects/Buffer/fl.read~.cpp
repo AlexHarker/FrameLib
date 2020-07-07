@@ -9,7 +9,7 @@ class FrameLib_MaxClass_Read : public FrameLib_MaxClass_Expand<FrameLib_Read>
 {
     struct ReadProxy : public FrameLib_Read::Proxy, public FrameLib_MaxProxy
     {
-        ReadProxy();
+        ReadProxy() : mBuffer(nullptr) {}
         
         void update(const char *name) override
         {
@@ -36,14 +36,16 @@ class FrameLib_MaxClass_Read : public FrameLib_MaxClass_Expand<FrameLib_Read>
         
         FrameLib_Read::Proxy *clone() const override
         {
-            return new ReadProxy(*this);
+            ReadProxy *proxy = new ReadProxy();
+            proxy->mBufferName = mBufferName;
+            
+            return proxy;
         }
         
     private:
         
         ibuffer_data mBuffer;
         t_symbol *mBufferName;
-        static bool sInit;
     };
     
 public:
@@ -52,21 +54,6 @@ public:
     
     FrameLib_MaxClass_Read(t_object *x, t_symbol *s, long argc, t_atom *argv) : FrameLib_MaxClass(x, s, argc, argv, new ReadProxy()) {}
 };
-
-// Proxy Init
-
-bool FrameLib_MaxClass_Read::ReadProxy::sInit = false;
-
-// Proxy Constructor
-
-FrameLib_MaxClass_Read::ReadProxy::ReadProxy() : mBuffer(nullptr)
-{
-    if (!sInit)
-    {
-        ibuffer_init();
-        sInit = true;
-    }
-}
 
 // Max Object
 

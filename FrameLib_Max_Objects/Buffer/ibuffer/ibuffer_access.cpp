@@ -2,31 +2,27 @@
 /*
  *  ibuffer_access.cpp
  *
- *	This file provides code for accessing and interpolating samplesfrom an ibuffer (or standard MSP buffer).
+ *	Provides code for accessing and interpolating samplesfrom an ibuffer (or standard MSP buffer).
  *	Various kinds of interpolation are supported.
  *	All pointers used should be 16-byte aligned.
  *
  *	See the accompanying header file for more details.
  *
- *  Copyright 2010 Alex Harker. All rights reserved.
+ *  Copyright 2010-20 Alex Harker. All rights reserved.
  *
  */
 
 #include "ibuffer_access.hpp"
 
-t_symbol *ps_none;
-t_symbol *ps_linear;
-t_symbol *ps_bspline;
-t_symbol *ps_hermite;
-t_symbol *ps_lagrange;
-t_symbol *ps_buffer;
-t_symbol *ps_ibuffer;
+t_symbol *ibuffer_data::ps_buffer = gensym("buffer~");
+t_symbol *ibuffer_data::ps_ibuffer = gensym("ibuffer~");
 
 // IBuffer Proxy
 
-ibuffer_data::ibuffer_data(t_symbol *name) : buffer_type(kBufferNone), samples(NULL), length(0), num_chans(0), format(PCM_FLOAT), sample_rate(0.0)
+ibuffer_data::ibuffer_data(t_symbol *name)
+: buffer_type(kBufferNone), samples(nullptr), length(0), num_chans(0), format(PCM_FLOAT), sample_rate(0.0)
 {
-    buffer_object = name ? name->s_thing : NULL;
+    buffer_object = name ? name->s_thing : nullptr;
     acquire_buffer();
 }
 
@@ -60,7 +56,7 @@ void ibuffer_data::acquire(t_symbol *name)
     // N.B. - release (and init data using user call) before acquiring the new buffer
     
     release();
-    buffer_object = name ? name->s_thing : NULL;
+    buffer_object = name ? name->s_thing : nullptr;
     acquire_buffer();
 }
 
@@ -68,12 +64,12 @@ void ibuffer_data::release()
 {
     release_buffer();
     buffer_type = kBufferNone;
-    samples = NULL;
+    samples = nullptr;
     length = 0;
     num_chans = 0;
     format = PCM_FLOAT;
     sample_rate = 0.0;
-    buffer_object = NULL;
+    buffer_object = nullptr;
 }
 
 void ibuffer_data::acquire_buffer()
@@ -96,13 +92,13 @@ void ibuffer_data::acquire_buffer()
         if (ob_sym(buffer_object) == ps_ibuffer)
         {
             t_ibuffer *buffer = reinterpret_cast<t_ibuffer *>(buffer_object);
-            buffer_type = kBufferIBuffer;
             
             if (buffer->valid)
             {
                 ATOMIC_INCREMENT(&buffer->inuse);
-                
-                samples =  buffer->samples;
+            
+                buffer_type = kBufferIBuffer;
+                samples = buffer->samples;
                 length = buffer->frames;
                 num_chans = buffer->channels;
                 format = buffer->format;
@@ -114,28 +110,13 @@ void ibuffer_data::acquire_buffer()
 
 void ibuffer_data::release_buffer()
 {
-    if (buffer_object)
-    {
-        if (ob_sym(buffer_object) == ps_buffer)
+    if (buffer_type == kBufferMaxBuffer)
         buffer_unlocksamples(buffer_object);
-        
-        if (ob_sym(buffer_object) == ps_ibuffer)
-            ATOMIC_DECREMENT(&((t_ibuffer *)buffer_object)->inuse);
-    }
+    else if (buffer_type == kBufferIBuffer)
+        ATOMIC_DECREMENT(&((t_ibuffer *)buffer_object)->inuse);
 }
 
 // Functions
-
-void ibuffer_init()
-{
-    ps_buffer = gensym("buffer~");
-    ps_ibuffer = gensym("ibuffer~");
-    ps_none = gensym("none");
-    ps_linear = gensym("linear");
-    ps_bspline = gensym("bspline");
-    ps_hermite = gensym("hermite");
-    ps_lagrange = gensym("lagrange");    
-}
 
 template <class T, class U>
 void ibuffer_read_format(const ibuffer_data& buffer, T *out, U *positions, intptr_t n_samps, long chan, T mul, InterpType interp)
