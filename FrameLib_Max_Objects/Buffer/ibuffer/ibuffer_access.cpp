@@ -78,7 +78,7 @@ void ibuffer_data::acquire_buffer()
     {
         if (ob_sym(buffer_object) == ps_buffer)
         {
-            samples = (void *) buffer_locksamples(buffer_object);
+            samples = static_cast<void *>(buffer_locksamples(buffer_object));
 
             if (samples)
             {
