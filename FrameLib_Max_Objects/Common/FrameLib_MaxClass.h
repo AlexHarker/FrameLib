@@ -104,12 +104,22 @@ class MessageHandler : public MaxClass_Base
         }
     };
     
-    using Queue = std::priority_queue<Message, std::vector<Message>, MessageCompare>;
-
     struct MessageBlock
     {
+        class Queue : public std::priority_queue<Message, std::vector<Message>, MessageCompare>
+        {
+            friend MessageBlock;
+            std::vector<Message>& container() { return c; }
+        };
+
         Queue mQueue;
         unsigned long mMaxSize = 1;
+        
+        void flush(FrameLib_MaxProxy *proxy)
+        {
+            for (auto it = mQueue.container().begin(); it != mQueue.container().end(); it++)
+                it->mInfo.mProxy = it->mInfo.mProxy == proxy ? nullptr : it->mInfo.mProxy;
+        }
     };
     
 public:
@@ -152,15 +162,27 @@ public:
         if (!mData.mQueue.size())
             return;
         
-        mOutput.push(MessageBlock());
+        mOutput.emplace_back();
         std::swap(mData, mOutput.back());
         lock.destroy();
         
         schedule_delay(*this, (method)&service, 0, nullptr, 0, nullptr);
     }
     
+    void flush(FrameLib_MaxProxy *proxy)
+    {
+        FrameLib_SpinLockHolder flushLock(&mFlushLock);
+        FrameLib_SpinLockHolder lock(&mLock);
+        
+        mData.flush(proxy);
+        
+        for (auto it = mOutput.begin(); it != mOutput.end(); it++)
+            it->flush(proxy);
+    }
+    
     static void service(MessageHandler* handler, t_symbol *s, short ac, t_atom *av)
     {
+        FrameLib_SpinLockHolder flushLock(&handler->mFlushLock);
         MessageBlock data;
         
         // Swap data
@@ -169,7 +191,7 @@ public:
         if (!handler->mOutput.empty())
         {
             std::swap(handler->mOutput.front(), data);
-            handler->mOutput.pop();
+            handler->mOutput.pop_front();
         }
         lock.destroy();
         
@@ -189,6 +211,9 @@ private:
     static void output(const Message& message, t_atom *output)
     {
         FrameLib_MaxProxy *proxy = message.mInfo.mProxy;
+        
+        if (!proxy)
+            return;
         
         if (message.mType == kFrameNormal)
         {
@@ -230,9 +255,10 @@ private:
     static unsigned long limit(unsigned long N) { return std::min(N, 32767UL); }
     
     mutable FrameLib_SpinLock mLock;
+    mutable FrameLib_SpinLock mFlushLock;
 
     MessageBlock mData;
-    std::queue<MessageBlock> mOutput;
+    std::deque<MessageBlock> mOutput;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -288,22 +314,15 @@ public:
     struct ErrorNotifier : public FrameLib_ErrorReporter::HostNotifier
     {
         ErrorNotifier(FrameLib_Global **globalHandle)
-        {
-            mQelem = qelem_new(globalHandle, (method) &errorReport);
-        }
-        
-        ~ErrorNotifier()
-        {
-            qelem_free(mQelem);
-        }
+        : mQelem(globalHandle, (method) &flush) {}
         
         bool notify(const FrameLib_ErrorReporter::ErrorReport& report) override
         {
-            qelem_set(mQelem);
+            mQelem.set();
             return false;
         }
         
-        static void errorReport(FrameLib_Global **globalHandle)
+        static void flush(FrameLib_Global **globalHandle)
         {
             auto reports = (*globalHandle)->getErrors();
 
@@ -330,7 +349,7 @@ public:
                 error("*** FrameLib - too many errors - reporting only some ***");
         }
         
-        t_qelem mQelem;
+        Qelem mQelem;
     };
     
     // Sync Check Class
@@ -412,7 +431,7 @@ public:
     // Constructor and Destructor (public for max API, but use ManagedPointer from outside this class)
     
     FrameLib_MaxGlobals(t_object *x, t_symbol *sym, long ac, t_atom *av)
-    : mReportContextErrors(false), mRTNotifier(&mRTGlobal), mNRTNotifier(&mNRTGlobal), mRTGlobal(nullptr), mNRTGlobal(nullptr), mSyncCheck(nullptr)
+    : mReportContextErrors(false), mRTNotifier(&mRTGlobal), mNRTNotifier(&mNRTGlobal), mRTGlobal(nullptr), mNRTGlobal(nullptr), mQelem(*this, (method) &serviceContexts), mSyncCheck(nullptr)
     {}
 
     // Max global item methods
@@ -432,11 +451,8 @@ public:
 
     void addContextToResolve(FrameLib_Context context, t_object *object)
     {
-        bool requiresService = mUnresolvedContexts.size() == 0;
         mUnresolvedContexts[context] = object;
-        
-        if (requiresService)
-            defer_low(*this, (method) serviceContexts, nullptr, 0, nullptr);
+        mQelem.set();
     }
     
     void contextMessages(FrameLib_Context c)
@@ -476,6 +492,21 @@ public:
     void retainContext(FrameLib_Context c)      { data<kCount>(c)++; }
     void releaseContext(FrameLib_Context c)     { if (--data<kCount>(c) == 0) mContextRefs.erase(data<kKey>(c)); }
 
+    void flushContext(FrameLib_Context c, FrameLib_MaxProxy *proxy)
+    {
+        ErrorNotifier::flush(data<kKey>(c).mRealtime ? &mRTGlobal : &mNRTGlobal);
+        
+        getHandler(c)->flush(proxy);
+     
+        auto it = mUnresolvedContexts.find(c);
+
+        if (it != mUnresolvedContexts.end())
+        {
+            objectMethod(it->second, gensym("__fl.resolve_context"));
+            mUnresolvedContexts.erase(it);
+        }
+    }
+    
     bool isRealtime(FrameLib_Context c) const   { return c.getGlobal() == mRTGlobal; }
     t_object *getPatch(FrameLib_Context c)      { return data<kKey>(c).mPatch; }
     Lock *getLock(FrameLib_Context c)           { return &data<kLock>(c); }
@@ -589,6 +620,7 @@ private:
     FrameLib_Global *mRTGlobal;
     FrameLib_Global *mNRTGlobal;
     
+    Qelem mQelem;
     SyncCheck *mSyncCheck;
 };
 
@@ -1236,6 +1268,7 @@ public:
                 dspSetBroken();
         }
         
+        mGlobal->flushContext(getContext(), mFrameLibProxy.get());
         mGlobal->releaseContext(getContext());
     }
     
