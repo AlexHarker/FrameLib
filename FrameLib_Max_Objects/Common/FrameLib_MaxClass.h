@@ -1488,7 +1488,7 @@ public:
         if (handlesAudio())
         {
             addPerform<FrameLib_MaxClass, &FrameLib_MaxClass<T>::perform>(dsp64);
-            mGlobal->finalObject(mObject->getContext()) = *this;
+            mGlobal->finalObject(getContext()) = *this;
         }
     }
 
