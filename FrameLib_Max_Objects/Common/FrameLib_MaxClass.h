@@ -1061,6 +1061,7 @@ public:
     
     static bool comparePatchWithName(t_object *patch, t_symbol *name)
     {
+        const char *patchName = jpatcher_get_filename(patch)->s_name;
         char fileName[MAX_FILENAME_CHARS];
         t_fourcc validTypes[TYPELIST_SIZE];
         short outvol = 0, numTypes = 0;
@@ -1070,12 +1071,14 @@ public:
         strncpy_zero(fileName, name->s_name, MAX_FILENAME_CHARS);
         locatefile_extended(fileName, &outvol, &outtype, validTypes, numTypes);
         
-        const char *name1 = fileName;
-        const char *name2 = jpatcher_get_filename(patch)->s_name;
-        auto endString = [](const char *str) { return str + strlen(str); };
-        auto ciComp = [](char c1, char c2) { return std::tolower(c1) < std::tolower(c2); };
+        if (strlen(patchName) != strlen(fileName))
+            return false;
         
-        return !std::lexicographical_compare(name2, endString(name2), name1, endString(name1), ciComp);
+        for (size_t i = 0; fileName[i]; i++)
+            if (std::tolower(fileName[i]) != std::tolower(patchName[i]))
+                return false;
+        
+        return true;
     }
     
     // Find the patcher for the context
