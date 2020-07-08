@@ -25,7 +25,7 @@ struct FrameLib_MaxProxy : public virtual FrameLib_Proxy
 {
     t_object *mMaxObject;
     
-    // This can be overriden for objects that require max messages to be sent from framelib
+    // Override for objects that require max messages to be sent from framelib
     
     virtual void sendMessage(unsigned long stream, t_symbol *s, short ac, t_atom *av) {}
 };
@@ -41,6 +41,11 @@ struct FrameLib_MaxContext
     bool mRealtime;
     t_object *mPatch;
     t_symbol *mName;
+    
+    bool operator == (const FrameLib_MaxContext& b) const
+    {
+        return mRealtime == b.mRealtime && mPatch == b.mPatch && mName == b.mName;
+    }
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -239,9 +244,11 @@ class FrameLib_MaxGlobals : public MaxClass_Base
     
 public:
     
+    enum ConnectionMode : t_ptr_int { kConnect, kConfirm, kDoubleCheck };
+
+    using MaxConnection = FrameLib_Connection<t_object, long>;
     using Lock = FrameLib_SpinLock;
-    using LockHold = FrameLib_SpinLockHolder;
-    
+
 private:
     
     struct Hash
@@ -255,31 +262,26 @@ private:
             return hash;
         }
         
-        size_t operator()(FrameLib_Context context) const
+        size_t operator()(const FrameLib_Context& context) const
         {
             return operator()(context.getGlobal(), context.getReference());
         }
         
-        size_t operator()(std::tuple<bool, t_object *, t_symbol*> key) const
+        size_t operator()(const FrameLib_MaxContext& key) const
         {
             // N.B. Realtime state isn't used in the hash, but used during full lookup
             
-            return operator()(std::get<1>(key), std::get<2>(key));
+            return operator()(key.mPatch, key.mName);
         }
     };
     
-    typedef void ServiceMessages(FrameLib_Context);
-    
-    using RefKey = std::tuple<bool, t_object *, t_symbol *>;
-    using RefData = std::tuple<RefKey, int, Lock, t_object *, unique_object_ptr>;
-    using RefMap = std::unordered_map<RefKey, std::unique_ptr<RefData>, Hash>;
+    enum RefDataItem { kKey, kCount, kLock, kFinal, kHandler };
+
+    using RefData = std::tuple<FrameLib_MaxContext, int, Lock, t_object *, unique_object_ptr>;
+    using RefMap = std::unordered_map<FrameLib_MaxContext, std::unique_ptr<RefData>, Hash>;
     using ResolveMap = std::unordered_map<FrameLib_Context, t_object *, Hash>;
     
 public:
-    
-    enum ConnectionMode : t_ptr_int { kConnect, kConfirm, kDoubleCheck };
-
-    using MaxConnection = FrameLib_Connection<t_object, long>;
     
     // Error Notification Class
     
@@ -420,11 +422,10 @@ public:
     
     t_object *popFromQueue()
     {
-        if (mQueue.empty())
-            return nullptr;
+        t_object *object = mQueue.empty() ? nullptr : mQueue.front();
         
-        t_object *object = mQueue.front();
-        mQueue.pop_front();
+        if (object)
+            mQueue.pop_front();
         
         return object;
     }
@@ -438,31 +439,6 @@ public:
             defer_low(*this, (method) serviceContexts, nullptr, 0, nullptr);
     }
     
-    FrameLib_Context makeContext(const FrameLib_MaxContext& specifier)
-    {
-        RefKey key(specifier.mRealtime, specifier.mPatch, specifier.mName);
-        std::unique_ptr<RefData>& item = mContextRefs[key];
-        
-		if (!item)
-		{
-			item.reset(new RefData());
-			std::get<0>(*item) = key;
-            std::get<1>(*item) = 1;
-			std::get<3>(*item) = nullptr;
-            std::get<4>(*item) = unique_object_ptr((t_object *)object_new_typed(CLASS_NOBOX, gensym("__fl.message.handler"), 0, nullptr));
-		}
-        else
-            std::get<1>(*item)++;
-        
-        return FrameLib_Context(specifier.mRealtime ? mRTGlobal : mNRTGlobal, item.get());
-    }
-    
-    bool isRealtimeContext(FrameLib_Context c) const { return c.getGlobal() == mRTGlobal; }
-
-    t_object *getContextPatch(FrameLib_Context c) { return std::get<1>(data<0>(c)); }
-    
-    void setContextFinal(FrameLib_Context c, t_object *object) { data<3>(c) = object; }
-    
     void contextMessages(FrameLib_Context c)
     {
         MessageHandler::service(getHandler(c), nullptr, 0, nullptr);
@@ -470,20 +446,41 @@ public:
     
     void contextMessages(FrameLib_Context c, t_object *object)
     {
-        if (!object || data<3>(c) == object)
+        if (data<kFinal>(c) == object)
             getHandler(c)->schedule();
     }
-
+    
     MessageHandler *getHandler(FrameLib_Context c)
     {
-        return reinterpret_cast<MessageHandler *>(data<4>(c).get());
+        return reinterpret_cast<MessageHandler *>(data<kHandler>(c).get());
     }
     
-    void retainContext(FrameLib_Context c)      { data<1>(c)++; }
-    void releaseContext(FrameLib_Context c)     { if (--data<1>(c) == 0) mContextRefs.erase(data<0>(c)); }
+    FrameLib_Context makeContext(const FrameLib_MaxContext& key)
+    {
+        std::unique_ptr<RefData>& item = mContextRefs[key];
+        
+		if (!item)
+		{
+			item.reset(new RefData());
+			std::get<kKey>(*item) = key;
+            std::get<kCount>(*item) = 1;
+			std::get<kFinal>(*item) = nullptr;
+            std::get<kHandler>(*item) = unique_object_ptr((t_object *)object_new_typed(CLASS_NOBOX, gensym("__fl.message.handler"), 0, nullptr));
+		}
+        else
+            std::get<kCount>(*item)++;
+        
+        return FrameLib_Context(key.mRealtime ? mRTGlobal : mNRTGlobal, item.get());
+    }
     
-    Lock *contextLock(FrameLib_Context c)       { return &data<2>(c); }
-    
+    void retainContext(FrameLib_Context c)      { data<kCount>(c)++; }
+    void releaseContext(FrameLib_Context c)     { if (--data<kCount>(c) == 0) mContextRefs.erase(data<kKey>(c)); }
+
+    bool isRealtime(FrameLib_Context c) const   { return c.getGlobal() == mRTGlobal; }
+    t_object *getPatch(FrameLib_Context c)      { return data<kKey>(c).mPatch; }
+    Lock *getLock(FrameLib_Context c)           { return &data<kLock>(c); }
+    t_object *&finalObject(FrameLib_Context c)  { return data<kFinal>(c); }
+
     void setReportContextErrors(bool report)    { mReportContextErrors = report; }
     bool getReportContextErrors() const         { return mReportContextErrors; }
 
@@ -946,7 +943,7 @@ class FrameLib_MaxClass : public MaxClass_Base
     using FLObject = FrameLib_Multistream;
     using FLConnection = FrameLib_Object<FLObject>::Connection;
     using MaxConnection = FrameLib_MaxGlobals::MaxConnection;
-    using LockHold = FrameLib_MaxGlobals::LockHold;
+    using LockHold = FrameLib_SpinLockHolder;
     
     struct ConnectionConfirmation
     {
@@ -1403,7 +1400,7 @@ public:
     
     FrameLib_Context getContext() const         { return mObject->getContext(); }
 
-    bool isRealtime() const                     { return mGlobal->isRealtimeContext(getContext()); }
+    bool isRealtime() const                     { return mGlobal->isRealtime(getContext()); }
     bool handlesAudio() const                   { return T::sHandlesAudio; }
     bool handlesRealtimeAudio() const           { return handlesAudio() && isRealtime(); }
     bool supportsOrderingConnections() const    { return mObject->supportsOrderingConnections(); }
@@ -1455,7 +1452,7 @@ public:
         if (handlesAudio())
         {
             addPerform<FrameLib_MaxClass, &FrameLib_MaxClass<T>::perform>(dsp64);
-            mGlobal->setContextFinal(mObject->getContext(), *this);
+            mGlobal->finalObject(mObject->getContext()) = *this;
         }
     }
 
@@ -1467,7 +1464,7 @@ public:
     {
         if (!isRealtime())
         {
-            LockHold lock(mGlobal->contextLock(getContext()));
+            LockHold lock(mGlobal->getLock(getContext()));
             resolveNRTGraph(sampleRate > 0.0 ? sampleRate.mValue : sys_getsr(), true);
         }
     }
@@ -1480,7 +1477,7 @@ public:
         if (!updateLength || isRealtime())
             return;
         
-        LockHold lock(mGlobal->contextLock(getContext()));
+        LockHold lock(mGlobal->getLock(getContext()));
 
         resolveNRTGraph(0.0, false);
         
@@ -1704,8 +1701,8 @@ private:
         FrameLib_Context current = getContext();
         FrameLib_Context context = toFLObject(object)->getContext();
         
-        bool mismatchedNRT = mGlobal->isRealtimeContext(context) != mGlobal->isRealtimeContext(current);
-        bool mismatchedPatch = mGlobal->getContextPatch(current) != mGlobal->getContextPatch(context);
+        bool mismatchedNRT = mGlobal->isRealtime(context) != mGlobal->isRealtime(current);
+        bool mismatchedPatch = mGlobal->getPatch(current) != mGlobal->getPatch(context);
 
         unsigned long size = 0;
 
@@ -1722,7 +1719,7 @@ private:
             if (const double *values = mObject->getFixedInput(i, &size))
                 newObject->setFixedInput(i, values, size);
                 
-        if (mGlobal->isRealtimeContext(context) || mGlobal->isRealtimeContext(current))
+        if (mGlobal->isRealtime(context) || mGlobal->isRealtime(current))
             dspSetBroken();
         
         mGlobal->retainContext(context);
@@ -1822,7 +1819,7 @@ private:
             resolveGraph(true);
         else
         {
-            LockHold lock(mGlobal->contextLock(getContext()));
+            LockHold lock(mGlobal->getLock(getContext()));
             resolveNRTGraph(0.0, false);
         }
     }
