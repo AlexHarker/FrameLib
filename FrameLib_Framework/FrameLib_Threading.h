@@ -96,7 +96,7 @@ struct FrameLib_CountedPointer
     FrameLib_CountedPointer() : mPointer(nullptr), mCount(0) {}
     FrameLib_CountedPointer(T *item, uintptr_t count) : mPointer(item), mCount(count) {}
     
-    bool operator==(const FrameLib_CountedPointer& a) const
+    bool operator == (const FrameLib_CountedPointer& a) const
     {
         return a.mPointer == mPointer && a.mCount == mCount;
     }
