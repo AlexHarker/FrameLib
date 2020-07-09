@@ -44,11 +44,22 @@ public:
     // Constructors
 
     FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, bool ownsStreams, unsigned long nStreams, unsigned long nIns, unsigned long nOuts)
-    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams), mInCount(0), mOwnsStreams(ownsStreams), mOutputChange(false)
-    { setIO(nIns, nOuts); }
+    : FrameLib_Object(type, context, proxy)
+    , mNumStreams(nStreams)
+    , mInCount(0)
+    , mOwnsStreams(ownsStreams)
+    , mOutputChange(false)
+    {
+        setIO(nIns, nOuts);
+    }
     
     FrameLib_Multistream(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy, bool ownsStreams, unsigned long nStreams)
-    : FrameLib_Object(type, context, proxy), mNumStreams(nStreams), mInCount(0), mOwnsStreams(ownsStreams), mOutputChange(false) {}
+    : FrameLib_Object(type, context, proxy)
+    , mNumStreams(nStreams)
+    , mInCount(0)
+    , mOwnsStreams(ownsStreams)
+    , mOutputChange(false)
+    {}
     
     // Destructor
     
@@ -122,7 +133,6 @@ private:
 template <class T>
 class FrameLib_Expand final : public FrameLib_Multistream
 {
-
 public:
     
     static constexpr ObjectType sType = T::sType;
@@ -131,7 +141,8 @@ public:
     const FrameLib_Parameters::Serial *getSerialised() override { return &mSerialisedParameters; }
 
     FrameLib_Expand(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, unsigned long nStreams)
-    : FrameLib_Multistream(T::sType, context, proxy, true, nStreams), mSerialisedParameters(serialisedParameters ? serialisedParameters->size() : 0)
+    : FrameLib_Multistream(T::sType, context, proxy, true, nStreams)
+    , mSerialisedParameters(serialisedParameters ? serialisedParameters->size() : 0)
     {
         // Make first block
         

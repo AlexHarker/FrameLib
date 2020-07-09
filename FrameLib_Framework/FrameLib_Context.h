@@ -33,7 +33,6 @@ class FrameLib_Context
     template <class T, FrameLib_Global::PointerSet<T> FrameLib_Global::*PointerSet>
     class ManagedPointer
     {
-        
     public:
         
         // Constructor / Destructor

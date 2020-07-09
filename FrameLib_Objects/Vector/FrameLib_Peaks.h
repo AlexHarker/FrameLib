@@ -6,7 +6,6 @@
 
 class FrameLib_Peaks final : public FrameLib_Processor
 {
-
 public:
     
     // Constructor

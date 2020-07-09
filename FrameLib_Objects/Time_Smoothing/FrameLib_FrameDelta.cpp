@@ -3,7 +3,10 @@
 
 // Constructor / Destructor
 
-FrameLib_FrameDelta::FrameLib_FrameDelta(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 1, 1), mLastFrame(nullptr), mFrameSize(0)
+FrameLib_FrameDelta::FrameLib_FrameDelta(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, nullptr, 1, 1)
+, mLastFrame(nullptr)
+, mFrameSize(0)
 {}
 
 FrameLib_FrameDelta::~FrameLib_FrameDelta()

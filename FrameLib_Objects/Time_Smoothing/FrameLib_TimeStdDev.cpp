@@ -3,9 +3,11 @@
 
 // Constructor / Destructor
 
-FrameLib_TimeStdDev::FrameLib_TimeStdDev(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_TimeBuffer<FrameLib_TimeStdDev>(context, serialisedParameters, proxy), mSum(nullptr), mSqSum(nullptr)
-{
-}
+FrameLib_TimeStdDev::FrameLib_TimeStdDev(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_TimeBuffer<FrameLib_TimeStdDev>(context, serialisedParameters, proxy)
+, mSum(nullptr)
+, mSqSum(nullptr)
+{}
 
 FrameLib_TimeStdDev::~FrameLib_TimeStdDev()
 {

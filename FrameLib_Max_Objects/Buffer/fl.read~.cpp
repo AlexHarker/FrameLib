@@ -52,7 +52,8 @@ public:
      
     // Constructor
     
-    FrameLib_MaxClass_Read(t_object *x, t_symbol *s, long argc, t_atom *argv) : FrameLib_MaxClass(x, s, argc, argv, new ReadProxy()) {}
+    FrameLib_MaxClass_Read(t_object *x, t_symbol *s, long argc, t_atom *argv)
+    : FrameLib_MaxClass(x, s, argc, argv, new ReadProxy()) {}
 };
 
 // Max Object

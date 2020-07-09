@@ -6,12 +6,15 @@
 
 class FrameLib_VectorSet
 {
-
 public:
     
     // Constructor
     
-    FrameLib_VectorSet(FrameLib_DSP *owner) : mFrames(nullptr), mNumFrames(0), mFrameLength(0), mAllocator(*owner)
+    FrameLib_VectorSet(FrameLib_DSP *owner)
+    : mFrames(nullptr)
+    , mNumFrames(0)
+    , mFrameLength(0)
+    , mAllocator(*owner)
     {}
     
     ~FrameLib_VectorSet()

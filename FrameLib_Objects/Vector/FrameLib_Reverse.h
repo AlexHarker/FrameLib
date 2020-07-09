@@ -6,7 +6,6 @@
 
 class FrameLib_Reverse final : public FrameLib_Processor
 {
-    
 public:
 
     // Constructor

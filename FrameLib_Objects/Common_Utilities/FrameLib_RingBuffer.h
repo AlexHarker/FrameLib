@@ -6,15 +6,15 @@
 
 class FrameLib_RingBuffer : private FrameLib_VectorSet
 {
-    
 public:
     
     // Constructor
     
-    FrameLib_RingBuffer(FrameLib_DSP *owner) : FrameLib_VectorSet(owner), mCounter(0), mValid(0)
+    FrameLib_RingBuffer(FrameLib_DSP *owner)
+    : FrameLib_VectorSet(owner)
+    , mCounter(0)
+    , mValid(0)
     {}
-    
-public:
     
     // N.B. Valid frames are those written since the last resize or reset
     // This allows for code to avoid needing to clear on resize, thus

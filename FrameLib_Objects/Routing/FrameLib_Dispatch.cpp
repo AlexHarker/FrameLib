@@ -5,7 +5,9 @@
 
 // Constructor
 
-FrameLib_Dispatch::Select::Select(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long numIns, long num) : FrameLib_Processor(context, proxy, nullptr, numIns, 1), mNumIns(numIns)
+FrameLib_Dispatch::Select::Select(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy, long numIns, long num)
+: FrameLib_Processor(context, proxy, nullptr, numIns, 1)
+, mNumIns(numIns)
 {
     const int strBufSize = 32;
     char name[strBufSize];
@@ -53,7 +55,8 @@ void FrameLib_Dispatch::Select::process()
 // Constructor
 
 FrameLib_Dispatch::FrameLib_Dispatch(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
-: FrameLib_Block(kProcessor, context, proxy), mParameters(context, proxy, &sParamInfo)
+: FrameLib_Block(kProcessor, context, proxy)
+, mParameters(context, proxy, &sParamInfo)
 {
     mParameters.addDouble(kNumIns, "num_ins", 2, 0);
     mParameters.setClip(2, 32);

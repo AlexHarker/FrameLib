@@ -48,7 +48,10 @@ public:
     
     // Constructor
     
-    FrameLib_TimeBuffer(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 3, 2), FrameLib_RingBuffer(this), mLastNumFrames(0)
+    FrameLib_TimeBuffer(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+    : FrameLib_Processor(context, proxy, &sParamInfo, 3, 2)
+    , FrameLib_RingBuffer(this)
+    , mLastNumFrames(0)
     {
         mParameters.addInt(kMaxFrames, "max_frames", 10, 0);
         mParameters.setMin(1);

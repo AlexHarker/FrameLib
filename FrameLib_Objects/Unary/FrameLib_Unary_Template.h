@@ -9,12 +9,12 @@
 template <typename Op>
 class FrameLib_UnaryOp final : public FrameLib_Processor
 {
-    
 public:
     
     // Constructor
     
-    FrameLib_UnaryOp(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 1, 1)
+    FrameLib_UnaryOp(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+    : FrameLib_Processor(context, proxy, nullptr, 1, 1)
     {
         mParameters.set(serialisedParameters);
     }

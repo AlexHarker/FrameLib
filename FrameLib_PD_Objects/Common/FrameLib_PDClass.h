@@ -25,14 +25,12 @@ extern "C"
 
 class FrameLib_PDGlobals : public PDClass_Base
 {
-    
 public:
     
     // Sync Check Class
     
     class SyncCheck
     {
-        
     public:
         
         enum Mode { kDownOnly, kDown, kAcross };
@@ -179,7 +177,6 @@ private:
 /*
 class Mutator : public PDClass_Base
 {
-    
 public:
     
     Mutator(t_symbol *sym, long ac, t_atom *av)
@@ -215,7 +212,6 @@ private:
 template <class T>
  class Wrapper : public PDClass_Base
 {
- 
 public:
     
     // Initialise Class
@@ -546,7 +542,16 @@ public:
 
     // Constructor and Destructor
 
-    FrameLib_PDClass(t_symbol *s, long argc, t_atom *argv, FrameLib_PDProxy *proxy = new FrameLib_PDProxy()) : mFrameLibProxy(proxy), mConfirmObject(nullptr), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mCanvas(canvas_getcurrent()), mSyncIn(nullptr), mNeedsResolve(true), mUserObject(*this)
+    FrameLib_PDClass(t_symbol *s, long argc, t_atom *argv, FrameLib_PDProxy *proxy = new FrameLib_PDProxy())
+    : mFrameLibProxy(proxy)
+    , mConfirmObject(nullptr)
+    , mConfirmInIndex(-1)
+    , mConfirmOutIndex(-1)
+    , mConfirm(false)
+    , mCanvas(canvas_getcurrent())
+    , mSyncIn(nullptr)
+    , mNeedsResolve(true)
+    , mUserObject(*this)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         

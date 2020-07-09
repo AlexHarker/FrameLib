@@ -8,7 +8,6 @@
 
 class ExprArgumentParser
 {
-    
 public:
     
     ExprArgumentParser(t_object *object, t_symbol *s, long argc, t_atom *argv, bool complex) : mSymbol(s)

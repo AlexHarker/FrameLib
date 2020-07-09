@@ -197,7 +197,6 @@ private:
 
 class FrameLib_SpinLockHolder
 {
-    
 public:
     
     FrameLib_SpinLockHolder(FrameLib_SpinLock *lock) : mLock(lock) { if (mLock) mLock->acquire(); }
@@ -239,7 +238,7 @@ class FrameLib_Thread
     
 public:
     
-    enum PriorityLevel {kLowPriority, kHighPriority, kAudioPriority};
+    enum PriorityLevel { kLowPriority, kHighPriority, kAudioPriority };
 
     // Structure for passing in priority settings from a host
     
@@ -311,7 +310,6 @@ private:
 
 class FrameLib_Semaphore
 {
-
 public:
     
     FrameLib_Semaphore(long maxCount);

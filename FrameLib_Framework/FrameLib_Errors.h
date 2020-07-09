@@ -34,7 +34,6 @@ enum ErrorSource { kErrorObject, kErrorParameter, kErrorMemory, kErrorDSP  };
 
 class FrameLib_ErrorReporter
 {
-    
 public:
     
     /**

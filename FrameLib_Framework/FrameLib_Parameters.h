@@ -50,7 +50,6 @@ public:
     
     class Serial
     {
-        
     public:
         
         // N.B. the assumption is that double is the largest type in use
@@ -301,7 +300,6 @@ public:
     
     class Info
     {
-        
     public:
         
         void add(const char *str)               { mInfoStrings.push_back(str); }
@@ -325,7 +323,6 @@ private:
     
     class Parameter
     {
-        
     public:
         
         enum Flags { kFlagInstantiation = 0x1, kFlagBool = 0x2, kFlagInteger = 0x4, kFlagNonNumeric = 0x8 };
@@ -409,7 +406,6 @@ private:
     
     class Enum final : public Parameter
     {
-        
     public:
         
         Enum(const char *name, long argumentIdx);
@@ -448,7 +444,6 @@ private:
     
     class Value final : public Parameter
     {
-        
     public:
         
         Value(const char *name, long argumentIdx, double defaultValue) : Parameter(name, argumentIdx), mValue(defaultValue)
@@ -517,7 +512,6 @@ private:
     
     class Array final : public Parameter, private std::vector<double>
     {
-        
     public:
         
         Array(const char *name, long argumentIdx, double defaultValue, unsigned long size);

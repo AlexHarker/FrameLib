@@ -7,7 +7,6 @@
 
 class FrameLib_TimeMean final : public FrameLib_TimeBuffer<FrameLib_TimeMean>
 {
-    
 public:
     
     // Constructor / Destructor

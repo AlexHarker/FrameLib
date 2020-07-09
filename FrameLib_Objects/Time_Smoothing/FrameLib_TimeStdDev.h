@@ -7,7 +7,6 @@
 
 class FrameLib_TimeStdDev final : public FrameLib_TimeBuffer<FrameLib_TimeStdDev>
 {
-    
 public:
     
     // Constructor / Destructor

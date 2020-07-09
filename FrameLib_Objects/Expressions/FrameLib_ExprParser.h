@@ -121,7 +121,6 @@ namespace FrameLib_ExprParser
         
         class Node
         {
-            
         public:
             
             Node() : mType(kToken), mValue(0.0), mIndex(-1) {}
@@ -195,7 +194,6 @@ namespace FrameLib_ExprParser
         
         class OperatorList
         {
-            
         public:
             
             OperatorList() {}

@@ -5,7 +5,6 @@
 
 class FrameLib_MaxClass_Context : public MaxClass_Base
 {
-
 public:
     
     static void classInit(t_class *c, t_symbol *nameSpace, const char *classname)

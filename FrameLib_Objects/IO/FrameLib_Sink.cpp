@@ -5,7 +5,8 @@
 
 // Constructor
 
-FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_AudioOutput(context, proxy, &sParamInfo, 2, 0, 1)
+FrameLib_Sink::FrameLib_Sink(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_AudioOutput(context, proxy, &sParamInfo, 2, 0, 1)
 {
     mParameters.addDouble(kBufferSize, "buffer_size", 250000, 0);
     mParameters.setMin(0);

@@ -30,9 +30,6 @@
 
 class FrameLib_GlobalAllocator
 {
-
-private:
-    
     /**
      
      @class CoreAllocator
@@ -75,10 +72,12 @@ private:
         
         class NewThread final : public FrameLib_DelegateThread
         {
-            
         public:
             
-            NewThread(CoreAllocator& allocator) : FrameLib_DelegateThread(FrameLib_Thread::kHighPriority), mAllocator(allocator) {}
+            NewThread(CoreAllocator& allocator)
+            : FrameLib_DelegateThread(FrameLib_Thread::kHighPriority)
+            , mAllocator(allocator)
+            {}
             
         private:
             
@@ -97,10 +96,12 @@ private:
 
         class FreeThread final : public FrameLib_TriggerableThread
         {
-            
         public:
             
-            FreeThread(CoreAllocator& allocator) : FrameLib_TriggerableThread(FrameLib_Thread::kLowPriority), mAllocator(allocator) {}
+            FreeThread(CoreAllocator& allocator)
+            : FrameLib_TriggerableThread(FrameLib_Thread::kLowPriority)
+            , mAllocator(allocator)
+            {}
             
         private:
             
@@ -171,7 +172,6 @@ public:
         
     class Pruner
     {
-        
     public:
         
         Pruner(FrameLib_GlobalAllocator& allocator) : mAllocator(allocator)
@@ -310,7 +310,6 @@ private:
 
 class FrameLib_LocalAllocatorSet
 {
-    
 public:
     
     // Constructor
@@ -345,7 +344,6 @@ private:
 
 class FrameLib_ContextAllocator
 {
-    
 public:
 
     /**
@@ -374,7 +372,6 @@ public:
         
         class Access
         {
-            
         public:
             
             // Constructor and Destructor

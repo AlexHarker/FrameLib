@@ -4,8 +4,9 @@
 
 class NeumaierSum
 {
-    
 public:
+    
+    NeumaierSum() : mSum(0.0), mCompensate(0.0) {}
     
     // Clear
     

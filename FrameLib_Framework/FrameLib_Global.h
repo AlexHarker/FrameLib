@@ -130,7 +130,13 @@ private:
     // Constructor / Destructor
     
     FrameLib_Global(FrameLib_Thread::Priorities priorities, FrameLib_ErrorReporter::HostNotifier *notifier)
-    : FrameLib_ErrorReporter(notifier), mAllocator(priorities, *this), mContextAllocators(*this), mProcessingQueues(*this), mPriorities(priorities), mCount(0) {}
+    : FrameLib_ErrorReporter(notifier), mAllocator(priorities, *this)
+    , mContextAllocators(*this)
+    , mProcessingQueues(*this)
+    , mPriorities(priorities)
+    , mCount(0)
+    {}
+    
     ~FrameLib_Global() {};
     
     // Non-copyable

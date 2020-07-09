@@ -68,7 +68,6 @@ struct FrameLib_Connection
 template <class T>
 class FrameLib_Object : public FrameLib_MethodQueue<T>::Node
 {
-    
 public:
     
     using Queue = FrameLib_MethodQueue<T>;
@@ -78,7 +77,6 @@ public:
     
     class Allocator
     {
-    
     public:
         
         Allocator(FrameLib_Object& object) : mObject(object) {}
@@ -136,7 +134,15 @@ public:
     // Constructor / Destructor
     
     FrameLib_Object(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy)
-    : mType(type), mContext(context), mAllocator(context), mLocalAllocator(nullptr), mProxy(proxy), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
+    : mType(type)
+    , mContext(context)
+    , mAllocator(context)
+    , mLocalAllocator(nullptr)
+    , mProxy(proxy)
+    , mNumAudioChans(0)
+    , mSupportsOrderingConnections(false)
+    , mFeedback(false)
+    {}
     
     virtual ~FrameLib_Object()                  { clearConnections(false); }
    
@@ -920,12 +926,13 @@ private:
 
 class FrameLib_Block : public FrameLib_Object<FrameLib_Block>
 {
-    
 public:
     
     // Constructor / Destructor
     
-    FrameLib_Block(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy) : FrameLib_Object<FrameLib_Block>(type, context, proxy) {}
+    FrameLib_Block(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy)
+    : FrameLib_Object<FrameLib_Block>(type, context, proxy) {}
+    
     virtual ~FrameLib_Block() {}
 
     // Stream Awareness
