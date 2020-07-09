@@ -1,6 +1,6 @@
 
-#ifndef FRAMELIB_BIQUAD_H
-#define FRAMELIB_BIQUAD_H
+#ifndef FRAMELIB_BIQUADCOEFF_H
+#define FRAMELIB_BIQUADCOEFF_H
 
 #include "FrameLib_Filter_Template.h"
 
