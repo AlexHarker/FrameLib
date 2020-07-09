@@ -40,6 +40,7 @@ externals/
 maxframelib.mxo/
 *.o
 *.d_fat
+*.mxo
 
 ## Package Testing
 test-builds/
