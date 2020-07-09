@@ -137,7 +137,7 @@ public:
     
 private:
     
-    void retain()                                               { FrameLib_Global::get(&mGlobal); }
+    void retain()                                               { FrameLib_Global::get(&mGlobal, FrameLib_Thread::defaultPriorities()); }
     void release()                                              { FrameLib_Global::release(&mGlobal); }
 
     static FrameLib_PDGlobals **getPDGlobalsPtr()
@@ -513,7 +513,7 @@ public:
         std::string internalClassName = className;
         std::string proxyClassName;
 
-        if (T::handlesAudio())
+        if (T::sHandlesAudio)
         {
             //Wrapper<U>:: template makeClass<Wrapper<U>>(CLASS_BOX, className);
             internalClassName.insert(0, "unsynced.");
@@ -744,7 +744,7 @@ public:
     
     bool supportsOrderingConnections()    { return mObject->supportsOrderingConnections(); }
     
-    bool handlesAudio()     { return T::handlesAudio(); }
+    bool handlesAudio()     { return T::sHandlesAudio; }
 
     long getNumAudioIns()   { return (long) mObject->getNumAudioIns() + (handlesAudio() ? 1 : 0); }
     long getNumAudioOuts()  { return (long) mObject->getNumAudioOuts() + (handlesAudio() ? 1 : 0); }

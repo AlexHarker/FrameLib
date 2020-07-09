@@ -47,7 +47,7 @@
 // Schedulers
 
 #include "FrameLib_AudioTrigger.h"
-#include "FrameLib_Future.h"
+#include "FrameLib_Chain.h"
 #include "FrameLib_Interval.h"
 #include "FrameLib_Once.h"
 #include "FrameLib_PerBlock.h"
@@ -149,7 +149,7 @@
 
 struct FrameLib_Dummy : public MaxClass_Base
 {
-    FrameLib_Dummy(t_symbol *sym, long ac, t_atom *av)
+    FrameLib_Dummy(t_object *x, t_symbol *sym, long ac, t_atom *av)
     {
         post("FrameLib Loaded");
     }
@@ -164,7 +164,7 @@ extern "C" int C74_EXPORT main(void)
     // Filters
     
     FrameLib_MaxClass_Expand<FrameLib_Biquad>::makeClass("fl.biquad~");
-    FrameLib_MaxClass_Expand<FrameLib_BiquadCoeffBiquadCoeff>::makeClass("fl.biquadcoeff~");
+    FrameLib_MaxClass_Expand<FrameLib_BiquadCoeff>::makeClass("fl.biquadcoeff~");
     FrameLib_MaxClass_Expand<FrameLib_OnePole>::makeClass("fl.onepole~");
     FrameLib_MaxClass_Expand<FrameLib_OnePoleZero>::makeClass("fl.onepolezero~");
     FrameLib_MaxClass_Expand<FrameLib_SVF>::makeClass("fl.svf~");
@@ -207,6 +207,7 @@ extern "C" int C74_EXPORT main(void)
     // Schedulers
     
     FrameLib_MaxClass_Expand<FrameLib_AudioTrigger>::makeClass("fl.audiotrigger~");
+    FrameLib_MaxClass_Expand<FrameLib_Chain>::makeClass("fl.chain~");
     FrameLib_MaxClass_Expand<FrameLib_Interval>::makeClass("fl.interval~");
     FrameLib_MaxClass_Expand<FrameLib_Once>::makeClass("fl.once~");
     FrameLib_MaxClass_Expand<FrameLib_PerBlock>::makeClass("fl.perblock~");

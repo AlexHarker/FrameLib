@@ -47,7 +47,7 @@
 // Schedulers
 
 #include "FrameLib_AudioTrigger.h"
-#include "FrameLib_Future.h"
+#include "FrameLib_Chain.h"
 #include "FrameLib_Interval.h"
 #include "FrameLib_Once.h"
 #include "FrameLib_PerBlock.h"
@@ -130,8 +130,9 @@
 
 // Buffer
 
+#include "pd_buffer.h"
 #include "FrameLib_Read.h"
-#include "PD_Specific/pd_buffer.h"
+#include "FrameLib_Info.h"
 
 // PD Read Class
 
@@ -159,6 +160,11 @@ class FrameLib_PDClass_Read : public FrameLib_PDClass_Expand<FrameLib_Read>
         void read(double *output, const double *positions, unsigned long size, long chan, InterpType interpType) override
         {
             mBuffer.read(output, positions, size, 1.0, interpType);
+        }
+        
+        FrameLib_Read::Proxy *clone() const override
+        {
+            return new ReadProxy(*this);
         }
         
     private:
@@ -353,7 +359,7 @@ extern "C" void framelib_pd_setup(void)
     // Schedulers
     
     FrameLib_PDClass_Expand<FrameLib_AudioTrigger>::makeClass("fl.audiotrigger~");
-    FrameLib_PDClass_Expand<FrameLib_Future>::makeClass("fl.future~");
+    FrameLib_PDClass_Expand<FrameLib_Chain>::makeClass("fl.chain~");
     FrameLib_PDClass_Expand<FrameLib_Interval>::makeClass("fl.interval~");
     FrameLib_PDClass_Expand<FrameLib_Once>::makeClass("fl.once~");
     FrameLib_PDClass_Expand<FrameLib_PerBlock>::makeClass("fl.perblock~");
