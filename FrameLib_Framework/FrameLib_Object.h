@@ -77,7 +77,6 @@ public:
     
     class Allocator
     {
-    
     public:
         
         Allocator(FrameLib_Object& object) : mObject(object) {}

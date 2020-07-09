@@ -72,7 +72,6 @@ class FrameLib_GlobalAllocator
         
         class NewThread final : public FrameLib_DelegateThread
         {
-            
         public:
             
             NewThread(CoreAllocator& allocator) : FrameLib_DelegateThread(FrameLib_Thread::kHighPriority), mAllocator(allocator) {}
@@ -94,7 +93,6 @@ class FrameLib_GlobalAllocator
 
         class FreeThread final : public FrameLib_TriggerableThread
         {
-            
         public:
             
             FreeThread(CoreAllocator& allocator) : FrameLib_TriggerableThread(FrameLib_Thread::kLowPriority), mAllocator(allocator) {}
@@ -168,7 +166,6 @@ public:
         
     class Pruner
     {
-        
     public:
         
         Pruner(FrameLib_GlobalAllocator& allocator) : mAllocator(allocator)
@@ -369,7 +366,6 @@ public:
         
         class Access
         {
-            
         public:
             
             // Constructor and Destructor

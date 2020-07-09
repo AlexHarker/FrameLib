@@ -8,7 +8,6 @@ namespace FrameLib_Filters
 {
     class OnePoleZero : public Filter<OnePoleZero, 1, 2, true>
     {
-        
     public:
         
         OnePoleZero() : a0(0.0), a1(0.0), r1(0.0), y1(0.0) {}

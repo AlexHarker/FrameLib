@@ -12,7 +12,6 @@ class FrameLib_TernaryOp final : public FrameLib_Processor
     
     class EnlargedInput
     {
-        
     public:
         
         EnlargedInput(FrameLib_TernaryOp *owner, const double *input, unsigned long size, unsigned long extendedSize, MismatchModes mode)

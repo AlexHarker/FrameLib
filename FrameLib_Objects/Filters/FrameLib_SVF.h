@@ -8,7 +8,6 @@ namespace FrameLib_Filters
 {
     class SVF : public Filter<SVF, 2, 3, true>
     {
-        
     public:
         
         SVF() : g(0.0), r(0.0), s1(0.0), s2(0.0), lp(0.0), bp(0.0), hp(0.0) {}

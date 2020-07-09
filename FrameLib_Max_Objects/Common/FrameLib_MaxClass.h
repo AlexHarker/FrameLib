@@ -355,7 +355,6 @@ public:
     
     class SyncCheck
     {
-        
     public:
         
         enum Mode { kDownOnly, kDown, kAcross };

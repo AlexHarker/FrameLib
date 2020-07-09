@@ -77,7 +77,6 @@ public:
 
     class IntervalSecondsClock
     {
-        
     public:
         
         void start() { mStartTime = getTime(); }
@@ -104,7 +103,6 @@ public:
     
     class WorkerThreads final : public FrameLib_TriggerableThreadSet
     {
-        
     public:
         
         WorkerThreads(FrameLib_ProcessingQueue *queue)

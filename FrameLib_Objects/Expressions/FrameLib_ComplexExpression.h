@@ -27,7 +27,6 @@ class FrameLib_ComplexExpression : public FrameLib_Block
     
     class InputProcessor final : public FrameLib_Processor
     {
-        
     public:
         
         // Constructor
