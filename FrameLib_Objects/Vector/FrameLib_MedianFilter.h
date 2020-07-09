@@ -8,7 +8,7 @@ class FrameLib_MedianFilter final : public FrameLib_Processor
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kWidth, kPadding, kMode };
+    enum ParameterList { kWidth, kPadding, kMode, kPercentile };
     enum Modes { kPad, kWrap, kFold };
     
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
