@@ -31,8 +31,7 @@ FrameLib_Lag::FrameLib_Lag(FrameLib_Context context, const FrameLib_Parameters::
 
 std::string FrameLib_Lag::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs vector-type frames with a lag set as an integer number of frames: Frames are expected to be of a uniform size, else the buffer is reset. The output is the same size as the input.",
-                   "Outputs vector-type frames with a lag set as an integer number of frames.", verbose);
+    return formatInfo("Outputs vector-type frames with a lag set as an integer number of frames: Frames are expected to be of a uniform size, else the buffer is reset. The output is the same size as the input.", "Outputs vector-type frames with a lag set as an integer number of frames.", verbose);
 }
 
 std::string FrameLib_Lag::inputInfo(unsigned long idx, bool verbose)
@@ -79,22 +78,26 @@ void FrameLib_Lag::objectReset()
 
 void FrameLib_Lag::process()
 {
+    unsigned long sizeIn, sizeReset, sizeOut, sizeValid;
+
     Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
-    
     unsigned long maxFrames = mParameters.getInt(kMaxFrames);
     unsigned long requestedFrames = mParameters.getInt(kNumFrames);
     
-    unsigned long sizeIn, sizeReset, sizeOut, sizeValid;
     const double *input = getInput(0, &sizeIn);
     const double *resetInput = getInput(1, &sizeReset);
     
-    bool forceReset = mLastResetTime != getInputFrameTime(1);
-
-    if (forceReset || getFrameLength() != sizeIn || getNumFrames() != maxFrames)
+    const bool forceReset = mLastResetTime != getInputFrameTime(1);
+    const bool frameSizeMismatch = sizeIn != getFrameLength();
+    const bool maxFramesMismatch = maxFrames != getNumFrames();
+    
+    if (forceReset || frameSizeMismatch || maxFramesMismatch)
     {
         resize(maxFrames, sizeIn);
         mLastResetTime = getInputFrameTime(1);
     }
+    
+    // Check available frames
     
     requestedFrames = std::min(requestedFrames, maxFrames);
     unsigned long numFrames = requestedFrames;
@@ -103,11 +106,15 @@ void FrameLib_Lag::process()
     if (mode == kValid)
         numFrames = std::min(numFrames, validFrames);
 
+    // Allocate outputs
+    
     requestOutputSize(0, getFrameLength());
     requestOutputSize(1, 1);
     allocateOutputs();
     double *outputValue = getOutput(0, &sizeOut);
     double *outputValid = getOutput(1, &sizeValid);
+    
+    // Output
     
     if (numFrames <= validFrames)
     {

@@ -19,8 +19,7 @@ FrameLib_TimeStdDev::~FrameLib_TimeStdDev()
 
 std::string FrameLib_TimeStdDev::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs the standard deviation per sample over a given number of frames: Frames are expected to be of uniform size, otherwise the buffer is reset. The number of frames (as well as the maximum number of frames) can be set as parameters. The output is the same size as the input.",
-                      "Outputs the standard deviation per sample over a given number of frames.", verbose);
+    return formatInfo("Outputs the standard deviation per sample over a given number of frames: Frames are expected to be of uniform size, otherwise the buffer is reset. The number of frames (as well as the maximum number of frames) can be set as parameters. The output is the same size as the input.", "Outputs the standard deviation per sample over a given number of frames.", verbose);
 }
 
 std::string FrameLib_TimeStdDev::inputInfo(unsigned long idx, bool verbose)
@@ -78,7 +77,7 @@ void FrameLib_TimeStdDev::remove(const double *oldFrame, unsigned long size)
     }
 }
 
-void FrameLib_TimeStdDev::result(double *output, unsigned long size, const PaddedVector& pad, unsigned long padSize)
+void FrameLib_TimeStdDev::result(double *output, unsigned long size, Padded pad, unsigned long padSize)
 {
     double r1 = 1.0 / getNumFrames(true);
     double r2 = 1.0 / getNumFrames(false);

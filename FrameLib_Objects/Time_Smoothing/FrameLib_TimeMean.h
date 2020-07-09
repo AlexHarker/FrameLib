@@ -27,7 +27,7 @@ public:
 
     void add(const double *newFrame, unsigned long size) override;
     void remove(const double *oldFrame, unsigned long size) override;
-    void result(double *output, unsigned long size, const PaddedVector& pad, unsigned long padSize) override;
+    void result(double *output, unsigned long size, Padded pad, unsigned long padSize) override;
     
 private:
     

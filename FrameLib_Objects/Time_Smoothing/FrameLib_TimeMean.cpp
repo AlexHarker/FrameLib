@@ -17,8 +17,7 @@ FrameLib_TimeMean::~FrameLib_TimeMean()
 
 std::string FrameLib_TimeMean::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs the mean per sample over a given number of frames: Frames are expected to be of uniform size, otherwise the buffer is reset. The number of frames (as well as the maximum number of frames) can be set as parameters. The output is the same size as the input.",
-                   "Outputs the mean per sample over a given number of frames.", verbose);
+    return formatInfo("Outputs the mean per sample over a given number of frames: Frames are expected to be of uniform size, otherwise the buffer is reset. The number of frames (as well as the maximum number of frames) can be set as parameters. The output is the same size as the input.", "Outputs the mean per sample over a given number of frames.", verbose);
 }
 
 std::string FrameLib_TimeMean::inputInfo(unsigned long idx, bool verbose)
@@ -64,7 +63,7 @@ void FrameLib_TimeMean::remove(const double *oldFrame, unsigned long size)
         mSum[i].sum(-oldFrame[i]);
 }
 
-void FrameLib_TimeMean::result(double *output, unsigned long size, const PaddedVector& pad, unsigned long padSize)
+void FrameLib_TimeMean::result(double *output, unsigned long size, Padded pad, unsigned long padSize)
 {
     const double recip = 1.0 / getNumFrames();
     

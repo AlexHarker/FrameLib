@@ -9,9 +9,10 @@
 template <class T, unsigned long nParams = 0>
 class FrameLib_TimeBuffer : public FrameLib_Processor, private FrameLib_RingBuffer
 {
-    
 protected:
-    
+ 
+    using Padded = const PaddedVector&;
+
     enum ParameterList
     {
         kMaxFrames = 0,
@@ -91,6 +92,10 @@ private:
     
     // Smooth
     
+    virtual void resetSize(unsigned long maxFrames, unsigned long size) = 0;
+    
+    virtual void result(double *output, unsigned long size, Padded pad, unsigned long padSize) = 0;
+    
     virtual void add(const double *newFrame, unsigned long size) = 0;
     virtual void remove(const double *oldFrame, unsigned long size) = 0;
 
@@ -99,10 +104,6 @@ private:
         remove(oldFrame, size);
         add(newFrame, size);
     }
-    
-    virtual void result(double *output, unsigned long size, const PaddedVector& pad, unsigned long padSize) = 0;
-    
-    virtual void resetSize(unsigned long maxFrames, unsigned long size) = 0;
     
     // Object reset
     
@@ -117,20 +118,23 @@ private:
     
     void process() override
     {
+        unsigned long sizeIn, sizeReset, sizeOut, sizeValid;
+
         Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
         double pad = mParameters.getValue(kDefault);
         
-        unsigned long sizeIn, sizeReset, sizeOut, sizeValid;
+        unsigned long numFrames;
         unsigned long maxFrames = getMaxFrames();
         unsigned long requestedFrames = getRequestedNumFrames();
-        unsigned long numFrames;
-        
+
         const double *input = getInput(0, &sizeIn);
         const double *resetInput = getInput(1, &sizeReset);
 
-        bool forceReset = mLastResetTime != getInputFrameTime(1);
-
-        if (forceReset || getFrameLength() != sizeIn || FrameLib_RingBuffer::getNumFrames() != maxFrames)
+        const bool forceReset = mLastResetTime != getInputFrameTime(1);
+        const bool frameSizeMismatch = sizeIn != getFrameLength();
+        const bool maxFramesMismatch = maxFrames != FrameLib_RingBuffer::getNumFrames();
+        
+        if (forceReset || frameSizeMismatch || maxFramesMismatch)
         {
             resize(maxFrames, sizeIn);
             resetSize(maxFrames, sizeIn);
@@ -138,10 +142,11 @@ private:
             mLastResetTime = getInputFrameTime(1);
         }
 
-        // N.B. retrieve number of frames after reset
+        // N.B. retrieve actual number of frames after reset
         
         numFrames = getNumFrames(true);
-        unsigned long padSize = mode == kPadIn ? requestedFrames - numFrames : 0;
+        
+        // Allocate outputs
         
         requestOutputSize(0, getFrameLength());
         requestOutputSize(1, 1);
@@ -149,8 +154,12 @@ private:
         double *outputValue = getOutput(0, &sizeOut);
         double *outputValid = getOutput(1, &sizeValid);
         
+        // Update with the correct, frames, store and output
+        
         if (sizeIn)
         {
+            unsigned long padSize = mode == kPadIn ? requestedFrames - numFrames : 0;
+
             if (numFrames > mLastNumFrames)
             {
                 for (unsigned long i = numFrames; i > mLastNumFrames + 1; i--)

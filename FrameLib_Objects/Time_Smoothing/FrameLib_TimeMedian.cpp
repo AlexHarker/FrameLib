@@ -23,8 +23,7 @@ FrameLib_TimeMedian::~FrameLib_TimeMedian()
 
 std::string FrameLib_TimeMedian::objectInfo(bool verbose)
 {
-    return formatInfo("Outputs the median per sample over a given number of frames: Frames are expected to be of uniform size, otherwise the buffer is reset. The number of frames (as well as the maximum number of frames) can be set as parameters. The output is the same size as the input.",
-                      "Outputs the median per sample over a given number of frames.", verbose);
+    return formatInfo("Outputs the median per sample over a given number of frames: Frames are expected to be of uniform size, otherwise the buffer is reset. The number of frames (as well as the maximum number of frames) can be set as parameters. The output is the same size as the input.", "Outputs the median per sample over a given number of frames.", verbose);
 }
 
 std::string FrameLib_TimeMedian::inputInfo(unsigned long idx, bool verbose)
@@ -172,7 +171,7 @@ void FrameLib_TimeMedian::remove(const double *oldFrame, unsigned long size)
     mNumFrames--;
 }
 
-void FrameLib_TimeMedian::result(double *output, unsigned long size, const PaddedVector& pad, unsigned long padSize)
+void FrameLib_TimeMedian::result(double *output, unsigned long size, Padded pad, unsigned long padSize)
 {
     unsigned long numFrames = padSize ? getNumFrames() : mNumFrames;
     
