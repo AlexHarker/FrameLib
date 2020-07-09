@@ -3,6 +3,7 @@
 #define FRAMELIB_TIMEBUFFER_TEMPLATE_H
 
 #include "FrameLib_RingBuffer.h"
+#include "FrameLib_PaddedVector.h"
 #include "FrameLib_DSP.h"
 
 template <class T, unsigned long nParams = 0>
@@ -19,7 +20,7 @@ protected:
         kMode = 3 + nParams
     };
     
-    enum Modes { kPadIn, kPadOut, kValid };
+    enum Modes { kPadIn, kValid };
     
     // Parameter Info
 
@@ -38,7 +39,6 @@ protected:
         
         mParameters.addEnum(kMode, "mode");
         mParameters.addEnumItem(kPadIn, "pad_in");
-        mParameters.addEnumItem(kPadOut, "pad_out");
         mParameters.addEnumItem(kValid, "valid");
         
         mParameters.set(serialisedParameters);
@@ -48,7 +48,7 @@ public:
     
     // Constructor
     
-    FrameLib_TimeBuffer(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 3, 1), FrameLib_RingBuffer(this), mLastNumFrames(0)
+    FrameLib_TimeBuffer(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 3, 2), FrameLib_RingBuffer(this), mLastNumFrames(0)
     {
         mParameters.addInt(kMaxFrames, "max_frames", 10, 0);
         mParameters.setMin(1);
@@ -75,7 +75,7 @@ protected:
         else
             return getRequestedNumFrames();
     }
-
+    
 private:
     
     unsigned long getRequestedNumFrames() const
@@ -97,7 +97,7 @@ private:
         add(newFrame, size);
     }
     
-    virtual void result(double *output, unsigned long size, double pad, unsigned long padSize) = 0;
+    virtual void result(double *output, unsigned long size, const PaddedVector& pad, unsigned long padSize) = 0;
     
     virtual void resetSize(unsigned long maxFrames, unsigned long size) = 0;
     
@@ -117,12 +117,13 @@ private:
         Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
         double pad = mParameters.getValue(kDefault);
         
-        unsigned long sizeIn, sizeOut;
+        unsigned long sizeIn, sizeReset, sizeOut, sizeValid;
         unsigned long maxFrames = getMaxFrames();
         unsigned long requestedFrames = getRequestedNumFrames();
         unsigned long numFrames;
         
         const double *input = getInput(0, &sizeIn);
+        const double *resetInput = getInput(1, &sizeReset);
 
         bool forceReset = mLastResetTime != getInputFrameTime(1);
 
@@ -137,12 +138,13 @@ private:
         // N.B. retrieve number of frames after reset
         
         numFrames = getNumFrames(true);
-        bool useDefault = mode == kPadOut && requestedFrames != numFrames;
         unsigned long padSize = mode == kPadIn ? requestedFrames - numFrames : 0;
         
         requestOutputSize(0, getFrameLength());
+        requestOutputSize(1, 1);
         allocateOutputs();
-        double *output = getOutput(0, &sizeOut);
+        double *outputValue = getOutput(0, &sizeOut);
+        double *outputValid = getOutput(1, &sizeValid);
         
         if (sizeIn)
         {
@@ -161,15 +163,13 @@ private:
                 exchange(input, getFrame(numFrames), sizeIn);
             }
             
-            if (!useDefault)
-                result(output, sizeOut, pad, padSize);
-            else
-                std::fill_n(output, sizeOut, pad);
-            
+            result(outputValue, sizeOut, PaddedVector(resetInput, sizeReset, pad), padSize);
             write(input, sizeIn);
-            
             mLastNumFrames = numFrames;
         }
+        
+        if (sizeValid)
+            outputValid[0] = sizeIn && requestedFrames != numFrames ? 1 : 0;
     }
     
     static ParameterInfo sParamInfo;

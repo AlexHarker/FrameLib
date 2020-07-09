@@ -2451,6 +2451,7 @@
 		B8D272F11DA6629A00E0E566 /* FrameLib_Memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Memory.cpp; sourceTree = "<group>"; };
 		B8D383D524B7314300E8D807 /* pd_buffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pd_buffer.h; sourceTree = "<group>"; };
 		B8D383D624B7340B00E8D807 /* FrameLib_NeumaierSum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_NeumaierSum.h; sourceTree = "<group>"; };
+		B8D383D724B796E600E8D807 /* FrameLib_PaddedVector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_PaddedVector.h; sourceTree = "<group>"; };
 		B8D679CC1B83E39E00519310 /* FrameLib_Trace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Trace.h; sourceTree = "<group>"; };
 		B8D679DB1B83E51A00519310 /* fl.trace~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.trace~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D679DD1B83E55900519310 /* fl.trace~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.trace~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -4498,6 +4499,7 @@
 			isa = PBXGroup;
 			children = (
 				B8D383D624B7340B00E8D807 /* FrameLib_NeumaierSum.h */,
+				B8D383D724B796E600E8D807 /* FrameLib_PaddedVector.h */,
 				B8886F7E1FB7D715001C843E /* FrameLib_RingBuffer.h */,
 				B8886F7F1FB7D715001C843E /* FrameLib_VectorSet.h */,
 				B8F3EE171F34DB6C00D0E98E /* FrameLib_Scaling_Functions.h */,

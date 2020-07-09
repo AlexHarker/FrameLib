@@ -1,9 +1,10 @@
 
 #include "FrameLib_Lag.h"
+#include "FrameLib_PaddedVector.h"
 
 // Constructor
 
-FrameLib_Lag::FrameLib_Lag(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 3, 1), FrameLib_RingBuffer(this)
+FrameLib_Lag::FrameLib_Lag(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 3, 2), FrameLib_RingBuffer(this)
 {
     mParameters.addInt(kMaxFrames, "max_frames", 10, 0);
     mParameters.setMin(1);
@@ -44,7 +45,10 @@ std::string FrameLib_Lag::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_Lag::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output";
+    if (idx)
+        return "Buffer Full";
+    else
+        return "Output";
 }
 
 // Parameter Info
@@ -76,10 +80,11 @@ void FrameLib_Lag::process()
     Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
     
     unsigned long maxFrames = mParameters.getInt(kMaxFrames);
-    unsigned long numFrames = mParameters.getInt(kNumFrames);
+    unsigned long requestedFrames = mParameters.getInt(kNumFrames);
     
-    unsigned long sizeIn, sizeOut;
+    unsigned long sizeIn, sizeReset, sizeOut, sizeValid;
     const double *input = getInput(0, &sizeIn);
+    const double *resetInput = getInput(1, &sizeReset);
     
     bool forceReset = mLastResetTime != getInputFrameTime(1);
 
@@ -89,22 +94,34 @@ void FrameLib_Lag::process()
         mLastResetTime = getInputFrameTime(1);
     }
     
-    numFrames = std::min(numFrames, maxFrames);
-
+    requestedFrames = std::min(requestedFrames, maxFrames);
+    unsigned long numFrames = requestedFrames;
+    unsigned long validFrames = getValidFrames();
+    
     if (mode == kValid)
-        numFrames = std::min(numFrames, getValidFrames());
+        numFrames = std::min(numFrames, validFrames);
 
     requestOutputSize(0, getFrameLength());
+    requestOutputSize(1, 1);
     allocateOutputs();
-    double *output = getOutput(0, &sizeOut);
+    double *outputValue = getOutput(0, &sizeOut);
+    double *outputValid = getOutput(1, &sizeValid);
     
-    if (numFrames <= getValidFrames())
+    if (numFrames <= validFrames)
     {
         const double *frame = numFrames ? getFrame(numFrames) : input;
-        copyVector(output, frame, sizeOut);
+        copyVector(outputValue, frame, sizeOut);
     }
     else
-        std::fill_n(output, sizeOut, mParameters.getValue(kDefault));
+    {
+        PaddedVector pad(resetInput, sizeReset, mParameters.getValue(kDefault));
         
+        for (unsigned long i = 0; i < sizeOut; i++)
+            outputValue[i] = pad[i];
+    }
+    
+    if (sizeValid)
+        outputValid[0] = requestedFrames > validFrames ? 1 : 0;
+    
     write(input, sizeIn);
 }

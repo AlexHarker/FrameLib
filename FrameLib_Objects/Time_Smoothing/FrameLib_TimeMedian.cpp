@@ -36,7 +36,10 @@ std::string FrameLib_TimeMedian::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_TimeMedian::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output";
+    if (idx)
+        return "Buffer Full";
+    else
+        return "Output";
 }
 
 // Update size
@@ -166,7 +169,7 @@ void FrameLib_TimeMedian::remove(const double *oldFrame, unsigned long size)
     mNumFrames--;
 }
 
-void FrameLib_TimeMedian::result(double *output, unsigned long size, double pad, unsigned long padSize)
+void FrameLib_TimeMedian::result(double *output, unsigned long size, const PaddedVector& pad, unsigned long padSize)
 {
     unsigned long numFrames = padSize ? getNumFrames() : mNumFrames;
     
@@ -178,14 +181,15 @@ void FrameLib_TimeMedian::result(double *output, unsigned long size, double pad,
     {
         for (unsigned long i = 0; i < size; i++)
         {
-            unsigned long pos = find(pad, getChannel(i), mNumFrames);
+            const double padValue = pad[i];
+            unsigned long pos = find(padValue, getChannel(i), mNumFrames);
             
             if (percentilePos < pos)
                 output[i] = getChannel(i)[percentilePos];
             else if (percentilePos >= pos + padSize)
                 output[i] = getChannel(i)[percentilePos - padSize];
             else
-                output[i] = pad;
+                output[i] = padValue;
         }
     }
     else

@@ -31,7 +31,10 @@ std::string FrameLib_TimeMean::inputInfo(unsigned long idx, bool verbose)
 
 std::string FrameLib_TimeMean::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Output";
+    if (idx)
+        return "Buffer Full";
+    else
+        return "Output";
 }
 
 // Update size
@@ -59,11 +62,10 @@ void FrameLib_TimeMean::remove(const double *oldFrame, unsigned long size)
         mSum[i].sum(-oldFrame[i]);
 }
 
-void FrameLib_TimeMean::result(double *output, unsigned long size, double pad, unsigned long padSize)
+void FrameLib_TimeMean::result(double *output, unsigned long size, const PaddedVector& pad, unsigned long padSize)
 {
-    double recip = 1.0 / getNumFrames();
-    double padSum = pad * padSize;
+    const double recip = 1.0 / getNumFrames();
     
     for (unsigned long i = 0; i < size; i++)
-        output[i] = (padSum + mSum[i].value()) * recip;
+        output[i] = (pad[i] * padSize + mSum[i].value()) * recip;
 }
