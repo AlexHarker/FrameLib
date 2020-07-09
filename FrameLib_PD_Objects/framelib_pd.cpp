@@ -177,7 +177,8 @@ public:
     
     // Constructor
     
-    FrameLib_PDClass_Read(t_symbol *s, long argc, t_atom *argv) : FrameLib_PDClass(s, argc, argv, new ReadProxy()) {}
+    FrameLib_PDClass_Read(t_symbol *s, long argc, t_atom *argv)
+    : FrameLib_PDClass(s, argc, argv, new ReadProxy()) {}
 };
 
 // PD Expression Classes

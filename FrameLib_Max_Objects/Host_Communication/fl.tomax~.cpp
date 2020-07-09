@@ -76,7 +76,7 @@ void FrameLib_MaxClass_ToMax::classInit(t_class *c, t_symbol *nameSpace, const c
 // Constructor
 
 FrameLib_MaxClass_ToMax::FrameLib_MaxClass_ToMax(t_object *x, t_symbol *s, long argc, t_atom *argv)
-    : FrameLib_MaxClass(x, s, argc, argv, new ToHostProxy(this))
+: FrameLib_MaxClass(x, s, argc, argv, new ToHostProxy(this))
 {
     unsigned long nStreams = getSpecifiedStreams();
     
