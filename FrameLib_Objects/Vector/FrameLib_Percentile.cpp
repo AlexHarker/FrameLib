@@ -9,6 +9,8 @@ FrameLib_Percentile::FrameLib_Percentile(FrameLib_Context context, const FrameLi
     mParameters.addDouble(kPercentile, "percentile", 50.0, 0);
     mParameters.setClip(0.0, 100.0);
     
+    mParameters.addBool(kInterpolate, "interpolate", false, 1);
+    
     addDefaultParameters();
     
     mParameters.set(serialisedParameters);
@@ -32,6 +34,7 @@ FrameLib_Percentile::ParameterInfo FrameLib_Percentile::sParamInfo;
 FrameLib_Percentile::ParameterInfo::ParameterInfo()
 {
     add("Sets the percentile to calculate [0-100].");
+    add("Sets whether interpolation is used to estimate values between data points.");
     Base::addDefaultParameterInfo(*this);
 }
 
@@ -44,19 +47,25 @@ double FrameLib_Percentile::compute(const double *input, size_t size)
     
     if (temp)
     {
+        double position = (mParameters.getValue(kPercentile) * (size - 1) / 100.0);
+        
         sortAscending(temp, input, size);
         
         // Copy last value
         
         temp[size] = temp[size - 1];
         
-        // Linearly interpolate output
+        if (mParameters.getBool(kInterpolate))
+        {
+            // Linearly interpolate output
         
-        double position = (mParameters.getValue(kPercentile) * (size - 1) / 100.0);
-        unsigned long idx = truncToUInt(position);
-        double fract = position - idx;
+            unsigned long idx = truncToUInt(position);
+            double fract = position - idx;
         
-        result = temp[idx] + fract * (temp[idx + 1] - temp[idx]);
+            result = temp[idx] + fract * (temp[idx + 1] - temp[idx]);
+        }
+        else
+            result = temp[roundToUInt(position)];
     }
     
     dealloc(temp);
