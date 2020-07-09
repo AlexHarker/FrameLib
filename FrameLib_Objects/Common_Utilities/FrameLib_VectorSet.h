@@ -19,16 +19,22 @@ public:
         deallocVector(mFrames);
     }
     
+    // Getters
+    
     unsigned long getNumFrames() const      { return mNumFrames; }
     unsigned long getFrameLength() const    { return mFrameLength; }
     double *getFrame(unsigned long idx)     { return mFrames + (idx * getFrameLength()); }
 
+    // Reset (resets all frames)
+    
     void reset(double initial = 0.0)
     {
         std::fill_n(mFrames, getNumFrames() * getFrameLength(), initial);
     }
     
-    void resize(unsigned long numFrames, unsigned long frameLength, double initial = 0.0)
+    // Resize without resetting the memory
+    
+    void resize(unsigned long numFrames, unsigned long frameLength)
     {
         unsigned long oldSize = mFrameLength * mNumFrames;
         unsigned long totalSize = frameLength * numFrames;
@@ -41,7 +47,13 @@ public:
         
         mNumFrames = mFrames ? numFrames : 0;
         mFrameLength = mFrames ? frameLength : 0;
-        
+    }
+    
+    // Resize and reset the memory
+    
+    void resize(unsigned long numFrames, unsigned long frameLength, double initial)
+    {
+        resize(numFrames, frameLength);
         reset(initial);
     }
 
