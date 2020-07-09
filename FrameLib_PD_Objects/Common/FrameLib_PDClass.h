@@ -542,7 +542,16 @@ public:
 
     // Constructor and Destructor
 
-    FrameLib_PDClass(t_symbol *s, long argc, t_atom *argv, FrameLib_PDProxy *proxy = new FrameLib_PDProxy()) : mFrameLibProxy(proxy), mConfirmObject(nullptr), mConfirmInIndex(-1), mConfirmOutIndex(-1), mConfirm(false), mCanvas(canvas_getcurrent()), mSyncIn(nullptr), mNeedsResolve(true), mUserObject(*this)
+    FrameLib_PDClass(t_symbol *s, long argc, t_atom *argv, FrameLib_PDProxy *proxy = new FrameLib_PDProxy())
+    : mFrameLibProxy(proxy)
+    , mConfirmObject(nullptr)
+    , mConfirmInIndex(-1)
+    , mConfirmOutIndex(-1)
+    , mConfirm(false)
+    , mCanvas(canvas_getcurrent())
+    , mSyncIn(nullptr)
+    , mNeedsResolve(true)
+    , mUserObject(*this)
     {
         // Object creation with parameters and arguments (N.B. the object is not a member due to size restrictions)
         
