@@ -4,7 +4,8 @@
 
 // Constructor
 
-FrameLib_Percentile::FrameLib_Percentile(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : Base(context, proxy, &sParamInfo)
+FrameLib_Percentile::FrameLib_Percentile(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: Base(context, proxy, &sParamInfo)
 {
     mParameters.addDouble(kPercentile, "percentile", 50.0, 0);
     mParameters.setClip(0.0, 100.0);

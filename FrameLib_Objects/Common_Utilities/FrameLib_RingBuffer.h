@@ -10,7 +10,10 @@ public:
     
     // Constructor
     
-    FrameLib_RingBuffer(FrameLib_DSP *owner) : FrameLib_VectorSet(owner), mCounter(0), mValid(0)
+    FrameLib_RingBuffer(FrameLib_DSP *owner)
+    : FrameLib_VectorSet(owner)
+    , mCounter(0)
+    , mValid(0)
     {}
     
     // N.B. Valid frames are those written since the last resize or reset

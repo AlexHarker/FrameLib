@@ -5,7 +5,12 @@
 
 // Constructor
 
-FrameLib_ToHost::FrameLib_ToHost(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, nullptr, 1, 0), mProxy(castProxy<Proxy>(proxy)), mStreamOwner(this), mStream(0), mID(0)
+FrameLib_ToHost::FrameLib_ToHost(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, nullptr, 1, 0)
+, mProxy(castProxy<Proxy>(proxy))
+, mStreamOwner(this)
+, mStream(0)
+, mID(0) 
 {
     mParameters.set(serialisedParameters);
     

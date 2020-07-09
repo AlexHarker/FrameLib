@@ -3,7 +3,10 @@
 
 // Constructor / Destructor
 
-FrameLib_TimeMean::FrameLib_TimeMean(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_TimeBuffer<FrameLib_TimeMean, false>(context, serialisedParameters, proxy), mSum(nullptr), mCompensate(nullptr)
+FrameLib_TimeMean::FrameLib_TimeMean(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_TimeBuffer<FrameLib_TimeMean, false>(context, serialisedParameters, proxy)
+, mSum(nullptr)
+, mCompensate(nullptr)
 {}
 
 FrameLib_TimeMean::~FrameLib_TimeMean()

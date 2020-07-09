@@ -1,7 +1,9 @@
 
 #include "FrameLib_Ticks.h"
 
-FrameLib_Ticks::FrameLib_Ticks(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 3, 1)
+FrameLib_Ticks::FrameLib_Ticks(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy)
+: FrameLib_Processor(context, proxy, &sParamInfo, 3, 1)
+, mCounter(0)
 {
     mParameters.addInt(kLimit, "limit", 10, 0);
     mParameters.setMin(0);
@@ -28,8 +30,6 @@ FrameLib_Ticks::FrameLib_Ticks(FrameLib_Context context, const FrameLib_Paramete
     setInputMode(1, false, false, false);
     
     setParameterInput(2);
-    
-    mCounter = 0;
 }
 
 std::string FrameLib_Ticks::objectInfo(bool verbose)

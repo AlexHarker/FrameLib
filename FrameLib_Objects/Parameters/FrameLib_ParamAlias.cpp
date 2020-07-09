@@ -3,7 +3,8 @@
 
 // Constructor
 
-FrameLib_ParamAlias::FrameLib_ParamAlias(FrameLib_Context context, unsigned long numOuts, FrameLib_Proxy *proxy, Parameters::Info *info) : FrameLib_Processor(context, proxy, info)
+FrameLib_ParamAlias::FrameLib_ParamAlias(FrameLib_Context context, unsigned long numOuts, FrameLib_Proxy *proxy, Parameters::Info *info)
+: FrameLib_Processor(context, proxy, info)
 {
     setIO(0, numOuts);
     addParameterInput();
