@@ -3,13 +3,12 @@
 
 // Constructor / Destructor
 
-FrameLib_TimeMean::FrameLib_TimeMean(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_TimeBuffer<FrameLib_TimeMean, false>(context, serialisedParameters, proxy), mSum(nullptr), mCompensate(nullptr)
+FrameLib_TimeMean::FrameLib_TimeMean(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_TimeBuffer<FrameLib_TimeMean>(context, serialisedParameters, proxy), mSum(nullptr)
 {}
 
 FrameLib_TimeMean::~FrameLib_TimeMean()
 {
     dealloc(mSum);
-    dealloc(mCompensate);
 }
 
 // Info
@@ -22,15 +21,17 @@ std::string FrameLib_TimeMean::objectInfo(bool verbose)
 
 std::string FrameLib_TimeMean::inputInfo(unsigned long idx, bool verbose)
 {
-    if (idx)
-        return parameterInputInfo(verbose);
-    else
-        return formatInfo("Input Values", "Input Values", verbose);
+    switch (idx)
+    {
+        case 0:     return "Input";
+        case 1:     return "Reset Input";
+        default:    return parameterInputInfo(verbose);
+    }
 }
 
 std::string FrameLib_TimeMean::outputInfo(unsigned long idx, bool verbose)
 {
-    return "Means Over Time";
+    return "Output";
 }
 
 // Update size
@@ -38,25 +39,10 @@ std::string FrameLib_TimeMean::outputInfo(unsigned long idx, bool verbose)
 void FrameLib_TimeMean::resetSize(unsigned long maxFrames, unsigned long size)
 {
     dealloc(mSum);
-    dealloc(mCompensate);
-    mSum = alloc<double>(size);
-    mCompensate = alloc<double>(size);
-    zeroVector(mSum, size);
-    zeroVector(mCompensate, size);
-}
-
-// High Precision Sum
-
-static void neumaierSum(double in, double &sum, double &c)
-{
-    double t = sum + in;
+    mSum = alloc<NeumaierSum>(size);
     
-    if (fabs(sum) >= fabs(in))
-        c += (sum - t) + in;
-    else
-        c += (in - t) + sum;
-    
-    sum = t;
+    for (unsigned long i = 0; i < size; i++)
+        mSum[i].clear();
 }
 
 // Process
@@ -64,19 +50,20 @@ static void neumaierSum(double in, double &sum, double &c)
 void FrameLib_TimeMean::add(const double *newFrame, unsigned long size)
 {
     for (unsigned long i = 0; i < size; i++)
-        neumaierSum(newFrame[i], mSum[i], mCompensate[i]);
+        mSum[i].sum(newFrame[i]);
 }
 
 void FrameLib_TimeMean::remove(const double *oldFrame, unsigned long size)
 {
     for (unsigned long i = 0; i < size; i++)
-        neumaierSum(-oldFrame[i], mSum[i], mCompensate[i]);
+        mSum[i].sum(-oldFrame[i]);
 }
 
-void FrameLib_TimeMean::result(double *output, unsigned long size)
+void FrameLib_TimeMean::result(double *output, unsigned long size, double pad, unsigned long padSize)
 {
     double recip = 1.0 / getNumFrames();
+    double padSum = pad * padSize;
     
     for (unsigned long i = 0; i < size; i++)
-        output[i] = (mSum[i] + mCompensate[i]) * recip;
+        output[i] = (padSum + mSum[i].value()) * recip;
 }

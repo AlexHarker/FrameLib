@@ -3,8 +3,9 @@
 #define FrameLib_TimeMean_H
 
 #include "FrameLib_TimeBuffer_Template.h"
+#include "FrameLib_NeumaierSum.h"
 
-class FrameLib_TimeMean final : public FrameLib_TimeBuffer<FrameLib_TimeMean, false>
+class FrameLib_TimeMean final : public FrameLib_TimeBuffer<FrameLib_TimeMean>
 {
     
 public:
@@ -27,18 +28,13 @@ public:
 
     void add(const double *newFrame, unsigned long size) override;
     void remove(const double *oldFrame, unsigned long size) override;
-    void result(double *output, unsigned long size) override;
+    void result(double *output, unsigned long size, double pad, unsigned long padSize) override;
     
 private:
     
-    // Object Reset
-    
-    void objectReset() override { smoothReset(); }
-    
     // Data
     
-    double *mSum;
-    double *mCompensate;    
+    NeumaierSum *mSum;
 };
 
 #endif

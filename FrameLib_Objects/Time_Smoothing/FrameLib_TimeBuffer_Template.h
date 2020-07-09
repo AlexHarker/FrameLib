@@ -5,11 +5,21 @@
 #include "FrameLib_RingBuffer.h"
 #include "FrameLib_DSP.h"
 
-template <class T, bool RequiresValuesForReset>
+template <class T, unsigned long nParams = 0>
 class FrameLib_TimeBuffer : public FrameLib_Processor, private FrameLib_RingBuffer
 {
-    const int sMaxFrames = 0;
-    const int sNumFrames = 1;
+    
+protected:
+    
+    enum ParameterList
+    {
+        kMaxFrames = 0,
+        kNumFrames = 1,
+        kDefault = 2 + nParams,
+        kMode = 3 + nParams
+    };
+    
+    enum Modes { kPadIn, kPadOut, kValid };
     
     // Parameter Info
 
@@ -22,42 +32,59 @@ class FrameLib_TimeBuffer : public FrameLib_Processor, private FrameLib_RingBuff
         }
     };
     
+    void completeDefaultParameters(const FrameLib_Parameters::Serial *serialisedParameters)
+    {
+        mParameters.addDouble(kDefault, "default", 0.0, kDefault);
+        
+        mParameters.addEnum(kMode, "mode");
+        mParameters.addEnumItem(kPadIn, "pad_in");
+        mParameters.addEnumItem(kPadOut, "pad_out");
+        mParameters.addEnumItem(kValid, "valid");
+        
+        mParameters.set(serialisedParameters);
+    }
+    
 public:
     
     // Constructor
     
-    FrameLib_TimeBuffer(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 2, 1), FrameLib_RingBuffer(this), mLastNumFrames(0)
+    FrameLib_TimeBuffer(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy) : FrameLib_Processor(context, proxy, &sParamInfo, 3, 1), FrameLib_RingBuffer(this), mLastNumFrames(0)
     {
-        mParameters.addInt(sMaxFrames, "max_frames", 10, 0);
+        mParameters.addInt(kMaxFrames, "max_frames", 10, 0);
         mParameters.setMin(1);
     
-        mParameters.addInt(sNumFrames, "num_frames", 10, 1);
+        mParameters.addInt(kNumFrames, "num_frames", 10, 1);
         mParameters.setMin(1);
         
-        mParameters.set(serialisedParameters);
-
-        setParameterInput(1);
+        if (!nParams)
+            completeDefaultParameters(serialisedParameters);
+        
+        setParameterInput(2);
     }
     
 protected:
     
-    void smoothReset()
-    {
-        resize(0, 0);
-        mLastNumFrames = 0;
-    }
-    
-    unsigned long getMaxFrames() const  { return mParameters.getInt(sMaxFrames); }
+    unsigned long getMaxFrames() const  { return mParameters.getInt(kMaxFrames); }
 
-    unsigned long getNumFrames() const
+    unsigned long getNumFrames(bool forceValid = false) const
     {
-        unsigned long maxFrames = getMaxFrames();
-        unsigned long numFrames = mParameters.getInt(sNumFrames);
+        bool valid = forceValid || mParameters.getInt(kMode) == kValid;
         
-        return maxFrames < numFrames ? maxFrames : numFrames;
+        if (valid)
+            return std::min(getRequestedNumFrames(), getValidFrames() + 1);
+        else
+            return getRequestedNumFrames();
     }
 
 private:
+    
+    unsigned long getRequestedNumFrames() const
+    {
+        unsigned long maxFrames = getMaxFrames();
+        unsigned long numFrames = mParameters.getInt(kNumFrames);
+        
+        return std::min(maxFrames, numFrames);
+    }
     
     // Smooth
     
@@ -70,27 +97,49 @@ private:
         add(newFrame, size);
     }
     
-    virtual void result(double *output, unsigned long size) = 0;
+    virtual void result(double *output, unsigned long size, double pad, unsigned long padSize) = 0;
     
     virtual void resetSize(unsigned long maxFrames, unsigned long size) = 0;
+    
+    // Object reset
+    
+    void objectReset() override
+    {
+        resize(0, 0);
+        mLastNumFrames = 0;
+        mLastResetTime = FrameLib_TimeFormat(0);
+    }
     
     // Process
     
     void process() override
     {
+        Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
+        double pad = mParameters.getValue(kDefault);
+        
         unsigned long sizeIn, sizeOut;
         unsigned long maxFrames = getMaxFrames();
-        unsigned long numFrames = getNumFrames();
+        unsigned long requestedFrames = getRequestedNumFrames();
+        unsigned long numFrames;
         
         const double *input = getInput(0, &sizeIn);
 
-        if (getFrameLength() != sizeIn || FrameLib_RingBuffer::getNumFrames() != maxFrames)
+        bool forceReset = mLastResetTime != getInputFrameTime(1);
+
+        if (forceReset || getFrameLength() != sizeIn || FrameLib_RingBuffer::getNumFrames() != maxFrames)
         {
             resize(maxFrames, sizeIn);
             resetSize(maxFrames, sizeIn);
-            mLastNumFrames = RequiresValuesForReset ? 0 : numFrames;
+            mLastNumFrames = 0;
+            mLastResetTime = getInputFrameTime(1);
         }
 
+        // N.B. retrieve number of frames after reset
+        
+        numFrames = getNumFrames(true);
+        bool useDefault = mode == kPadOut && requestedFrames != numFrames;
+        unsigned long padSize = mode == kPadIn ? requestedFrames - numFrames : 0;
+        
         requestOutputSize(0, getFrameLength());
         allocateOutputs();
         double *output = getOutput(0, &sizeOut);
@@ -99,8 +148,8 @@ private:
         {
             if (numFrames > mLastNumFrames)
             {
-                for (unsigned long i = numFrames - 1; i > mLastNumFrames; i--)
-                    add(getFrame(i), sizeIn);
+                for (unsigned long i = numFrames; i > mLastNumFrames + 1; i--)
+                    add(getFrame(i - 1), sizeIn);
                 
                 add(input, sizeIn);
             }
@@ -112,7 +161,11 @@ private:
                 exchange(input, getFrame(numFrames), sizeIn);
             }
             
-            result(output, sizeOut);
+            if (!useDefault)
+                result(output, sizeOut, pad, padSize);
+            else
+                std::fill_n(output, sizeOut, pad);
+            
             write(input, sizeIn);
             
             mLastNumFrames = numFrames;
@@ -121,9 +174,11 @@ private:
     
     static ParameterInfo sParamInfo;
 
+    FrameLib_TimeFormat mLastResetTime;
     unsigned long mLastNumFrames;
 };
 
-template<class T, bool R> typename FrameLib_TimeBuffer<T, R>::ParameterInfo FrameLib_TimeBuffer<T, R>::sParamInfo;
+template <class T, unsigned long N>
+typename FrameLib_TimeBuffer<T, N>::ParameterInfo FrameLib_TimeBuffer<T, N>::sParamInfo;
 
 #endif

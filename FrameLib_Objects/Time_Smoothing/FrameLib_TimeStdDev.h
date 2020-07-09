@@ -3,8 +3,9 @@
 #define FRAMELIB_TIMESTDDEV_H
 
 #include "FrameLib_TimeBuffer_Template.h"
+#include "FrameLib_NeumaierSum.h"
 
-class FrameLib_TimeStdDev final : public FrameLib_TimeBuffer<FrameLib_TimeStdDev, false>
+class FrameLib_TimeStdDev final : public FrameLib_TimeBuffer<FrameLib_TimeStdDev>
 {
     
 public:
@@ -27,20 +28,14 @@ public:
 
     void add(const double *newFrame, unsigned long size) override;
     void remove(const double *oldFrame, unsigned long size) override;
-    void result(double *output, unsigned long size) override;
+    void result(double *output, unsigned long size, double pad, unsigned long padSize) override;
     
 private:
-    
-    // Object Reset
-    
-    void objectReset() override { smoothReset(); }
-    
+
     // Data
     
-    double *mSum;
-    double *mCompensate;
-    double *mSqSum;
-    double *mSqCompensate;
+    NeumaierSum *mSum;
+    NeumaierSum *mSqSum;
 };
 
 #endif
