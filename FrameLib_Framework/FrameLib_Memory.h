@@ -74,7 +74,10 @@ class FrameLib_GlobalAllocator
         {
         public:
             
-            NewThread(CoreAllocator& allocator) : FrameLib_DelegateThread(FrameLib_Thread::kHighPriority), mAllocator(allocator) {}
+            NewThread(CoreAllocator& allocator)
+            : FrameLib_DelegateThread(FrameLib_Thread::kHighPriority)
+            , mAllocator(allocator)
+            {}
             
         private:
             
@@ -95,7 +98,10 @@ class FrameLib_GlobalAllocator
         {
         public:
             
-            FreeThread(CoreAllocator& allocator) : FrameLib_TriggerableThread(FrameLib_Thread::kLowPriority), mAllocator(allocator) {}
+            FreeThread(CoreAllocator& allocator)
+            : FrameLib_TriggerableThread(FrameLib_Thread::kLowPriority)
+            , mAllocator(allocator)
+            {}
             
         private:
             

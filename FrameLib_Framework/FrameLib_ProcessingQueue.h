@@ -103,10 +103,13 @@ public:
     
     class WorkerThreads final : public FrameLib_TriggerableThreadSet
     {
+        static unsigned int numThreads() { return FrameLib_Thread::maxThreads() - 1; }
+        
     public:
         
         WorkerThreads(FrameLib_ProcessingQueue *queue)
-        : FrameLib_TriggerableThreadSet(FrameLib_Thread::kAudioPriority, FrameLib_Thread::maxThreads() - 1), mQueue(queue)
+        : FrameLib_TriggerableThreadSet(FrameLib_Thread::kAudioPriority, numThreads())
+        , mQueue(queue)
         {}
         
     private:

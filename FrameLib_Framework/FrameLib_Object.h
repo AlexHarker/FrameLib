@@ -134,7 +134,15 @@ public:
     // Constructor / Destructor
     
     FrameLib_Object(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy)
-    : mType(type), mContext(context), mAllocator(context), mLocalAllocator(nullptr), mProxy(proxy), mNumAudioChans(0), mSupportsOrderingConnections(false), mFeedback(false) {}
+    : mType(type)
+    , mContext(context)
+    , mAllocator(context)
+    , mLocalAllocator(nullptr)
+    , mProxy(proxy)
+    , mNumAudioChans(0)
+    , mSupportsOrderingConnections(false)
+    , mFeedback(false)
+    {}
     
     virtual ~FrameLib_Object()                  { clearConnections(false); }
    
@@ -922,7 +930,9 @@ public:
     
     // Constructor / Destructor
     
-    FrameLib_Block(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy) : FrameLib_Object<FrameLib_Block>(type, context, proxy) {}
+    FrameLib_Block(ObjectType type, FrameLib_Context context, FrameLib_Proxy *proxy)
+    : FrameLib_Object<FrameLib_Block>(type, context, proxy) {}
+    
     virtual ~FrameLib_Block() {}
 
     // Stream Awareness
