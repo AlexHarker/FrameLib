@@ -73,7 +73,6 @@ struct FrameLib_Node<T, TopUser, User, OtherUsers...>
 template <class T, class TopUser = void, class...OtherUsers>
 class FrameLib_Queue
 {
-    
 public:
 
     using Node = FrameLib_Node<T, TopUser, FrameLib_Queue, OtherUsers...>;
@@ -186,7 +185,6 @@ protected:
 template <class T>
 class FrameLib_MethodQueue : private FrameLib_Queue<T, FrameLib_MethodQueue<T>>
 {
-
 public:
     
     typedef void (T::*Method)(FrameLib_MethodQueue *);
@@ -252,7 +250,6 @@ protected:
 template <class T, class TopUser = void, class...OtherUsers>
 class FrameLib_Stack
 {
-
 public:
 
     using Node = FrameLib_Node<T, TopUser, FrameLib_Stack, OtherUsers...>;
@@ -333,7 +330,6 @@ protected:
 template <class T>
 class FrameLib_LockFreeStack
 {
-
 public:
     
     using Node = typename FrameLib_Queue<T, FrameLib_LockFreeStack>::Node;

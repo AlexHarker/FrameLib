@@ -6,7 +6,6 @@
 
 class FrameLib_RingBuffer : private FrameLib_VectorSet
 {
-    
 public:
     
     // Constructor

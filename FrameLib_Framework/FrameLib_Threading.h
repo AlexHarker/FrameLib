@@ -197,7 +197,6 @@ private:
 
 class FrameLib_SpinLockHolder
 {
-    
 public:
     
     FrameLib_SpinLockHolder(FrameLib_SpinLock *lock) : mLock(lock) { if (mLock) mLock->acquire(); }
@@ -311,7 +310,6 @@ private:
 
 class FrameLib_Semaphore
 {
-
 public:
     
     FrameLib_Semaphore(long maxCount);

@@ -8,7 +8,6 @@
 
 class MaxBufferAccess
 {
-    
 public:
     
     MaxBufferAccess(t_object *owner, t_symbol *name)

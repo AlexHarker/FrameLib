@@ -4,7 +4,6 @@
 
 class NeumaierSum
 {
-    
 public:
     
     // Clear

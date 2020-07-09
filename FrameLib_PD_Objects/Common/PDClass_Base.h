@@ -11,7 +11,6 @@
 
 class PDClass_Base
 {
-
 public:
     
     // Default Constructor

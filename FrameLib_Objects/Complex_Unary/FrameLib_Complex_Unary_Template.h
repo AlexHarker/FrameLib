@@ -10,7 +10,6 @@
 template <typename Op>
 class FrameLib_Complex_UnaryOp final : public FrameLib_Processor
 {
-    
 public:
     
     // Constructor

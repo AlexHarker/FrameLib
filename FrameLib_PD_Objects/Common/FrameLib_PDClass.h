@@ -25,7 +25,6 @@ extern "C"
 
 class FrameLib_PDGlobals : public PDClass_Base
 {
-    
 public:
     
     // Sync Check Class
@@ -179,7 +178,6 @@ private:
 /*
 class Mutator : public PDClass_Base
 {
-    
 public:
     
     Mutator(t_symbol *sym, long ac, t_atom *av)
@@ -215,7 +213,6 @@ private:
 template <class T>
  class Wrapper : public PDClass_Base
 {
- 
 public:
     
     // Initialise Class

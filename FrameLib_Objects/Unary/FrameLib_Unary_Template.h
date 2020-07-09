@@ -9,7 +9,6 @@
 template <typename Op>
 class FrameLib_UnaryOp final : public FrameLib_Processor
 {
-    
 public:
     
     // Constructor

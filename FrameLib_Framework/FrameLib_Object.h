@@ -68,7 +68,6 @@ struct FrameLib_Connection
 template <class T>
 class FrameLib_Object : public FrameLib_MethodQueue<T>::Node
 {
-    
 public:
     
     using Queue = FrameLib_MethodQueue<T>;
@@ -920,7 +919,6 @@ private:
 
 class FrameLib_Block : public FrameLib_Object<FrameLib_Block>
 {
-    
 public:
     
     // Constructor / Destructor

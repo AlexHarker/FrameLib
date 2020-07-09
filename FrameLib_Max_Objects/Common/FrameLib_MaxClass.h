@@ -267,7 +267,6 @@ private:
 
 class FrameLib_MaxGlobals : public MaxClass_Base
 {
-    
 public:
     
     enum ConnectionMode : t_ptr_int { kConnect, kConfirm, kDoubleCheck };
@@ -668,7 +667,6 @@ private:
 template <class T>
 class Wrapper : public MaxClass_Base
 {
-    
 public:
     
     // Initialise Class

@@ -6,7 +6,6 @@
 
 class FrameLib_VectorSet
 {
-
 public:
     
     // Constructor

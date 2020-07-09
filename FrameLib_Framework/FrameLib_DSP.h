@@ -388,7 +388,6 @@ private:
 
 class FrameLib_Processor : public FrameLib_DSP
 {
-    
 public:
     
     static constexpr ObjectType sType = kProcessor;
@@ -421,7 +420,6 @@ protected:
 
 class FrameLib_AudioInput : public FrameLib_DSP
 {
-    
 public:
     
     static constexpr ObjectType sType = kProcessor;
@@ -452,7 +450,6 @@ protected:
 
 class FrameLib_AudioOutput : public FrameLib_DSP
 {
-    
 public:
     
     static constexpr ObjectType sType = kOutput;
@@ -483,7 +480,6 @@ protected:
 
 class FrameLib_Scheduler : public FrameLib_DSP
 {
-
 public:
     
     static constexpr ObjectType sType = kScheduler;

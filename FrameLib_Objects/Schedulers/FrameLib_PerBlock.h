@@ -7,7 +7,6 @@
 
 class FrameLib_PerBlock final : public FrameLib_Scheduler
 {
-    
 public:
     
     // Constructor

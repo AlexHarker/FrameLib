@@ -122,7 +122,6 @@ private:
 template <class T>
 class FrameLib_Expand final : public FrameLib_Multistream
 {
-
 public:
     
     static constexpr ObjectType sType = T::sType;

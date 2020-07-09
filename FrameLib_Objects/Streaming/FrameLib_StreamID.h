@@ -6,7 +6,6 @@
 
 class FrameLib_StreamID final : public FrameLib_Processor
 {
-
 public:
     
     // Constructor

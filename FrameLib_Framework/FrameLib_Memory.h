@@ -30,9 +30,6 @@
 
 class FrameLib_GlobalAllocator
 {
-
-private:
-    
     /**
      
      @class CoreAllocator
@@ -310,7 +307,6 @@ private:
 
 class FrameLib_LocalAllocatorSet
 {
-    
 public:
     
     // Constructor
@@ -345,7 +341,6 @@ private:
 
 class FrameLib_ContextAllocator
 {
-    
 public:
 
     /**

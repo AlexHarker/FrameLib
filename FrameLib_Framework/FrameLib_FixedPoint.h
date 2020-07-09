@@ -65,7 +65,6 @@ private:
 
 class FL_FP
 {
-
 public:
     
     // Constructors

@@ -7,7 +7,6 @@
 
 class FrameLib_ToHost final : public FrameLib_Processor
 {
-    
 public:
     
     // The owner should inherit from this class and override these calls to receive messages

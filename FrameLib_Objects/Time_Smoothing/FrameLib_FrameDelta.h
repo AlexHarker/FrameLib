@@ -6,7 +6,6 @@
 
 class FrameLib_FrameDelta final : public FrameLib_Processor
 {
-    
 public:
     
     // Constructor / Destructor

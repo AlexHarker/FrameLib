@@ -124,7 +124,6 @@ void testsCompleted()
 
 class Timer
 {
-    
 public:
     
     Timer() : mStart(0), mStore1(0), mStore2(0) {}

@@ -6,7 +6,6 @@
 
 class FrameLib_TimeMedian final : public FrameLib_TimeBuffer<FrameLib_TimeMedian, true>
 {
-   
 public:
     
     // Constructor / Destructor

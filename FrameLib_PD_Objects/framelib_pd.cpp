@@ -186,7 +186,6 @@ public:
 
 class ArgumentParser
 {
-    
 public:
     
     ArgumentParser(t_symbol *s, long argc, t_atom *argv, bool complex) : mSymbol(s), mComplex(complex)
