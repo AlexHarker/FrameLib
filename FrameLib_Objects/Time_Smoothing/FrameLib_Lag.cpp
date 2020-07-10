@@ -78,7 +78,7 @@ void FrameLib_Lag::objectReset()
 
 void FrameLib_Lag::process()
 {
-    unsigned long sizeIn, sizeReset, sizeOut, sizeValid;
+    unsigned long sizeIn, sizeReset, sizeOut, sizeEdge;
 
     Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
     unsigned long maxFrames = mParameters.getInt(kMaxFrames);
@@ -111,26 +111,26 @@ void FrameLib_Lag::process()
     requestOutputSize(0, getFrameLength());
     requestOutputSize(1, 1);
     allocateOutputs();
-    double *outputValue = getOutput(0, &sizeOut);
-    double *outputValid = getOutput(1, &sizeValid);
+    double *outputMain = getOutput(0, &sizeOut);
+    double *outputEdge = getOutput(1, &sizeEdge);
     
     // Output
     
     if (numFrames <= validFrames)
     {
         const double *frame = numFrames ? getFrame(numFrames) : input;
-        copyVector(outputValue, frame, sizeOut);
+        copyVector(outputMain, frame, sizeOut);
     }
     else
     {
         PaddedVector pad(resetInput, sizeReset, mParameters.getValue(kDefault));
         
         for (unsigned long i = 0; i < sizeOut; i++)
-            outputValue[i] = pad[i];
+            outputMain[i] = pad[i];
     }
     
-    if (sizeValid)
-        outputValid[0] = requestedFrames > validFrames ? 1 : 0;
+    if (sizeEdge)
+        outputEdge[0] = requestedFrames > validFrames ? 1 : 0;
     
     write(input, sizeIn);
 }

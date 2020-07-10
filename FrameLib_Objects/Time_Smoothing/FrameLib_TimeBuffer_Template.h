@@ -118,7 +118,7 @@ private:
     
     void process() override
     {
-        unsigned long sizeIn, sizeReset, sizeOut, sizeValid;
+        unsigned long sizeIn, sizeReset, sizeOut, sizeEdge;
 
         Modes mode = static_cast<Modes>(mParameters.getInt(kMode));
         double pad = mParameters.getValue(kDefault);
@@ -151,8 +151,8 @@ private:
         requestOutputSize(0, getFrameLength());
         requestOutputSize(1, 1);
         allocateOutputs();
-        double *outputValue = getOutput(0, &sizeOut);
-        double *outputValid = getOutput(1, &sizeValid);
+        double *outputMain = getOutput(0, &sizeOut);
+        double *outputEdge = getOutput(1, &sizeEdge);
         
         // Update with the correct, frames, store and output
         
@@ -175,13 +175,13 @@ private:
                 exchange(input, getFrame(numFrames), sizeIn);
             }
             
-            result(outputValue, sizeOut, PaddedVector(resetInput, sizeReset, pad), padSize);
+            result(outputMain, sizeOut, PaddedVector(resetInput, sizeReset, pad), padSize);
             write(input, sizeIn);
             mLastNumFrames = numFrames;
         }
         
-        if (sizeValid)
-            outputValid[0] = sizeIn && requestedFrames != numFrames ? 1 : 0;
+        if (sizeEdge)
+            outputEdge[0] = sizeIn && requestedFrames != numFrames ? 1 : 0;
     }
     
     static ParameterInfo sParamInfo;
