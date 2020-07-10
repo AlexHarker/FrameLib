@@ -16,7 +16,7 @@ class spectral_processor
     using Setup = typename FFTTypes<T>::Setup;
     
     template <bool B>
-    using enable_if_t = typename std::enable_if<B>::type;
+    using enable_if_t = typename std::enable_if<B, int>::type;
     
 public:
     
@@ -32,19 +32,19 @@ public:
     
     // Constructor
     
-    template <typename U = Allocator, typename = enable_if_t<std::is_default_constructible<U>::value>>
+    template <typename U = Allocator, enable_if_t<std::is_default_constructible<U>::value> = 0>
     spectral_processor() :  m_max_fft_size_log2(0)
     {
         set_max_fft_size(32768);
     }
     
-    template <typename U = Allocator, typename = enable_if_t<std::is_copy_constructible<U>::value>>
+    template <typename U = Allocator, enable_if_t<std::is_copy_constructible<U>::value> = 0>
     spectral_processor(const Allocator& allocator) : m_allocator(allocator), m_max_fft_size_log2(0)
     {
         set_max_fft_size(32768);
     }
     
-    template <typename U = Allocator, typename = enable_if_t<std::is_move_constructible<U>::value>>
+    template <typename U = Allocator, enable_if_t<std::is_move_constructible<U>::value> = 0>
     spectral_processor(Allocator&& allocator) : m_allocator(allocator), m_max_fft_size_log2(0)
     {
         set_max_fft_size(32768);

@@ -16,33 +16,34 @@
 template <typename T, typename Allocator = aligned_allocator, bool auto_resize_fft = false>
 class kernel_smoother : private spectral_processor<T, Allocator>
 {
-    using Split = typename FFTTypes<T>::Split;
-    
     using processor = spectral_processor<T, Allocator>;
-    using binary_sizes = typename processor::binary_sizes;
+    using op_sizes = typename processor::op_sizes;
     using zipped_pointer = typename processor::zipped_pointer;
     using in_ptr = typename processor::in_ptr;
+ 
+    using Split = typename FFTTypes<T>::Split;
+    using EdgeMode = typename processor::EdgeMode;
     
     template <bool B>
-    using enable_if_t = typename std::enable_if<B>::type;
+    using enable_if_t = typename std::enable_if<B, int>::type;
     
 public:
     
     enum SmoothMode { kSmoothZeroPad, kSmoothWrap, kSmoothFold };
     
-    template <typename U = Allocator, typename = enable_if_t<std::is_default_constructible<U>::value>>
+    template <typename U = Allocator, enable_if_t<std::is_default_constructible<U>::value> = 0>
     kernel_smoother()
     {
         set_max_fft_size(1 << 18);
     }
     
-    template <typename U = Allocator, typename = enable_if_t<std::is_copy_constructible<U>::value>>
+    template <typename U = Allocator, enable_if_t<std::is_copy_constructible<U>::value> = 0>
     kernel_smoother(const Allocator& allocator) : spectral_processor<T, Allocator>(allocator)
     {
         set_max_fft_size(1 << 18);
     }
     
-    template <typename U = Allocator, typename = enable_if_t<std::is_move_constructible<U>::value>>
+    template <typename U = Allocator, enable_if_t<std::is_move_constructible<U>::value> = 0>
     kernel_smoother(Allocator&& allocator) : spectral_processor<T, Allocator>(allocator)
     {
         set_max_fft_size(1 << 18);
@@ -71,7 +72,7 @@ public:
         uintptr_t max_per_filter = static_cast<uintptr_t>(width_mul ? (2.0 / width_mul) + 1.0 : length);
         uintptr_t data_width = max_per_filter + (filter_size - 1) * 2;
         
-        binary_sizes sizes(filter_full, data_width);
+        op_sizes sizes(filter_full, data_width, EdgeMode::kEdgeLinear);
         
         if (auto_resize_fft && processor::max_fft_size() < sizes.fft())
             set_max_fft_size(sizes.fft());
@@ -225,7 +226,7 @@ private:
     {
         uintptr_t filter_width = half_width * 2 - 1;
         uintptr_t data_width = n + (half_width - 1) * 2;
-        binary_sizes sizes(data_width, filter_width);
+        op_sizes sizes(data_width, filter_width, EdgeMode::kEdgeLinear);
         in_ptr data_in(data - (half_width - 1), data_width);
         in_ptr filter_in(filter - (half_width - 1), filter_width);
         
