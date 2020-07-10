@@ -6,8 +6,12 @@
 
 class FrameLib_TimeMedian final : public FrameLib_TimeBuffer<FrameLib_TimeMedian, 1>
 {
+    friend FrameLib_TimeBuffer<FrameLib_TimeMedian, 1>;
+    
     enum AddedParameterList { kPercentile = kNumFrames + 1 };
 
+    static const char *paramInfo(unsigned long idx);
+    
 public:
     
     // Constructor / Destructor

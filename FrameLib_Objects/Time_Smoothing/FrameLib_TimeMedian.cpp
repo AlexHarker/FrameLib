@@ -21,6 +21,11 @@ FrameLib_TimeMedian::~FrameLib_TimeMedian()
 
 // Info
 
+const char *FrameLib_TimeMedian::paramInfo(unsigned long idx)
+{
+    return "Sets the percentile to retrieve";
+}
+
 std::string FrameLib_TimeMedian::objectInfo(bool verbose)
 {
     return formatInfo("Outputs the median per sample over a given number of frames: Frames are expected to be of uniform size, otherwise the buffer is reset. The number of frames (as well as the maximum number of frames) can be set as parameters. The output is the same size as the input.", "Outputs the median per sample over a given number of frames.", verbose);

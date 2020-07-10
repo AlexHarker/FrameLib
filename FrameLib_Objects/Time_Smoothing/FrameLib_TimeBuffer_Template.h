@@ -6,6 +6,8 @@
 #include "FrameLib_PaddedVector.h"
 #include "FrameLib_DSP.h"
 
+#include <type_traits>
+
 template <class T, unsigned long nParams = 0>
 class FrameLib_TimeBuffer : public FrameLib_Processor, private FrameLib_RingBuffer
 {
@@ -31,7 +33,22 @@ protected:
         {
             add("Sets the maximum number of frames that can be set as a time period - changing resets the buffer.");
             add("Sets the current integer number of frames for calculation.");
+            
+            addCustomInfo<nParams != 0>();
+            
+            add("Sets the default valie.");
+            add("Sets the mode.");
         }
+        
+        template <bool B, typename std::enable_if<B, int>::type = 0>
+        void addCustomInfo()
+        {
+            for (unsigned long i = 0; i < nParams; i++)
+                add(T::paramInfo(i));
+        }
+        
+        template <bool B, typename std::enable_if<!B, int >::type = 0>
+        void addCustomInfo() {}
     };
     
     void completeDefaultParameters(const FrameLib_Parameters::Serial *serialisedParameters)
