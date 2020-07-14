@@ -267,8 +267,9 @@ namespace impl
         template<class T>
         void operator()(T& r_out, T& i_out, const T& a, const T& b, const T& c, const T& d, const T& scale, uintptr_t i)
         {
-            r_out = scale * (a * c + b * d);
+			T temp = scale * (a * c + b * d);
             i_out = scale * (b * c - a * d);
+			r_out = temp;
         }
     };
     
@@ -277,9 +278,10 @@ namespace impl
         template<class T>
         void operator()(T& r_out, T& i_out, const T& a, const T& b, const T& c, const T& d, const T& scale, uintptr_t i)
         {
-            r_out = scale * (a * c - b * d);
+			T temp = scale * (a * c - b * d);
             i_out = scale * (a * d + b * c);
-        }
+			r_out = temp;
+		}
     };
     
     template <typename Split>
