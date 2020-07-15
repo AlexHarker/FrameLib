@@ -34,7 +34,6 @@
 
 #include "FrameLib_CombineTags.h"
 #include "FrameLib_FilterTags.h"
-#include "FrameLib_GetParam.h"
 #include "FrameLib_Tag.h"
 #include "FrameLib_Untag.h"
 
@@ -194,7 +193,6 @@ extern "C" int C74_EXPORT main(void)
     
     FrameLib_MaxClass_Expand<FrameLib_CombineTags>::makeClass("fl.combinetags~");
     FrameLib_MaxClass_Expand<FrameLib_FilterTags>::makeClass("fl.filtertags~");
-    FrameLib_MaxClass_Expand<FrameLib_GetParam>::makeClass("fl.getparam~");
     FrameLib_MaxClass_Expand<FrameLib_Tag>::makeClass("fl.tag~");
     FrameLib_MaxClass_Expand<FrameLib_Untag>::makeClass("fl.untag~");
     

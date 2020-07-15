@@ -58,7 +58,6 @@ FrameLib_SampleRate,
 
 FrameLib_CombineTags,
 FrameLib_FilterTags,
-FrameLib_GetParam,
 FrameLib_Tag,
 FrameLib_Untag,
 
