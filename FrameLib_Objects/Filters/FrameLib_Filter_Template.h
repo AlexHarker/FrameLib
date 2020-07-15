@@ -657,7 +657,7 @@ private:
             }
         }
         
-        return mParameters.getValue(Idx);
+        return mParameters.getValue(static_cast<unsigned long>(Idx));
     }
     
     void process() override

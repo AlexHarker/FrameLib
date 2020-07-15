@@ -217,7 +217,7 @@ private:
         
         if (message.mType == kFrameNormal)
         {
-            unsigned long N = limit(message.mVector.size());
+            unsigned long N = limit(static_cast<unsigned long>(message.mVector.size()));
             
             for (unsigned long i = 0; i < N; i++)
                 atom_setfloat(output + i, message.mVector[i]);
