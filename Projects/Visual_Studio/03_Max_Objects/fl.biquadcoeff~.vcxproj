@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\FrameLib_Max_Objects\Parameters\fl.getparam~.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Max_Objects\Filters\fl.biquadcoeff~.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{BB83418C-5BDD-4913-8019-805391B36058}</ProjectGuid>
+    <ProjectGuid>{A63683B8-097D-43D9-9E41-743F57318851}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>framelib</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
@@ -100,7 +100,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeaderFile />
-      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Objects\Parameters\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Objects\Filters\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link />
     <Link />
@@ -108,7 +108,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeaderFile />
-      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Objects\Parameters\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Objects\Filters\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalOptions>
@@ -119,14 +119,14 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PrecompiledHeaderFile />
-      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Objects\Parameters\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Objects\Filters\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeaderFile />
-      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Objects\Parameters\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)FrameLib_Objects\Filters\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link />
   </ItemDefinitionGroup>

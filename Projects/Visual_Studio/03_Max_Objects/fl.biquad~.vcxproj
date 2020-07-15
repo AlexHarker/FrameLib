@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\FrameLib_Max_Objects\Filters\fl.sallenkey~.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Max_Objects\Filters\fl.biquad~.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{C8BAF0E6-0A93-4ED9-A467-EE5661634D3D}</ProjectGuid>
+    <ProjectGuid>{A63683B8-097D-43D9-9E41-743F57318851}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>framelib</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
