@@ -416,17 +416,17 @@ private:
         
         SetError set(double value) override;
         SetError set(double *values, unsigned long N) override;
-        virtual SetError set(const char *str) override;
+        SetError set(const char *str) override;
         
         void clear() override { Enum::set(0.0); }
         
-        virtual Type type() override { return kEnum; }
+        Type type() override { return kEnum; }
         
         // Getters
         
-        virtual double getValue() const override                                { return mValue; }
-        virtual const char *getString() const override                          { return mItems[mValue].c_str(); }
-        virtual const char *getItemString(unsigned long item) const override    { return mItems[item].c_str(); }
+        double getValue() const override                                { return mValue; }
+        const char *getString() const override                          { return mItems[mValue].c_str(); }
+        const char *getItemString(unsigned long item) const override    { return mItems[item].c_str(); }
         
     private:
         
