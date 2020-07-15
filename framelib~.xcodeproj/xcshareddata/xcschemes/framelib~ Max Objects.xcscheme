@@ -1610,20 +1610,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8985E701FAA41410006B7E0"
-               BuildableName = "fl.getparam~.mxo"
-               BlueprintName = "fl.getparam~"
-               ReferencedContainer = "container:framelib~.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8985E881FAB2F3C0006B7E0"
                BuildableName = "fl.untag~.mxo"
                BlueprintName = "fl.untag~"
