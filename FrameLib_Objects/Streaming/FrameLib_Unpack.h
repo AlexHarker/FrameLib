@@ -57,7 +57,7 @@ private:
     
     // Input Update
     
-    virtual bool inputUpdate() override;
+    bool inputUpdate() override;
     
     // Data
 
