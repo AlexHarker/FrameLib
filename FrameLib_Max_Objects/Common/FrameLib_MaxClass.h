@@ -1030,8 +1030,6 @@ public:
             addMethod(c, (method) &dblclick, "dblclick");
             addMethod(c, (method) &extFindAudio, "__fl.find_audio_objects");
 
-            class_addmethod(c, (method) &codeExport, "export", A_SYM, A_SYM, 0);
-
             dspInit(c);
             
             CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mBuffer);
@@ -1297,21 +1295,6 @@ public:
                     sprintf(s,"(frame) %s", mObject->inputInfo(a - getNumAudioIns()).c_str());
             }
         }
-    }
-    
-    static void codeExport(FrameLib_MaxClass *x, t_symbol *className, t_symbol *path)
-    {
-        char conformedPath[MAX_PATH_CHARS];
-                
-        x->resolveContext();
-        
-        path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
-        ExportError error = exportGraph(x->mObject.get(), conformedPath, className->s_name);
-        
-        if (error == kExportPathError)
-            object_error(x->mUserObject, "couldn't write to or find specified path");
-        else if (error == kExportWriteError)
-            object_error(x->mUserObject, "couldn't write file");
     }
     
     void info(t_symbol *sym, long ac, t_atom *av)
