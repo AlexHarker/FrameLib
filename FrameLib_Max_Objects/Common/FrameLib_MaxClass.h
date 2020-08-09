@@ -300,9 +300,10 @@ private:
         }
     };
     
-    enum RefDataItem { kKey, kCount, kLock, kFinal, kHandler };
+    enum RefDataItem { kKey, kCount, kLock, kFinal, kHandler, kQueuePtr };
 
-    using RefData = std::tuple<FrameLib_MaxContext, int, Lock, t_object *, unique_object_ptr>;
+    using QueuePtr = std::unique_ptr<FrameLib_Context::ProcessingQueue>;
+    using RefData = std::tuple<FrameLib_MaxContext, int, Lock, t_object *, unique_object_ptr, QueuePtr>;
     using RefMap = std::unordered_map<FrameLib_MaxContext, std::unique_ptr<RefData>, Hash>;
     using ResolveMap = std::unordered_map<FrameLib_Context, t_object *, Hash>;
     
@@ -475,11 +476,21 @@ public:
         
 		if (!item)
 		{
-			item.reset(new RefData());
+            item.reset(new RefData());
+            FrameLib_Context context(key.mRealtime ? mRTGlobal : mNRTGlobal, item.get());
+            
 			std::get<kKey>(*item) = key;
             std::get<kCount>(*item) = 1;
 			std::get<kFinal>(*item) = nullptr;
             std::get<kHandler>(*item) = unique_object_ptr((t_object *)object_new_typed(CLASS_NOBOX, gensym("__fl.message.handler"), 0, nullptr));
+            std::get<kQueuePtr>(*item) = QueuePtr(new FrameLib_Context::ProcessingQueue(context));
+            
+            // Set timeouts
+
+            if (key.mRealtime)
+                (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(4.0, 0.0);
+            else
+                (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(10.0, 0.0);
 		}
         else
             std::get<kCount>(*item)++;
