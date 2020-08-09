@@ -69,18 +69,18 @@ public:
 
     /**
      
-     @class IntervalSecondsClock
+     @class IntervalMicosecondsClock
      
      @brief a clock for measuring time intervals in seconds.
      
      */
 
-    class IntervalSecondsClock
+    class IntervalMicrosecondsClock
     {
     public:
         
         void start() { mStartTime = getTime(); }
-        long long elapsed() { return std::chrono::duration_cast<std::chrono::seconds>(getTime() - mStartTime).count(); }
+        long long elapsed() { return std::chrono::duration_cast<std::chrono::microseconds>(getTime() - mStartTime).count(); }
         
     private:
         
@@ -91,7 +91,6 @@ public:
     };
     
     static const int sProcessPerTimeCheck = 200;
-    static const int sMaxTime = 5;
     
     /**
      
@@ -140,6 +139,7 @@ public:
     
     void reset() { mTimedOut = false; }
     bool isTimedOut() { return mTimedOut; }
+    void setTimeOuts(double relative = 0.0, double absolute = 0.0);
     void setMultithreading(bool multihread) { mMultithread = multihread; }
     
     // Timing info
@@ -152,6 +152,7 @@ private:
     void enqueue(PrepQueue &queue);
     void wakeWorkers();
     void serviceQueue(FrameLib_LocalAllocator *allocator);
+    void calculateTimeOutMax();
     bool checkForTimeOut();
     
     WorkerThreads mWorkers;
@@ -163,8 +164,11 @@ private:
     std::atomic<int32_t> mNumWorkersActive;
     
     bool mMultithread;
+    long long mMaxTime;
+    double mRelativeTimeOut;
+    double mAbsoluteTimeOut;
     std::atomic<bool> mTimedOut;
-    IntervalSecondsClock mClock;
+    IntervalMicrosecondsClock mClock;
     
     FrameLib_DSP *mEntryObject;
     FrameLib_ErrorReporter& mErrorReporter;

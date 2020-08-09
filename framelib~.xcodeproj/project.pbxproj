@@ -112,7 +112,7 @@
 		B843AAB519C070A1000D3476 /* fl.sink~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B843AAB419C070A1000D3476 /* fl.sink~.cpp */; };
 		B845440F230DC266000E42DE /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
 		B8454410230DC266000E42DE /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
-		B8454417230DC31A000E42DE /* fl.context~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8454403230DC130000E42DE /* fl.context~.cpp */; };
+		B8454417230DC31A000E42DE /* fl.contextcontrol~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8454403230DC130000E42DE /* fl.contextcontrol~.cpp */; };
 		B846E61919F15A25005E9718 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87E879819C8F61A00B1D0CD /* MaxAudioAPI.framework */; };
 		B846E62319F15A57005E9718 /* fl.window~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B846E62219F15A57005E9718 /* fl.window~.cpp */; };
 		B847EB4B1FB4749D00CFA52D /* libframelib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89ABA901FA73483006DAD53 /* libframelib.a */; };
@@ -2086,8 +2086,8 @@
 		B843AAB219C07046000D3476 /* fl.sink~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.sink~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B843AAB419C070A1000D3476 /* fl.sink~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = "fl.sink~.cpp"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		B843AAC519C08452000D3476 /* fl.plus~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.plus~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8454403230DC130000E42DE /* fl.context~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.context~.cpp"; sourceTree = "<group>"; };
-		B8454415230DC266000E42DE /* fl.context~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.context~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8454403230DC130000E42DE /* fl.contextcontrol~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.contextcontrol~.cpp"; sourceTree = "<group>"; };
+		B8454415230DC266000E42DE /* fl.contextcontrol~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.contextcontrol~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B846E61119F15A12005E9718 /* FrameLib_Window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Window.h; sourceTree = "<group>"; };
 		B846E62019F15A25005E9718 /* fl.window~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.window~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B846E62219F15A57005E9718 /* fl.window~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.window~.cpp"; sourceTree = "<group>"; };
@@ -4278,7 +4278,7 @@
 				B8EA6B882203209E00D23A86 /* fl.chain~.mxo */,
 				B8EA6BA42203AEE500D23A86 /* fl.pattern~.mxo */,
 				B83F045C223A762800AF1F8E /* fl.info~.mxo */,
-				B8454415230DC266000E42DE /* fl.context~.mxo */,
+				B8454415230DC266000E42DE /* fl.contextcontrol~.mxo */,
 				B8A20FFC22FCD7E300DF86D8 /* fl.firphase~.mxo */,
 				B85536EE22FEB88100D10495 /* fl.kernelsmooth~.mxo */,
 				B8020485231BDCB80062447A /* framelib_max.mxo */,
@@ -4403,7 +4403,7 @@
 		B8454402230DC0D6000E42DE /* Context */ = {
 			isa = PBXGroup;
 			children = (
-				B8454403230DC130000E42DE /* fl.context~.cpp */,
+				B8454403230DC130000E42DE /* fl.contextcontrol~.cpp */,
 			);
 			path = Context;
 			sourceTree = "<group>";
@@ -7528,9 +7528,9 @@
 			productReference = B843AAC519C08452000D3476 /* fl.plus~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
-		B8454404230DC266000E42DE /* fl.context~ */ = {
+		B8454404230DC266000E42DE /* fl.contextcontrol~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8454411230DC266000E42DE /* Build configuration list for PBXNativeTarget "fl.context~" */;
+			buildConfigurationList = B8454411230DC266000E42DE /* Build configuration list for PBXNativeTarget "fl.contextcontrol~" */;
 			buildPhases = (
 				B8454407230DC266000E42DE /* Headers */,
 				B8454409230DC266000E42DE /* Resources */,
@@ -7542,10 +7542,10 @@
 			dependencies = (
 				B8454405230DC266000E42DE /* PBXTargetDependency */,
 			);
-			name = "fl.context~";
+			name = "fl.contextcontrol~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8454415230DC266000E42DE /* fl.context~.mxo */;
+			productReference = B8454415230DC266000E42DE /* fl.contextcontrol~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B846E61219F15A25005E9718 /* fl.window~ */ = {
@@ -9818,7 +9818,7 @@
 				B88C0A3021733BF9007A65C0 /* FrameLib */,
 				B8020472231BDCB80062447A /* framelib_max */,
 				B83E029B206674D4005925DD /* framelib_pd */,
-				B8454404230DC266000E42DE /* fl.context~ */,
+				B8454404230DC266000E42DE /* fl.contextcontrol~ */,
 				B8CA31DE199A20BE005F30A1 /* fl.pack~ */,
 				8D01CCC60486CAD60068D4B7 /* fl.unpack~ */,
 				B8CA3215199A29C8005F30A1 /* fl.interval~ */,
@@ -11650,7 +11650,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8454417230DC31A000E42DE /* fl.context~.cpp in Sources */,
+				B8454417230DC31A000E42DE /* fl.contextcontrol~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29575,7 +29575,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		B8454411230DC266000E42DE /* Build configuration list for PBXNativeTarget "fl.context~" */ = {
+		B8454411230DC266000E42DE /* Build configuration list for PBXNativeTarget "fl.contextcontrol~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8454412230DC266000E42DE /* Development */,

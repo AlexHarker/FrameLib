@@ -300,9 +300,10 @@ private:
         }
     };
     
-    enum RefDataItem { kKey, kCount, kLock, kFinal, kHandler };
+    enum RefDataItem { kKey, kCount, kLock, kFinal, kHandler, kQueuePtr };
 
-    using RefData = std::tuple<FrameLib_MaxContext, int, Lock, t_object *, unique_object_ptr>;
+    using QueuePtr = std::unique_ptr<FrameLib_Context::ProcessingQueue>;
+    using RefData = std::tuple<FrameLib_MaxContext, int, Lock, t_object *, unique_object_ptr, QueuePtr>;
     using RefMap = std::unordered_map<FrameLib_MaxContext, std::unique_ptr<RefData>, Hash>;
     using ResolveMap = std::unordered_map<FrameLib_Context, t_object *, Hash>;
     
@@ -475,11 +476,21 @@ public:
         
 		if (!item)
 		{
-			item.reset(new RefData());
+            item.reset(new RefData());
+            FrameLib_Context context(key.mRealtime ? mRTGlobal : mNRTGlobal, item.get());
+            
 			std::get<kKey>(*item) = key;
             std::get<kCount>(*item) = 1;
 			std::get<kFinal>(*item) = nullptr;
             std::get<kHandler>(*item) = unique_object_ptr((t_object *)object_new_typed(CLASS_NOBOX, gensym("__fl.message.handler"), 0, nullptr));
+            std::get<kQueuePtr>(*item) = QueuePtr(new FrameLib_Context::ProcessingQueue(context));
+            
+            // Set timeouts
+
+            if (key.mRealtime)
+                (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(4.0, 0.0);
+            else
+                (*(std::get<kQueuePtr>(*item).get()))->setTimeOuts(10.0, 0.0);
 		}
         else
             std::get<kCount>(*item)++;
@@ -1030,8 +1041,6 @@ public:
             addMethod(c, (method) &dblclick, "dblclick");
             addMethod(c, (method) &extFindAudio, "__fl.find_audio_objects");
 
-            class_addmethod(c, (method) &codeExport, "export", A_SYM, A_SYM, 0);
-
             dspInit(c);
             
             CLASS_ATTR_SYM(c, "buffer", ATTR_FLAGS_NONE, FrameLib_MaxClass<T>, mBuffer);
@@ -1297,21 +1306,6 @@ public:
                     sprintf(s,"(frame) %s", mObject->inputInfo(a - getNumAudioIns()).c_str());
             }
         }
-    }
-    
-    static void codeExport(FrameLib_MaxClass *x, t_symbol *className, t_symbol *path)
-    {
-        char conformedPath[MAX_PATH_CHARS];
-                
-        x->resolveContext();
-        
-        path_nameconform(path->s_name, conformedPath, PATH_STYLE_NATIVE, PATH_TYPE_BOOT);
-        ExportError error = exportGraph(x->mObject.get(), conformedPath, className->s_name);
-        
-        if (error == kExportPathError)
-            object_error(x->mUserObject, "couldn't write to or find specified path");
-        else if (error == kExportWriteError)
-            object_error(x->mUserObject, "couldn't write file");
     }
     
     void info(t_symbol *sym, long ac, t_atom *av)

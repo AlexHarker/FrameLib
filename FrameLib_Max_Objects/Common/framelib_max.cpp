@@ -399,5 +399,5 @@ extern "C" int C74_EXPORT main(void)
     
     // Context
     
-    FrameLib_MaxClass_Context::makeClass<FrameLib_MaxClass_Context>(CLASS_BOX, "fl.context~");
+    FrameLib_MaxClass_ContextControl::makeClass<FrameLib_MaxClass_ContextControl>(CLASS_BOX, "fl.contextcontrol~");
 }
