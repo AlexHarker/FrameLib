@@ -75,9 +75,9 @@ public:
     
     // Time out
     
-    static void timeOut(FrameLib_MaxClass_ContextControl *x, double absolute, double relative)
+    static void timeOut(FrameLib_MaxClass_ContextControl *x, double relative, double absolute)
     {
-        x->mProcessingQueue->setTimeOuts(absolute / 1000.0, relative);
+        x->mProcessingQueue->setTimeOuts(relative / 100.0, absolute / 1000.0);
     }
     
     // Export
