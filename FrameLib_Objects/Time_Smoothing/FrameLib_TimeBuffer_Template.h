@@ -36,7 +36,7 @@ protected:
             
             addCustomInfo<nParams != 0>();
             
-            add("Sets the default valie.");
+            add("Sets the default value.");
             add("Sets the mode.");
         }
         
