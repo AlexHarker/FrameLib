@@ -1,28 +1,25 @@
 
-#ifndef FRAMELIB_EWMA_H
-#define FRAMELIB_EWMA_H
+#ifndef FRAMELIB_MOVINGAVERAGE_H
+#define FRAMELIB_MOVINGAVERAGE_H
 
 #include "FrameLib_DSP.h"
 
-class FrameLib_EWMA final : public FrameLib_Processor
+class FrameLib_MovingAverage final : public FrameLib_Processor
 {
     // Parameter Enums and Info
     
-    enum ParameterList { kAlphaUp, kAlphaDown };
-    
+    enum ParameterList { kAlphaUp, kAlphaDown, kDefault, kMode };
+    enum Modes { kUseDefault, kInputOnly };
+
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
 
 public:
     
-    // Constructor
+    // Constructor / Destructor
     
-    FrameLib_EWMA(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
+    FrameLib_MovingAverage(FrameLib_Context context, const FrameLib_Parameters::Serial *serialisedParameters, FrameLib_Proxy *proxy);
     
-    ~FrameLib_EWMA()
-    {
-        dealloc(mAverageFrame);
-        dealloc(mPrevFrame);
-    }
+    ~FrameLib_MovingAverage();
     
     // Info
     
@@ -34,7 +31,7 @@ private:
 
     // Object Reset
     
-    void objectReset() override { mFrameSize = 0; }
+    void objectReset() override;
     
     // Process
     
@@ -43,11 +40,11 @@ private:
     // Data
     
     double *mAverageFrame;
-    double *mPrevFrame;
+    double *mVarianceFrame;
     unsigned long mFrameSize;
     
-    // Data
-    
+    FrameLib_TimeFormat mLastResetTime;
+
     static ParameterInfo sParamInfo;
 };
 

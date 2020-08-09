@@ -79,10 +79,9 @@
 
 // Time Smoothing
 
-#include "FrameLib_EWMA.h"
-#include "FrameLib_EWMSD.h"
 #include "FrameLib_FrameDelta.h"
 #include "FrameLib_Lag.h"
+#include "FrameLib_MovingAverage.h"
 #include "FrameLib_TimeMean.h"
 #include "FrameLib_TimeMedian.h"
 #include "FrameLib_TimeStdDev.h"
@@ -144,7 +143,7 @@
 
 // Context
 
-#include "../Context/fl.context~.cpp"
+#include "../Context/fl.contextcontrol~.cpp"
 
 struct FrameLib_Dummy : public MaxClass_Base
 {
@@ -238,10 +237,9 @@ extern "C" int C74_EXPORT main(void)
     
     // Time Smoothing
     
-    FrameLib_MaxClass_Expand<FrameLib_EWMA>::makeClass("fl.ewma~");
-    FrameLib_MaxClass_Expand<FrameLib_EWMSD>::makeClass("fl.ewmsd~");
     FrameLib_MaxClass_Expand<FrameLib_FrameDelta>::makeClass("fl.framedelta~");
     FrameLib_MaxClass_Expand<FrameLib_Lag>::makeClass("fl.lag~");
+    FrameLib_MaxClass_Expand<FrameLib_MovingAverage>::makeClass("fl.movingaverage~");
     FrameLib_MaxClass_Expand<FrameLib_TimeMean>::makeClass("fl.timemean~");
     FrameLib_MaxClass_Expand<FrameLib_TimeMedian>::makeClass("fl.timemedian~");
     FrameLib_MaxClass_Expand<FrameLib_TimeStdDev>::makeClass("fl.timestddev~");

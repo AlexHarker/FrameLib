@@ -91,10 +91,9 @@
 
 // Time Smoothing
 
-#include "../FrameLib_Objects/Time_Smoothing/FrameLib_EWMA.h"
-#include "../FrameLib_Objects/Time_Smoothing/FrameLib_EWMSD.h"
 #include "../FrameLib_Objects/Time_Smoothing/FrameLib_FrameDelta.h"
 #include "../FrameLib_Objects/Time_Smoothing/FrameLib_Lag.h"
+#include "../FrameLib_Objects/Time_Smoothing/FrameLib_MovingAverage.h"
 #include "../FrameLib_Objects/Time_Smoothing/FrameLib_TimeMean.h"
 #include "../FrameLib_Objects/Time_Smoothing/FrameLib_TimeMedian.h"
 #include "../FrameLib_Objects/Time_Smoothing/FrameLib_TimeStdDev.h"

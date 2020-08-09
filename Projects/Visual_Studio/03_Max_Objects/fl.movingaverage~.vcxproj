@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\FrameLib_Max_Objects\Time_Smoothing\fl.ewmsd~.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Max_Objects\Time_Smoothing\fl.movingaverage~.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{34A1DC5C-7DB6-42C3-8EBF-F33BDB989887}</ProjectGuid>
+    <ProjectGuid>{A63683B8-097D-43D9-9E41-743F57318851}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>framelib</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>

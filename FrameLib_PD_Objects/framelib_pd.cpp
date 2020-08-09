@@ -79,10 +79,9 @@
 
 // Time Smoothing
 
-#include "FrameLib_EWMA.h"
-#include "FrameLib_EWMSD.h"
 #include "FrameLib_FrameDelta.h"
 #include "FrameLib_Lag.h"
+#include "FrameLib_MovingAverage.h"
 #include "FrameLib_TimeMean.h"
 #include "FrameLib_TimeMedian.h"
 #include "FrameLib_TimeStdDev.h"
@@ -388,10 +387,9 @@ extern "C" void framelib_pd_setup(void)
     
     // Time Smoothing
     
-    FrameLib_PDClass_Expand<FrameLib_EWMA>::makeClass("fl.ewma~");
-    FrameLib_PDClass_Expand<FrameLib_EWMSD>::makeClass("fl.ewmsd~");
     FrameLib_PDClass_Expand<FrameLib_FrameDelta>::makeClass("fl.framedelta~");
     FrameLib_PDClass_Expand<FrameLib_Lag>::makeClass("fl.lag~");
+    FrameLib_PDClass_Expand<FrameLib_MovingAverage>::makeClass("fl.movingaverage~");
     FrameLib_PDClass_Expand<FrameLib_TimeMean>::makeClass("fl.timemean~");
     FrameLib_PDClass_Expand<FrameLib_TimeMedian>::makeClass("fl.timemedian~");
     FrameLib_PDClass_Expand<FrameLib_TimeStdDev>::makeClass("fl.timestddev~");

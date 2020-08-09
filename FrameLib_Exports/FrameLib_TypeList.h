@@ -101,10 +101,9 @@ FrameLib_StreamID,
 
 // Time Smoothing
 
-FrameLib_EWMA,
-FrameLib_EWMSD,
 FrameLib_FrameDelta,
 FrameLib_Lag,
+FrameLib_MovingAverage,
 FrameLib_TimeMean,
 FrameLib_TimeMedian,
 FrameLib_TimeStdDev,
