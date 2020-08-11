@@ -52,7 +52,7 @@ std::string FrameLib_MovingAverage::inputInfo(unsigned long idx, bool verbose)
 std::string FrameLib_MovingAverage::outputInfo(unsigned long idx, bool verbose)
 {
     if (idx)
-        return "Deviations";
+        return "Standard Deviations";
     else
         return "Averages";
 }
@@ -101,8 +101,6 @@ void FrameLib_MovingAverage::process()
         mAverageFrame = alloc<double>(sizeIn);
         mVarianceFrame = alloc<double>(sizeIn);
         mFrameSize = mAverageFrame && mVarianceFrame ? sizeIn : 0;
-        mLastAvgResetTime = getInputFrameTime(2);
-        mLastDevResetTime = getInputFrameTime(3);
         resetAverage = true;
         resetDeviation = true;
     }
@@ -123,18 +121,22 @@ void FrameLib_MovingAverage::process()
         
         for (unsigned long i = 0; i < mFrameSize; i++)
             mAverageFrame[i] = averages[i];
+        
+        mLastAvgResetTime = getInputFrameTime(2);
     }
     
     if (resetDeviation)
     {
-        const double *devDefaults = getInput(2, &sizeIn);
-        PaddedVector deviations(devDefaults, sizeIn, mParameters.getValue(kAverage));
+        const double *devDefaults = getInput(3, &sizeIn);
+        PaddedVector deviations(devDefaults, sizeIn, mParameters.getValue(kDeviation));
         
         for (unsigned long i = 0; i < mFrameSize; i++)
         {
             const double deviation = deviations[i];
             mVarianceFrame[i] = deviation * deviation;
         }
+        
+        mLastDevResetTime = getInputFrameTime(3);
     }
     
     // Calculate outputs
