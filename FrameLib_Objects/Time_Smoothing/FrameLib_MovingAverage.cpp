@@ -13,11 +13,11 @@ FrameLib_MovingAverage::FrameLib_MovingAverage(FrameLib_Context context, const F
     mParameters.setClip(0.0, 1.0);
     
     mParameters.addDouble(kAverage, "average", 0.0, 2);
-
+    
     mParameters.addDouble(kDeviation, "deviation", 0.0, 3);
     
     mParameters.set(serialisedParameters);
-
+    
     setParameterInput(4);
 }
 
@@ -46,7 +46,7 @@ std::string FrameLib_MovingAverage::inputInfo(unsigned long idx, bool verbose)
         case 2:     return "Average Reset Input";
         case 3:     return "Deviation Reset Input";
         default:    return parameterInputInfo(verbose);
-     }
+    }
 }
 
 std::string FrameLib_MovingAverage::outputInfo(unsigned long idx, bool verbose)
@@ -90,10 +90,10 @@ void FrameLib_MovingAverage::process()
     const double *alphas = getInput(1, &sizeAlphas);
     double alphaUp = mParameters.getValue(kAlphaUp);
     double alphaDown = mParameters.getValue(kAlphaDown);
-        
+    
     bool resetAverage = mLastAvgResetTime != getInputFrameTime(2);
     bool resetDeviation = mLastDevResetTime != getInputFrameTime(3);
-
+    
     if (mFrameSize != sizeIn)
     {
         dealloc(mAverageFrame);
@@ -145,7 +145,7 @@ void FrameLib_MovingAverage::process()
         {
             double defaultAlpha = input[i] > mAverageFrame[i] ? alphaUp : alphaDown;
             double alpha = getAlpha(alphas, sizeAlphas, i, defaultAlpha);
-        
+            
             double delta = input[i] - mAverageFrame[i];
             mAverageFrame[i] += alpha * delta;
             mVarianceFrame[i] = (1.0 - alpha) * (mVarianceFrame[i] + alpha * delta * delta);
@@ -190,3 +190,4 @@ void FrameLib_MovingAverage::process()
         }
     }
 }
+
