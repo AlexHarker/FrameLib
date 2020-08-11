@@ -2298,12 +2298,12 @@
 		B8B32FE520CDA9F700C5FA53 /* FrameLib_Errors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Errors.h; sourceTree = "<group>"; };
 		B8B401A01FB9A305006EE056 /* FrameLib_Complex_Unary_Objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Complex_Unary_Objects.h; sourceTree = "<group>"; };
 		B8B401A11FB9A305006EE056 /* FrameLib_Complex_Unary_Template.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Complex_Unary_Template.h; sourceTree = "<group>"; };
-		B8B401B31FB9A8B1006EE056 /* fl.complexcos~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexcos~.mxo"; path = "fl.complex.cos~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B401C61FB9A8BB006EE056 /* fl.complexcosh~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexcosh~.mxo"; path = "fl.complex.cosh~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B401D91FB9A8BE006EE056 /* fl.complexsin~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexsin~.mxo"; path = "fl.complex.sin~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B401EC1FB9A8CC006EE056 /* fl.complexsinh~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexsinh~.mxo"; path = "fl.complex.sinh~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B401FF1FB9A8D7006EE056 /* fl.complextan~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complextan~.mxo"; path = "fl.complex.tan~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B402121FB9A8E1006EE056 /* fl.complextanh~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complextanh~.mxo"; path = "fl.complex.tanh~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B401B31FB9A8B1006EE056 /* fl.complex.cos~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.cos~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B401C61FB9A8BB006EE056 /* fl.complex.cosh~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.cosh~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B401D91FB9A8BE006EE056 /* fl.complex.sin~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.sin~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B401EC1FB9A8CC006EE056 /* fl.complex.sinh~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.sinh~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B401FF1FB9A8D7006EE056 /* fl.complex.tan~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.tan~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B402121FB9A8E1006EE056 /* fl.complex.tanh~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.tanh~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B4021E1FB9A960006EE056 /* fl.complex.cosh~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.cosh~.cpp"; sourceTree = "<group>"; };
 		B8B4021F1FB9A960006EE056 /* fl.complex.cos~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.cos~.cpp"; sourceTree = "<group>"; };
 		B8B402231FB9A960006EE056 /* fl.complex.exp~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.exp~.cpp"; sourceTree = "<group>"; };
@@ -2315,11 +2315,11 @@
 		B8B4022C1FB9A960006EE056 /* fl.complex.sqrt~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.sqrt~.cpp"; sourceTree = "<group>"; };
 		B8B4022D1FB9A960006EE056 /* fl.complex.tanh~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.tanh~.cpp"; sourceTree = "<group>"; };
 		B8B4022E1FB9A960006EE056 /* fl.complex.tan~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.tan~.cpp"; sourceTree = "<group>"; };
-		B8B4024D1FB9AE69006EE056 /* fl.complexlog10~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexlog10~.mxo"; path = "fl.complex.log10~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B402601FB9AE6C006EE056 /* fl.complexconj~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexconj~.mxo"; path = "fl.complex.conj~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B4024D1FB9AE69006EE056 /* fl.complex.log10~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.log10~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B402601FB9AE6C006EE056 /* fl.complex.conj~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.conj~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B402731FB9AE6F006EE056 /* fl.complex.log~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.log~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B402861FB9AE72006EE056 /* fl.complexexp~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexexp~.mxo"; path = "fl.complex.exp~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B402991FB9AE76006EE056 /* fl.complexsqrt~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexsqrt~.mxo"; path = "fl.complex.sqrt~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B402861FB9AE72006EE056 /* fl.complex.exp~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.exp~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B402991FB9AE76006EE056 /* fl.complex.sqrt~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.sqrt~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B402A01FB9AF80006EE056 /* FrameLib_Cartopol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLib_Cartopol.h; sourceTree = "<group>"; };
 		B8B402B21FB9B186006EE056 /* fl.cartopol~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.cartopol~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B402C51FB9B18B006EE056 /* fl.poltocar~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.poltocar~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2333,11 +2333,11 @@
 		B8B402D51FB9DF4A006EE056 /* fl.complex.plus~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.plus~.cpp"; sourceTree = "<group>"; };
 		B8B402D61FB9DF4A006EE056 /* fl.complex.pow~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.pow~.cpp"; sourceTree = "<group>"; };
 		B8B402D71FB9DF4A006EE056 /* fl.complex.times~.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.complex.times~.cpp"; sourceTree = "<group>"; };
-		B8B402E91FB9DF8B006EE056 /* fl.complexpow~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexpow~.mxo"; path = "fl.complex.pow~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B402FD1FB9E743006EE056 /* fl.complexmultiply~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexmultiply~.mxo"; path = "fl.complex.times~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B403101FB9E747006EE056 /* fl.complexdivide~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexdivide~.mxo"; path = "fl.complex.divide~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B403231FB9E74E006EE056 /* fl.complexplus~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexplus~.mxo"; path = "fl.complex.plus~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B403361FB9E752006EE056 /* fl.complexminus~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "fl.complexminus~.mxo"; path = "fl.complex.minus~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B402E91FB9DF8B006EE056 /* fl.complex.pow~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.pow~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B402FD1FB9E743006EE056 /* fl.complex.times~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.times~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B403101FB9E747006EE056 /* fl.complex.divide~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.divide~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B403231FB9E74E006EE056 /* fl.complex.plus~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.plus~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B403361FB9E752006EE056 /* fl.complex.minus~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.complex.minus~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B4C8971F33456A008E5D31 /* fl.now~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fl.now~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B4C8991F3345A7008E5D31 /* fl.now~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fl.now~.cpp"; sourceTree = "<group>"; };
 		B8B4C89B1F334614008E5D31 /* FrameLib_Now.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameLib_Now.cpp; sourceTree = "<group>"; };
@@ -4218,24 +4218,24 @@
 				B8886F761FB76666001C843E /* fl.timestddev~.mxo */,
 				B87E5C1D1FB8C44500C63385 /* fl.gaussian~.mxo */,
 				B87E5C4F1FB8EC2D00C63385 /* fl.movingaverage~.mxo */,
-				B8B401B31FB9A8B1006EE056 /* fl.complexcos~.mxo */,
-				B8B401C61FB9A8BB006EE056 /* fl.complexcosh~.mxo */,
-				B8B401D91FB9A8BE006EE056 /* fl.complexsin~.mxo */,
-				B8B401EC1FB9A8CC006EE056 /* fl.complexsinh~.mxo */,
-				B8B401FF1FB9A8D7006EE056 /* fl.complextan~.mxo */,
-				B8B402121FB9A8E1006EE056 /* fl.complextanh~.mxo */,
-				B8B4024D1FB9AE69006EE056 /* fl.complexlog10~.mxo */,
-				B8B402601FB9AE6C006EE056 /* fl.complexconj~.mxo */,
+				B8B401B31FB9A8B1006EE056 /* fl.complex.cos~.mxo */,
+				B8B401C61FB9A8BB006EE056 /* fl.complex.cosh~.mxo */,
+				B8B401D91FB9A8BE006EE056 /* fl.complex.sin~.mxo */,
+				B8B401EC1FB9A8CC006EE056 /* fl.complex.sinh~.mxo */,
+				B8B401FF1FB9A8D7006EE056 /* fl.complex.tan~.mxo */,
+				B8B402121FB9A8E1006EE056 /* fl.complex.tanh~.mxo */,
+				B8B4024D1FB9AE69006EE056 /* fl.complex.log10~.mxo */,
+				B8B402601FB9AE6C006EE056 /* fl.complex.conj~.mxo */,
 				B8B402731FB9AE6F006EE056 /* fl.complex.log~.mxo */,
-				B8B402861FB9AE72006EE056 /* fl.complexexp~.mxo */,
-				B8B402991FB9AE76006EE056 /* fl.complexsqrt~.mxo */,
+				B8B402861FB9AE72006EE056 /* fl.complex.exp~.mxo */,
+				B8B402991FB9AE76006EE056 /* fl.complex.sqrt~.mxo */,
 				B8B402B21FB9B186006EE056 /* fl.cartopol~.mxo */,
 				B8B402C51FB9B18B006EE056 /* fl.poltocar~.mxo */,
-				B8B402E91FB9DF8B006EE056 /* fl.complexpow~.mxo */,
-				B8B402FD1FB9E743006EE056 /* fl.complexmultiply~.mxo */,
-				B8B403101FB9E747006EE056 /* fl.complexdivide~.mxo */,
-				B8B403231FB9E74E006EE056 /* fl.complexplus~.mxo */,
-				B8B403361FB9E752006EE056 /* fl.complexminus~.mxo */,
+				B8B402E91FB9DF8B006EE056 /* fl.complex.pow~.mxo */,
+				B8B402FD1FB9E743006EE056 /* fl.complex.times~.mxo */,
+				B8B403101FB9E747006EE056 /* fl.complex.divide~.mxo */,
+				B8B403231FB9E74E006EE056 /* fl.complex.plus~.mxo */,
+				B8B403361FB9E752006EE056 /* fl.complex.minus~.mxo */,
 				B8DF11571FBF97B600C6229D /* fl.correlate~.mxo */,
 				B84A406C1FD73E5C00A30455 /* fl.accumpos~.mxo */,
 				B8CEFC1D2019EA2100F5F5A0 /* fl.minpos~.mxo */,
@@ -8459,7 +8459,7 @@
 			name = "fl.complex.cos~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8B401B31FB9A8B1006EE056 /* fl.complexcos~.mxo */;
+			productReference = B8B401B31FB9A8B1006EE056 /* fl.complex.cos~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8B401B51FB9A8BB006EE056 /* fl.complex.cosh~ */ = {
@@ -8479,7 +8479,7 @@
 			name = "fl.complex.cosh~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8B401C61FB9A8BB006EE056 /* fl.complexcosh~.mxo */;
+			productReference = B8B401C61FB9A8BB006EE056 /* fl.complex.cosh~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8B401C81FB9A8BE006EE056 /* fl.complex.sin~ */ = {
@@ -8499,7 +8499,7 @@
 			name = "fl.complex.sin~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8B401D91FB9A8BE006EE056 /* fl.complexsin~.mxo */;
+			productReference = B8B401D91FB9A8BE006EE056 /* fl.complex.sin~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8B401DB1FB9A8CC006EE056 /* fl.complex.sinh~ */ = {
@@ -8519,7 +8519,7 @@
 			name = "fl.complex.sinh~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8B401EC1FB9A8CC006EE056 /* fl.complexsinh~.mxo */;
+			productReference = B8B401EC1FB9A8CC006EE056 /* fl.complex.sinh~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8B401EE1FB9A8D7006EE056 /* fl.complex.tan~ */ = {
@@ -8539,7 +8539,7 @@
 			name = "fl.complex.tan~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8B401FF1FB9A8D7006EE056 /* fl.complextan~.mxo */;
+			productReference = B8B401FF1FB9A8D7006EE056 /* fl.complex.tan~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8B402011FB9A8E1006EE056 /* fl.complex.tanh~ */ = {
@@ -8559,7 +8559,7 @@
 			name = "fl.complex.tanh~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8B402121FB9A8E1006EE056 /* fl.complextanh~.mxo */;
+			productReference = B8B402121FB9A8E1006EE056 /* fl.complex.tanh~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8B4023C1FB9AE69006EE056 /* fl.complex.log10~ */ = {
@@ -8579,7 +8579,7 @@
 			name = "fl.complex.log10~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8B4024D1FB9AE69006EE056 /* fl.complexlog10~.mxo */;
+			productReference = B8B4024D1FB9AE69006EE056 /* fl.complex.log10~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8B4024F1FB9AE6C006EE056 /* fl.complex.conj~ */ = {
@@ -8599,7 +8599,7 @@
 			name = "fl.complex.conj~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8B402601FB9AE6C006EE056 /* fl.complexconj~.mxo */;
+			productReference = B8B402601FB9AE6C006EE056 /* fl.complex.conj~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8B402621FB9AE6F006EE056 /* fl.complex.log~ */ = {
@@ -8639,7 +8639,7 @@
 			name = "fl.complex.exp~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8B402861FB9AE72006EE056 /* fl.complexexp~.mxo */;
+			productReference = B8B402861FB9AE72006EE056 /* fl.complex.exp~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8B402881FB9AE76006EE056 /* fl.complex.sqrt~ */ = {
@@ -8659,7 +8659,7 @@
 			name = "fl.complex.sqrt~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8B402991FB9AE76006EE056 /* fl.complexsqrt~.mxo */;
+			productReference = B8B402991FB9AE76006EE056 /* fl.complex.sqrt~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8B402A11FB9B186006EE056 /* fl.cartopol~ */ = {
@@ -8719,7 +8719,7 @@
 			name = "fl.complex.pow~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8B402E91FB9DF8B006EE056 /* fl.complexpow~.mxo */;
+			productReference = B8B402E91FB9DF8B006EE056 /* fl.complex.pow~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8B402EC1FB9E743006EE056 /* fl.complex.times~ */ = {
@@ -8739,7 +8739,7 @@
 			name = "fl.complex.times~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8B402FD1FB9E743006EE056 /* fl.complexmultiply~.mxo */;
+			productReference = B8B402FD1FB9E743006EE056 /* fl.complex.times~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8B402FF1FB9E747006EE056 /* fl.complex.divide~ */ = {
@@ -8759,7 +8759,7 @@
 			name = "fl.complex.divide~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8B403101FB9E747006EE056 /* fl.complexdivide~.mxo */;
+			productReference = B8B403101FB9E747006EE056 /* fl.complex.divide~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8B403121FB9E74E006EE056 /* fl.complex.plus~ */ = {
@@ -8779,7 +8779,7 @@
 			name = "fl.complex.plus~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8B403231FB9E74E006EE056 /* fl.complexplus~.mxo */;
+			productReference = B8B403231FB9E74E006EE056 /* fl.complex.plus~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8B403251FB9E752006EE056 /* fl.complex.minus~ */ = {
@@ -8799,7 +8799,7 @@
 			name = "fl.complex.minus~";
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = MSPExternal;
-			productReference = B8B403361FB9E752006EE056 /* fl.complexminus~.mxo */;
+			productReference = B8B403361FB9E752006EE056 /* fl.complex.minus~.mxo */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B8B4C8791F33456A008E5D31 /* fl.now~ */ = {
