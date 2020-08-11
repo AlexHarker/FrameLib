@@ -3,12 +3,13 @@
 #define FRAMELIB_MOVINGAVERAGE_H
 
 #include "FrameLib_DSP.h"
+#include "FrameLib_PaddedVector.h"
 
 class FrameLib_MovingAverage final : public FrameLib_Processor
 {
     // Parameter Enums and Info
     
-    enum ParameterList { kAlphaUp, kAlphaDown, kDefault, kMode };
+    enum ParameterList { kAlphaUp, kAlphaDown, kAverage, kDeviation };
     enum Modes { kUseDefault, kInputOnly };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
@@ -43,7 +44,8 @@ private:
     double *mVarianceFrame;
     unsigned long mFrameSize;
     
-    FrameLib_TimeFormat mLastResetTime;
+    FrameLib_TimeFormat mLastAvgResetTime;
+    FrameLib_TimeFormat mLastDevResetTime;
 
     static ParameterInfo sParamInfo;
 };
