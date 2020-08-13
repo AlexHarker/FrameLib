@@ -334,7 +334,7 @@ private:
         
         // Setters
         
-        virtual void addEnumItem(const char *str);
+        virtual void addEnumItem(unsigned long idx, const char *str, bool setAsDefault);
         
         void setInstantiation()                         { mFlags |= kFlagInstantiation; }
         void setBoolOnly()                              { mFlags |= kFlagBool | kFlagInteger; }
@@ -412,7 +412,7 @@ private:
         
         // Setters
         
-        void addEnumItem(const char *str) override;
+        void addEnumItem(unsigned long idx, const char *str, bool setAsDefault) override;
         
         SetError set(double value) override;
         SetError set(double *values, unsigned long N) override;
@@ -620,9 +620,9 @@ public:
         addParameter(index, new Enum(name, argumentIdx));
     }
     
-    void addEnumItem(unsigned long index, const char *str)
+    void addEnumItem(unsigned long index, const char *str, bool setAsDefault = false)
     {
-        mParameters.back()->addEnumItem(str);
+        mParameters.back()->addEnumItem(index, str, setAsDefault);
     }
     
     void addBoolArray(unsigned long index, const char *name, bool defaultValue, unsigned long size, long argumentIdx = -1)

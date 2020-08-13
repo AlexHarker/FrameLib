@@ -10,9 +10,9 @@ FrameLib_Info::FrameLib_Info(FrameLib_Context context, const FrameLib_Parameters
     mParameters.addString(kBuffer, "buffer", 0);
     
     mParameters.addEnum(kUnits, "units", 1);
-    mParameters.addEnumItem(kMS, "ms");
-    mParameters.addEnumItem(kSeconds, "seconds");
     mParameters.addEnumItem(kSamples, "samples");
+    mParameters.addEnumItem(kMS, "ms", true);
+    mParameters.addEnumItem(kSeconds, "seconds");
     
     mParameters.set(serialisedParameters);
     
@@ -101,9 +101,9 @@ void FrameLib_Info::process()
     
     switch (mUnits)
     {
+        case kSamples:      conversionFactor = 1.0;                         break;
         case kMS:           conversionFactor = samplingRate / 1000;         break;
         case kSeconds:      conversionFactor = samplingRate;                break;
-        case kSamples:      conversionFactor = 1.0;                         break;
     }
     
     if (length != 0 && size != 0)

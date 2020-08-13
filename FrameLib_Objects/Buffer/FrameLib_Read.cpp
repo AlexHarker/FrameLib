@@ -13,18 +13,18 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters
     mParameters.setMin(1);
     
     mParameters.addEnum(kUnits, "units", 2);
-    mParameters.addEnumItem(kMS, "ms");
-    mParameters.addEnumItem(kSeconds, "seconds");
     mParameters.addEnumItem(kSamples, "samples");
-    mParameters.addEnumItem(kSamples, "normalised");
+    mParameters.addEnumItem(kMS, "ms", true);
+    mParameters.addEnumItem(kSeconds, "seconds");
+    mParameters.addEnumItem(kNormalised, "normalised");
     
     mParameters.addEnum(kInterpolation, "interp", 3);
-    mParameters.addEnumItem(kHermite, "hermite");
+    mParameters.addEnumItem(kNone, "none");
+    mParameters.addEnumItem(kLinear, "linear");
+    mParameters.addEnumItem(kHermite, "hermite", true);
     mParameters.addEnumItem(kBSpline, "bspline");
     mParameters.addEnumItem(kLagrange, "lagrange");
-    mParameters.addEnumItem(kLinear, "linear");
-    mParameters.addEnumItem(kNone, "none");
-        
+    
     mParameters.set(serialisedParameters);
     
     mChan = mParameters.getInt(kChannel);
@@ -126,9 +126,9 @@ void FrameLib_Read::process()
         
         switch (mUnits)
         {
+            case kSamples:      conversionFactor = 1.0;                         break;
             case kMS:           conversionFactor = samplingRate / 1000.0;       break;
             case kSeconds:      conversionFactor = samplingRate;                break;
-            case kSamples:      conversionFactor = 1.0;                         break;
             case kNormalised:   conversionFactor = lengthM1;                    break;
         }
         
@@ -153,9 +153,9 @@ void FrameLib_Read::process()
             {
                 case kNone:         break;
                 case kLinear:       interpType = kInterpLinear;             break;
-                case kLagrange:     interpType = kInterpCubicLagrange;      break;
                 case kHermite:      interpType = kInterpCubicHermite;       break;
                 case kBSpline:      interpType = kInterpCubicBSpline;       break;
+                case kLagrange:     interpType = kInterpCubicLagrange;      break;
             }
         }
         
