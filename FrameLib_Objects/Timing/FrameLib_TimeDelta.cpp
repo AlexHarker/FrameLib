@@ -50,9 +50,9 @@ void FrameLib_TimeDelta::calculateMultiplier()
 {
     switch (static_cast<Units>(mParameters.getInt(kUnits)))
     {
-        case kMS:       mMultiplier = 1000.0 / FrameLib_TimeFormat(mSamplingRate);   break;
-        case kSeconds:  mMultiplier = 1.0 / FrameLib_TimeFormat(mSamplingRate);      break;
         case kSamples:  mMultiplier = FrameLib_TimeFormat(1);                       break;
+        case kMS:       mMultiplier = 1000.0 / FrameLib_TimeFormat(mSamplingRate);  break;
+        case kSeconds:  mMultiplier = 1.0 / FrameLib_TimeFormat(mSamplingRate);     break;
     }
 }
 

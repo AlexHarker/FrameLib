@@ -126,13 +126,13 @@ void FrameLib_Ramp::process()
 
             switch (edges)
             {
+                case kBoth:
+                    normalisedScale = static_cast<double>(sizeOut - 1);
+                    break;
+                
                 case kFirst:
                 case kLast:
                     normalisedScale = static_cast<double>(sizeOut);
-                    break;
-                    
-                case kBoth:
-                    normalisedScale = static_cast<double>(sizeOut - 1);
                     break;
                     
                 case kNone:
