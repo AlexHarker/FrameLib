@@ -3,7 +3,6 @@
 #define FRAMELIB_INFO_H
 
 #include "FrameLib_DSP.h"
-#include "../../FrameLib_Dependencies/TableReader.hpp"
 
 class FrameLib_Info final : public FrameLib_Processor
 {
