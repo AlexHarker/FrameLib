@@ -33,7 +33,7 @@ template <class T, class U, class V, class Table, typename Interp> struct interp
         {
             V position = *positions++;
             
-            intptr_t offset     = static_cast<intptr_t>(position);
+            intptr_t offset     = static_cast<intptr_t>(std::floor(position));
             fract_array[i]      = static_cast<pos_type>(position - static_cast<V>(offset));
             
             array[i]            = static_cast<out_type>(fetch(offset + 0));
@@ -66,7 +66,7 @@ template <class T, class U, class V, class Table, typename Interp> struct interp
         {
             V position = *positions++;
             
-            intptr_t offset         = static_cast<intptr_t>(position);
+            intptr_t offset         = static_cast<intptr_t>(std::floor(position));
             fract_array[i]          = static_cast<pos_type>(position - static_cast<V>(offset));
             
             array[i]                = static_cast<out_type>(fetch(offset - 1));
@@ -100,7 +100,7 @@ template <class T, class U, class V, class Table> struct no_interp_reader
         out_type array[T::size];
         
         for (int i = 0; i < T::size; i++)
-            array[i] = static_cast<out_type>(fetch(static_cast<intptr_t>(*positions++)));
+            array[i] = static_cast<out_type>(fetch(static_cast<intptr_t>(std::floor(*positions++))));
         
         return U(array);
     }
