@@ -93,10 +93,9 @@
     <ClInclude Include="..\..\..\FrameLib_Objects\Streaming\FrameLib_Unpack.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Ternary\FrameLib_Ternary_Objects.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Ternary\FrameLib_Ternary_Template.h" />
-    <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_EWMA.h" />
-    <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_EWMSD.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_FrameDelta.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_Lag.h" />
+    <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_MovingAverage.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeBuffer_Template.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeMean.h" />
     <ClInclude Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeMedian.h" />
@@ -181,10 +180,9 @@
     <ClCompile Include="..\..\..\FrameLib_Objects\Streaming\FrameLib_Pack.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Streaming\FrameLib_StreamID.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Streaming\FrameLib_Unpack.cpp" />
-    <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_EWMA.cpp" />
-    <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_EWMSD.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_FrameDelta.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_Lag.cpp" />
+    <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_MovingAverage.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeMean.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeMedian.cpp" />
     <ClCompile Include="..\..\..\FrameLib_Objects\Time_Smoothing\FrameLib_TimeStdDev.cpp" />
