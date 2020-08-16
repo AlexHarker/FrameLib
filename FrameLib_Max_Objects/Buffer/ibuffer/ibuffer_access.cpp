@@ -127,7 +127,7 @@ void ibuffer_data::release_buffer()
 template <class T, class U>
 void ibuffer_read_format(const ibuffer_data& buffer, T *out, U *positions, intptr_t n_samps, long chan, T mul, InterpType interp)
 {
-    switch(buffer.get_format())
+    switch (buffer.get_format())
     {
         case PCM_FLOAT:     table_read(fetch_float(buffer, chan), out, positions, n_samps, mul, interp);    break;
         case PCM_INT_16:    table_read(fetch_16bit(buffer, chan), out, positions, n_samps, mul, interp);    break;
@@ -149,6 +149,56 @@ void ibuffer_read(const ibuffer_data& buffer, float *out, const double *position
 void ibuffer_read(const ibuffer_data& buffer, float *out, const float *positions, intptr_t n_samps, long chan, float mul, InterpType interp)
 {
     ibuffer_read_format<float>(buffer, out, positions, n_samps, chan, mul, interp);
+}
+
+template <class T, class U>
+void ibuffer_read_format_edges(const ibuffer_data& buffer, T *out, U *positions, intptr_t n_samps, long chan, T mul, InterpType interp, EdgeType edges, bool bound)
+{
+    switch (buffer.get_format())
+    {
+        case PCM_FLOAT:
+        {
+            fetch_float fetch(buffer, chan);
+            table_read_edges(fetch, out, positions, n_samps, mul, interp, edges, bound);
+            break;
+        }
+            
+        case PCM_INT_16:
+        {
+            fetch_16bit fetch(buffer, chan);
+            table_read_edges(fetch, out, positions, n_samps, mul, interp, edges, bound);
+            break;
+        }
+            
+        case PCM_INT_24:
+        {
+            fetch_24bit fetch(buffer, chan);
+            table_read_edges(fetch, out, positions, n_samps, mul, interp, edges, bound);
+            break;
+        };
+            
+        case PCM_INT_32:
+        {
+            fetch_32bit fetch(buffer, chan);
+            table_read_edges(fetch, out, positions, n_samps, mul, interp, edges, bound);
+            break;
+        };
+    }
+}
+
+void ibuffer_read_edges(const ibuffer_data& buffer, double *out, const double *positions, intptr_t n_samps, long chan, double mul, InterpType interp, EdgeType edges, bool bound)
+{
+    ibuffer_read_format_edges<double>(buffer, out, positions, n_samps, chan, mul, interp, edges, bound);
+}
+
+void ibuffer_read_edges(const ibuffer_data& buffer, float *out, const double *positions, intptr_t n_samps, long chan, float mul, InterpType interp, EdgeType edges, bool bound, float pad_lo, float pad_hi)
+{
+    ibuffer_read_format_edges<float>(buffer, out, positions, n_samps, chan, mul, interp, edges, bound);
+}
+
+void ibuffer_read_edges(const ibuffer_data& buffer, float *out, const float *positions, intptr_t n_samps, long chan, float mul, InterpType interp, EdgeType edges, bool bound, float pad_lo, float pad_hi)
+{
+    ibuffer_read_format_edges<float>(buffer, out, positions, n_samps, chan, mul, interp, edges, bound);
 }
 
 template <class T, class Ft>
