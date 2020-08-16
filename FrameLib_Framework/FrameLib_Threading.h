@@ -57,7 +57,7 @@ namespace OS_Specific
 namespace OS_Specific
 {
     using OSThreadType = HANDLE;
-    using OSSemaphoreType = HANDLE;
+	using OSSemaphoreType = struct WinSemaphore { HANDLE mHandle; long mMaxCount; };
     typedef DWORD WINAPI OSThreadFunctionType(LPVOID arg);
 }
 
