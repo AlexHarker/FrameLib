@@ -4,40 +4,138 @@
 
 #include "SIMDSupport.hpp"
 #include "Interpolation.hpp"
+#include <algorithm>
+
+// Enumeration of edge types
+
+enum EdgeType
+{
+    kExtrapolate, kExtend, kWrap, kZeroPad
+};
 
 // Base class for table fetchers
 
-template <class T> struct table_fetcher
+// Implementations
+// - must provide - T operator()(intptr_t offset) - which does the fetching of values
+// - may also provide - template <class U, V> void split(U position, intptr_t& offset, V& fract, intptr_t N)
+// - split() generates the offset and fractional interpolation values and may additionally constrain them
+// - may also provide intptr_t limit() which should return the highest valid position for bounds etc.
+
+template <class T>
+struct table_fetcher
 {
     typedef T fetch_type;
-    table_fetcher(double scale_val) : scale(scale_val) {}
     
+    table_fetcher(intptr_t length, double scale_val) : size(length), scale(scale_val) {}
+    
+    template <class U, class V>
+    void split(U position, intptr_t& offset, V& fract, intptr_t N)
+    {
+        offset = static_cast<intptr_t>(std::floor(position));
+        fract = static_cast<V>(position - static_cast<V>(offset));
+    }
+    
+    intptr_t limit() { return size - 1; }
+    
+    const intptr_t size;
     const double scale;
+};
+
+// Adaptor to take a fetcher and extrapolate the input
+
+template <class T>
+struct table_fetcher_extrapolate : T
+{
+    table_fetcher_extrapolate(const T& base) : T(base){}
+    
+    template <class U, class V>
+    void split(U position, intptr_t& offset, V& fract, intptr_t N)
+    {
+        U constrained = std::max(std::min(position, U(T::size - ((N >> 1) + 1))), U((N - 1) >> 1));
+        offset = static_cast<intptr_t>(std::floor(constrained));
+        fract = static_cast<V>(position - static_cast<V>(offset));
+    }
+};
+
+// Adaptor to take a fetcher and make it extend the end values
+
+template <class T>
+struct table_fetcher_extend : T
+{
+    table_fetcher_extend(const T& base) : T(base){}
+    
+    typename T::fetch_type operator()(intptr_t offset)
+    {
+        return T::operator()(std::min(std::max(offset, static_cast<intptr_t>(0)), T::size - 1));
+    }
+};
+
+// An adaptor to take a fetcher and make it pad with zeros at either end
+
+template <class T>
+struct table_fetcher_zeropad : T
+{
+    table_fetcher_zeropad(const T& base) : T(base){}
+    
+    typename T::fetch_type operator()(intptr_t offset)
+    {
+        return (offset < 0 || offset >= T::size) ? typename T::fetch_type(0) : T::operator()(offset);
+    }
+};
+
+// Adaptor to take a fetcher and make it wrap
+
+template <class T>
+struct table_fetcher_wrap : T
+{
+    table_fetcher_wrap(const T& base) : T(base){}
+    
+    typename T::fetch_type operator()(intptr_t offset)
+    {
+        return T::operator()(offset < 0 ? T::size + (offset % T::size) : offset % T::size);
+    }
+    
+    intptr_t limit() { return T::size; }
+};
+
+// Adaptor to take a fetcher and bound the input (can be added to the above edge behaviours)
+
+template <class T>
+struct table_fetcher_bound : T
+{
+    table_fetcher_bound(const T& base) : T(base){}
+
+    template <class U, class V>
+    void split(U position, intptr_t& offset, V& fract, intptr_t N)
+    {
+        position = std::max(std::min(position, U(T::limit())), U(0));
+        T::split(position, offset, fract, N);
+    }
 };
 
 // Generic interpolation readers
 
-template <class T, class U, class V, class Table, typename Interp> struct interp_2_reader
+template <class T, class U, class V, class Table, typename Interp>
+struct interp_2_reader
 {
     interp_2_reader(Table fetcher) : fetch(fetcher) {}
     
     T operator()(const V*& positions)
     {
-        using pos_type = typename T::scalar_type;
-        using out_type = typename U::scalar_type;
+        using out_type = typename T::scalar_type;
+        using tab_type = typename U::scalar_type;
         
-        pos_type fract_array[T::size];
-        out_type array[T::size * 2];
+        out_type fract_array[T::size];
+        tab_type array[T::size * 2];
         
         for (int i = 0; i < T::size; i++)
         {
-            V position = *positions++;
+            intptr_t offset;
+
+            fetch.split(*positions++, offset, fract_array[i], 2);
             
-            intptr_t offset     = static_cast<intptr_t>(std::floor(position));
-            fract_array[i]      = static_cast<pos_type>(position - static_cast<V>(offset));
-            
-            array[i]            = static_cast<out_type>(fetch(offset + 0));
-            array[i + T::size]  = static_cast<out_type>(fetch(offset + 1));
+            array[i]            = static_cast<tab_type>(fetch(offset + 0));
+            array[i + T::size]  = static_cast<tab_type>(fetch(offset + 1));
         }
         
         const T y0 = U(array);
@@ -50,29 +148,29 @@ template <class T, class U, class V, class Table, typename Interp> struct interp
     Interp interpolate;
 };
 
-template <class T, class U, class V, class Table, typename Interp> struct interp_4_reader
+template <class T, class U, class V, class Table, typename Interp>
+struct interp_4_reader
 {
     interp_4_reader(Table fetcher) : fetch(fetcher) {}
     
     T operator()(const V*& positions)
     {
-        using pos_type = typename T::scalar_type;
-        using out_type = typename U::scalar_type;
+        using out_type = typename T::scalar_type;
+        using tab_type = typename U::scalar_type;
         
-        pos_type fract_array[T::size];
-        out_type array[T::size * 4];
+        out_type fract_array[T::size];
+        tab_type array[T::size * 4];
         
         for (int i = 0; i < T::size; i++)
         {
-            V position = *positions++;
+            intptr_t offset;
             
-            intptr_t offset         = static_cast<intptr_t>(std::floor(position));
-            fract_array[i]          = static_cast<pos_type>(position - static_cast<V>(offset));
+            fetch.split(*positions++, offset, fract_array[i], 4);
             
-            array[i]                = static_cast<out_type>(fetch(offset - 1));
-            array[i + T::size]      = static_cast<out_type>(fetch(offset + 0));
-            array[i + T::size * 2]  = static_cast<out_type>(fetch(offset + 1));
-            array[i + T::size * 3]  = static_cast<out_type>(fetch(offset + 2));
+            array[i]                = static_cast<tab_type>(fetch(offset - 1));
+            array[i + T::size]      = static_cast<tab_type>(fetch(offset + 0));
+            array[i + T::size * 2]  = static_cast<tab_type>(fetch(offset + 1));
+            array[i + T::size * 3]  = static_cast<tab_type>(fetch(offset + 2));
         }
         
         const T y0 = U(array);
@@ -89,18 +187,26 @@ template <class T, class U, class V, class Table, typename Interp> struct interp
 
 // Readers with specific interpolation types
 
-template <class T, class U, class V, class Table> struct no_interp_reader
+template <class T, class U, class V, class Table>
+struct no_interp_reader
 {
     no_interp_reader(Table fetcher) : fetch(fetcher) {}
     
     T operator()(const V*& positions)
     {
-        using out_type = typename U::scalar_type;
+        using out_type = typename T::scalar_type;
+        using tab_type = typename U::scalar_type;
         
-        out_type array[T::size];
+        tab_type array[T::size];
         
         for (int i = 0; i < T::size; i++)
-            array[i] = static_cast<out_type>(fetch(static_cast<intptr_t>(std::floor(*positions++))));
+        {
+            out_type fract;
+            intptr_t offset;
+
+            fetch.split(*positions++, offset, fract, 0);
+            array[i] = static_cast<tab_type>(fetch(offset));
+        }
         
         return U(array);
     }
@@ -174,5 +280,60 @@ void table_read(Table fetcher, T *out, const U *positions, intptr_t n_samps, T m
     }
 }
 
-#endif /* TableReader_h */
+// Reading calls to add adaptors to the basic fetcher
 
+template <class T, class U, class Table>
+void table_read_optional_bound(Table fetcher, T *out, const U *positions, intptr_t n_samps, T mul, InterpType interp, bool bound)
+{
+    if (bound)
+    {
+        table_fetcher_bound<Table> fetch(fetcher);
+        table_read(fetch, out, positions, n_samps, mul, interp);
+    }
+    else
+        table_read(fetcher, out, positions, n_samps, mul, interp);
+}
+
+template <class T, class U, class Table>
+void table_read_extrapolate(Table fetcher, T *out, const U *positions, intptr_t n_samps, T mul, InterpType interp, bool bound)
+{
+    table_fetcher_extrapolate<Table> fetch(fetcher);
+    table_read_optional_bound(fetch, out, positions, n_samps, mul, interp, bound);
+}
+
+template <class T, class U, class Table>
+void table_read_extend(Table fetcher, T *out, const U *positions, intptr_t n_samps, T mul, InterpType interp, bool bound)
+{
+    table_fetcher_extend<Table> fetch(fetcher);
+    table_read_optional_bound(fetch, out, positions, n_samps, mul, interp, bound);
+}
+
+template <class T, class U, class Table>
+void table_read_zeropad(Table fetcher, T *out, const U *positions, intptr_t n_samps, T mul, InterpType interp, bool bound)
+{
+    table_fetcher_zeropad<Table> fetch(fetcher);
+    table_read_optional_bound(fetch, out, positions, n_samps, mul, interp, bound);
+}
+
+template <class T, class U, class Table>
+void table_read_wrap(Table fetcher, T *out, const U *positions, intptr_t n_samps, T mul, InterpType interp, bool bound)
+{
+    table_fetcher_wrap<Table> fetch(fetcher);
+    table_read_optional_bound(fetch, out, positions, n_samps, mul, interp, bound);
+}
+
+// Main read call for variable edge behaviour
+
+template <class T, class U, class Table>
+void table_read_edges(Table fetcher, T *out, const U *positions, intptr_t n_samps, T mul, InterpType interp, EdgeType edges, bool bound)
+{
+    switch (edges)
+    {
+        case kExtrapolate:  table_read_extrapolate(fetcher, out, positions, n_samps, mul, interp, bound);   break;
+        case kExtend:       table_read_extend(fetcher, out, positions, n_samps, mul, interp, bound);        break;
+        case kWrap:         table_read_wrap(fetcher, out, positions, n_samps, mul, interp, bound);          break;
+        case kZeroPad:      table_read_zeropad(fetcher, out, positions, n_samps, mul, interp, bound);       break;
+    }
+}
+
+#endif /* TableReader_h */
