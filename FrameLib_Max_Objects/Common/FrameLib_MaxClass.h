@@ -54,13 +54,13 @@ struct FrameLib_MaxContext
 
 struct MessageInfo
 {
-    MessageInfo(FrameLib_MaxProxy* proxy, FrameLib_TimeFormat time, t_ptr_uint order, t_ptr_uint stream)
+    MessageInfo(FrameLib_MaxProxy* proxy, FrameLib_TimeFormat time, t_ptr_uint order, unsigned long stream)
     : mProxy(proxy), mTime(time), mOrder(order), mStream(stream) {}
     
     FrameLib_MaxProxy* mProxy;
     FrameLib_TimeFormat mTime;
     t_ptr_uint mOrder;
-    t_ptr_uint mStream;
+    unsigned long mStream;
 };
 
 struct Message
