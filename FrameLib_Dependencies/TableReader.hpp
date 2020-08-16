@@ -122,11 +122,8 @@ struct interp_2_reader
     
     T operator()(const V*& positions)
     {
-        using out_type = typename T::scalar_type;
-        using tab_type = typename U::scalar_type;
-        
-        out_type fract_array[T::size];
-        tab_type array[T::size * 2];
+        typename T::scalar_type fract_array[T::size];
+        typename U::scalar_type array[T::size * 2];
         
         for (int i = 0; i < T::size; i++)
         {
@@ -134,8 +131,8 @@ struct interp_2_reader
 
             fetch.split(*positions++, offset, fract_array[i], 2);
             
-            array[i]            = static_cast<tab_type>(fetch(offset + 0));
-            array[i + T::size]  = static_cast<tab_type>(fetch(offset + 1));
+            array[i]            = fetch(offset + 0);
+            array[i + T::size]  = fetch(offset + 1);
         }
         
         const T y0 = U(array);
@@ -154,12 +151,9 @@ struct interp_4_reader
     interp_4_reader(Table fetcher) : fetch(fetcher) {}
     
     T operator()(const V*& positions)
-    {
-        using out_type = typename T::scalar_type;
-        using tab_type = typename U::scalar_type;
-        
-        out_type fract_array[T::size];
-        tab_type array[T::size * 4];
+    {        
+        typename T::scalar_type fract_array[T::size];
+        typename U::scalar_type array[T::size * 4];
         
         for (int i = 0; i < T::size; i++)
         {
@@ -167,10 +161,10 @@ struct interp_4_reader
             
             fetch.split(*positions++, offset, fract_array[i], 4);
             
-            array[i]                = static_cast<tab_type>(fetch(offset - 1));
-            array[i + T::size]      = static_cast<tab_type>(fetch(offset + 0));
-            array[i + T::size * 2]  = static_cast<tab_type>(fetch(offset + 1));
-            array[i + T::size * 3]  = static_cast<tab_type>(fetch(offset + 2));
+            array[i]                = fetch(offset - 1);
+            array[i + T::size]      = fetch(offset + 0);
+            array[i + T::size * 2]  = fetch(offset + 1);
+            array[i + T::size * 3]  = fetch(offset + 2);
         }
         
         const T y0 = U(array);
@@ -194,18 +188,15 @@ struct no_interp_reader
     
     T operator()(const V*& positions)
     {
-        using out_type = typename T::scalar_type;
-        using tab_type = typename U::scalar_type;
-        
-        tab_type array[T::size];
+        typename U::scalar_type array[T::size];
         
         for (int i = 0; i < T::size; i++)
         {
-            out_type fract;
+            typename T::scalar_type fract;
             intptr_t offset;
 
             fetch.split(*positions++, offset, fract, 0);
-            array[i] = static_cast<tab_type>(fetch(offset));
+            array[i] = fetch(offset);
         }
         
         return U(array);

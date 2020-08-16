@@ -83,8 +83,8 @@ struct fetch : public table_fetcher<float>
     fetch(const ibuffer_data& data, long chan)
     : table_fetcher(data.get_length(), 1.0 / ((int64_t) 1 << (bit_scale - 1))), samples(((T *) data.get_samples()) + chan), num_chans(data.get_num_chans()) {}
     
-    T operator()(intptr_t offset)   { return samples[offset * num_chans]; }
-    double get(intptr_t offset)     { return bit_scale != 1 ? scale * operator()(offset) : operator()(offset); }
+    float operator()(intptr_t offset)   { return static_cast<float>(samples[offset * num_chans]); }
+    double get(intptr_t offset)         { return bit_scale != 1 ? scale * operator()(offset) : operator()(offset); }
     
     T *samples;
     long num_chans;
@@ -96,9 +96,9 @@ struct fetch<int32_t, 24> : public table_fetcher<float>
     fetch(const ibuffer_data& data, long chan)
     : table_fetcher(data.get_length(), 1.0 / ((int64_t) 1 << 31)), samples(((uint8_t *) data.get_samples()) + 3 * chan), num_chans(data.get_num_chans()) {}
     
-    int32_t operator()(intptr_t offset)
+    float operator()(intptr_t offset)
     {
-        return (*reinterpret_cast<uint32_t *>(samples + (offset * 3 * num_chans - 1)) & 0xFFFFFF00);
+        return static_cast<float>((*reinterpret_cast<uint32_t *>(samples + (offset * 3 * num_chans - 1)) & 0xFFFFFF00));
     }
     double get(intptr_t offset) { return scale * operator()(offset); }
     
