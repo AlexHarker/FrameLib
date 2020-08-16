@@ -544,7 +544,7 @@ void FrameLib_Parameters::Enum::addEnumItem(unsigned long idx, const char *str, 
 {
     assert(idx == mItems.size() && "enum items added out of order");
     if (setAsDefault)
-        mDefault = mValue = mItems.size();
+        mDefault = mValue = static_cast<unsigned long>(mItems.size());
     mItems.push_back(str);
     mMax += 1.0;
 }

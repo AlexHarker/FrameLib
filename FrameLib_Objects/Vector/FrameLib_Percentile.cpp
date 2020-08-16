@@ -50,7 +50,7 @@ double FrameLib_Percentile::compute(const double *input, size_t size)
     {
         double position = (mParameters.getValue(kPercentile) * (size - 1) / 100.0);
         
-        sortAscending(temp, input, size);
+        sortAscending(temp, input, static_cast<unsigned long>(size));
         
         // Copy last value
         
