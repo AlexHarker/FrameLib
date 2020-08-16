@@ -54,7 +54,6 @@ namespace FrameLib_Filters
     };
 }
 
-
 using FrameLib_SVF = FrameLib_Filter<FrameLib_Filters::SVF>;
 
 #endif
