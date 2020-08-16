@@ -437,7 +437,7 @@ class FrameLib_Filter final : public FrameLib_Processor
             {
                 double outputs[NumCoeffs][1];
 
-                obj.requestOutputSize(0, mTaggedSize);
+                obj.requestOutputSize(0, static_cast<unsigned long>(mTaggedSize));
                 obj.allocateOutputs();
                 
                 modeSelect<NumModes-1>(obj, obj.getMode(), outputs, inputs, 1, ParamIndices(), CoeffIndices());
