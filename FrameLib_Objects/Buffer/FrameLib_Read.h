@@ -11,7 +11,7 @@ class FrameLib_Read final : public FrameLib_Processor
 {
     // Parameter Info and Enums
     
-    enum ParameterList { kBuffer, kChannel, kUnits, kInterpolation };
+    enum ParameterList { kBuffer, kChannel, kUnits, kInterpolation, kEdges, kBound };
     enum Interpolation { kNone, kLinear, kHermite, kBSpline, kLagrange };
     enum Units { kSamples, kMS, kSeconds, kNormalised };
 
@@ -34,7 +34,7 @@ public:
         
         // Read
         
-        virtual void read(double *output, const double *positions, unsigned long size, long chan, InterpType interpType) = 0;
+        virtual void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeType edges, bool bound) = 0;
         
         // Clone (we need unique instances per object for threading reasons)
         

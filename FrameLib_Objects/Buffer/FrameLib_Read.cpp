@@ -25,6 +25,14 @@ FrameLib_Read::FrameLib_Read(FrameLib_Context context, const FrameLib_Parameters
     mParameters.addEnumItem(kBSpline, "bspline");
     mParameters.addEnumItem(kLagrange, "lagrange");
     
+    mParameters.addEnum(kEdges, "edges", 4);
+    mParameters.addEnumItem(kExtrapolate, "extrapolate");
+    mParameters.addEnumItem(kExtend, "extend");
+    mParameters.addEnumItem(kWrap, "wrap");
+    mParameters.addEnumItem(kZeroPad, "zero", true);
+    
+    mParameters.addBool(kBound, "bound", true, 5);
+    
     mParameters.set(serialisedParameters);
     
     mChan = mParameters.getInt(kChannel);
@@ -91,12 +99,15 @@ void FrameLib_Read::update()
 
 void FrameLib_Read::process()
 {
+    EdgeType edges = static_cast<EdgeType>(mParameters.getInt(kEdges));
+    InterpType interpType = kInterpNone;
+
     double *positions = nullptr;
-    
+
     unsigned long size;
     long chan = mChan - 1;
-    
-    bool interp = false;
+    bool bound = mParameters.getBool(kBound);
+    bool doInterpolation = false;
     
     const double *input = getInput(0, &size);
     
@@ -118,7 +129,7 @@ void FrameLib_Read::process()
     
     if (positions)
     {
-        double conversionFactor = 1.0;
+        double scale = 1.0;
         double lengthM1 = length - 1.0;
         
         if (!samplingRate)
@@ -126,28 +137,22 @@ void FrameLib_Read::process()
         
         switch (mUnits)
         {
-            case kSamples:      conversionFactor = 1.0;                         break;
-            case kMS:           conversionFactor = samplingRate / 1000.0;       break;
-            case kSeconds:      conversionFactor = samplingRate;                break;
-            case kNormalised:   conversionFactor = lengthM1;                    break;
+            case kSamples:      scale = 1.0;                                    break;
+            case kMS:           scale = samplingRate / 1000.0;                  break;
+            case kSeconds:      scale = samplingRate;                           break;
+            case kNormalised:   scale = lengthM1 + (edges == kWrap ? 1 : 0);    break;
         }
-        
+
         for (unsigned long i = 0; i < size; i++)
         {
-            double position = input[i] * conversionFactor;
-            
-            position = std::max(0.0, std::min(position, lengthM1));
-    
-            positions[i] = position;
+            positions[i] = input[i] * scale;
             
             // N.B. - Assume that false is zero
             
-            interp |= ((position - ((int32_t) position)) != 0.0);
+            doInterpolation |= ((positions[i] - ((int32_t) positions[i])) != 0.0);
         }
-                
-        InterpType interpType = kInterpNone;
-        
-        if (interp)
+
+        if (doInterpolation || edges == kExtrapolate)
         {
             switch (mInterpolation)
             {
@@ -158,8 +163,8 @@ void FrameLib_Read::process()
                 case kLagrange:     interpType = kInterpCubicLagrange;      break;
             }
         }
-        
-        mProxy->read(output, positions, size, chan, interpType);
+                
+        mProxy->read(output, positions, size, chan, interpType, edges, bound);
         
         dealloc(positions);
     }

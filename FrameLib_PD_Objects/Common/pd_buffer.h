@@ -9,16 +9,15 @@ class pd_buffer
 
     struct fetch : public table_fetcher<double>
     {
-        fetch(t_word *data, int length)
-        : table_fetcher(1.0), mData(data), mLength(length) {}
+        fetch(t_word *data, intptr_t size)
+        : table_fetcher(size, 1.0), mData(data) {}
         
         t_sample operator()(intptr_t offset)
         {
-            return (offset < 0 || offset >= mLength) ? t_sample(0) : mData[offset].w_float;
+            return mData[offset].w_float;
         }
         
         t_word *mData;
-        int mLength;
     };
     
 public:
@@ -36,9 +35,9 @@ public:
     bool is_valid() const { return mTable && (mLength > 0); }
     int get_length() const { return mLength; }
     
-    void read(double *output, const double *positions, unsigned long size, double amp, InterpType interpType)
+    void read(double *output, const double *positions, unsigned long size, double amp, InterpType interp, EdgeType edges, bool bound)
     {
-        table_read(fetch(mTable, mLength), output, positions, size, amp, interpType);
+        table_read_edges(fetch(mTable, mLength), output, positions, size, amp, interp, edges, bound);
     }
     
 private:

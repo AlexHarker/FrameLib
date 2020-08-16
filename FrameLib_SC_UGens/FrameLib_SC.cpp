@@ -232,16 +232,15 @@ struct ReadProxy : public FrameLib_Read::Proxy
     
     struct fetch : public table_fetcher<double>
     {
-        fetch(float *data, int length)
-        : table_fetcher(1.0), mData(data), mLength(length) {}
+        fetch(float *data, intptr_t size)
+        : table_fetcher(size, 1.0), mData(data) {}
         
         float operator()(intptr_t offset)
         {
-            return (offset < 0 || offset >= mLength) ? 0.f : mData[offset];
+            return mData[offset];
         }
         
         float *mData;
-        int mLength;
     };
     
     void update(const char *name) override
@@ -276,12 +275,12 @@ struct ReadProxy : public FrameLib_Read::Proxy
         //RELEASE_SNDBUF(mBuffer);
     }
     
-    void read(double *output, const double *positions, unsigned long size, long chan, InterpType interpType)  override
+    void read(double *output, const double *positions, unsigned long size, long chan, InterpType interp, EdgeType edges, bool bound) override
     {
         if (mBuffer)
         {
             chan = std::max(0L, std::min(chan, static_cast<long>(mBuffer->channels - 1)));
-            table_read(fetch(mBuffer->data, mBuffer->frames), output, positions, size, 1.0, interpType);
+            table_read_edges(fetch(mBuffer->data, mBuffer->frames), output, positions, size, 1.0, interp, edges, bound);
         }
     }
     

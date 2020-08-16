@@ -47,7 +47,7 @@ private:
 
     struct Fetch : table_fetcher<double>
     {
-        Fetch(const double *data) : table_fetcher(1.0), mData(data) {}
+        Fetch(const double *data, intptr_t size) : table_fetcher(size, 1.0), mData(data) {}
         
         double operator()(intptr_t offset) { return mData[offset]; }
         
