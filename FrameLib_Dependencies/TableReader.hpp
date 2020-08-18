@@ -48,11 +48,9 @@ struct table_fetcher
 template <class T>
 struct table_fetcher_extrapolate : T
 {
-    using fetch_type = typename T::fetch_type;
-    
     table_fetcher_extrapolate(const T& base) : T(base){}
     
-    fetch_type operator()(intptr_t offset)
+    typename T::fetch_type operator()(intptr_t offset)
     {
         return (offset >= 0 && offset < T::size) ? T::operator()(offset) : (offset < 0 ? ends[0] : ends[1]);
     }
@@ -67,24 +65,26 @@ struct table_fetcher_extrapolate : T
     
     void extrapolate(bool cubic)
     {
-        auto get = [&](intptr_t offset) { return T::operator()(offset); };
-        intptr_t s = T::size;
+        using fetch_type = typename T::fetch_type;
+        
+        auto beg = [&](intptr_t offset) { return T::operator()(offset); };
+        auto end = [&](intptr_t offset) { return T::operator()(T::size - (offset + 1)); };
        
         if (T::size >= 4 && cubic)
         {
-            ends[0] = cubic_lagrange_interp<fetch_type>()(fetch_type(-2), get(0), get(1), get(2), get(3));
-            ends[1] = cubic_lagrange_interp<fetch_type>()(fetch_type(-2), get(s-1), get(s-2), get(s-3), get(s-4));
+            ends[0] = cubic_lagrange_interp<fetch_type>()(fetch_type(-2), beg(0), beg(1), beg(2), beg(3));
+            ends[1] = cubic_lagrange_interp<fetch_type>()(fetch_type(-2), end(0), end(1), end(2), end(3));
         }
         else if (T::size >= 2)
         {
-            ends[0] = linear_interp<fetch_type>()(fetch_type(-1), get(0), get(1));
-            ends[1] = linear_interp<fetch_type>()(fetch_type(-1), get(s-1), get(s-2));
+            ends[0] = linear_interp<fetch_type>()(fetch_type(-1), beg(0), beg(1));
+            ends[1] = linear_interp<fetch_type>()(fetch_type(-1), end(0), end(1));
         }
         else
             ends[0] = ends[1] = (T::size > 0 ? T::operator()(0) : fetch_type(0));
     }
     
-    fetch_type ends[2];
+    typename T::fetch_type ends[2];
 };
 
 // Adaptor to take a fetcher and make it extend the end values
