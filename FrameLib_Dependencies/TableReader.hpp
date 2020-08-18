@@ -17,9 +17,10 @@ enum EdgeType
 
 // Implementations
 // - must provide - T operator()(intptr_t offset) - which does the fetching of values
-// - may also provide - template <class U, V> void split(U position, intptr_t& offset, V& fract, intptr_t N)
+// - may also provide - template <class U, V> void split(U position, intptr_t& offset, V& fract, int N)
 // - split() generates the offset and fractional interpolation values and may additionally constrain them
 // - may also provide intptr_t limit() which should return the highest valid position for bounds etc.
+// - may also provide void extrapolate(bool cubic) which should prepare the table for extrapolation if necessary
 
 template <class T>
 struct table_fetcher
@@ -29,13 +30,14 @@ struct table_fetcher
     table_fetcher(intptr_t length, double scale_val) : size(length), scale(scale_val) {}
     
     template <class U, class V>
-    void split(U position, intptr_t& offset, V& fract, intptr_t N)
+    void split(U position, intptr_t& offset, V& fract, int N)
     {
         offset = static_cast<intptr_t>(std::floor(position));
         fract = static_cast<V>(position - static_cast<V>(offset));
     }
     
     intptr_t limit() { return size - 1; }
+    void extrapolate(bool cubic) {}
     
     const intptr_t size;
     const double scale;
@@ -46,15 +48,43 @@ struct table_fetcher
 template <class T>
 struct table_fetcher_extrapolate : T
 {
+    using fetch_type = typename T::fetch_type;
+    
     table_fetcher_extrapolate(const T& base) : T(base){}
     
-    template <class U, class V>
-    void split(U position, intptr_t& offset, V& fract, intptr_t N)
+    fetch_type operator()(intptr_t offset)
     {
-        U constrained = std::max(std::min(position, U(T::size - ((N >> 1) + 1))), U((N - 1) >> 1));
+        return (offset >= 0 && offset < T::size) ? T::operator()(offset) : (offset < 0 ? ends[0] : ends[1]);
+    }
+    
+    template <class U, class V>
+    void split(U position, intptr_t& offset, V& fract, int N)
+    {
+        U constrained = std::max(std::min(position, U(T::size - (N ? 2 : 1))), U(0));
         offset = static_cast<intptr_t>(std::floor(constrained));
         fract = static_cast<V>(position - static_cast<V>(offset));
     }
+    
+    void extrapolate(bool cubic)
+    {
+        auto get = [&](intptr_t offset) { return T::operator()(offset); };
+        intptr_t s = T::size;
+       
+        if (T::size >= 4 && cubic)
+        {
+            ends[0] = cubic_lagrange_interp<fetch_type>()(fetch_type(-2), get(0), get(1), get(2), get(3));
+            ends[1] = cubic_lagrange_interp<fetch_type>()(fetch_type(-2), get(s-1), get(s-2), get(s-3), get(s-4));
+        }
+        else if (T::size >= 2)
+        {
+            ends[0] = linear_interp<fetch_type>()(fetch_type(-1), get(0), get(1));
+            ends[1] = linear_interp<fetch_type>()(fetch_type(-1), get(s-1), get(s-2));
+        }
+        else
+            ends[0] = ends[1] = (T::size > 0 ? T::operator()(0) : fetch_type(0));
+    }
+    
+    fetch_type ends[2];
 };
 
 // Adaptor to take a fetcher and make it extend the end values
@@ -106,7 +136,7 @@ struct table_fetcher_bound : T
     table_fetcher_bound(const T& base) : T(base){}
 
     template <class U, class V>
-    void split(U position, intptr_t& offset, V& fract, intptr_t N)
+    void split(U position, intptr_t& offset, V& fract, int N)
     {
         position = std::max(std::min(position, U(T::limit())), U(0));
         T::split(position, offset, fract, N);
@@ -261,6 +291,8 @@ void table_read(Table fetcher, W *out, const X *positions, intptr_t n_samps, dou
 template <class T, class U, class Table>
 void table_read(Table fetcher, T *out, const U *positions, intptr_t n_samps, T mul, InterpType interp)
 {
+    fetcher.extrapolate(interp != kInterpLinear);
+    
     switch(interp)
     {
         case kInterpNone:           table_read<no_interp_reader>(fetcher, out, positions, n_samps, mul);        break;
