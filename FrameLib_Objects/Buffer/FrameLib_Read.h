@@ -5,8 +5,6 @@
 #include "FrameLib_DSP.h"
 #include "../../FrameLib_Dependencies/TableReader.hpp"
 
-// FIX - consider adding anti-alising later....
-
 class FrameLib_Read final : public FrameLib_Processor
 {
     // Parameter Info and Enums
