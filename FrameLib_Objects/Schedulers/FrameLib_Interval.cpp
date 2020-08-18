@@ -58,10 +58,10 @@ void FrameLib_Interval::calculateInterval()
     
     switch (static_cast<Units>(mParameters.getInt(kUnits)))
     {
-        case kHz:           interval = hzToSamples(interval);           break;
+        case kSamples:      break;
         case kMS:           interval = msToSamples(interval);           break;
         case kSeconds:      interval = secondsToSamples(interval);      break;
-        case kSamples:      break;
+        case kHz:           interval = hzToSamples(interval);           break;
     }
     
     if (!interval)
