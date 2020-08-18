@@ -2,7 +2,7 @@
 #include "FrameLib_Trace.h"
 #include <algorithm>
 
-// FIX - trace is only sample accurate (not subsample) - double the buffer and add a function to interpolate if neceesary
+// FIX - trace is only sample accurate (not subsample) - double the buffer and add a function to interpolate if necessary
 
 // Constructor
 
@@ -16,6 +16,8 @@ FrameLib_Trace::FrameLib_Trace(FrameLib_Context context, const FrameLib_Paramete
     mParameters.addEnumItem(kSpecified, "specified");
     mParameters.addEnumItem(kRatio, "ratio");
     
+    // FIX - defaults for when the units are not in samples!
+
     mParameters.addDouble(kBufferSize, "buffer_size", 250000, 1);
     mParameters.setMin(0.0);
     mParameters.setInstantiation();
