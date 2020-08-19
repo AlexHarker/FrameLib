@@ -8,7 +8,7 @@ class FrameLib_Interval final : public FrameLib_Scheduler
 {
     // Parameter Enums and Info
 
-    enum ParameterList { kInterval, kUnits, kOn };
+    enum ParameterList { kInterval, kUnits, kSwitchable, kOn };
     enum Units { kSamples, kMS, kSeconds, kHz };
 
     struct ParameterInfo : public FrameLib_Parameters::Info { ParameterInfo(); };
@@ -46,6 +46,8 @@ private:
     FrameLib_TimeFormat mRemaining;
     
     static ParameterInfo sParamInfo;
+    
+    bool mSwitchable;
 };
 
 #endif

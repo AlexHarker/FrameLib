@@ -13,9 +13,14 @@ FrameLib_Interval::FrameLib_Interval(FrameLib_Context context, const FrameLib_Pa
     mParameters.addEnumItem(kSeconds, "seconds");
     mParameters.addEnumItem(kHz, "hz");
     
-    mParameters.addBool(kOn, "on", true, 2);
+    mParameters.addBool(kSwitchable, "switchable", false, 2);
+    mParameters.setInstantiation();
+    
+    mParameters.addBool(kOn, "on", true, 3);
 
     mParameters.set(serialisedParameters);
+    
+    mSwitchable = mParameters.getBool(kSwitchable);
     
     setParameterInput(0);
     
@@ -88,30 +93,24 @@ void FrameLib_Interval::update()
 
 FrameLib_Interval::SchedulerInfo FrameLib_Interval::schedule(bool newFrame, bool noAdvance)
 {
-    bool on = mParameters.getBool(kOn);
-    bool timeRemaining = mRemaining.greaterThanZero();
+    bool on = mParameters.getBool(kOn) || !mSwitchable;
+    bool start = on && !mRemaining.greaterThanZero();
     
-    FrameLib_TimeFormat inputTime = getInputTime();
-    FrameLib_TimeFormat now = getCurrentTime();
-    FrameLib_TimeFormat interval = timeRemaining ? mRemaining : mInterval;
+    if (noAdvance)
+        return SchedulerInfo();
     
-    // Calculate if we can schedule up to the next new frame
+    mRemaining = start ? mInterval : mRemaining;
     
-    bool complete = on && (now + interval) < inputTime;
+    // Calculate if we can schedule up to the next new frame and if not then adjust the interval
+    // N.B. - if switchable for completion the state must not be able to change *at* or before the next inputTime
+
+    FrameLib_TimeFormat tillNextInput = getInputTime() - getCurrentTime();
+    bool complete = !mSwitchable || (on && (mRemaining < tillNextInput));
+    FrameLib_TimeFormat interval = complete ? mRemaining : tillNextInput;
     
-    // Adjust the interval if we need to track input / block updates or if not allowed to update
+    // Update the remaining time and schedule
+        
+    mRemaining = on ? mRemaining - interval : FrameLib_TimeFormat();
     
-    interval = complete ? interval : std::min(inputTime, getBlockEndTime()) - now;
-    interval = noAdvance ? FrameLib_TimeFormat() : interval;
-    
-    // Update the remaining time
-    
-    if (on && timeRemaining)
-        mRemaining -= interval;
-    else if (on)
-        mRemaining = mInterval - interval;
-    else
-        mRemaining = FrameLib_TimeFormat();
-    
-    return SchedulerInfo(interval, on && !timeRemaining, complete);
+    return SchedulerInfo(interval, start, complete);
 }
